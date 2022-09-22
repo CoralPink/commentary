@@ -1,0 +1,374 @@
+<!DOCTYPE HTML>
+<html lang="ja" class="sidebar-visible no-js latte">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Right Status - Commentary</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href=".././theme/catppuccin.css">
+        <link rel="stylesheet" href=".././theme/catppuccin-highlight.css">
+        <link rel="stylesheet" href=".././mdbook-admonish.css">
+        <link rel="stylesheet" href=".././theme/override.css">
+
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "macchiato" : "latte";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('latte')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../introduction.html"><strong aria-hidden="true">1.</strong> introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">WezTerm</li><li class="chapter-item expanded "><a href="../wezterm/installation.html"><strong aria-hidden="true">2.</strong> installation</a></li><li class="chapter-item expanded "><a href="../wezterm/base.html"><strong aria-hidden="true">3.</strong> Base Settings</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../wezterm/window.html"><strong aria-hidden="true">3.1.</strong> Window</a></li><li class="chapter-item expanded "><a href="../wezterm/shell.html"><strong aria-hidden="true">3.2.</strong> Shell Prompt</a></li><li class="chapter-item expanded "><a href="../wezterm/font.html"><strong aria-hidden="true">3.3.</strong> Font</a></li><li class="chapter-item expanded "><a href="../wezterm/frame.html"><strong aria-hidden="true">3.4.</strong> Frame</a></li><li class="chapter-item expanded "><a href="../wezterm/keybind.html"><strong aria-hidden="true">3.5.</strong> Keybind</a></li><li class="chapter-item expanded "><a href="../wezterm/leader.html"><strong aria-hidden="true">3.6.</strong> Leader Key</a></li></ol></li><li class="chapter-item expanded "><a href="../wezterm/format.html"><strong aria-hidden="true">4.</strong> Format</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../wezterm/window-title.html"><strong aria-hidden="true">4.1.</strong> Window Title</a></li><li class="chapter-item expanded "><a href="../wezterm/tab.html"><strong aria-hidden="true">4.2.</strong> Tab</a></li></ol></li><li class="chapter-item expanded "><a href="../wezterm/status.html"><strong aria-hidden="true">5.</strong> Status Bar</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../wezterm/left-status.html"><strong aria-hidden="true">5.1.</strong> Left Status</a></li><li class="chapter-item expanded "><a href="../wezterm/right-status.html" class="active"><strong aria-hidden="true">5.2.</strong> Right Status</a></li></ol></li><li class="chapter-item expanded "><a href="../wezterm/custom.html"><strong aria-hidden="true">6.</strong> Custom Event</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../wezterm/toggle-font.html"><strong aria-hidden="true">6.1.</strong> Toggle Font</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">neoVim</li><li class="chapter-item expanded affix "><li class="part-title">...To Be Continued</li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                        <!--
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        -->
+                            <li role="none"><button role="menuitem" class="theme" id="latte">Latte (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="frappe">Frappé</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="macchiato">Macchiato</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mocha">Mocha</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Commentary</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/CoralPink/commentary" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="right-status"><a class="header" href="#right-status">Right Status</a></h1>
+<p>これはもう手厚いサンプルが既に用意されているので、この通りに書けばバッチリです。やったね！</p>
+<div id="admonition-windowset_right_statusstringhttpswezfurlongorgweztermconfigluawindowset_right_statushtml" class="admonition note">
+<div class="admonition-title">
+<p><a href="https://wezfurlong.org/wezterm/config/lua/window/set_right_status.html">window:set_right_status(string)</a></p>
+<p><a class="admonition-anchor-link" href="#admonition-windowset_right_statusstringhttpswezfurlongorgweztermconfigluawindowset_right_statushtml"></a></p>
+</div>
+<div>
+<p>This method can be used to change the content that is displayed in the tab bar, to the right of the tabs and new tab button. </p>
+<p>このメソッドを使用すると、タブバー内のタブと新規タブボタンの右側に表示される内容を変更することができます。</p>
+</div>
+</div>
+ただ、わたしの設定例にお付き合いいただける方のために、もうちょっとだけ続きます。
+<h2 id="my-customize"><a class="header" href="#my-customize">My Customize</a></h2>
+<p>まずは wez さんのサンプルコードをほぼ丸写しですが、一つずつ機能を分けます。</p>
+<div id="admonition-warning" class="admonition warning">
+<div class="admonition-title">
+<p>Warning</p>
+<p><a class="admonition-anchor-link" href="#admonition-warning"></a></p>
+</div>
+<div>
+<p>先に下記のコードを載せていますが、いくつか未定義なものがあるので、これだけだとエラーになっちゃいます。</p>
+</div>
+</div>
+<div id="admonition-statuslua" class="admonition example">
+<div class="admonition-title">
+<p>status.lua</p>
+<p><a class="admonition-anchor-link" href="#admonition-statuslua"></a></p>
+</div>
+<div>
+<pre><code class="language-lua">local function GetHostAndCwd(elems, pane)
+  local uri = pane:get_current_working_dir()
+
+  if not uri then
+    return
+  end
+
+  local cwd_uri = uri:sub(8)
+  local slash = cwd_uri:find '/'
+
+  if not slash then
+    return
+  end
+
+  local host = cwd_uri:sub(1, slash - 1)
+  local dot = host:find '[.]'
+
+  AddElement(elems, HEADER_HOST, dot and host:sub(1, dot - 1) or host)
+  AddElement(elems, HEADER_CWD, cwd_uri:sub(slash))
+end
+
+local function GetDate(elems)
+  AddElement(elems, HEADER_DATE, wezterm.strftime '%a %b %-d')
+end
+
+local function GetTime(elems)
+  AddElement(elems, HEADER_TIME, wezterm.strftime '%H:%M')
+end
+
+local function GetBattery(elems, window)
+  if not window:get_dimensions().is_full_screen then
+    return
+  end
+
+  for _, b in ipairs(wezterm.battery_info()) do
+    AddElement(elems, HEADER_BATTERY, string.format('%.0f%%', b.state_of_charge * 100))
+  end
+end
+</code></pre>
+</div>
+</div>
+<p>wez さんのサンプルでは一度に取得していた date と time も分けちゃってます。</p>
+<p>程度は分かりませんが、非効率ではあると思われるのでお好みで。</p>
+<p>バッテリー表示については、わたしの場合はフルスクリーンの時だけ出しています。スクリーン状態は下記で取得できます。</p>
+<div id="admonition-windowget_dimensionshttpswezfurlongorgweztermconfigluawindowget_dimensionshtml" class="admonition note">
+<div class="admonition-title">
+<p><a href="https://wezfurlong.org/wezterm/config/lua/window/get_dimensions.html">window:get_dimensions()</a></p>
+<p><a class="admonition-anchor-link" href="#admonition-windowget_dimensionshttpswezfurlongorgweztermconfigluawindowget_dimensionshtml"></a></p>
+</div>
+<div>
+<p>The table has the following fields:</p>
+<p>pixel_width, pixel_height, dpi, is_full_screen</p>
+<p>テーブルには以下のフィールドがあります:</p>
+<p>pixel_width, pixel_height, dpi, is_full_screen</p>
+</div>
+</div>
+<p>ここでは<code>is_full_screen</code>を使います。フルスクリーン時は true が返ります。</p>
+<div id="admonition-warning-1" class="admonition warning">
+<div class="admonition-title">
+<p>Warning</p>
+<p><a class="admonition-anchor-link" href="#admonition-warning-1"></a></p>
+</div>
+<div>
+<p><code>WezTerm</code>の<a href="https://wezfurlong.org/wezterm/config/lua/keyassignment/ToggleFullScreen.html">ToggleFullScreen</a>を使用してフルスクリーンにしている場合は反応してくれないようです。</p>
+<p>OSからフルスクリーン化した時はちゃんと反応します。</p>
+<p><img src="img/fullscreen.png" alt="fullscreen" /></p>
+</div>
+</div>
+<p>で、以下が足りていなかった定義です。</p>
+<div id="admonition-statuslua-1" class="admonition example">
+<div class="admonition-title">
+<p>status.lua</p>
+<p><a class="admonition-anchor-link" href="#admonition-statuslua-1"></a></p>
+</div>
+<div>
+<pre><code class="language-lua">-- ここもやっぱりアイコン入れてます
+local HEADER_HOST = { Foreground = { Color = '#75b1a9' }, Text = '' }
+local HEADER_CWD = { Foreground = { Color = '#92aac7' }, Text = '' }
+local HEADER_DATE = { Foreground = { Color = '#ffccac' }, Text = '' }
+local HEADER_TIME = { Foreground = { Color = '#bcbabe' }, Text = '' }
+local HEADER_BATTERY = { Foreground = { Color = '#dfe166' }, Text = '' }
+
+local HEADER_KEY_NORMAL = { Foreground = DEFAULT_COLOR, Text = '' }
+local HEADER_LEADER = { Foreground = { Color = '#ffffff' }, Text = '' }
+local HEADER_IME = { Foreground = DEFAULT_COLOR, Text = 'あ' }
+
+local function AddElement(elems, header, str)
+  table.insert(elems, { Foreground = header.Foreground })
+  table.insert(elems, { Text = header.Text .. SPACE_1 })
+
+  table.insert(elems, { Foreground = DEFAULT_COLOR })
+  table.insert(elems, { Text = str .. SPACE_3 })
+end
+</code></pre>
+</div>
+</div>
+<p>引っ張った割には特に説明するところもないですね...。そのまま完成させちゃいましょう😆</p>
+<div id="admonition-statuslua-2" class="admonition example">
+<div class="admonition-title">
+<p>status.lua</p>
+<p><a class="admonition-anchor-link" href="#admonition-statuslua-2"></a></p>
+</div>
+<div>
+<pre><code class="language-lua">local function RightUpdate(window, pane)
+  local elems = {}
+
+  GetHostAndCwd(elems, pane)
+  GetDate(elems)
+  GetTime(elems)
+  GetBattery(elems, window)
+
+  window:set_right_status(wezterm.format(elems))
+end
+
+wezterm.on('update-status', function(window, pane)
+  -- 冗長に見えるかもしれませんが、Left Status の設定を後で入れるのでこうなってます。
+  RightUpdate(window, pane)
+end)
+</code></pre>
+</div>
+</div>
+<p>さて、これでこんな感じになったはずなんですがどうでしょうか？右上です。</p>
+<p><img src="img/right-status.png" alt="right-status" /></p>
+<p>フルスクリーン時にバッテリー表示もされているでしょうか？
+<img src="img/right-status-full.png" alt="right-status" /></p>
+<div id="admonition-success" class="admonition success">
+<div class="admonition-title">
+<p>Success</p>
+<p><a class="admonition-anchor-link" href="#admonition-success"></a></p>
+</div>
+<div>
+<p>華やかになりましたね。</p>
+<p>(ぶっちゃけそんな見ないんだけど) サンプル通りとはいえ、自分で書いたコードが動くんだから楽しい世界ですよね〜。</p>
+<p>ほわほわ〜☺️</p>
+</div>
+</div>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../wezterm/left-status.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../wezterm/custom.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../wezterm/left-status.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../wezterm/custom.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>

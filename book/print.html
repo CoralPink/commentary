@@ -1,0 +1,1824 @@
+<!DOCTYPE HTML>
+<html lang="ja" class="sidebar-visible no-js latte">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Commentary</title>
+        <meta name="robots" content="noindex" />
+
+
+        <!-- Custom HTML head -->
+        
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="./theme/catppuccin.css">
+        <link rel="stylesheet" href="./theme/catppuccin-highlight.css">
+        <link rel="stylesheet" href="./mdbook-admonish.css">
+        <link rel="stylesheet" href="./theme/override.css">
+
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "macchiato" : "latte";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('latte')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="introduction.html"><strong aria-hidden="true">1.</strong> introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">WezTerm</li><li class="chapter-item expanded "><a href="wezterm/installation.html"><strong aria-hidden="true">2.</strong> installation</a></li><li class="chapter-item expanded "><a href="wezterm/base.html"><strong aria-hidden="true">3.</strong> Base Settings</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="wezterm/window.html"><strong aria-hidden="true">3.1.</strong> Window</a></li><li class="chapter-item expanded "><a href="wezterm/shell.html"><strong aria-hidden="true">3.2.</strong> Shell Prompt</a></li><li class="chapter-item expanded "><a href="wezterm/font.html"><strong aria-hidden="true">3.3.</strong> Font</a></li><li class="chapter-item expanded "><a href="wezterm/frame.html"><strong aria-hidden="true">3.4.</strong> Frame</a></li><li class="chapter-item expanded "><a href="wezterm/keybind.html"><strong aria-hidden="true">3.5.</strong> Keybind</a></li><li class="chapter-item expanded "><a href="wezterm/leader.html"><strong aria-hidden="true">3.6.</strong> Leader Key</a></li></ol></li><li class="chapter-item expanded "><a href="wezterm/format.html"><strong aria-hidden="true">4.</strong> Format</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="wezterm/window-title.html"><strong aria-hidden="true">4.1.</strong> Window Title</a></li><li class="chapter-item expanded "><a href="wezterm/tab.html"><strong aria-hidden="true">4.2.</strong> Tab</a></li></ol></li><li class="chapter-item expanded "><a href="wezterm/status.html"><strong aria-hidden="true">5.</strong> Status Bar</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="wezterm/left-status.html"><strong aria-hidden="true">5.1.</strong> Left Status</a></li><li class="chapter-item expanded "><a href="wezterm/right-status.html"><strong aria-hidden="true">5.2.</strong> Right Status</a></li></ol></li><li class="chapter-item expanded "><a href="wezterm/custom.html"><strong aria-hidden="true">6.</strong> Custom Event</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="wezterm/toggle-font.html"><strong aria-hidden="true">6.1.</strong> Toggle Font</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">neoVim</li><li class="chapter-item expanded affix "><li class="part-title">...To Be Continued</li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                        <!--
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        -->
+                            <li role="none"><button role="menuitem" class="theme" id="latte">Latte (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="frappe">Frappé</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="macchiato">Macchiato</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mocha">Mocha</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Commentary</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/CoralPink/commentary" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="introduction"><a class="header" href="#introduction">Introduction</a></h1>
+<p>このページでは、わたしが普段使っているターミナル環境を元にした設定例を紹介しています。</p>
+<p><img src="goal.png" alt="goal.png" /></p>
+<p><em>Screenshot of wezterm on macOS, running neovim</em>.</p>
+<p>全ての設定を網羅しているわけではなく、あくまで自分で使っている設定に対しての解説です。</p>
+<p>見てくれた人のヒントになったり、何かの役に立ったりしたら嬉しいです。</p>
+<div id="admonition-このサイトが想定している読者" class="admonition info">
+<div class="admonition-title">
+<p>このサイトが想定している読者</p>
+<p><a class="admonition-anchor-link" href="introduction.html#admonition-このサイトが想定している読者"></a></p>
+</div>
+<div>
+<p>一つの目安として、<code>homebrew</code> などのパッケージ管理操作ができる程度を想定しています。</p>
+<p><code>Wezterm</code>の設定については、ほぼ<code>lua</code>ファイルの編集で完結するため、ターミナルコマンドを使う場面は限られていますし、
+コマンドの例示も全て行っているつもりではありますが、
+それでもコマンドを使って操作したことがない場合はやはり怖いです。</p>
+<p>逆に、ファイルの編集自体は'vim'などのターミナル上で動くソフトウェアではなく、<code>Xcode</code>や<code>Visual Studio Code</code>などでも構いません。
+これについては<code>3.Base Settings</code>で示します。</p>
+</div>
+</div>
+<div id="admonition-warning" class="admonition warning">
+<div class="admonition-title">
+<p>Warning</p>
+<p><a class="admonition-anchor-link" href="introduction.html#admonition-warning"></a></p>
+</div>
+<div>
+<p>わたしの使用している環境が<code>macOS</code>なので、説明やイメージもこれを使用しています。</p>
+<p>必要なソフトウェアと設定さえ整っていれば 他の OS でも通用するはずですが、
+100% 自信を持っているわけではないので、その点ご了承ください。</p>
+</div>
+</div>
+<h2 id="thanks"><a class="header" href="#thanks">Thanks</a></h2>
+<p>Thanks to application developers!!
+I enjoy using it💓</p>
+<p><a href="https://wezfurlong.org/wezterm/">WezTerm - Wez's Terminal Emulator</a></p>
+<p><a href="https://neovim.io">Neovim - hyperextensible Vim-based text editor</a></p>
+<p>And thanks to the developers of the applications used to create this website🤗</p>
+<p><a href="https://rust-lang.github.io/mdBook/">mdBook</a></p>
+<p><a href="https://github.com/catppuccin/mdbook">Catppuccin for mdBook</a></p>
+<p><a href="https://github.com/tommilligan/mdbook-admonish">mdbook-admonish</a></p>
+<p><a href="https://www.deepl.com/translator">DeepL</a></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="installation"><a class="header" href="#installation">Installation</a></h1>
+<p>まずは<code>WezTerm</code>です。</p>
+<p>インストールは<code>homebrew</code>などのパッケージ管理システムや、ホームページ上で提供されている実行ファイルをダウンロードする方法があります。</p>
+<div id="admonition-install---wezs-terminal-emulatorhttpswezfurlongorgwezterminstallationhtml" class="admonition note">
+<div class="admonition-title">
+<p><a href="https://wezfurlong.org/wezterm/installation.html">Install - Wez's Terminal Emulator</a></p>
+<p><a class="admonition-anchor-link" href="wezterm/installation.html#admonition-install---wezs-terminal-emulatorhttpswezfurlongorgwezterminstallationhtml"></a></p>
+</div>
+<div>
+<p>WezTerm is available pre-built for the major platforms and, because it is open source, you may also build it for yourself.</p>
+<p>WezTermは主要なプラットフォーム用にあらかじめビルドされていますが、オープンソースであるため、自分でビルドすることも可能です。</p>
+</div>
+</div>
+<p>環境に合わせて、好きな方法でインストールしてください。</p>
+<p>では、起動してみましょう。(ユーザー名だけちょっと雑に隠しますが気にしないでください。)</p>
+<p><img src="wezterm/img/initial.png" alt="initial.heic" /></p>
+<div id="admonition-success" class="admonition success">
+<div class="admonition-title">
+<p>Success</p>
+<p><a class="admonition-anchor-link" href="wezterm/installation.html#admonition-success"></a></p>
+</div>
+<div>
+<p>動きましたね。
+まだまだ味気ないですが、設定を重ねていくと面白みが増してきます。</p>
+<p>少し補足すると、上のスクリーンショットは<code>WezTerm</code>上で<code>zsh</code>が動いている状態です。
+シェルの設定なども含め、まだ何もいじっていない状態であればこんな感じになると思います<sup class="footnote-reference"><a href="#unix">1</a></sup>。</p>
+<p>では、次から<code>WezTerm</code>の設定を行なっていきましょう。</p>
+</div>
+</div>
+<div class="footnote-definition" id="unix"><sup class="footnote-definition-label">1</sup>
+<p>Unix だと bash が動いているでしょうか。</p>
+</div>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="base-settings"><a class="header" href="#base-settings">Base Settings</a></h1>
+<p>特に難しいことを考えずに ホームフォルダに <code>.wezterm.lua</code> を置いても良いのですが、
+後々ファイルを複数配置していくので、<code>$HOME/.config/wezterm</code>というディレクトリを作って、そこに <code>wezterm.lua</code> を置くほうがおすすめです。</p>
+<p>以下のようにしてみましょう。</p>
+<div id="admonition-homeconfigweztermweztermlua" class="admonition example">
+<div class="admonition-title">
+<p>$HOME/.config/wezterm/wezterm.lua</p>
+<p><a class="admonition-anchor-link" href="wezterm/base.html#admonition-homeconfigweztermweztermlua"></a></p>
+</div>
+<div>
+<pre><code class="language-lua">return {
+
+}
+</code></pre>
+</div>
+</div>
+<div id="admonition-success" class="admonition success">
+<div class="admonition-title">
+<p>Success</p>
+<p><a class="admonition-anchor-link" href="wezterm/base.html#admonition-success"></a></p>
+</div>
+<div>
+<p>最初はこんなものです。できたら次のページへ進みましょう。</p>
+</div>
+</div>
+<p>もし、手順が必要なら下へ。</p>
+<h2 id="手順"><a class="header" href="#手順">手順</a></h2>
+<p>以下のコマンドを順に実行してください。</p>
+<div id="admonition-ディレクトリを作る" class="admonition quote">
+<div class="admonition-title">
+<p>ディレクトリを作る</p>
+<p><a class="admonition-anchor-link" href="wezterm/base.html#admonition-ディレクトリを作る"></a></p>
+</div>
+<div>
+<pre><code class="language-sh">mkdir -p ~/.config/wezterm
+</code></pre>
+</div>
+</div>
+<div id="admonition-テキストを編集する以下の例ではvimを使用" class="admonition quote">
+<div class="admonition-title">
+<p>テキストを編集する(以下の例では<code>vim</code>を使用)</p>
+<p><a class="admonition-anchor-link" href="wezterm/base.html#admonition-テキストを編集する以下の例ではvimを使用"></a></p>
+</div>
+<div>
+<pre><code class="language-sh">vim ~/.config/wezterm/wezterm.lua
+</code></pre>
+</div>
+</div>
+<div id="admonition-gui-のエディタを使う場合" class="admonition info">
+<div class="admonition-title">
+<p>GUI のエディタを使う場合</p>
+<p><a class="admonition-anchor-link" href="wezterm/base.html#admonition-gui-のエディタを使う場合"></a></p>
+</div>
+<div>
+<p>GUI のエディタを使用したい場合は以下で出来ます。<code>lua</code>ファイルに関連付けられたアプリケーションが起動するはずです。</p>
+<p>ファイルを作る:</p>
+<pre><code class="language-sh">touch ~/.config/wezterm/wezterm.lua
+</code></pre>
+<p>ファイルを開く:</p>
+<pre><code>open ~/.config/wezterm/wezterm.lua
+</code></pre>
+<p>もし、こんなのが出てきたら</p>
+<p><img src="wezterm/img/no-app.png" alt="no-app.png" /></p>
+<p>普段使っているエディタを選びましょう。</p>
+<p><code>Xcode</code>や<code>Visual Studio Code</code>などでもいけるはずです。
+<img src="wezterm/img/select-app.png" alt="select-app.png" /></p>
+</div>
+</div>
+<div id="admonition-success-1" class="admonition success">
+<div class="admonition-title">
+<p>Success</p>
+<p><a class="admonition-anchor-link" href="wezterm/base.html#admonition-success-1"></a></p>
+</div>
+<div>
+<p>できましたね!! それでは次のページへ進みましょう。</p>
+</div>
+</div>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="window"><a class="header" href="#window">Window</a></h1>
+<p>ここではウィンドウの設定を行なっていきます。</p>
+<h2 id="color-schemes"><a class="header" href="#color-schemes">Color Schemes</a></h2>
+<p>Wezterm では数多くのカラースキームを内蔵しているため、簡単に設定が可能です。</p>
+<p>以下から好きなカラースキームを選んで指定します。</p>
+<div id="admonition-color-schemeshttpswezfurlongorgweztermcolorschemesindexhtml" class="admonition note">
+<div class="admonition-title">
+<p><a href="https://wezfurlong.org/wezterm/colorschemes/index.html">Color Schemes</a></p>
+<p><a class="admonition-anchor-link" href="wezterm/window.html#admonition-color-schemeshttpswezfurlongorgweztermcolorschemesindexhtml"></a></p>
+</div>
+<div>
+<p>735 Color schemes listed by first letter</p>
+<p>735<sup class="footnote-reference"><a href="#a">1</a></sup>種類のカラースキーム一覧</p>
+</div>
+</div>
+<p>お気に入りのカラースキームは見つかりましたか？</p>
+<p>わたしは<code>Catppuccin Mocha</code>を愛用しているので、以下のようになりました。</p>
+<div id="admonition-weztermlua" class="admonition example">
+<div class="admonition-title">
+<p>wezterm.lua</p>
+<p><a class="admonition-anchor-link" href="wezterm/window.html#admonition-weztermlua"></a></p>
+</div>
+<div>
+<pre><code class="language-lua">color_scheme = 'Catppuccin Mocha',
+</code></pre>
+</div>
+</div>
+<div id="admonition-info" class="admonition info">
+<div class="admonition-title">
+<p>Info</p>
+<p><a class="admonition-anchor-link" href="wezterm/window.html#admonition-info"></a></p>
+</div>
+<div>
+<p>ちなみに、このWebページのカラースキームも<code>Catppuccin</code>を使ってたりします。
+左上のブラシマークから4種類のテーマを変えられるのでお好みで切り替えてみてください。</p>
+</div>
+</div>
+<h2 id="window_background_opacity"><a class="header" href="#window_background_opacity">window_background_opacity</a></h2>
+<div id="admonition-colors--appearance---wezs-terminal-emulatorhttpswezfurlongorgweztermconfigappearancehtmlwindow-background-opacity" class="admonition note">
+<div class="admonition-title">
+<p><a href="https://wezfurlong.org/wezterm/config/appearance.html#window-background-opacity">Colors &amp; Appearance - Wez's Terminal Emulator</a></p>
+<p><a class="admonition-anchor-link" href="wezterm/window.html#admonition-colors--appearance---wezs-terminal-emulatorhttpswezfurlongorgweztermconfigappearancehtmlwindow-background-opacity"></a></p>
+</div>
+<div>
+<p>If your Operating System provides Compositing support then WezTerm is able to specify the alpha channel value for the background content</p>
+<p>オペレーティングシステムがコンポジットをサポートしている場合、WezTerm は背景コンテンツのアルファチャンネル値を指定することができます。</p>
+</div>
+</div>
+アルファチャンネル値には 0.0 から 1.0 までの値を用います。
+<p>透過値はお好みで。わたしはこんな感じで。</p>
+<div id="admonition-weztermlua-1" class="admonition example">
+<div class="admonition-title">
+<p>wezterm.lua</p>
+<p><a class="admonition-anchor-link" href="wezterm/window.html#admonition-weztermlua-1"></a></p>
+</div>
+<div>
+<pre><code class="language-lua">window_background_opacity = 0.93,
+</code></pre>
+</div>
+</div>
+<h2 id="一旦確認"><a class="header" href="#一旦確認">一旦確認…</a></h2>
+<p>さて、ここまでで wezterm.lua は以下のようになりました。</p>
+<div id="admonition-weztermlua-2" class="admonition example">
+<div class="admonition-title">
+<p>wezterm.lua</p>
+<p><a class="admonition-anchor-link" href="wezterm/window.html#admonition-weztermlua-2"></a></p>
+</div>
+<div>
+<pre><code class="language-lua">return {
+	color_scheme = &quot;Catppuccin Mocha&quot;,
+	window_background_opacity = 0.93,
+}
+</code></pre>
+</div>
+</div>
+<div id="admonition-warning" class="admonition warning">
+<div class="admonition-title">
+<p>Warning</p>
+<p><a class="admonition-anchor-link" href="wezterm/window.html#admonition-warning"></a></p>
+</div>
+<div>
+<p>return {} の中に記述します。</p>
+</div>
+</div>
+<p><img src="wezterm/img/opacity.png" alt="opacity.png" /></p>
+<div id="admonition-success" class="admonition success">
+<div class="admonition-title">
+<p>Success</p>
+<p><a class="admonition-anchor-link" href="wezterm/window.html#admonition-success"></a></p>
+</div>
+<div>
+<p>カラースキームは白文字しかないから「ちょっと何言ってるかわかんない」状態ですが、透過については確認できましたね。</p>
+<p>次は、せっかく設定したカラースキームをやっぱり見たいので、少し脇に逸れてプロンプトを変えてみましょう。</p>
+</div>
+</div>
+<div class="footnote-definition" id="a"><sup class="footnote-definition-label">1</sup>
+<p>2022/09/23時点</p>
+</div>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="shell-prompt"><a class="header" href="#shell-prompt">Shell Prompt</a></h1>
+<p><code>WezTerm</code>の設定からは少し逸れますが、先にシェルプロンプトのカスタマイズをやってしまいましょう。</p>
+<h2 id="starship"><a class="header" href="#starship">Starship</a></h2>
+<p>技術系サイトを見ていると、こぞって紹介されている感のある<code>starship</code>です。</p>
+<p>まあ、これは紹介したくなりますよね〜。導入が簡単なのに綺麗だし。</p>
+<div id="admonition-starship-cross-shell-prompthttpsstarshiprs" class="admonition note">
+<div class="admonition-title">
+<p><a href="https://starship.rs/">StarShip Cross-Shell Prompt</a></p>
+<p><a class="admonition-anchor-link" href="wezterm/shell.html#admonition-starship-cross-shell-prompthttpsstarshiprs"></a></p>
+</div>
+<div>
+<p>The minimal, blazing-fast, and infinitely customizable prompt for any shell!</p>
+<p>あらゆるシェルのための、最小限の、高速な、そして無限にカスタマイズ可能なプロンプト!</p>
+</div>
+</div>
+ページ内の Get Started からインストール方法が確認できます。
+<p>覗いてみると</p>
+<pre><code>Prerequisites
+- A Nerd Font installed and enabled in your terminal.
+
+前提条件
+- Nerd Fontがインストールされ、端末で有効になっていること。
+</code></pre>
+<p>と書いてありますね。</p>
+<p>本来なら「なんかめんどくさそうだな〜」となるところですが安心してください。入ってますよ。</p>
+<p><code>WezTerm</code>には<code>Roboto</code>というフォントがビルトインされているのですが、これが<code>Nerd Font</code>の仲間なんですね。</p>
+<div id="admonition-google-fonts--robotohttpsfontsgooglecomspecimenroboto" class="admonition note">
+<div class="admonition-title">
+<p><a href="https://fonts.google.com/specimen/Roboto">Google Fonts &gt; Roboto</a></p>
+<p><a class="admonition-anchor-link" href="wezterm/shell.html#admonition-google-fonts--robotohttpsfontsgooglecomspecimenroboto"></a></p>
+</div>
+<div>
+<p>Designed by Christian Robertson</p>
+</div>
+</div>
+<p><code>WezTerm</code>のフォント設定を変えていなければデフォルトで<code>Roboto</code>が使用されているので「安心してください」となるわけです。</p>
+<p>...とは言いつつ、わたしは別のフォントを使っているので<code>3.3 Font</code>で紹介します。</p>
+<h2 id="インストール"><a class="header" href="#インストール">インストール</a></h2>
+<p>これは<code>starship</code>の説明通りにやっていけば大丈夫ですね。</p>
+<h3 id="step-1"><a class="header" href="#step-1">Step 1.</a></h3>
+<p>ターミナルから</p>
+<div id="admonition-command" class="admonition quote">
+<div class="admonition-title">
+<p>Command</p>
+<p><a class="admonition-anchor-link" href="wezterm/shell.html#admonition-command"></a></p>
+</div>
+<div>
+<pre><code class="language-sh">curl -sS https://starship.rs/install.sh | sh
+</code></pre>
+</div>
+</div>
+と、やってもいいのですが、わたしは`homebrew`でやっちゃいます。
+<div id="admonition-command-1" class="admonition quote">
+<div class="admonition-title">
+<p>Command</p>
+<p><a class="admonition-anchor-link" href="wezterm/shell.html#admonition-command-1"></a></p>
+</div>
+<div>
+<pre><code class="language-sh">brew install starship
+</code></pre>
+</div>
+</div>
+<p>いきなり説明通りから外れましたね！どんまい✨</p>
+<h3 id="step-2"><a class="header" href="#step-2">Step 2.</a></h3>
+<p><code>zsh</code>を使っている場合は<code>~/.zshrc</code>に以下を追記するだけです。</p>
+<div id="admonition-zshrc" class="admonition example">
+<div class="admonition-title">
+<p>.zshrc</p>
+<p><a class="admonition-anchor-link" href="wezterm/shell.html#admonition-zshrc"></a></p>
+</div>
+<div>
+<pre><code class="language-sh">`eval &quot;$(starship init zsh)&quot;`
+</code></pre>
+</div>
+</div>
+<div id="admonition-info" class="admonition info">
+<div class="admonition-title">
+<p>Info</p>
+<p><a class="admonition-anchor-link" href="wezterm/shell.html#admonition-info"></a></p>
+</div>
+<div>
+<p>もし無かったら自分で作っちゃっていいやつです。</p>
+</div>
+</div>
+<div id="admonition-warning" class="admonition warning">
+<div class="admonition-title">
+<p>Warning</p>
+<p><a class="admonition-anchor-link" href="wezterm/shell.html#admonition-warning"></a></p>
+</div>
+<div>
+<p>繰り返しますが「追記」です。先に記述されているものがあった場合、それは消さないでください。</p>
+</div>
+</div>
+<h3 id="step-3"><a class="header" href="#step-3">Step 3.</a></h3>
+<p>コンフィグファイルは、また別の機会に。<code>WezTerm</code>を一旦終了して再度起動し直しましょう。
+<img src="wezterm/img/starship.png" alt="starship.png" /></p>
+<p><code>3.1 Window</code>で設定したカラースキームが適用されているのを確認できましたね。</p>
+<p>あと、月が綺麗ですね。(<code>wezterm</code>ディレクトリに行くと手っ取り早く見られます。)</p>
+<div id="admonition-success" class="admonition success">
+<div class="admonition-title">
+<p>Success</p>
+<p><a class="admonition-anchor-link" href="wezterm/shell.html#admonition-success"></a></p>
+</div>
+<div>
+<p>満足💕
+それでは<code>WezTerm</code>に戻りましょう。</p>
+</div>
+</div>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="font"><a class="header" href="#font">Font</a></h1>
+<p>基本的には好きなフォントを使ってもらえれば良いのですが、
+<code>starship</code>の Prerequisites を満たしてあげたいので、<code>Nerd Font</code>から選ぶのがポイントです。</p>
+<div id="admonition-info" class="admonition info">
+<div class="admonition-title">
+<p>Info</p>
+<p><a class="admonition-anchor-link" href="wezterm/font.html#admonition-info"></a></p>
+</div>
+<div>
+<p>わたしが深く理解しているわけではないので上手く説明できませんが、</p>
+<p>要は基本的な文字「あ」とか「意」とか 「abc」 とか「!@#」などに加えて特殊な記号フォントを加えたものです。</p>
+<p>月、出てましたよね。あれです。</p>
+</div>
+</div>
+<h2 id="ダウンロード"><a class="header" href="#ダウンロード">ダウンロード</a></h2>
+<p>例として、わたしが普段お世話になっているフォントを紹介します。</p>
+<div id="admonition-github---yuru7firgehttpsgithubcomyuru7firge" class="admonition note">
+<div class="admonition-title">
+<p><a href="https://github.com/yuru7/Firge">GitHub - yuru7/Firge</a></p>
+<p><a class="admonition-anchor-link" href="wezterm/font.html#admonition-github---yuru7firgehttpsgithubcomyuru7firge"></a></p>
+</div>
+<div>
+<p>Fira Mono と源真ゴシックを合成したプログラミングフォント Firge (ファージ)</p>
+</div>
+</div>
+<p>「ダウンロードはこちら」というリンクから、お言葉に甘えて<code>FirgeNerd_v0.2.0.zip</code>をダウンロードしましょう。感謝😀</p>
+<h2 id="インストール-1"><a class="header" href="#インストール-1">インストール</a></h2>
+<p>フォントのインストールは OS の作業になるので、御多分に洩れず<code>macOS</code>のやり方だけ載せます。</p>
+<p>...基本的にはどのOSでも、ダウンロードしてきたファイルを開けば「インストールしますか？」的なの出てきますよね。多分。</p>
+<p>やればできる!!</p>
+<p><img src="wezterm/img/font1.png" alt="font1.png" />
+<img src="wezterm/img/font2.png" alt="font2.png" />
+<img src="wezterm/img/font3.png" alt="font3.png" /></p>
+<p>ほらできた!!</p>
+<h2 id="wezterm-設定"><a class="header" href="#wezterm-設定">WezTerm 設定</a></h2>
+<p>これをWezTerm に設定すれば良さそう。</p>
+<div id="admonition-weztermfonthttpswezfurlongorgweztermconfigluaweztermfonthtml" class="admonition example">
+<div class="admonition-title">
+<p>(wezterm.font)[https://wezfurlong.org/wezterm/config/lua/wezterm/font.html]</p>
+<p><a class="admonition-anchor-link" href="wezterm/font.html#admonition-weztermfonthttpswezfurlongorgweztermconfigluaweztermfonthtml"></a></p>
+</div>
+<div>
+<p>This function constructs a lua table that corresponds to the internal FontAttributes struct that is used to select a single named font.</p>
+<p>この関数は、単一の名前付きフォントを選択するために使用される内部 FontAttributes 構造体に対応する lua テーブルを構築します。</p>
+</div>
+</div>
+<div id="admonition-weztermlua" class="admonition example">
+<div class="admonition-title">
+<p>wezterm.lua</p>
+<p><a class="admonition-anchor-link" href="wezterm/font.html#admonition-weztermlua"></a></p>
+</div>
+<div>
+<pre><code class="language-lua">-- 説明簡略のためサンプルとは少し記述を変えてますが、どちらでも構いません。
+font = require(&quot;wezterm&quot;).font(&quot;Firge35Nerd Console&quot;),
+</code></pre>
+</div>
+</div>
+<p>わたしは<code>Firge35NerdConsole-Regular.ttf</code>をインストールして、wezterm にファミリー名の<code>Firge35Nerd Console</code>を指定しています。</p>
+<div id="admonition-info-1" class="admonition info">
+<div class="admonition-title">
+<p>Info</p>
+<p><a class="admonition-anchor-link" href="wezterm/font.html#admonition-info-1"></a></p>
+</div>
+<div>
+<p>ファミリー名は Font Book 等で確認できます。「情報を確認する(command + i)」ですね。
+<img src="wezterm/img/font-info.png" alt="font-info.png" /></p>
+</div>
+</div>
+<p>フォントサイズも指定できるので一緒に入れておきましょう。</p>
+<div id="admonition-weztermlua-1" class="admonition example">
+<div class="admonition-title">
+<p>wezterm.lua</p>
+<p><a class="admonition-anchor-link" href="wezterm/font.html#admonition-weztermlua-1"></a></p>
+</div>
+<div>
+<pre><code class="language-lua">font_size = 12.0,
+</code></pre>
+</div>
+</div>
+<p>Roboto:</p>
+<p><img src="wezterm/img/font-roboto.png" alt="font-roboto.png" /></p>
+<p>Firge35Nerd Console:</p>
+<p><img src="wezterm/img/font-firge.png" alt="font-firge.png" /></p>
+<div id="admonition-success" class="admonition success">
+<div class="admonition-title">
+<p>Success</p>
+<p><a class="admonition-anchor-link" href="wezterm/font.html#admonition-success"></a></p>
+</div>
+<div>
+<p>どうでしょう？明らかに日本語が綺麗になりましたね。</p>
+<p>やったね❗️</p>
+</div>
+</div>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="frame"><a class="header" href="#frame">Frame</a></h1>
+<p>コンソール部分はだいぶいい感じになってきたので、次はフレーム周りの設定をしていきましょう。</p>
+<h2 id="window-frame"><a class="header" href="#window-frame">Window Frame</a></h2>
+<div id="admonition-window_frame---wezs-terminal-emulatorhttpswezfurlongorgweztermconfigluaconfigwindow_framehtml" class="admonition note">
+<div class="admonition-title">
+<p><a href="https://wezfurlong.org/wezterm/config/lua/config/window_frame.html">window_frame - Wez's Terminal Emulator</a></p>
+<p><a class="admonition-anchor-link" href="wezterm/frame.html#admonition-window_frame---wezs-terminal-emulatorhttpswezfurlongorgweztermconfigluaconfigwindow_framehtml"></a></p>
+</div>
+<div>
+<p>This setting is applicable primarily on Wayland systems when client side decorations are in use.</p>
+<p>この設定は、主にクライアント側の装飾が使用されているWaylandシステムで適用されます。</p>
+</div>
+</div>
+とのことなのですが、私はここはデフォルトでいいかなーって思ってるのでほぼ何もしていません。
+<p>...いや、一回細かく変えてみたこともあったんですが、最終的にはデフォルトでいいかーってなりました。</p>
+<h2 id="font-1"><a class="header" href="#font-1">Font</a></h2>
+<p>これもほぼデフォルトのままで、フォントサイズだけ変える程度にしています。</p>
+<p>これはもう前回やっているフォント設定と同じですね。</p>
+<div id="admonition-native-fancy-tab-bar-appearancehttpswezfurlongorgweztermconfigappearancehtmlnative-fancy-tab-bar-appearance" class="admonition note">
+<div class="admonition-title">
+<p><a href="https://wezfurlong.org/wezterm/config/appearance.html#native-fancy-tab-bar-appearance">Native (Fancy) Tab Bar appearance</a></p>
+<p><a class="admonition-anchor-link" href="wezterm/frame.html#admonition-native-fancy-tab-bar-appearancehttpswezfurlongorgweztermconfigappearancehtmlnative-fancy-tab-bar-appearance"></a></p>
+</div>
+<div>
+<p>The following options affect the fancy tab bar:</p>
+<p>次のオプションは、ファンシータブバーに影響します。</p>
+</div>
+</div>
+<div id="admonition-weztermlua" class="admonition example">
+<div class="admonition-title">
+<p>wezterm.lua</p>
+<p><a class="admonition-anchor-link" href="wezterm/frame.html#admonition-weztermlua"></a></p>
+</div>
+<div>
+<pre><code class="language-lua">window_frame = {
+  -- デフォルト値のままなので記述しなくても平気ですが、後で変えたくなった時にわかりやすいので。
+  font = wezfont 'Roboto',
+  -- サイズはだいぶ小さくしちゃってます。
+  font_size = 8.0,
+},
+</code></pre>
+</div>
+</div>
+<h2 id="fancy-or-retro"><a class="header" href="#fancy-or-retro">Fancy or Retro</a></h2>
+<p>上で突然ファンシータブバーという文言が出てきましたが、
+<code>WezTerm</code>のタブバーには、ファンシーとレトロの2種類があります。</p>
+<div id="admonition-use_fancy_tab_barhttpswezfurlongorgweztermconfigluaconfiguse_fancy_tab_barhtml" class="admonition note">
+<div class="admonition-title">
+<p><a href="https://wezfurlong.org/wezterm/config/lua/config/use_fancy_tab_bar.html">use_fancy_tab_bar</a></p>
+<p><a class="admonition-anchor-link" href="wezterm/frame.html#admonition-use_fancy_tab_barhttpswezfurlongorgweztermconfigluaconfiguse_fancy_tab_barhtml"></a></p>
+</div>
+<div>
+<p>When set to true (the default), the tab bar is rendered in a native style with proportional fonts.</p>
+<p>true（デフォルト）に設定すると、タブバーはプロポーショナルフォントを使用したネイティブスタイルでレンダリングされます。</p>
+<p>When set to false, the tab bar is rendered using a retro aesthetic using the main terminal font.</p>
+<p>false に設定すると、タブバーはメインのターミナルフォントを使用したレトロなスタイルで表示されます。</p>
+</div>
+</div>
+<p>わたしはファンシー派かなぁ。なので何もしません。</p>
+<p>レトロ派の方は以下を記述しましょう。</p>
+<div id="admonition-weztermlua-1" class="admonition example">
+<div class="admonition-title">
+<p>wezterm.lua</p>
+<p><a class="admonition-anchor-link" href="wezterm/frame.html#admonition-weztermlua-1"></a></p>
+</div>
+<div>
+<pre><code class="language-lua">use_fancy_tab_bar = false
+</code></pre>
+</div>
+</div>
+<p>before:</p>
+<p><img src="wezterm/img/window-before.png" alt="before" /></p>
+<p>after:</p>
+<p><img src="wezterm/img/window-after.png" alt="after" /></p>
+<div id="admonition-success" class="admonition success">
+<div class="admonition-title">
+<p>Success</p>
+<p><a class="admonition-anchor-link" href="wezterm/frame.html#admonition-success"></a></p>
+</div>
+<div>
+<p>ごめんなさい。全然中身ありませんでしたね😅 まあ、小休止ってことで。</p>
+<p>次はキーバインドを変えてみましょう。</p>
+</div>
+</div>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="keybind"><a class="header" href="#keybind">Keybind</a></h1>
+<p>ここはちょっと説明が難しいというか、どこまで<code>WezTerm</code>をメインに持ってくるのかみたいなところがあります。</p>
+<p>例えば<code>tmux</code>。</p>
+<p><code>WezTerm</code>自体が<code>tmux</code>と同等かそれ以上の機能を持っているので、
+<code>WezTerm</code>に対して<code>tmux</code>と同じキーバインドを与えてしまえば、これは不要になるわけです。<sup class="footnote-reference"><a href="#a">1</a></sup></p>
+<p>と言っても完全にローカルでしか使わない人間だから大丈夫なだけで、ネットワークを介して使う場合には問題もあるかもしれません。</p>
+<p>実際、デフォルトでは徹底的に他のソフトウェアとの衝突を避けています。</p>
+<div id="admonition-default-key-assignmentshttpswezfurlongorgweztermconfigdefault-keyshtml" class="admonition note">
+<div class="admonition-title">
+<p><a href="https://wezfurlong.org/wezterm/config/default-keys.html">Default Key Assignments</a></p>
+<p><a class="admonition-anchor-link" href="wezterm/keybind.html#admonition-default-key-assignmentshttpswezfurlongorgweztermconfigdefault-keyshtml"></a></p>
+</div>
+<div>
+<p>The default key assignments are shown in the table.</p>
+<p>デフォルトのキー割り当ては、表のとおりです。</p>
+</div>
+</div>
+<h2 id="現在のキーバインド確認"><a class="header" href="#現在のキーバインド確認">現在のキーバインド確認</a></h2>
+<p>まずは現在のキーバインドがどうなっているのかを確認します。</p>
+<div id="admonition-show-keyshttpswezfurlongorgweztermclishow-keyshtmlwezterm-show-keys" class="admonition note">
+<div class="admonition-title">
+<p><a href="https://wezfurlong.org/wezterm/cli/show-keys.html#wezterm-show-keys">show-keys</a></p>
+<p><a class="admonition-anchor-link" href="wezterm/keybind.html#admonition-show-keyshttpswezfurlongorgweztermclishow-keyshtmlwezterm-show-keys"></a></p>
+</div>
+<div>
+<p>Prints the complete set of key assignments based on your config file.</p>
+<p>設定ファイルに基づいたキー割り当ての完全なセットを表示します。</p>
+</div>
+</div>
+<p>実行してみましょう。そのまま<code>WezTerm</code>で<code>wezterm</code>コマンドを使えば良いです。</p>
+<div id="admonition-command" class="admonition quote">
+<div class="admonition-title">
+<p>Command</p>
+<p><a class="admonition-anchor-link" href="wezterm/keybind.html#admonition-command"></a></p>
+</div>
+<div>
+<pre><code class="language-sh">wezterm show-keys
+</code></pre>
+</div>
+</div>
+<p><img src="wezterm/img/key-now.png" alt="key-now.png" /></p>
+<p>そう、これが現在のキーバインドですね。</p>
+<h2 id="キーバインドカスタマイズ下地"><a class="header" href="#キーバインドカスタマイズ下地">キーバインドカスタマイズ下地</a></h2>
+<p>で、ここで提案なんですが、一度自分の設定ファイルに落とし込んじゃったらどうかな？と思うわけです。</p>
+<p>それをやるにはどうすれば簡単かな〜っていう話になるんですけど、方法はすでにありました。</p>
+<div id="admonition-command-1" class="admonition quote">
+<div class="admonition-title">
+<p>Command</p>
+<p><a class="admonition-anchor-link" href="wezterm/keybind.html#admonition-command-1"></a></p>
+</div>
+<div>
+<pre><code class="language-sh">wezterm show-keys --lua
+</code></pre>
+</div>
+</div>
+<p><img src="wezterm/img/key-now-lua.png" alt="key-now-lua.png" /></p>
+<p>さすがですね。もはやレールは存在していました。これを<code>keybinds.lua</code>に持っていけば良いだけです。</p>
+<p>これはもうプロっぽく片付けましょう。シェル芸というやつです✨</p>
+<div id="admonition-command-2" class="admonition quote">
+<div class="admonition-title">
+<p>Command</p>
+<p><a class="admonition-anchor-link" href="wezterm/keybind.html#admonition-command-2"></a></p>
+</div>
+<div>
+<pre><code class="language-sh">wezterm show-keys --lua &gt; keybinds.lua
+</code></pre>
+</div>
+</div>
+<div id="admonition-warning" class="admonition warning">
+<div class="admonition-title">
+<p>Warning</p>
+<p><a class="admonition-anchor-link" href="wezterm/keybind.html#admonition-warning"></a></p>
+</div>
+<div>
+<p>上記コマンドのファイル出力先は現在のディレクトリです。</p>
+<p><code>~/.config/wezterm</code>に移動するか、出力先を<code>~/.config/wezterm/keybinds.lua</code>に指定してください。</p>
+</div>
+</div>
+<p>これだけでもう直接流し込めちゃうんですね。簡単〜。</p>
+<h2 id="読み込み先を切り替える"><a class="header" href="#読み込み先を切り替える">読み込み先を切り替える</a></h2>
+<p>ここまでは暗黙的にデフォルト設定が適用されていましたが、これからは自分で作った<code>keybinds.lua</code>を使っていきましょう。</p>
+<div id="admonition-weztermlua" class="admonition example">
+<div class="admonition-title">
+<p>wezterm.lua</p>
+<p><a class="admonition-anchor-link" href="wezterm/keybind.html#admonition-weztermlua"></a></p>
+</div>
+<div>
+<pre><code class="language-lua">keys = require(“keybinds”).keys,
+</code></pre>
+</div>
+</div>
+<p>冒頭のリンクを再掲しますが、一番下にこのようにあります。</p>
+<div id="admonition-default-key-assignmentshttpswezfurlongorgweztermconfigdefault-keyshtml-1" class="admonition note">
+<div class="admonition-title">
+<p><a href="https://wezfurlong.org/wezterm/config/default-keys.html">Default Key Assignments</a></p>
+<p><a class="admonition-anchor-link" href="wezterm/keybind.html#admonition-default-key-assignmentshttpswezfurlongorgweztermconfigdefault-keyshtml-1"></a></p>
+</div>
+<div>
+<p>If you don't want the default assignments to be registered, you can disable all of them with this configuration; if you chose to do this, you must explicitly register every binding.</p>
+<p>デフォルトの割り当てを登録したくない場合は、この設定ですべての割り当てを無効にできます。これを選択した場合は、すべてのバインディングを明示的に登録しなければなりません。</p>
+</div>
+</div>
+<p>デフォルト設定は以下で完全に無効化されます。不安に感じるようであればスキップしても大丈夫です。</p>
+<div id="admonition-weztermlua-1" class="admonition example">
+<div class="admonition-title">
+<p>wezterm.lua</p>
+<p><a class="admonition-anchor-link" href="wezterm/keybind.html#admonition-weztermlua-1"></a></p>
+</div>
+<div>
+<pre><code class="language-lua">disable_default_key_bindings = true,
+</code></pre>
+</div>
+</div>
+<div id="admonition-success" class="admonition success">
+<div class="admonition-title">
+<p>Success</p>
+<p><a class="admonition-anchor-link" href="wezterm/keybind.html#admonition-success"></a></p>
+</div>
+<div>
+<p>これでキーバインドの移行が完了しました。まあ、まだ中身は同じなんですけどね。</p>
+<p>さて、もう一つのポイントとして leader キーというものがあります。これについてはまた次回。</p>
+</div>
+</div>
+<div class="footnote-definition" id="a"><sup class="footnote-definition-label">1</sup>
+<p>実際、わたしも<code>WezTerm</code>を使う前は<code>iTerm2</code>の上で<code>tmux</code>を動かしていました。</p>
+</div>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="leader-key"><a class="header" href="#leader-key">Leader Key</a></h1>
+<p>さて、前回はキーバインドを落とし込んだわけですが、今回は<code>Leader</code>キーです。</p>
+<div id="admonition-key-binding---wezs-terminal-emulatorhttpswezfurlongorgweztermconfigkeyshtmlleader-key" class="admonition note">
+<div class="admonition-title">
+<p><a href="https://wezfurlong.org/wezterm/config/keys.html#leader-key">Key Binding - Wez's Terminal Emulator</a></p>
+<p><a class="admonition-anchor-link" href="wezterm/leader.html#admonition-key-binding---wezs-terminal-emulatorhttpswezfurlongorgweztermconfigkeyshtmlleader-key"></a></p>
+</div>
+<div>
+<p>A leader key is a a modal modifier key. If leader is specified in the configuration then pressing that key combination will enable a virtual LEADER modifier.</p>
+<p>Leaderキーは、モーダルモディファイアキーです。Leaderキーが設定されている場合、そのキーの組み合わせを押すと、仮想的なリーダーモディファイアが有効になります。</p>
+</div>
+</div>
+<p><code>Leader</code>キーという概念は WezTerm 特有のものではく、<code>tmux</code>や<code>vim</code>など古参のソフトウェアでも用いられています。</p>
+<p>WezTerm でのデフォルトは<code>CTRL-a</code>です。<sup class="footnote-reference"><a href="#other">1</a></sup></p>
+<div id="admonition-info" class="admonition info">
+<div class="admonition-title">
+<p>Info</p>
+<p><a class="admonition-anchor-link" href="wezterm/leader.html#admonition-info"></a></p>
+</div>
+<div>
+<p><code>CTRL-a</code> という表記は<code>control</code>キーと<code>a</code>キーを同時押しすることを示しています。</p>
+</div>
+</div>
+<p>ということで、わたしはもうそのまま<code>CTRL-a</code>で設定しています。
+デフォルトのままでいいやー、って場合は書かなくてもOKです。</p>
+<div id="admonition-weztermlua" class="admonition example">
+<div class="admonition-title">
+<p>wezterm.lua</p>
+<p><a class="admonition-anchor-link" href="wezterm/leader.html#admonition-weztermlua"></a></p>
+</div>
+<div>
+<pre><code class="language-lua">leader = { key = 'a', mods = 'CTRL', timeout_milliseconds = 2000 },
+</code></pre>
+</div>
+</div>
+<div id="admonition-info-1" class="admonition info">
+<div class="admonition-title">
+<p>Info</p>
+<p><a class="admonition-anchor-link" href="wezterm/leader.html#admonition-info-1"></a></p>
+</div>
+<div>
+<p><code>timeout_milliseconds</code>のパラメータを変えていますが、これは後で触れます。</p>
+</div>
+</div>
+<p><code>vim</code>や<code>tmux</code>等を使用する場合は、これとバッティングしていないかチェックしときましょう。</p>
+<div id="admonition-warning" class="admonition warning">
+<div class="admonition-title">
+<p>Warning</p>
+<p><a class="admonition-anchor-link" href="wezterm/leader.html#admonition-warning"></a></p>
+</div>
+<div>
+<p>macOSでUS配列なのに日本語IME使うような環境<sup class="footnote-reference"><a href="#minority">2</a></sup>では<code>CTRL-Space</code>が入力ソースの切り替えに割り当てられています。
+OSのショートカットキー等も含め、あらかじめ確認しておきましょう。</p>
+<p>他のと被っちゃうと困っちゃいます。</p>
+</div>
+</div>
+<h2 id="timeout_milliseconds"><a class="header" href="#timeout_milliseconds">timeout_milliseconds</a></h2>
+<p>これは前項で挙げたマニュアルの文章を引用しますが、</p>
+<div id="admonition-note" class="admonition note">
+<div class="admonition-title">
+<p>Note</p>
+<p><a class="admonition-anchor-link" href="wezterm/leader.html#admonition-note"></a></p>
+</div>
+<div>
+<p><code>LEADER</code> stays active until a keypress is registered (whether it matches a key binding or not),
+or until it has been active for the duration specified by <code>timeout_milliseconds</code>, at which point it will automatically cancel itself.</p>
+</div>
+</div>
+<p><code>Leader</code>キーが一回押されたら、とりあえず何か次のキーが押されるか、指定ミリ秒経過するまでは待つよ〜。ってことですね。</p>
+<p>例えば、</p>
+<div id="admonition-weztermlua-1" class="admonition example">
+<div class="admonition-title">
+<p>wezterm.lua</p>
+<p><a class="admonition-anchor-link" href="wezterm/leader.html#admonition-weztermlua-1"></a></p>
+</div>
+<div>
+<pre><code class="language-lua">{ key = 'u', mods = 'LEADER', action = act.CharSelect },
+</code></pre>
+</div>
+</div>
+<p>...と、やる場合、<code>CTRL-a</code> → <code>space</code>と順番にキーを押す必要があるわけですが、
+デフォルトでは、<code>CTRL-a</code>から<code>space</code>を押すまでが 1000ミリ秒( = 1秒)以内で完結しないといけないわけです。</p>
+<p>1秒を長いと見るか短いと見るかは人それぞれなので、これをお好みに調整できるのが、前項の<code>timeout_milliseconds</code>です。</p>
+<h2 id="でもう一回キーバインド"><a class="header" href="#でもう一回キーバインド">で、もう一回キーバインド</a></h2>
+<p>さて、皆さんはお気づきだろうか…。</p>
+<p>デフォルトのキー設定では<code>Leader</code>キーなんて一切使われていないことに…😨</p>
+<p>例えばこれ。</p>
+<div id="admonition-default-keybinds" class="admonition info">
+<div class="admonition-title">
+<p>Default KeyBinds</p>
+<p><a class="admonition-anchor-link" href="wezterm/leader.html#admonition-default-keybinds"></a></p>
+</div>
+<div>
+<pre><code class="language-lua">{ key = '&quot;', mods = 'ALT|CTRL', action = act.SplitVertical{ domain =  'CurrentPaneDomain' } },
+{ key = '%', mods = 'ALT|CTRL', action = act.SplitHorizontal{ domain =  'CurrentPaneDomain' } },
+</code></pre>
+</div>
+</div>
+<div id="admonition-note-1" class="admonition note">
+<div class="admonition-title">
+<p>Note</p>
+<p><a class="admonition-anchor-link" href="wezterm/leader.html#admonition-note-1"></a></p>
+</div>
+<div>
+<p><code>ALT|CTRL</code>は<code>Alt</code>キーと<code>Ctrl</code>キーを同時押しです。</p>
+<p>さらに<code>&quot;</code>を押せと言われれば<code>Shift</code>キーを押しながら<code>'</code>です。<sup class="footnote-reference"><a href="#key">3</a></sup></p>
+</div>
+</div>
+…なんか、難しくないですか？
+<p>それだったら、下のようにしたほうが楽じゃないですか？</p>
+<div id="admonition-keybindslua" class="admonition example">
+<div class="admonition-title">
+<p>keybinds.lua</p>
+<p><a class="admonition-anchor-link" href="wezterm/leader.html#admonition-keybindslua"></a></p>
+</div>
+<div>
+<pre><code class="language-lua">{ key = '&quot;', mods = 'LEADER', action = act.SplitVertical { domain = 'CurrentPaneDomain' } },
+{ key = '%', mods = 'LEADER', action = act.SplitHorizontal { domain = 'CurrentPaneDomain' } },
+</code></pre>
+</div>
+</div>
+<p><code>tmux</code>と同じキーバインドですね。ペイン操作も<code>WezTerm</code>に一任しちゃいます。</p>
+<p><code>tmux</code>使ってないのに同等の機能が実現できちゃうんですよ？すごくないです！？</p>
+<p>もしどこかで<code>tmux</code>を使うことがあっても同一操作なので迷わず使えます、たぶん！</p>
+<div id="admonition-info-2" class="admonition info">
+<div class="admonition-title">
+<p>Info</p>
+<p><a class="admonition-anchor-link" href="wezterm/leader.html#admonition-info-2"></a></p>
+</div>
+<div>
+<p>さらにタイムリーなことに、<code>Copy Mode</code>の各種<code>jump</code>機能も実装されてました。(9/22時点では<code>nightly build</code>だけです。)</p>
+<p><a href="https://github.com/wez/wezterm/commit/8458b2b62d90cbf3326c39ed5a72ef256588ebe3">update docs for new copy-mode functions</a></p>
+<p><code>tmux</code>のキーバインドを完全に真似るのであれば、<code>CopyMode</code>に入るキーバインドはこれですね。</p>
+<pre><code class="language-lua">  { key = '[', mods = 'LEADER', action = act.ActivateCopyMode },
+</code></pre>
+<p><code>jump</code>機能はデフォルトのままで<code>tmux</code>と同じキーバインドが割り当てられているようなので、そのままいけます。<sup class="footnote-reference"><a href="#copy-mode">4</a></sup></p>
+</div>
+</div>
+<p>ということで、キーバインドは色々試してみてほしいです。</p>
+<div id="admonition-enum-keyassignment---wezs-terminal-emulatorhttpswezfurlongorgweztermconfigluakeyassignmentindexhtml" class="admonition info">
+<div class="admonition-title">
+<p><a href="https://wezfurlong.org/wezterm/config/lua/keyassignment/index.html">enum: KeyAssignment - Wez's Terminal Emulator</a></p>
+<p><a class="admonition-anchor-link" href="wezterm/leader.html#admonition-enum-keyassignment---wezs-terminal-emulatorhttpswezfurlongorgweztermconfigluakeyassignmentindexhtml"></a></p>
+</div>
+<div>
+<p>A KeyAssignment represents a pre-defined function that can be applied to control the Window, Tab, Pane state typically when a key or mouse event is triggered.</p>
+<p>KeyAssignment は、キーまたはマウス イベントがトリガーされたときに、通常 Window、Tab、Pane の状態を制御するために適用できる事前定義された関数を表します。</p>
+</div>
+</div>
+<div id="admonition-success" class="admonition success">
+<div class="admonition-title">
+<p>Success</p>
+<p><a class="admonition-anchor-link" href="wezterm/leader.html#admonition-success"></a></p>
+</div>
+<div>
+<p>キーバインドについてはこのくらいでしょうか。次からは外観を変えていきたいと思います。</p>
+</div>
+</div>
+<div class="footnote-definition" id="other"><sup class="footnote-definition-label">1</sup>
+<p>tmux のデフォルトは <code>CTRL-b</code>、vimのデフォルトは<code>CTRL-\</code>です。
+ちょっと遠い位置に置かれていて大変なので、 Leaderキーのカスタマイズは一般的に行われているみたいです。
+メジャーなカスタマイズ先は<code>CTRL-a</code>や、<code>CTRL-j</code>、<code>CTRL-,(カンマ)</code>、<code>CTRL-Space</code>あたりでしょうか？</p>
+</div>
+<div class="footnote-definition" id="minority"><sup class="footnote-definition-label">2</sup>
+<p>色んな意味で少数派なんですけどね。わたしもこの環境です。</p>
+</div>
+<div class="footnote-definition" id="key"><sup class="footnote-definition-label">3</sup>
+<p>USキーボードの場合。</p>
+</div>
+<div class="footnote-definition" id="copy-mode"><sup class="footnote-definition-label">4</sup>
+<p><code>3.5 Keybind</code>で「いや、自分のキーバインドに切り替えたじゃないかー！」と思われた方、ごもっともです。実は<code>copy-mode</code>のキーバインドには触れていませんでした。
+ちょっとこの辺、複雑ですよね...。また今度改編します...。</p>
+</div>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="format"><a class="header" href="#format">Format</a></h1>
+<p>次はウィンドウタイトルとタブを飾り付けていこうかなーと思うのですが、
+まずは<code>format.lua</code>とでもして、またファイルを作成しましょう。</p>
+<div id="admonition-formatlua" class="admonition example">
+<div class="admonition-title">
+<p>format.lua</p>
+<p><a class="admonition-anchor-link" href="wezterm/format.html#admonition-formatlua"></a></p>
+</div>
+<div>
+<pre><code class="language-lua">local wezterm = require 'wezterm'
+</code></pre>
+</div>
+</div>
+<p>で、これを<code>wezterm.lua</code>から呼び出します。</p>
+<div id="admonition-weztermlua" class="admonition example">
+<div class="admonition-title">
+<p>wezterm.lua</p>
+<p><a class="admonition-anchor-link" href="wezterm/format.html#admonition-weztermlua"></a></p>
+</div>
+<div>
+<pre><code class="language-lua">require 'format'
+
+-- ↓ ここまでで色々と記述してきたところ
+return {
+  -- 〜
+}
+</code></pre>
+</div>
+</div>
+<div id="admonition-warning" class="admonition warning">
+<div class="admonition-title">
+<p>Warning</p>
+<p><a class="admonition-anchor-link" href="wezterm/format.html#admonition-warning"></a></p>
+</div>
+<div>
+<p>記述する位置は<code>return</code>節の外です。</p>
+</div>
+</div>
+<div id="admonition-success" class="admonition success">
+<div class="admonition-title">
+<p>Success</p>
+<p><a class="admonition-anchor-link" href="wezterm/format.html#admonition-success"></a></p>
+</div>
+<div>
+<p>こんなのもう楽勝ですね。次に進みましょう。</p>
+</div>
+</div>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="window-title"><a class="header" href="#window-title">Window Title</a></h1>
+<p><code>format.lua</code>に、以下のコードを追記していきましょう。<sup class="footnote-reference"><a href="#code">1</a></sup></p>
+<div id="admonition-formatlua" class="admonition example">
+<div class="admonition-title">
+<p>format.lua</p>
+<p><a class="admonition-anchor-link" href="wezterm/window-title.html#admonition-formatlua"></a></p>
+</div>
+<div>
+<pre><code class="language-lua">local wezterm = require 'wezterm'
+
+local function BaseName(s)
+  return string.gsub(s, '(.*[/\\])(.*)', '%2')
+end
+
+wezterm.on('format-window-title', function(tab)
+  return BaseName(tab.active_pane.foreground_process_name)
+end)
+</code></pre>
+</div>
+</div>
+<p>この節のポイントは<code>wezterm.on(event_name, callback)</code>です。</p>
+<div id="admonition-on---wezs-terminal-emulatorhttpswezfurlongorgweztermconfigluaweztermonhtml" class="admonition note">
+<div class="admonition-title">
+<p><a href="https://wezfurlong.org/wezterm/config/lua/wezterm/on.html">on - Wez's Terminal Emulator</a></p>
+<p><a class="admonition-anchor-link" href="wezterm/window-title.html#admonition-on---wezs-terminal-emulatorhttpswezfurlongorgweztermconfigluaweztermonhtml"></a></p>
+</div>
+<div>
+<p>wezterm.on causes your specified callback to be called when event_name is emitted. Events can be emitted by wezterm itself, or through code/configuration that you specify.</p>
+<p>wezterm.on は、event_name が発生したときに指定したコールバックを呼び出します。イベントは wezterm 自身によって、またはあなたが指定したコード/設定によって発行されます。</p>
+</div>
+</div>
+<p>この例で言うと、<code>format-window-title</code>という名前のイベントが発生したら、ここで定義した functtion が呼ばれるという動作をします。</p>
+<div id="admonition-format-window-title---wezs-terminal-emulatorhttpswezfurlongorgweztermconfigluawindow-eventsformat-window-titlehtml" class="admonition note">
+<div class="admonition-title">
+<p><a href="https://wezfurlong.org/wezterm/config/lua/window-events/format-window-title.html">format-window-title - Wez's Terminal Emulator</a></p>
+<p><a class="admonition-anchor-link" href="wezterm/window-title.html#admonition-format-window-title---wezs-terminal-emulatorhttpswezfurlongorgweztermconfigluawindow-eventsformat-window-titlehtml"></a></p>
+</div>
+<div>
+<p>The format-window-title event is emitted when the text for the window title needs to be recomputed.</p>
+<p><code>format-window-title</code>イベントはウィンドウタイトルのテキストを再計算する必要がある場合に発行されます。</p>
+</div>
+</div>
+<p>再計算と言うよりは再描画というニュアンスに近いでしょうか。</p>
+<p>要するにこのイベントが発生した際にウィンドウタイトルとして表示するテキストを指定します。抜粋すると以下の部分ですね。</p>
+<pre><code class="language-lua">function(tab)
+  return BaseName(tab.active_pane.foreground_process_name)
+end
+</code></pre>
+<p>無名関数というやつです。
+これが<code>BaseName</code>関数にプロセス名を渡して、正規表現で加工された文字列を返しています。</p>
+<p>わたしが正規表現の理解に乏しいので説明できませんが、この例では純粋に実行アプリケーション名だけを取り出しています...よね？</p>
+<p>before:
+<img src="wezterm/img/window-title-before.png" alt="window-title-before" /></p>
+<p>after:
+<img src="wezterm/img/window-title-after.png" alt="window-title-after" /></p>
+<p>すみません、これ (↑) タイトルバーです...。 </p>
+<div id="admonition-success" class="admonition success">
+<div class="admonition-title">
+<p>Success</p>
+<p><a class="admonition-anchor-link" href="wezterm/window-title.html#admonition-success"></a></p>
+</div>
+<div>
+<p>スッキリしましたね、スッキリしすぎたかもしれません。</p>
+<p>まあ、これも各自お好みで調整してもらえればOKです。</p>
+</div>
+</div>
+[^code]: なんか偉そうでした。wez さんのサンプル、丸パクリです...。
+<div style="break-before: page; page-break-before: always;"></div><h1 id="tab"><a class="header" href="#tab">Tab</a></h1>
+<p>さて、引き続き<code>format.lua</code>に追記していきましょう。今回はタブタイトルです。</p>
+<div id="admonition-formatlua" class="admonition example">
+<div class="admonition-title">
+<p>format.lua</p>
+<p><a class="admonition-anchor-link" href="wezterm/tab.html#admonition-formatlua"></a></p>
+</div>
+<div>
+<pre><code class="language-lua">local HEADER = '' -- 文字化けしちゃってるかもしれませんが、アイコンフォント入ってます。
+
+local SYMBOL_COLOR = { '#ffb2cc', '#a4a4a4' }
+local FONT_COLOR = { '#dddddd', '#888888' }
+local BACK_COLOR = '#2d2d2d'
+local HOVER_COLOR = '#434343'
+
+wezterm.on('format-tab-title', function(tab, tabs, panes, config, hover, max_width)
+  local index = tab.is_active and 1 or 2
+
+  local bg = hover and HOVER_COLOR or BACK_COLOR
+  local zoomed = tab.active_pane.is_zoomed and '🔎 ' or ' '
+
+  return {
+    { Foreground = { Color = SYMBOL_COLOR[index] } },
+    { Background = { Color = bg } },
+    { Text = HEADER .. zoomed },
+
+    { Foreground = { Color = FONT_COLOR[index] } },
+    { Background = { Color = bg } },
+    { Text = tab.active_pane.title },
+  }
+end)
+</code></pre>
+</div>
+</div>
+<p>これもウィンドウタイトルと同じように、<code>wezterm.on</code>を使って<code>format-tab-title</code>イベントの処理を書いています。</p>
+<p>色は適宜調整してください。</p>
+<div id="admonition-format-tab-titlehttpswezfurlongorgweztermconfigluawindow-eventsformat-tab-titlehtml" class="admonition note">
+<div class="admonition-title">
+<p><a href="https://wezfurlong.org/wezterm/config/lua/window-events/format-tab-title.html">format-tab-title</a></p>
+<p><a class="admonition-anchor-link" href="wezterm/tab.html#admonition-format-tab-titlehttpswezfurlongorgweztermconfigluawindow-eventsformat-tab-titlehtml"></a></p>
+</div>
+<div>
+<p>The format-tab-title event is emitted when the text for a tab title needs to be recomputed.</p>
+<p>format-tab-title イベントは、タブタイトルのテキストを再計算する必要があるときに発行されます。</p>
+</div>
+</div>
+<p>これもウィンドウタイトルとほぼ同じですね。</p>
+<p>所々で状態によって表示するものを変えていますが、やっていることは<code>zoomed</code>と<code>hover</code>の可視化ですね。</p>
+<h2 id="タブタイトル"><a class="header" href="#タブタイトル">タブタイトル</a></h2>
+<p>上にある例では表示する内容は特に加工していませんが、前回作った<code>BaseName</code>に通すのもスッキリしてオススメです。</p>
+<div id="admonition-example" class="admonition example">
+<div class="admonition-title">
+<p>Example</p>
+<p><a class="admonition-anchor-link" href="wezterm/tab.html#admonition-example"></a></p>
+</div>
+<div>
+<pre><code class="language-lua">return {}
+
+  〜
+
+  { Text = BaseName(tab.active_pane.title) },
+}
+</code></pre>
+</div>
+</div>
+<h2 id="zoomed"><a class="header" href="#zoomed">Zoomed</a></h2>
+<p>ズーム中はタブに 🔎 アイコンを表示してます。 </p>
+<div id="admonition-togglepanezoomstatehttpswezfurlongorgweztermconfigluakeyassignmenttogglepanezoomstatehtml" class="admonition note">
+<div class="admonition-title">
+<p><a href="https://wezfurlong.org/wezterm/config/lua/keyassignment/TogglePaneZoomState.html">TogglePaneZoomState</a></p>
+<p><a class="admonition-anchor-link" href="wezterm/tab.html#admonition-togglepanezoomstatehttpswezfurlongorgweztermconfigluakeyassignmenttogglepanezoomstatehtml"></a></p>
+</div>
+<div>
+<p>Toggles the zoom state of the current pane.
+A Zoomed pane takes up all available space in the tab, hiding all other panes while it is zoomed.</p>
+<p>現在のペインのズーム状態をトグルします。
+ズームされたペインは、タブ内で利用可能な全てのスペースを占め、ズーム中は他のペインが全て非表示になります。</p>
+</div>
+</div>
+<p>デフォルトのキーバインドだとZoom機能が割り当てられていないと思うので、<code>keybinds.lua</code>に入れておきましょう。</p>
+<div id="admonition-keybindslua" class="admonition example">
+<div class="admonition-title">
+<p>keybinds.lua</p>
+<p><a class="admonition-anchor-link" href="wezterm/tab.html#admonition-keybindslua"></a></p>
+</div>
+<div>
+<pre><code class="language-lua">{ key = 'Z', mods = 'CTRL', action = act.TogglePaneZoomState },
+</code></pre>
+</div>
+</div>
+<p>使い方としては、まあこんな感じになってたとして...
+(ペイン操作については<code>3.6 Leader Key</code>でふわっと話題にしました。)</p>
+<p><img src="wezterm/img/zoom-before.png" alt="zoom-before" /></p>
+<p>上のペインにいる状態でズームすると...</p>
+<p><img src="wezterm/img/zoom-after.png" alt="zoom-after" /></p>
+<p>&quot;ズーム中は他のペインが全て非表示になります。&quot;のドキュメントどおり😏</p>
+<p>左上に 🔎 アイコンが出ていることも確認できましたね。</p>
+<p>もう一度同じ操作で戻ります。</p>
+<h2 id="hover"><a class="header" href="#hover">Hover</a></h2>
+<p>ホバー中は該当のタブ背景色を少し変えてます。</p>
+<div id="admonition-hoverhttpswezfurlongorgweztermconfigluawindow-eventsformat-tab-titlehtml" class="admonition note">
+<div class="admonition-title">
+<p><a href="https://wezfurlong.org/wezterm/config/lua/window-events/format-tab-title.html">hover</a></p>
+<p><a class="admonition-anchor-link" href="wezterm/tab.html#admonition-hoverhttpswezfurlongorgweztermconfigluawindow-eventsformat-tab-titlehtml"></a></p>
+</div>
+<div>
+<p>true if the current tab is in the hover state</p>
+<p>現在のタブがホバー状態である場合に true を返します。</p>
+</div>
+</div>
+<h2 id="少しluaのお話"><a class="header" href="#少しluaのお話">少しluaのお話</a></h2>
+<div id="admonition-example-1" class="admonition example">
+<div class="admonition-title">
+<p>Example</p>
+<p><a class="admonition-anchor-link" href="wezterm/tab.html#admonition-example-1"></a></p>
+</div>
+<div>
+<pre><code class="language-lua">local SYMBOL_COLOR = { '#ffb2cc', '#a4a4a4' }
+local FONT_COLOR = { '#dddddd', '#888888' }
+
+local index = tab.is_active and 1 or 2
+
+{ Foreground = { Color = SYMBOL_COLOR[index] } },
+</code></pre>
+</div>
+</div>
+<p>lua の配列は<code>[1]</code>始まりなので、(Cとかは<code>[0]</code>から始まりますよね。)
+三項演算子<code>local index = tab.is_active and 1 or 2</code>によって<code>SYMBOL_COLOR</code>配列と<code>FONT_COLOR</code>配列それぞれから採用する色を切り替えます。</p>
+<p><code>else</code>節を消せるだけ消す書き方、わたしは好きなんですがどうでしょう?</p>
+<div id="admonition-success" class="admonition success">
+<div class="admonition-title">
+<p>Success</p>
+<p><a class="admonition-anchor-link" href="wezterm/tab.html#admonition-success"></a></p>
+</div>
+<div>
+<p>だんだん洗練されてきましたね。いよいよ大詰めです。</p>
+</div>
+</div>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="status-bar"><a class="header" href="#status-bar">Status Bar</a></h1>
+<p>今度はステータスバーを飾り付けちゃおっかなーと思います。</p>
+<p><code>status.lua</code>というファイルを追加しましょう。</p>
+<div id="admonition-statuslua" class="admonition example">
+<div class="admonition-title">
+<p>status.lua</p>
+<p><a class="admonition-anchor-link" href="wezterm/status.html#admonition-statuslua"></a></p>
+</div>
+<div>
+<pre><code class="language-lua">local wezterm = require 'wezterm'
+
+wezterm.on('update-status', function(window, pane)
+end)
+</code></pre>
+</div>
+</div>
+<p>もうお馴染みですね。<code>wezterm.lua</code>から読み込みましょう。</p>
+<div id="admonition-weztermlua" class="admonition example">
+<div class="admonition-title">
+<p>wezterm.lua</p>
+<p><a class="admonition-anchor-link" href="wezterm/status.html#admonition-weztermlua"></a></p>
+</div>
+<div>
+<pre><code class="language-lua">require 'status'
+
+-- ↓ ここまでで色々と記述してきたところ
+return {
+  -- 〜
+}
+</code></pre>
+</div>
+</div>
+<p>さて、<code>wezterm.on</code>を利用して<code>update-status</code>イベントをフックします。</p>
+<div id="admonition-update-statushttpswezfurlongorgweztermconfigluawindow-eventsupdate-statushtml" class="admonition note">
+<div class="admonition-title">
+<p><a href="https://wezfurlong.org/wezterm/config/lua/window-events/update-status.html">update-status</a></p>
+<p><a class="admonition-anchor-link" href="wezterm/status.html#admonition-update-statushttpswezfurlongorgweztermconfigluawindow-eventsupdate-statushtml"></a></p>
+</div>
+<div>
+<p>The update-status event is emitted periodically (based on the interval specified by the status_update_interval configuration value).</p>
+<p>There is no defined return value for the event, but its purpose is to allow you the chance to carry out some activity and then ultimately call window:set_right_status or window:set_left_status.</p>
+<p>update-status イベントは定期的に発行されます (status_update_interval 設定値で指定された間隔に基づく)。</p>
+<p>このイベントの戻り値は定義されていませんが、その目的は、何らかの活動を行い、最終的に window:set_right_status または window:set_left_status を呼び出す機会を提供することです。</p>
+</div>
+</div>
+<p>とのことなので、<code>wezterm.lua</code>の中でステータス更新間隔を指定しておきましょう。</p>
+<div id="admonition-weztermlua-1" class="admonition example">
+<div class="admonition-title">
+<p>wezterm.lua</p>
+<p><a class="admonition-anchor-link" href="wezterm/status.html#admonition-weztermlua-1"></a></p>
+</div>
+<div>
+<pre><code>return {
+  status_update_interval = 1000,
+}
+</code></pre>
+</div>
+</div>
+<div id="admonition-status_update_intervalhttpswezfurlongorgweztermconfigluaconfigstatus_update_intervalhtml" class="admonition note">
+<div class="admonition-title">
+<p><a href="https://wezfurlong.org/wezterm/config/lua/config/status_update_interval.html">status_update_interval</a></p>
+<p><a class="admonition-anchor-link" href="wezterm/status.html#admonition-status_update_intervalhttpswezfurlongorgweztermconfigluaconfigstatus_update_intervalhtml"></a></p>
+</div>
+<div>
+<p>Specifies the number of milliseconds that need to elapse between triggering the update-right-status hook.</p>
+<p>update-right-status フックのトリガーとなるまでに必要なミリ秒を指定します。</p>
+</div>
+</div>
+<p>デフォルトは<code>1000ミリ秒(=1秒)</code>です。そのままで良ければ必要ありません。</p>
+<div id="admonition-warning" class="admonition warning">
+<div class="admonition-title">
+<p>Warning</p>
+<p><a class="admonition-anchor-link" href="wezterm/status.html#admonition-warning"></a></p>
+</div>
+<div>
+<p>ドキュメントでは<code>update-right-status</code>となっていますが、前出の<code>update-status</code>が後継仕様となっているので、こちらを使っていきます。</p>
+</div>
+</div>
+<div id="admonition-success" class="admonition success">
+<div class="admonition-title">
+<p>Success</p>
+<p><a class="admonition-anchor-link" href="wezterm/status.html#admonition-success"></a></p>
+</div>
+<div>
+<p>それでは次に進みましょう！</p>
+</div>
+</div>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="left-status"><a class="header" href="#left-status">Left Status</a></h1>
+<p>まずはステータスバーの左側を活用していきましょう。</p>
+<h2 id="キーボード状態"><a class="header" href="#キーボード状態">キーボード状態</a></h2>
+<p>わたしが使っているのはキーボード状態です。ひとまずコードはこんな感じ。</p>
+<div id="admonition-statuslua" class="admonition example">
+<div class="admonition-title">
+<p>status.lua</p>
+<p><a class="admonition-anchor-link" href="wezterm/left-status.html#admonition-statuslua"></a></p>
+</div>
+<div>
+<pre><code class="language-lua">local DEFAULT_COLOR = { Color = '#9a9eab' }
+
+local SPACE_1 = ' '
+local SPACE_3 = '   '
+
+local HEADER_KEY_NORMAL = { Foreground = DEFAULT_COLOR, Text = '' }
+local HEADER_LEADER = { Foreground = { Color = '#ffffff' }, Text = '' }
+local HEADER_IME = { Foreground = DEFAULT_COLOR, Text = 'あ' }
+
+local function AddIcon(elems, icon)
+  table.insert(elems, { Foreground = icon.Foreground })
+  table.insert(elems, { Text = SPACE_1 .. icon.Text .. SPACE_3 })
+end
+
+local function GetKeyboard(elems, window)
+  if window:leader_is_active() then
+    AddIcon(elems, HEADER_LEADER)
+    return
+  end
+
+  AddIcon(elems, window:composition_status() and HEADER_IME or HEADER_KEY_NORMAL)
+end
+</code></pre>
+</div>
+</div>
+<p><code>SPACE_3</code>とかは自分でもちょっとマヌケだとは思ってますが、なんかごめんなさい...。</p>
+<p>まだ<code>update-status</code>と繋いでないので動きませんが、ここで一旦区切って補足します。</p>
+<p>ここでは以下の状態を可視化します。</p>
+<ul>
+<li><code>leader</code>キーアクティブ</li>
+<li>IME</li>
+</ul>
+<h2 id="leaderキーアクティブ"><a class="header" href="#leaderキーアクティブ">Leaderキーアクティブ</a></h2>
+<p>まずは<code>leader</code>キーの状態を以下で取得します。</p>
+<div id="admonition-windowleader_is_activehttpswezfurlongorgweztermconfigluawindowleader_is_activehtml" class="admonition note">
+<div class="admonition-title">
+<p><a href="https://wezfurlong.org/wezterm/config/lua/window/leader_is_active.html">window:leader_is_active</a></p>
+<p><a class="admonition-anchor-link" href="wezterm/left-status.html#admonition-windowleader_is_activehttpswezfurlongorgweztermconfigluawindowleader_is_activehtml"></a></p>
+</div>
+<div>
+<p>Returns true if the Leader Key is active in the window, or false otherwise.</p>
+<p>リーダーキーがウィンドウ内でアクティブな場合はtrueを、そうでない場合はfalseを返します。</p>
+</div>
+</div>
+<p>リーダーキーがアクティブである場合はIMEよりも優先して表示します。</p>
+<h2 id="ime状態"><a class="header" href="#ime状態">IME状態</a></h2>
+<p>次にIME状態です。</p>
+<div id="admonition-windowcomposition_statushttpswezfurlongorgweztermconfigluawindowcomposition_statushtml" class="admonition note">
+<div class="admonition-title">
+<p><a href="https://wezfurlong.org/wezterm/config/lua/window/composition_status.html">window:composition_status()</a></p>
+<p><a class="admonition-anchor-link" href="wezterm/left-status.html#admonition-windowcomposition_statushttpswezfurlongorgweztermconfigluawindowcomposition_statushtml"></a></p>
+</div>
+<div>
+<p>Returns a string holding the current dead key or IME composition text, or nil if the input layer is not in a composition state.</p>
+<p>This is the same text that is shown at the cursor position when composing.</p>
+<p>現在のデッドキーまたはIMEのコンポジションテキストを保持する文字列、または入力レイヤーがコンポジション状態でない場合はnilを返します。</p>
+<p>これは、コンポジション時にカーソル位置に表示されるテキストと同じものです。</p>
+</div>
+</div>
+`GetKeyboard()`では、`window:composition_status()`の結果が`nil`か否かでアイコンの色を変えてます。
+<div id="admonition-info" class="admonition info">
+<div class="admonition-title">
+<p>Info</p>
+<p><a class="admonition-anchor-link" href="wezterm/left-status.html#admonition-info"></a></p>
+</div>
+<div>
+<p>コンポジションって何だ？と思われるかもしれませんが、わたしも思ってます。</p>
+<p>でも、この状態を指すようです。</p>
+<p><img src="wezterm/img/composition.png" alt="composition" /></p>
+<p>ちょっとフライングしてますが、左上に<code>あ</code>と出てるのが<code>composition_status()</code>で<code>nil以外</code>が返ってきている状態です。</p>
+<p>(<code>nil</code>でない場合は文字列が入りますが、この例では使用していません。)</p>
+</div>
+</div>
+<p>さて、それでは<code>update-status</code>に繋ぎ込みましょう。</p>
+<div id="admonition-statuslua-1" class="admonition example">
+<div class="admonition-title">
+<p>status.lua</p>
+<p><a class="admonition-anchor-link" href="wezterm/left-status.html#admonition-statuslua-1"></a></p>
+</div>
+<div>
+<pre><code class="language-lua">local function LeftUpdate(window, pane)
+  local elems = {}
+
+  GetKeyboard(elems, window)
+
+  window:set_left_status(wezterm.format(elems))
+end
+
+wezterm.on('update-status', function(window, pane)
+  LeftUpdate(window, pane)
+end)
+</code></pre>
+</div>
+</div>
+<p>normal:</p>
+<p><img src="wezterm/img/key-normal.png" alt="key-normal" /></p>
+<p>leader key is active:</p>
+<p><img src="wezterm/img/key-leader.png" alt="key-leader" /></p>
+<p>composition:</p>
+<p><img src="wezterm/img/key-ime.png" alt="key-ime" /></p>
+<div id="admonition-success" class="admonition success">
+<div class="admonition-title">
+<p>Success</p>
+<p><a class="admonition-anchor-link" href="wezterm/left-status.html#admonition-success"></a></p>
+</div>
+<div>
+<p>こんなもんですね。動きが出て楽しいですね😆 ...ね❗️ね❗️</p>
+</div>
+</div>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="right-status"><a class="header" href="#right-status">Right Status</a></h1>
+<p>これはもう手厚いサンプルが既に用意されているので、この通りに書けばバッチリです。やったね！</p>
+<div id="admonition-windowset_right_statusstringhttpswezfurlongorgweztermconfigluawindowset_right_statushtml" class="admonition note">
+<div class="admonition-title">
+<p><a href="https://wezfurlong.org/wezterm/config/lua/window/set_right_status.html">window:set_right_status(string)</a></p>
+<p><a class="admonition-anchor-link" href="wezterm/right-status.html#admonition-windowset_right_statusstringhttpswezfurlongorgweztermconfigluawindowset_right_statushtml"></a></p>
+</div>
+<div>
+<p>This method can be used to change the content that is displayed in the tab bar, to the right of the tabs and new tab button. </p>
+<p>このメソッドを使用すると、タブバー内のタブと新規タブボタンの右側に表示される内容を変更することができます。</p>
+</div>
+</div>
+ただ、わたしの設定例にお付き合いいただける方のために、もうちょっとだけ続きます。
+<h2 id="my-customize"><a class="header" href="#my-customize">My Customize</a></h2>
+<p>まずは wez さんのサンプルコードをほぼ丸写しですが、一つずつ機能を分けます。</p>
+<div id="admonition-warning" class="admonition warning">
+<div class="admonition-title">
+<p>Warning</p>
+<p><a class="admonition-anchor-link" href="wezterm/right-status.html#admonition-warning"></a></p>
+</div>
+<div>
+<p>先に下記のコードを載せていますが、いくつか未定義なものがあるので、これだけだとエラーになっちゃいます。</p>
+</div>
+</div>
+<div id="admonition-statuslua" class="admonition example">
+<div class="admonition-title">
+<p>status.lua</p>
+<p><a class="admonition-anchor-link" href="wezterm/right-status.html#admonition-statuslua"></a></p>
+</div>
+<div>
+<pre><code class="language-lua">local function GetHostAndCwd(elems, pane)
+  local uri = pane:get_current_working_dir()
+
+  if not uri then
+    return
+  end
+
+  local cwd_uri = uri:sub(8)
+  local slash = cwd_uri:find '/'
+
+  if not slash then
+    return
+  end
+
+  local host = cwd_uri:sub(1, slash - 1)
+  local dot = host:find '[.]'
+
+  AddElement(elems, HEADER_HOST, dot and host:sub(1, dot - 1) or host)
+  AddElement(elems, HEADER_CWD, cwd_uri:sub(slash))
+end
+
+local function GetDate(elems)
+  AddElement(elems, HEADER_DATE, wezterm.strftime '%a %b %-d')
+end
+
+local function GetTime(elems)
+  AddElement(elems, HEADER_TIME, wezterm.strftime '%H:%M')
+end
+
+local function GetBattery(elems, window)
+  if not window:get_dimensions().is_full_screen then
+    return
+  end
+
+  for _, b in ipairs(wezterm.battery_info()) do
+    AddElement(elems, HEADER_BATTERY, string.format('%.0f%%', b.state_of_charge * 100))
+  end
+end
+</code></pre>
+</div>
+</div>
+<p>wez さんのサンプルでは一度に取得していた date と time も分けちゃってます。</p>
+<p>程度は分かりませんが、非効率ではあると思われるのでお好みで。</p>
+<p>バッテリー表示については、わたしの場合はフルスクリーンの時だけ出しています。スクリーン状態は下記で取得できます。</p>
+<div id="admonition-windowget_dimensionshttpswezfurlongorgweztermconfigluawindowget_dimensionshtml" class="admonition note">
+<div class="admonition-title">
+<p><a href="https://wezfurlong.org/wezterm/config/lua/window/get_dimensions.html">window:get_dimensions()</a></p>
+<p><a class="admonition-anchor-link" href="wezterm/right-status.html#admonition-windowget_dimensionshttpswezfurlongorgweztermconfigluawindowget_dimensionshtml"></a></p>
+</div>
+<div>
+<p>The table has the following fields:</p>
+<p>pixel_width, pixel_height, dpi, is_full_screen</p>
+<p>テーブルには以下のフィールドがあります:</p>
+<p>pixel_width, pixel_height, dpi, is_full_screen</p>
+</div>
+</div>
+<p>ここでは<code>is_full_screen</code>を使います。フルスクリーン時は true が返ります。</p>
+<div id="admonition-warning-1" class="admonition warning">
+<div class="admonition-title">
+<p>Warning</p>
+<p><a class="admonition-anchor-link" href="wezterm/right-status.html#admonition-warning-1"></a></p>
+</div>
+<div>
+<p><code>WezTerm</code>の<a href="https://wezfurlong.org/wezterm/config/lua/keyassignment/ToggleFullScreen.html">ToggleFullScreen</a>を使用してフルスクリーンにしている場合は反応してくれないようです。</p>
+<p>OSからフルスクリーン化した時はちゃんと反応します。</p>
+<p><img src="wezterm/img/fullscreen.png" alt="fullscreen" /></p>
+</div>
+</div>
+<p>で、以下が足りていなかった定義です。</p>
+<div id="admonition-statuslua-1" class="admonition example">
+<div class="admonition-title">
+<p>status.lua</p>
+<p><a class="admonition-anchor-link" href="wezterm/right-status.html#admonition-statuslua-1"></a></p>
+</div>
+<div>
+<pre><code class="language-lua">-- ここもやっぱりアイコン入れてます
+local HEADER_HOST = { Foreground = { Color = '#75b1a9' }, Text = '' }
+local HEADER_CWD = { Foreground = { Color = '#92aac7' }, Text = '' }
+local HEADER_DATE = { Foreground = { Color = '#ffccac' }, Text = '' }
+local HEADER_TIME = { Foreground = { Color = '#bcbabe' }, Text = '' }
+local HEADER_BATTERY = { Foreground = { Color = '#dfe166' }, Text = '' }
+
+local HEADER_KEY_NORMAL = { Foreground = DEFAULT_COLOR, Text = '' }
+local HEADER_LEADER = { Foreground = { Color = '#ffffff' }, Text = '' }
+local HEADER_IME = { Foreground = DEFAULT_COLOR, Text = 'あ' }
+
+local function AddElement(elems, header, str)
+  table.insert(elems, { Foreground = header.Foreground })
+  table.insert(elems, { Text = header.Text .. SPACE_1 })
+
+  table.insert(elems, { Foreground = DEFAULT_COLOR })
+  table.insert(elems, { Text = str .. SPACE_3 })
+end
+</code></pre>
+</div>
+</div>
+<p>引っ張った割には特に説明するところもないですね...。そのまま完成させちゃいましょう😆</p>
+<div id="admonition-statuslua-2" class="admonition example">
+<div class="admonition-title">
+<p>status.lua</p>
+<p><a class="admonition-anchor-link" href="wezterm/right-status.html#admonition-statuslua-2"></a></p>
+</div>
+<div>
+<pre><code class="language-lua">local function RightUpdate(window, pane)
+  local elems = {}
+
+  GetHostAndCwd(elems, pane)
+  GetDate(elems)
+  GetTime(elems)
+  GetBattery(elems, window)
+
+  window:set_right_status(wezterm.format(elems))
+end
+
+wezterm.on('update-status', function(window, pane)
+  -- 冗長に見えるかもしれませんが、Left Status の設定を後で入れるのでこうなってます。
+  RightUpdate(window, pane)
+end)
+</code></pre>
+</div>
+</div>
+<p>さて、これでこんな感じになったはずなんですがどうでしょうか？右上です。</p>
+<p><img src="wezterm/img/right-status.png" alt="right-status" /></p>
+<p>フルスクリーン時にバッテリー表示もされているでしょうか？
+<img src="wezterm/img/right-status-full.png" alt="right-status" /></p>
+<div id="admonition-success" class="admonition success">
+<div class="admonition-title">
+<p>Success</p>
+<p><a class="admonition-anchor-link" href="wezterm/right-status.html#admonition-success"></a></p>
+</div>
+<div>
+<p>華やかになりましたね。</p>
+<p>(ぶっちゃけそんな見ないんだけど) サンプル通りとはいえ、自分で書いたコードが動くんだから楽しい世界ですよね〜。</p>
+<p>ほわほわ〜☺️</p>
+</div>
+</div>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="custom-event"><a class="header" href="#custom-event">Custom Event</a></h1>
+<p>さて、一通り片付いたかな〜って感じなので、ここは付録みたいなものです。</p>
+<p>お付き合いいただける方は<code>custom.lua</code>とでもしてまたファイルを作成しましょう。</p>
+<div id="admonition-customlua" class="admonition example">
+<div class="admonition-title">
+<p>custom.lua</p>
+<p><a class="admonition-anchor-link" href="wezterm/custom.html#admonition-customlua"></a></p>
+</div>
+<div>
+<pre><code class="language-lua">-- まだ何にもない。
+</code></pre>
+</div>
+</div>
+<p>ここにはキーバインドから呼び出す独自の動作を実装していくつもりなので、<code>keybinds.lua</code>から呼び出しましょう。</p>
+<div id="admonition-keybindslua" class="admonition example">
+<div class="admonition-title">
+<p>keybinds.lua</p>
+<p><a class="admonition-anchor-link" href="wezterm/custom.html#admonition-keybindslua"></a></p>
+</div>
+<div>
+<pre><code class="language-lua">require 'custom'
+
+-- ↓ ここまでで色々と記述したところ
+local act = require('wezterm').action
+
+return {
+  -- キーバインド設定が並ぶ
+}
+</code></pre>
+</div>
+</div>
+<p>再掲ですが、すでに<code>WezTerm</code>内で実装されている動作は一覧されています。</p>
+<div id="admonition-enum-keyassignment---wezs-terminal-emulatorhttpswezfurlongorgweztermconfigluakeyassignmentindexhtml" class="admonition note">
+<div class="admonition-title">
+<p><a href="https://wezfurlong.org/wezterm/config/lua/keyassignment/index.html">enum: KeyAssignment - Wez's Terminal Emulator</a></p>
+<p><a class="admonition-anchor-link" href="wezterm/custom.html#admonition-enum-keyassignment---wezs-terminal-emulatorhttpswezfurlongorgweztermconfigluakeyassignmentindexhtml"></a></p>
+</div>
+<div>
+<p>A KeyAssignment represents a pre-defined function that can be applied to control the Window, Tab, Pane state typically when a key or mouse event is triggered.</p>
+</div>
+</div>
+<p>基本的にはここから選んでどう使うか、みたいな話になってきます。</p>
+<div id="admonition-success" class="admonition success">
+<div class="admonition-title">
+<p>Success</p>
+<p><a class="admonition-anchor-link" href="wezterm/custom.html#admonition-success"></a></p>
+</div>
+<div>
+<p>それでは次に進みましょう。</p>
+</div>
+</div>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="toggle-font"><a class="header" href="#toggle-font">Toggle Font</a></h1>
+<p>ここではわたしが使っている機能実装を紹介します。</p>
+<p>環境によっては全く必要ないと思いますので、その場合はスキップしてください。</p>
+<h2 id="まず前提"><a class="header" href="#まず前提">まず前提</a></h2>
+<p>わたしのディスプレイ環境なんですが、MacBook と 4K を行ったり来たりして使っています。</p>
+<p>だからなんだって言われるとキツイんですが、一番わかりやすいところでフォントサイズの問題があって、画面のスケールが違いすぎて 大きすぎたり小さすぎたりしてしまう...😢</p>
+<p><img src="wezterm/img/img-4k.png" alt="img-4k" /></p>
+<p><img src="wezterm/img/img-mbp.png" alt="img-mbp" /></p>
+<div id="admonition-note" class="admonition note">
+<div class="admonition-title">
+<p>Note</p>
+<p><a class="admonition-anchor-link" href="wezterm/toggle-font.html#admonition-note"></a></p>
+</div>
+<div>
+<p>意図伝わりますでしょうか...。</p>
+<p>むしろツールバーをみてもらった方がわかりやすいかもしれません。アイコンとかフォントとか、サイズというか、スケール全然違うでしょ？</p>
+</div>
+</div>
+<p><a href="https://wezfurlong.org/wezterm/config/lua/keyassignment/DecreaseFontSize.html">DecreaseFontSize</a>・
+<a href="https://wezfurlong.org/wezterm/config/lua/keyassignment/IncreaseFontSize.html">IncreaseFontSize</a>
+を使ってサイズを上下するのもいいんですが、ちょっとコレじゃない...。</p>
+<p>わたしはこれが結構ストレスになっていたので、 この問題の解消に有用なのが次のフォント切り替え機能です。</p>
+<h2 id="フォント切り替え"><a class="header" href="#フォント切り替え">フォント切り替え</a></h2>
+<p>この例では<code>ToggleFontSize</code>というイベントを独自に作っています。</p>
+<p>フォントサイズに限らず、元の設定を直接変えるのではなく、オーバーライドする形式になっています。</p>
+<div id="admonition-windowget_config_overrideshttpswezfurlongorgweztermconfigluawindowget_config_overrideshtml" class="admonition note">
+<div class="admonition-title">
+<p><a href="https://wezfurlong.org/wezterm/config/lua/window/get_config_overrides.html">window:get_config_overrides()</a></p>
+<p><a class="admonition-anchor-link" href="wezterm/toggle-font.html#admonition-windowget_config_overrideshttpswezfurlongorgweztermconfigluawindowget_config_overrideshtml"></a></p>
+</div>
+<div>
+<p>Returns a copy of the current set of configuration overrides that is in effect for the window.</p>
+<p>ウィンドウに適用されている設定オーバーライドの現在のセットのコピーを返します。</p>
+</div>
+</div>
+<p>端的に言えば、オーバーライドされていない素の状態であれば、<code>font_size</code>を<code>10.0</code>でオーバーライドする。</p>
+<p>オーバーライドされているのであれば、<code>font_size</code>を<code>nil</code>としてオーバーライドを無効化する(<code>14.0</code>に戻される)。</p>
+<div id="admonition-customlua" class="admonition example">
+<div class="admonition-title">
+<p>custom.lua</p>
+<p><a class="admonition-anchor-link" href="wezterm/toggle-font.html#admonition-customlua"></a></p>
+</div>
+<div>
+<pre><code class="language-lua">local wezterm = require 'wezterm'
+
+wezterm.on('ToggleFontSize', function(window, pane)
+  local overrides = window:get_config_overrides() or {}
+  overrides.font_size = not overrides.font_size and 10.0 or nil
+
+  window:set_config_overrides(overrides)
+end)
+</code></pre>
+</div>
+</div>
+<p>これでフォントサイズの切り替えが実現できます。</p>
+<div id="admonition-info" class="admonition info">
+<div class="admonition-title">
+<p>Info</p>
+<p><a class="admonition-anchor-link" href="wezterm/toggle-font.html#admonition-info"></a></p>
+</div>
+<div>
+<p>ごめんなさい。わたしは<code>wezterm.lua</code>での素の<code>font_size</code>を<code>14.0</code>にしています。各自で調整してください。</p>
+<p>(<code>14.0</code>と<code>10.0</code>を行ったり来たりできるように設定しています。)</p>
+</div>
+</div>
+<p>独自イベントが呼び出されるようにするには<code>EmitEvent</code>を用います。</p>
+<div id="admonition-emiteventhttpswezfurlongorgweztermconfigluakeyassignmentemiteventhtml" class="admonition note">
+<div class="admonition-title">
+<p><a href="https://wezfurlong.org/wezterm/config/lua/keyassignment/EmitEvent.html">EmitEvent</a></p>
+<p><a class="admonition-anchor-link" href="wezterm/toggle-font.html#admonition-emiteventhttpswezfurlongorgweztermconfigluakeyassignmentemiteventhtml"></a></p>
+</div>
+<div>
+<p>This action causes the equivalent of wezterm.emit(name, window, pane) to be called in the context of the current pane.</p>
+<p>このアクションは、現在のペインのコンテキストで wezterm.emit(name, window, pane) と同等のアクションが呼び出されるようにします。</p>
+</div>
+</div>
+<p>今回はキーバインド<code>ctrl-f</code>をトリガーとして呼び出します。</p>
+<div id="admonition-keybindslua" class="admonition example">
+<div class="admonition-title">
+<p>keybinds.lua</p>
+<p><a class="admonition-anchor-link" href="wezterm/toggle-font.html#admonition-keybindslua"></a></p>
+</div>
+<div>
+<pre><code class="language-lua">  { key = 'f', mods = 'CTRL', action = act.EmitEvent 'ToggleFontSize' },
+</code></pre>
+</div>
+</div>
+<p>まあ、思いっきり手動なんですけどね。自動で出来たら面白いんですけどね。</p>
+<div id="admonition-info-1" class="admonition info">
+<div class="admonition-title">
+<p>Info</p>
+<p><a class="admonition-anchor-link" href="wezterm/toggle-font.html#admonition-info-1"></a></p>
+</div>
+<div>
+<p>あれ？dpi取得できるなら自動で出来るのかな。このサイト作りながら気づいてしまった...。</p>
+<p>アウトプットはしてみるものですね😆</p>
+</div>
+</div>
+<p>素の状態: <sup class="footnote-reference"><a href="#big">1</a></sup>
+<img src="wezterm/img/font-big.png" alt="font-big" /></p>
+<p>切り替えた状態:
+<img src="wezterm/img/font-small.png" alt="font-small" /></p>
+<div id="admonition-success" class="admonition success">
+<div class="admonition-title">
+<p>Success</p>
+<p><a class="admonition-anchor-link" href="wezterm/toggle-font.html#admonition-success"></a></p>
+</div>
+<div>
+<p>切り替えられましたね🤗</p>
+<p>気持ちいい〜❗️</p>
+</div>
+</div>
+<div class="footnote-definition" id="big"><sup class="footnote-definition-label">1</sup>
+<p>さらにフォントサイズを大きくして説明用に誇張しています。が、まだなんか中途半端でしたね。</p>
+</div>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+            </nav>
+
+        </div>
+
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+        <script type="text/javascript">
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+
+    </body>
+</html>

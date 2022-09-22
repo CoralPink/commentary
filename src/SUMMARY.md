@@ -1,3 +1,29 @@
 # Summary
 
-- [Chapter 1](./chapter_1.md)
+- [introduction](introduction.md)
+
+# WezTerm
+- [installation](wezterm/installation.md)
+
+- [Base Settings](wezterm/base.md)
+  - [Window](wezterm/window.md)
+  - [Shell Prompt](wezterm/shell.md)
+  - [Font](wezterm/font.md)
+  - [Frame](wezterm/frame.md)
+  - [Keybind](wezterm/keybind.md)
+  - [Leader Key](wezterm/leader.md)
+
+- [Format](wezterm/format.md)
+  - [Window Title](wezterm/window-title.md)
+  - [Tab](wezterm/tab.md)
+
+- [Status Bar](wezterm/status.md)
+  - [Left Status](wezterm/left-status.md)
+  - [Right Status](wezterm/right-status.md)
+
+- [Custom Event](wezterm/custom.md)
+  - [Toggle Font](wezterm/toggle-font.md)
+
+# neoVim
+
+# ...To Be Continued
