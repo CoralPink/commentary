@@ -70,7 +70,7 @@ font = require("wezterm").font("Firge35Nerd Console"),
 
 フォントサイズも指定できるので一緒に入れておきましょう。
 
-```admonish note title="https://wezfurlong.org/wezterm/config/lua/config/font_size.html"
+```admonish note title="[font_size](https://wezfurlong.org/wezterm/config/lua/config/font_size.html)"
 Specifies the size of the font, measured in points.
 
 You may use fractional point sizes, such as 13.3, to fine tune the size.
