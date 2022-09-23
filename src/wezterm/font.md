@@ -1,23 +1,36 @@
 # Font 
-基本的には好きなフォントを使ってもらえれば良いのですが、
-`starship`の Prerequisites を満たしてあげたいので、`Nerd Font`から選ぶのがポイントです。
+基本的には好きなフォントを使ってもらえれば良いです。
 
-```admonish info
-わたしが深く理解しているわけではないので上手く説明できませんが、
+以下に再掲しますが、`starship`を使用する場合も`WezTerm`であれば`Nerd Font`を考慮する必要がありません。
 
-要は基本的な文字「あ」とか「意」とか 「abc」 とか「!@#」などに加えて特殊な記号フォントを加えたものです。
+```admonish note title="[wezterm.nerdfonts](https://wezfurlong.org/wezterm/config/lua/wezterm/nerdfonts.html)"
+WezTerm includes Nerd Font Symbols Font as a default font fallback which means that these
+special symbols are available even without requiring you to use a patched font.
 
-月、出てましたよね。あれです😆
+WezTerm は Nerd Font Symbols Font をデフォルトのフォントのフォールバックとして含んでおり、
+これはパッチされたフォントを使わなくてもこれらの特殊記号が利用可能であることを意味します。
 ```
 
-## ダウンロード
+ただ、デフォルトの`Roboto`だと環境にもよるかもしれませんが、日本語がイマイチ...😢
+
+![font-roboto.png](img/font-roboto.png)
+
+なんてことがあるので、次項に続くわけです。
+
+## プログラミングフォント Firge (ファージ)
+
 例として、わたしが普段お世話になっているフォントを紹介します。
 
 ```admonish note title="[GitHub - yuru7/Firge](https://github.com/yuru7/Firge)"
 Fira Mono と源真ゴシックを合成したプログラミングフォント Firge (ファージ)
 ```
 
-「ダウンロードはこちら」というリンクから、お言葉に甘えて`FirgeNerd_v0.2.0.zip`をダウンロードしましょう。感謝😀
+「ダウンロードはこちら」というリンクから、お言葉に甘えて`FirgeNerd_v0.2.0.zip`をダウンロードしましょう。感謝❤️
+
+```admonish info
+`Nerd Font`いらないって言いながら`Nerd`なの❗️❓ってなっちゃうんですが、
+つい数分前にこの辺りのわたしの理解が間違っていたことに気づいたので、また改めて改編します...。
+```
 
 ## インストール
 フォントのインストールは OS の作業になるので、`macOS`のやり方だけ軽く載せます。
@@ -48,7 +61,7 @@ font = require("wezterm").font("Firge35Nerd Console"),
 ```
 ~~~
 
-わたしは`Firge35NerdConsole-Regular.ttf`をインストールして、wezterm にファミリー名の`Firge35Nerd Console`を指定しています。
+わたしは`Firge35NerdConsole-Regular.ttf`をインストールして、`WezTerm`にファミリー名の`Firge35Nerd Console`を指定しています。
 
 ```admonish info
 ファミリー名は Font Book 等で確認できます。「情報を確認する(`command + i`)」ですね。
@@ -77,12 +90,6 @@ font_size = 12.0,
 
 ```admonish success
 どうでしょう？明らかに日本語が綺麗になりましたね❗️
-
-Roboto:
-
-![font-roboto.png](img/font-roboto.png)
-
-Firge35Nerd Console:
 
 ![font-firge.png](img/font-firge.png)
 

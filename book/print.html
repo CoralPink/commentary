@@ -428,19 +428,22 @@ I enjoy using it💓</p>
 - Nerd Fontがインストールされ、端末で有効になっていること。
 </code></pre>
 <p>と書いてありますね。</p>
-<p>本来なら「なんかめんどくさそうだな〜」となるところですが安心してください。入ってますよ。</p>
-<p><code>WezTerm</code>には<code>Roboto</code>というフォントがビルトインされているのですが、これが<code>Nerd Font</code>を含んでいるんですね。</p>
-<div id="admonition-google-fonts--robotohttpsfontsgooglecomspecimenroboto" class="admonition note">
+<p>本来なら「なんかめんどくさそうだな〜」となるところですが...、</p>
+<p>なんと❗️<code>WezTerm</code>は既に<code>Nerd Font Symbols Font</code>を持っています❗️</p>
+<div id="admonition-weztermnerdfontshttpswezfurlongorgweztermconfigluaweztermnerdfontshtml" class="admonition note">
 <div class="admonition-title">
-<p><a href="https://fonts.google.com/specimen/Roboto">Google Fonts &gt; Roboto</a></p>
-<p><a class="admonition-anchor-link" href="wezterm/shell.html#admonition-google-fonts--robotohttpsfontsgooglecomspecimenroboto"></a></p>
+<p><a href="https://wezfurlong.org/wezterm/config/lua/wezterm/nerdfonts.html">wezterm.nerdfonts</a></p>
+<p><a class="admonition-anchor-link" href="wezterm/shell.html#admonition-weztermnerdfontshttpswezfurlongorgweztermconfigluaweztermnerdfontshtml"></a></p>
 </div>
 <div>
-<p>Designed by Christian Robertson</p>
+<p>WezTerm includes Nerd Font Symbols Font as a default font fallback which means that these
+special symbols are available even without requiring you to use a patched font.</p>
+<p>WezTerm は Nerd Font Symbols Font をデフォルトのフォントのフォールバックとして含んでおり、
+これはパッチされたフォントを使わなくてもこれらの特殊記号が利用可能であることを意味します。</p>
 </div>
 </div>
-<p><code>WezTerm</code>のフォント設定を変えていなければデフォルトで<code>Roboto</code>が使用されているので「安心してください」となるわけです。</p>
-<p>...とは言いつつ、わたしは別のフォントを使っているので<code>3.3 Font</code>で紹介します。</p>
+<p>...とのことなので安心してください。入ってますよ。☺️</p>
+<p>とは言いつつ、わたしは別のフォントを使っているので<code>3.3 Font</code>で紹介したいな〜と思ってます。</p>
 <h2 id="インストール"><a class="header" href="#インストール">インストール</a></h2>
 <p>これは<code>starship</code>の説明通りにやっていけば大丈夫ですね。</p>
 <h3 id="step-1"><a class="header" href="#step-1">Step 1.</a></h3>
@@ -514,20 +517,24 @@ I enjoy using it💓</p>
 </div>
 </div>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="font"><a class="header" href="#font">Font</a></h1>
-<p>基本的には好きなフォントを使ってもらえれば良いのですが、
-<code>starship</code>の Prerequisites を満たしてあげたいので、<code>Nerd Font</code>から選ぶのがポイントです。</p>
-<div id="admonition-info" class="admonition info">
+<p>基本的には好きなフォントを使ってもらえれば良いです。</p>
+<p>以下に再掲しますが、<code>starship</code>を使用する場合も<code>WezTerm</code>であれば<code>Nerd Font</code>を考慮する必要がありません。</p>
+<div id="admonition-weztermnerdfontshttpswezfurlongorgweztermconfigluaweztermnerdfontshtml" class="admonition note">
 <div class="admonition-title">
-<p>Info</p>
-<p><a class="admonition-anchor-link" href="wezterm/font.html#admonition-info"></a></p>
+<p><a href="https://wezfurlong.org/wezterm/config/lua/wezterm/nerdfonts.html">wezterm.nerdfonts</a></p>
+<p><a class="admonition-anchor-link" href="wezterm/font.html#admonition-weztermnerdfontshttpswezfurlongorgweztermconfigluaweztermnerdfontshtml"></a></p>
 </div>
 <div>
-<p>わたしが深く理解しているわけではないので上手く説明できませんが、</p>
-<p>要は基本的な文字「あ」とか「意」とか 「abc」 とか「!@#」などに加えて特殊な記号フォントを加えたものです。</p>
-<p>月、出てましたよね。あれです😆</p>
+<p>WezTerm includes Nerd Font Symbols Font as a default font fallback which means that these
+special symbols are available even without requiring you to use a patched font.</p>
+<p>WezTerm は Nerd Font Symbols Font をデフォルトのフォントのフォールバックとして含んでおり、
+これはパッチされたフォントを使わなくてもこれらの特殊記号が利用可能であることを意味します。</p>
 </div>
 </div>
-<h2 id="ダウンロード"><a class="header" href="#ダウンロード">ダウンロード</a></h2>
+<p>ただ、デフォルトの<code>Roboto</code>だと環境にもよるかもしれませんが、日本語がイマイチ...😢</p>
+<p><img src="wezterm/img/font-roboto.png" alt="font-roboto.png" /></p>
+<p>なんてことがあるので、次項に続くわけです。</p>
+<h2 id="プログラミングフォント-firge-ファージ"><a class="header" href="#プログラミングフォント-firge-ファージ">プログラミングフォント Firge (ファージ)</a></h2>
 <p>例として、わたしが普段お世話になっているフォントを紹介します。</p>
 <div id="admonition-github---yuru7firgehttpsgithubcomyuru7firge" class="admonition note">
 <div class="admonition-title">
@@ -538,7 +545,17 @@ I enjoy using it💓</p>
 <p>Fira Mono と源真ゴシックを合成したプログラミングフォント Firge (ファージ)</p>
 </div>
 </div>
-<p>「ダウンロードはこちら」というリンクから、お言葉に甘えて<code>FirgeNerd_v0.2.0.zip</code>をダウンロードしましょう。感謝😀</p>
+<p>「ダウンロードはこちら」というリンクから、お言葉に甘えて<code>FirgeNerd_v0.2.0.zip</code>をダウンロードしましょう。感謝❤️</p>
+<div id="admonition-info" class="admonition info">
+<div class="admonition-title">
+<p>Info</p>
+<p><a class="admonition-anchor-link" href="wezterm/font.html#admonition-info"></a></p>
+</div>
+<div>
+<p><code>Nerd Font</code>いらないって言いながら<code>Nerd</code>なの❗️❓ってなっちゃうんですが、
+つい数分前にこの辺りのわたしの理解が間違っていたことに気づいたので、また改めて改編します...。</p>
+</div>
+</div>
 <h2 id="インストール-1"><a class="header" href="#インストール-1">インストール</a></h2>
 <p>フォントのインストールは OS の作業になるので、<code>macOS</code>のやり方だけ軽く載せます。</p>
 <p>...基本的にはどのOSでも、ダウンロードしてきたファイルを開けば「インストールしますか？」的なの出てきますよね。多分。</p>
@@ -570,7 +587,7 @@ font = require(&quot;wezterm&quot;).font(&quot;Firge35Nerd Console&quot;),
 </code></pre>
 </div>
 </div>
-<p>わたしは<code>Firge35NerdConsole-Regular.ttf</code>をインストールして、wezterm にファミリー名の<code>Firge35Nerd Console</code>を指定しています。</p>
+<p>わたしは<code>Firge35NerdConsole-Regular.ttf</code>をインストールして、<code>WezTerm</code>にファミリー名の<code>Firge35Nerd Console</code>を指定しています。</p>
 <div id="admonition-info-1" class="admonition info">
 <div class="admonition-title">
 <p>Info</p>
@@ -612,9 +629,6 @@ font = require(&quot;wezterm&quot;).font(&quot;Firge35Nerd Console&quot;),
 </div>
 <div>
 <p>どうでしょう？明らかに日本語が綺麗になりましたね❗️</p>
-<p>Roboto:</p>
-<p><img src="wezterm/img/font-roboto.png" alt="font-roboto.png" /></p>
-<p>Firge35Nerd Console:</p>
 <p><img src="wezterm/img/font-firge.png" alt="font-firge.png" /></p>
 <p>やったね🤗</p>
 </div>
@@ -1539,7 +1553,6 @@ end
 </div>
 <div>
 <p>The table has the following fields:</p>
-<p>pixel_width, pixel_height, dpi, is_full_screen</p>
 <p>テーブルには以下のフィールドがあります:</p>
 <p>pixel_width, pixel_height, dpi, is_full_screen</p>
 </div>

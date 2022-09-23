@@ -68,8 +68,6 @@ wez さんのサンプルでは一度に取得していた date と time も分�
 ```admonish note title="[window:get_dimensions()](https://wezfurlong.org/wezterm/config/lua/window/get_dimensions.html)"
 The table has the following fields:
 
-pixel_width, pixel_height, dpi, is_full_screen
-
 テーブルには以下のフィールドがあります:
 
 pixel_width, pixel_height, dpi, is_full_screen

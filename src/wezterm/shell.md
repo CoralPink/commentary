@@ -24,17 +24,21 @@ Prerequisites
 ```
 と書いてありますね。
 
-本来なら「なんかめんどくさそうだな〜」となるところですが安心してください。入ってますよ。
+本来なら「なんかめんどくさそうだな〜」となるところですが...、
 
-`WezTerm`には`Roboto`というフォントがビルトインされているのですが、これが`Nerd Font`を含んでいるんですね。
+なんと❗️`WezTerm`は既に`Nerd Font Symbols Font`を持っています❗️
 
-```admonish note title="[Google Fonts > Roboto](https://fonts.google.com/specimen/Roboto)"
-Designed by Christian Robertson
+```admonish note title="[wezterm.nerdfonts](https://wezfurlong.org/wezterm/config/lua/wezterm/nerdfonts.html)"
+WezTerm includes Nerd Font Symbols Font as a default font fallback which means that these
+special symbols are available even without requiring you to use a patched font.
+
+WezTerm は Nerd Font Symbols Font をデフォルトのフォントのフォールバックとして含んでおり、
+これはパッチされたフォントを使わなくてもこれらの特殊記号が利用可能であることを意味します。
 ```
 
-`WezTerm`のフォント設定を変えていなければデフォルトで`Roboto`が使用されているので「安心してください」となるわけです。
+...とのことなので安心してください。入ってますよ。☺️
 
-...とは言いつつ、わたしは別のフォントを使っているので`3.3 Font`で紹介します。
+とは言いつつ、わたしは別のフォントを使っているので`3.3 Font`で紹介したいな〜と思ってます。
 
 ## インストール
 
