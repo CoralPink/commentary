@@ -3,9 +3,9 @@
 `WezTerm`の設定からは少し逸れますが、先にシェルプロンプトのカスタマイズをやってしまいましょう。
 
 ## Starship
-技術系サイトを見ていると、こぞって紹介されている感のある`starship`です。
+技術系サイトを見ていると、こぞって紹介されている感のある`StarShip`です。
 
-まあ、これは紹介したくなりますよね〜。導入が簡単なのに綺麗だし。
+まあ、これは紹介したくなりますよね〜。導入が簡単なのに綺麗だし🥴
 
 ```admonish note title="[StarShip Cross-Shell Prompt](https://starship.rs/)"
 The minimal, blazing-fast, and infinitely customizable prompt for any shell!
@@ -26,7 +26,7 @@ Prerequisites
 
 本来なら「なんかめんどくさそうだな〜」となるところですが安心してください。入ってますよ。
 
-`WezTerm`には`Roboto`というフォントがビルトインされているのですが、これが`Nerd Font`の仲間なんですね。
+`WezTerm`には`Roboto`というフォントがビルトインされているのですが、これが`Nerd Font`を含んでいるんですね。
 
 ```admonish note title="[Google Fonts > Roboto](https://fonts.google.com/specimen/Roboto)"
 Designed by Christian Robertson
@@ -47,6 +47,7 @@ Designed by Christian Robertson
 curl -sS https://starship.rs/install.sh | sh
 ```
 ~~~
+
 と、やってもいいのですが、わたしは`homebrew`でやっちゃいます。
 
 ~~~admonish quote title="Command"
@@ -71,11 +72,14 @@ brew install starship
 ```
 
 ```admonish warning
-繰り返しますが「追記」です。先に記述されているものがあった場合、それは消さないでください。
+繰り返しますが「追記」です。先に記述されているものがあった場合、そのまま前か後ろに追記してください。
 ```
 
 ### Step 3.
-コンフィグファイルは、また別の機会に。`WezTerm`を一旦終了して再度起動し直しましょう。
+コンフィグファイルは、また別の機会に。
+
+`WezTerm`を一旦終了して再度起動し直しましょう。
+
 ![starship.png](img/starship.png)
 
 `3.1 Window`で設定したカラースキームが適用されているのを確認できましたね。

@@ -1,16 +1,16 @@
-# Keybind
-ここはちょっと説明が難しいというか、どこまで`WezTerm`をメインに持ってくるのかみたいなところがあります。
+# Key Binding
+ここはちょっと難しいというか、どこまで`WezTerm`をメインに持ってくるのかみたいなところがあります。
 
 例えば`tmux`。
 
 `WezTerm`自体が`tmux`と同等かそれ以上の機能を持っているので、
 `WezTerm`に対して`tmux`と同じキーバインドを与えてしまえば、これは不要になるわけです。[^a]
 
-と言っても完全にローカルでしか使わない人間だから大丈夫なだけで、ネットワークを介して使う場合には問題もあるかもしれません。
+と言ってもわたしがローカルでしか使っていないから大丈夫なだけで、ネットワークを介して使う場合は困る事もあるかもしれません。
 
 実際、デフォルトでは徹底的に他のソフトウェアとの衝突を避けています。
 
-```admonish note title="[Default Key Assignments](https://wezfurlong.org/wezterm/config/default-keys.html)"
+```admonish note title="[Default Shortcut / Key Binding Assignments](https://wezfurlong.org/wezterm/config/default-keys.html)"
 The default key assignments are shown in the table.
 
 デフォルトのキー割り当ては、表のとおりです。
@@ -38,9 +38,9 @@ wezterm show-keys
 
 そう、これが現在のキーバインドですね。
 
-## キーバインドカスタマイズ下地
+## 設定を落とし込む
 
-で、ここで提案なんですが、一度自分の設定ファイルに落とし込んじゃったらどうかな？と思うわけです。
+で、ここで提案なんですが、キーバインドを自分の設定ファイルに落とし込んじゃったらどうかな？と思うわけです。
 
 それをやるにはどうすれば簡単かな〜っていう話になるんですけど、方法はすでにありました。
 
@@ -52,7 +52,7 @@ wezterm show-keys --lua
 
 ![key-now-lua.png](img/key-now-lua.png)
 
-さすがですね。もはやレールは存在していました。これを`keybinds.lua`に持っていけば良いだけです。
+さすがですね☺️ もはやレールは存在していました。これを`keybinds.lua`に持っていけば良いだけです。
 
 これはもうプロっぽく片付けましょう。シェル芸というやつです✨
 ~~~admonish quote title="Command"
@@ -66,7 +66,7 @@ wezterm show-keys --lua > keybinds.lua
 `~/.config/wezterm`に移動するか、出力先を`~/.config/wezterm/keybinds.lua`に指定してください。
 ```
 
-これだけでもう直接流し込めちゃうんですね。簡単〜。
+これだけでもう直接流し込めちゃうんですね。簡単〜😆
 
 ## 読み込み先を切り替える
 ここまでは暗黙的にデフォルト設定が適用されていましたが、これからは自分で作った`keybinds.lua`を使っていきましょう。

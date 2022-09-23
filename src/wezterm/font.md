@@ -7,7 +7,7 @@
 
 要は基本的な文字「あ」とか「意」とか 「abc」 とか「!@#」などに加えて特殊な記号フォントを加えたものです。
 
-月、出てましたよね。あれです。
+月、出てましたよね。あれです😆
 ```
 
 ## ダウンロード
@@ -20,7 +20,7 @@ Fira Mono と源真ゴシックを合成したプログラミングフォント 
 「ダウンロードはこちら」というリンクから、お言葉に甘えて`FirgeNerd_v0.2.0.zip`をダウンロードしましょう。感謝😀
 
 ## インストール
-フォントのインストールは OS の作業になるので、御多分に洩れず`macOS`のやり方だけ載せます。
+フォントのインストールは OS の作業になるので、`macOS`のやり方だけ軽く載せます。
 
 ...基本的にはどのOSでも、ダウンロードしてきたファイルを開けば「インストールしますか？」的なの出てきますよね。多分。
 
@@ -30,12 +30,12 @@ Fira Mono と源真ゴシックを合成したプログラミングフォント 
 ![font2.png](img/font2.png)
 ![font3.png](img/font3.png)
 
-ほらできた!!
+ほらできた🤗
 
 ## WezTerm 設定
-これをWezTerm に設定すれば良さそう。
+で、このフォントを`WezTerm`に設定すれば良さそう。
 
-```admonish example title="(wezterm.font)[https://wezfurlong.org/wezterm/config/lua/wezterm/font.html]"
+```admonish note title="[wezterm.font](https://wezfurlong.org/wezterm/config/lua/wezterm/font.html)"
 This function constructs a lua table that corresponds to the internal FontAttributes struct that is used to select a single named font.
 
 この関数は、単一の名前付きフォントを選択するために使用される内部 FontAttributes 構造体に対応する lua テーブルを構築します。
@@ -51,17 +51,32 @@ font = require("wezterm").font("Firge35Nerd Console"),
 わたしは`Firge35NerdConsole-Regular.ttf`をインストールして、wezterm にファミリー名の`Firge35Nerd Console`を指定しています。
 
 ```admonish info
-ファミリー名は Font Book 等で確認できます。「情報を確認する(command + i)」ですね。
+ファミリー名は Font Book 等で確認できます。「情報を確認する(`command + i`)」ですね。
 ![font-info.png](img/font-info.png)
 ```
 
 フォントサイズも指定できるので一緒に入れておきましょう。
+
+```admonish note title="https://wezfurlong.org/wezterm/config/lua/config/font_size.html"
+Specifies the size of the font, measured in points.
+
+You may use fractional point sizes, such as 13.3, to fine tune the size.
+
+フォントのサイズをポイント数で指定します。
+
+13.3 のような小数点のサイズを使用して、サイズを微調整することができます。
+```
 
 ~~~admonish example title="wezterm.lua"
 ```lua
 font_size = 12.0,
 ```
 ~~~
+
+上の例はデフォルト値そのままですが、お好みで調整してください。
+
+```admonish success
+どうでしょう？明らかに日本語が綺麗になりましたね❗️
 
 Roboto:
 
@@ -71,8 +86,5 @@ Firge35Nerd Console:
 
 ![font-firge.png](img/font-firge.png)
 
-```admonish success
-どうでしょう？明らかに日本語が綺麗になりましたね。
-
-やったね❗️
+やったね🤗
 ```
