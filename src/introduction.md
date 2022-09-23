@@ -18,7 +18,7 @@ _Screenshot of wezterm on macOS, running neovim_.
 コマンドの例示も全て行っているつもりではありますが、
 それでもコマンドを使って操作したことがない場合はやはり怖いです。
 
-逆に、ファイルの編集自体は'vim'などのターミナル上で動くソフトウェアではなく、`Xcode`や`Visual Studio Code`などでも構いません。
+逆に、ファイルの編集自体は`vim`などのターミナル上で動くソフトウェアではなく、`Xcode`や`Visual Studio Code`などでも構いません。
 これについては`3.Base Settings`で示します。
 ```
 

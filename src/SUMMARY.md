@@ -9,8 +9,8 @@
   - [Window](wezterm/window.md)
   - [Shell Prompt](wezterm/shell.md)
   - [Font](wezterm/font.md)
-  - [Frame](wezterm/frame.md)
-  - [Keybind](wezterm/keybind.md)
+  - [Window Frame](wezterm/frame.md)
+  - [Key Binding](wezterm/keybind.md)
   - [Leader Key](wezterm/leader.md)
 
 - [Format](wezterm/format.md)

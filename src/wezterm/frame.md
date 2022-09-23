@@ -1,7 +1,6 @@
-# Frame
-コンソール部分はだいぶいい感じになってきたので、次はフレーム周りの設定をしていきましょう。
+# Window Frame
+コンソールがいい感じになってきたので、次はウィンドウフレーム周りの設定をしていきましょう。
 
-## Window Frame
 ```admonish note title="[window_frame - Wez's Terminal Emulator](https://wezfurlong.org/wezterm/config/lua/config/window_frame.html)"
 This setting is applicable primarily on Wayland systems when client side decorations are in use.
 
@@ -15,7 +14,7 @@ This setting is applicable primarily on Wayland systems when client side decorat
 ## Font
 これもほぼデフォルトのままで、フォントサイズだけ変える程度にしています。
 
-これはもう前回やっているフォント設定と同じですね。
+前回やっているフォント設定と同じですね。
 
 ```admonish note title="[Native (Fancy) Tab Bar appearance](https://wezfurlong.org/wezterm/config/appearance.html#native-fancy-tab-bar-appearance)"
 The following options affect the fancy tab bar:
@@ -35,8 +34,7 @@ window_frame = {
 ~~~
 
 ## Fancy or Retro
-上で突然ファンシータブバーという文言が出てきましたが、
-`WezTerm`のタブバーには、ファンシーとレトロの2種類があります。
+前項で、突然ファンシータブバーという文言が出てきましたが、`WezTerm`のタブバーには、ファンシーとレトロの2種類があります。
 
 ```admonish note title="[use_fancy_tab_bar](https://wezfurlong.org/wezterm/config/lua/config/use_fancy_tab_bar.html)"
 When set to true (the default), the tab bar is rendered in a native style with proportional fonts.
@@ -48,7 +46,7 @@ When set to false, the tab bar is rendered using a retro aesthetic using the mai
 false に設定すると、タブバーはメインのターミナルフォントを使用したレトロなスタイルで表示されます。
 ```
 
-わたしはファンシー派かなぁ。なので何もしません。
+わたしはファンシー派かなぁ😆 なので何もしません。
 
 レトロ派の方は以下を記述しましょう。
 
