@@ -23,7 +23,8 @@
 
 - [Custom Event](wezterm/custom.md)
   - [Toggle Font](wezterm/toggle-font.md)
+  - [DPI detection](wezterm/dpi-detection.md)
 
-# neoVim
+# Neovim
 
 # ...To Be Continued
