@@ -31,7 +31,7 @@ There is no defined return value for the event, but its purpose is to allow you 
 
 ## では実装
 
-`event.lua`に新しく以下を追記します。
+`event.lua`に追記していきます。
 
 ~~~admonish example title="event.lua"
 ```lua
