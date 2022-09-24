@@ -41,7 +41,7 @@ Returns a copy of the current set of configuration overrides that is in effect f
 
 オーバーライドされているのであれば、`font_size`を`nil`としてオーバーライドを無効化する(`14.0`に戻される)。
 
-~~~admonish example title="custom.lua"
+~~~admonish example title="event.lua"
 ```lua
 local wezterm = require 'wezterm'
 
@@ -83,7 +83,7 @@ This action causes the equivalent of wezterm.emit(name, window, pane) to be call
 ```admonish info
 あれ？dpi取得できるなら自動で出来るのかな。このサイト作りながら気づいてしまった...。
 
-アウトプットはしてみるものですね😆
+アウトプットはしてみるものですね😆次のページに書いちゃいます。
 ```
 
 素の状態: [^big]
