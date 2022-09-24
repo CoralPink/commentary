@@ -85,7 +85,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../introduction.html"><strong aria-hidden="true">1.</strong> introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">WezTerm</li><li class="chapter-item expanded "><a href="../wezterm/installation.html"><strong aria-hidden="true">2.</strong> installation</a></li><li class="chapter-item expanded "><a href="../wezterm/base.html"><strong aria-hidden="true">3.</strong> Base Settings</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../wezterm/window.html"><strong aria-hidden="true">3.1.</strong> Window</a></li><li class="chapter-item expanded "><a href="../wezterm/shell.html"><strong aria-hidden="true">3.2.</strong> Shell Prompt</a></li><li class="chapter-item expanded "><a href="../wezterm/font.html"><strong aria-hidden="true">3.3.</strong> Font</a></li><li class="chapter-item expanded "><a href="../wezterm/frame.html"><strong aria-hidden="true">3.4.</strong> Window Frame</a></li><li class="chapter-item expanded "><a href="../wezterm/keybind.html"><strong aria-hidden="true">3.5.</strong> Key Binding</a></li><li class="chapter-item expanded "><a href="../wezterm/leader.html"><strong aria-hidden="true">3.6.</strong> Leader Key</a></li></ol></li><li class="chapter-item expanded "><a href="../wezterm/format.html"><strong aria-hidden="true">4.</strong> Format</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../wezterm/window-title.html"><strong aria-hidden="true">4.1.</strong> Window Title</a></li><li class="chapter-item expanded "><a href="../wezterm/tab.html"><strong aria-hidden="true">4.2.</strong> Tab</a></li></ol></li><li class="chapter-item expanded "><a href="../wezterm/status.html"><strong aria-hidden="true">5.</strong> Status Bar</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../wezterm/left-status.html"><strong aria-hidden="true">5.1.</strong> Left Status</a></li><li class="chapter-item expanded "><a href="../wezterm/right-status.html"><strong aria-hidden="true">5.2.</strong> Right Status</a></li></ol></li><li class="chapter-item expanded "><a href="../wezterm/custom.html"><strong aria-hidden="true">6.</strong> Custom Event</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../wezterm/toggle-font.html" class="active"><strong aria-hidden="true">6.1.</strong> Toggle Font</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">neoVim</li><li class="chapter-item expanded affix "><li class="part-title">...To Be Continued</li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../introduction.html"><strong aria-hidden="true">1.</strong> introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">WezTerm</li><li class="chapter-item expanded "><a href="../wezterm/installation.html"><strong aria-hidden="true">2.</strong> installation</a></li><li class="chapter-item expanded "><a href="../wezterm/base.html"><strong aria-hidden="true">3.</strong> Base Settings</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../wezterm/window.html"><strong aria-hidden="true">3.1.</strong> Window</a></li><li class="chapter-item expanded "><a href="../wezterm/shell.html"><strong aria-hidden="true">3.2.</strong> Shell Prompt</a></li><li class="chapter-item expanded "><a href="../wezterm/font.html"><strong aria-hidden="true">3.3.</strong> Font</a></li><li class="chapter-item expanded "><a href="../wezterm/frame.html"><strong aria-hidden="true">3.4.</strong> Window Frame</a></li><li class="chapter-item expanded "><a href="../wezterm/keybind.html"><strong aria-hidden="true">3.5.</strong> Key Binding</a></li><li class="chapter-item expanded "><a href="../wezterm/leader.html"><strong aria-hidden="true">3.6.</strong> Leader Key</a></li></ol></li><li class="chapter-item expanded "><a href="../wezterm/format.html"><strong aria-hidden="true">4.</strong> Format</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../wezterm/window-title.html"><strong aria-hidden="true">4.1.</strong> Window Title</a></li><li class="chapter-item expanded "><a href="../wezterm/tab.html"><strong aria-hidden="true">4.2.</strong> Tab</a></li></ol></li><li class="chapter-item expanded "><a href="../wezterm/status.html"><strong aria-hidden="true">5.</strong> Status Bar</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../wezterm/left-status.html"><strong aria-hidden="true">5.1.</strong> Left Status</a></li><li class="chapter-item expanded "><a href="../wezterm/right-status.html"><strong aria-hidden="true">5.2.</strong> Right Status</a></li></ol></li><li class="chapter-item expanded "><a href="../wezterm/custom.html"><strong aria-hidden="true">6.</strong> Custom Event</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../wezterm/toggle-font.html" class="active"><strong aria-hidden="true">6.1.</strong> Toggle Font</a></li><li class="chapter-item expanded "><a href="../wezterm/dpi-detection.html"><strong aria-hidden="true">6.2.</strong> DPI detection</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Neovim</li><li class="chapter-item expanded affix "><li class="part-title">...To Be Continued</li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -192,10 +192,10 @@
 </div>
 <p>端的に言えば、オーバーライドされていない素の状態であれば、<code>font_size</code>を<code>10.0</code>でオーバーライドする。</p>
 <p>オーバーライドされているのであれば、<code>font_size</code>を<code>nil</code>としてオーバーライドを無効化する(<code>14.0</code>に戻される)。</p>
-<div id="admonition-customlua" class="admonition example">
+<div id="admonition-eventlua" class="admonition example">
 <div class="admonition-title">
-<p>custom.lua</p>
-<p><a class="admonition-anchor-link" href="#admonition-customlua"></a></p>
+<p>event.lua</p>
+<p><a class="admonition-anchor-link" href="#admonition-eventlua"></a></p>
 </div>
 <div>
 <pre><code class="language-lua">local wezterm = require 'wezterm'
@@ -250,7 +250,7 @@ end)
 </div>
 <div>
 <p>あれ？dpi取得できるなら自動で出来るのかな。このサイト作りながら気づいてしまった...。</p>
-<p>アウトプットはしてみるものですね😆</p>
+<p>アウトプットはしてみるものですね😆次のページに書いちゃいます。</p>
 </div>
 </div>
 <p>素の状態: <sup class="footnote-reference"><a href="#big">1</a></sup>
@@ -279,6 +279,9 @@ end)
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
+                            <a rel="next" href="../wezterm/dpi-detection.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
 
                         <div style="clear: both"></div>
                     </nav>
@@ -290,6 +293,9 @@ end)
                         <i class="fa fa-angle-left"></i>
                     </a>
 
+                    <a rel="next" href="../wezterm/dpi-detection.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
             </nav>
 
         </div>

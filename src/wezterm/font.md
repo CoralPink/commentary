@@ -1,7 +1,8 @@
 # Font 
-基本的には好きなフォントを使ってもらえれば良いです。
 
-以下に再掲しますが、`starship`を使用する場合も`WezTerm`であれば`Nerd Font`を考慮する必要がありません。
+これはもう、ほんとにお好きなフォントを使ってもらえれば良いです。
+
+以下に再掲しますが、`starship`を使用する場合も`WezTerm`であれば`Nerd Font`を考慮する必要がありません😆
 
 ```admonish note title="[wezterm.nerdfonts](https://wezfurlong.org/wezterm/config/lua/wezterm/nerdfonts.html)"
 WezTerm includes Nerd Font Symbols Font as a default font fallback which means that these
@@ -11,7 +12,7 @@ WezTerm は Nerd Font Symbols Font をデフォルトのフォントのフォー
 これはパッチされたフォントを使わなくてもこれらの特殊記号が利用可能であることを意味します。
 ```
 
-ただ、デフォルトの`Roboto`だと環境にもよるかもしれませんが、日本語がイマイチ...😢
+ただ、環境にもよるかもしれませんが、デフォルトの`Roboto`だと日本語がイマイチ...😢
 
 ![font-roboto.png](img/font-roboto.png)
 
