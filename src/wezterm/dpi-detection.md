@@ -35,17 +35,10 @@ There is no defined return value for the event, but its purpose is to allow you 
 
 ~~~admonish example title="event.lua"
 ```lua
-local DPI_CHANGE_NUM = 144
+local DPI_CHANGE_NUM = 140
 local DPI_CHANGE_FONT_SIZE = 10.0
 
 local prev_dpi = 0
-
-wezterm.on('ToggleDpi', function(window, pane)
-  local overrides = window:get_config_overrides() or {}
-  overrides.font_size = window.get_dimensitons().dpi == CHANGE_NUM and CHANGE_FONT_SIZE or nil
-
-  window:set_config_overrides(overrides)
-end)
 
 wezterm.on('update-status', function(window, pane)
   local dpi = window:get_dimensions().dpi
@@ -54,20 +47,23 @@ wezterm.on('update-status', function(window, pane)
     return
   end
 
-  wezterm.action.EmitEvent('ToggleDpi')
+  local overrides = window:get_config_overrides() or {}
+  overrides.font_size = dpi >= DPI_CHANGE_NUM and DPI_CHANGE_FONT_SIZE or nil
+  window:set_config_overrides(overrides)
+
   prev_dpi = dpi
 end)
 ```
 ~~~
 
-`dpi`と`font_size`周りの値はわたしの環境で決め打ちにしちゃってるので適宜調整してください。
+`dpi`と`font_size`周りの値はわたしの環境でぼや〜っと決め打ちにしてるので適宜調整してください。
 
-動作としては、`dpi`に変更があったら`ToggleDpi`と名付けたカスタムイベントを呼び出すと言うものです。
-`ToggleDpi`の自体は手動でやっていた処理とほぼ同じですね。
+動作としては、`dpi`に変更があったらフォントサイズを切り替えるというものです。
+手動でやっていた処理とほぼ同じですね。
 
 ```admonish info
-わざわざ`ToggleDpi`なんていうカスタムイベントいらなくない？と思われるかもしれませんが、
-やっぱり`update-status`の本来の意図とは違う使い方なので最小限で抜けたいんですよね〜。
+ほんとはカスタムイベントを使ってやりたいんですが、うまくいかない...。
+一旦これで。
 ```
 
 ```admonish success
