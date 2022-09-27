@@ -1,4 +1,4 @@
-# dpi-detection
+# DPI Detection
 
 前回は手動でフォントサイズの切り替えを行いましたが、今回はこれを`dpi`の変更を検知して自動で切り替わるようにします。
 
@@ -40,6 +40,13 @@ local DPI_CHANGE_FONT_SIZE = 10.0
 
 local prev_dpi = 0
 
+wezterm.on('trigger-dpi', function(window, dpi)
+  local overrides = window:get_config_overrides() or {}
+  overrides.font_size = dpi >= DPI_CHANGE_NUM and DPI_CHANGE_FONT_SIZE or nil
+
+  window:set_config_overrides(overrides)
+end)
+
 wezterm.on('update-status', function(window, pane)
   local dpi = window:get_dimensions().dpi
 
@@ -47,23 +54,23 @@ wezterm.on('update-status', function(window, pane)
     return
   end
 
-  local overrides = window:get_config_overrides() or {}
-  overrides.font_size = dpi >= DPI_CHANGE_NUM and DPI_CHANGE_FONT_SIZE or nil
-  window:set_config_overrides(overrides)
+  wezterm.emit('trigger-dpi', window, dpi)
 
   prev_dpi = dpi
 end)
 ```
 ~~~
 
-`dpi`と`font_size`周りの値はわたしの環境でぼや〜っと決め打ちにしてるので適宜調整してください。
+`dpi`と`font_size`周辺の値はわたしの環境にあわせてぼや〜っと決め打ちにしてるので適宜調整してください。
 
-動作としては、`dpi`に変更があったらフォントサイズを切り替えるというものです。
-手動でやっていた処理とほぼ同じですね。
+動作としては、`dpi`に変更があったらカスタムイベントの`trigger-dpi`を呼んでフォントサイズを切り替えます。
+`trigger-dpi`自体は手動でフォントサイズを切り替える処理とほぼ同じですね。
 
 ```admonish info
-ほんとはカスタムイベントを使ってやりたいんですが、うまくいかない...。
-一旦これで。
+理由はちょっとよくわからなかったのですが、
+
+カスタムイベントに渡した`window`に対しての`get_config_overrides().dpi`が上手くいかなかったので、
+`wezterm.emit('trigger-dpi', window, dpi)`として`dpi`も渡しています。これであれば動くみたいです。
 ```
 
 ```admonish success
