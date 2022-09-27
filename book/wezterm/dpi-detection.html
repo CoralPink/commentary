@@ -201,17 +201,10 @@ When the event is emitted, each of the registered callbacks is called in the ord
 <p><a class="admonition-anchor-link" href="#admonition-eventlua"></a></p>
 </div>
 <div>
-<pre><code class="language-lua">local DPI_CHANGE_NUM = 144
+<pre><code class="language-lua">local DPI_CHANGE_NUM = 140
 local DPI_CHANGE_FONT_SIZE = 10.0
 
 local prev_dpi = 0
-
-wezterm.on('ToggleDpi', function(window, pane)
-  local overrides = window:get_config_overrides() or {}
-  overrides.font_size = window.get_dimensitons().dpi == CHANGE_NUM and CHANGE_FONT_SIZE or nil
-
-  window:set_config_overrides(overrides)
-end)
 
 wezterm.on('update-status', function(window, pane)
   local dpi = window:get_dimensions().dpi
@@ -220,23 +213,26 @@ wezterm.on('update-status', function(window, pane)
     return
   end
 
-  wezterm.action.EmitEvent('ToggleDpi')
+  local overrides = window:get_config_overrides() or {}
+  overrides.font_size = dpi &gt;= DPI_CHANGE_NUM and DPI_CHANGE_FONT_SIZE or nil
+  window:set_config_overrides(overrides)
+
   prev_dpi = dpi
 end)
 </code></pre>
 </div>
 </div>
-<p><code>dpi</code>と<code>font_size</code>周りの値はわたしの環境で決め打ちにしちゃってるので適宜調整してください。</p>
-<p>動作としては、<code>dpi</code>に変更があったら<code>ToggleDpi</code>と名付けたカスタムイベントを呼び出すと言うものです。
-<code>ToggleDpi</code>の自体は手動でやっていた処理とほぼ同じですね。</p>
+<p><code>dpi</code>と<code>font_size</code>周りの値はわたしの環境でぼや〜っと決め打ちにしてるので適宜調整してください。</p>
+<p>動作としては、<code>dpi</code>に変更があったらフォントサイズを切り替えるというものです。
+手動でやっていた処理とほぼ同じですね。</p>
 <div id="admonition-info-1" class="admonition info">
 <div class="admonition-title">
 <p>Info</p>
 <p><a class="admonition-anchor-link" href="#admonition-info-1"></a></p>
 </div>
 <div>
-<p>わざわざ<code>ToggleDpi</code>なんていうカスタムイベントいらなくない？と思われるかもしれませんが、
-やっぱり<code>update-status</code>の本来の意図とは違う使い方なので最小限で抜けたいんですよね〜。</p>
+<p>ほんとはカスタムイベントを使ってやりたいんですが、うまくいかない...。
+一旦これで。</p>
 </div>
 </div>
 <div id="admonition-success" class="admonition success">

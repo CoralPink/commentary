@@ -28,7 +28,7 @@
 
 ## フォント切り替え
 
-この例では`ToggleFontSize`というイベントを独自に作っています。
+この例では`toggle-font-size`というイベントを独自に作っています。
 
 フォントサイズに限らず、元の設定を直接変えるのではなく、オーバーライドする形式になっています。
 ```admonish note title="[window:get_config_overrides()](https://wezfurlong.org/wezterm/config/lua/window/get_config_overrides.html)"
@@ -45,7 +45,7 @@ Returns a copy of the current set of configuration overrides that is in effect f
 ```lua
 local wezterm = require 'wezterm'
 
-wezterm.on('ToggleFontSize', function(window, pane)
+wezterm.on('toggle-font-size', function(window, pane)
   local overrides = window:get_config_overrides() or {}
   overrides.font_size = not overrides.font_size and 10.0 or nil
 
@@ -74,7 +74,7 @@ This action causes the equivalent of wezterm.emit(name, window, pane) to be call
 
 ~~~admonish example title="keybinds.lua"
 ```lua
-  { key = 'f', mods = 'CTRL', action = act.EmitEvent 'ToggleFontSize' },
+  { key = 'f', mods = 'CTRL', action = act.EmitEvent 'toggle-font-size' },
 ```
 ~~~
 
