@@ -1,5 +1,4 @@
 # Introduction
-
 このページでは、わたしが普段使っているターミナル環境を元にした設定例を紹介しています。
 
 ![goal.png](goal.png)
@@ -30,13 +29,15 @@ _Screenshot of wezterm on macOS, running neovim_.
 ```
 
 ## Thanks
-
 Thanks to application developers!!
+
 I enjoy using it💓
 
 [WezTerm - Wez's Terminal Emulator](https://wezfurlong.org/wezterm/)
 
 [Neovim - hyperextensible Vim-based text editor](https://neovim.io)
+
+[starship - cross-shell prompt](https://starship.rs)
 
 And thanks to the developers of the applications used to create this website🤗
 
