@@ -19,6 +19,9 @@ jobs:
         with:
           mdbook-version: 'latest'
 
+      - run: cargo install mdbook-admonish
+      - run: cargo install mdbook-catppuccin
+
       - run: mdbook build
 
       - name: Deploy
