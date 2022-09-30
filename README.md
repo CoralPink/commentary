@@ -1,4 +1,4 @@
 # commentary
 setting example.
 
-https://coralpink.github.io/commentary/book/
+https://coralpink.github.io/commentary
