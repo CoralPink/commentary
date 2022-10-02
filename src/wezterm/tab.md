@@ -34,7 +34,7 @@ end)
 
 色は適宜調整してください。
 
-```admonish note title="[format-tab-title](https://wezfurlong.org/wezterm/config/lua/window-events/format-tab-title.html)"
+```admonish info title="[format-tab-title](https://wezfurlong.org/wezterm/config/lua/window-events/format-tab-title.html)"
 The format-tab-title event is emitted when the text for a tab title needs to be recomputed.
 
 format-tab-title イベントは、タブタイトルのテキストを再計算する必要があるときに発行されます。
@@ -61,7 +61,7 @@ return {}
 ## Zoomed
 ズーム中はタブに 🔎 アイコンを表示してます。 
 
-```admonish note title="[TogglePaneZoomState](https://wezfurlong.org/wezterm/config/lua/keyassignment/TogglePaneZoomState.html)"
+```admonish info title="[TogglePaneZoomState](https://wezfurlong.org/wezterm/config/lua/keyassignment/TogglePaneZoomState.html)"
 Toggles the zoom state of the current pane.
 A Zoomed pane takes up all available space in the tab, hiding all other panes while it is zoomed.
 
@@ -95,7 +95,7 @@ A Zoomed pane takes up all available space in the tab, hiding all other panes wh
 ## Hover
 ホバー中は該当のタブ背景色を少し変えてます。
 
-```admonish note title="[hover](https://wezfurlong.org/wezterm/config/lua/window-events/format-tab-title.html)"
+```admonish info title="[hover](https://wezfurlong.org/wezterm/config/lua/window-events/format-tab-title.html)"
 true if the current tab is in the hover state
 
 現在のタブがホバー状態である場合に true を返します。

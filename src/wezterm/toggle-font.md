@@ -14,7 +14,7 @@
 
 ![img-mbp](img/img-mbp.png)
 
-```admonish info 
+```admonish note
 意図伝わりますでしょうか...。
 
 むしろツールバーをみてもらった方がわかりやすいかもしれません。アイコンとかフォントとか、サイズというか、スケール全然違うでしょ？
@@ -31,7 +31,7 @@
 この例では`toggle-font-size`というイベントを独自に作っています。
 
 フォントサイズに限らず、元の設定を直接変えるのではなく、オーバーライドする形式になっています。
-```admonish note title="[window:get_config_overrides()](https://wezfurlong.org/wezterm/config/lua/window/get_config_overrides.html)"
+```admonish info title="[window:get_config_overrides()](https://wezfurlong.org/wezterm/config/lua/window/get_config_overrides.html)"
 Returns a copy of the current set of configuration overrides that is in effect for the window.
 
 ウィンドウに適用されている設定オーバーライドの現在のセットのコピーを返します。
@@ -56,7 +56,7 @@ end)
 
 これでフォントサイズの切り替えが実現できます。
 
-~~~admonish info
+~~~admonish note
 ごめんなさい。わたしは`wezterm.lua`での素の`font_size`を`14.0`にしています。各自で調整してください。
 
 (`14.0`と`10.0`を行ったり来たりできるように設定しています。)
@@ -64,7 +64,7 @@ end)
 
 独自イベントが呼び出されるようにするには`EmitEvent`を用います。
 
-```admonish note title="[EmitEvent](https://wezfurlong.org/wezterm/config/lua/keyassignment/EmitEvent.html)"
+```admonish info title="[EmitEvent](https://wezfurlong.org/wezterm/config/lua/keyassignment/EmitEvent.html)"
 This action causes the equivalent of wezterm.emit(name, window, pane) to be called in the context of the current pane.
 
 このアクションは、現在のペインのコンテキストで wezterm.emit(name, window, pane) と同等のアクションが呼び出されるようにします。
@@ -80,7 +80,7 @@ This action causes the equivalent of wezterm.emit(name, window, pane) to be call
 
 まあ、思いっきり手動なんですけどね。自動で出来たら面白いんですけどね。
 
-```admonish info
+```admonish note
 あれ？dpi取得できるなら自動で出来るのかな。このサイト作りながら気づいてしまった...。
 
 アウトプットはしてみるものですね😆次のページに書いちゃいます。
