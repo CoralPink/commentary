@@ -10,7 +10,7 @@
 
 実際、デフォルトでは徹底的に他のソフトウェアとの衝突を避けています。
 
-```admonish note title="[Default Shortcut / Key Binding Assignments](https://wezfurlong.org/wezterm/config/default-keys.html)"
+```admonish info title="[Default Shortcut / Key Binding Assignments](https://wezfurlong.org/wezterm/config/default-keys.html)"
 The default key assignments are shown in the table.
 
 デフォルトのキー割り当ては、表のとおりです。
@@ -20,7 +20,7 @@ The default key assignments are shown in the table.
 
 まずは現在のキーバインドがどうなっているのかを確認します。
 
-```admonish note title="[show-keys](https://wezfurlong.org/wezterm/cli/show-keys.html#wezterm-show-keys)"
+```admonish info title="[show-keys](https://wezfurlong.org/wezterm/cli/show-keys.html#wezterm-show-keys)"
 Prints the complete set of key assignments based on your config file.
 
 設定ファイルに基づいたキー割り当ての完全なセットを表示します。
@@ -79,7 +79,7 @@ keys = require(“keybinds”).keys,
 
 冒頭のリンクを再掲しますが、一番下にこのようにあります。
 
-```admonish note title="[Default Key Assignments](https://wezfurlong.org/wezterm/config/default-keys.html)"
+```admonish info title="[Default Key Assignments](https://wezfurlong.org/wezterm/config/default-keys.html)"
 If you don't want the default assignments to be registered, you can disable all of them with this configuration; if you chose to do this, you must explicitly register every binding.
 
 デフォルトの割り当てを登録したくない場合は、この設定ですべての割り当てを無効にできます。これを選択した場合は、すべてのバインディングを明示的に登録しなければなりません。

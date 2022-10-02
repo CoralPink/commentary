@@ -7,7 +7,7 @@
 
 まあ、これは紹介したくなりますよね〜。導入が簡単なのに綺麗だし🥴
 
-```admonish note title="[StarShip Cross-Shell Prompt](https://starship.rs/)"
+```admonish info title="[StarShip Cross-Shell Prompt](https://starship.rs/)"
 The minimal, blazing-fast, and infinitely customizable prompt for any shell!
 
 あらゆるシェルのための、最小限の、高速な、そして無限にカスタマイズ可能なプロンプト!
@@ -28,7 +28,7 @@ Prerequisites
 
 なんと❗️`WezTerm`は既に`Nerd Font Symbols Font`を持っています❗️
 
-```admonish note title="[wezterm.nerdfonts](https://wezfurlong.org/wezterm/config/lua/wezterm/nerdfonts.html)"
+```admonish info title="[wezterm.nerdfonts](https://wezfurlong.org/wezterm/config/lua/wezterm/nerdfonts.html)"
 WezTerm includes Nerd Font Symbols Font as a default font fallback which means that these
 special symbols are available even without requiring you to use a patched font.
 
@@ -71,7 +71,7 @@ brew install starship
 ```
 ~~~
 
-```admonish info
+```admonish note
 もし無かったら自分で作っちゃっていいやつです。
 ```
 

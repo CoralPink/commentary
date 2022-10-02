@@ -4,7 +4,7 @@
 
 インストールは`homebrew`などのパッケージ管理システムや、ホームページ上で提供されている実行ファイルをダウンロードする方法があります。
 
-```admonish note title="[Install - Wez's Terminal Emulator](https://wezfurlong.org/wezterm/installation.html)"
+```admonish info title="[Install - Wez's Terminal Emulator](https://wezfurlong.org/wezterm/installation.html)"
 WezTerm is available pre-built for the major platforms and, because it is open source, you may also build it for yourself.
 
 WezTermは主要なプラットフォーム用にあらかじめビルドされていますが、オープンソースであるため、自分でビルドすることも可能です。

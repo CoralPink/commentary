@@ -28,7 +28,7 @@ return {
 
 さて、`wezterm.on`を利用して`update-status`イベントをフックします。
 
-```admonish note title="[update-status](https://wezfurlong.org/wezterm/config/lua/window-events/update-status.html)"
+```admonish info title="[update-status](https://wezfurlong.org/wezterm/config/lua/window-events/update-status.html)"
 The update-status event is emitted periodically (based on the interval specified by the status_update_interval configuration value).
 
 There is no defined return value for the event, but its purpose is to allow you the chance to carry out some activity and then ultimately call window:set_right_status or window:set_left_status.
@@ -48,7 +48,7 @@ return {
 ```
 ~~~
 
-```admonish note title="[status_update_interval](https://wezfurlong.org/wezterm/config/lua/config/status_update_interval.html)"
+```admonish info title="[status_update_interval](https://wezfurlong.org/wezterm/config/lua/config/status_update_interval.html)"
 Specifies the number of milliseconds that need to elapse between triggering the update-right-status hook.
 
 update-right-status フックのトリガーとなるまでに必要なミリ秒を指定します。
