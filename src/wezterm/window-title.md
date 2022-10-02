@@ -1,5 +1,5 @@
 # Window Title
-`format.lua`に、以下のコードを追記していきましょう。[^code]
+`format.lua`に、以下のコードを追記していきましょう。[^a]
 
 ~~~admonish example title="format.lua"
 ```lua
@@ -59,4 +59,5 @@ after:
 
 まあ、これも各自お好みで調整してもらえればOKです。
 ```
-[^code]: なんか偉そうでした。wez さんのサンプル、丸パクリです...。
+
+[^a]:なんか偉そうでした。wez さんのサンプル、丸パクリです...。
