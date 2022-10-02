@@ -4,7 +4,7 @@
 
 以下に再掲しますが、`starship`を使用する場合も`WezTerm`であれば`Nerd Font`を考慮する必要がありません😆
 
-```admonish note title="[wezterm.nerdfonts](https://wezfurlong.org/wezterm/config/lua/wezterm/nerdfonts.html)"
+```admonish info title="[wezterm.nerdfonts](https://wezfurlong.org/wezterm/config/lua/wezterm/nerdfonts.html)"
 WezTerm includes Nerd Font Symbols Font as a default font fallback which means that these
 special symbols are available even without requiring you to use a patched font.
 
@@ -22,13 +22,13 @@ WezTerm は Nerd Font Symbols Font をデフォルトのフォントのフォー
 
 例として、わたしが普段お世話になっているフォントを紹介します。
 
-```admonish note title="[GitHub - yuru7/Firge](https://github.com/yuru7/Firge)"
+```admonish info title="[GitHub - yuru7/Firge](https://github.com/yuru7/Firge)"
 Fira Mono と源真ゴシックを合成したプログラミングフォント Firge (ファージ)
 ```
 
 「ダウンロードはこちら」というリンクから、お言葉に甘えて`FirgeNerd_v0.2.0.zip`をダウンロードしましょう。感謝❤️
 
-```admonish info
+```admonish note
 `Nerd Font`いらないって言いながら`Nerd`なの❗️❓ってなっちゃうんですが、なんかごめんなさい、色々ありました。
 
 取り急ぎ直したので内容は間違ってないと思います。...多分。
@@ -50,7 +50,7 @@ Fira Mono と源真ゴシックを合成したプログラミングフォント 
 ## WezTerm 設定
 で、このフォントを`WezTerm`に設定すれば良さそう。
 
-```admonish note title="[wezterm.font](https://wezfurlong.org/wezterm/config/lua/wezterm/font.html)"
+```admonish info title="[wezterm.font](https://wezfurlong.org/wezterm/config/lua/wezterm/font.html)"
 This function constructs a lua table that corresponds to the internal FontAttributes struct that is used to select a single named font.
 
 この関数は、単一の名前付きフォントを選択するために使用される内部 FontAttributes 構造体に対応する lua テーブルを構築します。
@@ -65,14 +65,14 @@ font = require("wezterm").font("Firge35Nerd Console"),
 
 わたしは`Firge35NerdConsole-Regular.ttf`をインストールして、`WezTerm`にファミリー名の`Firge35Nerd Console`を指定しています。
 
-```admonish info
+```admonish note
 ファミリー名は Font Book 等で確認できます。「情報を確認する(`command + i`)」ですね。
 ![font-info.png](img/font-info.png)
 ```
 
 フォントサイズも指定できるので一緒に入れておきましょう。
 
-```admonish note title="[font_size](https://wezfurlong.org/wezterm/config/lua/config/font_size.html)"
+```admonish info title="[font_size](https://wezfurlong.org/wezterm/config/lua/config/font_size.html)"
 Specifies the size of the font, measured in points.
 
 You may use fractional point sizes, such as 13.3, to fine tune the size.

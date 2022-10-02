@@ -1,7 +1,7 @@
 # Leader Key
 さて、前回はキーバインドを落とし込んだわけですが、今回は`Leader`キーです。
 
-```admonish note title="[Key Binding - Wez's Terminal Emulator](https://wezfurlong.org/wezterm/config/keys.html#leader-key)"
+```admonish info title="[Key Binding - Wez's Terminal Emulator](https://wezfurlong.org/wezterm/config/keys.html#leader-key)"
 A leader key is a a modal modifier key. If leader is specified in the configuration then pressing that key combination will enable a virtual LEADER modifier.
 
 Leaderキーは、モーダルモディファイアキーです。Leaderキーが設定されている場合、そのキーの組み合わせを押すと、仮想的なリーダーモディファイアが有効になります。
@@ -10,7 +10,7 @@ Leaderキーは、モーダルモディファイアキーです。Leaderキー�
 `Leader`キーという概念は WezTerm 特有のものではく、`tmux`や`vim`など古参のソフトウェアでも用いられています。
 
 WezTerm でのデフォルトは`CTRL-a`です。[^other]
-```admonish info
+```admonish note
 `CTRL-a` という表記は`control`キーと`a`キーを同時押しすることを示しています。
 ```
 
@@ -23,7 +23,7 @@ leader = { key = 'a', mods = 'CTRL', timeout_milliseconds = 2000 },
 ```
 ~~~
 
-```admonish info
+```admonish note
 `timeout_milliseconds`のパラメータを変えていますが、これは後で触れます。
 ```
 
@@ -70,7 +70,7 @@ or until it has been active for the duration specified by `timeout_milliseconds`
 
 例えばこれ。
 
-~~~admonish info title="Default KeyBinds"
+~~~admonish quote title="Default KeyBinds"
 ```lua
 { key = '"', mods = 'ALT|CTRL', action = act.SplitVertical{ domain =  'CurrentPaneDomain' } },
 { key = '%', mods = 'ALT|CTRL', action = act.SplitHorizontal{ domain =  'CurrentPaneDomain' } },
@@ -98,7 +98,7 @@ or until it has been active for the duration specified by `timeout_milliseconds`
 
 もしどこかで`tmux`を使うことがあっても同一操作なので迷わず使えます、たぶん！
 
-~~~admonish info
+~~~admonish note
 さらにタイムリーなことに、`Copy Mode`の各種`jump`機能も実装されてました。(9/22時点では`nightly build`だけです。)
 
 [update docs for new copy-mode functions](https://github.com/wez/wezterm/commit/8458b2b62d90cbf3326c39ed5a72ef256588ebe3)

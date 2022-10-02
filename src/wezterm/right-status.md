@@ -2,7 +2,7 @@
 
 これはもう手厚いサンプルが既に用意されているので、この通りに書けばバッチリです。やったね！
 
-```admonish note title="[window:set_right_status(string)](https://wezfurlong.org/wezterm/config/lua/window/set_right_status.html)"
+```admonish info title="[window:set_right_status(string)](https://wezfurlong.org/wezterm/config/lua/window/set_right_status.html)"
 This method can be used to change the content that is displayed in the tab bar, to the right of the tabs and new tab button. 
 
 このメソッドを使用すると、タブバー内のタブと新規タブボタンの右側に表示される内容を変更することができます。
@@ -65,7 +65,7 @@ wez さんのサンプルでは一度に取得していた date と time も分�
 
 バッテリー表示については、わたしの場合はフルスクリーンの時だけ出しています。スクリーン状態は下記で取得できます。
 
-```admonish note title="[window:get_dimensions()](https://wezfurlong.org/wezterm/config/lua/window/get_dimensions.html)"
+```admonish info title="[window:get_dimensions()](https://wezfurlong.org/wezterm/config/lua/window/get_dimensions.html)"
 The table has the following fields:
 
 テーブルには以下のフィールドがあります:

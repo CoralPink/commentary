@@ -6,7 +6,7 @@
 
 さて、これまでにも何度か出てきていた`wezterm.on`ですが、以下のような説明がありました。
 
-```admonish note title="[wezterm.on(event_name, callback)](https://wezfurlong.org/wezterm/config/lua/wezterm/on.html)"
+```admonish info title="[wezterm.on(event_name, callback)](https://wezfurlong.org/wezterm/config/lua/wezterm/on.html)"
 wezterm.on can register multiple callbacks for the same event; internally an ordered list of callbacks is maintained for each event.
 When the event is emitted, each of the registered callbacks is called in the order that they were registered.
 
@@ -16,7 +16,7 @@ wezterm.on は、同じイベントに対して複数のコールバックを登
 
 これを踏まえた上で、`update-status`をもう一個作ります。[^a]
 
-```admonish note title="[update-status](https://wezfurlong.org/wezterm/config/lua/window-events/update-status.html)"
+```admonish info title="[update-status](https://wezfurlong.org/wezterm/config/lua/window-events/update-status.html)"
 There is no defined return value for the event, but its purpose is to allow you the chance to carry out some activity and then ultimately call window:set_right_status or window:set_left_status.
 
 このイベントの戻り値は定義されていませんが、その目的は、何らかの活動を行い、最終的に window:set_right_status または window:set_left_status を呼び出す機会を提供することです。
@@ -25,7 +25,7 @@ There is no defined return value for the event, but its purpose is to allow you 
 説明にもある通り、「最終的に`window:set_right_status`または`window:set_left_status`を呼び出す目的」のものであるため、
 なんかコレじゃないとは思っていますが、他に方法が見つけられませんでした😢
 
-```admonish info
+```admonish note
 今後の仕様追加・変更によって、より自然に実現できるかもしれませんね。
 ```
 
@@ -66,7 +66,7 @@ end)
 動作としては、`dpi`に変更があったらカスタムイベントの`trigger-dpi`を呼んでフォントサイズを切り替えます。
 `trigger-dpi`自体は手動でフォントサイズを切り替える処理とほぼ同じですね。
 
-```admonish info
+```admonish note
 理由はちょっとよくわからなかったのですが、
 
 カスタムイベントに渡した`window`に対しての`get_config_overrides().dpi`が上手くいかなかったので、

@@ -44,7 +44,7 @@ end
 ## Leaderキーアクティブ
 まずは`leader`キーの状態を以下で取得します。
 
-```admonish note title="[window:leader_is_active](https://wezfurlong.org/wezterm/config/lua/window/leader_is_active.html)"
+```admonish info title="[window:leader_is_active](https://wezfurlong.org/wezterm/config/lua/window/leader_is_active.html)"
 Returns true if the Leader Key is active in the window, or false otherwise.
 
 リーダーキーがウィンドウ内でアクティブな場合はtrueを、そうでない場合はfalseを返します。
@@ -55,7 +55,7 @@ Returns true if the Leader Key is active in the window, or false otherwise.
 ## IME状態
 次にIME状態です。
 
-```admonish note title="[window:composition_status()](https://wezfurlong.org/wezterm/config/lua/window/composition_status.html)"
+```admonish info title="[window:composition_status()](https://wezfurlong.org/wezterm/config/lua/window/composition_status.html)"
 Returns a string holding the current dead key or IME composition text, or nil if the input layer is not in a composition state.
 
 This is the same text that is shown at the cursor position when composing.
@@ -68,7 +68,7 @@ This is the same text that is shown at the cursor position when composing.
 
 
 
-```admonish info
+```admonish note
 コンポジションって何だ？と思われるかもしれませんが、わたしも思ってます。
 
 でも、この状態を指すようです。

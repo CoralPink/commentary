@@ -35,7 +35,7 @@ vim ~/.config/wezterm/wezterm.lua
 ```
 ~~~
 
-~~~admonish info title="GUI のエディタを使う場合"
+~~~admonish note title="GUI のエディタを使う場合"
 GUI のエディタを使用したい場合は以下で出来ます。`lua`ファイルに関連付けられたアプリケーションが起動するはずです。
 
 ファイルを作る:

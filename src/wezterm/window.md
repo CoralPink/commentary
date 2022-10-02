@@ -7,7 +7,7 @@ Wezterm では数多くのカラースキームを内蔵しているため、簡
 
 以下から好きなカラースキームを選んで指定します。
 
-```admonish note title="[Color Schemes](https://wezfurlong.org/wezterm/colorschemes/index.html)"
+```admonish info title="[Color Schemes](https://wezfurlong.org/wezterm/colorschemes/index.html)"
 735 Color schemes listed by first letter
 
 735[^a]種類のカラースキーム一覧
@@ -22,14 +22,14 @@ color_scheme = 'Catppuccin Mocha',
 ```
 ~~~
 
-```admonish info
+```admonish note
 ちなみに、このWebページのカラースキームも`Catppuccin`を使ってたりします。
 左上のブラシマークから4種類のテーマを変えられるのでお好みで切り替えてみてください。
 ```
 
 ## window_background_opacity
 
-```admonish note title="[Colors & Appearance - Wez's Terminal Emulator](https://wezfurlong.org/wezterm/config/appearance.html#window-background-opacity)"
+```admonish info title="[Colors & Appearance - Wez's Terminal Emulator](https://wezfurlong.org/wezterm/config/appearance.html#window-background-opacity)"
 If your Operating System provides Compositing support then WezTerm is able to specify the alpha channel value for the background content
 
 オペレーティングシステムがコンポジットをサポートしている場合、WezTerm は背景コンテンツのアルファチャンネル値を指定することができます。
