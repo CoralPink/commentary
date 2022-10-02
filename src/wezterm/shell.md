@@ -20,7 +20,7 @@ Prerequisites
 - A Nerd Font installed and enabled in your terminal.
 
 前提条件
-- Nerd Fontがインストールされ、端末で有効になっていること。
+- Nerd Fontがインストールされ、ターミナルで有効になっていること。
 ```
 と書いてありますね。
 
@@ -80,17 +80,16 @@ brew install starship
 ```
 
 ### Step 3.
-コンフィグファイルは、また別の機会に。
+コンフィグファイルについては、また別の機会に。
 
-`WezTerm`を一旦終了して再度起動し直しましょう。
+`WezTerm`を一旦終了して再度起動しましょう。
 
 ![starship.png](img/starship.png)
 
 `3.1 Window`で設定したカラースキームが適用されているのを確認できましたね。
 
-あと、月が綺麗ですね。(`wezterm`ディレクトリに行くと手っ取り早く見られます。)
-
 ```admonish success
-満足💕
-それでは`WezTerm`に戻りましょう。
+月も綺麗ですね💕 (`wezterm`ディレクトリに行くと手っ取り早く見られます。)
+
+それでは`WezTerm`のお話に戻りましょう。
 ```

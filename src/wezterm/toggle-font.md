@@ -22,7 +22,7 @@
 
 [DecreaseFontSize](https://wezfurlong.org/wezterm/config/lua/keyassignment/DecreaseFontSize.html)・
 [IncreaseFontSize](https://wezfurlong.org/wezterm/config/lua/keyassignment/IncreaseFontSize.html)
-を使ってサイズを上下するのもいいんですが、ちょっとコレじゃない...。
+を使ってサイズを上げ下げしてもいいんですが、ちょっとコレじゃない...。
 
 わたしはこれが結構ストレスになっていたので、 この問題の解消に有用なのが次のフォント切り替え機能です。
 

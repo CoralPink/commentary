@@ -6,9 +6,8 @@
 `WezTerm`自体が`tmux`と同等かそれ以上の機能を持っているので、
 `WezTerm`に対して`tmux`と同じキーバインドを与えてしまえば、これは不要になるわけです。[^a]
 
-と言ってもわたしがローカルでしか使っていないから大丈夫なだけで、ネットワークを介して使う場合は困る事もあるかもしれません。
-
-実際、デフォルトでは徹底的に他のソフトウェアとの衝突を避けています。
+と言ってもわたしがローカルでしか使っていないから大丈夫なだけで、ネットワークを介して使う場合は困る事もあるかもしれませんし、
+実際にデフォルトでは徹底的に他のソフトウェアとの衝突を避けています。
 
 ```admonish info title="[Default Shortcut / Key Binding Assignments](https://wezfurlong.org/wezterm/config/default-keys.html)"
 The default key assignments are shown in the table.
@@ -52,21 +51,25 @@ wezterm show-keys --lua
 
 ![key-now-lua.png](img/key-now-lua.png)
 
-さすがですね☺️ もはやレールは存在していました。これを`keybinds.lua`に持っていけば良いだけです。
+さすがですね☺️ もはやレールは存在していました。これを自分の設定に持っていけば良いだけです。
 
-これはもうプロっぽく片付けましょう。シェル芸というやつです✨
+ということで、`keybinds.lua`とでもしてここに設定を落とし込みます。
+
+これはもうプロっぽく片付けちゃいましょう。シェル芸というやつです✨
+
 ~~~admonish quote title="Command"
 ```sh
 wezterm show-keys --lua > keybinds.lua
 ```
 ~~~
+
+`>`を使って出力先をファイルにすると、もうこれだけで流し込めちゃうんですね。簡単😆
+
 ```admonish warning
 上記コマンドのファイル出力先は現在のディレクトリです。
 
 `~/.config/wezterm`に移動するか、出力先を`~/.config/wezterm/keybinds.lua`に指定してください。
 ```
-
-これだけでもう直接流し込めちゃうんですね。簡単〜😆
 
 ## 読み込み先を切り替える
 ここまでは暗黙的にデフォルト設定が適用されていましたが、これからは自分で作った`keybinds.lua`を使っていきましょう。

@@ -1,6 +1,6 @@
 # Font 
 
-これはもう、ほんとにお好きなフォントを使ってもらえれば良いです。
+これはもう、ほんとにお好きなフォントでいいです。
 
 以下に再掲しますが、`starship`を使用する場合も`WezTerm`であれば`Nerd Font`を考慮する必要がありません😆
 
@@ -26,12 +26,10 @@ WezTerm は Nerd Font Symbols Font をデフォルトのフォントのフォー
 Fira Mono と源真ゴシックを合成したプログラミングフォント Firge (ファージ)
 ```
 
-「ダウンロードはこちら」というリンクから、お言葉に甘えて`FirgeNerd_v0.2.0.zip`をダウンロードしましょう。感謝❤️
+「ダウンロードはこちら」というリンクから、お言葉に甘えて`FirgeNerd_v0.2.0.zip`をダウンロードします。ありがとー💕
 
 ```admonish note
-`Nerd Font`いらないって言いながら`Nerd`なの❗️❓ってなっちゃうんですが、なんかごめんなさい、色々ありました。
-
-取り急ぎ直したので内容は間違ってないと思います。...多分。
+`Nerd Font`いらないって言いながら`Nerd`とか言ってんの何なの❗️❓ってなっちゃうんですが、なんかごめんなさい。
 ```
 
 ## インストール
@@ -50,27 +48,43 @@ Fira Mono と源真ゴシックを合成したプログラミングフォント 
 ## WezTerm 設定
 で、このフォントを`WezTerm`に設定すれば良さそう。
 
-```admonish info title="[wezterm.font](https://wezfurlong.org/wezterm/config/lua/wezterm/font.html)"
-This function constructs a lua table that corresponds to the internal FontAttributes struct that is used to select a single named font.
-
-この関数は、単一の名前付きフォントを選択するために使用される内部 FontAttributes 構造体に対応する lua テーブルを構築します。
-```
-
 ~~~admonish example title="wezterm.lua"
 ```lua
--- 説明簡略のためサンプルとは少し記述を変えてますが、どちらでも構いません。
 font = require("wezterm").font("Firge35Nerd Console"),
 ```
 ~~~
 
-わたしは`Firge35NerdConsole-Regular.ttf`をインストールして、`WezTerm`にファミリー名の`Firge35Nerd Console`を指定しています。
+```admonish info title="[wezterm.font](https://wezfurlong.org/wezterm/config/lua/wezterm/font.html)"
+The first parameter is the name of the font; the name can be one of the following types of names:
+
+- The font family name, eg: "JetBrains Mono". The family name doesn't include any style information (such as weight, stretch or italic), which can be specified via the attributes parameter. This is the recommended name to use for the font, as it the most compatible way to resolve an installed font.
+- The computed full name, which is the family name with the sub-family (which incorporates style information) appended, eg: "JetBrains Mono Regular”.
+- (Since 20210502-154244-3f7122cb) The postscript name, which is an ostensibly unique name identifying a given font and style that is encoded into the font by the font designer.
+
+最初のパラメータはフォントの名前です。この名前は、以下のタイプの名前のいずれかになります。
+
+- フォントファミリ名、例："JetBrains Mono 「JetBrains Mono" のようなフォントファミリーの名前です。このファミリー名にはスタイル情報（ウェイト、ストレッチ、イタリックなど）は含まれませんが、これは属性パラメータで指定できます。これは、インストールされているフォントを解決するための最も互換性のある方法であるため、フォントに使用する推奨される名前です。
+- 計算されたフルネームは、ファミリー名にサブファミリー（スタイル情報を含む）を追加したもので、例．例えば、「JetBrains Mono Regular」です。
+- (20210502-154244-3f7122cb 以降) ポストスクリプト名。これは、フォントデザイナーがフォントにエンコードした、与えられたフォントとスタイルを識別する表向きユニークな名前です。
+```
+
+わたしは`Firge35NerdConsole-Regular.ttf`をインストールして、ファミリー名の`Firge35Nerd Console`で指定しています。
 
 ```admonish note
-ファミリー名は Font Book 等で確認できます。「情報を確認する(`command + i`)」ですね。
+ファミリー名は`Font Book`アプリケーションで確認できます。「識別子」項目の中ですね。
+
+出ていない場合は「情報を確認する(`command + i`)」をポチッと。
+
 ![font-info.png](img/font-info.png)
 ```
 
-フォントサイズも指定できるので一緒に入れておきましょう。
+フォントサイズも指定できるので、一緒に入れておきましょう。
+
+~~~admonish example title="wezterm.lua"
+```lua
+font_size = 12.0,
+```
+~~~
 
 ```admonish info title="[font_size](https://wezfurlong.org/wezterm/config/lua/config/font_size.html)"
 Specifies the size of the font, measured in points.
@@ -82,16 +96,10 @@ You may use fractional point sizes, such as 13.3, to fine tune the size.
 13.3 のような小数点のサイズを使用して、サイズを微調整することができます。
 ```
 
-~~~admonish example title="wezterm.lua"
-```lua
-font_size = 12.0,
-```
-~~~
-
 上の例はデフォルト値そのままですが、お好みで調整してください。
 
 ```admonish success
-どうでしょう？明らかに日本語が綺麗になりましたね❗️
+どうでしょう？明らかに日本語が綺麗になりました❗️
 
 ![font-firge.png](img/font-firge.png)
 
