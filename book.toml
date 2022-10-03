@@ -5,7 +5,8 @@ multilingual = false
 src = "src"
 title = "Commentary"
 
-[preprocessor]
+[build]
+create-missing = false
 
 [preprocessor.admonish]
 command = "mdbook-admonish"
@@ -14,19 +15,12 @@ assets_version = "2.0.0" # do not edit: managed by `mdbook-admonish install`
 [preprocessor.catppuccin]
 assets_version = "0.1.1" # DO NOT EDIT: Managed by `mdbook-catppuccin install`
 
-[output]
-
 [output.html]
 additional-css = ["./theme/catppuccin.css", "./theme/catppuccin-highlight.css", "./mdbook-admonish.css", "./theme/override.css"]
-
 git-repository-url = "https://github.com/CoralPink/commentary"
-
 default-theme = "Latte"
 preferred-dark-theme = "Macchiato"
 
-[output.html.playground]
-editable = false
-copyable = true
-copy-js = false
-line-numbers = false
-runnable = false
+[output.html.fold]
+enable = true
+level = 1
