@@ -70,7 +70,13 @@ end)
 理由はちょっとよくわからなかったのですが、
 
 カスタムイベントに渡した`window`に対しての`get_config_overrides().dpi`が上手くいかなかったので、
-`wezterm.emit('trigger-dpi', window, dpi)`として`dpi`も渡しています。これであれば動くみたいです。
+`wezterm.emit('trigger-dpi', window, dpi)`として`dpi`も渡しています。
+```
+
+```admonish note
+わざわざカスタムイベントに分けなくても動くんですが、
+
+やっぱり本来の目的に無いことをしているので、少しでも設計思想に近づけているつもりなんです...。
 ```
 
 ```admonish success

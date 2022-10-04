@@ -23,7 +23,7 @@ wezterm.on causes your specified callback to be called when event_name is emitte
 wezterm.on は、event_name が発生したときに指定したコールバックを呼び出します。イベントは wezterm 自身によって、またはあなたが指定したコード/設定によって発行されます。
 ```
 
-この例で言うと、`format-window-title`という名前のイベントが発生したら、ここで定義した functtion が呼ばれるという動作をします。
+この例で言うと、`format-window-title`という名前のイベントが発生したら、ここで定義した`functtion`が呼ばれるという動作をします。
 
 ```admonish info title="[format-window-title - Wez's Terminal Emulator](https://wezfurlong.org/wezterm/config/lua/window-events/format-window-title.html)"
 The format-window-title event is emitted when the text for the window title needs to be recomputed.
@@ -55,9 +55,9 @@ after:
 すみません、これ (↑) タイトルバーです...。 
 
 ```admonish success
-スッキリしましたね、スッキリしすぎたかもしれません。
+スッキリしましたね。スッキリしすぎたかもしれません😆
 
-まあ、これも各自お好みで調整してもらえればOKです。
+まあ、これもお好みで調整してもらえればOKです。
 ```
 
 [^a]:なんか偉そうでした。wez さんのサンプル、丸パクリです...。

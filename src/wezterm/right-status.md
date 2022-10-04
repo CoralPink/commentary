@@ -59,7 +59,7 @@ end
 ```
 ~~~
 
-wez さんのサンプルでは一度に取得していた date と time も分けちゃってます。
+wez さんのサンプルでは一度に取得していた`date`と`time`も分けちゃってます。
 
 程度は分かりませんが、非効率ではあると思われるのでお好みで。
 
@@ -67,16 +67,23 @@ wez さんのサンプルでは一度に取得していた date と time も分�
 
 ```admonish info title="[window:get_dimensions()](https://wezfurlong.org/wezterm/config/lua/window/get_dimensions.html)"
 The table has the following fields:
+- pixel_width: the width of the window in pixels
+- pixel_height: the height of the window in pixels
+- dpi: The DPI of the screen the window in on
+- is_full_screen: whether the window is in full screen mode
 
 テーブルには以下のフィールドがあります:
+- pixel_width: ピクセル単位のウィンドウの幅
+- pixel_height: ピクセル単位で表したウィンドウの高さ
+- dpi: ウィンドウが表示されているスクリーンの DPI
+- is_full_screen: ウィンドウがフルスクリーンモードであるかどうか
 
-pixel_width, pixel_height, dpi, is_full_screen
 ```
 
-ここでは`is_full_screen`を使います。フルスクリーン時は true が返ります。
+ここでは`is_full_screen`を使います。フルスクリーン時は`true`が返ります。
 
 ```admonish warning
-`WezTerm`の[ToggleFullScreen](https://wezfurlong.org/wezterm/config/lua/keyassignment/ToggleFullScreen.html)を使用してフルスクリーンにしている場合は反応してくれないようです。
+`WezTerm`の[ToggleFullScreen](https://wezfurlong.org/wezterm/config/lua/keyassignment/ToggleFullScreen.html)を使用してフルスクリーンにしている場合は反応しないみたいです。
 
 OSからフルスクリーン化した時はちゃんと反応します。
 
@@ -140,9 +147,7 @@ end)
 
 
 ```admonish success
-華やかになりましたね。
+華やかになりましたね。(まあ、ぶっちゃけそんな見ないんだけど...) 
 
-(ぶっちゃけそんな見ないんだけど) サンプル通りとはいえ、自分で書いたコードが動くんだから楽しい世界ですよね〜。
-
-ほわほわ〜☺️
+サンプル通りとはいえ、自分で書いたコードが動くんだから楽しい世界ですよね〜。ほわほわ〜☺️
 ```
