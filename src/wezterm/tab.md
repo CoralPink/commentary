@@ -69,7 +69,7 @@ A Zoomed pane takes up all available space in the tab, hiding all other panes wh
 ズームされたペインは、タブ内で利用可能な全てのスペースを占め、ズーム中は他のペインが全て非表示になります。
 ```
 
-デフォルトのキーバインドだとZoom機能が割り当てられていないと思うので、`keybinds.lua`に入れておきましょう。
+デフォルトのキーバインドだとズーム機能が割り当てられていないと思うので、`keybinds.lua`に入れておきましょう。
 
 ~~~admonish example title="keybinds.lua"
 ```lua
@@ -77,8 +77,7 @@ A Zoomed pane takes up all available space in the tab, hiding all other panes wh
 ```
 ~~~
 
-使い方としては、まあこんな感じになってたとして...
-(ペイン操作については`3.6 Leader Key`でふわっと話題にしました。)
+使い方としてはまあ、こんな感じになってたとして...
 
 ![zoom-before](img/zoom-before.png)
 
@@ -86,11 +85,13 @@ A Zoomed pane takes up all available space in the tab, hiding all other panes wh
 
 ![zoom-after](img/zoom-after.png)
 
-"ズーム中は他のペインが全て非表示になります。"のドキュメントどおり😏
+"ズーム中は他のペインが全て非表示になります。"というドキュメントどおり😏
 
 左上に 🔎 アイコンが出ていることも確認できましたね。
 
 もう一度同じ操作で戻ります。
+
+(ペイン操作については`3.6 Leader Key`でふわっと話題にしました。)
 
 ## Hover
 ホバー中は該当のタブ背景色を少し変えてます。
