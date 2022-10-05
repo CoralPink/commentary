@@ -1,9 +1,9 @@
 [book]
-authors = ["CoralPink"]
-language = "ja"
-multilingual = false
-src = "src"
 title = "Commentary"
+author = "CoralPink"
+description = "Example of WezTerm configuration."
+src = "src"
+language = "ja"
 
 [build]
 create-missing = false
