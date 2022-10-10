@@ -1,6 +1,6 @@
 # Right Status
 
-これはもう手厚いサンプルが既に用意されているので、この通りに書けばバッチリです。やったね！
+これはもう手厚いサンプルが既に用意されているので、この通りに書けばバッチリです😆 やったね❗️
 
 ```admonish info title="[window:set_right_status(string)](https://wezfurlong.org/wezterm/config/lua/window/set_right_status.html)"
 This method can be used to change the content that is displayed in the tab bar, to the right of the tabs and new tab button. 
@@ -9,7 +9,7 @@ This method can be used to change the content that is displayed in the tab bar, 
 ```
 ただ、わたしの設定例にお付き合いいただける方のために、もうちょっとだけ続きます。
 
-## My Customize
+## Get Parameter
 まずは wez さんのサンプルコードをほぼ丸写しですが、一つずつ機能を分けます。
 
 ```admonish warning
@@ -83,7 +83,8 @@ The table has the following fields:
 ここでは`is_full_screen`を使います。フルスクリーン時は`true`が返ります。
 
 ```admonish warning
-`WezTerm`の[ToggleFullScreen](https://wezfurlong.org/wezterm/config/lua/keyassignment/ToggleFullScreen.html)を使用してフルスクリーンにしている場合は反応しないみたいです。
+`WezTerm`の[ToggleFullScreen](https://wezfurlong.org/wezterm/config/lua/keyassignment/ToggleFullScreen.html)を使用して
+フルスクリーンにしている場合は反応しないみたいです。
 
 OSからフルスクリーン化した時はちゃんと反応します。
 
@@ -101,21 +102,29 @@ local HEADER_DATE = { Foreground = { Color = '#ffccac' }, Text = '' }
 local HEADER_TIME = { Foreground = { Color = '#bcbabe' }, Text = '' }
 local HEADER_BATTERY = { Foreground = { Color = '#dfe166' }, Text = '' }
 
-local HEADER_KEY_NORMAL = { Foreground = DEFAULT_COLOR, Text = '' }
-local HEADER_LEADER = { Foreground = { Color = '#ffffff' }, Text = '' }
-local HEADER_IME = { Foreground = DEFAULT_COLOR, Text = 'あ' }
-
 local function AddElement(elems, header, str)
   table.insert(elems, { Foreground = header.Foreground })
+  table.insert(elems, { Background = DEFAULT_BG })
   table.insert(elems, { Text = header.Text .. SPACE_1 })
 
-  table.insert(elems, { Foreground = DEFAULT_COLOR })
+  table.insert(elems, { Foreground = DEFAULT_FG })
+  table.insert(elems, { Background = DEFAULT_BG })
   table.insert(elems, { Text = str .. SPACE_3 })
 end
 ```
+
+(前のページで書いた定義も使用しているので、無かったら以下も追記してください。)
+
+```lua
+local DEFAULT_FG = { Color = '#9a9eab' }
+local DEFAULT_BG = { Color = '#333333' }
+
+local SPACE_1 = ' '
+local SPACE_3 = '   '
+```
 ~~~
 
-引っ張った割には特に説明するところもないですね...。そのまま完成させちゃいましょう😆
+引っ張った割には特にコメントするところもないですね...。そのまま完成させちゃいましょう😊
 
 ~~~admonish example title="status.lua"
 ```lua
@@ -124,8 +133,8 @@ local function RightUpdate(window, pane)
 
   GetHostAndCwd(elems, pane)
   GetDate(elems)
-  GetTime(elems)
   GetBattery(elems, window)
+  GetTime(elems)
 
   window:set_right_status(wezterm.format(elems))
 end
@@ -137,17 +146,16 @@ end)
 ```
 ~~~
 
-
-さて、これでこんな感じになったはずなんですがどうでしょうか？右上です。
+さて、これでこんな感じになったはずなんですがどうでしょう❓(例によってユーザー名は雑に隠してます。)
 
 ![right-status](img/right-status.png)
 
-フルスクリーン時にバッテリー表示もされているでしょうか？
+フルスクリーン時にはバッテリー表示がされていることも確認できます。
 ![right-status](img/right-status-full.png)
 
 
 ```admonish success
-華やかになりましたね。(まあ、ぶっちゃけそんな見ないんだけど...) 
+華やかになりましたね☺️ (まあ、ぶっちゃけそんな見ないんだけど...) 
 
-サンプル通りとはいえ、自分で書いたコードが動くんだから楽しい世界ですよね〜。ほわほわ〜☺️
+サンプル通りとはいえ、自分で書いたコードが動くんだから楽しい世界です。ほわほわ〜💕
 ```

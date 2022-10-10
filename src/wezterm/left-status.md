@@ -7,17 +7,19 @@
 
 ~~~admonish example title="status.lua"
 ```lua
-local DEFAULT_COLOR = { Color = '#9a9eab' }
+local DEFAULT_FG = { Color = '#9a9eab' }
+local DEFAULT_BG = { Color = '#333333' }
 
 local SPACE_1 = ' '
 local SPACE_3 = '   '
 
-local HEADER_KEY_NORMAL = { Foreground = DEFAULT_COLOR, Text = '' }
+local HEADER_KEY_NORMAL = { Foreground = DEFAULT_FG, Text = '' }
 local HEADER_LEADER = { Foreground = { Color = '#ffffff' }, Text = '' }
-local HEADER_IME = { Foreground = DEFAULT_COLOR, Text = 'あ' }
+local HEADER_IME = { Foreground = DEFAULT_FG, Text = 'あ' }
 
 local function AddIcon(elems, icon)
   table.insert(elems, { Foreground = icon.Foreground })
+  table.insert(elems, { Background = DEFAULT_BG })
   table.insert(elems, { Text = SPACE_1 .. icon.Text .. SPACE_3 })
 end
 
@@ -65,8 +67,6 @@ This is the same text that is shown at the cursor position when composing.
 これは、コンポジション時にカーソル位置に表示されるテキストと同じものです。
 ```
 `GetKeyboard()`では、`window:composition_status()`の結果が`nil`か否かでアイコンの色を変えてます。
-
-
 
 ```admonish note
 コンポジションって何だ？と思われるかもしれませんが、わたしも思ってます。
