@@ -140,7 +140,7 @@ local function RightUpdate(window, pane)
 end
 
 wezterm.on('update-status', function(window, pane)
-  -- 冗長に見えるかもしれませんが、Left Status の設定を後で入れるのでこうなってます。
+  LeftUpdate(window, pane) -- 前回書いたコードはそのままで。
   RightUpdate(window, pane)
 end)
 ```
