@@ -3,14 +3,14 @@
 
 ![goal.png](goal.png)
 
-_Screenshot of wezterm on macOS, running neovim_.
+_Screenshot of wezterm on macOS, running Neovim_.
 
 全ての設定を網羅しているわけではなく、あくまで自分で使っている設定に対しての解説です。
 
-見てくれた人のヒントになったり、何かの役に立ったりしたら嬉しいです。
+見てくれた人のヒントになったり、何かの役に立ったりしたら嬉しいです😊
 
 
-```admonish info title="このサイトが想定している読者"
+```admonish note title="このサイトが想定している読者"
 一つの目安として、`homebrew` などのパッケージ管理操作ができる程度を想定しています。
 
 `WezTerm`の設定については、ほぼ`lua`ファイルの編集で完結するため、ターミナルコマンドを使う場面は限られていますし、
@@ -29,9 +29,7 @@ _Screenshot of wezterm on macOS, running neovim_.
 ```
 
 ## Thanks
-Thanks to application developers!!
-
-I enjoy using it💓
+Thanks to application developers!! I enjoy using it💓
 
 [WezTerm - Wez's Terminal Emulator](https://wezfurlong.org/wezterm/)
 

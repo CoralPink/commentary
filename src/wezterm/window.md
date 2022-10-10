@@ -15,7 +15,7 @@ Wezterm では数多くのカラースキームを内蔵しているため、簡
 
 お気に入りのカラースキームは見つかりましたか？
 
-わたしは`Catppuccin Mocha`を愛用しているので、以下のようになりました。
+わたしは`Catppuccin Mocha`を愛用しているので、以下のようになりました🥰
 ~~~admonish example title="wezterm.lua"
 ```lua
 color_scheme = 'Catppuccin Mocha',
@@ -24,7 +24,8 @@ color_scheme = 'Catppuccin Mocha',
 
 ```admonish note
 ちなみに、このWebページのカラースキームも`Catppuccin`を使ってたりします。
-左上のブラシマークから4種類のテーマを変えられるのでお好みで切り替えてみてください。
+
+セルフサービスなので、左上のブラシアイコンからお好みで淹れて[^a]みてください😄
 ```
 
 ## window_background_opacity
@@ -56,16 +57,18 @@ return {
 ```
 ~~~
 ~~~admonish warning
-return {} の中に記述します。
+ここまでの書き方が解りにくかったらごめんなさい...😢
+
+wezterm.lua に記述する場合、基本的には return {} の中に記述していきます。
 ~~~
 
 ![opacity.png](img/opacity.png)
 
 
 ```admonish success
-カラースキームは白文字しかない状態だと「ちょっと何言ってるかわかんない」ですが、透過については確認できましたね。
+カラースキームについては、白文字しかない状態だと「ちょっと何言ってるかわかんない」ですが、透過は確認できましたね😄
 
 次は、せっかく設定したカラースキームを見たいので、少し脇に逸れてプロンプトを変えてみましょう。
 ```
 
-[^a]:2022/09/23時点
+[^a]: 誤字じゃないです。[カプチーノ](https://ja.wikipedia.org/wiki/カプチーノ)なので❗
