@@ -2,8 +2,15 @@
 
 前回は手動でフォントサイズの切り替えを行いましたが、今回はこれを`dpi`の変更を検知して自動で切り替わるようにします。
 
-## まず前置き
+```admonish note
+今後の仕様追加・変更によって、より自然に実現できるかもしれませんね〜、などと書いていたら、
 
+[window-focus-changed](https://wezfurlong.org/wezterm/config/lua/window-events/window-focus-changed.html)が実装されました🤩
+```
+
+ここでは、二つのプランとして紹介します。おすすめは Plan B です。
+
+## 実装 : Plan A
 さて、これまでにも何度か出てきていた`wezterm.on`ですが、以下のような説明がありました。
 
 ```admonish info title="[wezterm.on(event_name, callback)](https://wezfurlong.org/wezterm/config/lua/wezterm/on.html)"
@@ -25,13 +32,7 @@ There is no defined return value for the event, but its purpose is to allow you 
 説明にもある通り、「最終的に`window:set_right_status`または`window:set_left_status`を呼び出す目的」のものであるため、
 なんかコレじゃないとは思っていますが、他に方法が見つけられませんでした😢
 
-```admonish note
-今後の仕様追加・変更によって、より自然に実現できるかもしれませんね。
-```
-
-## では実装
-
-`event.lua`に追記していきます。
+それでは`event.lua`に追記していきます。
 
 ~~~admonish example title="event.lua"
 ```lua
@@ -79,8 +80,62 @@ end)
 やっぱり本来の目的に無いことをしているので、少しでも設計思想に近づけているつもりなんです...。
 ```
 
+## 実装 - Plan B
+さて、Plan A よりも自然に目的を達成できそうな、これ。
+
+```admonish info title="[window-focus-changed](https://wezfurlong.org/wezterm/config/lua/window-events/window-focus-changed.html)"
+The window-focus-changed event is emitted when the focus state for a window is changed.
+
+This event is fire-and-forget from the perspective of wezterm; it fires the event to advise of the config change, but has no other expectations.
+
+window-focus-changed イベントは、ウィンドウのフォーカス状態が変更されたときに発行されます。
+
+このイベントは wezterm の観点からは fire-and-forget です; それは設定変更を通知するためにイベントを発生させますが、それ以外のことは期待できません。
+```
+
+```admonish note
+10/12 時点では、nightly builds only となっていることに注意してください。
+```
+
+それでは満を持して。
+
+~~~admonish example title="event.lua"
+```lua
+wezterm.on('window-focus-changed', function(window, pane)
+  local dpi = window:get_dimensions().dpi
+
+  if dpi == prev_dpi then
+    return
+  end
+
+  local overrides = window:get_config_overrides() or {}
+  overrides.font_size = dpi >= DPI_CHANGE_NUM and DPI_CHANGE_FONT_SIZE or nil
+
+  window:set_config_overrides(overrides)
+
+  prev_dpi = dpi
+end)
+```
+~~~
+コードについては やっぱり`trigger-dpi`とほぼ同じなので割愛。
+
+Plan A との比較では`update-status`を使わなくて良くなったのと、カスタムイベントの呼び出しも無くなりました。
+
+ウィンドウをドラッグしたりウィンドウマネージャー等を使ってディスプレイを移した際に切り替わらないという欠点こそあるものの、
+とても綺麗な実装になりました😄
+
+```admonish note
+「欠点」と書いてしまいましたが、移動後にウィンドウのフォーカスを外すとフォントサイズが切り替わることが確認できるので、もちろん仕様に則した動作です。
+```
+
+## まとめ
+上にも書きましたが、Plan B は10/12 時点で nightly builds only です。
+
+それ以外はほとんど問題にならないと思われますが、
+頻繁にディスプレイを切り替えるような使い方をする場合は Plan A の方が有用かもしれないので、ひとまず Tips として残しておきます。
+
 ```admonish success
-なんか、すごい簡単😆
+それにしても、実装がすごく簡単😆
 
 既に用意されているロジックをつなぐだけ❗️
 ```
