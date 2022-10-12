@@ -117,6 +117,7 @@ wezterm.on('window-focus-changed', function(window, pane)
 end)
 ```
 ~~~
+
 コードについては やっぱり`trigger-dpi`とほぼ同じなので割愛。
 
 Plan A との比較では`update-status`を使わなくて良くなったのと、カスタムイベントの呼び出しも無くなりました。
