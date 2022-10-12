@@ -24,7 +24,7 @@ leader = { key = 'a', mods = 'CTRL', timeout_milliseconds = 2000 },
 ~~~
 
 ```admonish note
-`timeout_milliseconds`のパラメータを変えていますが、これは後で触れます。
+`timeout_milliseconds`のパラメータを変えていますが、これは後で触れます。デフォルトは`1000`です。
 ```
 
 `vim`や`tmux`等を使用する場合は、これとバッティングしていないかチェックしときましょう。
@@ -56,8 +56,8 @@ or until it has been active for the duration specified by `timeout_milliseconds`
 ```
 ~~~
 
-...と、やる場合、`CTRL-a` → `space`と順番にキーを押す必要があるわけですが、
-デフォルトでは、`CTRL-a`から`space`を押すまでが 1000ミリ秒( = 1秒)以内で完結しないといけないわけです。
+...と、やる場合、`CTRL-a` → `u`と順番にキーを押す必要があるわけですが、
+デフォルトでは、`CTRL-a`から`u`を押すまでが 1000ミリ秒( = 1秒)以内で完結しないといけないわけです。
 
 1秒を長いと見るか短いと見るかは人それぞれなので、これをお好みに調整できるのが、前項の`timeout_milliseconds`です。
 

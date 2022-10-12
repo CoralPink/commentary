@@ -49,7 +49,7 @@ format-tab-title イベントは、タブタイトルのテキストを再計算
 
 ~~~admonish example
 ```lua
-return {}
+return {
 
   〜
 
