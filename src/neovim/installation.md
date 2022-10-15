@@ -12,7 +12,7 @@ You can install Neovim from download, package, or source in just a few seconds.
 
 わたしはと言うと、`Homebrew`から`development version`を使用しています。
 
-`WezTerm`もそうでしたが、`NeoVim`もそれ以上に活発に動きのあるプロジェクトなのでなんか楽しいです😆
+`WezTerm`もそうでしたが、`NeoVim`もそれ以上に活発なプロジェクトなのでなんか楽しいです😆
 
 ~~~admonish note
 まあ、一般的には`stable release`ですよね〜😅
