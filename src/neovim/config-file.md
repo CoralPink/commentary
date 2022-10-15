@@ -1,5 +1,5 @@
 # Config file
-すっかりいつも通りですが、まずは設定ファイルを置くところから始めましょう。
+なんかもういつも通りですが、まずは設定ファイルを置くところから始めましょう。
 
 ```admonish info title="[Load user config](https://neovim.io/doc/user/starting.html#config)"
 A file containing initialization commands is generically called a "vimrc" or config file.
@@ -31,11 +31,11 @@ Vimscript ("init.vim")またはLua ("init.lua")のどちらかになりますが
 ```admonish warning
 あと、これは結構強調しておきたいんですが、
 
-「`Vimscript`ではああでしたが、`lua`ではこうでして❗」みたいな "移行" を目的とした書き方はできません。
+「`Vimscript`ではああでしたが、`lua`ではこうでして❗」みたいな "移行" を目的とした書き方はしません。
 ```
 
 ## init.lua
-なんだか前置きが長くなりました...。
+前置きが少し長くなりました...。
 
 冒頭のドキュメントで設定ファイルは以下の場所だよ😄と示されています。(`macOS`は`Unix`と同じ場所です。)
 
@@ -50,6 +50,7 @@ Vimscript ("init.vim")またはLua ("init.lua")のどちらかになりますが
 ```
 
 では作っていきましょう😄
+
 `Windows`の場合は`~/AppData/Local/nvim`に読み替えてください。
 
 ~~~admonish quote title="ディレクトリを作る"
@@ -68,5 +69,5 @@ nvim init.lua
 ~~~
 
 ```admonish success
-しれっと`nvim`を起動してますが大丈夫ですよね。中身はまたこれから作っていきます😉
+しれっと`nvim`を起動してますがもう解禁でいいですよね。中身はまたこれから作っていきます😉
 ```
