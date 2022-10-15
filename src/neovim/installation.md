@@ -1,34 +1,36 @@
-# インストール
+# Installation
 
-この節では Neovim を扱っていきます。
+さてさて、ここからは`Neovim`を扱っていきます。
 
 これもやっぱり`Homebrew`や、ホームページ上で提供されている実行ファイルをダウンロードする方法があります。
 
-[Installing](https://github.com/neovim/neovim/wiki/Installing-Neovim)
+~~~admonish info title="[Installing Neovim](https://github.com/neovim/neovim/wiki/Installing-Neovim)"
+You can install Neovim from download, package, or source in just a few seconds.
 
+ダウンロード、パッケージ、ソースから、わずか数秒でNeovimをインストールすることができます。
+~~~
 
-~~~admonish info
-ちなみに私は`Homebrew`から development version を使用しています。
+わたしはと言うと、`Homebrew`から`development version`を使用しています。
 
-```sh
-brew install --HEAD neovim
-```
+`WezTerm`もそうでしたが、`NeoVim`もそれ以上に活発に動きのあるプロジェクトなのでなんか楽しいです😆
 
-`Wezterm`もそうでしたが、Neovim もそれ以上に活発なプロジェクトなので楽しいです。
-この場合も、更新は`upgrade`で行えます。
+~~~admonish note
+まあ、一般的には`stable release`ですよね〜😅
+~~~
 
-```sh
-brew upgrade --HEAD neovim
-```
+ここに書いてあることは全て`development version`で動かしていますが、
+割と最近(2022/10)になって`stable release`が`v0.8.0`に更新されたこともあり、そんなに顕著な差が出ることはないと思ってます。
 
-ここに書いてある設定は全て development version で動かしているので、
+~~~admonish warning
+なんて思ってましたが環境によっては結構ラグあるんですね...😿 (Oct 15 時点)
 
-もしかしたら特定のバージョン(stableも含めて)だとうまく動かないこともあるかもしれません。
-そうなった場合は問題の特定をするよりもスパッと飛ばしましょう。
+*`0.8.0`だよね〜❗の図↓:*
+![brew-info.png](img/brew-info.png)
+
+*`0.7.2.3.el9`だって〜⁉️の図↓:*
+![rocky.png](img/rocky.png)
 ~~~
 
 ```admonish success
-では、次から設定を行っていきます。[^a]
+まあだいじょうぶ。なんとかなる😃
 ```
-
-[^a]:と言いたいところですが、ここからは不定期更新で書いていきます。まだ出来てなかったらごめんなさい。
