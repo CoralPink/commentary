@@ -16,10 +16,6 @@ Vimscript ("init.vim")またはLua ("init.lua")のどちらかになりますが
 このサイトでは、`WezTerm`でも散々扱ってきた`Lua`を選択します。
 (というか、わたしは`VimScript`扱えません。)
 
-わたし自身は `Neovim` → `WezTerm` という順番で`Lua`に触れてきましたが、難易度的には`Neovim`の方が高いと思ってます。
-
-うん、このまま登っていきましょう。
-
 ```admonish note
 `Neovim`は`Vimscript`を扱えますが、後継の`Vim9 script`はサポートしないことが表明されているようです。
 
@@ -33,6 +29,10 @@ Vimscript ("init.vim")またはLua ("init.lua")のどちらかになりますが
 
 「`Vimscript`ではああでしたが、`lua`ではこうでして❗」みたいな "移行" を目的とした書き方はしません。
 ```
+
+わたし自身は `Neovim` → `WezTerm` という順番で`Lua`に触れてきましたが、難易度的には`Neovim`の方が高いと思ってます。
+
+うん、このまま登っていきましょう。
 
 ## init.lua
 前置きが少し長くなりました...。
