@@ -1,4 +1,4 @@
-# Base Settings
+# Base File
 
 特に難しいことを考えずに ホームフォルダに `.wezterm.lua` を置いても良いのですが、
 後々ファイルを複数配置していきたくなるので、`$HOME/.config/wezterm`というディレクトリを作って、
