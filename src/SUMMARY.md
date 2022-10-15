@@ -5,7 +5,7 @@
 # WezTerm
 - [installation](wezterm/installation.md)
 
-- [Base Settings](wezterm/base.md)
+- [Base File](wezterm/base.md)
   - [Window](wezterm/window.md)
   - [Shell Prompt](wezterm/shell.md)
   - [Font](wezterm/font.md)
@@ -26,5 +26,8 @@
   - [DPI Detection](wezterm/dpi-detection.md)
 
 # Neovim
+- [installation](neovim/installation.md)
+- [Config File](neovim/config-file.md)
+  - [Lua Module](neovim/lua-module.md)
 
 # ...To Be Continued
