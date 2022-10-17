@@ -1,8 +1,8 @@
 # Font 
 
-これはもう、ほんとにお好きなフォントでいいです。
+これはもう、ほんとに好きなフォントでいいです。
 
-以下に再掲しますが、`starship`を使用する場合も`WezTerm`であれば`Nerd Font`を考慮する必要がありません😆
+以下に再掲しますが、`Starship`を使用する場合も`WezTerm`であれば`Nerd Font`を考慮する必要がありません😆
 
 ```admonish info title="[wezterm.nerdfonts](https://wezfurlong.org/wezterm/config/lua/wezterm/nerdfonts.html)"
 WezTerm includes Nerd Font Symbols Font as a default font fallback which means that these
@@ -29,7 +29,7 @@ Fira Mono と源真ゴシックを合成したプログラミングフォント 
 「ダウンロードはこちら」というリンクから、お言葉に甘えて`FirgeNerd_v0.2.0.zip`をダウンロードします。ありがとー💕
 
 ```admonish note
-`Nerd Font`いらないって言いながら`Nerd`とか言ってんの何なの❗️❓ってなっちゃうんですが、なんかごめんなさい。
+`Nerd Font`いらないって言いながら`Nerd`とか言ってんの何なの⁉️ ってなっちゃうんですが、なんかごめんなさい。
 ```
 
 ## インストール

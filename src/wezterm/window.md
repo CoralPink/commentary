@@ -46,7 +46,7 @@ window_background_opacity = 0.93,
 ~~~
 
 ## 一旦確認…
-さて、ここまでで wezterm.lua は以下のようになりました。
+さて、ここまでで`wezterm.lua`は以下のようになりました。
 
 ~~~admonish example title="wezterm.lua"
 ```lua

@@ -25,7 +25,7 @@ Prints the complete set of key assignments based on your config file.
 設定ファイルに基づいたキー割り当ての完全なセットを表示します。
 ```
 
-実行してみましょう。そのまま`WezTerm`で`wezterm`コマンドを使えば良いです。
+実行してみましょう。`WezTerm`でそのまま`wezterm`コマンドを使えば良いです。
 
 ~~~admonish quote title="Command"
 ```sh
@@ -65,8 +65,14 @@ wezterm show-keys --lua > keybinds.lua
 
 `>`を使って出力先をファイルにすると、もうこれだけで流し込めちゃうんですね。簡単😆
 
+```admonish note
+あらかじめ`keybinds.lua`を作成しておく必要もありません😉
+```
+
 ```admonish warning
-上記コマンドのファイル出力先は現在のディレクトリです。
+むしろ同名ファイルが存在している場合は完全に上書きしちゃうみたいなので注意❗
+
+また、上記例のファイル出力先は現在のディレクトリです。
 
 `~/.config/wezterm`に移動するか、出力先を`~/.config/wezterm/keybinds.lua`に指定してください。
 ```
@@ -96,7 +102,7 @@ disable_default_key_bindings = true,
 ~~~
 
 ```admonish success
-これでキーバインドの移行が完了しました。まあ、まだ中身は同じなんですけどね。
+これでキーバインドの移行が完了しました。まあ、まだ中身は同じなんですけどね😅
 
 さて、もう一つのポイントとして leader キーというものがあります。これについてはまた次回。
 ```
