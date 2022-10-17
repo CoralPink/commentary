@@ -1,6 +1,6 @@
 # Status Bar
 
-今度はステータスバーを飾り付けちゃおっかなーと思います。
+今度はステータスバーを飾り付けちゃおっかなーと思います😆
 
 `status.lua`というファイルを追加しましょう。
 
@@ -13,7 +13,7 @@ end)
 ```
 ~~~
 
-もうお馴染みですね。`wezterm.lua`から読み込みましょう。
+もうお馴染みですね😉 `wezterm.lua`から読み込みましょう。
 
 ~~~admonish example title="wezterm.lua"
 ```lua
@@ -61,5 +61,5 @@ update-right-status フックのトリガーとなるまでに必要なミリ秒
 ```
 
 ```admonish success
-それでは次に進みましょう！
+それでは次に進みましょう❗
 ```

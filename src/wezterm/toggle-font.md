@@ -2,7 +2,7 @@
 
 ここではわたしが使っている機能実装を紹介します。
 
-環境によっては全く必要ないと思いますので、その場合はスキップしてください。
+環境によっては全く必要ないと思いますので、その場合はスキップしてください😅
 
 ## まず前提
 
@@ -15,31 +15,28 @@
 ![img-mbp](img/img-mbp.png)
 
 ```admonish note
-意図伝わりますでしょうか...。
+意図伝わりますでしょうか...😅
 
-むしろツールバーをみてもらった方がわかりやすいかもしれません。アイコンとかフォントとか、サイズというか、スケール全然違うでしょ？
+むしろツールバーをみてもらった方がわかりやすいかもしれません。アイコンとかフォントとか、サイズというか、スケール全然違うでしょ❓
 ```
 
 [DecreaseFontSize](https://wezfurlong.org/wezterm/config/lua/keyassignment/DecreaseFontSize.html)・
 [IncreaseFontSize](https://wezfurlong.org/wezterm/config/lua/keyassignment/IncreaseFontSize.html)
-を使ってサイズを上げ下げしてもいいんですが、ちょっとコレじゃない...。
+を使ってサイズを上げ下げしてもいいんですが、ちょっとコレじゃない...😒
 
-わたしはこれが結構ストレスになっていたので、 この問題を解消するのに有用なのが、次のフォント切り替え機能です。
+わたしはこれが結構ストレスになっていたので、 この問題を解消するのに有用なのが、次のフォント切り替え機能です😃
 
 ## フォントサイズ切り替え
 
 この例では`toggle-font-size`というイベントを独自に作っています。
 
-フォントサイズに限らず、元の設定を直接変えるのではなく、オーバーライドする形式になっています。
+`WezTerm`では、フォントサイズに限らず、元の設定を直接書き換えるのではなく、オーバーライドすることで変化させます。
+
 ```admonish info title="[window:get_config_overrides()](https://wezfurlong.org/wezterm/config/lua/window/get_config_overrides.html)"
 Returns a copy of the current set of configuration overrides that is in effect for the window.
 
 ウィンドウに適用されている設定オーバーライドの現在のセットのコピーを返します。
 ```
-
-端的に言えば、オーバーライドされていない素の状態であれば、`font_size`を`10.0`でオーバーライドする。
-
-オーバーライドされているのであれば、`font_size`を`nil`としてオーバーライドを無効化する(`14.0`に戻される)。
 
 ~~~admonish example title="event.lua"
 ```lua
@@ -54,12 +51,16 @@ end)
 ```
 ~~~
 
+端的に言えば、以下の動作を交互に行っています。
+
+- 素の状態であれば、`font_size`を`10.0`でオーバーライド。
+- オーバーライドされているのであれば、`font_size`を`nil`としてオーバーライドを無効化 (素の状態に戻す)。
+
 これでフォントサイズの切り替えが実現できます。
 
 ~~~admonish note
-ごめんなさい。わたしは`wezterm.lua`での素の`font_size`を`14.0`にしています。各自で調整してください。
-
-(`14.0`と`10.0`を行ったり来たりできるように設定しています。)
+わたしは`wezterm.lua`の`font_size`を`14.0`にして、`14.0`と`10.0`を行ったり来たりできるように設定しています。
+環境に合わせて調整してください。
 ~~~
 
 独自イベントが呼び出されるようにするには`EmitEvent`を用います。
@@ -70,7 +71,7 @@ This action causes the equivalent of wezterm.emit(name, window, pane) to be call
 このアクションは、現在のペインのコンテキストで wezterm.emit(name, window, pane) と同等のアクションが呼び出されるようにします。
 ```
 
-今回はキーバインド`ctrl-f`をトリガーとして呼び出します。
+わたしはキーバインド`ctrl-f`をトリガーとして呼び出しています。
 
 ~~~admonish example title="keybinds.lua"
 ```lua
@@ -78,12 +79,12 @@ This action causes the equivalent of wezterm.emit(name, window, pane) to be call
 ```
 ~~~
 
-まあ、思いっきり手動なんですけどね。自動で出来たら面白いんですけどね。
+まあ、思いっきり手動なんですけどね😅 自動で出来たら面白いんですけどね。
 
 ```admonish note
 あれ？dpi取得できるなら自動で出来るのかな。このサイト作りながら気づいてしまった...。
 
-アウトプットはしてみるものですね😆 次のページに書いちゃいます。
+アウトプットはしてみるものですね❗次のページに書いちゃいます😆
 ```
 
 素の状態: [^big]

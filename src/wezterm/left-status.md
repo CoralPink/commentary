@@ -1,6 +1,6 @@
 # Left Status
 
-まずはステータスバーの左側を活用していきましょう。
+まずはステータスバーの左側を活用していきましょう😆
 
 ## キーボード状態
 わたしが使っているのはキーボード状態です。ひとまずコードはこんな感じ。
@@ -34,7 +34,7 @@ end
 ```
 ~~~
 
-`SPACE_3`とかは自分でもちょっとマヌケだとは思ってますが、なんかごめんなさい...。
+`SPACE_3`とかは自分でもちょっとマヌケだとは思ってますが、なんかごめんなさい...😿
 
 まだ`update-status`と繋いでないので動きませんが、ここで一旦区切って補足します。
 
@@ -52,7 +52,7 @@ Returns true if the Leader Key is active in the window, or false otherwise.
 リーダーキーがウィンドウ内でアクティブな場合はtrueを、そうでない場合はfalseを返します。
 ```
 
-リーダーキーがアクティブである場合はIMEよりも優先して表示します。
+上のコード例では、`leader`キーがアクティブである場合はIMEよりも優先して表示します。
 
 ## IME状態
 次にIME状態です。
@@ -69,7 +69,7 @@ This is the same text that is shown at the cursor position when composing.
 `GetKeyboard()`では、`window:composition_status()`の結果が`nil`か否かでアイコンの色を変えてます。
 
 ```admonish note
-コンポジションって何だ？と思われるかもしれませんが、わたしも思ってます。
+コンポジションって何だ？🤔と思われるかもしれませんが、わたしも思ってます。
 
 でも、この状態を指すようです。
 
@@ -80,7 +80,7 @@ This is the same text that is shown at the cursor position when composing.
 (`nil`でない場合は文字列が入りますが、この例では使用していません。)
 ```
 
-さて、それでは`update-status`に繋ぎ込みましょう。
+さて、それでは`update-status`に繋ぎ込みましょう😄
 
 ~~~admonish example title="status.lua"
 ```lua
