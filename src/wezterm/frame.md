@@ -8,8 +8,7 @@ This setting is applicable primarily on Wayland systems when client side decorat
 ```
 とのことなのですが、私はここはデフォルトでいいかなーって思ってるのでほぼ何もしていません。
 
-...いや、一回細かく変えてみたこともあったんですが、最終的にはデフォルトでいいかーってなりました。
-
+...いや、一回細かく変えてみたこともあったんですが、最終的にはデフォルトでいいかー😉ってなりました。
 
 ## Font
 これもほぼデフォルトのままで、フォントサイズだけ変える程度にしています。
@@ -34,7 +33,7 @@ window_frame = {
 ~~~
 
 ## Fancy or Retro
-前項で、突然ファンシータブバーという文言が出てきましたが、`WezTerm`のタブバーには、ファンシーとレトロの2種類があります。
+前項で、突然 "ファンシータブバー" という文言が出てきましたが、`WezTerm`のタブバーには、ファンシーとレトロの2種類があります。
 
 ```admonish info title="[use_fancy_tab_bar](https://wezfurlong.org/wezterm/config/lua/config/use_fancy_tab_bar.html)"
 When set to true (the default), the tab bar is rendered in a native style with proportional fonts.
