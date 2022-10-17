@@ -41,9 +41,12 @@ OSのショートカットキー等も含め、あらかじめ確認しておき
 
 これは前項で挙げたマニュアルの文章を引用しますが、
 
-```admonish note
+```admonish note title="[Leader Key](https://wezfurlong.org/wezterm/config/keys.html#leader-key)"
 `LEADER` stays active until a keypress is registered (whether it matches a key binding or not),
 or until it has been active for the duration specified by `timeout_milliseconds`, at which point it will automatically cancel itself.
+
+LEADERはキーが登録されるまで（キーバインディングにマッチするかどうかに関わらず）、
+あるいはtimeout_millisecondsで指定された時間だけアクティブになり、その時点で自動的にキャンセルされます。
 ```
 
 `Leader`キーが一回押されたら、とりあえず何か次のキーが押されるか、指定ミリ秒経過するまでは待つよ〜。ってことですね。
