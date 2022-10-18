@@ -64,6 +64,8 @@ mkdir -p ~/.config/nvim
 # 先にディレクトリを移動しておく
 cd ~/.config/nvim
 
+# nvimを使ってinit.luaを作成する(touchでもいいんですけどね。)
+# 中身はまだ無くてOKです。
 nvim init.lua
 ```
 ~~~
