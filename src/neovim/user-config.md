@@ -1,4 +1,4 @@
-# Config file
+# User Config
 なんかもういつも通りですが、まずは設定ファイルを置くところから始めましょう。
 
 ```admonish info title="[Load user config](https://neovim.io/doc/user/starting.html#config)"
