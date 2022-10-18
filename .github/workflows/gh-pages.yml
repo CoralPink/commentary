@@ -8,19 +8,18 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Setup mdBook
         uses: peaceiris/actions-mdbook@v1
         with:
           mdbook-version: 'latest'
 
-      - run: cargo install mdbook-admonish
-      - run: cargo install mdbook-catppuccin
+      - run: cargo install mdbook-admonish mdbook-catppuccin
 
       - run: mdbook build
 
