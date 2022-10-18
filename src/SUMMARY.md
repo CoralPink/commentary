@@ -27,7 +27,7 @@
 
 # Neovim
 - [installation](neovim/installation.md)
-- [Config File](neovim/config-file.md)
+- [User Config](neovim/user-config.md)
   - [Lua Module](neovim/lua-module.md)
 
 # ...To Be Continued
