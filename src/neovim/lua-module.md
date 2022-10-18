@@ -1,7 +1,7 @@
 # Lua Module
-なんと、これに関しては日本語に訳されたドキュメントが存在します。
+なんと、これに関しては既に日本語に訳されたドキュメントが存在します。
 
-登っていきましょうとか言っておきながら、まずは掘り下げます😅
+登っていきましょうとか言っておいてなんですが、まずは掘り下げちゃいます。どんまい😆
 
 ```admonish info title="[モジュール](https://github.com/willelz/nvim-lua-guide-ja/blob/master/README.ja.md#モジュール)"
 Luaモジュールは、runtimepath内のlua/フォルダにあります
@@ -28,7 +28,7 @@ Luaモジュールは、runtimepath内のlua/フォルダにあります
 (上の例は`unix`なので`"/home/utm-user/.config/nvim"`)
 
 ```admonish note
-補足しておくと、OSによってホームディレクトリは違いますが、`~`や`$HOME`でアクセスできます。
+補足しておくと、OSによってホームディレクトリは違いますが、`~`や`$HOME`を使ってアクセスできます。
 ```
 
 ここに`lua`ディレクトリを作成することで、上に示されている「ほとんどの場合」に合致できます。
@@ -39,7 +39,7 @@ mkdir ~/.config/nvim/lua
 ```
 ~~~
 
-`runtimepath`絡みでもう一つポイントがあります。
+あと、`runtimepath`絡みでもう一つポイントがあります。
 
 ~~~admonish info title="[Runtime files](https://github.com/willelz/nvim-lua-guide-ja/blob/master/README.ja.md#runtime-files)"
 runtimepath内にある特定のフォルダからLuaファイルを自動的に読み込めます。 現在、次のフォルダがサポートされています。
@@ -87,9 +87,9 @@ require('other_modules/anothermodule')
 ```lua
 require('example') 
 ```
-とした場合に`example/init.lua`をロードできるよ❗ってことですね。これらは`Neovim`に限ったものではなく、`Lua`の仕様みたいです。
+とした場合に`example/init.lua`をロードできるよ❗ってことですね。これは`Neovim`に限ったものではなく、`Lua`の仕様みたいです。
 
-全く関係ないところでやってみても以下のような動作になりました。
+全く関係ないところでやってみてもこの説明で通用するものになりました。
 
 ![lua-example.png](img/lua-example.png)
 ~~~
@@ -99,7 +99,7 @@ require('example')
 
 能書きとしてはこんな感じじゃないでしょうか。
 
-あとはもう書き加えていくだけですね😄
+これだけ分かれば、あとはもうカスタマイズを書き加えていくだけですね😄
 ```
 
 [^not-config]: `~/.config/nvim`ディレクトリが存在しないと`runtimepath`からもいなくなるようです。ディレクトリの存在を事前に確認してる?🤔
