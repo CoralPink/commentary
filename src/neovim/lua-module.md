@@ -82,7 +82,7 @@ require('other_modules/anothermodule')
 フォルダにinit.luaが含まれている場合、ファイル名を指定せずにロードできます。
 ~~~
 
-~~~admonish note
+~~~admonish tips
 最後の一文は、
 ```lua
 require('example') 
