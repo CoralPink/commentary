@@ -28,7 +28,7 @@ nvim_set_option({name}, {value})                           nvim_set_option()
 
 `nvim_set_option`はグローバル値を設定できるタイプのモンスターみたいですね🤔
 
-次のページから野生のオプションが飛び出してきそうな気配ですが、`help`と`nvim_set_option`がいれば"グローバルどうろ"も歩いて行けそうですね。
+次のページから野生のオプションが飛び出してきそうな気配ですが、`help`と`nvim_set_option`がいれば "グローバルどうろ" も歩いて行けそうですね。
 
 ```admonish success
 やったー❗

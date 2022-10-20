@@ -57,7 +57,7 @@ She's got a ticket to ride, but she don’t care.
 「彼女がおれのことなんて気にも留めずに行っちゃうよ！」...っていう
 [Ticket to Ride](https://en.wikipedia.org/wiki/Ticket_to_Ride_(song))の一節です。[^1]
 
-それでは`she`を検索してみます。検索には`/`で入れます。
+それでは小文字だけの`she`を検索してみます。検索には`/`で入れます。
 
 ```
 /she
@@ -75,7 +75,7 @@ She's got a ticket to ride, but she don’t care.
 
 `She`だけに反応しましたね。
 
-要は、「大文字が含まれていなければ大小無視。含まれていれば大小区別。」ということですね。
+要は、「大文字が含まれていれば大小区別するけど、含まれてないなら大小無視するよ。」ってことですね。
 
 ```admonish note
 ちなみに、`/sHe`と検索すると`sHe`にだけ反応します。
@@ -88,4 +88,4 @@ She's got a ticket to ride, but she don’t care.
 ```
 
 [^1]: あ❗これは[HELP! - The Beatles](https://en.wikipedia.org/wiki/Help!) の収録曲ですね❗
-なんか最近ヘルプばっかりじゃね⁉️ってなる、ウケる〜🤣 ...そうでもないかぁ😮
+なんかこの辺ヘルプばっかりじゃね⁉️ってなる、ウケる〜🤣 ...そうでもないかぁ😮
