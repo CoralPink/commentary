@@ -3,9 +3,11 @@
 - [introduction](introduction.md)
 
 # WezTerm
+
 - [installation](wezterm/installation.md)
 
-- [Base File](wezterm/base.md)
+- [Configuration](wezterm/configuration.md)
+
   - [Window](wezterm/window.md)
   - [Shell Prompt](wezterm/shell.md)
   - [Font](wezterm/font.md)
@@ -14,10 +16,12 @@
   - [Leader Key](wezterm/leader.md)
 
 - [Format](wezterm/format.md)
+
   - [Window Title](wezterm/window-title.md)
   - [Tab](wezterm/tab.md)
 
 - [Status Bar](wezterm/status.md)
+
   - [Left Status](wezterm/left-status.md)
   - [Right Status](wezterm/right-status.md)
 
@@ -26,7 +30,9 @@
   - [DPI Detection](wezterm/dpi-detection.md)
 
 # Neovim
+
 - [installation](neovim/installation.md)
+
 - [User Config](neovim/user-config.md)
   - [Lua Module](neovim/lua-module.md)
 
