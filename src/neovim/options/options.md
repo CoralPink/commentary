@@ -48,13 +48,32 @@ require 'options'
 
 ~~~admonish info title=":h help"
 ```
-Open a window and display the help file in read-only mode.
-ウィンドウを開き、ヘルプファイルを読み込み専用で表示する。
+:h[elp]                 Open a window and display the help file in read-only mode.
+                        ウィンドウを開き、ヘルプファイルを読み込み専用で表示する。
 
-Type |gO| to see the table of contents.
-目次を見るには、gO (←大文字のアルファベットO) とタイプする。
+                        Type |gO| to see the table of contents.
+                        目次を見るには、gO (←大文字のアルファベットO) とタイプする。
+
+:h[elp] {subject}	Like ":help", additionally jump to the tag {subject}.
+                        help" と同様に、{subject} というタグにジャンプする。
+
+                        For example:   
+                            :help options
+
+                        If there is no full match for the pattern, or there
+                        are several matches, the "best" match will be used.
+                        A sophisticated algorithm is used to decide which
+                        match is better than another one.
+
+                        パターンに完全一致するものがない場合、または複数の一致するものがある場合は、
+                        「最良の」一致するものが使用される。。どのマッチが他のマッチより優れているか
+                        を決定するために、洗練されたアルゴリズムが使用される。
 ```
 ~~~
+
+`:h`でやるとトップページ。`:h {subject}`とやるとヘルプを検索してヒットしたタグにジャンプ。ということですね。
+
+今回は後者でした。`help`タグに直接飛びましたね。
 
 閉じるときは`:q`とか`:bd`でいいんですが、頑張りすぎて ぐちゃぐちゃ になっちゃう時があるので、
 併せて`:helpc`(or `:helpclose`)も覚えておくと安心です☺️
