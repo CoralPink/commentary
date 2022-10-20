@@ -33,5 +33,5 @@ nvim_set_option({name}, {value})                           nvim_set_option()
 ```admonish success
 やったー❗
 
-`nvim_set_option`を　捕まえたぞ❗
+`nvim_set_option`を　つかまえたぞ❗
 ```
