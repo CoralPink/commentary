@@ -10,7 +10,7 @@
 
 ここでは、二つのプランとして紹介します。おすすめは Plan B です。
 
-## 実装 : Plan A
+## 実装 - Plan A
 さて、これまでにも何度か出てきていた`wezterm.on`ですが、以下のような説明がありました。
 
 ```admonish info title="[wezterm.on(event_name, callback)](https://wezfurlong.org/wezterm/config/lua/wezterm/on.html)"
