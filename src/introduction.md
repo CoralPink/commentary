@@ -2,11 +2,9 @@
 
 このサイトでは、わたしが普段使っている`WezTerm`と`Neovim`の設定例 (`dotfiles`) を紹介しています 🤗
 
-```admonish quote title=""
-This site introduces `WezTerm` and `Neovim` `dotfiles` that I usually use.
+全ての設定を網羅しているわけではなく、あくまで自分で使っている設定に対してのコメントです。
 
-But Japanese only for now. I want to make an English site too❗
-```
+もしこれが、見てくれた人のヒントになったり、何かの役に立ったりしたら嬉しいです😌
 
 ```admonish success title=""
 ![goal.png](goal.png)
@@ -16,32 +14,36 @@ But Japanese only for now. I want to make an English site too❗
 </div>
 ```
 
-全ての設定を網羅しているわけではなく、あくまで自分で使っている設定に対してのコメントです。
+```admonish info title=""
+This site introduces `WezTerm` and `Neovim` `dotfiles` that I usually use.
 
-もしこれが、見てくれた人のヒントになったり、何かの役に立ったりしたら嬉しいです 😊
+But Japanese only for now. I want to make an English site too❗
+```
 
 ```admonish note title="このサイトが想定している読者"
 `WezTerm`セクションでは、目安として`Homebrew`などのパッケージマネージャーをコマンドで扱える程度を想定しています。
-(ファイル操作から一歩踏み出せてるイメージ😉)
+(ファイル操作から一歩踏み出せてるイメージ☺️)
 
 ターミナルコマンドを使う場面は限られていますし、例示も全て行っているつもりではありますが、
 コマンド操作を行ったことがないと、どうしても不安が残ります😓
 
-ファイルの編集自体は`Xcode`や`Visual Studio Code`などのGUIアプリケーションでも構いません。
+その代わり、ファイルの編集自体は`Xcode`や`Visual Studio Code`などのGUIアプリケーションでも構いません。
 これについては`3.Configuration`で示します。
 ```
 
-```admonish note title=""
+``` admonish note title=""
 `Neovim`セクションでは、一転して`Neovim`自身でのファイル編集を前提としています。
 
 全く初めてだと大変かもしれませんが、もし少しでも興味があったらチャレンジしてもらえると楽しめると思います☺️
 ```
 
-```admonish warning title="使用環境"
+## 使用環境
+
 わたしの使用する環境が`macOS`なので、説明やイメージも主にこれを使用しています。
 
-必要なソフトウェアと設定さえ整っていれば 他の OS でも通用するはずですが、
-100% 自信を持っているわけではないので、その点ご了承ください。
+```admonish warning
+必要なソフトウェアと設定さえ整っていれば、どのOSでも通用するはずですが、
+100%自信を持っているわけではありません。その点はご了承ください。
 ```
 
 ## Thanks
