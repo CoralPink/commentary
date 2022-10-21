@@ -55,7 +55,7 @@ require 'options'
                         目次を見るには、gO (←大文字のアルファベットO) とタイプする。
 
 :h[elp] {subject}	Like ":help", additionally jump to the tag {subject}.
-                        help" と同様に、{subject} というタグにジャンプする。
+                        ":help" と同様だが、さらに {subject} というタグにジャンプする。
 
                         For example:   
                             :help options
@@ -65,15 +65,15 @@ require 'options'
                         A sophisticated algorithm is used to decide which
                         match is better than another one.
 
-                        パターンに完全一致するものがない場合、または複数の一致するものがある場合は、
-                        「最良の」一致するものが使用される。。どのマッチが他のマッチより優れているか
-                        を決定するために、洗練されたアルゴリズムが使用される。
+                        パターンに完全一致するものがない場合、または複数の一致するものがある場合は
+                        「最良の」一致するものが使用される。どのマッチングが良いかを決めるために、
+                        高度なアルゴリズムが使われる。
 ```
 ~~~
 
 `:h`でトップページ、`:h {subject}`でヘルプを検索してヒットしたタグにジャンプ。ということですね。
 
-今回は後者でした。`help`タグに直接飛びましたね。
+今回は後者でした。`help`タグに直接飛びましたよね。
 
 閉じるときは`:q`とか`:bd`でいいんですが、頑張りすぎて ぐちゃぐちゃ になっちゃう時があるので、
 併せて`:helpc`(or `:helpclose`)も覚えておくと安心です☺️
