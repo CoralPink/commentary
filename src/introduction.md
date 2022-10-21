@@ -1,13 +1,24 @@
 # Introduction
-このサイトでは、わたしが普段使っているターミナル環境を元にした設定例を紹介します。
 
+このサイトでは、わたしが普段使っている`WezTerm`と`Neovim`の設定例 (`dotfiles`) を紹介しています 🤗
+
+```admonish quote title=""
+This site introduces `WezTerm` and `Neovim` `dotfiles` that I usually use.
+
+But Japanese only for now. I want to make an English site too❗
+```
+
+```admonish success title=""
 ![goal.png](goal.png)
 
-*Screenshot of wezterm on macOS, running Neovim and etc...*
+<div style="text-align: right;font-style: italic;" >
+    Screenshot of wezterm on macOS, running Neovim and etc...
+</div>
+```
 
-全ての設定を網羅しているわけではなく、あくまで自分で使っている設定に対してコメントを入れています。
+全ての設定を網羅しているわけではなく、あくまで自分で使っている設定に対してのコメントです。
 
-もしこれが、見てくれた人のヒントになったり、何かの役に立ったりしたら嬉しいです😊
+もしこれが、見てくれた人のヒントになったり、何かの役に立ったりしたら嬉しいです 😊
 
 ```admonish note title="このサイトが想定している読者"
 `WezTerm`セクションでは、目安として`Homebrew`などのパッケージマネージャーをコマンドで扱える程度を想定しています。
@@ -34,9 +45,10 @@
 ```
 
 ## Thanks
+
 **Thanks to application developers!! I enjoy using it💓**
 
-```admonish info title="Link"
+```admonish info title=""
 [WezTerm - Wez's Terminal Emulator](https://wezfurlong.org/wezterm/)
 
 [Neovim - hyperextensible Vim-based text editor](https://neovim.io)
@@ -46,7 +58,7 @@
 
 **And thanks to the developers of the applications used to create this website🤗**
 
-```admonish info title="Link"
+```admonish info title=""
 [mdBook](https://rust-lang.github.io/mdBook/)
 
 [Catppuccin for mdBook](https://github.com/catppuccin/mdbook)
