@@ -17,7 +17,7 @@
 
     受け取る値
         nosplit コマンドの効果をバッファにインクリメンタルに表示する。
-        split   "nosplit" と同様であるが、画面外の結果を部分的にプレビューウィンドウに表示する。
+        split   "nosplit" に加えて、画面外の結果を部分的にプレビューウィンドウに表示する。
 ```
 ~~~
 
@@ -34,7 +34,9 @@ She's got a ticket to ride, but she don’t care.
 ```
 
 これ Karen が歌ったら面白いんじゃない？😆 ってなるのはなんかもう必然の Richard ですので、
-`She`を`He`に変えます。[^1]
+`She`👩を`He`👨に変えます。[^1]
+
+置換操作は`:%s/検索値/置換値`とすると実行できます。
 
 ```
 :%s/She/He
@@ -55,7 +57,7 @@ She's got a ticket to ride, but she don’t care.
 
 そうです。3行目に`she`は2つあるのに、1つ取りこぼししちゃってます😱
 
-実は同じ行の中では最初にヒットしたところしか反応しません。
+実はこのやり方だと同じ行の中では最初にヒットしたところしか反応しません。
 
 こういう場合は、
 ```
@@ -65,7 +67,7 @@ She's got a ticket to ride, but she don’t care.
 
 ![replace4.png](img/replace4.png)
 
-割とあるシチュエーションだと思うので、覚えておくと役に立ちます。
+割とあるシチュエーションだと思うので、覚えておくと役に立ちます😉
 ~~~
 
 ```admonish question
@@ -85,7 +87,7 @@ She's got a ticket to ride, but she don’t care.
 あと、プラグインとか使い出すともうちょっとだけ増えるんですが、それはまたその時に🤗
 ```
 
-[^1]:[Carpenters](http://www.richardandkarencarpenter.com/SN_TicketToRide.htm) の
+[^1]:[The Carpenters](http://www.richardandkarencarpenter.com/SN_TicketToRide.htm) の
 デビュー曲は[Ticket to Ride](https://en.wikipedia.org/wiki/Ticket_to_Ride_(song))のアレンジでした。これが1969年のお話。
 Richard が`vi`とかで歌詞置換してたらウケる〜🤣 とか思って見たら[vi](https://ja.wikipedia.org/wiki/Vi)ですら初版が1976年...。
 `Neovim`どころか`Vim`どころか、`vi`ですら意外と新しい😲
