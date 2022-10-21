@@ -1,7 +1,7 @@
 [book]
 title = "Commentary of Dotfiles"
 author = "CoralPink"
-description = "Example of dotfiles configuration for WezTerm and Neovim"
+description = "このサイトでは、わたしが普段使っている WezTerm と Neovim の設定例 (dotfiles) を紹介しています🤗 - This site introduces WezTerm and Neovim dotfiles that I usually use."
 src = "src"
 language = "ja"
 
