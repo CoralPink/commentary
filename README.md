@@ -1,25 +1,20 @@
-# commentary
-Example of WezTerm configuration.
+# Commentary of Dotfiles
 
-Currently only in Japanese.
+This site introduces `WezTerm` and `Neovim` `dotfiles` that I usually use😉
 
-https://coralpink.github.io/commentary
-
-## Introduction
-This page introduces an example configuration based on my usual terminal environment.
+But Japanese only for now. I want to make an English site too❗
 
 ![goal.png](src/goal.png)
 
-_Screenshot of wezterm on macOS, running neovim_.
+https://coralpink.github.io/commentary
 
 This is not an exhaustive list of all settings, but only an explanation for the settings I use.
 
-I would be happy if it gives a hint to those who looked at it or helps them in any way.
+I would be happy if it gives a hint to those who looked at it or helps them in any way😄
 
 ## Thanks
-Thanks to application developers!!
 
-I enjoy using it💓
+Thanks to application developers!! I enjoy using it💓
 
 [WezTerm - Wez's Terminal Emulator](https://wezfurlong.org/wezterm/)
 
