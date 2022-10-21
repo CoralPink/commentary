@@ -90,4 +90,4 @@ She's got a ticket to ride, but she don’t care.
 [^1]:[The Carpenters](http://www.richardandkarencarpenter.com/SN_TicketToRide.htm) の
 デビュー曲は[Ticket to Ride](https://en.wikipedia.org/wiki/Ticket_to_Ride_(song))のアレンジでした。これが1969年のお話。
 Richard が`vi`とかで歌詞置換してたらウケる〜🤣 とか思って見たら[vi](https://ja.wikipedia.org/wiki/Vi)ですら初版が1976年...。
-`Neovim`どころか`Vim`どころか、`vi`ですら意外と新しい😲
+`Neovim`どころか`Vim`どころか、`vi`ですら意外と新しい😲 ...そうでもないかぁ😮
