@@ -31,7 +31,7 @@ But Japanese only for now. I want to make an English site too❗
 これについては`3.Configuration`で示します。
 ```
 
-``` admonish note title=""
+```admonish note title=""
 `Neovim`セクションでは、一転して`Neovim`自身でのファイル編集を前提としています。
 
 全く初めてだと大変かもしれませんが、もし少しでも興味があったらチャレンジしてもらえると楽しめると思います☺️
