@@ -116,8 +116,6 @@ vim.opt.mouse = ''
 
 なんて言うと思う⁉️😝
 
-別で引っ込める処理も入れたらいいんです❗
-
 ## ここでも window-focus-changed
 
 ~~~admonish example title="event.lua"
