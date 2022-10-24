@@ -28,6 +28,7 @@
 - [Custom Event](wezterm/custom.md)
   - [Toggle Font](wezterm/toggle-font.md)
   - [DPI Detection](wezterm/dpi-detection.md)
+  - [Window Decorations](wezterm/window-decorations.md)
 
 # Neovim
 
