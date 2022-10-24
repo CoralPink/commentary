@@ -38,7 +38,7 @@ window_decorations = 'RESIZE',
 
 ...。
 
-なんて言うと思う⁉️😜
+なんて言うと思う⁉️😝
 
 ## Configuring Mouse Assignments
 
@@ -54,25 +54,30 @@ You can define mouse actions using the mouse_bindings configuration section:
 
 ~~~admonish example title="mousebinds.lua"
 ```lua
-local wezterm = require 'wezterm'
-local act = wezterm.action
-
-wezterm.on('toggle-title-bar', function(window, pane)
-  local overrides = window:get_config_overrides() or {}
-
-  overrides.window_decorations = 'TITLE | RESIZE'
-  window:set_config_overrides(overrides)
-end)
+local act = require('wezterm').action
 
 return {
   mouse_bindings = {
     {
       event = { Down = { streak = 1, button = 'Left' } },
       mods = 'NONE',
-      action = act.EmitEvent 'toggle-title-bar',
+      action = act.EmitEvent 'show-title-bar',
     },
   },
 }
+```
+~~~
+
+カスタムイベントは`event.lua`の方にまとめます。
+
+~~~admonish example title="event.lua"
+```lua
+wezterm.on('show-title-bar', function(window, pane)
+  local overrides = window:get_config_overrides() or {}
+
+  overrides.window_decorations = 'TITLE | RESIZE'
+  window:set_config_overrides(overrides)
+end)
 ```
 ~~~
 
@@ -109,7 +114,7 @@ vim.opt.mouse = ''
 
 ...。
 
-なんて言うと思う⁉️😜
+なんて言うと思う⁉️😝
 
 別で引っ込める処理も入れたらいいんです❗
 
@@ -153,14 +158,14 @@ wezterm.on は、同じイベントに対して複数のコールバックを登
 
 え❓😮 `DisableWindowDecorations`にある`interval`は何かって❓
 
-かなわんなあ。`mousebinds.lua`に記述したカスタムイベントに少しだけ手を加えましょ😄
+かなわんなあ。最初に記述した`show-title-bar`イベントに少しだけ手を加えましょ😄
 
-~~~admonish example title="mousebinds.lua"
+~~~admonish example title="event.lua"
 ```lua
 -- これを追加して...、
 local TITLE_BAR_DISPLAY_TIME = 3000
 
-wezterm.on('toggle-title-bar', function(window, pane)
+wezterm.on('show-title-bar', function(window, pane)
   local overrides = window:get_config_overrides() or {}
 
   overrides.window_decorations = 'TITLE | RESIZE'
