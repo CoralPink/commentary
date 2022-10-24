@@ -38,7 +38,7 @@ window_decorations = 'RESIZE',
 
 ...。
 
-なんて言うと思う⁉️😝
+なんて言うわけないじゃん⁉️😝
 
 ## Configuring Mouse Assignments
 
@@ -114,7 +114,7 @@ vim.opt.mouse = ''
 
 ...。
 
-なんて言うと思う⁉️😝
+なんて言うわけないじゃん⁉️😝
 
 ## ここでも window-focus-changed
 
@@ -194,7 +194,7 @@ wezterm.sleep_ms は、指定されたミリ秒の間、スクリプトの実行
 
 
 ```admonish note
-うちな〜、`Raycast[^1]`の`WindowManagement`使てんねんけど、よーこんな感じできっちりウィンドウ詰めるやろ〜❓
+うちな〜、`Raycast`[^1]の`WindowManagement`使てんねんけど、よーこんな感じできっちりウィンドウ詰めるやろ〜❓
 
 ![deco-custom1.png](img/deco-custom1.png)
 
