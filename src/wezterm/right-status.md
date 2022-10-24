@@ -82,13 +82,14 @@ The table has the following fields:
 
 ここでは`is_full_screen`を使います。フルスクリーン時は`true`が返ります。
 
-```admonish warning
-`WezTerm`の[ToggleFullScreen](https://wezfurlong.org/wezterm/config/lua/keyassignment/ToggleFullScreen.html)を使用して
-フルスクリーンにしている場合は反応しないみたいです。
-
-OSからフルスクリーン化した時はちゃんと反応します。
+```admonish note
+OSからのフルスクリーン操作、もしくは
+`WezTerm`の[ToggleFullScreen](https://wezfurlong.org/wezterm/config/lua/keyassignment/ToggleFullScreen.html)
+に反応します。
 
 ![fullscreen](img/fullscreen.png)
+
+(以前、`ToggleFullScreen`だと反応しないと書いていましたが、今見たらちゃんと動いてました☺️)
 ```
 
 で、以下が足りていなかった定義です。
