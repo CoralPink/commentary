@@ -37,10 +37,13 @@
 - [User Config](neovim/user-config.md)
 - [Lua Module](neovim/lua-module.md)
 - [Options](neovim/options/options.md)
+
   - [nvim_set_option](neovim/options/nvim_set_option.md)
+
     - [termguicolors](neovim/options/termguicolors.md)
     - [scrolloff](neovim/options/scrolloff.md)
     - [ignorecase / smartcase](neovim/options/ignorecase-smartcase.md)
     - [inccommand](neovim/options/inccommand.md)
+    - [clipboard](neovim/options/clipboard.md)
 
 # ...To Be Continued
