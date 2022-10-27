@@ -46,4 +46,11 @@
     - [inccommand](neovim/options/inccommand.md)
     - [clipboard](neovim/options/clipboard.md)
 
+  - [nvim_win_set_option](neovim/options/nvim_win_set_option.md)
+
+    - [number](neovim/options/number.md)
+    - [cusrorline](neovim/options/cursorline.md)
+    - [signcolumn](neovim/options/signcolumn.md)
+    - [wrap / colorcolumn](neovim/options/wrap-colorcolumn.md)
+
 # ...To Be Continued
