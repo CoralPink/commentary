@@ -6,7 +6,7 @@
 ```
 				                        'number' 'nu' 'nonumber' 'nonu'
 
-'number' 'nu'	    boolean	(default off)
+'number' 'nu'	    boolean     (default off)
 			        local to window
 
 	Print the line number in front of each line.  When the 'n' option is
@@ -37,8 +37,8 @@ vim.api.nvim_win_set_option(0, 'number', true)
 ```
 		                                'relativenumber' 'rnu' 'norelativenumber' 'nornu'
 
-'relativenumber' 'rnu'	boolean	(default off)
-			            local to window
+'relativenumber' 'rnu'  boolean     (default off)
+                        local to window
 
 	Show the line number relative to the line with the cursor in front of
 	each line. Relative line numbers help you use the |count| you can
@@ -95,8 +95,8 @@ vim.api.nvim_win_set_option(0, 'number', true)
 
 ~~~admonish info title=":h numberwidth (:h options)"
 ```
-'numberwidth' 'nuw'	number	(default: 4)
-			        local to window
+'numberwidth' 'nuw'     number      (default: 4)
+                        local to window
 
 	Minimal number of columns to use for the line number.  Only relevant
 	when the 'number' or 'relativenumber' option is set or printing lines

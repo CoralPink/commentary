@@ -51,8 +51,8 @@ vim.api.nvim_win_set_option(0, 'wrap', false)
 ```
 						    *'colorcolumn'* *'cc'*
 
-'colorcolumn' 'cc'	    string	(default "")
-			            local to window
+'colorcolumn' 'cc'          string (default "")
+                            local to window
 
     'colorcolumn' is a comma-separated list of screen columns that are highlighted with
     ColorColumn |hl-ColorColumn|. Useful to align text.  Will make screen redrawing slower.
@@ -110,7 +110,7 @@ vim.api.nvim_win_set_option(0, 'colorcolumn', '100')
 
 ただ、ローカルオプションとしてはまだ`buffer`というものがおりまして...🐃🐃🐃
 
-ぶっちゃけ少し自信が無いところなんですが...、まあ、その辺りも含めて、また次回😉
+ぶっちゃけ自信が無いところなんですが...、まあ、その辺りも含めて、また次回😉
 ```
 
 ```admonish success title=""

@@ -8,7 +8,7 @@
 ```
 						            'signcolumn' 'scl'
 
-'signcolumn' 'scl'	string	(default "auto")
+'signcolumn' 'scl'      string      (default "auto")
 			            local to window
 
 	When and how to draw the signcolumn. Valid values are:
@@ -40,7 +40,7 @@
 	    "yes:[1-9]"     always, with fixed space for signs up to the given number (maximum 9)
                         常に、与えられた数（最大9）までの標識のための固定スペースを持つ
 
-	    "number"	display signs in the 'number' column. If the number
+	    "number"        display signs in the 'number' column. If the number
 			            column is not present, then behaves like "auto".
                         "番号" の欄に column を表示する。
                         番号列が存在しない場合は、"auto" と同じように動作する。
