@@ -82,7 +82,7 @@ require('other_modules/anothermodule')
 フォルダにinit.luaが含まれている場合、ファイル名を指定せずにロードできます。
 ~~~
 
-~~~admonish tips
+~~~admonish tip
 最後の一文は、
 ```lua
 require('example') 
@@ -93,6 +93,10 @@ require('example')
 
 ![lua-example.png](img/lua-example.png)
 ~~~
+
+```admonish note
+ここから先、特に明記しない限りは`~/.config/nvim/lua`または`~/AppData/Local/nvim/lua`ディレクトリを前提としていきます😌
+```
 
 ```admonish success
 どう？この流れ🐮

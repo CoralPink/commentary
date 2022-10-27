@@ -70,10 +70,6 @@ nvim init.lua
 ```
 ~~~
 
-```admonish note
-ここから先は、特に明記しない場合は`~/.config/nvim`または`~/AppData/Local/nvim/lua`ディレクトリを前提とします😌
-```
-
 ```admonish success
 しれっと`nvim`を起動してますがもう解禁でいいですよね。
 
@@ -81,5 +77,5 @@ nvim init.lua
 ```
 
 ```admonish success title=""
-マサラは まっしろ はじまりのいろ
+マサラは　まっしろ　はじまりのいろ
 ```
