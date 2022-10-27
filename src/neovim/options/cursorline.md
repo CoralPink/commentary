@@ -6,8 +6,8 @@
 ```
 			            'cursorline' 'cul' 'nocursorline' 'nocul'
 
-'cursorline' 'cul'	boolean	(default off)
-			        local to window
+'cursorline' 'cul'  boolean     (default off)
+                    local to window
 
 	Highlight the text line of the cursor with CursorLine |hl-CursorLine|.
 	Useful to easily spot the cursor.  Will make screen redrawing slower.
