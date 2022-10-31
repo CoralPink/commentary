@@ -13,7 +13,7 @@
 
 ~~~admonish info title=":h nvim_set_option"
 ```
-nvim_set_option({name}, {value})                           nvim_set_option()
+nvim_set_option({name}, {value})            nvim_set_option()
     Sets the global value of an option.
     オプションのグローバル値を設定する。
 
@@ -22,8 +22,8 @@ nvim_set_option({name}, {value})                           nvim_set_option()
       • {value}  New option value
 
     パラメータ  
-      - {name} オプション名
-      - {value} 新しいオプションの値
+      • {name}   オプション名
+      • {value}  新しいオプションの値
 ```
 ~~~
 
