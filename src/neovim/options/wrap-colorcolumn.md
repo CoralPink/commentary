@@ -39,11 +39,19 @@ vim.api.nvim_win_set_option(0, 'wrap', false)
 
 ぶっちゃけこれが必要になるのって、そもそもテキストが変なんじゃないかと思うので、わたしは無効化しちゃってます🙈
 
-```admonish note
-
-有効にする場合は`sidescroll`などを変えると便利になるよ❗...と、
+~~~admonish note
+無効にする場合は`sidescroll`などを変えると便利になるよ❗...と、
 `wrap`のヘルプに書いてくれているので、参考にしてみると良いと思います😉
+
 ```
+To make scrolling horizontally a bit more useful, try this:  
+		:set sidescroll=5
+		:set listchars+=precedes:<,extends:>
+See 'sidescroll', 'listchars' and |wrap-off|.
+```
+
+...わたしは今気づいたので、また今度試してみます。
+~~~
 
 むしろ、変なファイルを作らないためのマナーに働きかけるものとして、`colorcolumn`を活用する方がいいと思います。
 
