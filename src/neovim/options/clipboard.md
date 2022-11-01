@@ -2,7 +2,7 @@
 
 そうだそうだ。大事なものを忘れていました😅
 
-~~~admonish info title=":h clipboard (:h provider)"
+~~~admonish info title=":h clipboard"
 ```
 Nvim has no direct connection to the system clipboard. Instead it depends on
 a |provider| which transparently uses shell commands to communicate with the
@@ -31,14 +31,24 @@ See 'clipboard' for details and options.
 
 上のヘルプの中で、ほぼ答えは書いてくれてるんですが、詳細 (`options`の中にある`clipboard`) も確認してみましょう。
 
-~~~admonish info title=":h clipboard (:h options)"
+```admonish tip
+今回、`provider の clipboard`と、`options の clipboard`を見たいのですが、
+
+単純に`clipboard`とすると前者にしか飛べません。後者のようなコマンドを探す場合は`'`で囲うと一発で飛べます。
+
+...確信は無いんですけどね😅
+
+この先でもいくつか出てくるので、頭の片隅に置いといていただければ...。
+```
+
+~~~admonish info title=":h 'clipboard'"
 ```
 'clipboard' 'cb'	string	(default "")
 			            global
 
-	This option is a list of comma-separated names.
+    This option is a list of comma-separated names.
 
-  このオプションは、カンマで区切られた名前のリストである。
+    このオプションは、カンマで区切られた名前のリストである。
 ```
 ~~~
 
@@ -47,9 +57,9 @@ See 'clipboard' for details and options.
 ~~~admonish info title="unnamed / unnamedplus" collapsible=true
 ```
 
-	These names are recognized:
+  These names are recognized:
 
-	これらの名前は認識される。
+  これらの名前は認識される。
 
 						                        clipboard-unnamed
 	unnamed
@@ -64,7 +74,8 @@ See 'clipboard' for details and options.
 
       これを含むと、Vim は通常 unnamed レジスタに行くような yank, delete, change, put 操作に対して、
       クリップボードレジスタ '*' を使用する。
-      レジスタが明示的に指定された場合、'clipboard' に unnamed が入っているかどうかに関わらず、常にそのレジスタが使用される。 
+      レジスタが明示的に指定された場合、'clipboard' に unnamed が入っているかどうかに関わらず、
+      常にそのレジスタが使用される。 
       クリップボードレジスタは、常に「*」表記で明示的にアクセスすることができる。
 
 						                    clipboard-unnamedplus
@@ -86,7 +97,7 @@ See 'clipboard' for details and options.
 ```
 ~~~
 
-なんかもうヘルプまみれになってますが、ここで確認しておきたいのは`clipboard`のデフォルト値ですね。
+なんかもうヘルプまみれですが、ここで確認しておきたいのは`clipboard`のデフォルト値ですね。
 
 これを見ると`""`とされているので、特に何も気にせず、このように書いてしまって問題ないはずです😉
 

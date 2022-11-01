@@ -2,19 +2,19 @@
 
 まず飛び出してくるのはこれですね。
 
-~~~admonish info title=":h number (:h options)"
+~~~admonish info title=":h 'number'"
 ```
 				                        'number' 'nu' 'nonumber' 'nonu'
 
 'number' 'nu'	    boolean     (default off)
-			        local to window
+                    local to window
 
-	Print the line number in front of each line.  When the 'n' option is
-	excluded from 'cpoptions' a wrapped line will not use the column of
-	line numbers.
-	Use the 'numberwidth' option to adjust the room for the line number.
-	When a long, wrapped line doesn't start with the first character, '-'
-	characters are put before the number.
+    Print the line number in front of each line.  When the 'n' option is
+    excluded from 'cpoptions' a wrapped line will not use the column of
+    line numbers.
+    Use the 'numberwidth' option to adjust the room for the line number.
+    When a long, wrapped line doesn't start with the first character, '-'
+    characters are put before the number.
 
     各行の前に行番号を表示する。 cpoptions' で 'n' オプションが除外されている場合、折り返し行では行番号の列は使用されない。
     numberwidth' オプションを使用して、行番号を表示するスペースを調整する。
@@ -40,10 +40,10 @@ vim.api.nvim_win_set_option(0, 'number', true)
 'relativenumber' 'rnu'  boolean     (default off)
                         local to window
 
-	Show the line number relative to the line with the cursor in front of
-	each line. Relative line numbers help you use the |count| you can
-	precede some vertical motion commands (e.g. j k + -) with, without
-	having to calculate it yourself. 
+    Show the line number relative to the line with the cursor in front of
+    each line. Relative line numbers help you use the |count| you can
+    precede some vertical motion commands (e.g. j k + -) with, without
+    having to calculate it yourself. 
 
     各行の前にカーソルを置くと、その行からの相対行番号を表示する。
     相対的な行番号は、いくつかの垂直移動コマンド (例: j k + -) の前に付けることができる |count| を、
@@ -55,20 +55,20 @@ vim.api.nvim_win_set_option(0, 'number', true)
 
 ~~~admonish info title=":h number_relativenumber"
 ```
-	The 'relativenumber' option changes the displayed number to be
-	relative to the cursor.  Together with 'number' there are these
-	four combinations (cursor in line 3):
+    The 'relativenumber' option changes the displayed number to be
+    relative to the cursor.  Together with 'number' there are these
+    four combinations (cursor in line 3):
 
     relativenumber' オプションは、表示される数字をカーソルからの相対位置に変更する。
     'number' と共に、以下の 4 つの組み合わせがある (カーソルは 3 行目にある)。
 
-		'nonu'          'nu'            'nonu'          'nu'
-		'nornu'         'nornu'         'rnu'           'rnu'
+        'nonu'          'nu'            'nonu'          'nu'
+        'nornu'         'nornu'         'rnu'           'rnu'
 
-	    |apple          |  1 apple      |  2 apple      |  2 apple
-	    |pear           |  2 pear       |  1 pear       |  1 pear
-	    |nobody         |  3 nobody     |  0 nobody     |3   nobody
-	    |there          |  4 there      |  1 there      |  1 there
+        |apple          |  1 apple      |  2 apple      |  2 apple
+        |pear           |  2 pear       |  1 pear       |  1 pear
+        |nobody         |  3 nobody     |  0 nobody     |3   nobody
+        |there          |  4 there      |  1 there      |  1 there
 ```
 ~~~
 
@@ -93,7 +93,7 @@ vim.api.nvim_win_set_option(0, 'number', true)
 
 で、`numberwidth`も少し気になるんですが...、わたしは入れずにそのままにしてます。
 
-~~~admonish info title=":h numberwidth (:h options)"
+~~~admonish info title=":h numberwidth"
 ```
 'numberwidth' 'nuw'     number      (default: 4)
                         local to window
