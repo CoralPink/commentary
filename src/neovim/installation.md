@@ -29,6 +29,8 @@ You can install Neovim from download, package, or source in just a few seconds.
 
 *`0.7.2-3.el9`だって〜⁉️の図↓:*
 ![rocky.png](img/rocky.png)
+
+その後、Nov 1 時点で`0.8.0-0.el9`になってました❗
 ~~~
 
 ```admonish success
