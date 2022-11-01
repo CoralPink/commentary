@@ -53,4 +53,11 @@
     - [signcolumn](neovim/options/signcolumn.md)
     - [wrap / colorcolumn](neovim/options/wrap-colorcolumn.md)
 
+  - [nvim_buf_set_option](neovim/options/nvim_buf_set_option.md)
+    - [tabstop / shiftwidth / expandtab](neovim/options/tab.md)
+
+- [Automatic Command](neovim/au/automatic-commands.md)
+  - [nvim_create_autocmd](neovim/au/nvim_create_autocmd.md)
+  - [nvim_create_augroup](neovim/au/nvim_create_augroup.md)
+
 # ...To Be Continued
