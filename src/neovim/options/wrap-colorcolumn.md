@@ -55,7 +55,7 @@ See 'sidescroll', 'listchars' and |wrap-off|.
 
 むしろ、変なファイルを作らないためのマナーに働きかけるものとして、`colorcolumn`を活用する方がいいと思います。
 
-~~~admonish info title=":h wrap"
+~~~admonish info title=":h colorcolumn"
 ```
 						    *'colorcolumn'* *'cc'*
 
@@ -75,11 +75,15 @@ See 'sidescroll', 'listchars' and |wrap-off|.
 ```
 ~~~
 
-使い方としてはこんなんです。パラメータが`string`となっているところに注意🤫
+使い方としてはこんなんです。
 
 ```lua
 vim.api.nvim_win_set_option(0, 'colorcolumn', '100')
 ```
+
+~~~admonish warning
+パラメータが`string`となっているところに注意🤫
+~~~
 
 こんな感じで100文字目の列を教えてくれます。
 
@@ -98,7 +102,7 @@ vim.api.nvim_win_set_option(0, 'colorcolumn', '100')
 ```
 ~~~
 
-...っていう運用にしてくのでもいいんじゃないかな〜、なんて思ってるんですが、どうでしょう❓
+...っていう運用にしていくのもいいんじゃないかな〜、なんて思ってるんですが、どうでしょう❓
 
 ~~~admonish note
 パラメータが`string`なのに、なんで
