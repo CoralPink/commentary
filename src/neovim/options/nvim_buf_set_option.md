@@ -39,12 +39,13 @@ nvim_buf_set_option({buffer}, {name}, {value})          *nvim_buf_set_option()*
 
     Parameters:  
       • {buffer}  Buffer handle, or 0 for current buffer
-      • {name}    Option name
-      • {value}   Option value
+                  バッファハンドル、またはカレントバッファの場合は0。
 
-      • {buffer}  バッファハンドル、またはカレントバッファの場合は0。
-      • {name}    オプション名
-      • {value}   新しいオプションの値
+      • {name}    Option name
+                  オプション名
+
+      • {value}   Option value
+                  新しいオプションの値
 ```
 ~~~
 
