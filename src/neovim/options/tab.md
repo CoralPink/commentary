@@ -6,20 +6,20 @@
 
 ~~~admonish info title=":h tabstop"
 ```
-                                *'tabstop'* *'ts'*
+                                'tabstop' 'ts'
 
 'tabstop' 'ts'              number (default 8)
                             local to buffer
 
-	Number of spaces that a <Tab> in the file counts for.  Also see
-	the |:retab| command, and the 'softtabstop' option.
+  Number of spaces that a <Tab> in the file counts for.  Also see
+  the |:retab| command, and the 'softtabstop' option.
 
   ファイル中の<Tab>がカウントするスペースの数。
   |:retab| コマンドと 'softtabstop' オプションも参照のこと。
 
-	Note: Setting 'tabstop' to any other value than 8 can make your file
-	appear wrong in many places, e.g., when printing it.
-	The value must be more than 0 and less than 10000.
+  Note: Setting 'tabstop' to any other value than 8 can make your file
+  appear wrong in many places, e.g., when printing it.
+  The value must be more than 0 and less than 10000.
 
   注意: 'tabstop' を 8 以外の値に設定すると、ファイルを印刷するときなど、多くの場所で間違って表示されることがある。
   値は0以上10000以下でなければならない。
@@ -32,9 +32,9 @@
 
 `tabstop`は俗に言う "タブ幅" です。デフォルトのまま`8`ってなってると、古いファイルのような印象を持っちゃうんですが、実際のところはどうなのかな...🤔
 
-単純にタブ幅だけを設定して終わりなら話は簡単なのですが、`Neovim`の場合、この先に出てくるオプションと少し複雑に絡み合っています😓
+単純にタブ幅だけを設定して終わりなら話は簡単なのですが、`Neovim`の場合、この先に出てくるオプションとやや複雑に絡み合っています😓
 
-そのため、ここでは割愛していますが、ヘルプの中ではこれらを適切に設定する4つの方法が示されています。
+そのためなのか、ヘルプ (上の抜粋に含まない部分) ではこれらを適切に設定する4つの方法が示されています。
 
 わたしが採用しているのは、オーソドックスな`2.`です☺️
 
@@ -49,7 +49,9 @@
 ```
 ~~~
 
-じゃあ、先にちらっと`shiftwidth`を確認しちゃいましょう。
+「`expandtab`を使用すれば、`tabstop`と`shiftwidth`は好きにしちゃっていいよー。」...と読めますね。
+
+一つずつ確認していきましょう😉
 
 ## shiftwidth
 
@@ -78,7 +80,7 @@
 
 この2つを別の値に設定して活用するシチュエーション、ちょっとわたしでは想像が及ばないので、もう`0`にしちゃいます😅
 
-`tabstop`の方は、"好きなように設定し"というお言葉に甘えて、お好みの数値を入れましょう😉
+`tabstop`の方は、"好きなように設定し"というお言葉に甘えて、お好みの数値を入れましょう😆
 
 ~~~admonish example title="options.lua"
 ```lua
@@ -93,7 +95,7 @@ vim.api.nvim_buf_set_option(0, 'shiftwidth', 0)
 
 ## expandtab
 
-その上で、"`expandtab`を使用する"んでした。
+その上で、"`expandtab`を使用する"んでしたね。
 
 ~~~admonish example title="options.lua"
 ```lua
@@ -103,7 +105,7 @@ vim.api.nvim_buf_set_option(0, 'expandtab', true)
 
 ~~~admonish info title=":h expandtab"
 ```
-                                        *'expandtab'* *'et'* *'noexpandtab'* *'noet'*
+                                        'expandtab' 'et' 'noexpandtab' 'noet'
 
 'expandtab' 'et'                    boolean (default off)
                                     local to buffer
@@ -120,15 +122,15 @@ vim.api.nvim_buf_set_option(0, 'expandtab', true)
 ```
 ~~~
 
-"これで、常にスペースを挿入することができる" ...の、部分を担っているオプションですね☺️
+このオプションが、"常にスペースを挿入することができる" ...の、部分を担っているんですね☺️
 
 ### autoindent
 
-ちなみに`autoindent`を少し見てみると...、
+ちなみに、`expandtab`のヘルプの中に出てきた`autoindent`を少し見てみると...、
 
 ~~~admonish info title=":h autoindent"
 ```
-			                              *'autoindent'* *'ai'* *'noautoindent'* *'noai'*
+			                              'autoindent' 'ai' 'noautoindent' 'noai'
 
 'autoindent' 'ai'                   boolean (default on)
 			                        local to buffer
@@ -141,15 +143,15 @@ vim.api.nvim_buf_set_option(0, 'expandtab', true)
 ```
 ~~~
 
-これはデフォルトで`on`なので特に触らなくても平気でしょう。
+これはデフォルト`on`なので特に触らなくても平気でしょう。
 
-これでタブ関連の設定は完璧です。やったね❗
+よーし、これで全ての設定が終わったぞ❗やったね❗❗
 
 ## フィナーレ...❓
 
 ...って思うじゃないですか😮
 
-実は、これだけだと問題があって、起動直後に開いたバッファしか設定したオプションが有効になりません...。
+実はこれだけだと、起動直後に開いたバッファでしか設定したオプションが有効になりません...。
 
 ```admonish note
 例えば、単純に`nvim`って起動して、そこから`:e abc.txt`とかして開いたバッファでタブを入力してみると...❓
@@ -178,8 +180,7 @@ vim.api.nvim_buf_set_option(0, 'expandtab', true)
 これで終わりです😮
 
 ビックリするぐらい中途半端なので、すごく悩むところではあるんですが...、
-
-`Options`というカテゴリでやると不自然になっちゃうんで、思い切って章を跨いじゃいます😆
+でも`Options`というカテゴリでやると不自然になっちゃうんで、やっぱり思い切って章を跨いじゃいます😆
 
 次回、`buffer`解決編に続く。続くったら続く...🐃🐃🐃
 ```
