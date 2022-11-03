@@ -34,11 +34,11 @@ See 'clipboard' for details and options.
 ```admonish tip
 今回、`provider の clipboard`と、`options の clipboard`を見たいのですが、
 
-単純に`clipboard`とすると前者にしか飛べません。後者のようなコマンドを探す場合は`'`で囲うと一発で飛べます。
+単純に`clipboard`とすると前者にしか飛べません。後者のように、コマンドを探す場合は`'`で囲うと一発で飛べます。
 
 ...確信は無いんですけどね😅
 
-この先でもいくつか出てくるので、頭の片隅に置いといていただければ...。
+この先でもいくつか出てくるので、頭の片隅にでも置いといていただければ...。
 ```
 
 ~~~admonish info title=":h 'clipboard'"
@@ -52,7 +52,7 @@ See 'clipboard' for details and options.
 ```
 ~~~
 
-この先はレジスタの話が出てきて自信がない😓ので逃げてしまうんですが...。
+この先はレジスタの話が出てきて自信がない...😓
 
 ~~~admonish info title="unnamed / unnamedplus" collapsible=true
 ```
@@ -99,7 +99,7 @@ See 'clipboard' for details and options.
 
 なんかもうヘルプまみれですが、ここで確認しておきたいのは`clipboard`のデフォルト値ですね。
 
-これを見ると`""`とされているので、特に何も気にせず、このように書いてしまって問題ないはずです😉
+これを見ると`""`となっているので、特に何も気にしないで、このように書いてしまって問題ないはずです😉
 
 ~~~admonish example title="options.lua"
 ```lua
@@ -133,5 +133,5 @@ vim.opt.clipboard:append 'unnamedplus'
 
 次でローカルオプションというものが出てきますが、それもやっぱりわたしが書いているものだけなら大した数じゃないです。
 
-またさらにその先でプラグインとか使い出すともうちょっとだけ増えるんですが、それはまたその時に🤗
+またさらにその先でプラグインとか使い出すと、もうちょっとだけ増えるんですが、それはまたその時に🤗
 ```

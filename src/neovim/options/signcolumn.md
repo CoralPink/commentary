@@ -49,15 +49,16 @@
 
 大まかにいえば3通りがあって、
 
-`auto`(デフォルト)にしておくか...、
+- `auto`(デフォルト)にしておくか...、
 
-`yes`か`no`で決め打つか...、
+- `yes`か`no`で決め打つか...、
 
-ややクセのある`number`か...、
+- 何か独特の雰囲気を持つ`number`か...、
 
 ですね。
 
 `auto`は表示と非表示が動的に切り替わるので、編集中にぺこぱこすることがあります。
+
 わたしは固定しちゃう方が好きです😆
 
 ~~~admonish example title="options.lua"
@@ -76,7 +77,7 @@ vim.api.nvim_win_set_option(0, 'signcolumn', 'yes:1')
 
 ![sign-number.png](img/sign-number.png)
 
-`gitsigns.nvim`[^1]というプラグイン[^2]を使用して、変更箇所を`signcolumn`に表示しています。
+上のスクリーンショットでは、`gitsigns.nvim`[^1]というプラグイン[^2]を使用して、変更箇所を`signcolumn`に表示しています。
 
 (▶︎ とか ▎の部分がそれです。)
 

@@ -28,14 +28,24 @@ vim.api.nvim_win_set_option(0, 'cursorline', true)
 
 これは動かしてみれば一目瞭然ですね😉
 
-![cursorline1](img/cursorline1.png)
+before:
 
-![cursorline2](img/cursorline2.png)
+![cursorline1](img/cursorline-before.png)
 
-強いて言うなら「画面の再描画が遅くなります」という注意書きがされていることでしょうか。
+after:
+
+![cursorline2](img/cursorline-after.png)
+
+しっかりと"カーソルのあるテキスト行を強調表示"してますね❗
+
+```admonish note
+
+少し気になるのは、「画面の再描画が遅くなります」という注意書きがされていることでしょうか...。
+
 わざわざ書かれているぐらいなので、想像以上に重い処理なのかもしれない...😱
 
-ご自身の環境と相談の上で、使うかどうか決めてください😺
+ご自身の環境と相談の上で、使うかどうかを決めて頂ければ😺
+```
 
 ```admonish success
 とはいえ、設定自体はこれだけですね。簡単😆
