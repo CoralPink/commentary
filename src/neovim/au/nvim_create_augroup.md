@@ -133,7 +133,7 @@ vim.api.nvim_create_autocmd({ 'BufNew', 'BufNewFile', 'BufReadPre', 'FilterReadP
 ~~~admonish note
 実はわたし、`autocmd`とか今まで全く触ってきてなくて、ず〜っと
 
-```
+```lua
 -- なぜかうまく行く呪文 (2つ目以降のbufferもへーき)
 vim.opt.tabstop = 2
 ```
