@@ -26,14 +26,14 @@ Prerequisites
 
 本来なら「なんかめんどくさそうだな〜」となるところですが...、
 
-なんと❗️`WezTerm`は既に`Nerd Font Symbols Font`を持っています❗️
+なんと❗️`WezTerm`は`Nerd Font`を持っていて、しかも既に有効になっています❗️
 
 ```admonish info title="[wezterm.nerdfonts](https://wezfurlong.org/wezterm/config/lua/wezterm/nerdfonts.html)"
 WezTerm includes Nerd Font Symbols Font as a default font fallback which means that these
 special symbols are available even without requiring you to use a patched font.
 
-WezTerm は Nerd Font Symbols Font をデフォルトのフォントのフォールバックとして含んでおり、
-これはパッチされたフォントを使わなくてもこれらの特殊記号が利用可能であることを意味します。
+WezTerm は Nerd Font Symbols Font をデフォルトのフォントのフォールバックとして含んでいます。
+つまり、パッチを当てたフォントを使わなくてもこれらの特殊記号を利用することができます。
 ```
 
 ...とのことなので安心してください。入ってますよ☺️
