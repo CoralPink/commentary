@@ -6,9 +6,9 @@
 }
 
 .nav-chapters {
-    font-size: 2.0em;
-    max-width: 80px;
-    min-width: 40px;
+  font-size: 2em;
+  max-width: 80px;
+  min-width: 40px;
 }
 
 .sidebar {
@@ -19,8 +19,9 @@
   padding-left: 7px;
 }
 
-.content img, .content video {
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
+.content img,
+.content video {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
 }
