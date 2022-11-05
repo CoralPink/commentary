@@ -39,7 +39,7 @@ Autocommands can be put together in a group.
 This is useful for removing or executing a group of autocommands.
 
 オートコマンドは、グループとしてまとめることができます。
-これは、オートコマンドのグループを削除したり実行したりするのに便利である。
+これは、オートコマンドのグループを削除したり実行したりするのに便利。
 ```
 ~~~
 
