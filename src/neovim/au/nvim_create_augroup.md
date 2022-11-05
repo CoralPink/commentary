@@ -1,6 +1,7 @@
 # nvim_create_augroup
 
-うん。とりあえず、何よりもまずはっきりさせておきたいのは、`au`というのは`autocmd`の先頭2文字からきているようですね。
+うん。まず何よりもはっきりさせておきたいのは、`au`というのは`autocmd`の先頭2文字からきているようですね。
+
 いや、なんか...、どうしても三太郎CMを思い浮かべてしまうので...🍑
 
 ...え❓ わたしだけ😧⁉️ 絶対嘘だ❗
@@ -42,7 +43,9 @@ This is useful for removing or executing a group of autocommands.
 ```
 ~~~
 
-オートコマンドは以下で確認できます。コードをいじる前の現状を確認しておきましょう😌
+## augroup
+
+オートコマンドは以下で確認できます。まずは現状を確認します😌
 
 ~~~admonish quote
 ```
@@ -57,6 +60,8 @@ This is useful for removing or executing a group of autocommands.
 ![augroup-before.png](img/augroup-before.png)
 
 こんな感じですね😌
+
+## グループID
 
 それでは話を進めるんですが、さっきのヘルプ中に、コードが例示されていましたね。
 
@@ -83,7 +88,7 @@ To get an existing group id, do:
 なんとな〜く察するに、「二重登録を防ぐためにある程度まとめて制御できた方がいいでしょ❓」的なことらしいんですが...、
 わたしはいまひとつわかってません❗
 
-ちなみに`clear`のデフォルト値は`true`なので安全は担保されています。(意味を理解していれば、なんですけどね😅)
+ちなみに`clear`のデフォルト値は`true`なので安全は担保されてます。(意味を理解していれば、なんでしょうけどね😅)
 ```
 
 ってことで、こんな感じのコードになるのかな。
@@ -106,12 +111,14 @@ local id = vim.api.nvim_create_augroup("buffer_set_options", {})
 
 `nvim_create_augroup`が返してくれる`ID`をそのまま渡せば良さそうですね。
 
+## 実践
+
 じゃあ、こんな感じでどうかな😆
 
 ~~~admonish example title="options.lua"
 ```lua
 -- local to buffer options:
-vim.api.nvim_create_autocmd({ 'BufNew', 'BufNewFile', 'BufReadPre', 'FilterReadPre', 'FileReadPre' }, {
+vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWinEnter' }, {
   pattern = '*',
 
   -- groupを追加する
@@ -142,7 +149,7 @@ vim.opt.tabstop = 2
 
 でも、この辺りのページを作るにあたって考え直して、ようやく見栄えのするコードに辿り着けたので、なんかホッとしてます☺️
 
-これなら公開できるでしょ🤗
+(...公開後に思いっきり書き直してますけどね😅 ここほんと怖い...。)
 ~~~
 
 ```admonish success
@@ -150,7 +157,7 @@ vim.opt.tabstop = 2
 ```
 
 ```admonish success title=""
-おまえが　nvim　チャンピオン
+おまえが　ｎｖｉｍ　チャンピオン
 
 をめざす❗　といっても
 ```

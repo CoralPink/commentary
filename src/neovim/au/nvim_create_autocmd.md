@@ -30,17 +30,97 @@ nvim_create_autocmd({event}, {*opts})                   nvim_create_autocmd()
 
 ヘルプではもっと色々なサンプル付きで説明されていますが、今回はここで切り上げます😅
 
-`nvim_create_autocmd`の中に記述が見つかる`callback`からいきます。抜粋すると以下です。
+## autocmd
 
-~~~admonish info title=":h nvim_create_autocmd"
+現時点で`autocmd`がどのように登録されているのかは、以下のコマンドを実行してみると確認できます。
+
+~~~admonish quote 
 ```
-Lua function which is called when this autocommand is triggered. Cannot be used with {command}.
+:au
+```
 
-このオートコマンドが起動した際に呼び出されるLua関数です。{コマンド}とは併用できません。
+または
+
+```
+:autocmd
 ```
 ~~~
 
-次は一個手前の`pattern`を確認してみます。これは`file-pattern`として説明されています😌
+![aucmd-before](img/aucmd-before.png)
+
+こんな感じに出てきたでしょうか。
+
+```admonish note
+スクリーンショットの環境が突然変わったことは気にしないでください😺
+```
+
+ここに、自分で作った`autocmd`を追加して「全てのバッファに対して`tab`関連の設定をするぞ❗」というのが
+この節の趣旨であり、これこそが10.3.1節の問題を解決する方法です。
+
+準備はよろしいでしょうか？
+
+...OK❓
+
+OKね...❗
+
+それでは、例によって一つずつ確認していきます。
+
+## event
+
+まずは`event`なんですが、`autocmd-events`がこれでしょう🤔
+
+~~~admonish info title=":h autocmd-events"
+```
+5. Events           autocmd-events E215 E216
+
+You can specify a comma-separated list of event names.  No white space can be
+used in this list.  The command applies to all the events in the list.
+
+イベント名のリストをカンマ区切りで指定することができる。
+このリストには空白を使用できない。コマンドは、リスト内のすべてのイベントに適用される。
+```
+~~~
+
+で、上の例で使用されていた`BufEnter`と`BufWinEnter`だけ抜粋すると以下です。
+
+~~~admonish info title=":h BufEnter"
+```
+BufEnter        After entering a buffer.  Useful for setting
+                options for a file type.  Also executed when
+                starting to edit a buffer.
+
+                バッファに入った後。
+                ファイルタイプに応じたオプションを設定するのに便利。
+                また、バッファの編集を開始するときにも実行されます。
+```
+~~~
+
+~~~admonish info title=":h BufWinEnter"
+```
+BufWinEnter     After a buffer is displayed in a window.  This
+                may be when the buffer is loaded (after
+                processing modelines) or when a hidden buffer
+                is displayed (and is no longer hidden).
+
+                バッファがウィンドウに表示された後。
+                これは、バッファが読み込まれたとき (モデリング処理後) か、
+                非表示のバッファが表示されたとき(そして非表示でなくなったとき) かもしれません。
+
+                Not triggered for |:split| without arguments,
+                since the buffer does not change, or :split
+                with a file already open in a window.
+                Triggered for ":split" with the name of the
+                current buffer, since it reloads that buffer.
+
+                引数なしの |:split| や、
+                すでにウィンドウで開いているファイルとの :split では、バッファは変更されないためトリガーされません。
+                現在のバッファの名前を指定した ":split" では、バッファを再読み込みするためトリガーが発生します。
+```
+~~~
+
+## pattern
+
+次は`pattern`です。これは`file-pattern`として説明されています😌
 
 ~~~admonish info title=":h file-pattern"
 ```
@@ -65,57 +145,35 @@ The pattern is interpreted like mostly used in file names:
 ```
 ~~~
 
-で、最初に戻ってきて`event`なんですが、`autocmd-events`がこれでしょう🤔
+## callback
 
-~~~admonish info title=":h autocmd-events"
+最後に`callback`ですが、これは`nvim_create_autocmd`の中に記述が見つかります。
+
+~~~admonish info title=":h nvim_create_autocmd"
 ```
-5. Events					*autocmd-events* *E215* *E216*
+Lua function which is called when this autocommand is triggered. Cannot be used with {command}.
 
-You can specify a comma-separated list of event names.  No white space can be
-used in this list.  The command applies to all the events in the list.
-
-イベント名のリストをカンマ区切りで指定することができる。
-このリストには空白を使用できない。コマンドは、リスト内のすべてのイベントに適用される。
-
-For READING FILES there are four kinds of events possible:
-ファイル読み込みでは、4種類のイベントが考えられる:
-
-	BufNewFile                    starting to edit a non-existent file
-	BufReadPre BufReadPost        starting to edit an existing file
-	FilterReadPre FilterReadPost  read the temp file with filter output
-	FileReadPre FileReadPost      any other file read
-
-Vim uses only one of these four kinds when reading a file.  The "Pre" and
-"Post" events are both triggered, before and after reading the file.
-
-Vim はファイルを読み込むとき、これら 4 種類のうち 1 つだけを使用する。
-Pre" と "Post" イベントは、ファイルを読む前と読んだ後の両方がトリガーされます。
+このオートコマンドが起動した際に呼び出されるLua関数です。{コマンド}とは併用できません。
 ```
 ~~~
 
-```admonish info title=""
-(この後イベントの説明がズラ〜っと並んでいるんですが、とにかく量が多いので以下略❗)
-```
+## 実践
 
-ここでやりたいことは、
+これらを踏まえて、改めて今回やりたいことを明確にすると、
 
-- `event`: バッファを作る・開くする際に
-
+- `event`: バッファに入った際に
 - `pattern`: 全てのファイル(パターン)に対して
+- `callback`: `nvim_buf_set_option`を通して`tab`関連の設定をする
 
-- `callback`: `local to buffer`の設定をする
+...に、なります。
 
-...です。
+`event`については、ヘルプ内で例示を行ってくれているので、そのまま採用します。(助かったぁ😆)
 
-`event`については、奇⭐︎跡⭐︎的🌟 に❗ヘルプ内で例示を行ってくれていたので、そのまま採用します。(助かったぁ😆)
-
-ただ、これだけだと単純に`nvim`(ファイル指定無し)として起動したケースでうまく行かなかったので、`BufNew`も加えました。
-
-あとはもう、`pattern`は簡単だし、`callback`はもう既に書いたコードを持ってくれば良いだけですね😉
+あとはもう、`pattern`は簡単だし、`callback`は既に書いたコードを持ってくれば良いだけですね😉
 
 ~~~admonish example title="options.lua"
 ```lua
-vim.api.nvim_create_autocmd({ 'BufNew', 'BufNewFile', 'BufReadPre', 'FilterReadPre', 'FileReadPre' }, {
+vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWinEnter' }, {
   pattern = '*',
   callback = function()
     -- 10.3.1 節で書いたコードをここに移動する
@@ -128,38 +186,14 @@ vim.api.nvim_create_autocmd({ 'BufNew', 'BufNewFile', 'BufReadPre', 'FilterReadP
 ~~~
 
 ```admonish note
-`FilterReadPre`と`FileReadPre`が必要になるのかが判然としませんが、特に害は無さそうなので、このままいきます😅
+`BufWinEnter`が必要になるのかが判然としませんが...、どうなんだろう😅
 ```
 
 ~~~admonish tip
 `pattern`のデフォルトは`'*'`らしいので、実は省略できちゃいます😉
 ~~~
 
-では、これがちゃんと登録されることを実際に確認してみましょう。
-
-`nvim`を再起動する前に、以下のコマンドを実行してみてください。
-
-~~~admonish quote 
-```
-:au
-```
-
-または
-
-```
-:autocmd
-```
-~~~
-
-![aucmd-before](img/aucmd-before.png)
-
-こんな感じに出てきたでしょうか。
-
-```admonish note
-スクリーンショットの環境が突然変わったことは気にしないでください😺
-```
-
-それでは、`nvim`を再起動して、もう一度同じ`:au`を実行してみましょう...。
+それでは、`nvim`を再起動して、もう一度`:au`を実行してみましょう...。
 
 ![aucmd-after](img/aucmd-after.png)
 
@@ -172,7 +206,7 @@ vim.api.nvim_create_autocmd({ 'BufNew', 'BufNewFile', 'BufReadPre', 'FilterReadP
 ```admonish success
 ここまで来れば、とりあえずは期待する動作が得られているはずです😆
 
-...、あ、いえ。"とりあえず" と言っているのには理由があって...。
+...、あ、えっと、"とりあえず" と言っているのには理由があって...。
 
 でも、なんだか長くなってきたので、もう一回だけ続く...❗🙀
 
