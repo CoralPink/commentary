@@ -86,6 +86,22 @@ keys = require(“keybinds”).keys,
 ```
 ~~~
 
+~~~admonish note
+このサイトではまだ取り扱っていませんが、
+[Key Tables](https://wezfurlong.org/wezterm/config/key-tables.html)
+という機能があって、これを`keybinds.lua`内でカスタマイズしても、このままでは反映されません。
+
+なのでごめんなさい😱 上のコードだけでは混乱の元になってました😭
+
+`keybinds.lua`内で`Key Tables`のカスタマイズをする場合、以下のコードも必要になります。
+
+```lua
+key_tables = require('keybinds').key_tables,
+```
+
+これで、`keybinds.lua`内で編集した`Key Tables`がちゃんと反映されるようになります🥹
+~~~
+
 冒頭のリンクを再掲しますが、一番下にこのようにあります。
 
 ```admonish info title="[Default Key Assignments](https://wezfurlong.org/wezterm/config/default-keys.html)"
