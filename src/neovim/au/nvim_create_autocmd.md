@@ -91,7 +91,7 @@ BufEnter        After entering a buffer.  Useful for setting
 
                 バッファに入った後。
                 ファイルタイプに応じたオプションを設定するのに便利。
-                また、バッファの編集を開始するときにも実行されます。
+                また、バッファの編集を開始するときにも実行される。
 ```
 ~~~
 
@@ -104,7 +104,7 @@ BufWinEnter     After a buffer is displayed in a window.  This
 
                 バッファがウィンドウに表示された後。
                 これは、バッファが読み込まれたとき (モデリング処理後) か、
-                非表示のバッファが表示されたとき(そして非表示でなくなったとき) かもしれません。
+                非表示のバッファが表示されたとき(そして非表示でなくなったとき) かもしれない。
 
                 Not triggered for |:split| without arguments,
                 since the buffer does not change, or :split
@@ -113,8 +113,8 @@ BufWinEnter     After a buffer is displayed in a window.  This
                 current buffer, since it reloads that buffer.
 
                 引数なしの |:split| や、
-                すでにウィンドウで開いているファイルとの :split では、バッファは変更されないためトリガーされません。
-                現在のバッファの名前を指定した ":split" では、バッファを再読み込みするためトリガーが発生します。
+                すでにウィンドウで開いているファイルとの :split では、バッファは変更されないためトリガーされない。
+                現在のバッファの名前を指定した ":split" では、バッファを再読み込みするためトリガーが発生する。
 ```
 ~~~
 
@@ -125,7 +125,7 @@ BufWinEnter     After a buffer is displayed in a window.  This
 ~~~admonish info title=":h file-pattern"
 ```
 The pattern is interpreted like mostly used in file names:
-このパターンは、ファイル名によく使われるものと同じように解釈されます。
+このパターンは、ファイル名によく使われるものと同じように解釈される。
 
   *         matches any sequence of characters; Unusual: includes path separators
   ?         matches any single character
@@ -153,7 +153,7 @@ The pattern is interpreted like mostly used in file names:
 ```
 Lua function which is called when this autocommand is triggered. Cannot be used with {command}.
 
-このオートコマンドが起動した際に呼び出されるLua関数です。{コマンド}とは併用できません。
+このオートコマンドが起動した際に呼び出されるLua関数です。{コマンド}とは併用できない。
 ```
 ~~~
 
