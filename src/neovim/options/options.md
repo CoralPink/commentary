@@ -4,15 +4,15 @@
 
 `lua`ディレクトリに`options.lua`とでもしてファイルを作成しましょう。
 
-~~~admonish quote title="lua/options.luaを作る"
+~~~admonish quote title="options.luaを作る"
 ```sh
-nvim lua/options.lua
+nvim options.lua
 ```
 ~~~
 
 で、`init.lua`から`require()`するんでしたね。
 
-~~~admonish example title="init.lua"
+~~~admonish example title="../init.lua"
 ```lua
 require 'options'
 ```

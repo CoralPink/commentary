@@ -38,7 +38,7 @@ nvim_create_augroup({name}, {*opts})                   *nvim_create_augroup()*
 Autocommands can be put together in a group. 
 This is useful for removing or executing a group of autocommands.
 
-オートコマンドは、グループとしてまとめることができます。
+オートコマンドは、グループとしてまとめることができる。
 これは、オートコマンドのグループを削除したり実行したりするのに便利。
 ```
 ~~~
@@ -83,7 +83,7 @@ To get an existing group id, do:
 
 ```admonish note
 `opts`は`clear`オプションを含んでいますが、
-「なんでわざわざ`augroup`作らなきゃダメなの？」っていう疑問と密接な関係がありそうです。
+「なんでわざわざ`augroup`作らなきゃダメなの❓」っていう疑問と密接な関係がありそうです。
 
 なんとな〜く察するに、「二重登録を防ぐためにある程度まとめて制御できた方がいいでしょ❓」的なことらしいんですが...、
 わたしはいまひとつわかってません❗
