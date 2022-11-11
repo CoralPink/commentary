@@ -1,6 +1,6 @@
 # Leader Key
 
-キーマップに関してもうひとつ、`Leader`キーを設定しておきましょう。
+前章でキーマップをやったので、この章では`Leader`キーを設定しておきましょう。
 
 ## nvim_set_var
 
@@ -19,9 +19,11 @@ nvim_set_var({name}, {value})               nvim_set_var()
 ```
 ~~~
 
-シンプル❗無駄がない❗ かぁっくいー❤️ 
+すごくシンプル❗かぁっくいー❤️ 
 
-でもなんか無理やりの登場となってしまいました😅 ...ただ、この後も出番はかなり限られてくると思われます。
+章のタイトル飾れるだけの力があるのに、なんか無理やりの登場となってしまいました😅
+
+...ただ、この後も出番はかなり限られてくると思われます。
 
 能力の高さゆえ、守備範囲が広大すぎて地球だけに居られない Captain Marvel[^1] みたいですね❗
 
@@ -32,7 +34,9 @@ nvim_set_var({name}, {value})               nvim_set_var()
 vim.api.nvim_set_var('loaded_python3_provider', 0)
 ```
 
-のような使い方もできます。これから環境構築するぞー❗って時にやることじゃないなー🤔
+のような使い方もできます。
+
+(ここでは中身に触れないんですが) これから環境構築するぞー❗って時にやる設定ではないなー🤔
 
 ...と、思ったので登場できませんでしたが、一通り構築が終わったら改めて登場する予定です。たぶん。
 
@@ -53,17 +57,22 @@ Disney+ の "The Beatles: Get Back" の中で発言してたりする「Captain 
 
 ~~~admonish info title=":h mapleader"
 ```
-It is replaced with the string value of"g:mapleader".
-If "g:mapleader" is not set or empty, a backslash is used instead.
+            <Leader> mapleader
+To define a mapping which uses the "g:mapleader" variable, the special string
+"<Leader>" can be used.  It is replaced with the string value of
+"g:mapleader".  If "g:mapleader" is not set or empty, a backslash is used
+instead.
 
-これは "g:mapleader "の文字列の値と置き換えられる。
-g:mapleader "が設定されていない場合、または空の場合は、代わりにバックスラッシュが使用される。
+変数 "g:mapleader "を使用するマッピングを定義すると、"<Leader>"という特殊な文字列を使用することができる。
+これは "g:mapleader "の文字列値と置き換えられる。
+
+g:mapleader "が設定されていない場合や空の場合は、代わりにバックスラッシュが使われる。
 ```
 ~~~
 
-`g:`というのが`global`で`mapleader`が変数名ですね 🤔
+VimScriptの書き方だと思われますが、`g:`というのが`global`で、`mapleader`が変数名ですね 🤔
 
-これはなんかもう`nvim_set_var`が強すぎて楽勝❤️
+これはなんかもう`nvim_set_var`が強すぎるので楽勝です❤️
 
 ~~~admonish example title="keybinds.lua"
 ```lua
@@ -72,7 +81,8 @@ vim.api.nvim_set_var('mapleader', '\\')
 ~~~
 
 ```admonish note
-1文字目の`\`は`エスケープシーケンス`として入っているものなので、`\`(2文字目) が設定されます。
+例がややこしくなってしまいましたが、
+1文字目の`\`は`エスケープシーケンス`として入っているものなので、`\`(2文字目) だけが設定されます。
 ```
 
 上の例はデフォルトと同じ`\`になっていますが、ここを好きなキーに変えることができます。
@@ -87,11 +97,18 @@ vim.api.nvim_set_var('mapleader', ' ')
 ```
 
 ↓ メジャーなんだけど、`,`は Neovim がデフォルトで機能を割り当てていることに注意。
-vim.keymap.set`で他のキーに`,`を割り当てるなど、少し考慮が必要。
+`vim.keymap.set`で他のキーに`,`を割り当てるなど、少し考慮が必要。
 
 ```lua
 vim.api.nvim_set_var('mapleader', ',')
 ```
+
+↓ 2文字以上を入れても良いみたいなので、何か可能性があるような無いような。
+
+```lua
+vim.api.nvim_set_var('mapleader', 'map')
+```
+
 ~~~
 
 `Neovim`は単独で使用するキーを指定します。(`WezTerm`は`Ctrl`キーと同時押しするキーを指定していました。)
@@ -126,6 +143,31 @@ US配列であれば、ゆーて`return`キーの上ってだけですからね�
 
 `Neovim`には`Local Leader`というものもあります。
 
+~~~admonish example title="keybinds.lua"
+```
+              <LocalLeader> maplocalleader
+<LocalLeader> is just like <Leader>, except that it uses "maplocalleader"
+instead of "mapleader".  <LocalLeader> is to be used for mappings which are
+local to a buffer.
+
+ <LocalLeader> は <Leader> と同じであるが、"mapleader" の代わりに "maplocalleader" を使用する点が異なる。
+ <LocalLeader> は、バッファにローカルに存在するマッピングに使用される。
+
+In a global plugin <Leader> should be used and in a filetype plugin
+<LocalLeader>.  "mapleader" and "maplocalleader" can be equal.  Although, if
+you make them different, there is a smaller chance of mappings from global
+plugins to clash with mappings for filetype plugins.  For example, you could
+keep "mapleader" at the default backslash, and set "maplocalleader" to an
+underscore.
+
+グローバルプラグインでは <Leader> を使用し、ファイル型プラグインでは<LocalLeader> を使用する。
+"mapleader" と "maplocalleader" は同じ意味である。
+
+しかし、別々にした方が、global プラグインのマッピングと filetype プラグインの マッピングがぶつかる可能性が低くなる。
+例えば、"mapleader "をデフォルトのバックスラッシュのままにして、"maplocalleader "をアンダースコアに設定することができる。
+```
+~~~
+
 こっちはなんか`_`がメジャーらしい...🤔
 
 ~~~admonish example title="keybinds.lua"
@@ -134,9 +176,9 @@ vim.api.nvim_set_var('maplocalleader', '_')
 ```
 ~~~
 
-もちろん、好きなキーを割り当てられます。
+もちろん`mapleader`と同じように、好きなキーを割り当てられます。
 
-プラグインを使い出すと爆発的に機能が増えるので、補佐的に設定しておくのも良いと思います。
+プラグインを使い出すと爆発的に機能が増えるので、補佐的に設定しておくのが良いと思います。
 (単純に考えて、使えるショートカットが 2 倍に増えるので。)
 
 ただ、あくまでも必須ではないです。`mapleader`と違って、こちらはデフォルトでも設定されていません。
@@ -154,11 +196,7 @@ vim.api.nvim_set_var('maplocalleader', '_')
 ## まとめ
 
 ```admonish success
-この章はこれでおしまいです。息抜きとしてはちょうど良かったですね☺️
-
-...物足りないですか❓
-
-大丈夫...❗次にもうひとつだけ章を挟んだら、いよいよプラグインが登場します。
+あともうひとつだけ章を挟んだら、いよいよプラグインが登場します。
 
 これもやっぱり「もう嫌❗🙀」ってなるぐらい`Leader`キーに触れられます。
 
@@ -174,6 +212,6 @@ vim.api.nvim_set_var('maplocalleader', '_')
 </div>
 ```
 
-[^1]: [Captain Marvel (Marel Comics)](https://ja.wikipedia.org/wiki/キャプテン・マーベル_(マーベル・コミック))
+[^1]: [Captain Marvel (Marvel Comics)](https://ja.wikipedia.org/wiki/キャプテン・マーベル_(マーベル・コミック))
 
 [^2]: [Captain Marvel (DC Comics)](https://ja.wikipedia.org/wiki/キャプテン・マーベル_(DCコミックス))
