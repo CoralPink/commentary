@@ -42,7 +42,7 @@ vim.api.nvim_set_var('loaded_python3_provider', 0)
 ```admonish note
 これ、本題と全然関係ないけど、へぇ〜😮ってなるやつ。
 
-John Lennon が "The Continuing Story Of Bungalow Bill - The Beatles (White Album)" の歌詩に入れてたり、
+John Lennon が "The Continuing Story Of Bungalow Bill - The Beatles (White Album)" の歌詞に入れてたり、
 
 Disney+ の "The Beatles: Get Back" の中で発言してたりする「Captain Marvel」って、Shazam[^2] のことらしいよ😉
 
@@ -97,11 +97,12 @@ vim.api.nvim_set_var('mapleader', ',')
 `Neovim`は単独で使用するキーを指定します。(`WezTerm`は`Ctrl`キーと同時押しするキーを指定していました。)
 
 なので「`Space`キーにするとOSのショートカットと被っちゃうかもよ ❗」ということは無くなりましたが、
-`,`にしちゃうと`Neovim`の中で被っちゃってるよって話が出てきちゃってます😧
+`,`にしちゃうと`Neovim`の中で被ってるよって話が出てきちゃってます😧
 
 わたしは最近まで`,`で使用していましたが、そこまで使用頻度が高いわけでもなかったので`\`に戻しました。
 
 US配列であれば、ゆーて`return`キーの上ってだけですからね😅
+
 (配列は勿論、形状とかも含めて、使用するキーボードに依るので一概には言えないんですけどね。)
 
 ```admonish note
@@ -125,7 +126,7 @@ US配列であれば、ゆーて`return`キーの上ってだけですからね�
 
 `Neovim`には`Local Leader`というものもあります。
 
-これに関しては、なんか`_`がメジャーらしい...🤔
+こっちはなんか`_`がメジャーらしい...🤔
 
 ~~~admonish example title="keybinds.lua"
 ```lua
