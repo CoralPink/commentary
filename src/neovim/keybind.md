@@ -284,7 +284,7 @@ vim.keymap.set('n', 's', '"_s')
 ~~~
 
 ```admonish warning
-念の為明示しておくんですが、このページに挙げた例もWebなどでわたしが見たアイデアをマネしてます。
+念のために明示しておくんですが、このページに挙げた例もWebなどでわたしが見たアイデアをマネしてます。
 
 実際に誰をマネしているのかがもう分からなくなっているので、ちゃんと参照元を示せない点は、ごめんなさい🥹
 
@@ -308,4 +308,4 @@ vim.keymap.set('n', 's', '"_s')
 </div>
 ```
 
-[^1]: シンタックスシュガーについては[ja.wikipedia.org](https://ja.wikipedia.org/wiki/糖衣構文)に丸投げします😃
+[^1]: `Syntactic sugar`については [https://ja.wikipedia.org/wiki/糖衣構文](https://ja.wikipedia.org/wiki/糖衣構文) に丸投げします😃
