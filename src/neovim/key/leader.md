@@ -1,0 +1,178 @@
+# Leader Key
+
+キーマップに関してもうひとつ、`Leader`キーを設定しておきましょう。
+
+## nvim_set_var
+
+突然ですが、ここでニューヒーローをお迎えします❗その名も`nvim_set_var`❗😆
+
+~~~admonish info title=":h nvim_set_var"
+```
+nvim_set_var({name}, {value})               nvim_set_var()
+    Sets a global (g:) variable.
+
+    グローバル(g:)変数を設定する。
+
+    Parameters:  
+      • {name}   Variable name
+      • {value}  Variable value
+```
+~~~
+
+シンプル❗無駄がない❗ かぁっくいー❤️ 
+
+でもなんか無理やりの登場となってしまいました😅 ...ただ、この後も出番はかなり限られてくると思われます。
+
+能力の高さゆえ、守備範囲が広大すぎて地球だけに居られない Captain Marvel[^1] みたいですね❗
+
+~~~admonish tip
+これは10章に入れるかどうか悩んだところですが、
+
+```lua
+vim.api.nvim_set_var('loaded_python3_provider', 0)
+```
+
+のような使い方もできます。これから環境構築するぞー❗って時にやることじゃないなー🤔
+
+...と、思ったので登場できませんでしたが、一通り構築が終わったら改めて登場する予定です。たぶん。
+
+ん⁉️ やっぱり、Endgame だろうがなんだろうが遅れてやってくる Captain Marvel みたいですね❗
+~~~
+
+```admonish note
+これ、本題と全然関係ないけど、へぇ〜😮ってなるやつ。
+
+John Lennon が "The Continuing Story Of Bungalow Bill - The Beatles (White Album)" の歌詩に入れてたり、
+
+Disney+ の "The Beatles: Get Back" の中で発言してたりする「Captain Marvel」って、Shazam[^2] のことらしいよ😉
+
+(※ このサイトでは Brie Larson のイメージだけで進んでます。)
+```
+
+## mapleader
+
+~~~admonish info title=":h mapleader"
+```
+It is replaced with the string value of"g:mapleader".
+If "g:mapleader" is not set or empty, a backslash is used instead.
+
+これは "g:mapleader "の文字列の値と置き換えられる。
+g:mapleader "が設定されていない場合、または空の場合は、代わりにバックスラッシュが使用される。
+```
+~~~
+
+`g:`というのが`global`で`mapleader`が変数名ですね 🤔
+
+これはなんかもう`nvim_set_var`が強すぎて楽勝❤️
+
+~~~admonish example title="keybinds.lua"
+```lua
+vim.api.nvim_set_var('mapleader', '\\')
+```
+~~~
+
+```admonish note
+1文字目の`\`は`エスケープシーケンス`として入っているものなので、`\`(2文字目) が設定されます。
+```
+
+上の例はデフォルトと同じ`\`になっていますが、ここを好きなキーに変えることができます。
+
+~~~admonish tip
+`WezTerm`の時にも挙げましたが、メジャーなのはこの辺でしょうか😌
+
+↓ スペースを入れてます。`:map`ではないからっていう理屈だと思うんだけど`<Space>`だとうまくいかない。
+
+```lua
+vim.api.nvim_set_var('mapleader', ' ')
+```
+
+↓ メジャーなんだけど、`,`は Neovim がデフォルトで機能を割り当てていることに注意。
+vim.keymap.set`で他のキーに`,`を割り当てるなど、少し考慮が必要。
+
+```lua
+vim.api.nvim_set_var('mapleader', ',')
+```
+~~~
+
+`Neovim`は単独で使用するキーを指定します。(`WezTerm`は`Ctrl`キーと同時押しするキーを指定していました。)
+
+なので「`Space`キーにするとOSのショートカットと被っちゃうかもよ ❗」ということは無くなりましたが、
+`,`にしちゃうと`Neovim`の中で被っちゃってるよって話が出てきちゃってます😧
+
+わたしは最近まで`,`で使用していましたが、そこまで使用頻度が高いわけでもなかったので`\`に戻しました。
+
+US配列であれば、ゆーて`return`キーの上ってだけですからね😅
+(配列は勿論、形状とかも含めて、使用するキーボードに依るので一概には言えないんですけどね。)
+
+```admonish note
+ここで言いたいのは、「変えた方がいいよー」って人もいるんだけど、「変えてない人もいるよー」ってことです。
+自由ってことです。
+```
+
+~~~admonish tip
+`leader`キーの確認はコマンドからできます。
+
+```
+:echo mapleader
+```
+
+![leader.png](img/leader.png)
+
+設定前に実行するとエラーが出てしまいますが、特に害はありません。
+~~~
+
+## maplocalleader
+
+`Neovim`には`Local Leader`というものもあります。
+
+これに関しては、なんか`_`がメジャーらしい...🤔
+
+~~~admonish example title="keybinds.lua"
+```lua
+vim.api.nvim_set_var('maplocalleader', '_')
+```
+~~~
+
+もちろん、好きなキーを割り当てられます。
+
+プラグインを使い出すと爆発的に機能が増えるので、補佐的に設定しておくのも良いと思います。
+(単純に考えて、使えるショートカットが 2 倍に増えるので。)
+
+ただ、あくまでも必須ではないです。`mapleader`と違って、こちらはデフォルトでも設定されていません。
+
+~~~admonish tip
+これもやっぱりコマンドから確認ができます。
+
+```
+:echo maplocalleader
+```
+
+これも設定前に実行するとエラーが出てしまいますが、やっぱり害はありません。
+~~~
+
+## まとめ
+
+```admonish success
+この章はこれでおしまいです。息抜きとしてはちょうど良かったですね☺️
+
+...物足りないですか❓
+
+大丈夫...❗次にもうひとつだけ章を挟んだら、いよいよプラグインが登場します。
+
+これもやっぱり「もう嫌❗🙀」ってなるぐらい`Leader`キーに触れられます。
+
+...備えておきましょう❗
+```
+
+```admonish success title=""
+<div style="text-align: center">
+
+  LEADER KEY AND CAPTAIN MARVEL WILL RETURN
+
+  リーダーキーとキャプテン・マーベルは帰ってくる
+</div>
+```
+
+[^1]: [Captain Marvel (Marel Comics)](https://ja.wikipedia.org/wiki/キャプテン・マーベル_(マーベル・コミック))
+
+[^2]: [Captain Marvel (DC Comics)](https://ja.wikipedia.org/wiki/キャプテン・マーベル_(DCコミックス))
