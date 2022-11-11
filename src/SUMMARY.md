@@ -60,8 +60,7 @@
   - [nvim_create_autocmd](neovim/au/nvim_create_autocmd.md)
   - [nvim_create_augroup](neovim/au/nvim_create_augroup.md)
 
-- [Key Binding](neovim/key/keybind.md)
-  - [set](neovim/key/set.md)
-  - [Leader Key](neovim/key/leader.md)
+- [Key Binding](neovim/keybind.md)
+- [Leader Key](neovim/leader.md)
 
 # ...To Be Continued
