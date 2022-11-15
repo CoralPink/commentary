@@ -56,6 +56,8 @@ But Japanese only for now. I want to make an English site too❗
 [Neovim - hyperextensible Vim-based text editor](https://neovim.io)
 
 [starship - cross-shell prompt](https://starship.rs)
+
+[プログラミングフォント Firge (ファージ)](https://github.com/yuru7/Firge)
 ```
 
 **And thanks to the developers of the applications used to create this website🤗**
@@ -66,6 +68,8 @@ But Japanese only for now. I want to make an English site too❗
 [Catppuccin for mdBook](https://github.com/catppuccin/mdbook)
 
 [mdbook-admonish](https://github.com/tommilligan/mdbook-admonish)
+
+[actions-mdbook](https://github.com/peaceiris/actions-mdbook)
 
 [DeepL](https://www.deepl.com/translator)
 ```
