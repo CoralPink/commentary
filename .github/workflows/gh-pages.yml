@@ -19,9 +19,27 @@ jobs:
         with:
           mdbook-version: 'latest'
 
-      - run: cargo install mdbook-admonish mdbook-catppuccin
+      - name: Cargo install
+        run: |
+          cargo install mdbook-admonish
+          cargo install mdbook-catppuccin
 
-      - run: mdbook build
+      - name: Build mdBook
+        run: |
+          mdbook build
+
+      - name: Generate the sitemap
+        id: sitemap
+        uses: cicirello/generate-sitemap@v1.9.0
+        with:
+          path-to-root: ./book
+          base-url-path: https://coralpink.github.io/commentary/
+
+      - name: Sitemap stats
+        run: |
+          echo "sitemap-path = ${{ steps.sitemap.outputs.sitemap-path }}"
+          echo "url-count = ${{ steps.sitemap.outputs.url-count }}"
+          echo "excluded-count = ${{ steps.sitemap.outputs.excluded-count }}"
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
