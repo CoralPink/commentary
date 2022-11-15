@@ -22,6 +22,8 @@ Thanks to application developers!! I enjoy using it💓
 
 [starship - cross-shell prompt](https://starship.rs)
 
+[プログラミングフォント Firge (ファージ)](https://github.com/yuru7/Firge)
+
 And thanks to the developers of the applications used to create this website🤗
 
 [mdBook](https://rust-lang.github.io/mdBook/)
@@ -29,5 +31,7 @@ And thanks to the developers of the applications used to create this website🤗
 [Catppuccin for mdBook](https://github.com/catppuccin/mdbook)
 
 [mdbook-admonish](https://github.com/tommilligan/mdbook-admonish)
+
+[actions-mdbook](https://github.com/peaceiris/actions-mdbook)
 
 [DeepL](https://www.deepl.com/translator)
