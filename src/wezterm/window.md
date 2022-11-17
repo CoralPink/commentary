@@ -62,7 +62,7 @@ return {
 wezterm.lua に記述する場合、基本的には return {} の中に記述していきます。
 ~~~
 
-![opacity.png](img/opacity.png)
+![opacity.webp](img/opacity.webp)
 
 
 ```admonish success

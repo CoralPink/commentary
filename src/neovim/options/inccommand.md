@@ -50,16 +50,16 @@ She's got a ticket to ride, but she don’t care.
 
 画面下にプレビューウィンドウが出るようになりました。
 
-![replace1.png](img/replace1.png)
+![replace1.webp](img/replace1.webp)
 
 ちょっとこれだとあんまり威力を感じられないんですが、画面に収まってない部分もプレビューできるのが強みです。
 
-![replace2.png](img/replace2.png)
+![replace2.webp](img/replace2.webp)
 
 ~~~admonish tip
 下のようになってたとして、(だいぶ強引ですが) 大文字を含まない`she`でやった場合にあれれー❓ってなるの気付きます？
 
-![replace3.png](img/replace3.png)
+![replace3.webp](img/replace3.webp)
 
 そうです。3行目に`she`は2つあるのに、1つ取りこぼししちゃってます😱
 
@@ -71,7 +71,7 @@ She's got a ticket to ride, but she don’t care.
 ```
 ...と、`g`オプションを追加してあげると期待通りの結果が得られます。
 
-![replace4.png](img/replace4.png)
+![replace4.webp](img/replace4.webp)
 
 割とあるシチュエーションだと思うので、覚えておくと役に立ちます😉
 ~~~
