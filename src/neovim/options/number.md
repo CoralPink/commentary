@@ -81,7 +81,7 @@ vim.api.nvim_win_set_option(0, 'number', true)
 -- number と relativenumber を一度で on にする
 :set nu rnu
 ```
-![relativenumber.png](img/relativenumber.png)
+![relativenumber.webp](img/relativenumber.webp)
 
 まあ、わたしにはクセが凄くて乗りこなせないんですけどね😉
 

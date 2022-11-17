@@ -87,7 +87,7 @@ vim.api.nvim_win_set_option(0, 'colorcolumn', '100')
 
 こんな感じで100文字目の列を教えてくれます。
 
-![colorcolumn.png](img/colorcolumn.png)
+![colorcolumn.webp](img/colorcolumn.webp)
 
 ただ、これはなんか、再描画遅くなるとも書いてあるし😅 そんなに出しとく必要ある〜❓とか思っちゃうので、
 ~~~admonish quote title="有効化(100文字目にハイライト)"

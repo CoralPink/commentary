@@ -19,7 +19,7 @@ Luaモジュールは、runtimepath内のlua/フォルダにあります
 ```
 ~~~
 
-![config-create.png](img/config-create.png)
+![config-create.webp](img/config-create.webp)
 
 いきなりちょっと複雑でしたね😅
 
@@ -91,7 +91,7 @@ require('example')
 
 全く関係ないところでやってみてもこの説明で通用するものになりました。
 
-![lua-example.png](img/lua-example.png)
+![lua-example.webp](img/lua-example.webp)
 ~~~
 
 ```admonish note
@@ -107,4 +107,4 @@ require('example')
 ```
 
 [^not-config]: `~/.config/nvim`ディレクトリが存在しないと`runtimepath`からもいなくなるようです。ディレクトリの存在を事前に確認してる?🤔
-![config-not](img/config-not.png)
+![config-not](img/config-not.webp)

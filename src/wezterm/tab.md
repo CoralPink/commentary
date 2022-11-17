@@ -79,11 +79,11 @@ A Zoomed pane takes up all available space in the tab, hiding all other panes wh
 
 使い方としてはまあ、こんな感じになってたとして...
 
-![zoom-before](img/zoom-before.png)
+![zoom-before](img/zoom-before.webp)
 
 上のペインにいる状態でズームすると...
 
-![zoom-after](img/zoom-after.png)
+![zoom-after](img/zoom-after.webp)
 
 "ズーム中は他のペインが全て非表示になります。"というドキュメントどおり😏
 

@@ -46,7 +46,7 @@ nvim_create_autocmd({event}, {*opts})                   nvim_create_autocmd()
 ```
 ~~~
 
-![aucmd-before](img/aucmd-before.png)
+![aucmd-before](img/aucmd-before.webp)
 
 こんな感じに出てきたでしょうか。
 
@@ -195,7 +195,7 @@ vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWinEnter' }, {
 
 それでは、`nvim`を再起動して、もう一度`:au`を実行してみましょう...。
 
-![aucmd-after](img/aucmd-after.png)
+![aucmd-after](img/aucmd-after.webp)
 
 `options.lua`に書いたイベントが登録されていることが確認できましたね❗
 
