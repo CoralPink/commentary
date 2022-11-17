@@ -14,7 +14,7 @@ WezTerm は Nerd Font Symbols Font をデフォルトのフォントのフォー
 
 ただ、環境にもよるかもしれませんが、デフォルトのままだと日本語がイマイチ...😢
 
-![font-roboto.png](img/font-roboto.png)
+![font-roboto.webp](img/font-roboto.webp)
 
 なんてことがあるので、次項に続くわけです。
 
@@ -39,9 +39,9 @@ Fira Mono と源真ゴシックを合成したプログラミングフォント 
 
 やればできる!!
 
-![font1.png](img/font1.png)
-![font2.png](img/font2.png)
-![font3.png](img/font3.png)
+![font1.webp](img/font1.webp)
+![font2.webp](img/font2.webp)
+![font3.webp](img/font3.webp)
 
 ほらできた🤗
 
@@ -75,7 +75,7 @@ The first parameter is the name of the font; the name can be one of the followin
 
 出ていない場合は「情報を確認する(`command + i`)」をポチッと。
 
-![font-info.png](img/font-info.png)
+![font-info.webp](img/font-info.webp)
 ```
 
 フォントサイズも指定できるので、一緒に入れておきましょう。
@@ -101,7 +101,7 @@ You may use fractional point sizes, such as 13.3, to fine tune the size.
 ```admonish success
 どうでしょう？明らかに日本語が綺麗になりました❗️
 
-![font-firge.png](img/font-firge.png)
+![font-firge.webp](img/font-firge.webp)
 
 やったね🤗
 ```

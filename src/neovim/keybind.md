@@ -127,7 +127,7 @@ They can also be used with the ":map" command.
 :map
 ```
 
-![keymap-before.png](img/keymap-before.png)
+![keymap-before.webp](img/keymap-before.webp)
 ~~~
 
 ### 割り当て
@@ -265,7 +265,7 @@ vim.keymap.set({ 'n', 'v' }, 'p', 'p`]')
 
 改めて`:map`で確認してみると、こんな感じで設定した内容が反映されていることが確認できます。
 
-![keymap-after.png](img/keymap-after.png)
+![keymap-after.webp](img/keymap-after.webp)
 
 ```admonish question
 insert モードの内容が表示されないのは...なんで❓😮

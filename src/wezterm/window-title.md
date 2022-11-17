@@ -47,10 +47,10 @@ end
 わたしが正規表現の理解に乏しいので説明できませんが、この例では純粋に実行アプリケーション名だけを取り出しています...よね？
 
 before:
-![window-title-before](img/window-title-before.png)
+![window-title-before](img/window-title-before.webp)
 
 after:
-![window-title-after](img/window-title-after.png)
+![window-title-after](img/window-title-after.webp)
 
 すみません、これ (↑) タイトルバーです...。 
 

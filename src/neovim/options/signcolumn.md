@@ -67,7 +67,7 @@ vim.api.nvim_win_set_option(0, 'signcolumn', 'yes:1')
 ```
 ~~~
 
-![sign-yes.png](img/sign-yes.png)
+![sign-yes.webp](img/sign-yes.webp)
 
 ```admonish note
 `yes:1`と`yes`は見た感じ同じなんですが...、んー、なんか一応😅
@@ -75,7 +75,7 @@ vim.api.nvim_win_set_option(0, 'signcolumn', 'yes:1')
 
 `number`はこんな感じになります。
 
-![sign-number.png](img/sign-number.png)
+![sign-number.webp](img/sign-number.webp)
 
 上のスクリーンショットでは、`gitsigns.nvim`[^1]というプラグイン[^2]を使用して、変更箇所を`signcolumn`に表示しています。
 
@@ -86,7 +86,7 @@ vim.api.nvim_win_set_option(0, 'signcolumn', 'yes:1')
 まあこれくらいなら、なんか見た目的に面白いなーと思うんですが、
 `Untracked file`とか開くと行番号が全部隠れちゃうので、やっぱクセつよですよね...。
 
-![sign-number-untracked.png](img/sign-number-untracked.png)
+![sign-number-untracked.webp](img/sign-number-untracked.webp)
 
 ```admonish success
 次は、上のスクリーンショットで一足早く登場してしまった`wrap`を片付けちゃいます😌

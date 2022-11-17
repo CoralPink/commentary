@@ -10,9 +10,9 @@
 
 だからなんだって言われるとキツイんですが、一番わかりやすいところでフォントサイズの問題があって、画面のスケールが違いすぎて大きすぎたり小さすぎたりしてしまう...😢
 
-![img-4k](img/img-4k.png)
+![img-4k](img/img-4k.webp)
 
-![img-mbp](img/img-mbp.png)
+![img-mbp](img/img-mbp.webp)
 
 ```admonish note
 意図伝わりますでしょうか...😅
@@ -88,10 +88,10 @@ This action causes the equivalent of wezterm.emit(name, window, pane) to be call
 ```
 
 素の状態: [^big]
-![font-big](img/font-big.png)
+![font-big](img/font-big.webp)
 
 切り替えた状態:
-![font-small](img/font-small.png)
+![font-small](img/font-small.webp)
 
 ```admonish success
 切り替えられましたね🤗

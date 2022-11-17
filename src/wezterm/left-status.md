@@ -73,7 +73,7 @@ This is the same text that is shown at the cursor position when composing.
 
 でも、この状態を指すようです。
 
-![composition](img/composition.png)
+![composition](img/composition.webp)
 
 ちょっとフライングしてますが、左上に`あ`と出てるのが`composition_status()`で`nil以外`が返ってきている状態です。
 
@@ -100,15 +100,15 @@ end)
 
 normal:
 
-![key-normal](img/key-normal.png)
+![key-normal](img/key-normal.webp)
 
 leader key is active:
 
-![key-leader](img/key-leader.png)
+![key-leader](img/key-leader.webp)
 
 composition:
 
-![key-ime](img/key-ime.png)
+![key-ime](img/key-ime.webp)
 
 ```admonish success
 こんなもんですね。動きが出て楽しいですね😆 ...ね❗️ね❗️
