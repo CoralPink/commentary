@@ -36,9 +36,9 @@ vim.api.nvim_set_var('loaded_python3_provider', 0)
 
 のような使い方もできます。
 
-(ここでは中身に触れないんですが) これから環境構築するぞー❗って時にやる設定ではないなー🤔
-
-...と、思ったので登場できませんでしたが、一通り構築が終わったら改めて登場する予定です。たぶん。
+(ここでは中身に触れないんですが) これから環境構築するぞー❗
+...って時にやる設定ではないなー🤔と思ったので登場しませんでしたが、
+一通り構築が終わったら改めて登場する予定です。たぶん。
 
 ん⁉️ やっぱり、Endgame だろうがなんだろうが遅れてやってくる Captain Marvel みたいですね❗
 ~~~
@@ -47,7 +47,6 @@ vim.api.nvim_set_var('loaded_python3_provider', 0)
 これ、本題と全然関係ないけど、へぇ〜😮ってなるやつ。
 
 John Lennon が "The Continuing Story Of Bungalow Bill - The Beatles (White Album)" の歌詞に入れてたり、
-
 Disney+ の "The Beatles: Get Back" の中で発言してたりする「Captain Marvel」って、Shazam[^2] のことらしいよ😉
 
 (※ このサイトでは Brie Larson のイメージだけで進んでます。)
@@ -89,37 +88,41 @@ vim.api.nvim_set_var('mapleader', '\\')
 
 ~~~admonish tip
 `WezTerm`の時にも挙げましたが、メジャーなのはこの辺でしょうか😌
+~~~
 
-↓ スペースを入れてます。`:map`ではないからっていう理屈だと思うんだけど`<Space>`だとうまくいかない。
+~~~admonish tip title=""
+スペースを入れてます。`:map`ではないからっていう理屈だと思うんだけど`<Space>`だとうまくいかない。
 
 ```lua
 vim.api.nvim_set_var('mapleader', ' ')
 ```
+~~~
 
-↓ メジャーなんだけど、`,`は Neovim がデフォルトで機能を割り当てていることに注意。
+~~~admonish tip title=""
+メジャーなんだけど、`,`は`Neovim`がデフォルトで機能を割り当てていることに注意。
 `vim.keymap.set`で他のキーに`,`を割り当てるなど、少し考慮が必要。
 
 ```lua
 vim.api.nvim_set_var('mapleader', ',')
 ```
+~~~
 
-↓ 2文字以上を入れても良いみたいなので、何か可能性があるような無いような。
+~~~admonish tip title = ""
+2文字以上を入れても良いみたいなので、何か可能性があるような無いような。
 
 ```lua
 vim.api.nvim_set_var('mapleader', 'map')
 ```
-
 ~~~
 
 `Neovim`は単独で使用するキーを指定します。(`WezTerm`は`Ctrl`キーと同時押しするキーを指定していました。)
 
-なので「`Space`キーにするとOSのショートカットと被っちゃうかもよ ❗」ということは無くなりましたが、
-`,`にしちゃうと`Neovim`の中で被ってるよって話が出てきちゃってます😧
+なので「`Space`キーにするとOSのショートカットと被っちゃうかもよ ❗」ということは無いです。
+
+ただ、例えば`,`にしちゃうと`Neovim`の中で被ってるよって話が出てきちゃったりします😧
 
 わたしは最近まで`,`で使用していましたが、そこまで使用頻度が高いわけでもなかったので`\`に戻しました。
-
 US配列であれば、ゆーて`return`キーの上ってだけですからね😅
-
 (配列は勿論、形状とかも含めて、使用するキーボードに依るので一概には言えないんですけどね。)
 
 ```admonish note
@@ -134,7 +137,7 @@ US配列であれば、ゆーて`return`キーの上ってだけですからね�
 :echo mapleader
 ```
 
-![leader.webp](img/leader.webp)
+![leader](img/leader.webp)
 
 設定前に実行するとエラーが出てしまいますが、特に害はありません。
 ~~~
@@ -160,11 +163,11 @@ plugins to clash with mappings for filetype plugins.  For example, you could
 keep "mapleader" at the default backslash, and set "maplocalleader" to an
 underscore.
 
-グローバルプラグインでは <Leader> を使用し、ファイル型プラグインでは<LocalLeader> を使用する。
-"mapleader" と "maplocalleader" は同じ意味である。
+global プラグインでは <Leader> を、filetype プラグインでは <LocalLeader> を使用する。
+"mapleader" と "maplocalleade " は同じでも構わないが、
+別にしておけばグローバルプラグインのマッピングとファイルタイププラグインのマッピングが衝突する可能性が低くなる。
 
-しかし、別々にした方が、global プラグインのマッピングと filetype プラグインの マッピングがぶつかる可能性が低くなる。
-例えば、"mapleader "をデフォルトのバックスラッシュのままにして、"maplocalleader "をアンダースコアに設定することができる。
+例えば、"mapleader "をデフォルトのバックスラッシュのままにして、"maplocalleader "をアンダースコアに設定する。
 ```
 ~~~
 
@@ -178,8 +181,8 @@ vim.api.nvim_set_var('maplocalleader', '_')
 
 もちろん`mapleader`と同じように、好きなキーを割り当てられます。
 
-プラグインを使い出すと爆発的に機能が増えるので、補佐的に設定しておくのが良いと思います。
-(単純に考えて、使えるショートカットが 2 倍に増えるので。)
+プラグインを使い出すと爆発的に機能が増えるので、`mapleader`とは別のキーを設定しておくのが良いと思います。
+(単純に考えて、ショートカットの組み合わせが 2 倍に増えるので。)
 
 ただ、あくまでも必須ではないです。`mapleader`と違って、こちらはデフォルトでも設定されていません。
 
@@ -193,14 +196,13 @@ vim.api.nvim_set_var('maplocalleader', '_')
 これも設定前に実行するとエラーが出てしまいますが、やっぱり害はありません。
 ~~~
 
-## まとめ
-
 ```admonish success
-あともうひとつだけ章を挟んだら、いよいよプラグインが登場します。
+リーダーキーはこんなもんかな☺️
 
+あともうひとつだけ章を挟んだら、いよいよプラグインが登場します。
 これもやっぱり「もう嫌❗🙀」ってなるぐらい`Leader`キーに触れられます。
 
-...備えておきましょう❗
+ドキドキ...❗
 ```
 
 ```admonish success title=""
