@@ -57,7 +57,7 @@ This is useful for removing or executing a group of autocommands.
 ```
 ~~~
 
-![augroup-before.webp](img/augroup-before.webp)
+![augroup-before](img/augroup-before.webp)
 
 こんな感じですね😌
 
@@ -133,7 +133,7 @@ vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWinEnter' }, {
 ```
 ~~~
 
-![augroup-after.webp](img/augroup-after.webp)
+![augroup-after](img/augroup-after.webp)
 
 `buffer_set_options`の姿を確認できましたね❗これでもう完璧です😆
 
