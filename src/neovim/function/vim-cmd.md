@@ -117,7 +117,7 @@ vim.keymap.set('n', '<Leader>9', function() vim.cmd('colorscheme blue') end)
 ...とはいえ、ネット上を探せばもっといいやついっぱいありますけどね❗
 
 ```admonish note
-'color scheme' (もしくは'color theme') はプラグインとして提供されているものも数多くあるので、このサイトでも取り上げます☺️
+`color scheme` (もしくは`color theme`) はプラグインとして提供されているものも数多くあるので、このサイトでも取り上げます☺️
 ```
 
 ## Lua Function
