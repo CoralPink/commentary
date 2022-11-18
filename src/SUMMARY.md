@@ -63,4 +63,10 @@
 - [Key Binding](neovim/keybind.md)
 - [Leader Key](neovim/leader.md)
 
+- [Function](neovim/function/function.md)
+  - [Warming Up](neovim/function/warming-up.md)
+  - [Parameters / Return Values](neovim/function/param-return.md)
+  - [vim.cmd](neovim/function/vim-cmd.md)
+  - [Call The Plugin](neovim/function/call-plugin.md)
+
 # ...To Be Continued
