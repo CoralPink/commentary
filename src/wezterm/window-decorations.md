@@ -25,7 +25,7 @@ window_decorations = 'RESIZE',
 ```
 ~~~
 
-![decorations.webp](img/decorations.webp)
+![decorations](img/decorations.webp)
 
 ...いいね❗🤩
 
@@ -91,7 +91,7 @@ end)
 
 これで一回動かしてみましょう。ウィンドウをクリックすると...、
 
-![decorations2.webp](img/decorations2.webp)
+![decorations2](img/decorations2.webp)
 
 タイトルバーが現れました。やったね😆
 
@@ -196,15 +196,15 @@ wezterm.sleep_ms は、指定されたミリ秒の間、スクリプトの実行
 ```admonish note
 うちな〜、`Raycast`[^1]の`WindowManagement`使てんねんけど、よーこんな感じできっちりウィンドウ詰めるやろ〜❓
 
-![deco-custom1.webp](img/deco-custom1.webp)
+![deco-custom1](img/deco-custom1.webp)
 
 タイトルバー出すやろ〜❓
 
-![deco-custom2.webp](img/deco-custom2.webp)
+![deco-custom2](img/deco-custom2.webp)
 
 そんでな〜、引っ込んだらこんなんなんねん。
 
-![deco-custom3.webp](img/deco-custom3.webp)
+![deco-custom3](img/deco-custom3.webp)
 
 なんでやねん🫱
 ```

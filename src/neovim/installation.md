@@ -25,10 +25,10 @@ You can install Neovim from download, package, or source in just a few seconds.
 なんて思ってましたが環境によっては結構ラグあるんですね...😿 (Oct 15 時点)
 
 *`0.8.0`だよね〜❗の図↓:*
-![brew-info.webp](img/brew-info.webp)
+![brew-info](img/brew-info.webp)
 
 *`0.7.2-3.el9`だって〜⁉️の図↓:*
-![rocky.webp](img/rocky.webp)
+![rocky](img/rocky.webp)
 
 その後、Nov 1 時点で`0.8.0-0.el9`になってました❗
 ~~~

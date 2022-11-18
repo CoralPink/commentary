@@ -84,7 +84,7 @@ brew install starship
 
 `WezTerm`を一旦終了して再度起動しましょう。
 
-![starship.webp](img/starship.webp)
+![starship](img/starship.webp)
 
 `3.1 Window`で設定したカラースキームが適用されているのを確認できましたね。
 

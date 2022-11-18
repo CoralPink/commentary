@@ -19,7 +19,7 @@ Luaモジュールは、runtimepath内のlua/フォルダにあります
 ```
 ~~~
 
-![config-create.webp](img/config-create.webp)
+![config-create](img/config-create.webp)
 
 いきなりちょっと複雑でしたね😅
 
@@ -91,7 +91,7 @@ require('example')
 
 全く関係ないところでやってみてもこの説明で通用するものになりました。
 
-![lua-example.webp](img/lua-example.webp)
+![lua-example](img/lua-example.webp)
 ~~~
 
 ```admonish note

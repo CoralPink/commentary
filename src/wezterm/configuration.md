@@ -53,12 +53,12 @@ open ~/.config/wezterm/wezterm.lua
 
 もし、こんなのが出てきたら
 
-![no-app.webp](img/no-app.webp)
+![no-app](img/no-app.webp)
 
 `アプリケーションを選択...`から普段使っているエディタを選びましょう。
 
 `Xcode`や`Visual Studio Code`などでもいけるはずです。
-![select-app.webp](img/select-app.webp)
+![select-app](img/select-app.webp)
 ~~~
 
 ```admonish success

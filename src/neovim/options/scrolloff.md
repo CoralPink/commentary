@@ -31,11 +31,11 @@ vim.api.nvim_set_option('scrolloff', 4)
 `1`以上を指定すると指定行数分の余裕を持って手前でスクロールします。
 
 下から数えて5行目の位置から`4`行目に移動しようとすると...、
-![scrolloff1.webp](img/scrolloff1.webp)
+![scrolloff1](img/scrolloff1.webp)
 
 カーソル移動ではなく、本文が`行スクロール`する。
 
-![scrolloff2.webp](img/scrolloff2.webp)
+![scrolloff2](img/scrolloff2.webp)
 
 文字で説明するとイメージが難しいんですが、`0`の状態と比べて動かしてみれば、すぐに意味はわかると思います😸
 

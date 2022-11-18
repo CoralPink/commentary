@@ -115,7 +115,7 @@ set({mode}, {lhs}, {rhs}, {opts})                           vim.keymap.set()
 These names for keys are used in the documentation.
 They can also be used with the ":map" command.
 
-これらのキーの名前は、ドキュメントで使用されています。
+これらのキーの名前は、ドキュメントで使用されている。
 これらは ":map" コマンドで使用することもできます。
 ```
 ~~~
@@ -127,7 +127,7 @@ They can also be used with the ":map" command.
 :map
 ```
 
-![keymap-before.webp](img/keymap-before.webp)
+![keymap-before](img/keymap-before.webp)
 ~~~
 
 ### 割り当て
@@ -265,7 +265,7 @@ vim.keymap.set({ 'n', 'v' }, 'p', 'p`]')
 
 改めて`:map`で確認してみると、こんな感じで設定した内容が反映されていることが確認できます。
 
-![keymap-after.webp](img/keymap-after.webp)
+![keymap-after](img/keymap-after.webp)
 
 ```admonish question
 insert モードの内容が表示されないのは...なんで❓😮
