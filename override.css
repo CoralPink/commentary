@@ -1,17 +1,18 @@
 :root {
   --sidebar-width: 180px;
-  --content-max-width: 900px;
+  --content-max-width: 800px;
 }
 
 .content main {
   font-size: 1.3rem;
-  margin-left: 50px;
-  margin-right: 50px;
+  margin-left: 1.2em;
+  margin-right: 1.2em;
 }
+
 .nav-chapters {
-  font-size: 2em;
-  max-width: 80px;
-  min-width: 40px;
+  font-size: 1.8em;
+  max-width: 30px;
+  min-width: 25px;
 }
 
 .sidebar .sidebar-scrollbox {
