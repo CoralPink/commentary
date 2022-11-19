@@ -1,10 +1,10 @@
-@media only screen and (max-width: 1439px) {
+@media only screen and (max-width: 1049px) {
   .sidetoc {
     display: none;
   }
 }
 
-@media only screen and (min-width: 1440px) {
+@media only screen and (min-width: 1050px) {
   main {
     position: relative;
   }
@@ -16,7 +16,7 @@
   }
   .pagetoc {
     position: fixed;
-    width: 200px;
+    width: 170px;
     height: calc(100vh - var(--menu-bar-height) - 0.67em * 4);
     overflow: auto;
     font-size: 0.85em;
