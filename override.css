@@ -1,18 +1,25 @@
 :root {
-  font-size: 50%;
-
-  --content-max-width: 1000px;
   --sidebar-width: 180px;
+  --content-max-width: 900px;
 }
 
+.content main {
+  font-size: 1.3rem;
+  margin-left: 50px;
+  margin-right: 50px;
+}
 .nav-chapters {
   font-size: 2em;
   max-width: 80px;
   min-width: 40px;
 }
 
-.sidebar {
-  font-size: 0.84em;
+.sidebar .sidebar-scrollbox {
+  padding: 10px 7px;
+  font-size: 0.74em;
+}
+.chapter {
+  line-height: 2em;
 }
 
 .section {
