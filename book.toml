@@ -16,7 +16,8 @@ assets_version = "2.0.0" # do not edit: managed by `mdbook-admonish install`
 assets_version = "0.1.1" # DO NOT EDIT: Managed by `mdbook-catppuccin install`
 
 [output.html]
-additional-css = ["./theme/catppuccin.css", "./theme/catppuccin-highlight.css", "./mdbook-admonish.css", "./override.css"]
+additional-css = ["theme/catppuccin.css", "theme/catppuccin-highlight.css", "mdbook-admonish.css", "override.css", "sidebar/style.css"]
+additional-js = ["sidebar/sidebar.js"]
 git-repository-url = "https://github.com/CoralPink/commentary"
 default-theme = "Latte"
 preferred-dark-theme = "Macchiato"
