@@ -134,17 +134,11 @@ nvim_create_user_command({name}, {command}, {*opts})
 
 ~~~admonish example title="plugin/lesson2.lua"
 ```lua
-local M = {}
-
-function M.Order()
+vim.api.nvim_create_user_command('Order', function()
   if vim.fn.input('Coffee or beer? > ') == 'beer' then
     vim.cmd.echo '"\nCheers!!"'
   end
-end
-
-vim.api.nvim_create_user_command('Order', M.order, {})
-
-return M
+end, {})
 ```
 ~~~
 
