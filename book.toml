@@ -18,9 +18,10 @@ assets_version = "0.1.1" # DO NOT EDIT: Managed by `mdbook-catppuccin install`
 [output.html]
 additional-css = ["theme/catppuccin.css", "theme/catppuccin-highlight.css", "mdbook-admonish.css", "override.css", "sidebar/style.css"]
 additional-js = ["sidebar/sidebar.js"]
-git-repository-url = "https://github.com/CoralPink/commentary"
 default-theme = "Latte"
 preferred-dark-theme = "Macchiato"
+git-repository-url = "https://github.com/CoralPink/commentary"
+site-url = "/commentary/"
 
 [output.html.fold]
 enable = false
