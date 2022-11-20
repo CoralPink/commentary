@@ -16,7 +16,9 @@
 ```lua
 local M = {}
 
-function M.myprint() print("You did it! It's working!!") end
+function M.myprint()
+  print("You did it! It's working!!")
+end
 
 return M
 ```
@@ -111,7 +113,6 @@ mkdir plugin/lesson
 
 `-p`オプションを使用することで、このような手間を回避して一気に作成できます。
 ~~~
-
 
 ~~~admonish info title=":h nvim_create_user_command"
 ```
