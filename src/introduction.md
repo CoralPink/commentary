@@ -69,7 +69,11 @@ But Japanese only for now. I want to make an English site too❗
 
 [mdbook-admonish](https://github.com/tommilligan/mdbook-admonish)
 
+[mdBook-pagetoc](https://github.com/JorelAli/mdBook-pagetoc)
+
 [actions-mdbook](https://github.com/peaceiris/actions-mdbook)
+
+[generate-sitemap](https://github.com/cicirello/generate-sitemap)
 
 [DeepL](https://www.deepl.com/translator)
 ```
