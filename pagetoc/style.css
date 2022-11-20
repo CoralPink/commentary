@@ -31,14 +31,13 @@
     text-align: left;
     text-decoration: none;
   }
-  .pagetoc a:hover,
+  .pagetoc a:hover {
+    background: var(--sidebar-bg);
+	  text-decoration: none;
+  }
   .pagetoc a.active {
     background: var(--sidebar-bg);
-    color: var(--sidebar-fg) !important;
-  }
-  .pagetoc .active {
-    background: var(--sidebar-bg);
-    color: var(--sidebar-fg);
+    color: var(--sidebar-active) !important;
   }
 }
 
