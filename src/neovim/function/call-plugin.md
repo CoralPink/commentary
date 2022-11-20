@@ -142,12 +142,6 @@ end, {})
 ```
 ~~~
 
-~~~admonish example title="keybinds.lua"
-```lua
-require 'lesson'
-```
-~~~
-
 ~~~ admonish note
 サンプルは`:h input`から持ってきて、`lua`で動くように書き換えました。
 
