@@ -22,7 +22,6 @@ jobs:
       - name: Cargo install
         run: |
           cargo install mdbook-admonish
-          cargo install mdbook-catppuccin
 
       - name: Build mdBook
         run: |
