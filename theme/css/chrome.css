@@ -78,6 +78,7 @@ a > .hljs {
 }
 
 .right-buttons {
+  font-size: 1.6em;
   margin: 0 15px;
 }
 .right-buttons a {
@@ -103,9 +104,6 @@ a > .hljs {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-}
-.js .menu-title {
-  cursor: pointer;
 }
 
 .menu-bar,
@@ -365,7 +363,6 @@ ul#searchresults span.teaser em {
   top: 0;
   bottom: 0;
   width: var(--sidebar-width);
-  font-size: 0.875em;
   box-sizing: border-box;
   -webkit-overflow-scrolling: touch;
   overscroll-behavior-y: contain;
@@ -392,7 +389,6 @@ ul#searchresults span.teaser em {
   left: 0;
   right: 0;
   padding: 10px 7px;
-  font-size: 0.74em;
 }
 .sidebar .sidebar-resize-handle {
   position: absolute;
