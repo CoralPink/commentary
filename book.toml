@@ -13,8 +13,8 @@ command = "mdbook-admonish"
 assets_version = "2.0.0" # do not edit: managed by `mdbook-admonish install`
 
 [output.html]
-additional-css = ["theme/catppuccin.css", "theme/catppuccin-highlight.css", "mdbook-admonish.css", "override.css", "pagetoc/style.css"]
-additional-js = ["pagetoc/sidebar.js"]
+additional-css = ["css/catppuccin.css", "css/catppuccin-highlight.css", "css/mdbook-admonish.css", "css/override.css", "css/pagetoc.css"]
+additional-js = ["js/pagetoc.js"]
 default-theme = "Latte"
 preferred-dark-theme = "Macchiato"
 git-repository-url = "https://github.com/CoralPink/commentary"
