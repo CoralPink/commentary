@@ -13,7 +13,7 @@ command = "mdbook-admonish"
 assets_version = "2.0.0" # do not edit: managed by `mdbook-admonish install`
 
 [output.html]
-additional-css = ["css/catppuccin.css", "css/catppuccin-highlight.css", "css/mdbook-admonish.css", "css/pagetoc.css"]
+additional-css = ["css/catppuccin.css", "css/catppuccin-highlight.css", "css/mdbook-admonish.css", "css/pagetoc.css", "css/header.css"]
 additional-js = ["js/pagetoc.js"]
 default-theme = "Latte"
 preferred-dark-theme = "Macchiato"
