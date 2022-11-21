@@ -334,19 +334,3 @@ details[open].admonition > summary.admonition-title::after {
   mask-size: contain;
   -webkit-mask-repeat: no-repeat;
 }
-
-.navy :is(.admonition) {
-  background-color: var(--sidebar-bg);
-}
-
-.ayu :is(.admonition), .coal :is(.admonition) {
-  background-color: var(--theme-hover);
-}
-
-.rust :is(.admonition) {
-  background-color: var(--sidebar-bg);
-  color: var(--sidebar-fg);
-}
-.rust .admonition-anchor-link:link, .rust .admonition-anchor-link:visited {
-  color: var(--sidebar-fg);
-}
