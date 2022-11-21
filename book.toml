@@ -20,6 +20,9 @@ preferred-dark-theme = "Macchiato"
 git-repository-url = "https://github.com/CoralPink/commentary"
 site-url = "/commentary/"
 
+[output.html.print]
+enable = false
+
 [output.html.fold]
 enable = false
 level = 0
