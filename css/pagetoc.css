@@ -15,7 +15,7 @@
     position: absolute;
   }
   .pagetoc {
-    position: var(--content-max-width);
+    position: fixed;
     width: 15vw;
     height: var(--content-max-height);
     overflow: auto;

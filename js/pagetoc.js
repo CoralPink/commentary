@@ -33,6 +33,10 @@ var updateFunction = function () {
   Array.prototype.forEach.call(
     document.getElementsByClassName("pagetoc")[0].children,
     function (el) {
+      if (id.href === undefined) {
+        return;
+      }
+
       if (id.href.localeCompare(el.href) == 0) {
         el.classList.add("active");
       }
