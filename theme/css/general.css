@@ -99,7 +99,6 @@ h6:target::before {
 
 .page {
   outline: 0;
-  padding: 0 var(--page-padding);
   margin-top: calc(
     0px - var(--menu-bar-height)
   ); /* Compensate for the #menu-bar-hover-placeholder */
@@ -113,13 +112,13 @@ h6:target::before {
 
 .content {
   overflow-y: auto;
-  padding: 0 30px 50px 30px;
+  padding: 1em 2em 5em 2em;
 }
 .content main {
   font-size: 1.3rem;
   margin-left: 1.2em;
   margin-right: 1.2em;
-  max-width: var(--content-max-width);
+  max-width: 75vw;
 }
 .content p {
   line-height: 1.45em;

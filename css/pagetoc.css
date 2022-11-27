@@ -1,25 +1,25 @@
-@media only screen and (max-width: 1049px) {
+@media only screen and (max-width: 849px) {
   .sidetoc {
     display: none;
   }
 }
 
-@media only screen and (min-width: 1050px) {
+@media only screen and (min-width: 850px) {
   main {
     position: relative;
   }
   .sidetoc {
     margin-left: auto;
     margin-right: auto;
-    left: calc(100% + (var(--content-max-width)) / 4 - 180px);
+    left: calc(100% + (var(--content-max-width)) / 4 - 170px);
     position: absolute;
   }
   .pagetoc {
-    position: fixed;
-    width: 170px;
-    height: calc(100vh - var(--menu-bar-height) - 0.67em * 4);
+    position: var(--content-max-width);
+    width: 15vw;
+    height: var(--content-max-height);
     overflow: auto;
-    font-size: 0.85em;
+    font-size: 0.8em;
   }
   .pagetoc a {
     border-left: 1px solid var(--sidebar-bg);
@@ -33,7 +33,7 @@
   }
   .pagetoc a:hover {
     background: var(--sidebar-bg);
-	  text-decoration: none;
+    text-decoration: none;
   }
   .pagetoc a.active {
     background: var(--sidebar-bg);
