@@ -23,7 +23,6 @@ a > .hljs {
 #menu-bar,
 #menu-bar-hover-placeholder {
   z-index: 101;
-  margin: auto calc(0px - var(--page-padding));
 }
 #menu-bar {
   position: relative;
@@ -33,6 +32,7 @@ a > .hljs {
   border-bottom-color: var(--bg);
   border-bottom-width: 1px;
   border-bottom-style: solid;
+  padding: 0 var(--page-padding);
 }
 #menu-bar.sticky,
 .js #menu-bar-hover-placeholder:hover + #menu-bar,
@@ -153,7 +153,8 @@ a > .hljs {
 }
 
 .nav-wrapper {
-  margin-top: 50px;
+  margin-top: 35px;
+  max-width: 900px;
   display: none;
 }
 
@@ -161,8 +162,8 @@ a > .hljs {
   font-size: 2.5em;
   text-align: center;
   text-decoration: none;
-  width: 90px;
-  border-radius: 5px;
+  width: 70px;
+  border-radius: 7px;
   background-color: var(--sidebar-bg);
 }
 
