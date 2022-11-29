@@ -9,12 +9,12 @@ Leaderキーは、モーダルモディファイアキーです。Leaderキー�
 
 `Leader`キーという概念は`WezTerm`特有のものではく、`tmux`や`vim`など古参のソフトウェアでも用いられています。
 
-WezTerm でのデフォルトは`CTRL-a`です。[^other]
+WezTerm でのデフォルトは<kbd>Ctrl-a</kbd>です。[^other]
 ```admonish note
-`CTRL-a` という表記は`control`キーと`a`キーを同時押しすることを示しています。
+<kbd>Ctrl-a</kbd>という表記は<kbd>Ctrl</kbd>と<kbd>a</kbd>を同時押しすることを示しています。
 ```
 
-ということで、わたしはもうそのまま`CTRL-a`で設定しています。
+ということで、わたしはもうそのまま<kbd>Ctrl-a</kbd>で設定しています。
 デフォルトのままでいいやー、って場合は書かなくてもOKです。
 
 ~~~admonish example title="wezterm.lua"
@@ -31,7 +31,7 @@ leader = { key = 'a', mods = 'CTRL', timeout_milliseconds = 2000 },
 
 
 ```admonish warning
-macOSでUS配列なのに日本語IME使うような環境[^minority]では`CTRL-Space`が入力ソースの切り替えに割り当てられています。
+macOSでUS配列なのに日本語IME使うような環境[^minority]では<kbd>Ctrl-Space</kbd>が入力ソースの切り替えに割り当てられています。
 OSのショートカットキー等も含め、あらかじめ確認しておきましょう。
 
 他のと被っちゃうと困っちゃいます。
@@ -59,8 +59,8 @@ LEADERはキーが登録されるまで（キーバインディングにマッ�
 ```
 ~~~
 
-...と、やる場合、`CTRL-a` → `u`と順番にキーを押す必要があるわけですが、
-デフォルトでは、`CTRL-a`から`u`を押すまでが 1000ミリ秒( = 1秒)以内で完結しないといけないわけです。
+...と、やる場合、<kbd>CTRL-a</kbd> → <kbd>u</kbd>と順番にキーを押す必要があるわけですが、
+デフォルトでは、この操作が 1000ミリ秒( = 1秒)以内で完結しないといけないわけです。
 
 1秒を長いと見るか短いと見るかは人それぞれなので、これをお好みに調整できるのが、前項の`timeout_milliseconds`です。
 
@@ -80,9 +80,9 @@ LEADERはキーが登録されるまで（キーバインディングにマッ�
 ```
 ~~~
 ```admonish note
-`ALT|CTRL`は`Alt`キーと`Ctrl`キーを同時押しです。
+`ALT|CTRL`は<kbd>Alt</kbd>キーと<kbd>Ctrl</kbd>キーを同時押しです。
 
-さらに`"`を押せと言われれば`Shift`キーを押しながら`'`です。[^key]
+さらに`"`を押せと言われれば<kbd>Shift</kbd>キーを押しながら<kbd>'</kbd>です。[^key]
 ```
 …なんか、難しくないですか？
 
@@ -97,16 +97,17 @@ LEADERはキーが登録されるまで（キーバインディングにマッ�
 
 `tmux`と同じキーバインドですね。ペイン操作も`WezTerm`に一任しちゃいます。
 
-`tmux`使ってないのに同等の機能が実現できちゃうんですよ⁉️？すごくないです?☺️
+`tmux`使ってないのに同等の機能が実現できちゃうんですよ⁉️ すごくないです❓☺️
 
 もしどこかで`tmux`を使うことがあっても同一操作なので迷わず使えます、たぶん❗
 
 ~~~admonish note
-さらにタイムリーなことに、`Copy Mode`の各種`jump`機能も実装されてました。(9/22時点では`nightly build`だけです。)
+さらにタイムリーなことに、`Copy Mode`の各種`jump`機能も実装されました。
 
 [update docs for new copy-mode functions](https://github.com/wez/wezterm/commit/8458b2b62d90cbf3326c39ed5a72ef256588ebe3)
 
 `tmux`のキーバインドを完全に真似るのであれば、`CopyMode`に入るキーバインドはこれですね。
+
 ```lua
   { key = '[', mods = 'LEADER', action = act.ActivateCopyMode },
 ```
@@ -126,9 +127,9 @@ KeyAssignment は、キーまたはマウス イベントがトリガーされ�
 キーバインドについてはこのくらいでしょうか。次からは外観を変えていきたいと思います。
 ```
 
-[^other]: tmux のデフォルトは `CTRL-b`、vimのデフォルトは`\`です。
-ちょっと遠い位置に置かれていて大変なので、 Leaderキーのカスタマイズは一般的に行われているみたいです。
-メジャーなカスタマイズ先は`CTRL-a`や、`CTRL-j`、`CTRL-,(カンマ)`、`CTRL-Space`あたりでしょうか？
+[^other]: tmux のデフォルトは <kbd>CTRL-b</kbd>、vimのデフォルトは<kbd>\\</kbd>です。
+ちょっと遠い位置に置かれていて大変なので、`Leader`キーのカスタマイズは一般的に行われているみたいです。
+メジャーなカスタマイズ先は<kbd>CTRL-a</kbd>や、<kbd>CTRL-j</kbd>、<kbd>CTRL-,</kbd>、<kbd>CTRL-Space</kbd>あたりでしょうか？
 
 [^minority]: 色んな意味で少数派なんですけどね。わたしもこの環境です。
 
