@@ -33,8 +33,8 @@ vim.api.nvim_set_option('inccommand', 'split')
 She's got a ticket to ride, but she don’t care.
 ```
 
-これ Karen が歌ったら面白いんじゃない？😆 ってなるのはなんかもう必然の Richard ですので、
-`She`👩を`He`👨に変えます。[^1]
+これ Karen が歌ったら面白いんじゃない？😆 ってなるのはなんかもう必然の Richard なので、
+ "She" 👩を "He" 👨に変えます。[^1]
 
 置換操作は`:%s/{検索値}/{置換値}`とすると実行できます。
 
@@ -57,11 +57,11 @@ She's got a ticket to ride, but she don’t care.
 ![replace2](img/replace2.webp)
 
 ~~~admonish tip
-下のようになってたとして、(だいぶ強引ですが) 大文字を含まない`she`でやった場合にあれれー❓ってなるの気付きます？
+下のようになってたとして、(だいぶ強引ですが) 大文字を含まない "she"でやった場合にあれれー❓ってなるの気付きます？
 
 ![replace3](img/replace3.webp)
 
-そうです。3行目に`she`は2つあるのに、1つ取りこぼししちゃってます😱
+そうです。3行目に "she"は2つあるのに、1つ取りこぼししちゃってます😱
 
 実はこのやり方だと同じ行の中では最初にヒットしたところしか反応しません。
 

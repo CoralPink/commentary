@@ -71,7 +71,7 @@ This action causes the equivalent of wezterm.emit(name, window, pane) to be call
 このアクションは、現在のペインのコンテキストで wezterm.emit(name, window, pane) と同等のアクションが呼び出されるようにします。
 ```
 
-わたしはキーバインド`ctrl-f`をトリガーとして呼び出しています。
+わたしはキーバインド<kbd>Ctrl-f</kbd>をトリガーとして呼び出しています。
 
 ~~~admonish example title="keybinds.lua"
 ```lua
@@ -87,11 +87,10 @@ This action causes the equivalent of wezterm.emit(name, window, pane) to be call
 アウトプットはしてみるものですね❗次のページに書いちゃいます😆
 ```
 
-素の状態: [^big]
-![font-big](img/font-big.webp)
 
-切り替えた状態:
-![font-small](img/font-small.webp)
+|素の状態[^big]|切り替えた状態|
+|:---:|:---:|
+|![font-big](img/font-big.webp)|![font-small](img/font-small.webp)|
 
 ```admonish success
 切り替えられましたね🤗

@@ -38,7 +38,7 @@ vim.keymap.set('n', '<Leader>9', lesson.myprint)
 ```
 ~~~
 
-じゃあ、`<Leader>9`でぽちぽちっとして呼んでみましょう...。動くかなぁ〜❓
+じゃあ、ぽちぽちっと<kbd>Leader</kbd><kbd>9</kbd>で呼んでみましょう...。動くかなぁ〜❓
 
 ![call-function5](img/call-function5.webp)
 
@@ -89,10 +89,6 @@ requireは、ファイルが既に実行されているかどうかを制御し�
 ```
 
 `require`のキャッシュを読み直してるだけっていう可能性を疑ったり、`Neovim`を起動し直して試すっていうことも選択のうちに入れておいて下さい😉
-
-```admonish note
-後味が悪くなってたらごめんなさいなんだけど、`lesson`ディレクトリと`require`、`keymap`は消しておきましょう。
-```
 
 ## nvim_create_user_command
 
@@ -181,7 +177,7 @@ Coffee☕ もいいけど、今日はもう終わりだし beer🍺 でいいよ
 ![cheers](img/cheers.webp)
 
 ```admonish note
-飲み終わったら`plugin`は消しておきましょう。
+飲み終わったら`plugin`ディレクトリは消しておきましょう。`lesson`ディレクトリとrequire、keymapも忘れずに...。
 ```
 
 ## まとめ
