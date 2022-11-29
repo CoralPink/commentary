@@ -93,10 +93,6 @@ window-focus-changed イベントは、ウィンドウのフォーカス状態�
 このイベントは wezterm の観点からは fire-and-forget です; それは設定変更を通知するためにイベントを発生させますが、それ以外のことは期待できません。
 ```
 
-```admonish note
-10/12 時点では、nightly builds only となっていることに注意してください。
-```
-
 それでは満を持して😌
 
 ~~~admonish example title="event.lua"
@@ -130,9 +126,7 @@ Plan A との比較では`update-status`を使わなくて良くなったのと�
 ```
 
 ## まとめ
-上にも書きましたが、Plan B は10/12 時点で nightly builds only です。
-
-それ以外はほとんど問題にならないと思われますが、
+ほとんど問題にならないと思われますが、
 頻繁にディスプレイを切り替えるような使い方をする場合は Plan A の方が有用かもしれないので、ひとまず Tips として残しておきます。
 
 ```admonish success

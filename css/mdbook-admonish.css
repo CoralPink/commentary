@@ -334,3 +334,7 @@ details[open].admonition > summary.admonition-title::after {
   mask-size: contain;
   -webkit-mask-repeat: no-repeat;
 }
+
+.admonition-anchor-link:link, .admonition-anchor-link:visited {
+  color: var(--sidebar-fg);
+}

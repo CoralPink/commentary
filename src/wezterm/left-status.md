@@ -66,6 +66,7 @@ This is the same text that is shown at the cursor position when composing.
 
 これは、コンポジション時にカーソル位置に表示されるテキストと同じものです。
 ```
+
 `GetKeyboard()`では、`window:composition_status()`の結果が`nil`か否かでアイコンの色を変えてます。
 
 ```admonish note
@@ -98,17 +99,9 @@ end)
 ```
 ~~~
 
-normal:
-
-![key-normal](img/key-normal.webp)
-
-leader key is active:
-
-![key-leader](img/key-leader.webp)
-
-composition:
-
-![key-ime](img/key-ime.webp)
+|normal|leader key is active|composition|
+|:---:|:---:|:---:|
+|![key-normal](img/key-normal.webp)|![key-leader](img/key-leader.webp)|![key-ime](img/key-ime.webp)|
 
 ```admonish success
 こんなもんですね。動きが出て楽しいですね😆 ...ね❗️ね❗️

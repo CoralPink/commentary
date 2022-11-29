@@ -89,7 +89,7 @@ vim.keymap.set('n', 'lhs', function() print("real lua function") end)
 
 ## 実行
 
-本題に戻って、ノーマルモードで`lhs`と入力してみましょう。
+本題に戻って、ノーマルモードで<kbd>l</kbd><kbd>h</kbd><kbd>s</kbd>と入力してみましょう。
 
 ![call-function1](img/call-function1.webp)
 
@@ -98,7 +98,7 @@ vim.keymap.set('n', 'lhs', function() print("real lua function") end)
 ```admonish warning
 動くことが確認できたら、このコードはすぐ消しときましょう😅
 
-じゃないと、ノーマルモードのカーソル移動 (`l`) が挙動不審になっちゃうので❗
+じゃないと、ノーマルモードのカーソル移動 (<kbd>l</kbd>) が挙動不審になっちゃうので❗
 
 (ぶっちゃけサンプルが不親切だと思う...🤫)
 ```
