@@ -1,23 +1,21 @@
 h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+h2 {
   position: relative;
   border-bottom: solid 3px #ffb2cc;
   font-style: italic;
 }
 
 h1:after,
-h2:after,
-h3:after,
-h4:after,
-h5:after,
-h6:after {
+h2:after {
   position: absolute;
   content: " ";
   display: block;
   border-bottom: solid 3px #dcb7f1;
   width: 10%;
+}
+
+h3 {
+  position: relative;
+  border-bottom: solid 1px #ffb2cc;
+  font-style: italic;
 }
