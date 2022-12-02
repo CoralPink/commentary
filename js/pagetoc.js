@@ -29,7 +29,7 @@ var updateFunction = function () {
       el.classList.remove("active");
     }
   );
-
+/*
   Array.prototype.forEach.call(
     document.getElementsByClassName("pagetoc")[0].children,
     function (el) {
@@ -42,6 +42,7 @@ var updateFunction = function () {
       }
     }
   );
+*/
 };
 
 // Populate sidebar on load
@@ -58,10 +59,10 @@ window.addEventListener("load", function () {
         indent = "20px";
         break;
       case "H3":
-        indent = "40px";
+        indent = "35px";
         break;
       case "H4":
-        indent = "60px";
+        indent = "50px";
         break;
       default:
         break;
