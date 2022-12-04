@@ -57,6 +57,7 @@
     - [tabstop / shiftwidth / expandtab](neovim/options/tab.md)
 
 - [Automatic Command](neovim/au/automatic-commands.md)
+
   - [nvim_create_autocmd](neovim/au/nvim_create_autocmd.md)
   - [nvim_create_augroup](neovim/au/nvim_create_augroup.md)
 
@@ -64,9 +65,15 @@
 - [Leader Key](neovim/leader.md)
 
 - [Function](neovim/function/function.md)
+
   - [Warming Up](neovim/function/warming-up.md)
   - [Parameters / Return Values](neovim/function/param-return.md)
   - [vim.cmd](neovim/function/vim-cmd.md)
   - [Call The Plugin](neovim/function/call-plugin.md)
+
+- [Plugin](neovim/plugin/plugin.md)
+  - [Packer.nvim](neovim/plugin/packer.md)
+  - [nvim-treesitter](neovim/plugin/nvim-treesitter.md)
+  - [onenord.nvim](neovim/plugin/onenord.md)
 
 # ...To Be Continued
