@@ -24,13 +24,9 @@ You can install Neovim from download, package, or source in just a few seconds.
 ~~~admonish warning
 なんて思ってましたが環境によっては結構ラグあるんですね...😿 (Oct 15 時点)
 
-*`0.8.0`だよね〜❗の図↓:*
-![brew-info](img/brew-info.webp)
-
-*`0.7.2-3.el9`だって〜⁉️の図↓:*
-![rocky](img/rocky.webp)
-
-その後、Nov 1 時点で`0.8.0-0.el9`になってました❗
+|v0.8.0|v0.7.2-3.el9|
+|:---|:---|
+|![brew-info](img/brew-info.webp)|![rocky](img/rocky.webp)|
 ~~~
 
 ```admonish success
