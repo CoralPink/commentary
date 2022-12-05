@@ -15,14 +15,14 @@ Vimscript ("init.vim")またはLua ("init.lua")のどちらかになりますが
 ...なんつって。白々しかったですよね〜😉
 
 このサイトでは、`WezTerm`でも散々扱ってきた`Lua`を選択します。
-(というか、わたしは`VimScript`扱えません。)
+(というか、わたしは`VimScript`を扱えません...😅)
 
 ```admonish note
 `Neovim`は`Vimscript`を扱えますが、後継の`Vim9 script`はサポートしないことが表明されているようです。
 
 もしこれを扱いたい場合は [Vim](https://www.vim.org) を使う必要があります。
 
-詳しく調べたわけではありませんが、これから始めるなら`Neovim + Lua`か`Vim + Vim9 script`の2択じゃないでしょうか？
+詳しく調べたわけではありませんが、これから始めるのであれば`Neovim + Lua`か`Vim + Vim9 script`の2択じゃないでしょうか❓
 ```
 
 ```admonish warning
@@ -48,7 +48,7 @@ Vimscript ("init.vim")またはLua ("init.lua")のどちらかになりますが
 |$XDG_CONFIG_HOME|$XDG_CONFIG_HOME/nvim/init.vim (or init.lua)|
 
 ```admonish note
-`$XDG_CONFIG_HOME`はちょっと影響範囲が広いので、このサイトでは扱いません。
+`$XDG_CONFIG_HOME`は影響範囲が広いので、このサイトでは扱いません。
 ```
 
 ```admonish info title="[Flatpak](https://github.com/neovim/neovim/wiki/Installing-Neovim#flatpak)"
