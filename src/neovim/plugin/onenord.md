@@ -19,7 +19,7 @@ Neovim >= 0.8.0
 `Treesitter`を活用するため、`onenord.nvim`の要求もこれに合わせられているようですね。
 
 ```admonish note
-これは少し前のお話です。`nvim-treesitter`で大規模な変更が施されたことによる甚大な影響が出て、`onenord`に限らず、highlight`が壊滅したことがありました。
+これはちょっと前のお話ですが、`nvim-treesitter`で大規模な変更が施されたことによる甚大な影響により、`highlight`が壊滅したことがありました。
 
 [feat!: remove obsolete TS* highlight groups](https://github.com/nvim-treesitter/nvim-treesitter/commit/42ab95d5e11f247c6f0c8f5181b02e816caa4a4f)
 
@@ -74,9 +74,8 @@ require('onenord').setup {
 
 ## config
 
-ある程度は変数名とコメントだけで推測できると思うんですが、上の例で使ってないものも含めてフワッと触れます。
-
-また、見た感じですが、`disable.background`を`true`にしている場合は効果が無いものもありそうです。
+ある程度は変数名とコメントだけで推測できると思うんですが、上の例で使ってないものも含めてフワ〜っと触れます。
+見た感じ、`disable.background`を`true`にしている場合は効果が無いものもありそうです。
 
 ~~~admonish info title="[Configuration](https://github.com/rmehri01/onenord.nvim#configuration)"
 The configuration of different options is done through a setup function which will handle setting the colors, so there's no need to set colorscheme yourself!
@@ -85,39 +84,43 @@ The configuration of different options is done through a setup function which wi
 ~~~
 
 ### theme
-
+```
 "dark" or "light". Alternatively, remove the option and set vim.o.background instead
 
 `dark`または`light`。もしくは、このオプションを削除して`vim.o.background`を設定します。
+```
 
 `:h background`を見ると、`defalut "dark"`とあったので、`light`テーマを使う場合には変更が必要かもしれません。
 (ごめんなさい、確認してない...😅)
 
 ### borders
-
+```
 Split window borders
 
 ウィンドウの境界にボーダーを表示します。
+```
 
 |true|false|
 |:---:|:---:|
 |![enable](img/borders-true.webp)|![disable](img/borders-false.webp)|
 
 ### fade_nc
-
+```
 Fade non-current windows, making them more distinguishable
 
 現在表示されていないウィンドウをフェードさせ、区別しやすくする。
+```
 
 |true|false|
 |:---:|:---:|
 |![enable](img/fade_nc-true.webp)|![disable](img/fade_nc-false.webp)|
 
 ### styles
-
+```
 Style that is applied to various groups: see `highlight-args` for options
 
 様々なグループに適用されるスタイル: オプションは `:h highlight-args` を参照してください。
+```
 
 ```lua
 -- 以下はデフォルト値です。
@@ -135,45 +138,53 @@ styles = {
 |:---:|:---:|
 |![bold](img/style-bold.webp)|![disable](img/style-none.webp)|
 
+```admonish note
 `comments`を`italic`にするのもオシャレなんですが、カーソルがそのままなので、個人的には使いにくいかなー、なんて😅
 ![italic](img/italic.webp)
-
+```
 
 ### disable
 
 #### background
-
+```
 Disable setting the background color
 
 これを`true`として無効化すると、ターミナルの背景色やアルファチャンネル値がそのまま反映されます。
+```
 
 |true|false|
 |:---:|:---:|
 |![enable](img/background-true.webp)|![disable](img/background-false.webp)|
 
 #### cursorline
-
+```
 Disable the cursorline
 
 カーソルラインを無効にします。
+```
 
 #### eob_lines
-
+```
 Hide the end-of-buffer lines
 
-バッファ終端行を隠します。...これちょっと何かわからなかった...😿
+バッファ終端行を隠します。
+```
+
+...これちょっと何かわからなかった...😿
 
 ### inverse
-
+```
 Inverse highlight for different groups
 
 グループごとにハイライトを反転させます。
+```
 
 ### custom_highlights
-
+```
 Overwrite default highlight groups
 
 デフォルトのハイライトグループを上書きします。
+```
 
 |customize|none|
 |:---:|:---:|
@@ -182,10 +193,11 @@ Overwrite default highlight groups
 ちょっと見えにくいかな...。上の例では`}`です。
 
 ### custom_colors
-
+```
 Overwrite default colors
 
 デフォルトの色を上書きします。
+```
 
 ### まとめ
 
@@ -193,14 +205,18 @@ Overwrite default colors
 
 ![onenord](img/onenord.webp)
 
-前のページでも使用したイメージと比べるとさらに変化がわかりやすいです。
+前のページとの比較ではさらに変化がわかりやすいです。
 
-|default|nvim-treesitter|onenord.nvim|
-|:---:|:---:|:---:|
-|![color1](img/color1.webp)|![color2](img/color2.webp)|![color3](img/color3.webp)|
+|default|nvim-treesitter|
+|:---:|:---:|
+|![color1](img/color1.webp)|![color2](img/color2.webp)|
+
+|onenord.nvim|
+|:---:|
+|![color3](img/color3.webp)|
 
 ```admonish success
-なんだか、ようやくひと段落ついた感じがします☺️
+なんだか、ようやくひと段落って感じがします☺️
 
-わたしも頑張ったぞ、ニッポン❗トーナメント勝ち上がるとこ見たいなぁ〜😌
+わたしも頑張ったぞ、ニッポン❗トーナメントを駆け上がった景色見たいなぁ...⚽🏆
 ```

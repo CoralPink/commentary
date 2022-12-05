@@ -1,6 +1,6 @@
 # packer.nvim
 
-では、早速ですが、まずはプラグインマネージャーからいきます。
+では早速ですが、まずはプラグイン/パッケージマネージャーからいきます。
 
 マネージャーだったりお作法だったりは色々あるんですが、わたしは`packer.nvim`を愛用しています😆
 
@@ -26,17 +26,17 @@ Packerはネイティブパッケージの上に構築されています。先�
 `Neovim v0.5.0`以降と`LuaJIT`については、ここまで来て今更問題にはならないと思われますが、
 `Windows 10`で動かす場合には別途操作が必要になるみたいです。(自信がないので触れられない...😰)
 
-あと、(ここには書いてないけど) 当然のように`git`を使用するので、まだの人は前節へ。
-
 ```admonish note
+あと、(ここには書いてないけど) 当然のように`git`を使用するので、まだの人は前節へ。
+```
+
 例えば、同じように「パッケージマネージャー」と呼ばれる`Homebrew`や`apt`、`dnf`なんかだと、
-`あれ install`と唱えるだけで、依存関係と照らし合わせて不足しているソフトやライブラリまでを自動でインストールしてくれますが、
-`Neovim`プラグインはそういった依存関係をデータとして持ち合わせていないので、作者の説明を読んで自分で把握しないといけないんですね。
+`install あれ`と唱えるだけで、動作に必要な`依存関係`と照らし合わせて、不足しているソフトやライブラリまでも自動でインストールしてくれますが、
+`Neovim`プラグインはそういった`依存関係`をデータとしては持ち合わせていないので、作者の説明を見て自分で把握しないといけないんですね。
 
 なので、どのプラグインであっても`Requirements`は必ず確認するようにしてください。重要だぞ😉❤️
 
-「とにかく動かしてみたいから、細かい話はあとだー❗」ってなっちゃうわたしが言うのも変ですが、まあ、焦らず進めましょう☺️
-```
+「とにかく動かしてみたいから、細かい話はあとだー❗」ってなっちゃうわたしが言うのも変ですが、まあ焦らず進めましょう☺️
 
 ## Download
 
@@ -75,7 +75,7 @@ git clone https://github.com/wbthomason/packer.nvim "$env:LOCALAPPDATA\nvim-data
 
 ~~~admonish note
 (仮想環境ではあるんですが)`Ubuntu Server for ARM`では`apt`からインストールできる`Neovim`のバージョンが異様に低かったので
-`flatpak`を使ったら、「なにこれ、マルチバース❓」って言うぐらい未知な`packpath`でした。もはや "panicpath" です🤣
+`flatpak`を使ったら、「なにこれマルチバース❓」って言うぐらいマッドネスな`packpath`でした。もはや "panicpath" です🤣
 
 ...ただ、話がわかっていればこんなの適合させるぐらい簡単ですよね〜😉 `packpath`を確認の上で合わせてあげてください。
 
@@ -95,15 +95,15 @@ git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.var/app/io.neov
 
 `lua`ディレクトリに新しく`extensions`ディレクトリを作成します。
 
-```admonish note
-ディレクトリ名はやっぱり何でも良くて、それこそ`plugin`とかしてもいいんですが、もうこの後すぐややこしくなるので`extensions`としました。
-```
-
 ~~~admonish quote title="extensionsディレクトリを作る"
 ```sh
 mkdir extensions
 ```
 ~~~
+
+```admonish note
+ディレクトリ名はやっぱり何でも良くて、それこそ`plugin`とかしてもいいんですが、何ならこの後すぐにややこしくなるので`extensions`としました。
+```
 
 で、その中に`init.lua`を作っちゃいましょう。
 
@@ -119,9 +119,9 @@ end)
 
 ![first-tree](img/first-tree.webp)
 
-それじゃあ、`nvim`直下の`init.lua`から呼び出してあげましょう。
+それじゃあ`nvim`直下の`init.lua`から呼び出してあげましょう。(今作ったやつではなく、前からいるやつです。)
 
-(今作ったやつではなくて、前からいるやつです。)`options`とか`keybinds`を呼び出しているところに並べてあげてください。
+`options`とか`keybinds`を呼び出しているところに並べてあげてください😄
 
 ~~~admonish example title="../init.lua"
 ```lua
@@ -131,7 +131,7 @@ require 'extensions'
 
 ## 起動
 
-ここまで行った状態で`nvim`を起動すると...❓何も起きませんね😮
+ここまでを行った状態で`nvim`を起動すると...❓何も起きませんね😮
 
 ちなみに、今の状態で
 
@@ -144,7 +144,7 @@ require 'extensions'
 
 ![runtimepath](img/runtimepath.webp)
 
-...なんか前より増えてますよね。しれっと`packer.nvim`も入ってるし。
+...なんか前より増えてますよね。しれっと`packer.nvim`もいるし。
 
 ~~~admonish info title=":h packages"
 ```
@@ -170,15 +170,15 @@ details.
 
 ![packer-cmd](img/packer-cmd.webp)
 
-見た目はちょっと Poison☠️ ですが、何やら`Packer`を名乗るコマンドが候補に上がってきましたね❗確かにインストールできてそうな気配です。
+見た目はちょっと Poison☠️ ですが、何やら`Packer`を名乗るコマンドが候補に上がってきましたね❗確かにインストールできてそうな気配です😆
 
 せっかくなので、`PackerCompile`を選んで実行してみましょう...❗何も起きませ...いや、ちょっと待って❗
 
-なんだか`nvim/plugin`ディレクトリが勝手に作成されて、その中に`packer_compiled.lua`が生成されていますね。
+なんだか`nvim/plugin`ディレクトリと、その中に`packer_compiled.lua`が生成されています😮
 
 ![packer-tree](img/packer-tree.webp)
 
-このファイルは`packer.nvim`が管理してくれるので、触らなくていい (というか、`触ってはいけない`) のですが、ちょっとだけ中を見てみましょう。
+このファイルは`packer.nvim`が管理してくれるので触らなくていい (というか、`触ってはいけない`) のですが、ちょっとだけ中を見てみましょう。
 
 ![packer-compiled](img/packer_compiled.webp)
 
@@ -195,7 +195,7 @@ _G.packer_plugins = {
 
 なんかこんなのがいますよね。
 
-この`packer_plugins`の中に、`extensions/init.lua`に指定したプラグインがどんどん追加されていきます。
+この`packer_plugins`の中に、`extensions/init.lua`に指定したプラグインが`:PackerCompile`によって、どんどん追加されていきます。
 
 要するに便利ってことです😆
 
@@ -285,7 +285,7 @@ end,
 config = {
   display = {
     open_fn = function()
-      return require 'packer.util'.float { border = 'single' }
+      return require('packer.util').float { border = 'single' }
     end,
   }
 }} -- 文法的に当たり前ではありますが、ここも `)` から '}' に変わってます
@@ -303,7 +303,7 @@ require('packer').startup {
   config = {
     display = {
       open_fn = function()
-        return require 'packer.util'.float { border = 'single' }
+        return require('packer.util').float { border = 'single' }
       end,
     }
   }
@@ -323,11 +323,9 @@ require('packer').startup {
 
 ## まとめ
 
-`pakcer.nvim`には便利な機能や設定がまだあるのですが、
+`pakcer.nvim`には便利な機能や設定がまだまだあるのですが、
 ここで説明だけしてもイメージが掴みにくいと思うので、使用する場面で、その都度注釈を入れていく形にしようと思ってます。
 
-`packer.nvim`はこの後も出ずっぱりになるので、親しみを込めて、今後は単に`packer`と呼びます🤗
-
 ~~~admonish success
-それでは次のページからプラグインを追加していきましょう😆
+`packer.nvim`はこの後も出ずっぱりになるので、親しみを込めて今後は単に`packer`と呼びます🤗
 ~~~

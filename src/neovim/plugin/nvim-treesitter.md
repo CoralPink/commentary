@@ -19,7 +19,7 @@ A C compiler in your path and libstdc++ installed [(Windows users please read th
 
 ## Requirements
 
-環境によっては別途インストールが必要かもしれないので、一個ずつ確認していきます。
+ここは一個ずつ確認していきます。
 
 ### Neovim 0.8.0 or later
 
@@ -29,13 +29,13 @@ A C compiler in your path and libstdc++ installed [(Windows users please read th
 
 ### git (tar,curl)
 
-これは`packer.nvim`を導入する前にもう既に`git`をインストールしているはずなので大丈夫😉
+これは`packer.nvim`を導入する前に、既に`git`をインストールしているはずなので大丈夫😉
 
 気になる場合は`tar`と`curl`も確認しておきましょう。
 
 ### C compiler
 
-わたしの経験で言えば`macOS`では問題になったことが無いです。最低限`Command Line Tools`が入っていれば大丈夫なはずです。
+わたしの経験で言えば`macOS`では問題になったことがありません。最低限`Command Line Tools`が入っていれば大丈夫なはずです。
 (例えば`Homebrew`のインストール時に自動で導入されます。)
 
 `Windows`の場合はやっぱり別途案内がされているので、そちらを参照頂ければ...。
@@ -47,19 +47,25 @@ A C compiler in your path and libstdc++ installed [(Windows users please read th
 |:---:|:---:|
 |![gcc_cpp](img/gcc-cpp.webp)|![gcc_cpp](img/clang.webp)|
 
-Readmeにも明記されているように`libstd++`も必要になってくるようなので、`gcc`だとうまくいきませんでした😮
+```admonish info
+Readmeにも明記されているように`libstd++`も必要になるはずなので、`gcc`だとうまくいきませんでした😮
+```
 
 ## Install
 
-前項が済めば、あとは`packer`にお願いするだけで、あっ❗と言う間に終わります😆
+前項の確認さえ済めば、あとは`packer`にお願いするだけで「あっ❗」と言う間に終わります😆
 
 `extensions/init.lua`に以下を追記しましょう。
 
 ~~~admonish example title="extensions/init.lua"
 ```lua
-use {
-  `nvim-treesitter/nvim-treesitter`,
-}
+require('packer').startup { function()
+  use 'wbthomason/packer.nvim'
+
+  -- 前節で入れたpackerと同列に並べる
+  use 'nvim-treesitter/nvim-treesitter'
+end,
+-- (以下略)
 ```
 ~~~
 
@@ -72,7 +78,7 @@ use {
 ```admonish note
 `nvim-treesitter`の説明では、`:TSUpdate`を併せて行うように説明されているのですが、これはあくまで`vim-plug`を使用している場合の例です。
 
-`packer.nvim`では`run`オプションで同じことができそうなんですが、これを使用すると初回でエラーが起きてしまうので、わたしは外しています。
+`packer.nvim`では`run`オプションで同じことができそうなんですが、これを使用すると初回だけエラーが起きてしまうので、わたしは外しています。
 
 ![ErrorTSUpdate](img/error-tsupdate.webp)
 ```
@@ -117,16 +123,20 @@ require('nvim-treesitter.configs').setup {
 ```
 ~~~
 
-そして、これを`packer`の管理下に置いて使います。
+そして、これを`packer`の管理下に置いて使います。`nvim-treesitter`の読み込み部分を少し書き換えます。
 
 ~~~admonish example title="extensions/init.lua"
 ```lua
+require('packer').startup { function()
+  use 'wbthomason/packer.nvim'
+
+  -- こんな感じで。
   use {
     'nvim-treesitter/nvim-treesitter',
-
-    -- 以下を追記
     config = function() require 'extensions.nvim-treesitter' end,
   }
+end,
+-- (以下略)
 ```
 ~~~
 
@@ -138,16 +148,20 @@ require('nvim-treesitter.configs').setup {
 
 これで、`lua`ファイルが今までよりも賢く色付けされてるはずです。どうでしょう❓
 
+```admonish warning
+もしここでエラーが起きるようであれば、`C compiler`を疑ってください😣
+```
+
 |default|nvim-treesitter|
 |:---:|:---:|
 |![color1](img/color1.webp)|![color2](img/color2.webp)|
 
 ```admonish note
-これは例が面白くないのであれなんですが、オフィシャルイメージを拝借すると、こんなに変わってます❗
+これは例が面白くないのであれなんですが、オフィシャルイメージを見るとこんなに変わってます❗
 
 [nvim-treesitter/wiki/Gallery](https://github.com/nvim-treesitter/nvim-treesitter/wiki/Gallery)
 
-...まあ、こっちでも`lua`はあんまり変わってないですね...😅
+...あっちでも`lua`はあんまり変わってないですけど😅
 ```
 
 ## Commands
@@ -160,7 +174,7 @@ COMMANDS
 ```
 ~~~
 
-ちなみに、わたしはほぼ':TSUpdate'しか使ってません❗"sitter"って言うぐらいなので、特に操作しなくてもしっかりお世話してくれます👶
+ちなみに、わたしはほぼ`:TSUpdate`しか使ってません❗ sitter って言うぐらいなので、特に操作しなくてもしっかりお世話してくれます👶
 
 
 ## Modules
@@ -176,9 +190,11 @@ By default, everything is disabled.
 ~~~
 
 ### ensure_installed
+```
 A list of parser names, or "all"
 
 パーサ名のリスト、または "all"を指定する。
+```
 
 上の例では`lua`だけ入れてます。使用頻度の高い言語を入れておくと良いです。
 
@@ -191,36 +207,46 @@ List of languages for which a parser can be installed through :TSInstall
 ```
 
 ### sync_install
+```
 Install parsers synchronously. (only applied to `ensure_installed`)
 
-パーサーを同期的にインストールする。 (`ensure_installed` にのみ適用される)
+パーサを同期的にインストールする。 (`ensure_installed` にのみ適用される)
+```
 
-「同期的インストール」、要はアップデートですね😉
-`ensure_installed`に入れていないパーサーについては、コマンドから`:TSUpdate`で行うことができます。
+「同期的インストール」...、つまりアップデートですね😉
+
+`ensure_installed`に入れていないパーサについては、コマンドから`:TSUpdate`で行うことができます。
 
 ### auto_install
+```
 Automatically install missing parsers when entering buffer.
 
-バッファに入ったときに足りないパーサーを自動的にインストールします。
+バッファに入ったときに足りないパーサを自動的にインストールします。
+```
 
-手動でインストールしたい場合はコマンドから`:TSInstall あれ`を行いましょう。
+手動でインストールしたい場合はコマンドから`:TSInstall 言語`を行いましょう。
 
 ### highlight
-
+```
 `false` will disable the whole extension
 
-```lua
-enable = false
+false` を指定すると、拡張機能全体を無効にすることができます。
 ```
-...と、すると拡張機能全体を無効にします。いや、せっかく入れたので`true`にしましょ❓
+
+```lua
+highlight = {
+  enable = false
+}
+```
+...と、すれば拡張機能全体を無効にします。いや、せっかく入れたので`true`にしましょ❓
 
 ちなみに`disable`オプションを使うと、特定の言語だけ選んで除外できます。
+
 ```lua
 highlight = {
   enable = true,
   disable = { "c", "rust" },
 },
-}
 ```
 
 ### incremental_selection
@@ -253,9 +279,7 @@ Incremental selection based on the named nodes from the grammar.
 
 ### indent
 
-実験的な段階らしいですが、インデントが賢くなる...んですか⁉️
-
-あんまり威力を実感することはないんですが、わたしはなんとなく使ってます😅
+実験的な段階らしいですが、インデントが賢くなる...んです⁉️ あんまり威力を実感することはないんですが、わたしはなんとなく使ってます😅
 
 これも`highlight`と同じく、言語を選んで除外できます。
 
