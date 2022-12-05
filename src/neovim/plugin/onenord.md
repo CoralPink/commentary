@@ -12,14 +12,14 @@ Onenordは、NordとAtom One Darkのカラーパレットを組み合わせた�
 
 生きていたのか。`Atom`の意志は...👁️
 
-```admonish info title="Requirements"
+```admonish abstract title="Requirements"
 Neovim >= 0.8.0
 ```
 
 `Treesitter`を活用するため、`onenord.nvim`の要求もこれに合わせられているようですね。
 
 ```admonish note
-これはちょっと前のお話ですが、`nvim-treesitter`で大規模な変更が施されたことによる甚大な影響により、`highlight`が壊滅したことがありました。
+これはちょっと前のお話ですが、`nvim-treesitter`で大規模な変更が施されたことによる甚大な影響を受けて、`highlight`が壊滅したことがありました。
 
 [feat!: remove obsolete TS* highlight groups](https://github.com/nvim-treesitter/nvim-treesitter/commit/42ab95d5e11f247c6f0c8f5181b02e816caa4a4f)
 
@@ -218,5 +218,5 @@ Overwrite default colors
 ```admonish success
 なんだか、ようやくひと段落って感じがします☺️
 
-わたしも頑張ったぞ、ニッポン❗トーナメントを駆け上がった景色見たいなぁ...⚽🏆
+わたしも頑張ったぞ、ニッポン❗トーナメントを駆け上がった景色は綺麗だろうなぁ...⚽🏆
 ```
