@@ -1,10 +1,10 @@
 # Summary
 
-- [introduction](introduction.md)
+- [Introduction](introduction.md)
 
 # WezTerm
 
-- [installation](wezterm/installation.md)
+- [Installation](wezterm/installation.md)
 
 - [Configuration](wezterm/configuration.md)
 
@@ -32,7 +32,7 @@
 
 # Neovim
 
-- [installation](neovim/installation.md)
+- [Installation](neovim/installation.md)
 
 - [User Config](neovim/user-config.md)
 - [Lua Module](neovim/lua-module.md)
