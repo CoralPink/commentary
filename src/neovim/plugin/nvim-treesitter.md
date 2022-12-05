@@ -295,6 +295,55 @@ Supported options:
 ```
 ~~~
 
+## CheckHealth
+
+これは`nvim-treesitter`に限らない`Neovim`の機能になりますが、`health`チェックというものがあります😉
+
+~~~admonish info title=":h health"
+```
+health.vim is a minimal framework to help users troubleshoot configuration and
+any other environment conditions that a plugin might care about. 
+
+health.vim は、プラグイン設定やその他の環境条件の
+トラブルシューティングを支援するための最小限のフレームワークである。
+
+Plugin authors are encouraged to write new healthchecks. |health-dev|
+
+プラグインの作者は新しいヘルスチェックを書くことが推奨されている。
+```
+~~~
+
+コマンドは`:h health-commands`にある通りです。試しに動かしてみましょう。
+
+```
+:che
+```
+ または
+
+```
+:checkhealth
+```
+
+![checkhealth](img/checkhealth.webp)
+
+結果が表示されましたね☺️
+
+診断内容はプラグインに依りますが、`nvim-treesitter`の場合は、依存ソフトウェアの確認とインストールされたパーサの表示を行ってくれます。
+
+~~~admonish note
+これもヘルプそのままですが、指定したプラグインだけを診断することも可能です。
+```
+:che nvim-treesitter
+```
+
+とすると、`nvim-treesitter`のヘルスチェックのみを行えます。
+~~~
+
+```admonish tip
+上では`環境条件`と表されていますが、`packer`の節で少し触れた`依存関係`と (大体は) 同じ意味でしょう。
+プラグインによっては、今回のようにヘルスチェックによる診断を提供してくれているので、困った時はこれも参考にすると良いです😉
+```
+
 ## まとめ
 
 ```admonish success
