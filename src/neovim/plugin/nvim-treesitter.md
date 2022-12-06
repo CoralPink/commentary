@@ -38,7 +38,8 @@ A C compiler in your path and libstdc++ installed [(Windows users please read th
 わたしの経験で言えば`macOS`では問題になったことがありません。最低限`Command Line Tools`が入っていれば大丈夫なはずです。
 (例えば`Homebrew`のインストール時に自動で導入されます。)
 
-`Windows`の場合はやっぱり別途案内がされているので、そちらを参照頂ければ...。
+`Windows`の場合はやっぱり[別途案内](https://github.com/nvim-treesitter/nvim-treesitter/wiki/Windows-support)
+がされているので、そちらを参照頂ければ...。
 
 `Linux`の場合、もしかしたら別途インストールが必要かもしれないので手っ取り早く解決方法だけ載っけちゃうんですが、
 `gcc-c++`、もしくは`clang`をインストールするのが良さそうです。
@@ -47,7 +48,7 @@ A C compiler in your path and libstdc++ installed [(Windows users please read th
 |:---:|:---:|
 |![gcc_cpp](img/gcc-cpp.webp)|![gcc_cpp](img/clang.webp)|
 
-```admonish info
+```admonish note
 Readmeにも明記されているように`libstd++`も必要になるはずなので、`gcc`だとうまくいきませんでした😮
 ```
 
@@ -73,15 +74,26 @@ end,
 
 ![installed](img/installed.webp)
 
-簡単ですね😉
+簡単ですね😉 すっごい見にくいけど❗
 
-```admonish note
+~~~admonish note
 `nvim-treesitter`の説明では、`:TSUpdate`を併せて行うように説明されているのですが、これはあくまで`vim-plug`を使用している場合の例です。
 
 `packer.nvim`では`run`オプションで同じことができそうなんですが、これを使用すると初回だけエラーが起きてしまうので、わたしは外しています。
 
 ![ErrorTSUpdate](img/error-tsupdate.webp)
+
+インストール自体は`100%`で`done.`ってなってるし、2回目以降は何事もなかったかのように`:TSUpdate`まで完走できるんですけどね。すっごい見にくいけど❗
+
+初回だけ外すか、もしくは気にしないかするのであれば超便利です。
+
+```lua
+  use {
+    'nvim-treesitter/nvim-treesitter',
+    run = ':TSUpdate',
+  }
 ```
+~~~
 
 ## Config
 
@@ -89,7 +101,7 @@ end,
 
 `Neovim`プラグインの場合、`Readme`である程度デフォルト設定が示されていて、
 それを基に「変える？変えない？」を決めるみたいな、割とアバウトな方法にどうしてもなってくる...んじゃないかなぁと思ってるんですがどうでしょう❓
-(違ってたらごめんなさい。)
+(違ってたらごめんなさい😅)
 
 とりあえずは新しくファイルを作っていきます。
 
@@ -149,7 +161,7 @@ end,
 これで、`lua`ファイルが今までよりも賢く色付けされてるはずです。どうでしょう❓
 
 ```admonish warning
-もしここでエラーが起きるようであれば、`C compiler`を疑ってください😣
+もしここでエラーが起きるようであれば、もう一度`C compiler`を確認してみてください😣
 ```
 
 |default|nvim-treesitter|
@@ -161,7 +173,7 @@ end,
 
 [nvim-treesitter/wiki/Gallery](https://github.com/nvim-treesitter/nvim-treesitter/wiki/Gallery)
 
-...あっちでも`lua`はあんまり変わってないですけど😅
+...あっちでも`lua`は変化がわかりにいんですけどね😅
 ```
 
 ## Commands
