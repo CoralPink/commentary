@@ -204,55 +204,59 @@ _G.packer_plugins = {
 `packer.nvim`はプラグインのアップデートなども含めてマネージメントしてくれます☺️
 
 ### PackerCompile
+```
 You must run this or `PackerSync` whenever you make changes to your plugin configuration regenerate compiled loader file
 
 プラグインの設定を変更したときは、必ずこのコマンドか`PackerSync`を実行しなければなりません。
-
 コンパイル済みのローダーファイルを再生成します。
+```
 
 ### PackerClean
+```
 Remove any disabled or unused plugins
-
 無効または未使用のプラグインを削除します。
+```
 
 ### PackerInstall
+```
 Clean, then install missing plugins
-
 無効になっているプラグインを削除し、インストールします。
+```
 
 ### PackerUpdate
+```
 Clean, then update and install plugins
-
 supports the `--preview` flag as an optional first argument to preview updates
 
 クリーンアップの後、プラグインをアップデートしてインストールします。
-
 アップデートをプレビューするためのオプションの第一引数として `--preview` フラグをサポートします。
+```
 
 ### PackerSync
+```
 Perform `PackerUpdate` and then `PackerCompile`
-
 supports the `--preview` flag as an optional first argument to preview updates
 
 `PackerUpdate`と`PackerCompile`を実行します。
-
 アップデートをプレビューするためのオプションの第一引数として `--preview` フラグをサポートします。
+```
 
 ```admonish note
 基本的には、何か変更があったら`:PackerSync`を使えばインストール、アップデート、コンパイルまで全て行ってくれます😉
-
 ![packer_update](img/packer-sync.webp)
 ```
 
 ### PackerStatus
+```
 Show list of installed plugins
-
 インストールされているプラグインのリストを表示します。
+```
 
 ### PackerLoad
+```
 Loads opt plugin immediately
-
 optプラグインをすぐにロードする
+```
 
 ## Help 
 
@@ -279,7 +283,7 @@ Packer の config にユーティリティ関数を渡すことで、コマン�
 
 ~~~admonish example title="extensions/init.lua"
 ```lua
-require('packer').startup { function() -- `(` から '{' に変わってます
+require('packer').startup { function() -- '(' から '{' に変わってます
   use 'wbthomason/packer.nvim'
 end,
 config = {
@@ -288,11 +292,11 @@ config = {
       return require('packer.util').float { border = 'single' }
     end,
   }
-}} -- 文法的に当たり前ではありますが、ここも `)` から '}' に変わってます
+}} -- 文法的に当たり前ではあるんですが、ここも ')' から '}' に変わってます
 ```
 ~~~
 
-~~~admonish example title="extensions/init.lua"
+~~~admonish note
 上の例はちょっと変則的なインデントになっちゃってますが、きっちりやるならこうです。お好みで😉
 
 ```lua
@@ -315,8 +319,9 @@ require('packer').startup {
 
 なんていうか...、やっぱ Poison☠️❓
 
-この毒はカラーテーマを入れちゃえば自然と抜けるんで、「少しの間だけ気にしないで...」と言いたいところではありますが、
-「どうしても耐えられない〜❗」っていう場合は、一個飛ばして`15.3. onenord.nvim`を先にやってもらえると、すぐにいい感じになります。
+この毒はカラーテーマを入れちゃえば自然と抜けるんで、
+わたしとしては「少しの間だけ気にしないで...」と言ってしまいたいところではあるんですが、
+「どうしても耐えられない〜❗」っていう場合は、一個飛ばして`15.3. onenord.nvim`を先にやってもらうと、すぐにいい感じになります。
 
 ![float-window2](img/float-window2.webp)
 
