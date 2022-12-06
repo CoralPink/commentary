@@ -245,12 +245,14 @@ Automatically install missing parsers when entering buffer.
 false` を指定すると、拡張機能全体を無効にすることができます。
 ```
 
+と、いうことなので、
+
 ```lua
 highlight = {
   enable = false
 }
 ```
-...と、すれば拡張機能全体を無効にします。いや、せっかく入れたので`true`にしましょ❓
+...なんてしちゃえば拡張機能全体を無効にします。いや、せっかく入れたので`true`にしましょ❓
 
 ちなみに`disable`オプションを使うと、特定の言語だけ選んで除外できます。
 
