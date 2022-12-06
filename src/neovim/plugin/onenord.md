@@ -37,7 +37,6 @@ Neovim >= 0.8.0
 local colors = require('onenord.colors').load()
 
 require('onenord').setup {
-  -- Style that is applied to various groups: see `highlight-args` for options
   styles = {
     comments = 'NONE',
     strings = 'NONE',
@@ -47,13 +46,11 @@ require('onenord').setup {
     diagnostics = 'underline',
   },
 
-  -- Disable settings
   disable = {
     background = true,
     eob_lines = true,
   },
 
-  -- Custom highlight
   custom_highlights = {
     MatchParen = { fg = colors.none, bg = colors.none, style = 'bold,underline' },
   },
@@ -61,7 +58,7 @@ require('onenord').setup {
 ```
 ~~~
 
-これももうテンプレートですね。
+これももうテンプレートですね😉 他の`use`ブロックと同列に並べてあげてください。
 
 ~~~admonish example title="extensions/init.lua"
 ```lua
@@ -74,7 +71,7 @@ require('onenord').setup {
 
 ## config
 
-ある程度は変数名とコメントだけで推測できると思うんですが、上の例で使ってないものも含めてフワ〜っと触れます。
+ある程度は変数名とコメントだけで推測できると思うんですが、上の例で使ってないものも含めてフワ〜っと触れます😆
 見た感じ、`disable.background`を`true`にしている場合は効果が無いものもありそうです。
 
 ~~~admonish info title="[Configuration](https://github.com/rmehri01/onenord.nvim#configuration)"
@@ -108,7 +105,7 @@ Split window borders
 ```
 Fade non-current windows, making them more distinguishable
 
-現在表示されていないウィンドウをフェードさせ、区別しやすくする。
+現在のウィンドウ以外をフェードさせ、区別しやすくする。
 ```
 
 |true|false|
@@ -149,8 +146,10 @@ styles = {
 ```
 Disable setting the background color
 
-これを`true`として無効化すると、ターミナルの背景色やアルファチャンネル値がそのまま反映されます。
+背景色の設定を無効にします。
 ```
+
+これを`true`として無効化すると、ターミナルの背景色やアルファチャンネル値がそのまま反映されます。
 
 |true|false|
 |:---:|:---:|
