@@ -474,8 +474,9 @@ function playground_text(playground) {
   var sidebar = document.getElementById("sidebar");
   var sidebarLinks = document.querySelectorAll("#sidebar a");
   var sidebarToggleButton = document.getElementById("sidebar-toggle");
-  var sidebarResizeHandle = document.getElementById("sidebar-resize-handle");
   var firstContact = null;
+
+  window.innerWidth > 1000 ? showSidebar() : hideSidebar();
 
   function showSidebar() {
     html.classList.remove("sidebar-hidden");
@@ -534,32 +535,6 @@ function playground_text(playground) {
       }
     }
   });
-
-  sidebarResizeHandle.addEventListener("mousedown", initResize, false);
-
-  function initResize(e) {
-    window.addEventListener("mousemove", resize, false);
-    window.addEventListener("mouseup", stopResize, false);
-    html.classList.add("sidebar-resizing");
-  }
-  function resize(e) {
-    var pos = e.clientX - sidebar.offsetLeft;
-    if (pos < 20) {
-      hideSidebar();
-    } else {
-      if (html.classList.contains("sidebar-hidden")) {
-        showSidebar();
-      }
-      pos = Math.min(pos, window.innerWidth - 100);
-      document.documentElement.style.setProperty("--sidebar-width", pos + "px");
-    }
-  }
-  //on mouseup remove windows functions mousemove & mouseup
-  function stopResize(e) {
-    html.classList.remove("sidebar-resizing");
-    window.removeEventListener("mousemove", resize, false);
-    window.removeEventListener("mouseup", stopResize, false);
-  }
 
   document.addEventListener(
     "touchstart",
