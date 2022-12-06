@@ -389,18 +389,7 @@ ul#searchresults span.teaser em {
   right: 0;
   padding: 10px 7px;
 }
-.sidebar .sidebar-resize-handle {
-  position: absolute;
-  cursor: col-resize;
-  width: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-}
-.js .sidebar .sidebar-resize-handle {
-  cursor: col-resize;
-  width: 5px;
-}
+
 .sidebar-hidden .sidebar {
   transform: translateX(calc(0px - var(--sidebar-width)));
 }
