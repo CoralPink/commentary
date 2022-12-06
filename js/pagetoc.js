@@ -29,7 +29,6 @@ var updateFunction = function () {
       el.classList.remove("active");
     }
   );
-/*
   Array.prototype.forEach.call(
     document.getElementsByClassName("pagetoc")[0].children,
     function (el) {
@@ -42,7 +41,6 @@ var updateFunction = function () {
       }
     }
   );
-*/
 };
 
 // Populate sidebar on load

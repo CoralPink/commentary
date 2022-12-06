@@ -1,6 +1,5 @@
 h1,
 h2 {
-  position: relative;
   border-bottom: solid 3px #ffb2cc;
   font-style: italic;
 }
@@ -15,7 +14,6 @@ h2:after {
 }
 
 h3 {
-  position: relative;
   border-bottom: solid 1px #ffb2cc;
   font-style: italic;
 }
