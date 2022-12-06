@@ -476,7 +476,7 @@ function playground_text(playground) {
   var sidebarToggleButton = document.getElementById("sidebar-toggle");
   var firstContact = null;
 
-  window.innerWidth > 1000 ? showSidebar() : hideSidebar();
+  window.innerWidth > 1100 ? showSidebar() : hideSidebar();
 
   function showSidebar() {
     html.classList.remove("sidebar-hidden");
