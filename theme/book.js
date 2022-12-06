@@ -179,7 +179,6 @@ function playground_text(playground) {
         block.classList.remove("language-rust");
       });
 
-    Array;
     code_nodes
       .filter(function (node) {
         return !node.classList.contains("editable");
