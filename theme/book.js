@@ -476,8 +476,6 @@ function playground_text(playground) {
   var sidebarToggleButton = document.getElementById("sidebar-toggle");
   var firstContact = null;
 
-  window.innerWidth > 1100 ? showSidebar() : hideSidebar();
-
   function showSidebar() {
     html.classList.remove("sidebar-hidden");
     html.classList.add("sidebar-visible");
@@ -534,6 +532,10 @@ function playground_text(playground) {
         showSidebar();
       }
     }
+  });
+
+  window.addEventListener("resize", function () {
+    window.innerWidth > 1100 ? showSidebar() : hideSidebar();
   });
 
   document.addEventListener(
