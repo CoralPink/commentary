@@ -1,64 +1,48 @@
-// Un-active everything when you click it
-Array.prototype.forEach.call(
-  document.getElementsByClassName("pagetoc")[0].children,
-  function (el) {
-    el.addEventHandler("click", function () {
-      Array.prototype.forEach.call(
-        document.getElementsByClassName("pagetoc")[0].children,
-        function (el) {
-          el.classList.remove("active");
-        }
-      );
-      el.classList.add("active");
-    });
-  }
-);
+let cacheHeader = document.getElementsByClassName("header");
+let cachePagetoc = document.getElementsByClassName("pagetoc")[0].children;
 
-var updateFunction = function () {
-  var id;
+const updateFunction = () => {
+  const getCurrentHeadline = () => {
+    let head;
 
-  Array.prototype.some.call(
-    document.getElementsByClassName("header"),
-    function (el) {
+    Array.prototype.some.call(cacheHeader, function (el) {
       if (window.pageYOffset >= el.offsetTop) {
-        id = el;
+        head = el;
       } else {
         return true;
       }
-    }
-  );
+    });
 
-  if (!id) {
+    return head;
+  };
+
+  const current = getCurrentHeadline();
+
+  if (!current) {
     return;
   }
 
-  Array.prototype.forEach.call(
-    document.getElementsByClassName("pagetoc")[0].children,
-    function (el) {
-      if (id.href.localeCompare(el.href) == 0) {
-        el.classList.add("active");
-      } else {
-        el.classList.remove("active");
-      }
+  Array.prototype.forEach.call(cachePagetoc, function (el) {
+    if (el.href.localeCompare(current.href) == 0) {
+      el.classList.add("active");
+    } else {
+      el.classList.remove("active");
     }
-  );
+  });
 };
 
 // Populate sidebar on load
 window.addEventListener("load", function () {
-  Array.prototype.forEach.call(
-    document.getElementsByClassName("header"),
-    function (el) {
-      var link = document.createElement("a");
+  Array.prototype.forEach.call(cacheHeader, function (el) {
+    const link = document.createElement("a");
 
-      link.appendChild(document.createTextNode(el.text));
-      link.href = el.href;
-      link.classList.add("pagetoc-" + el.parentElement.tagName);
+    link.appendChild(document.createTextNode(el.text));
+    link.href = el.href;
+    link.classList.add(el.parentElement.tagName);
 
-      document.getElementsByClassName("pagetoc")[0].appendChild(link);
-    }
-  );
-  updateFunction.call();
+    document.getElementsByClassName("pagetoc")[0].appendChild(link);
+  });
+  updateFunction();
 });
 
 // Handle active elements on scroll

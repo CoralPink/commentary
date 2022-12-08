@@ -39,18 +39,18 @@
     color: var(--sidebar-active) !important;
   }
 
-  .pagetoc .pagetoc-H1 {
+  .pagetoc a.H1 {
     padding-left: 10px;
   }
-  .pagetoc .pagetoc-H2 {
+  .pagetoc a.H2 {
     padding-left: 20px;
   }
-  .pagetoc .pagetoc-H3 {
+  .pagetoc a.H3 {
     padding-left: 30px;
   }
-  .pagetoc .pagetoc-H4,
-  .pagetoc .pagetoc-H5,
-  .pagetoc .pagetoc-H6 {
+  .pagetoc a.H4,
+  .pagetoc a.H5,
+  .pagetoc a.H6 {
     padding-left: 40px;
   }
 }
