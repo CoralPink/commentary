@@ -5,157 +5,10 @@ window.onunload = function () {};
 
 // Global variable, shared between modules
 function playground_text(playground) {
-  let code_block = playground.querySelector("code");
-
-  if (window.ace && code_block.classList.contains("editable")) {
-    let editor = window.ace.edit(code_block);
-    return editor.getValue();
-  } else {
-    return code_block.innerText;
-  }
+  return playground.querySelector("code").innerText;
 }
 
 (function codeSnippets() {
-  function fetch_with_timeout(url, options, timeout = 6000) {
-    return Promise.race([
-      fetch(url, options),
-      new Promise((_, reject) =>
-        setTimeout(() => reject(new Error("timeout")), timeout)
-      ),
-    ]);
-  }
-
-  var playgrounds = Array.from(document.querySelectorAll(".playground"));
-  if (playgrounds.length > 0) {
-    fetch_with_timeout("https://play.rust-lang.org/meta/crates", {
-      headers: {
-        "Content-Type": "application/json",
-      },
-      method: "POST",
-      mode: "cors",
-    })
-      .then((response) => response.json())
-      .then((response) => {
-        // get list of crates available in the rust playground
-        let playground_crates = response.crates.map((item) => item["id"]);
-        playgrounds.forEach((block) =>
-          handle_crate_list_update(block, playground_crates)
-        );
-      });
-  }
-
-  function handle_crate_list_update(playground_block, playground_crates) {
-    // update the play buttons after receiving the response
-    update_play_button(playground_block, playground_crates);
-
-    // and install on change listener to dynamically update ACE editors
-    if (window.ace) {
-      let code_block = playground_block.querySelector("code");
-      if (code_block.classList.contains("editable")) {
-        let editor = window.ace.edit(code_block);
-        editor.addEventListener("change", function (e) {
-          update_play_button(playground_block, playground_crates);
-        });
-        // add Ctrl-Enter command to execute rust code
-        editor.commands.addCommand({
-          name: "run",
-          bindKey: {
-            win: "Ctrl-Enter",
-            mac: "Ctrl-Enter",
-          },
-          exec: (_editor) => run_rust_code(playground_block),
-        });
-      }
-    }
-  }
-
-  // updates the visibility of play button based on `no_run` class and
-  // used crates vs ones available on http://play.rust-lang.org
-  function update_play_button(pre_block, playground_crates) {
-    var play_button = pre_block.querySelector(".play-button");
-
-    // skip if code is `no_run`
-    if (pre_block.querySelector("code").classList.contains("no_run")) {
-      play_button.classList.add("hidden");
-      return;
-    }
-
-    // get list of `extern crate`'s from snippet
-    var txt = playground_text(pre_block);
-    var re = /extern\s+crate\s+([a-zA-Z_0-9]+)\s*;/g;
-    var snippet_crates = [];
-    var item;
-    while ((item = re.exec(txt))) {
-      snippet_crates.push(item[1]);
-    }
-
-    // check if all used crates are available on play.rust-lang.org
-    var all_available = snippet_crates.every(function (elem) {
-      return playground_crates.indexOf(elem) > -1;
-    });
-
-    if (all_available) {
-      play_button.classList.remove("hidden");
-    } else {
-      play_button.classList.add("hidden");
-    }
-  }
-
-  function run_rust_code(code_block) {
-    var result_block = code_block.querySelector(".result");
-    if (!result_block) {
-      result_block = document.createElement("code");
-      result_block.className = "result hljs language-bash";
-
-      code_block.append(result_block);
-    }
-
-    let text = playground_text(code_block);
-    let classes = code_block.querySelector("code").classList;
-    let edition = "2015";
-    if (classes.contains("edition2018")) {
-      edition = "2018";
-    } else if (classes.contains("edition2021")) {
-      edition = "2021";
-    }
-    var params = {
-      version: "stable",
-      optimize: "0",
-      code: text,
-      edition: edition,
-    };
-
-    if (text.indexOf("#![feature") !== -1) {
-      params.version = "nightly";
-    }
-
-    result_block.innerText = "Running...";
-
-    fetch_with_timeout("https://play.rust-lang.org/evaluate.json", {
-      headers: {
-        "Content-Type": "application/json",
-      },
-      method: "POST",
-      mode: "cors",
-      body: JSON.stringify(params),
-    })
-      .then((response) => response.json())
-      .then((response) => {
-        if (response.result.trim() === "") {
-          result_block.innerText = "No output";
-          result_block.classList.add("result-no-output");
-        } else {
-          result_block.innerText = response.result;
-          result_block.classList.remove("result-no-output");
-        }
-      })
-      .catch(
-        (error) =>
-          (result_block.innerText =
-            "Playground Communication: " + error.message)
-      );
-  }
-
   // Syntax highlighting Configuration
   hljs.configure({
     tabReplace: "    ", // 4 spaces
@@ -168,29 +21,9 @@ function playground_text(playground) {
       return !node.parentElement.classList.contains("header");
     });
 
-  if (window.ace) {
-    // language-rust class needs to be removed for editable
-    // blocks or highlightjs will capture events
-    code_nodes
-      .filter(function (node) {
-        return node.classList.contains("editable");
-      })
-      .forEach(function (block) {
-        block.classList.remove("language-rust");
-      });
-
-    code_nodes
-      .filter(function (node) {
-        return !node.classList.contains("editable");
-      })
-      .forEach(function (block) {
-        hljs.highlightBlock(block);
-      });
-  } else {
-    code_nodes.forEach(function (block) {
-      hljs.highlightBlock(block);
-    });
-  }
+  code_nodes.forEach(function (block) {
+    hljs.highlightBlock(block);
+  });
 
   // Adding the hljs class gives code blocks the color css
   // even if highlighting doesn't apply
@@ -201,20 +34,19 @@ function playground_text(playground) {
   Array.from(document.querySelectorAll("code.language-rust")).forEach(function (
     block
   ) {
-    var lines = Array.from(block.querySelectorAll(".boring"));
     // If no lines were hidden, return
-    if (!lines.length) {
+    if (!Array.from(block.querySelectorAll(".boring")).length) {
       return;
     }
     block.classList.add("hide-boring");
 
-    var buttons = document.createElement("div");
+    const buttons = document.createElement("div");
     buttons.className = "buttons";
     buttons.innerHTML =
       '<button class="fa fa-eye" title="Show hidden lines" aria-label="Show hidden lines"></button>';
 
     // add expand button
-    var pre_block = block.parentNode;
+    const pre_block = block.parentNode;
     pre_block.insertBefore(buttons, pre_block.firstChild);
 
     pre_block.querySelector(".buttons").addEventListener("click", function (e) {
@@ -238,16 +70,18 @@ function playground_text(playground) {
 
   if (window.playground_copyable) {
     Array.from(document.querySelectorAll("pre code")).forEach(function (block) {
-      var pre_block = block.parentNode;
+      const pre_block = block.parentNode;
+
       if (!pre_block.classList.contains("playground")) {
-        var buttons = pre_block.querySelector(".buttons");
+        let buttons = pre_block.querySelector(".buttons");
+
         if (!buttons) {
           buttons = document.createElement("div");
           buttons.className = "buttons";
           pre_block.insertBefore(buttons, pre_block.firstChild);
         }
 
-        var clipButton = document.createElement("button");
+        const clipButton = document.createElement("button");
         clipButton.className = "fa fa-copy clip-button";
         clipButton.title = "Copy to clipboard";
         clipButton.setAttribute("aria-label", clipButton.title);
@@ -257,67 +91,32 @@ function playground_text(playground) {
       }
     });
   }
-
   // Process playground code blocks
-  Array.from(document.querySelectorAll(".playground")).forEach(function (
-    pre_block
-  ) {
-    // Add play button
-    var buttons = pre_block.querySelector(".buttons");
-    if (!buttons) {
-      buttons = document.createElement("div");
-      buttons.className = "buttons";
-      pre_block.insertBefore(buttons, pre_block.firstChild);
+  Array.from(document.querySelectorAll(".playground")).forEach(function () {
+    if (!window.playground_copyable) {
+      return;
     }
+    const copyCodeClipboardButton = document.createElement("button");
 
-    var runCodeButton = document.createElement("button");
-    runCodeButton.className = "fa fa-play play-button";
-    runCodeButton.hidden = true;
-    runCodeButton.title = "Run this code";
-    runCodeButton.setAttribute("aria-label", runCodeButton.title);
+    copyCodeClipboardButton.className = "fa fa-copy clip-button";
+    copyCodeClipboardButton.innerHTML = '<i class="tooltiptext"></i>';
+    copyCodeClipboardButton.title = "Copy to clipboard";
+    copyCodeClipboardButton.setAttribute(
+      "aria-label",
+      copyCodeClipboardButton.title
+    );
 
-    buttons.insertBefore(runCodeButton, buttons.firstChild);
-    runCodeButton.addEventListener("click", function (e) {
-      run_rust_code(pre_block);
-    });
-
-    if (window.playground_copyable) {
-      var copyCodeClipboardButton = document.createElement("button");
-      copyCodeClipboardButton.className = "fa fa-copy clip-button";
-      copyCodeClipboardButton.innerHTML = '<i class="tooltiptext"></i>';
-      copyCodeClipboardButton.title = "Copy to clipboard";
-      copyCodeClipboardButton.setAttribute(
-        "aria-label",
-        copyCodeClipboardButton.title
-      );
-
-      buttons.insertBefore(copyCodeClipboardButton, buttons.firstChild);
-    }
-
-    let code_block = pre_block.querySelector("code");
-    if (window.ace && code_block.classList.contains("editable")) {
-      var undoChangesButton = document.createElement("button");
-      undoChangesButton.className = "fa fa-history reset-button";
-      undoChangesButton.title = "Undo changes";
-      undoChangesButton.setAttribute("aria-label", undoChangesButton.title);
-
-      buttons.insertBefore(undoChangesButton, buttons.firstChild);
-
-      undoChangesButton.addEventListener("click", function () {
-        let editor = window.ace.edit(code_block);
-        editor.setValue(editor.originalCode);
-        editor.clearSelection();
-      });
-    }
+    buttons.insertBefore(copyCodeClipboardButton, buttons.firstChild);
   });
 })();
 
 (function themes() {
-  var html = document.querySelector("html");
-  var themeToggleButton = document.getElementById("theme-toggle");
-  var themePopup = document.getElementById("theme-list");
-  var themeColorMetaTag = document.querySelector('meta[name="theme-color"]');
-  var stylesheets = {
+  const html = document.querySelector("html");
+  const themeToggleButton = document.getElementById("theme-toggle");
+  const themePopup = document.getElementById("theme-list");
+  const themeColorMetaTag = document.querySelector('meta[name="theme-color"]');
+
+  const stylesheets = {
     highlight: document.querySelector("[href$='highlight.css']"),
   };
 
@@ -343,7 +142,8 @@ function playground_text(playground) {
   }
 
   function get_theme() {
-    var theme;
+    let theme;
+
     try {
       theme = localStorage.getItem("mdbook-theme");
     } catch (e) {}
@@ -363,13 +163,7 @@ function playground_text(playground) {
       ).backgroundColor;
     }, 1);
 
-    if (window.ace && window.editors) {
-      window.editors.forEach(function (editor) {
-        editor.setTheme("ace/theme/dawn");
-      });
-    }
-
-    var previousTheme = get_theme();
+    const previousTheme = get_theme();
 
     if (store) {
       try {
@@ -379,24 +173,20 @@ function playground_text(playground) {
 
     html.classList.remove(previousTheme);
     html.classList.add(theme);
+
     updateThemeSelected();
   }
 
   // Set theme
-  var theme = get_theme();
-
-  set_theme(theme, false);
+  set_theme(get_theme(), false);
 
   themeToggleButton.addEventListener("click", function () {
-    if (themePopup.style.display === "block") {
-      hideThemes();
-    } else {
-      showThemes();
-    }
+    themePopup.style.display === "block" ? hideThemes() : showThemes();
   });
 
   themePopup.addEventListener("click", function (e) {
-    var theme;
+    let theme;
+
     if (e.target.className === "theme") {
       theme = e.target.id;
     } else if (e.target.parentElement.className === "theme") {
@@ -437,43 +227,49 @@ function playground_text(playground) {
       return;
     }
 
-    switch (e.key) {
-      case "Escape":
-        e.preventDefault();
-        hideThemes();
-        break;
-      case "ArrowUp":
-        e.preventDefault();
-        var li = document.activeElement.parentElement;
-        if (li && li.previousElementSibling) {
-          li.previousElementSibling.querySelector("button").focus();
-        }
-        break;
-      case "ArrowDown":
-        e.preventDefault();
-        var li = document.activeElement.parentElement;
-        if (li && li.nextElementSibling) {
-          li.nextElementSibling.querySelector("button").focus();
-        }
-        break;
-      case "Home":
-        e.preventDefault();
-        themePopup.querySelector("li:first-child button").focus();
-        break;
-      case "End":
-        e.preventDefault();
-        themePopup.querySelector("li:last-child button").focus();
-        break;
+    if (e.key == "Escape") {
+      e.preventDefault();
+      hideThemes();
+      return;
+    }
+    if (e.key == "ArrowUp") {
+      e.preventDefault();
+      const li = document.activeElement.parentElement;
+
+      if (li && li.previousElementSibling) {
+        li.previousElementSibling.querySelector("button").focus();
+      }
+      return;
+    }
+    if (e.key == "ArrowDown") {
+      e.preventDefault();
+      const li = document.activeElement.parentElement;
+
+      if (li && li.nextElementSibling) {
+        li.nextElementSibling.querySelector("button").focus();
+      }
+      return;
+    }
+    if (e.key == "Home") {
+      e.preventDefault();
+      themePopup.querySelector("li:first-child button").focus();
+      return;
+    }
+    if (e.key == "End") {
+      e.preventDefault();
+      themePopup.querySelector("li:last-child button").focus();
+      return;
     }
   });
 })();
 
 (function sidebar() {
-  var html = document.querySelector("html");
-  var sidebar = document.getElementById("sidebar");
-  var sidebarLinks = document.querySelectorAll("#sidebar a");
-  var sidebarToggleButton = document.getElementById("sidebar-toggle");
-  var firstContact = null;
+  const html = document.querySelector("html");
+  const sidebar = document.getElementById("sidebar");
+  const sidebarLinks = document.querySelectorAll("#sidebar a");
+  const sidebarToggleButton = document.getElementById("sidebar-toggle");
+
+  let firstContact = null;
 
   function showSidebar() {
     html.classList.remove("sidebar-hidden");
@@ -488,13 +284,13 @@ function playground_text(playground) {
     } catch (e) {}
   }
 
-  var sidebarAnchorToggles = document.querySelectorAll("#sidebar a.toggle");
-
   function toggleSection(ev) {
     ev.currentTarget.parentElement.classList.toggle("expanded");
   }
 
-  Array.from(sidebarAnchorToggles).forEach(function (el) {
+  Array.from(document.querySelectorAll("#sidebar a.toggle")).forEach(function (
+    el
+  ) {
     el.addEventListener("click", toggleSection);
   });
 
@@ -514,10 +310,11 @@ function playground_text(playground) {
   // Toggle sidebar
   sidebarToggleButton.addEventListener("click", function sidebarToggle() {
     if (html.classList.contains("sidebar-hidden")) {
-      var current_width = parseInt(
+      const current_width = parseInt(
         document.documentElement.style.getPropertyValue("--sidebar-width"),
         10
       );
+
       if (current_width < 150) {
         document.documentElement.style.setProperty("--sidebar-width", "150px");
       }
@@ -525,11 +322,9 @@ function playground_text(playground) {
     } else if (html.classList.contains("sidebar-visible")) {
       hideSidebar();
     } else {
-      if (getComputedStyle(sidebar)["transform"] === "none") {
-        hideSidebar();
-      } else {
-        showSidebar();
-      }
+      getComputedStyle(sidebar)["transform"] === "none"
+        ? hideSidebar()
+        : showSidebar();
     }
   });
 
@@ -553,9 +348,9 @@ function playground_text(playground) {
     function (e) {
       if (!firstContact) return;
 
-      var curX = e.touches[0].clientX;
-      var xDiff = curX - firstContact.x,
-        tDiff = Date.now() - firstContact.time;
+      const curX = e.touches[0].clientX;
+      const xDiff = curX - firstContact.x;
+      const tDiff = Date.now() - firstContact.time;
 
       if (tDiff < 250 && Math.abs(xDiff) >= 150) {
         if (
@@ -572,9 +367,10 @@ function playground_text(playground) {
   );
 
   // Scroll sidebar to current active section
-  var activeSection = document
+  let activeSection = document
     .getElementById("sidebar")
     .querySelector(".active");
+
   if (activeSection) {
     // https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView
     activeSection.scrollIntoView({ block: "center" });
@@ -593,14 +389,16 @@ function playground_text(playground) {
     switch (e.key) {
       case "ArrowRight":
         e.preventDefault();
-        var nextButton = document.querySelector(".nav-chapters.next");
+        const nextButton = document.querySelector(".nav-chapters.next");
+
         if (nextButton) {
           window.location.href = nextButton.href;
         }
         break;
       case "ArrowLeft":
         e.preventDefault();
-        var previousButton = document.querySelector(".nav-chapters.previous");
+        const previousButton = document.querySelector(".nav-chapters.previous");
+
         if (previousButton) {
           window.location.href = previousButton.href;
         }
@@ -610,8 +408,6 @@ function playground_text(playground) {
 })();
 
 (function clipboard() {
-  var clipButtons = document.querySelectorAll(".clip-button");
-
   function hideTooltip(elem) {
     elem.firstChild.innerText = "";
     elem.className = "fa fa-copy clip-button";
@@ -622,15 +418,16 @@ function playground_text(playground) {
     elem.className = "fa fa-copy tooltipped";
   }
 
-  var clipboardSnippets = new ClipboardJS(".clip-button", {
+  const clipboardSnippets = new ClipboardJS(".clip-button", {
     text: function (trigger) {
       hideTooltip(trigger);
-      let playground = trigger.closest("pre");
-      return playground_text(playground);
+      return playground_text(trigger.closest("pre"));
     },
   });
 
-  Array.from(clipButtons).forEach(function (clipButton) {
+  Array.from(document.querySelectorAll(".clip-button")).forEach(function (
+    clipButton
+  ) {
     clipButton.addEventListener("mouseout", function (e) {
       hideTooltip(e.currentTarget);
     });
@@ -647,63 +444,62 @@ function playground_text(playground) {
 })();
 
 (function scrollToTop() {
-  var menuTitle = document.querySelector(".menu-title");
-
-  menuTitle.addEventListener("click", function () {
+  document.querySelector(".menu-title").addEventListener("click", function () {
     document.scrollingElement.scrollTo({ top: 0, behavior: "smooth" });
   });
 })();
 
 (function controllMenu() {
-  var menu = document.getElementById("menu-bar");
+  const menu = document.getElementById("menu-bar");
 
   (function controllPosition() {
-    var scrollTop = document.scrollingElement.scrollTop;
-    var prevScrollTop = scrollTop;
-    var minMenuY = -menu.clientHeight - 50;
+    const scrollTop = document.scrollingElement.scrollTop;
+    const prevScrollTop = scrollTop;
+
     // When the script loads, the page can be at any scroll (e.g. if you reforesh it).
     menu.style.top = scrollTop + "px";
-    // Same as parseInt(menu.style.top.slice(0, -2), but faster
-    var topCache = menu.style.top.slice(0, -2);
     menu.classList.remove("sticky");
-    var stickyCache = false; // Same as menu.classList.contains('sticky'), but faster
+
     document.addEventListener(
       "scroll",
       function () {
-        scrollTop = Math.max(document.scrollingElement.scrollTop, 0);
-        // `null` means that it doesn't need to be updated
-        var nextSticky = null;
-        var nextTop = null;
-        var scrollDown = scrollTop > prevScrollTop;
-        var menuPosAbsoluteY = topCache - scrollTop;
-        if (scrollDown) {
-          nextSticky = false;
+        const scrollTopMax = Math.max(document.scrollingElement.scrollTop, 0);
+        const menuPosAbsoluteY = menu.style.top.slice(0, -2) - scrollTopMax;
+
+        let nextTop = null;
+        let nextSticky = false;
+
+        if (scrollTopMax > prevScrollTop) {
           if (menuPosAbsoluteY > 0) {
             nextTop = prevScrollTop;
           }
         } else {
           if (menuPosAbsoluteY > 0) {
             nextSticky = true;
-          } else if (menuPosAbsoluteY < minMenuY) {
-            nextTop = prevScrollTop + minMenuY;
+          } else {
+            const minMenuY = -menu.clientHeight - 50;
+
+            if (menuPosAbsoluteY < minMenuY) {
+              nextTop = prevScrollTop + minMenuY;
+            }
           }
         }
-        if (nextSticky === true && stickyCache === false) {
+
+        if (nextSticky === true) {
           menu.classList.add("sticky");
-          stickyCache = true;
-        } else if (nextSticky === false && stickyCache === true) {
+        } else {
           menu.classList.remove("sticky");
-          stickyCache = false;
         }
+
+        // `null` means that it doesn't need to be updated
         if (nextTop !== null) {
           menu.style.top = nextTop + "px";
-          topCache = nextTop;
         }
-        prevScrollTop = scrollTop;
       },
       { passive: true }
     );
   })();
+
   (function controllBorder() {
     menu.classList.remove("bordered");
     document.addEventListener(
