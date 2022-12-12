@@ -70,7 +70,7 @@ end,
 ```
 ~~~
 
-で、`PackerSync`を実行しましょう。
+で、`:PackerSync`を実行しましょう❗
 
 ![installed](img/installed.webp)
 
@@ -97,7 +97,7 @@ end,
 
 ## Config
 
-インストールが終わったら、次にやることはコンフィグですね。
+インストールが終わったら、次にやることはコンフィグですね😆
 
 `Neovim`プラグインの場合、`Readme`である程度デフォルト設定が示されていて、
 それを基に「変える？変えない？」を決めるみたいな、割とアバウトな方法にどうしてもなってくる...んじゃないかなぁと思ってるんですがどうでしょう❓
@@ -105,7 +105,7 @@ end,
 
 とりあえずは新しくファイルを作っていきます。
 
-これもやっぱり名前は何でも良いんですが、パッケージ名と揃えて`nvim-treesitter.lua`としています。
+これもやっぱり名前は何でも良いんですが、パッケージ名と揃えて`nvim-treesitter.lua`としています☺️
 
 ~~~admonish example title="extensions/nvim-treesitter.lua"
 ```lua
@@ -135,7 +135,7 @@ require('nvim-treesitter.configs').setup {
 ```
 ~~~
 
-そして、これを`packer`の管理下に置いて使います。`nvim-treesitter`の読み込み部分を少し書き換えます。
+そして、これを`packer`の管理下に置いて使います。先ほど書いた`nvim-treesitter`の読み込み部分を少し書き換えます。
 
 ~~~admonish example title="extensions/init.lua"
 ```lua
@@ -152,6 +152,13 @@ end,
 ```
 ~~~
 
+~~~admonish info title=":h packer.use()"
+```
+config = string or function, -- Specifies code to run after this plugin is loaded.
+                                このプラグインがロードされた後に実行するコードを指定します。
+```
+~~~
+
 再起動もしくは`:so`でこの状態を反映させてから`PackerSync`もしくは`PackerCompile`を実行しましょう。
 
 すると、`nvim-treesitter`が動いて、最終的にこんなのが出てきました。
@@ -159,6 +166,10 @@ end,
 ![lua-installed](img/lua-installed.webp)
 
 これで、`lua`ファイルが今までよりも賢く色付けされてるはずです。どうでしょう❓
+
+```admonish note
+`ensure_installed`で指定した言語パーサのインストールが行われるはずなので、それによっては少し表示が変わります。
+```
 
 ```admonish warning
 もしここでエラーが起きるようであれば、もう一度`C compiler`を確認してみてください😣
@@ -210,7 +221,9 @@ A list of parser names, or "all"
 
 上の例では`lua`だけ入れてます。使用頻度の高い言語を入れておくと良いです。
 
-面倒なら`all`でも良いんですが、`auto_install`があるので、オフライン環境でない限りはそちらを活用する方が良いんじゃないかなーって思ってます。
+面倒なら`all`でも良いんですが、`auto_install`があるので、"オフライン環境で動かす"とかでなければ、そちらを活用する方が良いんじゃないかなーって思ってます。
+
+対応言語は以下の通りです。
 
 ```admonish info title="[Supported languages](https://github.com/nvim-treesitter/nvim-treesitter#supported-languages)"
 List of languages for which a parser can be installed through :TSInstall
@@ -227,7 +240,9 @@ Install parsers synchronously. (only applied to `ensure_installed`)
 
 「同期的インストール」...、つまりアップデートですね😉
 
+```admonish note
 `ensure_installed`に入れていないパーサについては、コマンドから`:TSUpdate`で行うことができます。
+```
 
 ### auto_install
 ```
@@ -236,7 +251,9 @@ Automatically install missing parsers when entering buffer.
 バッファに入ったときに足りないパーサを自動的にインストールします。
 ```
 
-手動でインストールしたい場合はコマンドから`:TSInstall 言語`を行いましょう。
+```admonish note
+手動でインストールしたい場合はコマンドから`:TSInstall {言語}`を行いましょう。
+```
 
 ### highlight
 ```
@@ -293,14 +310,18 @@ Incremental selection based on the named nodes from the grammar.
 
 ### indent
 
-実験的な段階らしいですが、インデントが賢くなる...んです⁉️ あんまり威力を実感することはないんですが、わたしはなんとなく使ってます😅
+実験的な機能らしいですが、インデントが賢くなる...んです⁉️ あんまり威力を実感することはないんですが、わたしはなんとなく使ってます😅
 
 これも`highlight`と同じく、言語を選んで除外できます。
 
 ~~~admonish info title=":h nvim-treesitter-indntation-mod"
 ```
 Indentation based on treesitter for the |=| operator.
+
+|=| 演算子の treesitter に基づくインデント。
+
 NOTE: this is an experimental feature.
+      これは実験的な機能です。
 
 Query files: `indents.scm`.
 Supported options:
@@ -342,7 +363,7 @@ Plugin authors are encouraged to write new healthchecks. |health-dev|
 
 結果が表示されましたね☺️
 
-診断内容はプラグインに依りますが、`nvim-treesitter`の場合は、依存ソフトウェアの確認とインストールされたパーサの表示を行ってくれます。
+診断内容はプラグインに依りますが、`nvim-treesitter`の場合は、依存ソフトウェアの確認と、OS情報・インストールされたパーサの表示を行ってくれます。
 
 ~~~admonish note
 これもヘルプそのままですが、指定したプラグインだけを診断することも可能です。
@@ -354,7 +375,7 @@ Plugin authors are encouraged to write new healthchecks. |health-dev|
 ~~~
 
 ```admonish tip
-上では`環境条件`と表されていますが、`packer`の節で少し触れた`依存関係`と (大体は) 同じ意味でしょう。
+冒頭の説明では`環境条件`と表されていますが、`packer`の節で少し触れた`依存関係`と (大体は) 同じ意味でしょう。
 プラグインによっては、今回のようにヘルスチェックを提供してくれているので、困った時はこれも参考にすると良いです😉
 ```
 

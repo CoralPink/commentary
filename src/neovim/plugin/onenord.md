@@ -1,13 +1,13 @@
 # onenord.nvim
 
-わたしの一番のお気に入りカラーテーマは`onenord.nvim`です。
+わたしの一番のお気に入りカラーテーマは`onenord.nvim`です😆
 
 ```admonish info title = "[onenord.nvim](https://github.com/rmehri01/onenord.nvim)"
 Onenord is a Neovim theme written in Lua that combines the Nord and Atom One Dark color palettes.
 More specifically, it seeks to add more vibrance to the Nord theme and provide a great programming experience by leveraging Treesitter!
 
 Onenordは、NordとAtom One Darkのカラーパレットを組み合わせた、Luaで書かれたNeovimのテーマです。
-具体的には、Treesitterを活用することで、Nordのテーマに活気を与え、素晴らしいプログラミング体験を提供することを目的としています。
+具体的には、Treesitterを活用することで、Nordのテーマに活気を与え、素晴らしいプログラミング体験を提供することを目的としています!
 ```
 
 生きていたのか。`Atom`の意志は...👁️
@@ -48,11 +48,13 @@ require('onenord').setup {
 
   disable = {
     background = true,
-    eob_lines = true,
   },
 
   custom_highlights = {
     MatchParen = { fg = colors.none, bg = colors.none, style = 'bold,underline' },
+  },
+  custom_colors = {
+    mypink = '#FFB2CC',
   },
 }
 ```
@@ -136,7 +138,7 @@ styles = {
 |![bold](img/style-bold.webp)|![disable](img/style-none.webp)|
 
 ```admonish note
-`comments`を`italic`にするのもオシャレなんですが、カーソルがそのままなので、個人的には使いにくいかなー、なんて😅
+例えば、`comments`を`italic`にするのもオシャレなんですが、カーソルがそのままなので個人的には使いにくいかなー、なんて😅
 ![italic](img/italic.webp)
 ```
 
@@ -198,13 +200,18 @@ Overwrite default colors
 デフォルトの色を上書きします。
 ```
 
-### まとめ
+```admonish note
+説明にはありませんが、実はオリジナルの色を新しく定義することもできちゃいます。
+```
+
+## まとめ
 
 ここまでやっただけでも見違えるような変身っぷりですね❗
 
 ![onenord](img/onenord.webp)
 
-前のページとの比較ではさらに変化がわかりやすいです。
+```admonish note
+前のページとの比較ではさらに変化がわかりやすいです😉
 
 |default|nvim-treesitter|
 |:---:|:---:|
@@ -213,6 +220,7 @@ Overwrite default colors
 |onenord.nvim|
 |:---:|
 |![color3](img/color3.webp)|
+```
 
 ```admonish success
 なんだか、ようやくひと段落って感じがします☺️

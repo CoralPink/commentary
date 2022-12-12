@@ -96,6 +96,12 @@ requireは、ファイルが既に実行されているかどうかを制御し�
 
 今度は`nvim`ディレクトリまで上がって、`plugin`ディレクトリを新しく作成し、その中に`/lesson2/init.lua`をおいてください。
 
+~~~admonish quote title="Command"
+```
+mkdir -p plugin/lesson
+```
+~~~
+
 ![make-dir2](img/make-dir2.webp)
 
 ~~~admonish tip
@@ -140,7 +146,7 @@ end, {})
 ~~~
 
 ~~~ admonish note
-サンプルは`:h input`から持ってきて、`lua`で動くように書き換えました。
+コードは`:h input`の`Example`から持ってきて、`lua`で動くように書き換えました。
 
 ```
 input({opts})
@@ -159,7 +165,7 @@ input({opts})
 `plugin`ディレクトリに置いた`lua`ファイルは`require`などをしなくても自動で読み込まれます。
 
 ```admonish note
-これもやっぱり`9. Lua Module`で触れてました。`Runtime files`を確認してみて下さい😉
+これもやっぱり`9. Lua Module`で触れてました。`Runtime files`項です😉
 ```
 
 じゃあ、実際にオーダーしてみましょう。コマンドから`:Order`と入れてみてください。

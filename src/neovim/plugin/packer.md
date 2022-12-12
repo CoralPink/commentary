@@ -144,7 +144,7 @@ require 'extensions'
 
 ![runtimepath](img/runtimepath.webp)
 
-...なんか前より増えてますよね。しれっと`packer.nvim`もいるし。
+...なんか前より増えてますよね。...って❗しれっと`packer.nvim`いるし⁉️
 
 ~~~admonish info title=":h packages"
 ```
@@ -161,8 +161,8 @@ as well in addition to 'runtimepath'.  See the documentation for each for
 details.
 
 |vimrc| を解析している間にパッケージの機能を呼び出せるように、
-|:colorscheme| と |autoload| は自動的に 'runtimepath' だけでなく 'packpath' の下も検索するようになっています。
-詳しくはそれぞれのドキュメントをご覧ください。
+|:colorscheme| と |autoload| は自動的に 'runtimepath' だけでなく 'packpath' の下も検索する。
+詳しくはそれぞれのドキュメントを参照のこと。
 ```
 ~~~
 
@@ -172,8 +172,11 @@ details.
 
 見た目はちょっと Poison☠️ ですが、何やら`Packer`を名乗るコマンドが候補に上がってきましたね❗確かにインストールできてそうな気配です😆
 
-せっかくなので、`PackerCompile`を選んで実行してみましょう...❗何も起きませ...いや、ちょっと待って❗
+せっかくなので、`PackerCompile`を選んで実行してみましょう...❗
 
+...。
+
+何も起きませ...いや、ちょっと待って❗
 なんだか`nvim/plugin`ディレクトリと、その中に`packer_compiled.lua`が生成されています😮
 
 ![packer-tree](img/packer-tree.webp)
@@ -195,9 +198,9 @@ _G.packer_plugins = {
 
 なんかこんなのがいますよね。
 
-この`packer_plugins`の中に、`extensions/init.lua`に指定したプラグインが`:PackerCompile`によって、どんどん追加されていきます。
+この`packer_plugins`の中に、`use {}`で指定したプラグインが`:PackerCompile`によって、どんどん追加されていきます。
 
-要するに便利ってことです😆
+そう❗要するに便利ってことです😆
 
 ## Command
 
@@ -242,7 +245,7 @@ supports the `--preview` flag as an optional first argument to preview updates
 ```
 
 ```admonish note
-基本的には、何か変更があったら`:PackerSync`を使えばインストール、アップデート、コンパイルまで全て行ってくれます😉
+基本的には、何か変更があったら`:PackerSync`を使えば、インストール、アップデート、コンパイルまで全て行ってくれます😉
 ![packer_update](img/packer-sync.webp)
 ```
 
@@ -276,6 +279,8 @@ optプラグインをすぐにロードする
 これは完全に見た目だけのお話なんですが、こんなのがあります。
 
 ```admonish info title="[Using a floating window](https://github.com/wbthomason/packer.nvim#using-a-floating-window)"
+You can configure Packer to use a floating window for command outputs by passing a utility function to packer's config:
+
 Packer の config にユーティリティ関数を渡すことで、コマンド出力にフローティングウィンドウを使用するように設定することができます。
 ```
 
