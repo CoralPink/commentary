@@ -1,7 +1,7 @@
 [book]
 title = "Commentary of Dotfiles"
 author = "CoralPink"
-description = "このサイトでは、わたしが普段使っている WezTerm と Neovim の設定例 (dotfiles) を紹介しています🤗 - This site introduces WezTerm and Neovim dotfiles that I usually use."
+description = "WezTerm と Neovim の設定例 (dotfiles) を紹介するサイトです🤗 - This site introduces WezTerm and Neovim dotfiles."
 src = "src"
 language = "ja"
 
@@ -12,8 +12,13 @@ create-missing = false
 command = "mdbook-admonish"
 assets_version = "2.0.0" # do not edit: managed by `mdbook-admonish install`
 
+[preprocessor.footnote]
+command = "./rs/mdbook-footnote/target/release/mdbook-footnote"
+
 [output.html]
-additional-css = ["css/catppuccin.css", "css/catppuccin-highlight.css", "css/mdbook-admonish.css", "css/pagetoc.css", "css/header.css"]
+additional-css = [
+  "css/catppuccin.css", "css/catppuccin-highlight.css", "css/mdbook-admonish.css", "css/pagetoc.css", "css/header.css"
+]
 additional-js = ["js/pagetoc.js"]
 default-theme = "Latte"
 preferred-dark-theme = "Macchiato"
