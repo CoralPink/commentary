@@ -13,7 +13,6 @@ command = "mdbook-admonish"
 assets_version = "2.0.0" # do not edit: managed by `mdbook-admonish install`
 
 [preprocessor.footnote]
-command = "./rs/mdbook-footnote/target/release/mdbook-footnote"
 
 [output.html]
 additional-css = [
