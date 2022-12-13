@@ -21,11 +21,25 @@ jobs:
         with:
           mdbook-version: "latest"
 
+      - name: Cache Cargo
+        id: cache-cargo
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.cargo/bin/
+            ~/.cargo/registry/index/
+            ~/.cargo/registry/cache/
+            ~/.cargo/git/db/
+            target/
+          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+
       - name: Cargo Build (Local Source)
+        if: steps.cache-cargo.outputs.cache-hit != 'true'
         run: |
           cargo build --release --manifest-path rs/mdbook-footnote/Cargo.toml
 
       - name: Cargo install
+        if: steps.cache-cargo.outputs.cache-hit != 'true'
         run: |
           cargo install mdbook-admonish
 
