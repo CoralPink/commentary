@@ -1,0 +1,16 @@
+[package]
+name = "mdbook-footnote"
+version = "0.1.1"
+authors = ["David Drysdale <dmd@lurklurk.org>", "CoralPink"]
+edition = "2021"
+license = "Apache-2.0"
+description = "mdbook preprocessor for footnotes"
+keywords = ["mdbook", "footnote"]
+categories = ["text-processing"]
+
+[dependencies]
+clap = "3.2"
+lazy_static = "1.4"
+mdbook = "0.4"
+regex = "1.7"
+serde_json = "1.0"

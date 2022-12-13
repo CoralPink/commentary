@@ -21,6 +21,10 @@ jobs:
         with:
           mdbook-version: "latest"
 
+      - name: Cargo Build (Local Source)
+        run: |
+          cargo build --release --manifest-path rs/mdbook-footnote/Cargo.toml
+
       - name: Cargo install
         run: |
           cargo install mdbook-admonish
