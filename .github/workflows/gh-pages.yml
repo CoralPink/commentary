@@ -33,10 +33,10 @@ jobs:
             target/
           key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
 
-      - name: Cargo Build (Local Source)
+      - name: Cargo install (Local Source)
         if: steps.cache-cargo.outputs.cache-hit != 'true'
         run: |
-          cargo build --release --manifest-path rs/mdbook-footnote/Cargo.toml
+          cargo install --path ./rs/mdbook-footnote
 
       - name: Cargo install
         if: steps.cache-cargo.outputs.cache-hit != 'true'
