@@ -529,8 +529,8 @@ ul#searchresults span.teaser em {
 }
 
 .theme-selected::before {
-    display: inline-block;
-    content: "✓";
-    margin-left: -14px;
-    width: 14px;
+  display: inline-block;
+  content: "✓";
+  margin-left: -14px;
+  width: 14px;
 }
