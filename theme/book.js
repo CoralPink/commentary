@@ -1,8 +1,5 @@
 "use strict";
 
-// Fix back button cache problem
-window.onunload = () => {};
-
 // Global variable, shared between modules
 const playground_text = (playground) => {
   return playground.querySelector("code").innerText;
