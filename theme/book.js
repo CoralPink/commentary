@@ -1,8 +1,10 @@
 "use strict";
 
 // Global variable, shared between modules
-const playground_text = (playground) => {
-  return playground.querySelector("code").innerText;
+const playground_text = (playground, hidden = true) => {
+  return hidden
+    ? playground.querySelector("code").textContent
+    : playground.querySelector("code").innerText;
 }
 
 // codeSnippets
@@ -405,7 +407,7 @@ const playground_text = (playground) => {
   const clipboardSnippets = new ClipboardJS(".clip-button", {
     text: (trigger) => {
       hideTooltip(trigger);
-      return playground_text(trigger.closest("pre"));
+      return playground_text(trigger.closest("pre"), false);
     },
   });
 
