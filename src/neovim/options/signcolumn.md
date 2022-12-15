@@ -69,15 +69,14 @@ vim.api.nvim_win_set_option(0, 'signcolumn', 'yes:1')
 
 ![sign-yes](img/sign-yes.webp)
 
-```admonish note
-`yes:1`と`yes`は見た感じ同じなんですが...、んー、なんか一応😅
-```
-
 `number`はこんな感じになります。
 
 ![sign-number](img/sign-number.webp)
 
-上のスクリーンショットでは、`gitsigns.nvim`[^1]というプラグイン[^2]を使用して、変更箇所を`signcolumn`に表示しています。
+上のスクリーンショットでは、`gitsigns.nvim`
+{{footnote: [https://github.com/lewis6991/gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)}}
+というプラグイン{{footnote: プラグインについてはこのサイトでも取り上げたいんですが、もうちょっとかかりそうです😓}}を使用して、
+変更箇所を`signcolumn`に表示しています。
 
 (▶︎ とか ▎の部分がそれです。)
 
@@ -91,7 +90,3 @@ vim.api.nvim_win_set_option(0, 'signcolumn', 'yes:1')
 ```admonish success
 次は、上のスクリーンショットで一足早く登場してしまった`wrap`を片付けちゃいます😌
 ```
-
-[^1]: [https://github.com/lewis6991/gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)
-
-[^2]: プラグインについてはこのサイトでも取り上げたいんですが、もうちょっとかかりそうです😓
