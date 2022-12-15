@@ -87,8 +87,7 @@ This action causes the equivalent of wezterm.emit(name, window, pane) to be call
 アウトプットはしてみるものですね❗次のページに書いちゃいます😆
 ```
 
-
-|素の状態[^big]|切り替えた状態|
+|素の状態{{footnote:さらにフォントサイズを大きくして説明用に誇張しています。が、まだなんか中途半端でしたね...😿}}|切り替えた状態|
 |:---:|:---:|
 |![font-big](img/font-big.webp)|![font-small](img/font-small.webp)|
 
@@ -97,5 +96,3 @@ This action causes the equivalent of wezterm.emit(name, window, pane) to be call
 
 気持ちいい〜❗️
 ```
-
-[^big]:さらにフォントサイズを大きくして説明用に誇張しています。が、まだなんか中途半端でしたね。
