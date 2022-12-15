@@ -9,7 +9,13 @@ Leaderキーは、モーダルモディファイアキーです。Leaderキー�
 
 `Leader`キーという概念は`WezTerm`特有のものではく、`tmux`や`vim`など古参のソフトウェアでも用いられています。
 
-WezTerm でのデフォルトは<kbd>Ctrl-a</kbd>です。[^other]
+WezTerm でのデフォルトは<kbd>Ctrl-a</kbd>です。
+{{footnote:
+tmux のデフォルトは <kbd>CTRL-b</kbd>、vimのデフォルトは<kbd>\\</kbd>です。
+ちょっと遠い位置に置かれていて大変なので、`Leader`キーのカスタマイズは一般的に行われているみたいです。
+メジャーなカスタマイズ先は<kbd>CTRL-a</kbd>や、<kbd>CTRL-j</kbd>、<kbd>CTRL-,</kbd>、<kbd>CTRL-Space</kbd>あたりでしょうか❓
+}}
+
 ```admonish note
 <kbd>Ctrl-a</kbd>という表記は<kbd>Ctrl</kbd>と<kbd>a</kbd>を同時押しすることを示しています。
 ```
@@ -31,7 +37,10 @@ leader = { key = 'a', mods = 'CTRL', timeout_milliseconds = 2000 },
 
 
 ```admonish warning
-macOSでUS配列なのに日本語IME使うような環境[^minority]では<kbd>Ctrl-Space</kbd>が入力ソースの切り替えに割り当てられています。
+macOSでUS配列なのに日本語IME使うような環境
+{{footnote: 色んな意味で少数派なんですけどね😅 わたしもこの環境です。}}
+では<kbd>Ctrl-Space</kbd>が入力ソースの切り替えに割り当てられています。
+
 OSのショートカットキー等も含め、あらかじめ確認しておきましょう。
 
 他のと被っちゃうと困っちゃいます。
@@ -82,7 +91,7 @@ LEADERはキーが登録されるまで（キーバインディングにマッ�
 ```admonish note
 `ALT|CTRL`は<kbd>Alt</kbd>キーと<kbd>Ctrl</kbd>キーを同時押しです。
 
-さらに`"`を押せと言われれば<kbd>Shift</kbd>キーを押しながら<kbd>'</kbd>です。[^key]
+さらに`"`を押せと言われれば<kbd>Shift</kbd>キーを押しながら<kbd>'</kbd>です。{{footnote: USキーボードの場合。}}
 ```
 …なんか、難しくないですか？
 
@@ -112,7 +121,9 @@ LEADERはキーが登録されるまで（キーバインディングにマッ�
   { key = '[', mods = 'LEADER', action = act.ActivateCopyMode },
 ```
 
-`jump`機能はデフォルトのままで`tmux`と同じキーバインドが割り当てられているようなので、そのままいけます。[^copy-mode]
+`jump`機能はデフォルトのままで`tmux`と同じキーバインドが割り当てられているようなので、そのままいけます。
+{{footnote: [3.5 Keybind](https://coralpink.github.io/commentary/wezterm/keybind.html#読み込み先を切り替える)で「いや、デフォルトのキーバインド無効にしたじゃないかー👿」と思われた方、ごもっともです...。
+実は`copy-mode`のキーバインドには触れていませんでした。ちょっとこの辺、複雑ですよね...。また今度改編します。}}
 ~~~
 
 ということで、キーバインドは色々試してみてほしいです。
@@ -126,14 +137,3 @@ KeyAssignment は、キーまたはマウス イベントがトリガーされ�
 ```admonish success
 キーバインドについてはこのくらいでしょうか。次からは外観を変えていきたいと思います。
 ```
-
-[^other]: tmux のデフォルトは <kbd>CTRL-b</kbd>、vimのデフォルトは<kbd>\\</kbd>です。
-ちょっと遠い位置に置かれていて大変なので、`Leader`キーのカスタマイズは一般的に行われているみたいです。
-メジャーなカスタマイズ先は<kbd>CTRL-a</kbd>や、<kbd>CTRL-j</kbd>、<kbd>CTRL-,</kbd>、<kbd>CTRL-Space</kbd>あたりでしょうか？
-
-[^minority]: 色んな意味で少数派なんですけどね。わたしもこの環境です。
-
-[^key]: USキーボードの場合。
-
-[^copy-mode]:`3.5 Keybind`で「いや、デフォルトのキーバインド無効にしたじゃないかー👿」と思われた方、ごもっともです...。
-実は`copy-mode`のキーバインドには触れていませんでした。ちょっとこの辺、複雑ですよね...。また今度改編します。

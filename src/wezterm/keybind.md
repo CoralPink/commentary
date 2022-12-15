@@ -4,9 +4,10 @@
 例えば`tmux`。
 
 `WezTerm`自体が`tmux`と同等かそれ以上の機能を持っているので、
-`WezTerm`に対して`tmux`と同じキーバインドを与えてしまえば、これは不要になるわけです。[^a]
+`WezTerm`に対して`tmux`と同じキーバインドを与えてしまえば、これは不要になるわけです。
+{{footnote:実際わたしも、`WezTerm`を使う前は`iTerm2`の上で`tmux`を動かしていました😄}}
 
-と言ってもわたしがローカルでしか使っていないから大丈夫なだけで、ネットワークを介して使う場合は困る事もあるかもしれませんし、
+...と言っても、わたしがローカルでしか使っていないから大丈夫なだけで、ネットワークを介して使う場合は困る事もあるかもしれませんし、
 実際にデフォルトでは徹底的に他のソフトウェアとの衝突を避けています。
 
 ```admonish info title="[Default Shortcut / Key Binding Assignments](https://wezfurlong.org/wezterm/config/default-keys.html)"
@@ -122,5 +123,3 @@ disable_default_key_bindings = true,
 
 さて、もう一つのポイントとして`leader`キーというものがあります。これについてはまた次回。
 ```
-
-[^a]:実際、わたしも`WezTerm`を使う前は`iTerm2`の上で`tmux`を動かしていました。

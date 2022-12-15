@@ -34,7 +34,13 @@ She's got a ticket to ride, but she don’t care.
 ```
 
 これ Karen が歌ったら面白いんじゃない？😆 ってなるのはなんかもう必然の Richard なので、
- "She" 👩を "He" 👨に変えます。[^1]
+ "She" 👩を "He" 👨に変えます。
+{{footnote:
+[The Carpenters](http://www.richardandkarencarpenter.com/SN_TicketToRide.htm) の
+デビュー曲は[Ticket to Ride](https://en.wikipedia.org/wiki/Ticket_to_Ride_(song))のアレンジでした。これが1969年のお話。
+Richard が`vi`とかで歌詞置換してたらウケる〜🤣 とか思って見たら[vi](https://ja.wikipedia.org/wiki/Vi)ですら初版が1976年...。
+`Neovim`どころか`Vim`どころか、`vi`ですら意外と新しい😲 ...そうでもないかぁ😮
+}}
 
 置換操作は`:%s/{検索値}/{置換値}`とすると実行できます。
 
@@ -87,8 +93,3 @@ She's got a ticket to ride, but she don’t care.
 
 まあ気楽にいきましょう😸
 ```
-
-[^1]:[The Carpenters](http://www.richardandkarencarpenter.com/SN_TicketToRide.htm) の
-デビュー曲は[Ticket to Ride](https://en.wikipedia.org/wiki/Ticket_to_Ride_(song))のアレンジでした。これが1969年のお話。
-Richard が`vi`とかで歌詞置換してたらウケる〜🤣 とか思って見たら[vi](https://ja.wikipedia.org/wiki/Vi)ですら初版が1976年...。
-`Neovim`どころか`Vim`どころか、`vi`ですら意外と新しい😲 ...そうでもないかぁ😮

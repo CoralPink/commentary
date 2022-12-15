@@ -10,7 +10,7 @@ Wezterm では数多くのカラースキームを内蔵しているため、簡
 ```admonish info title="[Color Schemes](https://wezfurlong.org/wezterm/colorschemes/index.html)"
 735 Color schemes listed by first letter
 
-735[^a]種類のカラースキーム一覧
+735種類のカラースキーム一覧
 ```
 
 お気に入りのカラースキームは見つかりましたか？
@@ -25,7 +25,8 @@ color_scheme = 'Catppuccin Mocha',
 ```admonish note
 ちなみに、このWebページのカラースキームも`Catppuccin`を使ってたりします。
 
-セルフサービスなので、左上のブラシアイコンからお好みで淹れて[^a]みてください😄
+セルフサービスなので、左上のブラシアイコンからお好みで淹れて
+{{footnote: 誤字じゃないです。[カプチーノ](https://ja.wikipedia.org/wiki/カプチーノ)なので❗}}みてください😄
 ```
 
 ## window_background_opacity
@@ -70,5 +71,3 @@ wezterm.lua に記述する場合、基本的には return {} の中に記述し
 
 次は、せっかく設定したカラースキームを見たいので、少し脇に逸れてプロンプトを変えてみましょう。
 ```
-
-[^a]: 誤字じゃないです。[カプチーノ](https://ja.wikipedia.org/wiki/カプチーノ)なので❗

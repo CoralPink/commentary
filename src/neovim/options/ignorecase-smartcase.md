@@ -55,8 +55,11 @@ She's got a ticket to ride, but she don’t care.
 ```
 
 「彼女がおれのことなんて気にも留めずに行っちゃうよ！」...っていう
-[Ticket to Ride](https://en.wikipedia.org/wiki/Ticket_to_Ride_(song))の一節です。[^1]
-
+[Ticket to Ride](https://en.wikipedia.org/wiki/Ticket_to_Ride_(song))の一節です。
+{{footnote:
+あ❗これは [HELP! - The Beatles](https://en.wikipedia.org/wiki/Help!) の収録曲ですね❗
+なんか help ばっかりじゃね⁉️ってなる、ウケる〜🤣 ...そうでもないかぁ😮
+}}
 それでは小文字だけの`she`を検索してみます。検索には<kbd>/</kbd>で入れます。
 
 ```
@@ -86,6 +89,3 @@ She's got a ticket to ride, but she don’t care.
 ```admonish success
 なんか色々難しく書いてあるので不安になりますが、動かしてみれば簡単ですね☺️
 ```
-
-[^1]: あ❗これは[HELP! - The Beatles](https://en.wikipedia.org/wiki/Help!) の収録曲ですね❗
-なんか help ばっかりじゃね⁉️ってなる、ウケる〜🤣 ...そうでもないかぁ😮

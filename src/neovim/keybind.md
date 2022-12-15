@@ -95,7 +95,11 @@ set({mode}, {lhs}, {rhs}, {opts})                           vim.keymap.set()
 ~~~
 
 [Neovim Discourse](https://neovim.discourse.group/t/what-exactly-changed-in-nvim-get-keymap/1881)の会話を盗み見た🤫感じだと、
-`vim.keymap.set()`は`vim.api.nvim_set_keymap()`の`Syntactic sugar`[^1]だと思われます。
+`vim.keymap.set()`は`vim.api.nvim_set_keymap()`の`Syntactic sugar`
+{{footnote:
+`Syntactic sugar`については [https://ja.wikipedia.org/wiki/糖衣構文](https://ja.wikipedia.org/wiki/糖衣構文) に丸投げします😃
+}}
+だと思われます。
 
 ```admonish note
 ここまでひたすら`vim.api`を使用してきたので、`vim.api.nvim_set_keymap()`を使用する方が統一感は出そうなんですが、記述が難しくなってしまうのは避けたい...。
@@ -312,5 +316,3 @@ vim.keymap.set('n', 's', '"_s')
   キーマップは帰ってくる
 </div>
 ```
-
-[^1]: `Syntactic sugar`については [https://ja.wikipedia.org/wiki/糖衣構文](https://ja.wikipedia.org/wiki/糖衣構文) に丸投げします😃

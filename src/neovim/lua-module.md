@@ -23,7 +23,12 @@ Luaモジュールは、runtimepath内のlua/フォルダにあります
 
 いきなりちょっと複雑でしたね😅
 
-頑張ってコマンドを打つと、出力の中に `"~/.config/nvim"`があるはずです。[^not-config]
+頑張ってコマンドを打つと、出力の中に `"~/.config/nvim"`があるはずです。
+{{footnote:
+`~/.config/nvim`ディレクトリが存在しないと`runtimepath`からもいなくなるようです。ディレクトリの存在を事前に確認してる?🤔
+
+![config-not](img/config-not.webp)
+}}
 
 (上の例は`unix`なので`"/home/utm-user/.config/nvim"`)
 
@@ -105,6 +110,3 @@ require('example')
 
 これだけ分かれば、あとはもうカスタマイズを書き加えていくだけですね😄
 ```
-
-[^not-config]: `~/.config/nvim`ディレクトリが存在しないと`runtimepath`からもいなくなるようです。ディレクトリの存在を事前に確認してる?🤔
-![config-not](img/config-not.webp)

@@ -25,7 +25,9 @@ nvim_set_var({name}, {value})               nvim_set_var()
 
 ...ただ、この後も出番はかなり限られてくると思われます。
 
-能力の高さゆえ、守備範囲が広大すぎて地球だけに居られない Captain Marvel[^1] みたいですね❗
+能力の高さゆえ、守備範囲が広大すぎて地球だけに居られない Captain Marvel
+{{footnote: [Captain Marvel (Marvel Comics)](https://ja.wikipedia.org/wiki/キャプテン・マーベル_(マーベル・コミック))}}
+みたいですね❗
 
 ~~~admonish tip
 これは10章に入れるかどうか悩んだところですが、
@@ -47,7 +49,9 @@ vim.api.nvim_set_var('loaded_python3_provider', 0)
 これ、本題と全然関係ないけど、へぇ〜😮ってなるやつ。
 
 John Lennon が "The Continuing Story Of Bungalow Bill - The Beatles (White Album)" の歌詞に入れてたり、
-Disney+ の "The Beatles: Get Back" の中で発言してたりする「Captain Marvel」って、Shazam[^2] のことらしいよ😉
+Disney+ の "The Beatles: Get Back" の中で発言してたりする「Captain Marvel」って、Shazam
+{{footnote: [Captain Marvel (DC Comics)](https://ja.wikipedia.org/wiki/キャプテン・マーベル_(DCコミックス))}}
+のことらしいよ😉
 
 (※ このサイトでは Brie Larson のイメージだけで進んでます。)
 ```
@@ -214,7 +218,3 @@ vim.api.nvim_set_var('maplocalleader', '_')
   リーダーキーとキャプテン・マーベルは帰ってくる
 </div>
 ```
-
-[^1]: [Captain Marvel (Marvel Comics)](https://ja.wikipedia.org/wiki/キャプテン・マーベル_(マーベル・コミック))
-
-[^2]: [Captain Marvel (DC Comics)](https://ja.wikipedia.org/wiki/キャプテン・マーベル_(DCコミックス))

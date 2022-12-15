@@ -21,7 +21,7 @@ wezterm.on は、同じイベントに対して複数のコールバックを登
 イベントが発信されると、登録された各コールバックは、登録された順に呼び出されます。
 ```
 
-これを踏まえた上で、`update-status`をもう一個作ります。[^a]
+これを踏まえた上で、`update-status`をもう一個作ります。{{footnote: ステータスバーの飾り付けの際にも使用しましたね。}}
 
 ```admonish info title="[update-status](https://wezfurlong.org/wezterm/config/lua/window-events/update-status.html)"
 There is no defined return value for the event, but its purpose is to allow you the chance to carry out some activity and then ultimately call window:set_right_status or window:set_left_status.
@@ -134,5 +134,3 @@ Plan A との比較では`update-status`を使わなくて良くなったのと�
 
 既に用意されているロジックをつなぐだけ❗️
 ```
-
-[^a]:ステータスバーの飾り付けの際にも使用しましたね。
