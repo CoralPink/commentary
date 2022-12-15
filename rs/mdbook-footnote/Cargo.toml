@@ -1,6 +1,6 @@
 [package]
 name = "mdbook-footnote"
-version = "0.1.1"
+version = "0.1.2"
 authors = ["David Drysdale <dmd@lurklurk.org>", "CoralPink"]
 edition = "2021"
 license = "Apache-2.0"
