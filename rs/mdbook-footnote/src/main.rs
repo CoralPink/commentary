@@ -86,19 +86,25 @@ impl Preprocessor for Footnote {
                     .replace_all(&chap.content, |caps: &regex::Captures| {
                         let content = caps.name("content").unwrap().as_str().to_owned();
                         footnotes.push(content);
+
                         let idx = footnotes.len();
 
-                        format!("<sup class=\"footnote-reference\"><a name=\"to-footnote-{}\">[{}](#{})</a></sup>", idx, idx, idx)
+                        format!(
+                            "<sup class=\"footnote-reference\">
+                                <a name=\"to-footnote-{}\">[{}](#{})</a>
+                            </sup>",
+                            idx, idx, idx
+                        )
                     })
                     .to_string();
 
                 if !footnotes.is_empty() {
                     for (idx, content) in footnotes.into_iter().enumerate() {
                         let num = idx + 1;
+
                         chap.content += &format!("<div class=\"footnote-definition\" id={}>\n", num);
-                        chap.content += &format!("\n\n[<sup>{}</sup>](#to-footnote-{})", num, num);
+                        chap.content += &format!("\n\n[<sup>{}:</sup>](#to-footnote-{})", num, num);
                         chap.content += &format!(" {}", content);
-                        chap.content += &format!("\n\n[⤴️](#to-footnote-{})", num);
                         chap.content += "</div>";
                     }
                 }
