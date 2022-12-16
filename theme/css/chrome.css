@@ -93,10 +93,10 @@ a > .hljs {
 
 .menu-title {
   display: inline-block;
-  font-weight: 200;
-  font-size: 2.4rem;
+  font-weight: 400;
+  font-size: 1.3rem;
   line-height: var(--menu-bar-height);
-  text-align: center;
+  text-align: right;
   margin: 0;
   flex: 1;
   white-space: nowrap;
