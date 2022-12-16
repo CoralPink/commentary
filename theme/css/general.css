@@ -209,7 +209,6 @@ kbd {
 }
 
 .tooltiptext {
-  font-family: "Open Sans", sans-serif;
   position: absolute;
   visibility: hidden;
   color: #fff;

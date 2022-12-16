@@ -109,3 +109,41 @@
   src: url("source-code-pro-v11-all-charsets-500.woff2") format("woff2");
   font-display: swap;
 }
+
+@font-face {
+  font-family: 'icomoon';
+  font-style: normal;
+  font-weight: 500;
+  src: url('icomoon.woff') format('woff');
+  font-display: swap;
+}
+
+[class^="fa-"], [class*=" fa-"] {
+  font-family: 'icomoon' !important;
+  font-style: normal;
+}
+
+.fa-copy:before {
+  content: "\e900";
+}
+.fa-github:before {
+  content: "\e901";
+}
+.fa-print:before {
+  content: "\e902";
+}
+.fa-magnifying-glass:before {
+  content: "\e903";
+}
+.fa-palette:before {
+  content: "\e904";
+}
+.fa-bars-staggered:before {
+  content: "\e905";
+}
+.fa-angle-right:before {
+  content: "\e906";
+}
+.fa-angle-left:before {
+  content: "\e907";
+}
