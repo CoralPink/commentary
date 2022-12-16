@@ -50,6 +50,7 @@ jobs:
       - name: Delete Unneeded files
         run: |
           rm book/ayu-highlight.css book/tomorrow-night.css
+          rm -rf book/FontAwesome
 
       - name: Generate the sitemap
         id: sitemap
