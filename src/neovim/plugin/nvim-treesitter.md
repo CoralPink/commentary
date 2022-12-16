@@ -49,7 +49,7 @@ A C compiler in your path and libstdc++ installed [(Windows users please read th
 |![gcc_cpp](img/gcc-cpp.webp)|![gcc_cpp](img/clang.webp)|
 
 ```admonish note
-Readmeにも明記されているように`libstd++`も必要になるはずなので、`gcc`だとうまくいきませんでした😮
+Readmeにも明記されているように`libstdc++`も必要になるはずなので、`gcc`だとうまくいきませんでした😮
 ```
 
 ## Install
