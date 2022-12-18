@@ -102,24 +102,38 @@
 }
 
 /* source-code-pro-500 - latin_vietnamese_latin-ext_greek_cyrillic-ext_cyrillic */
-@font-face {
-  font-family: "Source Code Pro";
-  font-style: normal;
-  font-weight: 500;
-  src: url("source-code-pro-v11-all-charsets-500.woff2") format("woff2");
-  font-display: swap;
+@media only screen and (max-width: 1024px) {
+  @font-face {
+    font-family: "Source Code Pro";
+    font-style: normal;
+    font-weight: 500;
+    src: url("source-code-pro-v11-all-charsets-500.woff2") format("woff2");
+    font-display: swap;
+  }
+}
+
+/* HackGen35  */
+@media only screen and (min-width: 1024px) {
+  @font-face {
+    font-family: "HackGen35 Console NF";
+    font-style: normal;
+    font-weight: 300;
+    src: url("HackGen/HackGen35ConsoleNF-Regular.woff2") format("woff2");
+    font-display: swap;
+  }
 }
 
 @font-face {
-  font-family: 'icomoon';
+  font-family: "icomoon";
   font-style: normal;
   font-weight: 500;
-  src: url('icomoon.woff') format('woff');
+  src: url("icomoon.woff") format("woff");
   font-display: swap;
 }
 
-[class^="fa-"], [class*=" fa-"] {
-  font-family: 'icomoon' !important;
+[class^="fa-"],
+[class*=" fa-"] {
+  font-family: "icomoon" !important;
   font-style: normal;
 }
 
