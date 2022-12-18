@@ -45,6 +45,14 @@ const update = () => {
   });
 };
 
-update();
+const scrollListenerControl = () => {
+  if (window.innerWidth < 850) {
+    window.removeEventListener("scroll", update);
+    return;
+  }
+  update();
+  window.addEventListener("scroll", update);
+}
 
-window.addEventListener("scroll", update);
+window.addEventListener("resize", scrollListenerControl);
+scrollListenerControl();
