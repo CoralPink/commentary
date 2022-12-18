@@ -1,5 +1,6 @@
 book
 target
+convert.sh
 
 .DS_Store
 *.tmp
