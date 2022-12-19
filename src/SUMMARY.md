@@ -75,5 +75,6 @@
   - [Packer.nvim](neovim/plugin/packer.md)
   - [nvim-treesitter](neovim/plugin/nvim-treesitter.md)
   - [onenord.nvim](neovim/plugin/onenord.md)
+  - [lualine.nvim](neovim/plugin/lualine.md)
 
-# ...To Be Continued
+# ... To Be Continued.
