@@ -20,6 +20,7 @@ lualine は neovim 用に書かれたステータスライン・プラグイン�
 
 ```admonish abstruct title="Requirements"
 neovim >= 0.5
+
 nvim-web-devicons | Only if you want filetype icons.
 ```
 
@@ -166,10 +167,8 @@ ensure_dependencies = true, -- Should packer install plugin dependencies?
 
 `Neovim`パッケージは依存関係をデータとして持ち合わせていないことは
 [15.1. Packer](https://coralpink.github.io/commentary/neovim/plugin/packer.html)で触れたんですが、
-
 「これ`requires`(必要なもの) なんだよねー🤔」と教えてあげると、
 `packer`は「ん❓そうなんれすね❓😆」と言って、一切疑わずにインストールしてくれます。
-
 
 ```admonish note
 ウソ🤪はつかないであげてください。`信頼関係`で成り立っています❗
@@ -192,15 +191,21 @@ ensure_dependencies = true, -- Should packer install plugin dependencies?
 ...でも、これだけじゃない。
 
 この先は、これまでとは違ってかなりプラグインを連携して使っていきたいので、
-今まで通りに一個ずつやっていこうとすると手詰まり感がすごい...😰
+今まで通りに一個ずつ進めていこうとすると膨大な作業量に圧倒されてしまって...。
 
-もう...、本当に...、気が遠くなってしまって...。
+このページだって、半分くらいは`lualine`以外への言及になっちゃってますよね。
+
+「やることが多すぎる。それは間違いない。」{{footnote: たまたま Elon Musk も同じようなこと言ってた。}}
+
+あまりにも話が進まない...❗手詰まり感がすごい...😰
+
+ちょっともう...、本当に...、気が遠くなってしまって...。
 
 ~~~admonish quote title=""
 CoralPink
 {{footnote:
-このサイトを書いてる人。(はじめまして☺️ )
-なんかもう`MARVEL`なのか`ポケットモンスター`なのかわからない世界に、いつの間にか飛び込んでいました。
+このサイトを書いてる ふしぎないきもの。(はじめまして☺️ )
+なんかもう、`MARVEL`なのか`ポケットモンスター`なのかわからない世界に飛び込んでしまった。
 }}
 　のてには
 
@@ -217,9 +222,7 @@ CoralPink は
 めのまえが　まっくらに　なっ・・・
 ~~~
 
-~~~admonish quote title=""
 ...❓
-~~~
 
 ~~~admonish quote title=""
 Hey, CaP..., you read me...?
@@ -228,11 +231,14 @@ Hey, CaP..., you read me...?
 ~~~
 
 ~~~admonish quote title=""
-...It's Nvim Trainer. Can you hear me...? 
+...It's nvim Trainer. Can you hear me...? 
 
 (...nvimトレーナー
 {{footnote:
-このサイトの[10章](https://coralpink.github.io/commentary/neovim/options/options.html)の主人公。(はじめてしゃべった😮)
+このサイトの
+[10章](https://coralpink.github.io/commentary/neovim/options/options.html)と
+[11章](https://coralpink.github.io/commentary/neovim/au/automatic-commands.html)の主人公。(はじめてしゃべった😮)
+みらいのチャンピオン。
 }}
 だ。聞こえるか...?)
 ~~~
@@ -246,7 +252,7 @@ On your next.
 ~~~admonish info title=":h showmode"
 ```
 'showmode' 'smd'    boolean (default: on)
-                        global
+                    global
 
 	If in Insert, Replace or Visual mode put a message on the last line.
 	The |hl-ModeMsg| highlight group determines the highlighting.
@@ -267,10 +273,8 @@ vim.api.nvim_set_option('showmode', false)
 ```
 ~~~
 
-```admonish success
+```admonish success title="Assenble❗"
 ![show-mode-false](img/show-mode-false.webp)
-
-A s s e n b l e ❗❗
 
 `lualine.nvim`のカスタマイズについては、仲間をふやして次の街で❗😉
 ```
