@@ -95,6 +95,7 @@ a > .hljs {
   display: inline-block;
   font-weight: 400;
   font-size: 1.3rem;
+  font-style: italic;
   line-height: var(--menu-bar-height);
   text-align: right;
   margin: 0;
@@ -329,6 +330,7 @@ mark.fade-out {
   margin-right: auto;
   max-width: var(--content-max-width);
   border-bottom: 1px dashed var(--searchresults-border-color);
+  font-size: 1.3em;
 }
 
 ul#searchresults {
