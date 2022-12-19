@@ -94,7 +94,7 @@ requireは、ファイルが既に実行されているかどうかを制御し�
 
 もう一個だけやっておきたいのは、独自コマンドからプラグインを使うパターンです。
 
-今度は`nvim`ディレクトリまで上がって、`plugin`ディレクトリを新しく作成し、その中に`/lesson2/init.lua`をおいてください。
+今度は`nvim`ディレクトリまで上がって、`plugin/lesson`ディレクトリを作成してください。
 
 ~~~admonish quote title="Command"
 ```
@@ -116,6 +116,8 @@ mkdir plugin/lesson
 `-p`オプションを使用することで、このような手間を回避して一気に作成できます。
 ~~~
 
+これもあんまり深くは潜らず、さらっとだけやります。
+
 ~~~admonish info title=":h nvim_create_user_command"
 ```
 nvim_create_user_command({name}, {command}, {*opts})
@@ -133,9 +135,9 @@ nvim_create_user_command({name}, {command}, {*opts})
 ```
 ~~~
 
-これもあんまり深く潜らず、さらっとだけやります。
+それでは、`nvim/plugin/lesson/init.lua`にコードを書きます。
 
-~~~admonish example title="plugin/lesson2.lua"
+~~~admonish example title="nvim/plugin/lesson/init.lua"
 ```lua
 vim.api.nvim_create_user_command('Order', function()
   if vim.fn.input('Coffee or beer? > ') == 'beer' then
