@@ -49,6 +49,9 @@ jobs:
 
       - name: Scss Compile
         run: |
+          npm run compile --prefix scss theme/chrome.scss ../theme/css/chrome.css
+          npm run compile --prefix scss theme/general.scss ../theme/css/general.css
+          npm run compile --prefix scss theme/variables.scss ../theme/css/variables.css
           npm run compile --prefix scss style.scss ../css/style.css
 
       - name: Build mdBook
