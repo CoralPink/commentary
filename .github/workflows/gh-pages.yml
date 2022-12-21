@@ -43,6 +43,14 @@ jobs:
         run: |
           cargo install mdbook-admonish
 
+      - name: Npm install
+        run: |
+          npm install --prefix scss
+
+      - name: Scss Compile
+        run: |
+          npm run compile --prefix scss style.scss ../css/style.css
+
       - name: Build mdBook
         run: |
           mdbook build
