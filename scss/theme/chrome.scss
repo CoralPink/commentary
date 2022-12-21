@@ -31,6 +31,19 @@ a > .hljs {
   border-bottom-width: 1px;
   border-bottom-style: solid;
   padding: 0 var(--page-padding);
+
+  .bordered {
+    border-bottom-color: var(--table-border-color);
+  }
+
+  i, .icon-button {
+    position: relative;
+    padding: 0 8px;
+    z-index: 10;
+    line-height: var(--menu-bar-height);
+    cursor: pointer;
+    transition: color 0.5s;
+  }
 }
 #menu-bar.sticky,
 .js #menu-bar-hover-placeholder:hover + #menu-bar,
@@ -46,18 +59,6 @@ a > .hljs {
   top: 0;
   height: var(--menu-bar-height);
 }
-#menu-bar.bordered {
-  border-bottom-color: var(--table-border-color);
-}
-#menu-bar i,
-#menu-bar .icon-button {
-  position: relative;
-  padding: 0 8px;
-  z-index: 10;
-  line-height: var(--menu-bar-height);
-  cursor: pointer;
-  transition: color 0.5s;
-}
 @media only screen and (max-width: 420px) {
   #menu-bar i,
   #menu-bar .icon-button {
@@ -70,17 +71,18 @@ a > .hljs {
   background: none;
   padding: 0;
   color: inherit;
-}
-.icon-button i {
-  margin: 0;
-}
 
+  i {
+    margin: 0;
+  }
+}
 .right-buttons {
   font-size: 1.6em;
   margin: 0 15px;
-}
-.right-buttons a {
-  text-decoration: none;
+
+  a {
+    text-decoration: none;
+  }
 }
 
 .left-buttons {
@@ -143,12 +145,12 @@ a > .hljs {
   flex-direction: column;
 
   transition: color 0.5s, background-color 0.5s;
-}
 
-.nav-chapters:hover {
-  text-decoration: none;
-  background-color: var(--theme-hover);
-  transition: background-color 0.15s, color 0.15s;
+  &:hover {
+    text-decoration: none;
+    background-color: var(--theme-hover);
+    transition: background-color 0.15s, color 0.15s;
+  }
 }
 
 .nav-wrapper {
@@ -212,47 +214,55 @@ a:hover > .hljs {
 
 pre {
   position: relative;
-}
-pre > .buttons {
-  position: absolute;
-  z-index: 100;
-  right: 0px;
-  top: 2px;
-  margin: 0px;
-  padding: 2px 0px;
 
-  color: var(--sidebar-fg);
-  cursor: pointer;
-  visibility: hidden;
-  opacity: 0;
-  transition: visibility 0.1s linear, opacity 0.1s linear;
-}
-pre:hover > .buttons {
-  visibility: visible;
-  opacity: 1;
-}
-pre > .buttons :hover {
-  color: var(--sidebar-active);
-  border-color: var(--icons-hover);
-  background-color: var(--theme-hover);
-}
-pre > .buttons i {
-  margin-left: 8px;
-}
-pre > .buttons button {
-  cursor: inherit;
-  margin: 0px 5px;
-  padding: 3px 5px;
-  font-size: 14px;
+  & > .buttons {
+    position: absolute;
+    z-index: 100;
+    right: 0px;
+    top: 2px;
+    margin: 0px;
+    padding: 2px 0px;
 
-  border-style: solid;
-  border-width: 1px;
-  border-radius: 4px;
-  border-color: var(--icons);
-  background-color: var(--theme-popup-bg);
-  transition: 100ms;
-  transition-property: color, border-color, background-color;
-  color: var(--icons);
+    color: var(--sidebar-fg);
+    cursor: pointer;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0.1s linear, opacity 0.1s linear;
+  }
+  &:hover > .buttons {
+    visibility: visible;
+    opacity: 1;
+  }
+  & > .buttons :hover {
+    color: var(--sidebar-active);
+    border-color: var(--icons-hover);
+    background-color: var(--theme-hover);
+  }
+  & > .buttons i {
+    margin-left: 8px;
+  }
+  & > .buttons button {
+    cursor: inherit;
+    margin: 0px 5px;
+    padding: 3px 5px;
+    font-size: 14px;
+
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 4px;
+    border-color: var(--icons);
+    background-color: var(--theme-popup-bg);
+    transition: 100ms;
+    transition-property: color, border-color, background-color;
+    color: var(--icons);
+  }
+  & > code {
+    padding: 1rem;
+  }
+
+  & > .result {
+    margin-top: 10px;
+  }
 }
 @media (pointer: coarse) {
   pre > .buttons button {
@@ -260,22 +270,15 @@ pre > .buttons button {
     padding: 0.3rem 1rem;
   }
 }
-pre > code {
-  padding: 1rem;
-}
 
 /* FIXME: ACE editors overlap their buttons because ACE does absolute
    positioning within the code block which breaks padding. The only solution I
    can think of is to move the padding to the outer pre tag (or insert a div
    wrapper), but that would require fixing a whole bunch of CSS rules.
-*/
 .hljs.ace_editor {
   padding: 0rem 0rem;
 }
-
-pre > .result {
-  margin-top: 10px;
-}
+*/
 
 /* Search */
 
@@ -290,11 +293,11 @@ mark {
   background-color: var(--search-mark-bg);
   transition: background-color 300ms linear;
   cursor: pointer;
-}
 
-mark.fade-out {
-  background-color: rgba(0, 0, 0, 0) !important;
-  cursor: auto;
+  &.fade-out {
+    background-color: rgba(0, 0, 0, 0) !important;
+    cursor: auto;
+  }
 }
 
 .searchbar-outer {
@@ -312,12 +315,12 @@ mark.fade-out {
   border-radius: 3px;
   background-color: var(--searchbar-bg);
   color: var(--searchbar-fg);
-}
-#searchbar:focus,
-#searchbar.active {
-  box-shadow: 0 0 3px var(--searchbar-shadow-color);
-}
 
+  &:focus,
+  &.active {
+    box-shadow: 0 0 3px var(--searchbar-shadow-color);
+  }
+}
 .searchresults-header {
   font-weight: bold;
   font-size: 1em;
@@ -333,27 +336,37 @@ mark.fade-out {
   font-size: 1.3em;
 }
 
-ul#searchresults {
-  list-style: none;
-  padding-left: 20px;
-}
-ul#searchresults li {
-  margin: 10px 0px;
-  padding: 2px;
-  border-radius: 2px;
-}
-ul#searchresults li.focus {
-  background-color: var(--searchresults-li-bg);
-}
-ul#searchresults span.teaser {
-  display: block;
-  clear: both;
-  margin: 5px 0 0 20px;
-  font-size: 0.8em;
-}
-ul#searchresults span.teaser em {
-  font-weight: bold;
-  font-style: normal;
+ul {
+  &#searchresults {
+    list-style: none;
+    padding-left: 20px;
+  }
+  &#searchresults {
+    li {
+      margin: 10px 0px;
+      padding: 2px;
+      border-radius: 2px;
+
+      &.focus {
+        background-color: var(--searchresults-li-bg);
+      }
+    }
+  }
+  &#searchresults {
+    span {
+      &.teaser {
+        display: block;
+        clear: both;
+        margin: 5px 0 0 20px;
+        font-size: 0.8em;
+
+        em {
+          font-weight: bold;
+          font-style: normal;
+        }
+      }
+    }
+  }
 }
 
 /* Sidebar */
@@ -369,6 +382,17 @@ ul#searchresults span.teaser em {
   overscroll-behavior-y: contain;
   background-color: var(--sidebar-bg);
   color: var(--sidebar-fg);
+
+  code {
+    line-height: 2em;
+  }
+
+  &::-webkit-scrollbar {
+    background: var(--sidebar-bg);
+  }
+  &::-webkit-scrollbar-thumb {
+    background: var(--scrollbar);
+  }
 }
 .sidebar-resizing {
   -moz-user-select: none;
@@ -378,9 +402,6 @@ ul#searchresults span.teaser em {
 }
 .js:not(.sidebar-resizing) .sidebar {
   transition: transform 0.3s; /* Animation: slide away */
-}
-.sidebar code {
-  line-height: 2em;
 }
 .sidebar .sidebar-scrollbox {
   overflow-y: auto;
@@ -395,13 +416,6 @@ ul#searchresults span.teaser em {
 .sidebar-hidden .sidebar {
   transform: translateX(calc(0px - var(--sidebar-width)));
 }
-.sidebar::-webkit-scrollbar {
-  background: var(--sidebar-bg);
-}
-.sidebar::-webkit-scrollbar-thumb {
-  background: var(--scrollbar);
-}
-
 .sidebar-visible .page-wrapper {
   transform: translateX(var(--sidebar-width));
 }
@@ -416,56 +430,56 @@ ul#searchresults span.teaser em {
   list-style: none outside none;
   padding-left: 0;
   line-height: 2em;
-}
 
-.chapter ol {
-  width: 100%;
-}
+  ol {
+    width: 100%;
+  }
 
-.chapter li {
-  display: flex;
-  color: var(--sidebar-non-existant);
-}
-.chapter li a {
-  display: block;
-  padding: 0;
-  text-decoration: none;
-  color: var(--sidebar-fg);
-}
+  li {
+    display: flex;
+    color: var(--sidebar-non-existant);
 
-.chapter li a:hover {
-  color: var(--sidebar-active);
-}
+    a {
+      display: block;
+      padding: 0;
+      text-decoration: none;
+      color: var(--sidebar-fg);
 
-.chapter li a.active {
-  color: var(--sidebar-active);
-}
+      &:hover {
+        color: var(--sidebar-active);
+      }
+      &.active {
+        color: var(--sidebar-active);
+      }
+    }
 
-.chapter li > a.toggle {
-  cursor: pointer;
-  display: block;
-  margin-left: auto;
-  padding: 0 10px;
-  user-select: none;
-  opacity: 0.68;
-}
+    & > a.toggle {
+      cursor: pointer;
+      display: block;
+      margin-left: auto;
+      padding: 0 10px;
+      user-select: none;
+      opacity: 0.68;
 
-.chapter li > a.toggle div {
-  transition: transform 0.5s;
-}
+      div {
+        transition: transform 0.5s;
+      }
+    }
 
-/* collapse the section */
-.chapter li:not(.expanded) + li > ol {
-  display: none;
-}
+    /* collapse the section */
+    &:not(.expanded) + li > ol {
+      display: none;
+    }
 
-.chapter li.chapter-item {
-  line-height: 1.5em;
-  margin-top: 0.6em;
-}
+    &.chapter-item {
+      line-height: 1.5em;
+      margin-top: 0.6em;
+    }
 
-.chapter li.expanded > a.toggle div {
-  transform: rotate(90deg);
+    &.expanded > a.toggle div {
+      transform: rotate(90deg);
+    }
+  }
 }
 
 .spacer {
@@ -509,27 +523,28 @@ ul#searchresults span.teaser em {
   list-style: none;
   display: none;
   overflow: hidden;
-}
-.theme-popup .default {
-  color: var(--icons);
-}
-.theme-popup .theme {
-  width: 100%;
-  border: 0;
-  margin: 0;
-  padding: 2px 20px;
-  line-height: 25px;
-  white-space: nowrap;
-  text-align: left;
-  cursor: pointer;
-  color: inherit;
-  background: inherit;
-  font-size: inherit;
-}
-.theme-popup .theme:hover {
-  background-color: var(--theme-hover);
-}
 
+  .default {
+    color: var(--icons);
+  }
+  .theme {
+    width: 100%;
+    border: 0;
+    margin: 0;
+    padding: 2px 20px;
+    line-height: 25px;
+    white-space: nowrap;
+    text-align: left;
+    cursor: pointer;
+    color: inherit;
+    background: inherit;
+    font-size: inherit;
+
+    &:hover {
+      background-color: var(--theme-hover);
+    }
+  }
+}
 .theme-selected::before {
   display: inline-block;
   content: "✓";
