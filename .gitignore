@@ -3,8 +3,9 @@ target
 node_modules
 
 *.css
+*.css.map
+*.tmp
 
 convert.sh
 
 .DS_Store
-*.tmp
