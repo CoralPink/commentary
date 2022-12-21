@@ -1,9 +1,8 @@
 book
 target
-css
+node_modules
 
-scss/node_modules/
-scss/package-lock.json
+*.css
 
 convert.sh
 

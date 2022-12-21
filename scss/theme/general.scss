@@ -34,13 +34,18 @@ main {
 }
 
 /* Don't change font size in headers. */
-h1 code,
-h2 code,
-h3 code,
-h4 code,
-h5 code,
-h6 code {
-  font-size: unset;
+h1, h2, h3, h4, h5, h6 {
+  code {
+    font-size: unset;
+  }
+  target{
+    &::before {
+      display: inline-block;
+      content: "»";
+      margin-left: -30px;
+      width: 30px;
+    }
+  }
 }
 
 .left {
@@ -74,26 +79,6 @@ h5 {
   margin-top: 1em;
 }
 
-h1:target::before,
-h2:target::before,
-h3:target::before,
-h4:target::before,
-h5:target::before,
-h6:target::before {
-  display: inline-block;
-  content: "»";
-  margin-left: -30px;
-  width: 30px;
-}
-
-/* This is broken on Safari as of version 14, but is fixed
-   in Safari Technology Preview 117 which I think will be Safari 14.2.
-   https://bugs.webkit.org/show_bug.cgi?id=218076
-*/
-:target {
-  scroll-margin-top: calc(var(--menu-bar-height) + 0.5em);
-}
-
 .page {
   outline: 0;
   margin-top: calc(
@@ -110,68 +95,80 @@ h6:target::before {
 .content {
   overflow-y: auto;
   padding: 1em 2em 5em 2em;
-}
-.content main {
-  font-size: 1.3rem;
-  margin-left: 1.2em;
-  margin-right: 1.2em;
-  max-width: 75vw;
-}
-.content p {
-  line-height: 1.45em;
-}
-.content ol {
-  line-height: 1.45em;
-}
-.content ul {
-  line-height: 1.45em;
-}
-.content a {
-  text-decoration: none;
-}
-.content a:hover {
-  text-decoration: underline;
-}
-.content img,
-.content video {
-  margin-left: auto;
-  margin-right: auto;
-  display: block;
-  max-width: 100%;
-}
-.content .header:link,
-.content .header:visited {
-  color: var(--fg);
-}
-.content .header:link,
-.content .header:visited:hover {
-  text-decoration: none;
+
+  main {
+    font-size: 1.3rem;
+    margin-left: 1.2em;
+    margin-right: 1.2em;
+    max-width: 75vw;
+  }
+  p {
+    line-height: 1.45em;
+  }
+  ol {
+    line-height: 1.45em;
+  }
+  ul {
+    line-height: 1.45em;
+  }
+  a {
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  img, video {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    max-width: 100%;
+  }
+
+  .header {
+    &:link {
+      color: var(--fg);
+      text-decoration: none;
+    }
+    &:visited {
+      color: var(--fg);
+    }
+    &:visited:hover {
+      text-decoration: none;
+    }
+  }
 }
 
 table {
   margin: 0 auto;
   border-collapse: collapse;
-}
-table td {
-  padding: 3px 20px;
-  border: 1px var(--table-border-color) solid;
-}
-table thead {
-  background: var(--table-header-bg);
-}
-table thead td {
-  font-weight: 700;
-  border: none;
-}
-table thead th {
-  padding: 3px 20px;
-}
-table thead tr {
-  border: 1px var(--table-header-bg) solid;
-}
-/* Alternate background colors for rows */
-table tbody tr:nth-child(2n) {
-  background: var(--table-alternate-bg);
+
+  td {
+    padding: 3px 20px;
+    border: 1px var(--table-border-color) solid;
+  }
+  thead {
+    background: var(--table-header-bg);
+
+    td {
+      font-weight: 700;
+      border: none;
+    }
+    th {
+      padding: 3px 20px;
+    }
+    tr {
+      border: 1px var(--table-header-bg) solid;
+    }
+  }
+  /* Alternate background colors for rows */
+  tbody {
+    tr {
+      &:nth-child(2n) {
+        background: var(--table-alternate-bg);
+      }
+    }
+  }
 }
 
 blockquote {
@@ -203,9 +200,10 @@ kbd {
 .footnote-definition {
   font-size: 0.84em;
   margin: 0.5em 0;
-}
-.footnote-definition p {
-  display: inline;
+
+  p {
+    display: inline;
+  }
 }
 
 .tooltiptext {
@@ -229,10 +227,14 @@ kbd {
   visibility: visible;
 }
 
-.chapter li.part-title {
-  color: var(--sidebar-fg);
-  margin: 5px 0px;
-  font-weight: bold;
+.chapter {
+  li{
+    .part-title {
+      color: var(--sidebar-fg);
+      margin: 5px 0px;
+      font-weight: bold;
+    }
+  }
 }
 
 .result-no-output {
