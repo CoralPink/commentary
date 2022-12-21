@@ -233,28 +233,30 @@ pre {
     visibility: visible;
     opacity: 1;
   }
-  & > .buttons :hover {
-    color: var(--sidebar-active);
-    border-color: var(--icons-hover);
-    background-color: var(--theme-hover);
-  }
-  & > .buttons i {
-    margin-left: 8px;
-  }
-  & > .buttons button {
-    cursor: inherit;
-    margin: 0px 5px;
-    padding: 3px 5px;
-    font-size: 14px;
+  & > .buttons {
+    :hover {
+      color: var(--sidebar-active);
+      border-color: var(--icons-hover);
+      background-color: var(--theme-hover);
+    }
+    i {
+      margin-left: 8px;
+    }
+    button {
+      cursor: inherit;
+      margin: 0px 5px;
+      padding: 3px 5px;
+      font-size: 14px;
 
-    border-style: solid;
-    border-width: 1px;
-    border-radius: 4px;
-    border-color: var(--icons);
-    background-color: var(--theme-popup-bg);
-    transition: 100ms;
-    transition-property: color, border-color, background-color;
-    color: var(--icons);
+      border-style: solid;
+      border-width: 1px;
+      border-radius: 4px;
+      border-color: var(--icons);
+      background-color: var(--theme-popup-bg);
+      transition: 100ms;
+      transition-property: color, border-color, background-color;
+      color: var(--icons);
+    }
   }
   & > code {
     padding: 1rem;
@@ -340,8 +342,7 @@ ul {
   &#searchresults {
     list-style: none;
     padding-left: 20px;
-  }
-  &#searchresults {
+
     li {
       margin: 10px 0px;
       padding: 2px;
@@ -351,8 +352,6 @@ ul {
         background-color: var(--searchresults-li-bg);
       }
     }
-  }
-  &#searchresults {
     span {
       &.teaser {
         display: block;
@@ -393,12 +392,6 @@ ul {
   &::-webkit-scrollbar-thumb {
     background: var(--scrollbar);
   }
-}
-.sidebar-resizing {
-  -moz-user-select: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
 }
 .js:not(.sidebar-resizing) .sidebar {
   transition: transform 0.3s; /* Animation: slide away */
@@ -444,6 +437,7 @@ ul {
       padding: 0;
       text-decoration: none;
       color: var(--sidebar-fg);
+      font-style: italic;
 
       &:hover {
         color: var(--sidebar-active);
@@ -458,8 +452,8 @@ ul {
       display: block;
       margin-left: auto;
       padding: 0 10px;
-      user-select: none;
       opacity: 0.68;
+      font-style: normal;
 
       div {
         transition: transform 0.5s;

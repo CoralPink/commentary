@@ -20,6 +20,7 @@
     height: var(--content-max-height);
     overflow: auto;
     font-size: 0.8em;
+    font-style: italic;
 
     a {
       border-left: 1px solid var(--sidebar-bg);
@@ -28,7 +29,6 @@
       padding-bottom: 5px;
       padding-top: 5px;
       text-align: left;
-      text-decoration: none;
 
       &:hover {
         background: var(--sidebar-bg);
