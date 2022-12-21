@@ -4,6 +4,6 @@
   },
   "scripts": {
     "compile": "node_modules/.bin/sass --no-source-map --style=compressed",
-    "test": "node_modules/.bin/sass"
+    "debug": "node_modules/.bin/sass"
   }
 }
