@@ -1,8 +1,8 @@
 book
 target
-css
+node_modules
 
-scss/node_modules/
+*.css
 
 convert.sh
 
