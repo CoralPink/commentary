@@ -3,7 +3,6 @@ target
 css
 
 scss/node_modules/
-scss/package-lock.json
 
 convert.sh
 
