@@ -1,6 +1,7 @@
 book
 target
 node_modules
+dist
 
 *.css
 *.css.map
