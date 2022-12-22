@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "uglify-js": "^3.17.4"
+  },
+  "scripts": {
+    "uglifyjs": "node_modules/uglify-js/bin/uglifyjs $npm_config_input --compress --mangle --output $npm_config_output"
+  }
+}
