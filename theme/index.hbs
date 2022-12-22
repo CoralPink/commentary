@@ -38,11 +38,11 @@
         {{/if}}
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="{{ path_to_root }}highlight.css">
+        <link rel="stylesheet" href="{{ path_to_root }}highlight.css" async>
 
         <!-- Custom theme stylesheets -->
         {{#each additional_css}}
-        <link rel="stylesheet" href="{{ ../path_to_root }}{{ this }}">
+        <link rel="stylesheet" href="{{ ../path_to_root }}{{ this }}" async>
         {{/each}}
 
         {{#if mathjax_support}}
