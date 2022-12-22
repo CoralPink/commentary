@@ -7,6 +7,9 @@ dist
 *.css.map
 *.tmp
 
+theme/book.js
+src/searcher.js
+
 convert.sh
 
 .DS_Store
