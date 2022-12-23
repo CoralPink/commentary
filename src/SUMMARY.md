@@ -76,5 +76,6 @@
   - [nvim-treesitter](neovim/plugin/nvim-treesitter.md)
   - [onenord.nvim](neovim/plugin/onenord.md)
   - [lualine.nvim](neovim/plugin/lualine.md)
+  - [nvim-hlslens](neovim/plugin/nvim-hlslens.md)
 
 # ... To Be Continued.
