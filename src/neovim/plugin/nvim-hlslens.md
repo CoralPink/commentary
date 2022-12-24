@@ -230,8 +230,8 @@ Vim のスポンサーは機能に対して投票することができます。|
 
 色々ありましたが、つまりこういうことです。
 
-```admonish success title="Assemble❗"
-Uganda and Black Panther Forever❗
+```admonish success title="Assemble"
+Black Panther and Uganda Forever!!
 
-(ウガンダも ブラックパンサーも 永遠に❗)
+(ブラックパンサーも ウガンダも 永遠に❗)
 ```
