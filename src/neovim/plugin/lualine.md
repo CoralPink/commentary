@@ -273,7 +273,7 @@ vim.api.nvim_set_option('showmode', false)
 ```
 ~~~
 
-```admonish success title="Assemble❗"
+```admonish success title="Assemble"
 ![show-mode-false](img/show-mode-false.webp)
 
 `lualine.nvim`のカスタマイズについては、仲間をふやして次の街で❗😉
