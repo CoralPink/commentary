@@ -77,5 +77,7 @@
   - [onenord.nvim](neovim/plugin/onenord.md)
   - [lualine.nvim](neovim/plugin/lualine.md)
   - [nvim-hlslens](neovim/plugin/nvim-hlslens.md)
+  - [gitsigns](neovim/plugin/gitsigns.md)
+  - [nvim-scrollbar](neovim/plugin/nvim-scrollbar.md)
 
 # ... To Be Continued.
