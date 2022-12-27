@@ -17,11 +17,11 @@ Neovim >= 0.7.0
 
 Note: If your version of Neovim is too old, then you can use a past release.
 
-      Neovimのバージョンが古すぎる場合、過去のリリースを使用することができます。
+Neovimのバージョンが古すぎる場合、過去のリリースを使用することができます。
 
 Note: If you are running a development version of Neovim (aka master), then breakage may occur if your build is behind latest.
 
-      Neovimの開発版(別名master)を使っている場合、ビルドが最新より遅れていると破損する可能性があります。
+Neovimの開発版(別名master)を使っている場合、ビルドが最新より遅れていると破損する可能性があります。
 
 Newish version of git. Older versions may not work with some features.
 
@@ -375,7 +375,7 @@ current_line_blame                        gitsigns-config-current_line_blame
 
 デフォルトでは有効になっていないのですが、キーマップをそのまま持ってきているなら以下のコードが入っているはずです。
 ```
-    map('n', '<leader>tb', gs.toggle_current_line_blame)
+map('n', '<leader>tb', gs.toggle_current_line_blame)
 ```
 
 <kbd>leader</kbd><kbd>t</kbd><kbd>b</kbd>としてみましょう。
