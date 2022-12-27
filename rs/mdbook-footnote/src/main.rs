@@ -1,4 +1,4 @@
-use clap::{App, Arg, ArgMatches, SubCommand};
+use clap::{Arg, ArgMatches, Command};
 use lazy_static::lazy_static;
 use mdbook::{
     book::Book,
@@ -8,12 +8,12 @@ use mdbook::{
 use regex::Regex;
 use std::{io, process};
 
-pub fn make_app() -> App<'static> {
-    App::new("footnote-preprocessor")
+pub fn make_app() -> Command {
+    Command::new("footnote-preprocessor")
         .about("An mdbook preprocessor which converts expands footnote markers")
         .subcommand(
-            SubCommand::with_name("supports")
-                .arg(Arg::with_name("renderer").required(true))
+            Command::new("supports")
+                .arg(Arg::new("renderer").required(true))
                 .about("Check whether a renderer is supported by this preprocessor"),
         )
 }
@@ -52,7 +52,10 @@ fn handle_preprocessing(pre: &dyn Preprocessor) -> Result<(), Error> {
 }
 
 fn handle_supports(pre: &dyn Preprocessor, sub_args: &ArgMatches) -> ! {
-    let renderer = sub_args.value_of("renderer").expect("Required argument");
+    let renderer = sub_args
+        .get_one::<String>("renderer")
+        .expect("Required argument");
+
     let supported = pre.supports_renderer(renderer);
 
     // Signal whether the renderer is supported by exiting with 1 or 0.
@@ -102,7 +105,8 @@ impl Preprocessor for Footnote {
                     for (idx, content) in footnotes.into_iter().enumerate() {
                         let num = idx + 1;
 
-                        chap.content += &format!("<div class=\"footnote-definition\" id={}>\n", num);
+                        chap.content +=
+                            &format!("<div class=\"footnote-definition\" id={}>\n", num);
                         chap.content += &format!("\n\n[<sup>{}:</sup>](#to-footnote-{})", num, num);
                         chap.content += &format!(" {}", content);
                         chap.content += "</div>";
