@@ -1,7 +1,7 @@
-/* Base styles and content styles */
+// Base styles and content styles
 
 :root {
-  /* Browser default font-size is 16px, this way 1 rem = 10px */
+  // Browser default font-size is 16px, this way 1 rem = 10px
   font-size: 64.0%;
 }
 
@@ -23,17 +23,17 @@ code {
   font-size: var(--code-font-size);
 }
 
-/* make long words/inline code not x overflow */
+// make long words/inline code not x overflow
 main {
   overflow-wrap: break-word;
 }
 
-/* make wide tables scroll if they overflow */
+// make wide tables scroll if they overflow
 .table-wrapper {
   overflow-x: auto;
 }
 
-/* Don't change font size in headers. */
+// Don't change font size in headers.
 h1, h2, h3, h4, h5, h6 {
   code {
     font-size: unset;
@@ -75,15 +75,13 @@ h5 {
 
 .page {
   outline: 0;
-  margin-top: calc(
-    0px - var(--menu-bar-height)
-  ); /* Compensate for the #menu-bar-hover-placeholder */
+  margin-top: calc(0px - var(--menu-bar-height)); // Compensate for the #menu-bar-hover-placeholder
 }
 .page-wrapper {
   box-sizing: border-box;
 
   .js:not(.sidebar-resizing) & {
-    transition: margin-left 0.3s ease, transform 0.3s ease; /* Animation: slide away */
+    transition: margin-left 0.3s ease, transform 0.3s ease; // Animation: slide away
   }
 }
 
@@ -146,7 +144,7 @@ table {
       border: 1px var(--table-header-bg) solid;
     }
   }
-  /* Alternate background colors for rows */
+  // Alternate background colors for rows
   tbody {
     tr {
       &:nth-child(2n) {
@@ -196,8 +194,8 @@ kbd {
   visibility: hidden;
   color: #fff;
   background-color: #333;
-  transform: translateX(-50%); /* Center by moving tooltip 50% of its width left */
-  left: -8px; /* Half of the width of the icon */
+  transform: translateX(-50%); // Center by moving tooltip 50% of its width left
+  left: -8px; // Half of the width of the icon
   top: -35px;
   font-size: 0.8em;
   text-align: center;
