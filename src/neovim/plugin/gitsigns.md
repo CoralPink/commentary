@@ -4,7 +4,7 @@
 
 人によっては`git`を使っていないかもしれないんだけど、これをきっかけに挑戦してみると楽しいと思います。
 
-```admonish info title="https://github.com/lewis6991/gitsigns.nvim"
+```admonish info title="[gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)"
 Super fast git decorations implemented purely in lua/teal.
 
 lua/teal でピュアに実装された超高速な git 装飾。
@@ -218,7 +218,7 @@ non-blocking (return immediately).
 
 `untracked`については、後に出てくる`attach_to_untracked`を無効にすると使用されないので定義していません。
 
-~~~admonish example title="extensions/onenord.lua"
+~~~admonish example title="extensions/gitsigns.lua"
 ```lua
   signs = {
     add =          { hl = 'GitSignsAdd',    text = ' ▎', numhl = 'GitSignsAddNr',    linehl = 'GitSignsAddLn' },
@@ -236,7 +236,7 @@ non-blocking (return immediately).
 
 ### word_diff
 
-~~~admonish example title="extensions/onenord.lua"
+~~~admonish example title="extensions/gitsigns.lua"
 ```lua
   word_diff = true,
 ```
@@ -281,6 +281,7 @@ word_diff                                          gitsigns-config-word_diff
 ```
 
 なので、もうちょっと抑えたいなーと思うんですけど...🤔
+
 そういえば`:h gitsigns-config-word_diff`の中で、これに関して使用している`highlights`が示されてますよね。
 
 `highlights`といえば心強い味方が既にいました❗`onenord.nvim`です😆
@@ -306,7 +307,7 @@ word_diff                                          gitsigns-config-word_diff
 
 ### attach_to_untracked
 
-~~~admonish example title="extensions/onenord.lua"
+~~~admonish example title="extensions/gitsigns.lua"
 ```lua
   attach_to_untracked = false,
 ```
@@ -333,7 +334,7 @@ attach_to_untracked                      *gitsigns-config-attach_to_untracked*
 
 ### current_line_blame_formatter
 
-~~~admonish example title="extensions/onenord.lua"
+~~~admonish example title="extensions/gitsigns.lua"
 ```lua
   current_line_blame_formatter = '<summary> (<author_time:%Y/%m>)',
 ```
