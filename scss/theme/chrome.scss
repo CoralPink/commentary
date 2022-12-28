@@ -1,4 +1,4 @@
-/* CSS for UI elements (a.k.a. chrome) */
+// CSS for UI elements (a.k.a. chrome)
 
 ::-webkit-scrollbar {
   background: var(--bg);
@@ -16,7 +16,7 @@ a > .hljs {
   color: var(--links);
 }
 
-/* Menu Bar */
+// Menu Bar
 
 #menu-bar,
 #menu-bar-hover-placeholder {
@@ -125,7 +125,7 @@ a > .hljs {
   color: var(--icons-hover);
 }
 
-/* Nav Icons */
+// Nav Icons
 
 .nav-chapters {
   font-size: 1.8em;
@@ -195,7 +195,7 @@ a > .hljs {
   }
 }
 
-/* Inline code */
+// Inline code
 
 :not(pre) > .hljs {
   display: inline;
@@ -268,21 +268,12 @@ pre {
 }
 @media (pointer: coarse) {
   pre > .buttons button {
-    /* On mobile, make it easier to tap buttons. */
+    // On mobile, make it easier to tap buttons.
     padding: 0.3rem 1rem;
   }
 }
 
-/* FIXME: ACE editors overlap their buttons because ACE does absolute
-   positioning within the code block which breaks padding. The only solution I
-   can think of is to move the padding to the outer pre tag (or insert a div
-   wrapper), but that would require fixing a whole bunch of CSS rules.
-.hljs.ace_editor {
-  padding: 0rem 0rem;
-}
-*/
-
-/* Search */
+// Search
 
 #searchresults a {
   text-decoration: none;
@@ -368,7 +359,7 @@ ul {
   }
 }
 
-/* Sidebar */
+// Sidebar
 
 .sidebar {
   position: fixed;
@@ -394,7 +385,7 @@ ul {
   }
 }
 .js:not(.sidebar-resizing) .sidebar {
-  transition: transform 0.3s; /* Animation: slide away */
+  transition: transform 0.3s; // Animation: slide away
 }
 .sidebar .sidebar-scrollbox {
   overflow-y: auto;
@@ -460,7 +451,7 @@ ul {
       }
     }
 
-    /* collapse the section */
+    // collapse the section
     &:not(.expanded) + li > ol {
       display: none;
     }
@@ -500,7 +491,7 @@ ul {
   line-height: 1.9em;
 }
 
-/* Theme Menu Popup */
+// Theme Menu Popup
 
 .theme-popup {
   position: absolute;
