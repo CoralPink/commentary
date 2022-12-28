@@ -73,12 +73,6 @@ h5 {
   margin-top: 2em;
 }
 
-.header + .header h3,
-.header + .header h4,
-.header + .header h5 {
-  margin-top: 1em;
-}
-
 .page {
   outline: 0;
   margin-top: calc(
@@ -87,9 +81,10 @@ h5 {
 }
 .page-wrapper {
   box-sizing: border-box;
-}
-.js:not(.sidebar-resizing) .page-wrapper {
-  transition: margin-left 0.3s ease, transform 0.3s ease; /* Animation: slide away */
+
+  .js:not(.sidebar-resizing) & {
+    transition: margin-left 0.3s ease, transform 0.3s ease; /* Animation: slide away */
+  }
 }
 
 .content {
@@ -110,9 +105,8 @@ h5 {
     }
   }
   img, video {
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
+    display: flex;
+    margin: 0 auto;
     max-width: 100%;
   }
 
@@ -184,16 +178,16 @@ kbd {
   vertical-align: middle;
 }
 
-:not(.footnote-definition) + .footnote-definition,
-.footnote-definition + :not(.footnote-definition) {
-  margin-top: 2em;
-}
 .footnote-definition {
   font-size: 0.84em;
   margin: 0.5em 0;
 
   p {
     display: inline;
+  }
+
+  :not(&) + &, & + :not(&) {
+    margin-top: 3em;
   }
 }
 
@@ -202,9 +196,7 @@ kbd {
   visibility: hidden;
   color: #fff;
   background-color: #333;
-  transform: translateX(
-    -50%
-  ); /* Center by moving tooltip 50% of its width left */
+  transform: translateX(-50%); /* Center by moving tooltip 50% of its width left */
   left: -8px; /* Half of the width of the icon */
   top: -35px;
   font-size: 0.8em;
@@ -213,9 +205,10 @@ kbd {
   padding: 5px 8px;
   margin: 5px;
   z-index: 1000;
-}
-.tooltipped .tooltiptext {
-  visibility: visible;
+
+  .tooltipped & {
+    visibility: visible;
+  }
 }
 
 .chapter {
