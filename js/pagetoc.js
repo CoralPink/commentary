@@ -54,5 +54,5 @@ const scrollListenerControl = () => {
   window.addEventListener("scroll", update);
 }
 
+window.addEventListener("load", scrollListenerControl);
 window.addEventListener("resize", scrollListenerControl);
-scrollListenerControl();
