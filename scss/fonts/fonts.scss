@@ -101,8 +101,10 @@
   font-display: swap;
 }
 
+@import "../global.scss";
+
 /* source-code-pro-500 - latin_vietnamese_latin-ext_greek_cyrillic-ext_cyrillic */
-@media only screen and (max-width: 850px) {
+@media only screen and (max-width: $mobile-max-width) {
   @font-face {
     font-family: "Source Code Pro";
     font-style: normal;
@@ -113,7 +115,7 @@
 }
 
 /* HackGen35  */
-@media only screen and (min-width: 850px) {
+@media only screen and (min-width: $mobile-max-width) {
   @font-face {
     font-family: "HackGen35 Console NF";
     font-style: normal;
