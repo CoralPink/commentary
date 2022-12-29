@@ -1,0 +1,24 @@
+version: 2
+updates:
+  # Enable version updates for Cargo
+  - package-ecosystem: "cargo"
+    directory: "/rs/mdbook-footnote"
+    schedule:
+      interval: "daily"
+
+  # Enable version updates for npm
+  - package-ecosystem: "npm"
+    directory: "/scss"
+    schedule:
+      interval: "daily"
+
+  - package-ecosystem: "npm"
+    directory: "/js"
+    schedule:
+      interval: "daily"
+
+  # Enable version updates for GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
