@@ -159,12 +159,12 @@ vim.api.nvim_buf_set_option(0, 'expandtab', true)
 
 どうしよー😭ってなるんですけど、泣かなくて大丈夫。解決策はちゃんとあるから🤗
 
-```
+```admonish quote title=""
 アナウンス『ピンポーン❗
 じかんが　きました❗
 ```
 
-```
+```admonish quote title=""
 アナウンス『bufferリ　ゲーム
 おわり　でーす❗
 ```
