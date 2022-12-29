@@ -330,7 +330,7 @@ require('packer').startup {
 
 ![float-window2](img/float-window2.webp)
 
-## Conclude
+## Wrap up
 
 `pakcer.nvim`には便利な機能や設定がまだまだあるのですが、
 ここで説明だけしてもイメージが掴みにくいと思うので、使用する場面で、その都度注釈を入れていく形にしようと思ってます。
