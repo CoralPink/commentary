@@ -115,7 +115,7 @@ vim.keymap.set('n', '<Leader>l', function() print('Leader key worked too.') end)
 
 これなら安心ですね❗
 
-## まとめ
+## Conclude
 
 ```admonish success
 キー操作に機能(`function`)を割り当てて実行できましたね🤗
