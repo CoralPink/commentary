@@ -1,6 +1,6 @@
 # nvim_win_set_option
 
-```
+```admonish quote title=""
 あ❗　やせいの
 
 `nvim_win_set_option`が　とびだしてきた❗

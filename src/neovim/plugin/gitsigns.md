@@ -112,8 +112,9 @@ use {
 ```admonish warning
 `Neovim`の`nightly`ビルドや開発ビルドを実行している場合は、`tag`オプションを使用しないでください!
 
-(Stable Releaseを使用している場合は入れてね!) ...と記載されているのですが、
-なぜかアップデート確認(次回以降の`:PackerSync`)で失敗します。
+(※`Stable Release`を使用している場合は入れてね!)
+
+...と記載されているのですが、なぜかアップデート確認 (次回以降の`:PackerSync`) で失敗します。
 
 ![gitsigns-install](img/gitsigns-install-failed.webp)
 
