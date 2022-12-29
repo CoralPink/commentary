@@ -422,13 +422,13 @@ ul {
   li {
     display: flex;
     color: var(--sidebar-non-existant);
+    font-style: italic;
 
     a {
       display: block;
       padding: 0;
       text-decoration: none;
       color: var(--sidebar-fg);
-      font-style: italic;
 
       &:hover {
         color: var(--sidebar-active);
@@ -457,8 +457,14 @@ ul {
     }
 
     &.chapter-item {
-      line-height: 1.5em;
-      margin-top: 0.6em;
+      margin: 2px 3px;
+    }
+
+    &.part-title {
+      color: var(--sidebar-fg);
+      margin: 12px auto 0px;
+      font-weight: bold;
+  border-bottom: solid 1px #ffb2cc;
     }
 
     &.expanded > a.toggle div {
@@ -468,12 +474,10 @@ ul {
 }
 
 .spacer {
+  background-color: var(--sidebar-spacer);
   width: 100%;
   height: 3px;
   margin: 5px 0px;
-}
-.chapter .spacer {
-  background-color: var(--sidebar-spacer);
 }
 
 @media (-moz-touch-enabled: 1), (pointer: coarse) {
