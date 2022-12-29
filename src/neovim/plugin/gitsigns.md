@@ -272,9 +272,11 @@ word_diff                                          gitsigns-config-word_diff
 
 ![custom_highlights_before_before](img/custom_highlights_before.webp)
 
-...ちょっと派手だと思いません❓
+...ちょっと派手すぎません❗❓
 
-この例では変更箇所が1行だけなのでまだ見た目楽しそうなんですけど、変更箇所が増えてくるとなかなかのインパクトになりそうです...😵‍💫
+何十人も集まるようなパーティーであれば、このぐらい盛り上がってくれれば、それはもう大変に開き甲斐のあるパーティーです🥳
+
+でも、普段使いで❓これを❗❓いや〜...、それはなにかこう、特別な勇気が必要になってくるような...。
 
 ```admonish note
 「それは`git`の運用が下手なんだ」と言われればそうなんですけどね😿
@@ -301,9 +303,9 @@ word_diff                                          gitsigns-config-word_diff
 ```
 ~~~
 
-ありがとう...❗onenord...❗
-
 ![custom_highlights_before_after](img/custom_highlights_after.webp)
+
+ありがとう...❗onenord...❗
 
 ### attach_to_untracked
 
