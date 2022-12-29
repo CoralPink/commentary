@@ -1,12 +1,14 @@
+use crate::footnote_lib::Footnote;
 use clap::{Arg, ArgMatches, Command};
-use lazy_static::lazy_static;
 use mdbook::{
     book::Book,
     errors::Error,
     preprocess::{CmdPreprocessor, Preprocessor, PreprocessorContext},
 };
-use regex::Regex;
+use semver::{Version, VersionReq};
 use std::{io, process};
+use lazy_static::lazy_static;
+use regex::Regex;
 
 pub fn make_app() -> Command {
     Command::new("footnote-preprocessor")
@@ -20,7 +22,7 @@ pub fn make_app() -> Command {
 
 fn main() {
     let matches = make_app().get_matches();
-    let preprocessor = Footnote::default();
+    let preprocessor = Footnote::new();
 
     if let Some(sub_args) = matches.subcommand_matches("supports") {
         handle_supports(&preprocessor, sub_args);
@@ -33,9 +35,10 @@ fn main() {
 fn handle_preprocessing(pre: &dyn Preprocessor) -> Result<(), Error> {
     let (ctx, book) = CmdPreprocessor::parse_input(io::stdin())?;
 
-    if ctx.mdbook_version != mdbook::MDBOOK_VERSION {
-        // We should probably use the `semver` crate to check compatibility
-        // here...
+    let book_version = Version::parse(&ctx.mdbook_version)?;
+    let version_req = VersionReq::parse(mdbook::MDBOOK_VERSION)?;
+
+    if !version_req.matches(&book_version) {
         eprintln!(
             "Warning: The {} plugin was built against version {} of mdbook, \
              but we're being called from version {}",
@@ -71,53 +74,62 @@ lazy_static! {
         Regex::new(r"(?s)\{\{footnote:\s*(?P<content>.*?)\}\}").unwrap();
 }
 
-/// A pre-processor that expands {{footnote: ..}} markers.
-#[derive(Default)]
-pub struct Footnote {}
+mod footnote_lib {
+    use super::*;
 
-impl Preprocessor for Footnote {
-    fn name(&self) -> &str {
-        "footnote-preprocessor"
+    pub struct Footnote;
+
+    impl Footnote {
+        pub fn new() -> Footnote {
+            Footnote
+        }
     }
 
-    fn run(&self, _ctx: &PreprocessorContext, mut book: Book) -> Result<Book, Error> {
-        book.for_each_mut(|item| {
-            if let mdbook::book::BookItem::Chapter(chap) = item {
-                let mut footnotes = vec![];
+    impl Preprocessor for Footnote {
+        fn name(&self) -> &str {
+            "footnote-preprocessor"
+        }
 
-                chap.content = FOOTNOTE_RE
-                    .replace_all(&chap.content, |caps: &regex::Captures| {
-                        let content = caps.name("content").unwrap().as_str().to_owned();
-                        footnotes.push(content);
+        fn run(&self, _ctx: &PreprocessorContext, mut book: Book) -> Result<Book, Error> {
+            book.for_each_mut(|item| {
+                if let mdbook::book::BookItem::Chapter(chap) = item {
+                    let mut footnotes = vec![];
 
-                        let idx = footnotes.len();
+                    chap.content = FOOTNOTE_RE
+                        .replace_all(&chap.content, |caps: &regex::Captures| {
+                            let content = caps.name("content").unwrap().as_str().to_owned();
+                            footnotes.push(content);
 
-                        format!(
-                            "<sup class=\"footnote-reference\">
-                                <a name=\"to-footnote-{}\">[{}](#{})</a>
-                            </sup>",
-                            idx, idx, idx
-                        )
-                    })
-                    .to_string();
+                            let idx = footnotes.len();
 
-                if !footnotes.is_empty() {
-                    for (idx, content) in footnotes.into_iter().enumerate() {
-                        let num = idx + 1;
+                            format!(
+                                "<sup class=\"footnote-reference\">
+                                    <a name=\"to-footnote-{}\">[{}](#{})</a>
+                                </sup>",
+                                idx, idx, idx
+                            )
+                        })
+                        .to_string();
 
-                        chap.content +=
-                            &format!("<div class=\"footnote-definition\" id={}>\n", num);
-                        chap.content += &format!("\n\n[<sup>{}:</sup>](#to-footnote-{})", num, num);
-                        chap.content += &format!(" {}", content);
-                        chap.content += "</div>";
+                    if !footnotes.is_empty() {
+                        for (idx, content) in footnotes.into_iter().enumerate() {
+                            let num = idx + 1;
+
+                            chap.content +=
+                                &format!("<div class=\"footnote-definition\" id={}>\n", num);
+                            chap.content +=
+                                &format!("\n\n[<sup>{}:</sup>](#to-footnote-{})", num, num);
+                            chap.content += &format!(" {}", content);
+                            chap.content += "</div>";
+                        }
                     }
                 }
-            }
-        });
-        Ok(book)
-    }
+            });
+            Ok(book)
+        }
 
-    fn supports_renderer(&self, renderer: &str) -> bool {
-        renderer != "not-supported"
+        fn supports_renderer(&self, renderer: &str) -> bool {
+            renderer != "not-supported"
+        }
     }
 }
