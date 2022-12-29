@@ -236,7 +236,7 @@ Hey, CaP..., you read me...?
 (...nvimトレーナー
 {{footnote:
 このサイトの
-[10章](https://coralpink.github.io/commentary/neovim/options/options.html)と
+[10章](https://coralpink.github.io/commentary/neovim/options/options.html)・
 [11章](https://coralpink.github.io/commentary/neovim/au/automatic-commands.html)の主人公。(はじめてしゃべった😮)
 みらいのチャンピオン。
 }}
@@ -277,4 +277,12 @@ vim.api.nvim_set_option('showmode', false)
 ![show-mode-false](img/show-mode-false.webp)
 
 `lualine.nvim`のカスタマイズについては、仲間をふやして次の街で❗😉
+```
+
+```admonish success title=""
+<div style="text-align: center">
+  NVIM TRAINER IS BACK!!
+
+  nvimトレーナーは帰ってきた!!
+</div>
 ```

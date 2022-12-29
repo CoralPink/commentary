@@ -1,10 +1,10 @@
 # nvim_buf_set_option
 
-```
+```admonish quote title=""
 bufferリ　ゾーンに　ようこそ❗
 ```
 
-```
+```admonish quote title=""
 この　ひろい　bufferリで
 
 いろんな　モンスター　とりほうだいの
@@ -12,22 +12,24 @@ bufferリ　ゾーンに　ようこそ❗
 ゲームが　たった　５００円❗
 ```
 
-```
+```admonish quote title=""
 さっそく　やりますか❓
 ```
 
 ...なんだかいつもと違うパターンで始まりましたが、まあ...「はい😮」
 
-```
+```admonish quote title=""
 それでは・・・❗
 ５００円　いただきまーす❗
 ```
-```
+
+```admonish quote title=""
 ここでは　bufferリ　せんようの
 APIを　つかいます❗
 
 ・・・　これです❗
 ```
+
 ~~~admonish info title=":h nvim_buf_set_option"
 ```
 nvim_buf_set_option({buffer}, {name}, {value})          *nvim_buf_set_option()*
@@ -52,7 +54,7 @@ nvim_buf_set_option({buffer}, {name}, {value})          *nvim_buf_set_option()*
 `buffer`専用ではありますが、やはりこの`API`も、
 これまでに捕まえてきた`set_option`系と同じ、頼れるモンスターです☺️
 
-```
+```admonish quote title=""
 のこり　じかんが　なくなるか❗
 
 APIが　なくなったら
