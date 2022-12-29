@@ -402,7 +402,7 @@ map('n', '<leader>tb', gs.toggle_current_line_blame)
 `gitsigns`を`GitSign`とか言っちゃっててかわいいですね❗❗...はい、ごめんなさい🥹
 ```
 
-## Conclude
+## Wrap up
 
 賑やかな装飾を施せましたね❗サンタさんも大喜びです🎅
 
