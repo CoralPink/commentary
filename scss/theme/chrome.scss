@@ -1,3 +1,5 @@
+@use 'variables' as var;
+
 // CSS for UI elements (a.k.a. chrome)
 
 ::-webkit-scrollbar {
@@ -30,7 +32,7 @@ a > .hljs {
   border-bottom-color: var(--bg);
   border-bottom-width: 1px;
   border-bottom-style: solid;
-  padding: 0 var(--page-padding);
+  padding: 0 var.$page-padding;
 
   .bordered {
     border-bottom-color: var(--table-border-color);
@@ -40,7 +42,7 @@ a > .hljs {
     position: relative;
     padding: 0 8px;
     z-index: 10;
-    line-height: var(--menu-bar-height);
+    line-height: var.$menu-bar-height;
     cursor: pointer;
     transition: color 0.5s;
   }
@@ -57,7 +59,7 @@ a > .hljs {
   position: sticky;
   position: -webkit-sticky;
   top: 0;
-  height: var(--menu-bar-height);
+  height: var.$menu-bar-height;
 }
 @media only screen and (max-width: 420px) {
   #menu-bar i,
@@ -98,7 +100,7 @@ a > .hljs {
   font-weight: 400;
   font-size: 1.3rem;
   font-style: italic;
-  line-height: var(--menu-bar-height);
+  line-height: var.$menu-bar-height;
   text-align: right;
   margin: 0;
   flex: 1;
@@ -174,7 +176,7 @@ a > .hljs {
 
 .next {
   float: right;
-  right: var(--page-padding);
+  right: var.$page-padding;
 }
 
 @media only screen and (max-width: 1080px) {
@@ -296,7 +298,7 @@ mark {
 .searchbar-outer {
   margin-left: auto;
   margin-right: auto;
-  max-width: var(--content-max-width);
+  max-width: var.$content-max-width;
 }
 
 #searchbar {
@@ -324,7 +326,7 @@ mark {
 .searchresults-outer {
   margin-left: auto;
   margin-right: auto;
-  max-width: var(--content-max-width);
+  max-width: var.$content-max-width;
   border-bottom: 1px dashed var(--searchresults-border-color);
   font-size: 1.3em;
 }
@@ -366,7 +368,7 @@ ul {
   left: 0;
   top: 0;
   bottom: 0;
-  width: var(--sidebar-width);
+  width: var.$sidebar-width;
   box-sizing: border-box;
   -webkit-overflow-scrolling: touch;
   overscroll-behavior-y: contain;
@@ -398,15 +400,15 @@ ul {
 }
 
 .sidebar-hidden .sidebar {
-  transform: translateX(calc(0px - var(--sidebar-width)));
+  transform: translateX(calc(0px - var.$sidebar-width));
 }
 .sidebar-visible .page-wrapper {
-  transform: translateX(var(--sidebar-width));
+  transform: translateX(var.$sidebar-width);
 }
 @media only screen and (min-width: 620px) {
   .sidebar-visible .page-wrapper {
     transform: none;
-    margin-left: var(--sidebar-width);
+    margin-left: var.$sidebar-width;
   }
 }
 
@@ -500,7 +502,7 @@ ul {
 .theme-popup {
   position: absolute;
   left: 10px;
-  top: var(--menu-bar-height);
+  top: var.$menu-bar-height;
   z-index: 1000;
   border-radius: 4px;
   font-size: 0.7em;
