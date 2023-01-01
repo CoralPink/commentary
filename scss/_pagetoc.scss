@@ -1,4 +1,5 @@
-@use "global.scss" as gbl;
+@use 'global.scss' as gbl;
+@use 'theme/variables' as var;
 
 @media only screen and (max-width: gbl.$mobile-max-width) {
   .sidetoc {
@@ -13,13 +14,13 @@
   .sidetoc {
     margin-left: auto;
     margin-right: auto;
-    left: calc(100% + (var(--content-max-width)) / 4 - 170px);
+    left: calc(100% + var.$content-max-width / 4 - 170px);
     position: absolute;
   }
   .pagetoc {
     position: fixed;
     width: 15vw;
-    height: var(--content-max-height);
+    height: calc(100vh - var.$menu-bar-height - 0.67em * 4);
     overflow: auto;
     font-size: 0.8em;
     font-style: italic;
