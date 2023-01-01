@@ -20,10 +20,11 @@ a > .hljs {
 
 // Menu Bar
 
-#menu-bar,
-#menu-bar-hover-placeholder {
-  z-index: 101;
+@mixin pos-sticky {
+  position: sticky;
+  position: -webkit-sticky;
 }
+
 #menu-bar {
   position: relative;
   display: flex;
@@ -33,12 +34,14 @@ a > .hljs {
   border-bottom-width: 1px;
   border-bottom-style: solid;
   padding: 0 var.$page-padding;
+  z-index: 101;
 
   .bordered {
     border-bottom-color: var(--table-border-color);
   }
 
-  i, .icon-button {
+  i,
+  .icon-button {
     position: relative;
     padding: 0 8px;
     z-index: 10;
@@ -46,26 +49,26 @@ a > .hljs {
     cursor: pointer;
     transition: color 0.5s;
   }
+  .sticky {
+    @include pos-sticky;
+    top: 0 !important;
+  }
 }
-#menu-bar.sticky,
-.js #menu-bar-hover-placeholder:hover + #menu-bar,
-.js #menu-bar:hover,
-.js.sidebar-visible #menu-bar {
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0 !important;
+
+.js {
+    #menu-bar-hover-placeholder:hover + #menu-bar,
+    #menu-bar:hover,
+    .sidebar-visible #menu-bar {
+      @include pos-sticky;
+      top: 0 !important;
+  }
 }
+
 #menu-bar-hover-placeholder {
-  position: sticky;
-  position: -webkit-sticky;
+  @include pos-sticky;
   top: 0;
   height: var.$menu-bar-height;
-}
-@media only screen and (max-width: 420px) {
-  #menu-bar i,
-  #menu-bar .icon-button {
-    padding: 0 5px;
-  }
+  z-index: 101;
 }
 
 .icon-button {
@@ -203,11 +206,11 @@ a > .hljs {
   display: inline;
   padding: 0.1em 0.3em;
   border-radius: 3px;
-}
 
-:not(pre):not(a) > .hljs {
-  color: var(--inline-code-color);
-  overflow-x: initial;
+  &:not(a) > .hljs {
+    color: var(--inline-code-color);
+    overflow-x: initial;
+  }
 }
 
 a:hover > .hljs {
