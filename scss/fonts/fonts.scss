@@ -1,3 +1,5 @@
+@use "../global.scss" as gbl;
+
 /* Open Sans is licensed under the Apache License, Version 2.0. See http://www.apache.org/licenses/LICENSE-2.0 */
 /* Source Code Pro is under the Open Font License. See https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL */
 
@@ -101,10 +103,8 @@
   font-display: swap;
 }
 
-@import "../global.scss";
-
 /* source-code-pro-500 - latin_vietnamese_latin-ext_greek_cyrillic-ext_cyrillic */
-@media only screen and (max-width: $mobile-max-width) {
+@media only screen and (max-width: gbl.$mobile-max-width) {
   @font-face {
     font-family: "Source Code Pro";
     font-style: normal;
@@ -115,7 +115,7 @@
 }
 
 /* HackGen35  */
-@media only screen and (min-width: $mobile-max-width) {
+@media only screen and (min-width: gbl.$mobile-max-width) {
   @font-face {
     font-family: "HackGen35 Console NF";
     font-style: normal;
