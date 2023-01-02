@@ -95,7 +95,7 @@ h5 {
   main {
     font-size: 1.3rem;
     margin: 0.7em;
-    max-width: calc(var.$content-max-width);
+    max-width: var.$content-max-width;
   }
   a {
     text-decoration: none;
