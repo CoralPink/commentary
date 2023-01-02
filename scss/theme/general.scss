@@ -4,11 +4,11 @@
 
 :root {
   // Browser default font-size is 16px, this way 1 rem = 10px
-  font-size: 64.0%;
+  font-size: 64%;
 }
 
 html {
-  font-family: "Open Sans", sans-serif;
+  font-family: 'Open Sans', sans-serif;
   color: var(--fg);
   background-color: var(--bg);
   text-size-adjust: none;
@@ -36,14 +36,19 @@ main {
 }
 
 // Don't change font size in headers.
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   code {
     font-size: unset;
   }
-  target{
+  target {
     &::before {
       display: inline-block;
-      content: "»";
+      content: '»';
       margin-left: -30px;
       width: 30px;
     }
@@ -104,7 +109,8 @@ h5 {
       text-decoration: underline;
     }
   }
-  img, video {
+  img,
+  video {
     display: flex;
     margin: 0 auto;
     max-width: 100%;
@@ -186,7 +192,8 @@ kbd {
     display: inline;
   }
 
-  :not(&) + &, & + :not(&) {
+  :not(&) + &,
+  & + :not(&) {
     margin-top: 3em;
   }
 }

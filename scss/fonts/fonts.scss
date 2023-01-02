@@ -1,115 +1,115 @@
-@use "../variables.scss" as var;
+@use '../variables.scss' as var;
 
 /* Open Sans is licensed under the Apache License, Version 2.0. See http://www.apache.org/licenses/LICENSE-2.0 */
 /* Source Code Pro is under the Open Font License. See https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL */
 
 /* open-sans-300 - latin_vietnamese_latin-ext_greek-ext_greek_cyrillic-ext_cyrillic */
 @font-face {
-  font-family: "Open Sans";
+  font-family: 'Open Sans';
   font-style: normal;
   font-weight: 300;
-  src: local("Open Sans Light"), local("OpenSans-Light"),
-    url("open-sans-v17-all-charsets-300.woff2") format("woff2");
+  src: local('Open Sans Light'), local('OpenSans-Light'),
+    url('open-sans-v17-all-charsets-300.woff2') format('woff2');
   font-display: swap;
 }
 
 /* open-sans-300italic - latin_vietnamese_latin-ext_greek-ext_greek_cyrillic-ext_cyrillic */
 @font-face {
-  font-family: "Open Sans";
+  font-family: 'Open Sans';
   font-style: italic;
   font-weight: 300;
-  src: local("Open Sans Light Italic"), local("OpenSans-LightItalic"),
-    url("open-sans-v17-all-charsets-300italic.woff2") format("woff2");
+  src: local('Open Sans Light Italic'), local('OpenSans-LightItalic'),
+    url('open-sans-v17-all-charsets-300italic.woff2') format('woff2');
   font-display: swap;
 }
 
 /* open-sans-regular - latin_vietnamese_latin-ext_greek-ext_greek_cyrillic-ext_cyrillic */
 @font-face {
-  font-family: "Open Sans";
+  font-family: 'Open Sans';
   font-style: normal;
   font-weight: 400;
-  src: local("Open Sans Regular"), local("OpenSans-Regular"),
-    url("open-sans-v17-all-charsets-regular.woff2") format("woff2");
+  src: local('Open Sans Regular'), local('OpenSans-Regular'),
+    url('open-sans-v17-all-charsets-regular.woff2') format('woff2');
   font-display: swap;
 }
 
 /* open-sans-italic - latin_vietnamese_latin-ext_greek-ext_greek_cyrillic-ext_cyrillic */
 @font-face {
-  font-family: "Open Sans";
+  font-family: 'Open Sans';
   font-style: italic;
   font-weight: 400;
-  src: local("Open Sans Italic"), local("OpenSans-Italic"),
-    url("open-sans-v17-all-charsets-italic.woff2") format("woff2");
+  src: local('Open Sans Italic'), local('OpenSans-Italic'),
+    url('open-sans-v17-all-charsets-italic.woff2') format('woff2');
   font-display: swap;
 }
 
 /* open-sans-600 - latin_vietnamese_latin-ext_greek-ext_greek_cyrillic-ext_cyrillic */
 @font-face {
-  font-family: "Open Sans";
+  font-family: 'Open Sans';
   font-style: normal;
   font-weight: 600;
-  src: local("Open Sans SemiBold"), local("OpenSans-SemiBold"),
-    url("open-sans-v17-all-charsets-600.woff2") format("woff2");
+  src: local('Open Sans SemiBold'), local('OpenSans-SemiBold'),
+    url('open-sans-v17-all-charsets-600.woff2') format('woff2');
   font-display: swap;
 }
 
 /* open-sans-600italic - latin_vietnamese_latin-ext_greek-ext_greek_cyrillic-ext_cyrillic */
 @font-face {
-  font-family: "Open Sans";
+  font-family: 'Open Sans';
   font-style: italic;
   font-weight: 600;
-  src: local("Open Sans SemiBold Italic"), local("OpenSans-SemiBoldItalic"),
-    url("open-sans-v17-all-charsets-600italic.woff2") format("woff2");
+  src: local('Open Sans SemiBold Italic'), local('OpenSans-SemiBoldItalic'),
+    url('open-sans-v17-all-charsets-600italic.woff2') format('woff2');
   font-display: swap;
 }
 
 /* open-sans-700 - latin_vietnamese_latin-ext_greek-ext_greek_cyrillic-ext_cyrillic */
 @font-face {
-  font-family: "Open Sans";
+  font-family: 'Open Sans';
   font-style: normal;
   font-weight: 700;
-  src: local("Open Sans Bold"), local("OpenSans-Bold"),
-    url("open-sans-v17-all-charsets-700.woff2") format("woff2");
+  src: local('Open Sans Bold'), local('OpenSans-Bold'),
+    url('open-sans-v17-all-charsets-700.woff2') format('woff2');
   font-display: swap;
 }
 
 /* open-sans-700italic - latin_vietnamese_latin-ext_greek-ext_greek_cyrillic-ext_cyrillic */
 @font-face {
-  font-family: "Open Sans";
+  font-family: 'Open Sans';
   font-style: italic;
   font-weight: 700;
-  src: local("Open Sans Bold Italic"), local("OpenSans-BoldItalic"),
-    url("open-sans-v17-all-charsets-700italic.woff2") format("woff2");
+  src: local('Open Sans Bold Italic'), local('OpenSans-BoldItalic'),
+    url('open-sans-v17-all-charsets-700italic.woff2') format('woff2');
   font-display: swap;
 }
 
 /* open-sans-800 - latin_vietnamese_latin-ext_greek-ext_greek_cyrillic-ext_cyrillic */
 @font-face {
-  font-family: "Open Sans";
+  font-family: 'Open Sans';
   font-style: normal;
   font-weight: 800;
-  src: local("Open Sans ExtraBold"), local("OpenSans-ExtraBold"),
-    url("open-sans-v17-all-charsets-800.woff2") format("woff2");
+  src: local('Open Sans ExtraBold'), local('OpenSans-ExtraBold'),
+    url('open-sans-v17-all-charsets-800.woff2') format('woff2');
   font-display: swap;
 }
 
 /* open-sans-800italic - latin_vietnamese_latin-ext_greek-ext_greek_cyrillic-ext_cyrillic */
 @font-face {
-  font-family: "Open Sans";
+  font-family: 'Open Sans';
   font-style: italic;
   font-weight: 800;
-  src: local("Open Sans ExtraBold Italic"), local("OpenSans-ExtraBoldItalic"),
-    url("open-sans-v17-all-charsets-800italic.woff2") format("woff2");
+  src: local('Open Sans ExtraBold Italic'), local('OpenSans-ExtraBoldItalic'),
+    url('open-sans-v17-all-charsets-800italic.woff2') format('woff2');
   font-display: swap;
 }
 
 /* source-code-pro-500 - latin_vietnamese_latin-ext_greek_cyrillic-ext_cyrillic */
 @media only screen and (max-width: var.$mobile-max-width) {
   @font-face {
-    font-family: "Source Code Pro";
+    font-family: 'Source Code Pro';
     font-style: normal;
     font-weight: 500;
-    src: url("source-code-pro-v11-all-charsets-500.woff2") format("woff2");
+    src: url('source-code-pro-v11-all-charsets-500.woff2') format('woff2');
     font-display: swap;
   }
 }
@@ -117,24 +117,25 @@
 /* HackGen35  */
 @media only screen and (min-width: var.$mobile-max-width) {
   @font-face {
-    font-family: "HackGen35 Console NF";
+    font-family: 'HackGen35 Console NF';
     font-style: normal;
     font-weight: 300;
-    src: url("HackGen/HackGen35ConsoleNF-Regular.woff2") format("woff2");
+    src: url('HackGen/HackGen35ConsoleNF-Regular.woff2') format('woff2');
     font-display: swap;
   }
 }
 
 @font-face {
-  font-family: "icomoon";
+  font-family: 'icomoon';
   font-style: normal;
   font-weight: 500;
-  src: url("icomoon.woff2") format("woff2");
+  src: url('icomoon.woff2') format('woff2');
   font-display: swap;
 }
 
-[class^="fa-"], [class*=" fa-"] {
-  font-family: "icomoon" !important;
+[class^='fa-'],
+[class*=' fa-'] {
+  font-family: 'icomoon' !important;
   font-style: normal;
 
   /* Better Font Rendering =========== */
@@ -143,32 +144,32 @@
 }
 
 .fa-angle-left:before {
-  content: "\e900";
+  content: '\e900';
 }
 .fa-angle-right:before {
-  content: "\e901";
+  content: '\e901';
 }
 .fa-copy:before {
-  content: "\e902";
+  content: '\e902';
 }
 .fa-github:before {
-  content: "\e903";
+  content: '\e903';
 }
 .fa-globe:before {
-  content: "\e904";
+  content: '\e904';
 }
 .fa-list-ul:before {
-  content: "\e905";
+  content: '\e905';
 }
 .fa-magnifying-glass:before {
-  content: "\e906";
+  content: '\e906';
 }
 .fa-palette:before {
-  content: "\e907";
+  content: '\e907';
 }
 .fa-pen-to-square:before {
-  content: "\e908";
+  content: '\e908';
 }
 .fa-print:before {
-  content: "\e909";
+  content: '\e909';
 }

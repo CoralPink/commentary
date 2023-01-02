@@ -56,11 +56,11 @@ a > .hljs {
 }
 
 .js {
-    #menu-bar-hover-placeholder:hover + #menu-bar,
-    #menu-bar:hover,
-    .sidebar-visible #menu-bar {
-      @include pos-sticky;
-      top: 0 !important;
+  #menu-bar-hover-placeholder:hover + #menu-bar,
+  #menu-bar:hover,
+  .sidebar-visible #menu-bar {
+    @include pos-sticky;
+    top: 0 !important;
   }
 }
 
@@ -542,7 +542,7 @@ ul {
 }
 .theme-selected::before {
   display: inline-block;
-  content: "✓";
+  content: '✓';
   margin-left: -14px;
   width: 14px;
 }
