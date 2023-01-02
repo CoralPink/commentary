@@ -230,7 +230,19 @@ const playground_text = (playground, hidden = true) => {
 
   let firstContact = null;
 
+  const toggleSection = (ev) => {
+    ev.currentTarget.parentElement.classList.toggle('expanded');
+  };
+
+  Array.from(document.querySelectorAll('#sidebar a.toggle')).forEach((el) => {
+    el.addEventListener('click', toggleSection);
+  });
+
   const showSidebar = () => {
+    if (html.classList.contains('sidebar-visible')) {
+      return;
+    }
+
     html.classList.remove('sidebar-hidden');
     html.classList.add('sidebar-visible');
 
@@ -248,15 +260,11 @@ const playground_text = (playground, hidden = true) => {
     }
   };
 
-  const toggleSection = (ev) => {
-    ev.currentTarget.parentElement.classList.toggle('expanded');
-  };
-
-  Array.from(document.querySelectorAll('#sidebar a.toggle')).forEach((el) => {
-    el.addEventListener('click', toggleSection);
-  });
-
   const hideSidebar = () => {
+    if (html.classList.contains('sidebar-hidden')) {
+      return;
+    }
+
     html.classList.remove('sidebar-visible');
     html.classList.add('sidebar-hidden');
 
@@ -277,10 +285,6 @@ const playground_text = (playground, hidden = true) => {
   // Toggle sidebar
   sidebarToggleButton.addEventListener('click', () => {
     html.classList.contains('sidebar-hidden') ? showSidebar() : hideSidebar();
-  });
-
-  window.addEventListener('resize', () => {
-    window.innerWidth > 1100 ? showSidebar() : hideSidebar();
   });
 
   document.addEventListener(

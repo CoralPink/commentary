@@ -88,7 +88,7 @@
         <script>
             var html = document.querySelector('html');
             var sidebar = 'hidden';
-            if (document.body.clientWidth >= 1080) {
+            if (document.body.clientWidth >= 760) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
             }

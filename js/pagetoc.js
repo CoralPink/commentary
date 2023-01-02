@@ -44,7 +44,7 @@ const update = () => {
 };
 
 const scrollListenerControl = () => {
-  if (window.innerWidth < 850) {
+  if (window.innerWidth < 760) {
     window.removeEventListener('scroll', update);
     return;
   }
