@@ -15,11 +15,6 @@ html {
   -webkit-text-size-adjust: none;
 }
 
-body {
-  margin: 0;
-  overflow-x: hidden;
-}
-
 code {
   font-family: var.$mono-font !important;
   font-size: var.$code-font-size;
@@ -81,7 +76,6 @@ h5 {
 }
 
 .page {
-  outline: 0;
   margin-top: calc(0px - var.$menu-bar-height); // Compensate for the #menu-bar-hover-placeholder
 }
 .page-wrapper {
