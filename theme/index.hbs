@@ -25,7 +25,6 @@
         {{#if favicon_png}}
         <link rel="shortcut icon" href="{{ path_to_root }}favicon.png">
         {{/if}}
-        <link rel="stylesheet" href="{{ path_to_root }}css/variables.css">
         <link rel="stylesheet" href="{{ path_to_root }}css/general.css">
         <link rel="stylesheet" href="{{ path_to_root }}css/chrome.css">
         {{#if print_enable}}
@@ -246,14 +245,6 @@
         <script>
             window.playground_copyable = true;
         </script>
-        {{/if}}
-
-        {{#if playground_js}}
-        <script src="{{ path_to_root }}ace.js"></script>
-        <script src="{{ path_to_root }}editor.js"></script>
-        <script src="{{ path_to_root }}mode-rust.js"></script>
-        <script src="{{ path_to_root }}theme-dawn.js"></script>
-        <script src="{{ path_to_root }}theme-tomorrow_night.js"></script>
         {{/if}}
 
         {{#if search_js}}
