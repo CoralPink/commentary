@@ -260,7 +260,7 @@ const playground_text = (playground, hidden = true) => {
       localStorage.setItem("mdbook-sidebar", "visible");
     }
     catch (e) {
-      console.log('ERROR: mdbook-sidebar')
+      console.log('ERROR: showSidebar')
     }
   }
 
@@ -287,29 +287,13 @@ const playground_text = (playground, hidden = true) => {
       localStorage.setItem("mdbook-sidebar", "hidden");
     }
     catch (e) {
-      console.log('ERROR: mdbook-sidebar')
+      console.log('ERROR: hideSidebar')
     }
   }
 
   // Toggle sidebar
   sidebarToggleButton.addEventListener("click", () => {
-    if (html.classList.contains("sidebar-hidden")) {
-      const current_width = parseInt(
-        document.documentElement.style.getPropertyValue("--sidebar-width"),
-        10
-      );
-
-      if (current_width < 150) {
-        document.documentElement.style.setProperty("--sidebar-width", "150px");
-      }
-      showSidebar();
-    }
-    else if (html.classList.contains("sidebar-visible")) {
-      hideSidebar();
-    }
-    else {
-      getComputedStyle(sidebar)["transform"] === "none" ? hideSidebar() : showSidebar();
-    }
+    html.classList.contains("sidebar-hidden") ? showSidebar() : hideSidebar();
   });
 
   window.addEventListener("resize", () => {
