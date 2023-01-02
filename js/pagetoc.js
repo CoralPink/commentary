@@ -1,16 +1,16 @@
 // This is code that is assumed to be called last.
 
-const cacheHeader = document.getElementsByClassName("header");
-const cachePagetoc = document.getElementsByClassName("pagetoc")[0].children;
+const cacheHeader = document.getElementsByClassName('header');
+const cachePagetoc = document.getElementsByClassName('pagetoc')[0].children;
 
 Array.prototype.forEach.call(cacheHeader, (el) => {
-  const link = document.createElement("a");
+  const link = document.createElement('a');
 
   link.appendChild(document.createTextNode(el.text));
   link.href = el.href;
   link.classList.add(el.parentElement.tagName);
 
-  document.getElementsByClassName("pagetoc")[0].appendChild(link);
+  document.getElementsByClassName('pagetoc')[0].appendChild(link);
 });
 
 const update = () => {
@@ -20,8 +20,7 @@ const update = () => {
     Array.prototype.some.call(cacheHeader, (el) => {
       if (window.pageYOffset >= el.offsetTop) {
         head = el;
-      }
-      else {
+      } else {
         return true;
       }
     });
@@ -37,22 +36,21 @@ const update = () => {
 
   Array.prototype.forEach.call(cachePagetoc, (el) => {
     if (el.href.localeCompare(current.href) == 0) {
-      el.classList.add("active");
-    }
-    else {
-      el.classList.remove("active");
+      el.classList.add('active');
+    } else {
+      el.classList.remove('active');
     }
   });
 };
 
 const scrollListenerControl = () => {
   if (window.innerWidth < 850) {
-    window.removeEventListener("scroll", update);
+    window.removeEventListener('scroll', update);
     return;
   }
   update();
-  window.addEventListener("scroll", update);
-}
+  window.addEventListener('scroll', update);
+};
 
-window.addEventListener("load", scrollListenerControl);
-window.addEventListener("resize", scrollListenerControl);
+window.addEventListener('load', scrollListenerControl);
+window.addEventListener('resize', scrollListenerControl);
