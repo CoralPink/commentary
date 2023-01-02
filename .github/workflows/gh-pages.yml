@@ -52,7 +52,6 @@ jobs:
         run: |
           npm run compile --prefix scss theme/chrome.scss ../theme/css/chrome.css
           npm run compile --prefix scss theme/general.scss ../theme/css/general.css
-          npm run compile --prefix scss theme/variables.scss ../theme/css/variables.css
           npm run compile --prefix scss fonts/fonts.scss ../src/fonts/fonts.css
           npm run compile --prefix scss style.scss ../css/style.css
 
@@ -70,6 +69,7 @@ jobs:
       - name: Delete Unneeded files
         run: |
           rm book/ayu-highlight.css book/tomorrow-night.css
+          rm book/css/variables.css
           rm -rf book/FontAwesome
 
       - name: Generate the sitemap
