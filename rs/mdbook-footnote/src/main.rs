@@ -1,14 +1,15 @@
 use crate::footnote_lib::Footnote;
+
 use clap::{Arg, ArgMatches, Command};
+use lazy_static::lazy_static;
 use mdbook::{
     book::Book,
     errors::Error,
     preprocess::{CmdPreprocessor, Preprocessor, PreprocessorContext},
 };
+use regex::Regex;
 use semver::{Version, VersionReq};
 use std::{io, process};
-use lazy_static::lazy_static;
-use regex::Regex;
 
 pub fn make_app() -> Command {
     Command::new("footnote-preprocessor")
@@ -26,8 +27,9 @@ fn main() {
 
     if let Some(sub_args) = matches.subcommand_matches("supports") {
         handle_supports(&preprocessor, sub_args);
-    } else if let Err(e) = handle_preprocessing(&preprocessor) {
-        eprintln!("{}", e);
+    }
+    else if let Err(e) = handle_preprocessing(&preprocessor) {
+        eprintln!("{e}");
         process::exit(1);
     }
 }
@@ -40,8 +42,7 @@ fn handle_preprocessing(pre: &dyn Preprocessor) -> Result<(), Error> {
 
     if !version_req.matches(&book_version) {
         eprintln!(
-            "Warning: The {} plugin was built against version {} of mdbook, \
-             but we're being called from version {}",
+            "Warning: The {} plugin was built against version {} of mdbook, but we're being called from version {}",
             pre.name(),
             mdbook::MDBOOK_VERSION,
             ctx.mdbook_version
@@ -64,7 +65,8 @@ fn handle_supports(pre: &dyn Preprocessor, sub_args: &ArgMatches) -> ! {
     // Signal whether the renderer is supported by exiting with 1 or 0.
     if supported {
         process::exit(0);
-    } else {
+    }
+    else {
         process::exit(1);
     }
 }
@@ -104,9 +106,8 @@ mod footnote_lib {
 
                             format!(
                                 "<sup class=\"footnote-reference\">
-                                    <a name=\"to-footnote-{}\">[{}](#{})</a>
-                                </sup>",
-                                idx, idx, idx
+                                    <a name=\"to-footnote-{idx}\">[{idx}](#{idx})</a>
+                                </sup>"
                             )
                         })
                         .to_string();
@@ -116,10 +117,9 @@ mod footnote_lib {
                             let num = idx + 1;
 
                             chap.content +=
-                                &format!("<div class=\"footnote-definition\" id={}>\n", num);
-                            chap.content +=
-                                &format!("\n\n[<sup>{}:</sup>](#to-footnote-{})", num, num);
-                            chap.content += &format!(" {}", content);
+                                &format!("<div class=\"footnote-definition\" id={num}>\n");
+                            chap.content += &format!("\n\n[<sup>{num}:</sup>](#to-footnote-{num})");
+                            chap.content += &format!(" {content}");
                             chap.content += "</div>";
                         }
                     }
