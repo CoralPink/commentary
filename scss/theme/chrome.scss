@@ -160,8 +160,8 @@ a > .hljs {
 
 .nav-wrapper {
   margin-top: 35px;
-  max-width: 900px;
-  display: none;
+  //  max-width: 900px;
+  display: block;
 }
 
 .mobile-nav-chapters {
@@ -179,25 +179,6 @@ a > .hljs {
 
 .next {
   float: right;
-  right: var.$page-padding;
-}
-
-@media only screen and (max-width: 1080px) {
-  .nav-wide-wrapper {
-    display: none;
-  }
-  .nav-wrapper {
-    display: block;
-  }
-}
-
-@media only screen and (max-width: 1380px) {
-  .sidebar-visible .nav-wide-wrapper {
-    display: none;
-  }
-  .sidebar-visible .nav-wrapper {
-    display: block;
-  }
 }
 
 // Inline code
@@ -403,14 +384,13 @@ ul {
   padding: 10px 7px;
 }
 
-.sidebar-hidden .sidebar {
-  transform: translateX(calc(0px - var.$sidebar-width));
+.sidebar-hidden {
+  .sidebar {
+    transform: translateX(calc(0px - var.$sidebar-width));
+  }
 }
-.sidebar-visible .page-wrapper {
-  transform: translateX(var.$sidebar-width);
-}
-@media only screen and (min-width: 620px) {
-  .sidebar-visible .page-wrapper {
+.sidebar-visible {
+  .page-wrapper {
     transform: none;
     margin-left: var.$sidebar-width;
   }
