@@ -6,7 +6,7 @@
 お笑いで言うところの "フリ" です。
 }}
 
-```admonish info title="nvim-hlslens"
+```admonish info title="[nvim-hlslens](https://github.com/kevinhwang91/nvim-hlslens)"
 nvim-hlslens helps you better glance at matched information, seamlessly jump between matched instances.
 
 nvim-hlslens は、マッチした情報をより見やすくし、マッチしたインスタンス間をシームレスにジャンプできるようにします。
