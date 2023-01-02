@@ -9,5 +9,3 @@ npm run uglifyjs --prefix js -input='book.js' -output='../theme/book.js'
 npm run uglifyjs --prefix js -input='searcher.js' -output='../src/searcher.js'
 
 mdbook build
-
-rm book/css/variables.css
