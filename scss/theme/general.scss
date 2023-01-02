@@ -42,10 +42,12 @@ h6 {
   }
   &:target {
     &::before {
+      $shift: 24px;
+
       display: inline-block;
       content: '»';
-      margin-left: -30px;
-      width: 30px;
+      margin-left: 0 - $shift;
+      width: $shift;
     }
   }
 }
@@ -92,9 +94,8 @@ h5 {
 
   main {
     font-size: 1.3rem;
-    margin-left: 0.7em;
-    margin-right: 0.7em;
-    max-width: 75vw;
+    margin: 0.7em;
+    max-width: calc(var.$content-max-width);
   }
   a {
     text-decoration: none;
