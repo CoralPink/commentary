@@ -9,6 +9,7 @@ dist
 
 theme/book.js
 src/searcher.js
+src/start.js
 
 convert.sh
 
