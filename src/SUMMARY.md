@@ -1,6 +1,6 @@
 # Summary
 
-- [Introduction](introduction.md)
+- [Introduction](index.md)
 
 # WezTerm
 
