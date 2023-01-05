@@ -3,7 +3,3 @@
 @use 'headline';
 @use 'mdbook-admonish';
 @use 'pagetoc';
-
-:root {
-  --mobile-max-width: $mobile-max-width;
-}
