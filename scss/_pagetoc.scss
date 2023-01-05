@@ -11,11 +11,18 @@
     position: relative;
   }
   .sidetoc {
-    margin-left: auto;
-    margin-right: auto;
     left: calc(var.$content-max-width + 2rem);
     position: absolute;
   }
+
+  .heading {
+    position: fixed;
+    overflow: auto;
+    width: var.$pagetoc-width;
+    letter-spacing: 1.5px;
+    margin: 0 0 1rem 1rem;
+  }
+
   .pagetoc {
     position: fixed;
     width: var.$pagetoc-width;
@@ -24,7 +31,7 @@
     font-style: italic;
 
     a {
-      border-left: 1px solid var(--sidebar-bg);
+      border-left: 1px solid var.$color-pink;
       color: var(--fg) !important;
       display: block;
       padding-bottom: 5px;
