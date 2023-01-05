@@ -3,7 +3,7 @@
 const cacheHeader = document.getElementsByClassName('header');
 const cachePagetoc = document.getElementsByClassName('pagetoc')[0].children;
 
-const mobileMaxWidth= document.documentElement.style.getPropertyValue("--mobileMaxWidth");
+const mobileMaxWidth = document.documentElement.style.getPropertyValue('--mobileMaxWidth');
 
 Array.prototype.forEach.call(cacheHeader, (el) => {
   const link = document.createElement('a');
