@@ -2,37 +2,31 @@ const html = document.querySelector('html');
 
 // theme
 (() => {
-  let theme;
-  try {
-    theme = localStorage.getItem('mdbook-theme');
-
-    if (theme.startsWith('"') && theme.endsWith('"')) {
-      localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
-    }
-  } catch (e) {}
-
+  const theme = localStorage.getItem('mdbook-theme');
   const defaultTheme = document.getElementById('start').dataset.defaulttheme;
 
+  if (theme == defaultTheme) {
+    return;
+  }
+
   html.classList.remove(defaultTheme);
-  html.classList.add(theme === null || theme === undefined ? defaultTheme : theme);
+  html.classList.add(theme == null ? defaultTheme : theme);
 })();
 
 // sidebar
 (() => {
-  try {
+  const getSidebarStatus = () => {
+    // FIXME: The definitions are all over the place.
+    const mobileMaxWidth = 760;
+
     const sidebar = localStorage.getItem('mdbook-sidebar');
 
-    if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
-      localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+    if (sidebar == null) {
+      return document.body.clientWidth < mobileMaxWidth ? 'hidden' : 'visible';
     }
-  } catch (e) {}
-
-  const getSidebarStatus = () => {
-    if (document.body.clientWidth < document.documentElement.style.getPropertyValue('--mobileMaxWidth')) {
-      return 'hidden';
-    }
-    return localStorage.getItem('mdbook-sidebar') || 'visible';
+    return sidebar;
   };
+
   html.classList.remove('sidebar-visible');
   html.classList.add('sidebar-' + getSidebarStatus());
 })();
