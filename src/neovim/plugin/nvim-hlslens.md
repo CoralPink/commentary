@@ -119,6 +119,8 @@ Vim では、quickfix コマンドはより一般的に、ファイル内の位�
 
 前回わたしを助けてくれた nvimトレーナーも、今回はお手上げのようです...。
 
+...。
+
 ...❓
 
 ```admonish quote title=""
@@ -135,12 +137,12 @@ Vim では、quickfix コマンドはより一般的に、ファイル内の位�
 ブラックパンツァーに　しんかした
 ```
 
-頷くブラックパンツァー。俺に任せろと言わんばかりに...❗
+頷くブラックパンツァー。共に戦おうと言わんばかりに...❗
 
 ~~~admonish info title=":h shortmess"
 ```
   S  do not show search count message when searching,
-     検索時に検索数を表示しない, 
+     検索時に検索数を表示しない,
 
      e.g. "[1/5]"
 ```
@@ -233,5 +235,5 @@ Vim のスポンサーは機能に対して投票することができます。|
 ```admonish success title="Assemble"
 Black Panther and Uganda Forever!!
 
-(ブラックパンサーも ウガンダも 永遠に❗)
+(ブラックパンサーも ウガンダも 永遠に!!)
 ```

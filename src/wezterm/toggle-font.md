@@ -24,7 +24,7 @@
 [IncreaseFontSize](https://wezfurlong.org/wezterm/config/lua/keyassignment/IncreaseFontSize.html)
 を使ってサイズを上げ下げしてもいいんですが、ちょっとコレじゃない...😒
 
-わたしはこれが結構ストレスになっていたので、 この問題を解消するのに有用なのが、次のフォント切り替え機能です😃
+わたしはこれが結構ストレスになっていたので、 この問題を解消するのに有用なのが、次のフォントサイズ切り替え機能です😃
 
 ## フォントサイズ切り替え
 
@@ -82,14 +82,18 @@ This action causes the equivalent of wezterm.emit(name, window, pane) to be call
 まあ、思いっきり手動なんですけどね😅 自動で出来たら面白いんですけどね。
 
 ```admonish note
-あれ？dpi取得できるなら自動で出来るのかな。このサイト作りながら気づいてしまった...。
+あれ❓dpi取得できるなら自動で出来るのかな。このサイト作りながら気づいてしまった...。
 
 アウトプットはしてみるものですね❗次のページに書いちゃいます😆
 ```
 
-|素の状態{{footnote:さらにフォントサイズを大きくして説明用に誇張しています。が、まだなんか中途半端でしたね...😿}}|切り替えた状態|
+|素の状態|切り替えた状態|
 |:---:|:---:|
 |![font-big](img/font-big.webp)|![font-small](img/font-small.webp)|
+
+```admonish note
+さらにフォントサイズを大きくして説明用に誇張しています。が、まだなんか中途半端でしたね...😿
+```
 
 ```admonish success
 切り替えられましたね🤗
