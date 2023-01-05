@@ -26,38 +26,37 @@ gitsigns.nvim (optional)
 
 ## Installation
 
-ちょっと一手間加えて、ここでも`onenord.nvim`の力を借ります。
+これはもう本当に簡単です。{{footnote:
+初掲出時には「`onenord.nvim`を使って色を設定するといいよ！」なんて書いちゃいましたが、
+改めて確認してみたら全く必要ありませんでした...。
+何も設定しなくても`onenord.nvim`の力は発揮されています❗これホントごめんなさい😿
+}}
 
 ~~~admonish example title="extensions/nvim-scrollbar.lua"
 ```lua
-local colors = require('onenord.colors').load()
-
-require('scrollbar').setup {
-  handle = {
-    color = colors.bg_highlight,
-  },
-  marks = {
-    Search = { color = colors.Search },
-    Error = { color = colors.error },
-    Warn = { color = colors.warning },
-    Info = { color = colors.info },
-    Hint = { color = colors.hint },
-    Misc = { color = colors.purple },
-  },
-}
+require('scrollbar').setup()
 
 require('scrollbar.handlers.search').setup()
 require("scrollbar.handlers.gitsigns").setup()
 ```
 ~~~
 
+```admonish note
+もし細かく設定したい場合は
+[config](https://github.com/petertriho/nvim-scrollbar#config) にある Defaults を参照すると良いです。
+```
+
 このコードでは、
 
-- local colors = require('onenord.colors').load()
-- require('scrollbar.handlers.search').setup() ※これは`nvim-hlslens`
-- require("scrollbar.handlers.gitsigns").setup()
+```lua
+require('scrollbar.handlers.search').setup() -- これは nvim-hlslens
+```
 
-で、それぞれのプラグインを必要とします。`pakcer`にも教えといてあげましょう🫶
+```lua
+require("scrollbar.handlers.gitsigns").setup()
+```
+
+...で、それぞれのプラグインを必要とします。`pakcer`にも教えといてあげましょう🫶
 
 ~~~admonish example title="extensions/init.lua"
 ```lua
@@ -65,7 +64,7 @@ require("scrollbar.handlers.gitsigns").setup()
     'petertriho/nvim-scrollbar',
     config = function() require 'extensions.nvim-scrollbar' end,
     requires = {
-      'rmehri01/onenord.nvim', 'kevinhwang91/nvim-hlslens', 'lewis6991/gitsigns.nvim',
+      'kevinhwang91/nvim-hlslens', 'lewis6991/gitsigns.nvim',
     },
   }
 ```
