@@ -287,11 +287,17 @@ const playground_text = (playground, hidden = true) => {
     html.classList.contains('sidebar-hidden') ? showSidebar() : hideSidebar();
   });
 
-  window.addEventListener('load', () => {
-    // FIXME: The definitions are all over the place.
-    if (window.innerWidth < 760) {
-      hideSidebar();
-    }
+  let timeoutId;
+
+  window.addEventListener('resize', () => {
+    clearTimeout(timeoutId);
+
+    timeoutId = setTimeout(() => {
+      // FIXME: The definitions are all over the place.
+      if (window.innerWidth >= 1200) {
+        showSidebar();
+      }
+    }, 500);
   });
 
   document.addEventListener(
@@ -336,6 +342,11 @@ const playground_text = (playground, hidden = true) => {
   if (activeSection) {
     // https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView
     activeSection.scrollIntoView({ block: 'center' });
+  }
+
+  // FIXME: The definitions are all over the place.
+  if (window.innerWidth < 760) {
+    hideSidebar();
   }
 })();
 
