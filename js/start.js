@@ -17,7 +17,7 @@ const html = document.querySelector('html');
 (() => {
   const getSidebarStatus = () => {
     // FIXME: The definitions are all over the place.
-    const mobileMaxWidth = 760;
+    const mobileMaxWidth = 750;
 
     const sidebar = localStorage.getItem('mdbook-sidebar');
 

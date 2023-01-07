@@ -4,7 +4,7 @@ const cacheHeader = document.getElementsByClassName('header');
 const cachePagetoc = document.getElementsByClassName('pagetoc')[0].children;
 
 // FIXME: The definitions are all over the place.
-const mobileMaxWidth = 760;
+const mobileMaxWidth = 750;
 
 Array.prototype.forEach.call(cacheHeader, (el) => {
   const link = document.createElement('a');
