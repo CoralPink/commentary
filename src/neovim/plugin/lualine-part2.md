@@ -9,7 +9,7 @@
 A Happy New Year!!
 </div>
 
-<div style="font-size: 120%; margin: 35px auto;">
+<div style="margin: 30px auto;">
 2023年もぬるっとはじまりました。
 
 今年もよろしくね🤗
@@ -19,12 +19,12 @@ A Happy New Year!!
 
 このまま未来に突き進んでいくのも良いんですが、ちょっと心残りがありました。
 
-`lualine.nvim`です。
+もちろん`lualine.nvim`です。
 
 2023年早々、いきなり過去に戻ってしまいますが、`lualine.nvim`のカスタマイズから初めます❗
 
-...まあ、たった数週間戻るだけなんですけどね😮
-この程度なら時速 88 マイルも 1.21 ジゴワット{{footnote:
+...まあ、たった数週間なんですけどね😮
+この程度なら "時速 88 マイル" も "1.21 ジゴワット"{{footnote:
 [Back to the Future](https://ja.wikipedia.org/wiki/バック・トゥ・ザ・フューチャー) の世界ですね。
 “gigawatt”（ギガワット）を誤って“jigowatt”（ジゴワット）と書いた脚本がそのまま採用されたんだって。 (どういう誤り方❓😑)
 [wikipedia](https://ja.wikipedia.org/wiki/デロリアン_(タイムマシン)#cite_note-jigowatt-2)より。
@@ -46,7 +46,9 @@ PCならブラウザのウィンドウを横に広げてみたり、タブレッ
 改めて明記するんですが、このサイトに記載されているカスタマイズは "完全に" わたしの好みで作ってあるし、
 あくまでもそれらに対してコメントしていくってだけなので、「汲み取れるものがあったら組み込んでもらえれば〜」ぐらいの感じです。
 
-前置きはこのくらいにして、いよいよ
+...と、言うことで❗
+
+いよいよ
 [あのシーン](file:///Users/yukari/Works/commentary/book/neovim/plugin/lualine.html#to-be-continued)まで戻りましょう...。
 
 ~~~admonish tip title=""
@@ -218,7 +220,7 @@ Each sections holds its components e.g. Vim’s current mode.
 この6つのセクションが`section_separator`で区分けされます。
 
 ひとつのセクションの中に2つ以上の機能を入れて表示することもできます。
-この場合は`component_separators`で更に区分けされます。(...が、このページではまだ使っていません。)
+この場合は`component_separators`で更に区分けされます。
 
 ## statusline
 
@@ -315,8 +317,8 @@ require('lualine').setup {
 - `fileformat` :h lualine-fileformat-component-options
 ```
 
-`lualine_y`の`colors`とか、`lualine_z`の`separator`とかはわたしの趣味です。
-もうほんとに見た目だけの設定なんで❗
+`lualine_y`の`colors`とか、`lualine_z`の`separator`とかは、それこそわたしの趣味です。
+もうほんとに見た目だけ❗
 
 ![lualine-sections](img/lualine-sections.webp)
 
