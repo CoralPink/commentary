@@ -2,12 +2,6 @@
 
 // CSS for UI elements (a.k.a. chrome)
 
-::-webkit-scrollbar {
-  background: var(--bg);
-}
-::-webkit-scrollbar-thumb {
-  background: var(--scrollbar);
-}
 html {
   scrollbar-color: var(--scrollbar) var(--bg);
 }
@@ -360,13 +354,6 @@ ul {
 
   code {
     line-height: 2em;
-  }
-
-  &::-webkit-scrollbar {
-    background: var(--sidebar-bg);
-  }
-  &::-webkit-scrollbar-thumb {
-    background: var(--scrollbar);
   }
 }
 .js:not(.sidebar-resizing) .sidebar {
