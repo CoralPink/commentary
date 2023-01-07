@@ -79,5 +79,6 @@
   - [nvim-hlslens](neovim/plugin/nvim-hlslens.md)
   - [gitsigns](neovim/plugin/gitsigns.md)
   - [nvim-scrollbar](neovim/plugin/nvim-scrollbar.md)
+  - [lualine.nvim Part Ⅱ](neovim/plugin/lualine-part2.md)
 
 # ... To Be Continued.
