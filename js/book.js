@@ -345,7 +345,7 @@ const playground_text = (playground, hidden = true) => {
   }
 
   // FIXME: The definitions are all over the place.
-  if (window.innerWidth < 760) {
+  if (window.innerWidth < 750) {
     hideSidebar();
   }
 })();
