@@ -28,7 +28,7 @@ Neovim >= 0.8.0
 [fix!: highlight groups for neovim 0.8 #50](https://github.com/rmehri01/onenord.nvim/commit/98c64654375bc087e96bca08fd194066d778717c)
 ```
 
-## install
+## Install & Config
 
 じゃあ、チャチャっと❗
 
@@ -71,7 +71,7 @@ require('onenord').setup {
 ```
 ~~~
 
-## config
+## Config Description
 
 ある程度は変数名とコメントだけで推測できると思うんですが、上の例で使ってないものも含めてフワ〜っと触れます😆
 見た感じ、`disable.background`を`true`にしている場合は効果が無いものもありそうです。

@@ -49,7 +49,7 @@ PCならブラウザのウィンドウを横に広げてみたり、タブレッ
 ...と、言うことで❗
 
 いよいよ
-[あのシーン](file:///Users/yukari/Works/commentary/book/neovim/plugin/lualine.html#to-be-continued)まで戻りましょう...。
+[あのシーン](https://coralpink.github.io/commentary/neovim/plugin/lualine.html#to-be-continued)まで戻っていきます...。
 
 ~~~admonish tip title=""
 いよいよ　これから
@@ -99,7 +99,7 @@ On your next.
 
 ## options
 
-ここから頑張って本題に入りましょう❗
+ここからが本番です。頑張っていきましょう❗
 
 まずはベースとなる設定を2つ。
 
@@ -338,7 +338,7 @@ Microsoftが開発したものがオープンスタンダードになってい�
 ## To Be Concluded...
 
 ```admonish success title="Assemble"
-`lualine.nvim`節は...❗ なんと...❗
+`lualine.nvim`は...❗ なんと...❗
 
 まだ続きます😮
 
