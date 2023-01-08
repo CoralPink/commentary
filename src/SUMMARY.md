@@ -80,5 +80,6 @@
   - [gitsigns](neovim/plugin/gitsigns.md)
   - [nvim-scrollbar](neovim/plugin/nvim-scrollbar.md)
   - [lualine.nvim Part Ⅱ](neovim/plugin/lualine-part2.md)
+  - [lualine.nvim Part Ⅲ](neovim/plugin/lualine-part3.md)
 
 # ... To Be Continued.
