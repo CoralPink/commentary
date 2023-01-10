@@ -7,10 +7,10 @@
 ```admonish note title=""
 I gave you explicit instructions not to come here, but to go directly back to 2023.
 
-ここには来るなと言ったはずだ、2023年に戻れとね。
+ここには来ないで、そのまま2023年に戻れと明確な指示をしたはずだ。
 ```
 
-...言われてないですけど😅
+...されてないですけど😅
 
 ```admonish note title=""
 But it's good to see you.
@@ -18,7 +18,7 @@ But it's good to see you.
 だが また会えて嬉しい。
 ```
 
-わたしも嬉しいよ😭
+...❗😭
 
 ## TabLine
 
@@ -97,9 +97,9 @@ require('lualine').setup {
 ## Using external source
 
 前回出てきた`:h lualine-Available-components`も併せて思い出してほしいんですが、
-`lualine.nvim`単体でも`branch`と`diff`の表示に対応しているんですね。
+`lualine.nvim`単体でも`git`の`branch`と`diff`の表示に対応しているんですね。
 
-しかしここで登場するのが`gitsigns.nvim`です❗
+しかし、ここで登場するのが`gitsigns.nvim`です❗
 
 `git`の扱いに関して彼の右に出るものはいません😆
 
@@ -140,6 +140,11 @@ end
 ```
 ~~~
 
+
+```admonish note
+`symbols`はわたしが勝手に入れてます。
+```
+
 ### for git-branch
 ~~~admonish info title="[Using external source for branch](https://github.com/nvim-lualine/lualine.nvim/wiki/Component-snippets#using-external-source-for-branch)"
 If you have other plugins installed that keep track of branch info. lualine can reuse that info.
@@ -154,6 +159,10 @@ If you have other plugins installed that keep track of branch info. lualine can 
     },
 ```
 ~~~
+
+```admonish note
+これもやっぱり`icon`と`color`はわたしが勝手に入れてます。
+```
 
 ### Wrap Up
 
@@ -199,7 +208,18 @@ neovim-0.8 から lualine で winbar をカスタマイズすることができ�
 
 ```admonish success title=""
 It means your future hasn’t been written yet.
-No one’s has. Your future is whatever you make it. So make it a good one!!
 
-君の未来はまだ白紙なんだよ。君の未来は君が描くんだ。だからこそ良いものにしよう!!
+きみの未来はまだ白紙なんだよ。
+```
+
+```admonish success title=""
+No one’s has. Your future is whatever you make it.
+
+他の誰でもない。きみの未来はきみが描くんだ。
+```
+
+```admonish success title=""
+So make it a good one!!
+
+だからこそ良いものにしよう!!
 ```
