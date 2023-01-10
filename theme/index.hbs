@@ -4,13 +4,9 @@
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
         <title>{{ title }}</title>
-        {{#if is_print }}
-        <meta name="robots" content="noindex" />
-        {{/if}}
         {{#if base_url}}
         <base href="{{ base_url }}">
         {{/if}}
-
 
         <!-- Custom HTML head -->
         {{> head}}
@@ -50,6 +46,11 @@
         {{/if}}
     </head>
     <body>
+        <!-- Google Tag Manager (noscript) -->
+        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WMN96QT"
+        height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+        <!-- End Google Tag Manager (noscript) -->
+
         <!-- Provide site root to javascript -->
         <script>
             const path_to_root = "{{ path_to_root }}";
@@ -209,24 +210,5 @@
         {{#each additional_js}}
         <script src="{{ ../path_to_root }}{{this}}"></script>
         {{/each}}
-
-        {{#if is_print}}
-        {{#if mathjax_support}}
-        <script>
-        window.addEventListener('load', function() {
-            MathJax.Hub.Register.StartupHook('End', function() {
-                window.setTimeout(window.print, 100);
-            });
-        });
-        </script>
-        {{else}}
-        <script>
-        window.addEventListener('load', function() {
-            window.setTimeout(window.print, 100);
-        });
-        </script>
-        {{/if}}
-        {{/if}}
-
     </body>
 </html>
