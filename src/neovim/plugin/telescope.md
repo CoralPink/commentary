@@ -148,9 +148,9 @@ As of now, we do not ship binaries. Both install methods will be supported going
 わたしが普段このサイトのスクリーンショットに使っている`Linux`の環境では、
 `nvim-treesitter`のインストール時に`Clang`を導入してあったので、特に何もせずそのままいけました。
 
-`macOS`もやっぱり何も考えないでいけました。
+`macOS`も特に何も考えずにいけました。
 
-`Windows`はやっぱり自信がありませんが、
+`Windows`はいつも通り自信がありませんが、
 もしかしたら`CMake`と`Microsoft C++ Build Tools on Windows`を使う方が、`MinGW`を必要としない分、簡単かもしれません。
 ```
 
@@ -220,7 +220,7 @@ telescope.setup {
     winblend = 20,
   },
 }
-require('telescope').load_extension 'fzf'
+telescope.load_extension 'fzf'
 
 local builtin = require 'telescope.builtin'
 
@@ -233,7 +233,7 @@ vim.keymap.set('n', '<leader>fh', builtin.help_tags)
 
 上の例は、オフィシャルに示されているコードから所々省略したコードになってます。
 
-長い道のりでいたが、ここまで来れば、あとはもう`packer`に任せればできちゃいます😸
+長い道のりでしたが、ここまで来れば、あとはもう`packer`に任せればできちゃいます😸
 
 ~~~admonish example title="extensions/init.lua"
 ```lua
