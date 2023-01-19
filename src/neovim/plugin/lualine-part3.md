@@ -192,13 +192,13 @@ neovim-0.8 から lualine で winbar をカスタマイズすることができ�
 
 ~~~admonish example title="extensions/init.lua"
 ```lua
-  use {
-    'nvim-lualine/lualine.nvim',
-    config = function() require 'extensions.lualine' end,
-    requires = {
-      'nvim-tree/nvim-web-devicons', 'rmehri01/onenord.nvim', 'lewis6991/gitsigns.nvim',
-    },
-  }
+use {
+  'nvim-lualine/lualine.nvim',
+  config = function() require 'extensions.lualine' end,
+  requires = {
+    'nvim-tree/nvim-web-devicons', 'rmehri01/onenord.nvim', 'lewis6991/gitsigns.nvim',
+  },
+}
 ```
 ~~~
 
