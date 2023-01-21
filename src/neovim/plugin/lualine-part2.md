@@ -33,9 +33,9 @@ A Happy New Year!!
 ```admonish note
 あ、でもブラウザの表示幅が 750px あるといいです。
 
-これがあると`Nerd Fonts`に対応したフォントセット
-{{footnote:[プログラミングフォント 白源 (はくげん／HackGen)](https://github.com/yuru7/HackGen)から❗}}
-が使用されるように仕組んであるんです、実は❗
+これがあると`Nerd Fonts`
+{{footnote: [ryanoasis/nerd-fonts](https://github.com/ryanoasis/nerd-fonts)から拝借してます。}}
+に対応したフォントセットが使用されるように仕組んであるんです、実は❗
 
 `lualine.nvim`に関するサンプルコードには`Nerd Fonts`がいつもより多めに入ってるので、
 PCならブラウザのウィンドウを横に広げてみたり、タブレットなら横表示にしてみたり、よかったら試してみてね☺️
