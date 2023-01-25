@@ -3,6 +3,11 @@ const html = document.querySelector('html');
 // theme
 (() => {
   const theme = localStorage.getItem('mdbook-theme');
+
+  if (theme == null) {
+    return;
+  }
+
   const defaultTheme = document.getElementById('start').dataset.defaulttheme;
 
   if (theme == defaultTheme) {
@@ -10,7 +15,7 @@ const html = document.querySelector('html');
   }
 
   html.classList.remove(defaultTheme);
-  html.classList.add(theme == null ? defaultTheme : theme);
+  html.classList.add(theme);
 })();
 
 // sidebar
