@@ -322,7 +322,7 @@ use {
 
 ## telescope.builtin
 
-それでは試しにコンフィグに入れた<kbd>leader</kbd><kbd>f</kbd><kbd>f</kbd>を試してみましょう...。
+それでは、コンフィグに入れた<kbd>leader</kbd><kbd>f</kbd><kbd>f</kbd>を試してみましょう...。
 
 ![telescope-installation](img/telescope-ff.webp)
 
