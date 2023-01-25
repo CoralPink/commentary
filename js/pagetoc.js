@@ -16,12 +16,20 @@ Array.prototype.forEach.call(cacheHeader, (el) => {
   document.getElementsByClassName('pagetoc')[0].appendChild(link);
 });
 
+let prevCurrent = null;
+
 const update = () => {
+  const y_offset = window.pageYOffset;
+
+  if (y_offset < 0) {
+    return;
+  }
+
   const getCurrentHeadline = () => {
     let head;
 
     Array.prototype.some.call(cacheHeader, (el) => {
-      if (window.pageYOffset >= el.offsetTop) {
+      if (y_offset >= el.offsetTop) {
         head = el;
       } else {
         return true;
@@ -33,7 +41,7 @@ const update = () => {
 
   const current = getCurrentHeadline();
 
-  if (!current) {
+  if (current == prevCurrent) {
     return;
   }
 
@@ -44,6 +52,8 @@ const update = () => {
       el.classList.remove('active');
     }
   });
+
+  prevCurrent = current;
 };
 
 const scrollListenerControl = () => {
