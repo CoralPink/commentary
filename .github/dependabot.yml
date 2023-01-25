@@ -4,21 +4,21 @@ updates:
   - package-ecosystem: "cargo"
     directory: "/rs/mdbook-footnote"
     schedule:
-      interval: "daily"
+      interval: "weekly"
 
   # Enable version updates for npm
   - package-ecosystem: "npm"
     directory: "/scss"
     schedule:
-      interval: "daily"
+      interval: "weekly"
 
   - package-ecosystem: "npm"
     directory: "/js"
     schedule:
-      interval: "daily"
+      interval: "weekly"
 
   # Enable version updates for GitHub Actions
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
-      interval: "weekly"
+      interval: "daily"
