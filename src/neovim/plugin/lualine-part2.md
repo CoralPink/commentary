@@ -49,7 +49,7 @@ PCならブラウザのウィンドウを横に広げてみたり、タブレッ
 ...と、言うことで❗
 
 いよいよ
-[あのシーン](https://coralpink.github.io/commentary/neovim/plugin/lualine.html#to-be-continued)まで戻っていきます...。
+[あのシーン](lualine.html#to-be-continued)まで戻っていきます...。
 
 ~~~admonish tip title=""
 いよいよ　これから
@@ -331,7 +331,7 @@ Microsoftが開発したものがオープンスタンダードになってい�
 その辺は[wikipedia](https://en.wikipedia.org/wiki/Language_Server_Protocol)で❗}}
 関連の情報を表示したいと思ってます。
 
-イメージとしては[トップページ](https://coralpink.github.io/commentary/index.html)のようになるので、
+イメージとしては[トップページ](../../index.html)のようになるので、
 まだ見ぬ仲間の登場を楽しみにしておきましょう☺️
 ```
 

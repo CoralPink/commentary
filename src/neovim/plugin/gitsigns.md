@@ -103,7 +103,7 @@ use {
 もし`git`の管理下に居たのなら、もうこの時点で`sigincolumn`に装飾🎄がされてますね❗yeah!! 🍾
 
 ```admonish note
-フライングで登場していた[signcolumn](https://coralpink.github.io/commentary/neovim/options/signcolumn.html)
+フライングで登場していた[signcolumn](../options/signcolumn.html)
 からここまでに2ヶ月かかりました...。
 
 まあなんか、やってやったぜってな感じはあります☺️
@@ -330,7 +330,7 @@ attach_to_untracked                      *gitsigns-config-attach_to_untracked*
 
 ちゃんとアタッチを無効にするオプションありました😮
 
-[signcolumn](https://coralpink.github.io/commentary/neovim/options/signcolumn.html)でこれを知らなくて、
+[signcolumn](../options/signcolumn.html)でこれを知らなくて、
 `number`オプションを"クセつよ"呼ばわりしてたんですが、わたしが無知なだけでした...。
 
 ほんとごめんなさい😭
