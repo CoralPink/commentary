@@ -37,7 +37,7 @@ Community driven builtin pickers, sorters and previewers.
 しばらくは文字ばっかり続いちゃいますが、頑張っていきましょう😆
 
 ```admonish info title="[Getting started](https://github.com/nvim-telescope/telescope.nvim#getting-started)"
-Neovim (v0.7.0) or the latest neovim nightly commit is required for telescope.nvim to work.
+Neovim (v0.7.0) or the latest neovim nightly commit is required for `telescope.nvim` to work.
 ```
 
 最初のこれはもう問題ないですね。他も覗いてみましょう。
@@ -45,7 +45,7 @@ Neovim (v0.7.0) or the latest neovim nightly commit is required for telescope.nv
 ### Required dependencies
 
 ```admonish info title="[Required dependencies](https://github.com/nvim-telescope/telescope.nvim#required-dependencies)"
-nvim-lua/plenary.nvim is required.
+[nvim-lua/plenary.nvim](https://github.com/nvim-lua/plenary.nvim) is required.
 ```
 
 `packer`の`required`に指定してあげれば良いので、ここもまだ見知った領域ですね❗
@@ -59,9 +59,10 @@ nvim-lua/plenary.nvim is required.
 まあだいじょぶ。できるよ🤗
 
 ```admonish info title="[Suggested dependencies](https://github.com/nvim-telescope/telescope.nvim#suggested-dependencies)"
-BurntSushi/ripgrep is required for live_grep and grep_string and is the first priority for find_files.
+[BurntSushi/ripgrep](https://github.com/BurntSushi/ripgrep) is required for `live_grep` and `grep_string`
+and is the first priority for `find_files`.
 
-BurntSushi/ripgrep は live_grep と grep_string に必要で、find_files では最優先されます。
+[BurntSushi/ripgrep](https://github.com/BurntSushi/ripgrep)は`live_grep`と`grep_string`に必要で、`find_files`では最優先されます。
 ```
 
 わたしも半分くらいは何言われてるのかわからないんで思考回路はショート寸前😵‍💫ですが、
@@ -69,12 +70,16 @@ BurntSushi/ripgrep は live_grep と grep_string に必要で、find_files で�
 
 ```admonish info title=""
 We also suggest you install one native telescope sorter to significantly improve sorting performance.
-Take a look at either telescope-fzf-native.nvim or telescope-fzy-native.nvim.
-For more information and a performance benchmark take a look at the Extensions wiki.
+Take a look at either [telescope-fzf-native.nvim](https://github.com/nvim-telescope/telescope-fzf-native.nvim) or
+[telescope-fzy-native.nvim](https://github.com/nvim-telescope/telescope-fzy-native.nvim).
+For more information and a performance benchmark take a look at the
+[Extensions](https://github.com/nvim-telescope/telescope.nvim/wiki/Extensions) wiki.
 
 また、ソート性能を大幅に向上させるために、1つのネイティブな telescope sorter をインストールすることをお勧めします。
-telescope-fzf-native.nvim か telescope-fzy-native.nvim のいずれかを見てみてください。
-より詳細な情報とパフォーマンスベンチマークについては、Extensions wiki をご覧ください。
+[telescope-fzf-native.nvim](https://github.com/nvim-telescope/telescope-fzf-native.nvim) か
+[telescope-fzy-native.nvim](https://github.com/nvim-telescope/telescope-fzy-native.nvim) のいずれかを見てみてください。
+より詳細な情報とパフォーマンスベンチマークについては、
+[Extensions](https://github.com/nvim-telescope/telescope.nvim/wiki/Extensions) wiki.をご覧ください。
 ```
 
 `sorter`は必須ではありませんが、せっかくお勧めされているし、何よりもなんか面白そうです☺️
@@ -161,13 +166,10 @@ fzf-nativeを動作させるためには、cmake または make でビルドす�
 あともうちょっと...。がんばれ...❗
 
 ```admonish info title="[Optional dependencies](https://github.com/nvim-telescope/telescope.nvim#optional-dependencies)"
-sharkdp/fd (finder)
-
-nvim-treesitter/nvim-treesitter (finder/preview)
-
-neovim LSP (picker)
-
-devicons (icons)
+- sharkdp/fd (finder)
+- nvim-treesitter/nvim-treesitter (finder/preview)
+- neovim LSP (picker)
+- devicons (icons)
 ```
 
 `nvim-treesitter`と`devicons`については導入済みですね、だいぶ安心できました。
@@ -233,7 +235,7 @@ vim.keymap.set('n', '<leader>fh', builtin.help_tags)
 ```
 ~~~
 
-上の例は、オフィシャルに示されているコードから所々省略したコードになってます。
+上の例は、オフィシャルに示されているコードを所々省略した記述にしています。
 
 ここまで来れば、あとはもう`packer`に任せればできちゃいます😸
 
@@ -290,6 +292,20 @@ use {
 ```
 
 ## CheckHealth
+
+```admonish info title="chechkhealth"
+Make sure you call `:checkhealth telescope` after installing
+telescope to ensure everything is set up correctly.
+
+After this setup you can continue reading here or switch to
+`:help` telescope to get an understanding of how to use Telescope and how to configure it.
+
+Telescope をインストールした後、必ず`:checkhealth telescope`を呼び出して、
+すべてが正しくセットアップされていることを確認してください。
+
+このセットアップの後、ここを読み続けるか、`:help telescope` に切り替えて
+Telescope の使用方法と設定方法を理解することができます。
+```
 
 `telescope`さえインストールできれば、[checkhealth](nvim-treesitter.html#checkhealth) が使えます。
 

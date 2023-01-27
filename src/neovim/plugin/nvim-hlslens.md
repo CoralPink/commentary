@@ -195,7 +195,7 @@ vim.opt.shortmess:append 'S'
 |:---:|
 |![intro-vi](img/intro-vi.webp)|
 
-`nvim`でも[Lua Module](https://coralpink.github.io/commentary/neovim/lua-module.html#runtimepath)ページのスクリーンショットにはまだあったよ❓
+`nvim`でも[Lua Module](../lua-module.html#runtimepath)ページのスクリーンショットにはまだあったよ❓
 
 え、なんで❓意味わかんないぃぃぃぃ❗❗最近消えたってこと❗❓
 

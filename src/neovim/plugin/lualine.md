@@ -56,7 +56,7 @@ vim-devicons の lua フォークです。このプラグインは、同じア�
 なんと❗️`WezTerm`は`Nerd Font`を持っていて、しかも既に有効になっています❗️
 
 ```admonish note
-これ、[3.2. Shell Prompt: Starship](https://coralpink.github.io/commentary/wezterm/shell.html#starship)からコピーしてきた文言です。
+これ、[3.2. Shell Prompt: Starship](../../wezterm/shell.html#starship)からコピーしてきた文言です。
 だって...、同じなんだもの...🥹
 
 (こっちでは`Nerd Fonts`、あっちでは`Nerd Font`なので、ちょっと表記にブレがあるけど。)
@@ -66,7 +66,7 @@ vim-devicons の lua フォークです。このプラグインは、同じア�
 
 例えば`Firge`という`Nerd Fonts`を含んだフォントセットがあって、これも既に紹介済みです。
 
-```admonish info title="[3.3. font: プログラミングフォント Firge (ファージ)](https://coralpink.github.io/commentary/wezterm/font.html#プログラミングフォント-firge-ファージ)"
+```admonish info title="[3.3. font: プログラミングフォント Firge (ファージ)](../../wezterm/font.html#プログラミングフォント-firge-ファージ)"
 例として、わたしが普段お世話になっているフォントを紹介します。
 ```
 
@@ -166,7 +166,7 @@ ensure_dependencies = true, -- Should packer install plugin dependencies?
 ~~~
 
 `Neovim`パッケージは依存関係をデータとして持ち合わせていないことは
-[15.1. Packer](https://coralpink.github.io/commentary/neovim/plugin/packer.html)で触れたんですが、
+[15.1. Packer](packer.html)で触れたんですが、
 「これ`requires`(必要なもの) なんだよねー🤔」と教えてあげると、
 `packer`は「ん❓そうなんれすね❓😆」と言って、一切疑わずにインストールしてくれます。
 
@@ -213,7 +213,7 @@ CoralPink
 ~~~
 
 ~~~admonish quote title=""
-...　...　...　... 
+...　...　...　...
 ~~~
 
 ~~~admonish quote title=""
@@ -231,13 +231,13 @@ Hey, CaP..., you read me...?
 ~~~
 
 ~~~admonish quote title=""
-...It's nvim Trainer. Can you hear me...? 
+...It's nvim Trainer. Can you hear me...?
 
 (...nvimトレーナー
 {{footnote:
 このサイトの
-[10章](https://coralpink.github.io/commentary/neovim/options/options.html)・
-[11章](https://coralpink.github.io/commentary/neovim/au/automatic-commands.html)の主人公。(はじめてしゃべった😮)
+[10章](../options/options.html)・
+[11章](../au/automatic-commands.html)の主人公。(はじめてしゃべった😮)
 みらいのチャンピオン。
 }}
 だ。聞こえるか...?)
