@@ -72,7 +72,7 @@ require('lualine').setup {
 ```admonish note
 `switch_color`の中で、colors.mypinkというものがあるんですが、これは`onenord.nvim`の`custom_colors`に定義したオリジナルカラーです。
 
-[onenord.nvim - Install & Config](https://coralpink.github.io/commentary/neovim/plugin/onenord.html#install--config)
+[onenord.nvim - Install & Config](onenord.html#install--config)
 
 ご自身のお好きな色を入れてもらえればオッケーです。
 ```
