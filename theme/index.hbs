@@ -32,9 +32,6 @@
         <link rel="stylesheet" href="{{ path_to_root }}fonts/fonts.css">
         {{/if}}
 
-        <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="{{ path_to_root }}highlight.css" async>
-
         <!-- Custom theme stylesheets -->
         {{#each additional_css}}
         <link rel="stylesheet" href="{{ ../path_to_root }}{{ this }}" async>
@@ -203,7 +200,10 @@
         {{/if}}
 
         <script src="{{ path_to_root }}clipboard.min.js"></script>
-        <script src="{{ path_to_root }}highlight.js"></script>
+
+        <script src="{{ path_to_root }}highlight.min.js"></script>
+        <script>hljs.highlightAll();</script>
+
         <script src="{{ path_to_root }}book.js"></script>
 
         <!-- Custom JS scripts -->
