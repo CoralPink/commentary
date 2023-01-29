@@ -3,9 +3,9 @@
 いつだっておじさんは熱くアドバイスしてくれます☺️
 
 ~~~admonish info title=":h nvim_create_autocmd"
-```
-nvim_create_autocmd({event}, {*opts})                   nvim_create_autocmd()
-                                        Create an |autocommand|
+```txt
+nvim_create_autocmd({event}, {*opts})                 nvim_create_autocmd()
+                                                      Create an |autocommand|
 
     The API allows for two (mutually exclusive) types of actions to be
     executed when the autocommand triggers: a callback function (Lua or
@@ -34,14 +34,14 @@ nvim_create_autocmd({event}, {*opts})                   nvim_create_autocmd()
 
 現時点で`autocmd`がどのように登録されているのかは、以下のコマンドを実行してみると確認できます。
 
-~~~admonish quote 
-```
+~~~admonish quote
+```vim
 :au
 ```
 
 または
 
-```
+```vim
 :autocmd
 ```
 ~~~
@@ -70,7 +70,7 @@ OKね...❗
 まずは`event`なんですが、`autocmd-events`がこれでしょう🤔
 
 ~~~admonish info title=":h autocmd-events"
-```
+```txt
 5. Events           autocmd-events E215 E216
 
 You can specify a comma-separated list of event names.  No white space can be
@@ -84,7 +84,7 @@ used in this list.  The command applies to all the events in the list.
 で、上の例で使用されていた`BufEnter`と`BufWinEnter`だけ抜粋すると以下です。
 
 ~~~admonish info title=":h BufEnter"
-```
+```txt
 BufEnter        After entering a buffer.  Useful for setting
                 options for a file type.  Also executed when
                 starting to edit a buffer.
@@ -96,7 +96,7 @@ BufEnter        After entering a buffer.  Useful for setting
 ~~~
 
 ~~~admonish info title=":h BufWinEnter"
-```
+```txt
 BufWinEnter     After a buffer is displayed in a window.  This
                 may be when the buffer is loaded (after
                 processing modelines) or when a hidden buffer
@@ -123,7 +123,7 @@ BufWinEnter     After a buffer is displayed in a window.  This
 次は`pattern`です。これは`file-pattern`として説明されています😌
 
 ~~~admonish info title=":h file-pattern"
-```
+```txt
 The pattern is interpreted like mostly used in file names:
 このパターンは、ファイル名によく使われるものと同じように解釈される。
 
@@ -150,7 +150,7 @@ The pattern is interpreted like mostly used in file names:
 最後に`callback`ですが、これは`nvim_create_autocmd`の中に記述が見つかります。
 
 ~~~admonish info title=":h nvim_create_autocmd"
-```
+```txt
 Lua function which is called when this autocommand is triggered. Cannot be used with {command}.
 
 このオートコマンドが起動した際に呼び出されるLua関数です。{コマンド}とは併用できない。

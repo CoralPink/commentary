@@ -45,7 +45,7 @@ Packerはネイティブパッケージの上に構築されています。先�
 ~~~admonish note
 `packpath`については、ちょっと自信ないんですが、
 
-```
+```sh
 :echo &packpath
 ```
 
@@ -147,7 +147,7 @@ require 'extensions'
 ...なんか前より増えてますよね。...って❗しれっと`packer.nvim`いるし⁉️
 
 ~~~admonish info title=":h packages"
-```
+```txt
 On startup after processing your |config|, Nvim scans all directories in
 
 'packpath' for plugins in "pack/*/start/*", then loads the plugins.
@@ -207,7 +207,7 @@ _G.packer_plugins = {
 `packer.nvim`はプラグインのアップデートなども含めてマネージメントしてくれます☺️
 
 ### PackerCompile
-```
+```txt
 You must run this or `PackerSync` whenever you make changes to your plugin configuration regenerate compiled loader file
 
 プラグインの設定を変更したときは、必ずこのコマンドか`PackerSync`を実行しなければなりません。
@@ -215,19 +215,19 @@ You must run this or `PackerSync` whenever you make changes to your plugin confi
 ```
 
 ### PackerClean
-```
+```txt
 Remove any disabled or unused plugins
 無効または未使用のプラグインを削除します。
 ```
 
 ### PackerInstall
-```
+```txt
 Clean, then install missing plugins
 無効になっているプラグインを削除し、インストールします。
 ```
 
 ### PackerUpdate
-```
+```txt
 Clean, then update and install plugins
 supports the `--preview` flag as an optional first argument to preview updates
 
@@ -236,7 +236,7 @@ supports the `--preview` flag as an optional first argument to preview updates
 ```
 
 ### PackerSync
-```
+```txt
 Perform `PackerUpdate` and then `PackerCompile`
 supports the `--preview` flag as an optional first argument to preview updates
 
@@ -250,24 +250,24 @@ supports the `--preview` flag as an optional first argument to preview updates
 ```
 
 ### PackerStatus
-```
+```txt
 Show list of installed plugins
 インストールされているプラグインのリストを表示します。
 ```
 
 ### PackerLoad
-```
+```txt
 Loads opt plugin immediately
 optプラグインをすぐにロードする
 ```
 
-## Help 
+## Help
 
 `Neovim`プラグインの場合は、作者が書いてくれている`readme`を見れば、もうこれだけで済んでしまうことも多いんですが、
 (大抵は)`Neovim`の`Help`にもプラグイン固有の説明が追加されます。
 
 ~~~admonish quote
-```
+```vim
 :h packer.nvim
 ```
 ~~~

@@ -41,7 +41,7 @@ update-status イベントは定期的に発行されます (status_update_inter
 とのことなので、`wezterm.lua`の中でステータス更新間隔を指定しておきましょう。
 
 ~~~admonish example title="wezterm.lua"
-```
+```lua
 return {
   status_update_interval = 1000,
 }

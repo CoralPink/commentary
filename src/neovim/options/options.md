@@ -27,11 +27,13 @@ require 'options'
 心して...! `Neovim`のコマンドから打ってください...!!
 
 ~~~admonish quote title=""
-```
+```vim
 :h help
 ```
+
 もしくは
-```
+
+```vim
 :help help
 ```
 ~~~
@@ -47,7 +49,7 @@ require 'options'
 色々書いてありますが、とりあえずはこれだけ覚えていればOK❗重要だぞ😉❤️
 
 ~~~admonish info title=":h help"
-```
+```txt
 :h[elp]                 Open a window and display the help file in read-only mode.
                         ウィンドウを開き、ヘルプファイルを読み込み専用で表示する。
 
@@ -57,7 +59,7 @@ require 'options'
 :h[elp] {subject}	Like ":help", additionally jump to the tag {subject}.
                         ":help" と同様だが、さらに {subject} というタグにジャンプする。
 
-                        For example:   
+                        For example:
                             :help options
 
                         If there is no full match for the pattern, or there
@@ -78,7 +80,7 @@ require 'options'
 併せて`:helpc`(or `:helpclose`)も覚えておくと安心です☺️
 
 ~~~admonish info title=":h helpc"
-```
+```txt
 :helpc[lose]    Close one help window, if there is one.
 			    Vim will try to restore the window layout (including
 			    cursor position) to the same layout it was before

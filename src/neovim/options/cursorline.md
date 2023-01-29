@@ -3,7 +3,7 @@
 さて、続いて飛び出してきました、
 
 ~~~admonish info title=":h cursorline"
-```
+```txt
 			            'cursorline' 'cul' 'nocursorline' 'nocul'
 
 'cursorline' 'cul'  boolean     (default off)
@@ -39,7 +39,6 @@ after:
 しっかりと"カーソルのあるテキスト行を強調表示"してますね❗
 
 ```admonish note
-
 少し気になるのは、「画面の再描画が遅くなります」という注意書きがされていることでしょうか...。
 
 わざわざ書かれているぐらいなので、想像以上に重い処理なのかもしれない...😱

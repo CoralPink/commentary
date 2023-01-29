@@ -83,7 +83,8 @@ The configuration of different options is done through a setup function which wi
 ~~~
 
 ### theme
-```
+
+```txt
 "dark" or "light". Alternatively, remove the option and set vim.o.background instead
 
 `dark`または`light`。もしくは、このオプションを削除して`vim.o.background`を設定します。
@@ -93,7 +94,8 @@ The configuration of different options is done through a setup function which wi
 (ごめんなさい、確認してない...😅)
 
 ### borders
-```
+
+```txt
 Split window borders
 
 ウィンドウの境界にボーダーを表示します。
@@ -104,7 +106,8 @@ Split window borders
 |![enable](img/borders-true.webp)|![disable](img/borders-false.webp)|
 
 ### fade_nc
-```
+
+```txt
 Fade non-current windows, making them more distinguishable
 
 現在のウィンドウ以外をフェードさせ、区別しやすくする。
@@ -115,7 +118,8 @@ Fade non-current windows, making them more distinguishable
 |![enable](img/fade_nc-true.webp)|![disable](img/fade_nc-false.webp)|
 
 ### styles
-```
+
+```txt
 Style that is applied to various groups: see `highlight-args` for options
 
 様々なグループに適用されるスタイル: オプションは `:h highlight-args` を参照してください。
@@ -145,7 +149,8 @@ styles = {
 ### disable
 
 #### background
-```
+
+```txt
 Disable setting the background color
 
 背景色の設定を無効にします。
@@ -158,14 +163,16 @@ Disable setting the background color
 |![enable](img/background-true.webp)|![disable](img/background-false.webp)|
 
 #### cursorline
-```
+
+```txt
 Disable the cursorline
 
 カーソルラインを無効にします。
 ```
 
 #### eob_lines
-```
+
+```txt
 Hide the end-of-buffer lines
 
 バッファ終端行を隠します。
@@ -174,14 +181,16 @@ Hide the end-of-buffer lines
 ...これちょっと何かわからなかった...😿
 
 ### inverse
-```
+
+```txt
 Inverse highlight for different groups
 
 グループごとにハイライトを反転させます。
 ```
 
 ### custom_highlights
-```
+
+```txt
 Overwrite default highlight groups
 
 デフォルトのハイライトグループを上書きします。
@@ -194,7 +203,8 @@ Overwrite default highlight groups
 ちょっと見えにくいかな...。上の例では`}`です。
 
 ### custom_colors
-```
+
+```txt
 Overwrite default colors
 
 デフォルトの色を上書きします。

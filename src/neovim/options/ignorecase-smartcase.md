@@ -3,7 +3,7 @@
 この2つは検索に関するオプションなのでまとめていっちゃいます😆
 
 ~~~admonish info title=":h ignorecase"
-```
+```txt
 7. Ignoring case in a pattern					/ignorecase
 
 If the 'ignorecase' option is on, the case of normal letters is ignored.
@@ -14,7 +14,7 @@ ignorecase' オプションがオンの場合、通常の文字の大文字小�
 smartcase' を指定すると、パターンが小文字のみである場合に大文字小文字を無視する。
 
 Examples:
-      pattern	'ignorecase'   'smartcase'   matches  
+      pattern	'ignorecase'   'smartcase'   matches
 
     	foo         off		    -	    foo
 	    foo	    on		    -	    foo Foo FOO
@@ -26,7 +26,7 @@ Examples:
 ~~~
 
 ~~~admonish info title=":h smartcase"
-```
+```txt
 'smartcase' 'scs' 'nosmartcase' 'noscs'
 
 'smartcase' 'scs' boolean (default off)
@@ -34,7 +34,7 @@ Examples:
 
     Override the 'ignorecase' option if the search pattern contains upper
     case characters.  Only used when the search pattern is typed and
-    'ignorecase' option is on. 
+    'ignorecase' option is on.
 
     検索パターンが大文字を含む場合、'ignorecase' オプションを無効にする。
     検索パターンが入力され、'ignorecase' が on の時のみ使用される。
@@ -62,18 +62,20 @@ She's got a ticket to ride, but she don’t care.
 }}
 それでは小文字だけの`she`を検索してみます。検索には<kbd>/</kbd>で入れます。
 
-```
+```vim
 /she
 ```
+
 ![search-she1](img/search-she1.webp)
 
 `She`と`she`の2つに反応しましたね。
 
 じゃあ、次は 「大文字を含む場合」の`She`でやってみましょう。
 
-```
+```vim
 /She
 ```
+
 ![search-she1](img/search-she2.webp)
 
 `She`だけに反応しましたね。

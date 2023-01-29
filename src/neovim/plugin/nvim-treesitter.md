@@ -153,7 +153,7 @@ end,
 ~~~
 
 ~~~admonish info title=":h packer.use()"
-```
+```txt
 config = string or function, -- Specifies code to run after this plugin is loaded.
                                 このプラグインがロードされた後に実行するコードを指定します。
 ```
@@ -192,7 +192,7 @@ config = string or function, -- Specifies code to run after this plugin is loade
 `nvim-treesitter`を入れることで使えるコマンドについては、ヘルプだけ示します。
 
 ~~~admonish info title=":h nvim-treesitter-commands"
-```
+```txt
 COMMANDS
 ```
 ~~~
@@ -205,7 +205,7 @@ COMMANDS
 上の例で使用しているモジュール設定について少しだけ触れておきます。
 
 ~~~admonish info title="[Modules](https://github.com/nvim-treesitter/nvim-treesitter#modules)"
-```
+```txt
 By default, everything is disabled.
 
 デフォルトでは、すべて無効になっています。
@@ -213,7 +213,8 @@ By default, everything is disabled.
 ~~~
 
 ### ensure_installed
-```
+
+```txt
 A list of parser names, or "all"
 
 パーサ名のリスト、または "all"を指定する。
@@ -232,7 +233,8 @@ List of languages for which a parser can be installed through :TSInstall
 ```
 
 ### sync_install
-```
+
+```txt
 Install parsers synchronously. (only applied to `ensure_installed`)
 
 パーサを同期的にインストールする。 (`ensure_installed` にのみ適用される)
@@ -245,7 +247,8 @@ Install parsers synchronously. (only applied to `ensure_installed`)
 ```
 
 ### auto_install
-```
+
+```txt
 Automatically install missing parsers when entering buffer.
 
 バッファに入ったときに足りないパーサを自動的にインストールします。
@@ -256,7 +259,8 @@ Automatically install missing parsers when entering buffer.
 ```
 
 ### highlight
-```
+
+```txt
 `false` will disable the whole extension
 
 false` を指定すると、拡張機能全体を無効にすることができます。
@@ -291,7 +295,7 @@ Incremental selection based on the named nodes from the grammar.
 
 文法からの名前付きノードに基づくインクリメンタルな選択。
 
-```
+```txt
 - keymaps:
   - init_selection: in normal mode, start incremental selection.
                     ノーマルモードで、インクリメンタルな選択を開始します。
@@ -315,7 +319,7 @@ Incremental selection based on the named nodes from the grammar.
 これも`highlight`と同じく、言語を選んで除外できます。
 
 ~~~admonish info title=":h nvim-treesitter-indntation-mod"
-```
+```txt
 Indentation based on treesitter for the |=| operator.
 
 |=| 演算子の treesitter に基づくインデント。
@@ -335,9 +339,9 @@ Supported options:
 これは`nvim-treesitter`に限らない`Neovim`の機能になりますが、`health`チェックというものがあります😉
 
 ~~~admonish info title=":h health"
-```
+```txt
 health.vim is a minimal framework to help users troubleshoot configuration and
-any other environment conditions that a plugin might care about. 
+any other environment conditions that a plugin might care about.
 
 health.vim は、プラグイン設定やその他の環境条件の
 トラブルシューティングを支援するための最小限のフレームワークである。
@@ -350,12 +354,12 @@ Plugin authors are encouraged to write new healthchecks. |health-dev|
 
 コマンドは`:h health-commands`にある通りです。試しに動かしてみましょう。
 
-```
+```vim
 :che
 ```
  または
 
-```
+```vim
 :checkhealth
 ```
 
@@ -367,7 +371,8 @@ Plugin authors are encouraged to write new healthchecks. |health-dev|
 
 ~~~admonish note
 これもヘルプそのままですが、指定したプラグインだけを診断することも可能です。
-```
+
+```vim
 :che nvim-treesitter
 ```
 

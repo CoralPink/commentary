@@ -193,7 +193,7 @@ Gitsigns は on_attach コールバックを提供し、buffer マッピング�
 使用できる機能は以下で説明されています。
 
 ~~~admonish info title=":h gitsigns-functions"
-```
+```txt
 Note functions with the {async} attribute are run asynchronously and are
 non-blocking (return immediately).
 
@@ -244,7 +244,7 @@ non-blocking (return immediately).
 ~~~
 
 ~~~admonish info title=":h gitsigns-config-word_diff"
-```
+```txt
 word_diff                                          gitsigns-config-word_diff
       Type: `boolean`, Default: `false`
 
@@ -319,7 +319,7 @@ word_diff                                          gitsigns-config-word_diff
 これは、わたしが今の今まで気づいていなかったんですが...。
 
 ~~~admonish info title=":h gitsigns-config-attach_to_untracked"
-```
+```txt
 attach_to_untracked                      *gitsigns-config-attach_to_untracked*
       Type: `boolean`, Default: `true`
 
@@ -346,7 +346,7 @@ attach_to_untracked                      *gitsigns-config-attach_to_untracked*
 わたし自身はそんなにうまく活用できてないんですが、これはちょっと面白いやつです。
 
 ~~~admonish info title="gitsigns-config-current_line_blame_formatter"
-```
+```txt
 current_line_blame_formatter    gitsigns-config-current_line_blame_formatter
       Type: `string|function`, Default: `' <author>, <author_time> - <summary>'`
 
@@ -364,7 +364,7 @@ current_line_blame_formatter    gitsigns-config-current_line_blame_formatter
 デフォルトで`current_line_brame`を有効化するかどうかは、以下のパラメータです。
 
 ~~~admonish info title="gitsigns-config-current_line_blame"
-```
+```txt
 current_line_blame                        gitsigns-config-current_line_blame
       Type: `boolean`, Default: `false`
 
@@ -378,7 +378,8 @@ current_line_blame                        gitsigns-config-current_line_blame
 ~~~
 
 デフォルトでは有効になっていないのですが、キーマップをそのまま持ってきているなら以下のコードが入っているはずです。
-```
+
+```lua
 map('n', '<leader>tb', gs.toggle_current_line_blame)
 ```
 

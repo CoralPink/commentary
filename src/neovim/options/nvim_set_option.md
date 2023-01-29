@@ -12,16 +12,16 @@
 なんだったらバトル中でも確認できます。わーい😆
 
 ~~~admonish info title=":h nvim_set_option"
-```
+```txt
 nvim_set_option({name}, {value})            nvim_set_option()
     Sets the global value of an option.
     オプションのグローバル値を設定する。
 
-    Parameters:  
+    Parameters:
       • {name}   Option name
       • {value}  New option value
 
-    パラメータ  
+    パラメータ
       • {name}   オプション名
       • {value}  新しいオプションの値
 ```

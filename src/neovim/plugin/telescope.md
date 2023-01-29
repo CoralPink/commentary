@@ -293,21 +293,21 @@ use {
 
 ## CheckHealth
 
-```admonish info title="chechkhealth"
+```admonish info title="[chechkhealth](https://github.com/nvim-telescope/telescope.nvim#checkhealth)"
 Make sure you call `:checkhealth telescope` after installing
 telescope to ensure everything is set up correctly.
 
-After this setup you can continue reading here or switch to
-`:help` telescope to get an understanding of how to use Telescope and how to configure it.
-
 Telescope をインストールした後、必ず`:checkhealth telescope`を呼び出して、
 すべてが正しくセットアップされていることを確認してください。
+
+After this setup you can continue reading here or switch to
+`:help telescope` to get an understanding of how to use Telescope and how to configure it.
 
 このセットアップの後、ここを読み続けるか、`:help telescope` に切り替えて
 Telescope の使用方法と設定方法を理解することができます。
 ```
 
-`telescope`さえインストールできれば、[checkhealth](nvim-treesitter.html#checkhealth) が使えます。
+`telescope.nvim`さえインストールできれば、[checkhealth](nvim-treesitter.html#checkhealth) が使えます。
 
 ~~~admonish note
 これは`nvim-treesitter`でも出てきた`Neovim`のコマンドですね。
@@ -315,7 +315,7 @@ Telescope の使用方法と設定方法を理解することができます。
 
 まさかサボってたせいでエラーが出てるぅ❗な〜んてこと、あるはずはありませんが、一度確認のために動かしてみましょう😉
 
-```
+```vim
 :che telescope
 ```
 

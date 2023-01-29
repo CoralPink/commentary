@@ -15,13 +15,15 @@ The minimal, blazing-fast, and infinitely customizable prompt for any shell!
 ページ内の Get Started からインストール方法が確認できます。
 
 覗いてみると
-```
+
+```txt
 Prerequisites
 - A Nerd Font installed and enabled in your terminal.
 
 前提条件
 - Nerd Fontがインストールされ、ターミナルで有効になっていること。
 ```
+
 と書いてありますね。
 
 本来なら「なんかめんどくさそうだな〜」となるところですが...、

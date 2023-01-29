@@ -115,13 +115,13 @@ requires = { 'kyazdani42/nvim-web-devicons' },
 
 として説明されているのですが、
 
-```
+```txt
 https://github.com/kyazdani42/nvim-web-devicons
 ```
 
 ...に行こうとすると、
 
-```
+```txt
 https://github.com/nvim-tree/nvim-web-devicons
 ```
 
@@ -145,7 +145,7 @@ https://github.com/nvim-tree/nvim-web-devicons
 `lualine.nvim`と一緒に`nvim-web-devicons`もインストールされましたね❗
 
 ~~~admonish info title=":h packer-plugin-dependencies"
-```
+```txt
 Plugins may specify dependencies via the `requires` key in their specification table.
 This key can be a string or a list (table).
 
@@ -158,7 +158,7 @@ If `ensure_dependencies` is true, the plugins specified in `requires` will be in
 ~~~
 
 ~~~admonish info title=":h packer-configuration"
-```
+```txt
 ensure_dependencies = true, -- Should packer install plugin dependencies?
 
                                packer はプラグインの依存関係をインストールするべき？
@@ -250,7 +250,7 @@ On your next.
 ~~~
 
 ~~~admonish info title=":h showmode"
-```
+```txt
 'showmode' 'smd'    boolean (default: on)
                     global
 

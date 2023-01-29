@@ -45,7 +45,7 @@ touch ~/.config/wezterm/wezterm.lua
 ```
 
 ファイルを開く:
-```
+```sh
 open ~/.config/wezterm/wezterm.lua
 ```
 

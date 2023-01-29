@@ -31,7 +31,7 @@ APIを　つかいます❗
 ```
 
 ~~~admonish info title=":h nvim_buf_set_option"
-```
+```txt
 nvim_buf_set_option({buffer}, {name}, {value})          *nvim_buf_set_option()*
     Sets a buffer option value. Passing `nil` as value deletes the option
     (only works if there's a global fallback)
@@ -39,7 +39,7 @@ nvim_buf_set_option({buffer}, {name}, {value})          *nvim_buf_set_option()*
     buffer のオプション値を設定する。value として `nil` を渡すと、そのオプションが削除される。
     (グローバルフォールバックがある場合のみ動作する)
 
-    Parameters:  
+    Parameters:
       • {buffer}  Buffer handle, or 0 for current buffer
                   バッファハンドル、またはカレントバッファの場合は0。
 

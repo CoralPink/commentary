@@ -13,7 +13,7 @@ vim.api.nvim_win_set_option(0, 'wrap', false)
 なんか "かいパ"🙊 ...あ、いえ、なんでもないです😅
 
 ~~~admonish info title=":h wrap"
-```
+```txt
     					    'wrap' 'nowrap'
 
 'wrap'                  boolean (default on)
@@ -22,8 +22,8 @@ vim.api.nvim_win_set_option(0, 'wrap', false)
 	This option changes how text is displayed.  It doesn't change the text
 	in the buffer, see 'textwidth' for that.
 
-    このオプションは、テキストの表示方法を変更する。
-    バッファ内のテキストは変更されないので、それについては 'textwidth' を参照すること。
+  このオプションは、テキストの表示方法を変更する。
+  バッファ内のテキストは変更されないので、それについては 'textwidth' を参照すること。
 
 	When on, lines longer than the width of the window will wrap and
 	displaying continues on the next line.  When off lines will not wrap
@@ -31,9 +31,9 @@ vim.api.nvim_win_set_option(0, 'wrap', false)
 	moved to a part that is not shown, the screen will scroll
 	horizontally.
 
-    on の場合、ウィンドウの幅より長い行は折り返され、次の行に表示される。
-    off の場合、行は折り返されず、長い行の一部分のみが表示される。
-    表示されていない部分にカーソルを移動すると、画面が水平方向にスクロールする。
+  on の場合、ウィンドウの幅より長い行は折り返され、次の行に表示される。
+  off の場合、行は折り返されず、長い行の一部分のみが表示される。
+  表示されていない部分にカーソルを移動すると、画面が水平方向にスクロールする。
 ```
 ~~~
 
@@ -43,11 +43,11 @@ vim.api.nvim_win_set_option(0, 'wrap', false)
 無効にする場合は`sidescroll`などを変えると便利になるよ❗...と、
 `wrap`のヘルプに書いてくれているので、参考にしてみると良いと思います😉
 
-```
-To make scrolling horizontally a bit more useful, try this:  
+```vim
+" To make scrolling horizontally a bit more useful, try this:
 		:set sidescroll=5
 		:set listchars+=precedes:<,extends:>
-See 'sidescroll', 'listchars' and |wrap-off|.
+" See 'sidescroll', 'listchars' and |wrap-off|.
 ```
 
 ...わたしは今気づいたので、また今度試してみます。
@@ -56,7 +56,7 @@ See 'sidescroll', 'listchars' and |wrap-off|.
 むしろ、変なファイルを作らないためのマナーに働きかけるものとして、`colorcolumn`を活用する方がいいと思います。
 
 ~~~admonish info title=":h colorcolumn"
-```
+```txt
 						    *'colorcolumn'* *'cc'*
 
 'colorcolumn' 'cc'          string (default "")
@@ -69,7 +69,7 @@ See 'sidescroll', 'listchars' and |wrap-off|.
     テキストを整列させるのに便利。ただ、画面の再描画が遅くなる。
 
     The screen column can be an absolute number, or a number preceded with '+' or '-',
-    which is added to or subtracted from 'textwidth'. 
+    which is added to or subtracted from 'textwidth'.
 
     スクリーンカラムは絶対値か、'+' または '-' で始まる数値で、'textwidth' に加算または減算される。
 ```
@@ -91,13 +91,13 @@ vim.api.nvim_win_set_option(0, 'colorcolumn', '100')
 
 ただ、これはなんか、再描画遅くなるとも書いてあるし😅 そんなに出しとく必要ある〜❓とか思っちゃうので、
 ~~~admonish quote title="有効化(100文字目にハイライト)"
-```
+```vim
 :set cc=100
 ```
 ~~~
 
 ~~~admonish quote title="無効化"
-```
+```vim
 :set cc=
 ```
 ~~~
@@ -106,7 +106,7 @@ vim.api.nvim_win_set_option(0, 'colorcolumn', '100')
 
 ~~~admonish note
 パラメータが`string`なのに、なんで
-```
+```vim
 :set cc=100
 ```
 ...でいいんだよー⁉️ってなるじゃないですか❓わたしもなってます。

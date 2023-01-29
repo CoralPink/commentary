@@ -3,7 +3,7 @@
 この節はまた`Neovim`の方に寄せていきたいので、ヘルプから始めます😉
 
 ~~~admonish info title=":h vim.cmd"
-```
+```txt
 cmd({command})                                                     vim.cmd()
     Execute Vim script commands.
 
@@ -34,7 +34,7 @@ cmd({command})                                                     vim.cmd()
 これはサンプルがとっても豊富ですね☺️
 
 ~~~admonish info title=":h vim.cmd"
-```
+```txt
     Example:
 
        vim.cmd('echo 42')
@@ -68,7 +68,7 @@ cmd({command})                                                     vim.cmd()
 
 こんなのを😮
 
-```
+```vim
 :colorscheme blue
 ```
 
@@ -95,10 +95,10 @@ vim.keymap.set('n', '<Leader>9', function() vim.cmd('colorscheme blue') end)
 せっかく`colorscheme`が出てきたので、少し寄り道していきます。
 
 ~~~admonish info title=":h colorscheme"
-```
+```txt
                           :colo :colorscheme E185
 :colo[rscheme] {name}	Load color scheme {name}.
-      This searches 'runtimepath' for the file "colors/{name}.(vim|lua)". 
+      This searches 'runtimepath' for the file "colors/{name}.(vim|lua)".
 
       'runtimepath'を検索して、"colors/{name}.(vim|lua) "というファイルを探します。
 ```

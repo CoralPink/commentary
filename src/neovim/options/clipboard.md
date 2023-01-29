@@ -3,7 +3,7 @@
 そうだそうだ。大事なものを忘れていました😅
 
 ~~~admonish info title=":h clipboard"
-```
+```txt
 Nvim has no direct connection to the system clipboard. Instead it depends on
 a |provider| which transparently uses shell commands to communicate with the
 system clipboard or any other clipboard "backend".
@@ -13,7 +13,7 @@ Nvim は、システムのクリップボードに直接接続することはで
 通信するためにシェルコマンドを透過的に使用するプロバイダに依存する。
 
 To ALWAYS use the clipboard for ALL operations (instead of interacting with
-the '+' and/or '*' registers explicitly):  
+the '+' and/or '*' registers explicitly):
 
 クリップボードを常に使用する場合 ('+' や '*' を明示的に操作する代わりに以下のようにする):
 
@@ -42,7 +42,7 @@ See 'clipboard' for details and options.
 ```
 
 ~~~admonish info title=":h 'clipboard'"
-```
+```txt
 'clipboard' 'cb'	string	(default "")
 			            global
 
@@ -55,8 +55,7 @@ See 'clipboard' for details and options.
 この先はレジスタの話が出てきて自信がない...😓
 
 ~~~admonish info title="unnamed / unnamedplus" collapsible=true
-```
-
+```txt
   These names are recognized:
 
   これらの名前は認識される。
@@ -75,7 +74,7 @@ See 'clipboard' for details and options.
       これを含むと、Vim は通常 unnamed レジスタに行くような yank, delete, change, put 操作に対して、
       クリップボードレジスタ '*' を使用する。
       レジスタが明示的に指定された場合、'clipboard' に unnamed が入っているかどうかに関わらず、
-      常にそのレジスタが使用される。 
+      常にそのレジスタが使用される。
       クリップボードレジスタは、常に「*」表記で明示的にアクセスすることができる。
 
 						                    clipboard-unnamedplus
@@ -114,7 +113,7 @@ vim.opt.clipboard:append 'unnamedplus'
 ```
 
 ~~~admonish info title=":h vim.opt:append()"
-```
+```txt
   Append a value to string-style options. See |:set+=|
 
   文字列スタイルのオプションに値を追加する。参照: |:set+=|

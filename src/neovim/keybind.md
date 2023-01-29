@@ -15,7 +15,7 @@
 `lua`ディレクトリに`keybinds.lua`とかなんとかでファイルを作成しておきましょう。
 
 ~~~admonish quote title="keybinds.luaを作る"
-```
+```sh
 nvim keybinds.lua
 ```
 ~~~
@@ -35,7 +35,7 @@ require 'options'
 ## keymap.set()
 
 ~~~admonish info title = ":h keymap.set"
-```
+```txt
 set({mode}, {lhs}, {rhs}, {opts})                           vim.keymap.set()
     Add a new |mapping|. Examples:
     新しい|mapping|を追加します。
@@ -87,7 +87,7 @@ set({mode}, {lhs}, {rhs}, {opts})                           vim.keymap.set()
 `{mode}`の`short names`はこっち。
 
 ~~~admonish info title = ":h nvim_set_keymap"
-```
+```txt
     Parameters:
       • {mode}  Mode short-name (map command prefix: "n", "i", "v", "x", …) or
                 "!" for |:map!|, or empty string for |:map|.
@@ -114,7 +114,7 @@ set({mode}, {lhs}, {rhs}, {opts})                           vim.keymap.set()
 この先に出てくる、`<Up>`とか`<C-…>`だったりの表記が、どのキーを指しているのか❓などの一覧は`key-notation`として説明されています。
 
 ~~~admonish info title=":h key-notation"
-```
+```txt
 					                            key-notation key-codes keycodes
 These names for keys are used in the documentation.
 They can also be used with the ":map" command.
@@ -127,7 +127,7 @@ They can also be used with the ":map" command.
 ~~~admonish tip
 上のヘルプの内容とは少し離れますが、`:map`コマンドを使用すると現在のキー設定が一覧できます。
 
-```
+```vim
 :map
 ```
 
@@ -199,7 +199,7 @@ vim.keymap.set('n', 'ZQ', '<NOP>')
 `<NOP>`についてはヘルプに記載されていましたね。
 
 ~~~admonish info title=":h key-notation"
-```
+```txt
 <NOP>   no-op: do nothing (useful in mappings)	<Nop>
                何もしない（マッピングで有効）
 ```
@@ -230,7 +230,7 @@ vim.keymap.set('i', 'jj', '<Esc>')
 `{mode}`(第一パラメータ)をもう少し詳しく見ると、こんな感じです。
 
 ~~~admonish info title=":h map-table"
-```
+```txt
               map-table
          Mode  | Norm | Ins | Cmd | Vis | Sel | Opr | Term | Lang |
 Command        +------+-----+-----+-----+-----+-----+------+------+

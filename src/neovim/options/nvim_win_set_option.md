@@ -9,7 +9,7 @@
 また来ましたね、このパターン😆
 
 ~~~admonish info title=":h nvim_win_set_option"
-```
+```txt
 nvim_win_set_option({window}, {name}, {value})          *nvim_win_set_option()*
     Sets a window option value. Passing `nil` as value deletes the option
     (only works if there's a global fallback)
@@ -17,7 +17,7 @@ nvim_win_set_option({window}, {name}, {value})          *nvim_win_set_option()*
     window のオプション値を設定する。value として `nil` を渡すと、そのオプションが削除される。
     (グローバルフォールバックがある場合のみ動作する)
 
-    Parameters:  
+    Parameters:
       • {window}  Window handle, or 0 for current window
       • {name}    Option name
       • {value}   Option value

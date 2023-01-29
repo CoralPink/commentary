@@ -81,7 +81,7 @@ use {
 ![nvim-hlslens-quickfix](img/nvim-hlslens-quickfix.webp)
 
 ~~~admonish info title=":h quickfix"
-```
+```txt
 Vim has a special mode to speedup the edit-compile-edit cycle.  This is
 inspired by the quickfix option of the Manx's Aztec C compiler on the Amiga.
 The idea is to save the error messages from the compiler in a file and use Vim
@@ -140,7 +140,7 @@ Vim では、quickfix コマンドはより一般的に、ファイル内の位�
 頷くブラックパンツァー。共に戦おうと言わんばかりに...❗
 
 ~~~admonish info title=":h shortmess"
-```
+```txt
   S  do not show search count message when searching,
      検索時に検索数を表示しない,
 
@@ -149,7 +149,7 @@ Vim では、quickfix コマンドはより一般的に、ファイル内の位�
 ~~~
 
 ~~~admonish example title="extensions/nvim-hlslens.lua"
-```
+```lua
 -- (省略)
 -- end, {expr = true})
 
@@ -169,7 +169,7 @@ vim.opt.shortmess:append 'S'
 
 本来であれば、`shortmess`にこんなのがいるんです。
 
-```
+```txt
   I  don't give the intro message when starting Vim,
      Vimの起動時にイントロメッセージを表示しない,
 
@@ -204,7 +204,7 @@ why!? Where are the children of Ugandaaaaaaa!!
 ...まあ、`:h iccf`は`nvim v0.8`でも出てきたけど😮
 
 ~~~admonish info title=":h iccf"
-```
+```txt
 Vim is Charityware.
 You can use and copy it as much as you like,
 but you are encouraged to make a donation for needy children in Uganda.

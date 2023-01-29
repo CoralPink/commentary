@@ -7,7 +7,7 @@
 まずは`12. Key Binding`で触れた`keymap`から呼び出してみましょう。
 
 ~~~admonish info title=":h keymap.set"
-```
+```txt
 set({mode}, {lhs}, {rhs}, {opts})                           vim.keymap.set()
     Parameters:
       • {rhs}   string|function Right-hand side |{rhs}| of the mapping. Can
@@ -34,7 +34,7 @@ vim.keymap.set('n', 'lhs', function() print("real lua function") end)
 ここで初めて登場するんですが、`:source`というコマンドがありまして...🤔
 
 ~~~admonish info title=":h source"
-```
+```txt
             :so :source load-vim-script
 :[range]so[urce] [file]	Runs |Ex| commands or Lua code (".lua" files) from
                              |Ex|コマンドまたは Lua コード (".lua" ファイル) を [file] から実行する。
@@ -82,7 +82,7 @@ vim.keymap.set('n', 'lhs', function() print("real lua function") end)
 
 ..."については"と言っているのは、ちょっと気にしておきたいことがあって...。
 意味なく引っ張るようなんですが、`14.4 Call The Plugin`で改めて触れたいと思ってます😌
- 
+
 ```admonish tip
 ちなみに言うと、この辺りが恐らく`augroup`の`clear`の話だと思うんですが、どうでしょう❓
 ```

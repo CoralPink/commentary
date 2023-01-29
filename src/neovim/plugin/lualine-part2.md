@@ -106,7 +106,7 @@ On your next.
 ### separators
 
 ~~~admonish info title=":h lualine"
-```
+```txt
 SEPARATORS
 
 lualine defines two kinds of separators:
@@ -127,7 +127,7 @@ lualine は2種類のセパレータを定義しています。
   }
 ```
 
-```
+```txt
 Here, left refers to the left-most sections (a, b, c), and right refers to the
 right-most sections (x, y, z).
 
@@ -155,7 +155,7 @@ require('lualine').setup {
 ### globalstatus
 
 ~~~admonish info title=":h lualine"
-```
+```txt
 globalstatus = false,       -- enable global statusline (have a single statusline
                             -- at bottom of neovim instead of one for  every window).
                             -- This feature is only available in neovim 0.7 and higher.
@@ -197,13 +197,13 @@ globalstatus = false,       -- enable global statusline (have a single statuslin
 
 さて、`separators`項で出てきたこれ。
 
-```
+```txt
 Here, left refers to the left-most sections (a, b, c), and right refers to the
 right-most sections (x, y, z).
 ```
 
 ~~~admonish info title=":h lualine-usage-and-customization"
-```
+```txt
 Lualine has sections as shown below.
 Lualineには以下のようなセクションがあります。
 
