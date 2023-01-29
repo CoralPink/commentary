@@ -70,6 +70,7 @@ jobs:
       - name: Delete Unneeded files
         run: |
           rm book/ayu-highlight.css book/tomorrow-night.css
+          rm book/highlight.css book/highlight.js
           rm book/css/variables.css
           rm -rf book/FontAwesome
 
