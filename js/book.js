@@ -9,8 +9,9 @@ const playground_text = (playground, hidden = true) => {
 (() => {
   // Syntax highlighting Configuration
   hljs.configure({
-    tabReplace: '    ', // 4 spaces
-    languages: [], // Languages used for auto-detection
+    // TODO: I have suppressed warnings. Can you do something about this?
+    ignoreUnescapedHTML: true,
+    throwUnescapedHTML: false,
   });
 
   let code_nodes = Array.from(document.querySelectorAll('code'))
@@ -20,7 +21,7 @@ const playground_text = (playground, hidden = true) => {
     });
 
   code_nodes.forEach((block) => {
-    hljs.highlightBlock(block);
+    hljs.highlightElement(block);
   });
 
   // Adding the hljs class gives code blocks the color css
@@ -76,10 +77,6 @@ const playground_text = (playground, hidden = true) => {
   const themePopup = document.getElementById('theme-list');
   const themeColorMetaTag = document.querySelector('meta[name="theme-color"]');
 
-  const stylesheets = {
-    highlight: document.querySelector("[href$='highlight.css']"),
-  };
-
   const get_theme = () => {
     let theme;
 
@@ -105,8 +102,6 @@ const playground_text = (playground, hidden = true) => {
   };
 
   const set_theme = (theme, store = true) => {
-    stylesheets.highlight.disabled = false;
-
     setTimeout(() => {
       themeColorMetaTag.content = getComputedStyle(document.body).backgroundColor;
     }, 1);
