@@ -364,7 +364,7 @@ const playground_text = (playground, hidden = true) => {
       case 'ArrowRight':
         e.preventDefault();
 
-        const nextButton = document.querySelector('.nav-chapters.next');
+        const nextButton = document.querySelector('.mobile-nav-chapters.next');
 
         if (nextButton) {
           window.location.href = nextButton.href;
@@ -374,7 +374,7 @@ const playground_text = (playground, hidden = true) => {
       case 'ArrowLeft':
         e.preventDefault();
 
-        const previousButton = document.querySelector('.nav-chapters.previous');
+        const previousButton = document.querySelector('.mobile-nav-chapters.previous');
 
         if (previousButton) {
           window.location.href = previousButton.href;
