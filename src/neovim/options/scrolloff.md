@@ -3,7 +3,7 @@
 さて、次はこんなのが飛び出してきました❗もはやルーティンですね😌
 
 ~~~admonish info title=":h scrolloff"
-```
+```txt
 'scrolloff' 'so'
 'scrolloff' 'so'    number	(default 0)
 	                global or local to window |global-local|

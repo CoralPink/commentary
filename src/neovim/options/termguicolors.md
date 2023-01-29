@@ -5,7 +5,7 @@
 掲題のお名前からある程度は推測できちゃうんですが、最初なのでまあ、のほほん☺️ と。
 
 ~~~admonish info title=":h termguicolors"
-```
+```txt
 'termguicolors' 'tgc' 'notermguicolors' 'notgc'
 
 'termguicolors' 'tgc'	boolean (default off)
@@ -42,11 +42,13 @@ vim.api.nvim_set_option('termguicolors', true)
 
 頭に`no`がついてるのとかはなんかすごい無効化されそうな趣ですが、これらは`:set`コマンドから使うことができます。
 
-```
-# 無効化
+```vim
+" 無効化:
 :set notgc
+```
 
-# 有効化
+```vim
+" 有効化:
 :set tgc
 ```
 

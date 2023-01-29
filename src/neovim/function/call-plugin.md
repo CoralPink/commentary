@@ -97,7 +97,7 @@ requireは、ファイルが既に実行されているかどうかを制御し�
 今度は`nvim`ディレクトリまで上がって、`plugin/lesson`ディレクトリを作成してください。
 
 ~~~admonish quote title="Command"
-```
+```sh
 mkdir -p plugin/lesson
 ```
 ~~~
@@ -119,7 +119,7 @@ mkdir plugin/lesson
 これもあんまり深くは潜らず、さらっとだけやります。
 
 ~~~admonish info title=":h nvim_create_user_command"
-```
+```txt
 nvim_create_user_command({name}, {command}, {*opts})
     Create a new user command |user-commands|
 
@@ -150,14 +150,14 @@ end, {})
 ~~~ admonish note
 コードは`:h input`の`Example`から持ってきて、`lua`で動くように書き換えました。
 
-```
+```txt
 input({opts})
 		The result is a String, which is whatever the user typed on
 		the command-line.
 
     結果は String で、ユーザーがコマンドラインで入力したもの。
 
-		Example:  
+		Example:
 			:if input "Coffee or beer? " == "beer"
 			:  echo " Cheers!"
 			:endif
@@ -172,7 +172,7 @@ input({opts})
 
 じゃあ、実際にオーダーしてみましょう。コマンドから`:Order`と入れてみてください。
 
-```
+```vim
 :Order
 ```
 
