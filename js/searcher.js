@@ -52,8 +52,8 @@ window.search = window.search || {};
     },
   };
 
-  let mark_exclude = [];
-  let marker = new Mark(document.getElementById("content"));
+  const mark_exclude = [];
+  const marker = new Mark(document.getElementById("content"));
   let current_searchterm = "";
   let teaser_count = 0;
 
@@ -86,7 +86,7 @@ window.search = window.search || {};
           if (!seg[i]) {
             continue;
           }
-          let s = seg[i].split("=");
+          const s = seg[i].split("=");
           ret[s[0]] = s[1];
         }
         return ret;
@@ -109,7 +109,7 @@ window.search = window.search || {};
     let joiner = "?";
 
     for (const prop in urlobject.params) {
-      if (urlobject.params.hasOwnProperty(prop)) {
+      if (urlobject.params.hasOwnProperty.call(prop)) {
         url += joiner + prop + "=" + urlobject.params[prop];
         joiner = "&";
       }
@@ -351,7 +351,7 @@ window.search = window.search || {};
     // Check current URL for search request
     const url = parseURL(window.location.href);
 
-    if (url.params.hasOwnProperty(URL_SEARCH_PARAM) && url.params[URL_SEARCH_PARAM] != "") {
+    if (url.params.hasOwnProperty.call(URL_SEARCH_PARAM) && url.params[URL_SEARCH_PARAM] != "") {
       showSearch(true);
 
       searchbar.value = decodeURIComponent(
@@ -364,7 +364,7 @@ window.search = window.search || {};
       showSearch(false);
     }
 
-    if (url.params.hasOwnProperty(URL_MARK_PARAM)) {
+    if (url.params.hasOwnProperty.call(URL_MARK_PARAM)) {
       marker.mark(decodeURIComponent(url.params[URL_MARK_PARAM]).split(" "), {
         exclude: mark_exclude,
       });
@@ -375,7 +375,7 @@ window.search = window.search || {};
         for (let i = 0; i < markers.length; i++) {
           markers[i].classList.add("fade-out");
 
-          window.setTimeout(() => {
+          globalThis.setTimeout(() => {
             marker.unmark();
           }, 300);
         }
@@ -517,7 +517,7 @@ window.search = window.search || {};
   // "push_if_new_search_else_replace" pushes if there is no `?URL_SEARCH_PARAM=abc` yet.
   const setSearchUrlParameters = (searchterm, action) => {
     const url = parseURL(window.location.href);
-    const first_search = !url.params.hasOwnProperty(URL_SEARCH_PARAM);
+    const first_search = !url.params.hasOwnProperty.call(URL_SEARCH_PARAM);
 
     if (searchterm != "" || action == "push_if_new_search_else_replace") {
       url.params[URL_SEARCH_PARAM] = searchterm;

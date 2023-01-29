@@ -85,7 +85,7 @@ const playground_text = (playground, hidden = true) => {
 
     try {
       theme = localStorage.getItem('mdbook-theme');
-    } catch (e) {
+    } catch (_e) {
       console.log('ERROR: get_theme#mdbook-theme');
     }
 
@@ -116,7 +116,7 @@ const playground_text = (playground, hidden = true) => {
     if (store) {
       try {
         localStorage.setItem('mdbook-theme', theme);
-      } catch (e) {
+      } catch (_e) {
         console.log('ERROR: set_theme#mdbook-theme');
       }
     }
@@ -255,7 +255,7 @@ const playground_text = (playground, hidden = true) => {
 
     try {
       localStorage.setItem('mdbook-sidebar', 'visible');
-    } catch (e) {
+    } catch (_e) {
       console.log('ERROR: showSidebar');
     }
   };
@@ -277,7 +277,7 @@ const playground_text = (playground, hidden = true) => {
 
     try {
       localStorage.setItem('mdbook-sidebar', 'hidden');
-    } catch (e) {
+    } catch (_e) {
       console.log('ERROR: hideSidebar');
     }
   };
@@ -289,7 +289,7 @@ const playground_text = (playground, hidden = true) => {
 
   let timeoutId;
 
-  window.addEventListener('resize', () => {
+  globalThis.addEventListener('resize', () => {
     clearTimeout(timeoutId);
 
     timeoutId = setTimeout(() => {
@@ -337,7 +337,7 @@ const playground_text = (playground, hidden = true) => {
   );
 
   // Scroll sidebar to current active section
-  let activeSection = document.getElementById('sidebar').querySelector('.active');
+  const activeSection = document.getElementById('sidebar').querySelector('.active');
 
   if (activeSection) {
     // https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView
@@ -361,7 +361,7 @@ const playground_text = (playground, hidden = true) => {
     }
 
     switch (e.key) {
-      case 'ArrowRight':
+      case 'ArrowRight': {
         e.preventDefault();
 
         const nextButton = document.querySelector('.mobile-nav-chapters.next');
@@ -370,8 +370,8 @@ const playground_text = (playground, hidden = true) => {
           window.location.href = nextButton.href;
         }
         break;
-
-      case 'ArrowLeft':
+      }
+      case 'ArrowLeft': {
         e.preventDefault();
 
         const previousButton = document.querySelector('.mobile-nav-chapters.previous');
@@ -380,6 +380,7 @@ const playground_text = (playground, hidden = true) => {
           window.location.href = previousButton.href;
         }
         break;
+      }
     }
   });
 })();
