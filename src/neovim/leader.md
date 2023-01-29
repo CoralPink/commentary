@@ -7,19 +7,19 @@
 突然ですが、ここでニューヒーローをお迎えします❗その名も`nvim_set_var`❗😆
 
 ~~~admonish info title=":h nvim_set_var"
-```
+```txt
 nvim_set_var({name}, {value})               nvim_set_var()
     Sets a global (g:) variable.
 
     グローバル(g:)変数を設定する。
 
-    Parameters:  
+    Parameters:
       • {name}   Variable name
       • {value}  Variable value
 ```
 ~~~
 
-すごくシンプル❗かぁっくいー❤️ 
+すごくシンプル❗かぁっくいー❤️
 
 章のタイトル飾れるだけの力があるのに、なんか無理やりの登場となってしまいました😅
 
@@ -59,7 +59,7 @@ Disney+ の "The Beatles: Get Back" の中で発言してたりする「Captain 
 ## mapleader
 
 ~~~admonish info title=":h mapleader"
-```
+```txt
             <Leader> mapleader
 To define a mapping which uses the "g:mapleader" variable, the special string
 "<Leader>" can be used.  It is replaced with the string value of
@@ -138,7 +138,7 @@ US配列であれば、ゆーて<kbd>Return</kbd>キーの上ってだけです�
 ~~~admonish tip
 `leader`キーの確認はコマンドからできます。
 
-```
+```vim
 :echo mapleader
 ```
 
@@ -152,7 +152,7 @@ US配列であれば、ゆーて<kbd>Return</kbd>キーの上ってだけです�
 `Neovim`には`Local Leader`というものもあります。
 
 ~~~admonish example title="keybinds.lua"
-```
+```txt
               <LocalLeader> maplocalleader
 <LocalLeader> is just like <Leader>, except that it uses "maplocalleader"
 instead of "mapleader".  <LocalLeader> is to be used for mappings which are
@@ -194,7 +194,7 @@ vim.api.nvim_set_var('maplocalleader', '_')
 ~~~admonish tip
 これもやっぱりコマンドから確認ができます。
 
-```
+```vim
 :echo maplocalleader
 ```
 

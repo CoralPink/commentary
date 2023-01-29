@@ -5,7 +5,7 @@
 まあ、外観に影響する部分なので、先にやっちゃうことにします😉
 
 ~~~admonish title=":h signcolumn"
-```
+```txt
 						            'signcolumn' 'scl'
 
 'signcolumn' 'scl'      string      (default "auto")
@@ -19,7 +19,7 @@
 
 	    "auto:[1-9]"    resize to accommodate multiple signs up to the
                         指定された数まで複数のサインを収容するためにリサイズする
-	                    
+
 	    "auto:[1-8]-[2-9]"
                         resize to accommodate multiple signs up to the
                         given maximum number (maximum 9) while keeping

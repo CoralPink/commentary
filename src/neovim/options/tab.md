@@ -5,7 +5,7 @@
 ## tabstop
 
 ~~~admonish info title=":h tabstop"
-```
+```txt
                                 'tabstop' 'ts'
 
 'tabstop' 'ts'              number (default 8)
@@ -39,11 +39,11 @@
 わたしが採用しているのは、オーソドックスな`2.`です☺️
 
 ~~~admonish info title=""
-```
+```txt
   2. Set 'tabstop' and 'shiftwidth' to whatever you prefer and use
   'expandtab'.  This way you will always insert spaces.  The
   formatting will never be messed up when 'tabstop' is changed.
-  
+
   'tabstop' と 'shiftwidth' を好きなように設定し、'expandtab'を使用する。
   これで、常にスペースを挿入することができる。'tabstop'を変更しても、書式が乱れることはない。
 ```
@@ -56,7 +56,7 @@
 ## shiftwidth
 
 ~~~admonish info title=":h shiftwidth"
-```
+```txt
 'shiftwidth' 'sw'		  number (default 8)
 			                      local to buffer
 
@@ -104,7 +104,7 @@ vim.api.nvim_buf_set_option(0, 'expandtab', true)
 ~~~
 
 ~~~admonish info title=":h expandtab"
-```
+```txt
                                         'expandtab' 'et' 'noexpandtab' 'noet'
 
 'expandtab' 'et'                    boolean (default off)
@@ -129,7 +129,7 @@ vim.api.nvim_buf_set_option(0, 'expandtab', true)
 ちなみに、`expandtab`のヘルプの中に出てきた`autoindent`を少し見てみると...、
 
 ~~~admonish info title=":h autoindent"
-```
+```txt
 			                              'autoindent' 'ai' 'noautoindent' 'noai'
 
 'autoindent' 'ai'                   boolean (default on)
@@ -174,7 +174,6 @@ vim.api.nvim_buf_set_option(0, 'expandtab', true)
 ```
 
 ```admonish success
-
 `10. Options`章は...❗ なんと...❗
 
 これで終わりです😮

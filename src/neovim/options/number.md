@@ -3,7 +3,7 @@
 まず飛び出してくるのはこれですね。
 
 ~~~admonish info title=":h 'number'"
-```
+```txt
 				                        'number' 'nu' 'nonumber' 'nonu'
 
 'number' 'nu'	    boolean     (default off)
@@ -26,7 +26,7 @@
 これもやっぱり色々書いてあるんですが、わたしがここでやりたいことは行番号の表示です。
 
 ~~~admonish example title="options.lua"
-```
+```lua
 vim.api.nvim_win_set_option(0, 'number', true)
 ```
 ~~~
@@ -34,7 +34,7 @@ vim.api.nvim_win_set_option(0, 'number', true)
 人によっては`relativenumber`も気に入るかもしれません。
 
 ~~~admonish info title=":h relativenumber"
-```
+```txt
 		                                'relativenumber' 'rnu' 'norelativenumber' 'nornu'
 
 'relativenumber' 'rnu'  boolean     (default off)
@@ -43,7 +43,7 @@ vim.api.nvim_win_set_option(0, 'number', true)
     Show the line number relative to the line with the cursor in front of
     each line. Relative line numbers help you use the |count| you can
     precede some vertical motion commands (e.g. j k + -) with, without
-    having to calculate it yourself. 
+    having to calculate it yourself.
 
     各行の前にカーソルを置くと、その行からの相対行番号を表示する。
     相対的な行番号は、いくつかの垂直移動コマンド (例: j k + -) の前に付けることができる |count| を、
@@ -54,7 +54,7 @@ vim.api.nvim_win_set_option(0, 'number', true)
 `number`と`relativenumber`を組み合わせた場合の動作も説明されています。
 
 ~~~admonish info title=":h number_relativenumber"
-```
+```txt
     The 'relativenumber' option changes the displayed number to be
     relative to the cursor.  Together with 'number' there are these
     four combinations (cursor in line 3):
@@ -77,16 +77,16 @@ vim.api.nvim_win_set_option(0, 'number', true)
 
 `:set`コマンドで気軽に乗れます。
 
-```
--- number と relativenumber を一度で on にする
+```vim
+" number と relativenumber を一度で on にする
 :set nu rnu
 ```
 ![relativenumber](img/relativenumber.webp)
 
 まあ、わたしにはクセが凄くて乗りこなせないんですけどね😉
 
-```
--- relativenumber だけ切っちゃう...
+```vim
+" relativenumber だけ切っちゃう...
 :set nornu
 ```
 ~~~
@@ -94,7 +94,7 @@ vim.api.nvim_win_set_option(0, 'number', true)
 で、`numberwidth`も少し気になるんですが...、わたしは入れずにそのままにしてます。
 
 ~~~admonish info title=":h numberwidth"
-```
+```txt
 'numberwidth' 'nuw'     number      (default: 4)
                         local to window
 

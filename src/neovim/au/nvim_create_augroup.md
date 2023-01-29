@@ -7,12 +7,12 @@
 ...え❓ わたしだけ😧⁉️ 絶対嘘だ❗
 
 ~~~admonish info title=":h nvim_create_augroup"
-```
+```txt
 nvim_create_augroup({name}, {*opts})                   *nvim_create_augroup()*
     Create or get an autocommand group |autocmd-groups|.
     オートコマンドグループを作成または取得する。
 
-    Parameters:  
+    Parameters:
       • {name}  String: The name of the group
                         グループの名前
 
@@ -22,11 +22,11 @@ nvim_create_augroup({name}, {*opts})                   *nvim_create_augroup()*
 
                   デフォルトはtrue。グループが既に存在する場合、そのコマンドをクリアする。
 
-    Return:  
+    Return:
         Integer id of the created group.
         作成されたグループの整数値 ID
 
-    See also:  
+    See also:
         |autocmd-groups|
 ```
 ~~~
@@ -34,8 +34,8 @@ nvim_create_augroup({name}, {*opts})                   *nvim_create_augroup()*
 `See also`って言われてるんで見ておきましょう😺
 
 ~~~admonish info title=":h autocmd-groups"
-```
-Autocommands can be put together in a group. 
+```txt
+Autocommands can be put together in a group.
 This is useful for removing or executing a group of autocommands.
 
 オートコマンドは、グループとしてまとめることができる。
@@ -48,11 +48,13 @@ This is useful for removing or executing a group of autocommands.
 オートコマンドは以下で確認できます。まずは現状を確認します😌
 
 ~~~admonish quote
-```
+```vim
 :aug
 ```
+
 または
-```
+
+```vim
 :augroup
 ```
 ~~~
@@ -66,14 +68,14 @@ This is useful for removing or executing a group of autocommands.
 それでは話を進めるんですが、さっきのヘルプ中に、コードが例示されていましたね。
 
 ~~~admonish info title=":h nvim_create_augroup"
-```
-To get an existing group id, do:  
-既存のグループ ID を取得するには、次のようにする。 
+```txt
+To get an existing group id, do:
+既存のグループ ID を取得するには、次のようにする。
 
     local id = vim.api.nvim_create_augroup("MyGroup", {
         clear = false
     })
-``` 
+```
 ~~~
 
 "既存の"って言われると、「なんで😮❓」ってなるんですけど、
@@ -102,7 +104,7 @@ local id = vim.api.nvim_create_augroup("buffer_set_options", {})
 これを`nvim_create_autocmd`に組み込むので、もう一回ヘルプを確認します。
 
 ~~~admonish info title=":h nvim_create_autocmd"
-```
+```txt
   • {opts} Dictionary of autocommand options:
     • group (string|integer) optional: the autocommand group name or id to match against.
       マッチするオートコマンドグループ名または ID。

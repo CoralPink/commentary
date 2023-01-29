@@ -3,7 +3,7 @@
 検索の次は置換ですよね〜😆
 
 ~~~admonish info title=":h inccommand"
-```
+```txt
 'inccommand' 'icm'
 
 'inccommand' 'icm'	    string	(default "nosplit")
@@ -44,7 +44,7 @@ Richard が`vi`とかで歌詞置換してたらウケる〜🤣 とか思って
 
 置換操作は`:%s/{検索値}/{置換値}`とすると実行できます。
 
-```
+```vim
 :%s/She/He
 ```
 
@@ -72,9 +72,11 @@ Richard が`vi`とかで歌詞置換してたらウケる〜🤣 とか思って
 実はこのやり方だと同じ行の中では最初にヒットしたところしか反応しません。
 
 こういう場合は、
-```
+
+```vim
 :%s/she/he/g
 ```
+
 ...と、`g`オプションを追加してあげると期待通りの結果が得られます。
 
 ![replace4](img/replace4.webp)
