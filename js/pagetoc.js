@@ -58,12 +58,12 @@ const update = () => {
 
 const scrollListenerControl = () => {
   if (window.innerWidth < mobileMaxWidth) {
-    window.removeEventListener('scroll', update);
+    globalThis.removeEventListener('scroll', update);
     return;
   }
   update();
-  window.addEventListener('scroll', update);
+  globalThis.addEventListener('scroll', update);
 };
 
-window.addEventListener('load', scrollListenerControl);
-window.addEventListener('resize', scrollListenerControl);
+globalThis.addEventListener('load', scrollListenerControl);
+globalThis.addEventListener('resize', scrollListenerControl);
