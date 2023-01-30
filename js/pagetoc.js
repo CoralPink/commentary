@@ -1,69 +1,62 @@
 // This is code that is assumed to be called last.
 
-const cacheHeader = document.getElementsByClassName('header');
-const cachePagetoc = document.getElementsByClassName('pagetoc')[0].children;
+const cachePagetoc = document.getElementsByClassName('pagetoc')[0];
 
-// FIXME: The definitions are all over the place.
-const mobileMaxWidth = 750;
+// TODO: I wonder if it could be implemented a little smarter.
+let onlyActiveOne = false;
 
-Array.prototype.forEach.call(cacheHeader, (el) => {
+const checkOnly = () => {
+  let count = 0;
+
+  Array.prototype.forEach.call(cachePagetoc.children, el => {
+    if (el.classList.contains('active')) {
+      count++;
+    }
+  })
+  return count <= 1;
+};
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      if (onlyActiveOne) {
+        Array.prototype.forEach.call(cachePagetoc.children, el => {
+          el.classList.remove('active');
+        })
+        onlyActiveOne = false;
+      }
+
+      Array.prototype.forEach.call(cachePagetoc.children, el => {
+        if (entry.target.text == el.textContent) {
+          el.classList.add('active');
+        }
+      });
+      return;
+    }
+
+    if (checkOnly()) {
+      onlyActiveOne = true;
+      return;
+    }
+
+    Array.prototype.forEach.call(cachePagetoc.children, el => {
+      if (entry.target.text == el.textContent) {
+        el.classList.remove('active');
+      }
+    })
+  })
+}, {
+  root: document.querySelector('content'),
+});
+
+document.querySelectorAll('a.header').forEach(el => {
+  observer.observe(el);
+
   const link = document.createElement('a');
 
   link.appendChild(document.createTextNode(el.text));
   link.href = el.href;
   link.classList.add(el.parentElement.tagName);
 
-  document.getElementsByClassName('pagetoc')[0].appendChild(link);
+  cachePagetoc.appendChild(link);
 });
-
-let prevCurrent = null;
-
-const update = () => {
-  const y_offset = window.pageYOffset;
-
-  if (y_offset < 0) {
-    return;
-  }
-
-  const getCurrentHeadline = () => {
-    let head;
-
-    Array.prototype.some.call(cacheHeader, (el) => {
-      if (y_offset >= el.offsetTop) {
-        head = el;
-      } else {
-        return true;
-      }
-    });
-
-    return head;
-  };
-
-  const current = getCurrentHeadline();
-
-  if (current == prevCurrent) {
-    return;
-  }
-
-  Array.prototype.forEach.call(cachePagetoc, (el) => {
-    if (el.href.localeCompare(current.href) == 0) {
-      el.classList.add('active');
-    } else {
-      el.classList.remove('active');
-    }
-  });
-
-  prevCurrent = current;
-};
-
-const scrollListenerControl = () => {
-  if (window.innerWidth < mobileMaxWidth) {
-    globalThis.removeEventListener('scroll', update);
-    return;
-  }
-  update();
-  globalThis.addEventListener('scroll', update);
-};
-
-globalThis.addEventListener('load', scrollListenerControl);
-globalThis.addEventListener('resize', scrollListenerControl);
