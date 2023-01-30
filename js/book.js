@@ -16,22 +16,22 @@ const playground_text = (playground, hidden = true) => {
 
   const code_nodes = Array.from(document.querySelectorAll('code'))
     // Don't highlight `inline code` blocks in headers.
-    .filter((node) => {
+    .filter(node => {
       return !node.parentElement.classList.contains('header');
     });
 
-  code_nodes.forEach((block) => {
+  code_nodes.forEach(block => {
     hljs.highlightElement(block);
   });
 
   // Adding the hljs class gives code blocks the color css
   // even if highlighting doesn't apply
-  code_nodes.forEach((block) => {
+  code_nodes.forEach(block => {
     block.classList.add('hljs');
   });
 
   if (window.playground_copyable) {
-    Array.from(document.querySelectorAll('pre code')).forEach((block) => {
+    Array.from(document.querySelectorAll('pre code')).forEach(block => {
       const pre_block = block.parentNode;
 
       if (!pre_block.classList.contains('playground')) {
@@ -94,7 +94,7 @@ const playground_text = (playground, hidden = true) => {
   };
 
   const updateThemeSelected = () => {
-    themePopup.querySelectorAll('.theme-selected').forEach((el) => {
+    themePopup.querySelectorAll('.theme-selected').forEach(el => {
       el.classList.remove('theme-selected');
     });
 
@@ -141,7 +141,7 @@ const playground_text = (playground, hidden = true) => {
     themePopup.style.display === 'block' ? hideThemes() : showThemes();
   });
 
-  themePopup.addEventListener('click', (e) => {
+  themePopup.addEventListener('click', e => {
     let theme;
 
     if (e.target.className === 'theme') {
@@ -154,7 +154,7 @@ const playground_text = (playground, hidden = true) => {
     set_theme(theme);
   });
 
-  themePopup.addEventListener('focusout', (e) => {
+  themePopup.addEventListener('focusout', e => {
     // e.relatedTarget is null in Safari and Firefox on macOS (see workaround below)
     if (!!e.relatedTarget && !themeToggleButton.contains(e.relatedTarget) && !themePopup.contains(e.relatedTarget)) {
       hideThemes();
@@ -162,7 +162,7 @@ const playground_text = (playground, hidden = true) => {
   });
 
   // Should not be needed, but it works around an issue on macOS & iOS: https://github.com/rust-lang/mdBook/issues/628
-  document.addEventListener('click', (e) => {
+  document.addEventListener('click', e => {
     if (
       themePopup.style.display === 'block' &&
       !themeToggleButton.contains(e.target) &&
@@ -172,7 +172,7 @@ const playground_text = (playground, hidden = true) => {
     }
   });
 
-  document.addEventListener('keydown', (e) => {
+  document.addEventListener('keydown', e => {
     if (e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) {
       return;
     }
@@ -225,11 +225,11 @@ const playground_text = (playground, hidden = true) => {
 
   let firstContact = null;
 
-  const toggleSection = (ev) => {
+  const toggleSection = ev => {
     ev.currentTarget.parentElement.classList.toggle('expanded');
   };
 
-  Array.from(document.querySelectorAll('#sidebar a.toggle')).forEach((el) => {
+  Array.from(document.querySelectorAll('#sidebar a.toggle')).forEach(el => {
     el.addEventListener('click', toggleSection);
   });
 
@@ -241,7 +241,7 @@ const playground_text = (playground, hidden = true) => {
     html.classList.remove('sidebar-hidden');
     html.classList.add('sidebar-visible');
 
-    Array.from(sidebarLinks).forEach((link) => {
+    Array.from(sidebarLinks).forEach(link => {
       link.setAttribute('tabIndex', 0);
     });
 
@@ -263,7 +263,7 @@ const playground_text = (playground, hidden = true) => {
     html.classList.remove('sidebar-visible');
     html.classList.add('sidebar-hidden');
 
-    Array.from(sidebarLinks).forEach((link) => {
+    Array.from(sidebarLinks).forEach(link => {
       link.setAttribute('tabIndex', -1);
     });
 
@@ -297,7 +297,7 @@ const playground_text = (playground, hidden = true) => {
 
   document.addEventListener(
     'touchstart',
-    (e) => {
+    e => {
       firstContact = {
         x: e.touches[0].clientX,
         time: Date.now(),
@@ -308,7 +308,7 @@ const playground_text = (playground, hidden = true) => {
 
   document.addEventListener(
     'touchmove',
-    (e) => {
+    e => {
       if (!firstContact) return;
 
       const curX = e.touches[0].clientX;
@@ -347,7 +347,7 @@ const playground_text = (playground, hidden = true) => {
 
 // chapterNavigation
 (() => {
-  document.addEventListener('keydown', (e) => {
+  document.addEventListener('keydown', e => {
     if (e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) {
       return;
     }
@@ -382,7 +382,7 @@ const playground_text = (playground, hidden = true) => {
 
 // clipboard
 (() => {
-  const hideTooltip = (elem) => {
+  const hideTooltip = elem => {
     elem.firstChild.innerText = '';
     elem.className = 'fa-copy clip-button';
   };
@@ -393,24 +393,24 @@ const playground_text = (playground, hidden = true) => {
   };
 
   const clipboardSnippets = new ClipboardJS('.clip-button', {
-    text: (trigger) => {
+    text: trigger => {
       hideTooltip(trigger);
       return playground_text(trigger.closest('pre'), false);
     },
   });
 
-  Array.from(document.querySelectorAll('.clip-button')).forEach((clipButton) => {
-    clipButton.addEventListener('mouseout', (e) => {
+  Array.from(document.querySelectorAll('.clip-button')).forEach(clipButton => {
+    clipButton.addEventListener('mouseout', e => {
       hideTooltip(e.currentTarget);
     });
   });
 
-  clipboardSnippets.on('success', (e) => {
+  clipboardSnippets.on('success', e => {
     e.clearSelection();
     showTooltip(e.trigger, 'Copied!');
   });
 
-  clipboardSnippets.on('error', (e) => {
+  clipboardSnippets.on('error', e => {
     showTooltip(e.trigger, 'Clipboard error!');
   });
 })();

@@ -2,7 +2,7 @@
 window.search = window.search || {};
 
 //search
-((search) => {
+(search => {
   // Search functionality
   //
   // You can use !hasFocus() to prevent keyhandling in your key
@@ -61,14 +61,14 @@ window.search = window.search || {};
     return searchbar === document.activeElement;
   };
 
-  const removeChildren = (elem) => {
+  const removeChildren = elem => {
     while (elem.firstChild) {
       elem.removeChild(elem.firstChild);
     }
   };
 
   // Helper to parse a url into its building blocks.
-  const parseURL = (url) => {
+  const parseURL = url => {
     const a = document.createElement("a");
     a.href = url;
 
@@ -98,7 +98,7 @@ window.search = window.search || {};
   };
 
   // Helper to recreate a url string from its building blocks.
-  const renderURL = (urlobject) => {
+  const renderURL = urlobject => {
     let url = urlobject.protocol + "://" + urlobject.host;
 
     if (urlobject.port != "") {
@@ -130,11 +130,11 @@ window.search = window.search || {};
       "'": "&#39;",
     };
 
-    const repl = (c) => {
+    const repl = c => {
       return MAP[c];
     };
 
-    return (s) => {
+    return s => {
       return s.replace(/[&<>'"]/g, repl);
     };
   })();
@@ -302,7 +302,7 @@ window.search = window.search || {};
     return teaser_split.join("");
   };
 
-  const init = (config) => {
+  const init = config => {
     results_options = config.results_options;
     search_options = config.search_options;
     doc_urls = config.doc_urls;
@@ -317,7 +317,7 @@ window.search = window.search || {};
       searchbarKeyUpHandler();
     }, false);
 
-    document.addEventListener("keydown", (e) => {
+    document.addEventListener("keydown", e => {
       globalKeyHandler(e);
     }, false);
 
@@ -327,7 +327,7 @@ window.search = window.search || {};
     };
 
     // Suppress "submit" events so the page doesn't reload when the user presses Enter
-    document.addEventListener("submit", (e) => {
+    document.addEventListener("submit", e => {
       e.preventDefault();
     }, false);
 
@@ -388,7 +388,7 @@ window.search = window.search || {};
   };
 
   // Eventhandler for keyevents on `document`
-  const globalKeyHandler = (e) => {
+  const globalKeyHandler = e => {
     if (e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) {
       return;
     }
@@ -454,7 +454,7 @@ window.search = window.search || {};
     }
   };
 
-  const showSearch = (yes) => {
+  const showSearch = yes => {
     if (yes) {
       search_wrap.classList.remove("hidden");
       searchicon.setAttribute("aria-expanded", "true");
@@ -471,7 +471,7 @@ window.search = window.search || {};
     }
   };
 
-  const showResults = (yes) => {
+  const showResults = yes => {
     if (yes) {
       searchresults_outer.classList.remove("hidden");
     }
@@ -540,7 +540,7 @@ window.search = window.search || {};
     }
   };
 
-  const doSearch = (searchterm) => {
+  const doSearch = searchterm => {
     // Don't search the same twice
     if (current_searchterm == searchterm) {
       return;
@@ -573,8 +573,8 @@ window.search = window.search || {};
   };
 
   fetch(path_to_root + "searchindex.json")
-    .then((response) => response.json())
-    .then((json) => init(json))
+    .then(response => response.json())
+    .then(json => init(json))
     .catch(() => {
       // Try to load searchindex.js if fetch failed
       const script = document.createElement("script");
