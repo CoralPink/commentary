@@ -14,7 +14,7 @@ const playground_text = (playground, hidden = true) => {
     throwUnescapedHTML: false,
   });
 
-  let code_nodes = Array.from(document.querySelectorAll('code'))
+  const code_nodes = Array.from(document.querySelectorAll('code'))
     // Don't highlight `inline code` blocks in headers.
     .filter((node) => {
       return !node.parentElement.classList.contains('header');
