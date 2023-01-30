@@ -13,12 +13,6 @@ a > .hljs {
 }
 
 // Menu Bar
-
-@mixin pos-sticky {
-  position: sticky;
-  position: -webkit-sticky;
-}
-
 #menu-bar {
   position: relative;
   display: flex;
@@ -43,7 +37,7 @@ a > .hljs {
     transition: color 0.5s;
   }
   .sticky {
-    @include pos-sticky;
+    position: sticky;
     top: 0 !important;
   }
 }
@@ -52,13 +46,13 @@ a > .hljs {
   #menu-bar-hover-placeholder:hover + #menu-bar,
   #menu-bar:hover,
   .sidebar-visible #menu-bar {
-    @include pos-sticky;
+    position: sticky;
     top: 0 !important;
   }
 }
 
 #menu-bar-hover-placeholder {
-  @include pos-sticky;
+  position: sticky;
   top: 0;
   height: var.$menu-bar-height;
   z-index: 101;
@@ -347,7 +341,7 @@ ul {
   bottom: 0;
   width: var.$sidebar-width;
   box-sizing: border-box;
-  -webkit-overflow-scrolling: touch;
+//  -webkit-overflow-scrolling: touch;
   overscroll-behavior-y: contain;
   background-color: var(--sidebar-bg);
   color: var(--sidebar-fg);
