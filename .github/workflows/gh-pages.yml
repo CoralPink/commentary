@@ -33,48 +33,56 @@ jobs:
             target/
           key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
 
-      - name: Cargo install (Local Source)
+      - name: Cargo Install (Local Source)
         if: steps.cache-cargo.outputs.cache-hit != 'true'
         run: |
           cargo install --path ./rs/mdbook-footnote
 
-      - name: Cargo install
+      - name: Cargo Install
         if: steps.cache-cargo.outputs.cache-hit != 'true'
         run: |
           cargo install mdbook-admonish
 
-      - name: Npm install
+      - name: Npm Install
         run: |
-          npm install --prefix scss
           npm install --prefix js
-
-      - name: Scss Compile
-        run: |
-          npm run compile --prefix scss theme/chrome.scss ../theme/css/chrome.css
-          npm run compile --prefix scss theme/general.scss ../theme/css/general.css
-          npm run compile --prefix scss fonts/fonts.scss ../src/fonts/fonts.css
-          npm run compile --prefix scss style.scss ../css/style.css
+          npm install --prefix scss
 
       - name: Js Compress
         run: |
-          npm run terser --prefix js -input='start.js' -output='../src/start.js'
-          npm run terser --prefix js -input='searcher.js' -output='../src/searcher.js'
-          npm run terser --prefix js -input='book.js' -output='../theme/book.js'
+          npm run compress --prefix js -input='book.js' -output='../theme/book.js'
+          npm run compress --prefix js -input='searcher.js' -output='../src/searcher.js'
+          npm run compress --prefix js -input='start.js' -output='../src/start.js'
           mkdir js/dist
-          npm run terser --prefix js -input='pagetoc.js' -output='dist/pagetoc.js'
+          npm run compress --prefix js -input='pagetoc.js' -output='dist/pagetoc.js'
+
+      - name: Js Copy Files
+        run: |
+          cp js/node_modules/clipboard/dist/clipboard.min.js src
+          cp js/node_modules/mark.js/dist/mark.es6.min.js src
+
+      - name: Scss Compile
+        run: |
+          npm run compile --prefix scss style.scss ../css/style.css
+          npm run compile --prefix scss fonts/fonts.scss ../src/fonts/fonts.css
+          npm run compile --prefix scss theme/chrome.scss ../theme/css/chrome.css
+          npm run compile --prefix scss theme/general.scss ../theme/css/general.css
 
       - name: Build mdBook
         run: |
           mdbook build
 
-      - name: Delete Unneeded files
+      - name: Remove Unneeded Files
         run: |
-          rm book/ayu-highlight.css book/tomorrow-night.css
-          rm book/highlight.css book/highlight.js
+          rm book/ayu-highlight.css
+          rm book/highlight.css
+          rm book/highlight.js
+          rm book/tomorrow-night.css
           rm book/css/variables.css
+          rm book/mark.min.js
           rm -rf book/FontAwesome
 
-      - name: Generate the sitemap
+      - name: Generate The Sitemap
         id: sitemap
         uses: cicirello/generate-sitemap@v1.9.1
         with:
@@ -82,7 +90,7 @@ jobs:
           base-url-path: https://coralpink.github.io/commentary/
           date-only: true
 
-      - name: Sitemap stats
+      - name: Sitemap Stats
         run: |
           echo "sitemap-path = ${{ steps.sitemap.outputs.sitemap-path }}"
           echo "url-count = ${{ steps.sitemap.outputs.url-count }}"

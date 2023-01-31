@@ -7,9 +7,12 @@ dist
 *.css.map
 *.tmp
 
-theme/book.js
+src/clipboard.min.js
+src/mark.es6.min.js
 src/searcher.js
 src/start.js
+
+theme/book.js
 
 convert.sh
 
