@@ -31,9 +31,9 @@ A Happy New Year!!
 }}も必要ないでしょう。
 
 ```admonish note
-あ、でもブラウザの表示幅が 750px あるといいです。
+あ、でもブラウザの表示幅が 680px あるといいです。
 
-これがあると`Nerd Fonts`
+これ以上の幅があると`Nerd Fonts`
 {{footnote: [ryanoasis/nerd-fonts](https://github.com/ryanoasis/nerd-fonts)から拝借してます。}}
 に対応したフォントセットが使用されるように仕組んであるんです、実は❗
 

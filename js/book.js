@@ -292,7 +292,7 @@ const playground_text = (playground, hidden = true) => {
       if (window.innerWidth >= 1200) {
         showSidebar();
       }
-    }, 500);
+    }, 200);
   });
 
   document.addEventListener(
