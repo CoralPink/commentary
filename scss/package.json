@@ -1,9 +1,9 @@
 {
   "dependencies": {
-    "sass": "^1.57.1"
+    "sass": "^1.58.0"
   },
   "scripts": {
-    "compile": "node_modules/.bin/sass --no-source-map --style=compressed",
-    "debug": "node_modules/.bin/sass"
+    "compile": "node_modules/sass/sass.js --no-source-map --style=compressed",
+    "debug": "node_modules/sass/sass.js"
   }
 }
