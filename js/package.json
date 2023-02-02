@@ -1,8 +1,8 @@
 {
   "dependencies": {
-    "clipboard": "2.0.11",
-    "mark.js": "8.11.1",
-    "terser": "5.16.1"
+    "clipboard": "^2.0.11",
+    "mark.js": "^8.11.1",
+    "terser": "^5.16.2"
   },
   "scripts": {
     "compress": "node_modules/terser/bin/terser $npm_config_input --compress --mangle --ecma 2022 --output $npm_config_output"
