@@ -4,16 +4,23 @@
     <!-- Book generated using mdBook -->
     <meta charset="UTF-8">
     <title>{{ title }}</title>
-    {{#if base_url}}
-    <base href="{{ base_url }}">
-    {{/if}}
 
     <!-- Custom HTML head -->
     {{> head}}
 
     <meta name="description" content="{{ description }}">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#ffffff" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0">
+    <meta name="theme-color">
+
+    <meta name="format-detection" content="telephone=no,email=no,address=no">
+
+    <meta property="og:title" content="{{ title }}">
+    <meta property="og:description" content="{{ description }}">
+    <meta property="og:site_name" content="Commentary of Dotfiles">
+    <meta property="og:url" content="https://coralpink.github.io/commentary/">
+
+    <meta name="twitter:card" content="summary_image">
+    <link rel="apple-touch-icon" href="favicon.png" sizes="100x100">
 
     {{#if favicon_svg}}
     <link rel="icon" href="{{ path_to_root }}favicon.svg">
@@ -46,12 +53,6 @@
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WMN96QT"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-
-    <!-- Provide site root to javascript -->
-    <script>
-      const path_to_root = "{{ path_to_root }}";
-      const default_theme = "{{ default_theme }}";
-    </script>
 
     <script src="{{ path_to_root }}start.js" id="start" data-defaulttheme="{{ default_theme }}"></script>
 
@@ -164,7 +165,7 @@
     {{#if search_js}}
     <script src="{{ path_to_root }}elasticlunr.min.js"></script>
     <script src="{{ path_to_root }}mark.es6.min.js"></script>-
-    <script src="{{ path_to_root }}searcher.js"></script>
+    <script src="{{ path_to_root }}searcher.js" id="searcher" data-pathtoroot="{{ path_to_root }}"></script>
     {{/if}}
 
     {{#if playground_copyable}}
@@ -173,9 +174,7 @@
     {{/if}}
 
     <script src="{{ path_to_root }}highlight.min.js"></script>
-    <script>hljs.highlightAll();</script>
-
-    <script src="{{ path_to_root }}book.js"></script>
+    <script src="{{ path_to_root }}book.js" id="book" data-defaulttheme="{{ default_theme }}"></script>
 
     <!-- Custom JS scripts -->
     {{#each additional_js}}
