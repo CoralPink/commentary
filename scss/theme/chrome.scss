@@ -175,8 +175,6 @@ a > .hljs {
     display: inline;
     padding: 0.1em 0.3em;
     border-radius: 3px;
-  }
-  &:not(a) > .hljs {
     color: var(--inline-code-color);
     overflow-x: initial;
   }
@@ -202,12 +200,7 @@ pre {
     visibility: hidden;
     opacity: 0;
     transition: visibility 0.1s linear, opacity 0.1s linear;
-  }
-  &:hover > .buttons {
-    visibility: visible;
-    opacity: 1;
-  }
-  & > .buttons {
+
     :hover {
       color: var(--sidebar-active);
       border-color: var(--icons-hover);
@@ -232,6 +225,7 @@ pre {
       color: var(--icons);
     }
   }
+
   & > code {
     padding: 1rem;
   }
@@ -239,7 +233,13 @@ pre {
   & > .result {
     margin-top: 10px;
   }
+
+  &:hover > .buttons {
+    visibility: visible;
+    opacity: 1;
+  }
 }
+
 @media (pointer: coarse) {
   pre > .buttons button {
     // On mobile, make it easier to tap buttons.
