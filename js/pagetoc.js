@@ -1,50 +1,34 @@
 // This is code that is assumed to be called last.
 
-const cachePagetoc = document.getElementsByClassName('pagetoc')[0];
+const tocMap = new Map();
+let onlyActive = null;
 
-// TODO: I wonder if it could be implemented a little smarter.
-let onlyActiveOne = false;
+const addActive = entry => {
+  if (onlyActive) {
+    onlyActive.classList.remove('active');
+    onlyActive = null;
+  }
+  tocMap.get(entry.target).classList.add('active');
+}
 
-const checkOnly = () => {
+const removeActive = entry => {
   let count = 0;
+  let active = null;
 
-  Array.prototype.forEach.call(cachePagetoc.children, el => {
-    if (el.classList.contains('active')) {
-      count++;
-    }
-  })
-  return count <= 1;
-};
+  tocMap.forEach(key => { if (key.classList.contains('active')) {
+    count++;
+    active = key;
+  }});
+
+  if (count <= 1) {
+    onlyActive = active;
+    return;
+  }
+  tocMap.get(entry.target).classList.remove('active');
+}
 
 const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      if (onlyActiveOne) {
-        Array.prototype.forEach.call(cachePagetoc.children, el => {
-          el.classList.remove('active');
-        })
-        onlyActiveOne = false;
-      }
-
-      Array.prototype.forEach.call(cachePagetoc.children, el => {
-        if (entry.target.text == el.textContent) {
-          el.classList.add('active');
-        }
-      });
-      return;
-    }
-
-    if (checkOnly()) {
-      onlyActiveOne = true;
-      return;
-    }
-
-    Array.prototype.forEach.call(cachePagetoc.children, el => {
-      if (entry.target.text == el.textContent) {
-        el.classList.remove('active');
-      }
-    })
-  })
+  entries.forEach(x => { x.isIntersecting ? addActive(x) : removeActive(x); })
 }, {
   root: document.querySelector('content'),
 });
@@ -58,5 +42,6 @@ document.querySelectorAll('a.header').forEach(el => {
   link.href = el.href;
   link.classList.add(el.parentElement.tagName);
 
-  cachePagetoc.appendChild(link);
+  document.getElementsByClassName('pagetoc')[0].appendChild(link);
+  tocMap.set(el, link);
 });
