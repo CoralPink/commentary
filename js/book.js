@@ -9,51 +9,43 @@ const playground_text = (playground, hidden = true) => {
 (() => {
   // Syntax highlighting Configuration
   hljs.configure({
-    // TODO: I have suppressed warnings. Can you do something about this?
-    ignoreUnescapedHTML: true,
-    throwUnescapedHTML: false,
+    languages: ['txt'],
   });
+  hljs.highlightAll();
 
-  const code_nodes = Array.from(document.querySelectorAll('code'))
+  Array.from(document.querySelectorAll('code'))
     // Don't highlight `inline code` blocks in headers.
     .filter(node => {
       return !node.parentElement.classList.contains('header');
+    })
+    .forEach(block => {
+      block.classList.add('hljs');
     });
-
-  code_nodes.forEach(block => {
-    hljs.highlightElement(block);
-  });
-
-  // Adding the hljs class gives code blocks the color css
-  // even if highlighting doesn't apply
-  code_nodes.forEach(block => {
-    block.classList.add('hljs');
-  });
 
   if (window.playground_copyable) {
     Array.from(document.querySelectorAll('pre code')).forEach(block => {
       const pre_block = block.parentNode;
 
-      if (!pre_block.classList.contains('playground')) {
-        let buttons = pre_block.querySelector('.buttons');
+      // if (pre_block.classList.contains('playground')) { return; }
 
-        if (!buttons) {
-          buttons = document.createElement('div');
-          buttons.className = 'buttons';
-          pre_block.insertBefore(buttons, pre_block.firstChild);
-        }
+      let buttons = pre_block.querySelector('.buttons');
 
-        const clipButton = document.createElement('button');
-        clipButton.className = 'fa-copy clip-button';
-        clipButton.title = 'Copy to clipboard';
-        clipButton.setAttribute('aria-label', clipButton.title);
-        clipButton.innerHTML = '<i class="tooltiptext"></i>';
-
-        buttons.insertBefore(clipButton, buttons.firstChild);
+      if (!buttons) {
+        buttons = document.createElement('div');
+        buttons.className = 'buttons';
+        pre_block.insertBefore(buttons, pre_block.firstChild);
       }
+
+      const clipButton = document.createElement('button');
+      clipButton.className = 'fa-copy clip-button';
+      clipButton.title = 'Copy to clipboard';
+      clipButton.setAttribute('aria-label', clipButton.title);
+      clipButton.innerHTML = '<i class="tooltiptext"></i>';
+
+      buttons.insertBefore(clipButton, buttons.firstChild);
     });
   }
-
+/*
   // Process playground code blocks
   Array.from(document.querySelectorAll('.playground')).forEach(() => {
     if (!window.playground_copyable) {
@@ -68,11 +60,14 @@ const playground_text = (playground, hidden = true) => {
 
     buttons.insertBefore(copyCodeClipboardButton, buttons.firstChild);
   });
+*/
 })();
 
 // themes
 (() => {
   const html = document.querySelector('html');
+  const defaultTheme = document.getElementById('book').dataset.defaulttheme;
+
   const themeToggleButton = document.getElementById('theme-toggle');
   const themePopup = document.getElementById('theme-list');
   const themeColorMetaTag = document.querySelector('meta[name="theme-color"]');
@@ -85,12 +80,7 @@ const playground_text = (playground, hidden = true) => {
     } catch (_e) {
       console.log('ERROR: get_theme#mdbook-theme');
     }
-
-    if (theme === null || theme === undefined) {
-      return default_theme;
-    } else {
-      return theme;
-    }
+    return theme != null ? theme : defaultTheme;
   };
 
   const updateThemeSelected = () => {
@@ -103,7 +93,7 @@ const playground_text = (playground, hidden = true) => {
 
   const set_theme = (theme, store = true) => {
     setTimeout(() => {
-      themeColorMetaTag.content = getComputedStyle(document.body).backgroundColor;
+      themeColorMetaTag.content = window.getComputedStyle(document.body).backgroundColor;
     }, 1);
 
     const previousTheme = get_theme();

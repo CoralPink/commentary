@@ -1,13 +1,12 @@
 @use '../variables' as var;
 
 // Base styles and content styles
-
 :root {
   // Browser default font-size is 16px, this way 1 rem = 10px
   font-size: 64%;
 }
 
-html {
+body {
   font-family: 'Open Sans', sans-serif;
   color: var(--fg);
   background-color: var(--bg);

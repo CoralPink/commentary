@@ -1,4 +1,7 @@
 "use strict";
+
+const rootPath = document.getElementById('searcher').dataset.pathtoroot;
+
 window.search = window.search || {};
 
 //search
@@ -171,7 +174,7 @@ window.search = window.search || {};
 
     return (
       '<a href="' +
-      path_to_root +
+      rootPath +
       url[0] +
       "?" +
       URL_MARK_PARAM +
@@ -572,13 +575,13 @@ window.search = window.search || {};
     showResults(true);
   };
 
-  fetch(path_to_root + "searchindex.json")
+  fetch(rootPath + "searchindex.json")
     .then(response => response.json())
     .then(json => init(json))
     .catch(() => {
       // Try to load searchindex.js if fetch failed
       const script = document.createElement("script");
-      script.src = path_to_root + "searchindex.js";
+      script.src = rootPath + "searchindex.js";
       script.onload = () => init(window.search);
       document.head.appendChild(script);
     });
