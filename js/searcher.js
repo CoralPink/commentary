@@ -4,22 +4,13 @@ const rootPath = document.getElementById('searcher').dataset.pathtoroot;
 
 window.search = window.search || {};
 
-//search
+// Search functionality
+//
+// You can use !hasFocus() to prevent keyhandling in your key
+// event handlers while the user is typing their search.
 (search => {
-  // Search functionality
-  //
-  // You can use !hasFocus() to prevent keyhandling in your key
-  // event handlers while the user is typing their search.
-
   if (!Mark || !elasticlunr) {
     return;
-  }
-
-  //IE 11 Compatibility from https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/startsWith
-  if (!String.prototype.startsWith) {
-    String.prototype.startsWith = (search, pos) => {
-      return this.substr(!pos || pos < 0 ? 0 : +pos, search.length) === search;
-    };
   }
 
   const search_wrap = document.getElementById("search-wrapper");
@@ -30,12 +21,6 @@ window.search = window.search || {};
   const searchicon = document.getElementById("search-toggle");
   const URL_SEARCH_PARAM = "search";
   const URL_MARK_PARAM = "highlight";
-
-  const SEARCH_HOTKEY_KEYCODE = 83;
-  const ESCAPE_KEYCODE = 27;
-  const DOWN_KEYCODE = 40;
-  const UP_KEYCODE = 38;
-  const SELECT_KEYCODE = 13;
 
   let searchindex = null;
   let doc_urls = [];
@@ -316,12 +301,21 @@ window.search = window.search || {};
       searchIconClickHandler();
     }, false);
 
-    searchbar.addEventListener("keyup", () => {
-      searchbarKeyUpHandler();
-    }, false);
+    document.addEventListener("keyup", e => {
+      if (e.key != 'Escape') {
+        searchbarKeyUpHandler();
+        return;
+      }
+      showSearch(false);
 
-    document.addEventListener("keydown", e => {
-      globalKeyHandler(e);
+      // hacky, but just focusing a div only works once
+      const tmp = document.createElement("input");
+
+      tmp.setAttribute("style", "position: absolute; opacity: 0;");
+      searchicon.appendChild(tmp);
+
+      tmp.focus();
+      tmp.remove();
     }, false);
 
     // If the user uses the browser buttons, do the same as if a reload happened
@@ -336,17 +330,6 @@ window.search = window.search || {};
 
     // If reloaded, do the search or mark again, depending on the current url parameters
     doSearchOrMarkFromUrl();
-  };
-
-  const unfocusSearchbar = () => {
-    // hacky, but just focusing a div only works once
-    const tmp = document.createElement("input");
-
-    tmp.setAttribute("style", "position: absolute; opacity: 0;");
-    searchicon.appendChild(tmp);
-
-    tmp.focus();
-    tmp.remove();
   };
 
   // On reload or browser history backwards/forwards events, parse the url and do search or mark
@@ -386,73 +369,6 @@ window.search = window.search || {};
 
       for (let i = 0; i < markers.length; i++) {
         markers[i].addEventListener("click", hide);
-      }
-    }
-  };
-
-  // Eventhandler for keyevents on `document`
-  const globalKeyHandler = e => {
-    if (e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) {
-      return;
-    }
-    if(e.target.type === "textarea" || e.target.type === "text") {
-      return;
-    }
-
-    if (e.keyCode === ESCAPE_KEYCODE) {
-      e.preventDefault();
-      searchbar.classList.remove("active");
-
-      setSearchUrlParameters("", searchbar.value.trim() !== "" ? "push" : "replace");
-
-      if (hasFocus()) {
-        unfocusSearchbar();
-      }
-
-      showSearch(false);
-      marker.unmark();
-    }
-    else if (!hasFocus() && e.keyCode === SEARCH_HOTKEY_KEYCODE) {
-      e.preventDefault();
-      showSearch(true);
-      window.scrollTo(0, 0);
-      searchbar.select();
-    }
-    else if (hasFocus() && e.keyCode === DOWN_KEYCODE) {
-      e.preventDefault();
-      unfocusSearchbar();
-      searchresults.firstElementChild.classList.add("focus");
-    }
-    else if (!hasFocus() && (e.keyCode === DOWN_KEYCODE || e.keyCode === UP_KEYCODE || e.keyCode === SELECT_KEYCODE)) {
-      // not `:focus` because browser does annoying scrolling
-      const focused = searchresults.querySelector("li.focus");
-
-      if (!focused) return;
-
-      e.preventDefault();
-
-      if (e.keyCode === DOWN_KEYCODE) {
-        const next = focused.nextElementSibling;
-
-        if (next) {
-          focused.classList.remove("focus");
-          next.classList.add("focus");
-        }
-      }
-      else if (e.keyCode === UP_KEYCODE) {
-        focused.classList.remove("focus");
-        const prev = focused.previousElementSibling;
-
-        if (prev) {
-          prev.classList.add("focus");
-        }
-        else {
-          searchbar.select();
-        }
-      }
-      else {
-        // SELECT_KEYCODE
-        window.location.assign(focused.querySelector("a"));
       }
     }
   };
@@ -550,7 +466,7 @@ window.search = window.search || {};
     }
     current_searchterm = searchterm;
 
-    if (searchindex == null) {
+    if (!searchindex) {
       return;
     }
 

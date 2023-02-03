@@ -26,8 +26,6 @@ const playground_text = (playground, hidden = true) => {
     Array.from(document.querySelectorAll('pre code')).forEach(block => {
       const pre_block = block.parentNode;
 
-      // if (pre_block.classList.contains('playground')) { return; }
-
       let buttons = pre_block.querySelector('.buttons');
 
       if (!buttons) {
@@ -45,22 +43,6 @@ const playground_text = (playground, hidden = true) => {
       buttons.insertBefore(clipButton, buttons.firstChild);
     });
   }
-/*
-  // Process playground code blocks
-  Array.from(document.querySelectorAll('.playground')).forEach(() => {
-    if (!window.playground_copyable) {
-      return;
-    }
-    const copyCodeClipboardButton = document.createElement('button');
-
-    copyCodeClipboardButton.className = 'fa-copy clip-button';
-    copyCodeClipboardButton.innerHTML = '<i class="tooltiptext"></i>';
-    copyCodeClipboardButton.title = 'Copy to clipboard';
-    copyCodeClipboardButton.setAttribute('aria-label', copyCodeClipboardButton.title);
-
-    buttons.insertBefore(copyCodeClipboardButton, buttons.firstChild);
-  });
-*/
 })();
 
 // themes
@@ -162,48 +144,10 @@ const playground_text = (playground, hidden = true) => {
     }
   });
 
-  document.addEventListener('keydown', e => {
-    if (e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) {
-      return;
-    }
-    if (!themePopup.contains(e.target)) {
-      return;
-    }
-
-    if (e.key == 'Escape') {
-      e.preventDefault();
-      hideThemes();
-      return;
-    }
-    if (e.key == 'ArrowUp') {
-      e.preventDefault();
-      const li = document.activeElement.parentElement;
-
-      if (li && li.previousElementSibling) {
-        li.previousElementSibling.querySelector('button').focus();
-      }
-      return;
-    }
-    if (e.key == 'ArrowDown') {
-      e.preventDefault();
-      const li = document.activeElement.parentElement;
-
-      if (li && li.nextElementSibling) {
-        li.nextElementSibling.querySelector('button').focus();
-      }
-      return;
-    }
-    if (e.key == 'Home') {
-      e.preventDefault();
-      themePopup.querySelector('li:first-child button').focus();
-      return;
-    }
-    if (e.key == 'End') {
-      e.preventDefault();
-      themePopup.querySelector('li:last-child button').focus();
-      return;
-    }
-  });
+  document.addEventListener('keydown', e => { if (themePopup.contains(e.target)) {
+    e.preventDefault();
+    hideThemes();
+  }});
 })();
 
 // sidebar
@@ -277,12 +221,10 @@ const playground_text = (playground, hidden = true) => {
   globalThis.addEventListener('resize', () => {
     clearTimeout(timeoutId);
 
-    timeoutId = setTimeout(() => {
       // FIXME: The definitions are all over the place.
-      if (window.innerWidth >= 1200) {
-        showSidebar();
-      }
-    }, 200);
+    timeoutId = setTimeout(() => { if (window.innerWidth >= 1200) {
+      showSidebar();
+    }}, 200);
   });
 
   document.addEventListener(
@@ -299,13 +241,17 @@ const playground_text = (playground, hidden = true) => {
   document.addEventListener(
     'touchmove',
     e => {
-      if (!firstContact) return;
+      if (!firstContact) {
+        return;
+      }
 
+      if (Date.now() - firstContact.time > 250) {
+        return;
+      }
       const curX = e.touches[0].clientX;
       const xDiff = curX - firstContact.x;
-      const tDiff = Date.now() - firstContact.time;
 
-      if (tDiff < 250 && Math.abs(xDiff) >= 150) {
+      if (Math.abs(xDiff) >= 150) {
         if (xDiff >= 0) {
           if (firstContact.x < Math.min(document.body.clientWidth * 0.25, 300)) {
             showSidebar();
@@ -337,34 +283,27 @@ const playground_text = (playground, hidden = true) => {
 
 // chapterNavigation
 (() => {
-  document.addEventListener('keydown', e => {
-    if (e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) {
-      return;
-    }
-    if (window.search && window.search.hasFocus()) {
+  document.addEventListener('keyup', e => {
+    if (window.search.hasFocus()) {
       return;
     }
 
-    switch (e.key) {
-      case 'ArrowRight': {
-        e.preventDefault();
+    if (e.key == 'ArrowRight') {
+      e.preventDefault();
 
-        const nextButton = document.querySelector('.mobile-nav-chapters.next');
+      const nextButton = document.querySelector('.mobile-nav-chapters.next');
 
-        if (nextButton) {
-          window.location.href = nextButton.href;
-        }
-        break;
+      if (nextButton) {
+        window.location.href = nextButton.href;
       }
-      case 'ArrowLeft': {
-        e.preventDefault();
+    }
+    else if (e.key == 'ArrowLeft'){
+      e.preventDefault();
 
-        const previousButton = document.querySelector('.mobile-nav-chapters.previous');
+      const previousButton = document.querySelector('.mobile-nav-chapters.previous');
 
-        if (previousButton) {
-          window.location.href = previousButton.href;
-        }
-        break;
+      if (previousButton) {
+        window.location.href = previousButton.href;
       }
     }
   });
@@ -410,74 +349,4 @@ const playground_text = (playground, hidden = true) => {
   document.querySelector('.menu-title').addEventListener('click', () => {
     document.scrollingElement.scrollTo({ top: 0, behavior: 'smooth' });
   });
-})();
-
-// controllMenu
-(() => {
-  const menu = document.getElementById('menu-bar');
-
-  // controllPosition
-  (() => {
-    const scrollTop = document.scrollingElement.scrollTop;
-    const prevScrollTop = scrollTop;
-
-    // When the script loads, the page can be at any scroll (e.g. if you reforesh it).
-    menu.style.top = scrollTop + 'px';
-    menu.classList.remove('sticky');
-
-    document.addEventListener(
-      'scroll',
-      () => {
-        const scrollTopMax = Math.max(document.scrollingElement.scrollTop, 0);
-        const menuPosAbsoluteY = menu.style.top.slice(0, -2) - scrollTopMax;
-
-        let nextTop = null;
-        let nextSticky = false;
-
-        if (scrollTopMax > prevScrollTop) {
-          if (menuPosAbsoluteY > 0) {
-            nextTop = prevScrollTop;
-          }
-        } else {
-          if (menuPosAbsoluteY > 0) {
-            nextSticky = true;
-          } else {
-            const minMenuY = -menu.clientHeight - 50;
-
-            if (menuPosAbsoluteY < minMenuY) {
-              nextTop = prevScrollTop + minMenuY;
-            }
-          }
-        }
-
-        if (nextSticky === true) {
-          menu.classList.add('sticky');
-        } else {
-          menu.classList.remove('sticky');
-        }
-
-        // `null` means that it doesn't need to be updated
-        if (nextTop !== null) {
-          menu.style.top = nextTop + 'px';
-        }
-      },
-      { passive: true }
-    );
-  })();
-
-  // controllBorder
-  (() => {
-    menu.classList.remove('bordered');
-    document.addEventListener(
-      'scroll',
-      () => {
-        if (menu.offsetTop === 0) {
-          menu.classList.remove('bordered');
-        } else {
-          menu.classList.add('bordered');
-        }
-      },
-      { passive: true }
-    );
-  })();
 })();
