@@ -4,7 +4,7 @@ const html = document.querySelector('html');
 (() => {
   const theme = localStorage.getItem('mdbook-theme');
 
-  if (theme == null) {
+  if (!theme) {
     return;
   }
 
@@ -26,10 +26,10 @@ const html = document.querySelector('html');
 
     const sidebar = localStorage.getItem('mdbook-sidebar');
 
-    if (sidebar == null) {
-      return document.body.clientWidth < mobileMaxWidth ? 'hidden' : 'visible';
+    if (sidebar) {
+      return sidebar;
     }
-    return sidebar;
+    return document.body.clientWidth < mobileMaxWidth ? 'hidden' : 'visible';
   };
 
   html.classList.remove('sidebar-visible');
