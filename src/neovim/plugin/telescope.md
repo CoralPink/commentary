@@ -340,12 +340,20 @@ Telescope の使用方法と設定方法を理解することができます。
 
 それでは、コンフィグに入れた<kbd>leader</kbd><kbd>f</kbd><kbd>f</kbd>を試してみましょう...。
 
-![telescope-installation](img/telescope-ff.webp)
+![telescope-installation](img/telescope-ff-preview.webp)
 
 いい感じ〜☺️
 
 ファイル名で検索して絞り込んだり、
 <kbd>↑</kbd><kbd>↓</kbd>でカーソルを動かしたり、<kbd>return</kbd>でファイルを開いたりできます😌
+
+```admonish note
+これ、ずっと気が付かなかったんですが、初掲出時は`File Preview`が出ていないスクリーンショットを載せていました😅
+
+ある程度ウィンドウが広くないと出てこないみたいです。
+
+![telescope-installation](img/telescope-ff.webp)
+```
 
 ## Wrap Up
 
