@@ -19,7 +19,7 @@ copy-fonts = true
 
 [output.html.fold]
 enable = true
-level = 1
+level = 2
 
 [output.html.playground]
 copyable = true
@@ -38,7 +38,7 @@ boost-title = 5          # ranking boost factor for matches in headers
 boost-hierarchy = 1      # ranking boost factor for matches in page names
 boost-paragraph = 1      # ranking boost factor for matches in text
 expand = true            # partial words will match longer terms
-heading-split-level = 5  # link results to heading levels
+heading-split-level = 6  # link results to heading levels
 copy-js = true           # include Javascript code for search (elasticlunr.min.js)
 
 [preprocessor.admonish]
