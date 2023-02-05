@@ -340,7 +340,7 @@ Telescope の使用方法と設定方法を理解することができます。
 
 それでは、コンフィグに入れた<kbd>leader</kbd><kbd>f</kbd><kbd>f</kbd>を試してみましょう...。
 
-![telescope-installation](img/telescope-ff-preview.webp)
+![telescope-ff](img/telescope-ff-preview.webp)
 
 いい感じ〜☺️
 
@@ -352,7 +352,7 @@ Telescope の使用方法と設定方法を理解することができます。
 
 ある程度ウィンドウが広くないと出てこないみたいです。
 
-![telescope-installation](img/telescope-ff.webp)
+![telescope-ff](img/telescope-ff.webp)
 ```
 
 ## Wrap Up
