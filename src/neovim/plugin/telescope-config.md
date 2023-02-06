@@ -43,6 +43,8 @@ vim.keymap.set('n', '<leader>fh', builtin.help_tags)
 
 ## help_tags ✨My recommendation✨
 
+こんなのを入れてみてください。
+
 ~~~admonish example title="extensions/telescope.lua"
 ```lua
 local themes = require 'telescope.themes'
@@ -55,13 +57,13 @@ end)
 ```
 ~~~
 
-そしたら、<kbd>leader</kbd><kbd>h</kbd>としてみてください。
+そしたら、<kbd>leader</kbd><kbd>h</kbd>としてみましょう。
 
 ![telescope-help_tags](img/telescope-help_tags.webp)
 
 一目で分かるすっごいやつ...❗
 
-~~~admonish example title=":h help_tags"
+~~~admonish info title=":h help_tags"
 ```txt
 builtin.help_tags({opts})                   telescope.builtin.help_tags()
   Lists available help tags and opens a new window with the relevant help info on `<cr>`
@@ -92,7 +94,7 @@ builtin.help_tags({opts})                   telescope.builtin.help_tags()
 
 ## setup
 
-それじゃあ、ここからはいつも通りでいきましょう🐇
+それじゃあ、ここからはいつも通りでいきましょう🐰
 
 ### defaults
 
@@ -121,7 +123,7 @@ see `telescope.actions`
 ~~~
 
 ```admonish tip
-このサイトでは、今後も`help`への参照を`:h`表記で統一しますが、もはや`telescope.help_tags`使うほうが便利ですね😤
+このサイトでは、今後も`help`への参照を`:h`表記で統一しますが、もはや`telescope.help_tags`を使うほうが便利ですね😤
 
 積極的に使っていきましょう❗
 ```
@@ -150,12 +152,12 @@ see `telescope.actions`
 こうしておくと<kbd>Esc</kbd>で`telescope`からそのまま抜けます☺️
 
 ```admonish note
-<kbd>Ctrl</kbd><kbd>[</kbd>派の人も`<esc>`を指定しておけばOKです。
+<kbd>Ctrl-[</kbd>派の人も`<esc>`を指定しておけばOKです。
 ```
 
 ###### which_key
 
-`telescope`ウィンドウを開いた状態で<kbd>Ctrl</kbd><kbd>h</kbd>とすると操作一覧が現れます。
+`telescope`ウィンドウを開いた状態で<kbd>Ctrl-h</kbd>とすると操作一覧が現れます。
 
 ~~~admonish info title="telescope.actions.which_key()"
 ```txt
@@ -200,9 +202,9 @@ Enables pseudo-transparency for a floating window. Valid values are in
 the range of 0 for fully opaque window (disabled) to 100 for fully
 transparent background. Values between 0-30 are typically most useful.
 
-フローティングウィンドウの擬似透過を有効にします。
-有効な値は、完全に不透明なウィンドウ（無効）のための0から完全に透明な背景のための 100 の範囲である。
-0-30 の間の値は、一般的に最も有用である。
+フローティングウィンドウの擬似透過を有効にする。
+有効な値は、完全に不透明なウィンドウ（無効）のための 0 から完全に透明な背景のための 100 の範囲である。
+一般的に 0-30 の間の値が最も有用。
 
 UI-dependent. Works best with RGB colors. 'termguicolors'
 
@@ -270,13 +272,13 @@ Built-in functions. Ready to be bound to any key you like.
 - [Vim Pickers](https://github.com/nvim-telescope/telescope.nvim#neovim-lsp-pickers): `builtin.tags`は`ctags`を使っている人向け
 - [Neovim LSP Pickers](https://github.com/nvim-telescope/telescope.nvim#neovim-lsp-pickers): `LSP`が動いている前提
 
-この辺り以外は、もうここまでの内容だけでも全部動くんじゃないかな🤔
-
 ```admonish note
 多分なんですが、`ctags`はこのサイトでは扱いません。
 
 わたしもインストールはしてあるけど、「乗りこなせていない」というのが正直なところ😅
 ```
+
+この辺り以外は、もうここまでの内容だけでも全部動くんじゃないかな🤔
 
 一応使う方法だけ書いておくと、キーマップに登録するのが一番簡単です。
 
@@ -298,7 +300,7 @@ vim.keymap.set('n', '<leader>ff', builtin.find_files)
 
 ## themes
 
-なんだか長くなってしまいましたが、ようやく`themes`に辿り着きました...。
+...ってことで、ようやく`themes`に辿り着きました☺️
 
 これはさっきの`help_tags`のコードです。
 
@@ -322,10 +324,10 @@ We have some built in themes but are looking for more cool options.
 
 |Themes|Image|
 |:---:|:---:|
-|(パラメータなし)|![telescope-theme-none](img/telescope-theme-none.webp)|
-|themes.get_dropdown|![telescope-theme-dropdown](img/telescope-theme-dropdown.webp)|
-|themes.get_cursor|![telescope-theme-cursor](img/telescope-theme-cursor.webp)|
-|themes.get_ivy|![telescope-theme-ivy](img/telescope-help_tags.webp)|
+|(not param)|![telescope-theme-none](img/telescope-theme-none.webp)|
+|get_dropdown|![telescope-theme-dropdown](img/telescope-theme-dropdown.webp)|
+|get_cursor|![telescope-theme-cursor](img/telescope-theme-cursor.webp)|
+|get_ivy|![telescope-theme-ivy](img/telescope-help_tags.webp)|
 
 もう言葉なんて入りませんね❗
 
@@ -334,7 +336,11 @@ We have some built in themes but are looking for more cool options.
 このサイトで紹介した内容も含めて、
 お役立ち Tips はもう既に`telescope.nvim`の`wiki`にたくさんまとまっているので、試してみると面白いです😆
 
-[Configuration Recipes](https://github.com/nvim-telescope/telescope.nvim/wiki/Configuration-Recipes)
+```admonish info title="[Configuration Recipes](https://github.com/nvim-telescope/telescope.nvim/wiki/Configuration-Recipes)"
+A place for the community to share configurations and custom pickers that dont fit into core or an extension
+
+コアやエクステンションにない設定やカスタムピッカーをコミュニティで共有する場です。
+```
 
 ## Wrap Up
 
@@ -343,14 +349,14 @@ We have some built in themes but are looking for more cool options.
 
 ...で、なんですけど😮
 
-わたしもつい最近知った便利な`tip`があるので、次回はそんな星のおはなしです✨
+わたしもつい最近知った便利な`tip`があるので、次回はそんな新星のおはなしです✨
 
 ```admonish info title=""
 Fly me to the moon
 
 And let me play among the stars
 
-ねえ わたしを月に連れていって
+ねえ わたしを月までいかせて
 
 あの星たちに囲まれて 遊んでみたいの
 ```
