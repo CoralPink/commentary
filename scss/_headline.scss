@@ -1,29 +1,55 @@
 @use 'variables' as var;
 
-h1,
-h2 {
-  border-bottom: solid 3px var.$color_pink;
+@mixin headline-high {
+  $line-thickness: 3px;
+
+  border-bottom: solid $line-thickness var.$color_pink;
   font-style: italic;
 
   &:after {
     position: absolute;
-    content: ' ';
+    content: '';
     display: block;
-    border-bottom: solid 3px var.$color_purple;
+    border-bottom: solid $line-thickness var.$color_purple;
     width: 10%;
   }
 }
 
-h3,
-h4 {
-  font-size: 1.0em;
-  border-bottom: solid 1px var.$color_pink;
+@mixin headline-middle {
+  border-bottom: solid 2px var.$color_pink;
   font-style: italic;
 }
 
-h5,
-h6 {
-  font-size: 0.9em;
-  border-bottom: solid 1px var.$color_purple;
+@mixin headline-low {
+  border-bottom: solid 2px var.$color_purple;
   font-style: italic;
+}
+
+h1 {
+  font-size: 2.0em;
+  @include headline-high
+}
+
+h2 {
+  font-size: 1.7em;
+  @include headline-high
+}
+
+h3 {
+  font-size: 1.4em;
+  @include headline-middle
+}
+
+h4 {
+  font-size: 1.25em;
+  @include headline-middle
+}
+
+h5 {
+  font-size: 1.2em;
+  @include headline-low
+}
+h6 {
+  font-size: 1.15em;
+  @include headline-low
 }
