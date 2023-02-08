@@ -1,9 +1,7 @@
 @use '../variables' as var;
 
-// Base styles and content styles
 :root {
-  // Browser default font-size is 16px, this way 1 rem = 10px
-  font-size: 64%;
+  font-size: 62.5%; // Browser default font-size is 16px, this way 1 rem = 10px
 }
 
 body {
@@ -17,61 +15,12 @@ code {
   font-size: var.$code-font-size;
 }
 
-// make long words/inline code not x overflow
-main {
-  overflow-wrap: break-word;
-}
-
-// make wide tables scroll if they overflow
 .table-wrapper {
-  overflow-x: auto;
+  overflow-x: auto; // make wide tables scroll if they overflow
 }
 
-// Don't change font size in headers.
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  code {
-    font-size: unset;
-  }
-  &:target {
-    &::before {
-      $shift: 24px;
-
-      display: inline-block;
-      content: '»';
-      margin-left: 0 - $shift;
-      width: $shift;
-    }
-  }
-}
-
-.left {
-  float: left;
-}
-.right {
-  float: right;
-}
-.boring {
-  opacity: 0.6;
-}
-.hide-boring .boring {
-  display: none;
-}
 .hidden {
   display: none !important;
-}
-
-h2,
-h3 {
-  margin-top: 2.5em;
-}
-h4,
-h5 {
-  margin-top: 2em;
 }
 
 .page {
@@ -86,13 +35,17 @@ h5 {
 }
 
 .content {
-  overflow-y: auto;
+  display: flex;
+  justify-content:space-between;
   padding: 1em 2em 5em 2em;
+
+  overflow-y: auto;
 
   main {
     font-size: 1.3rem;
     margin: 0.7em;
-    max-width: var.$content-max-width;
+    flex-basis: var.$basis-content;
+    min-width: 0px;
   }
   a {
     text-decoration: none;
@@ -144,23 +97,13 @@ table {
       border: 1px var(--table-header-bg) solid;
     }
   }
-  // Alternate background colors for rows
   tbody {
     tr {
       &:nth-child(2n) {
-        background: var(--table-alternate-bg);
+        background: var(--table-alternate-bg); // Alternate background colors for rows
       }
     }
   }
-}
-
-blockquote {
-  margin: 20px 0;
-  padding: 0 20px;
-  color: var(--fg);
-  background-color: var(--quote-bg);
-  border-top: 0.1em solid var(--quote-border);
-  border-bottom: 0.1em solid var(--quote-border);
 }
 
 kbd {
