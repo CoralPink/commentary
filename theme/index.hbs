@@ -135,29 +135,29 @@
 
         <div id="content" class="content">
           <main>
-            <div class="sidetoc">
-              <nav class="pagetoc"></nav>
-            </div>
-
             {{{ content }}}
+
+            <nav class="nav-wrapper" aria-label="Page navigation">
+              <!-- Mobile navigation buttons -->
+              {{#previous}}
+                <a rel="prev" href="{{ path_to_root }}{{link}}" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                  <i class="fa-angle-left"></i>
+                </a>
+              {{/previous}}
+
+              {{#next}}
+                <a rel="next" href="{{ path_to_root }}{{link}}" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                  <i class="fa-angle-right"></i>
+                </a>
+              {{/next}}
+            </nav>
+
           </main>
 
-          <nav class="nav-wrapper" aria-label="Page navigation">
-            <!-- Mobile navigation buttons -->
-            {{#previous}}
-              <a rel="prev" href="{{ path_to_root }}{{link}}" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
-                <i class="fa-angle-left"></i>
-              </a>
-            {{/previous}}
+          <div class="sidetoc">
+            <nav class="pagetoc"></nav>
+          </div>
 
-            {{#next}}
-              <a rel="next" href="{{ path_to_root }}{{link}}" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                <i class="fa-angle-right"></i>
-              </a>
-            {{/next}}
-
-            <div style="clear: both"></div>
-          </nav>
         </div>
       </div>
     </div>

@@ -1,55 +1,64 @@
 @use 'variables' as var;
 
-@mixin headline-high {
-  $line-thickness: 3px;
+@mixin headline-common($bg-height) {
+	background-repeat: no-repeat;
+	background-size: 100% $bg-height;
+	background-position: bottom;
 
-  border-bottom: solid $line-thickness var.$color_pink;
   font-style: italic;
 
-  &:after {
-    position: absolute;
-    content: '';
-    display: block;
-    border-bottom: solid $line-thickness var.$color_purple;
-    width: 10%;
+  &:target {
+    &::before {
+      $shift: 24px;
+
+      display: inline-block;
+      content: '»';
+      margin-left: 0 - $shift;
+      width: $shift;
+    }
   }
 }
 
-@mixin headline-middle {
-  border-bottom: solid 2px var.$color_pink;
-  font-style: italic;
+@mixin headline-high($bg-height) {
+  background-image: linear-gradient(to right, var.$color_purple 0%, 7%, var.$color_pink 80%, var(--bg));
+  @include headline-common($bg-height);
 }
 
-@mixin headline-low {
-  border-bottom: solid 2px var.$color_purple;
-  font-style: italic;
+@mixin headline-middle($bg-height) {
+  background-image: linear-gradient(to right, var.$color_pink 80%, var(--bg));
+  @include headline-common($bg-height);
+}
+
+@mixin headline-low($bg-height: 2px) {
+  background-image: linear-gradient(to right, var.$color_purple 80%, var(--bg));
+  @include headline-common($bg-height);
 }
 
 h1 {
   font-size: 2.0em;
-  @include headline-high
+  @include headline-high(4px)
 }
 
 h2 {
   font-size: 1.7em;
-  @include headline-high
+  @include headline-high(3px)
 }
 
 h3 {
   font-size: 1.4em;
-  @include headline-middle
+  @include headline-middle(3px)
 }
 
 h4 {
   font-size: 1.25em;
-  @include headline-middle
+  @include headline-middle(2px)
 }
 
 h5 {
   font-size: 1.2em;
-  @include headline-low
+  @include headline-low()
 }
 h6 {
   font-size: 1.15em;
-  @include headline-low
+  @include headline-low()
 }

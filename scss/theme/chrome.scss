@@ -1,7 +1,5 @@
 @use '../variables' as var;
 
-// CSS for UI elements (a.k.a. chrome)
-
 html {
   scrollbar-color: var(--scrollbar) var(--bg);
 }
@@ -12,7 +10,6 @@ a > .hljs {
   color: var(--links);
 }
 
-// Menu Bar
 #menu-bar {
   position: relative;
   display: flex;
@@ -23,10 +20,6 @@ a > .hljs {
   border-bottom-style: solid;
   z-index: 101;
 
-  .bordered {
-    border-bottom-color: var(--table-border-color);
-  }
-
   i,
   .icon-button {
     position: relative;
@@ -35,10 +28,6 @@ a > .hljs {
     line-height: var.$menu-bar-height;
     cursor: pointer;
     transition: color 0.5s;
-  }
-  .sticky {
-    position: sticky;
-    top: 0 !important;
   }
 }
 
@@ -81,7 +70,7 @@ a > .hljs {
   display: flex;
   margin: 0 5px;
 }
-.no-js .left-buttons {
+.no-js {
   display: none;
 }
 
@@ -101,8 +90,6 @@ a > .hljs {
 
 .menu-bar,
 .menu-bar:visited,
-.nav-chapters,
-.nav-chapters:visited,
 .mobile-nav-chapters,
 .mobile-nav-chapters:visited,
 .menu-bar .icon-button,
@@ -112,43 +99,13 @@ a > .hljs {
 
 .menu-bar i:hover,
 .menu-bar .icon-button:hover,
-.nav-chapters:hover,
 .mobile-nav-chapters i:hover {
   color: var(--icons-hover);
 }
 
-// Nav Icons
-
-.nav-chapters {
-  font-size: 1.8em;
-  text-align: center;
-  text-decoration: none;
-
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  margin: 0;
-  max-width: 30px;
-  min-width: 25px;
-
-  display: flex;
-  justify-content: center;
-  align-content: center;
-  flex-direction: column;
-
-  transition: color 0.5s, background-color 0.5s;
-
-  &:hover {
-    text-decoration: none;
-    background-color: var(--theme-hover);
-    transition: background-color 0.15s, color 0.15s;
-  }
-}
-
 .nav-wrapper {
-  margin-top: 35px;
-  //  max-width: 900px;
-  display: block;
+  display: flex;
+  justify-content:space-between;
 }
 
 .mobile-nav-chapters {
@@ -160,16 +117,6 @@ a > .hljs {
   background-color: var(--sidebar-bg);
 }
 
-.previous {
-  float: left;
-}
-
-.next {
-  float: right;
-}
-
-// Inline code
-
 :not(pre) {
   & > .hljs {
     display: inline;
@@ -178,10 +125,6 @@ a > .hljs {
     color: var(--inline-code-color);
     overflow-x: initial;
   }
-}
-
-a:hover > .hljs {
-  text-decoration: underline;
 }
 
 pre {
@@ -242,34 +185,8 @@ pre {
 
 @media (pointer: coarse) {
   pre > .buttons button {
-    // On mobile, make it easier to tap buttons.
-    padding: 0.3rem 1rem;
+    padding: 0.3rem 1rem; // On mobile, make it easier to tap buttons.
   }
-}
-
-// Search
-
-#searchresults a {
-  text-decoration: none;
-}
-
-mark {
-  border-radius: 2px;
-  padding: 0 3px 1px 3px;
-  margin: 0 -3px -1px -3px;
-  background-color: var(--search-mark-bg);
-  transition: background-color 300ms linear;
-  cursor: pointer;
-
-  &.fade-out {
-    background-color: rgba(0, 0, 0, 0) !important;
-    cursor: auto;
-  }
-}
-
-.searchbar-outer {
-  margin: auto;
-  max-width: var.$searchbar-max-width;
 }
 
 #searchbar {
@@ -288,6 +205,30 @@ mark {
     box-shadow: 0 0 3px var(--searchbar-shadow-color);
   }
 }
+
+#searchresults a {
+  text-decoration: none;
+}
+
+.searchbar-outer {
+  margin: auto;
+  max-width: var.$searchbar-max-width;
+}
+
+mark {
+  border-radius: 2px;
+  padding: 0 3px 1px 3px;
+  margin: 0 -3px -1px -3px;
+  background-color: var(--search-mark-bg);
+  transition: background-color 300ms linear;
+  cursor: pointer;
+
+  &.fade-out {
+    background-color: rgba(0, 0, 0, 0) !important;
+    cursor: auto;
+  }
+}
+
 .searchresults-header {
   font-weight: bold;
   font-size: 1em;
@@ -332,8 +273,6 @@ ul {
   }
 }
 
-// Sidebar
-
 .sidebar {
   position: fixed;
   left: 0;
@@ -341,14 +280,9 @@ ul {
   bottom: 0;
   width: var.$sidebar-width;
   box-sizing: border-box;
-//  -webkit-overflow-scrolling: touch;
   overscroll-behavior-y: contain;
   background-color: var(--sidebar-bg);
   color: var(--sidebar-fg);
-
-  code {
-    line-height: 2em;
-  }
 }
 .js:not(.sidebar-resizing) .sidebar {
   transition: transform 0.3s; // Animation: slide away
@@ -358,8 +292,6 @@ ul {
   position: absolute;
   top: 0;
   bottom: 0;
-  left: 0;
-  right: 0;
   padding: 10px 7px;
 }
 
@@ -368,6 +300,7 @@ ul {
     transform: translateX(calc(0px - var.$sidebar-width));
   }
 }
+
 .sidebar-visible {
   .page-wrapper {
     transform: none;
@@ -377,7 +310,7 @@ ul {
 
 .chapter {
   list-style: none outside none;
-  padding-left: 0;
+  padding-left: 2px;
   line-height: 2em;
   font-size: 1.1em;
 
@@ -446,22 +379,11 @@ ul {
   margin: 5px 0px;
 }
 
-@media (-moz-touch-enabled: 1), (pointer: coarse) {
-  .chapter li a {
-    padding: 5px 0;
-  }
-  .spacer {
-    margin: 10px 0;
-  }
-}
-
 .section {
   list-style: none outside none;
   padding-left: 7px;
   line-height: 1.9em;
 }
-
-// Theme Menu Popup
 
 .theme-popup {
   position: absolute;
