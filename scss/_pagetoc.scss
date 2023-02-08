@@ -3,31 +3,17 @@
 @media only screen and (max-width: var.$enable-pagetoc) {
   .sidetoc {
     display: none;
+    flex-basis: 0px;
   }
 }
 
 @media only screen and (min-width: var.$enable-pagetoc) {
-  main {
-    position: relative;
-  }
   .sidetoc {
-    left: calc(var.$content-max-width + 2rem);
-    position: absolute;
+    flex-basis: var.$basis-headtoc;
   }
-
-  .heading {
-    position: fixed;
-    overflow: auto;
-    width: var.$pagetoc-width;
-    letter-spacing: 1.5px;
-    margin: 0 0 1rem 1rem;
-  }
-
   .pagetoc {
     position: fixed;
     width: var.$pagetoc-width;
-    overflow: auto;
-    font-size: 0.8em;
     font-style: italic;
 
     a {
