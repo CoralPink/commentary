@@ -15,7 +15,6 @@ default-theme = "Latte"
 preferred-dark-theme = "Macchiato"
 git-repository-url = "https://github.com/CoralPink/commentary"
 site-url = "/commentary/"
-copy-fonts = true
 
 [output.html.fold]
 enable = false
