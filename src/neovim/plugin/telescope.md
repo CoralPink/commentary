@@ -44,7 +44,7 @@ Neovim (v0.7.0) or the latest neovim nightly commit is required for `telescope.n
 
 ### Required dependencies
 
-```admonish info title="[Required dependencies](https://github.com/nvim-telescope/telescope.nvim#required-dependencies)"
+```admonish abstract title="[Required dependencies](https://github.com/nvim-telescope/telescope.nvim#required-dependencies)"
 [nvim-lua/plenary.nvim](https://github.com/nvim-lua/plenary.nvim) is required.
 ```
 
@@ -363,7 +363,7 @@ Telescope の使用方法と設定方法を理解することができます。
 
 コンフィグについてはまだもう少し書いておきたい事があるのですが、ここで一旦休憩しましょ🌕🐇
 
-```admonish success title="assemble"
+```admonish success title="Assemble"
 幾千万の星から あなたを見つけられる
 
 偶然もチャンスに換える 生き方が好きよ
