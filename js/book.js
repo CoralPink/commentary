@@ -157,6 +157,14 @@ const playground_text = (playground, hidden = true) => {
   const sidebarLinks = document.querySelectorAll('#sidebar a');
   const sidebarToggleButton = document.getElementById('sidebar-toggle');
 
+  // Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM
+  sidebarToggleButton.setAttribute('aria-expanded', sidebar === 'visible');
+  sidebar.setAttribute('aria-hidden', sidebar !== 'visible');
+
+  sidebarLinks.forEach(link => {
+    link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+  });
+
   let firstContact = null;
 
   const toggleSection = ev => {

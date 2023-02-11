@@ -1,4 +1,3 @@
-
 <!DOCTYPE HTML>
 <html lang="{{ language }}" class="sidebar-visible no-js {{ default_theme }}">
   <head>
@@ -33,22 +32,6 @@
     <link rel="stylesheet" href="{{ path_to_root }}css/general.css">
     <link rel="stylesheet" href="{{ path_to_root }}css/chrome.css">
 
-    {{#if print_enable}}
-    <link rel="stylesheet" href="{{ path_to_root }}css/print.css" media="print">
-    {{/if}}
-
-    <!-- Fonts -->
-    <link rel="stylesheet" href="{{ path_to_root }}fonts/fonts.css">
-
-    <!-- Custom theme stylesheets -->
-    {{#each additional_css}}
-    <link rel="stylesheet" href="{{ ../path_to_root }}{{ this }}" async>
-    {{/each}}
-
-    <!-- MathJax -->
-    {{#if mathjax_support}}
-    <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    {{/if}}
   </head>
   <body>
     <!-- Google Tag Manager (noscript) -->
@@ -126,15 +109,6 @@
           </div>
           {{/if}}
 
-          <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
-          <script>
-            document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
-            document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
-            Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
-              link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
-            });
-          </script>
-
           <div id="content" class="content">
             <main>
               {{{ content }}}
@@ -167,7 +141,7 @@
 
     {{#if search_js}}
     <script src="{{ path_to_root }}elasticlunr.min.js"></script>
-    <script src="{{ path_to_root }}mark.es6.min.js"></script>-
+    <script src="{{ path_to_root }}mark.es6.min.js"></script>
     <script src="{{ path_to_root }}searcher.js" id="searcher" data-pathtoroot="{{ path_to_root }}"></script>
     {{/if}}
 
@@ -179,9 +153,26 @@
     <script src="{{ path_to_root }}highlight.min.js"></script>
     <script src="{{ path_to_root }}book.js" id="book" data-defaulttheme="{{ default_theme }}"></script>
 
+    <!-- Custom theme stylesheets -->
+    {{#each additional_css}}
+    <link rel="stylesheet" href="{{ ../path_to_root }}{{ this }}" async>
+    {{/each}}
+
+    <!-- Fonts -->
+    <link rel="stylesheet" href="{{ path_to_root }}fonts/fonts.css" async>
+
+    {{#if print_enable}}
+    <link rel="stylesheet" href="{{ path_to_root }}css/print.css" media="print" async>
+    {{/if}}
+
+    <!-- MathJax -->
+    {{#if mathjax_support}}
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    {{/if}}
+
     <!-- Custom JS scripts -->
     {{#each additional_js}}
-    <script src="{{ ../path_to_root }}{{this}}"></script>
+    <script async src="{{ ../path_to_root }}{{this}}"></script>
     {{/each}}
 
   </body>
