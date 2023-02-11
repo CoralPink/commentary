@@ -371,6 +371,6 @@ On jupiter and mars
 どんなものなんだろう 見てみたいの
 ```
 
-```admonish success title="assemble"
+```admonish success title="Assemble"
 さぁ〜て、この次も❗サービス、サービスぅ💕
 ```
