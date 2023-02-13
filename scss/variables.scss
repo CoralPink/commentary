@@ -1,11 +1,13 @@
 $mobile-max-width: 680px;
 
-$basis-content: 100%;
-$basis-headtoc: 20%;
-
-$sidebar-width: 200px;
+$sidebar-width: 210px;
 $pagetoc-width: 200px;
 $enable-pagetoc: $mobile-max-width + $pagetoc-width;
+
+@media only screen and (min-width: $enable-pagetoc) {
+  $basis-content: 80%;
+  $basis-headtoc: 20%;
+}
 
 $menu-bar-height: 50px;
 $searchbar-max-width: 100rem;

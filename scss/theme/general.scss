@@ -33,19 +33,27 @@ code {
     transition: margin-left 0.3s ease, transform 0.3s ease; // Animation: slide away
   }
 }
+@mixin flexballance {
+  @media only screen and (max-width: var.$enable-pagetoc) {
+    flex-basis: 100%;
+  }
+
+  @media only screen and (min-width: var.$enable-pagetoc) {
+    flex-basis: 80%;
+  }
+}
 
 .content {
   display: flex;
-  justify-content:space-between;
   padding: 1em 2em 5em 2em;
 
   overflow-y: auto;
 
   main {
     font-size: 1.3rem;
-    margin: 0.7em;
-    flex-basis: var.$basis-content;
-    min-width: 0px;
+    margin-left: 0.7em;
+
+    @include flexballance();
   }
   a {
     text-decoration: none;

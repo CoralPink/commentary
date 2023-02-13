@@ -3,17 +3,18 @@
 @media only screen and (max-width: var.$enable-pagetoc) {
   .sidetoc {
     display: none;
-    flex-basis: 0px;
+    flex-basis: 0%;
   }
 }
 
 @media only screen and (min-width: var.$enable-pagetoc) {
   .sidetoc {
-    flex-basis: var.$basis-headtoc;
+    flex-basis: 20%;
   }
   .pagetoc {
     position: fixed;
     width: var.$pagetoc-width;
+    margin-left: 3rem;
     font-style: italic;
 
     a {

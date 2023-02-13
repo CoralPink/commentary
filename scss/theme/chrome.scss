@@ -17,6 +17,8 @@ a > .hljs {
 #menu-bar {
   position: relative;
   display: flex;
+  justify-content: center;
+  align-items: center;
   flex-wrap: wrap;
   background-color: var(--bg);
   border-bottom-color: var(--bg);
@@ -291,12 +293,13 @@ ul {
 .js:not(.sidebar-resizing) .sidebar {
   transition: transform 0.3s; // Animation: slide away
 }
+
 .sidebar .sidebar-scrollbox {
   overflow-y: auto;
   position: absolute;
   top: 0;
   bottom: 0;
-  padding: 10px 7px;
+  scrollbar-color: var(--scrollbar) var(--bg);
 }
 
 .sidebar-hidden {
@@ -360,14 +363,17 @@ ul {
     }
 
     &.chapter-item {
-      margin: 2px 3px;
+      margin: 2px 12px;
     }
 
     &.part-title {
       color: var(--sidebar-fg);
       margin: 12px auto 0px;
       font-weight: bold;
-      border-bottom: solid 1px var.$color_pink;
+      background-image: linear-gradient(to right, var.$color_pink 50%, var(--bg));
+      background-repeat: no-repeat;
+      background-size: 100% 1px;
+      background-position: bottom;
     }
 
     &.expanded > a.toggle div {
