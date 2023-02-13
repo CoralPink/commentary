@@ -75,14 +75,24 @@ const playground_text = (playground, hidden = true) => {
       themeColorMetaTag.content = window.getComputedStyle(document.body).backgroundColor;
     }, 1);
 
-    html.classList.remove(get_theme());
+    const previousTheme = get_theme();
+
+    if (store) {
+      try {
+        localStorage.setItem('mdbook-theme', theme);
+      } catch (_e) {
+        console.log('ERROR: set_theme#mdbook-theme');
+      }
+    }
+
+    if (theme == previousTheme) {
+      return;
+    }
+
+    html.classList.remove(previousTheme);
     html.classList.add(theme);
 
     updateThemeSelected();
-
-    if (!store) {
-      return;
-    }
 
     try {
       localStorage.setItem('mdbook-theme', theme);
