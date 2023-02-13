@@ -15,34 +15,32 @@ const playground_text = (playground, hidden = true) => {
 
   Array.from(document.querySelectorAll('code'))
     // Don't highlight `inline code` blocks in headers.
-    .filter(node => {
-      return !node.parentElement.classList.contains('header');
-    })
-    .forEach(block => {
-      block.classList.add('hljs');
-    });
+    .filter(node => !node.parentElement.classList.contains('header'))
+    .forEach(block => block.classList.add('hljs'));
 
-  if (window.playground_copyable) {
-    Array.from(document.querySelectorAll('pre code')).forEach(block => {
-      const pre_block = block.parentNode;
-
-      let buttons = pre_block.querySelector('.buttons');
-
-      if (!buttons) {
-        buttons = document.createElement('div');
-        buttons.className = 'buttons';
-        pre_block.insertBefore(buttons, pre_block.firstChild);
-      }
-
-      const clipButton = document.createElement('button');
-      clipButton.className = 'fa-copy clip-button';
-      clipButton.title = 'Copy to clipboard';
-      clipButton.setAttribute('aria-label', clipButton.title);
-      clipButton.innerHTML = '<i class="tooltiptext"></i>';
-
-      buttons.insertBefore(clipButton, buttons.firstChild);
-    });
+  if (!window.playground_copyable) {
+    return;
   }
+
+  Array.from(document.querySelectorAll('pre code')).forEach(block => {
+    const pre_block = block.parentNode;
+
+    let buttons = pre_block.querySelector('.buttons');
+
+    if (!buttons) {
+      buttons = document.createElement('div');
+      buttons.className = 'buttons';
+      pre_block.insertBefore(buttons, pre_block.firstChild);
+    }
+
+    const clipButton = document.createElement('button');
+    clipButton.className = 'fa-copy clip-button';
+    clipButton.title = 'Copy to clipboard';
+    clipButton.setAttribute('aria-label', clipButton.title);
+    clipButton.innerHTML = '<i class="tooltiptext"></i>';
+
+    buttons.insertBefore(clipButton, buttons.firstChild);
+  });
 })();
 
 // themes
@@ -66,9 +64,8 @@ const playground_text = (playground, hidden = true) => {
   };
 
   const updateThemeSelected = () => {
-    themePopup.querySelectorAll('.theme-selected').forEach(el => {
-      el.classList.remove('theme-selected');
-    });
+    themePopup.querySelectorAll('.theme-selected')
+      .forEach(el => el.classList.remove('theme-selected'));
 
     themePopup.querySelector('button#' + get_theme()).classList.add('theme-selected');
   };
@@ -78,20 +75,20 @@ const playground_text = (playground, hidden = true) => {
       themeColorMetaTag.content = window.getComputedStyle(document.body).backgroundColor;
     }, 1);
 
-    const previousTheme = get_theme();
-
-    if (store) {
-      try {
-        localStorage.setItem('mdbook-theme', theme);
-      } catch (_e) {
-        console.log('ERROR: set_theme#mdbook-theme');
-      }
-    }
-
-    html.classList.remove(previousTheme);
+    html.classList.remove(get_theme());
     html.classList.add(theme);
 
     updateThemeSelected();
+
+    if (!store) {
+      return;
+    }
+
+    try {
+      localStorage.setItem('mdbook-theme', theme);
+    } catch (_e) {
+      console.log('ERROR: set_theme#mdbook-theme');
+    }
   };
 
   const hideThemes = () => {
@@ -113,17 +110,14 @@ const playground_text = (playground, hidden = true) => {
     themePopup.style.display === 'block' ? hideThemes() : showThemes();
   });
 
-  themePopup.addEventListener('click', e => {
-    let theme;
 
+  themePopup.addEventListener('click', e => {
     if (e.target.className === 'theme') {
-      theme = e.target.id;
-    } else if (e.target.parentElement.className === 'theme') {
-      theme = e.target.parentElement.id;
-    } else {
-      return;
+      set_theme(e.target.id);
     }
-    set_theme(theme);
+    else if (e.target.parentElement.className === 'theme') {
+      set_theme(e.target.parentElement.id);
+    }
   });
 
   themePopup.addEventListener('focusout', e => {
@@ -164,8 +158,6 @@ const playground_text = (playground, hidden = true) => {
   sidebarLinks.forEach(link => {
     link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
   });
-
-  let firstContact = null;
 
   const toggleSection = ev => {
     ev.currentTarget.parentElement.classList.toggle('expanded');
@@ -229,51 +221,45 @@ const playground_text = (playground, hidden = true) => {
   globalThis.addEventListener('resize', () => {
     clearTimeout(timeoutId);
 
-      // FIXME: The definitions are all over the place.
+    // FIXME: The definitions are all over the place.
     timeoutId = setTimeout(() => { if (window.innerWidth >= 1200) {
       showSidebar();
     }}, 200);
   });
 
-  document.addEventListener(
-    'touchstart',
-    e => {
-      firstContact = {
-        x: e.touches[0].clientX,
-        time: Date.now(),
-      };
-    },
-    { passive: true }
-  );
+  let firstContact = null;
 
-  document.addEventListener(
-    'touchmove',
-    e => {
-      if (!firstContact) {
-        return;
-      }
+  document.addEventListener('touchstart', e => {
+    firstContact = {
+      x: e.touches[0].clientX,
+      time: Date.now(),
+    };
+  }, { passive: true });
 
-      if (Date.now() - firstContact.time > 250) {
-        return;
-      }
-      const curX = e.touches[0].clientX;
-      const xDiff = curX - firstContact.x;
+  document.addEventListener('touchmove', e => {
+    if (!firstContact) {
+      return;
+    }
 
-      if (Math.abs(xDiff) >= 150) {
-        if (xDiff >= 0) {
-          if (firstContact.x < Math.min(document.body.clientWidth * 0.25, 300)) {
-            showSidebar();
-          }
-        } else {
-          if (curX < 300) {
-            hideSidebar();
-          }
+    if (Date.now() - firstContact.time > 250) {
+      return;
+    }
+    const curX = e.touches[0].clientX;
+    const xDiff = curX - firstContact.x;
+
+    if (Math.abs(xDiff) >= 150) {
+      if (xDiff >= 0) {
+        if (firstContact.x < Math.min(document.body.clientWidth * 0.25, 300)) {
+          showSidebar();
         }
-        firstContact = null;
+      } else {
+        if (curX < 300) {
+          hideSidebar();
+        }
       }
-    },
-    { passive: true }
-  );
+      firstContact = null;
+    }
+  }, { passive: true });
 
   // Scroll sidebar to current active section
   const activeSection = document.getElementById('sidebar').querySelector('.active');
@@ -347,9 +333,7 @@ const playground_text = (playground, hidden = true) => {
     showTooltip(e.trigger, 'Copied!');
   });
 
-  clipboardSnippets.on('error', e => {
-    showTooltip(e.trigger, 'Clipboard error!');
-  });
+  clipboardSnippets.on('error', e => showTooltip(e.trigger, 'Clipboard error!'));
 })();
 
 // scrollToTop
