@@ -1,8 +1,5 @@
 @use '../variables' as var;
 
-html {
-  scrollbar-color: var(--scrollbar) var(--bg);
-}
 #searchresults a,
 .content a:link,
 a:visited,
@@ -282,21 +279,20 @@ ul {
   left: 0;
   top: 0;
   bottom: 0;
+
   width: var.$sidebar-width;
   box-sizing: border-box;
   overscroll-behavior-y: contain;
-  background-color: var(--sidebar-bg);
+
   color: var(--sidebar-fg);
+  background-color: var(--sidebar-bg);
 }
-.js:not(.sidebar-resizing) .sidebar {
-  transition: transform 0.3s; // Animation: slide away
-}
-.sidebar .sidebar-scrollbox {
-  overflow-y: auto;
+
+.sidebar-scrollbox {
+  overflow-y: scroll;
   position: absolute;
   top: 0;
   bottom: 0;
-  scrollbar-color: var(--scrollbar) var(--bg);
 }
 
 .sidebar-hidden {
@@ -310,6 +306,10 @@ ul {
     transform: none;
     margin-left: var.$sidebar-width;
   }
+}
+
+.js:not(.sidebar-resizing) {
+  transition: transform 0.3s;
 }
 
 .chapter {

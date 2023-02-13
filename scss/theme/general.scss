@@ -4,6 +4,10 @@
   font-size: 62.5%; // Browser default font-size is 16px, this way 1 rem = 10px
 }
 
+html {
+  scrollbar-color: var(--scrollbar) var(--bg);
+}
+
 body {
   font-family: 'Open Sans', sans-serif;
   color: var(--fg);
