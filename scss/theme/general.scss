@@ -57,6 +57,7 @@ code {
   main {
     font-size: 1.3rem;
     margin-left: 0.7em;
+    min-width: 0px;
 
     @include flexballance();
   }
