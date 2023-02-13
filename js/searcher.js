@@ -128,11 +128,11 @@ window.search = window.search || {};
   })();
 
   const formatSearchMetric = (count, searchterm) => {
-    if (count == 1) {
-      return count + " search result for '" + searchterm + "':";
-    }
     if (count == 0) {
       return "No search results for '" + searchterm + "'.";
+    }
+    if (count == 1) {
+      return count + " search result for '" + searchterm + "':";
     }
     return count + " search results for '" + searchterm + "':";
   };
