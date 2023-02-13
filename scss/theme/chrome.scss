@@ -17,8 +17,6 @@ a > .hljs {
 #menu-bar {
   position: relative;
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-wrap: wrap;
   background-color: var(--bg);
   border-bottom-color: var(--bg);
@@ -293,7 +291,6 @@ ul {
 .js:not(.sidebar-resizing) .sidebar {
   transition: transform 0.3s; // Animation: slide away
 }
-
 .sidebar .sidebar-scrollbox {
   overflow-y: auto;
   position: absolute;
