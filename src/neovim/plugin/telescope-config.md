@@ -215,7 +215,7 @@ UI-dependent. Works best with RGB colors. 'termguicolors'
 `winblend`は`Neovim`の`window`オプションです。
 
 ~~~admonish tip
-...なので、とにかく透け透けが好きなら、`options.lua`あたりにこんなんするのも良いと思います。
+...なので、とにかくスケスケが好きなら、`options.lua`あたりにこんなんするのも良いと思います。
 
 ```lua
 vim.api.nvim_win_set_option(0, 'winblend', 20)
@@ -280,7 +280,7 @@ Built-in functions. Ready to be bound to any key you like.
 
 この辺り以外は、もうここまでの内容だけでも全部動くんじゃないかな🤔
 
-一応使う方法だけ書いておくと、キーマップに登録するのが一番簡単です。
+一応使う方法だけ書いておくと、キーマップに登録するのが一番簡単です。例えば、
 
 |Functions|Description|
 |:---:|:---:|
@@ -345,7 +345,7 @@ A place for the community to share configurations and custom pickers that dont f
 ## Wrap Up
 
 このサイトに書いてあることなんて、ほんと表面だけです。
-`telescope.nvim`は、ほんとにもう目が回るぐらい多機能なんで😵‍💫
+`telescope.nvim`は、ほんとにもう目が回る😵‍💫 ぐらい多機能なんで❗
 
 ...で、なんですけど😮
 

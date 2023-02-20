@@ -13,27 +13,30 @@ const html = document.querySelector('html');
   if (theme == defaultTheme) {
     return;
   }
-
   html.classList.remove(defaultTheme);
   html.classList.add(theme);
 })();
 
 // sidebar
 (() => {
-  const getSidebarStatus = () => {
-    // FIXME: The definitions are all over the place.
-    const mobileMaxWidth = 750;
-
+  const getSidebarState = () => {
     const sidebar = localStorage.getItem('mdbook-sidebar');
 
     if (sidebar) {
       return sidebar;
     }
-    return document.body.clientWidth < mobileMaxWidth ? 'hidden' : 'visible';
+
+    // FIXME: The definitions are all over the place.
+    return document.body.clientWidth < 750 ? 'hidden' : 'visible';
   };
 
+  const state = getSidebarState();
+
+  if (state == `visible`) {
+    return;
+  }
   html.classList.remove('sidebar-visible');
-  html.classList.add('sidebar-' + getSidebarStatus());
+  html.classList.add('sidebar-' + state);
 })();
 
 html.classList.remove('no-js');
