@@ -83,5 +83,6 @@
   - [lualine.nvim Part Ⅲ](neovim/plugin/lualine-part3.md)
   - [telescope.nvim](neovim/plugin/telescope.md)
     - [config](neovim/plugin/telescope-config.md)
+    - [telescope-all-recent](neovim/plugin/telescope-all-recent.md)
 
 # ... To Be Continued.
