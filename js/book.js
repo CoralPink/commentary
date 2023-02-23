@@ -1,22 +1,17 @@
 'use strict';
 
-// Global variable, shared between modules
-const playground_text = (playground, hidden = true) => {
-  return hidden ? playground.querySelector('code').textContent : playground.querySelector('code').innerText;
-};
-
 // codeSnippets
 (() => {
+  Array.from(document.querySelectorAll('code'))
+    // Don't highlight `inline code` blocks in headers.
+    .filter(node => !node.parentElement.classList.contains('header'))
+    .forEach(block => block.classList.add('hljs'));
+
   // Syntax highlighting Configuration
   hljs.configure({
     languages: ['txt'],
   });
   hljs.highlightAll();
-
-  Array.from(document.querySelectorAll('code'))
-    // Don't highlight `inline code` blocks in headers.
-    .filter(node => !node.parentElement.classList.contains('header'))
-    .forEach(block => block.classList.add('hljs'));
 
   if (!window.playground_copyable) {
     return;
@@ -118,8 +113,7 @@ const playground_text = (playground, hidden = true) => {
 
   themeToggleButton.addEventListener('click', () => {
     themePopup.style.display === 'block' ? hideThemes() : showThemes();
-  });
-
+  }, { once: false, passive: true });
 
   themePopup.addEventListener('click', e => {
     if (e.target.className === 'theme') {
@@ -128,14 +122,14 @@ const playground_text = (playground, hidden = true) => {
     else if (e.target.parentElement.className === 'theme') {
       set_theme(e.target.parentElement.id);
     }
-  });
+  }, { once: false, passive: true });
 
   themePopup.addEventListener('focusout', e => {
     // e.relatedTarget is null in Safari and Firefox on macOS (see workaround below)
     if (!!e.relatedTarget && !themeToggleButton.contains(e.relatedTarget) && !themePopup.contains(e.relatedTarget)) {
       hideThemes();
     }
-  });
+  }, { once: false, passive: true });
 
   // Should not be needed, but it works around an issue on macOS & iOS: https://github.com/rust-lang/mdBook/issues/628
   document.addEventListener('click', e => {
@@ -146,12 +140,14 @@ const playground_text = (playground, hidden = true) => {
     ) {
       hideThemes();
     }
-  });
+  }, { once: false, passive: true });
 
-  document.addEventListener('keydown', e => { if (themePopup.contains(e.target)) {
-    e.preventDefault();
-    hideThemes();
-  }});
+  document.addEventListener('keydown', e => {
+    if (themePopup.contains(e.target)) {
+      e.preventDefault();
+      hideThemes();
+    }
+  }, { once: false, passive: false });
 })();
 
 // sidebar
@@ -174,7 +170,7 @@ const playground_text = (playground, hidden = true) => {
   };
 
   Array.from(document.querySelectorAll('#sidebar a.toggle')).forEach(el => {
-    el.addEventListener('click', toggleSection);
+    el.addEventListener('click', toggleSection, { once: false, passive: true });
   });
 
   const showSidebar = () => {
@@ -224,7 +220,7 @@ const playground_text = (playground, hidden = true) => {
   // Toggle sidebar
   sidebarToggleButton.addEventListener('click', () => {
     html.classList.contains('sidebar-hidden') ? showSidebar() : hideSidebar();
-  });
+  }, { once: false, passive: true });
 
   let timeoutId;
 
@@ -235,7 +231,7 @@ const playground_text = (playground, hidden = true) => {
     timeoutId = setTimeout(() => { if (window.innerWidth >= 1200) {
       showSidebar();
     }}, 200);
-  });
+  }, { once: false, passive: true });
 
   let firstContact = null;
 
@@ -244,7 +240,7 @@ const playground_text = (playground, hidden = true) => {
       x: e.touches[0].clientX,
       time: Date.now(),
     };
-  }, { passive: true });
+  }, { once: false, passive: true });
 
   document.addEventListener('touchmove', e => {
     if (!firstContact) {
@@ -269,7 +265,7 @@ const playground_text = (playground, hidden = true) => {
       }
       firstContact = null;
     }
-  }, { passive: true });
+  }, { once: false, passive: true });
 
   // Scroll sidebar to current active section
   const activeSection = document.getElementById('sidebar').querySelector('.active');
@@ -310,7 +306,8 @@ const playground_text = (playground, hidden = true) => {
         window.location.href = previousButton.href;
       }
     }
-  });
+  }, { once: false, passive: false }
+  );
 })();
 
 // clipboard
@@ -325,17 +322,17 @@ const playground_text = (playground, hidden = true) => {
     elem.className = 'fa-copy tooltipped';
   };
 
-  const clipboardSnippets = new ClipboardJS('.clip-button', {
-    text: trigger => {
-      hideTooltip(trigger);
-      return playground_text(trigger.closest('pre'), false);
-    },
-  });
-
   Array.from(document.querySelectorAll('.clip-button')).forEach(clipButton => {
     clipButton.addEventListener('mouseout', e => {
       hideTooltip(e.currentTarget);
-    });
+    }, { once: false, passive: true });
+  });
+
+  const clipboardSnippets = new ClipboardJS('.clip-button', {
+    text: trigger => {
+      hideTooltip(trigger);
+      return trigger.closest('pre').querySelector('code').innerText;
+    },
   });
 
   clipboardSnippets.on('success', e => {
@@ -344,11 +341,4 @@ const playground_text = (playground, hidden = true) => {
   });
 
   clipboardSnippets.on('error', e => showTooltip(e.trigger, 'Clipboard error!'));
-})();
-
-// scrollToTop
-(() => {
-  document.querySelector('.menu-title').addEventListener('click', () => {
-    document.scrollingElement.scrollTo({ top: 0, behavior: 'smooth' });
-  });
 })();
