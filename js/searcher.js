@@ -102,6 +102,7 @@ window.search = window.search || {};
         joiner = "&";
       }
     }
+
     if (urlobject.hash != "") {
       url += "#" + urlobject.hash;
     }
@@ -194,36 +195,35 @@ window.search = window.search || {};
       return elasticlunr.stemmer(w.toLowerCase());
     });
     const searchterm_weight = 40;
-    const weighted = []; // contains elements of ["word", weight, index_in_document]
-    // split in sentences, then words
-    const sentences = body.toLowerCase().split(". ");
 
     let idx = 0;
     let value = 0;
     let searchterm_found = false;
 
-    for (const sentenceindex in sentences) {
-      const words = sentences[sentenceindex].split(" ");
-      value = 8;
+    const weighted = []; // contains elements of ["word", weight, index_in_document]
 
-      for (const wordindex in words) {
-        const word = words[wordindex];
+    body.toLowerCase().split(". ")  // split in sentences, then words
+      .forEach(x => {
+        const words = x.split(" ");
+        value = 8;
 
-        if (word.length > 0) {
-          for (const searchtermindex in stemmed_searchterms) {
-            if (elasticlunr.stemmer(word).startsWith(stemmed_searchterms[searchtermindex])) {
-              value = searchterm_weight;
-              searchterm_found = true;
-            }
+        words.forEach(y => {
+          if (y.length > 0) {
+            stemmed_searchterms.forEach(z => {
+              if (elasticlunr.stemmer(y).startsWith(z)) {
+                value = searchterm_weight;
+                searchterm_found = true;
+              }
+            });
+            weighted.push([y, value, idx]);
+            value = 2;
           }
-          weighted.push([word, value, idx]);
-          value = 2;
-        }
-        idx += word.length;
-        idx += 1; // ' ' or '.' if last word in sentence
-      }
-      idx += 1; // because we split at a two-char boundary '. '
-    }
+          idx += y.length;
+          idx += 1; // ' ' or '.' if last word in sentence
+        });
+
+        idx += 1; // because we split at a two-char boundary '. '
+      });
 
     if (weighted.length == 0) {
       return body;
@@ -296,10 +296,107 @@ window.search = window.search || {};
     doc_urls = config.doc_urls;
     searchindex = elasticlunr.Index.load(config.index);
 
-    // Set up events
+    // Eventhandler for search icon
     searchicon.addEventListener("click", () => {
-      searchIconClickHandler();
-    }, false);
+      if (search_wrap.classList.contains("hidden")) {
+        showSearch(true);
+        window.scrollTo(0, 0);
+        searchbar.select();
+      }
+      else {
+        showSearch(false);
+      }
+    }, { once: false, passive: true });
+
+    const showResults = yes => {
+      if (yes) {
+        searchresults_outer.classList.remove("hidden");
+      }
+      else {
+        searchresults_outer.classList.add("hidden");
+      }
+    };
+
+    // Eventhandler for keyevents while the searchbar is focused
+    const searchbarKeyUpHandler = () => {
+
+      // Update current url with ?URL_SEARCH_PARAM= parameter, remove ?URL_MARK_PARAM and #heading-anchor .
+      // `action` can be one of "push", "replace", "push_if_new_search_else_replace"
+      // and replaces or pushes a new browser history item.
+      // "push_if_new_search_else_replace" pushes if there is no `?URL_SEARCH_PARAM=abc` yet.
+      const setSearchUrlParameters = (searchterm, action) => {
+        const url = parseURL(window.location.href);
+        const first_search = !url.params.hasOwnProperty.call(URL_SEARCH_PARAM);
+
+        if (searchterm != "" || action == "push_if_new_search_else_replace") {
+          url.params[URL_SEARCH_PARAM] = searchterm;
+          delete url.params[URL_MARK_PARAM];
+          url.hash = "";
+        }
+        else {
+          delete url.params[URL_MARK_PARAM];
+          delete url.params[URL_SEARCH_PARAM];
+        }
+
+        // A new search will also add a new history item, so the user can go back
+        // to the page prior to searching. A updated search term will only replace
+        // the url.
+        if (action == "push" || (action == "push_if_new_search_else_replace" && first_search)) {
+          history.pushState({}, document.title, renderURL(url));
+        }
+        else if (action == "replace" || (action == "push_if_new_search_else_replace" && !first_search)) {
+          history.replaceState({}, document.title, renderURL(url));
+        }
+      };
+
+      const doSearch = searchterm => {
+        // Don't search the same twice
+        if (current_searchterm == searchterm) {
+          return;
+        }
+        current_searchterm = searchterm;
+
+        if (!searchindex) {
+          return;
+        }
+
+        // Do the actual search
+        const results = searchindex.search(searchterm, search_options);
+        const resultcount = Math.min(results.length, results_options.limit_results);
+
+        // Display search metrics
+        searchresults_header.innerText = formatSearchMetric(resultcount, searchterm);
+
+        // Clear and insert results
+        const searchterms = searchterm.split(" ");
+        removeChildren(searchresults);
+
+        for (let i = 0; i < resultcount; i++) {
+          const resultElem = document.createElement("li");
+          resultElem.innerHTML = formatSearchResult(results[i], searchterms);
+          searchresults.appendChild(resultElem);
+        }
+
+        // Display results
+        showResults(true);
+      };
+
+      const searchterm = searchbar.value.trim();
+
+      if (searchterm != "") {
+        searchbar.classList.add("active");
+        doSearch(searchterm);
+      }
+      else {
+        searchbar.classList.remove("active");
+        showResults(false);
+        removeChildren(searchresults);
+      }
+      setSearchUrlParameters(searchterm, "push_if_new_search_else_replace");
+
+      // Remove marks
+      marker.unmark();
+    };
 
     document.addEventListener("keyup", e => {
       if (e.key != 'Escape') {
@@ -316,61 +413,59 @@ window.search = window.search || {};
 
       tmp.focus();
       tmp.remove();
-    }, false);
+    }, { once: false, passive: true });
+
+    // On reload or browser history backwards/forwards events, parse the url and do search or mark
+    const doSearchOrMarkFromUrl = () => {
+      // Check current URL for search request
+      const url = parseURL(window.location.href);
+
+      if (url.params.hasOwnProperty.call(URL_SEARCH_PARAM) && url.params[URL_SEARCH_PARAM] != "") {
+        showSearch(true);
+
+        searchbar.value = decodeURIComponent(
+          (url.params[URL_SEARCH_PARAM] + "").replace(/\+/g, "%20")
+        );
+
+        searchbarKeyUpHandler();
+      }
+      else {
+        showSearch(false);
+      }
+
+      if (url.params.hasOwnProperty.call(URL_MARK_PARAM)) {
+        marker.mark(decodeURIComponent(url.params[URL_MARK_PARAM]).split(" "), {
+          exclude: mark_exclude,
+        });
+
+        const markers = document.querySelectorAll("mark");
+
+        const hide = () => {
+          markers.forEach(x => x.classList.add("fade-out"));
+        }
+
+        markers.forEach(x => {
+          x.addEventListener("click", hide, { once: false, passive: true })
+        });
+
+        globalThis.setTimeout(() => {
+          marker.unmark();
+        }, 300);
+      }
+    };
 
     // If the user uses the browser buttons, do the same as if a reload happened
     window.onpopstate = () => {
       doSearchOrMarkFromUrl();
     };
 
-    // Suppress "submit" events so the page doesn't reload when the user presses Enter
+    // Suppress "submit" events so thje page doesn't reload when the user presses Enter
     document.addEventListener("submit", e => {
       e.preventDefault();
-    }, false);
+    }, { once: false, passive: false });
 
     // If reloaded, do the search or mark again, depending on the current url parameters
     doSearchOrMarkFromUrl();
-  };
-
-  // On reload or browser history backwards/forwards events, parse the url and do search or mark
-  const doSearchOrMarkFromUrl = () => {
-    // Check current URL for search request
-    const url = parseURL(window.location.href);
-
-    if (url.params.hasOwnProperty.call(URL_SEARCH_PARAM) && url.params[URL_SEARCH_PARAM] != "") {
-      showSearch(true);
-
-      searchbar.value = decodeURIComponent(
-        (url.params[URL_SEARCH_PARAM] + "").replace(/\+/g, "%20")
-      );
-
-      searchbarKeyUpHandler(); // -> doSearch()
-    }
-    else {
-      showSearch(false);
-    }
-
-    if (url.params.hasOwnProperty.call(URL_MARK_PARAM)) {
-      marker.mark(decodeURIComponent(url.params[URL_MARK_PARAM]).split(" "), {
-        exclude: mark_exclude,
-      });
-
-      const markers = document.querySelectorAll("mark");
-
-      const hide = () => {
-        for (let i = 0; i < markers.length; i++) {
-          markers[i].classList.add("fade-out");
-
-          globalThis.setTimeout(() => {
-            marker.unmark();
-          }, 300);
-        }
-      };
-
-      for (let i = 0; i < markers.length; i++) {
-        markers[i].addEventListener("click", hide);
-      }
-    }
   };
 
   const showSearch = yes => {
@@ -382,114 +477,14 @@ window.search = window.search || {};
       search_wrap.classList.add("hidden");
       searchicon.setAttribute("aria-expanded", "false");
 
+      //searchresults.children.forEach(x => x.classList.remove("focus"));
       const results = searchresults.children;
 
       for (let i = 0; i < results.length; i++) {
         results[i].classList.remove("focus");
       }
     }
-  };
-
-  const showResults = yes => {
-    if (yes) {
-      searchresults_outer.classList.remove("hidden");
-    }
-    else {
-      searchresults_outer.classList.add("hidden");
-    }
-  };
-
-  // Eventhandler for search icon
-  const searchIconClickHandler = () => {
-    if (search_wrap.classList.contains("hidden")) {
-      showSearch(true);
-      window.scrollTo(0, 0);
-      searchbar.select();
-    }
-    else {
-      showSearch(false);
-    }
-  };
-
-  // Eventhandler for keyevents while the searchbar is focused
-  const searchbarKeyUpHandler = () => {
-    const searchterm = searchbar.value.trim();
-
-    if (searchterm != "") {
-      searchbar.classList.add("active");
-      doSearch(searchterm);
-    }
-    else {
-      searchbar.classList.remove("active");
-      showResults(false);
-      removeChildren(searchresults);
-    }
-    setSearchUrlParameters(searchterm, "push_if_new_search_else_replace");
-
-    // Remove marks
-    marker.unmark();
-  };
-
-  // Update current url with ?URL_SEARCH_PARAM= parameter, remove ?URL_MARK_PARAM and #heading-anchor .
-  // `action` can be one of "push", "replace", "push_if_new_search_else_replace"
-  // and replaces or pushes a new browser history item.
-  // "push_if_new_search_else_replace" pushes if there is no `?URL_SEARCH_PARAM=abc` yet.
-  const setSearchUrlParameters = (searchterm, action) => {
-    const url = parseURL(window.location.href);
-    const first_search = !url.params.hasOwnProperty.call(URL_SEARCH_PARAM);
-
-    if (searchterm != "" || action == "push_if_new_search_else_replace") {
-      url.params[URL_SEARCH_PARAM] = searchterm;
-      delete url.params[URL_MARK_PARAM];
-      url.hash = "";
-    }
-    else {
-      delete url.params[URL_MARK_PARAM];
-      delete url.params[URL_SEARCH_PARAM];
-    }
-
-    // A new search will also add a new history item, so the user can go back
-    // to the page prior to searching. A updated search term will only replace
-    // the url.
-    if (action == "push" || (action == "push_if_new_search_else_replace" && first_search)) {
-      history.pushState({}, document.title, renderURL(url));
-    }
-    else if (action == "replace" || (action == "push_if_new_search_else_replace" && !first_search)) {
-      history.replaceState({}, document.title, renderURL(url));
-    }
-  };
-
-  const doSearch = searchterm => {
-    // Don't search the same twice
-    if (current_searchterm == searchterm) {
-      return;
-    }
-    current_searchterm = searchterm;
-
-    if (!searchindex) {
-      return;
-    }
-
-    // Do the actual search
-    const results = searchindex.search(searchterm, search_options);
-    const resultcount = Math.min(results.length, results_options.limit_results);
-
-    // Display search metrics
-    searchresults_header.innerText = formatSearchMetric(resultcount, searchterm);
-
-    // Clear and insert results
-    const searchterms = searchterm.split(" ");
-    removeChildren(searchresults);
-
-    for (let i = 0; i < resultcount; i++) {
-      const resultElem = document.createElement("li");
-      resultElem.innerHTML = formatSearchResult(results[i], searchterms);
-      searchresults.appendChild(resultElem);
-    }
-
-    // Display results
-    showResults(true);
-  };
+  }
 
   fetch(rootPath + "searchindex.json")
     .then(response => response.json())
