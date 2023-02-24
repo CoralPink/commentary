@@ -1,14 +1,14 @@
 @use 'variables' as var;
 
 @media only screen and (max-width: var.$enable-pagetoc) {
-  .sidetoc {
+  .righttoc {
     display: none;
     flex-basis: 0%;
   }
 }
 
 @media only screen and (min-width: var.$enable-pagetoc) {
-  .sidetoc {
+  .righttoc {
     flex-basis: 20%;
   }
   .pagetoc {
@@ -56,7 +56,7 @@
 }
 
 @media print {
-  .sidetoc {
+  .righttoc {
     display: none;
   }
 }
