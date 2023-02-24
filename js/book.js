@@ -47,53 +47,43 @@
   const themePopup = document.getElementById('theme-list');
   const themeColorMetaTag = document.querySelector('meta[name="theme-color"]');
 
-  const get_theme = () => {
+  const getTheme = () => {
     let theme;
 
     try {
       theme = localStorage.getItem('mdbook-theme');
     } catch (_e) {
-      console.log('ERROR: get_theme#mdbook-theme');
+      console.log('ERROR: getTheme#mdbook-theme');
     }
     return theme != null ? theme : defaultTheme;
   };
 
-  const updateThemeSelected = () => {
-    themePopup.querySelectorAll('.theme-selected')
-      .forEach(el => el.classList.remove('theme-selected'));
+  let currentTheme = getTheme();
 
-    themePopup.querySelector('button#' + get_theme()).classList.add('theme-selected');
-  };
+  const setTheme = theme => {
+    if (theme == currentTheme) {
+      return;
+    }
 
-  const set_theme = (theme, store = true) => {
+    html.classList.remove(currentTheme);
+    html.classList.add(theme);
+
     setTimeout(() => {
       themeColorMetaTag.content = window.getComputedStyle(document.body).backgroundColor;
     }, 1);
 
-    const previousTheme = get_theme();
+    themePopup.querySelectorAll('.theme-selected')
+      .forEach(el => el.classList.remove('theme-selected'));
 
-    if (store) {
-      try {
-        localStorage.setItem('mdbook-theme', theme);
-      } catch (_e) {
-        console.log('ERROR: set_theme#mdbook-theme');
-      }
-    }
-
-    if (theme == previousTheme) {
-      return;
-    }
-
-    html.classList.remove(previousTheme);
-    html.classList.add(theme);
-
-    updateThemeSelected();
+    themePopup.querySelector('button#' + theme).classList.add('theme-selected');
 
     try {
       localStorage.setItem('mdbook-theme', theme);
     } catch (_e) {
-      console.log('ERROR: set_theme#mdbook-theme');
+      console.log('ERROR: setTheme#mdbook-theme');
     }
+
+    currentTheme = theme;
   };
 
   const hideThemes = () => {
@@ -105,11 +95,8 @@
   const showThemes = () => {
     themePopup.style.display = 'block';
     themeToggleButton.setAttribute('aria-expanded', true);
-    themePopup.querySelector('button#' + get_theme()).focus();
+    themePopup.querySelector('button#' + currentTheme).focus();
   };
-
-  // Set theme
-  set_theme(get_theme(), false);
 
   themeToggleButton.addEventListener('click', () => {
     themePopup.style.display === 'block' ? hideThemes() : showThemes();
@@ -117,10 +104,7 @@
 
   themePopup.addEventListener('click', e => {
     if (e.target.className === 'theme') {
-      set_theme(e.target.id);
-    }
-    else if (e.target.parentElement.className === 'theme') {
-      set_theme(e.target.parentElement.id);
+      setTheme(e.target.id);
     }
   }, { once: false, passive: true });
 
@@ -222,7 +206,7 @@
     html.classList.contains('sidebar-hidden') ? showSidebar() : hideSidebar();
   }, { once: false, passive: true });
 
-  let timeoutId;
+  let timeoutId = null;
 
   globalThis.addEventListener('resize', () => {
     clearTimeout(timeoutId);
