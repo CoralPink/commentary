@@ -13,8 +13,7 @@
   }
   .pagetoc {
     position: fixed;
-    width: var.$pagetoc-width;
-    margin-left: 3rem;
+    min-width: var.$pagetoc-width;
     font-style: italic;
 
     a {
