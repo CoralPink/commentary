@@ -26,7 +26,7 @@ telescope 内部をオーバーライドして、任意の picker に対して �
 
 Doom Emacs already brings something like that. VSCode too. Is super useful to have the recent picks at the top of any picker.
 
-Doom Emacs はすでにそのようなものをもたらしています。VSCodeも。ピッカーの一番上に最近のピックがあるのは超便利です。
+Doom Emacs は既にそのようなものをもたらしています。VSCodeも。ピッカーの一番上に最近のピックがあるのは超便利です。
 ```
 
 "super useful"❗訳して「超便利」❗
@@ -204,8 +204,8 @@ after = 'telescope.nvim',
 
 ~~~admonish info title=":h packer.use()"
 ```txt
-    after = string or list,      -- Specifies plugins to load before this plugin.
-                                    このプラグインの前にロードするプラグインを指定します。
+after = string or list,      -- Specifies plugins to load before this plugin.
+                                このプラグインの前にロードするプラグインを指定します。
 ```
 ~~~
 
