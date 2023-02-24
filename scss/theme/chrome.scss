@@ -1,14 +1,10 @@
 @use '../variables' as var;
 
 #searchresults a,
-.content a:link,
+.content main a:link,
 a:visited,
 a > .hljs {
   color: var(--links);
-}
-
-#body-container {
-  overflow-x: hidden;
 }
 
 #menu-bar {
@@ -281,7 +277,6 @@ ul {
   bottom: 0;
 
   width: var.$sidebar-width;
-  box-sizing: border-box;
   overscroll-behavior-y: contain;
 
   color: var(--sidebar-fg);
@@ -313,14 +308,9 @@ ul {
 }
 
 .chapter {
-  list-style: none outside none;
-  padding-left: 2px;
-  line-height: 2em;
+  padding-left: 1em;
+  line-height: 2.2em;
   font-size: 1.1em;
-
-  ol {
-    width: 100%;
-  }
 
   li {
     display: flex;
@@ -328,16 +318,12 @@ ul {
     font-style: italic;
 
     a {
-      display: block;
-      padding: 0;
-      text-decoration: none;
       color: var(--sidebar-fg);
 
-      &:hover {
-        color: var(--sidebar-active);
-      }
+      &:hover,
       &.active {
         color: var(--sidebar-active);
+        text-decoration: none;
       }
     }
 
@@ -359,13 +345,9 @@ ul {
       display: none;
     }
 
-    &.chapter-item {
-      margin: 2px 12px;
-    }
-
     &.part-title {
       color: var(--sidebar-fg);
-      margin: 12px auto 0px;
+      margin: 12px auto 2px;
       font-weight: bold;
       background-image: linear-gradient(to right, var.$color_pink 50%, var(--bg));
       background-repeat: no-repeat;
@@ -379,17 +361,8 @@ ul {
   }
 }
 
-.spacer {
-  background-color: var(--sidebar-spacer);
-  width: 100%;
-  height: 3px;
-  margin: 5px 0px;
-}
-
 .section {
-  list-style: none outside none;
-  padding-left: 7px;
-  line-height: 1.9em;
+  padding-left: 10px;
 }
 
 .theme-popup {
@@ -430,8 +403,10 @@ ul {
   }
 }
 .theme-selected::before {
+  $theme-width: 14px;
+
   display: inline-block;
   content: '✓';
-  margin-left: -14px;
-  width: 14px;
+  margin-left: 0px - $theme-width;
+  width: $theme-width;
 }
