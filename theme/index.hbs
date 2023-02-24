@@ -37,12 +37,6 @@
 
     <script src="{{ path_to_root }}start.js" id="start" data-defaulttheme="{{ default_theme }}"></script>
 
-    <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-      <div class="sidebar-scrollbox">
-        {{#toc}}{{/toc}}
-      </div>
-    </nav>
-
     <div id="page-wrapper" class="page-wrapper">
 
       <div class="page">
@@ -99,13 +93,18 @@
           </form>
           <div id="searchresults-outer" class="searchresults-outer hidden">
             <div id="searchresults-header" class="searchresults-header"></div>
-            <ul id="searchresults">
-            </ul>
+            <ul id="searchresults"></ul>
           </div>
         </div>
         {{/if}}
 
         <div id="content" class="content">
+          <div id="sidebar" class="sidebar" aria-label="Table of contents">
+            <nav class="sidebar-scrollbox">
+              {{#toc}}{{/toc}}
+            </nav>
+          </div>
+
           <main>
             {{{ content }}}
 
@@ -126,7 +125,7 @@
 
           <spacer></spacer>
 
-          <div class="sidetoc">
+          <div class="righttoc">
             <nav class="pagetoc"></nav>
           </div>
         </div>
