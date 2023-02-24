@@ -32,35 +32,38 @@ code {
   margin-top: calc(0px - var.$menu-bar-height); // Compensate for the #menu-bar-hover-placeholder
 }
 .page-wrapper {
-  box-sizing: border-box;
-
   .js:not(.sidebar-resizing) & {
     transition: margin-left 0.3s ease, transform 0.3s ease; // Animation: slide away
-  }
-}
-@mixin flexballance {
-  @media only screen and (max-width: var.$enable-pagetoc) {
-    flex-basis: 100%;
-  }
-
-  @media only screen and (min-width: var.$enable-pagetoc) {
-    flex-basis: 80%;
   }
 }
 
 .content {
   display: flex;
-  padding: 1em 2em 5em 2em;
+  padding: 0em 3em;
 
-  overflow-y: auto;
+  $spacer-width: 2%;
+
+  @mixin flexballance {
+    @media only screen and (max-width: var.$enable-pagetoc) {
+      flex-basis: 100% - $spacer-width;
+    }
+
+    @media only screen and (min-width: var.$enable-pagetoc) {
+      flex-basis: 80% - $spacer-width;
+    }
+  }
 
   main {
     font-size: 1.3rem;
-    margin-left: 0.7em;
     min-width: 0px;
-
     @include flexballance();
   }
+
+  spacer {
+    min-width: 0px;
+    flex-basis: $spacer-width;
+  }
+
   a {
     text-decoration: none;
 
