@@ -40,12 +40,19 @@
 
 // themes
 (() => {
-  const html = document.querySelector('html');
-  const defaultTheme = document.getElementById('book').dataset.defaulttheme;
-
-  const themeToggleButton = document.getElementById('theme-toggle');
   const themePopup = document.getElementById('theme-list');
-  const themeColorMetaTag = document.querySelector('meta[name="theme-color"]');
+  const themeToggleButton = document.getElementById('theme-toggle');
+
+  const changeTheme = (theme) => {
+    themePopup.querySelectorAll('.theme-selected')
+      .forEach(el => el.classList.remove('theme-selected'));
+
+    themePopup.querySelector('button#' + theme).classList.add('theme-selected');
+
+    setTimeout(() => {
+      document.querySelector('meta[name="theme-color"]').content = window.getComputedStyle(document.body).backgroundColor;
+    }, 1);
+  }
 
   const getTheme = () => {
     let theme;
@@ -55,7 +62,15 @@
     } catch (_e) {
       console.log('ERROR: getTheme#mdbook-theme');
     }
-    return theme != null ? theme : defaultTheme;
+
+    if (theme != null) {
+      return theme;
+    }
+
+    const defaultTheme = document.getElementById('book').dataset.defaulttheme;
+    changeTheme(defaultTheme);
+
+    return defaultTheme;
   };
 
   let currentTheme = getTheme();
@@ -65,17 +80,11 @@
       return;
     }
 
+    changeTheme(theme);
+
+    const html = document.querySelector('html');
     html.classList.remove(currentTheme);
     html.classList.add(theme);
-
-    setTimeout(() => {
-      themeColorMetaTag.content = window.getComputedStyle(document.body).backgroundColor;
-    }, 1);
-
-    themePopup.querySelectorAll('.theme-selected')
-      .forEach(el => el.classList.remove('theme-selected'));
-
-    themePopup.querySelector('button#' + theme).classList.add('theme-selected');
 
     try {
       localStorage.setItem('mdbook-theme', theme);
