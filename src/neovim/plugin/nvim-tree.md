@@ -281,6 +281,7 @@ require('nvim-tree').setup {
       exclude = { '.git', 'target', 'build' },
     },
   },
+
   on_attach = 'default'
 }
 
@@ -566,7 +567,7 @@ When on_attach is not a function, |nvim-tree-mappings-default| will be called.
 
 nvim-tree バッファを作成するときに実行されます。これを使用して、nvim-tree 固有のマッピングを設定します。
 特有のマッピングを設定するために使用します。nvim-tree-mappings を参照してください。
-on_attachが関数でない場合、nvim-tree-mappings-default が呼び出される。
+on_attachが関数でない場合、nvim-tree-mappings-default が呼び出されます。
 
   Type: `function(bufnr) | string`, Default: `"default"`
 ```
@@ -586,7 +587,9 @@ on_attachが関数でない場合、nvim-tree-mappings-default が呼び出さ�
 「あなたまさか直子のこと忘れちゃったんじゃないでしょうね？」
 
 「忘れやしませんよ」と笑って言った。「ただ話に引き込まれてたんです」
+```
 
+```admonish fail title=""
 「もし話のつづき聞きたいんなら明日話してあげるわよ。長い話だから一度には話せないのよ」
 
 「まるでシエラザードですね」
