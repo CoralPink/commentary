@@ -85,5 +85,6 @@
     - [Config](neovim/plugin/telescope-config.md)
     - [telescope-all-recent](neovim/plugin/telescope-all-recent.md)
   - [nvim-tree.lua](neovim/plugin/nvim-tree.md)
+    - [Actions](neovim/plugin/nvim-tree-actions.md)
 
 # ... To Be Continued.
