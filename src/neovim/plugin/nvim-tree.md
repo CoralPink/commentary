@@ -83,10 +83,10 @@ Your terminal emulator must be configured to use that font, usually "Hack Nerd F
 
 ![netrw](img/netrw.webp)
 
-コマンドモードから`Ex`で呼び出せます。
+コマンド`:Ex`で呼び出せます。
 
-この機能については、わたしもそこまで詳しくないのであまり説明とかはできませんが、
-ぶっちゃけて言っちゃえば、`nvim-tree.lua`と "もろ被り" な機能です❗
+この機能については、わたしもそこまで詳しくないのであまり説明できませんが、
+ぶっちゃけて言えば、`nvim-tree.lua`と "もろ被り" な機能です❗
 
 ~~~admonish info title=":h pi_netrw"
 ```txt
@@ -103,11 +103,11 @@ Copyright: Copyright (C) 2017 Charles E Campbell    netrw-copyright
 
 ~~~
 
-...いや `nvim-tree.lua`が`netrw`に被せに行ったと言うべきか🤔
+...いや `nvim-tree.lua`が`netrw`にもろ被せに行ったと言うべきか🤔
 
 まあ、どっちにしろ機能が重複しちゃうので「どっちかにしましょ」と言うことですね😆
 
-以下の設定によって、`netrw`が無効化されます。
+以下のコードによって、`netrw`を無効化できます。
 
 ```lua
 vim.api.nvim_set_var('loaded_netrw', 1)
@@ -115,7 +115,7 @@ vim.api.nvim_set_var('loaded_netrwPlugin', 1)
 ```
 
 ```admonish note
-また改めて示すので、実際に記述するのは次節でも大丈夫です❗
+また改めてコードを示すので、実際に記述するのは次節でも大丈夫です❗
 ```
 
 これを行うのは、`nvim-tree.lua`がオフィシャルに
@@ -125,15 +125,15 @@ disable netrw at the very start of your init.lua (strongly advised)
 init.luaの最初の部分でnetrwを無効にする (強く推奨)
 ```
 
-...と、何やら強く推奨しているためです。
+...と、何やら力強く推奨しているためです。
 
 ```admonish tip
-実は、わたしが普段使用している環境では`extensions/nvim-tree.lua`の先頭に置いています。
+わたしが普段使用している環境では`extensions/nvim-tree.lua`の先頭に置いています。
 
-これは、`nvim-tree`の使用をやめた際に「`netrw`の "無効化を無効化" できる」という利便性が得られるためなのですが、
-本当にこれで問題が無いのかどうか、ちょっと不確かな壁がありました😅
+これは、`nvim-tree`の使用をやめた際に「`netrw`の "無効化を無効化" できる」という利便性を得るためですが、
+本当にこれで問題が無いのかどうかは、ちょっと不確かな壁です😅
 
-なので、このサイトでは素直に`nvim`ディレクトリ直下の`init.lua`の最初の部分に置くことをオススメする方向でいくことにします❗
+なので、このサイトでは素直に`nvim`ディレクトリ直下の`init.lua`の最初の部分に置くことをオススメしていきます❗
 ```
 
 ```admonish note
@@ -142,13 +142,12 @@ init.luaの最初の部分でnetrwを無効にする (強く推奨)
 Captain Marvel と呼称することがあるんですよねー。}}
 が登場してきましたね✨
 
-ここで出番があるなんて、わたしもうっかりさんでした😅
+ここで出番があるなんて、わたしもうっかりさんでした❗
 ```
 
 ## Install & Settings
 
-それでは、インストールに進みましょう。
-今回はまず一度、デフォルト設定で動かしてみましょう。
+それでは、インストールに進みましょう。今回は先にデフォルトで動かしてみることにします。
 
 まずは、これを忘れずにね😉
 
@@ -181,7 +180,7 @@ vim.api.nvim_create_user_command('Ex', function() vim.cmd.NvimTreeToggle() end, 
 ```
 ~~~
 
-そしたら、コマンドから`Ex`を実行してみましょう。
+そしたら、コマンド`:Ex`を実行してみましょう。
 
 ![nvim-tree-default](img/nvim-tree-default.webp)
 
@@ -190,13 +189,13 @@ vim.api.nvim_create_user_command('Ex', function() vim.cmd.NvimTreeToggle() end, 
 繰り返しになりますが、`Ex`コマンドは本来`netrw`のコマンドです。
 なんですが❗ 無効化したので乗っ取ってやろうっていう魂胆ですね😼
 
-で、ここで不意を突いてやってきた`nvim_create_user_command`については`14.4節`でしれっと触れてました、実は😆
+ここで不意を突いて現れた`nvim_create_user_command`については`14.4節`にて、実はしれっと触れてました😆
 
 ```admonish info title="[14.4 Call The Plugin](../function/call-plugin.html#nvim_create_user_command)"
 もう一個だけやっておきたいのは、独自コマンドからプラグインを使うパターンです。
 ```
 
-そう❗今回帰ってくるのは Captain Marvel だけではなかったのです🤗 おかえり❗
+なんと今回、帰ってくるのは Captain Marvel だけではなかったのです❗おかえり🤗
 
 ~~~admonish tip
 再会に水を差すようですが、わざわざコマンド打つのはめんどくさいよーって場合はいつも通りキーマップを使うことも、もちろん可能です。
@@ -282,7 +281,7 @@ require('nvim-tree').setup {
       exclude = { '.git', 'target', 'build' },
     },
   },
-  on_attach = "default"
+  on_attach = 'default'
 }
 
 vim.api.nvim_create_user_command('Ex', function() vim.cmd.NvimTreeToggle() end, {})
@@ -295,7 +294,7 @@ vim.api.nvim_create_user_command('Ex', function() vim.cmd.NvimTreeToggle() end, 
 
 いくつかはデフォルト設定のままだったり、記述を省いている項目も (あり得ないほど) たくさんあります。
 
-(これもやっぱり毎回同じ文言になっちゃうんですが...、) ぜひ色々試してみてください😆
+これもやっぱり毎回同じ文言になっちゃうんですが... ぜひ色々試してみてください😆
 
 ## setup
 
@@ -308,10 +307,10 @@ nvim-tree を初期化するには、setup() 関数を実行する必要があ�
 ~~~
 
 `:h nvim-tree-setup`を見てもらえれば分かる通り、
-これらのパラメータを全部ここに載せてるとほんとに何ヶ月かかるか分かりません...。
+これらを全部ここに載せてるとほんとに何ヶ月かかるか分かりません...。
 
-なので、ちょこちょことわたしが使用しているパラメータ「だけ」フワ〜っと触れます。
-ただ、これもやっぱりある程度はパラメータの名前から推測できるはずです😆
+なので、ちょこちょことわたしが使用しているパラメータ "だけ" フワ〜っと触れます。
+と言っても、これもやっぱりある程度はパラメータの名前からイメージできるはずです😆
 
 ### sort_by
 
@@ -351,7 +350,7 @@ Example として示されているような`function`を使えば、オリジ�
 ```txt
 Window / buffer setup.
 
-ウィンドウ/バッファの設定。
+ウィンドウ / バッファの設定。
 ```
 
 #### width
@@ -371,6 +370,8 @@ Window / buffer setup.
     Type: `string | number | function | table`, Default: `30`
 ```
 ~~~
+
+説明不要ですね😉
 
 #### side
 
@@ -400,14 +401,15 @@ Window / buffer setup.
 ```
 ~~~
 
-これは多分`LSP`とか`lint`関連の表示だと思うんですが、わたしは`no`にしてます。
+多分`LSP`とか`lint`関連の表示だと思うんですが、
+これについては他の領域やプラグインの機能を使用して表示していることもあって、わたしは`no`で常用してます。
 
 ### renderer
 
 ```txt
 UI rendering setup
 
-UIレンダリングの設定
+UI レンダリングの設定
 ```
 
 #### highlight_git
@@ -427,7 +429,7 @@ UIレンダリングの設定
 ```
 ~~~
 
-わたしとしては、`git`情報はある程度目立たせておいた方が安心かなーって思ってます❗
+診断記号列とは逆に、`git`情報はある程度目立たせておいた方が安心かなーって思ってるので有効にしてます。❗
 
 #### highlight_opened_files
 
@@ -445,6 +447,8 @@ UIレンダリングの設定
     Type: `string`, Default: `"none"`
 ```
 ~~~
+
+説明のままですが、現在開かれているファイルをハイライトして区別できます 🐵
 
 #### icons
 
@@ -464,7 +468,7 @@ Configuration options for icon glyphs.
 NOTE: Do not set any glyphs to more than two characters if it's going
 to appear in the signcolumn.
 
-  サインカラムに表示される場合は、グリフを2文字以上に設定しないでください。
+  サインカラムに表示される場合は、グリフを 2文字以上に設定しないでください。
 ```
 
 ###### git
@@ -474,7 +478,7 @@ to appear in the signcolumn.
   nvim-tree.renderer.icons.glyphs.git
   Glyphs for git status.
 
-  gitのステータスを表すグリフです。
+  git のステータスを表すグリフです。
 
     Type: `table`, Default:
       `{`
@@ -489,7 +493,7 @@ to appear in the signcolumn.
 ```
 ~~~
 
-ちょっと前に「なんで "決定" が [×ボタン] なんだー⁉️ 」とかいうゲームコントローラーの話題があって、
+だいぶ以前に「なんで "決定" が [×ボタン] なんだー⁉️ 」とかいうゲームコントローラーの話題があって、
 これと似てる気がするんですが、どうしても`unsgated`が`✗`って慣れない...。`deleted`じゃないの❓それ😮
 
 あと`untracked`⭐😋
@@ -510,6 +514,48 @@ Configuration for various actions.
 様々なアクションを行うための設定。
 ```
 
+#### expand_all
+
+~~~admonish info title=":h nvim-tree.actions.expand_all"
+```txt
+  Configuration for expand_all behaviour.
+
+  動作に関する設定
+```
+~~~
+
+##### max_folder_discovery
+
+~~~admonish info title=":h nvim-tree.actions.expand_all.max_folder_discovery"
+```txt
+  Limit the number of folders being explored when expanding every folders.
+  Avoids hanging neovim when running this action on very large folders.
+
+  すべてのフォルダーを展開する際に、探索されるフォルダーの数を制限します。
+  非常に大きなフォルダーに対してこのアクションを実行したときに、neovim がハングアップするのを防ぎます。
+
+    Type: `number`, Default: `300`
+```
+~~~
+
+デフォルトは`300`ですが、わたしは`100`の弱気設定です 🐥
+
+##### exclude
+
+~~~admonish info title=":h nvim-tree.actions.expand_all"
+```txt
+  A list of directories that should not be expanded automatically.
+
+  自動的に展開されないようにするディレクトリのリストです。
+
+  E.g `{ ".git", "target", "build" }` etc.
+    Type: `table`, Default: `{}`
+```
+~~~
+
+わたしの例では、デフォルト設定そのままで特に困っていないのですが、
+人によってはきっちり決めておきたい項目ではないでしょうか。
+
 ### on_attach
 
 ~~~admonish info title=":h nvim-tree.on_attach"
@@ -526,16 +572,15 @@ on_attachが関数でない場合、nvim-tree-mappings-default が呼び出さ�
 ```
 ~~~
 
-もう既にお気付きかもしれませんが、
-つい最近`nvim-tree.lua`で使用するキーマッピングの設定方法に変更が入りました。
+既にお気付きかもしれませんが、つい最近`nvim-tree.lua`で使用するキーマッピングの設定方法に変更が入りました。
 
 ```admonish info title="[New Mapping Method 2023-02-27](https://github.com/nvim-tree/nvim-tree.lua#new-mapping-method-2023-02-27)"
 :help nvim-tree.view.mappings have been deprecated in favour of :help nvim-tree.on_attach. Please visit Migrating To on_attach to transition.
 ```
 
-このページを書き出したタイミングとちょうど重なったため、こっちの新しい方法で紹介します😉
+わたしがこのページを書き出したタイミング良く重なったため、こっちの新しい方法で紹介します😉
 
-ただ、もうなんか長くなってきちゃったので、例によってここで一旦区切ります。
+...ただ、なんか長くなってきちゃったので、例によってここで一旦区切ります。
 
 ```admonish fail title=""
 「あなたまさか直子のこと忘れちゃったんじゃないでしょうね？」
