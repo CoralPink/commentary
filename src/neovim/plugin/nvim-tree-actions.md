@@ -53,8 +53,10 @@ This bird had flown
 しれっと流しましたが、ここでも`telescope.nvim`が登場します❗
 ```
 
-次節ですぐコードを載せますが、ちょっと大きいので別ファイルにしたいと思います。
+次項ですぐコードを載せますが、ちょっと大きいので別ファイルにしたいと思います。
 無いものを`require`してエラーを出すのも面白くないので、読み込み先をあらかじめ用意しておきましょう。
+
+ファイル名は`nvim-tree-actions.lua`としました。
 
 ~~~admonish example title="extensions/nvim-tree-actions.lua"
 ```lua
@@ -292,7 +294,7 @@ This function runs when the nvim-tree buffer is created.
 
 "FILTER" の入力欄が現れましたね。ちゃんと動いてます😉
 
-じゃあ、次❗どんどん行かないとまた長くなっちゃうんで❗
+じゃあ次❗どんどん行かないとまた長くなっちゃうんで❗
 
 ### Recipes
 
@@ -302,10 +304,11 @@ This function runs when the nvim-tree buffer is created.
 @Tolomeo
 
 It is possible to use Telescope as a menu, listing custom items and executing a callback on item selection.
+
 Telescopeをメニューとして使用し、カスタムアイテムをリストアップし、アイテム選択時にコールバックを実行することが可能です。
 ```
 
-コードは複雑なのでわたしが下手に説明するよりはコードを読み解いてもらった方が良いのですが、
+わたしが下手に説明するよりはコードを読み解いてもらった方が良いのですが、
 
 大まかには`command`の内容を利用して別で`menuCommand`を作って...
 
@@ -339,14 +342,13 @@ local function actionsMenu(nd)
       -- (以下略)
 ```
 
-前節と同じ要領で`NvimTree`にフォーカスしている状態で`Space`キーをぽちっと。😆
+前節と同じ要領で`NvimTree`にフォーカスしている状態で`Space`キーをぽちっと😆
 
 こんなん出ました❗
 
 ![nvim-tree-menu-action](img/nvim-tree-menu-action.webp)
 
-操作は`telescope`と同じなので分かりますよね。項目を選べばちゃんと登録された内容が実行されます☺️
-
+操作は`telescope`と同じなのでもう説明不要ですね。項目を選べばちゃんと登録された内容が実行されます☺️
 
 ### Mouse Using
 
@@ -396,9 +398,9 @@ So I lit a fire
 
 Isn’t it good Norwegian wood?
 
-だから僕は燃やしてやったんだ
+だから僕は火をつけてやった
 
-「綺麗だろ？ノルウェーの家具が燃えている」{{footnote:
+いいじゃない？ ノルウェーの木だもんな{{footnote:
 Paul McCartney は曲の最後の節についてコメントをしている。
 「僕らの考えでは、あの男は何らかの復讐をしなければならなかった。
 "暖を取るために火をつけた" という意味でもよかったし、"彼女の家の装飾は素晴らしかった" で終わっても良かった。
