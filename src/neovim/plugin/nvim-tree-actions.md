@@ -3,7 +3,7 @@
 ```admonish quote title=""
 And when I awoke I was alone
 
-This bird had flown
+This bird has flown
 
 目が覚めたら 僕は一人だった
 
@@ -63,7 +63,7 @@ This bird had flown
 local M = {}
 
 function M.on_attach(bufnr)
-  -- とりあえず空っぽ〜
+  -- とりあえずからっぽ〜
 end
 
 return M
@@ -435,11 +435,11 @@ Paul McCartney は曲の最後の節についてコメントをしている。
 ```
 
 ```admonish success title="Assemble"
-綺麗でしょ❓"ノルウェイの森"。
+いいじゃない❓"ノルウェイの森"。
 
 次回からは、いよいよ`LSP`を取り上げていきます...❗
 
 桜が満開になった頃にまたお会いしましょう🌸 {{footnote: とは書いてはみたものの、間に合わなくても堪忍して...。}}
 
-良い春を🌸 Auf Wiedersehen! 🤗
+よい春を🌸 Auf Wiedersehen! 🤗
 ```

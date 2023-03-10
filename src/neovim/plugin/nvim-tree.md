@@ -170,7 +170,7 @@ vim.api.nvim_create_user_command('Ex', function() vim.cmd.NvimTreeToggle() end, 
 ```
 ~~~
 
-~~~admonish example title="extensions/nvim-tree.lua"
+~~~admonish example title="extensions/init.lua"
 ```lua
   use {
     'nvim-tree/nvim-tree.lua',
