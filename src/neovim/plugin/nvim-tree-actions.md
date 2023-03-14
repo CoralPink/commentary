@@ -261,7 +261,7 @@ apiは複数のモジュールに分かれており、アクセスするには
 
 それを`M.on_attach`の中で取得してループをぐるぐるして`vim.keymap.set`に順番に入れてます。
 
-オリジナリティーを発揮してるところは、キー定義(インデックス 1)が空っぽだったら無視するというところぐらいでしょうか。
+オリジナリティーを発揮しているのは、キー定義(インデックス 1)が空っぽだったらスキップするっていう程度でしょうか。
 
 ```lua
 function M.on_attach(bufnr)
@@ -288,24 +288,24 @@ This function runs when the nvim-tree buffer is created.
 まずはベーシックなキーマッピングを確認してみましょう。
 全部確認するのは大変なので、「1個動けば 2個も 100個も一緒でしょ❓😮」の理屈で行きます。
 
-`Filter`を動かしてみましょう。`NvimTree`にフォーカスしている状態で`f`キーをぽちっと。😆
+`Filter`を動かしてみましょう。`NvimTree`にフォーカスしている状態で`f`キーをぽちっと😆
 
 ![nvim-tree-filter](img/nvim-tree-filter.webp)
 
 "FILTER" の入力欄が現れましたね。ちゃんと動いてます😉
 
-じゃあ次❗どんどん行かないとまた長くなっちゃうんで❗
+はい、じゃあ次❗どんどん行かないとまた長くなっちゃうんで❗
 
 ### Recipes
 
-これは`nvim-tree.lua`の`wiki`で公開されているコードを好き勝手やらせてもらってます😅
+最初の方にある`actionsMenu`については、`nvim-tree.lua`の`wiki`で公開されているコードを好き勝手やらせてもらってます😅
 
 ```admonish info title="[Creating an actions menu using Telescope](https://github.com/nvim-tree/nvim-tree.lua/wiki/Recipes#creating-an-actions-menu-using-telescope)"
 @Tolomeo
 
 It is possible to use Telescope as a menu, listing custom items and executing a callback on item selection.
 
-Telescopeをメニューとして使用し、カスタムアイテムをリストアップし、アイテム選択時にコールバックを実行することが可能です。
+Telescopeをメニューとして使用してカスタムアイテムをリストアップし、アイテム選択時にコールバックを実行することが可能です。
 ```
 
 わたしが下手に説明するよりはコードを読み解いてもらった方が良いのですが、
@@ -348,7 +348,7 @@ local function actionsMenu(nd)
 
 ![nvim-tree-menu-action](img/nvim-tree-menu-action.webp)
 
-操作は`telescope`と同じなのでもう説明不要ですね。項目を選べばちゃんと登録された内容が実行されます☺️
+もう`telescope`の操作説明は不要ですね。項目を選べばちゃんと登録された内容が実行されます☺️
 
 ### Mouse Using
 
@@ -412,6 +412,7 @@ Paul McCartney は曲の最後の節についてコメントをしている。
 いや〜...、それで締めると BAD END みたいになっちゃうんで...😿
 
 ## The End !!
+
 ```admonish tip title=""
 スチュワーデスがやってきて、僕の隣りに腰を下ろし、もう大丈夫かと訊ねた。
 
