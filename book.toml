@@ -47,3 +47,4 @@ assets_version = "2.0.0" # do not edit: managed by `mdbook-admonish install`
 [preprocessor.footnote]
 
 [preprocessor.tailor]
+# What if I just want to increase the version of this package?
