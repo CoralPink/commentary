@@ -42,7 +42,7 @@ jobs:
         if: steps.cache-cargo.outputs.cache-hit != 'true'
         run: |
           cargo install mdbook-admonish
-          cargo install mdbook-tailor
+          cargo install --version 0.0.5 mdbook-tailor
 
       - name: Npm Install
         run: |
