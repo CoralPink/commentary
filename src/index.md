@@ -14,7 +14,7 @@
 </div>
 ```
 
-```admonish info title=""
+```admonish fail title=""
 This site introduces `WezTerm` and `Neovim` `dotfiles` that I usually use.
 
 But Japanese only for now. I want to make an English site too❗
@@ -37,13 +37,42 @@ But Japanese only for now. I want to make an English site too❗
 全く初めてだと大変かもしれませんが、もし少しでも興味があったらチャレンジしてもらえると楽しめると思います☺️
 ```
 
-## 使用環境
+## Operating Environment
 
 わたしの使用する環境が`macOS`なので、説明やイメージも主にこれを使用しています。
 
 ```admonish warning
 必要なソフトウェアと設定さえ整っていれば、どのOSでも通用するはずですが、
 100%自信を持っているわけではありません。その点はご了承ください。
+```
+
+## Personal Thoughts on AI Applications
+
+```admonish abstract title=""
+このサイトは、基本的にわたし自身や多くの人の創作・制作で成り立っていますが、以下の2つの点でAIを活用しています。
+
+- AI翻訳ツールを使っています。
+- 場合によっては、AIが生成したプログラムコードを使用することがあります。
+
+わたしはAIの進歩に肯定的です。単純に面白そうだし、日本語しか扱えないわたしにとって他言語への翻訳は欠かせなくなっています。
+
+しかし、「AIと人間を並べて比較しようとする人」には反対です。
+
+競争ではなく、共存こそ目指すべき形であると思います❗
+```
+
+```admonish abstract title=""
+This site is essentially built on the creation and production of myself and many others, but uses AI in the following two respects.
+
+- We use AI translation tools.
+- In some cases, I use AI-generated program code.
+
+I am positive about the progress of AI. It simply looks interesting, and translation into other languages is indispensable for me,
+as I can only handle Japanese.
+
+However, I am against "those who try to compare AI and humans side by side”.
+
+I believe that coexistence, not competition, is the form we should be aiming for❗
 ```
 
 ## Thanks

@@ -12,6 +12,20 @@ This is not an exhaustive list of all settings, but only an explanation for the 
 
 I would be happy if it gives a hint to those who looked at it or helps them in any way😄
 
+## Personal Thoughts on AI Applications
+
+This site is essentially built on the creation and production of myself and many others, but uses AI in the following two respects.
+
+- We use AI translation tools.
+- In some cases, I use AI-generated program code.
+
+I am positive about the progress of AI. It simply looks interesting, and translation into other languages is indispensable for me,
+as I can only handle Japanese.
+
+However, I am against "those who try to compare AI and humans side by side”.
+
+I believe that coexistence, not competition, is the form we should be aiming for❗
+
 ## Thanks
 
 Thanks to application developers!! I enjoy using it💓
