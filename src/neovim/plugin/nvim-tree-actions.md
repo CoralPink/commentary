@@ -288,7 +288,7 @@ This function runs when the nvim-tree buffer is created.
 まずはベーシックなキーマッピングを確認してみましょう。
 全部確認するのは大変なので、「1個動けば 2個も 100個も一緒でしょ❓😮」の理屈で行きます。
 
-`Filter`を動かしてみましょう。`NvimTree`にフォーカスしている状態で`f`キーをぽちっと😆
+`Filter`を動かしてみましょう。`NvimTree`にフォーカスしている状態で <kbd>f</kbd> をぽちっと😆
 
 ![nvim-tree-filter](img/nvim-tree-filter.webp)
 
@@ -324,7 +324,7 @@ end
 createTreeActions()
 ```
 
-`Space`キーが押されると`actionsMenu`を呼び出して...
+<kbd>Space</kbd> が押されると`actionsMenu`を呼び出して...
 
 ```lua
 { '<Space>', actionsMenu,                  'Command' },
@@ -342,7 +342,7 @@ local function actionsMenu(nd)
       -- (以下略)
 ```
 
-前節と同じ要領で`NvimTree`にフォーカスしている状態で`Space`キーをぽちっと😆
+じゃあ、これも前節と同じ要領で <kbd>Space</kbd> をぽちっと😆
 
 こんなん出ました❗
 
@@ -355,7 +355,7 @@ local function actionsMenu(nd)
 最後にもう一個だけ。`local command`の中にこんなのがいましたね。
 
 ```lua
---{ '<2-LeftMouse>',  node.open.edit,        'Open' },
+{ '<2-LeftMouse>',  node.open.edit,        'Open' },
 ```
 
 わたしはコメントアウトしちゃってるんですが、
