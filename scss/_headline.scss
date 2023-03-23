@@ -7,6 +7,9 @@
 
   font-style: italic;
 
+  margin-top: 0 - var.$menu-bar-height;
+  padding-top: var.$menu-bar-height;
+
   &:target {
     &::before {
       $shift: 24px;
