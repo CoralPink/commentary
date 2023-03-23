@@ -38,6 +38,3 @@ const html = document.querySelector('html');
   html.classList.remove('sidebar-visible');
   html.classList.add('sidebar-' + state);
 })();
-
-html.classList.remove('no-js');
-html.classList.add('js');

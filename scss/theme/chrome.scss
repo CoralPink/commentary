@@ -28,13 +28,11 @@ a > .hljs {
   }
 }
 
-.js {
-  #menu-bar-hover-placeholder:hover + #menu-bar,
-  #menu-bar:hover,
-  .sidebar-visible #menu-bar {
-    position: sticky;
-    top: 0 !important;
-  }
+#menu-bar-hover-placeholder:hover + #menu-bar,
+#menu-bar:hover,
+.sidebar-visible #menu-bar {
+  position: sticky;
+  top: 0 !important;
 }
 
 #menu-bar-hover-placeholder {
@@ -66,9 +64,6 @@ a > .hljs {
 .left-buttons {
   display: flex;
   margin: 0 5px;
-}
-.no-js {
-  display: none;
 }
 
 .menu-title {
@@ -301,10 +296,6 @@ ul {
     transform: none;
     margin-left: var.$sidebar-width;
   }
-}
-
-.js:not(.sidebar-resizing) {
-  transition: transform 0.3s;
 }
 
 .chapter {
