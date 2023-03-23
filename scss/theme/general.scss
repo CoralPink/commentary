@@ -46,10 +46,9 @@ code {
 .page {
   margin-top: calc(0px - var.$menu-bar-height); // Compensate for the #menu-bar-hover-placeholder
 }
-.page-wrapper {
-  .js:not(.sidebar-resizing) & {
-    transition: margin-left 0.3s ease, transform 0.3s ease; // Animation: slide away
-  }
+
+.page-wrapper:not(.sidebar-resizing) {
+  transition: margin-left 0.3s ease, transform 0.3s ease; // Animation: slide away
 }
 
 .content {
