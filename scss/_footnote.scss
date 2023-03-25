@@ -1,8 +1,10 @@
 @use 'variables.scss' as var;
 
-$jump-shift: 40px;
-
 .footnote-reference {
-  margin-top: 0 - (var.$menu-bar-height + $jump-shift);
-  padding-top: var.$menu-bar-height + $jump-shift;
+  a {
+    $jump-shift: 20px;
+
+    margin-top: 0 - (var.$menu-bar-height + $jump-shift);
+    padding-top: var.$menu-bar-height + $jump-shift;
+  }
 }
