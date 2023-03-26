@@ -87,4 +87,6 @@
   - [nvim-tree.lua](neovim/plugin/nvim-tree.md)
     - [Actions](neovim/plugin/nvim-tree-actions.md)
 
+- [Language Server Protocol](neovim/lsp/language-server-protocol.md)
+
 # ... To Be Continued.
