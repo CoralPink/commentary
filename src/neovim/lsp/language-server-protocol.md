@@ -67,7 +67,7 @@
 ```admonish success title=""
 ![roadmap-5](img/roadmap-5.webp)
 
-全てを手にいれる。
+全てを手に入れる。
 
 1,000,000,000,000$ ゲーム。
 {{footnote:
