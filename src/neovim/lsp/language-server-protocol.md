@@ -64,6 +64,8 @@
 ホントに実現させちゃいそうな気がしたんだ--
 ```
 
+## I'll take you all.
+
 ```admonish success title=""
 ![roadmap-5](img/roadmap-5.webp)
 
@@ -71,18 +73,15 @@
 
 1,000,000,000,000$ ゲーム。
 {{footnote:
-[トリリオンゲーム](https://bigcomicbros.net/work/38477/) [第1話](https://big-3.tameshiyo.me/SPE01TRILLION)より
+[トリリオンゲーム](https://bigcomicbros.net/work/38477/) [第1話 世界一のワガママ](https://big-3.tameshiyo.me/SPE01TRILLION)より
 }}
 ```
-
-## Wrap Up
 
 散々好き勝手やってきたこのサイトも、いよいよクライマックスです❗
 
 ずっとトップページを飾ってくれていた`goal`と名付けられたこのイメージの実現も、もう少しです😆
 
 ...まあ、これまでのペースを鑑みるに、まだゴールまで数ヶ月かかりそうですけどね😅
-{{footnote: この続きは、もうちょっと時間ください...🐈}}
 
 ```admonish success title="Assemble"
 俺らのワガママは、世界一だ❗❗❗
