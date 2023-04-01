@@ -89,5 +89,6 @@
 
 - [Language Server Protocol](neovim/lsp/language-server-protocol.md)
   - [nvim-lspconfig](neovim/lsp/nvim-lspconfig.md)
+  - [mason.nvim](neovim/lsp/mason.md)
 
 # ... To Be Continued.
