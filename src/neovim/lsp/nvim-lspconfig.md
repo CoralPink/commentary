@@ -220,18 +220,18 @@ LSPクライアントがバッファにアタッチした後 (に発生するイ
 
 nvimトレーナーは "ｎｖｉｍチャンピオン" なの⁉️ いつの間に⁉️
 
-わたしが遊んでたりサボってたり、Ohtani-saaaaaan!!⚾とか叫んでたり、
-amazonのセールに合わせて自分へのご褒美を買ってあげたり受け取ったり、
-なんか天気悪いなー🙄とか、
-さくら🌸 さくら〜🌸、とか、トリリオンゲーム6巻を読み耽っていた間にも
+わたしが遊んでたりサボってたり、Ohtani-saaaaaaan!!⚾とか Shazaaaaaaam!!🦸 とか叫んでたり、
+Amazonのセールに合わせて自分へのご褒美を送ってあげたり受け取ったり、
+なんか天気悪いなー🙄とか、さくらさくら〜🌸 とか、トリリオンゲーム6巻を読み耽っていた間にも
 
 nvimトレーナーは努力を続けていたってこと⁉️
 
 ```admonish quote title=""
 Yes, it was my way
-{{footnote: My Way (by [Frank Sinatra](https://en.wikipedia.org/wiki/Frank_Sinatra)): 主人公の男性が、自分の死が近付く中、自分の人生で起こったすべての苦難に対して行ったことについて、
-後悔せず自信を持っている、と語る内容である。
-[Wikipedia](https://ja.wikipedia.org/wiki/マイ・ウェイ)より (もちろん、nvimトレーナーは目の前が真っ暗になることはあっても死ぬことはないです😉)
+{{footnote: My Way (by [Frank Sinatra](https://en.wikipedia.org/wiki/Frank_Sinatra)):
+主人公の男性が、自分の死が近付く中、自分の人生で起こったすべての苦難に対して行ったことについて、
+後悔せず自信を持っている、と語る内容である。[Wikipedia](https://ja.wikipedia.org/wiki/マイ・ウェイ)より
+(もちろん、nvimトレーナーは目の前が真っ暗になることはあっても死ぬことはないです😉)
 }}
 
 そう、それが私の生きる道
