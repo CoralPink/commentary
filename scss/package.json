@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "sass": "^1.60.0"
+    "sass": "^1.61.0"
   },
   "scripts": {
     "compile": "node_modules/sass/sass.js --no-source-map --style=compressed",
