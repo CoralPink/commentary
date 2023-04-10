@@ -1,12 +1,9 @@
 [package]
 name = "mdbook-footnote"
-version = "0.2.2"
+version = "1.0.0"
 authors = ["David Drysdale <dmd@lurklurk.org>", "CoralPink"]
 edition = "2021"
 license = "Apache-2.0"
-description = "mdbook preprocessor for footnotes"
-keywords = ["mdbook", "footnote"]
-categories = ["text-processing"]
 
 [dependencies]
 clap = "4.2"
