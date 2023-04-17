@@ -91,5 +91,6 @@
   - [nvim-lspconfig](neovim/lsp/nvim-lspconfig.md)
   - [mason.nvim](neovim/lsp/mason.md)
   - [mason-lspconfig.nvim](neovim/lsp/mason-lspconfig.md)
+  - [nvim-navic](neovim/lsp/nvim-navic.md)
 
 # ... To Be Continued.
