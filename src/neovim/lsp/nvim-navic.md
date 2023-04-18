@@ -7,7 +7,7 @@ A simple statusline/winbar component that uses LSP to show your current code con
 
 Named after the Indian satellite navigation system.
 
-LSP を使用して現在のコードコンテキストを表示するシンプルなステータスライン/ウィンバーコンポーネントです。
+LSP を使用して現在のコードコンテキストを表示するシンプルな statusline/winbar コンポーネントです。
 
 インドの衛星ナビゲーションシステムにちなんで名付けられました。
 ```
@@ -32,7 +32,7 @@ Before the rising sun, we fly
 
 `nvim-navic`の導入は、それはもうとても恐ろしく簡単です。インド人もびっくり❗
 
-...まあ、そもそも SmiteshP さんはインドの人なんだけど😮
+まあ、SmiteshP さんはインドの人なんだけど😮
 
 ~~~admonish example title="extensions/nvim-navic.lua"
 ```lua
@@ -45,7 +45,11 @@ require('nvim-navic').setup {
 ```
 ~~~
 
-ご覧の通り、最低限これだけで飛べちゃいます。ニホン人もびっくり❗
+もうこれだけで飛びます。ニホン人もびっくり❗
+
+```admonish note
+本当に最低限で良ければ、`highlight`もなくて平気です😸
+```
 
 ### lsp
 
@@ -59,7 +63,7 @@ You can pass the nvim-navic's `attach` function as `on_attach` while setting up 
 lspサーバーのセットアップ時に、nvim-navicの`attach`関数を`on_attach`として渡すことができます。
 ```
 
-とのことなんですが、これはもはや過去のものとなっています...❗次項へ跨ぎます🐈
+とのことなんですが、これはもはや過去のものとなっています...❗次項へ🐈
 
 #### auto_attach
 
@@ -70,14 +74,16 @@ You can skip this step if you have enabled `auto_attach` option during setup.
 ```
 
 `auto_attach`の登場によって、
-`on_attach`すらも、言語ごとに`documentSymbolProvider`に対応してますかー❓なんていう確認すらも
+`on_attach`すらも、言語ごとに`documentSymbolProvider`に対応してますかぁ❓な〜んていう確認すらも
 自分で書く必要がありません😊 のほほん。
 
 これ以上に "auto" なものがかつて他に存在したでしょうか⁉️
 
 ### highlight
 
-`highlight`については、`onenord.nvim`が対応してくれているので自分でコードを書く必要が全くありません😆
+`highlight`については、なんと`onenord.nvim`が対応してくれています❗
+
+なのでこれもやっぱり自分でコードを書く必要がありません😆
 
 ```admonish note
 使用しているカラーテーマが`nvim-navic`の`highlight`に対応していない場合でも
@@ -86,6 +92,12 @@ You can skip this step if you have enabled `auto_attach` option during setup.
 ```
 
 なんだかもう至れり尽くせりです🐹 のほほん。
+
+### Wrap Up
+
+ということで、`packer`から呼び出します。
+
+もう馴染みすぎて安堵感すらあります😇
 
 ~~~admonish example title="extensions/init.lua"
 ```lua
@@ -103,7 +115,7 @@ use {
 nvim-navic does not alter your statusline or winbar on its own.
 Instead, you are provided with these two functions and its left up to you how you want to incorporate this into your setup.
 
-nvim-navicは、それ自体でステータスラインやwinbarを変更することはありません。
+nvim-navicは、それ自体で statusline や winbar を変更することはありません。
 その代わり、この2つの機能が提供され、これをどのようにセットアップに取り入れるかはあなたに任されています。
 ```
 
@@ -112,14 +124,13 @@ nvim-navicは、それ自体でステータスラインやwinbarを変更する�
 Returns boolean value indicating whether nvim-navic is able to provide
 output for current buffer.
 
-nvim-navic が提供可能かどうかを示すブール値を返します。
-現在のバッファに対する出力。
+nvim-navic が現在のバッファの出力を提供できるかどうかを示す boolean 値を返します。
 
 'bufnr' is optional argument. If bufnr is not provied, current open
 buffer is used.
 
-bufnr' はオプションの引数である。bufnrが提供されない場合，現在のオープンな
-バッファが使用されます。
+
+'bufnr' はオプションの引数です。bufnr が提供されない場合、現在のオープンバッファが使用されます。
 ```
 ~~~
 
@@ -128,13 +139,13 @@ bufnr' はオプションの引数である。bufnrが提供されない場合�
 Returns a pretty string that shows code context and can be used directly
 in statusline or winbar.
 
+コードコンテキストを示す整理された文字列を返し、statusline や winbar で直接使用することができます。
+opts テーブルは nvim-navic のオプションのいずれかを上書きするために渡すことができます。
+
 opts table can be passed to override any of |nvim-navic|'s options.
 Follows same table format as *navic-setup*|'s opts table. You can pass
 |bufnr| value to determine which buffer is used to get code context. If
 not provided, the current buffer will be used.
-
-コードコンテキストを示す整理された文字列を返し、statusline や winbar で直接使用することができます。
-opts テーブルは nvim-navic のオプションのいずれかを上書きするために渡すことができます。
 
 navic-setup の opts テーブルと同じテーブル形式に従います。
 bufnr 値を渡すと、コードコンテキストを取得するためにどのバッファを使用するかを決定することができます。
@@ -142,7 +153,8 @@ bufnr 値を渡すと、コードコンテキストを取得するためにど�
 ```
 ~~~
 
-ネイティブに表示する方法なども示されていますが、わたしはやっぱり`lualine`を選んでいきます。
+ネイティブに表示する方法なども示されていますが、
+このサイトでは散々お世話になっている`lualine`を選んで進みます。
 
 ```admonish note
 このサイトでは扱っていませんが、`feline`, `galaxyline`に表示する方法も示されています。
@@ -192,7 +204,7 @@ use {
 ```
 ~~~
 
-そしたらほらね、ニホン人もびっくり❗
+そしたらほらね、`lualine`上に現在のコードコンテキストが示されました。
 
 ![nvim-navic](img/nvim-navic.webp)
 
@@ -204,7 +216,7 @@ And yes, we’ve just begun
 元々は、カリフォルニア州のクロッカー・ナショナル銀行のCMソングとして制作され、
 タイトルのとおり「2人はまだ始まったばかり（We've Only Just Begun）」と結婚によって新しい人生を踏み出すことについて歌われている。
 この曲は、アレンジャーとしての Richard の能力と、ボーカルとしての Karen の能力が最も発揮されているということで、
-リチャードは「Carpenters の代表曲を挙げるなら『We've Only Just Begun』だな」と語っている。
+Richard は「Carpenters の代表曲を挙げるなら『We've Only Just Begun』だな」と語っている。
 [Wikipedia](https://ja.wikipedia.org/wiki/愛のプレリュード)より
 }}
 
@@ -215,14 +227,15 @@ And yes, we’ve just begun
 
 ## Customise
 
-これで終わっても全然いいんですけどね。もうちょっとのほほんとして行ってもバチは当たらないでしょ❓
+これで終わっても全然いいんですけどね❗
+もうちょっとのほほんとして行ってもバチは当たらないでしょ😊
 
-その他にもいくつかカスタマイズできるところがあるので、わたしが使用しているものだけ載せていきます😄
+他にもいくつかカスタマイズ項目があるので、わたしが使用しているものだけ載せていきます😄
 
 ### icons
 
 オフィシャルに示されているものをそのまま持ってきちゃいますが、
-これを入れると`VSCode like`なアイコンになります。
+これを`setup`に仕込んでおくと`VSCode like`なアイコンになります。
 
 ~~~admonish example title="extensions/nvim-navic.lua"
 ```lua
@@ -291,7 +304,19 @@ Original:
 ```
 ~~~
 
-強いんだか弱いんだか分かりませんが、こうしておけば上限の百とか千とか、変なのが来ても安心です。
+~~~admonish info title=":h depth"
+```txt
+depth: integer
+  Maximum depth of context to be shown. If the context depth exceeds
+  this parameter, context information is truncated. default is infinite
+
+  表示するコンテキストの最大深度。コンテキストの深さがこのパラメータを超える場合、
+  コンテキスト情報は切り捨てられます。デフォルトはinfiniteです。
+```
+~~~
+
+強いんだか弱いんだか、「っていうか、なんやねんそれ🤨」ってなりますが、
+こうしておけば百とか千とか、変なのとか来ても安心です。
 
 ### Line Count
 
@@ -309,7 +334,7 @@ It should help if you are facing performance issues in large files. Read the doc
 ~~~admonish info title=":h vim.b.navic_lazy_update_context"
 Set it to true to update context only on CursorHold event.
 
-Trueに設定すると、CursorHoldイベント時にのみコンテキストを更新します。以下のような場合に有効です。
+true に設定すると、CursorHold イベント時にのみコンテキストを更新します。以下のような場合に有効です。
 
 Could be usefull if you are facing performance issues on large files. Example usage
 
@@ -328,23 +353,48 @@ vim.api.nvim_create_autocmd("BufEnter", {
 
 サンプルだと`group`がありませんが、のほほんと入れとくのもありだと思います😄
 
-```diff
+~~~admonish example title="extensions/nvim-navic.lua"
+```lua
+--require('nvim-navic').setup {
+
   vim.api.nvim_create_autocmd("BufEnter", {
-+   group = vim.api.nvim_create_augroup('nvim-navic', {}),
+    group = vim.api.nvim_create_augroup('nvim-navic', {}),
     callback = function()
       if vim.api.nvim_buf_line_count(0) > 10000 then
         vim.b.navic_lazy_update_context = true
       end
     end,
   })
+
+--}
 ```
+~~~
 
 ## I'll take you all.
 
 のほほんとできましたね😊
 
-ちゃんと`LSP`をしっかり動かせるようになったことの賜物です。
+ちゃんと`LSP`を動かせるようになったことによる賜物です。
 「胸を張っていい❗❗{{footnote: ドッジボールはまだ続いている...❗}}」
+
+ところで〜...、`nvim-navic`のトップにこんな一文がありましたね。
+
+```admonish info title="nvim-navic"
+You might also be interested in [nvim-navbuddy](https://github.com/SmiteshP/nvim-navbuddy).
+
+Paired with nvim-navic, it will give you complete breadcrumbs experience like in an IDE!
+
+[nvim-navbuddy](https://github.com/SmiteshP/nvim-navbuddy)に興味をお持ちの方もいらっしゃるかもしれません。
+
+nvim-navicと組み合わせることで、IDEのような完全なパンくず体験ができるようになります！
+```
+
+`nvim-navbuddy`の存在はつい最近知ったので、
+この章のロードマップには無かったし、わたし自身が超使いこなせているってこともないんですが...😟
+
+なんか面白かったので、このサイトでもちょこっとだけ触れたいと思います😆
+
+そんなこんなで次回に続く... 🪼
 
 ```admonish success
 Sharing horizons that are new to us
@@ -365,22 +415,3 @@ Workin’ together day to day, together
 
 一緒に日々を生きていきましょう、 一緒に...
 ```
-
-ところで、`nvim-navic`のトップにこんな一文がありましたね。
-
-```admonish info title="nvim-navic"
-You might also be interested in [nvim-navbuddy](https://github.com/SmiteshP/nvim-navbuddy).
-
-Paired with nvim-navic, it will give you complete breadcrumbs experience like in an IDE!
-
-[nvim-navbuddy](https://github.com/SmiteshP/nvim-navbuddy)に興味をお持ちの方もいらっしゃるかもしれません。
-
-nvim-navicと組み合わせることで、IDEのような完全なパンくず体験ができるようになります！
-```
-
-`nvim-navbuddy`の存在はつい最近知ったので、
-この章のロードマップには無かったし、わたし自身が超使いこなせているってこともないんですが...😟
-
-なんか面白かったので、このサイトでもちょこっとだけ触れたいと思います😆
-
-そんなこんなで次回に続く... 🪼
