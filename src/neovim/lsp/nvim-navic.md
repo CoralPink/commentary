@@ -81,9 +81,13 @@ You can skip this step if you have enabled `auto_attach` option during setup.
 
 ### highlight
 
-`highlight`については、なんと`onenord.nvim`が対応してくれています❗
+`highlight`については、これはなんと`onenord.nvim`が対応してくれています❗
 
-なのでこれもやっぱり自分でコードを書く必要がありません😆
+```admonish info title="[Plugin Support](https://github.com/rmehri01/onenord.nvim#plugin-support)"
+Navic
+```
+
+ってことは、これもやっぱりコードを自分で書く必要がありません😆
 
 ```admonish note
 使用しているカラーテーマが`nvim-navic`の`highlight`に対応していない場合でも
@@ -97,7 +101,7 @@ You can skip this step if you have enabled `auto_attach` option during setup.
 
 ということで、`packer`から呼び出します。
 
-もう馴染みすぎて安堵感すらあります😇
+もう馴染みすぎてしまって、安堵感すら覚えますね😇
 
 ~~~admonish example title="extensions/init.lua"
 ```lua
@@ -170,10 +174,15 @@ So many roads to choose
 
 ということでやっていくんですが、これもやっぱり簡単です。のほほん。
 
-`lualine_c`に、`diagnostics`と並べて表示しましょう。
+`statusline` の`lualine_c`に、`diagnostics`と並べて表示しましょう。
 
 ~~~admonish example title="extensions/lualine.lua"
 ```diff
+require('lualine').setup {
+  sections = {
+
+    (中略)
+
     lualine_c = {
       {
         'diagnostics',
@@ -183,6 +192,8 @@ So many roads to choose
       },
 +     { function() return navic.get_location() end, cond = function() return navic.is_available() end },
     },
+
+  (以下略)
 ```
 ~~~
 
@@ -206,7 +217,17 @@ use {
 
 そしたらほらね、`lualine`上に現在のコードコンテキストが示されました。
 
-![nvim-navic](img/nvim-navic.webp)
+![nvim-navic-statusline](img/nvim-navic-statusline.webp)
+
+```admonish note
+例えば、`tabline`に表示してみるのもオシャレです😊 `VSCode`とかは上にあった気もするし❗
+
+![nvim-navic-tabline](img/nvim-navic-tabline.webp)
+
+ちょっと上の情報が多すぎる気もするので、`git`関連の情報を下に移動した方が良いかもしれません🤔
+
+(`buffers`もだいぶ場所とるし...😅)
+```
 
 ```admonish success title=""
 We’ll start out walking and learn to run
@@ -315,8 +336,10 @@ depth: integer
 ```
 ~~~
 
-強いんだか弱いんだか、「っていうか、なんやねんそれ🤨」ってなりますが、
-こうしておけば百とか千とか、変なのとか来ても安心です。
+強いんだか弱いんだか「っていうか、なんやねんそれ🤨」ってなりますが、
+こうしておけば百とか千とか、変なのとか来ても安心です❗
+
+しかも`9`にしておけば十の悪魔にも強く出れます❗🤣
 
 ### Line Count
 
