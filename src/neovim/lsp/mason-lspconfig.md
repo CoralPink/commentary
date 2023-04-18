@@ -147,9 +147,9 @@ This is for the ones who stood their ground
 
 For Tommy and Gina who never backed down
 
-これは 信じて立ち向かった者達のための歌だ
+この歌は 信じて立ち向かった者達に捧げる
 
-決して一歩も引かない トミーとジーナのために
+決して一歩も引かなかった トミーとジーナのために
 ```
 
 ### LspInfo
@@ -237,9 +237,9 @@ sections = {
 どっっちなんっっだいっ❗❗{{footnote: なかやまきんに君です}}
 ```
 
-やってやりましょう😆
+やーーーーーーーーーーーるっ💪
 
-"世界一のワガママ" の実現を目指して❗
+"世界一のワガママ" の実現を目指して😆 パワー❗❗
 
 ```admonish success
 Better stand tall when they're calling you out
@@ -260,7 +260,7 @@ It's my life!
 
 これが俺の人生だ！
 {{footnote: It's My Life (by [Bon Jovi](https://en.wikipedia.org/wiki/Bon_Jovi)):
-2番の歌詞にある「決して一歩も引かない トミーとジーナのために」というセリフは、
+2番の歌詞にある「決して一歩も引かなかった トミーとジーナのために」というセリフは、
 1986年のヒット曲 "Livin' on a Prayer" で初めて登場した架空のカップルを指している。
 また、同じ New Jersey 州の Frank Sinatra に言及した詩が特徴。
 Bon Jovi は次のように回想している。
