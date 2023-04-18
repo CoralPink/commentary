@@ -1,9 +1,9 @@
 @use 'variables' as var;
 
 @mixin headline-common($bg-height) {
-	background-repeat: no-repeat;
-	background-size: 100% $bg-height;
-	background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: 100% $bg-height;
+  background-position: bottom;
 
   font-style: italic;
 
@@ -38,30 +38,30 @@
 }
 
 h1 {
-  font-size: 2.0em;
-  @include headline-high(4px)
+  font-size: 2em;
+  @include headline-high(4px);
 }
 
 h2 {
   font-size: 1.7em;
-  @include headline-high(3px)
+  @include headline-high(3px);
 }
 
 h3 {
   font-size: 1.4em;
-  @include headline-middle(3px)
+  @include headline-middle(3px);
 }
 
 h4 {
   font-size: 1.25em;
-  @include headline-middle(2px)
+  @include headline-middle(2px);
 }
 
 h5 {
   font-size: 1.2em;
-  @include headline-low()
+  @include headline-low();
 }
 h6 {
   font-size: 1.15em;
-  @include headline-low()
+  @include headline-low();
 }
