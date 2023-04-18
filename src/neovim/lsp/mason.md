@@ -21,9 +21,9 @@ LSPサーバー、DAPサーバー、リンター、フォーマッターを簡�
 ```
 ~~~
 
-`LSP`関連のパッケージに特化した "パッケージマネージャ" です。
+言語関連機能に特化した "パッケージマネージャ" です。
 
-これさえあれば、もうお友達なんて作り放題、彼氏彼女も作り放題です❗
+これさえあれば、お友達だろうと彼氏彼女だろうと、もう作り放題です❗
 
 ```admonish note title=""
 Tommy used to work on the docks
@@ -55,14 +55,16 @@ linked to a single `bin/` directory, which `mason.nvim` will add to the
 Neovim's PATH during setup, allowing easy access for the builtin
 shell/terminal as well as other 3rd party plugins.
 
-パッケージはデフォルトでNeovimの`:h stdpath`にインストールされます。
-実行可能ファイルは は単一の `bin/` ディレクトリにリンクされ、
-`mason.nvim` はこのディレクトリに追加します。
-セットアップ時にNeovimのPATHにアクセスすることで、
-ビルトインされた shell/terminalやその他のサードパーティプラグインと同様に。
+パッケージは、デフォルトでNeovimの `:h stdpath` にインストールされます。
+実行可能ファイルは `bin/` ディレクトリにリンクされ、セットアップ時に `mason.nvim` が Neovim の PATH に追加するので、
+内蔵のシェル/ターミナルやその他のサードパーティプラグインに簡単にアクセスできるようになります。
+
+For a list of all available packages, see PACKAGES.md.
+
+利用可能なすべてのパッケージの一覧は、PACKAGES.mdを参照してください。
 ```
 
-こう言われてるんで、`stdpath`のヘルプも一応見てみましょう。
+こう言われてるんで、`stdpath`のヘルプと`PACKAGES.md`も見てみましょう。
 
 ~~~admonish info title=":h stdpath"
 ```txt
@@ -91,6 +93,10 @@ stdpath({what})					stdpath() E6100
 ```
 ~~~
 
+```admonish info title="[PACKAGES.md](https://github.com/williamboman/mason.nvim/blob/main/PACKAGES.md)"
+Mason Package Index
+```
+
 まあ、言ってることはわかりますよね。わかるんですけど...。
 
 少しフライングしちゃうんですが、わたしの環境では、インストールしたパッケージは`~/.local/share/nvim/mason`に配置されていきます。
@@ -98,7 +104,7 @@ stdpath({what})					stdpath() E6100
 ![mason-install-path](img/mason-install-path.webp)
 
 ```admonish question
-普段使いしている`macOS`でも同じなんですけど...、`stdpath`にある？これ😑
+普段使っている`macOS`でも同じなんですけど...、`stdpath`にある？これ😑
 ```
 
 ```admonish fail title=""
@@ -153,7 +159,7 @@ mason.nvim は定期的に cargo や npm などの外部パッケージマネー
 ![checkhealth](img/mason-che.webp)
 ~~~
 
-よほどの言語マニアでもない限り、たくさんの`WARNING`が出てきちゃうと思いますが、
+よほどの言語プロフェッショナルでもない限り、たくさんの`WARNING`が出てきちゃうと思いますが、
 使っていない言語環境が入っていないのは「そりゃそうだー」としかならないので、気にしなくていいやつです😉
 
 ここでは、「全リストを見ておきたい」ってだけなので❗
@@ -165,6 +171,28 @@ mason.nvim は定期的に cargo や npm などの外部パッケージマネー
 ```admonish warning
 ごめんなさい、毎度のことながら`Windows`はわたしがわかってないので触れられません... 😿
 ```
+
+~~~admonish note
+例えば「`JavaScript`やりたいから`eslint-lsp`ほしいなー😆」ってなったとするじゃないですか。
+
+`mason.nvim`は`eslint-lsp`のインストールに`npm`を使用するんですね。
+
+でも、もし`npm`がまだ無い状態でそれをやろうとしても、
+
+![mason-failed](img/mason-failed.webp)
+
+```txt
+spawn: npm failed with exit code - and signal -. npm is not executable
+```
+
+って言われちゃいます。まあ、わかってる人からすればこれも「そりゃそうだー」ではあるんですが、
+
+「`npm`ってなんやねん❗」とか、
+「`node.js`をやろーゆーとんちゃうねん❗」ってなっちゃう人もいるかもしれません。
+
+この辺りはある程度の経験値が必要になって来ると思うので、
+躓いちゃったら周りの人に聞いてみましょう😉
+~~~
 
 ```admonish fail title=""
 We've got to hold on to what we've got
@@ -198,20 +226,21 @@ require('mason').setup {
 ```
 ~~~
 
-`check_outdated_packages_on_open`を`false`にしておくと、
+簡単に書くと、
 
-`mason`のウィンドウを開いた時に自動でアップデートを確認しにいかなくなるっていうのと、
+|parameter|description|
+|:---:|:---|
+|check_outdated_packages_on_open|`false`にしておくと、`mason`のウィンドウを "開いた時に" アップデートを確認しなくなります。|
+|border|`single`にしておくと、`packer`と統一感が出ていいかも〜。|
 
-`border`を`single`にしておくと、`packer`と統一感が出ていいかもなーって程度です。
+...というようなものです。
 
 ~~~admonish tip
-特に設定を変更しない場合も、
+特に設定を変更しない場合も、以下の一文は必要になります。
 
 ```lua
 require('mason').setup()
 ```
-
-...という一文は必要になります。
 ~~~
 
 で、こっちもシンプルに。
@@ -243,7 +272,7 @@ We'll gibe it a shot
 :Mason
 ```
 
-ってするだけです。
+ってするだけですね😆
 
 ![mason-window](img/mason-window.webp)
 
@@ -288,7 +317,7 @@ keymaps = {
 
 基本的には<kbd>i</kbd>でインストールしたものを<kbd>C</kbd><kbd>U</kbd>で更新管理するっていう使い方でいいと思います。
 
-## Server Protocol
+## Install the Server Protocol
 
 お待たせしました。初めてのお友達作りです。
 
@@ -324,11 +353,10 @@ keymaps = {
 
 ## I'll take you all.
 
-これでようやく会話のできるお友達をゲットしたぜ❗😆
+これでようやく会話のできるお友達をゲットだぜ❗😆
+...と思いきや、まだ何も話してくれません。
 
-...と、思いきや、まだ何も話してくれません。ちょっと捕まえ方が強引だったかな...🫨
-
-それとも照れ屋さんなのかな❓😮
+ちょっと捕まえ方が強引だったかな...🫨 それとも照れ屋さんなのかな❓😮
 
 どうやら心を開いてもらって会話をするためには、もう1ステップ必要みたいですね。
 
