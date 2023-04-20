@@ -325,9 +325,9 @@ Original:
 ```
 ~~~
 
-~~~admonish info title=":h depth"
+~~~admonish info title=":h navic-customise"
 ```txt
-depth: integer
+depth_limit: integer
   Maximum depth of context to be shown. If the context depth exceeds
   this parameter, context information is truncated. default is infinite
 
@@ -378,20 +378,22 @@ vim.api.nvim_create_autocmd("BufEnter", {
 
 ~~~admonish example title="extensions/nvim-navic.lua"
 ```lua
---require('nvim-navic').setup {
-
-  vim.api.nvim_create_autocmd("BufEnter", {
-    group = vim.api.nvim_create_augroup('nvim-navic', {}),
-    callback = function()
-      if vim.api.nvim_buf_line_count(0) > 10000 then
-        vim.b.navic_lazy_update_context = true
-      end
-    end,
-  })
-
---}
+vim.api.nvim_create_autocmd("BufEnter", {
+  group = vim.api.nvim_create_augroup('nvim-navic', {}),
+  callback = function()
+    if vim.api.nvim_buf_line_count(0) > 10000 then
+      vim.b.navic_lazy_update_context = true
+    end
+  end,
+})
 ```
 ~~~
+
+```admonish note
+このコードは`setup()`の外に記述してください❗
+
+(すみません...初掲時はうっかり中にいました...😭)
+```
 
 ## I'll take you all.
 
@@ -427,14 +429,4 @@ Watching the signs along the way
 わたしたちにとって新たな地平線へ一緒に
 
 道中の標識にも目を向けて
-```
-
-```admonish success title=""
-Talkin’ it over, just the two of us
-
-Workin’ together day to day, together
-
-二人だけで語り合って
-
-一緒に日々を生きていきましょう、 一緒に...
 ```
