@@ -172,9 +172,9 @@ So many roads to choose
 
 ### lualine
 
-ということでやっていくんですが、これもやっぱり簡単です。のほほん。
+ということでやっていくんですが、これもやっぱり簡単です😉 のほほん。
 
-`statusline` の`lualine_c`に、`diagnostics`と並べて表示しましょう。
+`statusline` の`lualine_c`に、`diagnostics`と並べて表示してみます。
 
 ~~~admonish example title="extensions/lualine.lua"
 ```diff
@@ -195,6 +195,19 @@ require('lualine').setup {
 
   (以下略)
 ```
+~~~
+
+~~~admonish tip
+このページ、出来てからまだ一週間も経ってないんですが、上に書いてあることは既に過去のものとなりました🌟
+
+[An example lualine setup](https://github.com/SmiteshP/nvim-navic#lualine)
+
+```diff
+-     { function() return navic.get_location() end, cond = function() return navic.is_available() end },
++     { 'navic' }
+```
+
+どないなっとんねん🤯 強すぎるやろー🐎🐎🐎
 ~~~
 
 必須ではありませんが、`packer`にも`lualine.nvim`が`nvim-navic`を使用していることを教えておいてあげましょう。
@@ -392,7 +405,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
 ```admonish note
 このコードは`setup()`の外に記述してください❗
 
-(すみません...初掲時はうっかり中にいました...😭)
+( すみません...初掲時はうっかり中にいました...😭 )
 ```
 
 ## I'll take you all.
