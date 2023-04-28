@@ -122,7 +122,9 @@ local function actionsMenu(nd)
   }
 
   -- Opening the menu
-  require('telescope.pickers').new({ prompt_title = 'Command', layout_config = { width = 0.3, height = 0.5 } }, default_options):find()
+  require('telescope.pickers')
+    .new({ prompt_title = 'Command', layout_config = { width = 0.3, height = 0.5 } }, default_options)
+    :find()
 end
 
 local api = require 'nvim-tree.api'
