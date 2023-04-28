@@ -28,11 +28,11 @@ rangerファイルマネージャに触発されたキーボード中心の方�
 って、お話が迷子😿 ...あ、いつも通りでした😹
 
 ```admonish success title=""
-Another red letter day,
+Another red letter day
 
-so the pound has dropped and the children are creating
+So the pound has dropped and the children are creating
 
-また祝日だ、
+また祝日だ
 
 たとえポンドが下落しようとも 子どもたちは創作している
 ```
@@ -144,7 +144,7 @@ Navbuddy command can be used to open navbuddy.
 
 Navbuddy コマンドは、navbuddy を開くために使用することができます。
 
-```vi
+```vim
 :Navbuddy
 ```
 
@@ -175,28 +175,24 @@ vim.keymap.set('n', '<leader>nb', vim.cmd.Navbuddy)
 ...とか、しておくといいかもしれません。
 ~~~
 
-では、インストールを済ませて呼び出してみましょう😊
+それでは、インストールを済ませてから呼び出してみましょう😉
 
 ![nvim-navbuddy 1](img/nvim-navbuddy1.webp)
 
-`Telescope`と似ていますが、これは`nui.nvim`のウィンドウなので、<kbd>h</kbd><kbd>j</kbd><kbd>k</kbd><kbd>l</kbd>でカーソルが動きます。
+`Telescope`と似ていますが、これは`nui.nvim`のウィンドウなので、(デフォルトでは) <kbd>h</kbd><kbd>j</kbd><kbd>k</kbd><kbd>l</kbd>でカーソルが動きます。
 
-```admonish example title=""
-これだとちょっと例が面白くないので、15.11.1節で作成した`extensions/nvim-tree-actions.lua`で動かしてみるとこんな感じです😊
+ちょっとこれだと例が面白くないので、
+[15.11.1節](../plugin/nvim-tree-actions.html#actions)で作成した
+`extensions/nvim-tree-actions.lua`で動かしてみるとこんな感じです😊
 
 ![nvim-navbuddy 2](img/nvim-navbuddy2.webp)
-```
 
 このリストと連動してファイル上でも選択範囲が動いていますね。ほら面白い❗🤹
 
 ```admonish note
-これってわたしの感想なんですけど (違ってたらごめんなさいとしか言えませんが)、
+これってわたしの感想ですけど (違ってたらごめんなさいとしか言えませんが)、
 `nvim-navbuddy`は`ctags`がやっていたようなことを置き換えられるんじゃないかな❓😮
 ```
-
-すごいさらっと動いてますが、一人一人が全力で役割を全うして、しかも協調しているからこそ実現しています😆
-
-さらっといいことも言います🤫
 
 ## No.168🔹対決⑪
 
@@ -221,9 +217,13 @@ And all hope is lost
 ```
 
 ```admonish success title=""
-It’s so easy now cos you got friends you can trust
+It’s so easy now
 
-安心して きみには信頼できる仲間がいる
+Cause you got friends you can trust
+
+安心して
+
+きみには信頼できる仲間がいる
 ```
 
 ```admonish tip title=""
@@ -233,9 +233,13 @@ It’s so easy now cos you got friends you can trust
 ```
 
 ```admonish success title=""
-Hold out your hand ‘cause right till the end,
+Hold out your hand
 
-貴方の手を差し伸べてあげて 最後の最後まで
+‘Cause right till the end
+
+貴方の手を差し伸べてあげて
+
+最後の最後まで
 ```
 
 ## To Complete Victory
@@ -330,9 +334,11 @@ require('nvim-navbuddy').setup {
 
 ```admonish info title="[// Comment.nvim](https://github.com/numToStr/Comment.nvim)"
 ⚡Smart and Powerful commenting plugin for neovim ⚡
+
+⚡neovimのスマートでパワフルなコメントプラグイン ⚡
 ```
 
-これもこのサイトで初登場です❗ですが今回はインストールするだけでOKです。
+`Comment.nvim`も初登場です❗ですが今回はインストールするだけでOKです。
 
 `nvim-navbuddy`から使用するだけであれば`setup`も必要ありません😉
 
@@ -342,7 +348,7 @@ require('nvim-navbuddy').setup {
 今後このサイトで別途取り上げるかは未定ですが、ぜひ活用してみて❗
 ```
 
-これを使うと何ができるかっていうと、例えば<kbd>c</kbd>をぽちっとすると...😮
+これを使うと何ができるかっていうと、例えば適当なところで<kbd>c</kbd>をぽちっとすると...😮
 
 ![nvim-navbuddy&Comment](img/nvim-navbuddy-comment.webp)
 
@@ -358,14 +364,18 @@ require('nvim-navbuddy').setup {
 
 なんだかすごそう❗
 
-ここまで来ると、正直わたしは使いこなせていません🤯
+もうここまで来ると、正直わたしは使いこなせていません🤯
 
 ~~~admonish tip
-これもやっぱり`Telescope`のサイズを変えたくなるんですけど、その場合はキーコンフィグを例えばこんなんとかするといいです🐱
+これもやっぱり`Telescope`のサイズを変えたくなるんですけど、
+その場合は`nvim-navbuddy`の`setup`で、キーコンフィグを例えばこんなんとかするといいです🐱
 
 ```lua
-  mappings = {
+local actions = require 'nvim-navbuddy.actions'
 
+--require('nvim-navbuddy').setup {
+
+  mappings = {
     ['t'] = actions.telescope {
       layout_config = {
         height = 0.40,
@@ -375,24 +385,27 @@ require('nvim-navbuddy').setup {
       },
       layout_strategy = 'horizontal',
     },
+  },
+
+--}
 ```
 ~~~
 
 ## Similarly for other languages
 
-今回は`lua`で全ての動作イメージを示してしまっていますが、これに限らず、`LSP`さえ動いていれば割となんでもいけるクチです。
+今回は全ての`lua`で話を進めてしまっていますが、これに限らず`LSP`さえ動いていれば割となんでもいけるクチです。
 
 ![markdown](img/nvim-navbuddy-markdown.webp)
 
 ```admonish note
-上のイメージは`Markdown`に対して`marksman`が動いてます。これもやっぱり`mason`からインストールしてます😉
+上のスクリーンショットは、`Markdown`に対して`marksman`が動いてます。これもやっぱり`mason`からインストールしてます😉
 
 行こうみんなで「marksman」🎶{{footnote: よしいくぞうってなるやつ🤣}}
 ```
 
 ## I'll take you all.
 
-ちょこっとだけ触れるつもりが、結構ガッツリ触れちゃいました😋
+ちょこっとだけ触れるだけのつもりが、結構ガッツリ触れちゃいました😋
 
 ```admonish tip title=""
 みんなの力があったからだよ。
@@ -403,9 +416,9 @@ require('nvim-navbuddy').setup {
 
 さらっといいことも言います🤫
 
-あーやっと書き終わった、お腹すいたー...。
+という事で、やっと書き終わりました。あーお腹すいたー...。
 
-お台場青海地区P区画{{footnote: ん⁉️ 地区Pとは言わないんれすね❗(これ言いたかっただけ😆)}}で"肉フェス"やってるんだって...、喰いたい🍖
+お台場青海地区P区画{{footnote: ん⁉️ "地区P" とは言わないんれすね❗(これ言いたかっただけ😆)}}で"肉フェス"やってるんだって...、喰いたい🍖
 
 って、お話が迷子😿 ...あ、いつも通りでした😹
 
