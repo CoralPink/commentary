@@ -1,6 +1,6 @@
 # mason-lspconfig.nvim
 
-わかる人には、もう色々見透かされているとは思ってますが、そんなものは気にせずにど真ん中をぶっちぎります❗
+わかる人には既に色々見透かされているとは思ってますが、そんなものは気にせず、ど真ん中をぶっちぎります❗
 
 `mason-lspconfig.nvim`のお通りだー❗
 
@@ -55,8 +55,8 @@ require('mason').setup {
 
 -- ここに追記
 require('mason-lspconfig').setup_handlers {
-  function (server_name)
-    require("lspconfig")[server_name].setup {}
+  function(server_name)
+    require('lspconfig')[server_name].setup {}
   end,
 }
 ```
@@ -219,7 +219,7 @@ sections = {
 
 ![lualine-diagnostics](img/lualine-diagnostics.webp)
 
-`lualine`上に`Error`と`Warning`の数が表示されるようになりましたね❗
+`lualine`上に`Error`や`Warning`の数が表示されるようになりましたね❗
 
 ## I'll take you all.
 
@@ -231,7 +231,7 @@ sections = {
 
 しかし、この章の冒頭にある綿密な[ロードマップ](language-server-protocol.html#start)でも示されていましたが、これはまだ序盤です。
 
-```admonish note
+```admonish note title=""
 やるのかい やらないのかい
 
 どっっちなんっっだいっ❗❗{{footnote: なかやまきんに君です}}
