@@ -28,7 +28,7 @@ Before the rising sun, we fly
 朝日が昇る前に、私たちは飛び立つ
 ```
 
-## Setup
+## Installation & Setup
 
 `nvim-navic`の導入は、それはもうとても恐ろしく簡単です。インド人もびっくり❗
 
@@ -413,7 +413,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
 のほほんとできましたね😊
 
 ちゃんと`LSP`を動かせるようになったことによる賜物です。
-「胸を張っていい❗❗{{footnote: ドッジボールはまだ続いている...❗}}」
+「胸を張っていい❗❗{{footnote: ドッジボールは続いている...❗}}」
 
 ところで〜...、`nvim-navic`のトップにこんな一文がありましたね。
 
