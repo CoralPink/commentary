@@ -393,7 +393,7 @@ local actions = require 'nvim-navbuddy.actions'
 
 ## Similarly for other languages
 
-今回は全ての`lua`で話を進めてしまっていますが、これに限らず`LSP`さえ動いていれば割となんでもいけるクチです。
+今回は全て`lua`で話を進めてしまっていますが、これに限らず`LSP`さえ動いていれば割となんでもいけるクチです。
 
 ![markdown](img/nvim-navbuddy-markdown.webp)
 
