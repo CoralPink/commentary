@@ -3,6 +3,7 @@
   const theme = localStorage.getItem('mdbook-theme');
 
   if (!theme) {
+    document.querySelector('meta[name="theme-color"]').content = window.getComputedStyle(document.body).backgroundColor;
     return;
   }
 
