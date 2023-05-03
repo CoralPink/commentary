@@ -7,14 +7,10 @@ a > .hljs {
   color: var(--links);
 }
 
-#menu-bar {
-  position: relative;
+.menu-bar {
+  flex-basis: 60px;
   display: flex;
-  flex-wrap: wrap;
   background-color: var(--bg);
-  border-bottom-color: var(--bg);
-  border-bottom-width: 1px;
-  border-bottom-style: solid;
   z-index: 101;
 
   i,
@@ -26,20 +22,18 @@ a > .hljs {
     cursor: pointer;
     transition: color 0.5s;
   }
-}
 
-#menu-bar-hover-placeholder:hover + #menu-bar,
-#menu-bar:hover,
-.sidebar-visible #menu-bar {
-  position: sticky;
-  top: 0 !important;
-}
+  &,
+  &:visited,
+  & .icon-button,
+  & a i {
+    color: var(--icons);
+  }
 
-#menu-bar-hover-placeholder {
-  position: sticky;
-  top: 0;
-  height: var.$menu-bar-height;
-  z-index: 101;
+  & i:hover,
+  & .icon-button:hover {
+    color: var(--icons-hover);
+  }
 }
 
 .icon-button {
@@ -67,46 +61,36 @@ a > .hljs {
 }
 
 .menu-title {
-  display: inline-block;
   font-weight: 400;
   font-size: 1.3rem;
   font-style: italic;
   line-height: var.$menu-bar-height;
   text-align: right;
-  margin: 0;
   flex: 1;
   white-space: nowrap;
-  overflow: hidden;
   text-overflow: ellipsis;
-}
-
-.menu-bar,
-.menu-bar:visited,
-.mobile-nav-chapters,
-.mobile-nav-chapters:visited,
-.menu-bar .icon-button,
-.menu-bar a i {
-  color: var(--icons);
-}
-
-.menu-bar i:hover,
-.menu-bar .icon-button:hover,
-.mobile-nav-chapters i:hover {
-  color: var(--icons-hover);
 }
 
 .nav-wrapper {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 1em;
 }
 
-.mobile-nav-chapters {
+.nav-chapters {
   font-size: 2.5em;
   text-align: center;
   text-decoration: none;
   width: 70px;
   border-radius: 7px;
   background-color: var(--sidebar-bg);
+
+  &:visited {
+    color: var(--icons);
+  }
+  i:hover {
+    color: var(--icons-hover);
+  }
 }
 
 :not(pre) {
@@ -266,12 +250,9 @@ ul {
 }
 
 .sidebar {
-  position: fixed;
-  left: 0;
-  top: 0;
-  bottom: 0;
+  flex-basis: var.$sidebar-width;
+  min-width: var.$sidebar-width;
 
-  width: var.$sidebar-width;
   overscroll-behavior-y: contain;
 
   color: var(--sidebar-fg);
@@ -279,22 +260,17 @@ ul {
 }
 
 .sidebar-scrollbox {
-  overflow-y: scroll;
-  position: absolute;
+  position: fixed;
   top: 0;
   bottom: 0;
+  width: var.$sidebar-width;
+  overflow-y: scroll;
 }
 
 .sidebar-hidden {
   .sidebar {
-    transform: translateX(calc(0px - var.$sidebar-width));
-  }
-}
-
-.sidebar-visible {
-  .page-wrapper {
-    transform: none;
-    margin-left: var.$sidebar-width;
+    flex-basis: 0px;
+    display: none;
   }
 }
 
@@ -309,11 +285,11 @@ ul {
 
     a {
       color: var(--sidebar-fg);
+      text-decoration: none;
 
       &:hover,
       &.active {
         color: var(--sidebar-active);
-        text-decoration: none;
       }
     }
 
@@ -357,17 +333,14 @@ ul {
 
 .theme-popup {
   position: absolute;
-  left: 70px;
   top: var.$menu-bar-height;
-  z-index: 1000;
   border-radius: 4px;
   font-size: 0.7em;
   color: var(--fg);
   background: var(--theme-popup-bg);
   border: 1px solid var(--theme-popup-border);
   margin: 0;
-  padding: 0;
-  list-style: none;
+  padding: 2px;
   display: none;
   overflow: hidden;
 
