@@ -38,3 +38,14 @@ const html = document.querySelector('html');
   html.classList.remove('sidebar-visible');
   html.classList.add('sidebar-' + state);
 })();
+
+// Open external link in a new tab.
+document.addEventListener('DOMContentLoaded', () => {
+  document
+    .querySelector('.content')
+    .querySelectorAll('a[href^=http]')
+    .forEach((el) => {
+      el.setAttribute('target', '_blank');
+      el.setAttribute('rel', 'noopener');
+    });
+}, { once: true, passive: true });
