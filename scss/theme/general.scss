@@ -55,6 +55,7 @@ code {
 
 .content {
   display: flex;
+  min-width: 0px;
 
   main {
     font-size: 1.4rem;
