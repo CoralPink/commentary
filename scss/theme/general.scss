@@ -6,9 +6,13 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
+  display: flex;
+  margin: 0px;
+
   font-family: 'Open Sans', sans-serif;
   color: var(--fg);
   background-color: var(--bg);
@@ -44,38 +48,23 @@ code {
 }
 
 .page {
-  margin-top: calc(0px - var.$menu-bar-height); // Compensate for the #menu-bar-hover-placeholder
-}
-
-.page-wrapper:not(.sidebar-resizing) {
-  transition: margin-left 0.3s ease, transform 0.3s ease; // Animation: slide away
+  display: flex;
+  width: 100vw;
+  margin-top: var.$menu-bar-height;
 }
 
 .content {
   display: flex;
-  padding: 0em 3em;
-
-  $spacer-width: 2%;
-
-  @mixin flexballance {
-    @media only screen and (max-width: var.$enable-pagetoc) {
-      flex-basis: 100% - $spacer-width;
-    }
-
-    @media only screen and (min-width: var.$enable-pagetoc) {
-      flex-basis: 80% - $spacer-width;
-    }
-  }
+  min-width: 0px;
 
   main {
-    font-size: 1.3rem;
+    font-size: 1.4rem;
+    flex-basis: 100%;
     min-width: 0px;
-    @include flexballance();
   }
 
   spacer {
-    min-width: 0px;
-    flex-basis: $spacer-width;
+    flex-basis: var.$spacer-width;
   }
 
   a {
