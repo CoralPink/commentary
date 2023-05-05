@@ -105,7 +105,6 @@ const createTableOfContents = () => {
     });
 };
 
-// Open external link in a new tab.
 document.addEventListener('DOMContentLoaded', () => {
   attributeExternalLinks();
   createTableOfContents();
