@@ -284,7 +284,7 @@
     if (e.key == 'ArrowRight') {
       e.preventDefault();
 
-      const nextButton = document.querySelector('.mobile-nav-chapters.next');
+      const nextButton = document.querySelector('.nav-chapters.next');
 
       if (nextButton) {
         window.location.href = nextButton.href;
@@ -293,7 +293,7 @@
     else if (e.key == 'ArrowLeft'){
       e.preventDefault();
 
-      const previousButton = document.querySelector('.mobile-nav-chapters.previous');
+      const previousButton = document.querySelector('.nav-chapters.previous');
 
       if (previousButton) {
         window.location.href = previousButton.href;
