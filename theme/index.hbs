@@ -32,17 +32,12 @@
 
   </head>
   <body>
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WMN96QT"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <noscript>
+      <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WMN96QT" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
 
     <script src="{{ path_to_root }}start.js" id="start" data-defaulttheme="{{ default_theme }}"></script>
-    <div id="sidebar" class="sidebar" aria-label="Table of contents">
-      <nav class="sidebar-scrollbox">
-        {{#toc}}{{/toc}}
-      </nav>
-    </div>
 
-    <div class="page">
       {{> header}}
       <div id="menu-bar" class="menu-bar">
         <div class="left-buttons">
@@ -62,6 +57,17 @@
           <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
             <i class="fa-magnifying-glass"></i>
           </button>
+
+          <div id="search-wrapper" class="hidden">
+            <form id="searchbar-outer" class="searchbar-outer">
+              <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..."
+                aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+            </form>
+            <div id="searchresults-outer" class="searchresults-outer hidden">
+              <div id="searchresults-header" class="searchresults-header"></div>
+              <ul id="searchresults"></ul>
+            </div>
+          </div>
           {{/if}}
         </div>
 
@@ -87,20 +93,29 @@
         </div>
       </div>
 
-      {{#if search_enabled}}
-      <div id="search-wrapper" class="hidden">
-        <form id="searchbar-outer" class="searchbar-outer">
-          <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..."
-            aria-controls="searchresults-outer" aria-describedby="searchresults-header">
-        </form>
-        <div id="searchresults-outer" class="searchresults-outer hidden">
-          <div id="searchresults-header" class="searchresults-header"></div>
-          <ul id="searchresults"></ul>
-        </div>
+    <div class="page">
+      <div id="sidebar" class="sidebar" aria-label="Table of contents">
+        <nav class="sidebar-scrollbox">
+          {{#toc}}{{/toc}}
+        </nav>
       </div>
-      {{/if}}
 
       <div id="content" class="content">
+        <!--
+        {{#if search_enabled}}
+        <div id="search-wrapper" class="hidden">
+          <form id="searchbar-outer" class="searchbar-outer">
+            <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..."
+              aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+          </form>
+          <div id="searchresults-outer" class="searchresults-outer hidden">
+            <div id="searchresults-header" class="searchresults-header"></div>
+            <ul id="searchresults"></ul>
+          </div>
+        </div>
+        {{/if}}
+        -->
+
         <spacer></spacer>
 
         <main>
