@@ -12,6 +12,7 @@ a > .hljs {
   display: flex;
   background-color: var(--bg);
   z-index: 101;
+  opacity: 0.8;
 
   position: fixed;
   width: 100vw;
