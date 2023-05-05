@@ -49,15 +49,15 @@ code {
 
 .page {
   display: flex;
-  flex-direction: column;
   width: 100vw;
+  margin-top: var.$menu-bar-height;
 }
 
 .content {
   display: flex;
 
   main {
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     flex-basis: 100%;
     min-width: 0px;
   }

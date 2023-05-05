@@ -13,6 +13,10 @@ a > .hljs {
   background-color: var(--bg);
   z-index: 101;
 
+  position: fixed;
+  width: 100vw;
+  height: var.$menu-bar-height;
+
   i,
   .icon-button {
     position: relative;
@@ -20,7 +24,6 @@ a > .hljs {
     z-index: 10;
     line-height: var.$menu-bar-height;
     cursor: pointer;
-    transition: color 0.5s;
   }
 
   &,
@@ -166,29 +169,21 @@ pre {
 }
 
 #searchbar {
-  display: block;
-  width: 90%;
-  margin: 20px auto;
-  padding: 10px 16px;
-  transition: box-shadow 300ms ease-in-out;
+  min-width: 24rem;
+  margin: 8px;
+  padding: 8px 16px;
   border: 1px solid var(--searchbar-border-color);
-  border-radius: 20px;
+  border-radius: 16px;
   background-color: var(--searchbar-bg);
   color: var(--searchbar-fg);
-
-  &:focus,
-  &.active {
-    box-shadow: 0 0 3px var(--searchbar-shadow-color);
-  }
 }
 
 #searchresults a {
   text-decoration: none;
 }
 
-.searchbar-outer {
-  margin: auto;
-  max-width: var.$searchbar-max-width;
+.search-wrapper {
+  flex-basis: 60%;
 }
 
 mark {
@@ -213,10 +208,21 @@ mark {
 }
 
 .searchresults-outer {
-  margin: auto;
-  max-width: var.$searchbar-max-width;
-  border-bottom: 1px dashed var(--searchresults-border-color);
+  max-width: 80vw;
+  max-height: 80vh;
+  overflow-y: scroll;
+
   font-size: 1.3em;
+  position: absolute;
+
+  color: var(--fg);
+  background: var(--bg);
+  opacity: 0.9;
+
+  margin: 0 1em;
+  border: 2px solid var(--searchbar-border-color);
+  border-radius: 16px;
+  padding: 8px;
 }
 
 ul {
@@ -261,7 +267,7 @@ ul {
 
 .sidebar-scrollbox {
   position: fixed;
-  top: 0;
+  top: var.$menu-bar-height;
   bottom: 0;
   width: var.$sidebar-width;
   overflow-y: scroll;
