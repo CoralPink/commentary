@@ -9,11 +9,12 @@
 
 @media only screen and (min-width: var.$enable-pagetoc) {
   .righttoc {
-    flex-basis: 20%;
+    flex-basis: 30em;
   }
   .pagetoc {
     position: fixed;
     min-width: var.$pagetoc-width;
+    font-size: 1.1em;
     font-style: italic;
 
     a {
