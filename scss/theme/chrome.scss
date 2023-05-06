@@ -10,13 +10,15 @@ a > .hljs {
 .menu-bar {
   flex-basis: 60px;
   display: flex;
-  background-color: var(--bg);
-  z-index: 101;
-  opacity: 0.92;
 
   position: fixed;
   width: 100vw;
   height: var.$menu-bar-height;
+  padding: 1px;
+
+  background-color: var(--bg);
+  z-index: 101;
+  opacity: 0.92;
 
   i,
   .icon-button {
@@ -170,8 +172,9 @@ pre {
 }
 
 #searchbar {
-  min-width: 24rem;
-  margin: 8px;
+  min-width: 16rem;
+  height: 24px;
+  margin: 10px 5px;
   padding: 8px 16px;
   border: 1px solid var(--searchbar-border-color);
   border-radius: 16px;
@@ -209,8 +212,8 @@ mark {
 }
 
 .searchresults-outer {
-  max-width: 80vw;
-  max-height: 80vh;
+  max-width: 84vw;
+  height: 88vh;
   overflow-y: scroll;
 
   font-size: 1.3em;
@@ -219,7 +222,7 @@ mark {
   color: var(--fg);
   background: var(--bg);
 
-  margin: 0 1em;
+  margin-left: -9em;
   border: 2px solid var(--searchbar-border-color);
   border-radius: 16px;
   padding: 8px;
@@ -340,6 +343,7 @@ ul {
 .theme-popup {
   position: absolute;
   top: var.$menu-bar-height;
+  left: 40px;
   border-radius: 4px;
   font-size: 0.7em;
   color: var(--fg);
