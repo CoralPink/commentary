@@ -63,14 +63,22 @@ code {
     min-width: 0px;
   }
 
-  spacer {
-    &.left {
-      flex-basis: 4rem;
-      min-width: 24px;
+  @media only screen and (max-width: var.$enable-pagetoc) {
+    spacer {
+      flex-basis: 3rem;
     }
-    &.right {
-      flex-basis: 1rem;
-      min-width: 8px;
+  }
+
+  @media only screen and (min-width: var.$enable-pagetoc) {
+    spacer {
+      &.left {
+        flex-basis: 4rem;
+        min-width: 24px;
+      }
+      &.right {
+        flex-basis: 1rem;
+        min-width: 8px;
+      }
     }
   }
 
