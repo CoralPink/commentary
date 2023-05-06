@@ -64,7 +64,14 @@ code {
   }
 
   spacer {
-    flex-basis: var.$spacer-width;
+    &.left {
+      flex-basis: 4rem;
+      min-width: 24px;
+    }
+    &.right {
+      flex-basis: 1rem;
+      min-width: 8px;
+    }
   }
 
   a {
