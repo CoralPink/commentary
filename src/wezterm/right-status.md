@@ -3,7 +3,7 @@
 これはもう手厚いサンプルが既に用意されているので、この通りに書けばバッチリです😆 やったね❗️
 
 ```admonish info title="[window:set_right_status(string)](https://wezfurlong.org/wezterm/config/lua/window/set_right_status.html)"
-This method can be used to change the content that is displayed in the tab bar, to the right of the tabs and new tab button. 
+This method can be used to change the content that is displayed in the tab bar, to the right of the tabs and new tab button.
 
 このメソッドを使用すると、タブバー内のタブと新規タブボタンの右側に表示される内容を変更することができます。
 ```
@@ -96,12 +96,11 @@ OSからのフルスクリーン操作、もしくは
 
 ~~~admonish example title="status.lua"
 ```lua
--- ここもやっぱりアイコン入れてます
-local HEADER_HOST = { Foreground = { Color = '#75b1a9' }, Text = '' }
+local HEADER_HOST = { Foreground = { Color = '#75b1a9' }, Text = '' }
 local HEADER_CWD = { Foreground = { Color = '#92aac7' }, Text = '' }
-local HEADER_DATE = { Foreground = { Color = '#ffccac' }, Text = '' }
-local HEADER_TIME = { Foreground = { Color = '#bcbabe' }, Text = '' }
-local HEADER_BATTERY = { Foreground = { Color = '#dfe166' }, Text = '' }
+local HEADER_DATE = { Foreground = { Color = '#ffccac' }, Text = '󱪺' }
+local HEADER_TIME = { Foreground = { Color = '#bcbabe' }, Text = '' }
+local HEADER_BATTERY = { Foreground = { Color = '#dfe166' }, Text = '' }
 
 local function AddElement(elems, header, str)
   table.insert(elems, { Foreground = header.Foreground })
@@ -156,7 +155,7 @@ end)
 
 
 ```admonish success
-華やかになりましたね☺️ (まあ、ぶっちゃけそんな見ないんだけど...) 
+華やかになりましたね☺️ (まあ、ぶっちゃけそんな見ないんだけど...)
 
 サンプル通りとはいえ、自分で書いたコードが動くんだから楽しい世界です。ほわほわ〜💕
 ```

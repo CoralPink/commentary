@@ -14,7 +14,7 @@ local SPACE_1 = ' '
 local SPACE_3 = '   '
 
 local HEADER_KEY_NORMAL = { Foreground = DEFAULT_FG, Text = '' }
-local HEADER_LEADER = { Foreground = { Color = '#ffffff' }, Text = '' }
+local HEADER_LEADER = { Foreground = { Color = '#ffffff' }, Text = '' }
 local HEADER_IME = { Foreground = DEFAULT_FG, Text = 'あ' }
 
 local function AddIcon(elems, icon)
