@@ -30,6 +30,15 @@ end)
 ```
 ~~~
 
+```admonish note
+このサイトは、ブラウザの表示幅が 680px 以上あると`Nerd Fonts`
+{{footnote: [ryanoasis/nerd-fonts](https://github.com/ryanoasis/nerd-fonts)から拝借してます。}}
+に対応したフォントセットが使用されるように仕組んであるんです、実は❗
+
+上記のコードで`HEADER`のアイコンが文字化けしている場合は、
+PCならブラウザのウィンドウを横に広げてみたり、タブレットなら横表示にしてみたり、よかったら試してみてね☺️
+```
+
 これもウィンドウタイトルと同じように、`wezterm.on`を使って`format-tab-title`イベントの処理を書いています。
 
 色は適宜調整してください。
@@ -59,7 +68,7 @@ return {
 ~~~
 
 ## Zoomed
-ズーム中はタブに 🔎 アイコンを表示してます。 
+ズーム中はタブに 🔎 アイコンを表示してます。
 
 ```admonish info title="[TogglePaneZoomState](https://wezfurlong.org/wezterm/config/lua/keyassignment/TogglePaneZoomState.html)"
 Toggles the zoom state of the current pane.
