@@ -50,7 +50,7 @@ require('lualine').setup {
       {
         'buffers',
         buffers_color = switch_color,
-        symbols = { modified = '_', alternate_file = ' ', directory = ' ' },
+        symbols = { modified = '_󰷥', alternate_file = ' ', directory = ' ' },
       },
     },
     lualine_b = {},
@@ -155,7 +155,7 @@ If you have other plugins installed that keep track of branch info. lualine can 
 ~~~admonish example title="extensions/lualine.nvim"
 ```lua
     lualine_y = {
-      { 'b:gitsigns_head', icon = { '', color = { fg = colors.orange } }, color = { fg = colors.fg } },
+      { 'b:gitsigns_head', icon = { '', color = { fg = colors.orange } }, color = { fg = colors.fg } },
     },
 ```
 ~~~
