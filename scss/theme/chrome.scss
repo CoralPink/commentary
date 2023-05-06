@@ -12,7 +12,7 @@ a > .hljs {
   display: flex;
   background-color: var(--bg);
   z-index: 101;
-  opacity: 0.8;
+  opacity: 0.92;
 
   position: fixed;
   width: 100vw;
@@ -218,7 +218,6 @@ mark {
 
   color: var(--fg);
   background: var(--bg);
-  opacity: 0.9;
 
   margin: 0 1em;
   border: 2px solid var(--searchbar-border-color);
