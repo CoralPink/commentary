@@ -205,7 +205,7 @@ sections = {
       'diagnostics',
       sources = { 'nvim_diagnostic', 'nvim_lsp' },
       sections = { 'error', 'warn', 'info', 'hint' },
-      symbols = { error = ' ', warn = ' ', info = ' ', hint = ' ' },
+      symbols = { error = ' ', warn = ' ', info = ' ', hint = '' },
     },
   },
 
