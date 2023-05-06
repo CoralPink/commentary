@@ -54,12 +54,14 @@ code {
 }
 
 .content {
-  display: flex;
+  flex-basis: 100%;
   min-width: 0px;
+
+  display: flex;
 
   main {
     font-size: 1.4rem;
-    flex-basis: 100vw;
+    flex-basis: 96%;
     min-width: 0px;
   }
 
