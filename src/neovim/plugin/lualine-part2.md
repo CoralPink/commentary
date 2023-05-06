@@ -247,7 +247,7 @@ require('lualine').setup {
         newfile_status = true,
         path = 1,
         shorting_target = 24,
-        symbols = { modified = ' _', readonly = ' ', newfile = '' },
+        symbols = { modified = '_󰷥', readonly = ' ', newfile = '󰄛' },
       },
     },
     lualine_c = {},
