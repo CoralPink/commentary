@@ -260,7 +260,7 @@ ul {
 }
 
 .sidebar {
-  flex-basis: var.$sidebar-width;
+  flex-basis: 12%;
   min-width: var.$sidebar-width;
 
   overscroll-behavior-y: contain;
@@ -279,7 +279,7 @@ ul {
 
 .sidebar-hidden {
   .sidebar {
-    flex-basis: 0px;
+    flex-basis: 0%;
     display: none;
   }
 }
