@@ -1,5 +1,23 @@
 @use 'variables.scss' as var;
 
+.footnote-definition {
+  font-size: 0.64em;
+  margin-top: 0.4em;
+
+  p {
+    display: inline;
+
+    & > a {
+      font-size: 1.2em;
+    }
+  }
+
+  :not(&) + &,
+  & + :not(&) {
+    margin-top: 3em;
+  }
+}
+
 .footnote-reference {
   a {
     $jump-shift: 20px;
