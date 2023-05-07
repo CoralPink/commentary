@@ -6,7 +6,7 @@ cp js/node_modules/clipboard/dist/clipboard.min.js src
 cp js/node_modules/mark.js/dist/mark.es6.min.js src
 
 npm run debug --prefix scss style.scss ../css/style.css
-npm run debug --prefix scss fonts/fonts.scss ../src/fonts/fonts.css
+npm run debug --prefix scss fonts/fonts.scss ../theme/fonts/fonts.css
 npm run debug --prefix scss theme/chrome.scss ../theme/css/chrome.css
 npm run debug --prefix scss theme/general.scss ../theme/css/general.css
 
