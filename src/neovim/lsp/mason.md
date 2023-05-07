@@ -226,15 +226,6 @@ require('mason').setup {
 ```
 ~~~
 
-簡単に書くと、
-
-|parameter|description|
-|:---:|:---|
-|check_outdated_packages_on_open|`false`にしておくと、`mason`のウィンドウを "開いた時に" アップデートを確認しなくなります。|
-|border|`single`にしておくと、`packer`と統一感が出ていいかも〜。|
-
-...というようなものです。
-
 ~~~admonish tip
 特に設定を変更しない場合も、以下の一文は必要になります。
 
@@ -243,7 +234,22 @@ require('mason').setup()
 ```
 ~~~
 
-で、こっちもシンプルに。
+簡単に書くと、以下のようなものです。
+
+### check_outdated_packages_on_open
+
+`false`にしておくと、`mason`のウィンドウを開いた時に新しいバージョンを自動で確認しなくなります。
+
+### border
+
+UI ウィンドウに使用するボーダーを指定します。
+`nvim_open_win()` と同じボーダー値を使用することができます。
+
+なので、`single`にしておくと、`packer`と統一感が出ていいかも〜😆
+
+## Install
+
+そしたら、`packer`でのインストールもシンプル😉
 
 ~~~admonish example title="extensions/init.lua"
 ```lua
