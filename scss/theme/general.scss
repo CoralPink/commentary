@@ -50,6 +50,7 @@ code {
 .page {
   display: flex;
   width: 100vw;
+  min-height: calc(100vh - var.$menu-bar-height);
   margin-top: var.$menu-bar-height;
 }
 
