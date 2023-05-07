@@ -157,20 +157,6 @@ kbd {
   vertical-align: middle;
 }
 
-.footnote-definition {
-  font-size: 0.84em;
-  margin: 0.5em 0;
-
-  p {
-    display: inline;
-  }
-
-  :not(&) + &,
-  & + :not(&) {
-    margin-top: 3em;
-  }
-}
-
 .tooltiptext {
   position: absolute;
   visibility: hidden;
