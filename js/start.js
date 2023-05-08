@@ -45,13 +45,11 @@
 })();
 
 const attributeExternalLinks = () => {
-  document
-    .querySelector('.content')
-    .querySelectorAll('a[href^=http]')
-    .forEach(el => {
-      el.setAttribute('target', '_blank');
-      el.setAttribute('rel', 'noopener');
-    });
+  document.querySelectorAll('.content main a[href^="http"]')
+  .forEach(el => {
+    el.setAttribute('target', '_blank');
+    el.setAttribute('rel', 'noopener');
+  });
 };
 
 const createTableOfContents = () => {
