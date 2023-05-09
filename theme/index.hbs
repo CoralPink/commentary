@@ -129,6 +129,16 @@
       </div>
     </div>
 
+    <link rel="stylesheet" href="{{ path_to_root }}fonts/fonts.css" async>
+
+    {{#if print_enable}}
+    <link rel="stylesheet" href="{{ path_to_root }}css/print.css" media="print" async>
+    {{/if}}
+
+    {{#each additional_css}}
+    <link rel="stylesheet" href="{{ ../path_to_root }}{{ this }}" async>
+    {{/each}}
+
     {{#if search_js}}
     <script src="{{ path_to_root }}elasticlunr.min.js"></script>
     <script src="{{ path_to_root }}mark.es6.min.js"></script>
@@ -143,16 +153,6 @@
 
     <script src="{{ path_to_root }}highlight.min.js"></script>
     <script src="{{ path_to_root }}book.js" id="book" data-defaulttheme="{{ default_theme }}"></script>
-
-    {{#each additional_css}}
-    <link rel="stylesheet" href="{{ ../path_to_root }}{{ this }}" async>
-    {{/each}}
-
-    <link rel="stylesheet" href="{{ path_to_root }}fonts/fonts.css" async>
-
-    {{#if print_enable}}
-    <link rel="stylesheet" href="{{ path_to_root }}css/print.css" media="print" async>
-    {{/if}}
 
     {{#if mathjax_support}}
     <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
