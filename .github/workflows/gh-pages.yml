@@ -58,7 +58,7 @@ jobs:
       - name: Js Copy Files
         run: |
           cp js/node_modules/clipboard/dist/clipboard.min.js src
-          cp js/node_modules/fzf/dist/fzf.umd.js js/assets
+          cp js/node_modules/fzf/dist/fzf.umd.js src
           cp js/node_modules/mark.js/dist/mark.es6.min.js src
 
       - name: Scss Compile

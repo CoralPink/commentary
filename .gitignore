@@ -7,9 +7,8 @@ dist
 *.css.map
 *.tmp
 
-js/assets/fzf.umd.js
-
 src/clipboard.min.js
+src/fzf.umd.js
 src/mark.es6.min.js
 src/searcher.js
 src/start.js
