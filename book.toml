@@ -10,7 +10,6 @@ create-missing = false
 
 [output.html]
 additional-css = ["css/style.css"]
-additional-js = ["js/assets/fzf.umd.js", "js/assets/elasticlunr.js"]
 default-theme = "Latte"
 preferred-dark-theme = "Macchiato"
 git-repository-url = "https://github.com/CoralPink/commentary"
