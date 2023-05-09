@@ -87,8 +87,7 @@ const createTableOfContents = () => {
   });
 
   document
-    .querySelector('.content')
-    .querySelectorAll('a.header')
+    .querySelectorAll('.content a.header')
     .forEach(el => {
       observer.observe(el);
 
