@@ -173,11 +173,13 @@ mason.nvim は定期的に cargo や npm などの外部パッケージマネー
 ```
 
 ~~~admonish note
-例えば「`JavaScript`やりたいから`eslint-lsp`ほしいなー😆」ってなったとするじゃないですか。
+例えば「`JavaScript`やりたいから`typescript-language-server`ほしいなー😆」ってなったとするじゃないですか。
 
-`mason.nvim`は`eslint-lsp`のインストールに`npm`を使用するんですね。
+![mason-failed](img/mason-tsls.webp)
 
-でも、もし`npm`がまだ無い状態でそれをやろうとしても、
+`mason.nvim`は`typescript-language-server`のインストールに`npm`を使用するんですね。
+
+でも、もし`npm`がまだインストールされていない状態でそれをやろうとしても、
 
 ![mason-failed](img/mason-failed.webp)
 
@@ -187,8 +189,9 @@ spawn: npm failed with exit code - and signal -. npm is not executable
 
 って言われちゃいます。まあ、わかってる人からすればこれも「そりゃそうだー」ではあるんですが、
 
-「`npm`ってなんやねん❗」とか、
-「`node.js`をやろーゆーとんちゃうねん❗」ってなっちゃう人もいるかもしれません。
+「`npm`ってなんやねん❗」とか
+「`node.js`をやろーゆーとんちゃうねん❗」とか
+「ていうか`TypeScript`...❓Jav...、あれえー⁉️😱」ってなっちゃうかもしれません。
 
 この辺りはある程度の経験値が必要になって来ると思うので、
 躓いちゃったら周りの人に聞いてみましょう😉
