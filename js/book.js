@@ -43,16 +43,17 @@
   const themePopup = document.getElementById('theme-list');
   const themeToggleButton = document.getElementById('theme-toggle');
 
-  const changeTheme = (theme) => {
-    themePopup.querySelectorAll('.theme-selected')
-      .forEach(el => el.classList.remove('theme-selected'));
+  const changeTheme = theme => {
+    themePopup.querySelectorAll('.theme-selected').forEach(el => el.classList.remove('theme-selected'));
 
     themePopup.querySelector('button#' + theme).classList.add('theme-selected');
 
     setTimeout(() => {
-      document.querySelector('meta[name="theme-color"]').content = window.getComputedStyle(document.body).backgroundColor;
+      document.querySelector('meta[name="theme-color"]').content = window.getComputedStyle(
+        document.body
+      ).backgroundColor;
     }, 1);
-  }
+  };
 
   const getTheme = () => {
     let theme;
@@ -107,40 +108,60 @@
     themePopup.querySelector('button#' + currentTheme).focus();
   };
 
-  themeToggleButton.addEventListener('click', () => {
-    themePopup.style.display === 'block' ? hideThemes() : showThemes();
-  }, { once: false, passive: true });
+  themeToggleButton.addEventListener(
+    'click',
+    () => {
+      themePopup.style.display === 'block' ? hideThemes() : showThemes();
+    },
+    { once: false, passive: true }
+  );
 
-  themePopup.addEventListener('click', e => {
-    if (e.target.className === 'theme') {
-      setTheme(e.target.id);
-    }
-  }, { once: false, passive: true });
+  themePopup.addEventListener(
+    'click',
+    e => {
+      if (e.target.className === 'theme') {
+        setTheme(e.target.id);
+      }
+    },
+    { once: false, passive: true }
+  );
 
-  themePopup.addEventListener('focusout', e => {
-    // e.relatedTarget is null in Safari and Firefox on macOS (see workaround below)
-    if (!!e.relatedTarget && !themeToggleButton.contains(e.relatedTarget) && !themePopup.contains(e.relatedTarget)) {
-      hideThemes();
-    }
-  }, { once: false, passive: true });
+  themePopup.addEventListener(
+    'focusout',
+    e => {
+      // e.relatedTarget is null in Safari and Firefox on macOS (see workaround below)
+      if (!!e.relatedTarget && !themeToggleButton.contains(e.relatedTarget) && !themePopup.contains(e.relatedTarget)) {
+        hideThemes();
+      }
+    },
+    { once: false, passive: true }
+  );
 
   // Should not be needed, but it works around an issue on macOS & iOS: https://github.com/rust-lang/mdBook/issues/628
-  document.addEventListener('click', e => {
-    if (
-      themePopup.style.display === 'block' &&
-      !themeToggleButton.contains(e.target) &&
-      !themePopup.contains(e.target)
-    ) {
-      hideThemes();
-    }
-  }, { once: false, passive: true });
+  document.addEventListener(
+    'click',
+    e => {
+      if (
+        themePopup.style.display === 'block' &&
+        !themeToggleButton.contains(e.target) &&
+        !themePopup.contains(e.target)
+      ) {
+        hideThemes();
+      }
+    },
+    { once: false, passive: true }
+  );
 
-  document.addEventListener('keydown', e => {
-    if (themePopup.contains(e.target)) {
-      e.preventDefault();
-      hideThemes();
-    }
-  }, { once: false, passive: false });
+  document.addEventListener(
+    'keydown',
+    e => {
+      if (themePopup.contains(e.target)) {
+        e.preventDefault();
+        hideThemes();
+      }
+    },
+    { once: false, passive: false }
+  );
 })();
 
 // sidebar
@@ -211,54 +232,72 @@
   };
 
   // Toggle sidebar
-  sidebarToggleButton.addEventListener('click', () => {
-    html.classList.contains('sidebar-hidden') ? showSidebar() : hideSidebar();
-  }, { once: false, passive: true });
+  sidebarToggleButton.addEventListener(
+    'click',
+    () => {
+      html.classList.contains('sidebar-hidden') ? showSidebar() : hideSidebar();
+    },
+    { once: false, passive: true }
+  );
 
   let timeoutId = null;
 
-  globalThis.addEventListener('resize', () => {
-    clearTimeout(timeoutId);
+  globalThis.addEventListener(
+    'resize',
+    () => {
+      clearTimeout(timeoutId);
 
-    // FIXME: The definitions are all over the place.
-    timeoutId = setTimeout(() => { if (window.innerWidth >= 1200) {
-      showSidebar();
-    }}, 200);
-  }, { once: false, passive: true });
+      // FIXME: The definitions are all over the place.
+      timeoutId = setTimeout(() => {
+        if (window.innerWidth >= 1200) {
+          showSidebar();
+        }
+      }, 200);
+    },
+    { once: false, passive: true }
+  );
 
   let firstContact = null;
 
-  document.addEventListener('touchstart', e => {
-    firstContact = {
-      x: e.touches[0].clientX,
-      time: Date.now(),
-    };
-  }, { once: false, passive: true });
+  document.addEventListener(
+    'touchstart',
+    e => {
+      firstContact = {
+        x: e.touches[0].clientX,
+        time: Date.now(),
+      };
+    },
+    { once: false, passive: true }
+  );
 
-  document.addEventListener('touchmove', e => {
-    if (!firstContact) {
-      return;
-    }
-
-    if (Date.now() - firstContact.time > 250) {
-      return;
-    }
-    const curX = e.touches[0].clientX;
-    const xDiff = curX - firstContact.x;
-
-    if (Math.abs(xDiff) >= 150) {
-      if (xDiff >= 0) {
-        if (firstContact.x < Math.min(document.body.clientWidth * 0.25, 300)) {
-          showSidebar();
-        }
-      } else {
-        if (curX < 300) {
-          hideSidebar();
-        }
+  document.addEventListener(
+    'touchmove',
+    e => {
+      if (!firstContact) {
+        return;
       }
-      firstContact = null;
-    }
-  }, { once: false, passive: true });
+
+      if (Date.now() - firstContact.time > 250) {
+        return;
+      }
+      const curX = e.touches[0].clientX;
+      const xDiff = curX - firstContact.x;
+
+      if (Math.abs(xDiff) >= 150) {
+        if (xDiff >= 0) {
+          if (firstContact.x < Math.min(document.body.clientWidth * 0.25, 300)) {
+            showSidebar();
+          }
+        } else {
+          if (curX < 300) {
+            hideSidebar();
+          }
+        }
+        firstContact = null;
+      }
+    },
+    { once: false, passive: true }
+  );
 
   // Scroll sidebar to current active section
   const activeSection = document.getElementById('sidebar').querySelector('.active');
@@ -276,30 +315,32 @@
 
 // chapterNavigation
 (() => {
-  document.addEventListener('keyup', e => {
-    if (window.search.hasFocus()) {
-      return;
-    }
-
-    if (e.key == 'ArrowRight') {
-      e.preventDefault();
-
-      const nextButton = document.querySelector('.nav-chapters.next');
-
-      if (nextButton) {
-        window.location.href = nextButton.href;
+  document.addEventListener(
+    'keyup',
+    e => {
+      if (window.search.hasFocus()) {
+        return;
       }
-    }
-    else if (e.key == 'ArrowLeft'){
-      e.preventDefault();
 
-      const previousButton = document.querySelector('.nav-chapters.previous');
+      if (e.key == 'ArrowRight') {
+        e.preventDefault();
 
-      if (previousButton) {
-        window.location.href = previousButton.href;
+        const nextButton = document.querySelector('.nav-chapters.next');
+
+        if (nextButton) {
+          window.location.href = nextButton.href;
+        }
+      } else if (e.key == 'ArrowLeft') {
+        e.preventDefault();
+
+        const previousButton = document.querySelector('.nav-chapters.previous');
+
+        if (previousButton) {
+          window.location.href = previousButton.href;
+        }
       }
-    }
-  }, { once: false, passive: false }
+    },
+    { once: false, passive: false }
   );
 })();
 
@@ -316,9 +357,13 @@
   };
 
   Array.from(document.querySelectorAll('.clip-button')).forEach(clipButton => {
-    clipButton.addEventListener('mouseout', e => {
-      hideTooltip(e.currentTarget);
-    }, { once: false, passive: true });
+    clipButton.addEventListener(
+      'mouseout',
+      e => {
+        hideTooltip(e.currentTarget);
+      },
+      { once: false, passive: true }
+    );
   });
 
   const clipboardSnippets = new ClipboardJS('.clip-button', {
