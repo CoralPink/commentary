@@ -45,8 +45,7 @@
 })();
 
 const attributeExternalLinks = () => {
-  document.querySelectorAll('.content main a[href^="http"]')
-  .forEach(el => {
+  document.querySelectorAll('.content main a[href^="http"]').forEach(el => {
     el.setAttribute('target', '_blank');
     el.setAttribute('rel', 'noopener');
   });
@@ -62,47 +61,56 @@ const createTableOfContents = () => {
       onlyActive = null;
     }
     tocMap.get(entry.target).classList.add('active');
-  }
+  };
 
   const removeActive = entry => {
     let count = 0;
     let active = null;
 
-    tocMap.forEach(key => { if (key.classList.contains('active')) {
-      count++;
-      active = key;
-    }});
+    tocMap.forEach(key => {
+      if (key.classList.contains('active')) {
+        count++;
+        active = key;
+      }
+    });
 
     if (count <= 1) {
       onlyActive = active;
       return;
     }
     tocMap.get(entry.target).classList.remove('active');
-  }
+  };
 
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(x => { x.isIntersecting ? addActive(x) : removeActive(x); })
-  }, {
-    root: document.querySelector('content'),
+  const observer = new IntersectionObserver(
+    entries => {
+      entries.forEach(x => {
+        x.isIntersecting ? addActive(x) : removeActive(x);
+      });
+    },
+    {
+      root: document.querySelector('content'),
+    }
+  );
+
+  document.querySelectorAll('.content a.header').forEach(el => {
+    observer.observe(el);
+
+    const link = document.createElement('a');
+
+    link.appendChild(document.createTextNode(el.text));
+    link.href = el.href;
+    link.classList.add(el.parentElement.tagName);
+
+    document.getElementsByClassName('pagetoc')[0].appendChild(link);
+    tocMap.set(el, link);
   });
-
-  document
-    .querySelectorAll('.content a.header')
-    .forEach(el => {
-      observer.observe(el);
-
-      const link = document.createElement('a');
-
-      link.appendChild(document.createTextNode(el.text));
-      link.href = el.href;
-      link.classList.add(el.parentElement.tagName);
-
-      document.getElementsByClassName('pagetoc')[0].appendChild(link);
-      tocMap.set(el, link);
-    });
 };
 
-document.addEventListener('DOMContentLoaded', () => {
-  attributeExternalLinks();
-  createTableOfContents();
-}, { once: true, passive: true });
+document.addEventListener(
+  'DOMContentLoaded',
+  () => {
+    attributeExternalLinks();
+    createTableOfContents();
+  },
+  { once: true, passive: true }
+);
