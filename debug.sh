@@ -3,6 +3,7 @@ npm run compress --prefix js -input='searcher.js' -output='../src/searcher.js'
 npm run compress --prefix js -input='start.js' -output='../src/start.js'
 
 cp js/node_modules/clipboard/dist/clipboard.min.js src
+cp js/node_modules/fzf/dist/fzf.umd.js js/assets
 cp js/node_modules/mark.js/dist/mark.es6.min.js src
 
 npm run debug --prefix scss style.scss ../css/style.css
