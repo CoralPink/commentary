@@ -38,60 +38,61 @@
 
     <script src="{{ path_to_root }}start.js" id="start" data-defaulttheme="{{ default_theme }}"></script>
 
-      {{> header}}
-      <div id="menu-bar" class="menu-bar">
-        <div class="left-buttons">
-          <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
-            <i class="fa-list-ul"></i>
-          </button>
-          <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
-            <i class="fa-palette"></i>
-          </button>
-          <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
-            <li role="none"><button role="menuitem" class="theme" id="latte">Latte</button></li>
-            <li role="none"><button role="menuitem" class="theme" id="frappe">Frappé</button></li>
-            <li role="none"><button role="menuitem" class="theme" id="macchiato">Macchiato</button></li>
-            <li role="none"><button role="menuitem" class="theme" id="mocha">Mocha</button></li>
-          </ul>
+    {{> header}}
 
-          {{#if search_enabled}}
-          <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
-            <i class="fa-magnifying-glass"></i>
-          </button>
+    <div id="menu-bar" class="menu-bar">
+      <div class="left-buttons">
+        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+          <i class="fa-list-ul"></i>
+        </button>
+        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+          <i class="fa-palette"></i>
+        </button>
+        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+          <li role="none"><button role="menuitem" class="theme" id="latte">Latte</button></li>
+          <li role="none"><button role="menuitem" class="theme" id="frappe">Frappé</button></li>
+          <li role="none"><button role="menuitem" class="theme" id="macchiato">Macchiato</button></li>
+          <li role="none"><button role="menuitem" class="theme" id="mocha">Mocha</button></li>
+        </ul>
 
-          <div id="search-wrapper" class="hidden">
-            <form id="searchbar-outer" class="searchbar-outer">
-              <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..."
-                aria-controls="searchresults-outer" aria-describedby="searchresults-header">
-            </form>
-            <div id="searchresults-outer" class="searchresults-outer hidden">
-              <div id="searchresults-header" class="searchresults-header"></div>
-              <ul id="searchresults"></ul>
-            </div>
+        {{#if search_enabled}}
+        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+          <i class="fa-magnifying-glass"></i>
+        </button>
+
+        <div id="search-wrapper" class="hidden">
+          <form id="searchbar-outer" class="searchbar-outer">
+            <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..."
+              aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+          </form>
+          <div id="searchresults-outer" class="searchresults-outer hidden">
+            <div id="searchresults-header" class="searchresults-header"></div>
+            <ul id="searchresults"></ul>
           </div>
-          {{/if}}
         </div>
-
-        <div class="menu-title">{{ book_title }}</div>
-
-        <div class="right-buttons">
-          {{#if print_enable}}
-          <a href="{{ path_to_root }}print.html" title="Print this book" aria-label="Print this book">
-            <i id="print-button" class="fa-print"></i>
-          </a>
-          {{/if}}
-          {{#if git_repository_url}}
-          <a href="{{git_repository_url}}" title="Git repository" aria-label="Git repository" target="_blank" rel="noopener">
-            <i id="git-repository-button" class="fa-github {{git_repository_icon}}"></i>
-          </a>
-          {{/if}}
-          {{#if git_repository_edit_url}}
-          <a href="{{git_repository_edit_url}}" title="Suggest an edit" aria-label="Suggest an edit">
-            <i id="git-edit-button" class="fa-pen-to-square"></i>
-          </a>
-          {{/if}}
-        </div>
+        {{/if}}
       </div>
+
+      <div class="menu-title">{{ book_title }}</div>
+
+      <div class="right-buttons">
+        {{#if print_enable}}
+        <a href="{{ path_to_root }}print.html" title="Print this book" aria-label="Print this book">
+          <i id="print-button" class="fa-print"></i>
+        </a>
+        {{/if}}
+        {{#if git_repository_url}}
+        <a href="{{git_repository_url}}" title="Git repository" aria-label="Git repository" target="_blank" rel="noopener">
+          <i id="git-repository-button" class="fa-github {{git_repository_icon}}"></i>
+        </a>
+        {{/if}}
+        {{#if git_repository_edit_url}}
+        <a href="{{git_repository_edit_url}}" title="Suggest an edit" aria-label="Suggest an edit">
+          <i id="git-edit-button" class="fa-pen-to-square"></i>
+        </a>
+        {{/if}}
+      </div>
+    </div>
 
     <div class="page">
       <div id="sidebar" class="sidebar" aria-label="Table of contents">
