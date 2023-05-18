@@ -1,6 +1,6 @@
 # cmp-nvim-lsp
 
-今回でついに、コード補完を実現させます🤗
+今回は、いよいよコード補完を実現させます🤗
 
 ```admonish info title="[cmp-nvim-lsp](https://github.com/hrsh7th/cmp-nvim-lsp)"
 nvim-cmp source for neovim's built-in language server client.
@@ -30,22 +30,27 @@ Here comes the sun king
 ```admonish info title="[Capabilities](https://github.com/hrsh7th/cmp-nvim-lsp#capabilities)"
 Language servers provide different completion results depending on the capabilities of the client.
 Neovim's default omnifunc has basic support for serving completion candidates.
-nvim-cmp supports more types of completion candidates, so users must override the capabilities sent to the server such that it can provide these candidates during a completion request.
-These capabilities are provided via the helper function require('cmp_nvim_lsp').default_capabilities
 
 言語サーバーは、クライアントの能力に応じて、異なる補完結果を提供します。
 Neovimのデフォルトのomnifuncは、補完候補を提供するための基本的なサポートを備えています。
-nvim-cmpはより多くの種類の補完候補をサポートしているため、補完要求時にこれらの候補を提供できるように、ユーザーがサーバーに送信する機能をオーバーライドする必要があります。
-この機能は、ヘルパー関数require('cmp_nvim_lsp').default_capabilitiesを使用して提供されます。
+
+nvim-cmp supports more types of completion candidates,
+so users must override the capabilities sent to the server such that it can provide these candidates during a completion request.
+These capabilities are provided via the helper function require('cmp_nvim_lsp').default_capabilities
+
+nvim-cmpはより多くの種類の補完候補をサポートしているため、補完要求時にこれらの候補を提供できるように、
+ユーザーがサーバーに送信する機能をオーバーライドする必要があります。
+この機能は、ヘルパー関数 require('cmp_nvim_lsp').default_capabilities を使用して提供されます。
 
 As these candidates are sent on each request, adding these capabilities will break the built-in omnifunc support for neovim's language server client.
 nvim-cmp provides manually triggered completion that can replace omnifunc. See :help cmp-faq for more details.
 
-これらの候補はリクエストごとに送信されるため、この機能を追加すると、neovimの言語サーバークライアントの組み込みのomnifuncサポートは切断されます。
+これらの候補はリクエストごとに送信されるため、この機能を追加すると、neovim の言語サーバークライアントの組み込みの omnifunc サポートは切断されます。
 nvim-cmp は、omnifunc に代わる手動トリガーによる補完機能を提供します。詳しくは :help cmp-faq を参照してください。
 ```
 
-`default_capabilities`については次でコードを組み込みます。
+最も重要なのは、"サーバに送信する機能をオーバーライドする必要がある" というところでしょうか。
+次項からやっていきましょう。
 
 ## Setup / Install
 
@@ -53,9 +58,12 @@ nvim-cmp は、omnifunc に代わる手動トリガーによる補完機能を�
 
 ### Capabilities
 
-本来は使用する言語サーバーごとに`setup`を記述する必要がありますが、このサイトでは`mason-lspconfig`でまとめて行っちゃってますよね😸
+本来は使用する言語サーバーの`setup`ごとに`capabilities`をオーバーライドする必要がありますが、
+このサイトでは`mason-lspconfig`でまとめて行う方法をとってきました☀️
 
-ってことで`mason.lua`を開いてこんなんしときましょう。🧚‍♀️🧚
+なので、これもまとめて簡単にやっちゃいましょう😎
+
+`mason.lua`を開いてこんなんしとけばOKです🧚‍♀️🧚
 
 ~~~admonish example title="extensions/mason.lua"
 ```diff
@@ -70,7 +78,9 @@ require('mason-lspconfig').setup_handlers {
 ```
 ~~~
 
-併せてこれもやっておくと安心🐶
+一網打尽ですね🏝️
+
+併せて`packer`に「`mason-lspconfig`の設定に`cmp-nvim-lsp`を使用するよ❗」、と教えておいてあげるとさらに安心🐶
 
 ~~~admonish example title="extensions/init.lua"
 ```diff
@@ -105,7 +115,7 @@ require('mason-lspconfig').setup_handlers {
 
 ### Sources
 
-んでもってさらに、 「補完ソースは`cmp-nvim-lsp`を通して取得するんだ🦜 」と、`nvim-cmp`に宣言しておきましょう😆
+んでもってさらに、 「補完ソースは`cmp-nvim-lsp`を通して取得するんだよ🦜 」と、`nvim-cmp`に宣言しておきましょう😆
 
 ~~~admonish example title="extensions/nvim-cmp.lua"
 ```diff
@@ -136,16 +146,16 @@ cmp.setup {
 ```
 ~~~
 
-`Capabilities`で示されているように、
+`Capabilities`の説明で示されているように、
 「`omnifunc`サポートが切断される」とのことなので、上記のコードを外しておいてもいいでしょう😉
 
 ```admonish question
-「結局`omnifunc`ってなんやったん？」ってなるんですけど、わたしもよく知らないんですよねー😅
+「結局`omnifunc`ってなんやったん❓」ってなるんですけど、わたしもよく知らないんですよねー😅
 ```
 
 ## Completion
 
-ってことで、`lua`ファイルを開いて、適当に入力してみましょう。
+ってことで、`lua`ファイルを開いて、なんか適当に入力してみましょう。
 
 ```admonish note
 このサイトでは、今後も基本的には`lua_ls`を使用して進みます。
@@ -161,14 +171,14 @@ cmp.setup {
 
 ![cmp-nvim-lsp 2](img/cmp-nvim-lsp2.webp)
 
-`Function`の項目にカーソルを合わせれば`help`も表示してくれるはずです🤓
+`Function`の項目にカーソルを合わせれば`Document`も表示してくれるはずです🤓
 
 あ、あとはもちろん`mapping`に設定した操作も可能です❗
 
 ```admonish success title=""
 Everybody is laughing
 
-誰もが嬉しそう
+みんな嬉しそう
 ```
 
 ### ( If it does not work well... )
@@ -178,9 +188,11 @@ Everybody is laughing
 
 ![lsp-info](img/lspinfo.webp)
 
-`LSP`が認識されている状態であれば、`nvim-cmp`もしくは`cmp-nvim-lsp`が上手く連携できていないだけだと思われます😉
+`Client`に`lua_ls`が認識されている状態であれば、`nvim-cmp`と`cmp-nvim-lsp`が上手く連携できていないだけだと思われます😉
 
-また、もし`lua_ls`が認識されていなければ、もう一度`nvim-lspconfig` / `mason.nvim` / `mason-lspconfig.nvim`まで戻って確認してみてください🙀
+...もし`lua_ls`が認識されていなければ、それは "履 い て な い" んです、PAAAANTS!! 🤷‍♀️
+
+急いで`nvim-lspconfig` / `mason.nvim` / `mason-lspconfig.nvim`まで戻って "履 い て" 来てください 👉🩲👈
 ```
 
 ## I'll take you all.
@@ -193,5 +205,5 @@ Everybody is laughing
 ```admonish success
 Everybody is happy
 
-誰もが幸せ
+みんな幸せ
 ```
