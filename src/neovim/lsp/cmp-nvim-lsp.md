@@ -139,7 +139,7 @@ cmp.setup {
 
 以前、`nvim-lspconfig.lua`の中に、こんなコードを入れていると思います。
 
-~~~admonish example title="extensions/nvim-lspconfig"
+~~~admonish example title="extensions/nvim-lspconfig.lua"
 ```lua
   -- Enable completion triggered by <c-x><c-o>
   vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
