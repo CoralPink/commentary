@@ -305,7 +305,7 @@ require('nvim-navbuddy').setup {
 
 パーセンテージで指定するところがちょっとクセに見えるかも知れません。
 
-### icon
+### icons
 
 これは`nvim-navic`にもあったやつですね😉
 
