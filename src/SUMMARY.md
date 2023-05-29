@@ -96,5 +96,8 @@
   - [nvim-navbuddy](neovim/lsp/nvim-navbuddy.md)
   - [nvim-cmp](neovim/lsp/nvim-cmp.md)
     - [cmp-nvim-lsp](neovim/lsp/cmp-nvim-lsp.md)
+    - [LuaSnip](neovim/lsp/luasnip.md)
+      - [cmp_luasnip](neovim/lsp/cmp_luasnip.md)
+      - [Friendly Snippets](neovim/lsp/friendly_snippets.md)
 
 # ... To Be Continued.
