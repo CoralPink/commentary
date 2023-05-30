@@ -1,7 +1,10 @@
 # LuaSnip
 
-前回、`LSP`を使用した補完が動いて大満足でしたが、
-今回はさらに、スニペットによる鮮やかな華を添えていきましょう。`LuaSnip`の登場です❗
+前回は`LSP`を使用した補完が動いて大満足でしたね😊
+
+今回はこれに加えて、スニペットによる鮮やかな華🌻 を添えていきましょう😽
+
+`LuaSnip`の登場です❗
 
 ```admonish info title="[LuaSnip](https://github.com/L3MON4D3/LuaSnip)"
 [Features](https://github.com/L3MON4D3/LuaSnip#features)
@@ -15,14 +18,21 @@ Expand LSP-Snippets with nvim-compe (or its' successor, nvim-cmp (requires cmp_l
 nvim-compe (または後継の nvim-cmp (cmp_luasnip)) を使って LSP-Snippets を拡張する。
 ```
 
-[Wikipedia](https://en.wikipedia.org/wiki/Snippet_(programming))によれば、
-プログラミングの実践において「スニペット」とは、
-狭義にはエディタプログラムによって文字通りファイルに含まれるソースコードの一部を指し、
-コピーアンドペーストプログラミングの一形態である。
+`Wikipedia`によれば、
+
+```admonish info title="[スニペット](https://ja.wikipedia.org/wiki/スニペット)"
+スニペット(英語: snippet)とは、「断片」という意味で、
+再利用可能なソースコード、マシンコード、またはテキストの小さな領域を表すプログラミング用語である。
+通常、これらはより大きなプログラミングモジュールに組み込むために正式に定義された操作ユニットである。
+スニペット管理は、一部のテキストエディタ、ソースコードエディタ、統合開発環境、および関連ソフトウェアの機能である。
+これにより、ユーザーは日常の編集操作中に繰り返し入力する必要がなくなる。
+```
 
 ...とのことです。
 
-今のところ「なんのこっちゃ」ですが、動かして見てみれば至ってシンプルです 🐈
+ぶっちゃけ「なんのこっちゃ」ですが、実際に動かして見てみれば至ってシンプルです 🐈
+
+何よりも "繰り返し入力する必要がなくなる" という文言には魅力があります🤩
 
 ~~~admonish success title=""
 Mean Mister Mustard{{footnote:
@@ -95,10 +105,10 @@ Fabrice Bellard 氏の [QuickJS](https://bellard.org/quickjs/) にある`librege
 ~~~
 
 ```admonish tip
-`tag`はあってもなくても平気ですが、オフィシャルに「入れとけ」と案内されています。
-入れといた方が安心ですね❗
+`tag`はあってもなくても平気ですが、オフィシャルに「入れてね」と案内されています。
+これはもう素直に入れておくべきですね❗
 
-...わたしは入れずに使わせてもらってるんですけど😲
+...わたしは入れずに使わせてもらってる "ひねくれ者" なんですけど😲
 ```
 
 じゃあいつも通り、`PackerSync`や`PackerInstall`を行なってみましょう...。
@@ -107,14 +117,14 @@ Fabrice Bellard 氏の [QuickJS](https://bellard.org/quickjs/) にある`librege
 
 ### ( In case of installation failure )
 
-これもなんか決まり文句みたいになってるんですけど、わたしの経験上`macOS`では問題になったことがありません。
+これもなんか決まり文句みたいになってるんですが、わたしの経験上`macOS`では問題になったことがありません。
 
 ...ですが、このサイトで使用している`Fedora`系の環境では`jsregexp`のインストールがうまくいきませんでした...😫
 (ちょっと頑張ってはみたんですが😅)
 
 ![luasnip-error](img/luasnip-error.webp)
 
-幸いにも、これは`optional`という位置付けなので必須ではありません。
+ただ幸いにも、これは`optional`という位置付けなので必須ではありません。
 
 ```admonish info title="[Transformations](https://github.com/L3MON4D3/LuaSnip/blob/master/DOC.md#transformations)"
 If `jsregexp` is not available, transformations are replaced by a simple copy.
@@ -122,7 +132,7 @@ If `jsregexp` is not available, transformations are replaced by a simple copy.
 `jsregexp`が利用できない場合、変換は単純なコピーで置き換えられます。
 ```
 
-なので、ひとまずは安心してください😺
+なので、ひとまず安心してください😺
 
 ただ、これだと`packer`でアップデートを動かす度に`make`が走ってしまうので、`run`だけ外しておきましょう。
 
@@ -147,7 +157,7 @@ If `jsregexp` is not available, transformations are replaced by a simple copy.
 
 ## Add Snippets
 
-なんだか順番というか、話の構成が難しくて てんやわんや してるんですが...、
+スニペットのフォーマットにはいくつかあるみたいで、`LuaSnip`は以下のフォーマットに対応しています。
 
 ~~~admonish info title="[Add Snippets](https://github.com/L3MON4D3/LuaSnip#add-snippets)"
 Check out [the doc](https://github.com/L3MON4D3/LuaSnip/blob/master/DOC.md#loaders) for a general explanation of the
@@ -159,11 +169,15 @@ loaders and their benefits.
 The following list serves only as a short overview.
 
 以下のリストは、簡単な概要としてのみ役立ちます。
+~~~
 
-- **VS Code-like**: To use existing VS Code style snippets from a plugin
+~~~admonish info title=""
+**VS Code-like**:
+
+To use existing VS Code style snippets from a plugin
 (eg. [rafamadriz/friendly-snippets](https://github.com/rafamadriz/friendly-snippets)) simply install the plugin and then add
 
-- プラグイン (例えば [rafamadriz/friendly-snippets](https://github.com/rafamadriz/friendly-snippets)) から
+(例えば [rafamadriz/friendly-snippets](https://github.com/rafamadriz/friendly-snippets)) から
 既存のVS Codeスタイルのスニペットを使用するには、プラグインをインストールし、次のように追加します。
 
 ```lua
@@ -171,9 +185,38 @@ require("luasnip.loaders.from_vscode").lazy_load()
 ```
 ~~~
 
-最終的には今出てきた`Friendly Snippets`を使用できる状態を目標として進めます❗
+~~~admonish info title=""
+**SnipMate-like**:
 
-`luasnip.lua`を作りましょう。
+Very similar to VS Code packages; install a plugin that provides snippets and call the `load`-function:
+
+VS Codeのパッケージと非常に似ており、スニペットを提供するプラグインをインストールし、load-functionを呼び出します：
+
+```lua
+require("luasnip.loaders.from_snipmate").lazy_load()
+```
+~~~
+
+~~~admonish info title=""
+**Lua**:
+
+Add the snippets by calling `require("luasnip").add_snippets(filetype, snippets)`.
+An example for this can be found [here](https://github.com/L3MON4D3/LuaSnip/blob/master/Examples/snippets.lua#L190).
+This can also be done much cleaner, with all the benefits that come with using a loader,
+by using the [loader for lua](https://github.com/L3MON4D3/LuaSnip/blob/master/DOC.md#lua)
+
+`require("luasnip").add_snippets(filetype, snippets)`でスニペットを追加します。
+この例は[ここ]((https://github.com/L3MON4D3/LuaSnip/blob/master/Examples/snippets.lua#L190).)で見ることができます。
+また、ローダーを使うことで得られる利点はそのままに、
+[lua用のローダー](https://github.com/L3MON4D3/LuaSnip/blob/master/DOC.md#lua)を使うことで、より簡単に行うことができます。
+~~~
+
+わたしとしては`VS Code-like`の説明の中に出てきている`Friendly Snippets`がおすすめなので、
+これを使用できる状態を目標として進めていきます😉
+
+## Config
+
+いつものように`luasnip.lua`を作りましょう😺
 
 ~~~admonish example title="extensions/luasnip.lua"
 ```lua
@@ -181,7 +224,7 @@ require('luasnip.loaders.from_vscode').lazy_load()
 ```
 ~~~
 
-そして組み込みましょう。
+そしてこれも、いつものように組み込みましょう😆
 
 ~~~admonish example title="extensions/init.lua"
 ```diff
@@ -215,7 +258,7 @@ nvim-cmp の wiki には、super-tab のようなマッピングを設定する
 [例](https://github.com/hrsh7th/nvim-cmp/wiki/Example-mappings#luasnip)も紹介されています。
 ~~~
 
-ということなので、これを`nvim-cmp.lua`の`mapping`にそのまま入れちゃいましょう。
+...と、いうことなので、これを`nvim-cmp.lua`の`mapping`に入れちゃいましょう😉
 
 ~~~admonish example title="extensions/nvim-cmp.lua"
 ```lua
@@ -266,7 +309,7 @@ cmp.setup {
 ~~~
 
 `super-tab`については実際に動作を見た方が感覚が掴めると思うので、
-[16.6.2.2. Friendly Snippets](friendly_snippets.html)で簡単に補足します😉
+この先の [16.6.2.2. Friendly Snippets](friendly_snippets.html) で簡単に補足します😉
 
 ```admonish success title=""
 His sister Pam works in a shop
@@ -280,12 +323,14 @@ She never stops, she's a go-getter
 
 ## I'll take you all.
 
-結構色々組み込んできたんですが、まだ何も変化はありません。(びっくり❗❗)
+結構色々組み込んできたんですが、まだ何も変化はありません。(なかなかハードですね...😅)
 
 でもまあ、元気出していきましょう😆
 
 ```admonish success
-Takes him out to look at the Queen
+Takes him out to look at the Queen{{footnote:
+これはもちろん[Elizabeth II](https://en.wikipedia.org/wiki/Elizabeth_II) (エリザベス2世)のことですね。時代は変わる...。
+}}
 
 Only place that he's ever been
 

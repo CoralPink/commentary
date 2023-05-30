@@ -19,9 +19,9 @@ Paul がふと "She Came In Through The Bathroom Window (彼女は浴室の窓�
 彼女は浴室の窓から入ってきた
 ```
 
-何者かがぬるっと入って来ましたけど、そんな異常な状況に反して`Friendly Snippets`は文字通りとても friendly です❗
+何者かがぬるっと入って来ましたが、そんな状況に反して`Friendly Snippets`は文字通りとっても friendly です❗
 
-つまり簡単ってことです。気楽にいきましょう😆
+斬らないでください😶‍🌫️ 気楽にいきましょう❗
 
 ```admonish info title="[Friendly Snippets](https://github.com/rafamadriz/friendly-snippets)"
 Snippets collection for a set of different programming languages.
@@ -70,14 +70,16 @@ Protected by a silver spoon{{footnote:
 "Protected by a silver spoon"というフレーズは、彼女が裕福な出自によって守られているという皮肉めいた意味合いを持っています。
 ただし、歌詞の具体的な意図や背景は、曲の作者である`ポール・マッカートニーに尋ねることが必要`です。」[ChatGPT](https://chat.openai.com/)より
 
-...そうか❗Bathroom windowから入って尋ねればいいんだ🤣 ...んなアホな🙄}}
+...。...はっ❗Bathroom windowから入って尋ねればいいんだ🤣 ...んなアホな🙄}}
 
 銀の匙に守られながら
 ```
 
 ## Setup
 
-`packer`を使用して取得されたのであれば、当然`packer`の管理下に配置されるのでパス指定は少し複雑です。
+`packer`を使用して取得されたのであれば、当然`packer`の管理下に配置されます。
+
+パスはちょっと複雑ですね😅
 
 ~~~admonish example title="extensions/luasnip.lua"
 ```lua
@@ -96,7 +98,7 @@ require('luasnip.loaders.from_vscode').lazy_load {
 
 ```admonish note
 これも本当は`paths`を指定しなければもう勝手に見つけ出してくれるんですが、
-既にパスを指定する形をとってしまっているので、"指定しない"方法と併用できないんです😅
+既にパスを指定する形をとってしまっているので、"指定しない"方法と併用できないんですぅ😭
 ```
 
 ```admonish success title=""
@@ -115,7 +117,7 @@ Didn't anybody see?
 
 ![friendly-snip](img/friendly-snip.webp)
 
-ほら、一目でわかるすっごいやつやん👺
+ほら❗一目でわかるすっごいやつやん👺
 
 ```admonish success title=""
 Sunday's on the phone to Monday
@@ -171,13 +173,15 @@ nvim-cmp の wiki には、super-tab のようなマッピングを設定する
 ![super-tab6](img/super-tab6.webp)
 ![super-tab7](img/super-tab7.webp)
 
-あ、なんか"中身も書けや" と言われているかのようですね😮
+あ、なんか "中身も書けや" と言われているかのようですね😮
 
 ![super-tab8](img/super-tab8.webp)
 
-せっかくなので、書きました😆 カ キ マ シ タ ァ❗
+書きました😆
 
 ![super-tab9](img/super-tab9.webp)
+
+カ キ マ シ タ ァ❗❗
 
 ```admonish tip
 <kbd>Shift-Tab</kbd>で逆に辿っていきます🏄 これは直感的ですね😉
@@ -202,11 +206,9 @@ And got my self a steady job
 
 ## I'll take you all.
 
-自分ではあまりスニペットを育ててないわたしが言うのもあれですが、これは`Neovim`に限らずどこでも使えます。
+自分で育ててないわたしが言うのもあれですが、スニペットは`Neovim`に限らずどこでも使えます🦉
 
-今回使用したのは`VS Code-like`のスニペットなので、そこだけ覚えといてくださいね❗
-
-...なんか、フォーマットはいくつかあるっぽいんで😅
+今回使用したのは`VS Code-like`のスニペットです。これ大事❗覚えといてね🤗
 
 ```admonish success
 And though she tried her best to help me

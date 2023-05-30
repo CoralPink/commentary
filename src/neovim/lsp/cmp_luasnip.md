@@ -140,11 +140,12 @@ mkdir snippets
 ```
 ~~~
 
-まあサンプルなので`language`には`all`を指定していますが、例えば`lua`・`markdown`など、言語ごとに細かく指定することもできます。
+今回はサンプルなので`language`には`all`を指定していますが、
+例えば`lua`・`markdown`など、言語ごとに細かく指定することもできます😉
 
 #### Snippets Json File
 
-続いて、言語に対して使用するスニペットを定義していきます。
+続いて、言語に対して使用するスニペットを定義していきます❗
 
 ~~~admonish example title="~/.config/nvim/snippets/all.json"
 ```json
@@ -166,7 +167,7 @@ mkdir snippets
 
 ### paths
 
-そしたら、`luasnip`に「ぼくのスニペット、ここおいとくねー」...と、教えてあげましょう。
+そしたら、`luasnip`に「ぼくのスニペット、ここおいとくねー」...と、教えてあげましょう🦮
 
 ~~~admonish info title=":h luasnip-loaders-vs-code"
 This collection can be loaded with any of
@@ -192,6 +193,12 @@ This collection can be loaded with any of
 
 本当は`paths`を指定しなければ勝手に探してくれるんですが、
 わたしは`package.json`を`rtp`直下に置きたくなかったので、パスを指定する形をとってます😅
+
+```admonish note
+突然`rtp`とか言い出しちゃったんですけど、これは`r`un`t`ime `p`ath の略でしょう (おそらく)。
+
+単純に`rtp`でweb検索すると`Real-time Transport Protocol`が出てくるんですが、これは関係無いはず🧐
+```
 
 ~~~admonish example title="~/.config/nvim/snippets/all.json"
 ```lua
@@ -223,7 +230,7 @@ require('luasnip.loaders.from_vscode').lazy_load {
 
 ということで、ようやくスニペットが動きました。
 
-もし今までに手塩にかけて育ててきたスニペットがいるのであれば、それは即戦力として使えます❗
+もし今までに手塩にかけて育ててきたスニペットがいれば、それはもう即戦力❗
 
 ```admonish success title=""
 She's the kind of a girl that makes "The News of the World"
@@ -237,7 +244,7 @@ Yes, you could say she was attactively built
 
 わたし自身はと言えば、自分のスニペットはほぼ育ててないんですよねー😅
 
-同じように「そんなもん育ててないよー」ってな人も (おそらく) いると思うので、
+同じように「育ててないよー」ってな人も (おそらく) いると思うので、
 前回ぬるっと出ていた`Friendly snippets`に話が続いていくわけです😉
 
 ```admonish success
