@@ -49,6 +49,7 @@ She's so good-looking but she looks like a man
       'hrsh7th/cmp-nvim-lsp',
       {
         'L3MON4D3/LuaSnip',
+        tag = "v1.*",
         run = 'make install_jsregexp',
         config = function() require 'extensions.luasnip' end,
 +       requires = 'saadparwaiz1/cmp_luasnip',

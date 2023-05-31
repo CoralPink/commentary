@@ -52,6 +52,7 @@ this way you can have it all in one place.
       'hrsh7th/cmp-nvim-lsp',
       {
         'L3MON4D3/LuaSnip',
+        tag = "v1.*",
         run = 'make install_jsregexp',
         config = function() require 'extensions.luasnip' end,
 -       requires = 'saadparwaiz1/cmp_luasnip',

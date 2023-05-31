@@ -230,9 +230,9 @@ require('luasnip.loaders.from_vscode').lazy_load()
 ```diff
   {
     'L3MON4D3/LuaSnip',
+    tag = "v1.*",
     run = 'make install_jsregexp',
 +   config = function() require 'extensions.luasnip' end,
-    requires = { 'saadparwaiz1/cmp_luasnip', 'rafamadriz/friendly-snippets' },
   }
 
 ```
