@@ -15,7 +15,7 @@ LSP-Styleスニペットをluaで直接解析、vscodeパッケージ、snipmate
 
 Expand LSP-Snippets with nvim-compe (or its' successor, nvim-cmp (requires cmp_luasnip))
 
-nvim-compe (または後継の nvim-cmp (cmp_luasnip)) を使って LSP-Snippets を拡張する。
+nvim-compe (または後継の nvim-cmp (cmp_luasnip)) を使って LSP-Snippets を拡張します。
 ```
 
 `Wikipedia`によれば、
