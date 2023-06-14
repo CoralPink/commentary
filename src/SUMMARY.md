@@ -99,5 +99,6 @@
   - [LuaSnip](neovim/lsp/luasnip.md)
     - [cmp_luasnip](neovim/lsp/cmp_luasnip.md)
     - [Friendly Snippets](neovim/lsp/friendly_snippets.md)
+  - [copilot.lua](neovim/lsp/copilot.md)
 
 # ... To Be Continued.
