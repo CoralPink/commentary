@@ -128,6 +128,8 @@ But oh, that magic feeling, nowhere to go
 
 ```admonish info title="[Setup](https://github.com/hrsh7th/nvim-cmp#setup)"
 Recommended Configuration
+
+推奨構成
 ```
 
 ...と、いうことで例が示されているんですが、
@@ -173,6 +175,7 @@ The `fallback` function can be used to call an existing mapping.
 fallback` 関数は、既存のマッピングを呼び出すために使用することができます。
 
 There are also builtin mapping helper functions you can use:
+
 また、ビルトインされたマッピングヘルパー関数を使用することができます：
 
 Built-in mapping helpers are only available as a configuration option.
