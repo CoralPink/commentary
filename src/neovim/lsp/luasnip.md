@@ -277,7 +277,7 @@ cmp.setup {
 
     -- (中略)
 
-    ['<Tab>'] = cmp.mapping(function(fallback)
+    ['<Tab>'] = map(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
         -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
@@ -291,7 +291,7 @@ cmp.setup {
       end
     end, { 'i', 's' }),
 
-    ['<S-Tab>'] = cmp.mapping(function(fallback)
+    ['<S-Tab>'] = map(function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
       elseif luasnip.jumpable(-1) then
@@ -309,7 +309,7 @@ cmp.setup {
 ~~~
 
 `super-tab`については実際に動作を見た方が感覚が掴めると思うので、
-この先の [16.6.2.2. Friendly Snippets](friendly_snippets.html) で簡単に補足します😉
+この先の [16.7.2. Friendly Snippets](friendly_snippets.html) で簡単に補足します😉
 
 ```admonish success title=""
 His sister Pam works in a shop
