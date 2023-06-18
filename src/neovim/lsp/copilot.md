@@ -73,8 +73,9 @@ Install the plugin with your preferred plugin manager. For example, with packer.
 お好みのプラグインマネージャーでプラグインをインストールします。例えば、packer.nvimで：
 ~~~
 
-ということで単純にインストールだけでもいいんですが、
-その先で示されたカスタマイズまでを含めた方がオフィシャルとしてもおすすめされています😉
+ということで単純にインストールだけでもいいんですが...、
+
+オフィシャルには、その先で示されているカスタマイズを含める方法がおすすめされています😉
 
 ## Setup and Configuration
 
@@ -179,7 +180,7 @@ optプラグインをすぐに読み込みます。
 ```
 ~~~
 
-これでも結構いいんじゃないかと思えるんですが、わたしが実際に使っているのは次の案です😉
+これだけでも、割といい感じなんじゃないかと思えるんですが、わたしが実際に使っているのは次の案です😉
 
 #### Cleared for Takeoff, Good day!
 
@@ -207,6 +208,7 @@ end, {})
 ~~~
 
 これも好きな時にロードできますが、`notify`によるリアクションをしてくれます。
+
 (リアクションが不要であれば、前項のプランの方が簡単です。)
 
 ~~~admonish info title=":h vim.notify()"
@@ -244,7 +246,7 @@ notify({msg}, {level}, {opts})                                  vim.notify()
 
 ### copilot_node_command
 
-もう一個大事なやつだけやっちゃいましょう❗
+もう一個だけ、大事なものをやっちゃいましょう❗
 
 ~~~admonish info
 Use this field to provide the path to a specific node version such as one installed by nvm.
@@ -299,7 +301,7 @@ copilot_node_command = vim.fn.expand("$HOME") .. "/.config/nvm/versions/node/v16
 | 18.x    | **LTS**             | Hydrogen | 2022-04-19     | 2022-10-25       | 2023-10-18        | 2025-04-30  |
 | 20.x    | **Current**         |          | 2023-04-18     | 2023-10-24       | 2024-10-22        | 2026-04-30  |
 
-(※ 2023-04-12 現在)
+(※ 2023-06-12 現在)
 ```
 
 ```admonish question
