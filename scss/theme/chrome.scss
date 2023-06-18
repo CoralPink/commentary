@@ -1,5 +1,10 @@
 @use '../variables' as var;
 
+.hljs {
+  display: block;
+  overflow-x: auto;
+}
+
 #searchresults a,
 .content main a:link,
 a:visited,
