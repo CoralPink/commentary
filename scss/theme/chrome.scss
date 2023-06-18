@@ -200,13 +200,7 @@ mark {
   padding: 0 3px 1px 3px;
   margin: 0 -3px -1px -3px;
   background-color: var(--search-mark-bg);
-  transition: background-color 300ms linear;
   cursor: pointer;
-
-  &.fade-out {
-    background-color: rgba(0, 0, 0, 0) !important;
-    cursor: auto;
-  }
 }
 
 .searchresults-header {
