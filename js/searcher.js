@@ -70,7 +70,8 @@ window.elasticlunr.Index.load = index => {
   };
 
   const mark_exclude = [];
-  const marker = new Mark(document.getElementById('content'));
+  const marker = new Mark(document.querySelector('main'));
+
   let current_searchterm = '';
   let teaser_count = 0;
 
@@ -416,7 +417,6 @@ window.elasticlunr.Index.load = index => {
       }
       setSearchUrlParameters(searchterm, 'push_if_new_search_else_replace');
 
-      // Remove marks
       marker.unmark();
     };
 
@@ -456,24 +456,16 @@ window.elasticlunr.Index.load = index => {
         showSearch(false);
       }
 
-      if (url.params.hasOwnProperty.call(URL_MARK_PARAM)) {
+      if (url.params.hasOwnProperty(URL_MARK_PARAM)) {
         marker.mark(decodeURIComponent(url.params[URL_MARK_PARAM]).split(' '), {
           exclude: mark_exclude,
         });
 
         const markers = document.querySelectorAll('mark');
 
-        const hide = () => {
-          markers.forEach(x => x.classList.add('fade-out'));
-        };
-
         markers.forEach(x => {
-          x.addEventListener('click', hide, { once: false, passive: true });
+          x.addEventListener('click', marker.unmark, { once: true, passive: true });
         });
-
-        globalThis.setTimeout(() => {
-          marker.unmark();
-        }, 300);
       }
     };
 
