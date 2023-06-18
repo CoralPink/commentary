@@ -1,43 +1,5 @@
 'use strict';
 
-// codeSnippets
-(() => {
-  Array.from(document.querySelectorAll('code'))
-    // Don't highlight `inline code` blocks in headers.
-    .filter(node => !node.parentElement.classList.contains('header'))
-    .forEach(block => block.classList.add('hljs'));
-
-  // Syntax highlighting Configuration
-  hljs.configure({
-    languages: ['txt'],
-  });
-  hljs.highlightAll();
-
-  if (!window.playground_copyable) {
-    return;
-  }
-
-  Array.from(document.querySelectorAll('pre code')).forEach(block => {
-    const pre_block = block.parentNode;
-
-    let buttons = pre_block.querySelector('.buttons');
-
-    if (!buttons) {
-      buttons = document.createElement('div');
-      buttons.className = 'buttons';
-      pre_block.insertBefore(buttons, pre_block.firstChild);
-    }
-
-    const clipButton = document.createElement('button');
-    clipButton.className = 'fa-copy clip-button';
-    clipButton.title = 'Copy to clipboard';
-    clipButton.setAttribute('aria-label', clipButton.title);
-    clipButton.innerHTML = '<i class="tooltiptext"></i>';
-
-    buttons.insertBefore(clipButton, buttons.firstChild);
-  });
-})();
-
 // themes
 (() => {
   const themePopup = document.getElementById('theme-list');
@@ -164,157 +126,10 @@
   );
 })();
 
-// sidebar
 (() => {
-  const html = document.querySelector('html');
-  const sidebar = document.getElementById('sidebar');
-  const sidebarLinks = document.querySelectorAll('#sidebar a');
-  const sidebarToggleButton = document.getElementById('sidebar-toggle');
+  const main = document.querySelector('main');
 
-  // Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM
-  sidebarToggleButton.setAttribute('aria-expanded', sidebar === 'visible');
-  sidebar.setAttribute('aria-hidden', sidebar !== 'visible');
-
-  sidebarLinks.forEach(link => {
-    link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
-  });
-
-  const toggleSection = ev => {
-    ev.currentTarget.parentElement.classList.toggle('expanded');
-  };
-
-  Array.from(document.querySelectorAll('#sidebar a.toggle')).forEach(el => {
-    el.addEventListener('click', toggleSection, { once: false, passive: true });
-  });
-
-  const showSidebar = () => {
-    if (html.classList.contains('sidebar-visible')) {
-      return;
-    }
-
-    html.classList.remove('sidebar-hidden');
-    html.classList.add('sidebar-visible');
-
-    Array.from(sidebarLinks).forEach(link => {
-      link.setAttribute('tabIndex', 0);
-    });
-
-    sidebarToggleButton.setAttribute('aria-expanded', true);
-    sidebar.setAttribute('aria-hidden', false);
-
-    try {
-      localStorage.setItem('mdbook-sidebar', 'visible');
-    } catch (_e) {
-      console.log('ERROR: showSidebar');
-    }
-  };
-
-  const hideSidebar = () => {
-    if (html.classList.contains('sidebar-hidden')) {
-      return;
-    }
-
-    html.classList.remove('sidebar-visible');
-    html.classList.add('sidebar-hidden');
-
-    Array.from(sidebarLinks).forEach(link => {
-      link.setAttribute('tabIndex', -1);
-    });
-
-    sidebarToggleButton.setAttribute('aria-expanded', false);
-    sidebar.setAttribute('aria-hidden', true);
-
-    try {
-      localStorage.setItem('mdbook-sidebar', 'hidden');
-    } catch (_e) {
-      console.log('ERROR: hideSidebar');
-    }
-  };
-
-  // Toggle sidebar
-  sidebarToggleButton.addEventListener(
-    'click',
-    () => {
-      html.classList.contains('sidebar-hidden') ? showSidebar() : hideSidebar();
-    },
-    { once: false, passive: true }
-  );
-
-  let timeoutId = null;
-
-  globalThis.addEventListener(
-    'resize',
-    () => {
-      clearTimeout(timeoutId);
-
-      // FIXME: The definitions are all over the place.
-      timeoutId = setTimeout(() => {
-        if (window.innerWidth >= 1200) {
-          showSidebar();
-        }
-      }, 200);
-    },
-    { once: false, passive: true }
-  );
-
-  let firstContact = null;
-
-  document.addEventListener(
-    'touchstart',
-    e => {
-      firstContact = {
-        x: e.touches[0].clientX,
-        time: Date.now(),
-      };
-    },
-    { once: false, passive: true }
-  );
-
-  document.addEventListener(
-    'touchmove',
-    e => {
-      if (!firstContact) {
-        return;
-      }
-
-      if (Date.now() - firstContact.time > 250) {
-        return;
-      }
-      const curX = e.touches[0].clientX;
-      const xDiff = curX - firstContact.x;
-
-      if (Math.abs(xDiff) >= 150) {
-        if (xDiff >= 0) {
-          if (firstContact.x < Math.min(document.body.clientWidth * 0.25, 300)) {
-            showSidebar();
-          }
-        } else {
-          if (curX < 300) {
-            hideSidebar();
-          }
-        }
-        firstContact = null;
-      }
-    },
-    { once: false, passive: true }
-  );
-
-  // Scroll sidebar to current active section
-  const activeSection = document.getElementById('sidebar').querySelector('.active');
-
-  if (activeSection) {
-    // https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView
-    activeSection.scrollIntoView({ block: 'center' });
-  }
-
-  // FIXME: The definitions are all over the place.
-  if (window.innerWidth < 750) {
-    hideSidebar();
-  }
-})();
-
-// chapterNavigation
-(() => {
+  // chapterNavigation
   document.addEventListener(
     'keyup',
     e => {
@@ -325,7 +140,7 @@
       if (e.key == 'ArrowRight') {
         e.preventDefault();
 
-        const nextButton = document.querySelector('.nav-chapters.next');
+        const nextButton = main.querySelector('.nav-chapters.next');
 
         if (nextButton) {
           window.location.href = nextButton.href;
@@ -333,7 +148,7 @@
       } else if (e.key == 'ArrowLeft') {
         e.preventDefault();
 
-        const previousButton = document.querySelector('.nav-chapters.previous');
+        const previousButton = main.querySelector('.nav-chapters.previous');
 
         if (previousButton) {
           window.location.href = previousButton.href;
@@ -342,41 +157,295 @@
     },
     { once: false, passive: false }
   );
-})();
 
-// clipboard
-(() => {
-  const hideTooltip = elem => {
-    elem.firstChild.innerText = '';
-    elem.className = 'fa-copy clip-button';
+  const initCodeBlock = () => {
+    Array.from(main.querySelectorAll('code'))
+      // Don't highlight `inline code` blocks in headers.
+      .filter(node => !node.parentElement.classList.contains('header'))
+      .forEach(block => block.classList.add('hljs'));
+
+    // Syntax highlighting Configuration
+    hljs.configure({
+      languages: ['txt'],
+    });
+    hljs.highlightAll();
+
+    if (!window.playground_copyable) {
+      return;
+    }
+
+    Array.from(main.querySelectorAll('pre code')).forEach(block => {
+      const pre_block = block.parentNode;
+
+      let buttons = pre_block.querySelector('.buttons');
+
+      if (!buttons) {
+        buttons = document.createElement('div');
+        buttons.className = 'buttons';
+        pre_block.insertBefore(buttons, pre_block.firstChild);
+      }
+
+      const clipButton = document.createElement('button');
+      clipButton.className = 'fa-copy clip-button';
+      clipButton.title = 'Copy to clipboard';
+      clipButton.setAttribute('aria-label', clipButton.title);
+      clipButton.innerHTML = '<i class="tooltiptext"></i>';
+
+      buttons.insertBefore(clipButton, buttons.firstChild);
+    });
+
+    const hideTooltip = elem => {
+      elem.firstChild.innerText = '';
+      elem.className = 'fa-copy clip-button';
+    };
+
+    const showTooltip = (elem, msg) => {
+      elem.firstChild.innerText = msg;
+      elem.className = 'fa-copy tooltipped';
+    };
+
+    Array.from(main.querySelectorAll('pre .clip-button')).forEach(clipButton => {
+      clipButton.addEventListener(
+        'mouseout',
+        e => {
+          hideTooltip(e.currentTarget);
+        },
+        { once: false, passive: true }
+      );
+    });
+
+    const clipboardSnippets = new ClipboardJS('.clip-button', {
+      text: trigger => {
+        hideTooltip(trigger);
+        return trigger.closest('pre').querySelector('code').innerText;
+      },
+    });
+
+    clipboardSnippets.on('success', e => {
+      e.clearSelection();
+      showTooltip(e.trigger, 'Copied!');
+    });
+
+    clipboardSnippets.on('error', e => showTooltip(e.trigger, 'Clipboard error!'));
   };
 
-  const showTooltip = (elem, msg) => {
-    elem.firstChild.innerText = msg;
-    elem.className = 'fa-copy tooltipped';
-  };
+  const initSideBar = () => {
+    const html = document.querySelector('html');
+    const sidebar = document.getElementById('sidebar');
+    const sidebarLinks = document.querySelectorAll('#sidebar a');
+    const sidebarToggleButton = document.getElementById('sidebar-toggle');
 
-  Array.from(document.querySelectorAll('.clip-button')).forEach(clipButton => {
-    clipButton.addEventListener(
-      'mouseout',
-      e => {
-        hideTooltip(e.currentTarget);
+    // Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM
+    sidebarToggleButton.setAttribute('aria-expanded', sidebar === 'visible');
+    sidebar.setAttribute('aria-hidden', sidebar !== 'visible');
+
+    sidebarLinks.forEach(link => {
+      link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+    });
+
+    const toggleSection = ev => {
+      ev.currentTarget.parentElement.classList.toggle('expanded');
+    };
+
+    Array.from(sidebar.querySelectorAll('a.toggle')).forEach(el => {
+      el.addEventListener('click', toggleSection, { once: false, passive: true });
+    });
+
+    const showSidebar = () => {
+      if (html.classList.contains('sidebar-visible')) {
+        return;
+      }
+
+      html.classList.remove('sidebar-hidden');
+      html.classList.add('sidebar-visible');
+
+      Array.from(sidebarLinks).forEach(link => {
+        link.setAttribute('tabIndex', 0);
+      });
+
+      sidebarToggleButton.setAttribute('aria-expanded', true);
+      sidebar.setAttribute('aria-hidden', false);
+
+      try {
+        localStorage.setItem('mdbook-sidebar', 'visible');
+      } catch (_e) {
+        console.log('ERROR: showSidebar');
+      }
+    };
+
+    const hideSidebar = () => {
+      if (html.classList.contains('sidebar-hidden')) {
+        return;
+      }
+
+      html.classList.remove('sidebar-visible');
+      html.classList.add('sidebar-hidden');
+
+      Array.from(sidebarLinks).forEach(link => {
+        link.setAttribute('tabIndex', -1);
+      });
+
+      sidebarToggleButton.setAttribute('aria-expanded', false);
+      sidebar.setAttribute('aria-hidden', true);
+
+      try {
+        localStorage.setItem('mdbook-sidebar', 'hidden');
+      } catch (_e) {
+        console.log('ERROR: hideSidebar');
+      }
+    };
+
+    // Toggle sidebar
+    sidebarToggleButton.addEventListener(
+      'click',
+      () => {
+        html.classList.contains('sidebar-hidden') ? showSidebar() : hideSidebar();
       },
       { once: false, passive: true }
     );
-  });
 
-  const clipboardSnippets = new ClipboardJS('.clip-button', {
-    text: trigger => {
-      hideTooltip(trigger);
-      return trigger.closest('pre').querySelector('code').innerText;
+    // Scroll sidebar to current active section
+    const activeSection = document.getElementById('sidebar').querySelector('.active');
+
+    if (activeSection) {
+      // https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView
+      activeSection.scrollIntoView({ block: 'center' });
+    }
+
+    let timeoutId = null;
+
+    globalThis.addEventListener(
+      'resize',
+      () => {
+        clearTimeout(timeoutId);
+
+        // FIXME: The definitions are all over the place.
+        timeoutId = setTimeout(() => {
+          if (window.innerWidth >= 1200) {
+            showSidebar();
+          }
+        }, 200);
+      },
+      { once: false, passive: true }
+    );
+    // FIXME: The definitions are all over the place.
+    if (window.innerWidth < 750) {
+      hideSidebar();
+    }
+
+    let firstContact = null;
+
+    document.addEventListener(
+      'touchstart',
+      e => {
+        firstContact = {
+          x: e.touches[0].clientX,
+          time: Date.now(),
+        };
+      },
+      { once: false, passive: true }
+    );
+
+    document.addEventListener(
+      'touchmove',
+      e => {
+        if (!firstContact) {
+          return;
+        }
+
+        if (Date.now() - firstContact.time > 250) {
+          return;
+        }
+        const curX = e.touches[0].clientX;
+        const xDiff = curX - firstContact.x;
+
+        if (Math.abs(xDiff) >= 150) {
+          if (xDiff >= 0) {
+            if (firstContact.x < Math.min(document.body.clientWidth * 0.25, 300)) {
+              showSidebar();
+            }
+          } else {
+            if (curX < 300) {
+              hideSidebar();
+            }
+          }
+          firstContact = null;
+        }
+      },
+      { once: false, passive: true }
+    );
+  };
+
+  const attributeExternalLinks = () => {
+    document.querySelectorAll('.content main a[href^="http"]').forEach(el => {
+      el.setAttribute('target', '_blank');
+      el.setAttribute('rel', 'noopener');
+    });
+  };
+
+  const createTableOfContents = () => {
+    const tocMap = new Map();
+    let onlyActive = null;
+
+    const addActive = entry => {
+      if (onlyActive) {
+        onlyActive.classList.remove('active');
+        onlyActive = null;
+      }
+      tocMap.get(entry.target).classList.add('active');
+    };
+
+    const removeActive = entry => {
+      let count = 0;
+      let active = null;
+
+      tocMap.forEach(key => {
+        if (key.classList.contains('active')) {
+          count++;
+          active = key;
+        }
+      });
+
+      if (count <= 1) {
+        onlyActive = active;
+        return;
+      }
+      tocMap.get(entry.target).classList.remove('active');
+    };
+
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(x => {
+          x.isIntersecting ? addActive(x) : removeActive(x);
+        });
+      },
+      {
+        root: document.querySelector('content'),
+      }
+    );
+
+    document.querySelectorAll('.content a.header').forEach(el => {
+      observer.observe(el);
+
+      const link = document.createElement('a');
+
+      link.appendChild(document.createTextNode(el.text));
+      link.href = el.href;
+      link.classList.add(el.parentElement.tagName);
+
+      document.getElementsByClassName('pagetoc')[0].appendChild(link);
+      tocMap.set(el, link);
+    });
+  };
+
+  document.addEventListener(
+    'DOMContentLoaded',
+    () => {
+      attributeExternalLinks();
+      initSideBar();
+      initCodeBlock();
+      createTableOfContents();
     },
-  });
-
-  clipboardSnippets.on('success', e => {
-    e.clearSelection();
-    showTooltip(e.trigger, 'Copied!');
-  });
-
-  clipboardSnippets.on('error', e => showTooltip(e.trigger, 'Clipboard error!'));
+    { once: true, passive: true }
+  );
 })();
