@@ -13,6 +13,8 @@ const main = search => {
   const ELEMENT_RESULTS = document.getElementById('searchresults');
   const ELEMENT_ICON = document.getElementById('search-toggle');
 
+  const WEIGHT = 40;
+
   let docUrls = [];
 
   let resultsOptions = {
@@ -30,105 +32,110 @@ const main = search => {
     },
   };
 
-  const formatResult = (cnt, result, terms) => {
-    const makeTeaser = (body, terms) => {
-      const stemmed_terms = terms.map(w => elasticlunr.stemmer(w.toLowerCase()));
-      const weighted = []; // contains elements of ["word", weight, index_in_document]
-      const WEIGHT = 40;
+  const makeTeaser = (body, terms) => {
+    const weighted = []; // contains elements of ["word", weight, index_in_document]
 
-      let value = 0;
-      let idx = 0;
-      let found = false;
+    let value = 0;
+    let idx = 0;
+    let found = false;
 
-      body
-        .toLowerCase()
-        .split('. ') // split in sentences, then words
-        .forEach(x => {
-          const words = x.split(' ');
-          value = 8;
+    body
+      .toLowerCase()
+      .split('. ') // split in sentences, then words
+      .forEach(x => {
+        const words = x.split(' ');
+        value = 8;
 
-          words.forEach(y => {
-            if (y.length > 0) {
-              stemmed_terms.forEach(z => {
+        words.forEach(y => {
+          if (y.length > 0) {
+            terms
+              .map(w => elasticlunr.stemmer(w.toLowerCase()))
+              .forEach(z => {
                 if (elasticlunr.stemmer(y).startsWith(z)) {
                   value = WEIGHT;
                   found = true;
                 }
               });
-              weighted.push([y, value, idx]);
-              value = 2;
-            }
-            idx += y.length;
-            idx += 1; // ' ' or '.' if last word in sentence
-          });
-
-          idx += 1; // because we split at a two-char boundary '. '
+            weighted.push([y, value, idx]);
+            value = 2;
+          }
+          idx += y.length;
+          idx += 1; // ' ' or '.' if last word in sentence
         });
 
-      if (weighted.length == 0) {
-        return body;
+        idx += 1; // because we split at a two-char boundary '. '
+      });
+
+    if (weighted.length == 0) {
+      return body;
+    }
+
+    const window_size = Math.min(weighted.length, resultsOptions.teaser_word_count);
+    const window_weight = (() => {
+      const ret = [];
+      let sum = 0;
+
+      for (let i = 0; i < window_size; i++) {
+        sum += weighted[i][1];
       }
 
-      const window_size = Math.min(weighted.length, resultsOptions.teaser_word_count);
-      let cur_sum = 0;
+      ret.push(sum);
 
-      for (let wordindex = 0; wordindex < window_size; wordindex++) {
-        cur_sum += weighted[wordindex][1];
+      for (let i = 0; i < weighted.length - window_size; i++) {
+        sum -= weighted[i][1];
+        sum += weighted[i + window_size][1];
+
+        ret.push(sum);
       }
+      return ret;
+    })();
 
-      const window_weight = [];
-      window_weight.push(cur_sum);
-
-      for (let wordindex = 0; wordindex < weighted.length - window_size; wordindex++) {
-        cur_sum -= weighted[wordindex][1];
-        cur_sum += weighted[wordindex + window_size][1];
-        window_weight.push(cur_sum);
+    const max_sum_window_index = (() => {
+      if (!found) {
+        return 0;
       }
+      let max_sum = 0;
+      let ret = 0;
 
-      let max_sum_window_index = 0;
-
-      if (found) {
-        let max_sum = 0;
-
-        // backwards
-        for (let i = window_weight.length - 1; i >= 0; i--) {
-          if (window_weight[i] > max_sum) {
-            max_sum = window_weight[i];
-            max_sum_window_index = i;
-          }
+      // backwards
+      for (let i = window_weight.length - 1; i >= 0; i--) {
+        if (window_weight[i] > max_sum) {
+          max_sum = window_weight[i];
+          ret = i;
         }
-      } else {
-        max_sum_window_index = 0;
       }
+      return ret;
+    })();
 
-      const teaser = [];
-      let index = weighted[max_sum_window_index][2];
+    const teaser = [];
+    let index = weighted[max_sum_window_index][2];
 
-      const pushTeaser = word => {
-        index = word[2] + word[0].length;
-        teaser.push(body.substring(word[2], index));
-      };
-
-      for (let i = max_sum_window_index; i < max_sum_window_index + window_size; i++) {
-        const word = weighted[i];
-
-        // missing text from index to start of `word`
-        if (index < word[2]) {
-          teaser.push(body.substring(index, word[2]));
-          index = word[2];
-        }
-
-        if (word[1] != WEIGHT) {
-          pushTeaser(word);
-          continue;
-        }
-        teaser.push('<em>');
-        pushTeaser(word);
-        teaser.push('</em>');
-      }
-      return teaser.join('');
+    const pushTeaser = word => {
+      index = word[2] + word[0].length;
+      teaser.push(body.substring(word[2], index));
     };
 
+    for (let i = max_sum_window_index; i < max_sum_window_index + window_size; i++) {
+      const word = weighted[i];
+
+      // missing text from index to start of `word`
+      if (index < word[2]) {
+        teaser.push(body.substring(index, word[2]));
+        index = word[2];
+      }
+
+      if (word[1] != WEIGHT) {
+        pushTeaser(word);
+        continue;
+      }
+      teaser.push('<em>');
+      pushTeaser(word);
+      teaser.push('</em>');
+    }
+    return teaser.join('');
+  };
+
+  const formatResult = (cnt, result, terms) => {
     // The ?URL_MARK_PARAM= parameter belongs inbetween the page and the #heading-anchor
     const url = docUrls[result.ref].split('#');
 
@@ -212,16 +219,15 @@ const main = search => {
         port: a.port,
         params: (() => {
           const ret = {};
-          const seg = a.search.replace(/^\?/, '').split('&');
-          let i = 0;
-
-          for (; i < seg.length; i++) {
-            if (!seg[i]) {
-              continue;
-            }
-            const s = seg[i].split('=');
-            ret[s[0]] = s[1];
-          }
+          a.search
+            .replace(/^\?/, '')
+            .split('&')
+            .forEach(x => {
+              if (x) {
+                const s = x.split('=');
+                ret[s[0]] = s[1];
+              }
+            });
           return ret;
         })(),
         file: (a.pathname.match(/\/([^/?#]+)$/i) || [, ''])[1],
