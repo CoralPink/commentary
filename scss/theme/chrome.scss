@@ -196,10 +196,8 @@ pre {
 }
 
 mark {
-  border-radius: 2px;
-  padding: 0 3px 1px 3px;
-  margin: 0 -3px -1px -3px;
-  background-color: var(--search-mark-bg);
+  color: var(--fg);
+  background: linear-gradient(var(--bg) 70%, var(--search-mark-bg));
   cursor: pointer;
 }
 
@@ -266,6 +264,17 @@ ul {
 
   color: var(--sidebar-fg);
   background-color: var(--sidebar-bg);
+
+  scrollbar-color: var(--scrollbar) var(--bg);
+
+  ::-webkit-scrollbar {
+    width: var.$scrollbar-width;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--scrollbar);
+    border-radius: 10px;
+  }
 }
 
 .sidebar-scrollbox {
