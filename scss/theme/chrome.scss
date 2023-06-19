@@ -197,7 +197,7 @@ pre {
 
 mark {
   color: var(--fg);
-  background: linear-gradient(var(--bg) 70%, var(--search-mark-bg));
+  background: linear-gradient(rgba(0,0,0,0) 70%, var(--search-mark-bg));
   cursor: pointer;
 }
 
