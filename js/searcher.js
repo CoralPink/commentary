@@ -1,57 +1,18 @@
 'use strict';
 
-const rootPath = document.getElementById('searcher').dataset.pathtoroot;
-
-window.search = window.search || {};
-
-/**
- * @see https://github.com/HillLiu/docker-mdbook
- */
-window.elasticlunr.Index.load = index => {
-  const FzF = window.fzf.Fzf;
-  const storeDocs = index.documentStore.docs;
-  const indexArr = Object.keys(storeDocs);
-  const ofzf = new FzF(indexArr, {
-    selector: item => {
-      const res = storeDocs[item];
-      res.text = `${res.title}${res.breadcrumbs}${res.body}`;
-      return res.text;
-    },
-  });
-  return {
-    search: searchterm => {
-      const entries = ofzf.find(searchterm);
-      return entries.map(data => {
-        const { item, score } = data;
-        return {
-          doc: storeDocs[item],
-          ref: item,
-          score,
-        };
-      });
-    },
-  };
-};
-
 // Search functionality
 //
 // You can use !hasFocus() to prevent keyhandling in your key
 // event handlers while the user is typing their search.
-(search => {
-  if (!Mark || !elasticlunr) {
-    return;
-  }
+const main = search => {
+  const URL_SEARCH_PARAM = 'search';
+  const URL_MARK_PARAM = 'highlight';
 
   const search_wrap = document.getElementById('search-wrapper');
   const searchbar = document.getElementById('searchbar');
   const searchresults = document.getElementById('searchresults');
-  const searchresults_outer = document.getElementById('searchresults-outer');
-  const searchresults_header = document.getElementById('searchresults-header');
   const searchicon = document.getElementById('search-toggle');
-  const URL_SEARCH_PARAM = 'search';
-  const URL_MARK_PARAM = 'highlight';
 
-  let searchindex = null;
   let doc_urls = [];
 
   let results_options = {
@@ -69,15 +30,7 @@ window.elasticlunr.Index.load = index => {
     },
   };
 
-  const mark_exclude = [];
-  const marker = new Mark(document.querySelector('main'));
-
-  let current_searchterm = '';
   let teaser_count = 0;
-
-  const hasFocus = () => {
-    return searchbar === document.activeElement;
-  };
 
   const removeChildren = elem => {
     while (elem.firstChild) {
@@ -115,30 +68,6 @@ window.elasticlunr.Index.load = index => {
     };
   };
 
-  // Helper to recreate a url string from its building blocks.
-  const renderURL = urlobject => {
-    let url = urlobject.protocol + '://' + urlobject.host;
-
-    if (urlobject.port != '') {
-      url += ':' + urlobject.port;
-    }
-    url += urlobject.path;
-
-    let joiner = '?';
-
-    for (const prop in urlobject.params) {
-      if (urlobject.params.hasOwnProperty.call(prop)) {
-        url += joiner + prop + '=' + urlobject.params[prop];
-        joiner = '&';
-      }
-    }
-
-    if (urlobject.hash != '') {
-      url += '#' + urlobject.hash;
-    }
-    return url;
-  };
-
   // Helper to escape html special chars for displaying the teasers
   const escapeHTML = (() => {
     const MAP = {
@@ -157,16 +86,6 @@ window.elasticlunr.Index.load = index => {
       return s.replace(/[&<>'"]/g, repl);
     };
   })();
-
-  const formatSearchMetric = (count, searchterm) => {
-    if (count == 0) {
-      return "No search results for '" + searchterm + "'.";
-    }
-    if (count == 1) {
-      return count + " search result for '" + searchterm + "':";
-    }
-    return count + " search results for '" + searchterm + "':";
-  };
 
   const formatSearchResult = (result, searchterms) => {
     const teaser = makeTeaser(escapeHTML(result.doc.body), searchterms);
@@ -187,7 +106,7 @@ window.elasticlunr.Index.load = index => {
 
     return (
       '<a href="' +
-      rootPath +
+      document.getElementById('searcher').dataset.pathtoroot +
       url[0] +
       '?' +
       URL_MARK_PARAM +
@@ -315,109 +234,94 @@ window.elasticlunr.Index.load = index => {
     return teaser_split.join('');
   };
 
+  const showSearch = () => {
+    search_wrap.classList.remove('hidden');
+    searchicon.setAttribute('aria-expanded', 'true');
+  };
+
+  const hiddenSearch = () => {
+    search_wrap.classList.add('hidden');
+    searchicon.setAttribute('aria-expanded', 'false');
+
+    if (searchresults.length == null) {
+      return;
+    }
+
+    searchresults.children.forEach(x => x.classList.remove('focus'));
+  };
+
   const init = config => {
+    const marker = new Mark(document.querySelector('main'));
+    const mark_exclude = [];
+
     results_options = config.results_options;
     search_options = config.search_options;
     doc_urls = config.doc_urls;
-    searchindex = elasticlunr.Index.load(config.index);
 
     // Eventhandler for search icon
     searchicon.addEventListener(
       'click',
       () => {
         if (search_wrap.classList.contains('hidden')) {
-          showSearch(true);
+          showSearch();
           window.scrollTo(0, 0);
           searchbar.select();
         } else {
-          showSearch(false);
+          hiddenSearch();
         }
       },
       { once: false, passive: true }
     );
 
-    const showResults = yes => {
-      if (yes) {
-        searchresults_outer.classList.remove('hidden');
-      } else {
-        searchresults_outer.classList.add('hidden');
-      }
-    };
-
     // Eventhandler for keyevents while the searchbar is focused
     const searchbarKeyUpHandler = () => {
-      // Update current url with ?URL_SEARCH_PARAM= parameter, remove ?URL_MARK_PARAM and #heading-anchor .
-      // `action` can be one of "push", "replace", "push_if_new_search_else_replace"
-      // and replaces or pushes a new browser history item.
-      // "push_if_new_search_else_replace" pushes if there is no `?URL_SEARCH_PARAM=abc` yet.
-      const setSearchUrlParameters = (searchterm, action) => {
-        const url = parseURL(window.location.href);
-        const first_search = !url.params.hasOwnProperty.call(URL_SEARCH_PARAM);
-
-        if (searchterm != '' || action == 'push_if_new_search_else_replace') {
-          url.params[URL_SEARCH_PARAM] = searchterm;
-          delete url.params[URL_MARK_PARAM];
-          url.hash = '';
-        } else {
-          delete url.params[URL_MARK_PARAM];
-          delete url.params[URL_SEARCH_PARAM];
-        }
-
-        // A new search will also add a new history item, so the user can go back
-        // to the page prior to searching. A updated search term will only replace
-        // the url.
-        if (action == 'push' || (action == 'push_if_new_search_else_replace' && first_search)) {
-          history.pushState({}, document.title, renderURL(url));
-        } else if (action == 'replace' || (action == 'push_if_new_search_else_replace' && !first_search)) {
-          history.replaceState({}, document.title, renderURL(url));
-        }
-      };
-
-      const doSearch = searchterm => {
-        // Don't search the same twice
-        if (current_searchterm == searchterm) {
-          return;
-        }
-        current_searchterm = searchterm;
-
-        if (!searchindex) {
-          return;
-        }
-
-        // Do the actual search
-        const results = searchindex.search(searchterm, search_options);
-        const resultcount = Math.min(results.length, results_options.limit_results);
-
-        // Display search metrics
-        searchresults_header.innerText = formatSearchMetric(resultcount, searchterm);
-
+      const doSearch = term => {
         // Clear and insert results
-        const searchterms = searchterm.split(' ');
         removeChildren(searchresults);
 
-        for (let i = 0; i < resultcount; i++) {
+        // Do the actual search
+        const results = elasticlunr.Index.load(config.index).search(term, search_options);
+        const count = Math.min(results.length, results_options.limit_results);
+
+        document.getElementById('searchresults-header').innerText =
+          (results.length > count ? 'Over ' : '') + count + ' search results for: ' + term;
+
+        const terms = term.split(' ');
+
+        for (let i = 0; i < count; i++) {
           const resultElem = document.createElement('li');
-          resultElem.innerHTML = formatSearchResult(results[i], searchterms);
+          resultElem.innerHTML = formatSearchResult(results[i], terms);
+
           searchresults.appendChild(resultElem);
         }
 
         // Display results
-        showResults(true);
+        document.getElementById('searchresults-outer').classList.remove('hidden');
       };
 
-      const searchterm = searchbar.value.trim();
+      const term = searchbar.value.trim();
 
-      if (searchterm != '') {
+      if (term != '') {
         searchbar.classList.add('active');
-        doSearch(searchterm);
+        doSearch(term);
       } else {
         searchbar.classList.remove('active');
-        showResults(false);
+        document.getElementById('searchresults-outer').classList.add('hidden');
         removeChildren(searchresults);
       }
-      setSearchUrlParameters(searchterm, 'push_if_new_search_else_replace');
-
       marker.unmark();
+
+      // Update current url with ?URL_SEARCH_PARAM= parameter, remove ?URL_MARK_PARAM and #heading-anchor .
+      const url = parseURL(window.location.href);
+
+      delete url.params[URL_MARK_PARAM];
+
+      if (term == '') {
+        delete url.params[URL_SEARCH_PARAM];
+        return;
+      }
+      url.params[URL_SEARCH_PARAM] = term;
+      url.hash = '';
     };
 
     document.addEventListener(
@@ -427,7 +331,7 @@ window.elasticlunr.Index.load = index => {
           searchbarKeyUpHandler();
           return;
         }
-        showSearch(false);
+        hiddenSearch();
 
         // hacky, but just focusing a div only works once
         const tmp = document.createElement('input');
@@ -447,26 +351,26 @@ window.elasticlunr.Index.load = index => {
       const url = parseURL(window.location.href);
 
       if (url.params.hasOwnProperty.call(URL_SEARCH_PARAM) && url.params[URL_SEARCH_PARAM] != '') {
-        showSearch(true);
+        showSearch();
 
         searchbar.value = decodeURIComponent((url.params[URL_SEARCH_PARAM] + '').replace(/\+/g, '%20'));
 
         searchbarKeyUpHandler();
       } else {
-        showSearch(false);
+        hiddenSearch();
       }
 
-      if (url.params.hasOwnProperty(URL_MARK_PARAM)) {
-        marker.mark(decodeURIComponent(url.params[URL_MARK_PARAM]).split(' '), {
-          exclude: mark_exclude,
-        });
-
-        const markers = document.querySelectorAll('mark');
-
-        markers.forEach(x => {
-          x.addEventListener('click', marker.unmark, { once: true, passive: true });
-        });
+      if (!url.params.hasOwnProperty(URL_MARK_PARAM)) {
+        return;
       }
+
+      marker.mark(decodeURIComponent(url.params[URL_MARK_PARAM]).split(' '), {
+        exclude: mark_exclude,
+      });
+
+      document.querySelectorAll('mark').forEach(x => {
+        x.addEventListener('click', marker.unmark, { once: true, passive: true });
+      });
     };
 
     // If the user uses the browser buttons, do the same as if a reload happened
@@ -487,34 +391,70 @@ window.elasticlunr.Index.load = index => {
     doSearchOrMarkFromUrl();
   };
 
-  const showSearch = yes => {
-    if (yes) {
-      search_wrap.classList.remove('hidden');
-      searchicon.setAttribute('aria-expanded', 'true');
-    } else {
-      search_wrap.classList.add('hidden');
-      searchicon.setAttribute('aria-expanded', 'false');
+  const filePath = document.getElementById('searcher').dataset.pathtoroot + 'searchindex';
 
-      //searchresults.children.forEach(x => x.classList.remove("focus"));
-      const results = searchresults.children;
-
-      for (let i = 0; i < results.length; i++) {
-        results[i].classList.remove('focus');
-      }
-    }
-  };
-
-  fetch(rootPath + 'searchindex.json')
+  fetch(filePath + '.json')
     .then(response => response.json())
     .then(json => init(json))
     .catch(() => {
       // Try to load searchindex.js if fetch failed
       const script = document.createElement('script');
-      script.src = rootPath + 'searchindex.js';
-      script.onload = () => init(window.search);
+      script.src = filePath + '.js';
+      script.onload = () => init(search);
       document.head.appendChild(script);
     });
 
+  const hasFocus = () => {
+    return searchbar === document.activeElement;
+  };
+
   // Exported functions
   search.hasFocus = hasFocus;
-})(window.search);
+};
+
+/**
+ * @see https://github.com/HillLiu/docker-mdbook
+ */
+const fzfInit = () => {
+  window.elasticlunr.Index.load = index => {
+    const FzF = window.fzf.Fzf;
+    const storeDocs = index.documentStore.docs;
+    const indexArr = Object.keys(storeDocs);
+    const ofzf = new FzF(indexArr, {
+      selector: item => {
+        const res = storeDocs[item];
+        res.text = `${res.title}${res.breadcrumbs}${res.body}`;
+        return res.text;
+      },
+    });
+    return {
+      search: searchterm => {
+        const entries = ofzf.find(searchterm);
+        return entries.map(data => {
+          const { item, score } = data;
+          return {
+            doc: storeDocs[item],
+            ref: item,
+            score,
+          };
+        });
+      },
+    };
+  };
+};
+
+(() => {
+  if (!Mark || !elasticlunr) {
+    return;
+  }
+  window.search = window.search || {};
+
+  document.addEventListener(
+    'DOMContentLoaded',
+    () => {
+      fzfInit();
+      main(window.search);
+    },
+    { once: true, passive: true }
+  );
+})();
