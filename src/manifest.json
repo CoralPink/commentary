@@ -22,8 +22,8 @@
   "theme_color": "#eff1f5",
   "shortcuts": [
     {
-      "name": "Introduction",
-      "short_name": "Introduction - Commentary of Dotfiles",
+      "short_name": "Introduction",
+      "name": "Introduction - Commentary of Dotfiles",
       "description": "This site introduces WezTerm and Neovim dotfiles.",
       "url": "index.html",
       "icons": [{ "src": "maskable_icon_x192.png", "sizes": "192x192" }]
