@@ -31,6 +31,7 @@
     <link rel="stylesheet" href="css/general.css">
     <link rel="stylesheet" href="css/chrome.css">
 
+    <link rel="manifest" href="/manifest.json" />
   </head>
   <body>
     <noscript>
@@ -98,6 +99,9 @@
 <p><img src="goal.webp" alt="goal" /></p>
 <p><a href="index.html">Commentary of Dotfiles - Top Page</a></p>
 
+          <div id="installContainer" class="hidden">
+            <button id="butInstall" type="button">PWA</button>
+          </div>
 
           <nav class="nav-wrapper" aria-label="Page navigation">
 
@@ -123,11 +127,37 @@
     <script src="fzf.umd.js" id="searcher" data-pathtoroot=""></script>
 
     <script src="clipboard.min.js"></script>
-    <script>window.playground_copyable = true;</script>
-
     <script src="highlight.min.js"></script>
     <script src="book.js" id="book" data-defaulttheme="latte"></script>
 
+    <script>
+      const divInstall = document.getElementById('installContainer');
+      const butInstall = document.getElementById('butInstall');
 
+      window.addEventListener('beforeinstallprompt', event => {
+        console.log('👍', 'beforeinstallprompt', event);
+        event.preventDefault();
+        window.deferredPrompt = event;
+        divInstall.classList.toggle('hidden', false);
+      });
+
+      butInstall.addEventListener('click', async () => {
+        console.log('👍', 'butInstall-clicked');
+        const promptEvent = window.deferredPrompt;
+        if (!promptEvent) {
+          return;
+        }
+        promptEvent.prompt();
+        const result = await promptEvent.userChoice;
+        console.log('👍', 'userChoice', result);
+        window.deferredPrompt = null;
+        divInstall.classList.toggle('hidden', true);
+      });
+
+      window.addEventListener('appinstalled', event => {
+        console.log('👍', 'appinstalled', event);
+        window.deferredPrompt = null;
+      });
+    </script>
   </body>
 </html>
