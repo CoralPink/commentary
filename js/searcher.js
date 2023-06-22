@@ -4,7 +4,7 @@
 //
 // You can use !hasFocus() to prevent keyhandling in your key
 // event handlers while the user is typing their search.
-const main = search => {
+const main = () => {
   const URL_SEARCH_PARAM = 'search';
   const URL_MARK_PARAM = 'highlight';
 
@@ -415,7 +415,7 @@ const fzfInit = () => {
     'DOMContentLoaded',
     () => {
       fzfInit();
-      main(window.search);
+      main();
     },
     { once: true, passive: true }
   );
