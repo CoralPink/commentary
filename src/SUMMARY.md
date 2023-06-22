@@ -86,7 +86,7 @@
     - [telescope-all-recent](neovim/plugin/telescope-all-recent.md)
   - [nvim-tree.lua](neovim/plugin/nvim-tree.md)
     - [Actions](neovim/plugin/nvim-tree-actions.md)
-      - [for Nvim 0.10](neovim/plugin/nvim-tree-actions-tip.md)
+      - [(Extra) for Nvim 0.10](neovim/plugin/nvim-tree-actions-tip.md)
 
 - [Language Server Protocol](neovim/lsp/language-server-protocol.md)
   - [nvim-lspconfig](neovim/lsp/nvim-lspconfig.md)
@@ -100,5 +100,7 @@
     - [cmp_luasnip](neovim/lsp/cmp_luasnip.md)
     - [Friendly Snippets](neovim/lsp/friendly_snippets.md)
   - [copilot.lua](neovim/lsp/copilot.md)
+    - [(Extra) GitHub Copilot](neovim/lsp/github-copilot.md)
+    - [copilot-cmp](neovim/lsp/copilot-cmp.md)
 
 # ... To Be Continued.
