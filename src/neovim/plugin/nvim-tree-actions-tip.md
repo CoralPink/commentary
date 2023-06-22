@@ -1,4 +1,4 @@
-# for Nvim 0.10
+# (Extra) for Nvim 0.10
 
 突然ですがニュースです。
 
