@@ -153,7 +153,7 @@ const main = () => {
       '?' +
       URL_MARK_PARAM +
       '=' +
-      terms +
+      encodeURIComponent(terms.join(' ')).replace(/\'/g, '%27') +
       '#' +
       url[1] +
       '" aria-details="teaser_' +
