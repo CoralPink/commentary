@@ -8,26 +8,26 @@
 
 ~~~admonish info title=":h nvim_create_augroup"
 ```txt
-nvim_create_augroup({name}, {*opts})                   *nvim_create_augroup()*
-    Create or get an autocommand group |autocmd-groups|.
-    オートコマンドグループを作成または取得する。
+nvim_create_augroup({name}, {*opts})
+  Create or get an autocommand group |autocmd-groups|.
+  オートコマンドグループを作成または取得する。
 
-    Parameters:
-      • {name}  String: The name of the group
-                        グループの名前
+  Parameters:
+    • {name}  String: The name of the group
+                      グループの名前
 
-      • {opts}  Dictionary Parameters
-                • clear (bool) optional: defaults to true. Clear existing
-                  commands if the group already exists |autocmd-groups|.
+    • {opts}  Dictionary Parameters
+              • clear (bool) optional: defaults to true. Clear existing
+                commands if the group already exists |autocmd-groups|.
 
-                  デフォルトはtrue。グループが既に存在する場合、そのコマンドをクリアする。
+                デフォルトはtrue。グループが既に存在する場合、そのコマンドをクリアする。
 
-    Return:
-        Integer id of the created group.
-        作成されたグループの整数値 ID
+  Return:
+    Integer id of the created group.
+    作成されたグループの整数値 ID
 
-    See also:
-        |autocmd-groups|
+  See also:
+    |autocmd-groups|
 ```
 ~~~
 
@@ -72,9 +72,9 @@ This is useful for removing or executing a group of autocommands.
 To get an existing group id, do:
 既存のグループ ID を取得するには、次のようにする。
 
-    local id = vim.api.nvim_create_augroup("MyGroup", {
-        clear = false
-    })
+  local id = vim.api.nvim_create_augroup("MyGroup", {
+      clear = false
+  })
 ```
 ~~~
 
@@ -105,9 +105,9 @@ local id = vim.api.nvim_create_augroup("buffer_set_options", {})
 
 ~~~admonish info title=":h nvim_create_autocmd"
 ```txt
-  • {opts} Dictionary of autocommand options:
-    • group (string|integer) optional: the autocommand group name or id to match against.
-      マッチするオートコマンドグループ名または ID。
+• {opts} Dictionary of autocommand options:
+  • group (string|integer) optional: the autocommand group name or id to match against.
+    マッチするオートコマンドグループ名または ID。
 ```
 ~~~
 

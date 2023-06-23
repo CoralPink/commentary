@@ -121,17 +121,17 @@ mkdir plugin/lesson
 ~~~admonish info title=":h nvim_create_user_command"
 ```txt
 nvim_create_user_command({name}, {command}, {*opts})
-    Create a new user command |user-commands|
+  Create a new user command |user-commands|
 
-    {name} is the name of the new command. The name must begin with an
-    uppercase letter.
+  {name} is the name of the new command. The name must begin with an
+  uppercase letter.
 
-    {command} is the replacement text or Lua function to execute.
+  {command} is the replacement text or Lua function to execute.
 
-    新しいユーザーコマンドを作成する |user-commands| 。
+  新しいユーザーコマンドを作成する |user-commands| 。
 
-    {name} は新しいコマンドの名前。名前は大文字で始まる必要がある。
-    {command}は、実行する置換テキストまたはLua関数。
+  {name} は新しいコマンドの名前。名前は大文字で始まる必要がある。
+  {command}は、実行する置換テキストまたはLua関数。
 ```
 ~~~
 
@@ -152,15 +152,15 @@ end, {})
 
 ```txt
 input({opts})
-		The result is a String, which is whatever the user typed on
-		the command-line.
+  The result is a String, which is whatever the user typed on
+  the command-line.
 
-    結果は String で、ユーザーがコマンドラインで入力したもの。
+  結果は String で、ユーザーがコマンドラインで入力したもの。
 
-		Example:
-			:if input "Coffee or beer? " == "beer"
-			:  echo " Cheers!"
-			:endif
+  Example:
+    :if input "Coffee or beer? " == "beer"
+    :  echo " Cheers!"
+    :endif
 ```
 ~~~
 

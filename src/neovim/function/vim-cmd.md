@@ -4,63 +4,61 @@
 
 ~~~admonish info title=":h vim.cmd"
 ```txt
-cmd({command})                                                     vim.cmd()
-    Execute Vim script commands.
+cmd({command})                    vim.cmd()
+  Execute Vim script commands.
 
-    Note that `vim.cmd` can be indexed with a command name to return a
-    callable function to the command.
+  Note that `vim.cmd` can be indexed with a command name to return a
+  callable function to the command.
 
-    Vim スクリプトのコマンドを実行する。
-    コマンド名で `vim.cmd` をインデックス化すると、コマンドを呼び出すための関数を返すことに注意。
+  Vim スクリプトのコマンドを実行する。
+  コマンド名で `vim.cmd` をインデックス化すると、コマンドを呼び出すための関数を返すことに注意。
 
-    Parameters:
-      • {command}   string|table Command(s) to execute. If a string, executes
-                    multiple lines of Vim script at once. In this case, it is
-                    an alias to |nvim_exec()|, where `output` is set to false.
-                    Thus it works identical to |:source|. If a table, executes
-                    a single command. In this case, it is an alias to
-                    |nvim_cmd()| where `opts` is empty.
+  Parameters:
+    • {command} string|table Command(s) to execute. If a string, executes
+                multiple lines of Vim script at once. In this case, it is
+                an alias to |nvim_exec()|, where `output` is set to false.
+                Thus it works identical to |:source|. If a table, executes
+                a single command. In this case, it is an alias to
+                |nvim_cmd()| where `opts` is empty.
 
-                    string|table 実行するコマンド。文字列の場合、Vim スクリプトの複数行を一度に実行する。
-                    この場合は |nvim_exec()| のエイリアスで、`output` は false に設定される。
-                    したがって、これは |:source| と同じように動作する。
-                    テーブルの場合、1つのコマンドを実行する。この場合は |nvim_cmd()| のエイリアスで、`opts` は空である。
+                string|table 実行するコマンド。文字列の場合、Vim スクリプトの複数行を一度に実行する。
+                この場合は |nvim_exec()| のエイリアスで、`output` は false に設定される。
+                したがって、これは |:source| と同じように動作する。
+                テーブルの場合、1つのコマンドを実行する。この場合は |nvim_cmd()| のエイリアスで、`opts` は空である。
 
-    See also:
-      |ex-cmd-index|
+  See also:
+    |ex-cmd-index|
 ```
 ~~~
 
 これはサンプルがとっても豊富ですね☺️
 
 ~~~admonish info title=":h vim.cmd"
-```txt
-    Example:
+```vim
+vim.cmd('echo 42')
+vim.cmd([[
+ augroup My_group
+   autocmd!
+   autocmd FileType c setlocal cindent
+ augroup END
+]])
 
-       vim.cmd('echo 42')
-       vim.cmd([[
-         augroup My_group
-           autocmd!
-           autocmd FileType c setlocal cindent
-         augroup END
-       ]])
+-- Ex command :echo "foo"
+-- Note string literals need to be double quoted.
+vim.cmd('echo "foo"')
+vim.cmd { cmd = 'echo', args = { '"foo"' } }
+vim.cmd.echo({ args = { '"foo"' } })
+vim.cmd.echo('"foo"')
 
-       -- Ex command :echo "foo"
-       -- Note string literals need to be double quoted.
-       vim.cmd('echo "foo"')
-       vim.cmd { cmd = 'echo', args = { '"foo"' } }
-       vim.cmd.echo({ args = { '"foo"' } })
-       vim.cmd.echo('"foo"')
+-- Ex command :write! myfile.txt
+vim.cmd('write! myfile.txt')
+vim.cmd { cmd = 'write', args = { "myfile.txt" }, bang = true }
+vim.cmd.write { args = { "myfile.txt" }, bang = true }
+vim.cmd.write { "myfile.txt", bang = true }
 
-       -- Ex command :write! myfile.txt
-       vim.cmd('write! myfile.txt')
-       vim.cmd { cmd = 'write', args = { "myfile.txt" }, bang = true }
-       vim.cmd.write { args = { "myfile.txt" }, bang = true }
-       vim.cmd.write { "myfile.txt", bang = true }
-
-       -- Ex command :colorscheme blue
-       vim.cmd('colorscheme blue')
-       vim.cmd.colorscheme('blue')
+-- Ex command :colorscheme blue
+vim.cmd('colorscheme blue')
+vim.cmd.colorscheme('blue')
 ```
 ~~~
 
@@ -96,11 +94,10 @@ vim.keymap.set('n', '<Leader>9', function() vim.cmd('colorscheme blue') end)
 
 ~~~admonish info title=":h colorscheme"
 ```txt
-                          :colo :colorscheme E185
-:colo[rscheme] {name}	Load color scheme {name}.
-      This searches 'runtimepath' for the file "colors/{name}.(vim|lua)".
+:colo[rscheme] {name}	      Load color scheme {name}.
+  This searches 'runtimepath' for the file "colors/{name}.(vim|lua)".
 
-      'runtimepath'を検索して、"colors/{name}.(vim|lua) "というファイルを探します。
+  'runtimepath'を検索して、"colors/{name}.(vim|lua) "というファイルを探します。
 ```
 ~~~
 

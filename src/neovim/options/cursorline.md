@@ -4,19 +4,17 @@
 
 ~~~admonish info title=":h cursorline"
 ```txt
-			            'cursorline' 'cul' 'nocursorline' 'nocul'
-
-'cursorline' 'cul'  boolean     (default off)
+'cursorline' 'cul'  boolean (default off)
                     local to window
 
-	Highlight the text line of the cursor with CursorLine |hl-CursorLine|.
-	Useful to easily spot the cursor.  Will make screen redrawing slower.
-	When Visual mode is active the highlighting isn't used to make it
-	easier to see the selected text.
+Highlight the text line of the cursor with CursorLine |hl-CursorLine|.
+Useful to easily spot the cursor.  Will make screen redrawing slower.
+When Visual mode is active the highlighting isn't used to make it
+easier to see the selected text.
 
-    CursorLine |hl-CursorLine| でカーソルのあるテキスト行を強調表示します。
-    カーソルを簡単に見つけるのに便利です。 ただし、画面の再描画が遅くなります。
-    ビジュアルモードがアクティブなときは、選択テキストを見やすくするためにハイライトは使用されません。
+CursorLine |hl-CursorLine| でカーソルのあるテキスト行を強調表示する。
+カーソルを簡単に見つけるのに便利です。 ただし、画面の再描画が遅くなる。
+ビジュアルモードがアクティブなときは、選択テキストを見やすくするためにハイライトは使用されない。
 ```
 ~~~
 

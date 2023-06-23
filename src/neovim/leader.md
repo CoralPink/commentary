@@ -8,14 +8,14 @@
 
 ~~~admonish info title=":h nvim_set_var"
 ```txt
-nvim_set_var({name}, {value})               nvim_set_var()
-    Sets a global (g:) variable.
+nvim_set_var({name}, {value})       nvim_set_var()
+  Sets a global (g:) variable.
 
-    グローバル(g:)変数を設定する。
+  グローバル(g:)変数を設定する。
 
-    Parameters:
-      • {name}   Variable name
-      • {value}  Variable value
+  Parameters:
+    • {name}   Variable name
+    • {value}  Variable value
 ```
 ~~~
 
@@ -60,7 +60,7 @@ Disney+ の "The Beatles: Get Back" の中で発言してたりする「Captain 
 
 ~~~admonish info title=":h mapleader"
 ```txt
-            <Leader> mapleader
+                  <Leader> mapleader
 To define a mapping which uses the "g:mapleader" variable, the special string
 "<Leader>" can be used.  It is replaced with the string value of
 "g:mapleader".  If "g:mapleader" is not set or empty, a backslash is used
@@ -153,7 +153,8 @@ US配列であれば、ゆーて<kbd>Return</kbd>キーの上ってだけです�
 
 ~~~admonish example title="keybinds.lua"
 ```txt
-              <LocalLeader> maplocalleader
+                    <LocalLeader> maplocalleader
+
 <LocalLeader> is just like <Leader>, except that it uses "maplocalleader"
 instead of "mapleader".  <LocalLeader> is to be used for mappings which are
 local to a buffer.

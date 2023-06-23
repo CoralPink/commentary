@@ -50,25 +50,25 @@ require 'options'
 
 ~~~admonish info title=":h help"
 ```txt
-:h[elp]                 Open a window and display the help file in read-only mode.
-                        ウィンドウを開き、ヘルプファイルを読み込み専用で表示する。
+:h[elp]           Open a window and display the help file in read-only mode.
+                  ウィンドウを開き、ヘルプファイルを読み込み専用で表示する。
 
-                        Type |gO| to see the table of contents.
-                        目次を見るには、gO (←大文字のアルファベットO) とタイプする。
+                  Type |gO| to see the table of contents.
+                  目次を見るには、gO (←大文字のアルファベットO) とタイプする。
 
-:h[elp] {subject}	Like ":help", additionally jump to the tag {subject}.
-                        ":help" と同様だが、さらに {subject} というタグにジャンプする。
+:h[elp] {subject} Like ":help", additionally jump to the tag {subject}.
+                  ":help" と同様だが、さらに {subject} というタグにジャンプする。
 
-                        For example:
-                            :help options
+                  For example:
+                    :help options
 
-                        If there is no full match for the pattern, or there
-                        are several matches, the "best" match will be used.
-                        A sophisticated algorithm is used to decide which
-                        match is better than another one.
+                  If there is no full match for the pattern, or there
+                  are several matches, the "best" match will be used.
+                  A sophisticated algorithm is used to decide which
+                  match is better than another one.
 
-                        パターンに完全一致するものがない場合、あるいは複数一致するものがある場合は、
-                        高度なアルゴリズムによって「最も」一致すると思われるパターンが使用される。
+                  パターンに完全一致するものがない場合、あるいは複数一致するものがある場合は、
+                  高度なアルゴリズムによって「最も」一致すると思われるパターンが使用される。
 ```
 ~~~
 
@@ -82,13 +82,13 @@ require 'options'
 ~~~admonish info title=":h helpc"
 ```txt
 :helpc[lose]    Close one help window, if there is one.
-			    Vim will try to restore the window layout (including
-			    cursor position) to the same layout it was before
-			    opening the help window initially.
+  Vim will try to restore the window layout (including
+  cursor position) to the same layout it was before
+  opening the help window initially.
 
-                ヘルプウィンドウがある場合、それを閉じる。
-                Vim は、ウィンドウのレイアウト（カーソル位置も含む）を、
-                最初にヘルプウィンドウを開く前と同じレイアウトに戻そうとする。
+  ヘルプウィンドウがある場合、それを閉じる。
+  Vim は、ウィンドウのレイアウト（カーソル位置も含む）を、
+  最初にヘルプウィンドウを開く前と同じレイアウトに戻そうとする。
 ```
 ~~~
 
