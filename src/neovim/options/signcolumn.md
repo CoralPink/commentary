@@ -6,53 +6,49 @@
 
 ~~~admonish title=":h signcolumn"
 ```txt
-						            'signcolumn' 'scl'
+'signcolumn' 'scl'  string (default "auto")
+                    local to window
 
-'signcolumn' 'scl'      string      (default "auto")
-			            local to window
+When and how to draw the signcolumn. Valid values are:
+記号列をどのように描画するか。有効な値は以下の通り。
 
-	When and how to draw the signcolumn. Valid values are:
-    記号列をどのように描画するか。有効な値は以下の通り。
+  "auto"   	        only when there is a sign to display
+                    表示する sign がある場合のみ表示する
 
-	    "auto"   	only when there is a sign to display
-                        表示する sign がある場合のみ表示する
+  "auto:[1-9]"      resize to accommodate multiple signs up to the
+                    指定された数まで複数のサインを収容するためにリサイズする
 
-	    "auto:[1-9]"    resize to accommodate multiple signs up to the
-                        指定された数まで複数のサインを収容するためにリサイズする
+  "auto:[1-8]-[2-9]"
+                    resize to accommodate multiple signs up to the
+                    given maximum number (maximum 9) while keeping
+                    at least the given minimum (maximum 8) fixed
+                    space. The minimum number should always be less
+                    than the maximum number.
 
-	    "auto:[1-8]-[2-9]"
-                        resize to accommodate multiple signs up to the
-                        given maximum number (maximum 9) while keeping
-                        at least the given minimum (maximum 8) fixed
-                        space. The minimum number should always be less
-                        than the maximum number.
+                    与えられた最小値（最大8）以上の固定スペースを維持しながら、
+                    与えられた最大数（最大9）までの複数のサインを収容するためにリサイズする。
+                    最小数は常に最大数より小さくなければならない。
 
-                        与えられた最小値（最大8）以上の固定スペースを維持しながら、
-                        与えられた最大数（最大9）までの複数のサインを収容するためにリサイズする。
-                        最小数は常に最大数より小さくなければならない。
+  "no"              never
+                    常に表示しない
 
-	    "no"	        never
-                        常に表示しない
+  "yes"             always
+                    常に表示する
 
-	    "yes"           always
-                        常に表示する
+  "yes:[1-9]"       always, with fixed space for signs up to the given number (maximum 9)
+                    常に、与えられた数（最大9）までの標識のための固定スペースを持つ
 
-	    "yes:[1-9]"     always, with fixed space for signs up to the given number (maximum 9)
-                        常に、与えられた数（最大9）までの標識のための固定スペースを持つ
-
-	    "number"        display signs in the 'number' column. If the number
-			            column is not present, then behaves like "auto".
-                        "番号" の欄に column を表示する。
-                        番号列が存在しない場合は、"auto" と同じように動作する。
+  "number"          display signs in the 'number' column. If the number
+                    column is not present, then behaves like "auto".
+                    "番号" の欄に column を表示する。
+                    番号列が存在しない場合は、"auto" と同じように動作する。
 ```
 ~~~
 
 大まかにいえば3通りがあって、
 
 - `auto`(デフォルト)にしておくか...、
-
 - `yes`か`no`で決め打つか...、
-
 - 何か独特の雰囲気を持つ`number`か...、
 
 ですね。

@@ -6,10 +6,8 @@
 
 ~~~admonish info title=":h tabstop"
 ```txt
-                                'tabstop' 'ts'
-
-'tabstop' 'ts'              number (default 8)
-                            local to buffer
+'tabstop' 'ts'  number (default 8)
+                local to buffer
 
   Number of spaces that a <Tab> in the file counts for.  Also see
   the |:retab| command, and the 'softtabstop' option.
@@ -40,12 +38,12 @@
 
 ~~~admonish info title=""
 ```txt
-  2. Set 'tabstop' and 'shiftwidth' to whatever you prefer and use
-  'expandtab'.  This way you will always insert spaces.  The
-  formatting will never be messed up when 'tabstop' is changed.
+2. Set 'tabstop' and 'shiftwidth' to whatever you prefer and use
+'expandtab'.  This way you will always insert spaces.  The
+formatting will never be messed up when 'tabstop' is changed.
 
-  'tabstop' と 'shiftwidth' を好きなように設定し、'expandtab'を使用する。
-  これで、常にスペースを挿入することができる。'tabstop'を変更しても、書式が乱れることはない。
+'tabstop' と 'shiftwidth' を好きなように設定し、'expandtab'を使用する。
+これで、常にスペースを挿入することができる。'tabstop'を変更しても、書式が乱れることはない。
 ```
 ~~~
 
@@ -57,8 +55,8 @@
 
 ~~~admonish info title=":h shiftwidth"
 ```txt
-'shiftwidth' 'sw'		  number (default 8)
-			                      local to buffer
+'shiftwidth' 'sw'   number (default 8)
+                    local to buffer
 
   Number of spaces to use for each step of (auto)indent.  Used for
   |'cindent'|, |>>|, |<<|, etc.
@@ -105,10 +103,8 @@ vim.api.nvim_buf_set_option(0, 'expandtab', true)
 
 ~~~admonish info title=":h expandtab"
 ```txt
-                                        'expandtab' 'et' 'noexpandtab' 'noet'
-
-'expandtab' 'et'                    boolean (default off)
-                                    local to buffer
+'expandtab' 'et'  boolean (default off)
+                  local to buffer
 
 	In Insert mode: Use the appropriate number of spaces to insert a
 	<Tab>.  Spaces are used in indents with the '>' and '<' commands and
@@ -130,13 +126,11 @@ vim.api.nvim_buf_set_option(0, 'expandtab', true)
 
 ~~~admonish info title=":h autoindent"
 ```txt
-			                              'autoindent' 'ai' 'noautoindent' 'noai'
+'autoindent' 'ai'   boolean (default on)
+			              local to buffer
 
-'autoindent' 'ai'                   boolean (default on)
-			                        local to buffer
-
-	Copy indent from current line when starting a new line (typing <CR>
-	in Insert mode or when using the "o" or "O" command).
+  Copy indent from current line when starting a new line (typing <CR>
+  in Insert mode or when using the "o" or "O" command).
 
   改行時に現在行のインデントをコピーする
   （挿入モード、<CR>を入力したとき、または "o" や "O" コマンドを使用したとき）。

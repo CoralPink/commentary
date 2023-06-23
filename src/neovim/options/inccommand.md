@@ -4,20 +4,15 @@
 
 ~~~admonish info title=":h inccommand"
 ```txt
-'inccommand' 'icm'
+'inccommand' 'icm' string	(default "nosplit")
+                   global
 
-'inccommand' 'icm'	    string	(default "nosplit")
-			                global
+Possible values:
+  nosplit	Shows the effects of a command incrementally in the buffer.
+          コマンドの効果をバッファにインクリメンタルに表示する。
 
-	Possible values:
-		nosplit	Shows the effects of a command incrementally in the
-			buffer.
-		split	Like "nosplit", but also shows partial off-screen
-			results in a preview window.
-
-    受け取る値
-        nosplit コマンドの効果をバッファにインクリメンタルに表示する。
-        split   "nosplit" に加えて、画面外の結果を部分的にプレビューウィンドウに表示する。
+  split	  Like "nosplit", but also shows partial off-screen results in a preview window.
+          "nosplit" に加えて、画面外の結果を部分的にプレビューウィンドウに表示する。
 ```
 ~~~
 

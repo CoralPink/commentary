@@ -4,27 +4,27 @@
 
 ~~~admonish info title=":h nvim_create_autocmd"
 ```txt
-nvim_create_autocmd({event}, {*opts})                 nvim_create_autocmd()
-                                                      Create an |autocommand|
+nvim_create_autocmd({event}, {*opts}) nvim_create_autocmd()
+                                      Create an |autocommand|
 
-    The API allows for two (mutually exclusive) types of actions to be
-    executed when the autocommand triggers: a callback function (Lua or
-    Vimscript), or a command (like regular autocommands).
+  The API allows for two (mutually exclusive) types of actions to be
+  executed when the autocommand triggers: a callback function (Lua or
+  Vimscript), or a command (like regular autocommands).
 
-    このAPIでは、オートコマンドのトリガー時に実行されるアクションとして、
-    コールバック関数（LuaまたはVimscript）、またはコマンド（通常のオートコマンドと同様）の
-    2種類（相互に排他的）を指定することができる。
+  このAPIでは、オートコマンドのトリガー時に実行されるアクションとして、
+  コールバック関数（LuaまたはVimscript）、またはコマンド（通常のオートコマンドと同様）の
+  2種類（相互に排他的）を指定することができる。
 ```
 
 ```lua
-    -- Example using callback:
+-- Example using callback:
 
-      local myluafun = function() print("This buffer enters") end
+  local myluafun = function() print("This buffer enters") end
 
-      vim.api.nvim_create_autocmd({"BufEnter", "BufWinEnter"}, {
-        pattern = {"*.c", "*.h"},
-        callback = myluafun,
-      })
+  vim.api.nvim_create_autocmd({"BufEnter", "BufWinEnter"}, {
+    pattern = {"*.c", "*.h"},
+    callback = myluafun,
+  })
 ```
 ~~~
 
@@ -85,36 +85,36 @@ used in this list.  The command applies to all the events in the list.
 
 ~~~admonish info title=":h BufEnter"
 ```txt
-BufEnter        After entering a buffer.  Useful for setting
-                options for a file type.  Also executed when
-                starting to edit a buffer.
+BufEnter      After entering a buffer.  Useful for setting
+              options for a file type.  Also executed when
+              starting to edit a buffer.
 
-                バッファに入った後。
-                ファイルタイプに応じたオプションを設定するのに便利。
-                また、バッファの編集を開始するときにも実行される。
+              バッファに入った後。
+              ファイルタイプに応じたオプションを設定するのに便利。
+              また、バッファの編集を開始するときにも実行される。
 ```
 ~~~
 
 ~~~admonish info title=":h BufWinEnter"
 ```txt
-BufWinEnter     After a buffer is displayed in a window.  This
-                may be when the buffer is loaded (after
-                processing modelines) or when a hidden buffer
-                is displayed (and is no longer hidden).
+BufWinEnter   After a buffer is displayed in a window.  This
+              may be when the buffer is loaded (after
+              processing modelines) or when a hidden buffer
+              is displayed (and is no longer hidden).
 
-                バッファがウィンドウに表示された後。
-                これは、バッファが読み込まれたとき (モデリング処理後) か、
-                非表示のバッファが表示されたとき(そして非表示でなくなったとき) かもしれない。
+              バッファがウィンドウに表示された後。
+              これは、バッファが読み込まれたとき (モデリング処理後) か、
+              非表示のバッファが表示されたとき(そして非表示でなくなったとき) かもしれない。
 
-                Not triggered for |:split| without arguments,
-                since the buffer does not change, or :split
-                with a file already open in a window.
-                Triggered for ":split" with the name of the
-                current buffer, since it reloads that buffer.
+              Not triggered for |:split| without arguments,
+              since the buffer does not change, or :split
+              with a file already open in a window.
+              Triggered for ":split" with the name of the
+              current buffer, since it reloads that buffer.
 
-                引数なしの |:split| や、
-                すでにウィンドウで開いているファイルとの :split では、バッファは変更されないためトリガーされない。
-                現在のバッファの名前を指定した ":split" では、バッファを再読み込みするためトリガーが発生する。
+              引数なしの |:split| や、
+              すでにウィンドウで開いているファイルとの :split では、バッファは変更されないためトリガーされない。
+              現在のバッファの名前を指定した ":split" では、バッファを再読み込みするためトリガーが発生する。
 ```
 ~~~
 
