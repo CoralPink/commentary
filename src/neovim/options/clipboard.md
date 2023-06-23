@@ -43,12 +43,11 @@ See 'clipboard' for details and options.
 
 ~~~admonish info title=":h 'clipboard'"
 ```txt
-'clipboard' 'cb'	string	(default "")
-			            global
+'clipboard' 'cb' string	(default "")
+                 global
 
-    This option is a list of comma-separated names.
-
-    このオプションは、カンマで区切られた名前のリストである。
+  This option is a list of comma-separated names.
+  このオプションは、カンマで区切られた名前のリストである。
 ```
 ~~~
 
@@ -56,43 +55,42 @@ See 'clipboard' for details and options.
 
 ~~~admonish info title="unnamed / unnamedplus" collapsible=true
 ```txt
-  These names are recognized:
+These names are recognized:
+これらの名前は認識される。
 
-  これらの名前は認識される。
+                                  clipboard-unnamed
+unnamed
+  When included, Vim will use the clipboard register '*'
+  for all yank, delete, change and put operations which
+  would normally go to the unnamed register.  When a
+  register is explicitly specified, it will always be
+  used regardless of whether "unnamed" is in 'clipboard'
+  or not.  The clipboard register can always be
+  explicitly accessed using the "* notation.  Also see
+  |clipboard|.
 
-						                        clipboard-unnamed
-	unnamed
-      When included, Vim will use the clipboard register '*'
-			for all yank, delete, change and put operations which
-			would normally go to the unnamed register.  When a
-			register is explicitly specified, it will always be
-			used regardless of whether "unnamed" is in 'clipboard'
-			or not.  The clipboard register can always be
-			explicitly accessed using the "* notation.  Also see
-			|clipboard|.
+  これを含むと、Vim は通常 unnamed レジスタに行くような yank, delete, change, put 操作に対して、
+  クリップボードレジスタ '*' を使用する。
+  レジスタが明示的に指定された場合、'clipboard' に unnamed が入っているかどうかに関わらず、
+  常にそのレジスタが使用される。
+  クリップボードレジスタは、常に「*」表記で明示的にアクセスすることができる。
 
-      これを含むと、Vim は通常 unnamed レジスタに行くような yank, delete, change, put 操作に対して、
-      クリップボードレジスタ '*' を使用する。
-      レジスタが明示的に指定された場合、'clipboard' に unnamed が入っているかどうかに関わらず、
-      常にそのレジスタが使用される。
-      クリップボードレジスタは、常に「*」表記で明示的にアクセスすることができる。
+                              clipboard-unnamedplus
+unnamedplus
+  A variant of the "unnamed" flag which uses the
+  clipboard register '+' (|quoteplus|) instead of
+  register '*' for all yank, delete, change and put
+  operations which would normally go to the unnamed
+  register.  When "unnamed" is also included to the
+  option, yank and delete operations (but not put)
+  will additionally copy the text into register
+  '*'. See |clipboard|.
 
-						                    clipboard-unnamedplus
-	unnamedplus
-      A variant of the "unnamed" flag which uses the
-			clipboard register '+' (|quoteplus|) instead of
-			register '*' for all yank, delete, change and put
-			operations which would normally go to the unnamed
-			register.  When "unnamed" is also included to the
-			option, yank and delete operations (but not put)
-			will additionally copy the text into register
-			'*'. See |clipboard|.
+  unnamed" フラグの亜種で、通常 unnamed レジスタに行くはずの yank, delete, change, put 操作すべてに対して、
+  レジスタ '*' の代わりにクリップボードレジスタ '+' (|quoteplus|) を使用する。
 
-      unnamed" フラグの亜種で、通常 unnamed レジスタに行くはずの yank, delete, change, put 操作すべてに対して、
-      レジスタ '*' の代わりにクリップボードレジスタ '+' (|quoteplus|) を使用する。
-
-      unnamed" がオプションに含まれている場合、
-      yank と delete 操作 (put は不可) は、さらにテキストをレジスタ '+' にコピーする。
+  unnamed" がオプションに含まれている場合、
+  yank と delete 操作 (put は不可) は、さらにテキストをレジスタ '+' にコピーする。
 ```
 ~~~
 

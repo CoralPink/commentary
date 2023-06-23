@@ -4,20 +4,19 @@
 
 ~~~admonish info title=":h scrolloff"
 ```txt
-'scrolloff' 'so'
-'scrolloff' 'so'    number	(default 0)
-	                global or local to window |global-local|
+'scrolloff' 'so' number	(default 0)
+	               global or local to window |global-local|
 
-	Minimal number of screen lines to keep above and below the cursor.
-	This will make some context visible around where you are working.  If
-	you set it to a very large value (999) the cursor line will always be
-	in the middle of the window (except at the start or end of the file or
-	when long lines wrap).
+Minimal number of screen lines to keep above and below the cursor.
+This will make some context visible around where you are working.  If
+you set it to a very large value (999) the cursor line will always be
+in the middle of the window (except at the start or end of the file or
+when long lines wrap).
 
-	カーソルの上下に表示する最小限のスクリーンライン数。
-	これにより、作業している場所の周辺にあるコンテキストを表示することができる。もし
-	非常に大きな値(999)を設定すると、カーソル行は常にウィンドウの中央に位置する。
-    (ファイルの先頭または末尾、あるいは長い行が折り返される場合を除く)。
+カーソルの上下に表示する最小限のスクリーンライン数。
+これにより、作業している場所の周辺にあるコンテキストを表示することができる。もし
+非常に大きな値(999)を設定すると、カーソル行は常にウィンドウの中央に位置する。
+(ファイルの先頭または末尾、あるいは長い行が折り返される場合を除く)。
 ```
 ~~~
 

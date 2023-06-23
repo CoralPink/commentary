@@ -32,22 +32,23 @@ APIを　つかいます❗
 
 ~~~admonish info title=":h nvim_buf_set_option"
 ```txt
-nvim_buf_set_option({buffer}, {name}, {value})          *nvim_buf_set_option()*
-    Sets a buffer option value. Passing `nil` as value deletes the option
-    (only works if there's a global fallback)
+nvim_buf_set_option({buffer}, {name}, {value})
 
-    buffer のオプション値を設定する。value として `nil` を渡すと、そのオプションが削除される。
-    (グローバルフォールバックがある場合のみ動作する)
+Sets a buffer option value. Passing `nil` as value deletes the option
+(only works if there's a global fallback)
 
-    Parameters:
-      • {buffer}  Buffer handle, or 0 for current buffer
-                  バッファハンドル、またはカレントバッファの場合は0。
+buffer のオプション値を設定する。value として `nil` を渡すと、そのオプションが削除される。
+(グローバルフォールバックがある場合のみ動作する)
 
-      • {name}    Option name
-                  オプション名
+Parameters:
+  • {buffer}  Buffer handle, or 0 for current buffer
+              バッファハンドル、またはカレントバッファの場合は0。
 
-      • {value}   Option value
-                  新しいオプションの値
+  • {name}    Option name
+              オプション名
+
+  • {value}   Option value
+              新しいオプションの値
 ```
 ~~~
 

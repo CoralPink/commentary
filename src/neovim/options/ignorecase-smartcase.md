@@ -4,7 +4,7 @@
 
 ~~~admonish info title=":h ignorecase"
 ```txt
-7. Ignoring case in a pattern					/ignorecase
+7. Ignoring case in a pattern          /ignorecase
 
 If the 'ignorecase' option is on, the case of normal letters is ignored.
 'smartcase' can be set to ignore case when the pattern contains lowercase
@@ -14,30 +14,28 @@ ignorecase' オプションがオンの場合、通常の文字の大文字小�
 smartcase' を指定すると、パターンが小文字のみである場合に大文字小文字を無視する。
 
 Examples:
-      pattern	'ignorecase'   'smartcase'   matches
+pattern	'ignorecase'   'smartcase'   matches
 
-    	foo         off		    -	    foo
-	    foo	    on		    -	    foo Foo FOO
-	    Foo	    on		    off	    foo Foo FOO
-	    Foo	    on		    on	    Foo
-	    \cfoo	    -	            -	    foo Foo FOO
-	    foo\C	    -	            -	    foo
+  foo    off            -	           foo
+  foo	   on             -	           foo Foo FOO
+  Foo	   on             off	         foo Foo FOO
+  Foo	   on             on	         Foo
+  \cfoo	 -              -            foo Foo FOO
+  foo\C  -              -            foo
 ```
 ~~~
 
 ~~~admonish info title=":h smartcase"
 ```txt
-'smartcase' 'scs' 'nosmartcase' 'noscs'
-
 'smartcase' 'scs' boolean (default off)
-			      global
+                  global
 
-    Override the 'ignorecase' option if the search pattern contains upper
-    case characters.  Only used when the search pattern is typed and
-    'ignorecase' option is on.
+Override the 'ignorecase' option if the search pattern contains upper
+case characters.  Only used when the search pattern is typed and
+'ignorecase' option is on.
 
-    検索パターンが大文字を含む場合、'ignorecase' オプションを無効にする。
-    検索パターンが入力され、'ignorecase' が on の時のみ使用される。
+検索パターンが大文字を含む場合、'ignorecase' オプションを無効にする。
+検索パターンが入力され、'ignorecase' が on の時のみ使用される。
 ```
 ~~~
 

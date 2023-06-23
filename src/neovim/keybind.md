@@ -36,51 +36,51 @@ require 'options'
 
 ~~~admonish info title = ":h keymap.set"
 ```txt
-set({mode}, {lhs}, {rhs}, {opts})                           vim.keymap.set()
-    Add a new |mapping|. Examples:
-    新しい|mapping|を追加します。
+set({mode}, {lhs}, {rhs}, {opts})       vim.keymap.set()
+  Add a new |mapping|. Examples:
+  新しい|mapping|を追加します。
 
-    Parameters:
-      • {mode}  string|table Same mode short names as |nvim_set_keymap()|. Can
-                also be list of modes to create mapping on multiple modes.
+  Parameters:
+    • {mode}  string|table Same mode short names as |nvim_set_keymap()|. Can
+              also be list of modes to create mapping on multiple modes.
 
-                |nvim_set_keymap()| と同じモードのショートネーム。
-                複数のモードに対してマッピングを作成するために、モードのリストを指定することもできる。
+              |nvim_set_keymap()| と同じモードのショートネーム。
+              複数のモードに対してマッピングを作成するために、モードのリストを指定することもできる。
 
-      • {lhs}   (string) Left-hand side |{lhs}| of the mapping.
-                マッピングの左辺|{lhs}|。
+    • {lhs}   (string) Left-hand side |{lhs}| of the mapping.
+              マッピングの左辺|{lhs}|。
 
-      • {rhs}   string|function Right-hand side |{rhs}| of the mapping. Can
-                also be a Lua function.
+    • {rhs}   string|function Right-hand side |{rhs}| of the mapping. Can
+              also be a Lua function.
 
-                マッピングの右辺|{rhs}|。Luaの関数でも可。
+              マッピングの右辺|{rhs}|。Luaの関数でも可。
 
-      • {opts}  (table|nil) A table of |:map-arguments|.
-                • Accepts options accepted by the {opts} parameter in
-                  |nvim_set_keymap()|, with the following notable differences:
-                  • replace_keycodes: Defaults to `true` if "expr" is `true`.
-                  • noremap: Always overridden with the inverse of "remap" (see below).
+    • {opts}  (table|nil) A table of |:map-arguments|.
+              • Accepts options accepted by the {opts} parameter in
+                |nvim_set_keymap()|, with the following notable differences:
+                • replace_keycodes: Defaults to `true` if "expr" is `true`.
+                • noremap: Always overridden with the inverse of "remap" (see below).
 
-                • In addition to those options, the table accepts the
-                  following keys:
-                  • buffer: (number or boolean) Add a mapping to the given
-                    buffer. When `0` or `true`, use the current buffer.
-                  • remap: (boolean) Make the mapping recursive. This is the
-                    inverse of the "noremap" option from |nvim_set_keymap()|.
-                    Defaults to `false`.
+              • In addition to those options, the table accepts the
+                following keys:
+                • buffer: (number or boolean) Add a mapping to the given
+                  buffer. When `0` or `true`, use the current buffer.
+                • remap: (boolean) Make the mapping recursive. This is the
+                  inverse of the "noremap" option from |nvim_set_keymap()|.
+                  Defaults to `false`.
 
-                • |nvim_set_keymap()| の {opts} パラメータで受け付けられるオプションを受け付けるが、以下の顕著な違いがある。
-                  • replace_keycodes: replace_keycodes: "expr" が `true` の場合、デフォルトは `true` 。
-                  • noremap: noremap: "remap "の逆で常にオーバーライドされる(下記参照)。
+              • |nvim_set_keymap()| の {opts} パラメータで受け付けられるオプションを受け付けるが、以下の顕著な違いがある。
+                • replace_keycodes: replace_keycodes: "expr" が `true` の場合、デフォルトは `true` 。
+                • noremap: noremap: "remap "の逆で常にオーバーライドされる(下記参照)。
 
-                • これらのオプションに加え、テーブルでは以下のキーを受け付ける。
-                  • buffer: (number or boolean) 与えられたバッファにマッピングを追加する。
-                    '0` または `true` の場合、現在のバッファを使用する。
-                  • remap: (boolean) マッピングを再帰的に行う。これは |nvim_set_keymap()| の "noremap" オプションの逆バージョンである。
-                    デフォルトは `false` 。
+              • これらのオプションに加え、テーブルでは以下のキーを受け付ける。
+                • buffer: (number or boolean) 与えられたバッファにマッピングを追加する。
+                  '0` または `true` の場合、現在のバッファを使用する。
+                • remap: (boolean) マッピングを再帰的に行う。これは |nvim_set_keymap()| の "noremap" オプションの逆バージョンである。
+                  デフォルトは `false` 。
 
-    See also:
-        |nvim_set_keymap()|
+  See also:
+      |nvim_set_keymap()|
 ```
 ~~~
 
@@ -88,9 +88,9 @@ set({mode}, {lhs}, {rhs}, {opts})                           vim.keymap.set()
 
 ~~~admonish info title = ":h nvim_set_keymap"
 ```txt
-    Parameters:
-      • {mode}  Mode short-name (map command prefix: "n", "i", "v", "x", …) or
-                "!" for |:map!|, or empty string for |:map|.
+Parameters:
+  • {mode}  Mode short-name (map command prefix: "n", "i", "v", "x", …) or
+            "!" for |:map!|, or empty string for |:map|.
 ```
 ~~~
 
@@ -115,7 +115,7 @@ set({mode}, {lhs}, {rhs}, {opts})                           vim.keymap.set()
 
 ~~~admonish info title=":h key-notation"
 ```txt
-					                            key-notation key-codes keycodes
+					                key-notation key-codes keycodes
 These names for keys are used in the documentation.
 They can also be used with the ":map" command.
 
@@ -232,7 +232,7 @@ vim.keymap.set('i', 'jj', '<Esc>')
 ~~~admonish info title=":h map-table"
 ```txt
               map-table
-         Mode  | Norm | Ins | Cmd | Vis | Sel | Opr | Term | Lang |
+     Mode      | Norm | Ins | Cmd | Vis | Sel | Opr | Term | Lang |
 Command        +------+-----+-----+-----+-----+-----+------+------+
 [nore]map      | yes  |  -  |  -  | yes | yes | yes |  -   |  -   |
 n[nore]map     | yes  |  -  |  -  |  -  |  -  |  -  |  -   |  -   |

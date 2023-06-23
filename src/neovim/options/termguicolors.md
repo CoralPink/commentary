@@ -6,14 +6,11 @@
 
 ~~~admonish info title=":h termguicolors"
 ```txt
-'termguicolors' 'tgc' 'notermguicolors' 'notgc'
+'termguicolors' 'tgc' boolean (default off)
+                      global
 
-'termguicolors' 'tgc'	boolean (default off)
-                        global
-
-	Enables 24-bit RGB color in the |TUI|.
-
-	|TUI|で24ビットRGBカラーを有効にする。
+Enables 24-bit RGB color in the |TUI|.
+|TUI|で24ビットRGBカラーを有効にする。
 ```
 ~~~
 
