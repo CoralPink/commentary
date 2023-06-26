@@ -293,8 +293,8 @@ cmp.setup {
     ['<C-e>'] = map.abort(),
     ['<CR>'] = map.confirm { select = false },
 
-    ['<Tab>'] = map(act.tab_proc, { 'i', 's' }),
-    ['<S-Tab>'] = map(act.shift_tab_proc, { 'i', 's' }),
+    ['<Tab>'] = map(act.tab, { 'i', 's' }),
+    ['<S-Tab>'] = map(act.shift_tab, { 'i', 's' }),
   },
 
   -- (以下略)
@@ -326,11 +326,9 @@ cmp.setup {
 
 これで`Neovim`の空に`GitHub Copilot` 🛫 `copilot.lua` 🗺️ `copilot-cmp` 🛬 `nvim-cmp`という航路が完成しました❗
 
-## Contact
+## Cleared to land.
 
-さあ、いよいよ繋がりました✈️
-
-飛べるかな〜❓
+まもなく着陸体制...😦
 
 ~~~admonish note
 ```vim
@@ -342,9 +340,9 @@ cmp.setup {
 
 ![copilot-cmp](img/copilot-cmp.webp)
 
-飛んだよぉー❗😭
+Nice Landing❗😭
 
-的確な提案であるかどうかは別として、ちゃんと`Copilot`からの提案が挙げられています😉
+中身が的確かどうかは別として、ちゃんと`Copilot`からの提案が挙げられています😉
 
 ```admonish success title=""
 And in the middle of the celebrations
@@ -415,11 +413,9 @@ I break down
 リストがアイコンになっている点は、また後日...😅
 ```
 
-```admonish note
 あくまでもわたしの環境でやったらこうなりました〜というもので、同じ手順で同じコードが提案されるかどうかはわかりません😅
 
 「全体の流れとしてこんな感じだよー」ぐらいで、よろしくどうぞ❗
-```
 
 ## Spot in. Good night!
 
