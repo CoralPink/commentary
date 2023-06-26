@@ -232,16 +232,11 @@
   const initSideBar = () => {
     const html = document.querySelector('html');
     const sidebar = document.getElementById('sidebar');
-    const sidebarLinks = document.querySelectorAll('#sidebar a');
     const sidebarToggleButton = document.getElementById('sidebar-toggle');
 
     // Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM
     sidebarToggleButton.setAttribute('aria-expanded', sidebar === 'visible');
     sidebar.setAttribute('aria-hidden', sidebar !== 'visible');
-
-    sidebarLinks.forEach(link => {
-      link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
-    });
 
     const toggleSection = ev => {
       ev.currentTarget.parentElement.classList.toggle('expanded');
@@ -258,10 +253,6 @@
 
       html.classList.remove('sidebar-hidden');
       html.classList.add('sidebar-visible');
-
-      Array.from(sidebarLinks).forEach(link => {
-        link.setAttribute('tabIndex', 0);
-      });
 
       sidebarToggleButton.setAttribute('aria-expanded', true);
       sidebar.setAttribute('aria-hidden', false);
@@ -280,10 +271,6 @@
 
       html.classList.remove('sidebar-visible');
       html.classList.add('sidebar-hidden');
-
-      Array.from(sidebarLinks).forEach(link => {
-        link.setAttribute('tabIndex', -1);
-      });
 
       sidebarToggleButton.setAttribute('aria-expanded', false);
       sidebar.setAttribute('aria-hidden', true);
