@@ -5,19 +5,20 @@
   overflow-x: auto;
 }
 
+// For the style attribute, display: grid or block is added from the JS code.
+// (display: grid or block)
 .page {
-  display: flex;
+  grid-template-columns: var.$sidebar-width 1fr;
   min-height: calc(100dvh - var.$menu-bar-height);
 }
 
 .content {
   display: grid;
-  grid-template-columns: 2rem 1fr 2rem 0;
+  grid-template-columns: 2rem 1fr 2rem;
+  column-gap: 1rem;
 
   @media only screen and (min-width: var.$enable-pagetoc) {
-    grid-template-columns: 1rem 1fr 0 var.$pagetoc-width;
-    column-gap: 1rem;
-    padding-right: 1rem;
+    grid-template-columns: 2rem 1fr 0 var.$pagetoc-width 1rem;
   }
 
   main {
@@ -70,16 +71,6 @@
 
   .tooltipped & {
     visibility: visible;
-  }
-}
-
-.chapter {
-  li {
-    .part-title {
-      color: var(--sidebar-fg);
-      margin: 5px 0px;
-      font-weight: bold;
-    }
   }
 }
 
@@ -241,11 +232,6 @@ a > .hljs {
 }
 
 .sidebar {
-  flex-basis: 12%;
-  min-width: var.$sidebar-width;
-
-  overscroll-behavior-y: contain;
-
   color: var(--sidebar-fg);
   background-color: var(--sidebar-bg);
 
@@ -269,21 +255,20 @@ a > .hljs {
   overflow-y: scroll;
 }
 
-.sidebar-hidden {
-  .sidebar {
-    flex-basis: 0%;
-    display: none;
-  }
-}
-
 .chapter {
   padding-left: 1em;
   line-height: 2.2em;
   font-size: 1.1em;
 
   li {
-    display: flex;
     font-style: italic;
+    list-style-type: none;
+
+    .part-title {
+      color: var(--sidebar-fg);
+      margin: 5px 0px;
+      font-weight: bold;
+    }
 
     a {
       color: var(--sidebar-fg);
