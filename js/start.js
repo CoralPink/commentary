@@ -13,6 +13,10 @@
     return;
   }
 
+  setTimeout(() => {
+    document.querySelector('meta[name="theme-color"]').content = window.getComputedStyle(document.body).backgroundColor;
+  }, 1);
+
   const html = document.querySelector('html');
 
   html.classList.remove(defaultTheme);
