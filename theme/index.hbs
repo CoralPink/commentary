@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="{{ language }}" class="sidebar-visible {{ default_theme }}">
+<html lang="{{ language }}" class="{{ default_theme }}">
   <head>
     <meta charset="UTF-8">
     <title>{{ title }}</title>
@@ -97,7 +97,7 @@
       </div>
     </div>
 
-    <div class="page">
+    <div id="page" class="page">
       <div id="sidebar" class="sidebar" aria-label="Table of contents">
         <nav class="sidebar-scrollbox">
           {{#toc}}{{/toc}}
@@ -105,7 +105,7 @@
       </div>
 
       <div id="content" class="content">
-        <spacer class="left"></spacer>
+        <spacer></spacer>
 
         <main>
           {{{ content }}}
@@ -125,11 +125,13 @@
           </nav>
         </main>
 
-        <spacer class="right"></spacer>
+        <spacer></spacer>
 
         <div class="righttoc">
           <nav class="pagetoc"></nav>
         </div>
+
+        <spacer></spacer>
       </div>
     </div>
 
