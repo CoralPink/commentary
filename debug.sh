@@ -1,6 +1,5 @@
 npm run compress --prefix js -input='book.js' -output='../theme/book.js'
 npm run compress --prefix js -input='searcher.js' -output='../src/searcher.js'
-npm run compress --prefix js -input='start.js' -output='../src/start.js'
 
 cp js/node_modules/clipboard/dist/clipboard.min.js src
 cp js/node_modules/fzf/dist/fzf.umd.js src
