@@ -10,8 +10,10 @@ html {
 }
 
 body {
-  display: flex;
   margin: 0px;
+
+  display: flex;
+  flex-direction: column;
 
   font-family: 'Open Sans', sans-serif;
   color: var(--fg);
@@ -46,73 +48,6 @@ code {
   display: none !important;
 }
 
-.page {
-  display: flex;
-  width: 100vw;
-  min-height: calc(100vh - var.$menu-bar-height);
-  margin-top: var.$menu-bar-height;
-}
-
-.content {
-  flex-basis: 100%;
-  min-width: 0px;
-
-  display: flex;
-
-  main {
-    font-size: 1.4rem;
-    flex-basis: 96%;
-    min-width: 0px;
-  }
-
-  @media only screen and (max-width: var.$enable-pagetoc) {
-    spacer {
-      flex-basis: 3rem;
-    }
-  }
-
-  @media only screen and (min-width: var.$enable-pagetoc) {
-    spacer {
-      &.left {
-        flex-basis: 4rem;
-        min-width: 24px;
-      }
-      &.right {
-        flex-basis: 1rem;
-        min-width: 8px;
-      }
-    }
-  }
-
-  a {
-    text-decoration: none;
-
-    &:hover {
-      text-decoration: underline;
-    }
-  }
-  img,
-  video {
-    display: flex;
-    margin: 1rem auto;
-    max-width: 100%;
-    height: auto;
-  }
-
-  .header {
-    &:link {
-      color: var(--fg);
-      text-decoration: none;
-    }
-    &:visited {
-      color: var(--fg);
-    }
-    &:visited:hover {
-      text-decoration: none;
-    }
-  }
-}
-
 table {
   margin: 0 auto;
   border-collapse: collapse;
@@ -144,6 +79,101 @@ table {
   }
 }
 
+pre {
+  position: relative;
+
+  & > .buttons {
+    position: absolute;
+    right: 0px;
+    top: 4px;
+
+    color: var(--sidebar-fg);
+    cursor: pointer;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0.1s linear, opacity 0.1s linear;
+
+    :hover {
+      color: var(--sidebar-active);
+      border-color: var(--icons-hover);
+      background-color: var(--theme-hover);
+    }
+    i {
+      margin-left: 8px;
+    }
+    button {
+      cursor: inherit;
+      margin: 0px 5px;
+      padding: 3px 5px;
+      font-size: 14px;
+
+      border-style: solid;
+      border-width: 1px;
+      border-radius: 4px;
+      border-color: var(--icons);
+      background-color: var(--theme-popup-bg);
+      transition: 100ms;
+      transition-property: color, border-color, background-color;
+      color: var(--icons);
+    }
+  }
+
+  & > code {
+    padding: 1rem;
+  }
+
+  & > .result {
+    margin-top: 10px;
+  }
+
+  &:hover > .buttons {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+@media (pointer: coarse) {
+  pre > .buttons button {
+    padding: 0.3rem 1rem; // On mobile, make it easier to tap buttons.
+  }
+}
+
+ul {
+  &#searchresults {
+    list-style: none;
+    padding-left: 20px;
+
+    li {
+      margin: 10px 0px;
+      padding: 2px;
+      border-radius: 2px;
+
+      &.focus {
+        background-color: var(--searchresults-li-bg);
+      }
+    }
+    span {
+      &.teaser {
+        display: block;
+        clear: both;
+        margin: 5px 0 0 20px;
+        font-size: 0.8em;
+
+        em {
+          background: linear-gradient(rgba(0,0,0,0) 80%, var(--search-mark-bg));
+          font-weight: bold;
+        }
+      }
+    }
+  }
+}
+
+mark {
+  color: var(--fg);
+  background: linear-gradient(rgba(0,0,0,0) 70%, var(--search-mark-bg));
+  cursor: pointer;
+}
+
 kbd {
   background-color: var(--table-border-color);
   border-radius: 4px;
@@ -155,37 +185,4 @@ kbd {
   line-height: 10px;
   padding: 4px 5px;
   vertical-align: middle;
-}
-
-.tooltiptext {
-  position: absolute;
-  visibility: hidden;
-  color: #fff;
-  background-color: #333;
-  transform: translateX(-50%); // Center by moving tooltip 50% of its width left
-  left: -8px; // Half of the width of the icon
-  top: -35px;
-  font-size: 0.8em;
-  text-align: center;
-  border-radius: 6px;
-  padding: 5px 8px;
-  margin: 5px;
-
-  .tooltipped & {
-    visibility: visible;
-  }
-}
-
-.chapter {
-  li {
-    .part-title {
-      color: var(--sidebar-fg);
-      margin: 5px 0px;
-      font-weight: bold;
-    }
-  }
-}
-
-.result-no-output {
-  font-style: italic;
 }
