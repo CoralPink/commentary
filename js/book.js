@@ -46,8 +46,6 @@ const initSideBar = () => {
     }
   };
 
-  toggleButton.getAttribute('aria-expanded') == 'true' ? hideSidebar() : showSidebar();
-
   // Toggle sidebar
   toggleButton.addEventListener(
     'click',
@@ -72,8 +70,7 @@ const initSideBar = () => {
     () => {
       clearTimeout(timeoutId);
 
-      // FIXME: The definitions are all over the place.
-      timeoutId = setTimeout(() => {
+      timeoutId = setTimeout(() => {      // FIXME: The definitions are all over the place.
         if (window.innerWidth >= 1200) {
           showSidebar();
         }
@@ -82,23 +79,11 @@ const initSideBar = () => {
     { once: false, passive: true }
   );
 
-  // FIXME: The definitions are all over the place.
-  if (window.innerWidth < 750) {
+  if (window.innerWidth < 750) {          // FIXME: The definitions are all over the place.
     hideSidebar();
     return;
   }
-
-  const getSidebarState = () => {
-    const sidebar = localStorage.getItem('mdbook-sidebar');
-
-    if (sidebar) {
-      return sidebar;
-    }
-
-    // FIXME: The definitions are all over the place.
-    return document.body.clientWidth < 750 ? 'hidden' : 'visible';
-  };
-  getSidebarState() == 'visible' ? showSidebar() : hideSidebar();
+  localStorage.getItem('mdbook-sidebar') == 'visible' ? showSidebar() : hideSidebar();
 };
 
 const initCodeBlock = () => {
