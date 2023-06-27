@@ -1,0 +1,15 @@
+<noscript>
+<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WMN96QT" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+
+<script>
+(()=>{const e=localStorage.getItem("mdbook-theme");
+if(!e){document.querySelector('meta[name="theme-color"]').content=window.getComputedStyle(document.body).backgroundColor;return;}
+if(e=="{{ default_theme }}")return;
+setTimeout((()=>{document.querySelector('meta[name="theme-color"]').content=window.getComputedStyle(document.body).backgroundColor}),1);
+const o=document.querySelector("html");o.classList.remove("{{ default_theme }}"),o.classList.add(e)})();
+</script>
+
+{{#if playground_copyable}}
+<script>window.playground_copyable = true;</script>
+{{/if}}

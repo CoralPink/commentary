@@ -33,12 +33,6 @@
     <link rel="manifest" href="{{ path_to_root }}manifest.json">
   </head>
   <body>
-    <noscript>
-      <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WMN96QT" height="0" width="0" style="display:none;visibility:hidden"></iframe>
-    </noscript>
-
-    <script src="{{ path_to_root }}start.js" id="start" data-defaulttheme="{{ default_theme }}"></script>
-
     {{> header}}
 
     <div class="top-bar">
@@ -154,7 +148,6 @@
 
     {{#if playground_copyable}}
     <script src="{{ path_to_root }}clipboard.min.js"></script>
-    <script>window.playground_copyable = true;</script>
     {{/if}}
 
     <script src="{{ path_to_root }}highlight.min.js"></script>
