@@ -11,6 +11,7 @@ const initSideBar = () => {
   const page = document.getElementById('page');
   const sidebar = document.getElementById('sidebar');
   const toggleButton = document.getElementById('sidebar-toggle');
+  const scr = document.getElementById("side-scroll");
 
   const toggleSection = ev => {
     ev.currentTarget.parentElement.classList.toggle('expanded');
@@ -26,6 +27,8 @@ const initSideBar = () => {
     sidebar.setAttribute('aria-hidden', false);
     toggleButton.setAttribute('aria-expanded', true);
 
+    scr.style.display = 'block'
+
     try {
       localStorage.setItem('mdbook-sidebar', 'visible');
     } catch (_e) {
@@ -34,6 +37,8 @@ const initSideBar = () => {
   };
 
   const hideSidebar = () => {
+    scr.style.display = 'none'
+
     page.style.display = 'block';
     sidebar.style.display = 'none';
     sidebar.setAttribute('aria-hidden', true);
