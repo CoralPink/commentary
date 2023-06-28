@@ -11,7 +11,9 @@ const initSideBar = () => {
   const page = document.getElementById('page');
   const sidebar = document.getElementById('sidebar');
   const toggleButton = document.getElementById('sidebar-toggle');
+
   const scr = document.getElementById("side-scroll");
+  const active = sidebar.querySelector('.active');
 
   const toggleSection = ev => {
     ev.currentTarget.parentElement.classList.toggle('expanded');
@@ -28,6 +30,10 @@ const initSideBar = () => {
     toggleButton.setAttribute('aria-expanded', true);
 
     scr.style.display = 'block'
+
+    if (active) {
+      active.scrollIntoView({ block: 'center' });
+    }
 
     try {
       localStorage.setItem('mdbook-sidebar', 'visible');
@@ -59,14 +65,6 @@ const initSideBar = () => {
     },
     { once: false, passive: true }
   );
-
-  // Scroll sidebar to current active section
-  const activeSection = document.getElementById('sidebar').querySelector('.active');
-
-  if (activeSection) {
-    // https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView
-    activeSection.scrollIntoView({ block: 'center' });
-  }
 
   let timeoutId = null;
 
