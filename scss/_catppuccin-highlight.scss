@@ -554,18 +554,22 @@
   background: rgba(210, 15, 57, 0.15);
 }
 
-.mocha code {
+.mocha pre code {
+  color: #a6adc8;
   background: #181825;
 }
 
-.macchiato code {
+.macchiato pre code {
+  color: #a5adcb;
   background: #1e2030;
 }
 
-.frappe code {
+.frappe pre code {
+  color: #a5adce;
   background: #292c3c;
 }
 
-.latte code {
+.latte pre code {
+  color: #6c6f85;
   background: #e6e9ef;
 }
