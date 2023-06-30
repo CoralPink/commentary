@@ -386,7 +386,7 @@ I break down
 
 ![copilot-cmp6](img/copilot-cmp6.webp)
 
-```admonish info
+```admonish info title=""
 “It's kind of scary but exciting, because it's the future”
 
 "一種の怖さはあるけどわくわくするね、なぜってこれが未来だから"
