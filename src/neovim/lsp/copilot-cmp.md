@@ -72,7 +72,6 @@ use {
         tag = "v1.*",
         run = 'make install_jsregexp',
         config = function() require 'extensions.luasnip' end,
-        requires = 'saadparwaiz1/cmp_luasnip',
         requires = { 'saadparwaiz1/cmp_luasnip', 'rafamadriz/friendly-snippets' },
       },
 +     {
