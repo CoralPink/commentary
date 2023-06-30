@@ -12,7 +12,7 @@ const initSideBar = () => {
   const sidebar = document.getElementById('sidebar');
   const toggleButton = document.getElementById('sidebar-toggle');
 
-  const scr = document.getElementById("side-scroll");
+  const scr = document.getElementById('side-scroll');
   const active = sidebar.querySelector('.active');
 
   const toggleSection = ev => {
@@ -29,7 +29,7 @@ const initSideBar = () => {
     sidebar.setAttribute('aria-hidden', false);
     toggleButton.setAttribute('aria-expanded', true);
 
-    scr.style.display = 'block'
+    scr.style.display = 'block';
 
     if (active) {
       active.scrollIntoView({ block: 'center' });
@@ -43,7 +43,7 @@ const initSideBar = () => {
   };
 
   const hideSidebar = () => {
-    scr.style.display = 'none'
+    scr.style.display = 'none';
 
     page.style.display = 'block';
     sidebar.style.display = 'none';
@@ -66,21 +66,11 @@ const initSideBar = () => {
     { once: false, passive: true }
   );
 
-  let timeoutId = null;
-
-  globalThis.addEventListener(
-    'resize',
-    () => {
-      clearTimeout(timeoutId);
-
-      timeoutId = setTimeout(() => {      // FIXME: The definitions are all over the place.
-        if (window.innerWidth >= 1200) {
-          showSidebar();
-        }
-      }, 200);
-    },
-    { once: false, passive: true }
-  );
+  window.matchMedia(`(min-width: 1200px)`).addEventListener('change', event => {
+    if (event.matches) {
+      showSidebar();
+    }
+  });
 
   if (window.innerWidth < 750) {          // FIXME: The definitions are all over the place.
     hideSidebar();
@@ -326,17 +316,6 @@ const initThemeSelector = () => {
     },
     { once: false, passive: true }
   );
-
-  document.addEventListener(
-    'keydown',
-    e => {
-      if (themePopup.contains(e.target)) {
-        e.preventDefault();
-        hideThemes();
-      }
-    },
-    { once: false, passive: false }
-  );
 };
 
 const touchControl = () => {
@@ -391,12 +370,10 @@ document.addEventListener(
       return;
     }
 
-    const main = document.querySelector('.content main');
-
     if (e.key == 'ArrowRight') {
       e.preventDefault();
 
-      const nextButton = main.querySelector('.nav-chapters.next');
+      const nextButton = document.querySelector('.content main .nav-chapters.next');
 
       if (nextButton) {
         window.location.href = nextButton.href;
@@ -404,14 +381,14 @@ document.addEventListener(
     } else if (e.key == 'ArrowLeft') {
       e.preventDefault();
 
-      const previousButton = main.querySelector('.nav-chapters.previous');
+      const previousButton = document.querySelector('.content main .nav-chapters.previous');
 
       if (previousButton) {
         window.location.href = previousButton.href;
       }
     }
   },
-  { once: false, passive: false }
+  { once: false, passive: true }
 );
 
 document.addEventListener(
