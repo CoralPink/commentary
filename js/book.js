@@ -66,13 +66,14 @@ const initSideBar = () => {
     { once: false, passive: true }
   );
 
-  window.matchMedia(`(min-width: 1200px)`).addEventListener('change', event => {
+  matchMedia(`(min-width: 1200px)`).addEventListener('change', event => {
     if (event.matches) {
       showSidebar();
     }
   });
 
-  if (window.innerWidth < 750) {          // FIXME: The definitions are all over the place.
+  // FIXME: The definitions are all over the place.
+  if (window.innerWidth < 750) {
     hideSidebar();
     return;
   }
@@ -211,66 +212,14 @@ const initThemeSelector = () => {
   const themePopup = document.getElementById('theme-list');
   const themeToggleButton = document.getElementById('theme-toggle');
 
-  const changeTheme = theme => {
-    themePopup.querySelectorAll('.theme-selected').forEach(el => el.classList.remove('theme-selected'));
-    themePopup.querySelector('button#' + theme).classList.add('theme-selected');
-
-    setTimeout(() => {
-      document.querySelector('meta[name="theme-color"]').content = window.getComputedStyle(
-        document.body
-      ).backgroundColor;
-    }, 1);
-  };
-
-  let currentTheme = (() => {
-    let theme;
-
-    try {
-      theme = localStorage.getItem('mdbook-theme');
-    } catch (_e) {
-      console.log('ERROR: getTheme#mdbook-theme');
-    }
-
-    if (theme != null) {
-      return theme;
-    }
-
-    const defaultTheme = document.getElementById('book').dataset.defaulttheme;
-    changeTheme(defaultTheme);
-
-    return defaultTheme;
-  })();
-
-  const setTheme = theme => {
-    if (theme == currentTheme) {
-      return;
-    }
-
-    changeTheme(theme);
-
-    const html = document.querySelector('html');
-    html.classList.remove(currentTheme);
-    html.classList.add(theme);
-
-    try {
-      localStorage.setItem('mdbook-theme', theme);
-    } catch (_e) {
-      console.log('ERROR: setTheme#mdbook-theme');
-    }
-
-    currentTheme = theme;
-  };
-
   const hideThemes = () => {
     themePopup.style.display = 'none';
     themeToggleButton.setAttribute('aria-expanded', false);
-    themeToggleButton.focus();
   };
 
   const showThemes = () => {
     themePopup.style.display = 'block';
     themeToggleButton.setAttribute('aria-expanded', true);
-    themePopup.querySelector('button#' + currentTheme).focus();
   };
 
   themeToggleButton.addEventListener(
@@ -280,6 +229,31 @@ const initThemeSelector = () => {
     },
     { once: false, passive: true }
   );
+
+  const setTheme = theme => {
+    const classList = document.querySelector('html').classList;
+
+    if (theme == classList.value) {
+      return;
+    }
+
+    themePopup.querySelectorAll('.theme-selected').forEach(el => el.classList.remove('theme-selected'));
+    themePopup.querySelector('button#' + theme).classList.add('theme-selected');
+
+    classList.replace(classList.value, theme);
+
+    try {
+      localStorage.setItem('mdbook-theme', theme);
+    } catch (_e) {
+      console.log('ERROR: setTheme#mdbook-theme');
+    }
+
+    setTimeout(() => {
+      document.querySelector('meta[name="theme-color"]').content = window.getComputedStyle(
+        document.body
+      ).backgroundColor;
+    }, 1);
+  };
 
   themePopup.addEventListener(
     'click',

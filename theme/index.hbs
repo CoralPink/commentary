@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="{{ language }}" class="{{ default_theme }}">
+<html lang="{{ language }}">
   <head>
     <meta charset="UTF-8">
     <title>{{ title }}</title>
@@ -151,7 +151,7 @@
     {{/if}}
 
     <script src="{{ path_to_root }}highlight.min.js"></script>
-    <script src="{{ path_to_root }}book.js" id="book" data-defaulttheme="{{ default_theme }}"></script>
+    <script src="{{ path_to_root }}book.js" id="book"></script>
 
     {{#if mathjax_support}}
     <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
