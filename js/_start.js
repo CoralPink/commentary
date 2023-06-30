@@ -1,24 +1,14 @@
 // Set the theme.
 (() => {
-  const theme = localStorage.getItem('mdbook-theme');
+  let theme = localStorage.getItem('mdbook-theme');
 
   if (!theme) {
-    document.querySelector('meta[name="theme-color"]').content = window.getComputedStyle(document.body).backgroundColor;
-    return;
+    theme = matchMedia('(prefers-color-scheme: dark)').matches ? 'macchiato': 'latte';
   }
-
-  const defaultTheme = document.getElementById('start').dataset.defaulttheme;
-
-  if (theme == defaultTheme) {
-    return;
-  }
+  document.querySelector('html').classList.add(theme);
 
   setTimeout(() => {
     document.querySelector('meta[name="theme-color"]').content = window.getComputedStyle(document.body).backgroundColor;
+    document.getElementById(theme).classList.add('theme-selected');
   }, 1);
-
-  const html = document.querySelector('html');
-
-  html.classList.remove(defaultTheme);
-  html.classList.add(theme);
 })();
