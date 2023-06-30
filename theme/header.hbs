@@ -3,11 +3,11 @@
 </noscript>
 
 <script>
-(()=>{const e=localStorage.getItem("mdbook-theme");
-if(!e){document.querySelector('meta[name="theme-color"]').content=window.getComputedStyle(document.body).backgroundColor;return;}
-if(e=="{{ default_theme }}")return;
-setTimeout((()=>{document.querySelector('meta[name="theme-color"]').content=window.getComputedStyle(document.body).backgroundColor}),1);
-const o=document.querySelector("html");o.classList.remove("{{ default_theme }}"),o.classList.add(e)})();
+(()=>{let e=localStorage.getItem("mdbook-theme");
+e||(e=matchMedia("(prefers-color-scheme: dark)").matches?"{{preferred_dark_theme}}":"{{default_theme}}"),
+document.querySelector("html").classList.add(e),
+setTimeout((()=>{document.querySelector('meta[name="theme-color"]').content=window.getComputedStyle(document.body).backgroundColor,
+document.getElementById(e).classList.add("theme-selected")}),1)})();
 </script>
 
 {{#if playground_copyable}}
