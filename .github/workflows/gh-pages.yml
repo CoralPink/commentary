@@ -54,6 +54,7 @@ jobs:
         run: |
           npm run compress --prefix js -input='book.js' -output='../theme/book.js'
           npm run compress --prefix js -input='searcher.js' -output='../src/searcher.js'
+          npm run compress --prefix js -input='serviceworker.js' -output='../src/serviceworker.js'
 
       - name: Js Copy Files
         run: |

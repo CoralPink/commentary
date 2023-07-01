@@ -10,6 +10,20 @@ setTimeout((()=>{document.querySelector('meta[name="theme-color"]').content=wind
 document.getElementById(e).classList.add("theme-selected")}),1)})();
 </script>
 
+<script>
+(async () => {
+  if ("serviceWorker" in navigator) {
+    try {
+      await navigator.serviceWorker.register("{{path_to_root}}serviceworker.js", {
+        scope: "{{site_url}}",
+      });
+    } catch (error) {
+      console.error(`Registration failed with ${error}`);
+    }
+  }
+})();
+</script>
+
 {{#if playground_copyable}}
 <script>window.playground_copyable = true;</script>
 {{/if}}
