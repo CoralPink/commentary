@@ -11,6 +11,7 @@ src/clipboard.min.js
 src/fzf.umd.js
 src/mark.es6.min.js
 src/searcher.js
+src/serviceworker.js
 src/start.js
 
 theme/book.js
