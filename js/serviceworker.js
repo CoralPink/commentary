@@ -71,6 +71,10 @@ addEventListener('install', (event) => {
 });
 
 addEventListener('fetch', (event) => {
+  if (event.request.url.startsWith('https://www.googletagmanager.com/')) {
+    return;
+  }
+
   event.respondWith(
     cacheFirst({
       request: event.request,
