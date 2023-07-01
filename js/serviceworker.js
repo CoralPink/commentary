@@ -1,15 +1,5 @@
 const CACHE_NAME = 'v0.1.0';
 
-const addResourcesToCache = async (resources) => {
-  const cache = await caches.open(CACHE_NAME);
-  await cache.addAll(resources);
-};
-
-const putInCache = async (request, response) => {
-  const cache = await caches.open(CACHE_NAME);
-  await cache.put(request, response);
-};
-
 const cacheFirst = async ({ request, preloadResponsePromise, fallbackUrl }) => {
   // First try to get the resource from the cache
   const responseFromCache = await caches.match(request);
@@ -20,6 +10,11 @@ const cacheFirst = async ({ request, preloadResponsePromise, fallbackUrl }) => {
 
   // Next try to use the preloaded response, if it's there
   const preloadResponse = await preloadResponsePromise;
+
+  const putInCache = async (request, response) => {
+    const cache = await caches.open(CACHE_NAME);
+    await cache.put(request, response);
+  };
 
   if (preloadResponse) {
     console.info('using preload response', preloadResponse);
@@ -50,18 +45,23 @@ const cacheFirst = async ({ request, preloadResponsePromise, fallbackUrl }) => {
   }
 };
 
-const enableNavigationPreload = async () => {
-  if (self.registration.navigationPreload) {
-    // Enable navigation preloads!
-    await self.registration.navigationPreload.enable();
-  }
-};
-
-self.addEventListener('activate', (event) => {
-  event.waitUntil(enableNavigationPreload());
+addEventListener("activate", (event) => {
+  event.waitUntil(
+    (async () => {
+      if (self.registration.navigationPreload) {
+        // Enable navigation preloads!
+        await self.registration.navigationPreload.enable();
+      }
+    })()
+  );
 });
 
-self.addEventListener('install', (event) => {
+addEventListener('install', (event) => {
+  const addResourcesToCache = async (resources) => {
+    const cache = await caches.open(CACHE_NAME);
+    await cache.addAll(resources);
+  };
+
   event.waitUntil(
     addResourcesToCache([
       '/commentary/searchindex.js',
@@ -70,7 +70,7 @@ self.addEventListener('install', (event) => {
   );
 });
 
-self.addEventListener('fetch', (event) => {
+addEventListener('fetch', (event) => {
   event.respondWith(
     cacheFirst({
       request: event.request,
