@@ -1,4 +1,4 @@
-const CACHE_NAME = 'v0.1.0';
+const CACHE_NAME = 'v0.1.1';
 
 const cacheFirst = async ({ request, preloadResponsePromise, fallbackUrl }) => {
   // First try to get the resource from the cache

@@ -1,29 +1,21 @@
 @use 'variables' as var;
 
-@media only screen and (max-width: var.$enable-pagetoc) {
-  .righttoc {
-    display: none;
-    flex-basis: 0em;
-  }
-}
-
 @media only screen and (min-width: var.$enable-pagetoc) {
-  .righttoc {
-    flex-basis: 30em;
-  }
   .pagetoc {
     position: fixed;
+    display: flex;
+    flex-direction: column;
+
+    border-left: 1px solid var.$color-pink;
     min-width: var.$pagetoc-width;
+
     font-size: 1.1em;
     font-style: italic;
 
     a {
-      border-left: 1px solid var.$color-pink;
-      color: var(--fg) !important;
-      display: block;
-      padding-bottom: 5px;
-      padding-top: 5px;
-      text-align: left;
+      color: var(--fg);
+      padding-bottom: 0.5rem;
+      padding-top: 0.5rem;
 
       &:hover {
         background: var(--sidebar-bg);
@@ -31,7 +23,8 @@
       }
       &.active {
         background: var(--sidebar-bg);
-        color: var(--sidebar-active) !important;
+        color: var(--sidebar-active);
+        font-weight: 500;
       }
 
       &.H1 {
