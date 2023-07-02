@@ -12,12 +12,13 @@ nvim_create_autocmd({event}, {*opts}) nvim_create_autocmd()
   Vimscript), or a command (like regular autocommands).
 
   このAPIでは、オートコマンドのトリガー時に実行されるアクションとして、
-  コールバック関数（LuaまたはVimscript）、またはコマンド（通常のオートコマンドと同様）の
+  コールバック関数（LuaまたはVimscript）、
+  またはコマンド（通常のオートコマンドと同様）の
   2種類（相互に排他的）を指定することができる。
 ```
 
 ```lua
--- Example using callback:
+  -- Example using callback:
 
   local myluafun = function() print("This buffer enters") end
 
@@ -73,11 +74,13 @@ OKね...❗
 ```txt
 5. Events           autocmd-events E215 E216
 
-You can specify a comma-separated list of event names.  No white space can be
-used in this list.  The command applies to all the events in the list.
+You can specify a comma-separated list of event names.
+No white space can be used in this list.
+The command applies to all the events in the list.
 
 イベント名のリストをカンマ区切りで指定することができる。
-このリストには空白を使用できない。コマンドは、リスト内のすべてのイベントに適用される。
+このリストには空白を使用できない。
+コマンドは、リスト内のすべてのイベントに適用される。
 ```
 ~~~
 
@@ -85,36 +88,38 @@ used in this list.  The command applies to all the events in the list.
 
 ~~~admonish info title=":h BufEnter"
 ```txt
-BufEnter      After entering a buffer.  Useful for setting
-              options for a file type.  Also executed when
-              starting to edit a buffer.
+After entering a buffer.  Useful for setting
+options for a file type.  Also executed when
+starting to edit a buffer.
 
-              バッファに入った後。
-              ファイルタイプに応じたオプションを設定するのに便利。
-              また、バッファの編集を開始するときにも実行される。
+バッファに入った後。
+ファイルタイプに応じたオプションを設定するのに便利。
+また、バッファの編集を開始するときにも実行される。
 ```
 ~~~
 
 ~~~admonish info title=":h BufWinEnter"
 ```txt
-BufWinEnter   After a buffer is displayed in a window.  This
-              may be when the buffer is loaded (after
-              processing modelines) or when a hidden buffer
-              is displayed (and is no longer hidden).
+After a buffer is displayed in a window.  This
+may be when the buffer is loaded (after
+processing modelines) or when a hidden buffer
+is displayed (and is no longer hidden).
 
-              バッファがウィンドウに表示された後。
-              これは、バッファが読み込まれたとき (モデリング処理後) か、
-              非表示のバッファが表示されたとき(そして非表示でなくなったとき) かもしれない。
+バッファがウィンドウに表示された後。
+これは、バッファが読み込まれたとき (モデリング処理後) か、
+非表示のバッファが表示されたとき(そして非表示でなくなったとき) かもしれない。
 
-              Not triggered for |:split| without arguments,
-              since the buffer does not change, or :split
-              with a file already open in a window.
-              Triggered for ":split" with the name of the
-              current buffer, since it reloads that buffer.
+Not triggered for |:split| without arguments,
+since the buffer does not change, or :split
+with a file already open in a window.
+Triggered for ":split" with the name of the
+current buffer, since it reloads that buffer.
 
-              引数なしの |:split| や、
-              すでにウィンドウで開いているファイルとの :split では、バッファは変更されないためトリガーされない。
-              現在のバッファの名前を指定した ":split" では、バッファを再読み込みするためトリガーが発生する。
+引数なしの |:split| や、
+すでにウィンドウで開いているファイルとの :split では、
+バッファは変更されないためトリガーされない。
+現在のバッファの名前を指定した ":split" では、
+バッファを再読み込みするためトリガーが発生する。
 ```
 ~~~
 
@@ -127,7 +132,9 @@ BufWinEnter   After a buffer is displayed in a window.  This
 The pattern is interpreted like mostly used in file names:
 このパターンは、ファイル名によく使われるものと同じように解釈される。
 
-  *         matches any sequence of characters; Unusual: includes path separators
+  *         matches any sequence of characters;
+            Unusual: includes path separators
+
   ?         matches any single character
   \?        matches a '?'
   .         matches a '.'
@@ -151,9 +158,11 @@ The pattern is interpreted like mostly used in file names:
 
 ~~~admonish info title=":h nvim_create_autocmd"
 ```txt
-Lua function which is called when this autocommand is triggered. Cannot be used with {command}.
+Lua function which is called when this autocommand is triggered.
+Cannot be used with {command}.
 
-このオートコマンドが起動した際に呼び出されるLua関数です。{コマンド}とは併用できない。
+このオートコマンドが起動した際に呼び出されるLua関数。
+{コマンド}とは併用できない。
 ```
 ~~~
 
