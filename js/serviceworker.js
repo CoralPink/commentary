@@ -1,4 +1,33 @@
-const CACHE_NAME = 'v0.1.1';
+const CACHE_NAME = 'v0.2.0';
+const CACHE_LIST = [
+  '/commentary/book.js',
+  '/commentary/clipboard.min.js',
+  '/commentary/elasticlunr.min.js',
+  '/commentary/favicon.png',
+  '/commentary/favicon.svg',
+  '/commentary/fzf.umd.js',
+  '/commentary/highlight.min.js',
+  '/commentary/manifest.json',
+  '/commentary/mark.es6.min.js',
+  '/commentary/maskable_icon_x192.png',
+  '/commentary/maskable_icon_x512.png',
+  '/commentary/maskable_icon_x96.png',
+  '/commentary/searcher.js',
+  '/commentary/searchindex.js',
+  '/commentary/searchindex.json',
+  '/commentary/serviceworker.js',
+
+  '/commentary/css/style.css',
+
+  '/commentary/fonts/OpenSans-Bold.woff2',
+  '/commentary/fonts/OpenSans-BoldItalic.woff2',
+  '/commentary/fonts/OpenSans-Italic.woff2',
+  '/commentary/fonts/OpenSans-Regular.woff2',
+  '/commentary/fonts/SourceCodePro-Medium.woff2',
+  '/commentary/fonts/fonts.css',
+  '/commentary/fonts/icomoon.woff2',
+  '/commentary/fonts/SauceCodePro/SauceCodeProNerdFont-Medium.woff2',
+];
 
 const cacheFirst = async ({ request, preloadResponsePromise, fallbackUrl }) => {
   // First try to get the resource from the cache
@@ -17,7 +46,6 @@ const cacheFirst = async ({ request, preloadResponsePromise, fallbackUrl }) => {
   };
 
   if (preloadResponse) {
-    console.info('using preload response', preloadResponse);
     putInCache(request, preloadResponse.clone());
     return preloadResponse;
   }
@@ -45,32 +73,38 @@ const cacheFirst = async ({ request, preloadResponsePromise, fallbackUrl }) => {
   }
 };
 
-addEventListener("activate", (event) => {
+const deleteCache = async key => {
+  await caches.delete(key);
+};
+
+const deleteOldCaches = async () => {
+  const cacheKeepList = [CACHE_NAME];
+  const keyList = await caches.keys();
+  const cachesToDelete = keyList.filter(key => !cacheKeepList.includes(key));
+  await Promise.all(cachesToDelete.map(deleteCache));
+};
+
+self.addEventListener('activate', event => {
   event.waitUntil(
     (async () => {
       if (self.registration.navigationPreload) {
-        // Enable navigation preloads!
         await self.registration.navigationPreload.enable();
       }
     })()
   );
+  event.waitUntil(deleteOldCaches());
 });
 
-addEventListener('install', (event) => {
-  const addResourcesToCache = async (resources) => {
+self.addEventListener('install', event => {
+  const addResourcesToCache = async resources => {
     const cache = await caches.open(CACHE_NAME);
     await cache.addAll(resources);
   };
 
-  event.waitUntil(
-    addResourcesToCache([
-      '/commentary/searchindex.js',
-      '/commentary/searchindex.json',
-    ])
-  );
+  event.waitUntil(addResourcesToCache(CACHE_LIST));
 });
 
-addEventListener('fetch', (event) => {
+self.addEventListener('fetch', event => {
   if (event.request.url.startsWith('https://www.googletagmanager.com/')) {
     return;
   }
@@ -79,7 +113,7 @@ addEventListener('fetch', (event) => {
     cacheFirst({
       request: event.request,
       preloadResponsePromise: event.preloadResponse,
-      fallbackUrl: 'goal.webp',
+      fallbackUrl: '/commentary/maskable_icon_x96.png',
     })
   );
 });
