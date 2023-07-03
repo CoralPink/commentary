@@ -11,17 +11,9 @@ document.getElementById(e).classList.add("theme-selected")}),1)})();
 </script>
 
 <script>
-(async () => {
-  if ("serviceWorker" in navigator) {
-    try {
-      await navigator.serviceWorker.register("{{path_to_root}}serviceworker.js", {
-        scope: "/commentary/",
-      });
-    } catch (error) {
-      console.error(`Registration failed with ${error}`);
-    }
-  }
-})();
+(async()=>{if("serviceWorker"in navigator)
+try{await navigator.serviceWorker.register("{{path_to_root}}serviceworker.js",{scope:"/commentary/"})}
+catch(r){console.error(`Registration failed with ${r}`)}})();
 </script>
 
 {{#if playground_copyable}}
