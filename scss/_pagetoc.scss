@@ -1,5 +1,9 @@
 @use 'variables' as var;
 
+.pagetoc {
+  display: none;
+}
+
 @media only screen and (min-width: var.$enable-pagetoc) {
   .pagetoc {
     position: fixed;
