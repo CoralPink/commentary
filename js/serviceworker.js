@@ -28,6 +28,8 @@ const CACHE_LIST = [
   '/commentary/fonts/SauceCodePro/SauceCodeProNerdFont-Medium.woff2',
 ];
 
+const CACHE_USE = ['https://coralpink.github.io/commentary/', 'http://127.0.0.1:8080/'];
+
 const cacheFirst = async ({ request, preloadResponsePromise, fallbackUrl }) => {
   // First try to get the resource from the cache
   const responseFromCache = await caches.match(request);
@@ -104,15 +106,15 @@ self.addEventListener('install', event => {
 });
 
 self.addEventListener('fetch', event => {
-  if (event.request.url.startsWith('https://www.googletagmanager.com/')) {
-    return;
-  }
-
-  event.respondWith(
-    cacheFirst({
-      request: event.request,
-      preloadResponsePromise: event.preloadResponse,
-      fallbackUrl: '/commentary/maskable_icon_x96.png',
-    })
-  );
+  CACHE_USE.forEach(x => {
+    if (event.request.url.startsWith(x)) {
+      event.respondWith(
+        cacheFirst({
+          request: event.request,
+          preloadResponsePromise: event.preloadResponse,
+          fallbackUrl: '/commentary/maskable_icon_x96.png',
+        })
+      );
+    }
+  });
 });
