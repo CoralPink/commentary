@@ -1,4 +1,4 @@
-const CACHE_NAME = 'v0.2.2';
+const CACHE_VERSION = 'v0.2.2';
 const CACHE_LIST = [
   '/commentary/book.js',
   '/commentary/clipboard.min.js',
@@ -28,7 +28,7 @@ const CACHE_LIST = [
   '/commentary/fonts/SauceCodePro/SauceCodeProNerdFont-Medium.woff2',
 ];
 
-const CACHE_USE = ['https://coralpink.github.io/commentary/', 'http://127.0.0.1:8080/'];
+const CACHE_USE = ['https://coralpink.github.io/', 'http://127.0.0.1:8080/'];
 
 const cacheFirst = async ({ request, preloadResponsePromise, fallbackUrl }) => {
   // First try to get the resource from the cache
@@ -42,7 +42,7 @@ const cacheFirst = async ({ request, preloadResponsePromise, fallbackUrl }) => {
   const preloadResponse = await preloadResponsePromise;
 
   const putInCache = async (request, response) => {
-    const cache = await caches.open(CACHE_NAME);
+    const cache = await caches.open(CACHE_VERSION);
     await cache.put(request, response);
   };
 
@@ -79,7 +79,7 @@ const deleteCache = async key => {
 };
 
 const deleteOldCaches = async () => {
-  const cacheKeepList = [CACHE_NAME];
+  const cacheKeepList = [CACHE_VERSION];
   const keyList = await caches.keys();
   const cachesToDelete = keyList.filter(key => !cacheKeepList.includes(key));
   await Promise.all(cachesToDelete.map(deleteCache));
@@ -98,7 +98,7 @@ self.addEventListener('activate', event => {
 
 self.addEventListener('install', event => {
   const addResourcesToCache = async resources => {
-    const cache = await caches.open(CACHE_NAME);
+    const cache = await caches.open(CACHE_VERSION);
     await cache.addAll(resources);
   };
 
