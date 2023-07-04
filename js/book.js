@@ -291,7 +291,7 @@ const initThemeSelector = () => {
     { once: false, passive: true }
   );
 };
-
+/*
 const touchControl = () => {
   let firstContact = null;
 
@@ -335,7 +335,7 @@ const touchControl = () => {
     { once: false, passive: true }
   );
 };
-
+*/
 // chapterNavigation
 document.addEventListener(
   'keyup',
@@ -373,7 +373,7 @@ document.addEventListener(
     initCodeBlock();
     createTableOfContents();
     initThemeSelector();
-    touchControl();
+    //touchControl();
   },
   { once: true, passive: true }
 );
