@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'v0.2.2';
+const CACHE_VERSION = 'v0.2.3';
 const CACHE_LIST = [
   '/commentary/book.js',
   '/commentary/clipboard.min.js',
@@ -86,6 +86,8 @@ const deleteOldCaches = async () => {
 };
 
 self.addEventListener('activate', event => {
+  event.waitUntil(clients.claim());
+
   event.waitUntil(
     (async () => {
       if (self.registration.navigationPreload) {
