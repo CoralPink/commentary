@@ -1,4 +1,3 @@
-@charset "UTF-8";
 :root {
   --md-admonition-icon--note:
     url("data:image/svg+xml;charset=utf-8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z'/></svg>");
@@ -30,13 +29,13 @@
 
 :is(.admonition) {
   display: flow-root;
-  margin: 1.5625em 0;
-  padding: 0 1.2rem;
+  margin: 1em 0;
+  padding: 0 0.75rem;
   color: var(--fg);
   page-break-inside: avoid;
   background-color: var(--bg);
   border: 0 solid black;
-  border-inline-start-width: 0.4rem;
+  border-inline-start-width: 0.25rem;
   border-radius: 0.2rem;
   box-shadow: 0 0.2rem 1rem rgba(0, 0, 0, 0.05), 0 0 0.1rem rgba(0, 0, 0, 0.1);
 }
@@ -77,11 +76,12 @@ a.admonition-anchor-link::before {
 
 :is(.admonition-title, summary) {
   position: relative;
-  min-height: 4rem;
+  min-height: 2.5rem;
   margin-block: 0;
-  margin-inline: -1.6rem -1.2rem;
-  padding-block: 0.8rem;
-  padding-inline: 4.4rem 1.2rem;
+  margin-inline: -1rem -0.75rem;
+  padding-block: 0.5rem;
+  padding-inline: 2.4rem 0.75rem;
+  font-style: italic;
   font-weight: 700;
   background-color: rgba(68, 138, 255, 0.1);
   display: flex;
@@ -94,10 +94,10 @@ html :is(.admonition-title, summary):last-child {
 }
 :is(.admonition-title, summary)::before {
   position: absolute;
-  top: 0.625em;
-  inset-inline-start: 1.6rem;
-  width: 2rem;
-  height: 2rem;
+  top: 0.7em;
+  inset-inline-start: 1rem;
+  width: 1rem;
+  height: 1rem;
   background-color: #448aff;
   mask-image: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"></svg>');
   -webkit-mask-image: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"></svg>');
@@ -113,10 +113,10 @@ html :is(.admonition-title, summary):last-child {
 
 details.admonition > summary.admonition-title::after {
   position: absolute;
-  top: 0.625em;
-  inset-inline-end: 1.6rem;
-  height: 2rem;
-  width: 2rem;
+  top: 0.7em;
+  inset-inline-end: 1rem;
+  height: 1rem;
+  width: 1rem;
   background-color: currentcolor;
   mask-image: var(--md-details-icon);
   -webkit-mask-image: var(--md-details-icon);
