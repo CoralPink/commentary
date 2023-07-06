@@ -87,7 +87,9 @@ pre {
     cursor: pointer;
     visibility: hidden;
     opacity: 0;
-    transition: visibility 0.1s linear, opacity 0.1s linear;
+    transition:
+      visibility 0.1s linear,
+      opacity 0.1s linear;
 
     :hover {
       color: var(--sidebar-active);
