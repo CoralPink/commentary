@@ -11,13 +11,13 @@ npm run debug --prefix scss fonts/fonts.scss ../theme/fonts/fonts.css
 npm run debug --prefix scss theme/chrome.scss ../theme/css/chrome.css
 npm run debug --prefix scss theme/general.scss ../theme/css/general.css
 
-mdbook build
+mdbook build --dest-dir commentary
 
-#rm book/ayu-highlight.css
-#rm book/highlight.css
-#rm book/highlight.js
-#rm book/tomorrow-night.css
-#rm book/css/variables.css
-#rm book/mark.min.js
-#rm -rf book/FontAwesome
+#rm commentary/ayu-highlight.css
+#rm commentary/highlight.css
+#rm commentary/highlight.js
+#rm commentary/tomorrow-night.css
+#rm commentary/css/variables.css
+#rm commentary/mark.min.js
+#rm -rf commentary/FontAwesome
 #echo 'Complete!!'
