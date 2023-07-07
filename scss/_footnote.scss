@@ -2,19 +2,19 @@
 
 .footnote-definition {
   font-size: 0.7em;
-  margin-top: 0.4em;
+  margin-top: 0.5em;
 
   p {
     display: inline;
 
     & > a {
-      font-size: 1.1em;
+      padding: 0.1rem;
     }
   }
 
   :not(&) + &,
   & + :not(&) {
-    margin-top: 3em;
+    margin-top: 2em;
   }
 }
 

@@ -10,16 +10,16 @@
     display: flex;
     flex-direction: column;
 
-    border-left: 1px solid var.$color-pink;
+    border-left: 0.1em solid var.$color-pink;
     min-width: var.$pagetoc-width;
 
-    font-size: 1.1em;
+    font-size: 0.6875em;
     font-style: italic;
 
     a {
       color: var(--fg);
-      padding-bottom: 0.5rem;
-      padding-top: 0.5rem;
+      padding-bottom: 0.5em;
+      padding-top: 0.5em;
 
       &:hover {
         background: var(--sidebar-bg);
@@ -32,22 +32,22 @@
       }
 
       &.H1 {
-        padding-left: 10px;
+        padding-left: 1em;
       }
       &.H2 {
-        padding-left: 20px;
+        padding-left: 2em;
       }
       &.H3 {
-        padding-left: 30px;
+        padding-left: 3em;
       }
       &.H4 {
-        padding-left: 35px;
+        padding-left: 3.6em;
       }
       &.H5 {
-        padding-left: 40px;
+        padding-left: 4.2em;
       }
       &.H6 {
-        padding-left: 45px;
+        padding-left: 4.8em;
       }
     }
   }
