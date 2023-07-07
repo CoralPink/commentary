@@ -7,12 +7,12 @@
 
   font-style: italic;
 
-  margin-top: 1.2rem - var.$menu-bar-height;
+  margin-top: 0.75rem - var.$menu-bar-height;
   padding-top: var.$menu-bar-height;
 
   &:target {
     &::before {
-      $shift: 24px;
+      $shift: 1.25rem;
 
       display: inline-block;
       content: '»';
@@ -23,7 +23,7 @@
 }
 
 @mixin headline-high($bg-height) {
-  background-image: linear-gradient(to right, var.$color_purple 0%, 7%, var.$color_pink 80%, var(--bg));
+  background-image: linear-gradient(to right, var.$color_purple 0%, 10%, var.$color_pink 80%, var(--bg));
   @include headline-common($bg-height);
 }
 
@@ -32,29 +32,29 @@
   @include headline-common($bg-height);
 }
 
-@mixin headline-low($bg-height: 2px) {
+@mixin headline-low($bg-height: 0.1rem) {
   background-image: linear-gradient(to right, var.$color_purple 80%, var(--bg));
   @include headline-common($bg-height);
 }
 
 h1 {
   font-size: 2em;
-  @include headline-high(4px);
+  @include headline-high(0.3rem);
 }
 
 h2 {
   font-size: 1.7em;
-  @include headline-high(3px);
+  @include headline-high(0.25rem);
 }
 
 h3 {
   font-size: 1.4em;
-  @include headline-middle(3px);
+  @include headline-middle(0.2rem);
 }
 
 h4 {
   font-size: 1.25em;
-  @include headline-middle(2px);
+  @include headline-middle(0.2rem);
 }
 
 h5 {
