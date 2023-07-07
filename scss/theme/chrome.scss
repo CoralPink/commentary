@@ -129,14 +129,14 @@ a > .hljs {
   }
 
   .left-buttons {
-    margin-left: 1.2rem;
+    margin-left: 1rem;
 
     display: flex;
-    gap: 1.2em;
+    gap: 0.85em;
   }
 
   .menu-title {
-    font-size: 0.8em;
+    font-size: 0.6em;
     font-style: italic;
     text-align: right;
     flex: 1;
@@ -145,7 +145,7 @@ a > .hljs {
   }
 
   .right-buttons {
-    margin-right: 1.2rem;
+    margin-right: 1.3rem;
 
     a {
       text-decoration: none;
@@ -211,7 +211,10 @@ a > .hljs {
   color: var(--fg);
   background: var(--bg);
 
-  margin-left: -9em;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%);
+
   padding: 0.8em;
 
   border: 0.1em solid var(--searchbar-border-color);

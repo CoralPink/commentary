@@ -8,7 +8,11 @@
     display: inline;
 
     & > a {
-      padding: 0.1rem;
+      padding: 0.3em;
+
+      & > sup {
+        font-size: 1em;
+      }
     }
   }
 
