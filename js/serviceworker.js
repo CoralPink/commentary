@@ -93,12 +93,15 @@ self.addEventListener('activate', event => {
       if (self.registration.navigationPreload) {
         await self.registration.navigationPreload.enable();
       }
-    })()
+    })(),
   );
   event.waitUntil(deleteOldCaches());
 });
 
 self.addEventListener('install', event => {
+  // The promise that skipWaiting() returns can be safely ignored.
+  self.skipWaiting();
+
   const addResourcesToCache = async resources => {
     const cache = await caches.open(CACHE_VERSION);
     await cache.addAll(resources);
@@ -107,15 +110,15 @@ self.addEventListener('install', event => {
   event.waitUntil(addResourcesToCache(CACHE_LIST));
 });
 
-self.addEventListener('fetch', event => {
-  CACHE_USE.forEach(x => {
+self.addEventListener('fetch', async event => {
+  CACHE_USE.map(x => {
     if (event.request.url.startsWith(x)) {
       event.respondWith(
         cacheFirst({
           request: event.request,
           preloadResponsePromise: event.preloadResponse,
           fallbackUrl: '/commentary/maskable_icon_x96.png',
-        })
+        }),
       );
     }
   });
