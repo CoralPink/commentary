@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'v0.2.5';
+const CACHE_VERSION = 'v0.3.0';
 const CACHE_LIST = [
   '/commentary/book.js',
   '/commentary/clipboard.min.js',

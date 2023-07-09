@@ -102,5 +102,6 @@
   - [copilot.lua](neovim/lsp/copilot.md)
     - [(Extra) GitHub Copilot](neovim/lsp/github-copilot.md)
     - [copilot-cmp](neovim/lsp/copilot-cmp.md)
+  - [nvim-cmp-source(s)](neovim/lsp/nvim-cmp-sources.md)
 
 # ... To Be Continued.
