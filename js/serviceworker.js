@@ -1,22 +1,24 @@
-const CACHE_VERSION = 'v0.3.0';
+const CACHE_VERSION = 'v0.4.0';
 const CACHE_LIST = [
   '/commentary/book.js',
   '/commentary/clipboard.min.js',
   '/commentary/elasticlunr.min.js',
-  '/commentary/favicon.png',
-  '/commentary/favicon.svg',
   '/commentary/fzf.umd.js',
   '/commentary/highlight.min.js',
   '/commentary/manifest.json',
   '/commentary/mark.es6.min.js',
-  '/commentary/maskable_icon_x192.png',
-  '/commentary/maskable_icon_x512.png',
-  '/commentary/maskable_icon_x96.png',
   '/commentary/searcher.js',
   '/commentary/searchindex.js',
   '/commentary/searchindex.json',
 
   '/commentary/css/style.css',
+
+  '/commentary/apple-touch-icon.png',
+  '/commentary/chrome-96x96.png',
+  '/commentary/chrome-192x192.png',
+  '/commentary/chrome-512x512.png',
+  '/commentary/favicon.ico',
+  '/commentary/favicon.png',
 
   '/commentary/fonts/OpenSans-Bold.woff2',
   '/commentary/fonts/OpenSans-BoldItalic.woff2',
@@ -111,7 +113,7 @@ self.addEventListener('install', event => {
 });
 
 self.addEventListener('fetch', async event => {
-  CACHE_USE.map(x => {
+  CACHE_USE.forEach(x => {
     if (event.request.url.startsWith(x)) {
       event.respondWith(
         cacheFirst({

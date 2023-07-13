@@ -3,13 +3,12 @@
   "name": "Commentary of Dotfiles",
   "icons": [
     {
-      "src": "maskable_icon_x512.png",
+      "src": "chrome-512x512.png",
       "type": "image/png",
-      "sizes": "512x512",
-      "purpose": "any"
+      "sizes": "512x512"
     },
     {
-      "src": "maskable_icon_x192.png",
+      "src": "chrome-192x192.png",
       "type": "image/png",
       "sizes": "192x192",
       "purpose": "maskable"
@@ -27,13 +26,13 @@
       "name": "WezTerm",
       "url": "wezterm/installation.html",
       "description": "WezTerm dotfiles.",
-      "icons": [{ "src": "maskable_icon_x96.png", "sizes": "96x96" }]
+      "icons": [{ "src": "chrome-96x96.png", "sizes": "96x96" }]
     },
     {
       "name": "Neovim",
       "url": "neovim/installation.html",
       "description": "Neovim dotfiles.",
-      "icons": [{ "src": "maskable_icon_x96.png", "sizes": "96x96" }]
+      "icons": [{ "src": "chrome-96x96.png", "sizes": "96x96" }]
     }
   ],
   "description": "This site introduces WezTerm and Neovim dotfiles.",

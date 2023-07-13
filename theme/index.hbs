@@ -9,8 +9,15 @@
     <meta name="description" content="{{ description }}">
     <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=2.0">
     <meta name="theme-color">
-
     <meta name="format-detection" content="telephone=no,email=no,address=no">
+
+    <link rel="icon" href="{{ path_to_root }}favicon.ico">
+    <link rel="icon" type="image/png" href="{{ path_to_root }}favicon.png">
+
+    <link rel="apple-touch-icon" href="{{ path_to_root }}apple-touch-icon.png">
+    <!--<meta name="apple-mobile-web-app-capable" content="yes">-->
+
+    <link rel="manifest" href="{{ path_to_root }}manifest.json">
 
     <meta property="og:title" content="{{ title }}">
     <meta property="og:description" content="{{ description }}">
@@ -18,19 +25,9 @@
     <meta property="og:url" content="https://coralpink.github.io/commentary/">
 
     <meta name="twitter:card" content="summary_image">
-    <link rel="apple-touch-icon" href="{{ path_to_root }}favicon.png" sizes="100x100">
-
-    {{#if favicon_svg}}
-    <link rel="icon" href="{{ path_to_root }}favicon.svg">
-    {{/if}}
-    {{#if favicon_png}}
-    <link rel="shortcut icon" href="{{ path_to_root }}favicon.png">
-    {{/if}}
 
     <link rel="stylesheet" href="{{ path_to_root }}css/general.css">
     <link rel="stylesheet" href="{{ path_to_root }}css/chrome.css">
-
-    <link rel="manifest" href="{{ path_to_root }}manifest.json">
   </head>
   <body>
     {{> header}}
