@@ -2,14 +2,17 @@ book
 commentary
 target
 node_modules
-dist
+
+js/highlight.js
 
 *.css
 *.css.map
 *.tmp
 
+
 src/clipboard.min.js
 src/fzf.umd.js
+src/highlight.min.js
 src/mark.es6.min.js
 src/searcher.js
 src/serviceworker.js
