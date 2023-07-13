@@ -156,7 +156,7 @@ use {
 +})
 
 cmp.setup.cmdline({ '/', '?' }, {
-+ mapping = map.preset.cmdline(),
++ mapping = cmp.mapping.preset.cmdline(),
   sources = cmp.config.sources {
     {
       name = 'buffer',
@@ -268,7 +268,6 @@ cmp.setup {
   formatting = {
     format = require('lspkind').cmp_format {
       mode = 'symbol',
-      maxwidth = 50,
       preset = 'codicons',
       symbol_map = { Copilot = '' },
     },
