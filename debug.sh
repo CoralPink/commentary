@@ -13,6 +13,13 @@ npm run debug --prefix scss fonts/fonts.scss ../theme/fonts/fonts.css
 npm run debug --prefix scss theme/chrome.scss ../theme/css/chrome.css
 npm run debug --prefix scss theme/general.scss ../theme/css/general.css
 
+pushd rs/wasm
+wasm-pack build --target web
+pushd
+
+cp rs/wasm/pkg/wasm.js src
+cp rs/wasm/pkg/wasm_bg.wasm src
+
 mdbook build --dest-dir commentary
 
 #rm commentary/ayu-highlight.css
@@ -21,4 +28,5 @@ mdbook build --dest-dir commentary
 #rm commentary/css/variables.css
 #rm commentary/mark.min.js
 #rm -rf commentary/FontAwesome
-#echo 'Complete!!'
+
+echo '\n🐥 complete!'
