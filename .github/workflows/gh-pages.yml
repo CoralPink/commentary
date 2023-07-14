@@ -75,9 +75,9 @@ jobs:
         run: |
           pushd rs/wasm
           wasm-pack build --target web
-          cp pkg/wasm.js ../../src
-          cp pkg/wasm_bg.wasm ../../src
           pushd
+          cp rs/wasm/pkg/wasm.js src
+          cp rs/wasm/pkg/wasm_bg.wasm src
 
       - name: Build mdBook
         run: |
