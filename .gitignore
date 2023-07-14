@@ -1,14 +1,14 @@
 book
 commentary
-target
 node_modules
+pkg
+target
 
 js/highlight.js
 
 *.css
 *.css.map
 *.tmp
-
 
 src/clipboard.min.js
 src/fzf.umd.js
@@ -17,6 +17,8 @@ src/mark.es6.min.js
 src/searcher.js
 src/serviceworker.js
 src/start.js
+src/wasm.js
+src/wasm_bg.wasm
 
 theme/book.js
 
