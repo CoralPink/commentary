@@ -44,6 +44,7 @@ jobs:
         run: |
           cargo install mdbook-admonish
           cargo install mdbook-tailor
+          cargo install wasm-pack
 
       - name: Npm Install
         run: |
@@ -69,6 +70,14 @@ jobs:
           npm run compile --prefix scss fonts/fonts.scss ../theme/fonts/fonts.css
           npm run compile --prefix scss theme/chrome.scss ../theme/css/chrome.css
           npm run compile --prefix scss theme/general.scss ../theme/css/general.css
+
+      - name: Wasm Compile
+        run: |
+          pushd rs/wasm
+          wasm-pack build --target web
+          cp pkg/wasm.js ../../src
+          cp pkg/wasm_bg.wasm ../../src
+          pushd
 
       - name: Build mdBook
         run: |
