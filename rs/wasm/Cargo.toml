@@ -3,7 +3,7 @@ name = "wasm"
 version = "0.0.1"
 authors = ["CoralPink <teqt6ytqt@mozmail.com>"]
 edition = "2021"
-rust-version = "1.71"
+rust-version = "1.70"
 homepage = "https://github.com/CoralPink"
 repository = "https://github.com/CoralPink/commentary"
 
