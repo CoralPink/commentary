@@ -15,9 +15,10 @@ npm run debug --prefix scss theme/general.scss ../theme/css/general.css
 
 pushd rs/wasm
 wasm-pack build --target web
-cp pkg/wasm.js ../../src
-cp pkg/wasm_bg.wasm ../../src
 pushd
+
+cp rs/wasm/pkg/wasm.js src
+cp rs/wasm/pkg/wasm_bg.wasm src
 
 mdbook build --dest-dir commentary
 
