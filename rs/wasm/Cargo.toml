@@ -4,8 +4,10 @@ version = "0.0.1"
 authors = ["CoralPink <teqt6ytqt@mozmail.com>"]
 edition = "2021"
 rust-version = "1.70"
+description = "This is the WebAssembly code used on this site."
 homepage = "https://github.com/CoralPink"
 repository = "https://github.com/CoralPink/commentary"
+license = "Apache-2.0"
 
 [lib]
 crate-type = ["cdylib"]
