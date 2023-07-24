@@ -63,7 +63,7 @@ const initSideBar = () => {
     () => {
       toggleButton.getAttribute('aria-expanded') == 'true' ? hideSidebar() : showSidebar();
     },
-    { once: false, passive: true }
+    { once: false, passive: true },
   );
 
   matchMedia(`(min-width: 1200px)`).addEventListener('change', event => {
@@ -134,7 +134,7 @@ const initCodeBlock = () => {
       e => {
         hideTooltip(e.currentTarget);
       },
-      { once: false, passive: true }
+      { once: false, passive: true },
     );
   });
 
@@ -191,7 +191,7 @@ const createTableOfContents = () => {
     },
     {
       root: document.querySelector('content'),
-    }
+    },
   );
 
   document.querySelectorAll('.content a.header').forEach(el => {
@@ -227,7 +227,7 @@ const initThemeSelector = () => {
     () => {
       themePopup.style.display === 'block' ? hideThemes() : showThemes();
     },
-    { once: false, passive: true }
+    { once: false, passive: true },
   );
 
   const setTheme = theme => {
@@ -250,7 +250,7 @@ const initThemeSelector = () => {
 
     setTimeout(() => {
       document.querySelector('meta[name="theme-color"]').content = window.getComputedStyle(
-        document.body
+        document.body,
       ).backgroundColor;
     }, 1);
   };
@@ -262,7 +262,7 @@ const initThemeSelector = () => {
         setTheme(e.target.id);
       }
     },
-    { once: false, passive: true }
+    { once: false, passive: true },
   );
 
   themePopup.addEventListener(
@@ -273,7 +273,7 @@ const initThemeSelector = () => {
         hideThemes();
       }
     },
-    { once: false, passive: true }
+    { once: false, passive: true },
   );
 
   // Should not be needed, but it works around an issue on macOS & iOS: https://github.com/rust-lang/mdBook/issues/628
@@ -288,7 +288,7 @@ const initThemeSelector = () => {
         hideThemes();
       }
     },
-    { once: false, passive: true }
+    { once: false, passive: true },
   );
 };
 /*
@@ -362,7 +362,7 @@ document.addEventListener(
       }
     }
   },
-  { once: false, passive: true }
+  { once: false, passive: true },
 );
 
 document.addEventListener(
@@ -375,5 +375,5 @@ document.addEventListener(
     initThemeSelector();
     //touchControl();
   },
-  { once: true, passive: true }
+  { once: true, passive: true },
 );

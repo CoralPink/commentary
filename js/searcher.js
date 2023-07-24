@@ -42,15 +42,15 @@ const main = () => {
     body
       .toLowerCase()
       .split('. ') // split in sentences, then words
-      .map(x => {
+      .forEach(x => {
         const words = x.split(' ');
         value = 8;
 
-        words.map(y => {
+        words.forEach(y => {
           if (y.length > 0) {
             terms
               .map(w => elasticlunr.stemmer(w.toLowerCase()))
-              .map(z => {
+              .forEach(z => {
                 if (elasticlunr.stemmer(y).startsWith(z)) {
                   value = WEIGHT;
                   found = true;
@@ -181,7 +181,7 @@ const main = () => {
     if (ELEMENT_RESULTS.length == null) {
       return;
     }
-    ELEMENT_RESULTS.children.map(x => x.classList.remove('focus'));
+    ELEMENT_RESULTS.children.forEach(x => x.classList.remove('focus'));
   };
 
   const init = config => {
