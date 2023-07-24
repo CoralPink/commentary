@@ -44,6 +44,7 @@ copy-js = true           # include Javascript code for search (elasticlunr.min.j
 after = ["links"]
 command = "mdbook-admonish"
 assets_version = "2.0.1" # do not edit: managed by `mdbook-admonish install`
+on_failure = "bail"
 
 [preprocessor.footnote]
 
