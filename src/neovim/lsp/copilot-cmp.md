@@ -89,9 +89,9 @@ I never give you my pillow{{footnote:
 中間のブリッジは、金管楽器、エレキギター、ヴォーカルで、"You Never Give Me Your Money" の冒頭を再現しているが、歌詞は異なっている。
 }}
 
-僕は きみに枕を渡さない
-
 I only send you my invitations
+
+僕は きみに枕を渡さない
 
 きみには ただ僕からの招待状を送るだけ
 ```
@@ -313,7 +313,7 @@ cmp.setup {
 
 `nvim-cmp`の`sources`に新人を紹介してあげましょう。はい、なかよし😆
 
-~~~admonish example title="extensions/init.lua"
+~~~admonish example title="extensions/nvim-cmp.lua"
 ```diff
   sources = {
     { name = 'nvim_lsp' },
@@ -346,9 +346,9 @@ Nice Landing❗😭
 ```admonish success title=""
 And in the middle of the celebrations
 
-そして祝いの真っ只中に
-
 I break down
+
+そして祝いの真っ只中に
 
 僕は泣き崩れる
 ```
