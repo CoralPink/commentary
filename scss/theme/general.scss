@@ -152,12 +152,10 @@ mark {
 kbd {
   background-color: var(--table-border-color);
   border-radius: 0.4rem;
-  border: solid 0.1rem var(--theme-popup-border);
   box-shadow: inset 0 -0.1rem 0 var(--theme-hover);
   display: inline-block;
   font-size: var.$code-font-size;
   font-family: var.$mono-font;
-  line-height: 1rem;
-  padding: 0.4rem 0.4rem;
-  vertical-align: middle;
+  padding: 0.3rem 0.4rem;
+  vertical-align: top;
 }

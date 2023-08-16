@@ -12,7 +12,6 @@ const initSideBar = () => {
   const sidebar = document.getElementById('sidebar');
   const toggleButton = document.getElementById('sidebar-toggle');
 
-  const scr = document.getElementById('side-scroll');
   const active = sidebar.querySelector('.active');
 
   const toggleSection = ev => {
@@ -29,8 +28,6 @@ const initSideBar = () => {
     sidebar.setAttribute('aria-hidden', false);
     toggleButton.setAttribute('aria-expanded', true);
 
-    scr.style.display = 'block';
-
     if (active) {
       active.scrollIntoView({ block: 'center' });
     }
@@ -43,8 +40,6 @@ const initSideBar = () => {
   };
 
   const hideSidebar = () => {
-    scr.style.display = 'none';
-
     page.style.display = 'block';
     sidebar.style.display = 'none';
     sidebar.setAttribute('aria-hidden', true);
@@ -77,7 +72,17 @@ const initSideBar = () => {
     hideSidebar();
     return;
   }
-  localStorage.getItem('mdbook-sidebar') == 'visible' ? showSidebar() : hideSidebar();
+
+  switch (localStorage.getItem('mdbook-sidebar')) {
+    case 'visible':
+      showSidebar();
+      break;
+    case 'hidden':
+      hideSidebar();
+      break;
+    default:
+      showSidebar();
+  }
 };
 
 const initCodeBlock = () => {
@@ -93,10 +98,6 @@ const initCodeBlock = () => {
     languages: ['txt'],
   });
   hljs.highlightAll();
-
-  if (!window.playground_copyable) {
-    return;
-  }
 
   Array.from(main.querySelectorAll('pre code')).forEach(block => {
     const pre_block = block.parentNode;
