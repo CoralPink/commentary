@@ -77,11 +77,14 @@ const initSideBar = () => {
     case 'visible':
       showSidebar();
       break;
+
     case 'hidden':
       hideSidebar();
       break;
+
     default:
       showSidebar();
+      break;
   }
 };
 
@@ -370,7 +373,6 @@ document.addEventListener(
   'DOMContentLoaded',
   () => {
     attributeExternalLinks();
-    initSideBar();
     initCodeBlock();
     createTableOfContents();
     initThemeSelector();
@@ -378,3 +380,5 @@ document.addEventListener(
   },
   { once: true, passive: true },
 );
+
+initSideBar();
