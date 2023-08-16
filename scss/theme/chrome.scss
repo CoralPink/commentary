@@ -5,9 +5,13 @@
   overflow-x: auto;
 }
 
-// For the style attribute, display: grid or block is added from the JS code.
-// (display: grid or block)
 .page {
+  // For the style attribute, display: grid or block is added from the JS code.
+  // (Specify an initial value to prevent layout shift on PC.)
+  @media only screen and (min-width: var.$mobile-max-width) {
+    display: grid;
+  }
+
   grid-template-columns: var.$sidebar-width 1fr;
   min-height: calc(100dvh - var.$menu-bar-height);
 }
@@ -264,7 +268,6 @@ a > .hljs {
 }
 
 .sidebar-scrollbox {
-  display: none; // Initially, it is hidden
   position: fixed;
   top: var.$menu-bar-height;
   bottom: 0;

@@ -15,7 +15,3 @@ document.getElementById(e).classList.add("theme-selected")}),1)})();
 try{await navigator.serviceWorker.register("{{path_to_root}}serviceworker.js",{scope:"/commentary/"})}
 catch(r){console.error(`Registration failed with ${r}`)}})();
 </script>
-
-{{#if playground_copyable}}
-<script>window.playground_copyable = true;</script>
-{{/if}}
