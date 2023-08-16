@@ -161,7 +161,7 @@ Waiting, it might take a while and this popup will auto close once done
 無事に`Online`と表示されましたね😆
 
 ```admonish warning
-`copilot.nvim`は、一部のファイルタイプ (例えば`Markdown`など) では起動しないようなデフォルト設定がされているので注意❗
+`copilot.lua`は、一部のファイルタイプ (例えば`Markdown`など) では起動しないようなデフォルト設定がされているので注意❗
 ```
 
 ## Wrap up
