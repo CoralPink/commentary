@@ -579,7 +579,7 @@ on_attachが関数でない場合、nvim-tree-mappings-default が呼び出さ�
 :help nvim-tree.view.mappings have been deprecated in favour of :help nvim-tree.on_attach. Please visit Migrating To on_attach to transition.
 ```
 
-わたしがこのページを書き出したタイミング良く重なったため、こっちの新しい方法で紹介します😉
+わたしがこのページを書き出したタイミングと、なんかいい感じに重なったので、こっちの新しい方法で紹介します😉
 
 ...ただ、なんか長くなってきちゃったので、例によってここで一旦区切ります。
 

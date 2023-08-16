@@ -71,7 +71,7 @@ Protected by a silver spoon{{footnote:
 "Protected by a silver spoon"というフレーズは、彼女が裕福な出自によって守られているという皮肉めいた意味合いを持っています。
 ただし、歌詞の具体的な意図や背景は、曲の作者である`ポール・マッカートニーに尋ねることが必要`です。」[ChatGPT](https://chat.openai.com/)より
 
-...。...はっ❗Bathroom windowから入って尋ねればいいんだ🤣 ...んなアホな🙄}}
+...。...はっ❗Bathroom windowからぬるっと入って尋ねればいいんだ🤣 ...んなアホな🙄}}
 
 銀の匙に守られながら
 ```
@@ -144,7 +144,8 @@ nvim-cmp の wiki には、super-tab のようなマッピングを設定する
 [例](https://github.com/hrsh7th/nvim-cmp/wiki/Example-mappings#luasnip)も紹介されています。
 ```
 
-試しに`for~`のスニペットを選んでみましょう。(スクリーンショットで言うと、4番目にいるやつです。)
+じゃあ、また適当な`lua`ファイルを開いて、
+今度は`for~`のスニペットを選んでみましょう。(スクリーンショットで言うと、4番目にいるやつです。)
 
 ![super-tab1](img/super-tab1.webp)
 
@@ -218,5 +219,5 @@ She could steal, but she could not rob
 
 僕を助けようと 彼女は頑張ってくれたけど
 
-こっそり盗むことはできても、強引に奪うことはできないんだ
+こっそり盗むことはできても、強引に奪うことはできないんだね
 ```

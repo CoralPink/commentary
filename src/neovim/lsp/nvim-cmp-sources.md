@@ -338,7 +338,7 @@ McCartney は、「メドレーをちょっと意味のある連句で締めた�
 Her Majesty{{footnote:
 歌詞を少しだけ改変してますが、これはもちろん Her Majesty です😅
 Her Majesty (by [The Beatles](https://en.wikipedia.org/wiki/The_Beatles)): The End の14秒後に収録されているが、
-オリジナルのスリーブには記載されていなかったため、隠しトラックの最初の例だとも考えられている。
+オリジナルのスリーブには記載されていなかったため、シークレットトラックの最初の例だとも考えられている。
 [Wikipedia](https://en.wikipedia.org/wiki/Her_Majesty_(song))より
 }}
 was a pretty nice girl

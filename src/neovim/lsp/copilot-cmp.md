@@ -54,7 +54,7 @@ use {
 ```
 ~~~
 
-`copilot_cmp`単体では特にコンフィグも無いので`packer`からこのまま`setup()`しちゃっていいと思います。
+`copilot-cmp`単体では特にコンフィグも無いので`packer`からこのまま`setup()`しちゃっていいと思います。
 
 ### Install
 
@@ -339,9 +339,9 @@ cmp.setup {
 
 ![copilot-cmp](img/copilot-cmp.webp)
 
-Nice Landing❗😭
-
 中身が的確かどうかは別として、ちゃんと`Copilot`からの提案が挙げられています😉
+
+Nice Landing❗😭
 
 ```admonish success title=""
 And in the middle of the celebrations
