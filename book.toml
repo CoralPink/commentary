@@ -21,7 +21,6 @@ enable = false
 level = 2
 
 [output.html.playground]
-copyable = true
 copy-js = false
 runnable = false
 
