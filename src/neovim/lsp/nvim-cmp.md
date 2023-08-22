@@ -68,11 +68,11 @@ Paul McCartney と Ringo Starr は「B面のメドレーは僕らの最高傑作
 ```admonish info title="[Readme!](https://github.com/hrsh7th/nvim-cmp#readme)"
 1. There is a GitHub issue that documents [breaking changes](https://github.com/hrsh7th/nvim-cmp/issues/231) for nvim-cmp. Subscribe to the issue to be notified of upcoming breaking changes.
 
-   nvim-cmpの変更点を記録したGitHub issueが存在します。この issue を購読すると、今後の速報を通知してくれます。
+   nvim-cmp の変更点を記録した GitHub issue が存在します。この issue を購読すると、今後の速報を通知してくれます。
 
 2. This is my hobby project. You can support me via GitHub sponsors.
 
-   これは私の趣味のプロジェクトです。GitHubのスポンサーを通じて私をサポートすることができます。
+   これは私の趣味のプロジェクトです。GitHub のスポンサーを通じて私をサポートすることができます。
 
 3. Bug reports are welcome, but don't expect a fix unless you provide minimal configuration and steps to reproduce your issue.
 
@@ -80,7 +80,7 @@ Paul McCartney と Ringo Starr は「B面のメドレーは僕らの最高傑作
 
 4. The `cmp.mapping.preset.*` is pre-defined configuration that aims to mimic neovim's native like behavior. It can be changed without announcement. Please manage key-mapping by yourself.
 
-   cmp.mapping.preset.* は、neovim のネイティブのような動作を模倣することを目的とした、あらかじめ定義された設定です。予告なく変更することが可能です。キーマッピングはご自身で管理してください。
+   `cmp.mapping.preset.*` は、neovim のネイティブのような動作を模倣することを目的とした、あらかじめ定義された設定です。予告なく変更することが可能です。キーマッピングはご自身で管理してください。
 ```
 
 これはもう「Readme❤️」とかそういうレベルじゃないです。「Readme❗」ですから。

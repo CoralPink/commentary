@@ -373,7 +373,9 @@ require('nvim-navbuddy').setup {
 ```lua
 local actions = require 'nvim-navbuddy.actions'
 
---require('nvim-navbuddy').setup {
+require('nvim-navbuddy').setup {
+
+  -- (中略)
 
   mappings = {
     ['t'] = actions.telescope {
@@ -387,7 +389,9 @@ local actions = require 'nvim-navbuddy.actions'
     },
   },
 
---}
+  -- (中略)
+
+}
 ```
 ~~~
 
