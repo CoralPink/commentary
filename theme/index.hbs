@@ -134,6 +134,8 @@
     <link rel="stylesheet" href="{{ ../path_to_root }}{{ this }}" async>
     {{/each}}
 
+    <script src="{{ path_to_root }}book.js"></script>
+
     {{#if search_js}}
     <script src="{{ path_to_root }}elasticlunr.min.js"></script>
     <script src="{{ path_to_root }}mark.es6.min.js"></script>
@@ -141,16 +143,8 @@
     <script src="{{ path_to_root }}searcher.js" id="searcher" data-pathtoroot="{{ path_to_root }}"></script>
     {{/if}}
 
-    {{#if playground_copyable}}
     <script src="{{ path_to_root }}clipboard.min.js"></script>
-    {{/if}}
-
     <script src="{{ path_to_root }}highlight.min.js"></script>
-    <script src="{{ path_to_root }}book.js"></script>
-
-    {{#if mathjax_support}}
-    <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    {{/if}}
 
     {{#each additional_js}}
     <script async src="{{ ../path_to_root }}{{this}}"></script>
