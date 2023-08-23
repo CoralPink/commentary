@@ -53,13 +53,6 @@
     catch(r){console.error(`Registration failed with ${r}`)}})();
     </script>
 
-    <script type="module">
-      import init, {draw} from './wasm.js';
-      init().then(() => {
-        draw();
-      });
-    </script>
-
     <div class="top-bar">
       <div id="menu-bar" class="menu-bar">
         <div class="left-buttons">
@@ -128,16 +121,15 @@
 
     <link rel="stylesheet" href="css/style.css" async>
 
+    <script src="book.js"></script>
+
     <script src="elasticlunr.min.js"></script>
     <script src="mark.es6.min.js"></script>
     <script src="fzf.umd.js"></script>
     <script src="searcher.js" id="searcher" data-pathtoroot=""></script>
 
     <script src="clipboard.min.js"></script>
-
     <script src="highlight.min.js"></script>
-    <script src="book.js" id="book"></script>
-
 
   </body>
 </html>
