@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'v0.4.3';
+const CACHE_VERSION = 'v0.5.0';
 const CACHE_LIST = [
   '/commentary/book.js',
   '/commentary/clipboard.min.js',
@@ -10,6 +10,9 @@ const CACHE_LIST = [
   '/commentary/searcher.js',
   '/commentary/searchindex.js',
   '/commentary/searchindex.json',
+
+  '/commentary/wasm.js',
+  '/commentary/wasm_bg.wasm',
 
   '/commentary/css/style.css',
 
