@@ -17,7 +17,7 @@ pushd rs/wasm
 wasm-pack build --target web
 pushd
 
-cp rs/wasm/pkg/wasm.js src
+npm run compress --prefix js -input='../rs/wasm/pkg/wasm.js' -output='../src/wasm.js'
 cp rs/wasm/pkg/wasm_bg.wasm src
 
 mdbook build --dest-dir commentary
