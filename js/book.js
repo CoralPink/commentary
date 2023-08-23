@@ -1,12 +1,5 @@
 'use strict';
 
-const attributeExternalLinks = () => {
-  document.querySelectorAll('.content main a[href^="http"]').forEach(el => {
-    el.setAttribute('target', '_blank');
-    el.setAttribute('rel', 'noopener');
-  });
-};
-
 const initSideBar = () => {
   const page = document.getElementById('page');
   const sidebar = document.getElementById('sidebar');
@@ -372,7 +365,6 @@ document.addEventListener(
 document.addEventListener(
   'DOMContentLoaded',
   () => {
-    attributeExternalLinks();
     initCodeBlock();
     createTableOfContents();
     initThemeSelector();

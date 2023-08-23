@@ -134,6 +134,13 @@
     <link rel="stylesheet" href="{{ ../path_to_root }}{{ this }}" async>
     {{/each}}
 
+    <script type="module">
+      import init, { attribute_external_links } from './{{ path_to_root }}wasm.js';
+      init().then(() => {
+        attribute_external_links();
+      });
+    </script>
+
     <script src="{{ path_to_root }}book.js"></script>
 
     {{#if search_js}}
