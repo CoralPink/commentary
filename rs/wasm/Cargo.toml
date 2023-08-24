@@ -15,9 +15,6 @@ crate-type = ["cdylib"]
 [profile.release]
 lto = true
 
-[features]
-default = ["wee_alloc"]
-
 [dependencies]
 js-sys = "0.3"
 wasm-bindgen = "0.2"
