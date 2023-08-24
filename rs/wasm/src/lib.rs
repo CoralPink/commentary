@@ -2,6 +2,11 @@ use js_sys::Array;
 use wasm_bindgen::prelude::*;
 use web_sys::NodeList;
 
+extern crate wee_alloc;
+
+#[global_allocator]
+static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
+
 fn node_list_to_array(node_list: NodeList) -> Array {
     Array::from(&node_list)
 }
@@ -15,9 +20,7 @@ pub fn attribute_external_links() {
         .query_selector_all(r#".content main a[href^="http"]"#)
         .unwrap();
 
-    let elements_array = node_list_to_array(elements);
-
-    for el in elements_array.iter() {
+    for el in node_list_to_array(elements).iter() {
         if let Some(el) = el.dyn_ref::<web_sys::Element>() {
             el.set_attribute("target", "_blank").unwrap();
             el.set_attribute("rel", "noopener").unwrap();
