@@ -26,8 +26,8 @@
 
     <meta name="twitter:card" content="summary_image">
 
-    <link rel="stylesheet" href="{{ path_to_root }}css/general.css">
-    <link rel="stylesheet" href="{{ path_to_root }}css/chrome.css">
+    <link rel="stylesheet" href="{{ path_to_root }}css/general.css" async>
+    <link rel="stylesheet" href="{{ path_to_root }}css/chrome.css" async>
   </head>
   <body>
     {{> header}}
@@ -124,37 +124,26 @@
       </div>
     </div>
 
+    <link rel="stylesheet" href="{{ path_to_root }}css/style.css" async>
     <link rel="stylesheet" href="{{ path_to_root }}fonts/fonts.css" async>
+    {{#each additional_css}}<link rel="stylesheet" href="{{ ../path_to_root }}{{ this }}" async>{{/each}}
 
-    {{#if print_enable}}
-    <link rel="stylesheet" href="{{ path_to_root }}css/print.css" media="print" async>
-    {{/if}}
-
-    {{#each additional_css}}
-    <link rel="stylesheet" href="{{ ../path_to_root }}{{ this }}" async>
-    {{/each}}
-
-    <script type="module">
+    <script async type="module">
       import init, { attribute_external_links } from './{{ path_to_root }}wasm.js';
       init().then(() => {
         attribute_external_links();
       });
     </script>
 
-    <script src="{{ path_to_root }}book.js"></script>
-
+    <script defer src="{{ path_to_root }}highlight.min.js"></script>
+    <script defer src="{{ path_to_root }}clipboard.min.js"></script>
+    <script defer src="{{ path_to_root }}book.js"></script>
     {{#if search_js}}
-    <script src="{{ path_to_root }}elasticlunr.min.js"></script>
-    <script src="{{ path_to_root }}mark.es6.min.js"></script>
-    <script src="{{ path_to_root }}fzf.umd.js"></script>
-    <script src="{{ path_to_root }}searcher.js" id="searcher" data-pathtoroot="{{ path_to_root }}"></script>
+    <script defer src="{{ path_to_root }}mark.es6.min.js"></script>
+    <script defer src="{{ path_to_root }}elasticlunr.min.js"></script>
+    <script defer src="{{ path_to_root }}fzf.umd.js"></script>
+    <script defer src="{{ path_to_root }}searcher.js" id="searcher" data-pathtoroot="{{ path_to_root }}"></script>
     {{/if}}
-
-    <script src="{{ path_to_root }}clipboard.min.js"></script>
-    <script src="{{ path_to_root }}highlight.min.js"></script>
-
-    {{#each additional_js}}
-    <script async src="{{ ../path_to_root }}{{this}}"></script>
-    {{/each}}
+    {{#each additional_js}}<script async src="{{ ../path_to_root }}{{this}}"></script>{{/each}}
   </body>
 </html>
