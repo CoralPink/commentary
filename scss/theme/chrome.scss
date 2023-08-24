@@ -252,6 +252,8 @@ a > .hljs {
 }
 
 .sidebar {
+  visibility: hidden;  // Initially, it is hidden.
+
   color: var(--sidebar-fg);
   background-color: var(--sidebar-bg);
 
