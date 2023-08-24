@@ -1,7 +1,6 @@
 use js_sys::Array;
 use wasm_bindgen::prelude::*;
-use web_sys::Element;
-use web_sys::NodeList;
+use web_sys::{Element, NodeList};
 
 fn node_list_to_array(node_list: NodeList) -> Array {
     Array::from(&node_list)
