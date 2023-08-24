@@ -18,6 +18,7 @@ const initSideBar = () => {
   const showSidebar = () => {
     page.style.display = 'grid';
     sidebar.style.display = 'block';
+    sidebar.style.visibility = 'visible';
     sidebar.setAttribute('aria-hidden', false);
     toggleButton.setAttribute('aria-expanded', true);
 
@@ -35,6 +36,7 @@ const initSideBar = () => {
   const hideSidebar = () => {
     page.style.display = 'block';
     sidebar.style.display = 'none';
+    sidebar.style.visibility = 'hidden';
     sidebar.setAttribute('aria-hidden', true);
     toggleButton.setAttribute('aria-expanded', false);
 
