@@ -2,11 +2,6 @@ use js_sys::Array;
 use wasm_bindgen::prelude::*;
 use web_sys::NodeList;
 
-extern crate wee_alloc;
-
-#[global_allocator]
-static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
-
 fn node_list_to_array(node_list: NodeList) -> Array {
     Array::from(&node_list)
 }
