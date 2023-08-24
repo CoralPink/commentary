@@ -1,5 +1,6 @@
 use js_sys::Array;
 use wasm_bindgen::prelude::*;
+use web_sys::Element;
 use web_sys::NodeList;
 
 fn node_list_to_array(node_list: NodeList) -> Array {
@@ -16,7 +17,7 @@ pub fn attribute_external_links() {
         .unwrap();
 
     for el in node_list_to_array(elements).iter() {
-        if let Some(el) = el.dyn_ref::<web_sys::Element>() {
+        if let Some(el) = el.dyn_ref::<Element>() {
             el.set_attribute("target", "_blank").unwrap();
             el.set_attribute("rel", "noopener").unwrap();
         }
