@@ -247,6 +247,22 @@ use {
 ```
 ~~~
 
+~~~admonish example title="extensions/nvim-cmp.lua"
+```lua
+cmp.setup {
+
+  -- (中略)
+
+  formatting = {
+    format = require('lspkind').cmp_format {
+      mode = 'symbol',
+      preset = 'codicons',
+    },
+  },
+}
+```
+~~~
+
 ```admonish info title="[Highlighting & icon](https://github.com/zbirenbaum/copilot-cmp#highlighting--icon) (copilot-cmp)"
 Copilot's cmp source now has a builtin highlight group `CmpItemKindCopilot`.
 To add an icon to copilot for lspkind, simply add copilot to your lspkind symbol map.
@@ -260,7 +276,7 @@ Alternatively, you can add Copilot to the lspkind `symbol_map` within the cmp fo
 ```
 
 ~~~admonish example title="extensions/nvim-cmp.lua"
-```lua
+```diff
 cmp.setup {
 
   -- (中略)
@@ -269,7 +285,7 @@ cmp.setup {
     format = require('lspkind').cmp_format {
       mode = 'symbol',
       preset = 'codicons',
-      symbol_map = { Copilot = '' },
++      symbol_map = { Copilot = '' },
     },
   },
 }
@@ -318,6 +334,9 @@ McCartney は、「メドレーをちょっと意味のある連句で締めた�
 <nav class="nav-wrapper" aria-label="Page navigation">
   <a rel="prev" href="../../neovim/lsp/copilot-cmp.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
     <i class="fa-angle-left"></i>
+  </a>
+  <a rel="next" href="../../neovim/lsp/fidget.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+    <i class="fa-angle-right"></i>
   </a>
 </nav>
 <div style="margin-top:140em"></div>
