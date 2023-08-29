@@ -2,17 +2,18 @@
 
 大変だ〜❗夏休みが終わってしまうぅぅ😭
 
-前回の "London, Abbey Road" から「あっ❗」てな間に 1ヶ月半くらい経っているので、「そらそやわー。」てな感じですね。
+前回の "London, Abbey Road" から「あっ❗」てな間に 1ヶ月半くらい経っているので、「そらそやわー。」てな感じですね😅
 
-そんなこんなあって先日、"東京, 高円寺道路" に行ってみたら 💃 阿波踊{{footnote:
+そんなこんなな中、"東京, 高円寺道路" に行ってみたら 💃 阿波おど{{footnote:
 阿波踊り（あわおどり）は、阿波国（現・徳島県）を発祥とする盆踊り。
 高知のよさこい祭りと愛媛の新居浜太鼓祭りと並ぶ四国三大祭りであり、日本三大盆踊りの一つとしても知られる。
 [Wikipedia](https://en.wikipedia.org/wiki/Awa_Dance_Festival)より
 }}ってて POWER 漲ってました⭐ 🕺
 
-|||
-|:---:|:---:|
-|![awa-festival1](img/awa-dance1.webp)|![awa-festival2](img/awa-dance2.webp)|
+```admonish success title=""
+![awa-festival1](img/awa-dance1.webp)
+![awa-festival2](img/awa-dance2.webp)
+```
 
 ```admonish success title=""
 一かけ 二かけ 三かけて
@@ -187,7 +188,7 @@ In the meantime, these instructions will pin your configuration to the legacy br
 ![fidget2](img/fidget2.webp)
 
 ```admonish note
-ちょっとわたしが把握してないんですが、`lua-ls`は対応していないような気がします。
+ちょっとわたしが把握してないんですが、`lua-language-server`は対応していないような気がします。
 
 (もし違ってたらごめんね...😭)
 ```
@@ -195,7 +196,7 @@ In the meantime, these instructions will pin your configuration to the legacy br
 ## 八 : やっぱり踊りは止められぬ
 
 ```admonish success
-<video controls preload="none" width="895" height="503">
+<video controls preload="none" poster="img/awa-dance3-thumbnail.webp" width="895" height="503">
   <source src="img/awa-dance3.mp4" type="video/mp4">
 </video>
 ```
@@ -208,7 +209,7 @@ YOU THE BILL
 
 FOR THAT,
 
-TENGU 👺{{footnote: 一応書いとくけど「冗談だぞ❗」それと「よかったぞ❗❗」}}
+TENGU 👺{{footnote: 一応書いとくけど「冗談だぞ❗」...ん❓ っていうか、むしろこっちに請求書きちゃう❓😨}}
 </div>
 ```
 
