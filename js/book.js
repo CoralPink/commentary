@@ -1,7 +1,7 @@
 'use strict';
 
 import cljs from 'clipboard';
-import hljs from './highlight.min.js';
+import hljs from './highlight.js/build/highlight.js';
 
 const initSideBar = () => {
   const page = document.getElementById('page');
