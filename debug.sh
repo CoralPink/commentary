@@ -1,24 +1,22 @@
-npm run compress --prefix js -input='book.js' -output='../theme/book.js'
-npm run compress --prefix js -input='searcher.js' -output='../src/searcher.js'
-npm run compress --prefix js -input='serviceworker.js' -output='../src/serviceworker.js'
-
-cp js/highlight.min.js src
-
-cp js/node_modules/clipboard/dist/clipboard.min.js src
-cp js/node_modules/fzf/dist/fzf.umd.js src
-cp js/node_modules/mark.js/dist/mark.es6.min.js src
-
-npm run compile --prefix scss style.scss ../src/css/style.css
-npm run compile --prefix scss fonts/fonts.scss ../theme/fonts/fonts.css
-npm run compile --prefix scss theme/chrome.scss ../theme/css/chrome.css
-npm run compile --prefix scss theme/general.scss ../theme/css/general.css
-
 pushd rs/wasm
-wasm-pack build --target web
+wasm-pack build --target bundler
+cd pkg
+npm link
 pushd
 
-npm run compress --prefix js -input='../rs/wasm/pkg/wasm.js' -output='../src/wasm.js'
-cp rs/wasm/pkg/wasm_bg.wasm src
+pushd js
+npm link wasm-book
+npm run build
+npm run compress -input='serviceworker.js' -output='dist/serviceworker.js'
+cp -r dist/ ../src/
+pushd
+
+pushd scss
+npm run compile style.scss ../src/css/style.css
+npm run compile fonts/fonts.scss ../theme/fonts/fonts.css
+npm run compile theme/chrome.scss ../theme/css/chrome.css
+npm run compile theme/general.scss ../theme/css/general.css
+pushd
 
 mdbook build --dest-dir commentary
 
