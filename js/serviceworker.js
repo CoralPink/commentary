@@ -7,9 +7,6 @@ const CACHE_LIST = [
   '/commentary/searchindex.js',
   '/commentary/searchindex.json',
 
-  '/commentary/wasm.js',
-  '/commentary/wasm_bg.wasm',
-
   '/commentary/css/style.css',
 
   '/commentary/apple-touch-icon.png',
