@@ -4,6 +4,7 @@ node_modules
 pkg
 target
 
+js/dist
 js/highlight.js
 
 *.css
