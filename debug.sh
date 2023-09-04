@@ -1,7 +1,6 @@
 npm run build --prefix js
+npm run compress --prefix js -input='serviceworker.js' -output='dist/serviceworker.js'
 cp -r js/dist/ src/
-
-npm run compress --prefix js -input='serviceworker.js' -output='../src/serviceworker.js'
 
 npm run compile --prefix scss style.scss ../src/css/style.css
 npm run compile --prefix scss fonts/fonts.scss ../theme/fonts/fonts.css
