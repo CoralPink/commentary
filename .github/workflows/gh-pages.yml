@@ -45,7 +45,7 @@ jobs:
       - name: Build Wasm
         run: |
           pushd rs/wasm
-          wasm-pack build --target web
+          wasm-pack build --target bundler
           cd pkg
           npm link
           pushd
