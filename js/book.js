@@ -1,5 +1,8 @@
 'use strict';
 
+import cljs from 'clipboard/dist/clipboard';
+import hljs from './highlight.min.js';
+
 const initSideBar = () => {
   const page = document.getElementById('page');
   const sidebar = document.getElementById('sidebar');
@@ -137,7 +140,7 @@ const initCodeBlock = () => {
     );
   });
 
-  const clipboardSnippets = new ClipboardJS('.clip-button', {
+  const clipboardSnippets = new cljs('.clip-button', {
     text: trigger => {
       hideTooltip(trigger);
       return trigger.closest('pre').querySelector('code').innerText;
