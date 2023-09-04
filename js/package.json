@@ -4,12 +4,10 @@
     "fzf": "0.5.2",
     "mark.js": "8.11.1",
     "terser": "5.19.3",
-    "webpack-cli": "5.1.4",
-    "wasm-book": "^0.1.0"
+    "webpack-cli": "5.1.4"
   },
   "scripts": {
     "build": "webpack",
-    "compress": "terser $npm_config_input --compress --mangle --ecma 2022 --output $npm_config_output",
-    "serve": "webpack-dev-server"
+    "compress": "terser $npm_config_input --compress --mangle --ecma 2022 --output $npm_config_output"
   }
 }

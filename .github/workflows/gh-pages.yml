@@ -42,31 +42,33 @@ jobs:
           cargo install wasm-pack
           cargo install --path ./rs/mdbook-footnote
 
-      - name: Install Npm
-        run: |
-          npm install --prefix js
-          npm install --prefix scss
-
-      - name: Build Js
-        run: |
-          npm run build --prefix js
-          npm run compress --prefix js -input='serviceworker.js' -output='dist/serviceworker.js'
-          cp -r js/dist/ src/
-
-      - name: Build Scss
-        run: |
-          npm run compile --prefix scss style.scss ../src/css/style.css
-          npm run compile --prefix scss fonts/fonts.scss ../theme/fonts/fonts.css
-          npm run compile --prefix scss theme/chrome.scss ../theme/css/chrome.css
-          npm run compile --prefix scss theme/general.scss ../theme/css/general.css
-
       - name: Build Wasm
         run: |
           pushd rs/wasm
           wasm-pack build --target web
+          cd pkg
+          npm link
           pushd
-          npm run compress --prefix js -input='../rs/wasm/pkg/wasm.js' -output='../src/wasm.js'
-          cp rs/wasm/pkg/wasm_bg.wasm src
+
+      - name: Build Js
+        run: |
+          pushd js
+          npm install
+          npm link wasm-book
+          npm run build
+          npm run compress -input='serviceworker.js' -output='dist/serviceworker.js'
+          cp -r dist/ ../src/
+          pushd
+
+      - name: Build Scss
+        run: |
+          pushd scss
+          npm install
+          npm run compile style.scss ../src/css/style.css
+          npm run compile fonts/fonts.scss ../theme/fonts/fonts.css
+          npm run compile theme/chrome.scss ../theme/css/chrome.css
+          npm run compile theme/general.scss ../theme/css/general.css
+          pushd
 
       - name: Build mdBook
         run: |
