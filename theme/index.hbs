@@ -138,10 +138,8 @@
     <script async src="{{ path_to_root }}book.js"></script>
 
     {{#if search_js}}
-    <script defer src="{{ path_to_root }}mark.es6.min.js"></script>
     <script defer src="{{ path_to_root }}elasticlunr.min.js"></script>
-    <script defer src="{{ path_to_root }}fzf.umd.js"></script>
-    <script defer src="{{ path_to_root }}searcher.js" id="searcher" data-pathtoroot="{{ path_to_root }}"></script>
+    <script defer type="module" src="{{ path_to_root }}searcher.js" id="searcher" data-pathtoroot="{{ path_to_root }}"></script>
     {{/if}}
     {{#each additional_js}}<script async src="{{ ../path_to_root }}{{this}}"></script>{{/each}}
   </body>

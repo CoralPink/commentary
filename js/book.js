@@ -1,6 +1,6 @@
 'use strict';
 
-import cljs from 'clipboard/dist/clipboard';
+import cljs from 'clipboard';
 import hljs from './highlight.min.js';
 
 const initSideBar = () => {

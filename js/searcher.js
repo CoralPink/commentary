@@ -1,5 +1,8 @@
 'use strict';
 
+import markjs from 'mark.js';
+import { Fzf } from 'fzf';
+
 // Search functionality
 //
 // You can use !hasFocus() to prevent keyhandling in your key
@@ -185,7 +188,7 @@ const main = () => {
   };
 
   const init = config => {
-    const marker = new Mark(document.querySelector('main'));
+    const marker = new markjs(document.querySelector('main'));
     const mark_exclude = [];
 
     resultsOptions = config.results_options;
@@ -377,16 +380,17 @@ const main = () => {
  */
 const fzfInit = () => {
   window.elasticlunr.Index.load = index => {
-    const FzF = window.fzf.Fzf;
     const storeDocs = index.documentStore.docs;
     const indexArr = Object.keys(storeDocs);
-    const ofzf = new FzF(indexArr, {
+
+    const ofzf = new Fzf(indexArr, {
       selector: item => {
         const res = storeDocs[item];
         res.text = `${res.title}${res.breadcrumbs}${res.body}`;
         return res.text;
       },
     });
+
     return {
       search: searchterm => {
         const entries = ofzf.find(searchterm);
@@ -404,7 +408,7 @@ const fzfInit = () => {
 };
 
 (() => {
-  if (!Mark || !elasticlunr) {
+  if (!elasticlunr) {
     return;
   }
   window.search = window.search || {};

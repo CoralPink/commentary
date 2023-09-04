@@ -10,16 +10,10 @@ js/highlight.js
 *.css
 *.css.map
 *.tmp
+*.wasm
 
-src/clipboard.min.js
-src/fzf.umd.js
-src/highlight.min.js
-src/mark.es6.min.js
-src/searcher.js
-src/serviceworker.js
-src/start.js
-src/wasm.js
-src/wasm_bg.wasm
+src/*.js
+src/*.LICENSE.txt
 
 theme/book.js
 
