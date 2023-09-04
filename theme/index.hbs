@@ -128,15 +128,7 @@
     <link rel="stylesheet" href="{{ path_to_root }}fonts/fonts.css" async>
     {{#each additional_css}}<link rel="stylesheet" href="{{ ../path_to_root }}{{ this }}" async>{{/each}}
 
-    <script async type="module">
-      import init, { attribute_external_links } from './{{ path_to_root }}wasm.js';
-      init().then(() => {
-        attribute_external_links();
-      });
-    </script>
-
-    <script async src="{{ path_to_root }}book.js"></script>
-
+    <script defer type="module" src="{{ path_to_root }}book.js"></script>
     {{#if search_js}}
     <script defer src="{{ path_to_root }}elasticlunr.min.js"></script>
     <script defer type="module" src="{{ path_to_root }}searcher.js" id="searcher" data-pathtoroot="{{ path_to_root }}"></script>

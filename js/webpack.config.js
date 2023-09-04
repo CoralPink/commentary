@@ -3,7 +3,10 @@ const book = {
   entry: './book.js',
   output: {
     filename: 'book.js'
-  }
+  },
+  experiments: {
+    asyncWebAssembly: true
+  },
 };
 
 const searcher = {
@@ -11,7 +14,7 @@ const searcher = {
   entry: './searcher.js',
   output: {
     filename: 'searcher.js'
-  }
+  },
 };
 
 module.exports = [book, searcher];
