@@ -1,10 +1,7 @@
 npm run build --prefix js
-npm run compress --prefix js -input='dist/book.js' -output='../theme/book.js'
-npm run compress --prefix js -input='searcher.js' -output='../src/searcher.js'
-npm run compress --prefix js -input='serviceworker.js' -output='../src/serviceworker.js'
+cp -r js/dist/ src/
 
-cp js/node_modules/fzf/dist/fzf.umd.js src
-cp js/node_modules/mark.js/dist/mark.es6.min.js src
+npm run compress --prefix js -input='serviceworker.js' -output='../src/serviceworker.js'
 
 npm run compile --prefix scss style.scss ../src/css/style.css
 npm run compile --prefix scss fonts/fonts.scss ../theme/fonts/fonts.css
