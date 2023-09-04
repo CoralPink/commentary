@@ -1,4 +1,4 @@
-git clone https://github.com/highlightjs/highlight.js.git
+git clone https://github.com/highlightjs/highlight.js.git -b 11.8.0 --depth 1
 cd highlight.js
 
 npm install
