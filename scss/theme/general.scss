@@ -49,7 +49,6 @@ table {
   border-collapse: collapse;
 
   td {
-    padding: 0.4rem 2rem;
     border: 0.1rem var(--table-border-color) solid;
   }
   thead {
@@ -60,7 +59,7 @@ table {
       border: none;
     }
     th {
-      padding: 0.4rem 2rem;
+      padding: 0.3rem 0.2rem;
     }
     tr {
       border: 0.1rem var(--table-header-bg) solid;
