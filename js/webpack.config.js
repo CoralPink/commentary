@@ -17,4 +17,12 @@ const searcher = {
   },
 };
 
-module.exports = [book, searcher];
+const serviceworker = {
+  mode: 'production',
+  entry: './serviceworker.js',
+  output: {
+    filename: 'seaviceworker.js'
+  },
+};
+
+module.exports = [book, searcher, serviceworker];

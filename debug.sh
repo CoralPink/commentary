@@ -7,7 +7,6 @@ pushd
 pushd js
 npm link wasm-book
 npm run build
-npm run compress -input='serviceworker.js' -output='dist/serviceworker.js'
 cp -r dist/. ../src/
 pushd
 
