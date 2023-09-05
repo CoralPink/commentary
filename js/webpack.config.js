@@ -21,7 +21,7 @@ const serviceworker = {
   mode: 'production',
   entry: './serviceworker.js',
   output: {
-    filename: 'seaviceworker.js'
+    filename: 'serviceworker.js'
   },
 };
 
