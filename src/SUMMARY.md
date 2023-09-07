@@ -104,5 +104,6 @@
     - [copilot-cmp](neovim/lsp/copilot-cmp.md)
   - [nvim-cmp-source(s)](neovim/lsp/nvim-cmp-sources.md)
   - [fidget.nvim](neovim/lsp/fidget.md)
+  - [Trouble](neovim/lsp/trouble.md)
 
 # ... To Be Continued.
