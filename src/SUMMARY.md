@@ -72,7 +72,7 @@
   - [Call The Plugin](neovim/function/call-plugin.md)
 
 - [Plugin](neovim/plugin/plugin.md)
-  - [Packer.nvim](neovim/plugin/packer.md)
+  - [packer.nvim](neovim/plugin/packer.md)
   - [nvim-treesitter](neovim/plugin/nvim-treesitter.md)
   - [onenord.nvim](neovim/plugin/onenord.md)
   - [lualine.nvim](neovim/plugin/lualine.md)
