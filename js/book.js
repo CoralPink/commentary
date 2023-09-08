@@ -3,7 +3,7 @@
 import cljs from 'clipboard';
 import hljs from './highlight.js/build/highlight.js';
 
-import('./node_modules/wasm-book/wasm_book.js').then(js => {
+import('wasm-book/wasm_book.js').then(js => {
   js.attribute_external_links();
 });
 
