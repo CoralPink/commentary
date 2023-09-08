@@ -1,7 +1,7 @@
 'use strict';
 
 import markjs from 'mark.js';
-import { Fzf } from 'fzf';
+import { Fzf, extendedMatch } from 'fzf';
 
 // Search functionality
 //
@@ -379,21 +379,26 @@ const main = () => {
  * @see https://github.com/HillLiu/docker-mdbook
  */
 const fzfInit = () => {
+  const byTrimmedLengthAsc = (a, b, selector) => {
+    return selector(a.item).trim().length - selector(b.item).trim().length;
+  };
+
   window.elasticlunr.Index.load = index => {
     const storeDocs = index.documentStore.docs;
-    const indexArr = Object.keys(storeDocs);
 
-    const ofzf = new Fzf(indexArr, {
+    const fzf = new Fzf(Object.keys(storeDocs), {
+      match: extendedMatch,
       selector: item => {
         const res = storeDocs[item];
         res.text = `${res.title}${res.breadcrumbs}${res.body}`;
         return res.text;
       },
+      tiebreakers: [byTrimmedLengthAsc],
     });
 
     return {
       search: searchterm => {
-        const entries = ofzf.find(searchterm);
+        const entries = fzf.find(searchterm);
         return entries.map(data => {
           const { item, score } = data;
           return {
