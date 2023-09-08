@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'v0.6.2';
+const CACHE_VERSION = 'v0.6.3';
 const CACHE_LIST = [
   '/commentary/book.js',
   '/commentary/elasticlunr.min.js',
@@ -115,7 +115,7 @@ self.addEventListener('fetch', async event => {
         cacheFirst({
           request: event.request,
           preloadResponsePromise: event.preloadResponse,
-          fallbackUrl: '/commentary/maskable_icon_x96.png',
+          fallbackUrl: '/commentary/chrome-96x96.png'
         }),
       );
     }
