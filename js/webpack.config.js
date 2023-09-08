@@ -1,5 +1,6 @@
 const book = {
   mode: 'production',
+  target: ['web', 'es2023'],
   entry: './book.js',
   output: {
     filename: 'book.js'
@@ -11,6 +12,7 @@ const book = {
 
 const searcher = {
   mode: 'production',
+  target: ['web', 'es2023'],
   entry: './searcher.js',
   output: {
     filename: 'searcher.js'
@@ -19,6 +21,7 @@ const searcher = {
 
 const serviceworker = {
   mode: 'production',
+  target: ['web', 'es2023'],
   entry: './serviceworker.js',
   output: {
     filename: 'serviceworker.js'
