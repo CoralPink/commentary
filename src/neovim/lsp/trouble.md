@@ -25,7 +25,7 @@ Mother Mary comes to me
 ```admonish success title=""
 Speaking words of wisdom
 
-Let it be{{footnote:
+Let it be{{footnote: Let it be (by [The Beatles](https://en.wikipedia.org/wiki/The_Beatles)):
 McCartney は、1968年の The Beatles ("the White Album") のセッションにまつわる緊迫した時期に、
 母親の夢を見たことがきっかけで "Let It Be" のアイデアを思いついたと語っている。
 (Mary Patricia McCartney は、彼が14歳の時に癌で亡くなっている。)
