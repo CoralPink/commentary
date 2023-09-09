@@ -42,32 +42,36 @@ jobs:
           cargo install wasm-pack
           cargo install --path ./rs/mdbook-footnote
 
+      - name: Install Bun
+        run: |
+          npm install -g bun
+
       - name: Build Wasm
         run: |
           pushd rs/wasm
           wasm-pack build --target bundler
           cd pkg
-          npm link
+          bun link
           pushd
 
       - name: Build Js
         run: |
           pushd js
-          npm install
-          npm link wasm-book
+          bun install
+          bun link wasm-book
           sh create-highlight.sh
-          npm run build
+          bun run build
           cp -r dist/. ../src/
           pushd
 
       - name: Build Scss
         run: |
           pushd scss
-          npm install
-          npm run compile style.scss ../src/css/style.css
-          npm run compile fonts/fonts.scss ../theme/fonts/fonts.css
-          npm run compile theme/chrome.scss ../theme/css/chrome.css
-          npm run compile theme/general.scss ../theme/css/general.css
+          bun install
+          bun run compile style.scss ../src/css/style.css
+          bun run compile fonts/fonts.scss ../theme/fonts/fonts.css
+          bun run compile theme/chrome.scss ../theme/css/chrome.css
+          bun run compile theme/general.scss ../theme/css/general.css
           pushd
 
       - name: Build mdBook
