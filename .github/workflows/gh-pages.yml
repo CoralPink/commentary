@@ -22,6 +22,11 @@ jobs:
         with:
           mdbook-version: "0.4.34"
 
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: "1.0.0"
+
       - name: Cache Cargo
         id: cache-cargo
         uses: actions/cache@v3
@@ -41,10 +46,6 @@ jobs:
           cargo install mdbook-tailor
           cargo install wasm-pack
           cargo install --path ./rs/mdbook-footnote
-
-      - name: Install Bun
-        run: |
-          npm install -g bun
 
       - name: Build Wasm
         run: |
