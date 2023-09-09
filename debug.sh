@@ -1,20 +1,20 @@
 pushd rs/wasm
 wasm-pack build --target bundler
 cd pkg
-npm link
+bun link
 pushd
 
 pushd js
-npm link wasm-book
-npm run build
+bun link wasm-book
+bun run build
 cp -r dist/. ../src/
 pushd
 
 pushd scss
-npm run compile style.scss ../src/css/style.css
-npm run compile fonts/fonts.scss ../theme/fonts/fonts.css
-npm run compile theme/chrome.scss ../theme/css/chrome.css
-npm run compile theme/general.scss ../theme/css/general.css
+bun run compile style.scss ../src/css/style.css
+bun run compile fonts/fonts.scss ../theme/fonts/fonts.css
+bun run compile theme/chrome.scss ../theme/css/chrome.css
+bun run compile theme/general.scss ../theme/css/general.css
 pushd
 
 mdbook build --dest-dir commentary
