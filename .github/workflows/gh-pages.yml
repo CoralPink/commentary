@@ -57,10 +57,10 @@ jobs:
       - name: Build Js
         run: |
           pushd js
-          bun install
-          bun link wasm-book
           sh create-highlight.sh
-          bun run build
+          bun install
+          bun run build.js
+          bun run webpack
           cp -r dist/. ../src/
           pushd
 

@@ -1,12 +1,12 @@
 pushd rs/wasm
 wasm-pack build --target bundler
-cd pkg
-bun link
+#cd pkg
+#bun link
 pushd
 
 pushd js
-bun link wasm-book
-bun run build
+bun run build.js
+bun run webpack
 cp -r dist/. ../src/
 pushd
 
