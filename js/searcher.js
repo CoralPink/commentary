@@ -199,15 +199,15 @@ const main = () => {
     ELEMENT_ICON.addEventListener(
       'click',
       () => {
-        if (ELEMTNT_WRAPPER.classList.contains('hidden')) {
-          showSearch();
-          window.scrollTo(0, 0);
-          ELEMENT_BAR.select();
-        } else {
+        if (!ELEMTNT_WRAPPER.classList.contains('hidden')) {
           hiddenSearch();
+          return;
         }
+        showSearch();
+        window.scrollTo(0, 0);
+        ELEMENT_BAR.select();
       },
-      { once: false, passive: true }
+      { once: false, passive: true },
     );
 
     // Helper to parse a url into its building blocks.
@@ -296,6 +296,16 @@ const main = () => {
     document.addEventListener(
       'keyup',
       e => {
+        if (ELEMTNT_WRAPPER.classList.contains('hidden')) {
+          if (e.key == 's' || e.key == 'S') {
+            e.preventDefault();
+            showSearch();
+            window.scrollTo(0, 0);
+            ELEMENT_BAR.select();
+          }
+          return;
+        }
+
         if (e.key != 'Escape') {
           keyUpHandler();
           return;
@@ -311,7 +321,7 @@ const main = () => {
         tmp.focus();
         tmp.remove();
       },
-      { once: false, passive: true }
+      { once: false, passive: true },
     );
 
     // On reload or browser history backwards/forwards events, parse the url and do search or mark
@@ -351,7 +361,7 @@ const main = () => {
       e => {
         e.preventDefault();
       },
-      { once: false, passive: false }
+      { once: false, passive: false },
     );
 
     // If reloaded, do the search or mark again, depending on the current url parameters
@@ -424,6 +434,6 @@ const fzfInit = () => {
       fzfInit();
       main();
     },
-    { once: true, passive: true }
+    { once: true, passive: true },
   );
 })();
