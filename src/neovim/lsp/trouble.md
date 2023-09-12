@@ -8,7 +8,7 @@
 A pretty list for showing diagnostics, references, telescope results,
 quickfix and location lists to help you solve all the trouble your code is causing.
 
-診断、リファレンス、Telescope の結果を表示するためのきれいなリスト、
+診断、リファレンス、Telescope の結果を表示するための綺麗なリスト、
 quickfix と location lists で、コードが引き起こす全ての問題を解決するのに役立ちます。
 ```
 
@@ -25,7 +25,7 @@ Mother Mary comes to me
 ```admonish success title=""
 Speaking words of wisdom
 
-Let it be{{footnote: Let it be (by [The Beatles](https://en.wikipedia.org/wiki/The_Beatles)):
+Let it be{{footnote: Let It Be (by [The Beatles](https://en.wikipedia.org/wiki/The_Beatles)):
 McCartney は、1968年の The Beatles ("the White Album") のセッションにまつわる緊迫した時期に、
 母親の夢を見たことがきっかけで "Let It Be" のアイデアを思いついたと語っている。
 (Mary Patricia McCartney は、彼が14歳の時に癌で亡くなっている。)
