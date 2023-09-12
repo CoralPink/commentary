@@ -196,7 +196,7 @@ In the meantime, these instructions will pin your configuration to the legacy br
 ## 八 : やっぱり踊りは止められぬ
 
 ```admonish success
-<video controls preload="none" poster="img/awa-dance3-thumbnail.webp" width="895" height="503">
+<video controls preload="none" poster="img/awa-dance3-thumbnail.webp" width="960" height="540">
   <source src="img/awa-dance3.mp4" type="video/mp4">
 </video>
 ```
