@@ -54,11 +54,30 @@ const initSideBar = () => {
     }
   };
 
+  const toggleSidebar = () => (toggleButton.getAttribute('aria-expanded') == 'true' ? hideSidebar() : showSidebar());
+
   // Toggle sidebar
   toggleButton.addEventListener(
     'click',
     () => {
-      toggleButton.getAttribute('aria-expanded') == 'true' ? hideSidebar() : showSidebar();
+      toggleSidebar();
+    },
+    { once: false, passive: true },
+  );
+
+  document.addEventListener(
+    'keyup',
+    e => {
+      if (window.search.hasFocus()) {
+        return;
+      }
+
+      if (e.key == 't' || e.key == 'T') {
+        e.preventDefault();
+        toggleSidebar();
+      } else if (e.key == 'Escape') {
+        hideSidebar();
+      }
     },
     { once: false, passive: true },
   );
@@ -75,19 +94,7 @@ const initSideBar = () => {
     return;
   }
 
-  switch (localStorage.getItem('mdbook-sidebar')) {
-    case 'visible':
-      showSidebar();
-      break;
-
-    case 'hidden':
-      hideSidebar();
-      break;
-
-    default:
-      showSidebar();
-      break;
-  }
+  localStorage.getItem('mdbook-sidebar') === 'hidden' ? hideSidebar() : showSidebar();
 };
 
 const initCodeBlock = () => {
@@ -342,34 +349,37 @@ const touchControl = () => {
   );
 };
 */
-// chapterNavigation
-document.addEventListener(
-  'keyup',
-  e => {
-    if (window.search.hasFocus()) {
-      return;
-    }
 
-    if (e.key == 'ArrowRight') {
-      e.preventDefault();
-
-      const nextButton = document.querySelector('.content main .nav-chapters.next');
-
-      if (nextButton) {
-        window.location.href = nextButton.href;
+const keyControl = () => {
+  // chapterNavigation
+  document.addEventListener(
+    'keyup',
+    e => {
+      if (window.search.hasFocus()) {
+        return;
       }
-    } else if (e.key == 'ArrowLeft') {
-      e.preventDefault();
 
-      const previousButton = document.querySelector('.content main .nav-chapters.previous');
+      if (e.key == 'ArrowRight') {
+        e.preventDefault();
 
-      if (previousButton) {
-        window.location.href = previousButton.href;
+        const nextButton = document.querySelector('.content main .nav-chapters.next');
+
+        if (nextButton) {
+          window.location.href = nextButton.href;
+        }
+      } else if (e.key == 'ArrowLeft') {
+        e.preventDefault();
+
+        const previousButton = document.querySelector('.content main .nav-chapters.previous');
+
+        if (previousButton) {
+          window.location.href = previousButton.href;
+        }
       }
-    }
-  },
-  { once: false, passive: true },
-);
+    },
+    { once: false, passive: true },
+  );
+};
 
 document.addEventListener(
   'DOMContentLoaded',
@@ -377,6 +387,8 @@ document.addEventListener(
     initCodeBlock();
     createTableOfContents();
     initThemeSelector();
+
+    keyControl();
     //touchControl();
   },
   { once: true, passive: true },
