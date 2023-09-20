@@ -3,7 +3,7 @@
   let theme = localStorage.getItem('mdbook-theme');
 
   if (!theme) {
-    theme = matchMedia('(prefers-color-scheme: dark)').matches ? 'macchiato': 'latte';
+    theme = matchMedia('(prefers-color-scheme: dark)').matches ? 'macchiato': 'au-lait';
   }
   document.querySelector('html').classList.add(theme);
 
