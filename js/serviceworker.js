@@ -1,10 +1,13 @@
-const CACHE_VERSION = 'v0.7.4';
+const CACHE_VERSION = 'v0.7.5';
 const CACHE_LIST = [
   '/commentary/book.js',
   '/commentary/elasticlunr.min.js',
   '/commentary/manifest.json',
   '/commentary/searcher.js',
   '/commentary/searchindex.json',
+
+  '/commentary/wasm_book.js',
+  '/commentary/wasm_book_bg.wasm',
 
   '/commentary/css/style.css',
 
