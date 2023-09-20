@@ -31,8 +31,8 @@
 
     <meta name="twitter:card" content="summary_image">
 
-    <link rel="stylesheet" href="css/general.css">
-    <link rel="stylesheet" href="css/chrome.css">
+    <link rel="stylesheet" href="css/general.css" async>
+    <link rel="stylesheet" href="css/chrome.css" async>
   </head>
   <body>
     <noscript>
@@ -41,7 +41,7 @@
 
     <script>
     (()=>{let e=localStorage.getItem("mdbook-theme");
-    e||(e=matchMedia("(prefers-color-scheme: dark)").matches?"macchiato":"latte"),
+    e||(e=matchMedia("(prefers-color-scheme: dark)").matches?"macchiato":"au-lait"),
     document.querySelector("html").classList.add(e),
     setTimeout((()=>{document.querySelector('meta[name="theme-color"]').content=window.getComputedStyle(document.body).backgroundColor,
     document.getElementById(e).classList.add("theme-selected")}),1)})();
@@ -56,20 +56,22 @@
     <div class="top-bar">
       <div id="menu-bar" class="menu-bar">
         <div class="left-buttons">
-          <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+          <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents (Shortkey: T)" aria-label="Toggle Table of Contents" aria-controls="sidebar">
             <i class="fa-list-ul"></i>
           </button>
           <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
             <i class="fa-palette"></i>
           </button>
           <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+            <li role="none"><button role="menuitem" class="theme" id="au-lait">Au Lait</button></li>
             <li role="none"><button role="menuitem" class="theme" id="latte">Latte</button></li>
             <li role="none"><button role="menuitem" class="theme" id="frappe">Frappé</button></li>
             <li role="none"><button role="menuitem" class="theme" id="macchiato">Macchiato</button></li>
             <li role="none"><button role="menuitem" class="theme" id="mocha">Mocha</button></li>
           </ul>
 
-          <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+          <button id="search-toggle" class="icon-button" type="button" title="Toggle Search Box (Shortkey: S)"
+  aria-label="Toggle Search Box" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
             <i class="fa-magnifying-glass"></i>
           </button>
 
@@ -116,20 +118,13 @@
       </div>
     </div>
 
+    <link rel="stylesheet" href="css/style.css" async>
     <link rel="stylesheet" href="fonts/fonts.css" async>
 
 
-    <link rel="stylesheet" href="css/style.css" async>
-
-    <script src="book.js"></script>
-
-    <script src="elasticlunr.min.js"></script>
-    <script src="mark.es6.min.js"></script>
-    <script src="fzf.umd.js"></script>
-    <script src="searcher.js" id="searcher" data-pathtoroot=""></script>
-
-    <script src="clipboard.min.js"></script>
-    <script src="highlight.min.js"></script>
+    <script defer type="module" src="book.js"></script>
+    <script defer src="elasticlunr.min.js"></script>
+    <script defer type="module" src="searcher.js" id="searcher" data-pathtoroot=""></script>
 
   </body>
 </html>
