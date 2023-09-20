@@ -1,5 +1,5 @@
 await Bun.build({
-  entrypoints: ['./searcher.js', './serviceworker.js'],
+  entrypoints: ['./book.js', './searcher.js', './serviceworker.js'],
   outdir: './dist',
   minify: true,
 });

@@ -1,13 +1,15 @@
 pushd rs/wasm
-wasm-pack build --target bundler
-#cd pkg
-#bun link
+wasm-pack build --target web
+cd pkg
+cp wasm_book.js ../../../js
+cp wasm_book_bg.wasm ../../../js
 pushd
 
 pushd js
 bun run build.js
-bun run webpack
 cp -r dist/. ../src/
+cp wasm_book.js ../src
+cp wasm_book_bg.wasm ../src
 pushd
 
 pushd scss

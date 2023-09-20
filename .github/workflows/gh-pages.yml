@@ -50,9 +50,10 @@ jobs:
       - name: Build Wasm
         run: |
           pushd rs/wasm
-          wasm-pack build --target bundler
+          wasm-pack build --target web
           cd pkg
-          bun link
+          cp wasm_book.js ../../../js
+          cp wasm_book_bg.wasm ../../../js
           pushd
 
       - name: Build Js
@@ -61,8 +62,9 @@ jobs:
           sh create-highlight.sh
           bun install
           bun run build.js
-          bun run webpack
           cp -r dist/. ../src/
+          cp wasm_book.js ../src
+          cp wasm_book_bg.wasm ../src
           pushd
 
       - name: Build Scss

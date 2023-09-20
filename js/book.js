@@ -3,8 +3,9 @@
 import cljs from 'clipboard';
 import hljs from './highlight.js/build/highlight.js';
 
-import('wasm-book/wasm_book.js').then(js => {
-  js.attribute_external_links();
+import init, { attribute_external_links } from './wasm_book.js';
+init().then(() => {
+  attribute_external_links();
 });
 
 const initSideBar = () => {
