@@ -6,6 +6,7 @@ target
 
 js/dist
 js/highlight.js
+js/wasm_book.js
 
 *.css
 *.css.map
