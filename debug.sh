@@ -1,15 +1,12 @@
 pushd rs/wasm
 wasm-pack build --target web
-cd pkg
-cp wasm_book.js ../../../js
-cp wasm_book_bg.wasm ../../../js
+cp pkg/wasm_book.js ../../js
+cp pkg/wasm_book_bg.wasm ../../src
 pushd
 
 pushd js
 bun run build.js
 cp -r dist/. ../src/
-cp wasm_book.js ../src
-cp wasm_book_bg.wasm ../src
 pushd
 
 pushd scss
