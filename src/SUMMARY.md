@@ -107,3 +107,5 @@
   - [Trouble](neovim/lsp/trouble.md)
 
 # ... To Be Continued.
+
+- [Outroduction](outro/outroduction.md)
