@@ -148,6 +148,13 @@ mark {
   cursor: pointer;
 }
 
+blockquote {
+  padding: 0 1em;
+  color: #9e9e9e;
+  border-left: 0.25em solid #9e9e9e;
+  margin: 0;
+}
+
 kbd {
   background-color: var(--table-border-color);
   border-radius: 0.4rem;
