@@ -109,3 +109,5 @@
 # ... To Be Continued.
 
 - [Outroduction](outro/outroduction.md)
+  - [lazy.nvim](outro/lazy.md)
+    - [Migration Guide](outro/lazy-migration-guide.md)
