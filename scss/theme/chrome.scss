@@ -41,7 +41,7 @@
   video {
     display: flex;
     margin: 1rem auto;
-    border-radius: 0.8rem;
+    border-radius: 0.4rem;
     max-width: 100%;
     height: auto;
   }
@@ -279,6 +279,7 @@ a > .hljs {
 }
 
 .chapter {
+  margin-bottom: 2em;
   padding-left: 1em;
   line-height: 2.2em;
   font-size: 0.7em;
