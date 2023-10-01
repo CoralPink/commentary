@@ -24,9 +24,9 @@ lazy.nvim は Neovim のモダンなプラグインマネージャーです。
 
 始めてしまえば難しいことは何一つありません😉
 
-ただ、それなりに物量はあるので、この節では`lazy.nvim`のセットアップまでを😌
+ただ、それなりに物量はあるので、この節では`lazy.nvim`の **セットアップ** までを😌
 
-次の節で、`packer.nvim`から`lazy.nvim`への移行という二本立てでお送りします😪
+そして次の節で、`packer.nvim`から`lazy.nvim`への **移行** という二本立てでお送りします😪
 
 ## ✨ Features
 
@@ -52,8 +52,6 @@ lazy.nvim は Neovim のモダンなプラグインマネージャーです。
 - 🎨 Automatically lazy-loads colorschemes
 ```
 
-おまけにふわふわ〜☁️
-
 ```admonish note title=""
 - 📦 強力なUIですべてのNeovimプラグインを管理
 - 🚀 Luaモジュールの自動キャッシュとバイトコードコンパイルによる高速起動
@@ -73,6 +71,8 @@ lazy.nvim は Neovim のモダンなプラグインマネージャーです。
 - 📈 Statusline コンポーネントで保留中のアップデートの数を表示
 - 🎨 自動的に colorschemes を遅延ロードする
 ```
+
+おまけにふわふわ〜☁️
 
 ```admonish success title=""
 When I’m in the middle of a dream
@@ -115,22 +115,22 @@ mv init.lua packer.lua
 そのまま`extensions`ディレクトリに置いておいてもいいし、どこか他のディレクトリに逃がしてあげてもいいです。
 
 あとは、このままでは次回の`nvim`起動時に「`init.lua`が無いぞー❗」って怒られてしまうので、
-新しいからっぽの`init.lua`を作成しておきましょう😉
+新しくからっぽの`init.lua`を作成しておきましょう😉
+
+~~~admonish quote title="extensions"
+```sh
+touch init.lua
+```
+~~~
 
 ~~~admonish note
-`~/.config/nvim/init.lua`の
+これが無いと、`~/.config/nvim/init.lua`の
 
 ```lua
 require('extensions')
 ```
 
 ...が、怒ってしまうわけですね。
-~~~
-
-~~~admonish quote title="extensions"
-```sh
-touch init.lua
-```
 ~~~
 
 これでだいじょうぶ😆
@@ -141,10 +141,10 @@ touch init.lua
 削除しておきましょう。
 
 ```admonish note
-こっちは`extensions/packer.lua`があれば、すぐ復元できるので消しちゃっても支障ないはずです。
+こっちは`extensions/packer.lua`があれば、すぐに復元できるので支障は無いはずです。
 ```
 
-`plugin`ディレクトリの中身が`packer_compiled.lua`のみであれば、ディレクトリごと削除しちゃても構いません😉
+`plugin`ディレクトリの中身が`packer_compiled.lua`のみであれば、ディレクトリごと削除しちゃって構いません😉
 
 ~~~admonish quote
 ```sh
@@ -153,7 +153,6 @@ rm -rf plugin
 
 ![rm-packer_compiled](img/rm-packer_compiled.webp)
 ~~~
-
 
 ~~~admonish warning
 もし他にファイルが存在しているようなら気をつけて❗
@@ -193,9 +192,9 @@ cd ~/.local/share/nvim
 
 ```admonish tip
 このディレクトリには`packer.nvim`本体も存在するので、
-このディレクトリを削除した後に`packer.nvim`を再度使用したい場合は`git clone`からやり直す必要があります。
+削除後、再び`packer.nvim`を再度使用したい場合は、`git clone`からやり直す必要があります。
 
-なので、慎重を期すのであればディレクトリ名を変えるだけでも良いです。
+慎重を期すのであれば、ディレクトリ名を変えるだけでも良いです。
 
 ![packer-temp](img/packer-temp.webp)
 ```
@@ -223,8 +222,8 @@ Lennon の友人である Maureen Cleav は「彼はほとんどいつまでも�
 
 ## 📦 Installation
 
-`packer.nvim`の時にはあらかじめ`git clone`での配置するよう促されていましたが、
-`lazy.nvim`は以下のコードを入れておくことによって、勝手にインストールしてくれます。
+`packer.nvim`の時にはあらかじめ`git clone`で配置しておくように案内されていましたが、
+`lazy.nvim`は以下のコードを入れておいてくれれば勝手にインストールしとくよ〜、と案内されています。
 
 ~~~admonish info title="[📦 Installation](https://github.com/folke/lazy.nvim#-installation)"
 You can add the following Lua code to your init.lua to bootstrap lazy.nvim:
@@ -262,7 +261,7 @@ require("lazy").setup()
 
 そしたら`nvim` を一度終了して再度起動してみましょう😆
 
-そしたらもう、コマンドから`Lazy`を呼び出せるはずです❗
+これだけでもう、コマンドから`Lazy`を呼び出せるはずです❗
 
 ![lazy-openn](img/lazy-open.webp)
 
@@ -295,7 +294,7 @@ I don’t mind, I think they’re crazy
 インストール後、:checkhealth lazyを実行することを推奨します。
 ```
 
-とのことなのでやっておきましょう。`:che`でも同じです😋
+...とのことなのでやっておきましょう。`:che`でも同じです😋
 
 ~~~admonish quote
 ```vi
@@ -319,9 +318,9 @@ I don’t mind, I think they’re crazy
 ```
 
 これまで`packer`で使っていたものをどうやって移行するかについては、
-[📦 Migration Guide](https://github.com/folke/lazy.nvim#-migration-guide) がとうの昔から用意されています❗
+[📦 Migration Guide](https://github.com/folke/lazy.nvim#-migration-guide) が用意されています❗
 
-冒頭でも触れましたが、移行は次の節で触れることにして、まずは基盤を作っていく流れにします😴
+冒頭でも触れましたが、**移行**は次の節で触れることにして、まずは基盤を作っていく流れにします😴
 
 ```admonish success title=""
 Running everywhere at such a speed
@@ -341,13 +340,15 @@ lazy.nvim comes with the following defaults:
 lazy.nvim のデフォルトは以下の通りです：
 ```
 
-わたしもまだ使い始めて日が浅いので深く見つめたわけではありませんが、
-なんか一個、すごい興味惹かれるやつありますね🤩
+わたしもまだ使い始めて日が浅いので、深く見つめたわけではありません。
+
+ただ、なんか一個すごい興味惹かれるやつありますね🤩
 
 ### 📊 performance
 
 こういうの大好き❗
 
+~~~admonish info title="defaults"
 ```lua
 {
   performance = {
@@ -374,6 +375,7 @@ lazy.nvim のデフォルトは以下の通りです：
   },
 }
 ```
+~~~
 
 #### 🔸 rtp
 
@@ -399,7 +401,7 @@ list any plugins you want to disable here
 無効にしたいプラグインをここに列挙する
 ```
 
-コメントアウトされているものを外してみましょう❗
+コメントアウトされているものをいくつか外してみましょう❗
 
 ~~~admonish example title="extensions/init.lua"
 ```lua
@@ -422,21 +424,27 @@ local opts = {
 ```
 ~~~
 
-ただ、上にある通り、わたしは以下の2つをコメントアウトのままにしています。
+わたしは以下の2つをコメントアウトのままにしています。
+
+```admonish note
+`disabled`をコメントアウトしたままにするので、`enabled`のままにするってことですね。
+
+...説明がややこしいですね😮
+```
 
 ###### ◽matchparen
 
-人によっては不要だと思うかもしれませんが、わたしはこれ好きなんですよねー😆
+人によっては不要だと思うかもしれませんが、わたしはこれ好きなんですよね〜😆
 
 [custom_highlights](../neovim/plugin/onenord.html#custom_highlights) でカスタマイズしているぐらいなので❗
 
 ###### ◽netrwPlugin
 
-これは「`nvim-tree`を使う場合は無効化しといてね」でお馴染みの [netrw](../neovim/plugin/nvim-tree.html#netrw) ですね😉
+これは「`nvim-tree`を使う場合は無効化しといてね」でお馴染みの [netrw](../neovim/plugin/nvim-tree.html#netrw) です😉
 
-もうすでに無効化するコードが入っているので、ここで改めて入れる必要はないなーって考えです。
+もうすでに無効化するコードが入っているので、ここでは必要はないかな〜っていう考え方です。
 
-ただ、どっちで無効化してもへーきなんじゃないかな⁉️
+まあ、どっちで無効化してもへーきなんじゃないかな⁉️
 
 ## 🧪 vim.loader
 
@@ -456,7 +464,7 @@ local opts = {
   ```
 ~~~
 
-これはもう素直にトップのトップに追加しておきましょう。
+これはもう素直に、トップのトップに追加しておきましょう😌
 
 ~~~admonish example title="~/.config/nvim/init.lua"
 ```lua
@@ -468,7 +476,7 @@ vim.loader.enable()
 ```txt
 vim.loader.enable()                                      vim.loader.enable()
   Enables the experimental Lua module loader:
-  実験的なLuaモジュールローダーを有効にする:
+  実験的な Lua モジュールローダーを有効にする:
 
   • overrides loadfile
     loadfile を上書きします。
@@ -504,7 +512,7 @@ And after all, I'm only sleeping
 
 ## 😴 Waiting for a sleepy feeling
 
-まあ、これだけやればぐっすり眠る準備はバッチリでしょう😉
+これだけやれば、ぐっすり眠る準備はバッチリでしょう😉
 
 次回は`Migration Guide`に従って`packer`からの完全移行を目指します❗
 
