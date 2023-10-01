@@ -20,7 +20,7 @@ jobs:
       - name: Setup mdBook
         uses: peaceiris/actions-mdbook@v1
         with:
-          mdbook-version: "0.4.34"
+          mdbook-version: "0.4.35"
 
       - name: Setup Bun
         uses: oven-sh/setup-bun@v1
