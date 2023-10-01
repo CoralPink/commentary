@@ -43,7 +43,7 @@ With lazy, this isn't needed for most of the Lua dependencies.
 They can be installed just like normal plugins (even with `lazy=true`) and will be loaded when other plugins need them.
 
 packer `wants` では、`require` と `after` を使って依存関係を管理できます。
-lazyを使えば、Luaの依存関係のほとんどは必要ありません。
+lazy を使えば、Lua の依存関係のほとんどは必要ありません。
 これらは通常のプラグインと同じように（`lazy=true`でも）インストールすることができ、
 他のプラグインがそれらを必要とするときにロードされます。
 ```
@@ -76,17 +76,17 @@ Oh, will you fight that feeling in your heart?
 いきなりちょっと捻くれたことしてるように見えるかもしれないんですが、わたしはこんな書き方にしてます。
 
 ~~~admonish example title="extensions/init.lua"
-新しく`plugins`という local 変数を置きます。中身はまだからっぽでへーきです😉
+新しく`plugins`という **local変数** を置きます。中身はまだ、からっぽでへーきです😉
 
 この節で示すコードは全部ここに入れていきます😌
 
 ```lua
 local plugins = {
-  -- ...
+
 }
 ```
 
-んで、ここは前回の [17.1 lazy.nvim - Configuration](./lazy.html#-configuration) で書いたコードですね。
+んで、ここは前回の [17.1 lazy.nvim - Configuration](./lazy.html#-configuration) で書いたコードがあって...、
 
 ```lua
 local opts = {
@@ -94,7 +94,7 @@ local opts = {
 }
 ```
 
-それから、[17.1 lazy.nvim - Installation](./lazy.html#-installation) のコードがあって...。
+あとは、[17.1 lazy.nvim - Installation](./lazy.html#-installation) のコードです。
 
 ```lua
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
@@ -132,7 +132,7 @@ require("lazy").setup()
 ### 🥁 Evacuate the packer.nvim
 
 ここまでで問題が無いようであれば、退避しておいた`packer.lua`からプラグインのリストを
-local 変数`plugins`の中に「どかっ❗」と持ってきましょう。
+**local変数** `plugins`の中に「どかっ❗」と持ってきましょう。
 
 いよいよお引越しっぽくなってきました😆
 
@@ -338,7 +338,7 @@ Use dependencies otherwise.
 
 ...というか、これは`packer`が器用すぎますよね〜。今さらなんですけど😅
 
-### 🧙🏽‍♂️ Friendly Snippets
+### 🧙🏽‍♂️ paths (Friendly Snippets)
 
 あと、`friendly-snippets.nvim`を管理下に置いている場合は、当然`path`も変わります。
 
@@ -375,7 +375,7 @@ Colorscheme プラグインは`lazy=true`で設定できます。
 > これを確実にするには、`priority=1000`フィールドを使用します。**_(例を参照してください)_**
 ```
 
-これももう仰せの通りに❗
+仰せの通りに❗
 
 ~~~admonish example title="extensions/init.lua"
 ```lua
@@ -389,7 +389,7 @@ Colorscheme プラグインは`lazy=true`で設定できます。
 ~~~
 
 ```admonish note
-それと、なんでかはよく分かんないんだけど、
+なんでかはよく分かんないんだけど、
 `onenord.nvim`を`dependencies`に入れてると、エラーになっちゃいます😨
 
 外しときましょう❗
@@ -398,14 +398,14 @@ Colorscheme プラグインは`lazy=true`で設定できます。
 ## 🚀 Usage
 
 ここまでの間に、もう`lazy`が起動時に自発的にインストールを始めてくれていたかもしれないんですが、
-ここまでくれば、全てのプラグインが元通りに動くようになったはずです❗
+これでようやく全てのプラグインが元通りに動くようになったはずです❗
 
 ![lazy-install](img/lazy-install.webp)
 
 ```admonish info title="[🚀 Usage](https://github.com/folke/lazy.nvim#-usage)"
-Plugins are managed with the ':Lazy' command. Open the help with '<?>' to see all the key mappings.
+Plugins are managed with the `:Lazy` command. Open the help with `<?>` to see all the key mappings.
 
-プラグインは':Lazy'コマンドで管理します。help を'<?>'で開くと、すべてのキーマッピングを見ることができます。
+プラグインは`:Lazy`コマンドで管理します。help を`<?>`で開くと、すべてのキーマッピングを見ることができます。
 
 You can press `<CR>` on a plugin to show its details.
 Most properties can be hovered with `<K>` to open links, help files, readmes, git commits and git issues.
@@ -431,9 +431,9 @@ Lazy can automatically check for updates in the background. This feature can be 
 ```admonish info title=""
 **lazy.nvim** provides a statusline component that you can use to show the number of pending updates.
 
-Make sure to enable `config.checker.enabled = true` to make this work.
-
 **lazy.nvim** は、保留中の更新の数を表示するために使用できるstatuslineコンポーネントを提供します。
+
+Make sure to enable `config.checker.enabled = true` to make this work.
 
 `config.checker.enabled=true`を有効にしてください。
 ```
@@ -475,7 +475,7 @@ require("lualine").setup({
 
 ![lazy-checker](img/lazy-checker.webp)
 
-このスクリーンショットではうっかり[nvim-notify](https://github.com/rcarriga/nvim-notify)を使ってるんですが、
+このスクリーンショットではうっかり [nvim-notify](https://github.com/rcarriga/nvim-notify) を使ってるんですが、
 改めて見たらこれ、なんかすっごい綺麗じゃない...❓
 
 うっとりしちゃった😊 次回はこれやろうかな...。
@@ -498,7 +498,7 @@ There's a love you can't hide
 `lockfile`は`git`などでバージョン管理を行っている場合や、
 複数のマシンでプラグインのバージョンを完全に同じにしたい場合に重宝する機能です。
 
-`lazy.nvim`が更新してくれるので、基本的に、私たちが触る必要はありません😉
+これは`lazy.nvim`が更新してくれるので、わたしたちが中身に触る必要はありません😉
 
 ```admonish info title="[🔒 Lockfile lazy-lock.json](https://github.com/folke/lazy.nvim#-lockfile-lazy-lockjson)"
 After every **update**, the local lockfile is updated with the installed revisions.
@@ -541,14 +541,16 @@ Great care has been taken to make the startup code (`lazy.core`) as efficient as
 During startup, all Lua files used before `VimEnter` or `BufReadPre` are byte-compiled and cached,
 similar to what [impatient.nvim](https://github.com/lewis6991/impatient.nvim) does.
 
-起動コード(lazy.core)を可能な限り効率的にするために細心の注意が払われています。
+起動コード(`lazy.core`)を可能な限り効率的にするために細心の注意が払われています。
 起動中、`VimEnter`や`BufReadPre`の前に使用される全ての Lua ファイルはバイトコンパイルされ、
 [impatient.nvim](https://github.com/lewis6991/impatient.nvim) と同様にキャッシュされます。
 
 My config for example loads in about `11ms` with `93` plugins. I do a lot of lazy-loading though :)
 
 例えば私の設定は約`11ms`で`93`のプラグインがロードされます。私は遅延ロードを多用していますが😃
+```
 
+```admonish info title=""
 **lazy.nvim** comes with an advanced profiler `:Lazy profile` to help you improve performance.
 The profiling view shows you why and how long it took to load your plugins.
 
@@ -564,7 +566,7 @@ The profiling view shows you why and how long it took to load your plugins.
 ```
 ~~~
 
-例えばわたしの設定は`33`のプラグインを使用して約`94ms`でロードされます。
+例えばわたしの設定は約`94ms`で`33`のプラグインがロードされます。
 
 ...。🙂
 
@@ -573,12 +575,14 @@ The profiling view shows you why and how long it took to load your plugins.
 なんかもう伸びしろと可能性しかないでしょう🤣
 
 ```admonish note
-でも、このままでもなんだか`packer`より起動がワンテンポ早くなった気がしません❓...しますね⁉️
+でも、このままでも`packer`より起動がワンテンポ早くなった気がしません❓...しますね⁉️
+
+するする❗ぜったいするわ❗❗
 ```
 
-ちゃんとお部屋をチューニングしていけばもっと早くなるはず❗
+あとはここから一個一個、丁寧にチューニングしていけばもっと早くなるはずです❗
 
-ってことで、あとは任せたよ❗❗
+...ってことで、あとは任せたよ😆
 
 ```admonish fail title=""
 So why do you fight that feeling in your heart?
@@ -600,11 +604,11 @@ The Beatles が Abbey Road のB面でとった、未完成の短い楽曲をつ�
 ああ、怠惰なダイナマイト
 ```
 
-うん。まじで`lazy`はダイナマイトでしたね...😵‍💫
+`lazy`はとってもダイナマイトでしたね...😵‍💫
 
-でもまあ、達成感はあるよね❗
+もう達成感がハンパないです😽
 
-乗り越えたんだもの。えらいぞ❗
+ちゃんと乗り越えたんだもの。えらいぞ❗
 
 ```admonish success
 ほらね、ちゃんと実るんだよ🤗
