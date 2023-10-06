@@ -90,7 +90,7 @@ jobs:
 
       - name: Generate The Sitemap
         id: sitemap
-        uses: cicirello/generate-sitemap@v1.9.1
+        uses: cicirello/generate-sitemap@v1.9.2
         with:
           path-to-root: ./book
           base-url-path: https://coralpink.github.io/commentary/
