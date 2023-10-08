@@ -176,7 +176,7 @@ cd ~/.local/share/nvim
 あらかじめ`nvim`からディレクトリを確認しておきましょう。
 
 ~~~admonish quote
-```vi
+```vim
 :echo stdpath("data")
 ```
 ~~~
@@ -265,7 +265,7 @@ require("lazy").setup()
 
 ![lazy-openn](img/lazy-open.webp)
 
-```vi
+```vim
 :Lazy
 ```
 
@@ -297,7 +297,7 @@ I don’t mind, I think they’re crazy
 ...とのことなのでやっておきましょう。`:che`でも同じです😋
 
 ~~~admonish quote
-```vi
+```vim
 :che lazy
 ```
 ~~~
