@@ -310,13 +310,13 @@ Use dependencies otherwise.
 -         {'rafamadriz/friendly-snippets', opt = true },
 -       }
 -     },
--   },
--   {
--     'zbirenbaum/copilot-cmp',
--     after = { 'copilot.lua' },
--     config = function() require('copilot_cmp').setup() end,
--   }
-  },
+-     {
+-       'zbirenbaum/copilot-cmp',
+-       after = { 'copilot.lua' },
+-       config = function() require('copilot_cmp').setup() end,
+-     }
+    }
+  }
 + {
 +   'L3MON4D3/LuaSnip',
 +   build = 'make install_jsregexp',
@@ -595,7 +595,7 @@ So why do you fight that feeling in your heart?
 ```admonish fail title=""
 Oh, lazy dynamite
 {{footnote: Lazy Dynamite(by [Paul McCartney and Wings](https://en.wikipedia.org/wiki/Paul_McCartney_and_Wings))
-The Beatles 解散後の Paul McCartney が、妻 Linda や Denny Laine らとともに結成したバンド、Wings の2作目のアルバムは
+The Beatles 解散後の Paul McCartney が、妻 Linda や Denny Laine らと共に結成したバンド、Wings の2作目のアルバムは
 Hold Me Tight、Lazy Dynamite、Hands of Love、Power Cut の11分のメドレーで終わる。
 The Beatles が Abbey Road のB面でとった、未完成の短い楽曲をつなげてメドレー形式にする手法を McCartney は1970年代以降も好んで使った。
 [Wikipedia](https://en.wikipedia.org/wiki/Red_Rose_Speedway)より
