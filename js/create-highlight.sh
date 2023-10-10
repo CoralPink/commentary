@@ -1,7 +1,7 @@
-git clone https://github.com/highlightjs/highlight.js.git -b 11.8.0 --depth 1
+git clone https://github.com/highlightjs/highlight.js.git -b 11.9.0 --depth 1
 cd highlight.js
 
 bun install
-bun tools/build.js -n bash diff json lua plaintext vim
+node tools/build.js -n bash diff json lua plaintext vim
 
 cd ..
