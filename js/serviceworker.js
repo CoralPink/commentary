@@ -116,7 +116,7 @@ self.addEventListener('fetch', async event => {
         cacheFirst({
           request: event.request,
           preloadResponsePromise: event.preloadResponse,
-          fallbackUrl: '/commentary/chrome-96x96.png'
+          fallbackUrl: '/commentary/chrome-96x96.png',
         }),
       );
     }
