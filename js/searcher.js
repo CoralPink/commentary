@@ -1,5 +1,3 @@
-'use strict';
-
 import markjs from 'mark.js';
 import { Fzf, extendedMatch } from 'fzf';
 
@@ -15,6 +13,8 @@ const main = () => {
   const ELEMTNT_WRAPPER = document.getElementById('search-wrapper');
   const ELEMENT_RESULTS = document.getElementById('searchresults');
   const ELEMENT_ICON = document.getElementById('search-toggle');
+
+  const PATH_TO_ROOT = document.getElementById('searcher').dataset.pathtoroot;
 
   const WEIGHT = 40;
 
@@ -69,7 +69,7 @@ const main = () => {
         idx += 1; // because we split at a two-char boundary '. '
       });
 
-    if (weighted.length == 0) {
+    if (weighted.length === 0) {
       return body;
     }
 
@@ -127,7 +127,7 @@ const main = () => {
         index = word[2];
       }
 
-      if (word[1] != WEIGHT) {
+      if (word[1] !== WEIGHT) {
         pushTeaser(word);
         continue;
       }
@@ -143,32 +143,19 @@ const main = () => {
     const url = docUrls[result.ref].split('#');
 
     // no anchor found
-    if (url.length == 1) {
+    if (url.length === 1) {
       url.push('');
     }
 
     const num = cnt + 1;
+    const encUri = encodeURIComponent(terms.join(' ')).replace(/\'/g, '%27');
 
     return (
-      '<a href="' +
-      document.getElementById('searcher').dataset.pathtoroot +
-      url[0] +
-      '?' +
-      URL_MARK_PARAM +
-      '=' +
-      encodeURIComponent(terms.join(' ')).replace(/\'/g, '%27') +
-      '#' +
-      url[1] +
-      '" aria-details="teaser_' +
-      num +
-      '">' +
-      result.doc.breadcrumbs +
-      '</a>' +
-      '<span class="teaser" id="teaser_' +
-      num +
-      '" aria-label="Search Result Teaser">' +
-      makeTeaser(result.doc.body, terms) +
-      '</span>'
+      `<a href="${PATH_TO_ROOT}${url[0]}?${URL_MARK_PARAM}=${encUri}#${url[1]}" aria-details="teaser_${num}">${result.doc.breadcrumbs}</a>` +
+      `<span class="teaser" id="teaser_${num}" aria-label="Search Result Teaser">${makeTeaser(
+        result.doc.body,
+        terms,
+      )}</span>`
     );
   };
 
@@ -231,7 +218,7 @@ const main = () => {
             });
           return ret;
         })(),
-        file: (a.pathname.match(/\/([^/?#]+)$/i) || [, ''])[1],
+        file: (a.pathname.match(/\/([^/?#]+)$/i) || [null, ''])[1],
         hash: a.hash.replace('#', ''),
         path: a.pathname.replace(/^([^/])/, '/$1'),
       };
@@ -253,7 +240,7 @@ const main = () => {
         const count = Math.min(results.length, resultsOptions.limit_results);
 
         document.getElementById('searchresults-header').innerText =
-          (results.length > count ? 'Over ' : '') + count + ' search results for: ' + term;
+          (results.length > count ? 'Over ' : '') + `${count} search results for: ${term}`;
 
         const terms = term.split(' ');
 
@@ -270,7 +257,7 @@ const main = () => {
 
       const term = ELEMENT_BAR.value.trim();
 
-      if (term != '') {
+      if (term !== '') {
         ELEMENT_BAR.classList.add('active');
         doSearch(term);
       } else {
@@ -285,7 +272,7 @@ const main = () => {
 
       delete url.params[URL_MARK_PARAM];
 
-      if (term == '') {
+      if (term === '') {
         delete url.params[URL_SEARCH_PARAM];
         return;
       }
@@ -297,7 +284,7 @@ const main = () => {
       'keyup',
       e => {
         if (ELEMTNT_WRAPPER.classList.contains('hidden')) {
-          if (e.key == 's' || e.key == 'S') {
+          if (e.key === 's' || e.key === 'S') {
             e.preventDefault();
             showSearch();
             window.scrollTo(0, 0);
@@ -306,7 +293,7 @@ const main = () => {
           return;
         }
 
-        if (e.key != 'Escape') {
+        if (e.key !== 'Escape') {
           keyUpHandler();
           return;
         }
@@ -329,17 +316,17 @@ const main = () => {
       // Check current URL for search request
       const url = parseURL(window.location.href);
 
-      if (url.params.hasOwnProperty.call(URL_SEARCH_PARAM) && url.params[URL_SEARCH_PARAM] != '') {
+      if (url.params.hasOwnProperty.call(URL_SEARCH_PARAM) && url.params[URL_SEARCH_PARAM] !== '') {
         showSearch();
 
-        ELEMENT_BAR.value = decodeURIComponent((url.params[URL_SEARCH_PARAM] + '').replace(/\+/g, '%20'));
+        ELEMENT_BAR.value = decodeURIComponent(url.params[URL_SEARCH_PARAM].replace(/\+/g, '%20'));
 
         keyUpHandler();
       } else {
         hiddenSearch();
       }
 
-      if (!url.params.hasOwnProperty(URL_MARK_PARAM)) {
+      if (!Object.prototype.hasOwnProperty.call(url.params, URL_MARK_PARAM)) {
         return;
       }
 
@@ -347,36 +334,28 @@ const main = () => {
         exclude: mark_exclude,
       });
 
-      document.querySelectorAll('mark').forEach(x => {
-        x.addEventListener('click', marker.unmark, { once: true, passive: true });
-      });
+      document
+        .querySelectorAll('mark')
+        .forEach(x => x.addEventListener('click', marker.unmark, { once: true, passive: true }));
     };
 
     // If the user uses the browser buttons, do the same as if a reload happened
     window.onpopstate = () => doSearchOrMarkFromUrl();
 
     // Suppress "submit" events so thje page doesn't reload when the user presses Enter
-    document.addEventListener(
-      'submit',
-      e => {
-        e.preventDefault();
-      },
-      { once: false, passive: false },
-    );
+    document.addEventListener('submit', e => e.preventDefault(), { once: false, passive: false });
 
     // If reloaded, do the search or mark again, depending on the current url parameters
     doSearchOrMarkFromUrl();
   };
 
-  const load = document.getElementById('searcher').dataset.pathtoroot + 'searchindex';
-
-  fetch(load + '.json')
+  fetch(`${PATH_TO_ROOT}searchindex.json`)
     .then(response => response.json())
     .then(json => init(json))
     .catch(() => {
       console.log('Try to load searchindex.js if fetch failed');
       const script = document.createElement('script');
-      script.src = load + '.js';
+      script.src = `${PATH_TO_ROOT}searchindex.js`;
       script.onload = () => init(search);
       document.head.appendChild(script);
     });
