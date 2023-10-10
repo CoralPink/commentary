@@ -1,5 +1,3 @@
-'use strict';
-
 import cljs from 'clipboard';
 import hljs from './highlight.js/build/highlight.js';
 
@@ -55,7 +53,7 @@ const initSideBar = () => {
     }
   };
 
-  const toggleSidebar = () => (toggleButton.getAttribute('aria-expanded') == 'true' ? hideSidebar() : showSidebar());
+  const toggleSidebar = () => (toggleButton.getAttribute('aria-expanded') === 'true' ? hideSidebar() : showSidebar());
 
   // Toggle sidebar
   toggleButton.addEventListener(
@@ -73,17 +71,17 @@ const initSideBar = () => {
         return;
       }
 
-      if (e.key == 't' || e.key == 'T') {
+      if (e.key === 't' || e.key === 'T') {
         e.preventDefault();
         toggleSidebar();
-      } else if (e.key == 'Escape') {
+      } else if (e.key === 'Escape') {
         hideSidebar();
       }
     },
     { once: false, passive: true },
   );
 
-  matchMedia(`(min-width: 1200px)`).addEventListener('change', event => {
+  matchMedia('(min-width: 1200px)').addEventListener('change', event => {
     if (event.matches) {
       showSidebar();
     }
@@ -238,21 +236,19 @@ const initThemeSelector = () => {
 
   themeToggleButton.addEventListener(
     'click',
-    () => {
-      themePopup.style.display === 'block' ? hideThemes() : showThemes();
-    },
+    () => (themePopup.style.display === 'block' ? hideThemes() : showThemes()),
     { once: false, passive: true },
   );
 
   const setTheme = theme => {
     const classList = document.querySelector('html').classList;
 
-    if (theme == classList.value) {
+    if (theme === classList.value) {
       return;
     }
 
     themePopup.querySelectorAll('.theme-selected').forEach(el => el.classList.remove('theme-selected'));
-    themePopup.querySelector('button#' + theme).classList.add('theme-selected');
+    themePopup.querySelector(`button#${theme}`).classList.add('theme-selected');
 
     classList.replace(classList.value, theme);
 
@@ -305,6 +301,7 @@ const initThemeSelector = () => {
     { once: false, passive: true },
   );
 };
+
 /*
 const touchControl = () => {
   let firstContact = null;
@@ -317,7 +314,7 @@ const touchControl = () => {
         time: Date.now(),
       };
     },
-    { once: false, passive: true }
+    { once: false, passive: true },
   );
 
   document.addEventListener(
@@ -346,7 +343,7 @@ const touchControl = () => {
         firstContact = null;
       }
     },
-    { once: false, passive: true }
+    { once: false, passive: true },
   );
 };
 */
@@ -360,7 +357,7 @@ const keyControl = () => {
         return;
       }
 
-      if (e.key == 'ArrowRight') {
+      if (e.key === 'ArrowRight') {
         e.preventDefault();
 
         const nextButton = document.querySelector('.content main .nav-chapters.next');
@@ -368,7 +365,7 @@ const keyControl = () => {
         if (nextButton) {
           window.location.href = nextButton.href;
         }
-      } else if (e.key == 'ArrowLeft') {
+      } else if (e.key === 'ArrowLeft') {
         e.preventDefault();
 
         const previousButton = document.querySelector('.content main .nav-chapters.previous');
