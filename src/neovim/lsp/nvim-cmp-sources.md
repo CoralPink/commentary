@@ -70,7 +70,7 @@ use {
 
 ~~~admonish example title="extensions/nvim-cmp.lua"
 ```diff
-  sources = {
+  sources = cmp.config.sources {
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
     { name = 'copilot' },
@@ -202,7 +202,7 @@ cmp.setup {
 
   (中略)
 
-  sources = {
+  sources = cmp.config.sources {
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
     { name = 'copilot' },
