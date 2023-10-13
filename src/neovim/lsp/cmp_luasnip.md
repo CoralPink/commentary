@@ -74,7 +74,7 @@ cmp.setup {
 
   -- (中略)
 
-  sources = {
+  sources = cmp.config.sources {
     { name = 'nvim_lsp' },
 +   { name = 'luasnip' },
   },

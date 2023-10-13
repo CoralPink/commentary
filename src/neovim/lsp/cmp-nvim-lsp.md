@@ -126,7 +126,7 @@ cmp.setup {
 
   },
 
-+ sources = {
++ sources = cmp.config.sources {
 +   { name = 'nvim_lsp' },
 + },
 }
