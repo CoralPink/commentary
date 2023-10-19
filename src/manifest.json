@@ -42,6 +42,12 @@
       "type": "image/webp",
       "sizes": "662x540",
       "form_factor": "narrow"
+    },
+    {
+      "src": "goal.webp",
+      "type": "image/webp",
+      "sizes": "662x540",
+      "form_factor": "wide"
     }
   ]
 }
