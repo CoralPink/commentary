@@ -175,7 +175,7 @@ const main = () => {
   };
 
   const init = config => {
-    const marker = new markjs(document.querySelector('main'));
+    const marker = new markjs(document.querySelector('.content main'));
     const mark_exclude = [];
 
     resultsOptions = config.results_options;
