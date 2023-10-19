@@ -6,22 +6,29 @@ init().then(() => {
   attribute_external_links();
 });
 
-const initSideBar = () => {
+const writeLocalStorage = (keyName, keyValue) => {
+  try {
+    localStorage.setItem(keyName, keyValue);
+  } catch (e) {
+    console.log(`ERROR: ${keyName} ${keyValue}\n${e}`);
+  }
+};
+
+// initialize sidebar.
+(() => {
   const page = document.getElementById('page');
   const sidebar = document.getElementById('sidebar');
   const toggleButton = document.getElementById('sidebar-toggle');
 
   const active = sidebar.querySelector('.active');
 
-  const toggleSection = ev => {
-    ev.currentTarget.parentElement.classList.toggle('expanded');
-  };
+  const toggleSection = ev => ev.currentTarget.parentElement.classList.toggle('expanded');
 
   Array.from(sidebar.querySelectorAll('a.toggle')).forEach(el => {
     el.addEventListener('click', toggleSection, { once: false, passive: true });
   });
 
-  const showSidebar = () => {
+  const showSidebar = (write = true) => {
     page.style.display = 'grid';
     sidebar.style.display = 'block';
     sidebar.style.visibility = 'visible';
@@ -32,37 +39,27 @@ const initSideBar = () => {
       active.scrollIntoView({ block: 'center' });
     }
 
-    try {
-      localStorage.setItem('mdbook-sidebar', 'visible');
-    } catch (_e) {
-      console.log('ERROR: showSidebar');
+    if (write) {
+      writeLocalStorage('mdbook-sidebar', 'visible');
     }
   };
 
-  const hideSidebar = () => {
+  const hideSidebar = (write = true) => {
     page.style.display = 'block';
     sidebar.style.display = 'none';
     sidebar.style.visibility = 'hidden';
     sidebar.setAttribute('aria-hidden', true);
     toggleButton.setAttribute('aria-expanded', false);
 
-    try {
-      localStorage.setItem('mdbook-sidebar', 'hidden');
-    } catch (_e) {
-      console.log('ERROR: hideSidebar');
+    if (write) {
+      writeLocalStorage('mdbook-sidebar', 'hidden');
     }
   };
 
   const toggleSidebar = () => (toggleButton.getAttribute('aria-expanded') === 'true' ? hideSidebar() : showSidebar());
 
   // Toggle sidebar
-  toggleButton.addEventListener(
-    'click',
-    () => {
-      toggleSidebar();
-    },
-    { once: false, passive: true },
-  );
+  toggleButton.addEventListener('click', () => toggleSidebar(), { once: false, passive: true });
 
   document.addEventListener(
     'keyup',
@@ -93,13 +90,13 @@ const initSideBar = () => {
     return;
   }
 
-  localStorage.getItem('mdbook-sidebar') === 'hidden' ? hideSidebar() : showSidebar();
-};
+  localStorage.getItem('mdbook-sidebar') === 'hidden' ? hideSidebar(false) : showSidebar(false);
+})();
 
 const initCodeBlock = () => {
-  const main = document.querySelector('.content main');
+  const contentmain = document.querySelector('.content main');
 
-  Array.from(main.querySelectorAll('code'))
+  Array.from(contentmain.querySelectorAll('code'))
     // Don't highlight `inline code` blocks in headers.
     .filter(node => !node.parentElement.classList.contains('header'))
     .forEach(block => block.classList.add('hljs'));
@@ -110,16 +107,12 @@ const initCodeBlock = () => {
   });
   hljs.highlightAll();
 
-  Array.from(main.querySelectorAll('pre code')).forEach(block => {
+  Array.from(contentmain.querySelectorAll('pre code')).forEach(block => {
     const pre_block = block.parentNode;
 
-    let buttons = pre_block.querySelector('.buttons');
-
-    if (!buttons) {
-      buttons = document.createElement('div');
-      buttons.className = 'buttons';
-      pre_block.insertBefore(buttons, pre_block.firstChild);
-    }
+    const buttons = document.createElement('div');
+    buttons.className = 'buttons';
+    pre_block.insertBefore(buttons, pre_block.firstChild);
 
     const clipButton = document.createElement('button');
     clipButton.className = 'fa-copy clip-button';
@@ -129,7 +122,9 @@ const initCodeBlock = () => {
 
     buttons.insertBefore(clipButton, buttons.firstChild);
   });
+};
 
+const initClipboard = () => {
   const hideTooltip = elem => {
     elem.firstChild.innerText = '';
     elem.className = 'fa-copy clip-button';
@@ -138,31 +133,22 @@ const initCodeBlock = () => {
   const showTooltip = (elem, msg) => {
     elem.firstChild.innerText = msg;
     elem.className = 'fa-copy tooltipped';
-  };
 
-  Array.from(main.querySelectorAll('pre .clip-button')).forEach(clipButton => {
-    clipButton.addEventListener(
-      'mouseout',
-      e => {
-        hideTooltip(e.currentTarget);
-      },
-      { once: false, passive: true },
-    );
-  });
+    setTimeout(() => hideTooltip(elem), 1200);
+  };
 
   const clipboardSnippets = new cljs('.clip-button', {
     text: trigger => {
-      hideTooltip(trigger);
       return trigger.closest('pre').querySelector('code').innerText;
     },
   });
 
-  clipboardSnippets.on('success', e => {
-    e.clearSelection();
-    showTooltip(e.trigger, 'Copied!');
+  clipboardSnippets.on('success', elem => {
+    elem.clearSelection();
+    showTooltip(elem.trigger, 'Copied!');
   });
 
-  clipboardSnippets.on('error', e => showTooltip(e.trigger, 'Clipboard error!'));
+  clipboardSnippets.on('error', elem => showTooltip(elem.trigger, 'Clipboard error!'));
 };
 
 const createTableOfContents = () => {
@@ -202,9 +188,10 @@ const createTableOfContents = () => {
       });
     },
     {
-      root: document.querySelector('content'),
+      root: document.getElementById('#content'),
     },
   );
+  const pagetoc = document.getElementsByClassName('pagetoc')[0];
 
   document.querySelectorAll('.content a.header').forEach(el => {
     observer.observe(el);
@@ -215,7 +202,7 @@ const createTableOfContents = () => {
     link.href = el.href;
     link.classList.add(el.parentElement.tagName);
 
-    document.getElementsByClassName('pagetoc')[0].appendChild(link);
+    pagetoc.appendChild(link);
     tocMap.set(el, link);
   });
 };
@@ -252,11 +239,7 @@ const initThemeSelector = () => {
 
     classList.replace(classList.value, theme);
 
-    try {
-      localStorage.setItem('mdbook-theme', theme);
-    } catch (_e) {
-      console.log('ERROR: setTheme#mdbook-theme');
-    }
+    writeLocalStorage('mdbook-theme', theme);
 
     setTimeout(() => {
       document.querySelector('meta[name="theme-color"]').content = window.getComputedStyle(
@@ -382,8 +365,9 @@ const keyControl = () => {
 document.addEventListener(
   'DOMContentLoaded',
   () => {
-    initCodeBlock();
     createTableOfContents();
+    initCodeBlock();
+    initClipboard();
     initThemeSelector();
 
     keyControl();
@@ -391,5 +375,3 @@ document.addEventListener(
   },
   { once: true, passive: true },
 );
-
-initSideBar();
