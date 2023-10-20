@@ -1,4 +1,3 @@
-import cljs from 'clipboard';
 import hljs from './highlight.js/build/highlight.js';
 
 import init, { attribute_external_links } from './wasm_book.js';
@@ -125,30 +124,28 @@ const initCodeBlock = () => {
 };
 
 const initClipboard = () => {
-  const hideTooltip = elem => {
-    elem.firstChild.innerText = '';
-    elem.className = 'fa-copy clip-button';
+  const copyProc = trigger => {
+    const elem = trigger.target;
+
+    const hideTooltip = () => {
+      elem.firstChild.innerText = '';
+      elem.className = 'fa-copy clip-button';
+    };
+
+    const showTooltip = msg => {
+      elem.firstChild.innerText = msg;
+      elem.className = 'fa-copy tooltipped';
+
+      setTimeout(() => hideTooltip(elem), 1200);
+    };
+
+    navigator.clipboard.writeText(elem.closest('pre').querySelector('code').innerText).then(
+      () => showTooltip('Copied!'),
+      () => showTooltip('Failed...'),
+    );
   };
 
-  const showTooltip = (elem, msg) => {
-    elem.firstChild.innerText = msg;
-    elem.className = 'fa-copy tooltipped';
-
-    setTimeout(() => hideTooltip(elem), 1200);
-  };
-
-  const clipboardSnippets = new cljs('.clip-button', {
-    text: trigger => {
-      return trigger.closest('pre').querySelector('code').innerText;
-    },
-  });
-
-  clipboardSnippets.on('success', elem => {
-    elem.clearSelection();
-    showTooltip(elem.trigger, 'Copied!');
-  });
-
-  clipboardSnippets.on('error', elem => showTooltip(elem.trigger, 'Clipboard error!'));
+  document.querySelectorAll('.clip-button').forEach(el => el.addEventListener('click', copyProc));
 };
 
 const createTableOfContents = () => {
