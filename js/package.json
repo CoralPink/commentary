@@ -1,6 +1,5 @@
 {
   "dependencies": {
-    "clipboard": "^2.0.11",
     "fzf": "^0.5.2",
     "mark.js": "^8.11.1"
   }
