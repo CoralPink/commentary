@@ -95,11 +95,7 @@ const writeLocalStorage = (keyName, keyValue) => {
 const initCodeBlock = () => {
   const contentmain = document.querySelector('.content main');
 
-  const code = Array.from(contentmain.querySelectorAll('code'))
-    // Don't highlight `inline code` blocks in headers.
-    .filter(node => !node.parentElement.classList.contains('header'))
-
-  for (const x of code) {
+  for (const x of contentmain.querySelectorAll('code')) {
     x.classList.add('hljs');
   }
 
