@@ -42,32 +42,28 @@ const main = () => {
     let idx = 0;
     let found = false;
 
-    body
-      .toLowerCase()
-      .split('. ') // split in sentences, then words
-      .forEach(x => {
-        const words = x.split(' ');
-        value = 8;
+    for (const x of body.toLowerCase().split('. ')) {
+      // split in sentences, then words
+      const words = x.split(' ');
+      value = 8;
 
-        words.forEach(y => {
-          if (y.length > 0) {
-            terms
-              .map(w => elasticlunr.stemmer(w.toLowerCase()))
-              .forEach(z => {
-                if (elasticlunr.stemmer(y).startsWith(z)) {
-                  value = WEIGHT;
-                  found = true;
-                }
-              });
-            weighted.push([y, value, idx]);
-            value = 2;
+      for (const y of words) {
+        if (y.length <= 0) {
+          for (const z of terms.map(w => elasticlunr.stemmer(w.toLowerCase()))) {
+            if (elasticlunr.stemmer(y).startsWith(z)) {
+              value = WEIGHT;
+              found = true;
+            }
           }
-          idx += y.length;
-          idx += 1; // ' ' or '.' if last word in sentence
-        });
+          weighted.push([y, value, idx]);
+          value = 2;
+        }
+        idx += y.length;
+        idx += 1; // ' ' or '.' if last word in sentence
+      }
 
-        idx += 1; // because we split at a two-char boundary '. '
-      });
+      idx += 1; // because we split at a two-char boundary '. '
+    }
 
     if (weighted.length === 0) {
       return body;
@@ -171,7 +167,10 @@ const main = () => {
     if (ELEMENT_RESULTS.length == null) {
       return;
     }
-    ELEMENT_RESULTS.children.forEach(x => x.classList.remove('focus'));
+
+    for (x of ELEMENT_RESULTS.children) {
+      x => x.classList.remove('focus');
+    }
   };
 
   const init = config => {
@@ -334,9 +333,9 @@ const main = () => {
         exclude: mark_exclude,
       });
 
-      document
-        .querySelectorAll('mark')
-        .forEach(x => x.addEventListener('click', marker.unmark, { once: true, passive: true }));
+      for (const x of document.querySelectorAll('mark')) {
+        x.addEventListener('click', marker.unmark, { once: true, passive: true });
+      }
     };
 
     // If the user uses the browser buttons, do the same as if a reload happened

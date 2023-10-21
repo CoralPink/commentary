@@ -23,9 +23,9 @@ const writeLocalStorage = (keyName, keyValue) => {
 
   const toggleSection = ev => ev.currentTarget.parentElement.classList.toggle('expanded');
 
-  Array.from(sidebar.querySelectorAll('a.toggle')).forEach(el => {
+  for (const el of sidebar.querySelectorAll('a.toggle')) {
     el.addEventListener('click', toggleSection, { once: false, passive: true });
-  });
+  }
 
   const showSidebar = (write = true) => {
     page.style.display = 'grid';
@@ -95,10 +95,13 @@ const writeLocalStorage = (keyName, keyValue) => {
 const initCodeBlock = () => {
   const contentmain = document.querySelector('.content main');
 
-  Array.from(contentmain.querySelectorAll('code'))
+  const code = Array.from(contentmain.querySelectorAll('code'))
     // Don't highlight `inline code` blocks in headers.
     .filter(node => !node.parentElement.classList.contains('header'))
-    .forEach(block => block.classList.add('hljs'));
+
+  for (const x of code) {
+    x.classList.add('hljs');
+  }
 
   // Syntax highlighting Configuration
   hljs.configure({
@@ -106,7 +109,7 @@ const initCodeBlock = () => {
   });
   hljs.highlightAll();
 
-  Array.from(contentmain.querySelectorAll('pre code')).forEach(block => {
+  for (const block of contentmain.querySelectorAll('pre code')) {
     const pre_block = block.parentNode;
 
     const buttons = document.createElement('div');
@@ -120,7 +123,7 @@ const initCodeBlock = () => {
     clipButton.innerHTML = '<i class="tooltiptext"></i>';
 
     buttons.insertBefore(clipButton, buttons.firstChild);
-  });
+  }
 };
 
 const initClipboard = () => {
@@ -145,7 +148,9 @@ const initClipboard = () => {
     );
   };
 
-  document.querySelectorAll('.clip-button').forEach(el => el.addEventListener('click', copyProc));
+  for (const el of document.querySelectorAll('.clip-button')) {
+    el.addEventListener('click', copyProc);
+  }
 };
 
 const createTableOfContents = () => {
@@ -164,12 +169,12 @@ const createTableOfContents = () => {
     let count = 0;
     let active = null;
 
-    tocMap.forEach(key => {
-      if (key.classList.contains('active')) {
+    for (const x of tocMap.values()) {
+      if (x.classList.contains('active')) {
         count++;
-        active = key;
+        active = x;
       }
-    });
+    }
 
     if (count <= 1) {
       onlyActive = active;
@@ -180,9 +185,9 @@ const createTableOfContents = () => {
 
   const observer = new IntersectionObserver(
     entries => {
-      entries.forEach(x => {
+      for (const x of entries) {
         x.isIntersecting ? addActive(x) : removeActive(x);
-      });
+      }
     },
     {
       root: document.getElementById('#content'),
@@ -190,7 +195,7 @@ const createTableOfContents = () => {
   );
   const pagetoc = document.getElementsByClassName('pagetoc')[0];
 
-  document.querySelectorAll('.content a.header').forEach(el => {
+  for (const el of document.querySelectorAll('.content a.header')) {
     observer.observe(el);
 
     const link = document.createElement('a');
@@ -201,7 +206,7 @@ const createTableOfContents = () => {
 
     pagetoc.appendChild(link);
     tocMap.set(el, link);
-  });
+  }
 };
 
 const initThemeSelector = () => {
@@ -231,7 +236,9 @@ const initThemeSelector = () => {
       return;
     }
 
-    themePopup.querySelectorAll('.theme-selected').forEach(el => el.classList.remove('theme-selected'));
+    for (const el of themePopup.querySelectorAll('.theme-selected')) {
+      el.classList.remove('theme-selected');
+    }
     themePopup.querySelector(`button#${theme}`).classList.add('theme-selected');
 
     classList.replace(classList.value, theme);

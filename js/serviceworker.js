@@ -110,7 +110,7 @@ self.addEventListener('install', event => {
 });
 
 self.addEventListener('fetch', async event => {
-  CACHE_USE.forEach(x => {
+  for (const x of CACHE_USE) {
     if (event.request.url.startsWith(x)) {
       event.respondWith(
         cacheFirst({
@@ -120,5 +120,5 @@ self.addEventListener('fetch', async event => {
         }),
       );
     }
-  });
+  }
 });
