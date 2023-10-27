@@ -111,3 +111,4 @@
 - [Outroduction](outro/outroduction.md)
   - [lazy.nvim](outro/lazy.md)
     - [Migration Guide](outro/lazy-migration-guide.md)
+  - [nvim-notify](outro/nvim-notify.md)
