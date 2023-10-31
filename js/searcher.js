@@ -158,6 +158,7 @@ const main = () => {
   const showSearch = () => {
     ELEMTNT_WRAPPER.classList.remove('hidden');
     ELEMENT_ICON.setAttribute('aria-expanded', 'true');
+    ELEMENT_BAR.select();
   };
 
   const hiddenSearch = () => {
@@ -181,17 +182,14 @@ const main = () => {
     searchOptions = config.search_options;
     docUrls = config.doc_urls;
 
+    // Suppress "submit" events so thje page doesn't reload when the user presses Enter
+    document.addEventListener('submit', e => e.preventDefault(), { once: false, passive: false });
+
     // Eventhandler for search icon
     ELEMENT_ICON.addEventListener(
-      'click',
+      'mouseup',
       () => {
-        if (!ELEMTNT_WRAPPER.classList.contains('hidden')) {
-          hiddenSearch();
-          return;
-        }
-        showSearch();
-        window.scrollTo(0, 0);
-        ELEMENT_BAR.select();
+        ELEMTNT_WRAPPER.classList.contains('hidden') ? showSearch() : hiddenSearch();
       },
       { once: false, passive: true },
     );
@@ -286,8 +284,6 @@ const main = () => {
           if (e.key === 's' || e.key === 'S') {
             e.preventDefault();
             showSearch();
-            window.scrollTo(0, 0);
-            ELEMENT_BAR.select();
           }
           return;
         }
@@ -313,36 +309,21 @@ const main = () => {
     // On reload or browser history backwards/forwards events, parse the url and do search or mark
     const doSearchOrMarkFromUrl = () => {
       // Check current URL for search request
-      const url = parseURL(window.location.href);
+      const url = parseURL(window.location.href).params;
 
-      if (url.params.hasOwnProperty.call(URL_SEARCH_PARAM) && url.params[URL_SEARCH_PARAM] !== '') {
-        showSearch();
-
-        ELEMENT_BAR.value = decodeURIComponent(url.params[URL_SEARCH_PARAM].replace(/\+/g, '%20'));
-
-        keyUpHandler();
-      } else {
-        hiddenSearch();
-      }
-
-      if (!Object.prototype.hasOwnProperty.call(url.params, URL_MARK_PARAM)) {
+      if (!Object.prototype.hasOwnProperty.call(url, URL_MARK_PARAM)) {
         return;
       }
+      ELEMENT_BAR.value = url[URL_MARK_PARAM];
 
-      marker.mark(decodeURIComponent(url.params[URL_MARK_PARAM]).split(' '), {
+      marker.mark(decodeURIComponent(url[URL_MARK_PARAM]).split(' '), {
         exclude: mark_exclude,
       });
 
       for (const x of document.querySelectorAll('mark')) {
-        x.addEventListener('click', marker.unmark, { once: true, passive: true });
+        x.addEventListener('mousedown', marker.unmark, { once: true, passive: true });
       }
     };
-
-    // If the user uses the browser buttons, do the same as if a reload happened
-    window.onpopstate = () => doSearchOrMarkFromUrl();
-
-    // Suppress "submit" events so thje page doesn't reload when the user presses Enter
-    document.addEventListener('submit', e => e.preventDefault(), { once: false, passive: false });
 
     // If reloaded, do the search or mark again, depending on the current url parameters
     doSearchOrMarkFromUrl();
