@@ -21,12 +21,6 @@ const writeLocalStorage = (keyName, keyValue) => {
 
   const active = sidebar.querySelector('.active');
 
-  const toggleSection = ev => ev.currentTarget.parentElement.classList.toggle('expanded');
-
-  for (const el of sidebar.querySelectorAll('a.toggle')) {
-    el.addEventListener('click', toggleSection, { once: false, passive: true });
-  }
-
   const showSidebar = (write = true) => {
     page.style.display = 'grid';
     sidebar.style.display = 'block';
@@ -58,7 +52,7 @@ const writeLocalStorage = (keyName, keyValue) => {
   const toggleSidebar = () => (toggleButton.getAttribute('aria-expanded') === 'true' ? hideSidebar() : showSidebar());
 
   // Toggle sidebar
-  toggleButton.addEventListener('click', () => toggleSidebar(), { once: false, passive: true });
+  toggleButton.addEventListener('mousedown', () => toggleSidebar(), { once: false, passive: true });
 
   document.addEventListener(
     'keyup',
@@ -93,32 +87,11 @@ const writeLocalStorage = (keyName, keyValue) => {
 })();
 
 const initCodeBlock = () => {
-  // Syntax highlighting Configuration
   hljs.configure({
     languages: ['txt'],
   });
   hljs.highlightAll();
 
-  const contentmain = document.querySelector('.content main');
-
-  for (const block of contentmain.querySelectorAll('pre code')) {
-    const pre_block = block.parentNode;
-
-    const buttons = document.createElement('div');
-    buttons.className = 'buttons';
-    pre_block.insertBefore(buttons, pre_block.firstChild);
-
-    const clipButton = document.createElement('button');
-    clipButton.className = 'fa-copy clip-button';
-    clipButton.title = 'Copy to clipboard';
-    clipButton.setAttribute('aria-label', clipButton.title);
-    clipButton.innerHTML = '<i class="tooltiptext"></i>';
-
-    buttons.insertBefore(clipButton, buttons.firstChild);
-  }
-};
-
-const initClipboard = () => {
   const copyProc = trigger => {
     const elem = trigger.target;
 
@@ -140,8 +113,24 @@ const initClipboard = () => {
     );
   };
 
-  for (const el of document.querySelectorAll('.clip-button')) {
-    el.addEventListener('click', copyProc);
+  const clip = document.createElement('button');
+
+  clip.className = 'fa-copy clip-button';
+  clip.setAttribute('aria-label', 'Copy to clipboard');
+  clip.innerHTML = '<i class="tooltiptext"></i>';
+
+  for (const block of document.querySelector('.content main').querySelectorAll('pre code')) {
+    if (block.classList.contains('language-txt')) {
+      continue;
+    }
+
+    const buttons = document.createElement('div');
+    buttons.className = 'buttons';
+    buttons.insertBefore(document.importNode(clip, true), buttons.firstChild);
+    buttons.addEventListener('mousedown', copyProc);
+
+    const parent = block.parentNode;
+    parent.insertBefore(buttons, parent.firstChild);
   }
 };
 
@@ -206,6 +195,8 @@ const initThemeSelector = () => {
   const themePopup = document.getElementById('theme-list');
   const themeToggleButton = document.getElementById('theme-toggle');
 
+  let firstShow = true;
+
   const hideThemes = () => {
     themePopup.style.display = 'none';
     themeToggleButton.setAttribute('aria-expanded', false);
@@ -214,10 +205,28 @@ const initThemeSelector = () => {
   const showThemes = () => {
     themePopup.style.display = 'block';
     themeToggleButton.setAttribute('aria-expanded', true);
+
+    // TODO: This funny code is because Firefox still won't let me use Popover (by default)!
+    if (firstShow) {
+      document.addEventListener(
+        'mousedown',
+        e => {
+          if (
+            themePopup.style.display === 'block' &&
+            !themeToggleButton.contains(e.target) &&
+            !themePopup.contains(e.target)
+          ) {
+            hideThemes();
+          }
+        },
+        { once: false, passive: true },
+      );
+      firstShow = false;
+    }
   };
 
   themeToggleButton.addEventListener(
-    'click',
+    'mousedown',
     () => (themePopup.style.display === 'block' ? hideThemes() : showThemes()),
     { once: false, passive: true },
   );
@@ -244,21 +253,7 @@ const initThemeSelector = () => {
     }, 1);
   };
 
-  themePopup.addEventListener('click', e => setTheme(e.target.id), { once: false, passive: true });
-
-  document.addEventListener(
-    'click',
-    e => {
-      if (
-        themePopup.style.display === 'block' &&
-        !themeToggleButton.contains(e.target) &&
-        !themePopup.contains(e.target)
-      ) {
-        hideThemes();
-      }
-    },
-    { once: false, passive: true },
-  );
+  themePopup.addEventListener('mousedown', e => setTheme(e.target.id), { once: false, passive: true });
 };
 
 const keyControl = () => {
@@ -298,7 +293,6 @@ document.addEventListener(
     createTableOfContents();
 
     initCodeBlock();
-    initClipboard();
     initThemeSelector();
 
     keyControl();
