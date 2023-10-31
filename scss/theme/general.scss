@@ -32,8 +32,14 @@ body {
 }
 
 code {
+  display: inline;
   font-family: var.$mono-font !important;
   font-size: var.$code-font-size;
+  font-weight: 500;
+  color: var(--inline-code-color);
+  background-color: var(--quote-bg);
+  padding: 0.1rem 0.3rem;
+  border-radius: 0.2rem;
 }
 
 .table-wrapper {
@@ -125,17 +131,6 @@ pre {
   }
 }
 
-:not(pre) {
-  & > .hljs {
-    display: inline;
-    font-weight: 500;
-    padding: 0.1rem 0.3rem;
-    border-radius: 0.2rem;
-    color: var(--inline-code-color);
-    background-color: var(--quote-bg);
-  }
-}
-
 @media (pointer: coarse) {
   pre > .buttons button {
     padding: 0.4rem 1rem; // On mobile, make it easier to tap buttons.
@@ -157,11 +152,12 @@ blockquote {
 
 kbd {
   background-color: var(--table-border-color);
-  border-radius: 0.4rem;
+  border-radius: 0.3rem;
   box-shadow: inset 0 -0.1rem 0 var(--theme-hover);
   display: inline-block;
   font-size: var.$code-font-size;
   font-family: var.$mono-font;
-  padding: 0.3rem 0.4rem;
+  margin: 0 0.1rem;
+  padding: 0.2rem 0.3rem;
   vertical-align: top;
 }

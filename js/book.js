@@ -93,17 +93,13 @@ const writeLocalStorage = (keyName, keyValue) => {
 })();
 
 const initCodeBlock = () => {
-  const contentmain = document.querySelector('.content main');
-
-  for (const x of contentmain.querySelectorAll('code')) {
-    x.classList.add('hljs');
-  }
-
   // Syntax highlighting Configuration
   hljs.configure({
     languages: ['txt'],
   });
   hljs.highlightAll();
+
+  const contentmain = document.querySelector('.content main');
 
   for (const block of contentmain.querySelectorAll('pre code')) {
     const pre_block = block.parentNode;
@@ -189,6 +185,7 @@ const createTableOfContents = () => {
       root: document.getElementById('#content'),
     },
   );
+
   const pagetoc = document.getElementsByClassName('pagetoc')[0];
 
   for (const el of document.querySelectorAll('.content a.header')) {
@@ -225,51 +222,30 @@ const initThemeSelector = () => {
     { once: false, passive: true },
   );
 
-  const setTheme = theme => {
-    const classList = document.querySelector('html').classList;
+  const setTheme = next => {
+    const htmlClass = document.querySelector('html').classList;
+    const current = htmlClass.value;
 
-    if (theme === classList.value) {
+    if (next === current) {
       return;
     }
 
-    for (const el of themePopup.querySelectorAll('.theme-selected')) {
-      el.classList.remove('theme-selected');
-    }
-    themePopup.querySelector(`button#${theme}`).classList.add('theme-selected');
-
-    classList.replace(classList.value, theme);
-
-    writeLocalStorage('mdbook-theme', theme);
+    htmlClass.replace(current, next);
 
     setTimeout(() => {
+      document.getElementById(current).classList.remove('theme-selected');
+      document.getElementById(next).classList.add('theme-selected');
+
       document.querySelector('meta[name="theme-color"]').content = window.getComputedStyle(
         document.body,
       ).backgroundColor;
+
+      writeLocalStorage('mdbook-theme', next);
     }, 1);
   };
 
-  themePopup.addEventListener(
-    'click',
-    e => {
-      if (e.target.className === 'theme') {
-        setTheme(e.target.id);
-      }
-    },
-    { once: false, passive: true },
-  );
+  themePopup.addEventListener('click', e => setTheme(e.target.id), { once: false, passive: true });
 
-  themePopup.addEventListener(
-    'focusout',
-    e => {
-      // e.relatedTarget is null in Safari and Firefox on macOS (see workaround below)
-      if (!!e.relatedTarget && !themeToggleButton.contains(e.relatedTarget) && !themePopup.contains(e.relatedTarget)) {
-        hideThemes();
-      }
-    },
-    { once: false, passive: true },
-  );
-
-  // Should not be needed, but it works around an issue on macOS & iOS: https://github.com/rust-lang/mdBook/issues/628
   document.addEventListener(
     'click',
     e => {
@@ -284,52 +260,6 @@ const initThemeSelector = () => {
     { once: false, passive: true },
   );
 };
-
-/*
-const touchControl = () => {
-  let firstContact = null;
-
-  document.addEventListener(
-    'touchstart',
-    e => {
-      firstContact = {
-        x: e.touches[0].clientX,
-        time: Date.now(),
-      };
-    },
-    { once: false, passive: true },
-  );
-
-  document.addEventListener(
-    'touchmove',
-    e => {
-      if (!firstContact) {
-        return;
-      }
-
-      if (Date.now() - firstContact.time > 250) {
-        return;
-      }
-      const curX = e.touches[0].clientX;
-      const xDiff = curX - firstContact.x;
-
-      if (Math.abs(xDiff) >= 150) {
-        if (xDiff >= 0) {
-          if (firstContact.x < Math.min(document.body.clientWidth * 0.25, 300)) {
-            showSidebar();
-          }
-        } else {
-          if (curX < 300) {
-            hideSidebar();
-          }
-        }
-        firstContact = null;
-      }
-    },
-    { once: false, passive: true },
-  );
-};
-*/
 
 const keyControl = () => {
   // chapterNavigation
@@ -366,12 +296,12 @@ document.addEventListener(
   'DOMContentLoaded',
   () => {
     createTableOfContents();
+
     initCodeBlock();
     initClipboard();
     initThemeSelector();
 
     keyControl();
-    //touchControl();
   },
   { once: true, passive: true },
 );
