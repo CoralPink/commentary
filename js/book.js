@@ -104,7 +104,7 @@ const initCodeBlock = () => {
       elem.firstChild.innerText = msg;
       elem.className = 'fa-copy tooltipped';
 
-      setTimeout(() => hideTooltip(elem), 1200);
+      setTimeout(hideTooltip, 1200);
     };
 
     navigator.clipboard.writeText(elem.closest('pre').querySelector('code').innerText).then(
