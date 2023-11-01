@@ -309,24 +309,6 @@ a > .hljs {
       }
     }
 
-    & > a.toggle {
-      cursor: pointer;
-      display: block;
-      margin-left: auto;
-      padding: 0 1.2rem;
-      opacity: 0.68;
-      font-style: normal;
-
-      div {
-        transition: transform 0.5s;
-      }
-    }
-
-    // collapse the section
-    &:not(.expanded) + li > ol {
-      display: none;
-    }
-
     &.part-title {
       color: var(--sidebar-fg);
       margin: 1.2rem auto 0.2rem;
@@ -335,10 +317,6 @@ a > .hljs {
       background-repeat: no-repeat;
       background-size: 100% 0.1rem;
       background-position: bottom;
-    }
-
-    &.expanded > a.toggle div {
-      transform: rotate(90deg);
     }
   }
 }
