@@ -92,6 +92,11 @@ const initCodeBlock = () => {
   });
   hljs.highlightAll();
 
+  // capture hover event in iOS
+  if (window.ontouchstart !== undefined) {
+    document.addEventListener("touchstart", () => {}, { once: false, passive: true });
+  }
+
   const copyProc = trigger => {
     const elem = trigger.target;
 
