@@ -69,7 +69,7 @@ brew install starship
 
 ~~~admonish example title=".zshrc"
 ```sh
-`eval "$(starship init zsh)"`
+eval "$(starship init zsh)"
 ```
 ~~~
 
