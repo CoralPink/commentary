@@ -1,6 +1,5 @@
-import hljs from './highlight.js/build/highlight.js';
-
 import init, { attribute_external_links } from './wasm_book.js';
+
 init().then(() => {
   attribute_external_links();
 });
@@ -87,14 +86,9 @@ const writeLocalStorage = (keyName, keyValue) => {
 })();
 
 const initCodeBlock = () => {
-  hljs.configure({
-    languages: ['txt'],
-  });
-  hljs.highlightAll();
-
   // capture hover event in iOS
   if (window.ontouchstart !== undefined) {
-    document.addEventListener("touchstart", () => {}, { once: false, passive: true });
+    document.addEventListener('touchstart', () => {}, { once: false, passive: true });
   }
 
   const copyProc = trigger => {
@@ -124,17 +118,28 @@ const initCodeBlock = () => {
   clip.setAttribute('aria-label', 'Copy to clipboard');
   clip.innerHTML = '<i class="tooltiptext"></i>';
 
-  for (const block of document.querySelector('.content main').querySelectorAll('pre code')) {
-    if (block.classList.contains('language-txt')) {
+  for (const code of document.querySelector('.content main').querySelectorAll('pre code')) {
+    code.classList.add('hljs');
+
+    if (code.classList.contains('language-txt')) {
       continue;
     }
+
+    const worker = new Worker('/commentary/hl-worker.js');
+
+    worker.onmessage = ev => {
+      code.innerHTML = ev.data;
+      worker.terminate();
+    };
+
+    worker.postMessage([code.textContent, code.classList[0]]);
 
     const buttons = document.createElement('div');
     buttons.className = 'buttons';
     buttons.insertBefore(document.importNode(clip, true), buttons.firstChild);
     buttons.addEventListener('mousedown', copyProc);
 
-    const parent = block.parentNode;
+    const parent = code.parentNode;
     parent.insertBefore(buttons, parent.firstChild);
   }
 };
