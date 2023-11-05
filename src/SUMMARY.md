@@ -1,6 +1,7 @@
 # Summary
 
 - [Introduction](index.md)
+  - [Acknowledgments](acknowledments.md)
 
 # WezTerm
 

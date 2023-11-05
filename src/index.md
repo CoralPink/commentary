@@ -48,7 +48,7 @@ But Japanese only for now. I want to make an English site too❗
 
 ## Personal Thoughts on AI Applications
 
-```admonish abstract title=""
+```admonish info title=""
 このサイトは、基本的にわたし自身や多くの人の創作・制作で成り立っていますが、以下の2つの点でAIを活用しています。
 
 - AI翻訳ツールを使っています。
@@ -61,7 +61,7 @@ But Japanese only for now. I want to make an English site too❗
 競争ではなく、共存こそ目指すべき形であると思います❗
 ```
 
-```admonish abstract title=""
+```admonish info title=""
 This site is essentially built on the creation and production of myself and many others, but uses AI in the following two respects.
 
 - We use AI translation tools.
@@ -73,36 +73,4 @@ as I can only handle Japanese.
 However, I am against "those who try to compare AI and humans side by side”.
 
 I believe that coexistence, not competition, is the form we should be aiming for❗
-```
-
-## Thanks
-
-**Thanks to application developers!! I enjoy using it💓**
-
-```admonish info title=""
-[WezTerm - Wez's Terminal Emulator](https://wezfurlong.org/wezterm/)
-
-[Neovim - hyperextensible Vim-based text editor](https://neovim.io)
-
-[starship - cross-shell prompt](https://starship.rs)
-
-[プログラミングフォント Firge (ファージ)](https://github.com/yuru7/Firge)
-```
-
-**And thanks to the developers of the applications used to create this website🤗**
-
-```admonish info title=""
-[mdBook](https://rust-lang.github.io/mdBook/)
-
-[Catppuccin for mdBook](https://github.com/catppuccin/mdbook)
-
-[mdbook-admonish](https://github.com/tommilligan/mdbook-admonish)
-
-[mdBook-pagetoc](https://github.com/JorelAli/mdBook-pagetoc)
-
-[actions-mdbook](https://github.com/peaceiris/actions-mdbook)
-
-[generate-sitemap](https://github.com/cicirello/generate-sitemap)
-
-[DeepL](https://www.deepl.com/translator)
 ```
