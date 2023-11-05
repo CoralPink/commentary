@@ -119,8 +119,6 @@ const initCodeBlock = () => {
   clip.innerHTML = '<i class="tooltiptext"></i>';
 
   for (const code of document.querySelector('.content main').querySelectorAll('pre code')) {
-    code.classList.add('hljs');
-
     if (code.classList.contains('language-txt')) {
       continue;
     }
