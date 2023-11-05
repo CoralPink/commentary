@@ -1,10 +1,5 @@
 @use '../variables' as var;
 
-.hljs {
-  display: block;
-  overflow-x: auto;
-}
-
 .page {
   // For the style attribute, display: grid or block is added from the JS code.
   // (Specify an initial value to prevent layout shift on PC.)
@@ -86,8 +81,7 @@
 
 #searchresults a,
 .content main a:link,
-a:visited,
-a > .hljs {
+a:visited {
   color: var(--links);
 }
 

@@ -118,6 +118,9 @@ pre {
   }
 
   & > code {
+    display: block;
+    overflow-x: auto;
+
     padding: 0.7rem;
   }
 
