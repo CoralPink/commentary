@@ -9,13 +9,12 @@ pub fn make_teaser(body: &str, terms: Vec<String>, count: usize) -> String {
 
     let mut weighted: Vec<(String, u32, usize)> = Vec::new();
 
-    let mut value = 0;
     let mut idx = 0;
     let mut found = false;
 
     for x in body.to_lowercase().split(". ") {
         let words: Vec<&str> = x.split(' ').collect();
-        value = 8;
+        let mut value = 8;
 
         for y in words {
             if y.is_empty() {
@@ -43,33 +42,30 @@ pub fn make_teaser(body: &str, terms: Vec<String>, count: usize) -> String {
     }
 
     let window_size = std::cmp::min(weighted.len(), count);
-    let window_weight = {
-        let mut ret = Vec::new();
-        let mut sum = 0;
-
-        for i in 0..window_size {
-            sum += weighted[i].1;
-        }
-
-        ret.push(sum);
-
-        for i in 0..weighted.len() - window_size {
-            sum -= weighted[i].1;
-            sum += weighted[i + window_size].1;
-
-            ret.push(sum);
-        }
-        ret
-    };
-
     let max_sum_window_index = {
-        if !found {
-            0
-        } else {
-            let mut max_sum = 0;
+        if found {
             let mut ret = 0;
+            let mut max_sum = 0;
 
-            // backwards
+            let window_weight = {
+                let mut ret = Vec::new();
+                let mut sum = 0;
+
+                for x in weighted.iter().take(window_size) {
+                    sum += x.1;
+                }
+
+                ret.push(sum);
+
+                for i in 0..weighted.len() - window_size {
+                    sum -= weighted[i].1;
+                    sum += weighted[i + window_size].1;
+
+                    ret.push(sum);
+                }
+                ret
+            };
+
             for i in (0..window_weight.len()).rev() {
                 if window_weight[i] > max_sum {
                     max_sum = window_weight[i];
@@ -77,14 +73,16 @@ pub fn make_teaser(body: &str, terms: Vec<String>, count: usize) -> String {
                 }
             }
             ret
+        } else {
+            0
         }
     };
 
     let mut teaser = Vec::new();
     let mut index = weighted[max_sum_window_index].2;
 
-    for i in max_sum_window_index..max_sum_window_index + window_size {
-        let word = &weighted[i];
+    for (_, idx) in (max_sum_window_index..max_sum_window_index + window_size).enumerate() {
+        let word = &weighted[idx];
 
         // missing text from index to the start of `word`
         if index < word.2 {
