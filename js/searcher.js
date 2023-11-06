@@ -1,6 +1,8 @@
 import markjs from 'mark.js';
 import { Fzf, extendedMatch } from 'fzf';
 
+import wasmInit, { make_teaser } from './wasm_book.js';
+
 // Search functionality
 //
 // You can use !hasFocus() to prevent keyhandling in your key
@@ -15,8 +17,6 @@ const main = () => {
   const ELEMENT_ICON = document.getElementById('search-toggle');
 
   const PATH_TO_ROOT = document.getElementById('searcher').dataset.pathtoroot;
-
-  const WEIGHT = 40;
 
   let docUrls = [];
 
@@ -33,126 +33,6 @@ const main = () => {
       body: { boost: 1 },
       breadcrumbs: { boost: 0 },
     },
-  };
-
-  const makeTeaser = (body, terms) => {
-    const weighted = []; // contains elements of ["word", weight, index_in_document]
-
-    let value = 0;
-    let idx = 0;
-    let found = false;
-
-    for (const x of body.toLowerCase().split('. ')) {
-      // split in sentences, then words
-      const words = x.split(' ');
-      value = 8;
-
-      for (const y of words) {
-        if (y.length <= 0) {
-          for (const z of terms.map(w => elasticlunr.stemmer(w.toLowerCase()))) {
-            if (elasticlunr.stemmer(y).startsWith(z)) {
-              value = WEIGHT;
-              found = true;
-            }
-          }
-          weighted.push([y, value, idx]);
-          value = 2;
-        }
-        idx += y.length;
-        idx += 1; // ' ' or '.' if last word in sentence
-      }
-
-      idx += 1; // because we split at a two-char boundary '. '
-    }
-
-    if (weighted.length === 0) {
-      return body;
-    }
-
-    const window_size = Math.min(weighted.length, resultsOptions.teaser_word_count);
-    const window_weight = (() => {
-      const ret = [];
-      let sum = 0;
-
-      for (let i = 0; i < window_size; i++) {
-        sum += weighted[i][1];
-      }
-
-      ret.push(sum);
-
-      for (let i = 0; i < weighted.length - window_size; i++) {
-        sum -= weighted[i][1];
-        sum += weighted[i + window_size][1];
-
-        ret.push(sum);
-      }
-      return ret;
-    })();
-
-    const max_sum_window_index = (() => {
-      if (!found) {
-        return 0;
-      }
-      let max_sum = 0;
-      let ret = 0;
-
-      // backwards
-      for (let i = window_weight.length - 1; i >= 0; i--) {
-        if (window_weight[i] > max_sum) {
-          max_sum = window_weight[i];
-          ret = i;
-        }
-      }
-      return ret;
-    })();
-
-    const teaser = [];
-    let index = weighted[max_sum_window_index][2];
-
-    const pushTeaser = word => {
-      index = word[2] + word[0].length;
-      teaser.push(body.substring(word[2], index));
-    };
-
-    for (let i = max_sum_window_index; i < max_sum_window_index + window_size; i++) {
-      const word = weighted[i];
-
-      // missing text from index to start of `word`
-      if (index < word[2]) {
-        teaser.push(body.substring(index, word[2]));
-        index = word[2];
-      }
-
-      if (word[1] !== WEIGHT) {
-        pushTeaser(word);
-        continue;
-      }
-      teaser.push('<em>');
-      pushTeaser(word);
-      teaser.push('</em>');
-    }
-    return teaser.join('');
-  };
-
-  const formatResult = (cnt, result, terms) => {
-    // The ?URL_MARK_PARAM= parameter belongs inbetween the page and the #heading-anchor
-    const url = docUrls[result.ref].split('#');
-
-    // no anchor found
-    if (url.length === 1) {
-      url.push('');
-    }
-
-    const num = cnt + 1;
-    const encUri = encodeURIComponent(terms.join(' ')).replace(/\'/g, '%27');
-
-    return (
-      `<a href="${PATH_TO_ROOT}${url[0]}?${URL_MARK_PARAM}=${encUri}#${url[1]}" aria-details="teaser_${num}">${result.doc.breadcrumbs}</a>` +
-      `<span class="teaser" id="teaser_${num}" aria-label="Search Result Teaser">${makeTeaser(
-        result.doc.body,
-        terms,
-      )}</span>`
-    );
   };
 
   const showSearch = () => {
@@ -230,6 +110,27 @@ const main = () => {
       };
 
       const doSearch = term => {
+        const formatResult = (cnt, result, terms) => {
+          // The ?URL_MARK_PARAM= parameter belongs inbetween the page and the #heading-anchor
+          const url = docUrls[result.ref].split('#');
+
+          // no anchor found
+          if (url.length === 1) {
+            url.push('');
+          }
+
+          const num = cnt + 1;
+          const encUri = encodeURIComponent(terms.join(' ')).replace(/\'/g, '%27');
+
+          return (
+            `<a href="${PATH_TO_ROOT}${url[0]}?${URL_MARK_PARAM}=${encUri}#${url[1]}" aria-details="teaser_${num}">${result.doc.breadcrumbs}</a>` +
+            `<span class="teaser" id="teaser_${num}" aria-label="Search Result Teaser">${make_teaser(
+              result.doc.body,
+              terms,
+            )}</span>`
+          );
+        };
+
         removeChildren(ELEMENT_RESULTS);
 
         // Do the actual search
@@ -386,6 +287,7 @@ const fzfInit = () => {
     return;
   }
   window.search = window.search || {};
+  wasmInit();
 
   document.addEventListener(
     'DOMContentLoaded',
