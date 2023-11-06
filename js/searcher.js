@@ -164,7 +164,7 @@ const main = () => {
       'keyup',
       e => {
         if (ELEMTNT_WRAPPER.classList.contains('hidden')) {
-          if (e.key === 's' || e.key === 'S') {
+          if (e.key === '/' || e.key === 's' || e.key === 'S') {
             e.preventDefault();
             showSearch();
           }
