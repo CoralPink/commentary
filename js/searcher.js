@@ -68,9 +68,7 @@ const main = () => {
     // Eventhandler for search icon
     ELEMENT_ICON.addEventListener(
       'mouseup',
-      () => {
-        ELEMTNT_WRAPPER.classList.contains('hidden') ? showSearch() : hiddenSearch();
-      },
+      () => (ELEMTNT_WRAPPER.classList.contains('hidden') ? showSearch() : hiddenSearch()),
       { once: false, passive: true },
     );
 
@@ -103,79 +101,63 @@ const main = () => {
 
     // Eventhandler for keyevents while the searchbar is focused
     const keyUpHandler = () => {
-      const removeChildren = elem => {
-        while (elem.firstChild) {
-          elem.removeChild(elem.firstChild);
-        }
-      };
-
-      const doSearch = term => {
-        const formatResult = (cnt, result, terms) => {
-          // The ?URL_MARK_PARAM= parameter belongs inbetween the page and the #heading-anchor
-          const url = docUrls[result.ref].split('#');
-
-          // no anchor found
-          if (url.length === 1) {
-            url.push('');
-          }
-
-          const num = cnt + 1;
-          const encUri = encodeURIComponent(terms.join(' ')).replace(/\'/g, '%27');
-
-          return (
-            `<a href="${PATH_TO_ROOT}${url[0]}?${URL_MARK_PARAM}=${encUri}#${url[1]}" aria-details="teaser_${num}">${result.doc.breadcrumbs}</a>` +
-            `<span class="teaser" id="teaser_${num}" aria-label="Search Result Teaser">${make_teaser(
-              result.doc.body,
-              terms,
-            )}</span>`
-          );
-        };
-
-        removeChildren(ELEMENT_RESULTS);
-
-        // Do the actual search
-        const results = elasticlunr.Index.load(config.index).search(term, searchOptions);
-        const count = Math.min(results.length, resultsOptions.limit_results);
-
-        document.getElementById('searchresults-header').innerText =
-          (results.length > count ? 'Over ' : '') + `${count} search results for: ${term}`;
-
-        const terms = term.split(' ');
-
-        for (let i = 0; i < count; i++) {
-          const resultElem = document.createElement('li');
-          resultElem.innerHTML = formatResult(i, results[i], terms);
-
-          ELEMENT_RESULTS.appendChild(resultElem);
-        }
-
-        // Display results
-        document.getElementById('searchresults-outer').classList.remove('hidden');
-      };
-
-      const term = ELEMENT_BAR.value.trim();
-
-      if (term !== '') {
-        ELEMENT_BAR.classList.add('active');
-        doSearch(term);
-      } else {
-        ELEMENT_BAR.classList.remove('active');
-        document.getElementById('searchresults-outer').classList.add('hidden');
-        removeChildren(ELEMENT_RESULTS);
+      // remove children
+      while (ELEMENT_RESULTS.firstChild) {
+        ELEMENT_RESULTS.removeChild(ELEMENT_RESULTS.firstChild);
       }
-      marker.unmark();
 
       // Update current url with ?URL_SEARCH_PARAM= parameter, remove ?URL_MARK_PARAM and #heading-anchor .
       const url = parseURL(window.location.href);
-
       delete url.params[URL_MARK_PARAM];
 
+      const term = ELEMENT_BAR.value.trim();
+
       if (term === '') {
+        ELEMENT_BAR.classList.remove('active');
+        document.getElementById('searchresults-outer').classList.add('hidden');
         delete url.params[URL_SEARCH_PARAM];
         return;
       }
+
       url.params[URL_SEARCH_PARAM] = term;
       url.hash = '';
+
+      ELEMENT_BAR.classList.add('active');
+
+      const formatResult = (num, result) => {
+        const url = docUrls[result.ref].split('#'); // The ?URL_MARK_PARAM= parameter belongs inbetween the page and the #heading-anchor
+
+        if (url.length === 1) {
+          url.push(''); // no anchor found
+        }
+
+        const terms = term.split(' ');
+        const encUri = encodeURIComponent(terms.join(' ')).replace(/\'/g, '%27');
+
+        const teaser = make_teaser(result.doc.body, terms);
+
+        return (
+          `<a href="${PATH_TO_ROOT}${url[0]}?${URL_MARK_PARAM}=${encUri}#${url[1]}" aria-details="teaser_${num}">${result.doc.breadcrumbs}</a>` +
+          `<span class="teaser" id="teaser_${num}" aria-label="Search Result Teaser">${teaser}</span>`
+        );
+      };
+
+      // Do the actual search
+      const results = elasticlunr.Index.load(config.index).search(term, searchOptions);
+      const count = Math.min(results.length, resultsOptions.limit_results);
+
+      for (let i = 0; i < count; i++) {
+        const resultElem = document.createElement('li');
+        resultElem.innerHTML = formatResult(i + 1, results[i]);
+
+        ELEMENT_RESULTS.appendChild(resultElem);
+      }
+
+      // Display results
+      document.getElementById('searchresults-header').innerText =
+        (results.length > count ? 'Over ' : '') + `${count} search results for: ${term}`;
+
+      document.getElementById('searchresults-outer').classList.remove('hidden');
     };
 
     document.addEventListener(
