@@ -3,11 +3,7 @@ import { Fzf, extendedMatch } from 'fzf';
 
 import wasmInit, { make_teaser } from './wasm_book.js';
 
-// Search functionality
-//
-// You can use !hasFocus() to prevent keyhandling in your key
-// event handlers while the user is typing their search.
-const main = () => {
+const searchMain = () => {
   const URL_SEARCH_PARAM = 'search';
   const URL_MARK_PARAM = 'highlight';
 
@@ -44,18 +40,9 @@ const main = () => {
   const hiddenSearch = () => {
     ELEMTNT_WRAPPER.classList.add('hidden');
     ELEMENT_ICON.setAttribute('aria-expanded', 'false');
-
-    if (ELEMENT_RESULTS.length == null) {
-      return;
-    }
-
-    for (x of ELEMENT_RESULTS.children) {
-      x => x.classList.remove('focus');
-    }
   };
 
   const init = config => {
-    const marker = new markjs(document.querySelector('.content main'));
     const mark_exclude = [];
 
     resultsOptions = config.results_options;
@@ -164,27 +151,18 @@ const main = () => {
       'keyup',
       e => {
         if (ELEMTNT_WRAPPER.classList.contains('hidden')) {
-          if (e.key === '/' || e.key === 's' || e.key === 'S') {
-            e.preventDefault();
-            showSearch();
+          switch (e.key) {
+            case '/':
+            case 's':
+            case 'S':
+              e.preventDefault();
+              showSearch();
+              break;
           }
           return;
         }
 
-        if (e.key !== 'Escape') {
-          keyUpHandler();
-          return;
-        }
-        hiddenSearch();
-
-        // hacky, but just focusing a div only works once
-        const tmp = document.createElement('input');
-
-        tmp.setAttribute('style', 'position: absolute; opacity: 0;');
-        ELEMENT_ICON.appendChild(tmp);
-
-        tmp.focus();
-        tmp.remove();
+        e.key !== 'Escape' ? keyUpHandler() : hiddenSearch();
       },
       { once: false, passive: true },
     );
@@ -194,10 +172,12 @@ const main = () => {
       // Check current URL for search request
       const url = parseURL(window.location.href).params;
 
-      if (!Object.prototype.hasOwnProperty.call(url, URL_MARK_PARAM)) {
+      if (!Object.hasOwn(url, URL_MARK_PARAM)) {
         return;
       }
       ELEMENT_BAR.value = url[URL_MARK_PARAM];
+
+      const marker = new markjs(document.querySelector('.content main'));
 
       marker.mark(decodeURIComponent(url[URL_MARK_PARAM]).split(' '), {
         exclude: mark_exclude,
@@ -219,12 +199,12 @@ const main = () => {
       console.log('Try to load searchindex.js if fetch failed');
       const script = document.createElement('script');
       script.src = `${PATH_TO_ROOT}searchindex.js`;
-      script.onload = () => init(search);
+      script.onload = () => init(window.search);
       document.head.appendChild(script);
     });
 
   // Exported functions
-  search.hasFocus = () => ELEMENT_BAR === document.activeElement;
+  window.search.hasFocus = () => ELEMENT_BAR === document.activeElement;
 };
 
 /**
@@ -275,7 +255,7 @@ const fzfInit = () => {
     'DOMContentLoaded',
     () => {
       fzfInit();
-      main();
+      searchMain();
     },
     { once: true, passive: true },
   );

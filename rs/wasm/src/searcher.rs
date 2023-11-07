@@ -1,5 +1,3 @@
-extern crate rust_stemmers;
-
 use rust_stemmers::{Algorithm, Stemmer};
 use wasm_bindgen::prelude::*;
 
@@ -81,9 +79,7 @@ pub fn make_teaser(body: &str, terms: Vec<String>, count: usize) -> String {
     let mut teaser = Vec::new();
     let mut index = weighted[max_sum_window_index].2;
 
-    for (_, idx) in (max_sum_window_index..max_sum_window_index + window_size).enumerate() {
-        let word = &weighted[idx];
-
+    for word in weighted.iter().skip(max_sum_window_index).take(window_size) {
         // missing text from index to the start of `word`
         if index < word.2 {
             teaser.push(&body[index..word.2]);
