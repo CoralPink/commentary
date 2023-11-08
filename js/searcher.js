@@ -4,8 +4,7 @@ import { Fzf, extendedMatch } from 'fzf';
 import wasmInit, { make_teaser } from './wasm_book.js';
 
 const searchMain = () => {
-  const URL_SEARCH_PARAM = 'search';
-  const URL_MARK_PARAM = 'highlight';
+  const PARAM_HIGHLIGHT = 'highlight';
 
   const ELEMENT_BAR = document.getElementById('searchbar');
   const ELEMTNT_WRAPPER = document.getElementById('search-wrapper');
@@ -14,7 +13,8 @@ const searchMain = () => {
 
   const PATH_TO_ROOT = document.getElementById('searcher').dataset.pathtoroot;
 
-  let docUrls = [];
+  // Exported functions
+  window.search.hasFocus = () => ELEMENT_BAR === document.activeElement;
 
   let resultsOptions = {
     teaser_word_count: 30,
@@ -47,7 +47,6 @@ const searchMain = () => {
 
     resultsOptions = config.results_options;
     searchOptions = config.search_options;
-    docUrls = config.doc_urls;
 
     // Suppress "submit" events so thje page doesn't reload when the user presses Enter
     document.addEventListener('submit', e => e.preventDefault(), { once: false, passive: false });
@@ -59,33 +58,6 @@ const searchMain = () => {
       { once: false, passive: true },
     );
 
-    // Helper to parse a url into its building blocks.
-    const parseURL = url => {
-      const a = document.createElement('a');
-      a.href = url;
-
-      return {
-        source: url,
-        protocol: a.protocol.replace(':', ''),
-        host: a.hostname,
-        port: a.port,
-        params: (() => {
-          const ret = {};
-          a.search
-            .replace(/^\?/, '')
-            .split('&')
-            .filter(x => {
-              const s = x.split('=');
-              ret[s[0]] = s[1];
-            });
-          return ret;
-        })(),
-        file: (a.pathname.match(/\/([^/?#]+)$/i) || [null, ''])[1],
-        hash: a.hash.replace('#', ''),
-        path: a.pathname.replace(/^([^/])/, '/$1'),
-      };
-    };
-
     // Eventhandler for keyevents while the searchbar is focused
     const keyUpHandler = () => {
       // remove children
@@ -93,26 +65,15 @@ const searchMain = () => {
         ELEMENT_RESULTS.removeChild(ELEMENT_RESULTS.firstChild);
       }
 
-      // Update current url with ?URL_SEARCH_PARAM= parameter, remove ?URL_MARK_PARAM and #heading-anchor .
-      const url = parseURL(window.location.href);
-      delete url.params[URL_MARK_PARAM];
-
       const term = ELEMENT_BAR.value.trim();
 
       if (term === '') {
-        ELEMENT_BAR.classList.remove('active');
         document.getElementById('searchresults-outer').classList.add('hidden');
-        delete url.params[URL_SEARCH_PARAM];
         return;
       }
 
-      url.params[URL_SEARCH_PARAM] = term;
-      url.hash = '';
-
-      ELEMENT_BAR.classList.add('active');
-
       const formatResult = (num, result) => {
-        const url = docUrls[result.ref].split('#'); // The ?URL_MARK_PARAM= parameter belongs inbetween the page and the #heading-anchor
+        const url = config.doc_urls[result.ref].split('#'); // The ?PARAM_HIGHLIGHT= parameter belongs inbetween the page and the #heading-anchor
 
         if (url.length === 1) {
           url.push(''); // no anchor found
@@ -124,7 +85,7 @@ const searchMain = () => {
         const teaser = make_teaser(result.doc.body, terms);
 
         return (
-          `<a href="${PATH_TO_ROOT}${url[0]}?${URL_MARK_PARAM}=${encUri}#${url[1]}" aria-details="teaser_${num}">${result.doc.breadcrumbs}</a>` +
+          `<a href="${PATH_TO_ROOT}${url[0]}?${PARAM_HIGHLIGHT}=${encUri}#${url[1]}" aria-details="teaser_${num}">${result.doc.breadcrumbs}</a>` +
           `<span class="teaser" id="teaser_${num}" aria-label="Search Result Teaser">${teaser}</span>`
         );
       };
@@ -147,6 +108,49 @@ const searchMain = () => {
       document.getElementById('searchresults-outer').classList.remove('hidden');
     };
 
+    // On reload or browser history backwards/forwards events, parse the url and do search or mark
+    const doSearchOrMarkFromUrl = () => {
+      const search = new URL(window.location.href).search;
+
+      if (!search) {
+        return;
+      }
+
+      const params = {};
+
+      for (const pair of search.replace(/^\?/, '').split('&')) {
+        const [key, value] = pair.split('=');
+
+        if (key) {
+          params[key] = value;
+        }
+      }
+
+      if (!Object.hasOwn(params, PARAM_HIGHLIGHT)) {
+        return;
+      }
+
+      const markStr = decodeURIComponent(params[PARAM_HIGHLIGHT]);
+
+      if (markStr === undefined) {
+        return;
+      }
+      ELEMENT_BAR.value = markStr;
+
+      const marker = new markjs(document.querySelector('.content main'));
+
+      marker.mark(decodeURIComponent(markStr).split(' '), {
+        exclude: mark_exclude,
+      });
+
+      for (const x of document.querySelectorAll('mark')) {
+        x.addEventListener('mousedown', marker.unmark, { once: true, passive: true });
+      }
+    };
+
+    // If reloaded, do the search or mark again, depending on the current url parameters
+    doSearchOrMarkFromUrl();
+
     document.addEventListener(
       'keyup',
       e => {
@@ -166,30 +170,6 @@ const searchMain = () => {
       },
       { once: false, passive: true },
     );
-
-    // On reload or browser history backwards/forwards events, parse the url and do search or mark
-    const doSearchOrMarkFromUrl = () => {
-      // Check current URL for search request
-      const url = parseURL(window.location.href).params;
-
-      if (!Object.hasOwn(url, URL_MARK_PARAM)) {
-        return;
-      }
-      ELEMENT_BAR.value = url[URL_MARK_PARAM];
-
-      const marker = new markjs(document.querySelector('.content main'));
-
-      marker.mark(decodeURIComponent(url[URL_MARK_PARAM]).split(' '), {
-        exclude: mark_exclude,
-      });
-
-      for (const x of document.querySelectorAll('mark')) {
-        x.addEventListener('mousedown', marker.unmark, { once: true, passive: true });
-      }
-    };
-
-    // If reloaded, do the search or mark again, depending on the current url parameters
-    doSearchOrMarkFromUrl();
   };
 
   fetch(`${PATH_TO_ROOT}searchindex.json`)
@@ -202,9 +182,6 @@ const searchMain = () => {
       script.onload = () => init(window.search);
       document.head.appendChild(script);
     });
-
-  // Exported functions
-  window.search.hasFocus = () => ELEMENT_BAR === document.activeElement;
 };
 
 /**
