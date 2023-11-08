@@ -1,6 +1,6 @@
-import init, { attribute_external_links } from './wasm_book.js';
+import wasmInit, { attribute_external_links } from './wasm_book.js';
 
-init().then(() => {
+wasmInit().then(() => {
   attribute_external_links();
 });
 
