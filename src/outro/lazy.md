@@ -255,7 +255,6 @@ vim.opt.rtp:prepend(lazypath)
 
 ```lua
 require("lazy").setup()
-
 ```
 ~~~
 
@@ -459,9 +458,9 @@ local opts = {
   Luaファイルをバイトコンパイルしてキャッシュする新しい実験的な`vim.loader`を追加。
   この新しいローダーを有効にするには、`init.lua`の先頭に以下を追加します。
 
-  ```lua
-    vim.loader.enable()
-  ```
+```lua
+  vim.loader.enable()
+```
 ~~~
 
 これはもう素直に、トップのトップに追加しておきましょう😌

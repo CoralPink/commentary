@@ -78,7 +78,7 @@ Oh, will you fight that feeling in your heart?
 ~~~admonish example title="extensions/init.lua"
 新しく`plugins`という **local変数** を置きます。中身はまだ、からっぽでへーきです😉
 
-この節で示すコードは全部ここに入れていきます😌
+前節で退避させたプラグインのリストは、全部ここに入れていきます😌
 
 ```lua
 local plugins = {
