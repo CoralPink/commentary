@@ -33,6 +33,11 @@
       text-decoration: underline;
     }
   }
+
+  mark {
+    cursor: pointer;
+  }
+
   img,
   video {
     display: flex;

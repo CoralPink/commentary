@@ -43,8 +43,6 @@ const searchMain = () => {
   };
 
   const init = config => {
-    const mark_exclude = [];
-
     resultsOptions = config.results_options;
     searchOptions = config.search_options;
 
@@ -101,6 +99,12 @@ const searchMain = () => {
         ELEMENT_RESULTS.appendChild(resultElem);
       }
 
+      const marker = new markjs(document.getElementById('searchresults-outer'));
+      marker.mark(decodeURIComponent(term).split(' '), {
+        accuracy: 'complementary',
+        exclude: ['a'],
+      });
+
       // Display results
       document.getElementById('searchresults-header').innerText =
         (results.length > count ? 'Over ' : '') + `${count} search results for: ${term}`;
@@ -130,17 +134,16 @@ const searchMain = () => {
         return;
       }
 
-      const markStr = decodeURIComponent(params[PARAM_HIGHLIGHT]);
+      const term = decodeURIComponent(params[PARAM_HIGHLIGHT]);
 
-      if (markStr === undefined) {
+      if (term === undefined) {
         return;
       }
-      ELEMENT_BAR.value = markStr;
+      ELEMENT_BAR.value = term;
 
       const marker = new markjs(document.querySelector('.content main'));
-
-      marker.mark(decodeURIComponent(markStr).split(' '), {
-        exclude: mark_exclude,
+      marker.mark(decodeURIComponent(term).split(' '), {
+        accuracy: 'complementary',
       });
 
       for (const x of document.querySelectorAll('mark')) {
