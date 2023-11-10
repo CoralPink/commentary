@@ -6,72 +6,63 @@ import wasmInit, { make_teaser } from './wasm_book.js';
 const searchMain = () => {
   const PARAM_HIGHLIGHT = 'highlight';
 
-  const ELEMENT_BAR = document.getElementById('searchbar');
-  const ELEMTNT_WRAPPER = document.getElementById('search-wrapper');
-  const ELEMENT_RESULTS = document.getElementById('searchresults');
-  const ELEMENT_ICON = document.getElementById('search-toggle');
+  const ELEM_BAR = document.getElementById('searchbar');
+  const ELEM_WRAPPER = document.getElementById('search-wrapper');
+  const ELEM_RESULTS = document.getElementById('searchresults');
+  const ELEM_ICON = document.getElementById('search-toggle');
+
+  const ELEM_HEADER = document.getElementById('searchresults-header');
+  const ELEM_OUTER = document.getElementById('searchresults-outer');
 
   const PATH_TO_ROOT = document.getElementById('searcher').dataset.pathtoroot;
 
+  const marker = new markjs(ELEM_OUTER);
+
+  let searchConfig = {};
+
   // Exported functions
-  window.search.hasFocus = () => ELEMENT_BAR === document.activeElement;
-
-  let resultsOptions = {
-    teaser_word_count: 30,
-    limit_results: 30,
-  };
-
-  let searchOptions = {
-    bool: 'AND',
-    expand: true,
-    fields: {
-      title: { boost: 1 },
-      body: { boost: 1 },
-      breadcrumbs: { boost: 0 },
-    },
-  };
+  window.search.hasFocus = () => ELEM_BAR === document.activeElement;
 
   const showSearch = () => {
-    ELEMTNT_WRAPPER.classList.remove('hidden');
-    ELEMENT_ICON.setAttribute('aria-expanded', 'true');
-    ELEMENT_BAR.select();
+    ELEM_WRAPPER.classList.remove('hidden');
+    ELEM_ICON.setAttribute('aria-expanded', 'true');
+    ELEM_BAR.select();
   };
 
   const hiddenSearch = () => {
-    ELEMTNT_WRAPPER.classList.add('hidden');
-    ELEMENT_ICON.setAttribute('aria-expanded', 'false');
+    ELEM_WRAPPER.classList.add('hidden');
+    ELEM_ICON.setAttribute('aria-expanded', 'false');
   };
 
-  const init = config => {
-    resultsOptions = config.results_options;
-    searchOptions = config.search_options;
+  const initialize = config => {
+    searchConfig = Object.assign({}, config);
 
     // Suppress "submit" events so thje page doesn't reload when the user presses Enter
     document.addEventListener('submit', e => e.preventDefault(), { once: false, passive: false });
 
     // Eventhandler for search icon
-    ELEMENT_ICON.addEventListener(
+    ELEM_ICON.addEventListener(
       'mouseup',
-      () => (ELEMTNT_WRAPPER.classList.contains('hidden') ? showSearch() : hiddenSearch()),
+      () => (ELEM_WRAPPER.classList.contains('hidden') ? showSearch() : hiddenSearch()),
       { once: false, passive: true },
     );
 
     // Eventhandler for keyevents while the searchbar is focused
     const keyUpHandler = () => {
       // remove children
-      while (ELEMENT_RESULTS.firstChild) {
-        ELEMENT_RESULTS.removeChild(ELEMENT_RESULTS.firstChild);
+      while (ELEM_RESULTS.firstChild) {
+        ELEM_RESULTS.removeChild(ELEM_RESULTS.firstChild);
       }
 
-      const term = ELEMENT_BAR.value.trim();
+      const term = ELEM_BAR.value.trim();
 
       if (term === '') {
-        document.getElementById('searchresults-outer').classList.add('hidden');
+        ELEM_OUTER.classList.add('hidden');
         return;
       }
 
       const formatResult = (num, result) => {
-        const url = config.doc_urls[result.ref].split('#'); // The ?PARAM_HIGHLIGHT= parameter belongs inbetween the page and the #heading-anchor
+        const url = searchConfig.doc_urls[result.ref].split('#'); // The ?PARAM_HIGHLIGHT= parameter belongs inbetween the page and the #heading-anchor
 
         if (url.length === 1) {
           url.push(''); // no anchor found
@@ -89,27 +80,24 @@ const searchMain = () => {
       };
 
       // Do the actual search
-      const results = elasticlunr.Index.load(config.index).search(term, searchOptions);
-      const count = Math.min(results.length, resultsOptions.limit_results);
+      const results = elasticlunr.Index.load(searchConfig.index).search(term, searchConfig.search_options);
+      const count = Math.min(results.length, searchConfig.results_options.limit_results);
 
       for (let i = 0; i < count; i++) {
         const resultElem = document.createElement('li');
         resultElem.innerHTML = formatResult(i + 1, results[i]);
 
-        ELEMENT_RESULTS.appendChild(resultElem);
+        ELEM_RESULTS.appendChild(resultElem);
       }
 
-      const marker = new markjs(document.getElementById('searchresults-outer'));
       marker.mark(decodeURIComponent(term).split(' '), {
         accuracy: 'complementary',
         exclude: ['a'],
       });
 
       // Display results
-      document.getElementById('searchresults-header').innerText =
-        (results.length > count ? 'Over ' : '') + `${count} search results for: ${term}`;
-
-      document.getElementById('searchresults-outer').classList.remove('hidden');
+      ELEM_HEADER.innerText = (results.length > count ? 'Over ' : '') + `${count} search results for: ${term}`;
+      ELEM_OUTER.classList.remove('hidden');
     };
 
     // On reload or browser history backwards/forwards events, parse the url and do search or mark
@@ -139,7 +127,7 @@ const searchMain = () => {
       if (term === undefined) {
         return;
       }
-      ELEMENT_BAR.value = term;
+      ELEM_BAR.value = term;
 
       const marker = new markjs(document.querySelector('.content main'));
       marker.mark(decodeURIComponent(term).split(' '), {
@@ -157,7 +145,7 @@ const searchMain = () => {
     document.addEventListener(
       'keyup',
       e => {
-        if (ELEMTNT_WRAPPER.classList.contains('hidden')) {
+        if (ELEM_WRAPPER.classList.contains('hidden')) {
           switch (e.key) {
             case '/':
             case 's':
@@ -177,12 +165,12 @@ const searchMain = () => {
 
   fetch(`${PATH_TO_ROOT}searchindex.json`)
     .then(response => response.json())
-    .then(json => init(json))
+    .then(json => initialize(json))
     .catch(() => {
       console.log('Try to load searchindex.js if fetch failed');
       const script = document.createElement('script');
       script.src = `${PATH_TO_ROOT}searchindex.js`;
-      script.onload = () => init(window.search);
+      script.onload = () => initialize(window.search);
       document.head.appendChild(script);
     });
 };
