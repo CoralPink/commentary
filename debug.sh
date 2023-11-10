@@ -1,3 +1,5 @@
+set -eu
+
 pushd rs/wasm
 wasm-pack build --target web
 cp pkg/wasm_book.js ../../js
@@ -5,11 +7,20 @@ cp pkg/wasm_book_bg.wasm ../../src
 pushd
 
 pushd js
+if [ ! -e ./node_modules ]; then
+  bun install
+fi
+if [ ! -e ./highlight.js ]; then
+  sh create-highlight.sh
+fi
 bun run build.js
 cp -r dist/. ../src/
 pushd
 
 pushd scss
+if [ ! -e ./node_modules ]; then
+  bun install
+fi
 bun run compile style.scss ../src/css/style.css
 bun run compile fonts/fonts.scss ../theme/fonts/fonts.css
 bun run compile theme/chrome.scss ../theme/css/chrome.css
