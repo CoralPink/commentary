@@ -16,12 +16,65 @@ const searchMain = () => {
 
   const PATH_TO_ROOT = document.getElementById('searcher').dataset.pathtoroot;
 
-  const marker = new markjs(ELEM_OUTER);
+  const resultMarker = new markjs(ELEM_OUTER);
 
   let searchConfig = {};
 
   // Exported functions
   window.search.hasFocus = () => ELEM_BAR === document.activeElement;
+
+  // Eventhandler for keyevents while the searchbar is focused
+  const keyUpHandler = () => {
+    // remove children
+    while (ELEM_RESULTS.firstChild) {
+      ELEM_RESULTS.removeChild(ELEM_RESULTS.firstChild);
+    }
+
+    const term = ELEM_BAR.value.trim();
+
+    if (term === '') {
+      ELEM_OUTER.classList.add('hidden');
+      return;
+    }
+
+    const formatResult = (num, result) => {
+      const url = searchConfig.doc_urls[result.ref].split('#'); // The ?PARAM_HIGHLIGHT= parameter belongs inbetween the page and the #heading-anchor
+
+      if (url.length === 1) {
+        url.push(''); // no anchor found
+      }
+
+      const terms = term.split(' ');
+      const encUri = encodeURIComponent(terms.join(' ')).replace(/\'/g, '%27');
+
+      const teaser = make_teaser(result.doc.body, terms);
+
+      return (
+        `<a href="${PATH_TO_ROOT}${url[0]}?${PARAM_HIGHLIGHT}=${encUri}#${url[1]}" aria-details="teaser_${num}">${result.doc.breadcrumbs}</a>` +
+        `<span class="teaser" id="teaser_${num}" aria-label="Search Result Teaser">${teaser}</span>`
+      );
+    };
+
+    // Do the actual search
+    const results = elasticlunr.Index.load(searchConfig.index).search(term, searchConfig.search_options);
+    const count = Math.min(results.length, searchConfig.results_options.limit_results);
+
+    for (let i = 0; i < count; i++) {
+      const resultElem = document.createElement('li');
+      resultElem.innerHTML = formatResult(i + 1, results[i]);
+
+      ELEM_RESULTS.appendChild(resultElem);
+    }
+
+    resultMarker.mark(decodeURIComponent(term).split(' '), {
+      accuracy: 'complementary',
+      exclude: ['a'],
+    });
+
+    // Display results
+    ELEM_HEADER.innerText = (results.length > count ? 'Over ' : '') + `${count} search results for: ${term}`;
+    ELEM_OUTER.classList.remove('hidden');
+  };
 
   const showSearch = () => {
     ELEM_WRAPPER.classList.remove('hidden');
@@ -39,66 +92,6 @@ const searchMain = () => {
 
     // Suppress "submit" events so thje page doesn't reload when the user presses Enter
     document.addEventListener('submit', e => e.preventDefault(), { once: false, passive: false });
-
-    // Eventhandler for search icon
-    ELEM_ICON.addEventListener(
-      'mouseup',
-      () => (ELEM_WRAPPER.classList.contains('hidden') ? showSearch() : hiddenSearch()),
-      { once: false, passive: true },
-    );
-
-    // Eventhandler for keyevents while the searchbar is focused
-    const keyUpHandler = () => {
-      // remove children
-      while (ELEM_RESULTS.firstChild) {
-        ELEM_RESULTS.removeChild(ELEM_RESULTS.firstChild);
-      }
-
-      const term = ELEM_BAR.value.trim();
-
-      if (term === '') {
-        ELEM_OUTER.classList.add('hidden');
-        return;
-      }
-
-      const formatResult = (num, result) => {
-        const url = searchConfig.doc_urls[result.ref].split('#'); // The ?PARAM_HIGHLIGHT= parameter belongs inbetween the page and the #heading-anchor
-
-        if (url.length === 1) {
-          url.push(''); // no anchor found
-        }
-
-        const terms = term.split(' ');
-        const encUri = encodeURIComponent(terms.join(' ')).replace(/\'/g, '%27');
-
-        const teaser = make_teaser(result.doc.body, terms);
-
-        return (
-          `<a href="${PATH_TO_ROOT}${url[0]}?${PARAM_HIGHLIGHT}=${encUri}#${url[1]}" aria-details="teaser_${num}">${result.doc.breadcrumbs}</a>` +
-          `<span class="teaser" id="teaser_${num}" aria-label="Search Result Teaser">${teaser}</span>`
-        );
-      };
-
-      // Do the actual search
-      const results = elasticlunr.Index.load(searchConfig.index).search(term, searchConfig.search_options);
-      const count = Math.min(results.length, searchConfig.results_options.limit_results);
-
-      for (let i = 0; i < count; i++) {
-        const resultElem = document.createElement('li');
-        resultElem.innerHTML = formatResult(i + 1, results[i]);
-
-        ELEM_RESULTS.appendChild(resultElem);
-      }
-
-      marker.mark(decodeURIComponent(term).split(' '), {
-        accuracy: 'complementary',
-        exclude: ['a'],
-      });
-
-      // Display results
-      ELEM_HEADER.innerText = (results.length > count ? 'Over ' : '') + `${count} search results for: ${term}`;
-      ELEM_OUTER.classList.remove('hidden');
-    };
 
     // On reload or browser history backwards/forwards events, parse the url and do search or mark
     const doSearchOrMarkFromUrl = () => {
@@ -142,6 +135,12 @@ const searchMain = () => {
     // If reloaded, do the search or mark again, depending on the current url parameters
     doSearchOrMarkFromUrl();
 
+    ELEM_ICON.addEventListener(
+      'mouseup',
+      () => (ELEM_WRAPPER.classList.contains('hidden') ? showSearch() : hiddenSearch()),
+      { once: false, passive: true },
+    );
+
     document.addEventListener(
       'keyup',
       e => {
@@ -157,10 +156,14 @@ const searchMain = () => {
           return;
         }
 
-        e.key !== 'Escape' ? keyUpHandler() : hiddenSearch();
+        if (e.key === 'Escape') {
+          hiddenSearch();
+        }
       },
       { once: false, passive: true },
     );
+
+    searchbar.addEventListener('keyup', keyUpHandler, { once: false, passive: true });
   };
 
   fetch(`${PATH_TO_ROOT}searchindex.json`)
