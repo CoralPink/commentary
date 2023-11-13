@@ -37,8 +37,8 @@ const searchMain = () => {
       return;
     }
 
-    const formatResult = (num, result) => {
-      const url = searchConfig.doc_urls[result.ref].split('#'); // The ?PARAM_HIGHLIGHT= parameter belongs inbetween the page and the #heading-anchor
+    const formatResult = result => {
+      const url = searchConfig.doc_urls[result.ref].split('#');
 
       if (url.length === 1) {
         url.push(''); // no anchor found
@@ -47,11 +47,11 @@ const searchMain = () => {
       const terms = term.split(' ');
       const encUri = encodeURIComponent(terms.join(' ')).replace(/\'/g, '%27');
 
-      const teaser = make_teaser(result.doc.body, terms);
+      const teaser = make_teaser(result.doc.body, terms, searchConfig.results_options.teaser_word_count);
 
       return (
-        `<a href="${PATH_TO_ROOT}${url[0]}?${PARAM_HIGHLIGHT}=${encUri}#${url[1]}" aria-details="teaser_${num}">${result.doc.breadcrumbs}</a>` +
-        `<span class="teaser" id="teaser_${num}" aria-label="Search Result Teaser">${teaser}</span>`
+        `<a href="${PATH_TO_ROOT}${url[0]}?${PARAM_HIGHLIGHT}=${encUri}#${url[1]}">${result.doc.breadcrumbs}</a>` +
+        `<span class="teaser" aria-label="Search Result Teaser">${teaser}</span>`
       );
     };
 
@@ -61,7 +61,7 @@ const searchMain = () => {
 
     for (let i = 0; i < count; i++) {
       const resultElem = document.createElement('li');
-      resultElem.innerHTML = formatResult(i + 1, results[i]);
+      resultElem.innerHTML = formatResult(results[i]);
 
       ELEM_RESULTS.appendChild(resultElem);
     }
