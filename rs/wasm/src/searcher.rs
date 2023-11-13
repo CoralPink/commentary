@@ -2,33 +2,87 @@ use rust_stemmers::{Algorithm, Stemmer};
 use wasm_bindgen::prelude::*;
 
 #[wasm_bindgen]
-pub fn make_teaser(body: &str, terms: Vec<String>, count: usize) -> String {
-    const WEIGHT: u32 = 40;
+extern "C" {
+    #[wasm_bindgen(js_namespace = console)]
+    fn log(s: &str);
+}
 
+#[allow(unused_macros)]
+macro_rules! console_log {
+    ($($t:tt)*) => (log(&format_args!($($t)*).to_string()))
+}
+
+const TERM_WEIGHT: u32 = 40;
+
+fn window_weight(wgt: &Vec<(String, u32, usize)>, count: usize) -> Vec<u32> {
+    let size = std::cmp::min(wgt.len(), count);
+    let mut ret = Vec::new();
+    let mut sum = 0;
+
+    for x in wgt.iter().take(size) {
+        sum += x.1;
+    }
+
+    ret.push(sum);
+
+    for i in 0..wgt.len() - size {
+        sum -= wgt[i].1;
+        sum += wgt[i + size].1;
+
+        ret.push(sum);
+    }
+    ret
+}
+
+fn calc_start_end(wgt: &Vec<(String, u32, usize)>, cnt: usize, fd: bool) -> (usize, usize) {
+    let end = std::cmp::min(wgt.len(), cnt);
+
+    if !fd {
+        return (0, end);
+    }
+
+    let mut start = 0;
+    let mut max_sum = 0;
+
+    let window = window_weight(wgt, cnt);
+
+    for i in (0..window.len()).rev() {
+        if window[i] > max_sum {
+            max_sum = window[i];
+            start = i;
+        }
+    }
+    (start, end)
+}
+
+#[wasm_bindgen]
+pub fn make_teaser(body: &str, terms: Vec<String>, count: usize) -> String {
     let mut weighted: Vec<(String, u32, usize)> = Vec::new();
 
     let mut idx = 0;
     let mut found = false;
 
-    for x in body.to_lowercase().split(". ") {
-        let words: Vec<&str> = x.split(' ').collect();
+    for whole in body.to_lowercase().split(". ") {
+        let words: Vec<&str> = whole.split(' ').collect();
         let mut value = 8;
 
-        for y in words {
-            if y.is_empty() {
-                for z in terms
+        for separate in words {
+            if !separate.is_empty() {
+                let stemmed = Stemmer::create(Algorithm::English).stem(separate);
+
+                for term in terms
                     .iter()
                     .map(|w| Stemmer::create(Algorithm::English).stem(w))
                 {
-                    if Stemmer::create(Algorithm::English).stem(y) == z {
-                        value = WEIGHT;
+                    if stemmed.starts_with(&term.to_lowercase()) {
+                        value = TERM_WEIGHT;
                         found = true;
                     }
                 }
-                weighted.push((y.to_string(), value, idx));
+                weighted.push((separate.to_string(), value, idx));
                 value = 2;
             }
-            idx += y.len();
+            idx += separate.len();
             idx += 1; // ' ' or '.' if the last word in the sentence
         }
 
@@ -39,54 +93,19 @@ pub fn make_teaser(body: &str, terms: Vec<String>, count: usize) -> String {
         return body.to_string();
     }
 
-    let window_size = std::cmp::min(weighted.len(), count);
-    let max_sum_window_index = {
-        if found {
-            let mut ret = 0;
-            let mut max_sum = 0;
-
-            let window_weight = {
-                let mut ret = Vec::new();
-                let mut sum = 0;
-
-                for x in weighted.iter().take(window_size) {
-                    sum += x.1;
-                }
-
-                ret.push(sum);
-
-                for i in 0..weighted.len() - window_size {
-                    sum -= weighted[i].1;
-                    sum += weighted[i + window_size].1;
-
-                    ret.push(sum);
-                }
-                ret
-            };
-
-            for i in (0..window_weight.len()).rev() {
-                if window_weight[i] > max_sum {
-                    max_sum = window_weight[i];
-                    ret = i;
-                }
-            }
-            ret
-        } else {
-            0
-        }
-    };
+    let (start, end) = calc_start_end(&weighted, count, found);
 
     let mut teaser = Vec::new();
-    let mut index = weighted[max_sum_window_index].2;
+    let mut index = weighted[start].2;
 
-    for word in weighted.iter().skip(max_sum_window_index).take(window_size) {
+    for word in weighted.iter().skip(start).take(end) {
         // missing text from index to the start of `word`
         if index < word.2 {
             teaser.push(&body[index..word.2]);
             index = word.2;
         }
 
-        if word.1 != WEIGHT {
+        if word.1 != TERM_WEIGHT {
             teaser.push(&body[word.2..index + word.0.len()]);
         } else {
             teaser.push("<em>");
