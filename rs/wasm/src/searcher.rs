@@ -12,6 +12,30 @@ macro_rules! console_log {
     ($($t:tt)*) => (log(&format_args!($($t)*).to_string()))
 }
 
+// TODO:
+// I wanted to manipulate it by passing objects from js,
+// but I just couldn't get it to work....
+//
+// I'll bring it up next time.
+/*
+#[allow(dead_code)]
+#[wasm_bindgen]
+pub struct DocObject {
+    body: String,
+    breadcrumbs: String,
+    id: String,
+    text: String,
+    title: String,
+}
+
+#[allow(dead_code)]
+#[wasm_bindgen]
+pub struct SearchResult {
+    doc: DocObject,
+    reference: String,
+    score: u32,
+}
+*/
 const TERM_WEIGHT: u32 = 40;
 
 fn window_weight(wgt: &Vec<(String, u32, usize)>, count: usize) -> Vec<u32> {
@@ -55,8 +79,32 @@ fn calc_start_end(wgt: &Vec<(String, u32, usize)>, cnt: usize, fd: bool) -> (usi
     (start, end)
 }
 
-#[wasm_bindgen]
-pub fn make_teaser(body: &str, terms: Vec<String>, count: usize) -> String {
+fn highlighting(body: &str, weighted: &[(String, u32, usize)], range: (usize, usize)) -> String {
+    let mut highlight = Vec::new();
+    let mut index = weighted[range.0].2;
+
+    for word in weighted.iter().skip(range.0).take(range.1) {
+        // missing text from index to the start of `word`
+        if index < word.2 {
+            highlight.push(&body[index..word.2]);
+            index = word.2;
+        }
+
+        if word.1 != TERM_WEIGHT {
+            highlight.push(&body[word.2..index + word.0.len()]);
+        } else {
+            highlight.push("<em>");
+            highlight.push(&body[word.2..index + word.0.len()]);
+            highlight.push("</em>");
+        }
+
+        index = word.2 + word.0.len();
+    }
+
+    highlight.join("")
+}
+
+fn search_result_excerpt(body: &str, terms: Vec<String>, count: usize) -> String {
     let mut weighted: Vec<(String, u32, usize)> = Vec::new();
 
     let mut idx = 0;
@@ -90,31 +138,39 @@ pub fn make_teaser(body: &str, terms: Vec<String>, count: usize) -> String {
     }
 
     if weighted.is_empty() {
-        return body.to_string();
+        body.to_string()
+    } else {
+        highlighting(body, &weighted, calc_start_end(&weighted, count, found))
     }
+}
 
-    let (start, end) = calc_start_end(&weighted, count, found);
+#[wasm_bindgen]
+pub fn format_result(
+    path_to_root: String,
+    link_uri: String,
+    doc_body: String,
+    doc_breadcrumbs: String,
+    term: String,
+    count: usize,
+) -> String {
+    let uri: Vec<&str> = link_uri.split('#').collect();
+    let page = uri[0];
+    let head = if uri.len() > 1 {
+        format!("#{}", uri[1])
+    } else {
+        "".to_owned()
+    };
 
-    let mut teaser = Vec::new();
-    let mut index = weighted[start].2;
-
-    for word in weighted.iter().skip(start).take(end) {
-        // missing text from index to the start of `word`
-        if index < word.2 {
-            teaser.push(&body[index..word.2]);
-            index = word.2;
-        }
-
-        if word.1 != TERM_WEIGHT {
-            teaser.push(&body[word.2..index + word.0.len()]);
-        } else {
-            teaser.push("<em>");
-            teaser.push(&body[word.2..index + word.0.len()]);
-            teaser.push("</em>");
-        }
-
-        index = word.2 + word.0.len();
-    }
-
-    teaser.join("")
+    format!(
+        r#"<a href="{path_to_root}{page}?highlight={}{head}">{doc_breadcrumbs}</a><span class="teaser" aria-label="Search Result Teaser">{}</span>"#,
+        js_sys::encode_uri_component(&term.split(' ').collect::<Vec<&str>>().join("%20"))
+            .as_string()
+            .unwrap()
+            .replace('\'', "%27"),
+        search_result_excerpt(
+            &doc_body,
+            term.split(' ').map(|s| s.to_string()).collect(),
+            count,
+        )
+    )
 }
