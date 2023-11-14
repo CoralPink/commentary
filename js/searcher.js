@@ -1,7 +1,7 @@
 import markjs from 'mark.js';
 import { Fzf, extendedMatch } from 'fzf';
 
-import wasmInit, { make_teaser } from './wasm_book.js';
+import wasmInit, { format_result } from './wasm_book.js';
 
 const searchMain = () => {
   const PARAM_HIGHLIGHT = 'highlight';
@@ -37,31 +37,24 @@ const searchMain = () => {
       return;
     }
 
-    const formatResult = result => {
-      const url = searchConfig.doc_urls[result.ref].split('#');
-
-      if (url.length === 1) {
-        url.push(''); // no anchor found
-      }
-
-      const terms = term.split(' ');
-      const encUri = encodeURIComponent(terms.join(' ')).replace(/\'/g, '%27');
-
-      const teaser = make_teaser(result.doc.body, terms, searchConfig.results_options.teaser_word_count);
-
-      return (
-        `<a href="${PATH_TO_ROOT}${url[0]}?${PARAM_HIGHLIGHT}=${encUri}#${url[1]}">${result.doc.breadcrumbs}</a>` +
-        `<span class="teaser" aria-label="Search Result Teaser">${teaser}</span>`
-      );
-    };
-
     // Do the actual search
     const results = elasticlunr.Index.load(searchConfig.index).search(term, searchConfig.search_options);
     const count = Math.min(results.length, searchConfig.results_options.limit_results);
 
+    console.log('----');
+    console.log(PATH_TO_ROOT);
+
     for (let i = 0; i < count; i++) {
       const resultElem = document.createElement('li');
-      resultElem.innerHTML = formatResult(results[i]);
+
+      resultElem.innerHTML = format_result(
+        PATH_TO_ROOT,
+        searchConfig.doc_urls[results[i].ref],
+        results[i].doc.body,
+        results[i].doc.breadcrumbs,
+        term,
+        searchConfig.results_options.teaser_word_count,
+      );
 
       ELEM_RESULTS.appendChild(resultElem);
     }
@@ -149,7 +142,6 @@ const searchMain = () => {
             case '/':
             case 's':
             case 'S':
-              e.preventDefault();
               showSearch();
               break;
           }
