@@ -123,7 +123,7 @@ impl Teaser {
         highlight.join("")
     }
 
-    fn search_result_excerpt(&mut self, body: &str, terms: Vec<String>, count: usize) -> String {
+    fn search_result_excerpt(&mut self, body: &str, terms: Vec<&str>, count: usize) -> String {
         let mut idx = 0;
 
         for whole in body.to_lowercase().split(". ") {
@@ -157,32 +157,33 @@ impl Teaser {
     }
 }
 
+fn uri_parser(link_uri: &str) -> (&str, &str) {
+    let uri: Vec<&str> = link_uri.split('#').collect();
+    let head = if uri.len() > 1 { uri[1] } else { "" };
+
+    (uri[0], head)
+}
+
 #[wasm_bindgen]
 pub fn format_result(
-    path_to_root: String,
-    link_uri: String,
-    doc_body: String,
-    doc_breadcrumbs: String,
-    term: String,
+    path_to_root: &str,
+    link_uri: &str,
+    doc_body: &str,
+    doc_breadcrumbs: &str,
+    term: &str,
     count: usize,
 ) -> String {
-    let uri: Vec<&str> = link_uri.split('#').collect();
-    let page = uri[0];
-    let head = if uri.len() > 1 {
-        format!("#{}", uri[1])
-    } else {
-        "".to_owned()
-    };
+    let (page, head) = uri_parser(link_uri);
 
     format!(
         r#"<a href="{path_to_root}{page}?highlight={}{head}">{doc_breadcrumbs}</a><span class="teaser" aria-label="Search Result Teaser">{}</span>"#,
         js_sys::encode_uri_component(&term.split(' ').collect::<Vec<&str>>().join("%20"))
             .as_string()
-            .unwrap()
+            .unwrap_or_default()
             .replace('\'', "%27"),
         Teaser::new().search_result_excerpt(
-            &doc_body,
-            term.split(' ').map(|s| s.to_string()).collect(),
+            doc_body,
+            term.split(' ').collect::<Vec<&str>>(),
             count,
         )
     )
