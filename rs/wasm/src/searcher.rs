@@ -157,10 +157,13 @@ impl Teaser {
     }
 }
 
-fn uri_parser(link_uri: &str) -> (&str, &str) {
+fn uri_parser(link_uri: &str) -> (&str, String) {
     let uri: Vec<&str> = link_uri.split('#').collect();
-    let head = if uri.len() > 1 { uri[1] } else { "" };
-
+    let head = if uri.len() > 1 {
+        format!("#{}", uri[1])
+    } else {
+        "".to_owned()
+    };
     (uri[0], head)
 }
 
