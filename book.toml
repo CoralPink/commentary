@@ -40,7 +40,7 @@ copy-js = true           # include Javascript code for search (elasticlunr.min.j
 
 [preprocessor.admonish]
 command = "mdbook-admonish"
-assets_version = "3.0.0" # do not edit: managed by `mdbook-admonish install`
+assets_version = "3.0.1" # do not edit: managed by `mdbook-admonish install`
 after = ["links"]
 
 [preprocessor.footnote]
