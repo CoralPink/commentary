@@ -21,7 +21,7 @@ And so I face the final curtain
 ## LSP
 
 ~~~admonish info title=":h lsp"
-```
+```txt
 LSP client/framework                                     lsp LSP
 
 Nvim supports the Language Server Protocol (LSP), which means it acts as
@@ -182,7 +182,7 @@ use {
 `LspAttach`ってなんやねんってなりますが、これはもうそのままヘルプにあります。
 
 ~~~admonish info title=":h LspAttach"
-```
+```txt
                                                                    LspAttach
 After an LSP client attaches to a buffer.
 

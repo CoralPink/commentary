@@ -459,7 +459,7 @@ local opts = {
   この新しいローダーを有効にするには、`init.lua`の先頭に以下を追加します。
 
 ```lua
-  vim.loader.enable()
+vim.loader.enable()
 ```
 ~~~
 
