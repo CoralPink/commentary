@@ -9,7 +9,7 @@ language = "ja"
 create-missing = false
 
 [output.html]
-default-theme = "au-lait"
+default-theme = "latte"
 preferred-dark-theme = "macchiato"
 git-repository-url = "https://github.com/CoralPink/commentary"
 site-url = "/commentary/"
