@@ -112,7 +112,8 @@ const searchMain = () => {
       if (term === undefined) {
         return;
       }
-      ELEM_BAR.value = term.replace("%20", " ");
+
+      ELEM_BAR.value = decodeURIComponent(term.replace(/\+/g, '%20'));
 
       const marker = new markjs(document.querySelector('.content main'));
       marker.mark(decodeURIComponent(term).split(' '), {
