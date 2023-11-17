@@ -157,13 +157,10 @@ impl Teaser {
     }
 }
 
-fn uri_parser(link_uri: &str) -> (&str, String) {
+fn uri_parser(link_uri: &str) -> (&str, &str) {
     let uri: Vec<&str> = link_uri.split('#').collect();
-    let head = if uri.len() > 1 {
-        format!("#{}", uri[1])
-    } else {
-        "".to_owned()
-    };
+    let head = if uri.len() > 1 { uri[1] } else { "" };
+
     (uri[0], head)
 }
 
@@ -179,7 +176,7 @@ pub fn format_result(
     let (page, head) = uri_parser(link_uri);
 
     format!(
-        r#"<a href="{path_to_root}{page}?highlight={}{head}">{doc_breadcrumbs}</a><span class="teaser" aria-label="Search Result Teaser">{}</span>"#,
+        r#"<a href="{path_to_root}{page}?highlight={}#{head}">{doc_breadcrumbs}</a><span class="teaser" aria-label="Search Result Teaser">{}</span>"#,
         js_sys::encode_uri_component(&term.split(' ').collect::<Vec<&str>>().join("%20"))
             .as_string()
             .unwrap_or_default()
