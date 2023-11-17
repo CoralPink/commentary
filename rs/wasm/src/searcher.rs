@@ -38,109 +38,122 @@ pub struct SearchResult {
 */
 const TERM_WEIGHT: u32 = 40;
 
-fn window_weight(wgt: &Vec<(String, u32, usize)>, count: usize) -> Vec<u32> {
-    let size = std::cmp::min(wgt.len(), count);
-    let mut ret = Vec::new();
-    let mut sum = 0;
+struct Teaser {
+    vec: Vec<(String, u32, usize)>,
+    found: bool,
+}
 
-    for x in wgt.iter().take(size) {
-        sum += x.1;
+impl Teaser {
+    fn new() -> Self {
+        Teaser {
+            vec: Vec::new(),
+            found: false,
+        }
     }
 
-    ret.push(sum);
+    fn window_weight(&self, end: usize) -> Vec<u32> {
+        let mut ret = Vec::new();
+        let mut sum = 0;
 
-    for i in 0..wgt.len() - size {
-        sum -= wgt[i].1;
-        sum += wgt[i + size].1;
+        for x in self.vec.iter().take(end) {
+            sum += x.1;
+        }
 
         ret.push(sum);
-    }
-    ret
-}
 
-fn calc_start_end(wgt: &Vec<(String, u32, usize)>, cnt: usize, fd: bool) -> (usize, usize) {
-    let end = std::cmp::min(wgt.len(), cnt);
+        for i in 0..self.vec.len() - end {
+            sum -= self.vec[i].1;
+            sum += self.vec[i + end].1;
 
-    if !fd {
-        return (0, end);
-    }
-
-    let mut start = 0;
-    let mut max_sum = 0;
-
-    let window = window_weight(wgt, cnt);
-
-    for i in (0..window.len()).rev() {
-        if window[i] > max_sum {
-            max_sum = window[i];
-            start = i;
+            ret.push(sum);
         }
+        ret
     }
-    (start, end)
-}
 
-fn highlighting(body: &str, weighted: &[(String, u32, usize)], range: (usize, usize)) -> String {
-    let mut highlight = Vec::new();
-    let mut index = weighted[range.0].2;
+    fn calc_range(&self, count: usize) -> (usize, usize) {
+        let end = std::cmp::min(self.vec.len(), count);
 
-    for word in weighted.iter().skip(range.0).take(range.1) {
-        // missing text from index to the start of `word`
-        if index < word.2 {
-            highlight.push(&body[index..word.2]);
-            index = word.2;
+        if !self.found {
+            return (0, end);
         }
 
-        if word.1 != TERM_WEIGHT {
-            highlight.push(&body[word.2..index + word.0.len()]);
-        } else {
-            highlight.push("<em>");
-            highlight.push(&body[word.2..index + word.0.len()]);
-            highlight.push("</em>");
-        }
+        let mut start = 0;
+        let mut max_sum = 0;
 
-        index = word.2 + word.0.len();
-    }
+        let window = self.window_weight(end);
 
-    highlight.join("")
-}
-
-fn search_result_excerpt(body: &str, terms: Vec<String>, count: usize) -> String {
-    let mut weighted: Vec<(String, u32, usize)> = Vec::new();
-
-    let mut idx = 0;
-    let mut found = false;
-
-    for whole in body.to_lowercase().split(". ") {
-        let words: Vec<&str> = whole.split(' ').collect();
-        let mut value = 8;
-
-        for separate in words {
-            if !separate.is_empty() {
-                let stemmed = Stemmer::create(Algorithm::English).stem(separate);
-
-                for term in terms
-                    .iter()
-                    .map(|w| Stemmer::create(Algorithm::English).stem(w))
-                {
-                    if stemmed.starts_with(&term.to_lowercase()) {
-                        value = TERM_WEIGHT;
-                        found = true;
-                    }
-                }
-                weighted.push((separate.to_string(), value, idx));
-                value = 2;
+        for i in (0..window.len()).rev() {
+            if window[i] > max_sum {
+                max_sum = window[i];
+                start = i;
             }
-            idx += separate.len();
-            idx += 1; // ' ' or '.' if the last word in the sentence
         }
 
-        idx += 1; // because we split at a two-char boundary '. '
+        (start, end)
     }
 
-    if weighted.is_empty() {
-        body.to_string()
-    } else {
-        highlighting(body, &weighted, calc_start_end(&weighted, count, found))
+    fn highlighting(&self, body: &str, count: usize) -> String {
+        if self.vec.is_empty() {
+            return body.to_string();
+        }
+
+        let range = self.calc_range(count);
+
+        let mut highlight = Vec::new();
+        let mut index = self.vec[range.0].2;
+
+        for word in self.vec.iter().skip(range.0).take(range.1) {
+            // missing text from index to the start of `word`
+            if index < word.2 {
+                highlight.push(&body[index..word.2]);
+                index = word.2;
+            }
+
+            if word.1 != TERM_WEIGHT {
+                highlight.push(&body[word.2..index + word.0.len()]);
+            } else {
+                highlight.push("<em>");
+                highlight.push(&body[word.2..index + word.0.len()]);
+                highlight.push("</em>");
+            }
+
+            index = word.2 + word.0.len();
+        }
+
+        highlight.join("")
+    }
+
+    fn search_result_excerpt(&mut self, body: &str, terms: Vec<String>, count: usize) -> String {
+        let mut idx = 0;
+
+        for whole in body.to_lowercase().split(". ") {
+            let words: Vec<&str> = whole.split(' ').collect();
+            let mut value = 8;
+
+            for separate in words {
+                if !separate.is_empty() {
+                    let stemmed = Stemmer::create(Algorithm::English).stem(separate);
+
+                    for term in terms
+                        .iter()
+                        .map(|w| Stemmer::create(Algorithm::English).stem(w))
+                    {
+                        if stemmed.starts_with(&term.to_lowercase()) {
+                            value = TERM_WEIGHT;
+                            self.found = true;
+                        }
+                    }
+                    self.vec.push((separate.to_string(), value, idx));
+                    value = 2;
+                }
+                idx += separate.len();
+                idx += 1; // ' ' or '.' if the last word in the sentence
+            }
+
+            idx += 1; // because we split at a two-char boundary '. '
+        }
+
+        self.highlighting(body, count)
     }
 }
 
@@ -167,7 +180,7 @@ pub fn format_result(
             .as_string()
             .unwrap()
             .replace('\'', "%27"),
-        search_result_excerpt(
+        Teaser::new().search_result_excerpt(
             &doc_body,
             term.split(' ').map(|s| s.to_string()).collect(),
             count,

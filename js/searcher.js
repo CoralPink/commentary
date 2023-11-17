@@ -19,6 +19,7 @@ const searchMain = () => {
   const resultMarker = new markjs(ELEM_OUTER);
 
   let searchConfig = {};
+  let lunrIndex;
 
   // Exported functions
   window.search.hasFocus = () => ELEM_BAR === document.activeElement;
@@ -38,11 +39,8 @@ const searchMain = () => {
     }
 
     // Do the actual search
-    const results = elasticlunr.Index.load(searchConfig.index).search(term, searchConfig.search_options);
+    const results = lunrIndex.search(term, searchConfig.search_options);
     const count = Math.min(results.length, searchConfig.results_options.limit_results);
-
-    console.log('----');
-    console.log(PATH_TO_ROOT);
 
     for (let i = 0; i < count; i++) {
       const resultElem = document.createElement('li');
@@ -82,6 +80,7 @@ const searchMain = () => {
 
   const initialize = config => {
     searchConfig = Object.assign({}, config);
+    lunrIndex = window.elasticlunr.Index.load(searchConfig.index);
 
     // Suppress "submit" events so thje page doesn't reload when the user presses Enter
     document.addEventListener('submit', e => e.preventDefault(), { once: false, passive: false });
@@ -113,7 +112,7 @@ const searchMain = () => {
       if (term === undefined) {
         return;
       }
-      ELEM_BAR.value = term;
+      ELEM_BAR.value = term.replace("%20", " ");
 
       const marker = new markjs(document.querySelector('.content main'));
       marker.mark(decodeURIComponent(term).split(' '), {
@@ -208,10 +207,11 @@ const fzfInit = () => {
 };
 
 (() => {
-  if (!elasticlunr) {
+  if (!window.elasticlunr) {
     return;
   }
   window.search = window.search || {};
+
   wasmInit();
 
   document.addEventListener(
