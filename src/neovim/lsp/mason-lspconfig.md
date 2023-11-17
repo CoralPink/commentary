@@ -70,7 +70,7 @@ require('mason-lspconfig').setup_handlers {
 だいぶ気をつけて使ってください...。
 
 ~~~admonish info title="mason-lspconfig.setup_handlers()"
-```
+```txt
                                             mason-lspconfig.setup_handlers()
 setup_handlers({handlers})
   Advanced feature

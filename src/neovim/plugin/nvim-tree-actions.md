@@ -364,7 +364,7 @@ local function actionsMenu(nd)
 これを有効にするとダブルクリック (とか、ダブルタップとか) でファイルを開くことができます。
 
 ~~~admonish info title=":h double-click"
-```
+```txt
 Double, triple and quadruple clicks are supported when the GUI is active, for
 Win32 and for an xterm.  For selecting text, extra clicks extend the
 selection:
@@ -386,7 +386,7 @@ Win32とxterm用です。 テキストを選択する場合、更にクリック
 もしこの辺りを追及していくのであれば、以下を足掛かりにしていくと良いかもしれません。
 
 ~~~admonish info title=":h mouse-using"
-```
+```txt
 Using the mouse                                         mouse-using
 
                                     mouse-mode-table mouse-overview
