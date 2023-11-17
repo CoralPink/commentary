@@ -26,9 +26,16 @@
         text-decoration: none;
       }
       &.active {
-        background: var(--sidebar-bg);
-        color: var(--sidebar-active);
         font-weight: 500;
+
+        .au-lait :is(&), .latte :is(&) {
+          background: #fff8c5;
+          color: #1f2328;
+        }
+        .frappe :is(&), .macchiato :is(&), .mocha :is(&) {
+          background: #4b2900;
+          color: #f8e3a1;
+        }
       }
 
       &.H1 {
