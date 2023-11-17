@@ -89,7 +89,7 @@ vim.keymap.set('n', '<Leader>5', function() print(testret()) end)
 今回は`vim.keymap.set()`を使用しているので、もう一回ヘルプを見返して欲しいんですけど、
 
 ~~~admonish info title=":h keymap.set"
-```
+```txt
   • {rhs}   string|function
 ```
 ~~~
