@@ -14,13 +14,21 @@ const searchMain = () => {
 
   const PATH_TO_ROOT = document.getElementById('searcher').dataset.pathtoroot;
 
-  const resultMarker = new markjs(ELEM_OUTER);
+  const resultMarker = new markjs(ELEM_RESULTS);
 
   let searchConfig = {};
   let lunrIndex;
 
   // Exported functions
   window.search.hasFocus = () => ELEM_BAR === document.activeElement;
+
+  const getResults = term => {
+    const results = lunrIndex.search(term, searchConfig.search_options);
+    const count = Math.min(results.length, searchConfig.results_options.limit_results);
+
+    ELEM_HEADER.innerText = (results.length > count ? 'Over ' : '') + `${count} search results for: ${term}`;
+    return results.slice(0, count);
+  };
 
   // Eventhandler for keyevents while the searchbar is focused
   const keyUpHandler = () => {
@@ -33,11 +41,7 @@ const searchMain = () => {
 
     ELEM_RESULTS.innerHTML = '';
 
-    // Do the actual search
-    const results = lunrIndex.search(term, searchConfig.search_options);
-    const count = Math.min(results.length, searchConfig.results_options.limit_results);
-
-    for (const result of results.slice(0, count)) {
+    for (const result of getResults(term)) {
       const resultElem = document.createElement('li');
 
       resultElem.innerHTML = format_result(
@@ -57,8 +61,6 @@ const searchMain = () => {
       exclude: ['a'],
     });
 
-    // Display results
-    ELEM_HEADER.innerText = (results.length > count ? 'Over ' : '') + `${count} search results for: ${term}`;
     ELEM_OUTER.classList.remove('hidden');
   };
 
@@ -73,32 +75,32 @@ const searchMain = () => {
     ELEM_ICON.setAttribute('aria-expanded', 'false');
   };
 
+  // On reload or browser history backwards/forwards events, parse the url and do search or mark
+  const doSearchOrMarkFromUrl = () => {
+    const param = new URLSearchParams(window.location.search).get('highlight');
+
+    if (!param) {
+      return;
+    }
+    const term = decodeURIComponent(param);
+    ELEM_BAR.value = term;
+
+    const marker = new markjs(document.querySelector('.content main'));
+    marker.mark(term.split(' '), {
+      accuracy: 'complementary',
+    });
+
+    for (const x of document.querySelectorAll('mark')) {
+      x.addEventListener('mousedown', marker.unmark, { once: true, passive: true });
+    }
+  };
+
   const initialize = config => {
     searchConfig = Object.assign({}, config);
     lunrIndex = window.elasticlunr.Index.load(searchConfig.index);
 
     // Suppress "submit" events so thje page doesn't reload when the user presses Enter
     document.addEventListener('submit', e => e.preventDefault(), { once: false, passive: false });
-
-    // On reload or browser history backwards/forwards events, parse the url and do search or mark
-    const doSearchOrMarkFromUrl = () => {
-      const param = new URLSearchParams(window.location.search).get('highlight');
-
-      if (!param) {
-        return;
-      }
-      const term = decodeURIComponent(param);
-      ELEM_BAR.value = term;
-
-      const marker = new markjs(document.querySelector('.content main'));
-      marker.mark(term.split(' '), {
-        accuracy: 'complementary',
-      });
-
-      for (const x of document.querySelectorAll('mark')) {
-        x.addEventListener('mousedown', marker.unmark, { once: true, passive: true });
-      }
-    };
 
     // If reloaded, do the search or mark again, depending on the current url parameters
     doSearchOrMarkFromUrl();
