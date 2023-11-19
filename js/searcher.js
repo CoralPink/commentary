@@ -87,36 +87,16 @@ const searchMain = () => {
 
     // On reload or browser history backwards/forwards events, parse the url and do search or mark
     const doSearchOrMarkFromUrl = () => {
-      const search = new URL(window.location.href).search;
+      const param = new URLSearchParams(window.location.search).get(PARAM_HIGHLIGHT);
 
-      if (!search) {
+      if (!param) {
         return;
       }
-
-      const params = {};
-
-      for (const pair of search.replace(/^\?/, '').split('&')) {
-        const [key, value] = pair.split('=');
-
-        if (key) {
-          params[key] = value;
-        }
-      }
-
-      if (!Object.hasOwn(params, PARAM_HIGHLIGHT)) {
-        return;
-      }
-
-      const term = decodeURIComponent(params[PARAM_HIGHLIGHT]);
-
-      if (term === undefined) {
-        return;
-      }
-
-      ELEM_BAR.value = decodeURIComponent(term.replace(/\+/g, '%20'));
+      const term = decodeURIComponent(param);
+      ELEM_BAR.value = term;
 
       const marker = new markjs(document.querySelector('.content main'));
-      marker.mark(decodeURIComponent(term).split(' '), {
+      marker.mark(term.split(' '), {
         accuracy: 'complementary',
       });
 
