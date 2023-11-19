@@ -4,8 +4,6 @@ import { Fzf, extendedMatch } from 'fzf';
 import wasmInit, { format_result } from './wasm_book.js';
 
 const searchMain = () => {
-  const PARAM_HIGHLIGHT = 'highlight';
-
   const ELEM_BAR = document.getElementById('searchbar');
   const ELEM_WRAPPER = document.getElementById('search-wrapper');
   const ELEM_RESULTS = document.getElementById('searchresults');
@@ -26,11 +24,6 @@ const searchMain = () => {
 
   // Eventhandler for keyevents while the searchbar is focused
   const keyUpHandler = () => {
-    // remove children
-    while (ELEM_RESULTS.firstChild) {
-      ELEM_RESULTS.removeChild(ELEM_RESULTS.firstChild);
-    }
-
     const term = ELEM_BAR.value.trim();
 
     if (term === '') {
@@ -38,18 +31,20 @@ const searchMain = () => {
       return;
     }
 
+    ELEM_RESULTS.innerHTML = '';
+
     // Do the actual search
     const results = lunrIndex.search(term, searchConfig.search_options);
     const count = Math.min(results.length, searchConfig.results_options.limit_results);
 
-    for (let i = 0; i < count; i++) {
+    for (const result of results.slice(0, count)) {
       const resultElem = document.createElement('li');
 
       resultElem.innerHTML = format_result(
         PATH_TO_ROOT,
-        searchConfig.doc_urls[results[i].ref],
-        results[i].doc.body,
-        results[i].doc.breadcrumbs,
+        searchConfig.doc_urls[result.ref],
+        result.doc.body,
+        result.doc.breadcrumbs,
         term,
         searchConfig.results_options.teaser_word_count,
       );
@@ -87,7 +82,7 @@ const searchMain = () => {
 
     // On reload or browser history backwards/forwards events, parse the url and do search or mark
     const doSearchOrMarkFromUrl = () => {
-      const param = new URLSearchParams(window.location.search).get(PARAM_HIGHLIGHT);
+      const param = new URLSearchParams(window.location.search).get('highlight');
 
       if (!param) {
         return;
