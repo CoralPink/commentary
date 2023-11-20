@@ -197,7 +197,7 @@ impl SearchResult {
         }
     }
 
-    pub fn create_search_results_list(
+    pub fn append_search_result(
         &mut self,
         link_uri: &str,
         doc_body: &str,

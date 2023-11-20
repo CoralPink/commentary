@@ -43,7 +43,7 @@ const searchMain = () => {
     ELEM_RESULTS.innerHTML = '';
 
     for (const result of getResults(term)) {
-      searchResult.create_search_results_list(
+      searchResult.append_search_result(
         searchConfig.doc_urls[result.ref],
         result.doc.body,
         result.doc.breadcrumbs,
