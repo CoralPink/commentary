@@ -27,7 +27,7 @@ const searchMain = () => {
     const count = Math.min(results.length, searchConfig.results_options.limit_results);
 
     ELEM_HEADER.innerText = (results.length > count ? 'Over ' : '') + `${count} search results for: ${term}`;
-    return results.slice(count);
+    return results.slice(0, count);
   };
 
   // Eventhandler for keyevents while the searchbar is focused
