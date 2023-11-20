@@ -132,8 +132,6 @@ impl Teaser {
     fn search_result_excerpt(&mut self, body: &str, terms: Vec<&str>, count: usize) -> String {
         let mut idx = 0;
 
-        self.clear();
-
         for whole in body.to_lowercase().split(". ") {
             let words: Vec<&str> = whole.split(' ').collect();
             let mut value = 8;
@@ -209,6 +207,8 @@ impl SearchResult {
         let (page, head) = uri_parser(link_uri);
 
         let new_element = self.document.create_element("li").unwrap();
+
+        self.teaser.clear();
 
         new_element.set_inner_html(&format!(
           r#"<a href="{}{page}?highlight={}#{head}">{doc_breadcrumbs}</a><span class="teaser" aria-label="Search Result Teaser">{}</span>"#,
