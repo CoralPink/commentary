@@ -1,5 +1,6 @@
 use rust_stemmers::{Algorithm, Stemmer};
 use wasm_bindgen::prelude::*;
+use web_sys::{Document, Element};
 
 #[wasm_bindgen]
 extern "C" {
@@ -49,6 +50,11 @@ impl Teaser {
             vec: Vec::new(),
             found: false,
         }
+    }
+
+    fn clear(&mut self) {
+        self.vec.clear();
+        self.found = false;
     }
 
     fn window_weight(&self, end: usize) -> Vec<u32> {
@@ -126,6 +132,8 @@ impl Teaser {
     fn search_result_excerpt(&mut self, body: &str, terms: Vec<&str>, count: usize) -> String {
         let mut idx = 0;
 
+        self.clear();
+
         for whole in body.to_lowercase().split(". ") {
             let words: Vec<&str> = whole.split(' ').collect();
             let mut value = 8;
@@ -165,37 +173,57 @@ fn uri_parser(link_uri: &str) -> (&str, &str) {
 }
 
 #[wasm_bindgen]
-pub fn create_search_results_list(
-    path_to_root: &str,
-    link_uri: &str,
-    doc_body: &str,
-    doc_breadcrumbs: &str,
-    term: &str,
+pub struct SearchResult {
+    path_to_root: String,
+    document: Document,
+    parent: Element,
     count: usize,
-) {
-    let window = web_sys::window().unwrap();
-    let document = window.document().unwrap();
+    teaser: Teaser,
+}
 
-    let (page, head) = uri_parser(link_uri);
+#[wasm_bindgen]
+impl SearchResult {
+    #[wasm_bindgen(constructor)]
+    pub fn new(path_to_root: String, count: usize) -> Self {
+        let window = web_sys::window().unwrap();
+        let document = window.document().unwrap();
 
-    let new_element = document.create_element("li").unwrap();
-    new_element.set_inner_html(&format!(
-        r#"<a href="{path_to_root}{page}?highlight={}#{head}">{doc_breadcrumbs}</a><span class="teaser" aria-label="Search Result Teaser">{}</span>"#,
-        js_sys::encode_uri_component(&term.split(' ').collect::<Vec<&str>>().join("%20"))
-            .as_string()
-            .unwrap_or_default()
-            .replace('\'', "%27"),
-        Teaser::new().search_result_excerpt(
-            doc_body,
-            term.split(' ').collect::<Vec<&str>>(),
+        let parent = document.get_element_by_id("searchresults").unwrap();
+
+        SearchResult {
+            path_to_root,
+            document,
+            parent,
             count,
-        )
-    ));
+            teaser: Teaser::new(),
+        }
+    }
 
-    let parent = document
-        .get_element_by_id("searchresults")
-        .ok_or(JsValue::NULL)
-        .unwrap();
+    pub fn create_search_results_list(
+        &mut self,
+        link_uri: &str,
+        doc_body: &str,
+        doc_breadcrumbs: &str,
+        term: &str,
+    ) {
+        let (page, head) = uri_parser(link_uri);
 
-    parent.append_child(&new_element).unwrap();
+        let new_element = self.document.create_element("li").unwrap();
+
+        new_element.set_inner_html(&format!(
+          r#"<a href="{}{page}?highlight={}#{head}">{doc_breadcrumbs}</a><span class="teaser" aria-label="Search Result Teaser">{}</span>"#,
+          &self.path_to_root,
+          js_sys::encode_uri_component(&term.split(' ').collect::<Vec<&str>>().join("%20"))
+              .as_string()
+              .unwrap_or_default()
+              .replace('\'', "%27"),
+          self.teaser.search_result_excerpt(
+              doc_body,
+              term.split(' ').collect::<Vec<&str>>(),
+              self.count,
+          )
+        ));
+
+        self.parent.append_child(&new_element).unwrap();
+    }
 }
