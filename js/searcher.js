@@ -1,7 +1,7 @@
 import markjs from 'mark.js';
 import { Fzf, extendedMatch } from 'fzf';
 
-import wasmInit, { create_search_results_list } from './wasm_book.js';
+import wasmInit, { SearchResult } from './wasm_book.js';
 
 const searchMain = () => {
   const ELEM_BAR = document.getElementById('searchbar');
@@ -16,8 +16,9 @@ const searchMain = () => {
 
   const resultMarker = new markjs(ELEM_RESULTS);
 
-  let searchConfig = {};
+  let searchConfig;
   let lunrIndex;
+  let searchResult;
 
   // Exported functions
   window.search.hasFocus = () => ELEM_BAR === document.activeElement;
@@ -42,13 +43,11 @@ const searchMain = () => {
     ELEM_RESULTS.innerHTML = '';
 
     for (const result of getResults(term)) {
-      create_search_results_list(
-        PATH_TO_ROOT,
+      searchResult.append_search_result(
         searchConfig.doc_urls[result.ref],
         result.doc.body,
         result.doc.breadcrumbs,
         term,
-        searchConfig.results_options.teaser_word_count,
       );
     }
 
@@ -93,7 +92,11 @@ const searchMain = () => {
 
   const initialize = config => {
     searchConfig = Object.assign({}, config);
-    lunrIndex = window.elasticlunr.Index.load(searchConfig.index);
+    lunrIndex = window.elasticlunr.Index.load(config.index);
+
+    wasmInit().then(() => {
+      searchResult = new SearchResult(PATH_TO_ROOT, config.results_options.teaser_word_count);
+    });
 
     // Suppress "submit" events so thje page doesn't reload when the user presses Enter
     document.addEventListener('submit', e => e.preventDefault(), { once: false, passive: false });
@@ -185,8 +188,6 @@ const fzfInit = () => {
     return;
   }
   window.search = window.search || {};
-
-  wasmInit();
 
   document.addEventListener(
     'DOMContentLoaded',
