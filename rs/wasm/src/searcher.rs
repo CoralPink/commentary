@@ -165,17 +165,21 @@ fn uri_parser(link_uri: &str) -> (&str, &str) {
 }
 
 #[wasm_bindgen]
-pub fn format_result(
+pub fn create_search_results_list(
     path_to_root: &str,
     link_uri: &str,
     doc_body: &str,
     doc_breadcrumbs: &str,
     term: &str,
     count: usize,
-) -> String {
+) {
+    let window = web_sys::window().unwrap();
+    let document = window.document().unwrap();
+
     let (page, head) = uri_parser(link_uri);
 
-    format!(
+    let new_element = document.create_element("li").unwrap();
+    new_element.set_inner_html(&format!(
         r#"<a href="{path_to_root}{page}?highlight={}#{head}">{doc_breadcrumbs}</a><span class="teaser" aria-label="Search Result Teaser">{}</span>"#,
         js_sys::encode_uri_component(&term.split(' ').collect::<Vec<&str>>().join("%20"))
             .as_string()
@@ -186,5 +190,12 @@ pub fn format_result(
             term.split(' ').collect::<Vec<&str>>(),
             count,
         )
-    )
+    ));
+
+    let parent = document
+        .get_element_by_id("searchresults")
+        .ok_or(JsValue::NULL)
+        .unwrap();
+
+    parent.append_child(&new_element).unwrap();
 }
