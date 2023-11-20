@@ -1,7 +1,7 @@
 import markjs from 'mark.js';
 import { Fzf, extendedMatch } from 'fzf';
 
-import wasmInit, { format_result } from './wasm_book.js';
+import wasmInit, { create_search_results_list } from './wasm_book.js';
 
 const searchMain = () => {
   const ELEM_BAR = document.getElementById('searchbar');
@@ -27,7 +27,7 @@ const searchMain = () => {
     const count = Math.min(results.length, searchConfig.results_options.limit_results);
 
     ELEM_HEADER.innerText = (results.length > count ? 'Over ' : '') + `${count} search results for: ${term}`;
-    return results.slice(0, count);
+    return results.slice(count);
   };
 
   // Eventhandler for keyevents while the searchbar is focused
@@ -42,9 +42,7 @@ const searchMain = () => {
     ELEM_RESULTS.innerHTML = '';
 
     for (const result of getResults(term)) {
-      const resultElem = document.createElement('li');
-
-      resultElem.innerHTML = format_result(
+      create_search_results_list(
         PATH_TO_ROOT,
         searchConfig.doc_urls[result.ref],
         result.doc.body,
@@ -52,8 +50,6 @@ const searchMain = () => {
         term,
         searchConfig.results_options.teaser_word_count,
       );
-
-      ELEM_RESULTS.appendChild(resultElem);
     }
 
     resultMarker.mark(decodeURIComponent(term).split(' '), {
