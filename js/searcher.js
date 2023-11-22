@@ -94,44 +94,50 @@ const searchMain = () => {
     searchConfig = Object.assign({}, config);
     lunrIndex = window.elasticlunr.Index.load(config.index);
 
-    wasmInit().then(() => {
-      searchResult = new SearchResult(PATH_TO_ROOT, config.results_options.teaser_word_count);
-    });
+    wasmInit()
+      .then(() => {
+        searchResult = new SearchResult(PATH_TO_ROOT, config.results_options.teaser_word_count);
+
+        ELEM_ICON.addEventListener(
+          'mouseup',
+          () => (ELEM_WRAPPER.classList.contains('hidden') ? showSearch() : hiddenSearch()),
+          { once: false, passive: true },
+        );
+
+        document.addEventListener(
+          'keyup',
+          e => {
+            if (ELEM_WRAPPER.classList.contains('hidden')) {
+              switch (e.key) {
+                case '/':
+                case 's':
+                case 'S':
+                  showSearch();
+                  break;
+              }
+              return;
+            }
+
+            if (e.key === 'Escape') {
+              hiddenSearch();
+            }
+          },
+          { once: false, passive: true },
+        );
+
+        ELEM_BAR.addEventListener('keyup', keyUpHandler, { once: false, passive: true });
+      })
+      .catch(error => {
+        console.error('Error initializing Wasm module:', error);
+        console.log('The search function is disabled.');
+        ELEM_ICON.classList.add('hidden');
+      });
 
     // Suppress "submit" events so thje page doesn't reload when the user presses Enter
-    document.addEventListener('submit', e => e.preventDefault(), { once: false, passive: false });
+    document.addEventListener('submit', e => e.preventDefault(), { once: false, passive: true });
 
     // If reloaded, do the search or mark again, depending on the current url parameters
     doSearchOrMarkFromUrl();
-
-    ELEM_ICON.addEventListener(
-      'mouseup',
-      () => (ELEM_WRAPPER.classList.contains('hidden') ? showSearch() : hiddenSearch()),
-      { once: false, passive: true },
-    );
-
-    document.addEventListener(
-      'keyup',
-      e => {
-        if (ELEM_WRAPPER.classList.contains('hidden')) {
-          switch (e.key) {
-            case '/':
-            case 's':
-            case 'S':
-              showSearch();
-              break;
-          }
-          return;
-        }
-
-        if (e.key === 'Escape') {
-          hiddenSearch();
-        }
-      },
-      { once: false, passive: true },
-    );
-
-    searchbar.addEventListener('keyup', keyUpHandler, { once: false, passive: true });
   };
 
   fetch(`${PATH_TO_ROOT}searchindex.json`)
