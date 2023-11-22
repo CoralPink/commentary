@@ -125,7 +125,7 @@ const searchMain = () => {
           { once: false, passive: true },
         );
 
-        searchbar.addEventListener('keyup', keyUpHandler, { once: false, passive: true });
+        ELEM_BAR.addEventListener('keyup', keyUpHandler, { once: false, passive: true });
       })
       .catch(error => {
         console.error('Error initializing Wasm module:', error);
