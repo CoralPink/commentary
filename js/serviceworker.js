@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'v0.10.12';
+const CACHE_VERSION = 'v0.11.0';
 const CACHE_LIST = [
   '/commentary/book.js',
   '/commentary/elasticlunr.min.js',
@@ -99,9 +99,6 @@ self.addEventListener('activate', event => {
 });
 
 self.addEventListener('install', event => {
-  // The promise that skipWaiting() returns can be safely ignored.
-  self.skipWaiting();
-
   const addResourcesToCache = async resources => {
     const cache = await caches.open(CACHE_VERSION);
     await cache.addAll(resources);
@@ -112,14 +109,28 @@ self.addEventListener('install', event => {
 
 self.addEventListener('fetch', async event => {
   for (const x of CACHE_USE) {
-    if (event.request.url.startsWith(x)) {
-      event.respondWith(
-        cacheFirst({
-          request: event.request,
-          preloadResponsePromise: event.preloadResponse,
-          fallbackUrl: '/commentary/chrome-96x96.png',
-        }),
-      );
+    if (!event.request.url.startsWith(x)) {
+      continue;
     }
+
+    const preloadResponsePromise = event.preloadResponse;
+
+    event.respondWith(
+      (async () => {
+        const preloadResponse = await preloadResponsePromise;
+
+        // Non-blocking cacheFirst function
+        const cachedResponse = await cacheFirst({
+          request: event.request,
+          preloadResponsePromise: preloadResponse,
+          fallbackUrl: '/commentary/chrome-96x96.png',
+        });
+
+        return cachedResponse;
+      })(),
+    );
+
+    // Ensure that the event does not finish until the respondWith promise settles
+    event.waitUntil(preloadResponsePromise);
   }
 });
