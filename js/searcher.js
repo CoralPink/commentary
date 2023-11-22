@@ -134,7 +134,7 @@ const searchMain = () => {
       });
 
     // Suppress "submit" events so thje page doesn't reload when the user presses Enter
-    document.addEventListener('submit', e => e.preventDefault(), { once: false, passive: false });
+    document.addEventListener('submit', e => e.preventDefault(), { once: false, passive: true });
 
     // If reloaded, do the search or mark again, depending on the current url parameters
     doSearchOrMarkFromUrl();
