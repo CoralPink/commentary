@@ -182,19 +182,22 @@ pub struct SearchResult {
 #[wasm_bindgen]
 impl SearchResult {
     #[wasm_bindgen(constructor)]
-    pub fn new(path_to_root: String, count: usize) -> Self {
-        let window = web_sys::window().unwrap();
-        let document = window.document().unwrap();
+    pub fn new(path_to_root: String, count: usize) -> Result<SearchResult, JsValue> {
+        let window = web_sys::window().ok_or("No global `window` exists")?;
+        let document = window
+            .document()
+            .ok_or("Should have a document on window")?;
+        let parent = document
+            .get_element_by_id("searchresults")
+            .ok_or("No element with ID `searchresults`")?;
 
-        let parent = document.get_element_by_id("searchresults").unwrap();
-
-        SearchResult {
+        Ok(SearchResult {
             path_to_root,
             document,
             parent,
             count,
             teaser: Teaser::new(),
-        }
+        })
     }
 
     pub fn append_search_result(
@@ -205,8 +208,7 @@ impl SearchResult {
         term: &str,
     ) {
         let (page, head) = uri_parser(link_uri);
-
-        let new_element = self.document.create_element("li").unwrap();
+        let new_element = self.document.create_element("li").expect("failed: create <li>");
 
         self.teaser.clear();
 
@@ -224,6 +226,6 @@ impl SearchResult {
           )
         ));
 
-        self.parent.append_child(&new_element).unwrap();
+        self.parent.append_child(&new_element).expect("failed: append_child");
     }
 }
