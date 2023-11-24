@@ -13,6 +13,13 @@ macro_rules! console_log {
     ($($t:tt)*) => (log(&format_args!($($t)*).to_string()))
 }
 
+fn uri_parser(link_uri: &str) -> (&str, &str) {
+    let uri: Vec<&str> = link_uri.split('#').collect();
+    let head = if uri.len() > 1 { uri[1] } else { "" };
+
+    (uri[0], head)
+}
+
 // TODO:
 // I wanted to manipulate it by passing objects from js,
 // but I just couldn't get it to work....
@@ -163,13 +170,6 @@ impl Teaser {
     }
 }
 
-fn uri_parser(link_uri: &str) -> (&str, &str) {
-    let uri: Vec<&str> = link_uri.split('#').collect();
-    let head = if uri.len() > 1 { uri[1] } else { "" };
-
-    (uri[0], head)
-}
-
 #[wasm_bindgen]
 pub struct SearchResult {
     path_to_root: String,
@@ -208,24 +208,31 @@ impl SearchResult {
         term: &str,
     ) {
         let (page, head) = uri_parser(link_uri);
-        let new_element = self.document.create_element("li").expect("failed: create <li>");
+        let terms = term.split_whitespace().collect::<Vec<&str>>();
+
+        let new_element = self
+            .document
+            .create_element("li")
+            .expect("failed: create <li>");
 
         self.teaser.clear();
 
         new_element.set_inner_html(&format!(
           r#"<a href="{}{page}?highlight={}#{head}">{doc_breadcrumbs}</a><span class="teaser" aria-label="Search Result Teaser">{}</span>"#,
           &self.path_to_root,
-          js_sys::encode_uri_component(&term.split(' ').collect::<Vec<&str>>().join("%20"))
+          js_sys::encode_uri_component(&terms.join("%20"))
               .as_string()
               .unwrap_or_default()
               .replace('\'', "%27"),
           self.teaser.search_result_excerpt(
               doc_body,
-              term.split(' ').collect::<Vec<&str>>(),
+              terms,
               self.count,
           )
         ));
 
-        self.parent.append_child(&new_element).expect("failed: append_child");
+        self.parent
+            .append_child(&new_element)
+            .expect("failed: append_child");
     }
 }
