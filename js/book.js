@@ -16,16 +16,12 @@ const chapterNavigation = () => {
       }
 
       if (e.key === 'ArrowRight') {
-        e.preventDefault();
-
         const nextButton = document.querySelector('.content main .nav-chapters.next');
 
         if (nextButton) {
           globalThis.location.href = nextButton.href;
         }
       } else if (e.key === 'ArrowLeft') {
-        e.preventDefault();
-
         const previousButton = document.querySelector('.content main .nav-chapters.previous');
 
         if (previousButton) {
