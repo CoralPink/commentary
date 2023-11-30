@@ -9,22 +9,22 @@ export default class TableOfContents {
     this.#onlyActive = null;
 
     this.#observer = new IntersectionObserver(
-      (entries) => {
+      entries => {
         for (const x of entries) {
           x.isIntersecting ? this.addActive(x) : this.removeActive(x);
         }
       },
       {
-        root: document.getElementById("content main"),
+        root: document.getElementById('content main'),
       },
     );
 
-    this.#pagetoc = document.getElementsByClassName("pagetoc")[0];
+    this.#pagetoc = document.getElementsByClassName('pagetoc')[0];
 
-    for (const el of document.querySelectorAll(".content a.header")) {
+    for (const el of document.querySelectorAll('.content a.header')) {
       this.#observer.observe(el);
 
-      const link = document.createElement("a");
+      const link = document.createElement('a');
 
       link.appendChild(document.createTextNode(el.text));
       link.href = el.href;
@@ -37,10 +37,10 @@ export default class TableOfContents {
 
   addActive(entry) {
     if (this.#onlyActive) {
-      this.#onlyActive.classList.remove("active");
+      this.#onlyActive.classList.remove('active');
       this.#onlyActive = null;
     }
-    this.#tocMap.get(entry.target).classList.add("active");
+    this.#tocMap.get(entry.target).classList.add('active');
   }
 
   removeActive(entry) {
@@ -48,7 +48,7 @@ export default class TableOfContents {
     let active = null;
 
     for (const x of this.#tocMap.values()) {
-      if (x.classList.contains("active")) {
+      if (x.classList.contains('active')) {
         count++;
         active = x;
       }
@@ -58,6 +58,6 @@ export default class TableOfContents {
       this.#onlyActive = active;
       return;
     }
-    this.#tocMap.get(entry.target).classList.remove("active");
+    this.#tocMap.get(entry.target).classList.remove('active');
   }
 }
