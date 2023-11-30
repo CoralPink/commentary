@@ -53,15 +53,13 @@ export default class ThemeSelector {
 
     htmlClass.replace(current, next);
 
-    setTimeout(() => {
-      document.getElementById(current).classList.remove('theme-selected');
-      document.getElementById(next).classList.add('theme-selected');
+    document.getElementById(current).classList.remove('theme-selected');
+    document.getElementById(next).classList.add('theme-selected');
 
-      document.querySelector('meta[name="theme-color"]').content = globalThis.getComputedStyle(
-        document.body,
-      ).backgroundColor;
+    document.querySelector('meta[name="theme-color"]').content = globalThis.getComputedStyle(
+      document.body,
+    ).backgroundColor;
 
-      writeLocalStorage('mdbook-theme', next);
-    }, 1);
+    writeLocalStorage('mdbook-theme', next);
   }
 }
