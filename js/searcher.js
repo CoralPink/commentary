@@ -21,7 +21,7 @@ const searchMain = () => {
   let searchResult;
 
   // Exported functions
-  window.search.hasFocus = () => ELEM_BAR === document.activeElement;
+  globalThis.search.hasFocus = () => ELEM_BAR === document.activeElement;
 
   const getResults = term => {
     const results = lunrIndex.search(term, searchConfig.search_options);
@@ -72,7 +72,7 @@ const searchMain = () => {
 
   // On reload or browser history backwards/forwards events, parse the url and do search or mark
   const doSearchOrMarkFromUrl = () => {
-    const param = new URLSearchParams(window.location.search).get('highlight');
+    const param = new URLSearchParams(globalThis.location.search).get('highlight');
 
     if (!param) {
       return;
@@ -92,7 +92,7 @@ const searchMain = () => {
 
   const initialize = config => {
     searchConfig = Object.assign({}, config);
-    lunrIndex = window.elasticlunr.Index.load(config.index);
+    lunrIndex = globalThis.elasticlunr.Index.load(config.index);
 
     wasmInit()
       .then(() => {
@@ -147,7 +147,7 @@ const searchMain = () => {
       console.log('Try to load searchindex.js if fetch failed');
       const script = document.createElement('script');
       script.src = `${PATH_TO_ROOT}searchindex.js`;
-      script.onload = () => initialize(window.search);
+      script.onload = () => initialize(globalThis.search);
       document.head.appendChild(script);
     });
 };
@@ -160,7 +160,7 @@ const fzfInit = () => {
     return selector(a.item).trim().length - selector(b.item).trim().length;
   };
 
-  window.elasticlunr.Index.load = index => {
+  globalThis.elasticlunr.Index.load = index => {
     const storeDocs = index.documentStore.docs;
 
     const fzf = new Fzf(Object.keys(storeDocs), {
@@ -190,10 +190,10 @@ const fzfInit = () => {
 };
 
 (() => {
-  if (!window.elasticlunr) {
+  if (!globalThis.elasticlunr) {
     return;
   }
-  window.search = window.search || {};
+  globalThis.search = globalThis.search || {};
 
   document.addEventListener(
     'DOMContentLoaded',
