@@ -15,7 +15,7 @@ export default class TableOfContents {
         }
       },
       {
-        root: document.getElementById("#content"),
+        root: document.getElementById("content"),
       },
     );
 
