@@ -80,7 +80,7 @@ const searchMain = () => {
     const term = decodeURIComponent(param);
     ELEM_BAR.value = term;
 
-    const marker = new markjs(document.querySelector('.content main'));
+    const marker = new markjs(document.getElementById('main'));
     marker.mark(term.split(' '), {
       accuracy: 'complementary',
     });

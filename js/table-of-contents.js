@@ -16,12 +16,13 @@ export default class TableOfContents {
       },
       {
         root: document.getElementById('content main'),
+        threshold: 1.0,
       },
     );
 
     this.#pagetoc = document.getElementsByClassName('pagetoc')[0];
 
-    for (const el of document.querySelectorAll('.content a.header')) {
+    for (const el of document.getElementById('main').querySelectorAll('a.header')) {
       this.#observer.observe(el);
 
       const link = document.createElement('a');
