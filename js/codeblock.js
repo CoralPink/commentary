@@ -31,7 +31,7 @@ export const codeBlock = () => {
   clip.setAttribute('aria-label', 'Copy to clipboard');
   clip.innerHTML = '<i class="tooltiptext"></i>';
 
-  for (const code of document.querySelector('.content main').querySelectorAll('pre code')) {
+  for (const code of document.getElementById('main').querySelectorAll('pre code')) {
     if (code.classList.contains('language-txt')) {
       continue;
     }
