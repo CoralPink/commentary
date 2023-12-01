@@ -12,7 +12,9 @@ pub fn attribute_external_links() {
     let document = window.document().unwrap();
 
     let elements = document
-        .query_selector_all(r#".content main a[href^="http"]"#)
+        .get_element_by_id("main")
+        .expect("id 'main' not found")
+        .query_selector_all(r#"a[href^="http"]"#)
         .unwrap();
 
     for el in node_list_to_array(elements).iter() {
@@ -22,4 +24,3 @@ pub fn attribute_external_links() {
         }
     }
 }
-

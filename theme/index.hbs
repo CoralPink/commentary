@@ -91,7 +91,7 @@
     </div>
 
     <div id="page" class="page">
-      <div id="sidebar" class="sidebar" aria-label="Table of contents">
+      <div id="sidebar" class="sidebar" aria-label="Site map">
         <nav id="side-scroll" class="sidebar-scrollbox">
           {{#toc}}{{/toc}}
         </nav>
@@ -100,7 +100,7 @@
       <div id="content" class="content">
         <spacer></spacer>
 
-        <main>
+        <main id="main">
           {{{ content }}}
 
           <nav class="nav-wrapper" aria-label="Page navigation">
@@ -120,7 +120,7 @@
 
         <spacer></spacer>
 
-        <div class="righttoc">
+        <div class="righttoc" aria-label="Table of contents">
           <nav class="pagetoc"></nav>
         </div>
       </div>
