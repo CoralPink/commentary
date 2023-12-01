@@ -13,7 +13,7 @@ pub fn attribute_external_links() {
 
     let elements = document
         .get_element_by_id("main")
-        .unwrap()
+        .expect("id 'main' not found")
         .query_selector_all(r#"a[href^="http"]"#)
         .unwrap();
 

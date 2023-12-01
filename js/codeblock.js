@@ -20,6 +20,18 @@ const codeCopy = trigger => {
 };
 
 export const codeBlock = () => {
+  const main = document.getElementById('main');
+
+  if (main === null) {
+    return;
+  }
+
+  const codeQuery = main.querySelectorAll('pre code');
+
+  if (codeQuery.length <= 0) {
+    return;
+  }
+
   // capture hover event in iOS
   if (globalThis.ontouchstart !== undefined) {
     document.addEventListener('touchstart', () => {}, { once: false, passive: true });
@@ -31,7 +43,7 @@ export const codeBlock = () => {
   clip.setAttribute('aria-label', 'Copy to clipboard');
   clip.innerHTML = '<i class="tooltiptext"></i>';
 
-  for (const code of document.getElementById('main').querySelectorAll('pre code')) {
+  for (const code of codeQuery) {
     if (code.classList.contains('language-txt')) {
       continue;
     }

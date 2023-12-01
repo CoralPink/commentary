@@ -33,9 +33,13 @@ const chapterNavigation = () => {
   );
 };
 
-wasmInit().then(() => {
-  attribute_external_links();
-});
+wasmInit()
+  .then(() => {
+    attribute_external_links();
+  })
+  .catch(error => {
+    console.error('Error Attribute external links: ', error);
+  });
 
 document.addEventListener(
   'DOMContentLoaded',
