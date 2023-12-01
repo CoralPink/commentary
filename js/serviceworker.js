@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'v0.11.2';
+const CACHE_VERSION = 'v0.11.3';
 const CACHE_LIST = [
   '/commentary/book.js',
   '/commentary/elasticlunr.min.js',
