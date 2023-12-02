@@ -1,3 +1,29 @@
+const MAX_THREAD = 8;
+
+const workerPool = [];
+
+const popWorkerPool = async () => {
+  if (workerPool.length < MAX_THREAD) {
+    return new Worker('/commentary/hl-worker.js');
+  }
+
+  while (true) {
+    const worker = workerPool.pop();
+
+    if (worker !== undefined) {
+      return worker;
+    }
+
+    await new Promise(resolve => setTimeout(resolve, 1000));
+  }
+};
+
+const releaseWorker = () => {
+  for (const worker of workerPool) {
+    worker.terminate();
+  }
+};
+
 const codeCopy = trigger => {
   const elem = trigger.target;
 
@@ -19,7 +45,7 @@ const codeCopy = trigger => {
   );
 };
 
-export const codeBlock = () => {
+export const codeBlock = async () => {
   const main = document.getElementById('main');
 
   if (main === null) {
@@ -48,11 +74,16 @@ export const codeBlock = () => {
       continue;
     }
 
-    const worker = new Worker('/commentary/hl-worker.js');
+    const worker = await popWorkerPool();
 
     worker.onmessage = ev => {
       code.innerHTML = ev.data;
-      worker.terminate();
+      workerPool.push(worker);
+    };
+
+    worker.onerror = e => {
+      console.error(`Error codeBlock(): ${e}`);
+      workerPool.push(worker);
     };
 
     worker.postMessage([code.textContent, code.classList[0]]);
@@ -65,4 +96,6 @@ export const codeBlock = () => {
     const parent = code.parentNode;
     parent.insertBefore(buttons, parent.firstChild);
   }
+
+  releaseWorker();
 };
