@@ -99,5 +99,4 @@ export const codeBlock = async () => {
     parent.insertBefore(buttons, parent.firstChild);
   }
 
-  releaseWorker();
 };
