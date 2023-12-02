@@ -1,4 +1,4 @@
-const MAX_THREAD = 8;
+const MAX_THREAD = 16;
 
 const workerPool = [];
 
@@ -15,16 +15,18 @@ const popWorkerPool = async () => {
       return worker;
     }
 
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    await new Promise(resolve => setTimeout(resolve, 100));
   }
 };
 
+/*
 const releaseWorker = () => {
   for (const worker of workerPool) {
     worker.terminate();
   }
   workerPool.length = 0;
 };
+*/
 
 const codeCopy = trigger => {
   const elem = trigger.target;
@@ -98,5 +100,4 @@ export const codeBlock = async () => {
     const parent = code.parentNode;
     parent.insertBefore(buttons, parent.firstChild);
   }
-
 };
