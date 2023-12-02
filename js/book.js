@@ -37,8 +37,8 @@ wasmInit()
   .then(() => {
     attribute_external_links();
   })
-  .catch(error => {
-    console.error('Error Attribute external links: ', error);
+  .catch(e => {
+    console.error(`Error Attribute external links: ${e}`);
   });
 
 document.addEventListener(

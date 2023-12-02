@@ -127,8 +127,8 @@ const searchMain = () => {
 
         ELEM_BAR.addEventListener('keyup', keyUpHandler, { once: false, passive: true });
       })
-      .catch(error => {
-        console.error('Error initializing Wasm module:', error);
+      .catch(e => {
+        console.error(`Error initializing Wasm module: ${e}`);
         console.log('The search function is disabled.');
         ELEM_ICON.classList.add('hidden');
       });
