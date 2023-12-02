@@ -23,6 +23,7 @@ const releaseWorker = () => {
   for (const worker of workerPool) {
     worker.terminate();
   }
+  workerPool.length = 0;
 };
 
 const codeCopy = trigger => {
