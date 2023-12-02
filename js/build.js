@@ -1,7 +1,7 @@
-const CLR_RESET = "\x1b[0m";
-const CLR_BC = "\x1b[1;35m";
-const CLR_BG = "\x1b[1;32m";
-const CLR_Y = "\x1b[33m";
+const CLR_RESET = '\x1b[0m';
+const CLR_BC = '\x1b[1;35m';
+const CLR_BG = '\x1b[1;32m';
+const CLR_Y = '\x1b[33m';
 
 console.info(`[INFO]: 👩🏼‍🍳 I'm going to bake ${CLR_BC}bun${CLR_RESET} now!`);
 const start = performance.now();
