@@ -4,7 +4,8 @@ const workerPool = [];
 
 const popWorkerPool = async () => {
   if (workerPool.length < MAX_THREAD) {
-    return new Worker('/commentary/hl-worker.js');
+    const worker = new Worker('/commentary/hl-worker.js');
+    workerPool.push(worker);
   }
 
   while (true) {
