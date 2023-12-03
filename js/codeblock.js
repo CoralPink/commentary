@@ -107,19 +107,23 @@ export const codeBlock = async () => {
       continue;
     }
 
-    const worker = await workerPool.pop();
+    try {
+      const worker = await workerPool.pop();
 
-    worker.onmessage = ev => {
-      code.innerHTML = ev.data;
-      workerPool.push(worker);
-    };
+      worker.onmessage = ev => {
+        code.innerHTML = ev.data;
+        workerPool.push(worker);
+      };
 
-    worker.onerror = e => {
-      console.error(`Error codeBlock(): ${e}`);
-      workerPool.push(worker);
-    };
+      worker.onerror = e => {
+        console.error(`Error codeBlock(): ${e}`);
+        workerPool.push(worker);
+      };
 
-    worker.postMessage([code.textContent, code.classList[0]]);
+      worker.postMessage([code.textContent, code.classList[0]]);
+    } catch (e) {
+      console.error(e);
+    }
 
     const buttons = document.createElement('div');
     buttons.className = 'buttons';
