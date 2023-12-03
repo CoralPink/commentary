@@ -1,32 +1,59 @@
+const WORKER_PATH = '/commentary/hl-worker.js';
 const MAX_THREAD = 16;
 
-const workerPool = [];
+// Singleton Class
+class WorkerPool {
+  #array;
+  #count;
 
-const popWorkerPool = async () => {
-  if (workerPool.length < MAX_THREAD) {
-    const worker = new Worker('/commentary/hl-worker.js');
-    workerPool.push(worker);
-  }
-
-  while (true) {
-    const worker = workerPool.pop();
-
-    if (worker !== undefined) {
-      return worker;
+  constructor() {
+    if (!WorkerPool._instance) {
+      WorkerPool._instance = this;
     }
 
-    await new Promise(resolve => setTimeout(resolve, 100));
-  }
-};
+    this.#array = [];
+    this.#count = 0;
 
-/*
-const releaseWorker = () => {
-  for (const worker of workerPool) {
-    worker.terminate();
+    return WorkerPool._instance;
   }
-  workerPool.length = 0;
-};
-*/
+
+  push(worker) {
+    if (worker !== undefined) {
+      this.#array.push(worker);
+      return;
+    }
+    this.#array.push(new Worker(WORKER_PATH));
+    this.#count++;
+  }
+
+  async pop() {
+    if (this.#count < MAX_THREAD) {
+      this.push();
+    }
+
+    const start = performance.now();
+
+    do {
+      const worker = this.#array.pop();
+
+      if (worker !== undefined) {
+        return worker;
+      }
+
+      await new Promise(resolve => setTimeout(resolve, 10));
+    } while (performance.now() - start < 1000);
+
+    throw new Error('Pool pop time out!');
+  }
+
+  release() {
+    for (const worker of this.#array) {
+      worker.terminate();
+    }
+    this.#array.length = 0;
+    this.#count = 0;
+  }
+}
 
 const codeCopy = trigger => {
   const elem = trigger.target;
@@ -73,12 +100,14 @@ export const codeBlock = async () => {
   clip.setAttribute('aria-label', 'Copy to clipboard');
   clip.innerHTML = '<i class="tooltiptext"></i>';
 
+  const workerPool = new WorkerPool();
+
   for (const code of codeQuery) {
     if (code.classList.contains('language-txt')) {
       continue;
     }
 
-    const worker = await popWorkerPool();
+    const worker = await workerPool.pop();
 
     worker.onmessage = ev => {
       code.innerHTML = ev.data;
