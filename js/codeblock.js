@@ -3,18 +3,18 @@ const MAX_THREAD = 16;
 
 // Singleton Class
 class WorkerPool {
+  static _instance;
+
   #array;
   #count;
 
   constructor() {
-    if (!WorkerPool._instance) {
-      WorkerPool._instance = this;
+    if (WorkerPool._instance) {
+      return WorkerPool._instance;
     }
-
     this.#array = [];
     this.#count = 0;
-
-    return WorkerPool._instance;
+    WorkerPool._instance = this;
   }
 
   push(worker) {
