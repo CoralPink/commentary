@@ -1,3 +1,4 @@
+use js_sys::Array;
 use rust_stemmers::{Algorithm, Stemmer};
 use wasm_bindgen::prelude::*;
 use web_sys::{Document, Element};
@@ -177,12 +178,17 @@ pub struct SearchResult {
     parent: Element,
     count: usize,
     teaser: Teaser,
+    url_table: Vec<String>,
 }
 
 #[wasm_bindgen]
 impl SearchResult {
     #[wasm_bindgen(constructor)]
-    pub fn new(path_to_root: String, count: usize) -> Result<SearchResult, JsValue> {
+    pub fn new(
+        path_to_root: String,
+        count: usize,
+        doc_urls: Array,
+    ) -> Result<SearchResult, JsValue> {
         let window = web_sys::window().ok_or("No global `window` exists")?;
         let document = window
             .document()
@@ -191,23 +197,36 @@ impl SearchResult {
             .get_element_by_id("searchresults")
             .ok_or("No element with ID `searchresults`")?;
 
+        let url_table: Vec<String> = doc_urls
+            .iter()
+            .filter_map(|value| value.as_string())
+            .collect();
+
         Ok(SearchResult {
             path_to_root,
             document,
             parent,
             count,
             teaser: Teaser::new(),
+            url_table,
         })
     }
 
     pub fn append_search_result(
         &mut self,
-        link_uri: &str,
+        reference: &str,
         doc_body: &str,
         doc_breadcrumbs: &str,
         term: &str,
     ) {
-        let (page, head) = uri_parser(link_uri);
+        let idx = match reference.parse::<usize>() {
+            Ok(n) => n,
+            Err(_) => {
+                console_log!("Error: Invalid result.ref: {reference}");
+                return;
+            }
+        };
+        let (page, head) = uri_parser(&self.url_table[idx]);
         let terms = term.split_whitespace().collect::<Vec<&str>>();
 
         let new_element = self
