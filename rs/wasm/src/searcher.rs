@@ -219,7 +219,14 @@ impl SearchResult {
         doc_breadcrumbs: &str,
         term: &str,
     ) {
-        let (page, head) = uri_parser(&self.url_table[reference.parse::<usize>().expect("failed: result.ref")]);
+        let idx = match reference.parse::<usize>() {
+            Ok(n) => n,
+            Err(_) => {
+                console_log!("Error: Invalid result.ref: {reference}");
+                return;
+            }
+        };
+        let (page, head) = uri_parser(&self.url_table[idx]);
         let terms = term.split_whitespace().collect::<Vec<&str>>();
 
         let new_element = self
