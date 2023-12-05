@@ -3,146 +3,128 @@ import { Fzf, extendedMatch } from 'fzf';
 
 import wasmInit, { SearchResult } from './wasm_book.js';
 
-const searchMain = () => {
-  const ELEM_BAR = document.getElementById('searchbar');
-  const ELEM_WRAPPER = document.getElementById('search-wrapper');
-  const ELEM_RESULTS = document.getElementById('searchresults');
-  const ELEM_ICON = document.getElementById('search-toggle');
+const ELEM_BAR = document.getElementById('searchbar');
+const ELEM_WRAPPER = document.getElementById('search-wrapper');
+const ELEM_RESULTS = document.getElementById('searchresults');
+const ELEM_ICON = document.getElementById('search-toggle');
 
-  const ELEM_HEADER = document.getElementById('searchresults-header');
-  const ELEM_OUTER = document.getElementById('searchresults-outer');
+const ELEM_HEADER = document.getElementById('searchresults-header');
+const ELEM_OUTER = document.getElementById('searchresults-outer');
 
-  const PATH_TO_ROOT = document.getElementById('searcher').dataset.pathtoroot;
-  const resultMarker = new markjs(ELEM_RESULTS);
+const PATH_TO_ROOT = document.getElementById('searcher').dataset.pathtoroot;
+const resultMarker = new markjs(ELEM_RESULTS);
 
-  let searchResult;
+let searchResult;
 
-  let lunrIndex;
-  let searchConfig;
+let lunrIndex;
+let searchConfig;
 
-  // Exported functions
-  globalThis.search.hasFocus = () => ELEM_BAR === document.activeElement;
+const getResults = term => {
+  const results = lunrIndex.search(term, searchConfig.search_options);
+  const count = Math.min(results.length, searchConfig.limit_results);
 
-  const getResults = term => {
-    const results = lunrIndex.search(term, searchConfig.search_options);
-    const count = Math.min(results.length, searchConfig.limit_results);
+  ELEM_HEADER.innerText = (results.length > count ? 'Over ' : '') + `${count} search results for: ${term}`;
+  return results.slice(0, count);
+};
 
-    ELEM_HEADER.innerText = (results.length > count ? 'Over ' : '') + `${count} search results for: ${term}`;
-    return results.slice(0, count);
-  };
+// Eventhandler for keyevents while the searchbar is focused
+const keyUpHandler = () => {
+  const term = ELEM_BAR.value.trim();
 
-  // Eventhandler for keyevents while the searchbar is focused
-  const keyUpHandler = () => {
-    const term = ELEM_BAR.value.trim();
+  if (term === '') {
+    ELEM_OUTER.classList.add('hidden');
+    return;
+  }
 
-    if (term === '') {
-      ELEM_OUTER.classList.add('hidden');
-      return;
-    }
+  ELEM_RESULTS.innerHTML = '';
 
-    ELEM_RESULTS.innerHTML = '';
+  for (const result of getResults(term)) {
+    searchResult.append_search_result(result.ref, result.doc.body, result.doc.breadcrumbs, term);
+  }
 
-    for (const result of getResults(term)) {
-      searchResult.append_search_result(result.ref, result.doc.body, result.doc.breadcrumbs, term);
-    }
+  resultMarker.mark(decodeURIComponent(term).split(' '), {
+    accuracy: 'complementary',
+    exclude: ['a'],
+  });
 
-    resultMarker.mark(decodeURIComponent(term).split(' '), {
-      accuracy: 'complementary',
-      exclude: ['a'],
-    });
+  ELEM_OUTER.classList.remove('hidden');
+};
 
-    ELEM_OUTER.classList.remove('hidden');
-  };
+const showSearch = () => {
+  ELEM_WRAPPER.classList.remove('hidden');
+  ELEM_ICON.setAttribute('aria-expanded', 'true');
+  ELEM_BAR.select();
+};
 
-  const showSearch = () => {
-    ELEM_WRAPPER.classList.remove('hidden');
-    ELEM_ICON.setAttribute('aria-expanded', 'true');
-    ELEM_BAR.select();
-  };
+const hiddenSearch = () => {
+  ELEM_WRAPPER.classList.add('hidden');
+  ELEM_ICON.setAttribute('aria-expanded', 'false');
+};
 
-  const hiddenSearch = () => {
-    ELEM_WRAPPER.classList.add('hidden');
-    ELEM_ICON.setAttribute('aria-expanded', 'false');
-  };
+// On reload or browser history backwards/forwards events, parse the url and do search or mark
+const doSearchOrMarkFromUrl = () => {
+  const param = new URLSearchParams(globalThis.location.search).get('highlight');
 
-  // On reload or browser history backwards/forwards events, parse the url and do search or mark
-  const doSearchOrMarkFromUrl = () => {
-    const param = new URLSearchParams(globalThis.location.search).get('highlight');
+  if (!param) {
+    return;
+  }
+  const term = decodeURIComponent(param);
+  ELEM_BAR.value = term;
 
-    if (!param) {
-      return;
-    }
-    const term = decodeURIComponent(param);
-    ELEM_BAR.value = term;
+  const marker = new markjs(document.getElementById('main'));
+  marker.mark(term.split(' '), {
+    accuracy: 'complementary',
+  });
 
-    const marker = new markjs(document.getElementById('main'));
-    marker.mark(term.split(' '), {
-      accuracy: 'complementary',
-    });
+  for (const x of document.querySelectorAll('mark')) {
+    x.addEventListener('mousedown', marker.unmark, { once: true, passive: true });
+  }
+};
 
-    for (const x of document.querySelectorAll('mark')) {
-      x.addEventListener('mousedown', marker.unmark, { once: true, passive: true });
-    }
-  };
+const initialize = async () => {
+  try {
+    const [config, _] = await Promise.all([
+      fetch(`${PATH_TO_ROOT}searchindex.json`).then(response => response.json()),
+      wasmInit(),
+    ]);
 
-  const initialize = config => {
-    wasmInit()
-      .then(() => {
-        lunrIndex = globalThis.elasticlunr.Index.load(config.index);
+    lunrIndex = globalThis.elasticlunr.Index.load(config.index);
+    searchConfig = { search_options: config.search_options, limit_results: config.results_options.limit_results };
+    searchResult = new SearchResult(PATH_TO_ROOT, config.results_options.teaser_word_count, config.doc_urls);
+  } catch (e) {
+    console.error(`Error during initialization: ${e}`);
+    console.log('The search function is disabled.');
+    ELEM_ICON.classList.add('hidden');
+    return;
+  }
 
-        searchConfig = { search_options: config.search_options, limit_results: config.results_options.limit_results };
-        searchResult = new SearchResult(PATH_TO_ROOT, config.results_options.teaser_word_count, config.doc_urls);
+  ELEM_BAR.addEventListener('keyup', keyUpHandler, { once: false, passive: true });
+  ELEM_ICON.addEventListener(
+    'mouseup',
+    () => (ELEM_WRAPPER.classList.contains('hidden') ? showSearch() : hiddenSearch()),
+    { once: false, passive: true },
+  );
 
-        ELEM_ICON.addEventListener(
-          'mouseup',
-          () => (ELEM_WRAPPER.classList.contains('hidden') ? showSearch() : hiddenSearch()),
-          { once: false, passive: true },
-        );
+  document.addEventListener(
+    'keyup',
+    e => {
+      if (ELEM_WRAPPER.classList.contains('hidden')) {
+        switch (e.key) {
+          case '/':
+          case 's':
+          case 'S':
+            showSearch();
+            break;
+        }
+        return;
+      }
 
-        document.addEventListener(
-          'keyup',
-          e => {
-            if (ELEM_WRAPPER.classList.contains('hidden')) {
-              switch (e.key) {
-                case '/':
-                case 's':
-                case 'S':
-                  showSearch();
-                  break;
-              }
-              return;
-            }
-
-            if (e.key === 'Escape') {
-              hiddenSearch();
-            }
-          },
-          { once: false, passive: true },
-        );
-
-        ELEM_BAR.addEventListener('keyup', keyUpHandler, { once: false, passive: true });
-      })
-      .catch(e => {
-        console.error(`Error initializing Wasm module: ${e}`);
-        console.log('The search function is disabled.');
-        ELEM_ICON.classList.add('hidden');
-      });
-
-    // Suppress "submit" events so thje page doesn't reload when the user presses Enter
-    document.addEventListener('submit', e => e.preventDefault(), { once: false, passive: true });
-
-    // If reloaded, do the search or mark again, depending on the current url parameters
-    doSearchOrMarkFromUrl();
-  };
-
-  fetch(`${PATH_TO_ROOT}searchindex.json`)
-    .then(response => response.json())
-    .then(json => initialize(json))
-    .catch(() => {
-      console.error('Error Failed to load searchindex.json');
-      console.log('The search function is disabled.');
-      ELEM_ICON.classList.add('hidden');
-    });
+      if (e.key === 'Escape') {
+        hiddenSearch();
+      }
+    },
+    { once: false, passive: true },
+  );
 };
 
 /**
@@ -186,13 +168,20 @@ const fzfInit = () => {
   if (!globalThis.elasticlunr) {
     return;
   }
+  // Exported functions
   globalThis.search = globalThis.search || {};
+  globalThis.search.hasFocus = () => ELEM_BAR === document.activeElement;
+
+  // Suppress "submit" events so thje page doesn't reload when the user presses Enter
+  document.addEventListener('submit', e => e.preventDefault(), { once: false, passive: true });
 
   document.addEventListener(
     'DOMContentLoaded',
     () => {
+      doSearchOrMarkFromUrl();
+
       fzfInit();
-      searchMain();
+      initialize();
     },
     { once: true, passive: true },
   );
