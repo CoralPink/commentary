@@ -87,6 +87,7 @@ jobs:
           rm book/tomorrow-night.css
           rm book/css/variables.css
           rm book/mark.min.js
+          rm -rf book/searchindex.js
           rm -rf book/FontAwesome
 
       - name: Generate The Sitemap
