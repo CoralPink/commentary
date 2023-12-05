@@ -13,19 +13,19 @@ const searchMain = () => {
   const ELEM_OUTER = document.getElementById('searchresults-outer');
 
   const PATH_TO_ROOT = document.getElementById('searcher').dataset.pathtoroot;
-
   const resultMarker = new markjs(ELEM_RESULTS);
 
-  let searchConfig;
-  let lunrIndex;
   let searchResult;
+
+  let lunrIndex;
+  let searchConfig;
 
   // Exported functions
   globalThis.search.hasFocus = () => ELEM_BAR === document.activeElement;
 
   const getResults = term => {
     const results = lunrIndex.search(term, searchConfig.search_options);
-    const count = Math.min(results.length, searchConfig.results_options.limit_results);
+    const count = Math.min(results.length, searchConfig.limit_results);
 
     ELEM_HEADER.innerText = (results.length > count ? 'Over ' : '') + `${count} search results for: ${term}`;
     return results.slice(0, count);
@@ -43,12 +43,7 @@ const searchMain = () => {
     ELEM_RESULTS.innerHTML = '';
 
     for (const result of getResults(term)) {
-      searchResult.append_search_result(
-        searchConfig.doc_urls[result.ref],
-        result.doc.body,
-        result.doc.breadcrumbs,
-        term,
-      );
+      searchResult.append_search_result(result.ref, result.doc.body, result.doc.breadcrumbs, term);
     }
 
     resultMarker.mark(decodeURIComponent(term).split(' '), {
@@ -91,12 +86,12 @@ const searchMain = () => {
   };
 
   const initialize = config => {
-    searchConfig = Object.assign({}, config);
-    lunrIndex = globalThis.elasticlunr.Index.load(config.index);
-
     wasmInit()
       .then(() => {
-        searchResult = new SearchResult(PATH_TO_ROOT, config.results_options.teaser_word_count);
+        lunrIndex = globalThis.elasticlunr.Index.load(config.index);
+
+        searchConfig = { search_options: config.search_options, limit_results: config.results_options.limit_results };
+        searchResult = new SearchResult(PATH_TO_ROOT, config.results_options.teaser_word_count, config.doc_urls);
 
         ELEM_ICON.addEventListener(
           'mouseup',
@@ -144,11 +139,9 @@ const searchMain = () => {
     .then(response => response.json())
     .then(json => initialize(json))
     .catch(() => {
-      console.log('Try to load searchindex.js if fetch failed');
-      const script = document.createElement('script');
-      script.src = `${PATH_TO_ROOT}searchindex.js`;
-      script.onload = () => initialize(globalThis.search);
-      document.head.appendChild(script);
+      console.error('Error Failed to load searchindex.json');
+      console.log('The search function is disabled.');
+      ELEM_ICON.classList.add('hidden');
     });
 };
 
