@@ -36,6 +36,7 @@ mdbook build --dest-dir commentary
 #rm commentary/tomorrow-night.css
 #rm commentary/css/variables.css
 #rm commentary/mark.min.js
+#rm -rf commentary/searchindex.js
 #rm -rf commentary/FontAwesome
 
 echo '\n🐥 complete!'
