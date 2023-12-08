@@ -91,7 +91,7 @@ Who doesn't love a little bit of eye candy?
 (唐突な登場ですが) `null-ls.nvim`{{footnote: [null-ls.nvim](https://github.com/jose-elias-alvarez/null-ls.nvim):
 残念ながら、この夏休みの間に開発終了([IMPORTANT: Archiving null-ls](https://github.com/jose-elias-alvarez/null-ls.nvim/issues/1621))
 になっちゃったみたい...。Thank you for your hard work❗}}
-と併用すると、`Linter`の進捗も可視化してくれるのが便利なんですよね〜😽
+と併用すると、`Formatter`の進捗も可視化してくれるのが便利なんですよね〜😽
 ```
 
 ## 二 : Requirements
