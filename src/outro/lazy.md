@@ -99,7 +99,7 @@ Stay in bed, float up stream
 `lazy.nvim`のインストールの前に、まずは`packer.nvim`を退避しておきましょう❗
 
 ```admonish note
-インストールするプラグインのリストをあとで使うので、まだ削除はしないで🥺
+次の項から順番に進めていきますが、インストールするプラグインのリストは次の節で使うので、早まって削除はしないで🥺
 ```
 
 ### 📋 extensions/init.lua

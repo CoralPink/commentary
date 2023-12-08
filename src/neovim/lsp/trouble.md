@@ -159,7 +159,7 @@ Let it be
 なるようになるよ
 ```
 
-### 🔹 use_diagnositc_signs
+### 🔹 use_diagnostic_signs
 
 ~~~admonish info title=":h trouble.nvim-trouble-configuration"
 ```txt
@@ -433,7 +433,7 @@ culhl   highlight group used for the text item when the cursor is on the same li
 
 「ほんと、がんばったんだねー🤗」
 
-上の節でもちょっと触れましたが、タイミングというか巡り合わせが良いので、
+少し前の項でもちょっと触れましたが、タイミングというか巡り合わせが良いので、
 次回は`💤lazy.nvim`を取り上げます。一気にお引越しを済ませちゃいましょう🚚
 
 ```admonish note
