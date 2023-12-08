@@ -51,7 +51,7 @@ vim.opt.termguicolors = true
 ~~~
 
 24ビットカラーについては、このサイトでも
-[termguicolors](https://coralpink.github.io/commentary/neovim/options/termguicolors.html) ページで取り上げてます。
+[10.1.1. termguicolors](https://coralpink.github.io/commentary/neovim/options/termguicolors.html) ページで取り上げてます。
 
 ...いるんですが、このサイトで取り上げた`vim.api.nvim_set_option`は、もうだいぶ以前から`deprecated`とされています。
 
