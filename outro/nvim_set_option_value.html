@@ -123,12 +123,13 @@
 <p>わたしのような庶民でも、運転士付きの日比谷線 🚋🚋 で麻布に乗り付けて、
 スカイロビーに (<code>タダで</code>) 上れるんざます。セレブ❗</p>
 <p>そのまま日比谷線の運転士に頼んで
-銀座のチャンスセンター (なんか「宝くじが当たる」で有名💴) まで行ってもいいんですけどね😮</p>
+銀座のチャンスセンター (「宝くじが当たる💴」で有名💴なんでしょ❓) まで行ってもいいんですけどね😌</p>
 <p>ここでふと思うわけです。</p>
 <p>「ただ販売本数が多いってだけで、&quot;当たりやすい&quot;とは違うんじゃないの😮❓」ってね❗</p>
 <p>&quot;一粒万倍日&quot; って、別にお金 💴 増やす日ってわけじゃないし、
 「宝くじを買えば当たる日」ってこともないぞ❤️</p>
-<p>...よし。今日も絶好調❗🤣</p>
+<p>ただ、&quot;買わないと当たらない&quot;ぞ🫶🏻 ナイスフォロー❗</p>
+<p>...よし。今日も絶好調🤣</p>
 <div id="admonition-h-nvim_set_option_value" class="admonition admonish-info">
 <div class="admonition-title">
 <p>:h nvim_set_option_value()</p>
@@ -220,15 +221,15 @@ They should not be used in new scripts, and old scripts should be updated.
 <div id="admonition-default-1" class="admonition admonish-success">
 <div>
 <p>You say goodbye and I say hello</p>
-<p>きみは「さよなら」 ぼくは「こんにちは」</p>
 <p>(Hello, goodbye, hello, goodbye<sup class="footnote-reference">
 <a name="to-footnote-1"><a href="#1">1</a></a>
-</sup>)</p>
+</sup>...)</p>
+<p>きみは「さよなら」 ぼくは「こんにちは」</p>
 </div>
 </div>
 <p>使用する環境にもよるかもしれませんが、
-わたしが億万長者になるよりも早く、<code>stable release</code>でもこれが不要となる日が来るのでしょう。</p>
-<p>自分の環境でこれが有効になっているかどうかを確認するのは簡単です。</p>
+わたしがなんか急にマジセレブになるよりも早く、<code>stable release</code>でもこれが不要となる日が来るのでしょう。</p>
+<p>自分の環境でこれが自動で有効になるかどうかを確認するのは簡単です☺️</p>
 <p>手元の設定から<code>termguicolors</code>を一回消してから<code>nvim</code>を起動してみましょう。
 まだ未対応であれば<code>nvim-notify</code>が起動直後に警告してくれます。
 <img src="img/term-guicolors-notify.webp" alt="term-guicolors-notify" width="793" height="118" loading="lazy"></p>
@@ -239,7 +240,8 @@ They should not be used in new scripts, and old scripts should be updated.
 <p><a class="admonition-anchor-link" href="#admonition-note-1"></a></p>
 </div>
 <div>
-<p>当然ではあるんですが、<code>nvim-notify</code>がインストールされていることが前提です。</p>
+<p>将来的な機能なので、少なくとも現時点 (2023/12/08) の<code>stable release</code>では実装されていません。</p>
+<p>また、<code>nvim-notify</code>がインストールされていることを前提としています。</p>
 </div>
 </div>
 <p>これもまた、妙に奇跡的な噛み合いでしたね😁</p>
@@ -273,7 +275,7 @@ option but not the global one, therefore we need to force
 <p>前回はこんなのを例示していたんですが...、</p>
 <pre><code class="language-lua">vim.api.nvim_set_option_value('termguicolors', true, { scope = 'global' })
 </code></pre>
-<p>改めて試してみたら、<code>global</code>指定は必要なさそうでした。</p>
+<p>改めて試してみたら、<code>global</code>指定は必要なさそうでした😲</p>
 <pre><code class="language-lua">vim.api.nvim_set_option_value('termguicolors', true, {})
 </code></pre>
 <p>じゃあ、こうでいいのかな❓</p>
@@ -306,34 +308,24 @@ vim.api.nvim_set_option_value('clipboard', 'unnamedplus', {})
 </div>
 </div>
 <p>まあ、こんなとこでしょう。</p>
-<div id="admonition-question" class="admonition admonish-question">
-<div class="admonition-title">
-<p>Question</p>
-<p><a class="admonition-anchor-link" href="#admonition-question"></a></p>
-</div>
-<div>
-<p>あってる❓あってない❓</p>
-</div>
-</div>
 <div id="admonition-default-3" class="admonition admonish-success">
 <div>
 <p>Why why why why why why do you say goodbye?</p>
-<p>Goodbye, bye bye bye bye</p>
-<p>なぜ？なぜ、さよならを言うの？</p>
+<p>Goodbye, bye bye bye bye...</p>
+<p>なぜ？ なぜ さよならを言うの？</p>
 <p>さよなら、バイバイ...</p>
 </div>
 </div>
 <h3 id="window"><a class="header" href="#window">Window</a></h3>
 <p>これ、わたしの解釈が正しいのかがいまいち判然としないんだけど、
-これまで<code>{window}</code>を<code>0</code>で指定していたものは、もう明示しなくても良さそうです😉</p>
-<p>だって、</p>
-<p>これと</p>
+これまで<code>{window}</code>を<code>0</code>で指定していたものは、もう特に明示しなくても良さそうです😉</p>
+<p>だって、これと...</p>
 <pre><code class="language-lua">nvim_set_option_value('number', true, {})        -- local window option
 </code></pre>
 <p>これが等価だって言ってるんだもん。</p>
 <pre><code class="language-lua">nvim_set_option_value('number', true, {win=0})   -- unchanged from before
 </code></pre>
-<p>じゃあ、結果的に<code>global</code>と同じ感じで書いちゃっていいよね。</p>
+<p>じゃあ、結果的に<code>global</code>と同じ感じで書いちゃっていいよね🐶</p>
 <div id="admonition-optionslua-1" class="admonition admonish-example">
 <div class="admonition-title">
 <p>options.lua</p>
@@ -347,15 +339,6 @@ vim.api.nvim_set_option_value('winblend', 20, {})
 
 vim.api.nvim_set_option_value('wrap', false, {})
 </code></pre>
-</div>
-</div>
-<div id="admonition-question-1" class="admonition admonish-question">
-<div class="admonition-title">
-<p>Question</p>
-<p><a class="admonition-anchor-link" href="#admonition-question-1"></a></p>
-</div>
-<div>
-<p>あってる❓あってない❓</p>
 </div>
 </div>
 <h3 id="buffer"><a class="header" href="#buffer">Buffer</a></h3>
@@ -380,6 +363,7 @@ vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWinEnter' }, {
 </code></pre>
 </div>
 </div>
+<p>...みたいに書き直せば良さそうです。</p>
 <p>ただ...。</p>
 <div id="admonition-h-nvim_set_option_value-1" class="admonition admonish-info">
 <div class="admonition-title">
@@ -421,14 +405,15 @@ vim.api.nvim_set_option_value('shiftwidth', 0, {})
 </code></pre>
 </div>
 </div>
-<p>実際これでちゃんと動いてそう🙂</p>
-<div id="admonition-question-2" class="admonition admonish-question">
+<p>もはや<code>autocmd</code>もいらなくない⁉️</p>
+<p>実際これでちゃんと動いてそうに見える🙂</p>
+<div id="admonition-question" class="admonition admonish-question">
 <div class="admonition-title">
 <p>Question</p>
-<p><a class="admonition-anchor-link" href="#admonition-question-2"></a></p>
+<p><a class="admonition-anchor-link" href="#admonition-question"></a></p>
 </div>
 <div>
-<p>あってるよね...❓あってないかもしれない...。</p>
+<p>あってるよね...❓間違ってるかもしれない...。</p>
 </div>
 </div>
 <div id="admonition-default-4" class="admonition admonish-success">
@@ -441,9 +426,8 @@ vim.api.nvim_set_option_value('shiftwidth', 0, {})
 </div>
 <h2 id="wrapping-a-function"><a class="header" href="#wrapping-a-function">Wrapping a function</a></h2>
 <p>ここでふと思うわけです。</p>
-<p>「結果、全部一緒になったんじゃないの⁉️😳」ってね❗</p>
-<p>わたし自身は使ってないので詳細には書きませんが、
-例えばこんなのを追加しておくと、<code>opts</code>の<code>{}</code>を省略して記述できます。</p>
+<p>「結果、全部同じパターンになったんじゃないの⁉️😳」ってね❗</p>
+<p>例えばこんなのを追加しておくと、<code>opts</code>の<code>{}</code>を省略して記述できます😆</p>
 <div id="admonition-tip" class="admonition admonish-tip">
 <div class="admonition-title">
 <p>Tip</p>
@@ -459,14 +443,15 @@ end
 </code></pre>
 </div>
 </div>
+<p>(わたし自身は使ってないので、これ以上は言及しないんですが)</p>
 <p>この書き方だと同じファイル内でしか使えないので、
-ちゃんとこの手段をとろうと思うのであれば、もう一手間加える必要があります。</p>
-<h2 id="hela-heba-helloa-woo"><a class="header" href="#hela-heba-helloa-woo">Hela, heba helloa, woo!</a></h2>
-<p>わたしもそこまで念入りに確認したわけではないので、多少の不安は残りますが、
-この種さえ蒔いておけば、なんか急に<code>nvim_set_option</code>が削除されたとしても慌てることはないでしょう。</p>
+ちゃんとこの手段をとろうと思うのであれば、もう一手間加える必要があります🤔</p>
+<h2 id="hela-heba-helloa"><a class="header" href="#hela-heba-helloa">Hela, heba helloa</a></h2>
+<p>そこまで念入りに確認したわけではないので、多少の不安は残りますが、
+この種さえ蒔いておけば、なんか急に<code>nvim_set_option</code>が削除されたとしても慌てることはないでしょう😉</p>
 <p>2023年の12月では、さらに19,20日でまた一粒万倍日が並ぶみたいなので、
 その頃にはまた新しい収穫があるかもしれません。</p>
-<p>モチベーション上げていきましょ❗</p>
+<p>それを糧に、モチベーション上げていきましょ❗</p>
 <div id="admonition-success" class="admonition admonish-success">
 <div class="admonition-title">
 <p>Success</p>
@@ -482,16 +467,19 @@ end
 <p><a href="#to-footnote-1"><sup>1:</sup></a> Hello, Goodbye (by <a href="https://en.wikipedia.org/wiki/The_Beatles">The Beatles</a>):
 Lennon-McCartney とクレジットされているが、この曲は Paul McCartney の単独作詞によるものである。
 作曲は、McCartney と The Beatles のマネージャー Brian Epstein のアシスタントであった
-Alistair Taylor との間で行われた言葉の連想の練習によって生まれた。
-Taylor の回想によると、
-彼はロンドンのセント・ジョンズ・ウッドにある McCartney の自宅を訪れ、The Beatles の曲作りの方法を尋ねた。
+Alistair Taylor との間で行われた言葉の連想の練習によって生まれた。</p>
+<p>Taylor の回想によると、
+彼は London の St John's Wood にある McCartney の自宅を訪れ、The Beatles の曲作りの方法を尋ねた。
 すると McCartney は Taylor をダイニング・ルームに連れて行き、ふたりでハーモニウムの前に座った。
-McCartney は楽器を弾き始め、Taylor に、たまたま歌った言葉の反対を呼ぶように頼んだ。
+McCartney は楽器を弾き始め、Taylor に、たまたま歌った言葉の反対を言うように頼んだ。
 白と黒、イエスとノー、ストップとゴー、ハローとグッドバイ -
-「この曲のことはまったく覚えていない。Paul が本当にその曲のメロディを作ったのか、
-それともすでに彼の頭の中を流れていたのか、不思議に思う」。
-1990年代に彼の公式伝記作者である Barry Miles に語ったところによると、
-McCartney は、この歌詞は彼の星座である双子座を反映して、二元性をテーマにしていると語っている。</p>
+「この曲のことはまったく覚えていない。Paul が本当にその曲のメロディを作りながら進めていたのか、
+それともすでに彼の頭の中を流れていたのか、不思議だ」。</p>
+<p>1990年代に彼の公式伝記作者である Barry Miles に語ったところによると、
+McCartney は、この歌詞は彼の星座である双子座を反映して、二元性をテーマにしていると語っている。
+「相対する事柄について書いたもので、Gimignano の影響かな。曲にするのは簡単だった」
+「いつだって僕は前向きな方面に立ってる。それは今でも変わらないよ」
+<a href="https://en.wikipedia.org/wiki/Hello,_Goodbye">Wikipedia</a> より</p>
 </div>
 
           <nav class="nav-wrapper" aria-label="Page navigation">
