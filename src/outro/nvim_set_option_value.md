@@ -22,7 +22,7 @@ You say why and I say I don't know
 スカイロビーに (`タダで`) 上れるんざます。セレブ❗
 
 そのまま日比谷線の運転士に頼んで
-銀座のチャンスセンター (なんか「宝くじが当たる」で有名💴) まで行ってもいいんですけどね😮
+銀座のチャンスセンター (「宝くじが当たる💴」で有名💴なんでしょ❓) まで行ってもいいんですけどね😌
 
 ここでふと思うわけです。
 
@@ -31,7 +31,9 @@ You say why and I say I don't know
 "一粒万倍日" って、別にお金 💴 増やす日ってわけじゃないし、
 「宝くじを買えば当たる日」ってこともないぞ❤️
 
-...よし。今日も絶好調❗🤣
+ただ、"買わないと当たらない"ぞ🫶🏻 ナイスフォロー❗
+
+...よし。今日も絶好調🤣
 
 ~~~admonish info title=":h nvim_set_option_value()"
 ```txt
@@ -117,29 +119,34 @@ Nvim がホスト端末で truecolor がサポートされていることを検�
 ```admonish success title=""
 You say goodbye and I say hello
 
-きみは「さよなら」 ぼくは「こんにちは」
-
 (Hello, goodbye, hello, goodbye{{footnote:
 Hello, Goodbye (by [The Beatles](https://en.wikipedia.org/wiki/The_Beatles)):
 Lennon-McCartney とクレジットされているが、この曲は Paul McCartney の単独作詞によるものである。
 作曲は、McCartney と The Beatles のマネージャー Brian Epstein のアシスタントであった
 Alistair Taylor との間で行われた言葉の連想の練習によって生まれた。
+
 Taylor の回想によると、
-彼はロンドンのセント・ジョンズ・ウッドにある McCartney の自宅を訪れ、The Beatles の曲作りの方法を尋ねた。
+彼は London の St John's Wood にある McCartney の自宅を訪れ、The Beatles の曲作りの方法を尋ねた。
 すると McCartney は Taylor をダイニング・ルームに連れて行き、ふたりでハーモニウムの前に座った。
-McCartney は楽器を弾き始め、Taylor に、たまたま歌った言葉の反対を呼ぶように頼んだ。
+McCartney は楽器を弾き始め、Taylor に、たまたま歌った言葉の反対を言うように頼んだ。
 白と黒、イエスとノー、ストップとゴー、ハローとグッドバイ -
-「この曲のことはまったく覚えていない。Paul が本当にその曲のメロディを作ったのか、
-それともすでに彼の頭の中を流れていたのか、不思議に思う」。
+「この曲のことはまったく覚えていない。Paul が本当にその曲のメロディを作りながら進めていたのか、
+それともすでに彼の頭の中を流れていたのか、不思議だ」。
+
 1990年代に彼の公式伝記作者である Barry Miles に語ったところによると、
 McCartney は、この歌詞は彼の星座である双子座を反映して、二元性をテーマにしていると語っている。
-}})
+「相対する事柄について書いたもので、Gimignano の影響かな。曲にするのは簡単だった」
+「いつだって僕は前向きな方面に立ってる。それは今でも変わらないよ」
+[Wikipedia](https://en.wikipedia.org/wiki/Hello,_Goodbye) より
+}}...)
+
+きみは「さよなら」 ぼくは「こんにちは」
 ```
 
 使用する環境にもよるかもしれませんが、
-わたしが億万長者になるよりも早く、`stable release`でもこれが不要となる日が来るのでしょう。
+わたしがなんか急にマジセレブになるよりも早く、`stable release`でもこれが不要となる日が来るのでしょう。
 
-自分の環境でこれが有効になっているかどうかを確認するのは簡単です。
+自分の環境でこれが自動で有効になるかどうかを確認するのは簡単です☺️
 
 手元の設定から`termguicolors`を一回消してから`nvim`を起動してみましょう。
 まだ未対応であれば`nvim-notify`が起動直後に警告してくれます。
@@ -149,7 +156,9 @@ McCartney は、この歌詞は彼の星座である双子座を反映して、�
 逆に何も言われないのであれば、`termguicolors`はもう書かなくても平気だとわかっちゃうわけです😋
 
 ```admonish note
-当然ではあるんですが、`nvim-notify`がインストールされていることが前提です。
+将来的な機能なので、少なくとも現時点 (2023/12/08) の`stable release`では実装されていません。
+
+また、`nvim-notify`がインストールされていることを前提としています。
 ```
 
 これもまた、妙に奇跡的な噛み合いでしたね😁
@@ -188,7 +197,7 @@ I don't know why you say goodbye, I say hello
 vim.api.nvim_set_option_value('termguicolors', true, { scope = 'global' })
 ```
 
-改めて試してみたら、`global`指定は必要なさそうでした。
+改めて試してみたら、`global`指定は必要なさそうでした😲
 
 ```lua
 vim.api.nvim_set_option_value('termguicolors', true, {})
@@ -219,16 +228,12 @@ vim.api.nvim_set_option_value('showmode', false, {})
 
 まあ、こんなとこでしょう。
 
-```admonish question
-あってる❓あってない❓
-```
-
 ```admonish success title=""
 Why why why why why why do you say goodbye?
 
-Goodbye, bye bye bye bye
+Goodbye, bye bye bye bye...
 
-なぜ？なぜ、さよならを言うの？
+なぜ？ なぜ さよならを言うの？
 
 さよなら、バイバイ...
 ```
@@ -236,11 +241,9 @@ Goodbye, bye bye bye bye
 ### Window
 
 これ、わたしの解釈が正しいのかがいまいち判然としないんだけど、
-これまで`{window}`を`0`で指定していたものは、もう明示しなくても良さそうです😉
+これまで`{window}`を`0`で指定していたものは、もう特に明示しなくても良さそうです😉
 
-だって、
-
-これと
+だって、これと...
 
 ```lua
 nvim_set_option_value('number', true, {})        -- local window option
@@ -252,7 +255,7 @@ nvim_set_option_value('number', true, {})        -- local window option
 nvim_set_option_value('number', true, {win=0})   -- unchanged from before
 ```
 
-じゃあ、結果的に`global`と同じ感じで書いちゃっていいよね。
+じゃあ、結果的に`global`と同じ感じで書いちゃっていいよね🐶
 
 ~~~admonish example title="options.lua"
 ```lua
@@ -264,10 +267,6 @@ vim.api.nvim_set_option_value('winblend', 20, {})
 vim.api.nvim_set_option_value('wrap', false, {})
 ```
 ~~~
-
-```admonish question
-あってる❓あってない❓
-```
 
 ### Buffer
 
@@ -288,6 +287,8 @@ vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWinEnter' }, {
 })
 ```
 ~~~
+
+...みたいに書き直せば良さそうです。
 
 ただ...。
 
@@ -321,10 +322,12 @@ vim.api.nvim_set_option_value('shiftwidth', 0, {})
 ```
 ~~~
 
-実際これでちゃんと動いてそう🙂
+もはや`autocmd`もいらなくない⁉️
+
+実際これでちゃんと動いてそうに見える🙂
 
 ```admonish question
-あってるよね...❓あってないかもしれない...。
+あってるよね...❓間違ってるかもしれない...。
 ```
 
 ```admonish success title=""
@@ -341,10 +344,9 @@ vim.api.nvim_set_option_value('shiftwidth', 0, {})
 
 ここでふと思うわけです。
 
-「結果、全部一緒になったんじゃないの⁉️😳」ってね❗
+「結果、全部同じパターンになったんじゃないの⁉️😳」ってね❗
 
-わたし自身は使ってないので詳細には書きませんが、
-例えばこんなのを追加しておくと、`opts`の`{}`を省略して記述できます。
+例えばこんなのを追加しておくと、`opts`の`{}`を省略して記述できます😆
 
 ~~~admonish tip
 ```lua
@@ -359,18 +361,20 @@ end
 ```
 ~~~
 
+(わたし自身は使ってないので、これ以上は言及しないんですが)
+
 この書き方だと同じファイル内でしか使えないので、
-ちゃんとこの手段をとろうと思うのであれば、もう一手間加える必要があります。
+ちゃんとこの手段をとろうと思うのであれば、もう一手間加える必要があります🤔
 
-## Hela, heba helloa, woo!
+## Hela, heba helloa
 
-わたしもそこまで念入りに確認したわけではないので、多少の不安は残りますが、
-この種さえ蒔いておけば、なんか急に`nvim_set_option`が削除されたとしても慌てることはないでしょう。
+そこまで念入りに確認したわけではないので、多少の不安は残りますが、
+この種さえ蒔いておけば、なんか急に`nvim_set_option`が削除されたとしても慌てることはないでしょう😉
 
 2023年の12月では、さらに19,20日でまた一粒万倍日が並ぶみたいなので、
 その頃にはまた新しい収穫があるかもしれません。
 
-モチベーション上げていきましょ❗
+それを糧に、モチベーション上げていきましょ❗
 
 ```admonish success
 Hela, heba helloa, cha cha cha
