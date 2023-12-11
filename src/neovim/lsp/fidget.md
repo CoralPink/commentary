@@ -193,6 +193,60 @@ In the meantime, these instructions will pin your configuration to the legacy br
 (もし違ってたらごめんね...😭)
 ```
 
+~~~admonish tip
+(ごめん、対応してた...🥲)
+
+![fidget-lua-ls](img/fidget-lua-ls.webp)
+
+これは流石に看過できないので取り急ぎ❗
+
+`nvim-lspconfig`の[lua_ls](https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#lua_ls) を参考に、
+`extensions/mason.lua`を以下のようにしてみると...。
+
+```lua
+require('mason-lspconfig').setup_handlers {
+  function(server_name)
+    require('lspconfig')[server_name].setup {
+      capabilities = require('cmp_nvim_lsp').default_capabilities(),
+    }
+  end,
+
+  -- ❗ここから下に追記 ❗
+
+  ['lua_ls'] = function()
+    require('lspconfig').lua_ls.setup {
+      settings = {
+        Lua = {
+          runtime = {
+            -- Tell the language server which version of Lua you're using
+            -- (most likely LuaJIT in the case of Neovim)
+            version = 'LuaJIT'
+          },
+          -- Make the server aware of Neovim runtime files
+          workspace = {
+            checkThirdParty = false,
+            library = {
+              vim.env.VIMRUNTIME
+              -- "${3rd}/luv/library"
+              -- "${3rd}/busted/library",
+            }
+            -- or pull in all of 'runtimepath'. NOTE: this is a lot slower
+            -- library = vim.api.nvim_get_runtime_file("", true)
+          }
+        },
+      },
+    }
+  end,
+}
+```
+
+なんかパワー漲りまくってる...❓🤯
+
+![fidget-cmp](img/fidget-cmp.webp)
+
+もっと早く気づけば良かった😱
+~~~
+
 ## 八 : やっぱり踊りは止められぬ
 
 ```admonish success
