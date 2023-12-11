@@ -344,7 +344,7 @@ In the meantime, these instructions will pin your configuration to the legacy br
   -- ❗ここから下に追記 ❗
 
   ['lua_ls'] = function()
-    lsp.lua_ls.setup {
+    require('lspconfig').lua_ls.setup {
       settings = {
         Lua = {
           runtime = {
