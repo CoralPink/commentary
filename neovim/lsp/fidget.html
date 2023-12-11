@@ -323,6 +323,57 @@ In the meantime, these instructions will pin your configuration to the legacy br
 <p>(もし違ってたらごめんね...😭)</p>
 </div>
 </div>
+<div id="admonition-tip-1" class="admonition admonish-tip">
+<div class="admonition-title">
+<p>Tip</p>
+<p><a class="admonition-anchor-link" href="#admonition-tip-1"></a></p>
+</div>
+<div>
+<p>(ごめん、対応してた...🥲)
+<img src="img/fidget-lua-ls.webp" alt="fidget-lua-ls" width="540" height="120" loading="lazy"></p>
+<p>これは流石に看過できないので取り急ぎ❗</p>
+<p><code>nvim-lspconfig</code>の<a href="https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#lua_ls">lua_ls</a> を参考に、
+<code>extensions/mason.lua</code>を以下のようにしてみると...。</p>
+<pre><code class="language-lua">require('mason-lspconfig').setup_handlers {
+  function(server_name)
+    require('lspconfig')[server_name].setup {
+      capabilities = require('cmp_nvim_lsp').default_capabilities(),
+    }
+  end,
+
+  -- ❗ここから下に追記 ❗
+
+  ['lua_ls'] = function()
+    lsp.lua_ls.setup {
+      settings = {
+        Lua = {
+          runtime = {
+            -- Tell the language server which version of Lua you're using
+            -- (most likely LuaJIT in the case of Neovim)
+            version = 'LuaJIT'
+          },
+          -- Make the server aware of Neovim runtime files
+          workspace = {
+            checkThirdParty = false,
+            library = {
+              vim.env.VIMRUNTIME
+              -- &quot;${3rd}/luv/library&quot;
+              -- &quot;${3rd}/busted/library&quot;,
+            }
+            -- or pull in all of 'runtimepath'. NOTE: this is a lot slower
+            -- library = vim.api.nvim_get_runtime_file(&quot;&quot;, true)
+          }
+        },
+      },
+    }
+  end,
+}
+</code></pre>
+<p>なんかパワー漲りまくってる...❓🤯
+<img src="img/fidget-cmp.webp" alt="fidget-cmp" width="589" height="700" loading="lazy"></p>
+<p>もっと早く気づけば良かった😱</p>
+</div>
+</div>
 <h2 id="八--やっぱり踊りは止められぬ"><a class="header" href="#八--やっぱり踊りは止められぬ">八 : やっぱり踊りは止められぬ</a></h2>
 <div id="admonition-success" class="admonition admonish-success">
 <div class="admonition-title">
