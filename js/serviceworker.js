@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'v0.12.7';
+const CACHE_VERSION = 'v0.12.8';
 const ENABLE_SKIP_WAITING = true;
 
 const CACHE_LIST = [

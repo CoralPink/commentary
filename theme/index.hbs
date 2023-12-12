@@ -65,7 +65,7 @@
 
         <div class="menu-title">{{ book_title }}</div>
 
-        <div class="right-buttons">
+        <div class="right-buttons icon-button">
           {{#if git_repository_url}}
           <a href="{{git_repository_url}}" title="Git repository" aria-label="Git repository" target="_blank" rel="noopener"></a>
           {{/if}}
@@ -88,11 +88,11 @@
 
           <nav class="nav-wrapper" aria-label="Page navigation">
             {{#previous}}
-            <a rel="prev" href="{{ path_to_root }}{{link}}" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left"></a>
+            <a rel="prev" href="{{ path_to_root }}{{link}}" class="nav-chapters previous icon-button" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left"></a>
             {{/previous}}
 
             {{#next}}
-            <a rel="next" href="{{ path_to_root }}{{link}}" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right"></a>
+            <a rel="next" href="{{ path_to_root }}{{link}}" class="nav-chapters next icon-button" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right"></a>
             {{/next}}
           </nav>
         </main>

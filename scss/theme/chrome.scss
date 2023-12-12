@@ -93,6 +93,12 @@ a:visited {
   color: var(--links);
 }
 
+.icon-button {
+  font-family: "Symbols Nerd Font Mono";
+  border: none;
+  background: none;
+}
+
 .top-bar {
   flex-basis: var.$menu-bar-height;
 
@@ -113,7 +119,6 @@ a:visited {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 
-    i,
     .icon-button {
       cursor: pointer;
     }
@@ -121,20 +126,14 @@ a:visited {
     &,
     &:visited,
     & .icon-button,
-    & a i {
+    & a {
       color: var(--icons);
     }
 
-    & i:hover,
+    &:hover,
     & .icon-button:hover {
       color: var(--icons-hover);
     }
-  }
-
-  .icon-button {
-    font-family: "Symbols Nerd Font Mono";
-    border: none;
-    background: none;
   }
 
   .left-buttons {
@@ -154,7 +153,6 @@ a:visited {
   }
 
   .right-buttons {
-    font-family: "Symbols Nerd Font Mono";
     margin-right: 1.3rem;
 
     a {
@@ -173,8 +171,8 @@ a:visited {
 .nav-chapters {
   font-size: 1.5em;
   text-align: center;
-  width: 6rem;
-  height: 2rem;
+  width: 5rem;
+  padding: 0.2rem;
   border-radius: 0.8rem;
   background-color: var(--sidebar-bg);
 }
