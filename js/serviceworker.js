@@ -1,5 +1,5 @@
-const CACHE_VERSION = 'v0.12.5';
-const ENABLE_SKIP_WAITING = false;
+const CACHE_VERSION = 'v0.12.6';
+const ENABLE_SKIP_WAITING = true;
 
 const CACHE_LIST = [
   '/commentary/book.js',
@@ -26,7 +26,6 @@ const CACHE_LIST = [
   '/commentary/fonts/OpenSans-Italic.woff2',
   '/commentary/fonts/OpenSans-Regular.woff2',
   '/commentary/fonts/SourceCodePro-Medium.woff2',
-  '/commentary/fonts/icomoon.woff2',
   '/commentary/fonts/NerdFontsSymbolsOnly/SymbolsNerdFontMono-Regular.woff2',
 ];
 

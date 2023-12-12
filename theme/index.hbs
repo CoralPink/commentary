@@ -35,12 +35,9 @@
     <div class="top-bar">
       <div id="menu-bar" class="menu-bar">
         <div class="left-buttons">
-          <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents (Shortkey: T )" aria-label="Toggle Table of Contents" aria-controls="sidebar">
-            <i class="fa-list-ul"></i>
-          </button>
-          <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
-            <i class="fa-palette"></i>
-          </button>
+          <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents (Shortkey: T )" aria-label="Toggle Table of Contents" aria-controls="sidebar"></button>
+          <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme"
+  aria-haspopup="true" aria-expanded="false" aria-controls="theme-list"></button>
           <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
             <li role="none"><button role="menuitem" class="theme" id="au-lait">Au Lait</button></li>
             <li role="none"><button role="menuitem" class="theme" id="latte">Latte</button></li>
@@ -51,9 +48,7 @@
 
           {{#if search_enabled}}
           <button id="search-toggle" class="icon-button" type="button" title="Toggle Search Box (Shortkey: / )"
-  aria-label="Toggle Search Box" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
-            <i class="fa-magnifying-glass"></i>
-          </button>
+  aria-label="Toggle Search Box" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar"></button>
 
           <div id="search-wrapper" class="hidden">
             <form id="searchbar-outer" class="searchbar-outer">
@@ -71,20 +66,8 @@
         <div class="menu-title">{{ book_title }}</div>
 
         <div class="right-buttons">
-          {{#if print_enable}}
-          <a href="{{ path_to_root }}print.html" title="Print this book" aria-label="Print this book">
-            <i id="print-button" class="fa-print"></i>
-          </a>
-          {{/if}}
           {{#if git_repository_url}}
-          <a href="{{git_repository_url}}" title="Git repository" aria-label="Git repository" target="_blank" rel="noopener">
-            <i id="git-repository-button" class="fa-github {{git_repository_icon}}"></i>
-          </a>
-          {{/if}}
-          {{#if git_repository_edit_url}}
-          <a href="{{git_repository_edit_url}}" title="Suggest an edit" aria-label="Suggest an edit">
-            <i id="git-edit-button" class="fa-pen-to-square"></i>
-          </a>
+          <a href="{{git_repository_url}}" title="Git repository" aria-label="Git repository" target="_blank" rel="noopener"></a>
           {{/if}}
         </div>
       </div>
@@ -105,15 +88,11 @@
 
           <nav class="nav-wrapper" aria-label="Page navigation">
             {{#previous}}
-              <a rel="prev" href="{{ path_to_root }}{{link}}" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
-                <i class="fa-angle-left"></i>
-              </a>
+            <a rel="prev" href="{{ path_to_root }}{{link}}" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left"></a>
             {{/previous}}
 
             {{#next}}
-              <a rel="next" href="{{ path_to_root }}{{link}}" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                <i class="fa-angle-right"></i>
-              </a>
+            <a rel="next" href="{{ path_to_root }}{{link}}" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right"></a>
             {{/next}}
           </nav>
         </main>
