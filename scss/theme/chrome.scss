@@ -1,6 +1,7 @@
 @use '../variables' as var;
 
 .page {
+
   // For the style attribute, display: grid or block is added from the JS code.
   // (Specify an initial value to prevent layout shift on PC.)
   @media only screen and (min-width: var.$mobile-max-width) {
@@ -52,9 +53,11 @@
       color: var(--fg);
       text-decoration: none;
     }
+
     &:visited {
       color: var(--fg);
     }
+
     &:visited:hover {
       text-decoration: none;
     }
@@ -107,8 +110,6 @@ a:visited {
     z-index: 101;
     opacity: 0.92;
 
-    font-size: 1.1em;
-
     i,
     .icon-button {
       cursor: pointer;
@@ -128,9 +129,9 @@ a:visited {
   }
 
   .icon-button {
+    font-family: "Symbols Nerd Font Mono";
     border: none;
     background: none;
-    color: inherit;
   }
 
   .left-buttons {
@@ -141,7 +142,7 @@ a:visited {
   }
 
   .menu-title {
-    font-size: 0.6em;
+    font-size: 0.7em;
     font-style: italic;
     text-align: right;
     flex: 1;
@@ -150,10 +151,12 @@ a:visited {
   }
 
   .right-buttons {
+    font-family: "Symbols Nerd Font Mono";
     margin-right: 1.3rem;
 
     a {
       text-decoration: none;
+      color: inherit;
     }
   }
 }
@@ -167,17 +170,10 @@ a:visited {
 .nav-chapters {
   font-size: 1.5em;
   text-align: center;
-  text-decoration: none;
   width: 6rem;
+  height: 2rem;
   border-radius: 0.8rem;
   background-color: var(--sidebar-bg);
-
-  &:visited {
-    color: var(--icons);
-  }
-  i:hover {
-    color: var(--icons-hover);
-  }
 }
 
 #searchbar {
@@ -236,6 +232,7 @@ a:visited {
         background-color: var(--searchresults-li-bg);
       }
     }
+
     span {
       &.teaser {
         display: block;
@@ -253,7 +250,7 @@ a:visited {
 }
 
 .sidebar {
-  visibility: hidden;  // Initially, it is hidden.
+  visibility: hidden; // Initially, it is hidden.
 
   color: var(--sidebar-fg);
   background-color: var(--sidebar-bg);
@@ -302,6 +299,7 @@ a:visited {
       &:hover {
         color: var(--sidebar-active);
       }
+
       &.active {
         color: var(--sidebar-active);
         font-weight: bold;
@@ -342,6 +340,7 @@ a:visited {
   .default {
     color: var(--icons);
   }
+
   .theme {
     width: 100%;
     border: 0;
@@ -360,6 +359,7 @@ a:visited {
     }
   }
 }
+
 .theme-selected::before {
   $theme-width: 1rem;
 
