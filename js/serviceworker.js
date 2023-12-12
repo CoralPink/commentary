@@ -1,15 +1,16 @@
-const CACHE_VERSION = 'v0.12.4';
+const CACHE_VERSION = 'v0.12.5';
 const CACHE_LIST = [
   '/commentary/book.js',
   '/commentary/elasticlunr.min.js',
   '/commentary/hl-worker.js',
-  '/commentary/manifest.json',
   '/commentary/searcher.js',
-  '/commentary/searchindex.json',
-
   '/commentary/wasm_book_bg.wasm',
 
   '/commentary/css/style.css',
+  '/commentary/fonts/fonts.css',
+
+  '/commentary/manifest.json',
+  '/commentary/searchindex.json',
 
   '/commentary/apple-touch-icon.png',
   '/commentary/chrome-96x96.png',
@@ -23,9 +24,8 @@ const CACHE_LIST = [
   '/commentary/fonts/OpenSans-Italic.woff2',
   '/commentary/fonts/OpenSans-Regular.woff2',
   '/commentary/fonts/SourceCodePro-Medium.woff2',
-  '/commentary/fonts/fonts.css',
   '/commentary/fonts/icomoon.woff2',
-  '/commentary/fonts/SauceCodePro/SauceCodeProNerdFont-Medium.woff2',
+  '/commentary/fonts/NerdFontsSymbolsOnly/SymbolsNerdFontMono-Regular.woff2',
 ];
 
 const CACHE_USE = ['https://coralpink.github.io/', 'http://127.0.0.1:8080/'];

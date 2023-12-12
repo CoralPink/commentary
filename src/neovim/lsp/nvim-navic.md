@@ -308,12 +308,6 @@ Richard は「Carpenters の代表曲を挙げるなら『We've Only Just Begun�
 ```
 ~~~
 
-```admonish note
-これもやっぱり`Nerd Fonts`なので、このサイトでは横幅 680px あればブラウザ上でも確認できます。
-
-PCならブラウザのウィンドウを横に広げてみたり、タブレットなら横表示にしてみてね☺️
-```
-
 VSCode like:
 ![nvim-navic-vscode_like](img/nvim-navic-vscode_like.webp)
 
