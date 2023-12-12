@@ -110,6 +110,9 @@ a:visited {
     z-index: 101;
     opacity: 0.92;
 
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
     i,
     .icon-button {
       cursor: pointer;
