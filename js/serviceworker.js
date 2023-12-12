@@ -1,4 +1,6 @@
 const CACHE_VERSION = 'v0.12.5';
+const ENABLE_SKIP_WAITING = false;
+
 const CACHE_LIST = [
   '/commentary/book.js',
   '/commentary/elasticlunr.min.js',
@@ -99,6 +101,11 @@ self.addEventListener('activate', event => {
 });
 
 self.addEventListener('install', event => {
+  if (ENABLE_SKIP_WAITING) {
+    // The promise that skipWaiting() returns can be safely ignored.
+    self.skipWaiting();
+  }
+
   const addResourcesToCache = async resources => {
     const cache = await caches.open(CACHE_VERSION);
     await cache.addAll(resources);
