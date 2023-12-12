@@ -35,7 +35,10 @@ code {
   display: inline;
   font-family: var.$mono-font !important;
   font-size: var.$code-font-size;
-  font-weight: 500;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
   color: var(--inline-code-color);
   background-color: var(--quote-bg);
   padding: 0.1rem 0.3rem;
@@ -57,6 +60,7 @@ table {
   td {
     border: 0.1rem var(--table-border-color) solid;
   }
+
   thead {
     background: var(--table-header-bg);
 
@@ -64,13 +68,16 @@ table {
       font-weight: 700;
       border: none;
     }
+
     th {
       padding: 0.3rem 0.2rem;
     }
+
     tr {
       border: 0.1rem var(--table-header-bg) solid;
     }
   }
+
   tbody {
     tr {
       &:nth-child(2n) {
@@ -83,7 +90,7 @@ table {
 pre {
   position: relative;
 
-  & > .buttons {
+  &>.buttons {
     position: absolute;
     right: 0;
     top: 0.4rem;
@@ -117,7 +124,7 @@ pre {
     }
   }
 
-  & > code {
+  &>code {
     display: block;
     overflow-x: auto;
 
@@ -125,14 +132,14 @@ pre {
     border-radius: 0.4rem;
   }
 
-  &:hover > .buttons {
+  &:hover>.buttons {
     visibility: visible;
     opacity: 1;
   }
 }
 
 @media (pointer: coarse) {
-  pre > .buttons button {
+  pre>.buttons button {
     padding: 0.4rem 1rem; // On mobile, make it easier to tap buttons.
   }
 }
