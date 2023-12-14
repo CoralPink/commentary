@@ -1,6 +1,4 @@
 const CACHE_VERSION = 'v0.13.0';
-const ENABLE_SKIP_WAITING = true;
-
 const CACHE_LIST = [
   '/commentary/book.js',
   '/commentary/elasticlunr.min.js',
