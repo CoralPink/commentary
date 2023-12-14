@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'v0.12.8';
+const CACHE_VERSION = 'v0.13.0';
 const ENABLE_SKIP_WAITING = true;
 
 const CACHE_LIST = [
@@ -99,18 +99,31 @@ self.addEventListener('activate', event => {
   event.waitUntil(deleteOldCaches());
 });
 
+const extractVersionParts = cacheName => {
+  const versionString = cacheName.substring(1);
+  const [major, minor] = versionString.split('.');
+  return { major, minor };
+};
+
+const shouldSkipWaiting = cacheList => {
+  const target = extractVersionParts(CACHE_VERSION);
+
+  return cacheList.some(cacheName => {
+    const current = extractVersionParts(cacheName);
+    return current.major < target.major || (current.major === target.major && current.minor < target.minor);
+  });
+};
+
 self.addEventListener('install', event => {
-  if (ENABLE_SKIP_WAITING) {
-    // The promise that skipWaiting() returns can be safely ignored.
-    self.skipWaiting();
-  }
-
-  const addResourcesToCache = async resources => {
-    const cache = await caches.open(CACHE_VERSION);
-    await cache.addAll(resources);
-  };
-
-  event.waitUntil(addResourcesToCache(CACHE_LIST));
+  event.waitUntil(
+    (async () => {
+      if (shouldSkipWaiting(await caches.keys())) {
+        self.skipWaiting();
+      }
+      const cache = await caches.open(CACHE_VERSION);
+      await cache.addAll(CACHE_LIST);
+    })(),
+  );
 });
 
 self.addEventListener('fetch', async event => {
