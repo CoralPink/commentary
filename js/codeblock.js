@@ -63,6 +63,21 @@ class WorkerPool {
   }
 }
 
+const createClipButton = () => {
+  const clip = document.createElement('button');
+
+  clip.className = 'fa-copy clip-button';
+  clip.setAttribute('aria-label', 'Copy to clipboard');
+  clip.innerHTML = '<div class="tooltiptext"></div>';
+
+  const buttons = document.createElement('div');
+
+  buttons.className = 'buttons';
+  buttons.insertBefore(clip, buttons.firstChild);
+
+  return buttons;
+};
+
 const codeCopy = trigger => {
   const elem = trigger.target;
 
@@ -99,17 +114,7 @@ export const codeBlock = async () => {
     return;
   }
 
-  // capture hover event in iOS
-  if (globalThis.ontouchstart !== undefined) {
-    document.addEventListener('touchstart', () => {}, { once: false, passive: true });
-  }
-
-  const clip = document.createElement('button');
-
-  clip.className = 'fa-copy clip-button';
-  clip.setAttribute('aria-label', 'Copy to clipboard');
-  clip.innerHTML = '<i class="tooltiptext"></i>';
-
+  const clipButton = createClipButton();
   const workerPool = new WorkerPool(codeQuery.length);
 
   for (const code of codeQuery) {
@@ -132,12 +137,16 @@ export const codeBlock = async () => {
         console.error(e);
       });
 
-    const buttons = document.createElement('div');
-    buttons.className = 'buttons';
-    buttons.insertBefore(document.importNode(clip, true), buttons.firstChild);
-    buttons.addEventListener('mousedown', codeCopy);
-
     const parent = code.parentNode;
-    parent.insertBefore(buttons, parent.firstChild);
+
+    const cb = document.importNode(clipButton, true);
+    cb.addEventListener('mousedown', codeCopy);
+
+    parent.insertBefore(cb, parent.firstChild);
+  }
+
+  // capture hover event in iOS
+  if (globalThis.ontouchstart !== undefined) {
+    document.addEventListener('touchstart', () => {}, { once: false, passive: true });
   }
 };
