@@ -108,7 +108,7 @@ export const codeBlock = async () => {
 
   clip.className = 'fa-copy clip-button';
   clip.setAttribute('aria-label', 'Copy to clipboard');
-  clip.innerHTML = '<i class="tooltiptext"></i>';
+  clip.innerHTML = '<i class="tooltiptext"></i>';
 
   const workerPool = new WorkerPool(codeQuery.length);
 
