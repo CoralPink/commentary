@@ -44,12 +44,15 @@ import { writeLocalStorage } from './storage.js';
   document.addEventListener(
     'keyup',
     e => {
-      if (window.search.hasFocus()) {
+      if (!globalThis.search) {
+        return;
+      }
+
+      if (globalThis.search.hasFocus()) {
         return;
       }
 
       if (e.key === 't' || e.key === 'T') {
-        e.preventDefault();
         toggleSidebar();
       } else if (e.key === 'Escape') {
         hideSidebar();
