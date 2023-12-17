@@ -142,7 +142,7 @@ const initialize = async () => {
     { once: false, passive: true },
   );
 
-  // Suppress "submit" events so thje page doesn't reload when the user presses Enter
+  // Suppress "submit" events so the page doesn't reload when the user presses Enter
   document.addEventListener('submit', e => e.preventDefault(), { once: false, passive: false });
 };
 
