@@ -82,7 +82,7 @@ jobs:
         run: |
           rm book/ayu-highlight.css
           rm book/clipboard.min.js
-          rm commentary/elasticlunr.min.js
+          rm book/elasticlunr.min.js
           rm book/highlight.css
           rm book/highlight.js
           rm book/tomorrow-night.css
