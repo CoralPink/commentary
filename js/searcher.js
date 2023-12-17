@@ -15,17 +15,9 @@ const PATH_TO_ROOT = document.getElementById('searcher').dataset.pathtoroot;
 const resultMarker = new markjs(ELEM_RESULTS);
 
 let searchResult;
+let fzf;
 
-let lunrIndex;
-let searchConfig;
-
-const getResults = term => {
-  const results = lunrIndex.search(term, searchConfig.search_options);
-  const count = Math.min(results.length, searchConfig.limit_results);
-
-  ELEM_HEADER.innerText = (results.length > count ? 'Over ' : '') + `${count} search results for: ${term}`;
-  return results.slice(0, count);
-};
+let storeDocs;
 
 // Eventhandler for keyevents while the searchbar is focused
 const keyUpHandler = () => {
@@ -36,9 +28,18 @@ const keyUpHandler = () => {
     return;
   }
 
-  ELEM_RESULTS.innerHTML = '';
+  const results = fzf.find(term).map(data => {
+    return {
+      doc: storeDocs[data.item],
+      ref: data.item,
+      score: data.score,
+    };
+  });
 
-  for (const result of getResults(term)) {
+  ELEM_RESULTS.innerHTML = '';
+  ELEM_HEADER.innerText = `${results.length} search results for : ${term}`;
+
+  for (const result of results) {
     searchResult.append_search_result(result.ref, result.doc.body, result.doc.breadcrumbs, term);
   }
 
@@ -88,9 +89,24 @@ const initialize = async () => {
       wasmInit(),
     ]);
 
-    lunrIndex = globalThis.elasticlunr.Index.load(config.index);
-    searchConfig = { search_options: config.search_options, limit_results: config.results_options.limit_results };
     searchResult = new SearchResult(PATH_TO_ROOT, config.results_options.teaser_word_count, config.doc_urls);
+    storeDocs = config.index.documentStore.docs;
+
+    /** @see https://github.com/HillLiu/docker-mdbook */
+    fzf = new Fzf(Object.keys(storeDocs), {
+      limit: config.results_options.limit_results,
+      selector: item => {
+        const res = storeDocs[item];
+        res.text = `${res.title}${res.breadcrumbs}${res.body}`;
+        return res.text;
+      },
+      tiebreakers: [
+        (a, b, selector) => {
+          return selector(a.item).trim().length - selector(b.item).trim().length;
+        },
+      ],
+      match: extendedMatch,
+    });
   } catch (e) {
     console.error(`Error during initialization: ${e}`);
     console.log('The search function is disabled.');
@@ -125,62 +141,20 @@ const initialize = async () => {
     },
     { once: false, passive: true },
   );
-};
 
-/**
- * @see https://github.com/HillLiu/docker-mdbook
- */
-const fzfInit = () => {
-  const byTrimmedLengthAsc = (a, b, selector) => {
-    return selector(a.item).trim().length - selector(b.item).trim().length;
-  };
-
-  globalThis.elasticlunr.Index.load = index => {
-    const storeDocs = index.documentStore.docs;
-
-    const fzf = new Fzf(Object.keys(storeDocs), {
-      match: extendedMatch,
-      selector: item => {
-        const res = storeDocs[item];
-        res.text = `${res.title}${res.breadcrumbs}${res.body}`;
-        return res.text;
-      },
-      tiebreakers: [byTrimmedLengthAsc],
-    });
-
-    return {
-      search: searchterm => {
-        const entries = fzf.find(searchterm);
-        return entries.map(data => {
-          const { item, score } = data;
-          return {
-            doc: storeDocs[item],
-            ref: item,
-            score,
-          };
-        });
-      },
-    };
-  };
+  // Suppress "submit" events so the page doesn't reload when the user presses Enter
+  document.addEventListener('submit', e => e.preventDefault(), { once: false, passive: false });
 };
 
 (() => {
-  if (!globalThis.elasticlunr) {
-    return;
-  }
   // Exported functions
   globalThis.search = globalThis.search || {};
   globalThis.search.hasFocus = () => ELEM_BAR === document.activeElement;
-
-  // Suppress "submit" events so thje page doesn't reload when the user presses Enter
-  document.addEventListener('submit', e => e.preventDefault(), { once: false, passive: true });
 
   document.addEventListener(
     'DOMContentLoaded',
     () => {
       doSearchOrMarkFromUrl();
-
-      fzfInit();
       initialize();
     },
     { once: true, passive: true },
