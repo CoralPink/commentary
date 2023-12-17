@@ -36,7 +36,7 @@ boost-hierarchy = 1      # ranking boost factor for matches in page names
 boost-paragraph = 1      # ranking boost factor for matches in text
 expand = true            # partial words will match longer terms
 heading-split-level = 6  # link results to heading levels
-copy-js = true           # include Javascript code for search (elasticlunr.min.js)
+copy-js = true           # (apparently, searchindex.json will not be created unless this is enabled.)
 
 [preprocessor.admonish]
 command = "mdbook-admonish"
