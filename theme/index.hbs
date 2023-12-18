@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="{{ language }}">
+<html lang="{{ language }}" prefix="og: https://ogp.me/ns#">
   <head>
     <meta charset="UTF-8">
     <title>{{ title }}</title>
@@ -12,19 +12,20 @@
     <meta name="format-detection" content="telephone=no,email=no,address=no">
 
     <link rel="icon" href="{{ path_to_root }}favicon.ico">
-    <link rel="icon" type="image/png" href="{{ path_to_root }}favicon.png">
+    <link rel="icon" type="image/svg+xml" href="{{ path_to_root }}favicon.svg">
 
     <link rel="apple-touch-icon" href="{{ path_to_root }}apple-touch-icon.png">
     <!--<meta name="apple-mobile-web-app-capable" content="yes">-->
 
     <link rel="manifest" href="{{ path_to_root }}manifest.json">
 
-    <meta property="og:title" content="{{ title }}">
-    <meta property="og:description" content="{{ description }}">
-    <meta property="og:site_name" content="Commentary of Dotfiles">
-    <meta property="og:url" content="https://coralpink.github.io/commentary/">
+    <meta property="og:title" content="{{ title }}" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://coralpink.github.io/commentary/" />
+    <meta property="og:image" content="https://coralpink.github.io/commentary/goal.webp" />
 
-    <meta name="twitter:card" content="summary_image">
+    <meta property="og:site_name" content="Commentary of Dotfiles">
+    <meta property="og:description" content="{{ description }}">
 
     <link rel="stylesheet" href="{{ path_to_root }}css/general.css" async>
     <link rel="stylesheet" href="{{ path_to_root }}css/chrome.css" async>
