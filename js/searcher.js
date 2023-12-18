@@ -1,5 +1,5 @@
-import markjs from 'mark.js';
-import { Fzf, extendedMatch } from 'fzf';
+import Mark from 'mark.js';
+import Finder from './finder.js';
 
 import wasmInit, { SearchResult } from './wasm_book.js';
 
@@ -12,12 +12,10 @@ const ELEM_HEADER = document.getElementById('searchresults-header');
 const ELEM_OUTER = document.getElementById('searchresults-outer');
 
 const PATH_TO_ROOT = document.getElementById('searcher').dataset.pathtoroot;
-const resultMarker = new markjs(ELEM_RESULTS);
+const resultMarker = new Mark(ELEM_RESULTS);
 
 let searchResult;
-let fzf;
-
-let storeDocs;
+let finder;
 
 // Eventhandler for keyevents while the searchbar is focused
 const keyUpHandler = () => {
@@ -28,13 +26,7 @@ const keyUpHandler = () => {
     return;
   }
 
-  const results = fzf.find(term).map(data => {
-    return {
-      doc: storeDocs[data.item],
-      ref: data.item,
-      score: data.score,
-    };
-  });
+  const results = finder.search(term);
 
   ELEM_RESULTS.innerHTML = '';
   ELEM_HEADER.innerText = `${results.length} search results for : ${term}`;
@@ -72,7 +64,7 @@ const doSearchOrMarkFromUrl = () => {
   const term = decodeURIComponent(param);
   ELEM_BAR.value = term;
 
-  const marker = new markjs(document.getElementById('main'));
+  const marker = new Mark(document.getElementById('main'));
   marker.mark(term.split(' '), {
     accuracy: 'complementary',
   });
@@ -90,23 +82,7 @@ const initialize = async () => {
     ]);
 
     searchResult = new SearchResult(PATH_TO_ROOT, config.results_options.teaser_word_count, config.doc_urls);
-    storeDocs = config.index.documentStore.docs;
-
-    /** @see https://github.com/HillLiu/docker-mdbook */
-    fzf = new Fzf(Object.keys(storeDocs), {
-      limit: config.results_options.limit_results,
-      selector: item => {
-        const res = storeDocs[item];
-        res.text = `${res.title}${res.breadcrumbs}${res.body}`;
-        return res.text;
-      },
-      tiebreakers: [
-        (a, b, selector) => {
-          return selector(a.item).trim().length - selector(b.item).trim().length;
-        },
-      ],
-      match: extendedMatch,
-    });
+    finder = new Finder(config.index.documentStore.docs, config.results_options.limit_results);
   } catch (e) {
     console.error(`Error during initialization: ${e}`);
     console.log('The search function is disabled.');
