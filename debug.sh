@@ -32,6 +32,7 @@ mdbook build --dest-dir commentary
 #rm commentary/ayu-highlight.css
 #rm commentary/clipboard.min.js
 #rm commentary/elasticlunr.min.js
+#rm commentary/favicon.png
 #rm commentary/highlight.css
 #rm commentary/highlight.js
 #rm commentary/searcher.js

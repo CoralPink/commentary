@@ -83,6 +83,7 @@ jobs:
           rm book/ayu-highlight.css
           rm book/clipboard.min.js
           rm book/elasticlunr.min.js
+          rm book/favicon.png
           rm book/highlight.css
           rm book/highlight.js
           rm book/searcher.js
