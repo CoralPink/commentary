@@ -1,9 +1,11 @@
-const CACHE_VERSION = 'v0.15.0';
+const CACHE_VERSION = 'v0.16.0';
 const CACHE_LIST = [
   '/commentary/book.js',
   '/commentary/hl-worker.js',
   '/commentary/wasm_book_bg.wasm',
 
+  '/commentary/css/chrome.css',
+  '/commentary/css/general.css',
   '/commentary/css/style.css',
   '/commentary/fonts/fonts.css',
 
@@ -11,11 +13,8 @@ const CACHE_LIST = [
   '/commentary/searchindex.json',
 
   '/commentary/apple-touch-icon.png',
-  '/commentary/chrome-96x96.png',
-  '/commentary/chrome-192x192.png',
-  '/commentary/chrome-512x512.png',
   '/commentary/favicon.ico',
-  '/commentary/favicon.png',
+  '/commentary/favicon.svg',
 
   '/commentary/fonts/OpenSans-Bold.woff2',
   '/commentary/fonts/OpenSans-BoldItalic.woff2',
