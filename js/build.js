@@ -7,7 +7,7 @@ console.info(`[INFO]: 👩🏼‍🍳 I'm going to bake ${CLR_BC}bun${CLR_RESET}
 const start = performance.now();
 
 const result = await Bun.build({
-  entrypoints: ['./book.js', './hl-worker.js', './searcher.js', './serviceworker.js'],
+  entrypoints: ['./book.js', './hl-worker.js', './serviceworker.js'],
   outdir: './dist',
   minify: true,
 });

@@ -1,8 +1,7 @@
-const CACHE_VERSION = 'v0.14.0';
+const CACHE_VERSION = 'v0.15.0';
 const CACHE_LIST = [
   '/commentary/book.js',
   '/commentary/hl-worker.js',
-  '/commentary/searcher.js',
   '/commentary/wasm_book_bg.wasm',
 
   '/commentary/css/style.css',
