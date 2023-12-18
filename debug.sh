@@ -34,6 +34,7 @@ mdbook build --dest-dir commentary
 #rm commentary/elasticlunr.min.js
 #rm commentary/highlight.css
 #rm commentary/highlight.js
+#rm commentary/searcher.js
 #rm commentary/tomorrow-night.css
 #rm commentary/css/variables.css
 #rm commentary/mark.min.js

@@ -85,6 +85,7 @@ jobs:
           rm book/elasticlunr.min.js
           rm book/highlight.css
           rm book/highlight.js
+          rm book/searcher.js
           rm book/tomorrow-night.css
           rm book/css/variables.css
           rm book/mark.min.js
