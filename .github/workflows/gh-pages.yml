@@ -69,8 +69,6 @@ jobs:
           pushd scss
           bun install
           bun run compile style.scss ../src/css/style.css
-          bun run compile fonts/fonts.scss ../theme/fonts/fonts.css
-          bun run compile theme/chrome.scss ../theme/css/chrome.css
           bun run compile theme/general.scss ../theme/css/general.css
           pushd
 
@@ -88,6 +86,7 @@ jobs:
           rm book/highlight.js
           rm book/searcher.js
           rm book/tomorrow-night.css
+          rm book/css/chrome.css
           rm book/css/variables.css
           rm book/mark.min.js
           rm -rf book/searchindex.js
