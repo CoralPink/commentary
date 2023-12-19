@@ -1,4 +1,4 @@
-@use '../variables.scss' as var;
+@use 'variables.scss' as var;
 
 // Open Sans is licensed under the Apache License, Version 2.0.
 // See http://www.apache.org/licenses/LICENSE-2.0
@@ -6,7 +6,7 @@
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: normal;
-  src: url(OpenSans-Regular.woff2) format('woff2');
+  src: url(../fonts/OpenSans-Regular.woff2) format('woff2');
   font-display: swap;
 }
 
@@ -14,7 +14,7 @@
   font-family: 'Open Sans';
   font-style: italic;
   font-weight: normal;
-  src: url(OpenSans-Italic.woff2) format('woff2');
+  src: url(../fonts/OpenSans-Italic.woff2) format('woff2');
   font-display: swap;
 }
 
@@ -22,7 +22,7 @@
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: bold;
-  src: url(OpenSans-Bold.woff2) format('woff2');
+  src: url(../fonts/OpenSans-Bold.woff2) format('woff2');
   font-display: swap;
 }
 
@@ -30,7 +30,7 @@
   font-family: 'Open Sans';
   font-style: italic;
   font-weight: bold;
-  src: url(OpenSans-BoldItalic.woff2) format('woff2');
+  src: url(../fonts/OpenSans-BoldItalic.woff2) format('woff2');
   font-display: swap;
 }
 
@@ -40,7 +40,7 @@
   font-family: 'Source Code Pro';
   font-style: normal;
   font-weight: bolder;
-  src: url(SourceCodePro-Medium.woff2) format('woff2');
+  src: url(../fonts/SourceCodePro-Medium.woff2) format('woff2');
   font-display: swap;
 }
 
@@ -50,6 +50,6 @@
   font-family: 'Symbols Nerd Font Mono';
   font-style: normal;
   font-weight: bolder;
-  src: url(NerdFontsSymbolsOnly/SymbolsNerdFontMono-Regular.woff2) format('woff2');
+  src: url(../fonts/NerdFontsSymbolsOnly/SymbolsNerdFontMono-Regular.woff2) format('woff2');
   font-display: swap;
 }

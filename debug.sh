@@ -22,8 +22,6 @@ if [ ! -e ./node_modules ]; then
   bun install
 fi
 bun run compile style.scss ../src/css/style.css
-bun run compile fonts/fonts.scss ../theme/fonts/fonts.css
-bun run compile theme/chrome.scss ../theme/css/chrome.css
 bun run compile theme/general.scss ../theme/css/general.css
 pushd
 
@@ -37,6 +35,7 @@ mdbook build --dest-dir commentary
 #rm commentary/highlight.js
 #rm commentary/searcher.js
 #rm commentary/tomorrow-night.css
+#rm commentary/css/chrome.css
 #rm commentary/css/variables.css
 #rm commentary/mark.min.js
 #rm -rf commentary/searchindex.js
