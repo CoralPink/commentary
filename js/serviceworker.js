@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'v0.17.0';
+const CACHE_VERSION = 'v0.17.1';
 const CACHE_LIST = [
   '/commentary/book.js',
   '/commentary/hl-worker.js',
@@ -6,7 +6,6 @@ const CACHE_LIST = [
 
   '/commentary/css/general.css',
   '/commentary/css/style.css',
-  '/commentary/fonts/fonts.css',
 
   '/commentary/manifest.json',
   '/commentary/searchindex.json',
