@@ -1,7 +1,12 @@
-@use 'catppuccin';
-@use 'catppuccin-au-lait';
+@use 'chrome';
+@use 'fonts';
 @use 'headline';
-@use 'mdbook-admonish';
+
+@use 'catppuccin';
 @use 'catppuccin-admonish';
+@use 'catppuccin-au-lait';
+
+@use 'mdbook-admonish';
+
 @use 'pagetoc';
 @use 'footnote';
