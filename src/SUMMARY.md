@@ -114,3 +114,4 @@
     - [Migration Guide](outro/lazy-migration-guide.md)
   - [nvim-notify](outro/nvim-notify.md)
   - [nvim_set_option_value](outro/nvim_set_option_value.md)
+  - [none-ls.nvim](outro/none-ls.md)
