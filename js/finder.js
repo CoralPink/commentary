@@ -20,8 +20,7 @@ export default class Finder {
       limit,
       selector: item => {
         const res = storeDocs[item];
-        res.text = `${res.title}${res.breadcrumbs}${res.body}`;
-        return res.text;
+        return `${res.title}${res.breadcrumbs}${res.body}`;
       },
       tiebreakers: [
         (a, b, selector) => {
