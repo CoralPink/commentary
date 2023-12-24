@@ -170,7 +170,7 @@ But it all works out
 ```admonish quote title=""
 It doesn’t matter much to me
 
-僕にはどうでもいい
+ぼくにはどうでもいい
 ```
 
 ## Config
@@ -199,7 +199,7 @@ No one I think is in my tree
 
 I mean it must be high or low
 
-ぼくの木には誰もいない
+ぼくの樹には誰もいない
 
 きっと 高すぎるか 低すぎるんだ
 ```
@@ -280,56 +280,23 @@ That is I think I disagree
 意地でも聖夜🌃には間に合わせます{{footnote: とは書いてはみたものの、間に合わなくても堪忍して...。}}。
 `none-ls`に負けないくらい超スムーズにいきましょう😆
 
-~~~admonish abstract title="Ahead"
-とはいえ、なんだか中途半端なところで間が空いちゃうのも面白くないと思うので、
-こんなんすればいいんじゃないかなー❓ってのだけ先に載っけちゃいます。
-
-これはとっても簡単❗
-
-`lazy.nvim`であれば [Installation](https://github.com/jay-babu/mason-null-ls.nvim#installation) を参考に、
-以下のコードを追加するだけです。たぶん😅
-
-
-```lua
-{
-  'jay-babu/mason-null-ls.nvim',
-  event = { 'BufReadPre', 'BufNewFile' },
-  dependencies = {
-    'williamboman/mason.nvim',
-    'nvimtools/none-ls.nvim',
-  },
-  opts = {
-    handlers = {}
-  },
-},
-```
-
-あとはいつも通り`mason`を使って好きな`formatter`とか`Linter`をインストールするだけ😉
-
-そしたらなんかもう勝手にパワーが溜まってくるはず...。
-
-(もし違ってたらごめんね...😭)
-~~~
-
 ```admonish quote title="Success"
 Strawberry Fields Forever {{footnote: Strawberry Fields Forever (by [The Beatles](https://en.wikipedia.org/wiki/The_Beatles)):
 作詞は John Lennon、作曲は Lennon-McCartney。The Bealtes のこれまでのシングルとは一線を画し、
 現代のポップ・リスナーにとって斬新なリスニング体験となった。
-この曲は、リバプールにある救世軍の児童養護施設、Strawberry Field の庭で遊んだ Lennon の幼少期の思い出に基づいて書かれている。
+この曲は、Liverpool にある救世軍の児童養護施設、Strawberry Field の庭で遊んだ Lennon の幼少期の思い出に基づいて書かれている。
 
 John の出生時、父は商船の乗組員として航海中で不在。
 母も他の男性と同棲していたため、John は母親の長姉である "Mimi おばさん" に育てられる。
 
 John の子供時代の楽しみのひとつは、毎年夏に家の近くの Calderstones Park で開かれるガーデンパーティで、
 そこでは救世軍のブラスバンドが演奏していた。
-「その場所には、いつも John を魅了する何かがあった。彼は窓からそれを見ることができた。
-彼はよく救世軍のバンドがガーデンパーティで演奏しているのを聴いていて、『Mimi、行こうよ。遅れてしまうよ』と私を引っ張っていった」。
 
 後に Mimi は親戚に、「子どもは欲しくなかったが、John はずっと欲しかった」と打ち明けた。
 
 Lennon は 1966年9月から10月にかけて、Richard Lester の映画 "How I Won the War" の撮影中、
 Spain の Almería でこの曲を書き始めた。The Beatles は、"more popular than Jesus" (キリストよりも人気がある) という論争や、
-Pilipinas の大統領夫人 Imelda Marcos への不用意な へつらい に反発した暴徒の標的になるなど、
+Pilipinas の Imelda Marcos 大統領夫人を不用意にこき下ろした反動で暴徒の標的になるなど、
 最も困難な時期を経て、ツアーを引退したばかりだった。
 
 時を経て、New York City の Central Park の一角には Lennon を偲び、この曲にちなんだ区画が造られた。
@@ -338,3 +305,13 @@ Pilipinas の大統領夫人 Imelda Marcos への不用意な へつらい に�
 
 Strawberry Fields は永遠なんだ
 ```
+
+~~~admonish success title=""
+Hurry up, Mimi – we're going to be late.
+{{footnote:
+「その場所には、いつも John を魅了する何かがあった。彼は窓からそれを見ることができた。
+彼はよく救世軍のバンドがガーデンパーティで演奏しているのを聴いていて、『Mimi、はやく行こうよ。遅れてしまうよ』と私を引っ張っていった」。
+}}
+
+Mimi、はやく行こうよ。遅れてしまうよ。
+~~~
