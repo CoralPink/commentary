@@ -4,21 +4,21 @@
 
 ```admonish info title="[Load user config](https://neovim.io/doc/user/starting.html#config)"
 A file containing initialization commands is generically called a "vimrc" or config file.
-It can be either Vimscript ("init.vim") or Lua ("init.lua"), but not both. 
+It can be either Vim script ("init.vim") or Lua ("init.lua"), but not both. 
 
 初期化コマンドを含むファイルは一般に "vimrc" または config ファイルと呼ばれます。
-Vimscript ("init.vim")またはLua ("init.lua")のどちらかになりますが、両方は使えません。
+Vim script ("init.vim")またはLua ("init.lua")のどちらかになりますが、両方は使えません。
 ```
 
-なんということでしょう❗`Vimscript`または`Lua`のどちらかを選ばなければなりません😩
+なんということでしょう❗`Vim script`または`Lua`のどちらかを選ばなければなりません😩
 
 ...なんつって。白々しかったですよね〜😉
 
 このサイトでは、`WezTerm`でも散々扱ってきた`Lua`を選択します。
-(というか、わたしは`VimScript`を扱えません...😅)
+(というか、わたしは`Vim script`を扱えません...😅)
 
 ```admonish note
-`Neovim`は`Vimscript`を扱えますが、後継の`Vim9 script`はサポートしないことが表明されているようです。
+`Neovim`は`Vim script`を扱えますが、後継の`Vim9 script`はサポートしないことが表明されているようです。
 
 もしこれを扱いたい場合は [Vim](https://www.vim.org) を使う必要があります。
 
@@ -28,7 +28,7 @@ Vimscript ("init.vim")またはLua ("init.lua")のどちらかになりますが
 ```admonish warning
 あと、これは結構強調しておきたいんですが、
 
-「`Vimscript`ではああでしたが、`lua`ではこうでして❗」みたいな "移行" を目的とした書き方はしません。
+「`Vim script`ではああでしたが、`lua`ではこうでして❗」みたいな "移行" を目的とした書き方はしません。
 ```
 
 わたし自身は `Neovim` → `WezTerm` という順番で`Lua`に触れてきましたが、難易度的には`Neovim`の方が高いと思ってます。

@@ -9,10 +9,10 @@ nvim_create_autocmd({event}, {*opts}) nvim_create_autocmd()
 
   The API allows for two (mutually exclusive) types of actions to be
   executed when the autocommand triggers: a callback function (Lua or
-  Vimscript), or a command (like regular autocommands).
+  Vim script), or a command (like regular autocommands).
 
   このAPIでは、オートコマンドのトリガー時に実行されるアクションとして、
-  コールバック関数（LuaまたはVimscript）、
+  コールバック関数（LuaまたはVim script）、
   またはコマンド（通常のオートコマンドと同様）の
   2種類（相互に排他的）を指定することができる。
 ```

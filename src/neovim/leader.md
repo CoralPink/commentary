@@ -73,7 +73,7 @@ g:mapleader "が設定されていない場合や空の場合は、代わりに�
 ```
 ~~~
 
-VimScriptの書き方だと思われますが、`g:`というのが`global`で、`mapleader`が変数名ですね 🤔
+Vim scriptの書き方だと思われますが、`g:`というのが`global`で、`mapleader`が変数名ですね 🤔
 
 これはなんかもう`nvim_set_var`が強すぎるので楽勝です❤️
 
