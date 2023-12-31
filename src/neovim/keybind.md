@@ -247,7 +247,7 @@ t[nore]map     |  -   |  -  |  -  |  -  |  -  |  -  | yes  |  -   |
 l[nore]map     |  -   | yes | yes |  -  |  -  |  -  |  -   | yes  |
 ```
 
-`Vimscript`準拠の表記になっていますが、先頭文字がそれぞれ`vim.keymap.set`の`{mode}`に対応しています。
+`Vim script`準拠の表記になっていますが、先頭文字がそれぞれ`vim.keymap.set`の`{mode}`に対応しています。
 ~~~
 
 冒頭の例で言うと、`'i'`はインサートモードを指しています。

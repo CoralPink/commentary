@@ -44,7 +44,7 @@ Coca-Cola{{footnote: Abbey Road 収録の Come Together の詩に登場するこ
 ...ありますが、わたしは`copilot.lua`にしました👩‍✈️
 
 ```admonish note
-`copilot.vim`が`Vimscript`で書かれているのに対して、`lua`で書かれているのが`copilot.lua`です。
+`copilot.vim`が`Vim script`で書かれているのに対して、`lua`で書かれているのが`copilot.lua`です。
 ```
 
 だってほら、こっちの方が親和性高そう💕

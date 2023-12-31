@@ -134,7 +134,7 @@ vim.keymap.set('n', '<Leader>9', function() vim.cmd.colo 'blue' end)
 この先でも、しれっとこんな記述をしていくので、よろしくどうぞ😆
 
 ```admonish success
-`vim.cmd`については、VimScriptのコマンドをコードから呼び出せるよー❗っていうことが理解できればOKです。
+`vim.cmd`については、Vim scriptのコマンドをコードから呼び出せるよー❗っていうことが理解できればOKです。
 
 ここまでくると、結構いろいろなことがコードから実行できるって分かるので、楽しくなってきますね😆
 ```
