@@ -7,6 +7,8 @@
 サイトの改善に協力してくれてありがとう✨
 
 ```admonish success title=""
+[kannokanno](https://github.com/kannokanno)
+
 [popyosn1648](https://github.com/popyson1648)
 ```
 
