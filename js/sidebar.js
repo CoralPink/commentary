@@ -41,26 +41,6 @@ import { writeLocalStorage } from './storage.js';
   // Toggle sidebar
   toggleButton.addEventListener('mousedown', () => toggleSidebar(), { once: false, passive: true });
 
-  document.addEventListener(
-    'keyup',
-    e => {
-      if (!globalThis.search) {
-        return;
-      }
-
-      if (globalThis.search.hasFocus()) {
-        return;
-      }
-
-      if (e.key === 't' || e.key === 'T') {
-        toggleSidebar();
-      } else if (e.key === 'Escape') {
-        hideSidebar();
-      }
-    },
-    { once: false, passive: true },
-  );
-
   matchMedia('(min-width: 1200px)').addEventListener('change', event => {
     if (event.matches) {
       showSidebar();
@@ -75,3 +55,24 @@ import { writeLocalStorage } from './storage.js';
 
   localStorage.getItem('mdbook-sidebar') === 'hidden' ? hideSidebar(false) : showSidebar(false);
 })();
+
+document.addEventListener(
+  'DOMContentLoaded',
+  () => {
+    document.addEventListener(
+      'keyup',
+      e => {
+        if (globalThis.search.hasFocus()) {
+          return;
+        }
+
+        if (e.key === 't' || e.key === 'T') {
+          toggleSidebar();
+        } else if (e.key === 'Escape') {
+          hideSidebar();
+        }
+      },
+      { once: false, passive: true },
+    );
+  }
+);
