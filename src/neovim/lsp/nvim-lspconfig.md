@@ -230,7 +230,7 @@ nvimトレーナーは努力を続けていたってこと⁉️
 Yes, it was my way
 {{footnote: My Way (by [Frank Sinatra](https://en.wikipedia.org/wiki/Frank_Sinatra)):
 主人公の男性が、自分の死が近付く中、自分の人生で起こったすべての苦難に対して行ったことについて、
-後悔せず自信を持っている、と語る内容である。[Wikipedia](https://ja.wikipedia.org/wiki/マイ・ウェイ)より
+後悔せず自信を持っている、と語る内容である。[Wikipedia](https://en.wikipedia.org/wiki/My_Way)より
 (もちろん、nvimトレーナーは目の前が真っ暗になることはあっても死ぬことはないです😉)
 }}
 
