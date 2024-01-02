@@ -31,7 +31,7 @@ George Harisson は、テレビシリーズ『The Beatles Anthology』のイン�
 
 She's so good-looking but she looks like a man
 
-まあ、ポリエチレンを纏ったパンを見てみなよ
+まあ、ポリエチレンを纏ったパムを見てみなよ
 
 彼女にとても似合っているが、なんだか見た目は男みたい
 ```
