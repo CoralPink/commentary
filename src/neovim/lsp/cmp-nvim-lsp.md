@@ -19,7 +19,7 @@ Here comes the sun king
 あれは仕上げなくても、曲に片が付けられる手の一つだったというわけ。でもメドレーに入ると雰囲気を変えたくなってきて、
 "Here comes the sun king" の出番になった。かまわないだろう？
 彼がやってくると、誰もが幸せになって "cuando para mucho" だのなんだの (イタリア語やポルトガル語の単語を適当に並べたもの) が始まるんだ」と語っている。
-[Wikipedia](https://ja.wikipedia.org/wiki/サン・キング)より
+[Wikipedia](https://en.wikipedia.org/wiki/Sun_King_(song))より
 }}
 
 太陽王がやってきた

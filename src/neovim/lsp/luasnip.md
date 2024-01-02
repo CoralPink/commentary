@@ -42,7 +42,7 @@ Mean Mister Mustard (by [The Beatles](https://en.wikipedia.org/wiki/The_Beatles)
 内容は Mustard というホームレスの男の日常を綴ったものとなっている。
 歌詞のインスピレーションについて、Lennon は
 「どこかでしみったれた男の新聞記事を読んだ。そいつは5ポンド札を鼻の中ではなく、別のどこかに隠していた」と語っている。
-[Wikipedia](https://ja.wikipedia.org/wiki/ミーン・ミスター・マスタード)より
+[Wikipedia](https://en.wikipedia.org/wiki/Mean_Mr._Mustard)より
 }}
 sleeps in the park
 

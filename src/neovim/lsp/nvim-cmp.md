@@ -32,7 +32,7 @@ John Lennon と Paul McCartney が Lennon-McCartney 名義で制作した楽曲�
 経営不振となったころに過半数の株式が "Sony Music Publishing LLC" によって買収された。
 McCartney は、マネージャーの Brian Epstein の死去以降、グループをまとめる立場にあった。
 それにより自身の会社 "Apple Corps Ltd." を立ち上げ、財政面の整理を McCartney 以外の3人のマネージャーとなった Klein が担当していたが、
-会社は財政難に陥り亀裂が生じていた。[Wikipedia](https://ja.wikipedia.org/wiki/ユー・ネヴァー・ギヴ・ミー・ユア・マネー)より
+会社は財政難に陥り亀裂が生じていた。[Wikipedia](https://en.wikipedia.org/wiki/You_Never_Give_Me_Your_Money)より
 }}
 
 You only give me your funny paper
@@ -55,7 +55,7 @@ You break down
 あらぬ誤解を招きそうな曲が聴こえてきましたが、ついに Abbey Road {{footnote:
 アルバムの評価としては、B面の大部分を占めるメドレーへの評価が非常に高い。
 このメドレーについて John Lennon は「A面は良いけどB面はちょっとね。あれはジャンク（ガラクタ）を集めただけだと思うよ」と述べているが、
-Paul McCartney と Ringo Starr は「B面のメドレーは僕らの最高傑作のひとつ」と発言している。[Wikipedia](https://ja.wikipedia.org/wiki/アビイ・ロード)より
+Paul McCartney と Ringo Starr は「B面のメドレーは僕らの最高傑作のひとつ」と発言している。[Wikipedia](https://en.wikipedia.org/wiki/Abbey_Road)より
 }}
 へと辿り着きました🤗
 
