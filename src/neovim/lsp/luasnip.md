@@ -316,7 +316,7 @@ His sister Pam works in a shop
 
 She never stops, she's a go-getter
 
-妹のパンはショップで働いてるよ
+妹のパムはショップで働いてるよ
 
 彼女は決して立ち止まらない、頑張り屋さんなんだ
 ```
