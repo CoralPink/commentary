@@ -251,7 +251,7 @@ And yes, we’ve just begun
 タイトルのとおり「2人はまだ始まったばかり（We've Only Just Begun）」と結婚によって新しい人生を踏み出すことについて歌われている。
 この曲は、アレンジャーとしての Richard の能力と、ボーカルとしての Karen の能力が最も発揮されているということで、
 Richard は「Carpenters の代表曲を挙げるなら『We've Only Just Begun』だな」と語っている。
-[Wikipedia](https://ja.wikipedia.org/wiki/愛のプレリュード)より
+[Wikipedia](https://en.wikipedia.org/wiki/We%27ve_Only_Just_Begun)より
 }}
 
 歩くことから始めましょう そのあと走ることを学びましょう

@@ -26,7 +26,7 @@ George Harisson は、テレビシリーズ『The Beatles Anthology』のイン�
 コミカルでありながら、シリアスなところもある曲を書く人間はいなかった。
 この曲はとても上出来なロックンロール・ナンバーだったけど、明らかにジョークなのに、誰も笑わず、
 誰もピンときていないと、もどかしくなってくることもある」と語っている。
-[Wikipedia](https://ja.wikipedia.org/wiki/ポリシーン・パン)より
+[Wikipedia](https://en.wikipedia.org/wiki/Polythene_Pam)より
 }}
 
 She's so good-looking but she looks like a man

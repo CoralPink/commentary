@@ -49,7 +49,7 @@ Baby you can drive my car
 And maybe I love you
 
 ねえ わたしと ぽかぽか{{footnote:
-[Drive My Car](https://ja.wikipedia.org/wiki/ドライヴ・マイ・カー#背景・曲の構成):
+[Drive My Car](https://en.wikipedia.org/wiki/Drive_My_Car_(song)):
 タイトルの「Drive My Car」は「性交」の意を持つ古いブルースの隠語で、McCartney も古いブルースの隠語として使用したことを明かしている。
 }}しようよ
 

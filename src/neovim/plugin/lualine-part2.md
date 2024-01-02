@@ -25,9 +25,9 @@ A Happy New Year!!
 
 ...まあ、たった数週間なんですけどね😮
 この程度なら "時速 88 マイル" も "1.21 ジゴワット"{{footnote:
-[Back to the Future](https://ja.wikipedia.org/wiki/バック・トゥ・ザ・フューチャー) の世界ですね。
+[Back to the Future](https://en.wikipedia.org/wiki/Back_to_the_Future) の世界ですね。
 “gigawatt”（ギガワット）を誤って“jigowatt”（ジゴワット）と書いた脚本がそのまま採用されたんだって。 (どういう誤り方❓😑)
-[wikipedia](https://ja.wikipedia.org/wiki/デロリアン_(タイムマシン)#cite_note-jigowatt-2)より。
+[wikipedia](https://en.wikipedia.org/wiki/DeLorean_time_machine)より。
 }}も必要ないでしょう。
 
 ```admonish note

@@ -25,7 +25,7 @@ Or should I say she once had me
 
 いや 彼女には僕がいたと言うべきか {{footnote:
 歌詞は、冒頭でほのめかされているように、Lennon が当時の妻 Cynthia に気付かれないように、他の女性と関係を持っていたことを表している。
-[Wikipedia](https://ja.wikipedia.org/wiki/ノルウェーの森)より
+[Wikipedia](https://en.wikipedia.org/wiki/Norwegian_Wood_(This_Bird_Has_Flown))より
 }}
 ```
 

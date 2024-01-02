@@ -13,7 +13,7 @@ John F.Kennedy 国際空港に向かっていたときに見た、
 本作のタイトルについて、John Lennon は「1968年5月にニューヨークを訪れた時に泊まっていたフラットで、
 Paul がふと "She Came In Through The Bathroom Window (彼女は浴室の窓から入ってきた)"というフレーズを口にした。
 つまりあのフレーズは何年も前からあるわけで、それをやっと仕上げたわけだ」と語っている。
-[Wikipedia](https://ja.wikipedia.org/wiki/シー・ケイム・イン・スルー・ザ・バスルーム・ウィンドー)より
+[Wikipedia](https://en.wikipedia.org/wiki/She_Came_In_Through_the_Bathroom_Window)より
 }}
 
 彼女は浴室の窓から入ってきた
