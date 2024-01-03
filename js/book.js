@@ -1,5 +1,5 @@
 import { codeBlock } from './codeblock.js';
-import './sidebar.js';
+import { sidebarInit } from './sidebar.js';
 import wasmInit, { attribute_external_links, SearchResult } from './wasm_book.js';
 
 import Finder from './finder.js';
@@ -131,6 +131,8 @@ const searchInit = async root => {
 };
 
 (() => {
+  sidebarInit();
+
   document.addEventListener(
     'DOMContentLoaded',
     () => {
