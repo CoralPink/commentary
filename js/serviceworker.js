@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'v0.18.0';
+const CACHE_VERSION = 'v0.18.1';
 const CACHE_LIST = [
   '/commentary/book.js',
   '/commentary/hl-worker.js',
