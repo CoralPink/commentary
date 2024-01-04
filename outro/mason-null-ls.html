@@ -154,7 +154,7 @@
 <div>
 <p><code>mason-null-ls.nvim</code> closes some gaps that exist between <code>mason.nvim</code> and
 <code>null-ls</code>. Its main responsibilities are:</p>
-<p><code>mason-null-ls.nvim</code>は<code>mason.nvim</code>と<code>null-ls</code>の間に存在するいくつかのギャップを埋める。
+<p><code>mason-null-ls.nvim</code>は<code>mason.nvim</code>と<code>null-ls</code>の間に存在するいくつかのギャップを埋めます。
 主な役割は以下の通り：</p>
 <ul>
 <li>provide extra convenience APIs such as the <code>:NullLsInstall</code> command</li>
@@ -163,15 +163,15 @@
 </ul>
 <p>It is recommended to use this extension if you use <code>mason.nvim</code> and <code>null-ls</code>.
 Please read the whole README.md before jumping to <a href="https://github.com/jay-babu/mason-null-ls.nvim#setup">Setup</a>.</p>
-<p><strong>Note</strong>: this plugin uses the <code>null-ls</code> source names in the APIs it exposes - not <code>mason.nvim</code> package names.</p>
 <ul>
 <li><code>NullLsInstall</code>コマンドのような便利な API を提供する。</li>
 <li>(i) 自動インストール、(ii) あらかじめ定義されたソースリストの自動セットアップ。</li>
 <li><code>null-ls</code>ソース名と<code>mason.nvim</code>パッケージ名の変換 (例:<code>haml_lint</code>&lt;-&gt;<code>haml-lint</code>)</li>
 </ul>
 <p><code>mason.nvim</code>と<code>null-ls</code>を使う場合はこの拡張機能を使うことを推奨します。
-<a href="https://github.com/jay-babu/mason-null-ls.nvim#setup">Setup</a> に入る前に README.md 全体を読んでください。</p>
-<p><strong>Note</strong>: このプラグインが公開する API では、<code>mason.nvim</code>のパッケージ名ではなく<code>null-ls</code>のソース名を使用します。</p>
+<a href="https://github.com/jay-babu/mason-null-ls.nvim#setup">Setup</a> に入る前に README.md を全て読んでください。</p>
+<p><strong>Note</strong>: this plugin uses the <code>null-ls</code> source names in the APIs it exposes - not <code>mason.nvim</code> package names.</p>
+<p>このプラグインが公開する API では、<code>mason.nvim</code>のパッケージ名ではなく<code>null-ls</code>のソース名を使用します。</p>
 </div>
 </div>
 <div id="admonition-default-3" class="admonition admonish-success">
@@ -197,8 +197,8 @@ Please read the whole README.md before jumping to <a href="https://github.com/ja
 </div>
 </div>
 <p>これもやっぱり特に難しい要求はありませんが、
-このサイトでは <a href="https://github.com/nvimtools/none-ls.nvim">none-ls</a> を使用していきます。</p>
-<p>...ややこしいんですけども。</p>
+このサイトでは<code>null-ls</code>に代えて <a href="https://github.com/nvimtools/none-ls.nvim">none-ls</a> を使用していきます。</p>
+<p>...ややこしいんですけども😮</p>
 <div id="admonition-default-4" class="admonition admonish-success">
 <div>
 <p>The near and the dear ones</p>
@@ -322,9 +322,20 @@ section to understand how the default configs can be overridden.</p>
 </div>
 </div>
 <p>このページでは<code>mason</code>の<code>setup()</code>はもう済んでいるものとして特に触れません。</p>
-<p>その上で、ここも<code>lazy.nvim</code>をもっと頼って (怠けちゃって) いいと思います。</p>
-<p><code>opts</code>に変数のテーブルを指定すると<code>lazy.nvim</code>の<code>Plugin.config()</code>に渡してくれるので、
-上で示されているコードは、シンプルにこんな感じで済ませてしまってもいいんじゃないかな😌</p>
+<p>その上で、ここも<code>lazy.nvim</code>をもっと頼って (怠けちゃって) いいと思います😪</p>
+<p><code>lazy.nvim</code>の提供する<code>opts</code>オプションにパラメータを指定すると、そのままプラグインの<code>config()</code>に渡してくれます。</p>
+<div id="admonition--plugin-spechttpsgithubcomfolkelazynvim-plugin-spec" class="admonition admonish-info">
+<div class="admonition-title">
+<p><a href="https://github.com/folke/lazy.nvim#-plugin-spec">🔌 Plugin Spec</a></p>
+<p><a class="admonition-anchor-link" href="#admonition--plugin-spechttpsgithubcomfolkelazynvim-plugin-spec"></a></p>
+</div>
+<div>
+<div class="table-wrapper"><table><thead><tr><th>Property</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><strong>opts</strong></td><td><code>table</code> or <code>fun(LazyPlugin, opts:table)</code></td><td><code>opts</code> should be a table (will be merged with parent specs), return a table (replaces parent specs) or should change a table. The table will be passed to the <code>Plugin.config()</code> function. Setting this value will imply <code>Plugin.config()</code></td></tr>
+</tbody></table>
+</div></div>
+</div>
+<p>なので、シンプルにこれだけで済ませてしまってもいいんじゃないかな😌</p>
 <div id="admonition-extensionsinitlua-1" class="admonition admonish-example">
 <div class="admonition-title">
 <p>extensions/init.lua</p>
@@ -346,7 +357,7 @@ section to understand how the default configs can be overridden.</p>
 </div>
 </div>
 <p><a href="https://github.com/jay-babu/mason-null-ls.nvim#default-configuration">Default Configuration</a>を見ての通り、
-デフォルトでは<code>nil</code>になっているのでこれを<code>Array</code>でオーバーライドしています。</p>
+デフォルトでは<code>nil</code>になっているので、これを<code>Array</code>でオーバーライドしています。</p>
 <div id="admonition-note" class="admonition admonish-note">
 <div class="admonition-title">
 <p>Note</p>
@@ -358,7 +369,7 @@ section to understand how the default configs can be overridden.</p>
 </div>
 <h2 id="usage"><a class="header" href="#usage">Usage</a></h2>
 <p>ここまでやれば、あとは<code>Mason</code>からインストールするだけでおっけーです❗</p>
-<p>試しに<code>stylua</code>でも入れてみましょ。
+<p>試しに<code>stylua</code>でも入れてみましょ😆
 <img src="img/mason-stylua.webp" alt="mason-stylua" width="500" height="178" decoding="async"></p>
 <div id="admonition-note-1" class="admonition admonish-note">
 <div class="admonition-title">
@@ -388,7 +399,7 @@ section to understand how the default configs can be overridden.</p>
 </div>
 </div>
 <h2 id="war-is-over"><a class="header" href="#war-is-over">War is Over</a></h2>
-<p>私事ではありますが、ちょっと時間がなくて<code>Linter</code>には全く触れられませんでした...。</p>
+<p>私事ではありますが、ちょっと時間がなくて<code>Linter</code>には全く触れられませんでした...😅</p>
 <p>また落ち着いたら <a href="../neovim/lsp/fidget.html#admonition-tip-1">このへん</a> も含めて改めてやりましょ❗</p>
 <p>去年もおんなじようなこと言っちゃっててかわいいですね❗❗
 下手しても失敗しても、未来で笑い飛ばせばいいんです❗❗
@@ -446,7 +457,8 @@ Happy Christmas from John & Yoko
 </div>
 <div class="footnote-definition" id=1>
 <p><a href="#to-footnote-1"><sup>1:</sup></a> Happy Xmas (War Is Over) (by <a href="https://en.wikipedia.org/wiki/Plastic_Ono_Band">John &amp; Yoko / Plastic Ono Band</a>
-with the <a href="https://en.wikipedia.org/wiki/Harlem">Harlem</a> Commjnity Choir)</p>
+with the <a href="https://en.wikipedia.org/wiki/Harlem">Harlem</a> Community Choir)
+<a href="https://en.wikipedia.org/wiki/Happy_Xmas_(War_Is_Over)">Wikipedia</a> より</p>
 </div><div class="footnote-definition" id=2>
 <p><a href="#to-footnote-2"><sup>2:</sup></a> 1969年の暮れ、John と Yoko は世界12都市の街頭にビルボードを使った大きな広告を掲げた。</p>
 </div><div class="footnote-definition" id=3>
