@@ -205,11 +205,12 @@ kbd {
 }
 
 table {
-  margin: 0 auto;
+  margin: 1rem auto;
   border-collapse: collapse;
 
   td {
     border: 0.1rem var(--table-border-color) solid;
+    padding: 0.375rem 0.8125rem;
   }
 
   thead {
