@@ -47,7 +47,7 @@ And a new one just begun
 `mason-null-ls.nvim` closes some gaps that exist between `mason.nvim` and
 `null-ls`. Its main responsibilities are:
 
-`mason-null-ls.nvim`は`mason.nvim`と`null-ls`の間に存在するいくつかのギャップを埋める。
+`mason-null-ls.nvim`は`mason.nvim`と`null-ls`の間に存在するいくつかのギャップを埋めます。
 主な役割は以下の通り：
 
 - provide extra convenience APIs such as the `:NullLsInstall` command
@@ -57,16 +57,16 @@ And a new one just begun
 It is recommended to use this extension if you use `mason.nvim` and `null-ls`.
 Please read the whole README.md before jumping to [Setup](https://github.com/jay-babu/mason-null-ls.nvim#setup).
 
-**Note**: this plugin uses the `null-ls` source names in the APIs it exposes - not `mason.nvim` package names.
-
 - `NullLsInstall`コマンドのような便利な API を提供する。
 - (i) 自動インストール、(ii) あらかじめ定義されたソースリストの自動セットアップ。
 - `null-ls`ソース名と`mason.nvim`パッケージ名の変換 (例:`haml_lint`<->`haml-lint`)
 
 `mason.nvim`と`null-ls`を使う場合はこの拡張機能を使うことを推奨します。
-[Setup](https://github.com/jay-babu/mason-null-ls.nvim#setup) に入る前に README.md 全体を読んでください。
+[Setup](https://github.com/jay-babu/mason-null-ls.nvim#setup) に入る前に README.md を全て読んでください。
 
-**Note**: このプラグインが公開する API では、`mason.nvim`のパッケージ名ではなく`null-ls`のソース名を使用します。
+**Note**: this plugin uses the `null-ls` source names in the APIs it exposes - not `mason.nvim` package names.
+
+このプラグインが公開する API では、`mason.nvim`のパッケージ名ではなく`null-ls`のソース名を使用します。
 ```
 
 ```admonish success title=""
@@ -88,9 +88,9 @@ I hope you had fun
 ```
 
 これもやっぱり特に難しい要求はありませんが、
-このサイトでは [none-ls](https://github.com/nvimtools/none-ls.nvim) を使用していきます。
+このサイトでは`null-ls`に代えて [none-ls](https://github.com/nvimtools/none-ls.nvim) を使用していきます。
 
-...ややこしいんですけども。
+...ややこしいんですけども😮
 
 ```admonish success title=""
 The near and the dear ones
@@ -177,7 +177,8 @@ Sources found installed in `mason` will automatically be setup for null-ls.
 ```admonish success title=""
 And so happy Christmas (War is over)
 {{footnote: Happy Xmas (War Is Over) (by [John & Yoko / Plastic Ono Band](https://en.wikipedia.org/wiki/Plastic_Ono_Band)
-with the [Harlem](https://en.wikipedia.org/wiki/Harlem) Commjnity Choir)
+with the [Harlem](https://en.wikipedia.org/wiki/Harlem) Community Choir)
+[Wikipedia](https://en.wikipedia.org/wiki/Happy_Xmas_(War_Is_Over)) より
 }}
 ```
 
@@ -216,10 +217,17 @@ section to understand how the default configs can be overridden.
 
 このページでは`mason`の`setup()`はもう済んでいるものとして特に触れません。
 
-その上で、ここも`lazy.nvim`をもっと頼って (怠けちゃって) いいと思います。
+その上で、ここも`lazy.nvim`をもっと頼って (怠けちゃって) いいと思います😪
 
-`opts`に変数のテーブルを指定すると`lazy.nvim`の`Plugin.config()`に渡してくれるので、
-上で示されているコードは、シンプルにこんな感じで済ませてしまってもいいんじゃないかな😌
+`lazy.nvim`の提供する`opts`オプションにパラメータを指定すると、そのままプラグインの`config()`に渡してくれます。
+
+```admonish info title="[🔌 Plugin Spec](https://github.com/folke/lazy.nvim#-plugin-spec)"
+| Property | Type                                     | Description                                                                                                                                                                                                                              |
+| ---------| -----------------------------------------| -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **opts** | `table` or `fun(LazyPlugin, opts:table)` | `opts` should be a table (will be merged with parent specs), return a table (replaces parent specs) or should change a table. The table will be passed to the `Plugin.config()` function. Setting this value will imply `Plugin.config()`|
+```
+
+なので、シンプルにこれだけで済ませてしまってもいいんじゃないかな😌
 
 ~~~admonish example title="extensions/init.lua"
 ```diff
@@ -238,7 +246,7 @@ section to understand how the default configs can be overridden.
 ~~~
 
 [Default Configuration](https://github.com/jay-babu/mason-null-ls.nvim#default-configuration)を見ての通り、
-デフォルトでは`nil`になっているのでこれを`Array`でオーバーライドしています。
+デフォルトでは`nil`になっているので、これを`Array`でオーバーライドしています。
 
 ```admonish note
 ぱっと見た感じ、`handlers`に対して「なんやこいつ😮」と思わなくもないんですが、これないと動かないでしょ❓
@@ -248,7 +256,7 @@ section to understand how the default configs can be overridden.
 
 ここまでやれば、あとは`Mason`からインストールするだけでおっけーです❗
 
-試しに`stylua`でも入れてみましょ。
+試しに`stylua`でも入れてみましょ😆
 
 ![mason-stylua](img/mason-stylua.webp)
 
@@ -280,7 +288,7 @@ section to understand how the default configs can be overridden.
 
 ## War is Over
 
-私事ではありますが、ちょっと時間がなくて`Linter`には全く触れられませんでした...。
+私事ではありますが、ちょっと時間がなくて`Linter`には全く触れられませんでした...😅
 
 また落ち着いたら [このへん](../neovim/lsp/fidget.html#admonition-tip-1) も含めて改めてやりましょ❗
 
