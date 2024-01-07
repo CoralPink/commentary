@@ -1,6 +1,6 @@
 [package]
 name = "wasm-book"
-version = "0.2.0"
+version = "0.2.1"
 authors = ["CoralPink <teqt6ytqt@mozmail.com>"]
 edition = "2021"
 rust-version = "1.70"
@@ -13,7 +13,9 @@ license = "Apache-2.0"
 crate-type = ["cdylib"]
 
 [profile.release]
-lto = true
+lto = "fat"
+opt-level = "s"
+strip = "symbols"
 
 [dependencies]
 js-sys = "0.3"
