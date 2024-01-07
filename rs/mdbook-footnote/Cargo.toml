@@ -1,6 +1,6 @@
 [package]
 name = "mdbook-footnote"
-version = "1.0.2"
+version = "1.0.3"
 authors = ["David Drysdale <dmd@lurklurk.org>", "CoralPink"]
 edition = "2021"
 rust-version = "1.70"
@@ -13,3 +13,8 @@ semver = "1.0"
 serde_json = "1.0"
 lazy_static = "1.4"
 regex = "1.10"
+
+[profile.release]
+lto = "thin"
+opt-level = 3
+strip = "symbols"
