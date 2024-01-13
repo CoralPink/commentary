@@ -2,21 +2,33 @@ const WORKER_PATH = '/commentary/hl-worker.js';
 const MAX_THREAD = 16;
 
 const POP_WAIT = 10;
-const TIME_OUT = 1000;
+const TIME_OUT = 300;
 
 // Singleton Class
 class WorkerPool {
   static _instance;
   #array = [];
 
+  release() {
+    for (const worker of this.#array) {
+      worker.terminate();
+    }
+    this.#array.length = 0;
+  }
+
   constructor(threadNum = 0) {
-    if (WorkerPool._instance) {
+    if (WorkerPool._instance !== undefined) {
       return WorkerPool._instance;
     }
+    const maxThread = Math.min(threadNum, MAX_THREAD);
 
-    for (let i = 0; i < Math.min(threadNum, MAX_THREAD); i++) {
+    for (let i = 0; i < maxThread; i++) {
       this.#array.push(new Worker(WORKER_PATH));
     }
+
+    setTimeout(() => {
+      this.release();
+    }, maxThread * TIME_OUT);
 
     WorkerPool._instance = this;
   }
@@ -53,13 +65,6 @@ class WorkerPool {
     });
 
     return await Promise.race([workerPromise, timeOutPromise]);
-  }
-
-  release() {
-    for (const worker of this.#array) {
-      worker.terminate();
-    }
-    this.#array.length = 0;
   }
 }
 
