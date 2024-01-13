@@ -51,25 +51,25 @@ export const sidebarInit = () => {
     return;
   }
   localStorage.getItem('mdbook-sidebar') === 'hidden' ? hideSidebar(false) : showSidebar(false);
-}
+};
 
-document.addEventListener(
-  'DOMContentLoaded',
-  () => {
-    document.addEventListener(
-      'keyup',
-      e => {
-        if (globalThis.search.hasFocus()) {
-          return;
-        }
+document.addEventListener('DOMContentLoaded', () => {
+  document.addEventListener(
+    'keyup',
+    e => {
+      if (globalThis.search === null) {
+        return;
+      }
+      if (globalThis.search.hasFocus()) {
+        return;
+      }
 
-        if (e.key === 't' || e.key === 'T') {
-          toggleSidebar();
-        } else if (e.key === 'Escape') {
-          hideSidebar();
-        }
-      },
-      { once: false, passive: true },
-    );
-  }
-);
+      if (e.key === 't' || e.key === 'T') {
+        toggleSidebar();
+      } else if (e.key === 'Escape') {
+        hideSidebar();
+      }
+    },
+    { once: false, passive: true },
+  );
+});

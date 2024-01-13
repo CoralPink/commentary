@@ -99,7 +99,7 @@ const codeCopy = trigger => {
   );
 };
 
-export const codeBlock = async () => {
+export const codeBlock = () => {
   const main = document.getElementById('main');
 
   if (main === null) {
