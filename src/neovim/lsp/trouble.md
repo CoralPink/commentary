@@ -365,7 +365,7 @@ sign_define({list})
 icon    full path to the bitmap file for the sign.
 linehl  highlight group used for the whole line the sign is placed in.
 numhl   highlight group used for the line number where the sign is placed.
-text		text that is displayed when there is no icon or the GUI is not being used.
+text	text that is displayed when there is no icon or the GUI is not being used.
 texthl	highlight group used for the text item
 culhl   highlight group used for the text item when the cursor is on the same line
         as the sign and 'cursorline' is enabled.

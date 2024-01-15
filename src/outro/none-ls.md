@@ -288,11 +288,10 @@ Strawberry Fields Forever {{footnote: Strawberry Fields Forever (by [The Beatles
 
 John の出生時、父は商船の乗組員として航海中で不在。
 母も他の男性と同棲していたため、John は母親の長姉である "Mimi おばさん" に育てられる。
+後に Mimi は親戚に、「子どもは欲しくなかったが、John はずっと欲しかった」と打ち明けた。
 
 John の子供時代の楽しみのひとつは、毎年夏に家の近くの Calderstones Park で開かれるガーデンパーティで、
 そこでは救世軍のブラスバンドが演奏していた。
-
-後に Mimi は親戚に、「子どもは欲しくなかったが、John はずっと欲しかった」と打ち明けた。
 
 Lennon は 1966年9月から10月にかけて、Richard Lester の映画 "How I Won the War" の撮影中、
 Spain の Almería でこの曲を書き始めた。The Beatles は、"more popular than Jesus" (キリストよりも人気がある) という論争や、
