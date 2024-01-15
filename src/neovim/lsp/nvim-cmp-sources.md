@@ -331,14 +331,10 @@ McCartney は、「メドレーをちょっと意味のある連句で締めた�
 ```
 
 <div style="margin-top:2em"></div>
-<nav class="nav-wrapper" aria-label="Page navigation">
-  <a rel="prev" href="../../neovim/lsp/copilot-cmp.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
-    <i class="fa-angle-left"></i>
-  </a>
-  <a rel="next" href="../../neovim/lsp/fidget.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-    <i class="fa-angle-right"></i>
-  </a>
-</nav>
+  <nav class="nav-wrapper" aria-label="Page navigation">
+    <a rel="prev" href="../../neovim/lsp/copilot-cmp.html" class="nav-chapters previous icon-button" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left"></a>
+    <a rel="next" href="../../neovim/lsp/fidget.html" class="nav-chapters next icon-button" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right"></a>
+  </nav>
 <div style="margin-top:140em"></div>
 
 実は、まだ自分で描いたロードマップを踏破できてないんですね〜🙀

@@ -57,9 +57,6 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener(
     'keyup',
     e => {
-      if (globalThis.search === null) {
-        return;
-      }
       if (globalThis.search.hasFocus()) {
         return;
       }
