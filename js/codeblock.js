@@ -6,7 +6,7 @@ const TIME_OUT = 300;
 
 // Singleton Class
 class WorkerPool {
-  static _instance;
+  static #instance;
   #array = [];
 
   release() {
@@ -14,23 +14,18 @@ class WorkerPool {
       worker.terminate();
     }
     this.#array.length = 0;
+    WorkerPool.#instance = undefined;
   }
 
   constructor(threadNum = 0) {
-    if (WorkerPool._instance !== undefined) {
-      return WorkerPool._instance;
+    if (WorkerPool.#instance !== undefined) {
+      return WorkerPool.#instance;
     }
-    const maxThread = Math.min(threadNum, MAX_THREAD);
 
-    for (let i = 0; i < maxThread; i++) {
+    for (let i = 0; i < Math.min(threadNum, MAX_THREAD); i++) {
       this.#array.push(new Worker(WORKER_PATH));
     }
-
-    setTimeout(() => {
-      this.release();
-    }, maxThread * TIME_OUT);
-
-    WorkerPool._instance = this;
+    WorkerPool.#instance = this;
   }
 
   push(thread) {
@@ -115,12 +110,14 @@ export const codeBlock = () => {
     code => !code.classList.contains('language-txt'),
   );
 
-  if (codeQuery.length <= 0) {
+  const threadNum = codeQuery.length;
+
+  if (threadNum <= 0) {
     return;
   }
 
   const clipButton = createClipButton();
-  const workerPool = new WorkerPool(codeQuery.length);
+  const workerPool = new WorkerPool(threadNum);
 
   for (const code of codeQuery) {
     workerPool
@@ -149,6 +146,10 @@ export const codeBlock = () => {
 
     parent.insertBefore(cb, parent.firstChild);
   }
+
+  setTimeout(() => {
+    workerPool.release();
+  }, threadNum * TIME_OUT);
 
   // capture hover event in iOS
   if (globalThis.ontouchstart !== undefined) {
