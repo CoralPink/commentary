@@ -1,25 +1,27 @@
-const CACHE_VERSION = 'v0.18.4';
+const CACHE_VERSION = 'v0.18.5';
+
+const CACHE_URL = '/commentary/';
 const CACHE_LIST = [
-  '/commentary/book.js',
-  '/commentary/hl-worker.js',
-  '/commentary/wasm_book_bg.wasm',
+  'book.js',
+  'hl-worker.js',
+  'wasm_book_bg.wasm',
 
-  '/commentary/css/general.css',
-  '/commentary/css/style.css',
+  'css/general.css',
+  'css/style.css',
 
-  '/commentary/manifest.json',
-  '/commentary/searchindex.json',
+  'manifest.json',
+  'searchindex.json',
 
-  '/commentary/apple-touch-icon.png',
-  '/commentary/favicon.ico',
-  '/commentary/favicon.svg',
+  'apple-touch-icon.png',
+  'favicon.ico',
+  'favicon.svg',
 
-  '/commentary/fonts/OpenSans-Bold.woff2',
-  '/commentary/fonts/OpenSans-BoldItalic.woff2',
-  '/commentary/fonts/OpenSans-Italic.woff2',
-  '/commentary/fonts/OpenSans-Regular.woff2',
-  '/commentary/fonts/SourceCodePro-Medium.woff2',
-  '/commentary/fonts/NerdFontsSymbolsOnly/SymbolsNerdFontMono-Regular.woff2',
+  'fonts/OpenSans-Bold.woff2',
+  'fonts/OpenSans-BoldItalic.woff2',
+  'fonts/OpenSans-Italic.woff2',
+  'fonts/OpenSans-Regular.woff2',
+  'fonts/SourceCodePro-Medium.woff2',
+  'fonts/NerdFontsSymbolsOnly/SymbolsNerdFontMono-Regular.woff2',
 ];
 
 const CACHE_USE = ['https://coralpink.github.io/', 'http://127.0.0.1:8080/'];
@@ -114,7 +116,11 @@ self.addEventListener('install', event => {
         self.skipWaiting();
       }
       const cache = await caches.open(CACHE_VERSION);
-      await cache.addAll(CACHE_LIST);
+      await cache.addAll(
+        CACHE_LIST.map(x => {
+          return CACHE_URL + x;
+        }),
+      );
     })(),
   );
 });
@@ -135,7 +141,7 @@ self.addEventListener('fetch', async event => {
         const cachedResponse = await cacheFirst({
           request: event.request,
           preloadResponsePromise: preloadResponse,
-          fallbackUrl: '/commentary/chrome-96x96.png',
+          fallbackUrl: `${CACHE_URL}chrome-96x96.png`,
         });
 
         return cachedResponse;
