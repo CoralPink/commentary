@@ -7,23 +7,24 @@
   p {
     display: inline;
 
-    & > a {
-      padding: 0.3em;
+    &>a {
+      text-decoration: none;
 
-      & > sup {
+      &>sup {
         font-size: 1em;
       }
     }
   }
 
-  :not(&) + &,
-  & + :not(&) {
+  :not(&)+&,
+  &+ :not(&) {
     margin-top: 2em;
   }
 }
 
 .footnote-reference {
   a {
+    text-decoration: none;
     margin-top: 0 - (var.$menu-bar-height + var.$jump-shift);
     padding-top: var.$menu-bar-height + var.$jump-shift;
   }
