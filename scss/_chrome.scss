@@ -155,10 +155,16 @@ kbd {
 .nav-chapters {
   font-size: 1.5em;
   text-align: center;
+  text-decoration: none;
+
   width: 5rem;
   padding: 0.2rem;
   border-radius: 0.8rem;
   background-color: var(--sidebar-bg);
+
+  &:hover {
+    background: var(--page-toc-background);
+  }
 }
 
 .chapter {
@@ -184,11 +190,12 @@ kbd {
 
       &:hover {
         color: var(--sidebar-active);
+        background-image: linear-gradient(to right, var(--sidebar-bg) 40%, var(--bg));
       }
 
       &.active {
-        color: var(--sidebar-active);
-        font-weight: bold;
+        color: var(--page-toc-color);
+        background-image: linear-gradient(to right, var(--page-toc-background) 60%, var(--bg));
       }
     }
 
@@ -196,7 +203,7 @@ kbd {
       color: var(--sidebar-fg);
       margin: 1.2rem auto 0.2rem;
       font-weight: bold;
-      background-image: linear-gradient(to right, var.$color_pink 50%, var(--bg));
+      background-image: linear-gradient(to right, var.$color_pink, var(--sidebar-bg));
       background-repeat: no-repeat;
       background-size: 100% 0.1rem;
       background-position: bottom;
@@ -245,10 +252,6 @@ table {
 
 .sidebar {
   visibility: hidden; // Initially, it is hidden.
-
-  color: var(--sidebar-fg);
-  background-color: var(--sidebar-bg);
-
   scrollbar-color: var(--scrollbar) var(--bg);
 
   ::-webkit-scrollbar {
@@ -357,7 +360,7 @@ a:visited {
   top: var.$menu-bar-height;
   left: 2.4rem;
   border-radius: 0.4rem;
-  font-size: 0.4em;
+  font-size: 0.7em;
   color: var(--fg);
   background: var(--theme-popup-bg);
   border: 0.1rem solid var(--theme-popup-border);

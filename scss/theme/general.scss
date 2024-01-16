@@ -56,13 +56,15 @@ body {
     font-size: 0.9rem;
     min-width: 0;
     word-break: auto-phrase;
-  }
 
-  a {
-    text-decoration: none;
+    .admonition-title {
+      a {
+        text-decoration: none;
 
-    &:hover {
-      text-decoration: underline;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
     }
   }
 
