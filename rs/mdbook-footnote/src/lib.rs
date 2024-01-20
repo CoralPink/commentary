@@ -3,7 +3,7 @@ use once_cell::sync::Lazy;
 use regex::Regex;
 
 static FOOTNOTE_RE: Lazy<Regex> =
-    Lazy::new(|| Regex::new(r"(?s)\{\{footnote:\s*(?P<content>.*?)\}\}").unwrap());
+    Lazy::new(|| Regex::new(r"(?s)\{\{footnote:\s*(?P<content>.*?)\}\}").expect("Invalid regex for FOOTNOTE_RE"));
 
 pub fn replacing(mut book: Book) -> Result<Book, Error> {
     book.for_each_mut(|item| {
