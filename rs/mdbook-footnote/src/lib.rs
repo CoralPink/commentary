@@ -1,11 +1,10 @@
-use lazy_static::lazy_static;
 use mdbook::{book::Book, errors::Error};
+use once_cell::sync::Lazy;
 use regex::Regex;
 
-lazy_static! {
-    static ref FOOTNOTE_RE: Regex =
-        Regex::new(r"(?s)\{\{footnote:\s*(?P<content>.*?)\}\}").unwrap();
-}
+static FOOTNOTE_RE: Lazy<Regex> = Lazy::new(|| {
+    Regex::new(r"(?s)\{\{footnote:\s*(?P<content>.*?)\}\}").expect("Invalid regex for FOOTNOTE_RE")
+});
 
 pub fn replacing(mut book: Book) -> Result<Book, Error> {
     book.for_each_mut(|item| {
@@ -39,5 +38,6 @@ pub fn replacing(mut book: Book) -> Result<Book, Error> {
             }
         }
     });
+
     Ok(book)
 }
