@@ -116,11 +116,7 @@ self.addEventListener('install', event => {
         self.skipWaiting();
       }
       const cache = await caches.open(CACHE_VERSION);
-      await cache.addAll(
-        CACHE_LIST.map(x => {
-          return CACHE_URL + x;
-        }),
-      );
+      await cache.addAll(CACHE_LIST.map(x => CACHE_URL + x));
     })(),
   );
 });
