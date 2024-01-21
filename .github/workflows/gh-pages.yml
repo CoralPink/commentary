@@ -25,7 +25,7 @@ jobs:
       - name: Setup Bun
         uses: oven-sh/setup-bun@v1
         with:
-          bun-version: "1.0.23"
+          bun-version: "1.0.24"
 
       - name: Cache Cargo
         id: cache-cargo
@@ -58,7 +58,7 @@ jobs:
       - name: Build Js
         run: |
           pushd js
-          sh create-highlight.sh
+          bun create-highlight.bun.sh
           bun install
           bun run build.js
           cp -r dist/. ../src/
