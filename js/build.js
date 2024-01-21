@@ -9,6 +9,8 @@ const start = performance.now();
 const result = await Bun.build({
   entrypoints: ['./book.js', './hl-worker.js', './serviceworker.js'],
   outdir: './dist',
+  target: 'bun',
+  format: 'esm',
   minify: true,
 });
 

@@ -11,7 +11,7 @@ if [ ! -e ./node_modules ]; then
   bun install
 fi
 if [ ! -e ./highlight.js ]; then
-  sh create-highlight.sh
+  bun create-highlight.bun.sh
 fi
 bun run build.js
 cp -r dist/. ../src/
