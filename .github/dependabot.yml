@@ -4,7 +4,7 @@ version: 2
     - package-ecosystem: "cargo"
       directory: "/rs/mdbook-footnote"
       schedule:
-        interval: "weekly"
+        interval: "daily"
       groups:
         rust:
           dependency-type: "development"
@@ -12,7 +12,7 @@ version: 2
     - package-ecosystem: "cargo"
       directory: "/rs/wasm"
       schedule:
-        interval: "weekly"
+        interval: "daily"
       groups:
         rust:
           dependency-type: "development"
