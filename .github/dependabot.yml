@@ -6,7 +6,7 @@ updates:
     schedule:
       interval: "weekly"
     groups:
-      rs-footnote-dependencies:
+      footnote:
         update-type: "development"
 
   - package-ecosystem: "cargo"
@@ -14,7 +14,7 @@ updates:
     schedule:
       interval: "weekly"
     groups:
-      rs-wasm-dependencies:
+      wasm:
         update-type: "development"
 
   # Enable version updates for npm
@@ -23,7 +23,7 @@ updates:
     schedule:
       interval: "weekly"
     groups:
-      scss-dependencies:
+      scss:
         update-type: "development"
 
   - package-ecosystem: "npm"
@@ -31,7 +31,7 @@ updates:
     schedule:
       interval: "weekly"
     groups:
-      js-dependencies:
+      js:
         update-type: "development"
 
   # Enable version updates for GitHub Actions
