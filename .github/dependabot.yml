@@ -6,7 +6,7 @@ updates:
     schedule:
       interval: "weekly"
     groups:
-      dependencies:
+      rust:
         dependency-type: "development"
 
   - package-ecosystem: "cargo"
@@ -14,7 +14,7 @@ updates:
     schedule:
       interval: "weekly"
     groups:
-      dependencies:
+      rust:
         dependency-type: "development"
 
   # Enable version updates for npm
@@ -23,7 +23,7 @@ updates:
     schedule:
       interval: "weekly"
     groups:
-      dependencies:
+      scss:
         dependency-type: "development"
 
   - package-ecosystem: "npm"
@@ -31,7 +31,7 @@ updates:
     schedule:
       interval: "weekly"
     groups:
-      dependencies:
+      javascript:
         dependency-type: "development"
 
   # Enable version updates for GitHub Actions
