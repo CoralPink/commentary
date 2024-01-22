@@ -1,41 +1,41 @@
 version: 2
-  updates:
-    # Enable version updates for Cargo
-    - package-ecosystem: "cargo"
-      directory: "/rs/mdbook-footnote"
-      schedule:
-        interval: "daily"
-      groups:
-        rust:
-          dependency-type: "development"
+updates:
+  # Enable version updates for Cargo
+  - package-ecosystem: "cargo"
+    directory: "/rs/mdbook-footnote"
+    schedule:
+      interval: "daily"
+    groups:
+      rust:
+        dependency-type: "development"
 
-    - package-ecosystem: "cargo"
-      directory: "/rs/wasm"
-      schedule:
-        interval: "daily"
-      groups:
-        rust:
-          dependency-type: "development"
+  - package-ecosystem: "cargo"
+    directory: "/rs/wasm"
+    schedule:
+      interval: "daily"
+    groups:
+      rust:
+        dependency-type: "development"
 
-    # Enable version updates for npm
-    - package-ecosystem: "npm"
-      directory: "/scss"
-      schedule:
-        interval: "weekly"
-      groups:
-        scss:
-          dependency-type: "development"
+  # Enable version updates for npm
+  - package-ecosystem: "npm"
+    directory: "/scss"
+    schedule:
+      interval: "weekly"
+    groups:
+      scss:
+        dependency-type: "development"
 
-    - package-ecosystem: "npm"
-      directory: "/js"
-      schedule:
-        interval: "weekly"
-      groups:
-        javascript:
-          dependency-type: "development"
+  - package-ecosystem: "npm"
+    directory: "/js"
+    schedule:
+      interval: "weekly"
+    groups:
+      javascript:
+        dependency-type: "development"
 
-    # Enable version updates for GitHub Actions
-    - package-ecosystem: "github-actions"
-      directory: "/"
-      schedule:
-        interval: "daily"
+  # Enable version updates for GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "daily"
