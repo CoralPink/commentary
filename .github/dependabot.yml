@@ -6,7 +6,7 @@ updates:
     schedule:
       interval: "weekly"
     groups:
-      footnote:
+      rust:
         update-type: "development"
 
   - package-ecosystem: "cargo"
@@ -14,7 +14,7 @@ updates:
     schedule:
       interval: "weekly"
     groups:
-      wasm:
+      rust:
         update-type: "development"
 
   # Enable version updates for npm
@@ -31,7 +31,7 @@ updates:
     schedule:
       interval: "weekly"
     groups:
-      js:
+      javascript:
         update-type: "development"
 
   # Enable version updates for GitHub Actions
