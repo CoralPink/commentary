@@ -22,16 +22,16 @@ You say why and I say I don't know
 スカイロビーに (`タダで`) 上れるんざます。セレブ❗
 
 そのまま日比谷線の運転士に頼んで
-銀座のチャンスセンター (「宝くじが当たる💴」で有名💴なんでしょ❓) まで行ってもいいんですけどね😌
+「宝くじが当たる💴」で有名な銀座のチャンスセンターまで行ってもいいんですけどね😌
 
 ここでふと思うわけです。
 
-「ただ販売本数が多いってだけで、"当たりやすい"とは違うんじゃないの😮❓」ってね❗
+「ただ販売本数が多いってだけで"当たりやすい"とは違うんじゃないの😮❓」ってね❗
 
 "一粒万倍日" って、別にお金 💴 増やす日ってわけじゃないし、
 「宝くじを買えば当たる日」ってこともないぞ❤️
 
-ただ、"買わないと当たらない"ぞ🫶🏻 ナイスフォロー❗
+ただ、"買わないと当たらない" ぞ🫶🏻 ナイスフォロー❗
 
 ...よし。今日も絶好調🤣
 
@@ -61,7 +61,8 @@ nvim_set_option_value({name}, {value}, {*opts})
 ```
 ~~~
 
-少し間が空いてしまいましたが、今日は "nvim_なんちゃら_set_option" から`nvim_set_option_value`への更新をしましょう。
+少し間が空いてしまいましたが、
+今日は "nvim_なんちゃら_set_option" から`nvim_set_option_value`への更新をしましょう。
 
 ~~~admonish info title=":h deprecated"
 ```txt
@@ -123,7 +124,7 @@ You say goodbye and I say hello
 Hello, Goodbye (by [The Beatles](https://en.wikipedia.org/wiki/The_Beatles)):
 Lennon-McCartney とクレジットされているが、この曲は Paul McCartney の単独作詞によるものである。
 作曲は、McCartney と The Beatles のマネージャー Brian Epstein のアシスタントであった
-Alistair Taylor との間で行われた言葉の連想の練習によって生まれた。
+Alistair Taylor との間で行われた言葉の連想のやりとりによって生まれた。
 
 Taylor の回想によると、
 彼は London の St John's Wood にある McCartney の自宅を訪れ、The Beatles の曲作りの方法を尋ねた。
@@ -136,7 +137,7 @@ McCartney は楽器を弾き始め、Taylor に、たまたま歌った言葉の
 1990年代に彼の公式伝記作者である Barry Miles に語ったところによると、
 McCartney は、この歌詞は彼の星座である双子座を反映して、二元性をテーマにしていると語っている。
 「相対する事柄について書いたもので、Gimignano の影響かな。曲にするのは簡単だった」
-「いつだって僕は前向きな方面に立ってる。それは今でも変わらないよ」
+「いつだって僕はポジティブな方面に立ってる。それは今でも変わらないよ」
 [Wikipedia](https://en.wikipedia.org/wiki/Hello,_Goodbye) より
 }}...)
 
@@ -346,7 +347,7 @@ vim.api.nvim_set_option_value('shiftwidth', 0, {})
 
 「結果、全部同じパターンになったんじゃないの⁉️😳」ってね❗
 
-例えばこんなのを追加しておくと、`opts`の`{}`を省略して記述できます😆
+じゃあ例えばこんなのを追加して使えば、全ての`{}`を省略して記述できます😆
 
 ~~~admonish tip
 ```lua

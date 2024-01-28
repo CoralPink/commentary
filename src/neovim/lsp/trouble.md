@@ -39,7 +39,7 @@ McCartney は、1968年の The Beatles ("the White Album") のセッションに
 
 ## ⚡️ Requirements
 
-```admonish info title="[⚡️ Requirements](https://github.com/folke/trouble.nvim#%EF%B8%8F-requirements)"
+```admonish abstract title="[⚡️ Requirements](https://github.com/folke/trouble.nvim#%EF%B8%8F-requirements)"
 - Neovim >= 0.7.2
 
 - Properly configured Neovim LSP client

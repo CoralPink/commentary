@@ -195,7 +195,7 @@ installed then you can use the `notify` extension to search the history:
 
 ~~~admonish example title="extensions/nvim-notify.lua"
 ```lua
-local telescope = require('telescope')
+local telescope = require 'telescope'
 telescope.load_extension 'notify'
 
 vim.keymap.set('n', '<leader>fn', function()

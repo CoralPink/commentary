@@ -81,7 +81,7 @@ I hope you had fun
 
 ## Requirements
 
-```admonish info title="[Requirements](https://github.com/jay-babu/mason-null-ls.nvim#requirements)"
+```admonish abstract title="[Requirements](https://github.com/jay-babu/mason-null-ls.nvim#requirements)"
 - neovim >= 0.7.0
 - [mason.nvim](https://github.com/williamboman/mason.nvim)
 - [null-ls.nvim](https://github.com/jose-elias-alvarez/null-ls.nvim)
@@ -256,15 +256,15 @@ section to understand how the default configs can be overridden.
 
 ここまでやれば、あとは`Mason`からインストールするだけでおっけーです❗
 
-試しに`stylua`でも入れてみましょ😆
+試しに`stylua`を入れてみましょ😆
 
 ![mason-stylua](img/mason-stylua.webp)
 
-```admonish note
+```admonish tip
 `Mason`からも確認できますが、`stylua`は`lua` `luau`の`Formatter`ですね。
 ```
 
-それから`lua`を開いて、前回も出てきた [vim.lsp.buf.format](none-ls.html#vimlspbufformat) を呼んでみれば...、
+それから`lua`を開いて、前回も出てきた[vim.lsp.buf.format](none-ls.html#vimlspbufformat)を呼んでみれば...、
 
 ![mason-none-ls-fidget](img/mason-none-ls-fidget.webp)
 
@@ -273,6 +273,10 @@ section to understand how the default configs can be overridden.
 ![mason-none-ls-fidget2](img/mason-none-ls-fidget2.webp)
 
 そしてなんかいい感じにフォーマットされただろう⁉️
+
+```admonish note
+このサイトでは、パワーを溜める様子を視覚化するために[16.10. fidget.nvim](../neovim/lsp/fidget.md)にて鍛え上げました 💪😤
+```
 
 ### ( If it does not work well... )
 
@@ -290,7 +294,7 @@ section to understand how the default configs can be overridden.
 
 私事ではありますが、ちょっと時間がなくて`Linter`には全く触れられませんでした...😅
 
-また落ち着いたら [このへん](../neovim/lsp/fidget.html#admonition-tip-1) も含めて改めてやりましょ❗
+また落ち着いたら[このへん](../neovim/lsp/fidget.html#admonition-tip-1)も含めて改めてやりましょ❗
 
 去年もおんなじようなこと言っちゃっててかわいいですね❗❗
 下手しても失敗しても、未来で笑い飛ばせばいいんです❗❗
@@ -327,7 +331,9 @@ Happy Christmas from John & Yoko
 ```admonish success title=""
 War is over
 {{footnote:
-1969年の暮れ、John と Yoko は世界12都市の街頭にビルボードを使った大きな広告を掲げた。
+1969年の暮れ、John と Yoko は世界11都市
+(New York City, Los Angeles, Toronto, London, Ville de Paris, Amsterdam, Land Berlin, Roma, Αθήνα; Athína, 香港, 東京)
+の街頭にビルボードを使った大きな広告を掲げた。
 }}
 
 戦争は終わる
@@ -345,7 +351,7 @@ War is over
 1971年にレコーディングした Happy Christmas (War is Over) は、やがてクリスマス・ソングの定番となった。
 コーラスの「War is Over. If you want it (戦争は終わる あなたがそう望むなら)」には、いまだにビルボード・キャンペーンの精神が脈打っている。
 その一方で「さあ、クリスマスがやってきた。君にはどんな1年だった？」という普遍的な歌詞により、
-この歌とそれが伝えるメッセージは、毎年のクリスマスシーズンのたびに人々へと届くようになった。
+この歌とそれが伝えるメッセージは、毎年クリスマスシーズンのたびに人々へと届くようになった。
 }}
 
 戦争は終わった
