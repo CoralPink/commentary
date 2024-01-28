@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'v0.18.5';
+const CACHE_VERSION = 'v0.18.6';
 
 const CACHE_URL = '/commentary/';
 const CACHE_LIST = [
