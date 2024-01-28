@@ -41,7 +41,7 @@ So the pound has dropped and the children are creating
 
 もうお馴染みのルーティン😊
 
-```admonish info title="[Requirements](https://github.com/SmiteshP/nvim-navbuddy#%EF%B8%8F-requirements)"
+```admonish abstract title="[Requirements](https://github.com/SmiteshP/nvim-navbuddy#%EF%B8%8F-requirements)"
 * Neovim >= 0.8.0
 * [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)
 * [nvim-navic](https://github.com/SmiteshP/nvim-navic)

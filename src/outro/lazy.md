@@ -88,7 +88,7 @@ Stay in bed, float up stream
 
 こんなのはもう些細な要求ですね。
 
-```admonish info title="[⚡️ Requirements](https://github.com/folke/lazy.nvim#%EF%B8%8F-requirements)"
+```admonish abstract title="[⚡️ Requirements](https://github.com/folke/lazy.nvim#%EF%B8%8F-requirements)"
 - Neovim >= 0.8.0 (needs to be built with LuaJIT)
 - Git >= 2.19.0 (for partial clones support)
 - a Nerd Font (optional)
@@ -264,9 +264,11 @@ require("lazy").setup()
 
 ![lazy-openn](img/lazy-open.webp)
 
+~~~admonish quote
 ```vim
 :Lazy
 ```
+~~~
 
 まあ🤭 Poison☠️ 🩷
 
@@ -326,7 +328,7 @@ Running everywhere at such a speed
 
 Till they find there’s no need
 
-こんなスピードででどこまでも走る
+こんなスピードでどこまでも走る
 
 必要ないとわかるまで
 ```
@@ -523,7 +525,7 @@ Waiting for a sleepy feeling{{footnote:
 George Harrison が弾いた逆回転のギター・デュエットという当時としてはユニークなサウンドを特徴としている。
 Harrison は、テープを逆回転させることで夢のようなムードに合うように、このパートを完成させた。
 エンジニアの Geoff Emerick は、この綿密な作業を「延々と続く」と表現した。
-「ヘッドホンを締め付け、眉間にしわを寄せて集中する George の姿が今でも目に浮かぶ」と書いている。
+「ヘッドホンを締め付け、眉間にしわを寄せて集中する George の姿が今でも目に浮かぶ」。
 [Wikipedia](https://en.wikipedia.org/wiki/I%27m_Only_Sleeping#Covers)より
 }}
 
