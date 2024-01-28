@@ -55,7 +55,7 @@ Shaves in the dark trying to save paper
 
 ## Requirements
 
-```admonish info title="[Requirements](https://github.com/L3MON4D3/LuaSnip#requirements)"
+```admonish abstract title="[Requirements](https://github.com/L3MON4D3/LuaSnip#requirements)"
 Neovim >= 0.5 (extmarks) `jsregexp` for lsp-snippet-transformations
 
 (see [here](https://github.com/L3MON4D3/LuaSnip/blob/master/DOC.md#transformations) for some tips on installing it).

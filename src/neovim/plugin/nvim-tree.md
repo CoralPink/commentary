@@ -47,7 +47,7 @@ Isn’t it good Norwegian wood?
 
 ## Requirements
 
-```admonish info title="[Requirements](https://github.com/nvim-tree/nvim-tree.lua#requirements)"
+```admonish abstract title="[Requirements](https://github.com/nvim-tree/nvim-tree.lua#requirements)"
 neovim >=0.8.0
 
 [nvim-web-devicons](https://github.com/nvim-tree/nvim-web-devicons) is optional and used to display file icons.

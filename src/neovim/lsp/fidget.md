@@ -2,9 +2,9 @@
 
 大変だ〜❗夏休みが終わってしまうぅぅ😭
 
-前回の "London, Abbey Road" から「あっ❗」てな間に 1ヶ月半くらい経っているので、「そらそやわー。」てな感じですね😅
+前回の "Abbey Road, London" から「あっ❗」てな間に 1ヶ月半くらい経っているので、「そらそやわー。」てな感じですね😅
 
-そんなこんなな中、"東京, 高円寺道路" に行ってみたら 💃 阿波おど{{footnote:
+そんなこんなな中、"高円寺道路, 東京" に行ってみたら 💃 阿波おど{{footnote:
 阿波踊り（あわおどり）は、阿波国（現・徳島県）を発祥とする盆踊り。
 高知のよさこい祭りと愛媛の新居浜太鼓祭りと並ぶ四国三大祭りであり、日本三大盆踊りの一つとしても知られる。
 [Wikipedia](https://en.wikipedia.org/wiki/Awa_Dance_Festival)より
@@ -96,7 +96,7 @@ Who doesn't love a little bit of eye candy?
 
 ## 二 : Requirements
 
-```admonish info title="[Requirements](https://github.com/j-hui/fidget.nvim#requirements)"
+```admonish abstract title="[Requirements](https://github.com/j-hui/fidget.nvim#requirements)"
 - Neovim v0.7.0+
 - [nvim-lsp](https://github.com/neovim/nvim-lspconfig)
 - An LSP server that implements LSP's [progress](https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#progress) endpoint

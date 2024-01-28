@@ -456,7 +456,7 @@ local opts = {
 
 ~~~admonish example title="extensions/lualine.lua"
 ```lua
-require("lualine").setup({
+require("lualine").setup {
   sections = {
     lualine_x = {
       {
@@ -466,7 +466,7 @@ require("lualine").setup({
       },
     },
   },
-})
+}
 ```
 ~~~
 

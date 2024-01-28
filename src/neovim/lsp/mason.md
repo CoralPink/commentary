@@ -129,7 +129,7 @@ For love
 
 ## Requirements
 
-```admonish info title="[Requirements](https://github.com/williamboman/mason.nvim#requirements)"
+```admonish abstract title="[Requirements](https://github.com/williamboman/mason.nvim#requirements)"
 mason.nvim relaxes the minimum requirements by attempting multiple different utilities
 (for example, wget, curl, and Invoke-WebRequest are all perfect substitutes).
 The minimum recommended requirements are:
