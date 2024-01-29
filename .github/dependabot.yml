@@ -4,7 +4,7 @@ updates:
   - package-ecosystem: "cargo"
     directory: "/rs/mdbook-footnote"
     schedule:
-      interval: "daily"
+      interval: "weekly"
     groups:
       all:
         patterns:
@@ -13,7 +13,7 @@ updates:
   - package-ecosystem: "cargo"
     directory: "/rs/wasm"
     schedule:
-      interval: "daily"
+      interval: "weekly"
 
     groups:
       all:
