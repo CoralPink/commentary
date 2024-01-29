@@ -6,16 +6,19 @@ updates:
     schedule:
       interval: "daily"
     groups:
-      dependencies:
-        dependency-type: "development"
+      all:
+        patterns:
+          - "*"
 
   - package-ecosystem: "cargo"
     directory: "/rs/wasm"
     schedule:
       interval: "daily"
+
     groups:
-      dependencies:
-        dependency-type: "development"
+      all:
+        patterns:
+          - "*"
 
   # Enable version updates for npm
   - package-ecosystem: "npm"
@@ -23,16 +26,18 @@ updates:
     schedule:
       interval: "weekly"
     groups:
-      dependencies:
-        dependency-type: "development"
+      all:
+        patterns:
+          - "*"
 
   - package-ecosystem: "npm"
     directory: "/js"
     schedule:
       interval: "weekly"
     groups:
-      dependencies:
-        dependency-type: "development"
+      all:
+        patterns:
+          - "*"
 
   # Enable version updates for GitHub Actions
   - package-ecosystem: "github-actions"
