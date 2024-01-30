@@ -116,4 +116,5 @@
   - [nvim_set_option_value](outro/nvim_set_option_value.md)
   - [none-ls.nvim](outro/none-ls.md)
   - [mason-null-ls.nvim](outro/mason-null-ls.md)
-  - [(Extra) Year 2024](outro/year2024.md)
+    - [(Extra) Year 2024](outro/year2024.md)
+    - [Linter](outro/linter.md)
