@@ -261,7 +261,7 @@ section to understand how the default configs can be overridden.
 ![mason-stylua](img/mason-stylua.webp)
 
 ```admonish tip
-`Mason`からも確認できますが、`stylua`は`lua` `luau`の`Formatter`ですね。
+`Mason`からも確認できますが、`stylua`は`lua`,`luau`の`Formatter`ですね。
 ```
 
 それから`lua`を開いて、前回も出てきた[vim.lsp.buf.format](none-ls.html#vimlspbufformat)を呼んでみれば...、
