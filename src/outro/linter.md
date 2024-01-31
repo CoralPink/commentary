@@ -133,7 +133,7 @@ Pink, brown, yellow, orange and blue
 I love you!
 ```
 
-## All Togeher Now
+## All Together Now
 
 ということで、`Linter`のおはなしでした😆
 
@@ -189,7 +189,7 @@ Look at me!!
 ```
 
 ```admonish success title=""
-All togeher now{{footnote: All Togeher Now (by [The Beatles](https://en.wikipedia.org/wiki/The_Beatles)):
+All together now{{footnote: All Together Now (by [The Beatles](https://en.wikipedia.org/wiki/The_Beatles)):
 McCartney は、観客に参加を求めるミュージック・ホールの伝統にインスパイアされたタイトル・フレーズを持つ、
 子供向けの合唱曲だと説明している。
 }}
@@ -199,7 +199,7 @@ McCartney は、観客に参加を求めるミュージック・ホールの伝�
 <div style="text-align: center; font-size: 110%; line-height: 0;">
 <div style="margin-top: 4rem"></div>
 
-All Togeher Now
+All Together Now
 
 <div style="margin-top: 4rem"></div>
 
