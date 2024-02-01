@@ -81,39 +81,77 @@ Luacheck自身はLuaで書かれており、前述のすべてのLuaバージョ
 
 ![Luacheck](img/luacheck.webp)
 
+```txt
+lualocks is not executable
+```
+
+「`luarocks`が実行できなかったよー」って言ってますね。
+
 実はわたし自身、今までこれを使ってこなかったので「えぇ...😨」ってなりました。
 
 でも、これはだいじょーぶ。
 
-`luarocks`のインストールは`brew`とか`apt`とかでお手軽にできるので、
-あらかじめこれを行った上で再度`mason.nvim`から`Luacheck`をインストールすれば進めるはずです😌
+#### LuaRocks
+
+```admonish info title="[LuaRocks](https://luarocks.org)"
+LuaRocks is the package manager for Lua modules.
+
+LuaRocks は Lua モジュールのパッケージマネージャです。
+```
+
+インストールは[Download](https://github.com/luarocks/luarocks/wiki/Download)の案内に従ってもいいし、
+もっとお手軽に`brew`とか`apt`などを利用することでも可能です。
 
 ![luarocks](img/luarocks.webp)
+
+あらかじめこれを行った上で再度`mason.nvim`から`Luacheck`をインストールすれば進めるはずです😌
 
 ![Luacheck](img/luacheck-install.webp)
 
 できました😆
+
+#### Try!
 
 `Luacheck`が対応している言語はもちろん`Lua`です☺️
 
 ![deprecated](img/deprecated.webp)
 
 ちゃんと正しいコードなんだけど、`vim`が全部怒られるので「えぇ...😨」ってなります。
+(いまいち自信がありませんが、この対応は次項で行います。)
 
 ```admonish note
-あとなんていうか、`Deprecated`になっている`nvim_buf_get_option`を自分が使っていることを把握していませんでした...。
-```
+あとなんていうか、自分が`nvim_buf_get_option`を使っていることを把握していませんでした...。
 
-ほんとはちゃんと`vim`変数と`nvim_buf_get_option`に触れなきゃいけないと思うんですが、
-まずは17節を先に書き上げてしまいたいので、`Issues`に挙げとくってことで見逃してください...😅
+ご指摘通り、これもだいぶ以前から`Deprecated`になっています😅
 
-```admonish error title=""
-重ねてごめんなさいなんですが...。
-
+ほんとはちゃんと触れなきゃいけないと思うんですが、
+まずは17節を先に書き上げてしまいたいので、`Issues`に挙げとくってことで見逃してください...🥲
+{{footnote: 重ねてごめんなさいなんですが...。
 初掲時に「`vim`は知らないのに`nvim_buf_get_option`が`Deprecated`なのは知ってる、とってもクセつよさんでした❗」
-
 ...とか書いちゃいましたが、これは`Luacheck`が出しているものではありませんでした😭
+}}
 ```
+
+#### .luacheckrc
+
+これ、わたしも初めて使っているので色々試してるんですが、ちょっと謎で...。
+
+例えば、`Linter`を有効にしたいファイルと並べて置いてみたとしても、これを使ってくれない...🫤
+
+なので「ユーザーのルート(`~/`)に`.luacheckrc`を置いとけば、とりあえず見つけて使ってくれる」っていうのが
+現時点での最高到達点です😅
+
+中身はこれだけです。
+
+~~~admonish example title=".luacheckrc"
+```lua
+read_globals = {
+  "vim",
+}
+```
+~~~
+
+ひとまずはこれで`vim`の警告は消えると思うんですが、どうでしょう...❓
 
 ### Biome
 
@@ -136,6 +174,9 @@ format、lint など一瞬で完了させます！
 
 確認してないんだけど、こっちはインストールと動作に`npm`が必要なんじゃないかな❓
 
+現時点 (2023/01/30) では`JSON`,`JavaScript`,`TypeScript`に対応していますが、
+将来的には`CSS`,`HTML`,`Markdown`にも対応するんだって😆
+
 ```admonish info title="[Expand Biome’s language support](https://biomejs.dev/blog/roadmap-2024/#expand-biomes-language-support)"
 CSS is our next language of focus, and we are making good progress. HTML and Markdown will follow.
 Follow our [up-to-date page](https://biomejs.dev/internals/language-support/) to keep up with the progress of our work.
@@ -144,12 +185,57 @@ CSSは次の重点言語であり、順調に進んでいます。HTMLとMarkdow
 私たちの仕事の進捗状況を知るために、[最新のページ](https://biomejs.dev/internals/language-support/)をフォローしてください。
 ```
 
-現時点 (2023/01/30) では`JSON`,`JavaScript`,`TypeScript`に対応していますが、
-将来的には`CSS`,`HTML`,`Markdown`にも対応するんだって😆
+いつも通り`mason.nvim`からインストールしてみましょう。
 
 ![biome](img/biome.webp)
 
-いつも通りインストールして`js`ファイルを開いてみたら...❓
+これで準備完了かと思いきや、もう一手間必要です😦
+
+#### biome.json
+
+デフォルトでは`linter`が有効になっていないようなので...。
+
+```admonish info title="[Configuration](https://biomejs.dev/guides/getting-started/#configuration)"
+We recommend creating a `biome.json` configuration file for each project.
+It eliminates the need to repeat the CLI options every time you run a command
+and ensures that Biome applies the same configuration in your editor.
+If you’re happy with Biome’s defaults, you don’t have to create the configuration.
+
+プロジェクトごとに`biome.json`設定ファイルを作成することをお勧めします。
+これにより、コマンドを実行するたびに CLI のオプションを繰り返す必要がなくなり、Biome がエディタで同じ設定を適用するようになります。
+Biome のデフォルトでよければ、設定を作成する必要はありません。
+```
+
+~~~admonish example title="biome.json"
+```json
+{
+  "$schema": "https://biomejs.dev/schemas/1.5.3/schema.json",
+  "organizeImports": {
+    "enabled": false
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": true
+    }
+  }
+}
+```
+~~~
+
+```admonish info title=""
+The linter.enabled: true enables the linter and rules.recommended: true enables the [recommended rules](https://biomejs.dev/linter/rules/).
+
+`linter.enabled:true`はリンターを有効にし、
+`rules.recommended:true`は[推奨ルール](https://biomejs.dev/linter/rules/)を有効にします。
+```
+
+`biome.json`は、`Linter`を有効にしたい`js`ファイルと並べてもいいし、
+プロジェクトのルートに置いておいても`Biome`が見つけて使用してくれるようです。
+
+#### Try!
+
+ようやく準備完了です。`js`ファイルを開いてみましょう❗
 
 ![biome-hazard](img/biome-hazard.webp)
 
@@ -164,8 +250,8 @@ CSSは次の重点言語であり、順調に進んでいます。HTMLとMarkdow
 
 ## Configuration file
 
-ちょっとだけ補足しておくと、
-`Luacheck`には`luacheckrc`、`biome`には`biome.json`みたいな、`Linter`のルールやマナーを調整する方法が用意されています。
+ここまでで軽く触れたように、`Luacheck`には`luacheckrc`、`biome`には`biome.json`みたいな、
+`Linter`のルールやマナーを調整する方法が用意されています。
 
 たぶん他の`Linter`でもそうなってるんじゃないかな❓
 
@@ -187,7 +273,7 @@ I love you!
 
 ということで、`Linter`のおはなしでした😆
 
-ここでは`lua`と`javascript`に限ってしまいましたが、
+ここでは`Lua`と`JavaScript`に限ってしまいましたが、
 どの`Linter`を使う場合でも「似たようなもんだろー」と思ってもらえばだいじょうぶ❗
 
 ...たぶん😮
