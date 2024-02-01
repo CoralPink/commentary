@@ -93,20 +93,6 @@ jobs:
           rm -rf book/searchindex.js
           rm -rf book/FontAwesome
 
-      - name: Generate The Sitemap
-        id: sitemap
-        uses: cicirello/generate-sitemap@v1.10.0
-        with:
-          path-to-root: ./book
-          base-url-path: https://coralpink.github.io/commentary/
-          date-only: true
-
-      - name: Sitemap Stats
-        run: |
-          echo "sitemap-path = ${{ steps.sitemap.outputs.sitemap-path }}"
-          echo "url-count = ${{ steps.sitemap.outputs.url-count }}"
-          echo "excluded-count = ${{ steps.sitemap.outputs.excluded-count }}"
-
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         if: ${{ github.ref == 'refs/heads/main' }}
