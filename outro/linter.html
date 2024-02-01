@@ -172,34 +172,67 @@ Luacheck自身はLuaで書かれており、前述のすべてのLuaバージョ
 </div>
 <p>いつも通り<code>Lua</code>の<code>linter</code>である<code>Luacheck</code>を試しながら進めようと思ったんですが...。
 <img src="img/luacheck.webp" alt="Luacheck" width="1200" height="453" decoding="async"></p>
+<pre><code class="language-txt">lualocks is not executable
+</code></pre>
+<p>「<code>luarocks</code>が実行できなかったよー」って言ってますね。</p>
 <p>実はわたし自身、今までこれを使ってこなかったので「えぇ...😨」ってなりました。</p>
 <p>でも、これはだいじょーぶ。</p>
-<p><code>luarocks</code>のインストールは<code>brew</code>とか<code>apt</code>とかでお手軽にできるので、
-あらかじめこれを行った上で再度<code>mason.nvim</code>から<code>Luacheck</code>をインストールすれば進めるはずです😌
-<img src="img/luarocks.webp" alt="luarocks" width="1200" height="355" loading="lazy">
+<h4 id="luarocks"><a class="header" href="#luarocks">luarocks</a></h4>
+<div id="admonition-luarockshttpsluarocksorg" class="admonition admonish-info">
+<div class="admonition-title">
+<p><a href="https://luarocks.org">LuaRocks</a></p>
+<p><a class="admonition-anchor-link" href="#admonition-luarockshttpsluarocksorg"></a></p>
+</div>
+<div>
+<p>LuaRocks is the package manager for Lua modules.</p>
+<p>LuaRocks は Lua モジュールのパッケージマネージャです。</p>
+</div>
+</div>
+<p>インストールは<a href="https://github.com/luarocks/luarocks/wiki/Download">Download</a>の案内に従ってもいいし、
+もっとお手軽に<code>brew</code>とか<code>apt</code>などを利用することでも可能です。
+<img src="img/luarocks.webp" alt="luarocks" width="1200" height="355" loading="lazy"></p>
+<p>あらかじめこれを行った上で再度<code>mason.nvim</code>から<code>Luacheck</code>をインストールすれば進めるはずです😌
 <img src="img/luacheck-install.webp" alt="Luacheck" width="1200" height="504" loading="lazy"></p>
 <p>できました😆</p>
+<h4 id="try"><a class="header" href="#try">Try!</a></h4>
 <p><code>Luacheck</code>が対応している言語はもちろん<code>Lua</code>です☺️
 <img src="img/deprecated.webp" alt="deprecated" width="1200" height="466" loading="lazy"></p>
-<p>ちゃんと正しいコードなんだけど、<code>vim</code>が全部怒られるので「えぇ...😨」ってなります。</p>
+<p>ちゃんと正しいコードなんだけど、<code>vim</code>が全部怒られるので「えぇ...😨」ってなります。
+(いまいち自信がありませんが、この対応は次項で行います。)</p>
 <div id="admonition-note-1" class="admonition admonish-note">
 <div class="admonition-title">
 <p>Note</p>
 <p><a class="admonition-anchor-link" href="#admonition-note-1"></a></p>
 </div>
 <div>
-<p>あとなんていうか、<code>Deprecated</code>になっている<code>nvim_buf_get_option</code>を自分が使っていることを把握していませんでした...。</p>
+<p>あとなんていうか、自分が<code>nvim_buf_get_option</code>を使っていることを把握していませんでした...。</p>
+<p>ご指摘通り、これもだいぶ以前から<code>Deprecated</code>になっています😅</p>
+<p>ほんとはちゃんと触れなきゃいけないと思うんですが、
+まずは17節を先に書き上げてしまいたいので、<code>Issues</code>に挙げとくってことで見逃してください...🥲
+<sup class="footnote-reference">
+<a name="to-footnote-2"><a href="#2">2</a></a>
+</sup></p>
 </div>
 </div>
-<p>ほんとはちゃんと<code>vim</code>変数と<code>nvim_buf_get_option</code>に触れなきゃいけないと思うんですが、
-まずは17節を先に書き上げてしまいたいので、<code>Issues</code>に挙げとくってことで見逃してください...😅</p>
-<div id="admonition-default-4" class="admonition admonish-danger">
+<h4 id="luacheckrc"><a class="header" href="#luacheckrc">.luacheckrc</a></h4>
+<p>これ、わたしも初めて使っているので色々試してるんですが、ちょっと謎で...。</p>
+<p>例えば、<code>Linter</code>を有効にしたいファイルと並べて置いてみたとしても、これを使ってくれない...🫤</p>
+<p>なので「ユーザーのルート(<code>~/</code>)に<code>.luacheckrc</code>を置いとけば、とりあえず見つけて使ってくれる」っていうのが
+現時点での最高到達点です😅</p>
+<p>中身はこれだけです。</p>
+<div id="admonition-luacheckrc" class="admonition admonish-example">
+<div class="admonition-title">
+<p>.luacheckrc</p>
+<p><a class="admonition-anchor-link" href="#admonition-luacheckrc"></a></p>
+</div>
 <div>
-<p>重ねてごめんなさいなんですが...。</p>
-<p>初掲時に「<code>vim</code>は知らないのに<code>nvim_buf_get_option</code>が<code>Deprecated</code>なのは知ってる、とってもクセつよさんでした❗」</p>
-<p>...とか書いちゃいましたが、これは<code>Luacheck</code>が出しているものではありませんでした😭</p>
+<pre><code class="language-lua">read_globals = {
+  &quot;vim&quot;,
+}
+</code></pre>
 </div>
 </div>
+<p>ひとまずはこれで<code>vim</code>の警告は消えると思うんですが、どうでしょう...❓</p>
 <h3 id="biome"><a class="header" href="#biome">Biome</a></h3>
 <div id="admonition-biomehttpsbiomejsdev" class="admonition admonish-info">
 <div class="admonition-title">
@@ -213,7 +246,7 @@ Format, lint, and more in a fraction of a second.</p>
 format、lint など一瞬で完了させます！</p>
 </div>
 </div>
-<div id="admonition-default-5" class="admonition admonish-info">
+<div id="admonition-default-4" class="admonition admonish-info">
 <div>
 <p><strong>Biome</strong> はWebプロジェクトのための高性能なツールチェーンであり、
 プロジェクトの健全性を維持するための開発者ツールの提供を目的としています。</p>
@@ -222,6 +255,8 @@ format、lint など一瞬で完了させます！</p>
 </div>
 <p>わたしも普段お世話になってる<code>Biome</code>です。</p>
 <p>確認してないんだけど、こっちはインストールと動作に<code>npm</code>が必要なんじゃないかな❓</p>
+<p>現時点 (2023/01/30) では<code>JSON</code>,<code>JavaScript</code>,<code>TypeScript</code>に対応していますが、
+将来的には<code>CSS</code>,<code>HTML</code>,<code>Markdown</code>にも対応するんだって😆</p>
 <div id="admonition-expand-biomes-language-supporthttpsbiomejsdevblogroadmap-2024expand-biomes-language-support" class="admonition admonish-info">
 <div class="admonition-title">
 <p><a href="https://biomejs.dev/blog/roadmap-2024/#expand-biomes-language-support">Expand Biome’s language support</a></p>
@@ -234,10 +269,58 @@ Follow our <a href="https://biomejs.dev/internals/language-support/">up-to-date 
 私たちの仕事の進捗状況を知るために、<a href="https://biomejs.dev/internals/language-support/">最新のページ</a>をフォローしてください。</p>
 </div>
 </div>
-<p>現時点 (2023/01/30) では<code>JSON</code>,<code>JavaScript</code>,<code>TypeScript</code>に対応していますが、
-将来的には<code>CSS</code>,<code>HTML</code>,<code>Markdown</code>にも対応するんだって😆
+<p>いつも通り<code>mason.nvim</code>からインストールしてみましょう。
 <img src="img/biome.webp" alt="biome" width="1200" height="453" loading="lazy"></p>
-<p>いつも通りインストールして<code>js</code>ファイルを開いてみたら...❓
+<p>これで準備完了かと思いきや、もう一手間必要です😦</p>
+<h4 id="biomejson"><a class="header" href="#biomejson">biome.json</a></h4>
+<p>デフォルトでは<code>linter</code>が有効になっていないようなので...。</p>
+<div id="admonition-configurationhttpsbiomejsdevguidesgetting-startedconfiguration" class="admonition admonish-info">
+<div class="admonition-title">
+<p><a href="https://biomejs.dev/guides/getting-started/#configuration">Configuration</a></p>
+<p><a class="admonition-anchor-link" href="#admonition-configurationhttpsbiomejsdevguidesgetting-startedconfiguration"></a></p>
+</div>
+<div>
+<p>We recommend creating a <code>biome.json</code> configuration file for each project.
+It eliminates the need to repeat the CLI options every time you run a command
+and ensures that Biome applies the same configuration in your editor.
+If you’re happy with Biome’s defaults, you don’t have to create the configuration.</p>
+<p>プロジェクトごとに<code>biome.json</code>設定ファイルを作成することをお勧めします。
+これにより、コマンドを実行するたびに CLI のオプションを繰り返す必要がなくなり、Biome がエディタで同じ設定を適用するようになります。
+Biome のデフォルトでよければ、設定を作成する必要はありません。</p>
+</div>
+</div>
+<div id="admonition-biomejson" class="admonition admonish-example">
+<div class="admonition-title">
+<p>biome.json</p>
+<p><a class="admonition-anchor-link" href="#admonition-biomejson"></a></p>
+</div>
+<div>
+<pre><code class="language-json">{
+  &quot;$schema&quot;: &quot;https://biomejs.dev/schemas/1.5.3/schema.json&quot;,
+  &quot;organizeImports&quot;: {
+    &quot;enabled&quot;: false
+  },
+  &quot;linter&quot;: {
+    &quot;enabled&quot;: true,
+    &quot;rules&quot;: {
+      &quot;recommended&quot;: true
+    }
+  }
+}
+</code></pre>
+</div>
+</div>
+<div id="admonition-default-5" class="admonition admonish-info">
+<div>
+<p>The linter.enabled: true enables the linter and rules.recommended: true enables the <a href="https://biomejs.dev/linter/rules/">recommended rules</a>.</p>
+<p><code>linter.enabled:true</code>はリンターを有効にし、
+<code>rules.recommended:true</code>は<a href="https://biomejs.dev/linter/rules/">推奨ルール</a>を有効にします。</p>
+</div>
+</div>
+<p><code>biome.json</code>は、<code>Linter</code>を有効にしたい<code>js</code>ファイルと並べてもいいし、
+プロジェクトのルートに置いておいても<code>Biome</code>が見つけて使用してくれるようです。</p>
+<h4 id="try-1"><a class="header" href="#try-1">Try!</a></h4>
+<p>ようやく準備完了です。<code>js</code>ファイルを開いてみましょう❗
 <img src="img/biome-hazard.webp" alt="biome-hazard" width="1200" height="384" loading="lazy"></p>
 <p>実際はこれでもちゃんと動くコードなんだけど、<code>Error</code>として報告してきます。</p>
 <p>...。🙄</p>
@@ -245,8 +328,8 @@ Follow our <a href="https://biomejs.dev/internals/language-support/">up-to-date 
 <p>このサイトでも特になんにも考えないで気軽に使い始めてたんですが、
 最初はなんか未曾有のバイオハザード🧟‍♂️だったので「えぇ...😨」 ってなりました。</p>
 <h2 id="configuration-file"><a class="header" href="#configuration-file">Configuration file</a></h2>
-<p>ちょっとだけ補足しておくと、
-<code>Luacheck</code>には<code>luacheckrc</code>、<code>biome</code>には<code>biome.json</code>みたいな、<code>Linter</code>のルールやマナーを調整する方法が用意されています。</p>
+<p>ここまでで軽く触れたように、<code>Luacheck</code>には<code>luacheckrc</code>、<code>biome</code>には<code>biome.json</code>みたいな、
+<code>Linter</code>のルールやマナーを調整する方法が用意されています。</p>
 <p>たぶん他の<code>Linter</code>でもそうなってるんじゃないかな❓</p>
 <p>ただ、そこまで詳しくもないわたくしなんかが首を突っ込んでも火傷するだけですので、このサイトでは扱いません🤐</p>
 <p>(<code>Neovim</code>ともまた別のおはなしだし😅)</p>
@@ -260,7 +343,7 @@ Follow our <a href="https://biomejs.dev/internals/language-support/">up-to-date 
 </div>
 <h2 id="all-together-now"><a class="header" href="#all-together-now">All Together Now</a></h2>
 <p>ということで、<code>Linter</code>のおはなしでした😆</p>
-<p>ここでは<code>lua</code>と<code>javascript</code>に限ってしまいましたが、
+<p>ここでは<code>Lua</code>と<code>JavaScript</code>に限ってしまいましたが、
 どの<code>Linter</code>を使う場合でも「似たようなもんだろー」と思ってもらえばだいじょうぶ❗</p>
 <p>...たぶん😮</p>
 <p>「えぇ...😨」ってなりました❓</p>
@@ -313,7 +396,7 @@ Follow our <a href="https://biomejs.dev/internals/language-support/">up-to-date 
 <div id="admonition-default-15" class="admonition admonish-success">
 <div>
 <p>All together now<sup class="footnote-reference">
-<a name="to-footnote-2"><a href="#2">2</a></a>
+<a name="to-footnote-3"><a href="#3">3</a></a>
 </sup>
 !!</p>
 </div>
@@ -360,7 +443,7 @@ Follow our <a href="https://biomejs.dev/internals/language-support/">up-to-date 
 </div>
 <div>
 <p>We are all together now!!<sup class="footnote-reference">
-<a name="to-footnote-3"><a href="#3">3</a></a>
+<a name="to-footnote-4"><a href="#4">4</a></a>
 </sup></p>
 </div>
 </div>
@@ -374,12 +457,16 @@ Follow our <a href="https://biomejs.dev/internals/language-support/">up-to-date 
 <p><a href="#to-footnote-1"><sup>1:</sup></a> Lennon は、幼なじみの家で偶然 TV で流れていた 1968年公開の The Beatles のアニメーション映画 &quot;Yellow Submarine&quot; を観てきた息子 Sean に
 「パパは昔 Beatles だったの？」と聞かれた。</p>
 </div><div class="footnote-definition" id=2>
-<p><a href="#to-footnote-2"><sup>2:</sup></a> All Together Now (by <a href="https://en.wikipedia.org/wiki/The_Beatles">The Beatles</a>):
+<p><a href="#to-footnote-2"><sup>2:</sup></a> 重ねてごめんなさいなんですが...。
+初掲時に「<code>vim</code>は知らないのに<code>nvim_buf_get_option</code>が<code>Deprecated</code>なのは知ってる、とってもクセつよさんでした❗」
+...とか書いちゃいましたが、これは<code>Luacheck</code>が出しているものではありませんでした😭</p>
+</div><div class="footnote-definition" id=3>
+<p><a href="#to-footnote-3"><sup>3:</sup></a> All Together Now (by <a href="https://en.wikipedia.org/wiki/The_Beatles">The Beatles</a>):
 McCartney は、観客に参加を求めるミュージック・ホールの伝統にインスパイアされたタイトル・フレーズを持つ、
 子供向けの合唱曲だと説明している。
 映画 &quot;Yellow Submarine&quot; のラストでは、この曲に合わせて各国語で &quot;All Together Now&quot; を意味する言葉が画面に現れる。</p>
-</div><div class="footnote-definition" id=3>
-<p><a href="#to-footnote-3"><sup>3:</sup></a> この曲のサブカレントについて、
+</div><div class="footnote-definition" id=4>
+<p><a href="#to-footnote-4"><sup>4:</sup></a> この曲のサブカレントについて、
 &quot;We are all together now&quot; (僕たちは今 みんな一緒にいる) という二重の意味を持つと McCartney は述べている。
 <a href="https://en.wikipedia.org/wiki/All_Together_Now_(Beatles_song)">Wikipedia</a>より</p>
 </div>
