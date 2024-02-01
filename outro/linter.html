@@ -131,7 +131,7 @@
 <p>ただ、&quot;はちみつカモミール&quot; のティーバッグを淹れてるわたくしなんかが首を突っ込んでも火傷するだけですので🤐</p>
 <p>っていうか、柚子砂糖緑茶もティーバッグで売り出してほしいなー 🍵</p>
 <p>...。🙂</p>
-<p>いや、tea の話❗</p>
+<p>って、tea のおはなし❗</p>
 <div id="admonition-note" class="admonition admonish-note">
 <div class="admonition-title">
 <p>Note</p>
@@ -142,7 +142,7 @@
 </div>
 </div>
 <h2 id="install"><a class="header" href="#install">Install</a></h2>
-<p>次の項からは<code>luacheck</code>と<code>biome</code>に触れていきます。</p>
+<p>次項からはじまるのは、<code>Luacheck</code>と<code>Biome</code>のおはなしです。</p>
 <p>追加のインストールが手間だったり、そもそもその言語使ってないってことも当然あると思うので、
 これらを実際にインストールするかどうかはおまかせします😺</p>
 <div id="admonition-default-3" class="admonition admonish-success">
@@ -151,55 +151,106 @@
 <p>I love you</p>
 </div>
 </div>
-<h3 id="luacheck"><a class="header" href="#luacheck">luacheck</a></h3>
-<p>いつも通り<code>lua</code>の<code>linter</code>である<code>luacheck</code>を試しながら進めようと思ったんですが...。
-<img src="img/luacheck.webp" alt="luacheck" width="1200" height="453" decoding="async"></p>
+<h3 id="luacheck"><a class="header" href="#luacheck">Luacheck</a></h3>
+<div id="admonition-luacheckhttpsgithubcomlunarmodulesluacheck" class="admonition admonish-info">
+<div class="admonition-title">
+<p><a href="https://github.com/lunarmodules/luacheck">Luacheck</a></p>
+<p><a class="admonition-anchor-link" href="#admonition-luacheckhttpsgithubcomlunarmodulesluacheck"></a></p>
+</div>
+<div>
+<p>Luacheck is a static analyzer and a linter for <a href="https://www.lua.org">Lua</a>.
+Luacheck detects various issues such as usage of undefined global variables, unused variables and values,
+accessing uninitialized variables, unreachable code and more.</p>
+<p>LuacheckはLua用の静的アナライザであり、Linter です。
+Luacheckは、未定義のグローバル変数の使用、未使用の変数や値、
+初期化されていない変数へのアクセス、到達不能なコードなど、様々な問題を検出します。</p>
+<p>Luacheck supports checking Lua files using syntax of Lua 5.1 - 5.4, and LuaJIT.
+Luacheck itself is written in Lua and runs on all of mentioned Lua versions.</p>
+<p>Luacheckは、Lua 5.1～5.4とLuaJITのシンタックスを使用したLuaファイルのチェックをサポートします。
+Luacheck自身はLuaで書かれており、前述のすべてのLuaバージョンで動作します。</p>
+</div>
+</div>
+<p>いつも通り<code>Lua</code>の<code>linter</code>である<code>Luacheck</code>を試しながら進めようと思ったんですが...。
+<img src="img/luacheck.webp" alt="Luacheck" width="1200" height="453" decoding="async"></p>
 <p>実はわたし自身、今までこれを使ってこなかったので「えぇ...😨」ってなりました。</p>
-<p><code>luarocks</code>自体は<code>brew</code>とか<code>apt</code>とかでインストールできるので、
-これを行った上で再度<code>mason</code>から<code>luacheck</code>をインストールすれば進めるはずです。
-<img src="img/luarocks.webp" alt="luarocks" width="1200" height="355" loading="lazy"></p>
-<p>対応している言語はもちろん<code>Lua</code>です☺️
-<img src="img/deprecated.webp" alt="deprecated" width="1200" height="150" loading="lazy"></p>
-<p><code>vim</code>は知らないのに<code>nvim_buf_get_option</code>が<code>Deprecated</code>なのは知ってる、とってもクセつよさんでした❗</p>
-<p>...っていうか、<code>nvim_buf_get_option</code>を自分が使っていることを忘れていたので「えぇ...😨」 ってなりました。</p>
+<p>でも、これはだいじょーぶ。</p>
+<p><code>luarocks</code>のインストールは<code>brew</code>とか<code>apt</code>とかでお手軽にできるので、
+あらかじめこれを行った上で再度<code>mason.nvim</code>から<code>Luacheck</code>をインストールすれば進めるはずです😌
+<img src="img/luarocks.webp" alt="luarocks" width="1200" height="355" loading="lazy">
+<img src="img/luacheck-install.webp" alt="Luacheck" width="1200" height="504" loading="lazy"></p>
+<p>できました😆</p>
+<p><code>Luacheck</code>が対応している言語はもちろん<code>Lua</code>です☺️
+<img src="img/deprecated.webp" alt="deprecated" width="1200" height="466" loading="lazy"></p>
+<p>ちゃんと正しいコードなんだけど、<code>vim</code>が全部怒られるので「えぇ...😨」ってなります。</p>
 <div id="admonition-note-1" class="admonition admonish-note">
 <div class="admonition-title">
 <p>Note</p>
 <p><a class="admonition-anchor-link" href="#admonition-note-1"></a></p>
 </div>
 <div>
-<p>ほんとはちゃんと<code>nvim_buf_get_option</code>に触れなきゃいけないと思うんですが、
-まずはこのページを書き上げてしまいたいので、<code>Issues</code>に挙げとくってことで見逃してください...😅</p>
+<p>あとなんていうか、<code>Deprecated</code>になっている<code>nvim_buf_get_option</code>を自分が使っていることを把握していませんでした...。</p>
 </div>
 </div>
-<h3 id="biome"><a class="header" href="#biome">biome</a></h3>
-<p>次はわたしも普段お世話になってる<code>biome</code>です。</p>
-<p>確認してないんだけど、こっちはインストールと動作に<code>npm</code>が必要なんじゃないかな❓</p>
-<p>現時点では<code>JSON</code>,<code>JavaScript</code>,<code>TypeScript</code>に対応しています。</p>
-<div id="admonition-info" class="admonition admonish-info">
+<p>ほんとはちゃんと<code>vim</code>変数と<code>nvim_buf_get_option</code>に触れなきゃいけないと思うんですが、
+まずは17節を先に書き上げてしまいたいので、<code>Issues</code>に挙げとくってことで見逃してください...😅</p>
+<div id="admonition-default-4" class="admonition admonish-danger">
+<div>
+<p>重ねてごめんなさいなんですが...。</p>
+<p>初掲時に「<code>vim</code>は知らないのに<code>nvim_buf_get_option</code>が<code>Deprecated</code>なのは知ってる、とってもクセつよさんでした❗」</p>
+<p>...とか書いちゃいましたが、これは<code>Luacheck</code>が出しているものではありませんでした😭</p>
+</div>
+</div>
+<h3 id="biome"><a class="header" href="#biome">Biome</a></h3>
+<div id="admonition-biomehttpsbiomejsdev" class="admonition admonish-info">
 <div class="admonition-title">
-<p>Info</p>
-<p><a class="admonition-anchor-link" href="#admonition-info"></a></p>
+<p><a href="https://biomejs.dev">Biome</a></p>
+<p><a class="admonition-anchor-link" href="#admonition-biomehttpsbiomejsdev"></a></p>
 </div>
 <div>
-<p>将来的には<code>CSS</code>,<code>HTML</code>,<code>Markdown</code>にも対応するんだって😆</p>
+<p>One toolchain for your web project
+Format, lint, and more in a fraction of a second.</p>
+<p>Web開発のためのたった1つのツールチェーン
+format、lint など一瞬で完了させます！</p>
+</div>
+</div>
+<div id="admonition-default-5" class="admonition admonish-info">
+<div>
+<p><strong>Biome</strong> はWebプロジェクトのための高性能なツールチェーンであり、
+プロジェクトの健全性を維持するための開発者ツールの提供を目的としています。</p>
+<p>(<a href="https://github.com/biomejs/biome/blob/main/packages/%40biomejs/biome/README.ja.md">README.ja.md</a>より)</p>
+</div>
+</div>
+<p>わたしも普段お世話になってる<code>Biome</code>です。</p>
+<p>確認してないんだけど、こっちはインストールと動作に<code>npm</code>が必要なんじゃないかな❓</p>
+<div id="admonition-expand-biomes-language-supporthttpsbiomejsdevblogroadmap-2024expand-biomes-language-support" class="admonition admonish-info">
+<div class="admonition-title">
 <p><a href="https://biomejs.dev/blog/roadmap-2024/#expand-biomes-language-support">Expand Biome’s language support</a></p>
+<p><a class="admonition-anchor-link" href="#admonition-expand-biomes-language-supporthttpsbiomejsdevblogroadmap-2024expand-biomes-language-support"></a></p>
+</div>
+<div>
+<p>CSS is our next language of focus, and we are making good progress. HTML and Markdown will follow.
+Follow our <a href="https://biomejs.dev/internals/language-support/">up-to-date page</a> to keep up with the progress of our work.</p>
+<p>CSSは次の重点言語であり、順調に進んでいます。HTMLとMarkdownはその後に続く予定です。
+私たちの仕事の進捗状況を知るために、<a href="https://biomejs.dev/internals/language-support/">最新のページ</a>をフォローしてください。</p>
 </div>
 </div>
-<img src="img/biome.webp" alt="biome" width="1200" height="453" loading="lazy">
-<img src="img/biome-hazard.webp" alt="biome-hazard" width="1200" height="384" loading="lazy">
+<p>現時点 (2023/01/30) では<code>JSON</code>,<code>JavaScript</code>,<code>TypeScript</code>に対応していますが、
+将来的には<code>CSS</code>,<code>HTML</code>,<code>Markdown</code>にも対応するんだって😆
+<img src="img/biome.webp" alt="biome" width="1200" height="453" loading="lazy"></p>
+<p>いつも通りインストールして<code>js</code>ファイルを開いてみたら...❓
+<img src="img/biome-hazard.webp" alt="biome-hazard" width="1200" height="384" loading="lazy"></p>
 <p>実際はこれでもちゃんと動くコードなんだけど、<code>Error</code>として報告してきます。</p>
 <p>...。🙄</p>
-<p>いや、とってもクセ❗❗</p>
-<p>このサイトでもなんにも考えず気軽に使い始めてたんですが、
+<p>とってもクセ❗❗</p>
+<p>このサイトでも特になんにも考えないで気軽に使い始めてたんですが、
 最初はなんか未曾有のバイオハザード🧟‍♂️だったので「えぇ...😨」 ってなりました。</p>
 <h2 id="configuration-file"><a class="header" href="#configuration-file">Configuration file</a></h2>
-<p>一応ちょっとだけ補足しておくと、
-<code>luacheck</code>には<code>luacheckrc</code>、<code>biome</code>には<code>biome.json</code>みたいな、<code>Linter</code>のルールやマナーを調整する方法が用意されています。</p>
+<p>ちょっとだけ補足しておくと、
+<code>Luacheck</code>には<code>luacheckrc</code>、<code>biome</code>には<code>biome.json</code>みたいな、<code>Linter</code>のルールやマナーを調整する方法が用意されています。</p>
 <p>たぶん他の<code>Linter</code>でもそうなってるんじゃないかな❓</p>
-<p>ただ、これは<code>Neovim</code>とはまた別のおはなしなので、このサイトでは扱いません🤐</p>
-<p>(...っていうか、わたしもそこまで詳しく知らない😅)</p>
-<div id="admonition-default-4" class="admonition admonish-success">
+<p>ただ、そこまで詳しくもないわたくしなんかが首を突っ込んでも火傷するだけですので、このサイトでは扱いません🤐</p>
+<p>(<code>Neovim</code>ともまた別のおはなしだし😅)</p>
+<div id="admonition-default-6" class="admonition admonish-success">
 <div>
 <p>Black, white, green, red</p>
 <p>Can I take my friend to bed?</p>
@@ -215,51 +266,51 @@
 <p>「えぇ...😨」ってなりました❓</p>
 <p>そんな不安の退治法はひとつ。</p>
 <p>Singing❗</p>
-<div id="admonition-default-5" class="admonition admonish-info">
+<div id="admonition-default-7" class="admonition admonish-info">
 <div>
 <p>One!</p>
 </div>
 </div>
-<div id="admonition-default-6" class="admonition admonish-info">
+<div id="admonition-default-8" class="admonition admonish-info">
 <div>
 <p>Two!</p>
 </div>
 </div>
-<div id="admonition-default-7" class="admonition admonish-info">
+<div id="admonition-default-9" class="admonition admonish-info">
 <div>
 <p>Three!</p>
 </div>
 </div>
-<div id="admonition-default-8" class="admonition admonish-info">
+<div id="admonition-default-10" class="admonition admonish-info">
 <div>
 <p>Four!!</p>
 </div>
 </div>
-<div id="admonition-default-9" class="admonition admonish-success">
+<div id="admonition-default-11" class="admonition admonish-success">
 <div>
 <p>(Bom bom bom bompa bom!)</p>
 <p>Sail the ship!</p>
 </div>
 </div>
-<div id="admonition-default-10" class="admonition admonish-success">
+<div id="admonition-default-12" class="admonition admonish-success">
 <div>
 <p>(Bompa bom!)</p>
 <p>Chop the tree!</p>
 </div>
 </div>
-<div id="admonition-default-11" class="admonition admonish-success">
+<div id="admonition-default-13" class="admonition admonish-success">
 <div>
 <p>(Bompa bom!)</p>
 <p>Skip the rope!</p>
 </div>
 </div>
-<div id="admonition-default-12" class="admonition admonish-success">
+<div id="admonition-default-14" class="admonition admonish-success">
 <div>
 <p>(Bompa bom!)</p>
 <p>Look at me!!</p>
 </div>
 </div>
-<div id="admonition-default-13" class="admonition admonish-success">
+<div id="admonition-default-15" class="admonition admonish-success">
 <div>
 <p>All together now<sup class="footnote-reference">
 <a name="to-footnote-2"><a href="#2">2</a></a>
@@ -299,7 +350,7 @@
 <div style="margin-top: 4rem"></div>
 <p>Und jetzt alle zusammen</p>
 <div style="margin-top: 4rem"></div>
-<p>それでは 皆さん 御一緒に</p>
+<p>それでは皆さん御一緒に</p>
 <div style="margin-top: 4rem"></div>
 </div>
 <div id="admonition-success" class="admonition admonish-success">
@@ -313,25 +364,24 @@
 </sup></p>
 </div>
 </div>
-<div id="admonition-default-14" class="admonition admonish-warning">
+<div id="admonition-default-16" class="admonition admonish-warning">
 <div>
 <p>じか〜い、じかい。</p>
 <p>17.5.3話「えるえすぴーミーツミー」という おはなし。</p>
 </div>
 </div>
 <div class="footnote-definition" id=1>
-<p><a href="#to-footnote-1"><sup>1:</sup></a> Lennon は、幼なじみの家で偶然 TV で流れていた The Beatles のアニメ映画 &quot;Yellow Submarine&quot; を観てきた息子 Sean に
+<p><a href="#to-footnote-1"><sup>1:</sup></a> Lennon は、幼なじみの家で偶然 TV で流れていた 1968年公開の The Beatles のアニメーション映画 &quot;Yellow Submarine&quot; を観てきた息子 Sean に
 「パパは昔 Beatles だったの？」と聞かれた。</p>
 </div><div class="footnote-definition" id=2>
 <p><a href="#to-footnote-2"><sup>2:</sup></a> All Together Now (by <a href="https://en.wikipedia.org/wiki/The_Beatles">The Beatles</a>):
 McCartney は、観客に参加を求めるミュージック・ホールの伝統にインスパイアされたタイトル・フレーズを持つ、
-子供向けの合唱曲だと説明している。</p>
+子供向けの合唱曲だと説明している。
+映画 &quot;Yellow Submarine&quot; のラストでは、この曲に合わせて各国語で &quot;All Together Now&quot; を意味する言葉が画面に現れる。</p>
 </div><div class="footnote-definition" id=3>
 <p><a href="#to-footnote-3"><sup>3:</sup></a> この曲のサブカレントについて、
-&quot;We are all together now&quot; (僕たちは今 みんな一緒にいる) という二重の意味を持つと McCartney は述べている。</p>
-<p>1968年に公開された映画 Yellow Submarine のラストでは、
-この曲に合わせて各国語で &quot;All Together Now&quot; を意味する言葉が画面に現れる。</p>
-<p><a href="https://en.wikipedia.org/wiki/All_Together_Now_(Beatles_song)">Wikipedia</a>より</p>
+&quot;We are all together now&quot; (僕たちは今 みんな一緒にいる) という二重の意味を持つと McCartney は述べている。
+<a href="https://en.wikipedia.org/wiki/All_Together_Now_(Beatles_song)">Wikipedia</a>より</p>
 </div>
 
           <nav class="nav-wrapper" aria-label="Page navigation">
