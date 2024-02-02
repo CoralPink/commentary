@@ -1,0 +1,555 @@
+<!DOCTYPE HTML>
+<html lang="ja" prefix="og: https://ogp.me/ns#">
+  <head>
+    <meta charset="UTF-8">
+    <title>LSP (Meet Me) - Commentary of Dotfiles</title>
+
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-WMN96QT');</script>
+
+    <meta name="description" content="WezTerm と Neovim の設定例 (dotfiles) を紹介するサイトです🤗 - This site introduces WezTerm and Neovim dotfiles.">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=2.0">
+    <meta name="theme-color">
+    <meta name="format-detection" content="telephone=no,email=no,address=no">
+
+    <link rel="icon" href="../favicon.ico">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+
+    <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+    <!--<meta name="apple-mobile-web-app-capable" content="yes">-->
+
+    <link rel="manifest" href="../manifest.json">
+
+    <meta property="og:title" content="LSP (Meet Me) - Commentary of Dotfiles" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://coralpink.github.io/commentary/" />
+    <meta property="og:image" content="https://coralpink.github.io/commentary/goal.webp" />
+
+    <meta property="og:site_name" content="Commentary of Dotfiles">
+    <meta property="og:description" content="WezTerm と Neovim の設定例 (dotfiles) を紹介するサイトです🤗 - This site introduces WezTerm and Neovim dotfiles.">
+
+    <link rel="stylesheet" href="../css/general.css" async>
+  </head>
+  <body>
+    <noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WMN96QT" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    
+    <script>
+    (()=>{let e=localStorage.getItem("mdbook-theme");
+    e||(e=matchMedia("(prefers-color-scheme: dark)").matches?"macchiato":"latte"),
+    document.querySelector("html").classList.add(e),
+    setTimeout((()=>{document.querySelector('meta[name="theme-color"]').content=window.getComputedStyle(document.body).backgroundColor,
+    document.getElementById(e).classList.add("theme-selected")}),1)})();
+    </script>
+    
+    <script>
+    (async()=>{if("serviceWorker"in navigator)
+    try{await navigator.serviceWorker.register("../serviceworker.js",{scope:"/commentary/"})}
+    catch(r){console.error(`Registration failed with ${r}`)}})();
+    </script>
+
+    <div class="top-bar">
+      <div id="menu-bar" class="menu-bar">
+        <div class="left-buttons">
+          <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents (Shortkey: T )" aria-label="Toggle Table of Contents" aria-controls="sidebar"></button>
+          <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme"
+  aria-haspopup="true" aria-expanded="false" aria-controls="theme-list"></button>
+          <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+            <li role="none"><button role="menuitem" class="theme" id="au-lait">Au Lait</button></li>
+            <li role="none"><button role="menuitem" class="theme" id="latte">Latte</button></li>
+            <li role="none"><button role="menuitem" class="theme" id="frappe">Frappé</button></li>
+            <li role="none"><button role="menuitem" class="theme" id="macchiato">Macchiato</button></li>
+            <li role="none"><button role="menuitem" class="theme" id="mocha">Mocha</button></li>
+          </ul>
+
+          <button id="search-toggle" class="icon-button" type="button" title="Toggle Search Box (Shortkey: / )"
+  aria-label="Toggle Search Box" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar"></button>
+
+          <div id="search-wrapper" class="hidden">
+            <form id="searchbar-outer" class="searchbar-outer">
+              <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..."
+                aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+            </form>
+            <div id="searchresults-outer" class="searchresults-outer hidden">
+              <div id="searchresults-header" class="searchresults-header"></div>
+              <ul id="searchresults"></ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-title">Commentary of Dotfiles</div>
+
+        <div class="right-buttons icon-button">
+          <a href="https://github.com/CoralPink/commentary" title="Git repository" aria-label="Git repository" target="_blank" rel="noopener"></a>
+        </div>
+      </div>
+    </div>
+
+    <div id="page" class="page">
+      <div id="sidebar" class="sidebar" aria-label="Site map">
+        <nav id="side-scroll" class="sidebar-scrollbox">
+          <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../acknowledments.html"><strong aria-hidden="true">1.1.</strong> Acknowledgments</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">WezTerm</li><li class="chapter-item expanded "><a href="../wezterm/installation.html"><strong aria-hidden="true">2.</strong> Installation</a></li><li class="chapter-item expanded "><a href="../wezterm/configuration.html"><strong aria-hidden="true">3.</strong> Configuration</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../wezterm/window.html"><strong aria-hidden="true">3.1.</strong> Window</a></li><li class="chapter-item expanded "><a href="../wezterm/shell.html"><strong aria-hidden="true">3.2.</strong> Shell Prompt</a></li><li class="chapter-item expanded "><a href="../wezterm/font.html"><strong aria-hidden="true">3.3.</strong> Font</a></li><li class="chapter-item expanded "><a href="../wezterm/frame.html"><strong aria-hidden="true">3.4.</strong> Window Frame</a></li><li class="chapter-item expanded "><a href="../wezterm/keybind.html"><strong aria-hidden="true">3.5.</strong> Key Binding</a></li><li class="chapter-item expanded "><a href="../wezterm/leader.html"><strong aria-hidden="true">3.6.</strong> Leader Key</a></li></ol></li><li class="chapter-item expanded "><a href="../wezterm/format.html"><strong aria-hidden="true">4.</strong> Format</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../wezterm/window-title.html"><strong aria-hidden="true">4.1.</strong> Window Title</a></li><li class="chapter-item expanded "><a href="../wezterm/tab.html"><strong aria-hidden="true">4.2.</strong> Tab</a></li></ol></li><li class="chapter-item expanded "><a href="../wezterm/status.html"><strong aria-hidden="true">5.</strong> Status Bar</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../wezterm/left-status.html"><strong aria-hidden="true">5.1.</strong> Left Status</a></li><li class="chapter-item expanded "><a href="../wezterm/right-status.html"><strong aria-hidden="true">5.2.</strong> Right Status</a></li></ol></li><li class="chapter-item expanded "><a href="../wezterm/custom.html"><strong aria-hidden="true">6.</strong> Custom Event</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../wezterm/toggle-font.html"><strong aria-hidden="true">6.1.</strong> Toggle Font</a></li><li class="chapter-item expanded "><a href="../wezterm/dpi-detection.html"><strong aria-hidden="true">6.2.</strong> DPI Detection</a></li><li class="chapter-item expanded "><a href="../wezterm/window-decorations.html"><strong aria-hidden="true">6.3.</strong> Window Decorations</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Neovim</li><li class="chapter-item expanded "><a href="../neovim/installation.html"><strong aria-hidden="true">7.</strong> Installation</a></li><li class="chapter-item expanded "><a href="../neovim/user-config.html"><strong aria-hidden="true">8.</strong> User Config</a></li><li class="chapter-item expanded "><a href="../neovim/lua-module.html"><strong aria-hidden="true">9.</strong> Lua Module</a></li><li class="chapter-item expanded "><a href="../neovim/options/options.html"><strong aria-hidden="true">10.</strong> Options</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../neovim/options/nvim_set_option.html"><strong aria-hidden="true">10.1.</strong> nvim_set_option</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../neovim/options/termguicolors.html"><strong aria-hidden="true">10.1.1.</strong> termguicolors</a></li><li class="chapter-item expanded "><a href="../neovim/options/scrolloff.html"><strong aria-hidden="true">10.1.2.</strong> scrolloff</a></li><li class="chapter-item expanded "><a href="../neovim/options/ignorecase-smartcase.html"><strong aria-hidden="true">10.1.3.</strong> ignorecase / smartcase</a></li><li class="chapter-item expanded "><a href="../neovim/options/inccommand.html"><strong aria-hidden="true">10.1.4.</strong> inccommand</a></li><li class="chapter-item expanded "><a href="../neovim/options/clipboard.html"><strong aria-hidden="true">10.1.5.</strong> clipboard</a></li></ol></li><li class="chapter-item expanded "><a href="../neovim/options/nvim_win_set_option.html"><strong aria-hidden="true">10.2.</strong> nvim_win_set_option</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../neovim/options/number.html"><strong aria-hidden="true">10.2.1.</strong> number</a></li><li class="chapter-item expanded "><a href="../neovim/options/cursorline.html"><strong aria-hidden="true">10.2.2.</strong> cusrorline</a></li><li class="chapter-item expanded "><a href="../neovim/options/signcolumn.html"><strong aria-hidden="true">10.2.3.</strong> signcolumn</a></li><li class="chapter-item expanded "><a href="../neovim/options/wrap-colorcolumn.html"><strong aria-hidden="true">10.2.4.</strong> wrap / colorcolumn</a></li></ol></li><li class="chapter-item expanded "><a href="../neovim/options/nvim_buf_set_option.html"><strong aria-hidden="true">10.3.</strong> nvim_buf_set_option</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../neovim/options/tab.html"><strong aria-hidden="true">10.3.1.</strong> tabstop / shiftwidth / expandtab</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../neovim/au/automatic-commands.html"><strong aria-hidden="true">11.</strong> Automatic Command</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../neovim/au/nvim_create_autocmd.html"><strong aria-hidden="true">11.1.</strong> nvim_create_autocmd</a></li><li class="chapter-item expanded "><a href="../neovim/au/nvim_create_augroup.html"><strong aria-hidden="true">11.2.</strong> nvim_create_augroup</a></li></ol></li><li class="chapter-item expanded "><a href="../neovim/keybind.html"><strong aria-hidden="true">12.</strong> Key Binding</a></li><li class="chapter-item expanded "><a href="../neovim/leader.html"><strong aria-hidden="true">13.</strong> Leader Key</a></li><li class="chapter-item expanded "><a href="../neovim/function/function.html"><strong aria-hidden="true">14.</strong> Function</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../neovim/function/warming-up.html"><strong aria-hidden="true">14.1.</strong> Warming Up</a></li><li class="chapter-item expanded "><a href="../neovim/function/param-return.html"><strong aria-hidden="true">14.2.</strong> Parameters / Return Values</a></li><li class="chapter-item expanded "><a href="../neovim/function/vim-cmd.html"><strong aria-hidden="true">14.3.</strong> vim.cmd</a></li><li class="chapter-item expanded "><a href="../neovim/function/call-plugin.html"><strong aria-hidden="true">14.4.</strong> Call The Plugin</a></li></ol></li><li class="chapter-item expanded "><a href="../neovim/plugin/plugin.html"><strong aria-hidden="true">15.</strong> Plugin</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../neovim/plugin/packer.html"><strong aria-hidden="true">15.1.</strong> packer.nvim</a></li><li class="chapter-item expanded "><a href="../neovim/plugin/nvim-treesitter.html"><strong aria-hidden="true">15.2.</strong> nvim-treesitter</a></li><li class="chapter-item expanded "><a href="../neovim/plugin/onenord.html"><strong aria-hidden="true">15.3.</strong> onenord.nvim</a></li><li class="chapter-item expanded "><a href="../neovim/plugin/lualine.html"><strong aria-hidden="true">15.4.</strong> lualine.nvim</a></li><li class="chapter-item expanded "><a href="../neovim/plugin/nvim-hlslens.html"><strong aria-hidden="true">15.5.</strong> nvim-hlslens</a></li><li class="chapter-item expanded "><a href="../neovim/plugin/gitsigns.html"><strong aria-hidden="true">15.6.</strong> gitsigns</a></li><li class="chapter-item expanded "><a href="../neovim/plugin/nvim-scrollbar.html"><strong aria-hidden="true">15.7.</strong> nvim-scrollbar</a></li><li class="chapter-item expanded "><a href="../neovim/plugin/lualine-part2.html"><strong aria-hidden="true">15.8.</strong> lualine.nvim Part Ⅱ</a></li><li class="chapter-item expanded "><a href="../neovim/plugin/lualine-part3.html"><strong aria-hidden="true">15.9.</strong> lualine.nvim Part Ⅲ</a></li><li class="chapter-item expanded "><a href="../neovim/plugin/telescope.html"><strong aria-hidden="true">15.10.</strong> telescope.nvim</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../neovim/plugin/telescope-config.html"><strong aria-hidden="true">15.10.1.</strong> Config</a></li><li class="chapter-item expanded "><a href="../neovim/plugin/telescope-all-recent.html"><strong aria-hidden="true">15.10.2.</strong> telescope-all-recent</a></li></ol></li><li class="chapter-item expanded "><a href="../neovim/plugin/nvim-tree.html"><strong aria-hidden="true">15.11.</strong> nvim-tree.lua</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../neovim/plugin/nvim-tree-actions.html"><strong aria-hidden="true">15.11.1.</strong> Actions</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../neovim/plugin/nvim-tree-actions-tip.html"><strong aria-hidden="true">15.11.1.1.</strong> (Extra) for Nvim 0.10</a></li></ol></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../neovim/lsp/language-server-protocol.html"><strong aria-hidden="true">16.</strong> Language Server Protocol</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../neovim/lsp/nvim-lspconfig.html"><strong aria-hidden="true">16.1.</strong> nvim-lspconfig</a></li><li class="chapter-item expanded "><a href="../neovim/lsp/mason.html"><strong aria-hidden="true">16.2.</strong> mason.nvim</a></li><li class="chapter-item expanded "><a href="../neovim/lsp/mason-lspconfig.html"><strong aria-hidden="true">16.3.</strong> mason-lspconfig.nvim</a></li><li class="chapter-item expanded "><a href="../neovim/lsp/nvim-navic.html"><strong aria-hidden="true">16.4.</strong> nvim-navic</a></li><li class="chapter-item expanded "><a href="../neovim/lsp/nvim-navbuddy.html"><strong aria-hidden="true">16.5.</strong> nvim-navbuddy</a></li><li class="chapter-item expanded "><a href="../neovim/lsp/nvim-cmp.html"><strong aria-hidden="true">16.6.</strong> nvim-cmp</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../neovim/lsp/cmp-nvim-lsp.html"><strong aria-hidden="true">16.6.1.</strong> cmp-nvim-lsp</a></li></ol></li><li class="chapter-item expanded "><a href="../neovim/lsp/luasnip.html"><strong aria-hidden="true">16.7.</strong> LuaSnip</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../neovim/lsp/cmp_luasnip.html"><strong aria-hidden="true">16.7.1.</strong> cmp_luasnip</a></li><li class="chapter-item expanded "><a href="../neovim/lsp/friendly_snippets.html"><strong aria-hidden="true">16.7.2.</strong> Friendly Snippets</a></li></ol></li><li class="chapter-item expanded "><a href="../neovim/lsp/copilot.html"><strong aria-hidden="true">16.8.</strong> copilot.lua</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../neovim/lsp/github-copilot.html"><strong aria-hidden="true">16.8.1.</strong> (Extra) GitHub Copilot</a></li><li class="chapter-item expanded "><a href="../neovim/lsp/copilot-cmp.html"><strong aria-hidden="true">16.8.2.</strong> copilot-cmp</a></li></ol></li><li class="chapter-item expanded "><a href="../neovim/lsp/nvim-cmp-sources.html"><strong aria-hidden="true">16.9.</strong> nvim-cmp-source(s)</a></li><li class="chapter-item expanded "><a href="../neovim/lsp/fidget.html"><strong aria-hidden="true">16.10.</strong> fidget.nvim</a></li><li class="chapter-item expanded "><a href="../neovim/lsp/trouble.html"><strong aria-hidden="true">16.11.</strong> Trouble</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">... To Be Continued.</li><li class="chapter-item expanded "><a href="../outro/outroduction.html"><strong aria-hidden="true">17.</strong> Outroduction</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../outro/lazy.html"><strong aria-hidden="true">17.1.</strong> lazy.nvim</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../outro/lazy-migration-guide.html"><strong aria-hidden="true">17.1.1.</strong> Migration Guide</a></li></ol></li><li class="chapter-item expanded "><a href="../outro/nvim-notify.html"><strong aria-hidden="true">17.2.</strong> nvim-notify</a></li><li class="chapter-item expanded "><a href="../outro/nvim_set_option_value.html"><strong aria-hidden="true">17.3.</strong> nvim_set_option_value</a></li><li class="chapter-item expanded "><a href="../outro/none-ls.html"><strong aria-hidden="true">17.4.</strong> none-ls.nvim</a></li><li class="chapter-item expanded "><a href="../outro/mason-null-ls.html"><strong aria-hidden="true">17.5.</strong> mason-null-ls.nvim</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../outro/year2024.html"><strong aria-hidden="true">17.5.1.</strong> (Extra) Year 2024</a></li><li class="chapter-item expanded "><a href="../outro/linter.html"><strong aria-hidden="true">17.5.2.</strong> Linter</a></li><li class="chapter-item expanded "><a href="../outro/lsp-meet-me.html" class="active"><strong aria-hidden="true">17.5.3.</strong> LSP (Meet Me)</a></li></ol></li></ol></li></ol>
+        </nav>
+      </div>
+
+      <div id="content" class="content">
+        <spacer></spacer>
+
+        <main id="main">
+          <h1 id="-lsp-meet-me"><a class="header" href="#-lsp-meet-me">🍑 LSP (Meet Me)</a></h1>
+<p>このサイトを見たな❗これでお前とも縁ができた❗
+<img src="img/search-console.webp" alt="search-console" width="505" height="600" decoding="async"></p>
+<p>個人でやってる趣味 (暇つぶしとも言う😅) にしては、なかなか身に余る光栄です。</p>
+<div id="admonition-default" class="admonition admonish-danger">
+<div>
+<p>やあ やあ やあ！</p>
+<p>祭りだ 祭りだ！</p>
+</div>
+</div>
+<p>船を出せ❗いざ鬼退治❗❗</p>
+<h2 id="-previously"><a class="header" href="#-previously">☕ Previously</a></h2>
+<div id="admonition-extensionsmasonlua" class="admonition admonish-example">
+<div class="admonition-title">
+<p>extensions/mason.lua</p>
+<p><a class="admonition-anchor-link" href="#admonition-extensionsmasonlua"></a></p>
+</div>
+<div>
+<pre><code class="language-lua">require('mason').setup {
+  ui = {
+    check_outdated_packages_on_open = false,
+    border = 'single',
+  },
+}
+
+require('mason-lspconfig').setup_handlers {
+  function(server_name)
+    require('lspconfig')[server_name].setup {
+      capabilities = require('cmp_nvim_lsp').default_capabilities(),
+    }
+  end,
+
+  -- (この間に固有の設定を追加していきます)
+
+}
+</code></pre>
+</div>
+</div>
+<p>固有の設定を必要としなければ、
+これだけで<code>mason</code>でインストールした<code>LSP</code>は全てカバーできるはずです。</p>
+<div id="admonition-tip" class="admonition admonish-tip">
+<div class="admonition-title">
+<p>Tip</p>
+<p><a class="admonition-anchor-link" href="#admonition-tip"></a></p>
+</div>
+<div>
+<p>このサイトでは<code>packer</code>と外観を統一感を持たせる目的で<code>mason</code>に<a href="../neovim/lsp/mason.html#border">border</a>を入れていました。</p>
+<p><code>lazy</code>を使う場合、これは無いほうが統一感が出ていいかも〜😪</p>
+<pre><code class="language-diff">require('mason').setup {
+  ui = {
+    check_outdated_packages_on_open = false,
+-   border = 'single',
+  },
+}
+</code></pre>
+</div>
+</div>
+<div id="admonition-default-1" class="admonition admonish-danger">
+<div>
+<p>袖振り合うも他生の縁！</p>
+<p>躓く石も縁の端くれ！</p>
+</div>
+</div>
+<h2 id="-additional-setup"><a class="header" href="#-additional-setup">🧠 Additional Setup</a></h2>
+<p>で、固有の設定を入れたい場合はこの下に色々書いていくわけですが...。</p>
+<p>この先を簡潔に書くために、あらかじめこんなん仕込んでおきます🤫</p>
+<div id="admonition-extensionsmasonlua-1" class="admonition admonish-example">
+<div class="admonition-title">
+<p>extensions/mason.lua</p>
+<p><a class="admonition-anchor-link" href="#admonition-extensionsmasonlua-1"></a></p>
+</div>
+<div>
+<pre><code class="language-diff">+local lsp = require 'lspconfig'
+
+ require('mason-lspconfig').setup_handlers {
+   ...
+ }
+</code></pre>
+</div>
+</div>
+<div id="admonition-脳人" class="admonition admonish-note">
+<div class="admonition-title">
+<p>脳人</p>
+<p><a class="admonition-anchor-link" href="#admonition-脳人"></a></p>
+</div>
+<div>
+<p><a href="../neovim/lsp/nvim-lspconfig.html">nvim-lspconfig</a>はもうお馴染みですね😉</p>
+</div>
+</div>
+<div id="admonition-default-2" class="admonition admonish-danger">
+<div>
+<p>共に踊れば繋がる縁！</p>
+<p>この世は楽園！</p>
+</div>
+</div>
+<h2 id="-specific-settings"><a class="header" href="#-specific-settings">🎌 Specific Settings</a></h2>
+<p>この節は<code>lua_ls</code>と<code>rust-analyzer</code>のおはなしです。</p>
+<p>当然ながら、これらを実際にインストールするかどうかはおまかせします😆</p>
+<div id="admonition-default-3" class="admonition admonish-danger">
+<div>
+<p>悩みなんざ吹っ飛ばせ！</p>
+<p>笑え 笑え！</p>
+</div>
+</div>
+<h3 id="-lua_ls-lua"><a class="header" href="#-lua_ls-lua">🐵 lua_ls (Lua)</a></h3>
+<div id="admonition-default-4" class="admonition admonish-note">
+<div>
+<p>探してた この心うっきうき暴れさせて</p>
+</div>
+</div>
+<div id="admonition-lua-language-serverhttpsgithubcomlualslua-language-server" class="admonition admonish-info">
+<div class="admonition-title">
+<p><a href="https://github.com/LuaLS/lua-language-server">lua-language-server</a></p>
+<p><a class="admonition-anchor-link" href="#admonition-lua-language-serverhttpsgithubcomlualslua-language-server"></a></p>
+</div>
+<div>
+<p>The Lua language server provides various language features for Lua to make development easier and faster.
+With nearly a million installs in Visual Studio Code, it is the most popular extension for Lua language support.</p>
+<p>Lua 言語サーバーは、Lua の様々な言語機能を提供し、開発をより簡単かつ高速にします。
+Visual Studio Code に 100万近くインストールされており、Lua 言語をサポートする最も人気のある拡張機能です。</p>
+<p><a href="https://luals.github.io">See our website for more info</a>.</p>
+</div>
+</div>
+<p>100万とか言わないでください。1Kが霞むんで🤣</p>
+<p>わたしも<a href="http://127.0.0.1:8080/commentary/neovim/lsp/fidget.html#admonition-tip-1">割と最近まで気づかなかった</a>んですが、
+<code>Neovim</code>を使う場合はこれを入れておくと楽しいです😆</p>
+<div id="admonition-extensionsmasonlua-2" class="admonition admonish-example">
+<div class="admonition-title">
+<p>extensions/mason.lua</p>
+<p><a class="admonition-anchor-link" href="#admonition-extensionsmasonlua-2"></a></p>
+</div>
+<div>
+<pre><code class="language-lua">['lua_ls'] = function()
+  lsp.lua_ls.setup {
+    settings = {
+      Lua = {
+        runtime = {
+          version = 'LuaJIT',
+        },
+        workspace = {
+          checkThirdParty = false,
+          library = {
+            vim.env.VIMRUNTIME,
+          },
+        },
+      },
+    },
+  }
+end,
+</code></pre>
+</div>
+</div>
+<p>こうすると<code>Neovim</code>固有のAPIが<code>lua_ls</code>を通して補完候補に現れます😄
+<img src="../neovim/lsp/img/fidget-cmp.webp" alt="fidget-cmp" width="800" height="251" loading="lazy"></p>
+<h3 id="-rust-analyzer-rust"><a class="header" href="#-rust-analyzer-rust">🐶 rust-analyzer (Rust)</a></h3>
+<div id="admonition-default-5" class="admonition admonish-example">
+<div>
+<p>冒険はいつだってワンだふる</p>
+</div>
+</div>
+<div id="admonition-rust-analyzerhttpsgithubcomrust-langrust-analyzer" class="admonition admonish-info">
+<div class="admonition-title">
+<p><a href="https://github.com/rust-lang/rust-analyzer">rust-analyzer</a></p>
+<p><a class="admonition-anchor-link" href="#admonition-rust-analyzerhttpsgithubcomrust-langrust-analyzer"></a></p>
+</div>
+<div>
+<p>rust-analyzer is a modular compiler frontend for the Rust language.
+It is a part of a larger rls-2.0 effort to create excellent IDE support for Rust.</p>
+<p>rust-analyzer は、Rust 言語用のモジュラー・コンパイラ・フロントエンドです。
+Rust の優れた IDE サポートを作成するための、より大きな rls-2.0 の取り組みの一部です。</p>
+</div>
+</div>
+<p>と、いうことで<code>Rust</code>にはこれがいいんじゃないかと思うんだけど...。
+恐らく<code>Rust</code>関連のサイトだったはずなんだけど、どこを見て持ってきたのか思い出せない😑</p>
+<div id="admonition-extensionsmasonlua-3" class="admonition admonish-example">
+<div class="admonition-title">
+<p>extensions/mason.lua</p>
+<p><a class="admonition-anchor-link" href="#admonition-extensionsmasonlua-3"></a></p>
+</div>
+<div>
+<pre><code class="language-lua">  ['rust_analyzer'] = function()
+    lsp.rust_analyzer.setup {
+      settings = {
+        ['rust-analyzer'] = {
+          diagnostic = { enable = false },
+          assist = { importGranularity = 'module', importPrefix = 'self' },
+          cargo = { allFeatures = true, loadOutDirsFromCheck = true },
+          procMacro = { enable = true },
+        },
+      },
+    }
+  end,
+</code></pre>
+</div>
+</div>
+<h4 id="-clippy"><a class="header" href="#-clippy">🐦 Clippy</a></h4>
+<div id="admonition-default-6" class="admonition admonish-quote">
+<div>
+<p>繋がってく縁と縁 出会いは少しトリッキー</p>
+</div>
+</div>
+<div id="admonition-clippyhttpsgithubcomrust-langrust-clippy" class="admonition admonish-info">
+<div class="admonition-title">
+<p><a href="https://github.com/rust-lang/rust-clippy">Clippy</a></p>
+<p><a class="admonition-anchor-link" href="#admonition-clippyhttpsgithubcomrust-langrust-clippy"></a></p>
+</div>
+<div>
+<p>A collection of lints to catch common mistakes and improve your <a href="https://github.com/rust-lang/rust">Rust</a> code.</p>
+<p><a href="https://rust-lang.github.io/rust-clippy/master/index.html">There are over 700 lints included in this crate!</a></p>
+<p>Lints are divided into categories, each with a default <a href="https://doc.rust-lang.org/rustc/lints/levels.html">lint level</a>.
+You can choose how much Clippy is supposed to <del>annoy</del> help you by changing the lint level by category</p>
+<p>よくあるミスを発見し、あなたの<a href="https://github.com/rust-lang/rust">Rust</a>コードを改善するための lint のコレクションです。</p>
+<p><a href="https://rust-lang.github.io/rust-clippy/master/index.html">この crate には 700以上のリントが含まれています！</a></p>
+<p>Lints はカテゴリに分かれており、
+それぞれデフォルトの<a href="https://doc.rust-lang.org/rustc/lints/levels.html">lint level</a> を持っています。
+カテゴリごとに lint level を変更することで、Clippy がどの程度あなたを <del>迷惑</del> 手助けするかを選択できます。</p>
+</div>
+</div>
+<p>これはちょっと確認してないんですが、
+<code>Clippy</code>は<code>mason</code>からは入らないんじゃないかな❓</p>
+<p><code>Rust</code>の環境を入れると、たぶん自然にインストールされてるやつです。</p>
+<div id="admonition-extensionsmasonlua-4" class="admonition admonish-example">
+<div class="admonition-title">
+<p>extensions/mason.lua</p>
+<p><a class="admonition-anchor-link" href="#admonition-extensionsmasonlua-4"></a></p>
+</div>
+<div>
+<pre><code class="language-diff">  ['rust_analyzer'] = function()
+    lsp.rust_analyzer.setup {
+      settings = {
+        ['rust-analyzer'] = {
+          diagnostic = { enable = false },
+          assist = { importGranularity = 'module', importPrefix = 'self' },
+          cargo = { allFeatures = true, loadOutDirsFromCheck = true },
+          procMacro = { enable = true },
++         checkOnSave = { allFeatures = true, command = 'clippy' },
+        },
+      },
+    }
+  end,
+</code></pre>
+</div>
+</div>
+<img src="img/angry-clippy.webp" alt="angry-clippy" width="1000" height="895" loading="lazy">
+<p>こんな感じで、<code>rustc</code>に混じって<code>clippy</code>も怒るようになります😱</p>
+<h2 id="-if-mason-is-not-available"><a class="header" href="#-if-mason-is-not-available">👹 If mason is not available</a></h2>
+<div id="admonition-default-7" class="admonition admonish-warning">
+<div>
+<p>打ち解けりゃ鬼も笑う</p>
+</div>
+</div>
+<p>普段使っている言語によっては、<code>Mason</code>にない<code>LSP</code>を使用したいこともあると思うんですが、
+<code>nvim-lspconfig</code>を使用しているのであれば、まあ大抵はなんとかなります😗</p>
+<div id="admonition-configurationshttpsgithubcomneovimnvim-lspconfigblobmasterdocserver_configurationsmd" class="admonition admonish-info">
+<div class="admonition-title">
+<p><a href="https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md">Configurations</a></p>
+<p><a class="admonition-anchor-link" href="#admonition-configurationshttpsgithubcomneovimnvim-lspconfigblobmasterdocserver_configurationsmd"></a></p>
+</div>
+<div>
+<p>LSP configs provided by nvim-lspconfig are listed below.
+This documentation is autogenerated from the Lua files.
+You can view this file in Nvim by running <code>:help lspconfig-all</code>.</p>
+<p>nvim-lspconfigが提供するLSPコンフィグを以下に示します。
+このドキュメントは Lua ファイルから自動生成されます。
+Nvim で<code>:help lspconfig-all</code>を実行するとこのファイルを見ることができます。</p>
+</div>
+</div>
+<p>わたしの場合、
+これは<a href="../neovim/lsp/nvim-lspconfig.html#admonition-extensionsnvim-lspconfiglua">nvim-lspconfig.lua</a>の末尾に置いてます。</p>
+<div id="admonition-extensionsnvim-lspconfiglua" class="admonition admonish-example">
+<div class="admonition-title">
+<p>extensions/nvim-lspconfig.lua</p>
+<p><a class="admonition-anchor-link" href="#admonition-extensionsnvim-lspconfiglua"></a></p>
+</div>
+<div>
+<pre><code class="language-diff"> vim.api.nvim_create_autocmd('LspAttach', {
+
+   ...
+
+ })
+
++local lsp = require 'lspconfig'
+
+ (ここから先に固有の設定を追加していきます)
+
+</code></pre>
+</div>
+</div>
+<p>...で、例えば私が使っている (入っているだけとも言う😅) <code>lsp</code>は以下です。</p>
+<h3 id="-sourcekit-lsp-swift"><a class="header" href="#-sourcekit-lsp-swift">🐲 SourceKit-LSP (Swift)</a></h3>
+<div id="admonition-default-8" class="admonition admonish-question">
+<div>
+<p>見える景色がちょっとずつ違う</p>
+</div>
+</div>
+<div id="admonition-sourcekit-lsphttpsgithubcomapplesourcekit-lsp" class="admonition admonish-info">
+<div class="admonition-title">
+<p><a href="https://github.com/apple/sourcekit-lsp">SourceKit-LSP</a></p>
+<p><a class="admonition-anchor-link" href="#admonition-sourcekit-lsphttpsgithubcomapplesourcekit-lsp"></a></p>
+</div>
+<div>
+<p>SourceKit-LSP is an implementation of the <a href="https://microsoft.github.io/language-server-protocol/">Language Server Protocol</a> (LSP)
+for Swift and C-based languages. It provides features like code-completion and jump-to-definition to editors that support LSP.
+SourceKit-LSP is built on top of <a href="https://github.com/apple/swift/tree/main/tools/SourceKit">sourcekitd</a>
+and <a href="https://clang.llvm.org/extra/clangd.html">clangd</a> for high-fidelity language support,
+and provides a powerful source code index as well as cross-language support.
+SourceKit-LSP supports projects that use the Swift Package Manager.</p>
+<p>SourceKit-LSP は、Swift と C ベースの言語のための <a href="https://microsoft.github.io/language-server-protocol/">Language Server Protocol</a>(LSP) の実装です。
+LSP をサポートするエディタにコード補完や定義へのジャンプなどの機能を提供します。
+SourceKit-LSP は、<a href="https://github.com/apple/swift/tree/main/tools/SourceKit">sourcekitd</a>と<a href="https://clang.llvm.org/extra/clangd.html">clangd</a>の上に構築され、忠実度の高い言語サポートを実現し、
+強力なソースコードインデックスとクロスランゲージのサポートを提供します。
+SourceKit-LSP は Swift Package Manager を使用するプロジェクトをサポートします。</p>
+</div>
+</div>
+<p><code>macOS</code>で<code>Xcode</code>をインストールしている環境であれば、これも自然に入ってます。</p>
+<div id="admonition-extensionsnvim-lspconfiglua-1" class="admonition admonish-example">
+<div class="admonition-title">
+<p>extensions/nvim-lspconfig.lua</p>
+<p><a class="admonition-anchor-link" href="#admonition-extensionsnvim-lspconfiglua-1"></a></p>
+</div>
+<div>
+<pre><code class="language-lua">  lsp.sourcekit.setup {
+    filetypes = { 'swift', 'objective-c', 'objective-cpp' },
+  }
+</code></pre>
+</div>
+</div>
+<img src="img/sourcekit-lsp.webp" alt="sourcekit-lsp" width="800" height="406" loading="lazy">
+<p>普段使ってないからなんか妙に余裕ないけど許して (その一) 😅</p>
+<h3 id="-ccls-cc"><a class="header" href="#-ccls-cc">🐯 ccls (C/C++)</a></h3>
+<div id="admonition-default-9" class="admonition admonish-warning">
+<div>
+<p>みなさまのお手を拝借</p>
+</div>
+</div>
+<div id="admonition-cclshttpsgithubcommaskrayccls" class="admonition admonish-info">
+<div class="admonition-title">
+<p><a href="https://github.com/MaskRay/ccls">ccls</a></p>
+<p><a class="admonition-anchor-link" href="#admonition-cclshttpsgithubcommaskrayccls"></a></p>
+</div>
+<div>
+<p>ccls, which originates from <a href="https://github.com/jacobdufault/cquery">cquery</a>, is a C/C++/Objective-C language server.</p>
+<p>ccls は<a href="https://github.com/jacobdufault/cquery">cquery</a>に由来する、C/C++/Objective-C 言語サーバーです。</p>
+</div>
+</div>
+<p>これは<code>brew</code>とか<code>apt</code>とか使えばお手軽ですね😉</p>
+<div id="admonition-extensionsnvim-lspconfiglua-2" class="admonition admonish-example">
+<div class="admonition-title">
+<p>extensions/nvim-lspconfig.lua</p>
+<p><a class="admonition-anchor-link" href="#admonition-extensionsnvim-lspconfiglua-2"></a></p>
+</div>
+<div>
+<pre><code class="language-lua">  lsp.ccls.setup {
+    init_options = {
+      compilationDatabaseDirectory = 'build',
+      index = {
+        threads = 0,
+      },
+      clang = {
+        extraArgs = { '--std=c++20' },
+        excludeArgs = { '-frounding-math' },
+      },
+    },
+  }
+</code></pre>
+</div>
+</div>
+<img src="img/ccls.webp" alt="ccls" width="800" height="407" loading="lazy">
+<p>普段使ってないからなんか妙に余裕ないけど許して (その二) 😅</p>
+<h2 id="-root-directory"><a class="header" href="#-root-directory">🦈 Root Directory</a></h2>
+<p>ちなみになんですが...。</p>
+<p>毎度のことながら、なんかうまくいかないなーと思ったら<code>LspInfo</code>を確認してみましょう。
+<img src="img/root-not-found.webp" alt="root-directory" width="800" height="231" loading="lazy"></p>
+<p>...もし<code>root directory</code>が認識されていなければ、それは &quot;履 い て な い&quot; らしいんです、PAAAANTS!! 🤷‍♀️
+<img src="img/root-directory.webp" alt="root-directory" width="800" height="200" loading="lazy"></p>
+<p>普段使ってないからなんか妙に余裕ないけど許して (その三) 😅</p>
+<h2 id="-dont-boo-ドンブラザーズ"><a class="header" href="#-dont-boo-ドンブラザーズ">🍑 Don't Boo! ドンブラザーズ</a></h2>
+<p>さて &quot;立春&quot; の前に &quot;節分&quot; です。色々仕切り直していきましょう❗</p>
+<p>豆をまいて...、年の数だけ数えながら豆を食べて...。</p>
+<p>そのあとはノーカウントで食べ放題だ😆</p>
+<p>どこの家でもそうだろう❓😏</p>
+<p>...違うの⁉️</p>
+<div id="admonition-success" class="admonition admonish-success">
+<div class="admonition-title">
+<p>Success</p>
+<p><a class="admonition-anchor-link" href="#admonition-success"></a></p>
+</div>
+<div>
+<p>So, let's get the party started!</p>
+</div>
+</div>
+<div id="admonition-default-10" class="admonition admonish-danger">
+<div>
+<p>じか〜い、じかい。</p>
+</div>
+</div>
+<div id="admonition-default-11" class="admonition admonish-danger">
+<div>
+<p>なに？ 王様戦xxxxングオージャーが最終回？？</p>
+<p>だったら俺たちも最終回だ。MVP を決めてやる。</p>
+</div>
+</div>
+<div style="margin-top: 4rem"></div>
+<div style="text-align: center; font-size: 400%; line-height: 0;">
+🐵 🍑 🐦
+<p>🐶 🐲 👹</p>
+</div>
+<p><strong>さようなら、ドンブラザーズ<sup class="footnote-reference">
+<a name="to-footnote-1"><a href="#1">1</a></a>
+</sup>
+❗</strong></p>
+<div id="admonition-default-12" class="admonition admonish-danger">
+<div>
+<p>MVP は俺だ!!</p>
+<p>17.6話 「フィナーレいさみあし
+<sup class="footnote-reference">
+<a name="to-footnote-2"><a href="#2">2</a></a>
+</sup>
+」</p>
+</div>
+</div>
+<div class="footnote-definition" id=1>
+<p><a href="#to-footnote-1"><sup>1:</sup></a> 『暴太郎戦隊ドンブラザーズ』（あばたろうせんたいドンブラザーズ）は、2022年3月6日から2023年2月26日まで
+テレビ朝日系列で放送された東映制作の特撮テレビドラマ、および作中で主人公たちが変身するヒーローの名称。
+モチーフは日本を代表するおとぎ話の一つ・『桃太郎』であり、
+同作品に登場する人物・動物をモデルにした桃井タロウと 4人の個性豊かなオトモたち。
+人々を守るため、そして自分の願いを叶えるために脳人やヒトツ鬼と戦う。
+<a href="https://ja.wikipedia.org/wiki/%E6%9A%B4%E5%A4%AA%E9%83%8E%E6%88%A6%E9%9A%8A%E3%83%89%E3%83%B3%E3%83%96%E3%83%A9%E3%82%B6%E3%83%BC%E3%82%BA">Wikipedia</a>より</p>
+</div><div class="footnote-definition" id=2>
+<p><a href="#to-footnote-2"><sup>2:</sup></a> 実際は<code>nvim_get_option_value</code>の おはなしで、このサイトの最終回まではあと 3回...か、4回❗</div></p>
+
+
+          <nav class="nav-wrapper" aria-label="Page navigation">
+            <a rel="prev" href="../outro/linter.html" class="nav-chapters previous icon-button" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left"></a>
+
+          </nav>
+        </main>
+
+        <spacer></spacer>
+
+        <div class="righttoc" aria-label="Table of contents">
+          <nav class="pagetoc"></nav>
+        </div>
+      </div>
+    </div>
+
+    <link rel="stylesheet" href="../css/style.css" async>
+    
+
+    <script defer type="module" src="../book.js" id = "bookjs" data-pathtoroot="../"></script>
+    
+  </body>
+</html>
