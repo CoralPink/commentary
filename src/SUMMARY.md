@@ -118,3 +118,4 @@
   - [mason-null-ls.nvim](outro/mason-null-ls.md)
     - [(Extra) Year 2024](outro/year2024.md)
     - [Linter](outro/linter.md)
+    - [LSP (Meet Me)](outro/lsp-meet-me.md)
