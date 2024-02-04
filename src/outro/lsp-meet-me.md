@@ -33,20 +33,17 @@ require('mason-lspconfig').setup_handlers {
       capabilities = require('cmp_nvim_lsp').default_capabilities(),
     }
   end,
-
-  -- (ここに mason でインストールした lsp の固有設定を必要に応じて追加していきます)
-
 }
 ```
 ~~~
 
 固有の設定を必要としなければ、
-これだけで`mason`でインストールした`LSP`は全てカバーできるはずです😆
+これだけで`mason.nvim`でインストールした`LSP`は全てカバーできていましたね😆
 
 ~~~admonish tip
-このサイトでは`packer`と外観を統一感を持たせる目的で`mason`に[border](../neovim/lsp/mason.html#border)を入れていました。
+このサイトでは`packer`と外観の統一感を持たせる目的で`mason`に[border](../neovim/lsp/mason.html#border)を入れていました。
 
-`lazy`を使う場合、これは無いほうが統一感が出ていいかも〜😪
+`lazy`を使う場合、これはもう無いほうが統一感が出ていいかも〜😪
 
 ```diff
 require('mason').setup {
@@ -66,16 +63,23 @@ require('mason').setup {
 
 ## 🧠 Additional Setup
 
-で、固有の設定を入れたい場合は色々と追加していくわけですが...。
+ここから一歩進めて、「固有の設定を入れてみよう」というがこの節のおはなしです。
 
-この先を簡潔に書くために、あらかじめこんなん仕込んでおきます🤫
+まず最初に、この先を簡潔に書くために、あらかじめこんなん仕込んでおきます🤫
 
 ~~~admonish example title="extensions/mason.lua"
 ```diff
 +local lsp = require 'lspconfig'
 
  require('mason-lspconfig').setup_handlers {
-   ...
+   function(server_name)
+     require('lspconfig')[server_name].setup {
+       capabilities = require('cmp_nvim_lsp').default_capabilities(),
+     }
+   end,
+
+   -- (ここに mason.nvim でインストールした lsp の固有設定を必要に応じて追加していきます)
+
  }
 ```
 ~~~
@@ -92,7 +96,7 @@ require('mason').setup {
 
 ## 🎌 Specific Settings
 
-この節は`lua_ls`と`rust-analyzer`のおはなしです。
+ここでは`lua_ls`と`rust-analyzer`を例に進めていきます。
 
 当然ながら、これらを実際にインストールするかどうかはおまかせします😆
 
@@ -163,8 +167,8 @@ rust-analyzer は、Rust 言語用のモジュラー・コンパイラ・フロ�
 Rust の優れた IDE サポートを作成するための、より大きな rls-2.0 の取り組みの一部です。
 ```
 
-と、いうことで`Rust`にはこれがいいんじゃないかと思うんだけど...。
-恐らく`Rust`関連のサイトだったはずなんだけど、どこを見て持ってきたのか思い出せない😑
+と、いうことで`Rust`にはこれがいいんじゃないかと思うんだけど、
+どこを見て持ってきたのかが思い出せなくて見つからない...😑
 
 ~~~admonish example title="extensions/mason.lua"
 ```lua
@@ -207,7 +211,7 @@ Lints はカテゴリに分かれており、
 ```
 
 これはちょっと確認してないんですが、
-`Clippy`は`mason`からは入らないんじゃないかな❓
+`Clippy`は`mason.nvim`からは入らないんじゃないかな❓
 
 `Rust`の環境を入れると、たぶん自然にインストールされてるやつです。
 
@@ -239,7 +243,7 @@ Lints はカテゴリに分かれており、
 打ち解けりゃ鬼も笑う
 ```
 
-普段使っている言語によっては、`Mason`にない`LSP`を使用したいこともあると思うんですが、
+普段使っている言語によっては、`mason.nvim`にない`LSP`を使用したいこともあると思うんですが、
 `nvim-lspconfig`を使用しているのであれば、まあ大抵はなんとかなります😗
 
 ```admonish info title="[Configurations](https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md)"
@@ -358,7 +362,7 @@ ccls は[cquery](https://github.com/jacobdufault/cquery)に由来する、C/C++/
 
 ## 🍑 Don't Boo! ドンブラザーズ
 
-さて "立春" の前に "節分" です。色々仕切り直していきましょう❗
+さて "立春 🌸" の前に "節分 🫘" です。色々仕切り直していきましょう❗
 
 豆をまいて...、年の数だけ数えながら豆を食べて...。
 
@@ -402,7 +406,7 @@ So, let's get the party started!
 ❗**
 
 ```admonish danger title=""
-MVP は俺だ!!
+MVP とは、俺のことだ！！
 
 17.6話 「フィナーレいさみあし
 {{footnote: 実際は`nvim_get_option_value`の おはなしで、このサイトの最終回まではあと 3回...か、4回❗}}
