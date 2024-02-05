@@ -17,8 +17,6 @@ const ELEM_OUTER = document.getElementById('searchresults-outer');
 
 const resultMarker = new Mark(ELEM_RESULTS);
 
-const LOWER_LIMIT_SCORE = 30;
-
 let searchResult;
 let finder;
 
@@ -34,10 +32,9 @@ const SearchHandler = () => {
   if (term.length <= 1 && term.charCodeAt() <= 127) {
     return;
   }
-
-  const results = finder.search(term).filter(x => x.score >= LOWER_LIMIT_SCORE);
-
   ELEM_RESULTS.innerHTML = '';
+
+  const results = finder.search(term);
 
   if (results.length <= 0) {
     ELEM_HEADER.innerText = 'No search result.';

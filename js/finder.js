@@ -1,11 +1,16 @@
 import { Fzf, byStartAsc } from 'fzf';
 
+const LOWER_LIMIT_SCORE = 30;
+
 export default class Finder {
   #fzf;
   #storeDocs;
 
   search(term) {
-    return this.#fzf.find(term).map(data => ({ doc: this.#storeDocs[data.item], ref: data.item, score: data.score }));
+    return this.#fzf
+      .find(term)
+      .map(data => ({ doc: this.#storeDocs[data.item], ref: data.item, score: data.score }))
+      .filter(x => x.score >= LOWER_LIMIT_SCORE);
   }
 
   constructor(storeDocs, limit) {
