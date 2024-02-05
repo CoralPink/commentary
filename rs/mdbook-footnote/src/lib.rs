@@ -29,11 +29,8 @@ pub fn replacing(mut book: Book) -> Result<Book, Error> {
             if !footnotes.is_empty() {
                 for (idx, content) in footnotes.into_iter().enumerate() {
                     let num = idx + 1;
-
-                    chap.content += &format!("<div class=\"footnote-definition\" id={num}>\n");
-                    chap.content += &format!("\n\n[<sup>{num}:</sup>](#to-footnote-{num})");
-                    chap.content += &format!(" {content}");
-                    chap.content += "</div>";
+                    chap.content += &format!(
+                      "<div class=\"footnote-definition\" id={num}>\n\n[<sup>{num}:</sup>](#to-footnote-{num}) {content}</div>");
                 }
             }
         }
