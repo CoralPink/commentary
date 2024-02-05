@@ -1,15 +1,39 @@
 @use 'variables' as var;
 
+mark {
+  color: var(--fg);
+  background: linear-gradient(rgba(0, 0, 0, 0) 70%, var(--search-mark-bg));
+}
+
+.content {
+  mark {
+    cursor: pointer;
+  }
+
+  blockquote {
+    padding: 0 1em;
+    color: #9e9e9e;
+    border-left: 0.25em solid #9e9e9e;
+    margin: 0;
+  }
+
+  kbd {
+    background-color: var(--table-border-color);
+    border-radius: 0.3rem;
+    box-shadow: inset 0 -0.1rem 0 var(--theme-hover);
+    display: inline-block;
+    font-size: var.$code-font-size;
+    font-family: var.$mono-font;
+    margin: 0 0.1rem;
+    padding: 0.2rem 0.3rem;
+    vertical-align: top;
+  }
+}
+
 .icon-button {
   font-family: "Symbols Nerd Font Mono";
   border: none;
   background: none;
-}
-
-mark {
-  color: var(--fg);
-  background: linear-gradient(rgba(0, 0, 0, 0) 70%, var(--search-mark-bg));
-  cursor: pointer;
 }
 
 pre {
@@ -62,25 +86,6 @@ pre {
     visibility: visible;
     opacity: 1;
   }
-}
-
-blockquote {
-  padding: 0 1em;
-  color: #9e9e9e;
-  border-left: 0.25em solid #9e9e9e;
-  margin: 0;
-}
-
-kbd {
-  background-color: var(--table-border-color);
-  border-radius: 0.3rem;
-  box-shadow: inset 0 -0.1rem 0 var(--theme-hover);
-  display: inline-block;
-  font-size: var.$code-font-size;
-  font-family: var.$mono-font;
-  margin: 0 0.1rem;
-  padding: 0.2rem 0.3rem;
-  vertical-align: top;
 }
 
 .top-bar {
@@ -336,55 +341,6 @@ table {
           font-weight: bold;
         }
       }
-    }
-  }
-}
-
-.content main a:link,
-a:visited {
-  color: var(--links);
-  margin-left: 0.2rem;
-  margin-right: 0.2rem;
-}
-
-.result-no-output {
-  font-style: italic;
-}
-
-.theme-popup {
-  position: absolute;
-  top: var.$menu-bar-height;
-  left: 2.4rem;
-  border-radius: 0.4rem;
-  font-size: 0.7rem;
-  color: var(--fg);
-  background: var(--theme-popup-bg);
-  border: 0.1rem solid var(--theme-popup-border);
-  list-style-type: none;
-  margin: 0;
-  padding: 0.4rem;
-  display: none;
-  overflow: hidden;
-
-  .default {
-    color: var(--icons);
-  }
-
-  .theme {
-    width: 100%;
-    border: 0;
-    margin: 0;
-    padding: 0.2rem 1.25rem;
-    line-height: 1.5rem;
-    white-space: nowrap;
-    text-align: left;
-    cursor: pointer;
-    color: inherit;
-    background: inherit;
-    font-size: inherit;
-
-    &:hover {
-      background-color: var(--theme-hover);
     }
   }
 }
