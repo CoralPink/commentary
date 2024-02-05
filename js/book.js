@@ -17,11 +17,12 @@ const ELEM_OUTER = document.getElementById('searchresults-outer');
 
 const resultMarker = new Mark(ELEM_RESULTS);
 
+const LOWER_LIMIT_SCORE = 30;
+
 let searchResult;
 let finder;
 
-// Eventhandler for keyevents while the searchbar is focused
-const keyUpHandler = () => {
+const SearchHandler = () => {
   const term = ELEM_BAR.value.trim();
 
   if (term === '') {
@@ -29,9 +30,20 @@ const keyUpHandler = () => {
     return;
   }
 
-  const results = finder.search(term);
+  // If the input is a 1 character and is a single-byte character, the search process is not performed.
+  if (term.length <= 1 && term.charCodeAt() <= 127) {
+    return;
+  }
+
+  const results = finder.search(term).filter(x => x.score >= LOWER_LIMIT_SCORE);
 
   ELEM_RESULTS.innerHTML = '';
+
+  if (results.length <= 0) {
+    ELEM_HEADER.innerText = 'No search result.';
+    return;
+  }
+
   ELEM_HEADER.innerText = `${results.length} search results for : ${term}`;
 
   for (const result of results) {
@@ -98,7 +110,7 @@ const searchInit = async root => {
     return;
   }
 
-  ELEM_BAR.addEventListener('keyup', keyUpHandler, { once: false, passive: true });
+  ELEM_BAR.addEventListener('keyup', SearchHandler, { once: false, passive: true });
   ELEM_ICON.addEventListener(
     'mouseup',
     () => (ELEM_WRAPPER.classList.contains('hidden') ? showSearch() : hiddenSearch()),
