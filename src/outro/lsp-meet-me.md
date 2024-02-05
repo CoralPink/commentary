@@ -94,7 +94,7 @@ require('mason').setup {
 この世は楽園！
 ```
 
-## 🎌 Specific Settings
+## 🕶️ Specific Settings
 
 ここでは`lua_ls`と`rust-analyzer`を例に進めていきます。
 
@@ -350,7 +350,7 @@ ccls は[cquery](https://github.com/jacobdufault/cquery)に由来する、C/C++/
 
 ちなみになんですが...。
 
-毎度のことながら、なんかうまくいかないなーと思ったら`LspInfo`を確認してみましょう。
+毎度のことながら、なんかじょーずにいかないなーと思ったら`LspInfo`を確認してみましょう。
 
 ![root-directory](img/root-not-found.webp)
 
