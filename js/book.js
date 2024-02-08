@@ -40,12 +40,8 @@ const searchHandler = () => {
     ELEM_HEADER.innerText = 'No search result.';
     return;
   }
-
   ELEM_HEADER.innerText = `${results.length} search results for : ${term}`;
-
-  for (const result of results) {
-    searchResult.append_search_result(result.ref, result.doc.body, result.doc.breadcrumbs, term);
-  }
+  searchResult.append_search_result(results, term);
 
   resultMarker.mark(decodeURIComponent(term).split(' '), {
     accuracy: 'complementary',

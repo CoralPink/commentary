@@ -9,15 +9,15 @@ export default class Finder {
   search(term) {
     return this.#fzf
       .find(term)
-      .map(data => ({ doc: this.#storeDocs[data.item], ref: data.item, score: data.score }))
-      .filter(x => x.score >= LOWER_LIMIT_SCORE);
+      .map(x => ({ doc: this.#storeDocs[x.item], key: x.item, score: x.score }))
+      .filter(y => y.score >= LOWER_LIMIT_SCORE);
   }
 
   constructor(storeDocs, limit) {
     /** @see https://github.com/HillLiu/docker-mdbook */
     this.#fzf = new Fzf(Object.keys(storeDocs), {
       limit,
-      selector: item => `${storeDocs[item].breadcrumbs}${storeDocs[item].body}`,
+      selector: x => `${storeDocs[x].title} ${storeDocs[x].body}`,
       tiebreakers: [byStartAsc],
     });
 
