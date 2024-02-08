@@ -93,6 +93,7 @@ jobs:
           rm book/mark.min.js
           rm -rf book/searchindex.js
           rm -rf book/FontAwesome
+          rm -rf book/fonts
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3

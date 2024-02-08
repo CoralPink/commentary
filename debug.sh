@@ -41,5 +41,6 @@ mdbook build --dest-dir commentary
 #rm commentary/mark.min.js
 #rm -rf commentary/searchindex.js
 #rm -rf commentary/FontAwesome
+#rm -rf commentary/fonts
 
 echo '\n🐥 complete!'
