@@ -20,7 +20,7 @@ jobs:
       - name: Setup mdBook
         uses: peaceiris/actions-mdbook@v1
         with:
-          mdbook-version: "0.4.36"
+          mdbook-version: "0.4.37"
 
       - name: Setup Bun
         uses: oven-sh/setup-bun@v1
@@ -69,8 +69,8 @@ jobs:
         run: |
           pushd scss
           bun install
+          bun run compile general.scss ../src/css/general.css
           bun run compile style.scss ../src/css/style.css
-          bun run compile theme/general.scss ../theme/css/general.css
           pushd
 
       - name: Build mdBook
@@ -83,6 +83,7 @@ jobs:
           rm book/clipboard.min.js
           rm book/elasticlunr.min.js
           rm book/favicon.png
+          rm book/fonts.css
           rm book/highlight.css
           rm book/highlight.js
           rm book/searcher.js
