@@ -138,7 +138,7 @@
       'hrsh7th/cmp-nvim-lsp',
       {
         'L3MON4D3/LuaSnip',
-        tag = &quot;v1.*&quot;,
+        tag = "v1.*",
         run = 'make install_jsregexp',
         config = function() require 'extensions.luasnip' end,
 +       requires = 'saadparwaiz1/cmp_luasnip',
@@ -213,15 +213,15 @@ cmp.setup {
 </div>
 <div>
 <pre><code class="language-json">{
-  &quot;categories&quot;: [&quot;Snippets&quot;],
-  &quot;name&quot;: &quot;my-snippets&quot;,
-  &quot;contributes&quot;: {
-    &quot;snippets&quot;: [
+  "categories": ["Snippets"],
+  "name": "my-snippets",
+  "contributes": {
+    "snippets": [
       {
-        &quot;language&quot;: [
-          &quot;all&quot;
+        "language": [
+          "all"
         ],
-        &quot;path&quot;: &quot;all.json&quot;
+        "path": "all.json"
       }
     ]
   }
@@ -240,10 +240,10 @@ cmp.setup {
 </div>
 <div>
 <pre><code class="language-json">{
-  &quot;example&quot;: {
-    &quot;prefix&quot;: &quot;test&quot;,
-    &quot;body&quot;: [&quot;hello snippets!!&quot;],
-    &quot;description&quot;: &quot;example snippets&quot;
+  "example": {
+    "prefix": "test",
+    "body": ["hello snippets!!"],
+    "description": "example snippets"
   }
 }
 </code></pre>
@@ -272,15 +272,15 @@ cmp.setup {
 <pre><code class="language-lua">  -- don't pass any arguments, luasnip will find the collection because it is
   -- (probably) in rtp.
   -- 引数を渡さない場合、luasnipはrtpにあるコレクションを見つけるでしょう（おそらく）.
-  require(&quot;luasnip.loaders.from_vscode&quot;).lazy_load()
+  require("luasnip.loaders.from_vscode").lazy_load()
 
   -- specify the full path...
   -- フルパスを指定する...
-  require(&quot;luasnip.loaders.from_vscode&quot;).lazy_load({paths = &quot;~/.config/nvim/my_snippets&quot;})
+  require("luasnip.loaders.from_vscode").lazy_load({paths = "~/.config/nvim/my_snippets"})
 
   -- or relative to the directory of $MYVIMRC
   -- または $MYVIMRC のディレクトリからの相対パス
-  require(&quot;luasnip.loaders.from_vscode&quot;).load({paths = &quot;./my_snippets&quot;})
+  require("luasnip.loaders.from_vscode").load({paths = "./my_snippets"})
 
 </code></pre>
 </div>
@@ -320,7 +320,7 @@ cmp.setup {
 <p><code>paths</code>には<code>package.json</code>のいるパスを教えてあげてください😉</p>
 </div>
 </div>
-<p>そしたらなんか適当に<code>nvim</code>を起動して、<code>Insert</code>モードからおもむろに &quot;t&quot; を入力してみましょう。</p>
+<p>そしたらなんか適当に<code>nvim</code>を起動して、<code>Insert</code>モードからおもむろに "t" を入力してみましょう。</p>
 <div class="table-wrapper"><table><thead><tr><th style="text-align: center">Step 1.</th><th style="text-align: center">Step 2.</th></tr></thead><tbody>
 <tr><td style="text-align: center"><img src="img/snip-example1.webp" alt="snip-example1" /></td><td style="text-align: center"><img src="img/snip-example2.webp" alt="snip-example2" /></td></tr>
 </tbody></table>
@@ -332,7 +332,7 @@ cmp.setup {
 <p><a class="admonition-anchor-link" href="#admonition-note-3"></a></p>
 </div>
 <div>
-<p>今回は<code>prefix</code>に<code>test</code>と設定しているため、入力された &quot;t&quot; から<code>test</code>を候補に挙げてくれるんですね😆</p>
+<p>今回は<code>prefix</code>に<code>test</code>と設定しているため、入力された "t" から<code>test</code>を候補に挙げてくれるんですね😆</p>
 </div>
 </div>
 <h2 id="ill-take-you-all"><a class="header" href="#ill-take-you-all">I'll take you all.</a></h2>
@@ -340,9 +340,9 @@ cmp.setup {
 <p>もし今までに手塩にかけて育ててきたスニペットがいれば、それはもう即戦力❗</p>
 <div id="admonition-default-2" class="admonition admonish-success">
 <div>
-<p>She's the kind of a girl that makes &quot;The News of the World&quot;</p>
+<p>She's the kind of a girl that makes "The News of the World"</p>
 <p>Yes, you could say she was attactively built</p>
-<p>彼女は &quot;The News of the World&quot; に載るような子だよ</p>
+<p>彼女は "The News of the World" に載るような子だよ</p>
 <p>そうさ、彼女は魅力的だと言っていい</p>
 </div>
 </div>
@@ -363,7 +363,7 @@ cmp.setup {
 </div>
 <div class="footnote-definition" id=1>
 <p><a href="#to-footnote-1"><sup>1:</sup></a> Polythene Pam (by <a href="https://en.wikipedia.org/wiki/The_Beatles">The Beatles</a>):
-タイトルの &quot;Polythene&quot; は、ポリエチレンの (主にイギリスでの) 別称。
+タイトルの "Polythene" は、ポリエチレンの (主にイギリスでの) 別称。
 Lennon は、本作をきつめの Liverpool 訛りで歌っている。
 本作のモチーフについて、Lennon は「とある女性と僕たちを最初にマスコミに露出してくれた、
 イギリス版の Irwin Allen Ginsberg ともいえる男との思い出。

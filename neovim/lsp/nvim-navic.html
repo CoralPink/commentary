@@ -182,7 +182,7 @@
 <p><code>auto_attach</code>の登場によって、
 <code>on_attach</code>すらも、言語ごとに<code>documentSymbolProvider</code>に対応してますかぁ❓な〜んていう確認すらも
 自分で書く必要がありません😊 のほほん。</p>
-<p>これ以上に &quot;auto&quot; なものがかつて他に存在したでしょうか⁉️</p>
+<p>これ以上に "auto" なものがかつて他に存在したでしょうか⁉️</p>
 <h3 id="highlight"><a class="header" href="#highlight">highlight</a></h3>
 <p><code>highlight</code>については、これはなんと<code>onenord.nvim</code>が対応してくれています❗</p>
 <div id="admonition-plugin-supporthttpsgithubcomrmehri01onenordnvimplugin-support" class="admonition admonish-info">
@@ -202,7 +202,7 @@
 </div>
 <div>
 <p>使用しているカラーテーマが<code>nvim-navic</code>の<code>highlight</code>に対応していない場合でも
-<a href="https://github.com/SmiteshP/nvim-navic#-customise">Customise</a> の &quot;Example highlight definitions&quot; で案内されているように、
+<a href="https://github.com/SmiteshP/nvim-navic#-customise">Customise</a> の "Example highlight definitions" で案内されているように、
 自分で色をつけることができちゃいます😉</p>
 </div>
 </div>
@@ -498,7 +498,7 @@ It should help if you are facing performance issues in large files. Read the doc
 <p>true に設定すると、CursorHold イベント時にのみコンテキストを更新します。以下のような場合に有効です。</p>
 <p>Could be usefull if you are facing performance issues on large files. Example usage</p>
 <p>大容量のファイルでパフォーマンスの問題に直面している場合。</p>
-<pre><code class="language-lua">vim.api.nvim_create_autocmd(&quot;BufEnter&quot;, {
+<pre><code class="language-lua">vim.api.nvim_create_autocmd("BufEnter", {
   callback = function()
     if vim.api.nvim_buf_line_count(0) &gt; 10000 then
       vim.b.navic_lazy_update_context = true
@@ -515,7 +515,7 @@ It should help if you are facing performance issues in large files. Read the doc
 <p><a class="admonition-anchor-link" href="#admonition-extensionsnvim-naviclua-3"></a></p>
 </div>
 <div>
-<pre><code class="language-lua">vim.api.nvim_create_autocmd(&quot;BufEnter&quot;, {
+<pre><code class="language-lua">vim.api.nvim_create_autocmd("BufEnter", {
   group = vim.api.nvim_create_augroup('nvim-navic', {}),
   callback = function()
     if vim.api.nvim_buf_line_count(0) &gt; 10000 then

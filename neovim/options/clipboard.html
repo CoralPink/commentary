@@ -110,7 +110,7 @@
 <div>
 <pre><code class="language-txt">Nvim has no direct connection to the system clipboard. Instead it depends on
 a |provider| which transparently uses shell commands to communicate with the
-system clipboard or any other clipboard &quot;backend&quot;.
+system clipboard or any other clipboard "backend".
 
 Nvim は、システムのクリップボードに直接接続することはできない。
 その代わり、システムのクリップボードや他のクリップボードの「バックエンド」と
@@ -150,7 +150,7 @@ See 'clipboard' for details and options.
 <p><a class="admonition-anchor-link" href="#admonition-h-clipboard-1"></a></p>
 </div>
 <div>
-<pre><code class="language-txt">'clipboard' 'cb' string	(default &quot;&quot;)
+<pre><code class="language-txt">'clipboard' 'cb' string	(default "")
                  global
 
   This option is a list of comma-separated names.
@@ -174,9 +174,9 @@ unnamed
   for all yank, delete, change and put operations which
   would normally go to the unnamed register.  When a
   register is explicitly specified, it will always be
-  used regardless of whether &quot;unnamed&quot; is in 'clipboard'
+  used regardless of whether "unnamed" is in 'clipboard'
   or not.  The clipboard register can always be
-  explicitly accessed using the &quot;* notation.  Also see
+  explicitly accessed using the "* notation.  Also see
   |clipboard|.
 
   これを含むと、Vim は通常 unnamed レジスタに行くような yank, delete, change, put 操作に対して、
@@ -187,25 +187,25 @@ unnamed
 
                               clipboard-unnamedplus
 unnamedplus
-  A variant of the &quot;unnamed&quot; flag which uses the
+  A variant of the "unnamed" flag which uses the
   clipboard register '+' (|quoteplus|) instead of
   register '*' for all yank, delete, change and put
   operations which would normally go to the unnamed
-  register.  When &quot;unnamed&quot; is also included to the
+  register.  When "unnamed" is also included to the
   option, yank and delete operations (but not put)
   will additionally copy the text into register
   '*'. See |clipboard|.
 
-  unnamed&quot; フラグの亜種で、通常 unnamed レジスタに行くはずの yank, delete, change, put 操作すべてに対して、
+  unnamed" フラグの亜種で、通常 unnamed レジスタに行くはずの yank, delete, change, put 操作すべてに対して、
   レジスタ '*' の代わりにクリップボードレジスタ '+' (|quoteplus|) を使用する。
 
-  unnamed&quot; がオプションに含まれている場合、
+  unnamed" がオプションに含まれている場合、
   yank と delete 操作 (put は不可) は、さらにテキストをレジスタ '+' にコピーする。
 </code></pre>
 </div>
 </details>
 <p>なんかもうヘルプまみれですが、ここで確認しておきたいのは<code>clipboard</code>のデフォルト値ですね。</p>
-<p>これを見ると<code>&quot;&quot;</code>となっているので、特に何も気にしないで、このように書いてしまって問題ないはずです😉</p>
+<p>これを見ると<code>""</code>となっているので、特に何も気にしないで、このように書いてしまって問題ないはずです😉</p>
 <div id="admonition-optionslua" class="admonition admonish-example">
 <div class="admonition-title">
 <p>options.lua</p>

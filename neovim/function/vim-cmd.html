@@ -150,18 +150,18 @@ vim.cmd([[
  augroup END
 ]])
 
--- Ex command :echo &quot;foo&quot;
+-- Ex command :echo "foo"
 -- Note string literals need to be double quoted.
-vim.cmd('echo &quot;foo&quot;')
-vim.cmd { cmd = 'echo', args = { '&quot;foo&quot;' } }
-vim.cmd.echo({ args = { '&quot;foo&quot;' } })
-vim.cmd.echo('&quot;foo&quot;')
+vim.cmd('echo "foo"')
+vim.cmd { cmd = 'echo', args = { '"foo"' } }
+vim.cmd.echo({ args = { '"foo"' } })
+vim.cmd.echo('"foo"')
 
 -- Ex command :write! myfile.txt
 vim.cmd('write! myfile.txt')
-vim.cmd { cmd = 'write', args = { &quot;myfile.txt&quot; }, bang = true }
-vim.cmd.write { args = { &quot;myfile.txt&quot; }, bang = true }
-vim.cmd.write { &quot;myfile.txt&quot;, bang = true }
+vim.cmd { cmd = 'write', args = { "myfile.txt" }, bang = true }
+vim.cmd.write { args = { "myfile.txt" }, bang = true }
+vim.cmd.write { "myfile.txt", bang = true }
 
 -- Ex command :colorscheme blue
 vim.cmd('colorscheme blue')
@@ -198,9 +198,9 @@ vim.cmd.colorscheme('blue')
 </div>
 <div>
 <pre><code class="language-txt">:colo[rscheme] {name}	      Load color scheme {name}.
-  This searches 'runtimepath' for the file &quot;colors/{name}.(vim|lua)&quot;.
+  This searches 'runtimepath' for the file "colors/{name}.(vim|lua)".
 
-  'runtimepath'を検索して、&quot;colors/{name}.(vim|lua) &quot;というファイルを探します。
+  'runtimepath'を検索して、"colors/{name}.(vim|lua) "というファイルを探します。
 </code></pre>
 </div>
 </div>

@@ -101,7 +101,7 @@
 
         <main id="main">
           <h1 id="tabstop--shiftwidth--expandtab"><a class="header" href="#tabstop--shiftwidth--expandtab">tabstop / shiftwidth / expandtab</a></h1>
-<p>さすがは &quot;bufferリゾーン&quot; ですね😆 いきなり &quot;みつごどりモンスター&quot; が飛び出してきました❗</p>
+<p>さすがは "bufferリゾーン" ですね😆 いきなり "みつごどりモンスター" が飛び出してきました❗</p>
 <h2 id="tabstop"><a class="header" href="#tabstop">tabstop</a></h2>
 <div id="admonition-h-tabstop" class="admonition admonish-info">
 <div class="admonition-title">
@@ -131,7 +131,7 @@
 </code></pre>
 </div>
 </div>
-<p><code>tabstop</code>は俗に言う &quot;タブ幅&quot; です。デフォルトのまま<code>8</code>ってなってると、古いファイルのような印象を持っちゃうんですが、実際のところはどうなのかな...🤔</p>
+<p><code>tabstop</code>は俗に言う "タブ幅" です。デフォルトのまま<code>8</code>ってなってると、古いファイルのような印象を持っちゃうんですが、実際のところはどうなのかな...🤔</p>
 <p>単純にタブ幅だけを設定して終わりなら話は簡単なのですが、<code>Neovim</code>の場合、この先に出てくるオプションとやや複雑に絡み合っています😓</p>
 <p>そのためなのか、ヘルプ (上の抜粋に含まない部分) ではこれらを適切に設定する4つの方法が示されています。</p>
 <p>わたしが採用しているのは、オーソドックスな<code>2.</code>です☺️</p>
@@ -168,19 +168,19 @@ formatting will never be messed up when 'tabstop' is changed.
 </code></pre>
 </div>
 </div>
-<p><code>shiftwidth</code>を &quot;zero&quot; にすれば、<code>tabstop</code>と同じ値を使ってくれるそうです。</p>
+<p><code>shiftwidth</code>を "zero" にすれば、<code>tabstop</code>と同じ値を使ってくれるそうです。</p>
 <div id="admonition-note" class="admonition admonish-note">
 <div class="admonition-title">
 <p>Note</p>
 <p><a class="admonition-anchor-link" href="#admonition-note"></a></p>
 </div>
 <div>
-<p>当たり前だー❗と思われるかもしれませんが、ヘルプで &quot;zero&quot; と言っているのは、<code>number</code>型の<code>0</code>です。</p>
+<p>当たり前だー❗と思われるかもしれませんが、ヘルプで "zero" と言っているのは、<code>number</code>型の<code>0</code>です。</p>
 </div>
 </div>
 <h2 id="タブ幅を決める"><a class="header" href="#タブ幅を決める">タブ幅を決める</a></h2>
 <p>この2つを別の値に設定して活用するシチュエーション、ちょっとわたしでは想像が及ばないので、もう<code>0</code>にしちゃいます😅</p>
-<p><code>tabstop</code>の方は、&quot;好きなように設定し&quot;というお言葉に甘えて、お好みの数値を入れましょう😆</p>
+<p><code>tabstop</code>の方は、"好きなように設定し"というお言葉に甘えて、お好みの数値を入れましょう😆</p>
 <div id="admonition-optionslua" class="admonition admonish-example">
 <div class="admonition-title">
 <p>options.lua</p>
@@ -202,7 +202,7 @@ vim.api.nvim_buf_set_option(0, 'shiftwidth', 0)
 </div>
 </div>
 <h2 id="expandtab"><a class="header" href="#expandtab">expandtab</a></h2>
-<p>その上で、&quot;<code>expandtab</code>を使用する&quot;んでしたね。</p>
+<p>その上で、"<code>expandtab</code>を使用する"んでしたね。</p>
 <div id="admonition-optionslua-1" class="admonition admonish-example">
 <div class="admonition-title">
 <p>options.lua</p>
@@ -234,7 +234,7 @@ vim.api.nvim_buf_set_option(0, 'shiftwidth', 0)
 </code></pre>
 </div>
 </div>
-<p>このオプションが、&quot;常にスペースを挿入することができる&quot; ...の、部分を担っているんですね☺️</p>
+<p>このオプションが、"常にスペースを挿入することができる" ...の、部分を担っているんですね☺️</p>
 <h3 id="autoindent"><a class="header" href="#autoindent">autoindent</a></h3>
 <p>ちなみに、<code>expandtab</code>のヘルプの中に出てきた<code>autoindent</code>を少し見てみると...、</p>
 <div id="admonition-h-autoindent" class="admonition admonish-info">
@@ -247,10 +247,10 @@ vim.api.nvim_buf_set_option(0, 'shiftwidth', 0)
 			              local to buffer
 
   Copy indent from current line when starting a new line (typing &lt;CR&gt;
-  in Insert mode or when using the &quot;o&quot; or &quot;O&quot; command).
+  in Insert mode or when using the "o" or "O" command).
 
   改行時に現在行のインデントをコピーする
-  （挿入モード、&lt;CR&gt;を入力したとき、または &quot;o&quot; や &quot;O&quot; コマンドを使用したとき）。
+  （挿入モード、&lt;CR&gt;を入力したとき、または "o" や "O" コマンドを使用したとき）。
 </code></pre>
 </div>
 </div>

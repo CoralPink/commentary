@@ -155,7 +155,7 @@ special symbols are available even without requiring you to use a patched font.<
 <p><a class="admonition-anchor-link" href="#admonition-weztermlua"></a></p>
 </div>
 <div>
-<pre><code class="language-lua">font = require(&quot;wezterm&quot;).font(&quot;Firge35Nerd Console&quot;),
+<pre><code class="language-lua">font = require("wezterm").font("Firge35Nerd Console"),
 </code></pre>
 </div>
 </div>
@@ -167,13 +167,13 @@ special symbols are available even without requiring you to use a patched font.<
 <div>
 <p>The first parameter is the name of the font; the name can be one of the following types of names:</p>
 <ul>
-<li>The font family name, eg: &quot;JetBrains Mono&quot;. The family name doesn't include any style information (such as weight, stretch or italic), which can be specified via the attributes parameter. This is the recommended name to use for the font, as it the most compatible way to resolve an installed font.</li>
-<li>The computed full name, which is the family name with the sub-family (which incorporates style information) appended, eg: &quot;JetBrains Mono Regular”.</li>
+<li>The font family name, eg: "JetBrains Mono". The family name doesn't include any style information (such as weight, stretch or italic), which can be specified via the attributes parameter. This is the recommended name to use for the font, as it the most compatible way to resolve an installed font.</li>
+<li>The computed full name, which is the family name with the sub-family (which incorporates style information) appended, eg: "JetBrains Mono Regular”.</li>
 <li>(Since 20210502-154244-3f7122cb) The postscript name, which is an ostensibly unique name identifying a given font and style that is encoded into the font by the font designer.</li>
 </ul>
 <p>最初のパラメータはフォントの名前です。この名前は、以下のタイプの名前のいずれかになります。</p>
 <ul>
-<li>フォントファミリ名、例：&quot;JetBrains Mono 「JetBrains Mono&quot; のようなフォントファミリーの名前です。このファミリー名にはスタイル情報（ウェイト、ストレッチ、イタリックなど）は含まれませんが、これは属性パラメータで指定できます。これは、インストールされているフォントを解決するための最も互換性のある方法であるため、フォントに使用する推奨される名前です。</li>
+<li>フォントファミリ名、例："JetBrains Mono 「JetBrains Mono" のようなフォントファミリーの名前です。このファミリー名にはスタイル情報（ウェイト、ストレッチ、イタリックなど）は含まれませんが、これは属性パラメータで指定できます。これは、インストールされているフォントを解決するための最も互換性のある方法であるため、フォントに使用する推奨される名前です。</li>
 <li>計算されたフルネームは、ファミリー名にサブファミリー（スタイル情報を含む）を追加したもので、例．例えば、「JetBrains Mono Regular」です。</li>
 <li>(20210502-154244-3f7122cb 以降) ポストスクリプト名。これは、フォントデザイナーがフォントにエンコードした、与えられたフォントとスタイルを識別する表向きユニークな名前です。</li>
 </ul>

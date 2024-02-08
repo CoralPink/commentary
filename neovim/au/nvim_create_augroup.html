@@ -176,14 +176,14 @@ This is useful for removing or executing a group of autocommands.
 <pre><code class="language-txt">To get an existing group id, do:
 既存のグループ ID を取得するには、次のようにする。
 
-  local id = vim.api.nvim_create_augroup(&quot;MyGroup&quot;, {
+  local id = vim.api.nvim_create_augroup("MyGroup", {
       clear = false
   })
 </code></pre>
 </div>
 </div>
-<p>&quot;既存の&quot;って言われると、「なんで😮❓」ってなるんですけど、
-&quot;オートコマンドグループを作成または取得する。&quot;という最初の文言を信じることにしましょう。<code>create_augroup</code>なんだし❗</p>
+<p>"既存の"って言われると、「なんで😮❓」ってなるんですけど、
+"オートコマンドグループを作成または取得する。"という最初の文言を信じることにしましょう。<code>create_augroup</code>なんだし❗</p>
 <p>パラメータは<code>name</code>には自分で決めたグループ名を、<code>opts</code>は...。更に話が長くなっちゃうんで空っぽ(デフォルト)にしときましょう。</p>
 <div id="admonition-note" class="admonition admonish-note">
 <div class="admonition-title">
@@ -200,7 +200,7 @@ This is useful for removing or executing a group of autocommands.
 </div>
 <p>ってことで、こんな感じのコードになるのかな。</p>
 <p>グループの命名規則がわかりませんが、とりあえず雰囲気で...🤫</p>
-<pre><code class="language-lua">local id = vim.api.nvim_create_augroup(&quot;buffer_set_options&quot;, {})
+<pre><code class="language-lua">local id = vim.api.nvim_create_augroup("buffer_set_options", {})
 </code></pre>
 <p>これを<code>nvim_create_autocmd</code>に組み込むので、もう一回ヘルプを確認します。</p>
 <div id="admonition-h-nvim_create_autocmd" class="admonition admonish-info">

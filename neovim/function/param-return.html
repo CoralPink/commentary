@@ -161,7 +161,7 @@ vim.keymap.set('n', '&lt;Leader&gt;5', testret)
 <p>ただ、これだと戻り値を全く無視しているので無意味ですよね😮 ...じゃあってことで</p>
 <pre><code class="language-lua">vim.keymap.set('n', '&lt;Leader&gt;5', print(testret()))
 </code></pre>
-<p>とかしたくなるんですけど、これは<code>print()</code>に &quot;パラメータを渡してる&quot; のでエラーになるやつです😅</p>
+<p>とかしたくなるんですけど、これは<code>print()</code>に "パラメータを渡してる" のでエラーになるやつです😅</p>
 <p>...結局、<code>function()</code>で囲うところに落ち着くわけです。</p>
 <pre><code class="language-lua">vim.keymap.set('n', '&lt;Leader&gt;5', function() print(testret()) end)
 </code></pre>
@@ -186,7 +186,7 @@ vim.keymap.set('n', '&lt;Leader&gt;5', testret)
 <p><a class="admonition-anchor-link" href="#admonition-error-1"></a></p>
 </div>
 <div>
-<pre><code class="language-lua">-- &quot;通常の function を呼び出す&quot; 項で作った testfunc() を呼び出す
+<pre><code class="language-lua">-- "通常の function を呼び出す" 項で作った testfunc() を呼び出す
 vim.keymap.set('n', '&lt;Leader&gt;6', testfunc())
 </code></pre>
 </div>

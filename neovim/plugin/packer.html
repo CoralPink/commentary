@@ -167,7 +167,7 @@
 <img src="img/packpath.webp" alt="packpath" width="705" height="140" decoding="async"></p>
 </div>
 </div>
-<p>&quot;Quickstart&quot; にあるように、順を追ってやっていきましょう。</p>
+<p>"Quickstart" にあるように、順を追ってやっていきましょう。</p>
 <div id="admonition-git-clone" class="admonition admonish-quote">
 <div class="admonition-title">
 <p>Git Clone</p>
@@ -178,11 +178,11 @@
 <pre><code class="language-sh">git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 </code></pre>
 <p>Windows Powershell Installation</p>
-<pre><code class="language-sh">git clone https://github.com/wbthomason/packer.nvim &quot;$env:LOCALAPPDATA\nvim-data\site\pack\packer\start\packer.nvim&quot;
+<pre><code class="language-sh">git clone https://github.com/wbthomason/packer.nvim "$env:LOCALAPPDATA\nvim-data\site\pack\packer\start\packer.nvim"
 </code></pre>
 </div>
 </div>
-<p>わたしの環境では &quot;/home/utm-user/.local/share/nvim/site&quot; が<code>packpath</code>に含まれていたので、例示されているパスのままで進めていますが、
+<p>わたしの環境では "/home/utm-user/.local/share/nvim/site" が<code>packpath</code>に含まれていたので、例示されているパスのままで進めていますが、
 環境によってはこのパスが含まれていないかもしれません。</p>
 <div id="admonition-note-2" class="admonition admonish-note">
 <div class="admonition-title">
@@ -191,7 +191,7 @@
 </div>
 <div>
 <p>(仮想環境ではあるんですが)<code>Ubuntu Server for ARM</code>では<code>apt</code>からインストールできる<code>Neovim</code>のバージョンが異様に低かったので
-<code>flatpak</code>を使ったら、「なにこれマルチバース❓」って言うぐらいマッドネスな<code>packpath</code>でした。もはや &quot;panicpath&quot; です🤣</p>
+<code>flatpak</code>を使ったら、「なにこれマルチバース❓」って言うぐらいマッドネスな<code>packpath</code>でした。もはや "panicpath" です🤣</p>
 <p>...ただ、話がわかっていればこんなの適合させるぐらい簡単ですよね〜😉 <code>packpath</code>を確認の上で合わせてあげてください。
 <img src="img/flatpak.webp" alt="flatpak" width="696" height="587" loading="lazy"></p>
 <pre><code class="language-sh"># あくまで一例です。
@@ -273,10 +273,10 @@ end)
 <div>
 <pre><code class="language-txt">On startup after processing your |config|, Nvim scans all directories in
 
-'packpath' for plugins in &quot;pack/*/start/*&quot;, then loads the plugins.
+'packpath' for plugins in "pack/*/start/*", then loads the plugins.
 
 Nvim は起動時に |config| を処理した後、'packpath' にある全てのディレクトリをスキャンして
-&quot;pack/*/start/*&quot; にあるプラグインを探し、プラグインを読み込ませます。
+"pack/*/start/*" にあるプラグインを探し、プラグインを読み込ませます。
 
 To allow for calling into package functionality while parsing your |vimrc|,
 |:colorscheme| and |autoload| will both automatically search under 'packpath'
@@ -301,10 +301,10 @@ details.
 <img src="img/packer_compiled.webp" alt="packer-compiled" width="635" height="506" loading="lazy"></p>
 <p>わたしがそこまで意味を分かっているわけではないので、ふわっとだけ触れますが、</p>
 <pre><code class="language-lua">_G.packer_plugins = {
-  [&quot;packer.nvim&quot;] = {
+  ["packer.nvim"] = {
     loaded = true,
-    path = &quot;/home/utm-user/.local/share/nvim/site/pack/packer/start/packer.nvim&quot;,
-    url = &quot;https://github.com/wbthomason/packer.nvim&quot;
+    path = "/home/utm-user/.local/share/nvim/site/pack/packer/start/packer.nvim",
+    url = "https://github.com/wbthomason/packer.nvim"
   },
 </code></pre>
 <p>なんかこんなのがいますよね。</p>

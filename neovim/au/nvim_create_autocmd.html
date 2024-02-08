@@ -122,10 +122,10 @@
 </code></pre>
 <pre><code class="language-lua">  -- Example using callback:
 
-  local myluafun = function() print(&quot;This buffer enters&quot;) end
+  local myluafun = function() print("This buffer enters") end
 
-  vim.api.nvim_create_autocmd({&quot;BufEnter&quot;, &quot;BufWinEnter&quot;}, {
-    pattern = {&quot;*.c&quot;, &quot;*.h&quot;},
+  vim.api.nvim_create_autocmd({"BufEnter", "BufWinEnter"}, {
+    pattern = {"*.c", "*.h"},
     callback = myluafun,
   })
 </code></pre>
@@ -219,13 +219,13 @@ is displayed (and is no longer hidden).
 Not triggered for |:split| without arguments,
 since the buffer does not change, or :split
 with a file already open in a window.
-Triggered for &quot;:split&quot; with the name of the
+Triggered for ":split" with the name of the
 current buffer, since it reloads that buffer.
 
 引数なしの |:split| や、
 すでにウィンドウで開いているファイルとの :split では、
 バッファは変更されないためトリガーされない。
-現在のバッファの名前を指定した &quot;:split&quot; では、
+現在のバッファの名前を指定した ":split" では、
 バッファを再読み込みするためトリガーが発生する。
 </code></pre>
 </div>
@@ -335,7 +335,7 @@ Cannot be used with {command}.
 </div>
 <div>
 <p>ここまで来れば、とりあえずは期待する動作が得られているはずです😆</p>
-<p>...、あ、えっと、&quot;とりあえず&quot; と言っているのには理由があって...。</p>
+<p>...、あ、えっと、"とりあえず" と言っているのには理由があって...。</p>
 <p>でも、なんだか長くなってきたので、もう一回だけ続く...❗🙀</p>
 <p>(疲れたらちゃんと休憩とってね☕)</p>
 </div>

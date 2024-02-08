@@ -223,7 +223,7 @@ For the time being (as of August, 2023), it is recommended to use one of the fol
 </div>
 </div>
 <p>トラブル続きでおーばーみーです🙃</p>
-<p>&quot;For the time being&quot; をどう受け取っていいのか、ちょっと悩みますが、
+<p>"For the time being" をどう受け取っていいのか、ちょっと悩みますが、
 こうなってしまった以上は<code>packer.nvim</code>から<code>lazy.nvim</code>への移行を、次回簡単に取り上げます🫡</p>
 <h2 id="-configuration"><a class="header" href="#-configuration">⚙️ Configuration</a></h2>
 <div id="admonition--configurationhttpsgithubcomfolketroublenvimefb88f-configuration" class="admonition admonish-info">
@@ -389,7 +389,7 @@ vim.keymap.set('n', 'gL', function() trouble.last { skip_groups = true, jump = t
 <pre><code class="language-lua">local signs = { Error = '', Warn = '', Info = '', Hint = '󰌶' }
 
 for type, icon in pairs(signs) do
-  local hl = &quot;DiagnosticSign&quot; .. type
+  local hl = "DiagnosticSign" .. type
   vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 end
 </code></pre>
@@ -417,11 +417,11 @@ end
 <p>わたしが使っているアイコンは<code>Trouble</code>のデフォルトとは異なっています。</p>
 <pre><code class="language-lua">signs = {
   -- icons / text used for a diagnostic
-  error = &quot;&quot;,
-  warning = &quot;&quot;,
-  hint = &quot;&quot;,
-  information = &quot;&quot;,
-  other = &quot;&quot;,
+  error = "",
+  warning = "",
+  hint = "",
+  information = "",
+  other = "",
 },
 </code></pre>
 <p>こっちもいいよね😆 もちろんお好みで❗</p>
@@ -491,7 +491,7 @@ of the sign are updated.</p>
 <p>{name}という符号が既に存在する場合、その符号の属性が更新されます。</p>
 <p>The one argument {list} can be used to define a list of signs.
 Each list item is a dictionary with the above items in {dict}
-and a &quot;name&quot; item for the sign name.</p>
+and a "name" item for the sign name.</p>
 <p>引数 {list} は、符号のリストを定義するために使用できます。
 各リスト項目は、{dict}の上記の項目と、符号名の「name」項目を持つ辞書です。</p>
 <p>Returns 0 on success and -1 on failure.  When the one argument
@@ -512,7 +512,7 @@ defined sign.</p>
 <p><code>diagnostic-highlights</code>については、このサイトでは触れていませんでした。</p>
 <p>🐲 なんですが...。</p>
 <p>わたしの手元では、
-前仕様の &quot;diagnosticSign****&quot; パラメータがず〜っと働いているフリをしていたわけで、
+前仕様の "diagnosticSign****" パラメータがず〜っと働いているフリをしていたわけで、
 <code>signcolumn</code>には<code>E</code>とか<code>W</code>すらも出ていなかったわけです...。</p>
 <p>で、今回<code>Trouble</code>を見直していて、ようやくこのマジトラブルに気付いたわけです。</p>
 <p>⭐控えめに言ってカオスでした⭐</p>
@@ -560,13 +560,13 @@ defined sign.</p>
 </div>
 <div class="footnote-definition" id=1>
 <p><a href="#to-footnote-1"><sup>1:</sup></a> Let It Be (by <a href="https://en.wikipedia.org/wiki/The_Beatles">The Beatles</a>):
-McCartney は、1968年の The Beatles (&quot;the White Album&quot;) のセッションにまつわる緊迫した時期に、
-母親の夢を見たことがきっかけで &quot;Let It Be&quot; のアイデアを思いついたと語っている。
+McCartney は、1968年の The Beatles ("the White Album") のセッションにまつわる緊迫した時期に、
+母親の夢を見たことがきっかけで "Let It Be" のアイデアを思いついたと語っている。
 (Mary Patricia McCartney は、彼が14歳の時に癌で亡くなっている。)
-「母と再会できて嬉しかった。その夢を見ることができて、とても恵まれていると思った。それで &quot;Let It Be&quot; を書いたんだ」。</p>
+「母と再会できて嬉しかった。その夢を見ることができて、とても恵まれていると思った。それで "Let It Be" を書いたんだ」。</p>
 </div><div class="footnote-definition" id=2>
 <p><a href="#to-footnote-2"><sup>2:</sup></a> 後のインタビューで McCartney はその夢について、
-母親から &quot;It will be all right, just let it be.&quot; と言われたと語っている。
+母親から "It will be all right, just let it be." と言われたと語っている。
 <a href="https://en.wikipedia.org/wiki/Let_It_Be_(Beatles_song)">Wikipedia</a>より</p>
 </div>
 

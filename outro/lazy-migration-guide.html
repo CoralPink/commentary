@@ -128,7 +128,7 @@
 <li>run ➡️ build</li>
 <li>lock ➡️ pin</li>
 <li>disable=true ➡️ enabled = false</li>
-<li>tag='<em>' ➡️ version=&quot;</em>&quot;</li>
+<li>tag='<em>' ➡️ version="</em>"</li>
 <li>after ℹ️ not needed for most use-cases. Use dependencies otherwise.</li>
 <li>wants ℹ️ not needed for most use-cases. Use dependencies otherwise.</li>
 <li>config don't support string type, use fun(LazyPlugin) instead.</li>
@@ -201,7 +201,7 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require(&quot;lazy&quot;).setup()
+require("lazy").setup()
 </code></pre>
 </div>
 </div>
@@ -221,7 +221,7 @@ require(&quot;lazy&quot;).setup()
 </div>
 <div>
 <p>そしたら、一番下にある<code>setup</code>を書き換えます。</p>
-<pre><code class="language-diff">- require(&quot;lazy&quot;).setup()
+<pre><code class="language-diff">- require("lazy").setup()
 + require('lazy').setup(plugins, opts)
 </code></pre>
 </div>
@@ -297,7 +297,7 @@ require(&quot;lazy&quot;).setup()
 + build = 'make'
 },
 </code></pre>
-<h3 id="-tag--version"><a class="header" href="#-tag--version">🔹 tag='' ➡️ version=&quot;&quot;</a></h3>
+<h3 id="-tag--version"><a class="header" href="#-tag--version">🔹 tag='' ➡️ version=""</a></h3>
 <p>これも同じ❗</p>
 <pre><code class="language-diff">  {
     'j-hui/fidget.nvim',
@@ -531,13 +531,13 @@ Most properties can be hovered with <code>&lt;K&gt;</code> to open links, help f
 <p><a class="admonition-anchor-link" href="#admonition-extensionslualinelua"></a></p>
 </div>
 <div>
-<pre><code class="language-lua">require(&quot;lualine&quot;).setup {
+<pre><code class="language-lua">require("lualine").setup {
   sections = {
     lualine_x = {
       {
-        require(&quot;lazy.status&quot;).updates,
-        cond = require(&quot;lazy.status&quot;).has_updates,
-        color = { fg = &quot;#ff9e64&quot; },
+        require("lazy.status").updates,
+        cond = require("lazy.status").has_updates,
+        color = { fg = "#ff9e64" },
       },
     },
   },

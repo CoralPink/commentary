@@ -168,25 +168,25 @@
     • {opts}  (table|nil) A table of |:map-arguments|.
               • Accepts options accepted by the {opts} parameter in
                 |nvim_set_keymap()|, with the following notable differences:
-                • replace_keycodes: Defaults to `true` if &quot;expr&quot; is `true`.
-                • noremap: Always overridden with the inverse of &quot;remap&quot; (see below).
+                • replace_keycodes: Defaults to `true` if "expr" is `true`.
+                • noremap: Always overridden with the inverse of "remap" (see below).
 
               • In addition to those options, the table accepts the
                 following keys:
                 • buffer: (number or boolean) Add a mapping to the given
                   buffer. When `0` or `true`, use the current buffer.
                 • remap: (boolean) Make the mapping recursive. This is the
-                  inverse of the &quot;noremap&quot; option from |nvim_set_keymap()|.
+                  inverse of the "noremap" option from |nvim_set_keymap()|.
                   Defaults to `false`.
 
               • |nvim_set_keymap()| の {opts} パラメータで受け付けられるオプションを受け付けるが、以下の顕著な違いがある。
-                • replace_keycodes: replace_keycodes: &quot;expr&quot; が `true` の場合、デフォルトは `true` 。
-                • noremap: noremap: &quot;remap &quot;の逆で常にオーバーライドされる(下記参照)。
+                • replace_keycodes: replace_keycodes: "expr" が `true` の場合、デフォルトは `true` 。
+                • noremap: noremap: "remap "の逆で常にオーバーライドされる(下記参照)。
 
               • これらのオプションに加え、テーブルでは以下のキーを受け付ける。
                 • buffer: (number or boolean) 与えられたバッファにマッピングを追加する。
                   '0` または `true` の場合、現在のバッファを使用する。
-                • remap: (boolean) マッピングを再帰的に行う。これは |nvim_set_keymap()| の &quot;noremap&quot; オプションの逆バージョンである。
+                • remap: (boolean) マッピングを再帰的に行う。これは |nvim_set_keymap()| の "noremap" オプションの逆バージョンである。
                   デフォルトは `false` 。
 
   See also:
@@ -202,8 +202,8 @@
 </div>
 <div>
 <pre><code class="language-txt">Parameters:
-  • {mode}  Mode short-name (map command prefix: &quot;n&quot;, &quot;i&quot;, &quot;v&quot;, &quot;x&quot;, …) or
-            &quot;!&quot; for |:map!|, or empty string for |:map|.
+  • {mode}  Mode short-name (map command prefix: "n", "i", "v", "x", …) or
+            "!" for |:map!|, or empty string for |:map|.
 </code></pre>
 </div>
 </div>
@@ -234,10 +234,10 @@
 <div>
 <pre><code class="language-txt">					                key-notation key-codes keycodes
 These names for keys are used in the documentation.
-They can also be used with the &quot;:map&quot; command.
+They can also be used with the ":map" command.
 
 これらのキーの名前は、ドキュメントで使用されている。
-これらは &quot;:map&quot; コマンドで使用することもできます。
+これらは ":map" コマンドで使用することもできます。
 </code></pre>
 </div>
 </div>
@@ -412,9 +412,9 @@ l[nore]map     |  -   | yes | yes |  -  |  -  |  -  |  -   | yes  |
 </div>
 <div>
 <p>上のスクリーンショットにも入っているんですが、これとかは結構便利です。</p>
-<pre><code class="language-lua">vim.keymap.set('n', 'x', '&quot;_x')
-vim.keymap.set('n', 'X', '&quot;_X')
-vim.keymap.set('n', 's', '&quot;_s')
+<pre><code class="language-lua">vim.keymap.set('n', 'x', '"_x')
+vim.keymap.set('n', 'X', '"_X')
+vim.keymap.set('n', 's', '"_s')
 </code></pre>
 <p>これらは「1文字消して〜」の操作ですが、こうすると消した文字をレジスタに入れず、純粋に文字を消すだけの動作になります。</p>
 <p>...って、ちょっと紹介したい欲が出てしまった🙀</p>

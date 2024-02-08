@@ -133,7 +133,7 @@
 </div>
 <p>...とのことです。</p>
 <p>ぶっちゃけ「なんのこっちゃ」ですが、実際に動かして見てみれば至ってシンプルです 🐈</p>
-<p>何よりも &quot;繰り返し入力する必要がなくなる&quot; という文言には魅力があります🤩</p>
+<p>何よりも "繰り返し入力する必要がなくなる" という文言には魅力があります🤩</p>
 <div id="admonition-default" class="admonition admonish-success">
 <div>
 <p>Mean Mister Mustard<sup class="footnote-reference">
@@ -190,7 +190,7 @@ Fabrice Bellard 氏の <a href="https://bellard.org/quickjs/">QuickJS</a> にあ
       'hrsh7th/cmp-nvim-lsp',
 +     {
 +       'L3MON4D3/LuaSnip',
-+       tag = &quot;v1.*&quot;,
++       tag = "v1.*",
 +       run = 'make install_jsregexp',
 +     }
     },
@@ -206,7 +206,7 @@ Fabrice Bellard 氏の <a href="https://bellard.org/quickjs/">QuickJS</a> にあ
 <div>
 <p><code>tag</code>はあってもなくても平気ですが、オフィシャルに「入れてね」と案内されています。
 これはもう素直に入れておくべきですね❗</p>
-<p>...わたしは入れずに使わせてもらってる &quot;ひねくれ者&quot; なんですけど😲</p>
+<p>...わたしは入れずに使わせてもらってる "ひねくれ者" なんですけど😲</p>
 </div>
 </div>
 <p>じゃあいつも通り、<code>PackerSync</code>や<code>PackerInstall</code>を行なってみましょう...。</p>
@@ -242,7 +242,7 @@ Fabrice Bellard 氏の <a href="https://bellard.org/quickjs/">QuickJS</a> にあ
       'hrsh7th/cmp-nvim-lsp',
       {
        'L3MON4D3/LuaSnip',
-        tag = &quot;v1.*&quot;,
+        tag = "v1.*",
 -       run = 'make install_jsregexp',
       }
     },
@@ -274,7 +274,7 @@ loaders and their benefits.</p>
 (eg. <a href="https://github.com/rafamadriz/friendly-snippets">rafamadriz/friendly-snippets</a>) simply install the plugin and then add</p>
 <p>(例えば <a href="https://github.com/rafamadriz/friendly-snippets">rafamadriz/friendly-snippets</a>) から
 既存のVS Codeスタイルのスニペットを使用するには、プラグインをインストールし、次のように追加します。</p>
-<pre><code class="language-lua">require(&quot;luasnip.loaders.from_vscode&quot;).lazy_load()
+<pre><code class="language-lua">require("luasnip.loaders.from_vscode").lazy_load()
 </code></pre>
 </div>
 </div>
@@ -283,18 +283,18 @@ loaders and their benefits.</p>
 <p><strong>SnipMate-like</strong>:</p>
 <p>Very similar to VS Code packages; install a plugin that provides snippets and call the <code>load</code>-function:</p>
 <p>VS Codeのパッケージと非常に似ており、スニペットを提供するプラグインをインストールし、load-functionを呼び出します：</p>
-<pre><code class="language-lua">require(&quot;luasnip.loaders.from_snipmate&quot;).lazy_load()
+<pre><code class="language-lua">require("luasnip.loaders.from_snipmate").lazy_load()
 </code></pre>
 </div>
 </div>
 <div id="admonition-default-3" class="admonition admonish-info">
 <div>
 <p><strong>Lua</strong>:</p>
-<p>Add the snippets by calling <code>require(&quot;luasnip&quot;).add_snippets(filetype, snippets)</code>.
+<p>Add the snippets by calling <code>require("luasnip").add_snippets(filetype, snippets)</code>.
 An example for this can be found <a href="https://github.com/L3MON4D3/LuaSnip/blob/master/Examples/snippets.lua#L190">here</a>.
 This can also be done much cleaner, with all the benefits that come with using a loader,
 by using the <a href="https://github.com/L3MON4D3/LuaSnip/blob/master/DOC.md#lua">loader for lua</a></p>
-<p><code>require(&quot;luasnip&quot;).add_snippets(filetype, snippets)</code>でスニペットを追加します。
+<p><code>require("luasnip").add_snippets(filetype, snippets)</code>でスニペットを追加します。
 この例は<a href="(https://github.com/L3MON4D3/LuaSnip/blob/master/Examples/snippets.lua#L190).">ここ</a>で見ることができます。
 また、ローダーを使うことで得られる利点はそのままに、
 <a href="https://github.com/L3MON4D3/LuaSnip/blob/master/DOC.md#lua">lua用のローダー</a>を使うことで、より簡単に行うことができます。</p>
@@ -323,7 +323,7 @@ by using the <a href="https://github.com/L3MON4D3/LuaSnip/blob/master/DOC.md#lua
 <div>
 <pre><code class="language-diff">  {
     'L3MON4D3/LuaSnip',
-    tag = &quot;v1.*&quot;,
+    tag = "v1.*",
     run = 'make install_jsregexp',
 +   config = function() require 'extensions.luasnip' end,
   }

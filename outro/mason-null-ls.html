@@ -216,14 +216,14 @@ Please read the whole README.md before jumping to <a href="https://github.com/ja
 <div>
 <p><a href="https://github.com/folke/lazy.nvim">lazy.nvim</a></p>
 <pre><code class="language-lua">{
-    &quot;jay-babu/mason-null-ls.nvim&quot;,
-    event = { &quot;BufReadPre&quot;, &quot;BufNewFile&quot; },
+    "jay-babu/mason-null-ls.nvim",
+    event = { "BufReadPre", "BufNewFile" },
     dependencies = {
-      &quot;williamboman/mason.nvim&quot;,
-      &quot;jose-elias-alvarez/null-ls.nvim&quot;,
+      "williamboman/mason.nvim",
+      "jose-elias-alvarez/null-ls.nvim",
     },
     config = function()
-      require(&quot;your.null-ls.config&quot;) -- require your null-ls config here (example below)
+      require("your.null-ls.config") -- require your null-ls config here (example below)
     end,
 }
 </code></pre>
@@ -310,8 +310,8 @@ Sources found installed in <code>mason</code> will automatically be setup for nu
 <p><a class="admonition-anchor-link" href="#admonition-example-confighttpsgithubcomjay-babumason-null-lsnvimexample-config"></a></p>
 </div>
 <div>
-<pre><code class="language-lua">require(&quot;mason&quot;).setup()
-require(&quot;mason-null-ls&quot;).setup({
+<pre><code class="language-lua">require("mason").setup()
+require("mason-null-ls").setup({
     handlers = {},
 })
 </code></pre>
@@ -403,8 +403,8 @@ section to understand how the default configs can be overridden.</p>
 <div>
 <p>パワーが上手く溜まってこない場合は<code>lua</code>ファイルを開いた状態で<code>:LspInfo</code>を確認してみてください。
 <img src="img/mason-null-lspinfo.webp" alt="mason-null-lspinfo" width="1000" height="385" loading="lazy"></p>
-<p>...もし<code>Client</code>に<code>null-ls</code>が認識されていなければ、それは &quot;履 い て な い&quot; んです、PAAAANTS!! 🤷‍♀️</p>
-<p>急いで<code>none-ls.nvim</code> まで戻って &quot;履 い て&quot; 来てください 👉🩲👈</p>
+<p>...もし<code>Client</code>に<code>null-ls</code>が認識されていなければ、それは "履 い て な い" んです、PAAAANTS!! 🤷‍♀️</p>
+<p>急いで<code>none-ls.nvim</code> まで戻って "履 い て" 来てください 👉🩲👈</p>
 </div>
 </div>
 <h2 id="war-is-over"><a class="header" href="#war-is-over">War is Over</a></h2>

@@ -116,7 +116,7 @@
 <pre><code class="language-lua">local M = {}
 
 function M.myprint()
-  print(&quot;You did it! It's working!!&quot;)
+  print("You did it! It's working!!")
 end
 
 return M
@@ -258,7 +258,7 @@ mkdir plugin/lesson
 <div>
 <pre><code class="language-lua">vim.api.nvim_create_user_command('Order', function()
   if vim.fn.input('Coffee or beer? &gt; ') == 'beer' then
-    vim.cmd.echo '&quot;\nCheers!!&quot;'
+    vim.cmd.echo '"\nCheers!!"'
   end
 end, {})
 </code></pre>
@@ -278,8 +278,8 @@ end, {})
   結果は String で、ユーザーがコマンドラインで入力したもの。
 
   Example:
-    :if input &quot;Coffee or beer? &quot; == &quot;beer&quot;
-    :  echo &quot; Cheers!&quot;
+    :if input "Coffee or beer? " == "beer"
+    :  echo " Cheers!"
     :endif
 </code></pre>
 </div>

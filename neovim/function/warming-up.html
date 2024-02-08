@@ -127,7 +127,7 @@
 <p><a class="admonition-anchor-link" href="#admonition-example"></a></p>
 </div>
 <div>
-<pre><code class="language-lua">vim.keymap.set('n', 'lhs', function() print(&quot;real lua function&quot;) end)
+<pre><code class="language-lua">vim.keymap.set('n', 'lhs', function() print("real lua function") end)
 </code></pre>
 </div>
 </div>
@@ -141,8 +141,8 @@
 </div>
 <div>
 <pre><code class="language-txt">            :so :source load-vim-script
-:[range]so[urce] [file]	Runs |Ex| commands or Lua code (&quot;.lua&quot; files) from
-                             |Ex|コマンドまたは Lua コード (&quot;.lua&quot; ファイル) を [file] から実行する。
+:[range]so[urce] [file]	Runs |Ex| commands or Lua code (".lua" files) from
+                             |Ex|コマンドまたは Lua コード (".lua" ファイル) を [file] から実行する。
 
       [file], or current buffer if no [file].
       [ファイル] を実行する。[ファイル] がない場合は、現在のバッファを実行する。
@@ -173,9 +173,9 @@
 <p>あ、<code>lhs</code>いる😮</p>
 <p>ヘルプが言っているところの「現在のバッファを実行する」がちゃんと動いてますね。
 <code>keybinds.lua</code>のバッファで<code>:so</code>を実行しているので<code>keybinds.lua</code>が実行されてます😉</p>
-<p>気をつけないといけないのは、これが &quot;リフレッシュ&quot; とか &quot;再起動&quot; ではなくて、あくまでも<code>実行</code>であることです。
+<p>気をつけないといけないのは、これが "リフレッシュ" とか "再起動" ではなくて、あくまでも<code>実行</code>であることです。
 あんまり自信が無いんですけど、<code>keymap</code>の変更についてはちゃんと反映されてるようです。</p>
-<p>...&quot;については&quot;と言っているのは、ちょっと気にしておきたいことがあって...。
+<p>..."については"と言っているのは、ちょっと気にしておきたいことがあって...。
 意味なく引っ張るようなんですが、<code>14.4 Call The Plugin</code>で改めて触れたいと思ってます😌</p>
 <div id="admonition-tip" class="admonition admonish-tip">
 <div class="admonition-title">
