@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'v0.18.10';
+const CACHE_VERSION = 'v0.19.0';
 
 const CACHE_URL = '/commentary/';
 const CACHE_LIST = [
@@ -16,12 +16,12 @@ const CACHE_LIST = [
   'favicon.ico',
   'favicon.svg',
 
-  'fonts/OpenSans-Bold.woff2',
-  'fonts/OpenSans-BoldItalic.woff2',
-  'fonts/OpenSans-Italic.woff2',
-  'fonts/OpenSans-Regular.woff2',
-  'fonts/SourceCodePro-Medium.woff2',
-  'fonts/NerdFontsSymbolsOnly/SymbolsNerdFontMono-Regular.woff2',
+  'woff/OpenSans-Bold.woff2',
+  'woff/OpenSans-BoldItalic.woff2',
+  'woff/OpenSans-Italic.woff2',
+  'woff/OpenSans-Regular.woff2',
+  'woff/SourceCodePro-Medium.woff2',
+  'woff/NerdFontsSymbolsOnly/SymbolsNerdFontMono-Regular.woff2',
 ];
 
 const CACHE_USE = ['https://coralpink.github.io/', 'http://127.0.0.1:8080/'];
