@@ -29,19 +29,19 @@ fn parse_uri(link_uri: &str) -> (&str, &str) {
     (uri[0], head)
 }
 
-#[derive(Serialize, Deserialize)]
+#[derive(Deserialize)]
 pub struct DocObject {
     body: String,
     breadcrumbs: String,
-    id: String,
-    title: String,
+    //id: String,
+    //title: String,
 }
 
-#[derive(Serialize, Deserialize)]
+#[derive(Deserialize)]
 pub struct ResultObject {
     doc: DocObject,
     key: String,
-    score: u32,
+    //score: u32,
 }
 
 #[wasm_bindgen]
