@@ -3,7 +3,7 @@ name = "mdbook-footnote"
 version = "1.1.1"
 authors = ["David Drysdale <dmd@lurklurk.org>", "CoralPink"]
 edition = "2021"
-rust-version = "1.70"
+rust-version = "1.71"
 license = "Apache-2.0"
 
 [dependencies]

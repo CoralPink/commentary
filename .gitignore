@@ -8,13 +8,15 @@ js/dist
 js/highlight.js
 js/wasm_book.js
 
-*.css
-*.css.map
+css/*.css
+css/*.css.map
 *.tmp
 *.wasm
 
 src/*.js
+src/css
 src/*.LICENSE.txt
+theme/css
 
 theme/book.js
 

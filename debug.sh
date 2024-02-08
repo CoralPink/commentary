@@ -21,8 +21,8 @@ pushd scss
 if [ ! -e ./node_modules ]; then
   bun install
 fi
+bun run compile general.scss ../src/css/general.css
 bun run compile style.scss ../src/css/style.css
-bun run compile theme/general.scss ../theme/css/general.css
 pushd
 
 mdbook build --dest-dir commentary
@@ -31,6 +31,7 @@ mdbook build --dest-dir commentary
 #rm commentary/clipboard.min.js
 #rm commentary/elasticlunr.min.js
 #rm commentary/favicon.png
+#rm commentary/fonts.css
 #rm commentary/highlight.css
 #rm commentary/highlight.js
 #rm commentary/searcher.js
