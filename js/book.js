@@ -20,7 +20,7 @@ const resultMarker = new Mark(ELEM_RESULTS);
 let searchResult;
 let finder;
 
-const SearchHandler = () => {
+const searchHandler = () => {
   const term = ELEM_BAR.value.trim();
 
   if (term === '') {
@@ -107,7 +107,7 @@ const searchInit = async root => {
     return;
   }
 
-  ELEM_BAR.addEventListener('keyup', SearchHandler, { once: false, passive: true });
+  ELEM_BAR.addEventListener('keyup', searchHandler, { once: false, passive: true });
   ELEM_ICON.addEventListener(
     'mouseup',
     () => (ELEM_WRAPPER.classList.contains('hidden') ? showSearch() : hiddenSearch()),
