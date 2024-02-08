@@ -60,7 +60,7 @@ impl SearchResult {
     pub fn new(
         path_to_root: String,
         count: usize,
-        doc_urls: Array,
+        doc_urls: &Array,
     ) -> Result<SearchResult, JsValue> {
         let window = web_sys::window().ok_or("No global `window` exists")?;
         let document = window
@@ -85,7 +85,7 @@ impl SearchResult {
         })
     }
 
-    pub fn append_search_result(&mut self, results: Array, term: &str) {
+    pub fn append_search_result(&mut self, results: &Array, term: &str) {
         let elements: Vec<ResultObject> = serde_wasm_bindgen::from_value(results.into())
             .expect("Failed to deserialize JsValue to Vec<ResultObject>");
 
