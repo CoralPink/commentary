@@ -22,37 +22,27 @@ macro_rules! console_error {
     ($($t:tt)*) => (error(&format_args!($($t)*).to_string()))
 }
 
-fn uri_parser(link_uri: &str) -> (&str, &str) {
+fn parse_uri(link_uri: &str) -> (&str, &str) {
     let uri: Vec<&str> = link_uri.split('#').collect();
     let head = if uri.len() > 1 { uri[1] } else { "" };
 
     (uri[0], head)
 }
 
-// TODO:
-// I wanted to manipulate it by passing objects from js,
-// but I just couldn't get it to work....
-//
-// I'll bring it up next time.
-/*
-#[allow(dead_code)]
-#[wasm_bindgen]
+#[derive(Serialize, Deserialize)]
 pub struct DocObject {
     body: String,
     breadcrumbs: String,
     id: String,
-    text: String,
     title: String,
 }
 
-#[allow(dead_code)]
-#[wasm_bindgen]
-pub struct SearchResult {
+#[derive(Serialize, Deserialize)]
+pub struct ResultObject {
     doc: DocObject,
-    reference: String,
+    key: String,
     score: u32,
 }
-*/
 
 #[wasm_bindgen]
 pub struct SearchResult {
@@ -95,46 +85,46 @@ impl SearchResult {
         })
     }
 
-    pub fn append_search_result(
-        &mut self,
-        reference: &str,
-        doc_body: &str,
-        doc_breadcrumbs: &str,
-        term: &str,
-    ) {
-        let idx = match reference.parse::<usize>() {
-            Ok(n) => n,
-            Err(_) => {
-                console_error!("Error: Invalid result.ref: {reference}");
-                return;
-            }
-        };
-        let (page, head) = uri_parser(&self.url_table[idx]);
-        let terms = term.split_whitespace().collect::<Vec<&str>>();
+    pub fn append_search_result(&mut self, results: Array, term: &str) {
+        let elements: Vec<ResultObject> = serde_wasm_bindgen::from_value(results.into())
+            .expect("Failed to deserialize JsValue to Vec<ResultObject>");
 
-        let new_element = self
-            .document
-            .create_element("li")
-            .expect("failed: create <li>");
+        elements.into_iter().for_each(|el| {
+            let idx = match el.key.parse::<usize>() {
+                Ok(n) => n,
+                Err(_) => {
+                    console_error!("Error: Invalid result.ref: {}", el.key);
+                    return;
+                }
+            };
+            let (page, head) = parse_uri(&self.url_table[idx]);
+            let terms = term.split_whitespace().collect::<Vec<&str>>();
 
-        self.teaser.clear();
+            let new_element = self
+                .document
+                .create_element("li")
+                .expect("failed: create <li>");
 
-        new_element.set_inner_html(&format!(
-          r#"<a href="{}{page}?highlight={}#{head}">{doc_breadcrumbs}</a><span class="teaser" aria-label="Search Result Teaser">{}</span>"#,
-          &self.path_to_root,
-          js_sys::encode_uri_component(&terms.join("%20"))
-              .as_string()
-              .unwrap_or_default()
-              .replace('\'', "%27"),
-          self.teaser.search_result_excerpt(
-              doc_body,
-              terms,
-              self.count,
-          )
-        ));
+            self.teaser.clear();
 
-        self.parent
-            .append_child(&new_element)
-            .expect("failed: append_child");
+            new_element.set_inner_html(&format!(
+              r#"<a href="{}{page}?highlight={}#{head}">{}</a><span class="teaser" aria-label="Search Result Teaser">{}</span>"#,
+              &self.path_to_root,
+              js_sys::encode_uri_component(&terms.join("%20"))
+                  .as_string()
+                  .unwrap_or_default()
+                  .replace('\'', "%27"),
+              el.doc.breadcrumbs,
+              self.teaser.search_result_excerpt(
+                  &el.doc.body,
+                  terms,
+                  self.count,
+              )
+            ));
+
+            self.parent
+                .append_child(&new_element)
+                .expect("failed: append_child");
+        });
     }
 }
