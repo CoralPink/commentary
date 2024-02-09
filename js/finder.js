@@ -9,8 +9,8 @@ export default class Finder {
   search(term) {
     return this.#fzf
       .find(term)
-      .map(x => ({ doc: this.#storeDocs[x.item], key: x.item, score: x.score }))
-      .filter(y => y.score >= LOWER_LIMIT_SCORE);
+      .filter(y => y.score >= LOWER_LIMIT_SCORE)
+      .map(x => ({ doc: this.#storeDocs[x.item], key: x.item, score: x.score }));
   }
 
   constructor(storeDocs, limit) {
