@@ -173,7 +173,6 @@ dependencies = [
  "rust-stemmers",
  "serde",
  "serde-wasm-bindgen",
- "serde_derive",
  "wasm-bindgen",
  "web-sys",
 ]
