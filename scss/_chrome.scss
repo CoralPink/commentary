@@ -286,9 +286,20 @@ table {
   flex-basis: 60%;
 }
 
-#searchresults a {
-  color: var(--links);
-  text-decoration: none;
+#searchresults {
+  a {
+    color: var(--links);
+    text-decoration: none;
+  }
+
+  div {
+    &#score {
+      font-size: 0.6875rem;
+      font-style: italic;
+      color: var(--search-score);
+      float: right;
+    }
+  }
 }
 
 .searchresults-header {
