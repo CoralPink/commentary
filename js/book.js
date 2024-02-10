@@ -37,7 +37,7 @@ const searchHandler = () => {
   const results = finder.search(term);
 
   if (results.length <= 0) {
-    ELEM_HEADER.innerText = 'No search result.';
+    ELEM_HEADER.innerText = `No search result for : ${term}`;
     return;
   }
   ELEM_HEADER.innerText = `${results.length} search results for : ${term}`;
