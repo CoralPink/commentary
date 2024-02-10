@@ -6,21 +6,43 @@ export default class Finder {
   #fzf;
   #storeDocs;
 
-  search(term) {
-    return this.#fzf
-      .find(term)
-      .filter(y => y.score >= LOWER_LIMIT_SCORE)
-      .map(x => ({ doc: this.#storeDocs[x.item], key: x.item, score: x.score }));
-  }
-
   constructor(storeDocs, limit) {
+    this.#storeDocs = storeDocs;
+
     /** @see https://github.com/HillLiu/docker-mdbook */
     this.#fzf = new Fzf(Object.keys(storeDocs), {
       limit,
-      selector: x => `${storeDocs[x].title} ${storeDocs[x].body}`,
+      selector: x => `${this.#storeDocs[x].title} ${this.#storeDocs[x].body}`,
       tiebreakers: [byStartAsc],
     });
+  }
 
-    this.#storeDocs = storeDocs;
+  #findFirstIndex(array) {
+    let low = 0;
+    let high = array.length - 1;
+    let resultIndex = -1;
+
+    let count = 0;
+
+    while (low <= high) {
+      const mid = Math.floor((low + high) / 2);
+
+      if (array[mid].score >= LOWER_LIMIT_SCORE) {
+        resultIndex = mid;
+        low = mid + 1;
+      } else {
+        high = mid - 1;
+      }
+      count += 1;
+    }
+    return resultIndex !== -1 ? resultIndex : low;
+  }
+
+  search(term) {
+    const results = this.#fzf.find(term);
+
+    return results
+      .slice(0, this.#findFirstIndex(results) + 1)
+      .map(x => ({ doc: this.#storeDocs[x.item], key: x.item, score: x.score }));
   }
 }

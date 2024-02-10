@@ -6,6 +6,9 @@ use web_sys::{Document, Element};
 mod teaser;
 use crate::searcher::teaser::Teaser;
 
+const SCORE_CHARACTER: &str = "▰";
+const SCORE_RATE: usize = 8;
+
 #[wasm_bindgen]
 extern "C" {
     #[wasm_bindgen(js_namespace = console)]
@@ -30,6 +33,14 @@ fn parse_uri(link_uri: &str) -> (&str, &str) {
     (uri[0], head)
 }
 
+fn repeat_character(score: usize) -> String {
+    format!(
+        "{} ({}pt)",
+        SCORE_CHARACTER.repeat(score / SCORE_RATE),
+        score
+    )
+}
+
 #[derive(Deserialize)]
 pub struct DocObject {
     body: String,
@@ -42,7 +53,7 @@ pub struct DocObject {
 pub struct ResultObject {
     doc: DocObject,
     key: String,
-    //score: u32,
+    score: usize,
 }
 
 #[wasm_bindgen]
@@ -113,14 +124,16 @@ impl SearchResult {
                 .teaser
                 .search_result_excerpt(&el.doc.body, terms, self.count);
 
+            let score_bar = repeat_character(el.score);
+
             let new_element = self
                 .document
                 .create_element("li")
                 .expect("failed: create <li>");
 
             new_element.set_inner_html(&format!(
-                r#"<a href="{}{}?highlight={}#{}">{}</a><span class="teaser" aria-label="Search Result Teaser">{}</span>"#,
-                &self.path_to_root, page, highlight, head, el.doc.breadcrumbs, teaser
+                r#"<a href="{}{}?highlight={}#{}">{}</a><span class="teaser" aria-label="Search Result Teaser">{}</span><div id="score">{}</div>"#,
+                &self.path_to_root, page, highlight, head, el.doc.breadcrumbs, teaser, score_bar
             ));
 
             self.parent
