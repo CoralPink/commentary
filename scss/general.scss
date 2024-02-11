@@ -57,6 +57,7 @@ body {
   padding: 0.4rem;
   display: none;
   overflow: hidden;
+  z-index: 30;
 
   .default {
     color: var(--icons);

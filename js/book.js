@@ -20,8 +20,15 @@ const resultMarker = new Mark(ELEM_RESULTS);
 let searchResult;
 let finder;
 
+let prevTerm;
+
 const searchHandler = () => {
   const term = ELEM_BAR.value.trim();
+
+  if (term === prevTerm) {
+    return;
+  }
+  prevTerm = term;
 
   if (term === '') {
     ELEM_OUTER.classList.add('hidden');

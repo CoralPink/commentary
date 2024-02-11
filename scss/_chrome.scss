@@ -102,7 +102,7 @@ pre {
     gap: 1em;
 
     background-color: var(--bg);
-    z-index: 101;
+    z-index: 10;
     opacity: 0.92;
 
     -webkit-font-smoothing: antialiased;
@@ -324,8 +324,9 @@ table {
 
   padding: 0.8em;
 
-  border: 0.1em solid var(--searchbar-border-color);
+  border: 0.1em solid var(--theme-popup-border);
   border-radius: 1.6em;
+  z-index: 20;
 
   ul {
     list-style: none;
