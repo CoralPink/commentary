@@ -17,7 +17,7 @@ export default class Finder {
     });
   }
 
-  #findScoreBoundaries(array) {
+  #findLastRelevantScoreIndex(array) {
     let low = 0;
     let high = array.length - 1;
     let resultIndex = -1;
@@ -39,7 +39,7 @@ export default class Finder {
     const results = this.#fzf.find(term);
 
     return results
-      .slice(0, this.#findScoreBoundaries(results) + 1)
+      .slice(0, this.#findLastRelevantScoreIndex(results) + 1)
       .map(x => ({ doc: this.#storeDocs[x.item], key: x.item, score: x.score }));
   }
 }
