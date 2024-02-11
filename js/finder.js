@@ -1,6 +1,7 @@
 import { Fzf, byStartAsc } from 'fzf';
 
 const LOWER_LIMIT_SCORE = 30;
+const START_INDEX = 0;
 
 export default class Finder {
   #fzf;
@@ -18,7 +19,7 @@ export default class Finder {
   }
 
   #findLastRelevantScoreIndex(array) {
-    let low = 0;
+    let low = START_INDEX;
     let high = array.length - 1;
     let resultIndex = -1;
 
@@ -32,7 +33,7 @@ export default class Finder {
         high = mid - 1;
       }
     }
-    return resultIndex !== -1 ? resultIndex : low;
+    return resultIndex !== -1 ? resultIndex : START_INDEX;
   }
 
   search(term) {
