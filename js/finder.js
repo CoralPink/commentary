@@ -1,6 +1,7 @@
 import { Fzf, byStartAsc } from 'fzf';
 
 const LOWER_LIMIT_SCORE = 30;
+const START_INDEX = 0;
 
 export default class Finder {
   #fzf;
@@ -17,12 +18,10 @@ export default class Finder {
     });
   }
 
-  #findFirstIndex(array) {
-    let low = 0;
+  #findLastRelevantScoreIndex(array) {
+    let low = START_INDEX;
     let high = array.length - 1;
     let resultIndex = -1;
-
-    let count = 0;
 
     while (low <= high) {
       const mid = Math.floor((low + high) / 2);
@@ -33,16 +32,15 @@ export default class Finder {
       } else {
         high = mid - 1;
       }
-      count += 1;
     }
-    return resultIndex !== -1 ? resultIndex : low;
+    return resultIndex !== -1 ? resultIndex : START_INDEX;
   }
 
   search(term) {
     const results = this.#fzf.find(term);
 
     return results
-      .slice(0, this.#findFirstIndex(results) + 1)
+      .slice(0, this.#findLastRelevantScoreIndex(results) + 1)
       .map(x => ({ doc: this.#storeDocs[x.item], key: x.item, score: x.score }));
   }
 }

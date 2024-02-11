@@ -33,7 +33,7 @@ fn parse_uri(link_uri: &str) -> (&str, &str) {
     (uri[0], head)
 }
 
-fn repeat_character(score: usize) -> String {
+fn scoring_notation(score: usize) -> String {
     format!(
         "{} ({}pt)",
         SCORE_CHARACTER.repeat(score / SCORE_RATE),
@@ -70,7 +70,7 @@ pub struct SearchResult {
 impl SearchResult {
     #[wasm_bindgen(constructor)]
     pub fn new(
-        path_to_root: String,
+        path_to_root: &str,
         count: usize,
         doc_urls: &Array,
     ) -> Result<SearchResult, JsValue> {
@@ -88,7 +88,7 @@ impl SearchResult {
             .collect();
 
         Ok(SearchResult {
-            path_to_root,
+            path_to_root: path_to_root.to_string(),
             document,
             parent,
             count,
@@ -124,7 +124,7 @@ impl SearchResult {
                 .teaser
                 .search_result_excerpt(&el.doc.body, terms, self.count);
 
-            let score_bar = repeat_character(el.score);
+            let score_bar = scoring_notation(el.score);
 
             let new_element = self
                 .document
