@@ -1,13 +1,13 @@
 [package]
 name = "mdbook-footnote"
-version = "1.1.1"
+version = "1.1.2"
 authors = ["David Drysdale <dmd@lurklurk.org>", "CoralPink"]
 edition = "2021"
-rust-version = "1.71"
+rust-version = "1.74"
 license = "Apache-2.0"
 
 [dependencies]
-clap = "4.4"
+clap = "4.5"
 mdbook = "0.4"
 once_cell = "1.19"
 regex = "1.10"
