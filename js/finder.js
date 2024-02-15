@@ -17,33 +17,35 @@ export default class Finder {
     });
   }
 
-  #findFirstUnsatisfactoryIndexOrLast(array) {
-    if (array.length === 0 || array.at(0).score < LOWER_LIMIT_SCORE) {
-      return array.length;
+  #filterSatisfactory(array) {
+    if (array.length === 0 || array[0].score < LOWER_LIMIT_SCORE) {
+      return array;
     }
 
-    let low = 0;
+    let low = 1; // '0' is already checked, so start with '1'
     let high = array.length - 1;
-    let resultIndex = -1;
+
+    let idx = -1;
 
     while (low <= high) {
       const mid = Math.floor((low + high) / 2);
 
       if (array[mid].score < LOWER_LIMIT_SCORE) {
-        resultIndex = mid;
+        idx = mid;
         high = mid - 1;
       } else {
         low = mid + 1;
       }
     }
 
-    return resultIndex >= 0 ? resultIndex : array.length;
+    return idx >= 0 ? array.slice(0, idx) : array;
   }
 
   search(term) {
-    const results = this.#fzf.find(term);
-    const index = this.#findFirstUnsatisfactoryIndexOrLast(results);
-
-    return results.slice(0, index).map(x => ({ doc: this.#storeDocs[x.item], key: x.item, score: x.score }));
+    return this.#filterSatisfactory(this.#fzf.find(term)).map(x => ({
+      doc: this.#storeDocs[x.item],
+      key: x.item,
+      score: x.score,
+    }));
   }
 }
