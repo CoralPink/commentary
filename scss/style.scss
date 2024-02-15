@@ -1,13 +1,14 @@
-@use 'chrome';
 @use 'fonts';
+
+@use 'chrome';
 @use 'headline';
 
 @use 'catppuccin';
-@use 'catppuccin-admonish';
-@use 'catppuccin-au-lait';
 @use 'additional-color';
+@use 'catppuccin-au-lait';
 
 @use 'mdbook-admonish';
+@use 'catppuccin-admonish';
 
 @use 'pagetoc';
 @use 'footnote';
