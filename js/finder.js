@@ -19,7 +19,9 @@ export default class Finder {
 
   #filterSatisfactory(array) {
     if (array.length === 0 || array[0].score < LOWER_LIMIT_SCORE) {
-      return array;
+        // I am not sure if it is a spec or not, but sometimes fzf returns a negative score.
+        // I'm unwilling to do so, but I'll deal with it anyway using filters.
+        return array.filter(x => x.score >= 0);
     }
 
     let low = 1; // '0' is already checked, so start with '1'
