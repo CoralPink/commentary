@@ -1,6 +1,6 @@
 import { codeBlock } from './codeblock.js';
 import { sidebarInit } from './sidebar.js';
-import wasmInit, { attribute_external_links, SearchResult } from './wasm_book.js';
+import wasmInit, { SearchResult } from './wasm_book.js';
 
 import Finder from './finder.js';
 import Mark from './node_modules/mark.js/dist/mark.es6.js';
@@ -89,6 +89,13 @@ const doSearchOrMarkFromUrl = () => {
   }
 };
 
+const attributeExternalLinks = () => {
+  for (const el of document.getElementById('main').querySelectorAll('a[href^="http"]')) {
+    el.setAttribute('target', '_blank');
+    el.setAttribute('rel', 'noopener');
+  }
+};
+
 const searchInit = async root => {
   globalThis.search = globalThis.search || {};
   globalThis.search.hasFocus = () => ELEM_BAR === document.activeElement;
@@ -101,8 +108,6 @@ const searchInit = async root => {
 
     searchResult = new SearchResult(root, config.results_options.teaser_word_count, config.doc_urls);
     finder = new Finder(config.index.documentStore.docs, config.results_options.limit_results);
-
-    attribute_external_links();
   } catch (e) {
     console.error(`Error during initialization: ${e}`);
     console.log('The search function is disabled.');
@@ -154,6 +159,8 @@ const searchInit = async root => {
       new ThemeSelector();
 
       doSearchOrMarkFromUrl();
+      attributeExternalLinks();
+
       searchInit(document.getElementById('bookjs').dataset.pathtoroot);
     },
     { once: true, passive: true },
