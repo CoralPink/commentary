@@ -31,5 +31,6 @@ features = [
   "Document",
   "Element",
   "HtmlElement",
+  "NodeList",
   "Window",
 ]

@@ -1,6 +1,6 @@
 import { codeBlock } from './codeblock.js';
 import { sidebarInit } from './sidebar.js';
-import wasmInit, { SearchResult } from './wasm_book.js';
+import wasmInit, { SearchResult, attribute_external_links } from './wasm_book.js';
 
 import Finder from './finder.js';
 import Mark from './node_modules/mark.js/dist/mark.es6.js';
@@ -89,23 +89,18 @@ const doSearchOrMarkFromUrl = () => {
   }
 };
 
-const attributeExternalLinks = () => {
-  for (const el of document.getElementById('main').querySelectorAll('a[href^="http"]')) {
-    el.setAttribute('target', '_blank');
-    el.setAttribute('rel', 'noopener');
-  }
-};
-
-const searchInit = async root => {
+const initWasmBook = async root => {
   globalThis.search = globalThis.search || {};
   globalThis.search.hasFocus = () => ELEM_BAR === document.activeElement;
 
-  try {
-    const [config, _] = await Promise.all([
-      fetch(`${root}searchindex.json`).then(response => response.json()),
-      wasmInit(),
-    ]);
+  const [config, _] = await Promise.all([
+    fetch(`${root}searchindex.json`).then(response => response.json()),
+    wasmInit(),
+  ]);
 
+  attribute_external_links();
+
+  try {
     searchResult = new SearchResult(root, config.results_options.teaser_word_count, config.doc_urls);
     finder = new Finder(config.index.documentStore.docs, config.results_options.limit_results);
   } catch (e) {
@@ -159,9 +154,8 @@ const searchInit = async root => {
       new ThemeSelector();
 
       doSearchOrMarkFromUrl();
-      attributeExternalLinks();
 
-      searchInit(document.getElementById('bookjs').dataset.pathtoroot);
+      initWasmBook(document.getElementById('bookjs').dataset.pathtoroot);
     },
     { once: true, passive: true },
   );
