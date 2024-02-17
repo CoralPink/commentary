@@ -105,9 +105,13 @@ impl SearchResult {
             .clone_node_with_deep(true)
             .expect("Failed to clone node");
 
-        let cloned_element: HtmlElement = node
-            .dyn_into()
-            .expect("Failed to convert Node to HtmlElement");
+        let cloned_element: HtmlElement = match node.dyn_into() {
+            Ok(html_element) => html_element,
+            Err(_) => {
+                console_error!("Error converting Node to HtmlElement");
+                return;
+            }
+        };
 
         cloned_element.set_inner_html(content);
 
