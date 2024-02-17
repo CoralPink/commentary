@@ -30,5 +30,6 @@ features = [
   "console",
   "Document",
   "Element",
+  "NodeList",
   "Window",
 ]
