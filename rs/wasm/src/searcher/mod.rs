@@ -1,7 +1,7 @@
 use js_sys::Array;
 use serde::Deserialize;
 use wasm_bindgen::prelude::*;
-use web_sys::{Document, Element};
+use web_sys::{Element, HtmlElement, Node};
 
 mod teaser;
 use crate::searcher::teaser::Teaser;
@@ -59,7 +59,7 @@ pub struct ResultObject {
 #[wasm_bindgen]
 pub struct SearchResult {
     path_to_root: String,
-    document: Document,
+    li_element: Element,
     parent: Element,
     count: usize,
     teaser: Teaser,
@@ -82,6 +82,8 @@ impl SearchResult {
             .get_element_by_id("searchresults")
             .ok_or("No element with ID `searchresults`")?;
 
+        let li_element = document.create_element("li").expect("failed: create <li>");
+
         let url_table: Vec<String> = doc_urls
             .iter()
             .filter_map(|value| value.as_string())
@@ -89,12 +91,29 @@ impl SearchResult {
 
         Ok(SearchResult {
             path_to_root: path_to_root.to_string(),
-            document,
+            li_element,
             parent,
             count,
             teaser: Teaser::default(),
             url_table,
         })
+    }
+
+    fn add_element(&mut self, content: &str) {
+        let node: Node = self
+            .li_element
+            .clone_node_with_deep(true)
+            .expect("Failed to clone node");
+
+        let cloned_element: HtmlElement = node
+            .dyn_into()
+            .expect("Failed to convert Node to HtmlElement");
+
+        cloned_element.set_inner_html(content);
+
+        self.parent
+            .append_child(&cloned_element)
+            .expect("failed: append_child");
     }
 
     pub fn append_search_result(&mut self, results: &Array, term: &str) {
@@ -120,26 +139,16 @@ impl SearchResult {
             };
 
             let (page, head) = parse_uri(&self.url_table[idx]);
-
             let teaser = self
                 .teaser
                 .search_result_excerpt(&el.doc.body, terms.clone(), self.count);
 
             let score_bar = scoring_notation(el.score);
 
-            let new_element = self
-                .document
-                .create_element("li")
-                .expect("failed: create <li>");
-
-            new_element.set_inner_html(&format!(
+            self.add_element(&format!(
                 r#"<a href="{}{}?highlight={}#{}">{}</a><span class="teaser" aria-label="Search Result Teaser">{}</span><div id="score">{}</div>"#,
                 &self.path_to_root, page, highlight, head, el.doc.breadcrumbs, teaser, score_bar
             ));
-
-            self.parent
-                .append_child(&new_element)
-                .expect("failed: append_child");
         });
     }
 }
