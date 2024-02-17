@@ -1,6 +1,6 @@
 [package]
 name = "wasm-book"
-version = "0.3.1"
+version = "0.3.2"
 authors = ["CoralPink <teqt6ytqt@mozmail.com>"]
 edition = "2021"
 rust-version = "1.71"
@@ -30,6 +30,7 @@ features = [
   "console",
   "Document",
   "Element",
+  "HtmlElement",
   "NodeList",
   "Window",
 ]
