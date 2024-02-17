@@ -3,7 +3,7 @@ import { sidebarInit } from './sidebar.js';
 import wasmInit, { attribute_external_links, SearchResult } from './wasm_book.js';
 
 import Finder from './finder.js';
-import Mark from 'mark.js';
+import Mark from './node_modules/mark.js/dist/mark.es6.js';
 import TableOfContents from './table-of-contents.js';
 import ThemeSelector from './theme-selector.js';
 
