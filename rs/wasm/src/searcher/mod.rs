@@ -101,6 +101,13 @@ impl SearchResult {
         let elements: Vec<ResultObject> = serde_wasm_bindgen::from_value(results.into())
             .expect("Failed to deserialize JsValue to Vec<ResultObject>");
 
+        let terms = term.split_whitespace().collect::<Vec<&str>>();
+
+        let highlight = js_sys::encode_uri_component(&terms.join("%20"))
+            .as_string()
+            .unwrap_or_default()
+            .replace('\'', "%27");
+
         elements.into_iter().for_each(|el| {
             self.teaser.clear();
 
@@ -113,16 +120,10 @@ impl SearchResult {
             };
 
             let (page, head) = parse_uri(&self.url_table[idx]);
-            let terms = term.split_whitespace().collect::<Vec<&str>>();
-
-            let highlight = js_sys::encode_uri_component(&terms.join("%20"))
-                .as_string()
-                .unwrap_or_default()
-                .replace('\'', "%27");
 
             let teaser = self
                 .teaser
-                .search_result_excerpt(&el.doc.body, terms, self.count);
+                .search_result_excerpt(&el.doc.body, terms.clone(), self.count);
 
             let score_bar = scoring_notation(el.score);
 
