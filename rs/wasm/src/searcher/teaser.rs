@@ -1,5 +1,4 @@
 use rust_stemmers::{Algorithm, Stemmer};
-use std::default::Default;
 
 const TERM_WEIGHT: u32 = 40;
 
@@ -8,13 +7,11 @@ pub struct Teaser {
     found: bool,
 }
 
-impl Default for Teaser {
-    fn default() -> Self {
+impl Teaser {
+    pub fn default() -> Self {
         Self::new()
     }
-}
 
-impl Teaser {
     fn new() -> Self {
         Teaser {
             vec: Vec::new(),
