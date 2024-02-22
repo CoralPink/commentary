@@ -45,6 +45,7 @@ jobs:
         run: |
           cargo install mdbook-admonish
           cargo install mdbook-tailor
+          cargo install wasm-bindgen-cli
           cargo install wasm-pack
           cargo install --path ./rs/mdbook-footnote
 
