@@ -83,9 +83,9 @@ impl Teaser {
             if word.1 != TERM_WEIGHT {
                 highlight.push(&body[word.2..index + word.0.len()]);
             } else {
-                highlight.push("<em>");
+                highlight.push("<mark>");
                 highlight.push(&body[word.2..index + word.0.len()]);
-                highlight.push("</em>");
+                highlight.push("</mark>");
             }
 
             index = word.2 + word.0.len();
