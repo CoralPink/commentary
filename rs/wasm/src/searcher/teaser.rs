@@ -1,5 +1,3 @@
-use rust_stemmers::{Algorithm, Stemmer};
-
 const TERM_WEIGHT: u32 = 40;
 
 pub struct Teaser {
@@ -85,9 +83,9 @@ impl Teaser {
             if word.1 != TERM_WEIGHT {
                 highlight.push(&body[word.2..index + word.0.len()]);
             } else {
-                highlight.push("<em>");
+                highlight.push("<mark>");
                 highlight.push(&body[word.2..index + word.0.len()]);
-                highlight.push("</em>");
+                highlight.push("</mark>");
             }
 
             index = word.2 + word.0.len();
@@ -105,13 +103,8 @@ impl Teaser {
 
             for separate in words {
                 if !separate.is_empty() {
-                    let stemmed = Stemmer::create(Algorithm::English).stem(separate);
-
-                    for term in terms
-                        .iter()
-                        .map(|w| Stemmer::create(Algorithm::English).stem(w))
-                    {
-                        if stemmed.starts_with(&term.to_lowercase()) {
+                    for term in terms.iter() {
+                        if separate.to_lowercase().contains(&term.to_lowercase()) {
                             value = TERM_WEIGHT;
                             self.found = true;
                         }

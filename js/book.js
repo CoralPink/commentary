@@ -15,8 +15,6 @@ const ELEM_ICON = document.getElementById('search-toggle');
 const ELEM_HEADER = document.getElementById('searchresults-header');
 const ELEM_OUTER = document.getElementById('searchresults-outer');
 
-const resultMarker = new Mark(ELEM_RESULTS);
-
 let searchResult;
 let finder;
 
@@ -49,11 +47,6 @@ const searchHandler = () => {
   }
   ELEM_HEADER.innerText = `${results.length} search results for : ${term}`;
   searchResult.append_search_result(results, term);
-
-  resultMarker.mark(decodeURIComponent(term).split(' '), {
-    accuracy: 'complementary',
-    exclude: ['a'],
-  });
 
   ELEM_OUTER.classList.remove('hidden');
 };
