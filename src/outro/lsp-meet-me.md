@@ -12,7 +12,7 @@
 祭りだ 祭りだ！
 ```
 
-船を出せ❗いざ鬼退治❗❗
+舟を出せ❗いざ鬼退治❗❗
 
 ## ☕ Previously
 
@@ -63,7 +63,7 @@ require('mason').setup {
 
 ## 🧠 Additional Setup
 
-ここから一歩進めて、「固有の設定を入れてみよう」というがこの節のおはなしです。
+ここから一歩進めて、「固有の設定を入れてみよう」というのがこの節のおはなしです。
 
 まず最初に、この先を簡潔に書くために、あらかじめこんなん仕込んでおきます🤫
 
@@ -125,7 +125,7 @@ Visual Studio Code に 100万近くインストールされており、Lua 言�
 100万とか言わないでください。1Kが霞むんで🤣
 
 わたしも[割と最近まで気づかなかった](../neovim/lsp/fidget.html#admonition-tip-1)んですが、
-`Neovim`を使う場合はこれを入れておくと楽しいです😆
+`Neovim`を使う場合はこれを入れておくと楽しいです🤗
 
 ~~~admonish example title="extensions/mason.lua"
 ```lua
@@ -149,7 +149,7 @@ end,
 ```
 ~~~
 
-こうすると`Neovim`固有のAPIが`lua_ls`を通して補完候補に現れます😄
+こうすると`Neovim`固有のAPIが`lua_ls`を通して補完候補に現れます😉
 
 ![fidget-cmp](../neovim/lsp/img/fidget-cmp.webp)
 
@@ -172,18 +172,18 @@ Rust の優れた IDE サポートを作成するための、より大きな rls
 
 ~~~admonish example title="extensions/mason.lua"
 ```lua
-  ['rust_analyzer'] = function()
-    lsp.rust_analyzer.setup {
-      settings = {
-        ['rust-analyzer'] = {
-          diagnostic = { enable = false },
-          assist = { importGranularity = 'module', importPrefix = 'self' },
-          cargo = { allFeatures = true, loadOutDirsFromCheck = true },
-          procMacro = { enable = true },
-        },
+['rust_analyzer'] = function()
+  lsp.rust_analyzer.setup {
+    settings = {
+      ['rust-analyzer'] = {
+        diagnostic = { enable = false },
+        assist = { importGranularity = 'module', importPrefix = 'self' },
+        cargo = { allFeatures = true, loadOutDirsFromCheck = true },
+        procMacro = { enable = true },
       },
-    }
-  end,
+    },
+  }
+end,
 ```
 ~~~
 
@@ -301,9 +301,9 @@ SourceKit-LSP は Swift Package Manager を使用するプロジェクトをサ�
 
 ~~~admonish example title="extensions/nvim-lspconfig.lua"
 ```lua
-  lsp.sourcekit.setup {
-    filetypes = { 'swift', 'objective-c', 'objective-cpp' },
-  }
+lsp.sourcekit.setup {
+  filetypes = { 'swift', 'objective-c', 'objective-cpp' },
+}
 ```
 ~~~
 
@@ -327,18 +327,18 @@ ccls は[cquery](https://github.com/jacobdufault/cquery)に由来する、C/C++/
 
 ~~~admonish example title="extensions/nvim-lspconfig.lua"
 ```lua
-  lsp.ccls.setup {
-    init_options = {
-      compilationDatabaseDirectory = 'build',
-      index = {
-        threads = 0,
-      },
-      clang = {
-        extraArgs = { '--std=c++20' },
-        excludeArgs = { '-frounding-math' },
-      },
+lsp.ccls.setup {
+  init_options = {
+    compilationDatabaseDirectory = 'build',
+    index = {
+      threads = 0,
     },
-  }
+    clang = {
+      extraArgs = { '--std=c++20' },
+      excludeArgs = { '-frounding-math' },
+    },
+  },
+}
 ```
 ~~~
 
@@ -354,7 +354,8 @@ ccls は[cquery](https://github.com/jacobdufault/cquery)に由来する、C/C++/
 
 ![root-directory](img/root-not-found.webp)
 
-...もし`root directory`が認識されていなければ、それは "履 い て な い" らしいんです、PAAAANTS!! 🤷‍♀️
+...もし`root directory`が`Not found.`(認識されていない状態) だと、
+それは "履 い て な い" らしいんです、PAAAANTS!! 🤷‍♀️
 
 ![root-directory](img/root-directory.webp)
 
