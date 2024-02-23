@@ -1,6 +1,7 @@
 @use 'variables' as var;
 
 mark {
+  color: var(--fg);
   background: linear-gradient(rgba(0, 0, 0, 0) 70%, var(--search-mark-bg));
   font-weight: bold;
 }
