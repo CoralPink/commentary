@@ -1,6 +1,6 @@
 [package]
 name = "wasm-book"
-version = "0.3.2"
+version = "0.4.0"
 authors = ["CoralPink <teqt6ytqt@mozmail.com>"]
 edition = "2021"
 rust-version = "1.74"
@@ -19,7 +19,6 @@ strip = "symbols"
 
 [dependencies]
 js-sys = "0.3"
-rust-stemmers = "1.2"
 serde = { version = "1.0", features = ["derive"] }
 serde-wasm-bindgen = "0.6"
 wasm-bindgen = "0.2"
