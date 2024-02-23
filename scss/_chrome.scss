@@ -31,7 +31,7 @@ mark {
 }
 
 .icon-button {
-  font-family: "Symbols Nerd Font Mono";
+  font-family: 'Open Sans', 'Symbols Nerd Font Mono';
   border: none;
   background: none;
 }
@@ -172,12 +172,12 @@ pre {
 }
 
 .nav-chapters {
-  font-size: 1.5em;
+  font-size: 0.82em;
   text-align: center;
   text-decoration: none;
 
-  width: 5rem;
-  padding: 0.2rem;
+  max-width: 50%;
+  padding: 1em;
   border-radius: 0.8rem;
   background-color: var(--sidebar-bg);
 
