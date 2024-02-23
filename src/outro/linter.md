@@ -77,7 +77,7 @@ Luacheckは、Lua 5.1～5.4とLuaJITのシンタックスを使用したLuaフ�
 Luacheck自身はLuaで書かれており、前述のすべてのLuaバージョンで動作します。
 ```
 
-いつも通り`Lua`の`linter`である`Luacheck`を試しながら進めようと思ったんですが...。
+いつも通り`Lua`で進めるために`Luacheck`という`linter`を試してみたいんですが...。
 
 ![Luacheck](img/luacheck.webp)
 
@@ -89,7 +89,7 @@ lualocks is not executable
 
 実はわたし自身、今までこれを使ってこなかったので「えぇ...😨」ってなりました。
 
-でも、これはだいじょーぶ。
+でも、これはだいじょーぶ😉
 
 #### LuaRocks
 
@@ -100,7 +100,7 @@ LuaRocks は Lua モジュールのパッケージマネージャです。
 ```
 
 インストールは[Download](https://github.com/luarocks/luarocks/wiki/Download)の案内に従ってもいいし、
-もっとお手軽に`brew`とか`apt`などを利用することでも可能です。
+もっとお手軽に`brew`とか`apt`なんかを利用することでも可能です。
 
 ![luarocks](img/luarocks.webp)
 
@@ -174,7 +174,7 @@ format、lint など一瞬で完了させます！
 
 確認してないんだけど、こっちはインストールと動作に`npm`が必要なんじゃないかな❓
 
-現時点 (2023/01/30) では`JSON`,`JavaScript`,`TypeScript`に対応していますが、
+現時点 (2024/01/30) では`JSON`,`JavaScript`,`TypeScript`に対応していますが、
 将来的には`CSS`,`HTML`,`Markdown`にも対応するんだって😆
 
 ```admonish info title="[Expand Biome’s language support](https://biomejs.dev/blog/roadmap-2024/#expand-biomes-language-support)"
@@ -273,7 +273,7 @@ I love you!
 
 ということで、`Linter`のおはなしでした😆
 
-ここでは`Lua`と`JavaScript`に限ってしまいましたが、
+ここでは`Lua`と`JavaScript`だけ取り上げましたが、
 どの`Linter`を使う場合でも「似たようなもんだろー」と思ってもらえばだいじょうぶ❗
 
 ...たぶん😮
