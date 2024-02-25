@@ -18,35 +18,35 @@ const ELEM_OUTER = document.getElementById('searchresults-outer');
 let searchResult;
 let finder;
 
-let prevTerm;
+let prevTerms;
 
 const searchHandler = () => {
-  const term = ELEM_BAR.value.trim();
+  const terms = ELEM_BAR.value.trim();
 
-  if (term === prevTerm) {
+  if (terms === prevTerms) {
     return;
   }
-  prevTerm = term;
+  prevTerms = terms;
 
-  if (term === '') {
+  if (terms === '') {
     ELEM_OUTER.classList.add('hidden');
     return;
   }
 
   // If the input is a 1 character and is a single-byte character, the search process is not performed.
-  if (term.length <= 1 && term.charCodeAt() <= 127) {
+  if (terms.length <= 1 && terms.charCodeAt() <= 127) {
     return;
   }
   ELEM_RESULTS.innerHTML = '';
 
-  const results = finder.search(term);
+  const results = finder.search(terms);
 
   if (results.length === 0) {
-    ELEM_HEADER.innerText = `No search result for : ${term}`;
+    ELEM_HEADER.innerText = `No search result for : ${terms}`;
     return;
   }
-  ELEM_HEADER.innerText = `${results.length} search results for : ${term}`;
-  searchResult.append_search_result(results, term);
+  ELEM_HEADER.innerText = `${results.length} search results for : ${terms}`;
+  searchResult.append_search_result(results, terms);
 
   ELEM_OUTER.classList.remove('hidden');
 };
@@ -64,16 +64,16 @@ const hiddenSearch = () => {
 
 // On reload or browser history backwards/forwards events, parse the url and do search or mark
 const doSearchOrMarkFromUrl = () => {
-  const param = new URLSearchParams(globalThis.location.search).get('highlight');
+  const params = new URLSearchParams(globalThis.location.search).get('highlight');
 
-  if (!param) {
+  if (!params) {
     return;
   }
-  const term = decodeURIComponent(param);
-  ELEM_BAR.value = term;
+  const terms = decodeURIComponent(params);
+  ELEM_BAR.value = terms;
 
   const marker = new Mark(document.getElementById('main'));
-  marker.mark(term.split(' '), {
+  marker.mark(terms.split(' '), {
     accuracy: 'complementary',
   });
 
