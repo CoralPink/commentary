@@ -412,5 +412,5 @@ We are all together now!!{{footnote:
 ```admonish warning title=""
 じか〜い、じかい。
 
-17.5.3話「えるえすぴーミーツミー」という おはなし。
+17.6話「えるえすぴーミーツミー」という おはなし。
 ```

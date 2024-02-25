@@ -409,7 +409,7 @@ So, let's get the party started!
 ```admonish danger title=""
 MVP とは、俺のことだ！！
 
-17.6話 「フィナーレいさみあし
+17.7話 「フィナーレいさみあし
 {{footnote: 実際は`nvim_get_option_value`の おはなしで、このサイトの最終回まではあと 3回...か、4回❗}}
 」という おはなし。
 ```
