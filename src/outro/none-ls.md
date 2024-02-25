@@ -277,7 +277,7 @@ That is I think I disagree
 
 ## Strawberry Fields Forever
 
-意地でも聖夜🌃には間に合わせます{{footnote: とは書いてはみたものの、間に合わなくても堪忍して...。}}。
+意地でも聖夜🌃には間に合わせます。
 `none-ls`に負けないくらい超スムーズにいきましょう😆
 
 ```admonish quote title="Success"

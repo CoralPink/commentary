@@ -112,8 +112,6 @@ Living in the world agree
 受け入れてくれる世界に生きればいい
 ```
 
-トラブル続きでおーばーみーです🙃
-
 "For the time being" をどう受け取っていいのか、ちょっと悩みますが、
 こうなってしまった以上は`packer.nvim`から`lazy.nvim`への移行を、次回簡単に取り上げます🫡
 
