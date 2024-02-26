@@ -1,9 +1,8 @@
 import { codeBlock } from './codeblock.js';
 import { sidebarInit } from './sidebar.js';
-import wasmInit, { SearchResult, attribute_external_links } from './wasm_book.js';
+import wasmInit, { SearchResult, attribute_external_links, marking, unmarking } from './wasm_book.js';
 
 import Finder from './finder.js';
-import Mark from './node_modules/mark.js/dist/mark.es6.js';
 import TableOfContents from './table-of-contents.js';
 import ThemeSelector from './theme-selector.js';
 
@@ -62,6 +61,11 @@ const hiddenSearch = () => {
   ELEM_ICON.setAttribute('aria-expanded', 'false');
 };
 
+const unmarkHandler = () => {
+  const main = document.getElementById('main');
+  main.innerHTML = unmarking(main.innerHTML);
+};
+
 // On reload or browser history backwards/forwards events, parse the url and do search or mark
 const doSearchOrMarkFromUrl = () => {
   const params = new URLSearchParams(globalThis.location.search).get('highlight');
@@ -72,13 +76,10 @@ const doSearchOrMarkFromUrl = () => {
   const terms = decodeURIComponent(params);
   ELEM_BAR.value = terms;
 
-  const marker = new Mark(document.getElementById('main'));
-  marker.mark(terms.split(' '), {
-    accuracy: 'complementary',
-  });
+  marking(terms);
 
-  for (const x of document.querySelectorAll('mark')) {
-    x.addEventListener('mousedown', marker.unmark, { once: true, passive: true });
+  for (const x of main.querySelectorAll('mark')) {
+    x.addEventListener('mousedown', unmarkHandler, { once: true, passive: true });
   }
 };
 
@@ -92,6 +93,7 @@ const initWasmBook = async root => {
   ]);
 
   attribute_external_links();
+  doSearchOrMarkFromUrl();
 
   try {
     searchResult = new SearchResult(root, config.results_options.teaser_word_count, config.doc_urls);
@@ -145,8 +147,6 @@ const initWasmBook = async root => {
 
       new TableOfContents();
       new ThemeSelector();
-
-      doSearchOrMarkFromUrl();
 
       initWasmBook(document.getElementById('bookjs').dataset.pathtoroot);
     },
