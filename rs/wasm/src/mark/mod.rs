@@ -7,17 +7,30 @@ const MARK_TAG: &str = "<mark>";
 const MARK_END_TAG: &str = "</mark>";
 const EMPTY_STR: &str = "";
 
-fn node_list_to_vec(node_list: NodeList) -> Vec<Element> {
+#[wasm_bindgen]
+extern "C" {
+    #[wasm_bindgen(js_namespace = console)]
+    fn error(s: &str);
+}
+
+macro_rules! console_error {
+    ($($t:tt)*) => (error(&format!($($t)*)))
+}
+
+fn node_list_to_vec(node_list: NodeList) -> Result<Vec<Element>, String> {
     let mut vec = Vec::new();
 
     for i in 0..node_list.length() {
         if let Some(node) = node_list.item(i) {
             if let Some(el) = node.dyn_ref::<Element>() {
                 vec.push(el.clone());
+            } else {
+                return Err(format!("Node at index {} is not an Element", i));
             }
         }
     }
-    vec
+
+    Ok(vec)
 }
 
 fn replace(node: &Node, term: &str) {
@@ -61,13 +74,23 @@ pub fn marking(term: &str) {
     let document = window.document().expect("document not available");
 
     if let Some(main) = document.get_element_by_id("main") {
-        for node in node_list_to_vec(main.query_selector_all("*").expect("Failed: marking")) {
-            process_nodes(&node, term);
+        let node_list = main.query_selector_all("*").expect("Failed: marking");
+
+        match node_list_to_vec(node_list) {
+            Ok(nodes) => {
+                for node in nodes {
+                    process_nodes(&node, term);
+                }
+            }
+            Err(err) => {
+                console_error!("{}", &err);
+            }
         }
     }
 }
 
 #[wasm_bindgen]
 pub fn unmarking(str: &str) -> String {
-    str.replace(MARK_TAG, EMPTY_STR).replace(MARK_END_TAG, EMPTY_STR)
+    str.replace(MARK_TAG, EMPTY_STR)
+        .replace(MARK_END_TAG, EMPTY_STR)
 }
