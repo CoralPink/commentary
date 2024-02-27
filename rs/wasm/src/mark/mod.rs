@@ -3,6 +3,10 @@ use web_sys::{Element, Node, NodeList};
 
 const NODE_TYPE: u16 = 3;
 
+const MARK_TAG: &str = "<mark>";
+const MARK_END_TAG: &str = "</mark>";
+const EMPTY_STR: &str = "";
+
 fn node_list_to_vec(node_list: NodeList) -> Vec<Element> {
     let mut vec = Vec::new();
 
@@ -31,7 +35,7 @@ fn replace(node: &Node, term: &str) {
         }
 
         let marked = term.split_whitespace().fold(inner.clone(), |acc, word| {
-            acc.replace(word, &format!("<mark>{}</mark>", word))
+            acc.replace(word, &format!("{MARK_TAG}{word}{MARK_END_TAG}"))
         });
 
         elm.set_inner_html(&marked);
@@ -65,5 +69,5 @@ pub fn marking(term: &str) {
 
 #[wasm_bindgen]
 pub fn unmarking(str: &str) -> String {
-    str.replace("<mark>", "").replace("</mark>", "")
+    str.replace(MARK_TAG, EMPTY_STR).replace(MARK_END_TAG, EMPTY_STR)
 }
