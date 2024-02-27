@@ -64,6 +64,9 @@ const hiddenSearch = () => {
 const unmarkHandler = () => {
   const main = document.getElementById('main');
   main.innerHTML = unmarking(main.innerHTML);
+
+  // TODO: First Aid Treatment...
+  new TableOfContents();
 };
 
 // On reload or browser history backwards/forwards events, parse the url and do search or mark
