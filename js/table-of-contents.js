@@ -21,6 +21,7 @@ export default class TableOfContents {
     );
 
     this.#pagetoc = document.getElementsByClassName('pagetoc')[0];
+    this.#pagetoc.innerHTML = '';
 
     for (const el of document.getElementById('main').querySelectorAll('a.header')) {
       this.#observer.observe(el);
