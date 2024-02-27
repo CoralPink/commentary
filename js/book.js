@@ -1,9 +1,8 @@
 import { codeBlock } from './codeblock.js';
 import { sidebarInit } from './sidebar.js';
-import wasmInit, { SearchResult, attribute_external_links } from './wasm_book.js';
+import wasmInit, { SearchResult, attribute_external_links, marking, unmarking } from './wasm_book.js';
 
 import Finder from './finder.js';
-import Mark from './node_modules/mark.js/dist/mark.es6.js';
 import TableOfContents from './table-of-contents.js';
 import ThemeSelector from './theme-selector.js';
 
@@ -18,35 +17,35 @@ const ELEM_OUTER = document.getElementById('searchresults-outer');
 let searchResult;
 let finder;
 
-let prevTerm;
+let prevTerms;
 
 const searchHandler = () => {
-  const term = ELEM_BAR.value.trim();
+  const terms = ELEM_BAR.value.trim();
 
-  if (term === prevTerm) {
+  if (terms === prevTerms) {
     return;
   }
-  prevTerm = term;
+  prevTerms = terms;
 
-  if (term === '') {
+  if (terms === '') {
     ELEM_OUTER.classList.add('hidden');
     return;
   }
 
   // If the input is a 1 character and is a single-byte character, the search process is not performed.
-  if (term.length <= 1 && term.charCodeAt() <= 127) {
+  if (terms.length <= 1 && terms.charCodeAt() <= 127) {
     return;
   }
   ELEM_RESULTS.innerHTML = '';
 
-  const results = finder.search(term);
+  const results = finder.search(terms);
 
   if (results.length === 0) {
-    ELEM_HEADER.innerText = `No search result for : ${term}`;
+    ELEM_HEADER.innerText = `No search result for : ${terms}`;
     return;
   }
-  ELEM_HEADER.innerText = `${results.length} search results for : ${term}`;
-  searchResult.append_search_result(results, term);
+  ELEM_HEADER.innerText = `${results.length} search results for : ${terms}`;
+  searchResult.append_search_result(results, terms);
 
   ELEM_OUTER.classList.remove('hidden');
 };
@@ -62,23 +61,25 @@ const hiddenSearch = () => {
   ELEM_ICON.setAttribute('aria-expanded', 'false');
 };
 
+const unmarkHandler = () => {
+  const main = document.getElementById('main');
+  main.innerHTML = unmarking(main.innerHTML);
+};
+
 // On reload or browser history backwards/forwards events, parse the url and do search or mark
 const doSearchOrMarkFromUrl = () => {
-  const param = new URLSearchParams(globalThis.location.search).get('highlight');
+  const params = new URLSearchParams(globalThis.location.search).get('highlight');
 
-  if (!param) {
+  if (!params) {
     return;
   }
-  const term = decodeURIComponent(param);
-  ELEM_BAR.value = term;
+  const terms = decodeURIComponent(params);
+  ELEM_BAR.value = terms;
 
-  const marker = new Mark(document.getElementById('main'));
-  marker.mark(term.split(' '), {
-    accuracy: 'complementary',
-  });
+  marking(terms);
 
-  for (const x of document.querySelectorAll('mark')) {
-    x.addEventListener('mousedown', marker.unmark, { once: true, passive: true });
+  for (const x of main.querySelectorAll('mark')) {
+    x.addEventListener('mousedown', unmarkHandler, { once: true, passive: true });
   }
 };
 
@@ -92,6 +93,7 @@ const initWasmBook = async root => {
   ]);
 
   attribute_external_links();
+  doSearchOrMarkFromUrl();
 
   try {
     searchResult = new SearchResult(root, config.results_options.teaser_word_count, config.doc_urls);
@@ -145,8 +147,6 @@ const initWasmBook = async root => {
 
       new TableOfContents();
       new ThemeSelector();
-
-      doSearchOrMarkFromUrl();
 
       initWasmBook(document.getElementById('bookjs').dataset.pathtoroot);
     },
