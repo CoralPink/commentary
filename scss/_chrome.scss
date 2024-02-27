@@ -3,7 +3,6 @@
 mark {
   color: var(--fg);
   background: linear-gradient(rgba(0, 0, 0, 0) 70%, var(--search-mark-bg));
-  font-weight: bold;
 }
 
 .content {
@@ -368,6 +367,10 @@ table {
         font-size: 0.8em;
       }
     }
+  }
+
+  mark {
+    font-weight: bold;
   }
 }
 
