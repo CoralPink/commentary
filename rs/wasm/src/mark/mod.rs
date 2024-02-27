@@ -29,6 +29,9 @@ fn replace(node: &Node, term: &str) {
         let inner = elm.inner_html();
 
         if is_text(inner.as_str()) {
+            if inner.contains("<mark>") {
+                return;
+            }
             let marked = term.split_whitespace().fold(inner.clone(), |acc, word| {
                 acc.replace(word, &format!("<mark>{}</mark>", word))
             });
