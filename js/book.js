@@ -14,6 +14,8 @@ const ELEM_ICON = document.getElementById('search-toggle');
 const ELEM_HEADER = document.getElementById('searchresults-header');
 const ELEM_OUTER = document.getElementById('searchresults-outer');
 
+const tableOfContents = new TableOfContents();
+
 let searchResult;
 let finder;
 
@@ -65,8 +67,7 @@ const unmarkHandler = () => {
   const main = document.getElementById('main');
   main.innerHTML = unmarking(main.innerHTML);
 
-  // TODO: First Aid Treatment...
-  new TableOfContents();
+  tableOfContents.initialize();
 };
 
 // On reload or browser history backwards/forwards events, parse the url and do search or mark
@@ -148,7 +149,7 @@ const initWasmBook = async root => {
     () => {
       codeBlock();
 
-      new TableOfContents();
+      tableOfContents.initialize();
       new ThemeSelector();
 
       initWasmBook(document.getElementById('bookjs').dataset.pathtoroot);

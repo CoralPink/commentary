@@ -4,14 +4,39 @@ export default class TableOfContents {
   #observer;
   #pagetoc;
 
-  constructor() {
+  #addActive(entry) {
+    if (this.#onlyActive) {
+      this.#onlyActive.classList.remove('active');
+      this.#onlyActive = null;
+    }
+    this.#tocMap.get(entry.target).classList.add('active');
+  }
+
+  #removeActive(entry) {
+    let count = 0;
+    let active = null;
+
+    for (const x of this.#tocMap.values()) {
+      if (x.classList.contains('active')) {
+        count++;
+        active = x;
+      }
+    }
+
+    if (count <= 1) {
+      this.#onlyActive = active;
+      return;
+    }
+    this.#tocMap.get(entry.target).classList.remove('active');
+  }
+
+  initialize() {
     this.#tocMap = new Map();
-    this.#onlyActive = null;
 
     this.#observer = new IntersectionObserver(
       entries => {
         for (const x of entries) {
-          x.isIntersecting ? this.addActive(x) : this.removeActive(x);
+          x.isIntersecting ? this.#addActive(x) : this.#removeActive(x);
         }
       },
       {
@@ -37,29 +62,7 @@ export default class TableOfContents {
     }
   }
 
-  addActive(entry) {
-    if (this.#onlyActive) {
-      this.#onlyActive.classList.remove('active');
-      this.#onlyActive = null;
-    }
-    this.#tocMap.get(entry.target).classList.add('active');
-  }
-
-  removeActive(entry) {
-    let count = 0;
-    let active = null;
-
-    for (const x of this.#tocMap.values()) {
-      if (x.classList.contains('active')) {
-        count++;
-        active = x;
-      }
-    }
-
-    if (count <= 1) {
-      this.#onlyActive = active;
-      return;
-    }
-    this.#tocMap.get(entry.target).classList.remove('active');
+  constructor() {
+    this.#onlyActive = null;
   }
 }
