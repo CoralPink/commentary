@@ -32,6 +32,7 @@ export default class TableOfContents {
 
   initialize() {
     this.#tocMap = new Map();
+    this.#onlyActive = null;
 
     this.#observer = new IntersectionObserver(
       entries => {
@@ -60,9 +61,5 @@ export default class TableOfContents {
       this.#pagetoc.appendChild(link);
       this.#tocMap.set(el, link);
     }
-  }
-
-  constructor() {
-    this.#onlyActive = null;
   }
 }
