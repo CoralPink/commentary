@@ -236,7 +236,7 @@ end, {})
 </div>
 <div>
 <pre><code class="language-diff">local function has_copilot()
-+  if vim.api.nvim_buf_get_option_value('buftype', {}) == 'prompt' then
++  if vim.api.nvim_get_option_value('buftype', {}) == 'prompt' then
 -  if vim.api.nvim_buf_get_option_value(0, 'buftype') == 'prompt' then
      return false
    end
