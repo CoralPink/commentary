@@ -70,6 +70,18 @@ const unmarkHandler = () => {
   tableOfContents.initialize();
 };
 
+const escapeHtml = str => {
+  return decodeURIComponent(str).replace(/[&<>"']/g, match => {
+    return {
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      '"': '&quot;',
+      "'": '&#39;',
+    }[match];
+  });
+};
+
 // On reload or browser history backwards/forwards events, parse the url and do search or mark
 const doSearchOrMarkFromUrl = () => {
   const params = new URLSearchParams(globalThis.location.search).get('highlight');
@@ -77,7 +89,7 @@ const doSearchOrMarkFromUrl = () => {
   if (!params) {
     return;
   }
-  const terms = decodeURIComponent(params);
+  const terms = escapeHtml(params);
   ELEM_BAR.value = terms;
 
   marking(terms);
