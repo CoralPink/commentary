@@ -31,6 +31,28 @@ body {
   }
 }
 
+.sidebar {
+  visibility: hidden; // Initially, it is hidden.
+  scrollbar-color: var(--scrollbar) var(--bg);
+
+  ::-webkit-scrollbar {
+    width: var.$scrollbar-width;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--scrollbar);
+    border-radius: 1rem;
+  }
+}
+
+.sidebar-scrollbox {
+  position: fixed;
+  top: var.$menu-bar-height;
+  bottom: 0;
+  width: var.$sidebar-width;
+  overflow-y: scroll;
+}
+
 .page {
 
   // For the style attribute, display: grid or block is added from the JS code.
