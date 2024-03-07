@@ -63,6 +63,7 @@ const searchHandler = () => {
 
         if (isClickOnLink) {
           globalThis.location.href = e.target.href;
+          doSearchOrMarkFromUrl();
         }
       },
       { once: false, passive: true },
