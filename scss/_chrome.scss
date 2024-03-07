@@ -1,24 +1,6 @@
 @use 'variables' as var;
 
 .content {
-  code {
-    display: inline;
-    font-family: var.$mono-font;
-    font-size: var.$code-font-size;
-
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-
-    color: var(--inline-code-color);
-    background-color: var(--quote-bg);
-    padding: 0.1rem 0.3rem;
-    border-radius: 0.2rem;
-
-    mark {
-      color: var(--inline-code-color);
-    }
-  }
-
   mark {
     cursor: pointer;
   }
@@ -40,6 +22,24 @@
     margin: 0 0.1rem;
     padding: 0.2rem 0.3rem;
     vertical-align: top;
+  }
+}
+
+code {
+  display: inline;
+  font-family: var.$mono-font;
+  font-size: var.$code-font-size;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  color: var(--inline-code-color);
+  background-color: var(--quote-bg);
+  padding: 0.1rem 0.3rem;
+  border-radius: 0.2rem;
+
+  mark {
+    color: var(--inline-code-color);
   }
 }
 
