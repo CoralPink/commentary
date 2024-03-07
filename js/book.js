@@ -47,12 +47,22 @@ const searchHandler = () => {
     document.addEventListener(
       'mousedown',
       e => {
-        if (
-          !ELEM_WRAPPER.classList.contains('hidden') &&
-          !ELEM_ICON.contains(e.target) &&
-          !ELEM_WRAPPER.contains(e.target)
-        ) {
-          hiddenSearch();
+        if (ELEM_WRAPPER.classList.contains('hidden')) {
+          return;
+        }
+
+        const isClickOnLink = e.target.tagName === 'A';
+
+        if (ELEM_WRAPPER.contains(e.target) || ELEM_ICON.contains(e.target)) {
+          if (!isClickOnLink) {
+            return;
+          }
+        }
+
+        hiddenSearch();
+
+        if (isClickOnLink) {
+          globalThis.location.href = e.target.href;
         }
       },
       { once: false, passive: true },
