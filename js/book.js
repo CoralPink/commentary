@@ -21,6 +21,8 @@ let finder;
 
 let prevTerms;
 
+let searchFirstShow = true;
+
 const searchHandler = () => {
   const terms = ELEM_BAR.value.trim();
 
@@ -39,6 +41,24 @@ const searchHandler = () => {
     return;
   }
   ELEM_RESULTS.innerHTML = '';
+
+  // TODO: This funny code is because Firefox still won't let me use Popover (by default)!
+  if (searchFirstShow) {
+    document.addEventListener(
+      'mousedown',
+      e => {
+        if (
+          !ELEM_WRAPPER.classList.contains('hidden') &&
+          !ELEM_ICON.contains(e.target) &&
+          !ELEM_WRAPPER.contains(e.target)
+        ) {
+          hiddenSearch();
+        }
+      },
+      { once: false, passive: true },
+    );
+    searchFirstShow = false;
+  }
 
   const results = finder.search(terms);
 
@@ -70,8 +90,8 @@ const unmarkHandler = () => {
   tableOfContents.initialize();
 };
 
-const escapeHtml = str => {
-  return decodeURIComponent(str).replace(/[&<>"']/g, match => {
+const escapeHtml = str =>
+  decodeURIComponent(str).replace(/[&<>"']/g, match => {
     return {
       '&': '&amp;',
       '<': '&lt;',
@@ -80,7 +100,6 @@ const escapeHtml = str => {
       "'": '&#39;',
     }[match];
   });
-};
 
 // On reload or browser history backwards/forwards events, parse the url and do search or mark
 const doSearchOrMarkFromUrl = () => {
