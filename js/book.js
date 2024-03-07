@@ -103,7 +103,7 @@ const escapeHtml = str =>
 
 // On reload or browser history backwards/forwards events, parse the url and do search or mark
 const doSearchOrMarkFromUrl = () => {
-  const params = new URLSearchParams(globalThis.location.search).get('highlight');
+  const params = new URLSearchParams(globalThis.location.search).get('mark');
 
   if (!params) {
     return;

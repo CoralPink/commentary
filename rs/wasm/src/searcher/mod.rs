@@ -126,7 +126,7 @@ impl SearchResult {
 
         let terms = term.split_whitespace().collect::<Vec<&str>>();
 
-        let highlight = js_sys::encode_uri_component(&terms.join("%20"))
+        let mark = js_sys::encode_uri_component(&terms.join("%20"))
             .as_string()
             .unwrap_or_default()
             .replace('\'', "%27");
@@ -150,8 +150,8 @@ impl SearchResult {
             let score_bar = scoring_notation(el.score);
 
             self.add_element(&format!(
-                r#"<a href="{}{}?highlight={}#{}">{}</a><span class="teaser" aria-label="Search Result Teaser">{}</span><div id="score">{}</div>"#,
-                &self.path_to_root, page, highlight, head, el.doc.breadcrumbs, teaser, score_bar
+                r#"<a href="{}{}?mark={}#{}">{}</a><span class="teaser" aria-label="Search Result Teaser">{}</span><div id="score">{}</div>"#,
+                &self.path_to_root, page, mark, head, el.doc.breadcrumbs, teaser, score_bar
             ));
         });
     }
