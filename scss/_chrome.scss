@@ -1,11 +1,24 @@
 @use 'variables' as var;
 
-mark {
-  color: var(--fg);
-  background: linear-gradient(rgba(0, 0, 0, 0) 70%, var(--search-mark-bg));
-}
-
 .content {
+  code {
+    display: inline;
+    font-family: var.$mono-font;
+    font-size: var.$code-font-size;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    color: var(--inline-code-color);
+    background-color: var(--quote-bg);
+    padding: 0.1rem 0.3rem;
+    border-radius: 0.2rem;
+
+    mark {
+      color: var(--inline-code-color);
+    }
+  }
+
   mark {
     cursor: pointer;
   }
@@ -30,24 +43,15 @@ mark {
   }
 }
 
+mark {
+  color: var(--fg);
+  background: linear-gradient(rgba(0, 0, 0, 0) 70%, var(--search-mark-bg));
+}
+
 .icon-button {
   font-family: 'Open Sans', 'Symbols Nerd Font Mono';
   border: none;
   background: none;
-}
-
-code {
-  display: inline;
-  font-family: var.$mono-font !important;
-  font-size: var.$code-font-size;
-
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
-  color: var(--inline-code-color);
-  background-color: var(--quote-bg);
-  padding: 0.1rem 0.3rem;
-  border-radius: 0.2rem;
 }
 
 pre {
@@ -351,7 +355,6 @@ table {
     font-weight: bold;
   }
 }
-
 
 .theme-popup {
   .theme {
