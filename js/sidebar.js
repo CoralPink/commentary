@@ -1,5 +1,7 @@
 import { writeLocalStorage } from './storage.js';
 
+const SHOW_SIDEBAR_WIDTH = 1200;
+
 const page = document.getElementById('page');
 const sidebar = document.getElementById('sidebar');
 const toggleButton = document.getElementById('sidebar-toggle');
@@ -39,7 +41,7 @@ const toggleSidebar = () => (toggleButton.getAttribute('aria-expanded') === 'tru
 export const sidebarInit = () => {
   toggleButton.addEventListener('mousedown', () => toggleSidebar(), { once: false, passive: true });
 
-  matchMedia('(min-width: 1200px)').addEventListener('change', event => {
+  matchMedia(`(min-width: ${SHOW_SIDEBAR_WIDTH}px)`).addEventListener('change', event => {
     if (event.matches) {
       showSidebar();
     }
