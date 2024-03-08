@@ -23,6 +23,12 @@
   "orientation": "any",
   "shortcuts": [
     {
+      "name": "Introduction",
+      "url": "index.html",
+      "description": "Introduction.",
+      "icons": [{ "src": "chrome-96x96.png", "sizes": "96x96" }]
+    },
+    {
       "name": "WezTerm",
       "url": "wezterm/installation.html",
       "description": "WezTerm dotfiles.",
@@ -32,6 +38,12 @@
       "name": "Neovim",
       "url": "neovim/installation.html",
       "description": "Neovim dotfiles.",
+      "icons": [{ "src": "chrome-96x96.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "Outroduction",
+      "url": "outro/outroduction.html",
+      "description": "Outroduction",
       "icons": [{ "src": "chrome-96x96.png", "sizes": "96x96" }]
     }
   ],
