@@ -1,11 +1,15 @@
-export default class TableOfContents {
+const ENABLE_PAGETOC = 760;
+
+let tableOfContents;
+
+class TableOfContents {
   #tocMap;
-  #onlyActive;
   #observer;
-  #pagetoc;
+
+  #onlyActive = null;
 
   #addActive(entry) {
-    if (this.#onlyActive) {
+    if (this.#onlyActive !== null) {
       this.#onlyActive.classList.remove('active');
       this.#onlyActive = null;
     }
@@ -30,10 +34,7 @@ export default class TableOfContents {
     this.#tocMap.get(entry.target).classList.remove('active');
   }
 
-  initialize() {
-    this.#tocMap = new Map();
-    this.#onlyActive = null;
-
+  #initialize() {
     this.#observer = new IntersectionObserver(
       entries => {
         for (const x of entries) {
@@ -46,8 +47,8 @@ export default class TableOfContents {
       },
     );
 
-    this.#pagetoc = document.getElementsByClassName('pagetoc')[0];
-    this.#pagetoc.innerHTML = '';
+    const pagetoc = document.getElementsByClassName('pagetoc')[0];
+    pagetoc.innerHTML = '';
 
     for (const el of document.getElementById('main').querySelectorAll('a.header')) {
       this.#observer.observe(el);
@@ -58,8 +59,45 @@ export default class TableOfContents {
       link.href = el.href;
       link.classList.add(el.parentElement.tagName);
 
-      this.#pagetoc.appendChild(link);
+      pagetoc.appendChild(link);
       this.#tocMap.set(el, link);
     }
   }
+
+  reset() {
+    this.#tocMap.clear();
+    this.#observer.disconnect();
+
+    this.#initialize();
+  }
+
+  constructor() {
+    this.#tocMap = new Map();
+    this.#initialize();
+  }
 }
+
+export const initTableOfContents = () => {
+  if (tableOfContents !== undefined) {
+    tableOfContents.reset();
+    return;
+  }
+
+  // If TableOfContents has not been created, create it.
+  // Once created, it is not deleted even if the window size falls below `ENABLE_PAGETOC`.
+
+  if (window.innerWidth >= ENABLE_PAGETOC) {
+    tableOfContents = new TableOfContents();
+    return;
+  }
+
+  matchMedia(`(min-width: ${ENABLE_PAGETOC}px)`).addEventListener(
+    'change',
+    ev => {
+      if (ev.matches) {
+        tableOfContents = new TableOfContents();
+      }
+    },
+    { once: true, passive: true },
+  );
+};
