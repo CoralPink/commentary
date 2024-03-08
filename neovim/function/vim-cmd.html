@@ -169,7 +169,8 @@ vim.cmd.colorscheme('blue')
 </code></pre>
 </div>
 </div>
-<p>これは単純に<code>:なんとか</code>をコードから実行できる関数ですね。</p>
+<h2 id="try"><a class="header" href="#try">Try</a></h2>
+<p>これは単純に<code>:なんとか</code>をコードから実行できる関数です。</p>
 <p>こんなのを😮</p>
 <pre><code class="language-vim">:colorscheme blue
 </code></pre>
@@ -232,7 +233,7 @@ vim.cmd.colorscheme('blue')
 </code></pre>
 <p><code>colorscheme</code>は<code>colo</code>でもいいよーっていうのと、<code>vim.cmd.colo</code>みたいな書き方はヘルプにあったので、まあ良いじゃないですか❓</p>
 <p>もう一個、なんで<code>vim.cmd.colorscheme 'blue'</code>が通るのかって言うと、
-こっちは<code>lua</code>の仕様で、パラメータが一つしかない場合は<code>()</code>を省略して良いことになってます😉</p>
+こっちは<code>lua</code>の仕様で、パラメータが<code>文字列が一つだけ</code>である場合は<code>()</code>を省略して良いことになってます😉</p>
 <p>見た目がシンプルになるので、わたしは積極的に使っていきたいタイプです。
 この先でも、しれっとこんな記述をしていくので、よろしくどうぞ😆</p>
 <div id="admonition-success" class="admonition admonish-success">
