@@ -3,7 +3,7 @@ import { sidebarInit } from './sidebar.js';
 import wasmInit, { SearchResult, attribute_external_links, marking, unmarking } from './wasm_book.js';
 
 import Finder from './finder.js';
-import TableOfContents from './table-of-contents.js';
+import { initTableOfContents } from './table-of-contents.js';
 import ThemeSelector from './theme-selector.js';
 
 const ELEM_BAR = document.getElementById('searchbar');
@@ -13,8 +13,6 @@ const ELEM_ICON = document.getElementById('search-toggle');
 
 const ELEM_HEADER = document.getElementById('searchresults-header');
 const ELEM_OUTER = document.getElementById('searchresults-outer');
-
-const tableOfContents = new TableOfContents();
 
 let searchResult;
 let finder;
@@ -98,7 +96,7 @@ const unmarkHandler = () => {
   const main = document.getElementById('main');
   main.innerHTML = unmarking(main.innerHTML);
 
-  tableOfContents.initialize();
+  initTableOfContents();
 };
 
 const escapeHtml = str =>
@@ -190,8 +188,8 @@ const initWasmBook = async root => {
     'DOMContentLoaded',
     () => {
       codeBlock();
+      initTableOfContents();
 
-      tableOfContents.initialize();
       new ThemeSelector();
 
       initWasmBook(document.getElementById('bookjs').dataset.pathtoroot);
