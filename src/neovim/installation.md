@@ -1,6 +1,8 @@
-# Installation
+# Neovim
 
 さてさて、ここからは`Neovim`を扱っていきます。
+
+## Installation
 
 これもやっぱり`Homebrew`や、ホームページ上で提供されている実行ファイルをダウンロードする方法があります。
 
