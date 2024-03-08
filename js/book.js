@@ -19,8 +19,6 @@ let finder;
 
 let prevTerms;
 
-let searchFirstShow = true;
-
 const searchHandler = () => {
   const terms = ELEM_BAR.value.trim();
 
@@ -40,35 +38,6 @@ const searchHandler = () => {
   }
   ELEM_RESULTS.innerHTML = '';
 
-  // TODO: This funny code is because Firefox still won't let me use Popover (by default)!
-  if (searchFirstShow) {
-    document.addEventListener(
-      'mousedown',
-      e => {
-        if (ELEM_WRAPPER.classList.contains('hidden')) {
-          return;
-        }
-
-        const isClickOnLink = e.target.tagName === 'A';
-
-        if (ELEM_WRAPPER.contains(e.target) || ELEM_ICON.contains(e.target)) {
-          if (!isClickOnLink) {
-            return;
-          }
-        }
-
-        hiddenSearch();
-
-        if (isClickOnLink) {
-          globalThis.location.href = e.target.href;
-          doSearchOrMarkFromUrl();
-        }
-      },
-      { once: false, passive: true },
-    );
-    searchFirstShow = false;
-  }
-
   const results = finder.search(terms);
 
   if (results.length === 0) {
@@ -81,19 +50,49 @@ const searchHandler = () => {
   ELEM_OUTER.classList.remove('hidden');
 };
 
-const showSearch = () => {
-  ELEM_WRAPPER.classList.remove('hidden');
-  ELEM_ICON.setAttribute('aria-expanded', 'true');
-  ELEM_BAR.select();
+// TODO: This funny code is because Firefox still won't let me use Popover (by default)!
+const searchPopupHandler = ev => {
+  if (ELEM_WRAPPER.classList.contains('hidden')) {
+    return;
+  }
+
+  if (ev.target.tagName === 'A') {
+    globalThis.location.href = ev.target.href;
+
+    hiddenSearch();
+    unmarkHandler();
+    doSearchOrMarkFromUrl();
+
+    return;
+  }
+
+  if (ELEM_WRAPPER.contains(ev.target) || ELEM_ICON.contains(ev.target)) {
+    return;
+  }
+  hiddenSearch();
 };
 
 const hiddenSearch = () => {
   ELEM_WRAPPER.classList.add('hidden');
   ELEM_ICON.setAttribute('aria-expanded', 'false');
+
+  document.removeEventListener('mousedown', searchPopupHandler, { once: false, passive: true });
+};
+
+const showSearch = () => {
+  ELEM_WRAPPER.classList.remove('hidden');
+  ELEM_ICON.setAttribute('aria-expanded', 'true');
+  ELEM_BAR.select();
+
+  document.addEventListener('mousedown', searchPopupHandler, { once: false, passive: true });
 };
 
 const unmarkHandler = () => {
   const main = document.getElementById('main');
+
+  for (const x of main.querySelectorAll('mark')) {
+    x.removeEventListener('mousedown', unmarkHandler, { once: true, passive: true });
+  }
   main.innerHTML = unmarking(main.innerHTML);
 
   initTableOfContents();
