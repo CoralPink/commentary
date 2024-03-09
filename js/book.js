@@ -52,24 +52,27 @@ const searchHandler = () => {
 
 // TODO: This funny code is because Firefox still won't let me use Popover (by default)!
 const searchPopupHandler = ev => {
-  if (ELEM_WRAPPER.classList.contains('hidden')) {
+  if (ELEM_WRAPPER.classList.contains('hidden') || ELEM_ICON.contains(ev.target)) {
     return;
   }
 
-  if (ev.target.tagName === 'A') {
-    globalThis.location.href = ev.target.href;
+  if (!ELEM_WRAPPER.contains(ev.target)) {
+    hiddenSearch();
+    return;
+  }
 
+  if (ev.target.tagName !== 'A') {
+    return;
+  }
+
+  const currentURL = window.location.origin + window.location.pathname;
+  const clickedURL = ev.target.origin + ev.target.pathname;
+
+  if (currentURL === clickedURL) {
     hiddenSearch();
     unmarkHandler();
     doSearchOrMarkFromUrl();
-
-    return;
   }
-
-  if (ELEM_WRAPPER.contains(ev.target) || ELEM_ICON.contains(ev.target)) {
-    return;
-  }
-  hiddenSearch();
 };
 
 const hiddenSearch = () => {
@@ -91,7 +94,7 @@ const unmarkHandler = () => {
   const main = document.getElementById('main');
 
   for (const x of main.querySelectorAll('mark')) {
-    x.removeEventListener('mousedown', unmarkHandler, { once: true, passive: true });
+    x.removeEventListener('mouseup', unmarkHandler, { once: true, passive: true });
   }
   main.innerHTML = unmarking(main.innerHTML);
 
@@ -122,7 +125,7 @@ const doSearchOrMarkFromUrl = () => {
   marking(terms);
 
   for (const x of main.querySelectorAll('mark')) {
-    x.addEventListener('mousedown', unmarkHandler, { once: true, passive: true });
+    x.addEventListener('mouseup', unmarkHandler, { once: true, passive: true });
   }
 };
 
