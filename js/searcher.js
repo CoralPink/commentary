@@ -114,7 +114,7 @@ const hiddenSearch = () => {
   ELEM_WRAPPER.classList.add('hidden');
   ELEM_ICON.setAttribute('aria-expanded', 'false');
 
-  document.removeEventListener('mousedown', searchPopupHandler, { once: false, passive: true });
+  document.removeEventListener('mouseup', searchPopupHandler, { once: false, passive: true });
 };
 
 const showSearch = () => {
@@ -122,7 +122,7 @@ const showSearch = () => {
   ELEM_ICON.setAttribute('aria-expanded', 'true');
   ELEM_BAR.select();
 
-  document.addEventListener('mousedown', searchPopupHandler, { once: false, passive: true });
+  document.addEventListener('mouseup', searchPopupHandler, { once: false, passive: true });
 };
 
 export const searchInit = (root, config) => {
