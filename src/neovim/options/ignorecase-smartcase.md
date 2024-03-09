@@ -14,14 +14,14 @@ ignorecase' オプションがオンの場合、通常の文字の大文字小�
 smartcase' を指定すると、パターンが小文字のみである場合に大文字小文字を無視する。
 
 Examples:
-pattern	'ignorecase'   'smartcase'   matches
 
-  foo    off            -	           foo
-  foo	   on             -	           foo Foo FOO
-  Foo	   on             off	         foo Foo FOO
-  Foo	   on             on	         Foo
-  \cfoo	 -              -            foo Foo FOO
-  foo\C  -              -            foo
+pattern	'ignorecase' 'smartcase' matches
+  foo     off          -         foo
+  foo     on           -         foo Foo FOO
+  Foo     on           off       foo Foo FOO
+  Foo     on           on            Foo
+  \cfoo   -            -         foo Foo FOO
+  foo\C   -            -         foo
 ```
 ~~~
 
