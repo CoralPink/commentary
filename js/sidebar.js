@@ -38,7 +38,27 @@ const hideSidebar = (write = true) => {
 
 const toggleSidebar = () => (toggleButton.getAttribute('aria-expanded') === 'true' ? hideSidebar() : showSidebar());
 
+const toggleHandler = ev => {
+  if (globalThis.search.hasFocus()) {
+    return;
+  }
+
+  if (ev.key === 't' || ev.key === 'T') {
+    toggleSidebar();
+  } else if (ev.key === 'Escape') {
+    hideSidebar();
+  }
+};
+
 export const sidebarInit = () => {
+  // FIXME: The definitions are all over the place.
+  if (window.innerWidth < 750) {
+    hideSidebar();
+  } else {
+    localStorage.getItem('mdbook-sidebar') === 'hidden' ? hideSidebar(false) : showSidebar(false);
+  }
+
+  document.addEventListener('keyup', toggleHandler, { once: false, passive: true });
   toggleButton.addEventListener('mousedown', () => toggleSidebar(), { once: false, passive: true });
 
   matchMedia(`(min-width: ${SHOW_SIDEBAR_WIDTH}px)`).addEventListener('change', event => {
@@ -46,29 +66,4 @@ export const sidebarInit = () => {
       showSidebar();
     }
   });
-
-  // FIXME: The definitions are all over the place.
-  if (window.innerWidth < 750) {
-    hideSidebar();
-    return;
-  }
-  localStorage.getItem('mdbook-sidebar') === 'hidden' ? hideSidebar(false) : showSidebar(false);
 };
-
-document.addEventListener('DOMContentLoaded', () => {
-  document.addEventListener(
-    'keyup',
-    e => {
-      if (globalThis.search.hasFocus()) {
-        return;
-      }
-
-      if (e.key === 't' || e.key === 'T') {
-        toggleSidebar();
-      } else if (e.key === 'Escape') {
-        hideSidebar();
-      }
-    },
-    { once: false, passive: true },
-  );
-});
