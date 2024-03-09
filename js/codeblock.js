@@ -99,7 +99,7 @@ const codeCopy = trigger => {
   );
 };
 
-export const codeBlock = () => {
+export const procCodeBlock = () => {
   const main = document.getElementById('main');
 
   if (main === null) {
