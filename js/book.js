@@ -1,8 +1,8 @@
-import { codeBlock } from './codeblock.js';
+import { procCodeBlock } from './codeblock.js';
 import { globalSearchInit, searchInit } from './searcher.js';
 import { sidebarInit } from './sidebar.js';
 
-import wasmInit, { attribute_external_links } from './wasm_book.js';
+import initWasm, { attribute_external_links } from './wasm_book.js';
 
 import { initTableOfContents } from './table-of-contents.js';
 import ThemeSelector from './theme-selector.js';
@@ -12,11 +12,10 @@ const initialize = async () => {
 
   const [config, _] = await Promise.all([
     fetch(`${root}searchindex.json`).then(response => response.json()),
+    initWasm(),
 
-    wasmInit(),
-    codeBlock(),
     initTableOfContents(),
-
+    procCodeBlock(),
     new ThemeSelector(),
   ]);
 
