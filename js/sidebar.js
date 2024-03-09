@@ -2,18 +2,21 @@ import { writeLocalStorage } from './storage.js';
 
 const SHOW_SIDEBAR_WIDTH = 1200;
 
-const page = document.getElementById('page');
-const sidebar = document.getElementById('sidebar');
-const toggleButton = document.getElementById('sidebar-toggle');
-
-const active = sidebar.querySelector('.active');
+const ID_PAGE = 'page';
+const ID_SIDEBAR = 'sidebar';
+const ID_SIDEBAR_TOGGLE = 'sidebar-toggle';
 
 const showSidebar = (write = true) => {
-  page.style.display = 'grid';
+  document.getElementById(ID_PAGE).style.display = 'grid';
+
+  const sidebar = document.getElementById(ID_SIDEBAR);
   sidebar.style.display = 'block';
   sidebar.style.visibility = 'visible';
   sidebar.setAttribute('aria-hidden', false);
-  toggleButton.setAttribute('aria-expanded', true);
+
+  document.getElementById(ID_SIDEBAR_TOGGLE).setAttribute('aria-expanded', true);
+
+  const active = sidebar.querySelector('.active');
 
   if (active) {
     active.scrollIntoView({ block: 'center' });
@@ -25,18 +28,22 @@ const showSidebar = (write = true) => {
 };
 
 const hideSidebar = (write = true) => {
-  page.style.display = 'block';
+  document.getElementById(ID_PAGE).style.display = 'block';
+
+  const sidebar = document.getElementById(ID_SIDEBAR);
   sidebar.style.display = 'none';
   sidebar.style.visibility = 'hidden';
   sidebar.setAttribute('aria-hidden', true);
-  toggleButton.setAttribute('aria-expanded', false);
+
+  document.getElementById(ID_SIDEBAR_TOGGLE).setAttribute('aria-expanded', false);
 
   if (write) {
     writeLocalStorage('mdbook-sidebar', 'hidden');
   }
 };
 
-const toggleSidebar = () => (toggleButton.getAttribute('aria-expanded') === 'true' ? hideSidebar() : showSidebar());
+const toggleSidebar = () =>
+  document.getElementById(ID_SIDEBAR_TOGGLE).getAttribute('aria-expanded') === 'true' ? hideSidebar() : showSidebar();
 
 const toggleHandler = ev => {
   if (globalThis.search.hasFocus()) {
@@ -59,7 +66,9 @@ export const sidebarInit = () => {
   }
 
   document.addEventListener('keyup', toggleHandler, { once: false, passive: true });
-  toggleButton.addEventListener('mouseup', () => toggleSidebar(), { once: false, passive: true });
+  document
+    .getElementById(ID_SIDEBAR_TOGGLE)
+    .addEventListener('mouseup', () => toggleSidebar(), { once: false, passive: true });
 
   matchMedia(`(min-width: ${SHOW_SIDEBAR_WIDTH}px)`).addEventListener('change', event => {
     if (event.matches) {
