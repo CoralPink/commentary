@@ -5,7 +5,7 @@ import { sidebarInit } from './sidebar.js';
 import initWasm, { attribute_external_links } from './wasm_book.js';
 
 import { initTableOfContents } from './table-of-contents.js';
-import ThemeSelector from './theme-selector.js';
+import { initThemeSelector } from './theme-selector.js';
 
 const initialize = async () => {
   const root = document.getElementById('bookjs').dataset.pathtoroot;
@@ -16,7 +16,7 @@ const initialize = async () => {
 
     initTableOfContents(),
     procCodeBlock(),
-    new ThemeSelector(),
+    initThemeSelector(),
   ]);
 
   attribute_external_links();
