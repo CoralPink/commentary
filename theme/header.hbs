@@ -7,7 +7,7 @@
 e||(e=matchMedia("(prefers-color-scheme: dark)").matches?"{{preferred_dark_theme}}":"{{default_theme}}"),
 document.querySelector("html").classList.add(e),
 setTimeout((()=>{document.querySelector('meta[name="theme-color"]').content=window.getComputedStyle(document.body).backgroundColor,
-document.getElementById(e).classList.add("theme-selected")}))})();
+document.getElementById(e).classList.add("theme-selected")}),1)})();
 </script>
 
 <script>
