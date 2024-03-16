@@ -1,7 +1,10 @@
 import { writeLocalStorage } from './storage.js';
 
-const THEME_TOGGLE = 'theme-toggle';
 const THEME_LIST = 'theme-list';
+const THEME_SELECTED = 'theme-selected';
+const THEME_TOGGLE = 'theme-toggle';
+
+const SAVE_STORAGE = 'mdbook-theme';
 
 const selectHandler = ev => {
   if (document.getElementById(THEME_TOGGLE).contains(ev.target)) {
@@ -28,6 +31,12 @@ const showThemes = () => {
   document.addEventListener('mouseup', selectHandler, { once: false, passive: true });
 };
 
+const setStyle = () => {
+  document.querySelector('meta[name="theme-color"]').content = globalThis.getComputedStyle(
+    document.body,
+  ).backgroundColor;
+};
+
 const setTheme = next => {
   const htmlClass = document.querySelector('html').classList;
   const current = htmlClass.value;
@@ -37,18 +46,22 @@ const setTheme = next => {
   }
 
   htmlClass.replace(current, next);
+  setStyle();
 
-  document.getElementById(current).classList.remove('theme-selected');
-  document.getElementById(next).classList.add('theme-selected');
+  document.getElementById(current).classList.remove(THEME_SELECTED);
+  document.getElementById(next).classList.add(THEME_SELECTED);
 
-  document.querySelector('meta[name="theme-color"]').content = globalThis.getComputedStyle(
-    document.body,
-  ).backgroundColor;
-
-  writeLocalStorage('mdbook-theme', next);
+  writeLocalStorage(SAVE_STORAGE, next);
 };
 
 export const initThemeSelector = () => {
+  const theme = document.querySelector('html').classList.value;
+
+  document.querySelector('html').classList.add(theme);
+  setStyle();
+
+  document.getElementById(theme).classList.add(THEME_SELECTED);
+
   document
     .getElementById(THEME_TOGGLE)
     .addEventListener(
