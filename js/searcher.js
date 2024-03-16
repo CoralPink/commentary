@@ -125,7 +125,7 @@ const showSearch = () => {
   document.addEventListener('mouseup', searchPopupHandler, { once: false, passive: true });
 };
 
-export const searchInit = (root, config) => {
+export const initSearch = (root, config) => {
   doSearchOrMarkFromUrl();
 
   try {
@@ -168,7 +168,7 @@ export const searchInit = (root, config) => {
   );
 };
 
-export const globalSearchInit = () => {
+export const initGlobalSearch = () => {
   globalThis.search = globalThis.search || {};
   globalThis.search.hasFocus = () => ELEM_BAR === document.activeElement;
 };
