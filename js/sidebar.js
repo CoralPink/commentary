@@ -4,7 +4,7 @@ const SHOW_SIDEBAR_WIDTH = 1200;
 
 const ID_PAGE = 'page';
 const ID_SIDEBAR = 'sidebar';
-const ID_SIDEBAR_TOGGLE = 'sidebar-toggle';
+const ID_TOGGLE_BUTTON = 'sidebar-toggle';
 
 const showSidebar = (write = true) => {
   document.getElementById(ID_PAGE).style.display = 'grid';
@@ -13,7 +13,7 @@ const showSidebar = (write = true) => {
   sidebar.style.display = 'block';
   sidebar.setAttribute('aria-hidden', false);
 
-  document.getElementById(ID_SIDEBAR_TOGGLE).setAttribute('aria-expanded', true);
+  document.getElementById(ID_TOGGLE_BUTTON).setAttribute('aria-expanded', true);
 
   const active = sidebar.querySelector('.active');
 
@@ -33,7 +33,7 @@ const hideSidebar = (write = true) => {
   sidebar.style.display = 'none';
   sidebar.setAttribute('aria-hidden', true);
 
-  document.getElementById(ID_SIDEBAR_TOGGLE).setAttribute('aria-expanded', false);
+  document.getElementById(ID_TOGGLE_BUTTON).setAttribute('aria-expanded', false);
 
   if (write) {
     writeLocalStorage('mdbook-sidebar', 'hidden');
@@ -65,7 +65,7 @@ export const initSidebar = () => {
 
   document.addEventListener('keyup', toggleHandler, { once: false, passive: true });
   document
-    .getElementById(ID_SIDEBAR_TOGGLE)
+    .getElementById(ID_TOGGLE_BUTTON)
     .addEventListener('mouseup', () => toggleSidebar(), { once: false, passive: true });
 
   matchMedia(`(min-width: ${SHOW_SIDEBAR_WIDTH}px)`).addEventListener('change', event => {
