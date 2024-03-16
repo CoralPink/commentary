@@ -1,5 +1,5 @@
 import { procCodeBlock } from './codeblock.js';
-import { globalSearchInit, searchInit } from './searcher.js';
+import { initGlobalSearch, initSearch } from './searcher.js';
 import { initSidebar } from './sidebar.js';
 import { initTableOfContents } from './table-of-contents.js';
 import { initThemeSelector } from './theme-selector.js';
@@ -19,14 +19,14 @@ const initialize = async () => {
   ]);
 
   attribute_external_links();
-  searchInit(root, config);
+  initSearch(root, config);
 
   // Suppress "submit" events so the page doesn't reload when the user presses Enter
   document.addEventListener('submit', e => e.preventDefault(), { once: false, passive: false });
 };
 
 (() => {
-  globalSearchInit();
+  initGlobalSearch();
   initSidebar();
 
   document.addEventListener('DOMContentLoaded', initialize, { once: true, passive: true });
