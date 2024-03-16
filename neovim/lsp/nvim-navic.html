@@ -41,9 +41,7 @@
     <script>
     (()=>{let e=localStorage.getItem("mdbook-theme");
     e||(e=matchMedia("(prefers-color-scheme: dark)").matches?"macchiato":"latte"),
-    document.querySelector("html").classList.add(e),
-    setTimeout((()=>{document.querySelector('meta[name="theme-color"]').content=window.getComputedStyle(document.body).backgroundColor,
-    document.getElementById(e).classList.add("theme-selected")}),1)})();
+    document.querySelector("html").classList.add(e);})();
     </script>
     
     <script>
