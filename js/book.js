@@ -1,11 +1,10 @@
 import { procCodeBlock } from './codeblock.js';
 import { globalSearchInit, searchInit } from './searcher.js';
-import { sidebarInit } from './sidebar.js';
-
-import initWasm, { attribute_external_links } from './wasm_book.js';
-
+import { initSidebar } from './sidebar.js';
 import { initTableOfContents } from './table-of-contents.js';
 import { initThemeSelector } from './theme-selector.js';
+
+import initWasm, { attribute_external_links } from './wasm_book.js';
 
 const initialize = async () => {
   const root = document.getElementById('bookjs').dataset.pathtoroot;
@@ -28,7 +27,7 @@ const initialize = async () => {
 
 (() => {
   globalSearchInit();
-  sidebarInit();
+  initSidebar();
 
   document.addEventListener('DOMContentLoaded', initialize, { once: true, passive: true });
 })();

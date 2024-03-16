@@ -32,7 +32,6 @@ body {
 }
 
 .sidebar {
-  visibility: hidden; // Initially, it is hidden.
   scrollbar-color: var(--scrollbar) var(--bg);
 
   ::-webkit-scrollbar {

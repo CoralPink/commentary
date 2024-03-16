@@ -11,7 +11,6 @@ const showSidebar = (write = true) => {
 
   const sidebar = document.getElementById(ID_SIDEBAR);
   sidebar.style.display = 'block';
-  sidebar.style.visibility = 'visible';
   sidebar.setAttribute('aria-hidden', false);
 
   document.getElementById(ID_SIDEBAR_TOGGLE).setAttribute('aria-expanded', true);
@@ -32,7 +31,6 @@ const hideSidebar = (write = true) => {
 
   const sidebar = document.getElementById(ID_SIDEBAR);
   sidebar.style.display = 'none';
-  sidebar.style.visibility = 'hidden';
   sidebar.setAttribute('aria-hidden', true);
 
   document.getElementById(ID_SIDEBAR_TOGGLE).setAttribute('aria-expanded', false);
@@ -43,7 +41,7 @@ const hideSidebar = (write = true) => {
 };
 
 const toggleSidebar = () =>
-  document.getElementById(ID_SIDEBAR_TOGGLE).getAttribute('aria-expanded') === 'true' ? hideSidebar() : showSidebar();
+  document.getElementById(ID_SIDEBAR).style.display === 'block' ? hideSidebar() : showSidebar();
 
 const toggleHandler = ev => {
   if (globalThis.search.hasFocus()) {
@@ -57,7 +55,7 @@ const toggleHandler = ev => {
   }
 };
 
-export const sidebarInit = () => {
+export const initSidebar = () => {
   // FIXME: The definitions are all over the place.
   if (window.innerWidth < 750) {
     hideSidebar();
