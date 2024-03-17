@@ -45,8 +45,6 @@ fn scoring_notation(score: usize) -> String {
 pub struct DocObject {
     body: String,
     breadcrumbs: String,
-    //id: String,
-    //title: String,
 }
 
 #[derive(Deserialize)]
