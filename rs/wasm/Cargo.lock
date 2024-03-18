@@ -30,6 +30,13 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "90ed8c1e510134f979dbc4f070f87d4313098b704861a105fe34231c70a3901c"
 
 [[package]]
+name = "macros"
+version = "0.1.0"
+dependencies = [
+ "wasm-bindgen",
+]
+
+[[package]]
 name = "once_cell"
 version = "1.19.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -160,6 +167,7 @@ name = "wasm-book"
 version = "0.5.0"
 dependencies = [
  "js-sys",
+ "macros",
  "serde",
  "serde-wasm-bindgen",
  "wasm-bindgen",
