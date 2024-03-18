@@ -12,6 +12,9 @@ license = "Apache-2.0"
 [lib]
 crate-type = ["cdylib"]
 
+[workspace]
+members = ["macros"]
+
 [profile.release]
 lto = "fat"
 opt-level = "s"
@@ -19,6 +22,7 @@ strip = "symbols"
 
 [dependencies]
 js-sys = "0.3"
+macros = { path = "macros" }
 serde = { version = "1.0", features = ["derive"] }
 serde-wasm-bindgen = "0.6"
 wasm-bindgen = "0.2"

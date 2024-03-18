@@ -1,22 +1,14 @@
 use wasm_bindgen::prelude::*;
 use web_sys::{Element, Node, NodeList};
 
+use macros::error;
+
 const NODE_TYPE: u16 = 3;
 
 const MARK_TAG: &str = "<mark>";
 const MARK_TAG_END: &str = "</mark>";
 
 const EMPTY_STR: &str = "";
-
-#[wasm_bindgen]
-extern "C" {
-    #[wasm_bindgen(js_namespace = console)]
-    fn error(s: &str);
-}
-
-macro_rules! console_error {
-    ($($t:tt)*) => (error(&format!($($t)*)))
-}
 
 fn node_list_to_vec(node_list: NodeList) -> Result<Vec<Element>, String> {
     let mut vec = Vec::new();
@@ -80,7 +72,7 @@ pub fn marking(terms: &str) {
                 }
             }
             Err(err) => {
-                console_error!("{}", &err);
+                macros::console_error!("{}", &err);
             }
         }
     }

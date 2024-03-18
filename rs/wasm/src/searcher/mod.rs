@@ -6,25 +6,10 @@ use web_sys::{Element, HtmlElement, Node};
 mod teaser;
 use crate::searcher::teaser::Teaser;
 
+use macros::error;
+
 const SCORE_CHARACTER: &str = "▰";
 const SCORE_RATE: usize = 8;
-
-#[wasm_bindgen]
-extern "C" {
-    #[wasm_bindgen(js_namespace = console)]
-    fn log(s: &str);
-    #[wasm_bindgen(js_namespace = console)]
-    fn error(s: &str);
-}
-
-#[allow(unused_macros)]
-macro_rules! console_log {
-    ($($t:tt)*) => (log(&format_args!($($t)*).to_string()))
-}
-
-macro_rules! console_error {
-    ($($t:tt)*) => (error(&format_args!($($t)*).to_string()))
-}
 
 fn parse_uri(link_uri: &str) -> (&str, &str) {
     let uri: Vec<&str> = link_uri.split('#').collect();
@@ -106,7 +91,7 @@ impl SearchResult {
         let cloned_element: HtmlElement = match node.dyn_into() {
             Ok(html_element) => html_element,
             Err(_) => {
-                console_error!("Error converting Node to HtmlElement");
+                macros::console_error!("Error converting Node to HtmlElement");
                 return;
             }
         };
@@ -135,7 +120,7 @@ impl SearchResult {
             let idx = match el.key.parse::<usize>() {
                 Ok(n) => n,
                 Err(_) => {
-                    console_error!("Error: Invalid result.ref: {}", el.key);
+                    macros::console_error!("Error: Invalid result.ref: {}", el.key);
                     return;
                 }
             };
