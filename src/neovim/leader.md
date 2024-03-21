@@ -26,8 +26,16 @@ nvim_set_var({name}, {value})       nvim_set_var()
 ...ただ、この後も出番はかなり限られてくると思われます。
 
 能力の高さゆえ、守備範囲が広大すぎて地球だけに居られない Captain Marvel
-{{footnote: [Captain Marvel (Marvel Comics)](https://ja.wikipedia.org/wiki/キャプテン・マーベル_(マーベル・コミック))}}
-みたいですね❗
+{{footnote:
+
+Captain Marvel{{footnote:
+Captain Marvel は Marvel Comics が発行するアメリカン・コミックに登場する複数のスーパーヒーローの名前である。
+これらのバージョンのほとんどは、マーベル・ユニバースとして知られるマーベルの主要な共有宇宙に存在する。
+現在のキャラクターは Carol Danvers である。
+体内に取り込んだ“ライトスピード・エンジン”のコアのエネルギーによるスーパーパワーを得た直後に、
+Kree の記憶改竄を受けて彼らに利用されるも、記憶を取り戻して反旗を翻し、銀河の各地で戦うヒーローとなる。
+[Captain_Marvel_(Marvel_Comics)](https://en.wikipedia.org/wiki/Captain_Marvel_(Marvel_Comics))
+}}みたいですね❗
 
 ~~~admonish tip
 これは10章に入れるかどうか悩んだところですが、
@@ -49,9 +57,14 @@ vim.api.nvim_set_var('loaded_python3_provider', 0)
 これ、本題と全然関係ないけど、へぇ〜😮ってなるやつ。
 
 John Lennon が "The Continuing Story Of Bungalow Bill - The Beatles (White Album)" の歌詞に入れてたり、
-Disney+ の "The Beatles: Get Back" の中で発言してたりする「Captain Marvel」って、Shazam
-{{footnote: [Captain Marvel (DC Comics)](https://ja.wikipedia.org/wiki/キャプテン・マーベル_(DCコミックス))}}
-のことらしいよ😉
+Disney+ の "The Beatles: Get Back" の中で発言してたりする「Captain Marvel」って、Shazam{{footnote:
+Shazam や the Captain としても知られる Captain Marvel は、アメリカン・コミックに登場するスーパーヒーローで、
+当初は Fawcett Comics から出版され、現在は DC Comics から出版されている。
+Shazam は Billy Batson の分身であり、魔法の言葉 "SHAZAM!"
+(6人の "不滅の長老 "の頭文字 Solomon, Hercules, Atlas, Zeus, Achilles, Mercury) を口にすることで、
+超人的な力、スピード、飛行能力などを持つコスチュームを着た大人に変身する。
+[Captain Marvel (DC Comics)](https://en.wikipedia.org/wiki/Captain_Marvel_(DC_Comics))
+}}のことらしいよ😉
 
 (※ このサイトでは Brie Larson のイメージだけで進んでます。)
 ```
