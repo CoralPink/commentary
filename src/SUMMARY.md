@@ -120,3 +120,4 @@
     - [Linter](outro/linter.md)
   - [LSP (Meet Me)](outro/lsp-meet-me.md)
   - [nvim_get_option_value](outro/nvim_get_option_value.md)
+  - [nvim_set_var](outro/nvim_set_var.md)
