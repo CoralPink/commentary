@@ -1,4 +1,4 @@
-# 🦸 nvim_set_var
+# 🦸‍♀️nvim_set_var (Disable the provider)
 
 ```admonish success title=""
 Deep in the jungle, where the mighty tiger lies
@@ -10,14 +10,14 @@ Bill and his elephants were taken by surprise
 ビルと象たちは意表を突かれて おでれぇたぞう
 ```
 
-私事ですが、日本各地が爆弾低気圧で騒いでいた頃、わたしは北陸旅行してました。
+私事ですが、日本各地が爆弾低気圧でわーわーゆーてた頃、北陸旅行を堪能してきました。
 
 贅沢に３泊も❗
 
-もはや持ち金はマイナスだし、徳政令には期待できないしでもうパニックです😵‍💫
+もう持ち金はマイナスだし、徳政令には期待できないしでもうパニックです😵‍💫
 
-新幹線カードを使ってなんとか金沢までやって来ましたが、
-今日の目的地はさらに西の福井なので、ここからは特急カードを使います。
+初日は新幹線カードを使ってなんとか金沢までやって来ましたが、
+最初の目的地はさらに西の福井なので、ここからは特急カードを使います。
 
 ちょうど「北陸新幹線延伸」と「特急サンダーバード短縮」の節目だったので❗
 
@@ -37,24 +37,26 @@ So Captain Marvel zapped him right between the eyes
 "サンダー" というぐらいなんで悪天候に強いのかと思いきや、
 強風には弱いそうなので、どちらかといえば "バード" 成分の方が多めな気がします🐦
 
-爆弾低気圧なんてもはや天敵でしょうね😿
+爆弾低気圧なんて天敵でしょうね😿
 この日も琵琶湖をぐるっと迂回して走っていたとかいないとか。
 
 ゆーてわたしもハートフルでやらせてもろ〜てますんで「琵琶湖の風とめたろかぁ😊」 ゆーわけです。
 
-...まあ、実際頼まれても「そんな神通力なかったわぁ❗🤣」ゆーて、すっとぼけますけどね🙄
+...まあ、実際頼まれても「そんな神通力なかったわぁ❗」ゆーて、すっとぼけますけどね🙄
+
+```admonish note
+すでにお気づきかとは思いますが、このサイトは "エセ関西人" がお送りしとるんですわぁ❗🤣
+
+(コッテコテのね❗)
+```
 
 ![fukui-station](img/fukui-station.webp)
 
-Mozilla とは関係ありません🦖
+Mozilla とは関係ないけどいいじゃない🦖 とってもハートフル🥰
 
-でもいいじゃない❗とってもハートフル🥰
+後ろにある真新しい新幹線ホームにはまだ人がいないので、この辺の地理をよく知らない人間からすると
 
-後ろにある真新しい新幹線ホームにはまだ人がいません。
-
-この辺の地理をよく知らない人間からすると「えっ⁉️ 新幹線まだ福井来てなかったの😑❓」ってなるんですけど。
-
-「えぇ...😨」ってなるんですけど...❗
+「ん❓まだ福井来てなかったの😑❓」ってなるんですけど。
 
 だって、長野から延伸した時の CMソングはいかにも福井まで行ける感じで歌ってたじゃん🚄
 
@@ -68,11 +70,15 @@ All the children sing
 と〜や ま いっしか〜わ ふっくい 🎶
 ```
 
-まあ、伸びたんならもはやどうでもいい❗
+「えぇ...😨」ってなるんですけど...❗
+
+まあでも伸びたんなら、もはやどうでもいい❗
 
 ```admonish danger title=""
 住民は　大歓迎ですぞ！
 ```
+
+## 🦸 nvim_set_var
 
 ~~~admonish info title=":h nvim_set_var"
 ```txt
@@ -85,31 +91,35 @@ nvim_set_var({name}, {value})
 ```
 ~~~
 
-Captain Marvel{{footnote:
+`nvim_set_var`は`global`変数に対して値をセットする汎用的な`API`なので、このあとの項に出てくる使い方はあくまでも一例です。
+
+```admonish tip
+このサイトで示している他の使い方としては
+[mapleader](../neovim/leader.html#mapleader)や[mapllocalleader](../neovim/leader.html#maplocalleader)などがあります。
+```
+
+そんな`nvim_set_var`こと Captain Marvel{{footnote:
 このサイトでは、[nvim_set_var](../neovim/leader.html?highlight=nvim_set#nvim_set_var)をなんかたまに
 Captain Marvel と呼称することがあるんでしたねー...。時が経つのは早い。
 }}は[Shazam](https://en.wikipedia.org/wiki/Captain_Marvel_(DC_Comics))とも
 Superman{{footnote:
-Superman は DCコミックスの出版するアメリカン・コミックで 1938年に誕生した架空のスーパーヒーロー。
+Superman は DC Comics の出版するアメリカン・コミックで 1938年に誕生した架空のスーパーヒーロー。
 テレビシリーズ冒頭のナレーションは「弾丸(たま) よりも速く、力は機関車よりも強く、高いビルディングもひとっ跳び❗」。
 [Wikipedia](https://en.wikipedia.org/wiki/Superman_(franchise))より}}とも
 スッパマンさん{{footnote:
-スッパマン はオカカウメ星からやってきた自称正義の味方。
-しかしその行動はアホそのもので、なおかつ悪質、陰湿、陰険で根に持つタイプ。
-村人からは「アホのスッパマン」とバカにされている。
+スッパマン は[Dr.スランプ アラレちゃん](https://ja.wikipedia.org/wiki/Dr.スランプ_アラレちゃん)に登場する
+オカカウメ星からやってきた自称正義の味方。
+しかし行動はアホそのもので、なおかつ悪質、陰湿、陰険で根に持つタイプ。
+村人からは「アホのスッパマン」とコケにされている。
 普段はアルバイトでやっているPCB (ペンギン村文化放送局) テレビのレポーター暗悪健太として変装し、
 正体がばれないようにパトロールをしているが、変装はほとんどの村人にバレている。
 事件に遭遇すると電話ボックスでコスチュームに着替えて変身するが、敵が自分より強いとわかると相手に媚びへつらう。
-決め台詞は「ウメボシたべてスッパマン❗」
-自ら付けたキャッチフレーズ的なものは
+[ドラゴンボール](https://en.wikipedia.org/wiki/Dragon_Ball) に登場した際は、レッドリボン軍のブルー将軍に対し最初は立ち向かおうとするが、
+電話ボックスを簡単に破壊することができることを知った途端、則巻千兵衛の家への道を教え、自分の車を使わせた。
+決め台詞は「ウメボシたべてスッパマン❗」自ら付けたキャッチフレーズ的なものは
 「オカメコオロギより速く、トノサマバッタより強く、(価格が) 高いカズノコなどひとっ飛び❗」
-[Wikipedia](https://ja.wikipedia.org/wiki/Dr.スランプの登場人物)より}}
+[Wikipedia](https://en.wikipedia.org/wiki/List_of_Dr._Slump_characters#Suppaman)より}}
 ともまた違った魅力があるのです❗かぁっくいー❤️
-
-一人でわーわーゆーとりますが、いよいよこのサイトで扱う`Neovim`最後の節です❗
-
-ゆーて前回と同様、そこまで内容がないので、
-北陸地方の風景を混ぜつつ、すっとぼけながらゆる〜く締めに向かいます🤪
 
 ```admonish success title=""
 The children asked him if to kill was not a sin
@@ -145,9 +155,10 @@ require 'keybinds'
 ```
 ~~~
 
-なんだかやたら文字が多くなってしまいましたが、前回と同様、内容はそんなにないよう😇
+ヘルプの文面を見ても内容が古く感じられるので、そんなに必要ないかもしれませんが、
+トリはずっと前からこれって決めてたんで、このままいっちゃいます😅
 
-というか、ヘルプの文面を見ても内容が古く感じられるので、もはや特にやる必要もないのかもしれません。
+一人でずっとわーわーゆーとりますが、いよいよこのサイトで扱う`Neovim`最後の節です❗
 
 ```admonish success title=""
 All the children sing
@@ -179,6 +190,7 @@ McCartney は本作について
 
 この曲は Lennon と共に オノ・ヨーコがリード・ヴォーカルをとっており、
 The Beatles のメンバー以外がリード・ヴォーカルをとった唯一の曲である。
+(...と、日本語のWikipediaには記載があるが、You Know My Name (Look Up The Number) はどういう扱いになっているのか判然としない...)
 }}
 
 What did you kill, Bungalow Bill?
@@ -188,11 +200,16 @@ What did you kill, Bungalow Bill?
 何を殺したの、Bungalow bill？
 ```
 
-## 🐍 Python Integration
+## 📽️ provider
 
-[東尋坊](https://www.fuku-e.com/spot/detail_1476.html)。名前は知ってるけど〜。
+ゆーて前回と同様、そこまで内容がないので、
+北陸地方の風景を混ぜつつ、すっとぼけながらゆる〜く締めに向かいます🤪
 
-[東尋坊](https://www.fuku-e.com/spot/detail_1476.html)。どこにあるかは知らない〜。
+### 🐍 Python Integration
+
+[東尋坊](https://www.fuku-e.com/spot/detail_1476.html)名前は知ってるけど〜。
+
+[東尋坊](https://www.fuku-e.com/spot/detail_1476.html)どこにあるかは知らない〜。
 
 ![tojinbo](img/tojinbo.webp)
 
@@ -260,7 +277,7 @@ python -m pip install --user --upgrade pynvim
 ...の、はずです。
 ```
 
-### 🔸python3_host_prog
+#### 🔸python3_host_prog
 
 まず、使用する場合はこれを入れるといいらしいです🐍
 
@@ -282,28 +299,31 @@ let g:python3_host_prog = '/path/to/python3'
 ```
 ~~~
 
+上のサンプルコードを`lua`で書くとこんな感じになるはずです 🌜
+
+```lua
+vim.api.nvim_set_var('python3_host_prog', '/path/to/python3')
+```
+
 ```admonish tip
-もし`Python 3`を必要とするプラグインやコードを使用しているのであれば、
-`which`で出てくる`path`を教えてあげると良いです。
+ここには`which`で出てくる`path`を教えてあげると良いです。
 
 わたしは`Python3`も`brew`から入れてるのでこんなんなってます。
 
 ![which-python3](img/which-python3.webp)
 ```
 
-```admonish note
+~~~admonish note
 わたしは専門外なのでよく知らないんですが... 😅
 
-`virtualenvs`などを使う場合は ":h python-virtualenv" を参照❗
+`virtualenvs`などを使う場合は以下を参照❗
+
+```vim
+:h python-virtualenv
 ```
+~~~
 
-で、上のサンプルコードを`lua`で書くとこんな感じになるはずです 🌜
-
-```lua
-vim.api.nvim_set_var('python3_host_prog', '/path/to/python3')
-```
-
-### 🔹loaded_python3_provider
+#### 🔹loaded_python3_provider
 
 で、使用していない場合はこっち 🐍
 
@@ -338,7 +358,7 @@ vim.api.nvim_set_var('loaded_python3_provider', 0)
 `python3_host_prog`とは違ってヘルプでも起動時間には言及されていないので、特に意味はないかもしれません😮
 ```
 
-## 🏉 Ruby Integration
+### 🏉 Ruby Integration
 
 大量の "とやマネー" をもらってしまった〜の図。
 
@@ -368,7 +388,9 @@ vim.api.nvim_set_var('loaded_python3_provider', 0)
 走りまわってくれました！
 ```
 
-無事に借金も消えたので、あとはもう簡単に載っけていきます。
+やったね😆
+
+なんかおかげさまで借金も消えたので、あとはもう簡単に載っけていきます❗
 
 無効化するだけであれば全部同じパターンですから😤
 
@@ -391,7 +413,7 @@ Run |:checkhealth| to see if your system is up-to-date.
 ```
 ~~~
 
-### 🔹loaded_ruby_provider
+#### 🔹loaded_ruby_provider
 
 ~~~admonish info title=":h g:loaded_ruby_provider"
 ```txt
@@ -411,7 +433,7 @@ vim.api.nvim_set_var('loaded_ruby_provider', 0)
 ```
 ~~~
 
-## 🧜‍♀️ Perl integration
+### 🧜‍♀️ Perl integration
 
 モダンとレトロの富山駅。
 
@@ -444,7 +466,7 @@ Run |:checkhealth| to see if your system is up-to-date.
 ```
 ~~~
 
-### 🔹loaded_perl_provider
+#### 🔹loaded_perl_provider
 
 ~~~admonish info title=":h g:loaded_perl_provider"
 ```txt
@@ -463,7 +485,7 @@ vim.api.nvim_set_var('loaded_perl_provider', 0)
 ```
 ~~~
 
-## 🪵 Node.js Integration
+### 🪵 Node.js Integration
 
 [兼六園](https://www.pref.ishikawa.jp/siro-niwa/kenrokuen/)にはアオサギもやってくるらしいよ。
 
@@ -490,7 +512,7 @@ Run |:checkhealth| to see if your system is up-to-date.
 ```
 ~~~
 
-### 🔹loaded_node_provider
+#### 🔹loaded_node_provider
 
 ~~~admonish info title=":h g:loaded_node_provider"
 ```txt
@@ -508,6 +530,21 @@ To disable Node.js support:
 vim.api.nvim_set_var('loaded_node_provider', 0)
 ```
 ~~~
+
+## 🩺 checkhealth
+
+そんなこんなで 4つの`provider`を取り上げてきたわけですが、
+これがちゃんと反映されているかについては、毎度お馴染み`checkhealth`で確認できます。
+
+~~~admonish quote
+```vim
+:che
+```
+~~~
+
+![provider_checkhealth](img/provider_checkhealth.webp)
+
+全部無効化した場合であれば、こんな表示になるはずです😉
 
 ## 🧒 Eh up!
 
