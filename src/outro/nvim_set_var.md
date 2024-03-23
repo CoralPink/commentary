@@ -95,7 +95,7 @@ nvim_set_var({name}, {value})
 
 ```admonish tip
 このサイトで示している他の使い方としては
-[mapleader](../neovim/leader.html#mapleader)や[mapllocalleader](../neovim/leader.html#maplocalleader)などがあります。
+[mapleader](../neovim/leader.html#mapleader)や[maplocalleader](../neovim/leader.html#maplocalleader)などがあります。
 ```
 
 そんな`nvim_set_var`こと Captain Marvel{{footnote:
@@ -104,6 +104,8 @@ Captain Marvel と呼称することがあるんでしたねー...。時が経�
 }}は[Shazam](https://en.wikipedia.org/wiki/Captain_Marvel_(DC_Comics))とも
 Superman{{footnote:
 Superman は DC Comics の出版するアメリカン・コミックで 1938年に誕生した架空のスーパーヒーロー。
+Krypton星から地球に降り立ったヒューマノイド型エイリアンの難民で、超人的な能力を身につけている。
+普段はメトロポリスの新聞社 Daily Planet でジャーナリスト Clark Kent として働く。
 テレビシリーズ冒頭のナレーションは「弾丸(たま) よりも速く、力は機関車よりも強く、高いビルディングもひとっ跳び❗」。
 [Wikipedia](https://en.wikipedia.org/wiki/Superman_(franchise))より}}とも
 スッパマンさん{{footnote:
@@ -111,7 +113,7 @@ Superman は DC Comics の出版するアメリカン・コミックで 1938年�
 オカカウメ星からやってきた自称正義の味方。
 しかし行動はアホそのもので、なおかつ悪質、陰湿、陰険で根に持つタイプ。
 村人からは「アホのスッパマン」とコケにされている。
-普段はアルバイトでやっているPCB (ペンギン村文化放送局) テレビのレポーター暗悪健太として変装し、
+普段はアルバイトでやっているPCB (ペンギン村文化放送局) テレビのレポーター暗悪健太 (くらあく けんた) として変装し、
 正体がばれないようにパトロールをしているが、変装はほとんどの村人にバレている。
 事件に遭遇すると電話ボックスでコスチュームに着替えて変身するが、敵が自分より強いとわかると相手に媚びへつらう。
 [ドラゴンボール](https://en.wikipedia.org/wiki/Dragon_Ball) に登場した際は、レッドリボン軍のブルー将軍に対し最初は立ち向かおうとするが、
@@ -186,7 +188,7 @@ Lennon は後に Playboy のインタビューで、この曲について
 McCartney は本作について
 「今も僕のお気に入りの一つ。それは今の僕のスタンスとすごく共通するところがあるからだ。
 この曲のメッセージは「本当にあの虎を撃つ必要があったのか？お前は立派な男ではなかったのか？お前は勇敢な男ではなかったのか？というところ。
-ジョンはそれを、すごくうまく表現していると思う」と評している。
+John はそれを、すごくうまく表現していると思う」と評している。
 
 この曲は Lennon と共に オノ・ヨーコがリード・ヴォーカルをとっており、
 The Beatles のメンバー以外がリード・ヴォーカルをとった唯一の曲である。
