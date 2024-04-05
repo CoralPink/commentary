@@ -1,5 +1,6 @@
 import { highlight } from './highlight.js/build/highlight.js';
 
+/* biome-ignore lint: no-global-assign */
 onmessage = ev => {
   postMessage(
     highlight(ev.data[0], {

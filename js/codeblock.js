@@ -19,6 +19,7 @@ class WorkerPool {
 
   constructor(threadNum = 0) {
     if (WorkerPool.#instance !== undefined) {
+      /* biome-ignore lint: no-constructor-return */
       return WorkerPool.#instance;
     }
 
