@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "sass": "^1.72.0"
+    "sass": "^1.74.1"
   },
   "scripts": {
     "compile": "sass --no-charset --no-source-map --style=compressed",
