@@ -38,7 +38,7 @@ nvim-compe (または後継の nvim-cmp (cmp_luasnip)) を使って LSP-Snippets
 Mean Mister Mustard{{footnote:
 Mean Mister Mustard (by [The Beatles](https://en.wikipedia.org/wiki/The_Beatles)):
 本作は1968年頃に The Beatles のメンバーがインド・ऋषिकेश (リシケーシュ) で、
-महर्षि महेश य ोगी (マハリシ・マヘーシュ・ヨーギー) のもとで瞑想修行を行っていた時期に書かれた楽曲で、
+महर्षि महेश योगी (Maharishi Mahesh Yogi) のもとで瞑想修行を行っていた時期に書かれた楽曲で、
 内容は Mustard というホームレスの男の日常を綴ったものとなっている。
 歌詞のインスピレーションについて、Lennon は
 「どこかでしみったれた男の新聞記事を読んだ。そいつは5ポンド札を鼻の中ではなく、別のどこかに隠していた」と語っている。
