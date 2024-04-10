@@ -14,7 +14,7 @@ Bill and his elephants were taken by surprise
 
 贅沢に３泊も❗
 
-もう持ち金はマイナスだし、徳政令には期待できないしでもうパニックです😵‍💫
+すでに持ち金はマイナスだし、徳政令には期待できないしでもうパニックです😵‍💫
 
 初日は新幹線カードを使ってなんとか金沢までやって来ましたが、
 最初の目的地はさらに西の福井なので、ここからは特急カードを使います。
@@ -109,7 +109,7 @@ Krypton星から地球に降り立ったヒューマノイド型エイリアン�
 テレビシリーズ冒頭のナレーションは「弾丸(たま) よりも速く、力は機関車よりも強く、高いビルディングもひとっ跳び❗」。
 [Wikipedia](https://en.wikipedia.org/wiki/Superman_(franchise))より}}とも
 スッパマンさん{{footnote:
-スッパマン は[Dr.スランプ アラレちゃん](https://ja.wikipedia.org/wiki/Dr.スランプ_アラレちゃん)に登場する
+スッパマン は[Dr.スランプ](https://en.wikipedia.org/wiki/Dr._Slump)に登場する
 オカカウメ星からやってきた自称正義の味方。
 しかし行動はアホそのもので、なおかつ悪質、陰湿、陰険で根に持つタイプ。
 村人からは「アホのスッパマン」とコケにされている。
@@ -117,7 +117,7 @@ Krypton星から地球に降り立ったヒューマノイド型エイリアン�
 正体がばれないようにパトロールをしているが、変装はほとんどの村人にバレている。
 事件に遭遇すると電話ボックスでコスチュームに着替えて変身するが、敵が自分より強いとわかると相手に媚びへつらう。
 [ドラゴンボール](https://en.wikipedia.org/wiki/Dragon_Ball) に登場した際は、レッドリボン軍のブルー将軍に対し最初は立ち向かおうとするが、
-電話ボックスを簡単に破壊することができることを知った途端、則巻千兵衛の家への道を教え、自分の車を使わせた。
+電話ボックスを簡単に破壊できることを見せつけられた途端、則巻千兵衛の家への道を教え、自分の車を使わせた。
 決め台詞は「ウメボシたべてスッパマン❗」自ら付けたキャッチフレーズ的なものは
 「オカメコオロギより速く、トノサマバッタより強く、(価格が) 高いカズノコなどひとっ飛び❗」
 [Wikipedia](https://en.wikipedia.org/wiki/List_of_Dr._Slump_characters#Suppaman)より}}
@@ -172,7 +172,7 @@ All the children sing
 Hey, Bungalow Bill{{footnote:
 The Continuing Story of Bungalow Bill (by [The Beatles](https://en.wikipedia.org/wiki/The_Beatles)):
 この曲は The Beatles がインドで
-महर्षि महेश य ोगी (マハリシ・マヘーシュ・ヨーギー)のもとに滞在していた時、
+महर्षि महेश योगी (Maharishi Mahesh Yogi) のもとに滞在していた時、
 母親の Nancy Cooke de Herrera を訪ねていた若いアメリカ人、
 Rik こと Richard A. Cooke III の虚勢と無教養な態度を嘲笑するものとして Lennon によって書かれた。
 
@@ -292,7 +292,7 @@ startup faster. Useful for working with virtualenvs. Must be set before any
 check for has("python3").
 
 Python 3 を起動するコマンド (ディレクトリではなく実行ファイル)。これを設定すると
-起動が速くなります。virtualenvs を使うときに便利です。このコマンドは
+起動が速くなります。virtualenv を使うときに便利です。このコマンドは
 has("python3") の前に設定する必要があります。
 ```
 
@@ -318,7 +318,7 @@ vim.api.nvim_set_var('python3_host_prog', '/path/to/python3')
 ~~~admonish note
 わたしは専門外なのでよく知らないんですが... 😅
 
-`virtualenvs`などを使う場合は以下を参照❗
+`virtualenv`などを使う場合は以下を参照❗
 
 ```vim
 :h python-virtualenv
