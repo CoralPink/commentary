@@ -99,11 +99,14 @@ body {
     min-width: 0;
     word-break: auto-phrase;
 
-    a:link,
-    a:visited {
-      color: var(--links);
-      margin-left: 0.2rem;
-      margin-right: 0.2rem;
+    a {
+
+      &:link,
+      &:visited {
+        color: var(--links);
+        margin-left: 0.2rem;
+        margin-right: 0.2rem;
+      }
     }
 
     .admonition-title {
