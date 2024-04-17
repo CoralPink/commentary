@@ -268,7 +268,7 @@ knows how to log warnings or generate errors if you attempt to define an invalid
 <p>...ってことで、まずはフォントを用意しましょう❗</p>
 <h4 id="-nerd-fonts"><a class="header" href="#-nerd-fonts">🪺 nerd-fonts</a></h4>
 <p><code>nerd-fonts</code>は<code>WezTerm</code>に含まれているので特に設定はいらないんだけど、
-<a href="../wezterm/font.html#%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0%E3%83%95%E3%82%A9%E3%83%B3%E3%83%88-firge-%E3%83%95%E3%82%A1%E3%83%BC%E3%82%B8">前回</a>は結局<code>Nerd Font</code>が含まれているバージョンを使う方法を紹介していました。</p>
+<a href="../wezterm/font.html#%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0%E3%83%95%E3%82%A9%E3%83%B3%E3%83%88-firge-%E3%83%95%E3%82%A1%E3%83%BC%E3%82%B8">前回</a>は結局<code>Nerd Font</code>が含まれている複合フォントを使う方法を紹介していました。</p>
 <p>2024/04/17 時点では<code>Firge</code>と<code>WezTerm</code>のどちらよりも本家の<code>nerd-fonts</code>のバージョンが進んでいて、
 新しいアイコンも続々と増えているので、定期的に確認してみるのも楽しいと思います😆</p>
 <p>なので、今回は本家の<code>nerd-fonts</code>を使う方法で進めます。</p>
@@ -293,8 +293,15 @@ knows how to log warnings or generate errors if you attempt to define an invalid
 </div>
 <p><a href="https://github.com/ryanoasis/nerd-fonts/releases">Releases</a>から最新版をダウンロードさせてもらいましょう😉</p>
 <p>これはやっぱり、好きな卵🥚 を選べば良いのですが、わたしは<code>NerdFontsSymbolsOnly</code>を使用しています。</p>
-<pre><code class="language-adminosh note">`NerdFontsSymbolsOnly.tar.xz`もしくは`NerdFontsSymbolsOnly.zip`は、文字通りシンボルオンリーです🐣
-</code></pre>
+<div id="admonition-tip" class="admonition admonish-tip">
+<div class="admonition-title">
+<p>Tip</p>
+<p><a class="admonition-anchor-link" href="#admonition-tip"></a></p>
+</div>
+<div>
+<p><code>NerdFontsSymbolsOnly.tar.xz</code>もしくは<code>NerdFontsSymbolsOnly.zip</code>は、文字通りシンボルオンリーです🐣</p>
+</div>
+</div>
 <p>今回はせっかくなので、この<code>NerdFontsSymbolsOnly</code>を使った方法で進めていきます。</p>
 <h4 id="-firacode"><a class="header" href="#-firacode">❤️‍🔥 FiraCode</a></h4>
 <p>で、次に英字フォントを用意するんですが、ここでは一例として<code>FiraCode</code>を紹介します。</p>
@@ -363,10 +370,10 @@ return {
 </code></pre>
 </div>
 </div>
-<div id="admonition-tip" class="admonition admonish-tip">
+<div id="admonition-tip-1" class="admonition admonish-tip">
 <div class="admonition-title">
 <p>Tip</p>
-<p><a class="admonition-anchor-link" href="#admonition-tip"></a></p>
+<p><a class="admonition-anchor-link" href="#admonition-tip-1"></a></p>
 </div>
 <div>
 <p><code>macOS</code>の場合は、さらにこんなのを入れておくのもいいかも...❓</p>
