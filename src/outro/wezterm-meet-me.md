@@ -1,0 +1,506 @@
+# 💻 WezTerm (meet me)
+
+```admonish quote title=""
+"March Comes in Like a Lion, and Goes Out Like a Lamb"
+```
+
+前回から間を置かず、冬の終わりに子羊のようにさっさと去ろうかな〜🐑 ...とも思っていましたが、
+なんかせっかく花が咲くみたいなので、春の始まりを見届けてから行きます🌸
+
+```admonish success title=""
+I look at you all, see the love there that's sleeping
+
+While my guitar gently weeps{{footnote:
+While My Guitar Gently Weeps (by [The Beatles](https://en.wikipedia.org/wiki/The_Beatles)):
+George Harisson によって書かれ、彼が "眠っている愛" と呼ぶ "普遍的な愛" に対する世界の実現不可能な可能性への落胆を歌っている。
+
+Harisson が Warrington の両親を訪ねていたときにこの曲のインスピレーションが湧き、"易経 (変化の書)" を読み始めた。
+「物事は単なる偶然に過ぎないという西洋的な見方とは対照的に、
+全てのものは他の全てのものに対して相対的であるという東洋的な概念に基づいているように僕には思えた」。
+この相対主義という考え方を受け入れ、本を開いてたまたま最初に目にした言葉が「優しく泣く」であったことに基づいて曲を書くことにした。
+
+1968年の春に महर्षि महेश योगी (Maharishi Mahesh Yogi) の下で超越瞑想を学んでいたインドから帰国後の The Beatles 内での不調和な雰囲気を反映している。
+バンドメンバーの仲間意識の欠如に対し、
+Harisson は友人の [Eric Clapton](https://en.wikipedia.org/wiki/Eric_Clapton) をレコーディングに招くことで対抗した。
+
+9月6日、Surrey から London へ向かう車中で、Harisson は Claptonにこの曲でギターを弾いてほしいと頼んだ。
+
+Clapton は、ソングライターとしての Harisson の才能を認めており、
+その能力は長い間 Lennon と McCartney の陰に隠れていると考えていたが、それでも最初は参加を渋った。
+「それはできない。The Beatles のレコードで演奏する人なんて誰もいないよ」。
+
+結果として Clapton はリード・ギターをオーヴァーダビングしたが、その貢献については正式にクレジットされなかった。
+
+Clapton は「"While My Guitar Gently Weeps" はグループ内での George の精神的な孤立を訴えている」と述べている。
+
+歌詞の中で、Harisson は普遍的な愛というテーマと、
+インド音楽の影響を受けた "Within You Without You" のような楽曲で顕著であった、哲学的な懸念を再び取り上げている。
+
+この曲は、人々に対する普遍的な愛が全ての個人の中に潜在していながら、実現されないままであることを嘆くものであり、
+多くの聴衆が Harisson の作品を Lennon-McCartney の作品と互角とも言えるほど素晴らしいことに気付くきっかけとなった。
+[Wikipedia](https://en.wikipedia.org/wiki/While_My_Guitar_Gently_Weeps)より
+}}
+
+君たちを見ていると、そこに眠っている愛が見える
+
+ギターは優しく泣くんだ
+```
+
+東京での満開日は全部曇りや雨の荒々しい予報になっていたので、「なんやまだライオンおるんかいな🦁」って感じでしたね。
+
+もう "東京に空がないといふ" とかなんとかオチつけて丸く収めたろ〜かしら、とも考えましたが...。
+
+![inokashira](img/inokashira.webp)
+
+ありました、空🌞
+
+そうでした、吉祥寺に「ないものは無い」のでした❗
+
+[井の頭公園](https://www.kensetsu.metro.tokyo.lg.jp/jimusho/seibuk/inokashira/index.html)には、
+もはや通ってるのかと言われるぐらい能天気に来まくってます。
+
+ここ数ヶ月ぐらいはボート乗り場を改修していて、しばらくはスワン{{footnote:
+Harisson は [Cream](https://en.wikipedia.org/wiki/Cream_(band)) のレコーディングに参加することで Crapton に応酬した。
+「Eric が曲を書くのを手伝ったんだ。Cream のアルバムのために曲を考えなければならなかったんだけど、Eric はまだ書いていなかったんだ。
+僕たちは向かい合って仕事をしていて、僕は歌詞を書いていた。Eric はそれを逆さまにして読んで、'BADGE って何だ？'
+(手書きの 'Bridge' という文字を読み間違えた)。その後、酔っ払った Ringo が入ってきて、
+'I told you 'bout the swans that they live in the park (白鳥が公園に住んでいることも話した)' という一節をくれたんだ。」
+この時に制作された Badge は1969年、Cream の最後のアルバム Goodbye に収録された。
+[The Beatles Bible](https://www.beatlesbible.com/1968/11/21/george-harrison-performs-on-badge-cream/)より
+}}もボートもいませんでした。
+
+が❗
+
+...今じゃご覧の通り、すっかりですよ❗🦢🦢🦢
+
+```admonish note
+駅北口のバスロータリーの真ん中に "象の像" がありますが、
+あの[はな子](https://ja.wikipedia.org/wiki/はな子)🐘 がいたのもここです😇
+```
+
+![inokashira-bird](img/inokashira-bird.webp)
+
+鳥さんも羽休めに来るぐらいだし🐦‍⬛
+
+こういう演奏にも巡り会えるし🎻
+
+![band-sounds](img/band-sounds.webp)
+
+<audio controls preload="none">
+  <source src="audio/band-sounds.mp3">
+</audio>
+
+ほらね、吉祥寺に「ないものは無い」のです🥰
+
+わたしも大好きなばしょです😄
+
+## ⚙️ Config
+
+ぐるっと巡ってきましたが、最後は`WezTerm`の設定を少しだけ見直します🤗
+
+`Config`ファイルの記述方法が[あの頃](../wezterm/configuration.html)から少し変わっているので、
+ここから見直していきましょう❗
+
+~~~admonish info title="[Configuration](https://wezfurlong.org/wezterm/config/files.html)"
+```lua
+-- Pull in the wezterm API
+local wezterm = require 'wezterm'
+
+-- This will hold the configuration.
+local config = wezterm.config_builder()
+
+-- This is where you actually apply your config choices
+
+-- For example, changing the color scheme:
+config.color_scheme = 'AdventureTime'
+
+-- and finally, return the configuration to wezterm
+return config
+```
+~~~
+
+![sotobori-bird](img/sotobori-bird.webp)
+
+```admonish success title=""
+I look at the floor and I see it needs sweeping
+
+目を向ければ 床の掃除が必要な気がするんだ
+```
+
+### 🔧 config_builder
+
+肝心なのはここですね。
+
+```lua
+-- This will hold the configuration.
+local config = wezterm.config_builder()
+```
+
+`config_builder`オブジェクトを使用するように案内されています。
+
+~~~admonish info title="[wezterm.config_builder()](https://wezfurlong.org/wezterm/config/lua/wezterm/config_builder.html)"
+The config builder may look like a regular lua table but it is really a special userdata type that
+knows how to log warnings or generate errors if you attempt to define an invalid configuration option.
+
+config builder は、一見普通の lua テーブルのように見えますが、実は特別な userdata タイプで、
+無効な Config オプションを定義しようとすると、警告をログに記録したりエラーを生成します。
+~~~
+
+各種設定を入れていくローカル変数の名前は`config`で案内されていますが、ここはなんでもいいです。
+
+わたしはこのパターンだと変数名は`M`にしちゃうんで、`M`で進めていいかな...❓
+
+~~~admonish example title="wezterm.lua"
+先頭で、こんな感じでオブジェクトを定義するように変えて...。
+
+```diff
+-return {
++local wezterm = require 'wezterm'
++local M = wezterm.config_builder()
+```
+~~~
+
+~~~admonish example title=""
+このオブジェクトに対して色々追加していきます。例えば...
+
+```diff
+-color_scheme = 'Catppuccin Mocha',
++M.color_scheme = 'Catppuccin Mocha'
+
+-window_background_opacity = 0.93,
++M.window_background_opacity = 0.93
+```
+
+こんな感じで書き換えていけば OK です。(末尾の`,`を取り除くのを忘れないで❗)
+~~~
+
+~~~admonish example title=""
+...そしたら、最後にこのオブジェクトを返してあげましょう😌
+
+```diff
+-}
++return M
+```
+~~~
+
+これで完璧😉
+
+```admonish note
+これもやっぱり`lua`の慣習なんだけど、`Matrix`(行列) のイニシャルで`M`だよね...❓
+
+(ぶっちゃけ、ちゃんと調べたことない😮)
+```
+
+```admonish success title=""
+I don't know why nobody told you
+
+How to unfold your love
+
+わからないんだ 誰も教えてくれなかった
+
+どうすれば愛を伝えられる
+```
+
+![tokyo-daijingu](img/tokyo-daijingu.webp)
+
+[東京大神宮](https://tokyodaijingu.or.jp)もちょいちょい参拝させてもらってます⛩️
+
+この辺まで来たらこっちも見て回りたくなるでしょ 🚶‍♀️
+
+|[新見附橋](https://visit-chiyoda.tokyo/app/spot/detail/225)|[外濠公園](https://visit-chiyoda.tokyo/app/spot/detail/274)|
+|:---:|:---:|
+|![shin-mituke](img/shin-mituke.webp)|![sotobori](img/sotobori.webp)|
+
+### 🧚‍♀️ Font
+
+フォントについては、このサイトでは以下のように紹介していました。
+
+```lua
+font = require("wezterm").font("Firge35Nerd Console"),
+```
+
+特に不満がなければこのままでもいいんですが、
+最新のフォントを自分で追っかけたい場合なんかだと、後の項で出てくる`font_with_fall_back`を使うと良いです。
+
+...ってことで、まずはフォントを用意しましょう❗
+
+#### 🪺 nerd-fonts
+
+`nerd-fonts`は`WezTerm`に含まれているので特に設定はいらないんだけど、
+[前回](../wezterm/font.html#プログラミングフォント-firge-ファージ)は結局`Nerd Font`が含まれている複合フォントを使う方法を紹介していました。
+
+2024/04/17 時点では`Firge`と`WezTerm`のどちらよりも本家の`nerd-fonts`のバージョンが進んでいて、
+新しいアイコンも続々と増えているので、定期的に確認してみるのも楽しいと思います😆
+
+なので、今回は本家の`nerd-fonts`を使う方法で進めます。
+
+```admonish info title="Releases / v3.2.0"
+The Easter release. Lets see which eggs can be found:
+
+イースターリリースだよ。どんな卵が見つかるかな：
+```
+
+```admonish note
+くどいようなんですが、現状で不満がなければ`WezTerm`に含まれているので、これを行わなくても支障はありません🐤
+```
+
+[Releases](https://github.com/ryanoasis/nerd-fonts/releases)から最新版をダウンロードさせてもらいましょう😉
+
+これはやっぱり、好きな卵🥚 を選べば良いのですが、わたしは`NerdFontsSymbolsOnly`を使用しています。
+
+```admonish tip
+`NerdFontsSymbolsOnly.tar.xz`もしくは`NerdFontsSymbolsOnly.zip`は、文字通りシンボルオンリーです🐣
+```
+
+今回はせっかくなので、この`NerdFontsSymbolsOnly`を使った方法で進めていきます。
+
+#### ❤️‍🔥 FiraCode
+
+で、次に英字フォントを用意するんですが、ここでは一例として`FiraCode`を紹介します。
+
+```admonish info title="[FiraCode](https://github.com/tonsky/FiraCode)"
+Fira Code: free monospaced font with programming ligatures
+
+Fira Code: プログラミング合字のフリー等幅フォント
+```
+
+これも素直に[Releases](https://github.com/tonsky/FiraCode/releases)からダウンロードさせてもらうのが簡単でしょう😊
+
+#### 🎏 ヒラギノ角ゴシック
+
+これだけだと "漢字・ひらがな・カタカナ" がイマイチに戻っちゃうので、日本語に対応したフォントも用意しましょう。
+
+わたしは`macOS`に標準で入っている`ヒラギノ角ゴシック`を使うので、特に示せる手順もありませんでした😅
+
+#### 🐣 font_with_fall_back
+
+で、ここまでに用意したフォントを`WezTerm`で使うために`font_with_fall_back`があるわけです❗
+
+~~~admonish info title="[wezterm.font_with_fallback(families [, attributes])](https://wezfurlong.org/wezterm/config/lua/wezterm/font_with_fallback.html)"
+This function constructs a lua table that configures a font with fallback processing.
+Glyphs are looked up in the first font in the list but if missing the next font is checked and so on.
+
+この関数は、フォールバック処理でフォントを設定する lua テーブルを構築します。
+グリフはリストの最初のフォントで検索されますが、見つからない場合は次のフォントがチェックされます。
+
+The first parameter is a table listing the fonts in their preferred order:
+
+最初のパラメータは、フォントを優先する順番に並べたテーブルです：
+
+```lua
+local wezterm = require 'wezterm'
+
+return {
+  font = wezterm.font_with_fallback { 'JetBrains Mono', 'Noto Color Emoji' },
+}
+```
+~~~
+
+これで、複数のフォントを好みで組み合わせて使用することができます😌
+
+まずはこんな感じで書き換えてから...。
+
+~~~admonish example title="wezterm.lua"
+```diff
+- font = require("wezterm").font("Firge35Nerd Console"),
++ M.font = wezterm.font_with_fallback {
++ }
+```
+~~~
+
+この配列にフォントを追加しましょう。
+
+~~~admonish example title="wezterm.lua"
+```diff
+ M.font = wezterm.font_with_fallback {
++ 'Fira Code',
++ 'ヒラギノ角ゴシック',
++ 'Symbols Nerd Font',
+ }
+```
+~~~
+
+~~~admonish tip
+`macOS`の場合は、さらにこんなのを入れておくのもいいかも...❓
+
+```diff
+ M.font = wezterm.font_with_fallback {
+  'Fira Code',
+  'ヒラギノ角ゴシック',
+  'Symbols Nerd Font',
++ 'Apple Color Emoji',
+ }
+```
+
+他の`OS`でも似たようなフォントセットがあるのかどうかは、わたしがよく知らないのでごめんなさい😿
+~~~
+
+綺麗に表示できたかな❓☺️
+
+### 🪟 Window
+
+「そういえばライトアップされた桜をまだ見てないな〜」と気づきました。
+
+満開日もとうに過ぎて、おまけに雨も降っちゃったんで、もう無理かなーとも思いましたが...。
+
+ありました、[八芳園](https://www.happo-en.com)🌝
+
+![happo-en1](img/happo-en1.webp)
+
+ここ場所が白金台なので、ちょっと前のわたしならビビり散らかしちゃうに違いありませんでした。
+
+が❗
+
+安心してください❗
+
+今のわたしは "とやマネーゼ"...❗
+
+そう❗"6000 とやマネーゼ" なのです🥴
+
+```admonish success title=""
+I look at the world and I notice it's turning
+
+目を向ければ 世界が変わりつつあることに気づいたんだ
+```
+
+たとえ "億万シロカネーゼ" と並んだとしても互角であると言えるのです❗
+
+ごめんあそばせ〜🤭
+
+![happo-en2](img/happo-en2.webp)
+
+```admonish success title=""
+I don't know how someone controlled you
+
+They bought and sold you
+
+わからないんだよ 操られていることが
+
+君は誰かに 売られて 買われてる
+```
+
+#### 💖 window_decorations
+
+```admonish info title="[window_decorations](https://wezfurlong.org/wezterm/config/lua/config/window_decorations.html)"
+- `window_decorations = "INTEGRATED_BUTTONS|RESIZE"` - place window management buttons (minimize, maximize, close) into the tab bar instead of showing a title bar.
+
+タイトルバーを表示する代わりに、ウィンドウ管理ボタン (最小化、最大化、閉じる) をタブバーに配置する。
+```
+
+~~~admonish example title="wezterm.lua"
+```lua
+M.window_decorations = 'INTEGRATED_BUTTONS|RESIZE'
+```
+~~~
+
+これさえあれば [Configuring Mouse Assignments](../wezterm/window-decorations.html#configuring-mouse-assignments)
+で書いていたコードはもう ぽいっちょ❗うるのねん❗
+
+~~~admonish example title="mousebinds.lua"
+```diff
+ return {
+   mouse_bindings = {
+-    {
+-       event = { Down = { streak = 1, button = 'Left' } },
+-       mods = 'NONE',
+-       action = act.EmitEvent 'show-title-bar',
+-    },
+   },
+ }
+```
+~~~
+
+~~~admonish example title="event.lua"
+```diff
+- local TITLE_BAR_DISPLAY_TIME = 3000
+```
+
+```diff
+- wezterm.on('window-focus-changed', function(window, pane)
+-   if window:is_focused() then
+-     return
+-   end
+-
+-   DisableWindowDecorations(window)
+- end)
+-
+- wezterm.on('show-title-bar', function(window, pane)
+-   local overrides = window:get_config_overrides() or {}
+-
+-   overrides.window_decorations = 'TITLE | RESIZE'
+-   window:set_config_overrides(overrides)
+- end)
+```
+~~~
+
+...ってやれば、こんな外観になるはずです🍦
+
+|before|after|
+|:---:|:---:|
+|![decorations](../wezterm/img/decorations.webp)|![integrated_buttons](img/integrated_buttons.webp)|
+
+```admonish note
+[Status Bar](../wezterm/status.html)に表示していた項目は、各々でうまく調整してください😅
+
+(特に[Left Status](../wezterm/left-status.html)は邪魔に見えちゃってるかもしれない...。)
+```
+
+もうこれまでに散々この状態のスクリーンショットを出してしまっていましたが❗
+
+```admonish success title=""
+With every mistake, we must surely be learning{{footnote:
+Bridge の間、Harisson は [Bob Dylan](https://en.wikipedia.org/wiki/Bob_Dylan) 風の繰り返しの韻律を採用し、
+人々がいかにこの愛を顕在化させる能力から遠ざかってしまったかを伝えている。
+}}
+
+全ての過ちに、学び取るものがあるはずなんだ
+```
+
+## 🎁 Wrap Up
+
+無理やり詰め込んだ感じもあるけど、これでやりたかった事は大体やれたかな❗
+
+この章も、ちょっと注釈みたいなの並べて早く終わるものだと思ってたんだけど、なんか結果的にはガッツリやってました😅
+
+```admonish success title=""
+I don't know how you were diverted
+
+You were perverted, too
+
+わからないんだ 君がどのように逸れてしまったのか
+
+歪んでしまったんだ、君も
+```
+
+でも、ちゃんと[やり遂げる](outroduction.html)ことが出来ただろう❓😏
+
+新しいことを始めるのもいいし、今やっていることのレベルを上げるのもいいし、
+そろそろみんな次のステップに進まないとね😆
+
+## 🎸 Still, my guitar gently weeps
+
+な〜んて言いながら、もう一回だけ話飛ぶんですけど、オランダに行ってきたんですよ〜😋
+
+![ukima1](img/ukima1.webp)
+![ukima2](img/ukima2.webp)
+
+間違えました、[いたばしのオランダ](https://www.city.itabashi.tokyo.jp/bousai/toshikeiakku/kotsu/1044242/1044694.html)でした🦧
+
+```admonish success title=""
+I don't know how you were inverted
+
+No one alerted you
+
+わからないんだ 君がどのように倒錯してしまったのか
+
+誰も君に言ってくれなかったんだ
+```
+
+色々開き直って、ずっとすっとぼけながらここまで来たんだけど、結局何が言いたいかっていうとね...、
+
+```admonish quote title="🪸 Thanks for reading !"
+前を向いて、まわりに目を向けてごらん。
+
+...ほら❗わるくないだろ❓🤗{{footnote: この言い回しはもちろん John Lennon のまね〜🤪}}
+
+```
