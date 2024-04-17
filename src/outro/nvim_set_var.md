@@ -91,14 +91,7 @@ nvim_set_var({name}, {value})
 ```
 ~~~
 
-`nvim_set_var`は`global`変数に対して値をセットする汎用的な`API`なので、このあとの項に出てくる使い方はあくまでも一例です。
-
-```admonish tip
-このサイトで示している他の使い方としては
-[mapleader](../neovim/leader.html#mapleader)や[maplocalleader](../neovim/leader.html#maplocalleader)などがあります。
-```
-
-そんな`nvim_set_var`こと Captain Marvel{{footnote:
+`nvim_set_var`こと Captain Marvel{{footnote:
 このサイトでは、[nvim_set_var](../neovim/leader.html?highlight=nvim_set#nvim_set_var)をなんかたまに
 Captain Marvel と呼称することがあるんでしたねー...。時が経つのは早い。
 }}は[Shazam](https://en.wikipedia.org/wiki/Captain_Marvel_(DC_Comics))とも
@@ -122,6 +115,18 @@ Krypton星から地球に降り立ったヒューマノイド型エイリアン�
 「オカメコオロギより速く、トノサマバッタより強く、(価格が) 高いカズノコなどひとっ飛び❗」
 [Wikipedia](https://en.wikipedia.org/wiki/List_of_Dr._Slump_characters#Suppaman)より}}
 ともまた違った魅力があるのです❗かぁっくいー❤️
+
+```admonish tip
+`nvim_set_var`は`global`変数に対して値をセットする汎用的な`API`なので、この節での使い方はあくまでも一例です。
+
+このサイトで示している他の使い方としては
+[mapleader](../neovim/leader.html#mapleader)や[maplocalleader](../neovim/leader.html#maplocalleader)などがあります。
+```
+
+ぶっちゃけ、このあと出てくるヘルプの文面は少し古く感じられるので、
+今となっては特段効果のある`Tips`ではないかもしれません。
+
+ただ、トリはずっと前からこれって決めてたんで、このままいっちゃいます😅
 
 ```admonish success title=""
 The children asked him if to kill was not a sin
@@ -157,9 +162,6 @@ require 'keybinds'
 ```
 ~~~
 
-ヘルプの文面を見ても内容が古く感じられるので、そんなに必要ないかもしれませんが、
-トリはずっと前からこれって決めてたんで、このままいっちゃいます😅
-
 一人でずっとわーわーゆーとりますが、いよいよこのサイトで扱う`Neovim`最後の節です❗
 
 ```admonish success title=""
@@ -183,11 +185,12 @@ Nancy によれば、その場にいた全員が Rik の行動の必要性を認
 Lennon は後に Playboy のインタビューで、この曲について
 「"Bungalow Bill" は、短い休暇を取って哀れな虎を2、3頭撃ち殺した男が、神と共に部落に帰ってくるというストーリーで書いた。
 [Jungle Jim](https://en.wikipedia.org/wiki/Jungle_Jim)というキャラクターがいて、
-それを[Buffalo Bill](https://en.wikipedia.org/wiki/Buffalo_Bill)とくっつけた」と語っている。
+それを[Buffalo Bill](https://en.wikipedia.org/wiki/Buffalo_Bill)と組み合わせた。
+10代の社会的コメントのような歌で、ちょっとしたジョークなんだ」と語っている。
 
 McCartney は本作について
 「今も僕のお気に入りの一つ。それは今の僕のスタンスとすごく共通するところがあるからだ。
-この曲のメッセージは「本当にあの虎を撃つ必要があったのか？お前は立派な男ではなかったのか？お前は勇敢な男ではなかったのか？というところ。
+この曲のメッセージは "本当にあの虎を撃つ必要があったのか? お前は立派な男ではなかったのか? お前は勇敢な男ではなかったのか?" というところ。
 John はそれを、すごくうまく表現していると思う」と評している。
 
 この曲は Lennon と共に オノ・ヨーコがリード・ヴォーカルをとっており、
@@ -265,14 +268,14 @@ python -m pip install --user --upgrade pynvim
 ここで改めて`python3_host_prog`と`loaded_python3_provider`を取り上げます。
 
 ```admonish note
-ヘルプでも触れられていますが、ちょっと前までは`Python 2`のコンフィグも用意されていましたが、今は`Python 3`だけになっています。
+ヘルプでも触れられていますが、古くは`Python 2`のコンフィグも用意されていましたが、今は`Python 3`だけになっています。
 ```
 
 このサイトで取り上げてきたプラグインやコードに限って言うと、
 `Python`は全く使用していないので、その場合は無効化してしまって構いません😏
 
 ```admonish tip
-ちなみにここで言う「全く使用していない」は「`Neovim`本体の動作には使用していない」という意味です。
+ここで言う「全く使用していない」は "`Neovim`本体の動作には使用していない" という意味です。
 
 「`Python`のコードを書くのに使ってるよー」って言うのとは、また別のおはなしです😉
 
@@ -487,7 +490,7 @@ vim.api.nvim_set_var('loaded_perl_provider', 0)
 ```
 ~~~
 
-### 🪵 Node.js Integration
+### 🌳 Node.js Integration
 
 [兼六園](https://www.pref.ishikawa.jp/siro-niwa/kenrokuen/)にはアオサギもやってくるらしいよ。
 
