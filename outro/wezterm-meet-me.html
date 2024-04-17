@@ -1,0 +1,600 @@
+<!DOCTYPE HTML>
+<html lang="ja" prefix="og: https://ogp.me/ns#">
+  <head>
+    <meta charset="UTF-8">
+    <title>WezTerm (Meet Me) - Commentary of Dotfiles</title>
+
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-WMN96QT');</script>
+
+    <meta name="description" content="WezTerm と Neovim の設定例 (dotfiles) を紹介するサイトです🤗 - This site introduces WezTerm and Neovim dotfiles.">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=2.0">
+    <meta name="theme-color">
+    <meta name="format-detection" content="telephone=no,email=no,address=no">
+
+    <link rel="icon" href="../favicon.ico">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+
+    <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+    <!--<meta name="apple-mobile-web-app-capable" content="yes">-->
+
+    <link rel="manifest" href="../manifest.json">
+
+    <meta property="og:title" content="WezTerm (Meet Me) - Commentary of Dotfiles" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://coralpink.github.io/commentary/" />
+    <meta property="og:image" content="https://coralpink.github.io/commentary/goal.webp" />
+
+    <meta property="og:site_name" content="Commentary of Dotfiles">
+    <meta property="og:description" content="WezTerm と Neovim の設定例 (dotfiles) を紹介するサイトです🤗 - This site introduces WezTerm and Neovim dotfiles.">
+
+    <link rel="stylesheet" href="../css/general.css" async>
+  </head>
+  <body>
+    <noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WMN96QT" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    
+    <script>
+    (()=>{let e=localStorage.getItem("mdbook-theme");
+    e||(e=matchMedia("(prefers-color-scheme: dark)").matches?"macchiato":"latte"),
+    document.querySelector("html").classList.add(e)})();
+    </script>
+    
+    <script>
+    (async()=>{if("serviceWorker"in navigator)
+    try{await navigator.serviceWorker.register("../serviceworker.js",{scope:"/commentary/"})}
+    catch(r){console.error(`Registration failed with ${r}`)}})();
+    </script>
+
+    <div class="top-bar">
+      <div id="menu-bar" class="menu-bar">
+        <div class="left-buttons">
+          <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents (Shortkey: T )" aria-label="Toggle Table of Contents" aria-controls="sidebar"></button>
+          <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme"
+  aria-haspopup="true" aria-expanded="false" aria-controls="theme-list"></button>
+          <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+            <li role="none"><button role="menuitem" class="theme" id="au-lait">Au Lait</button></li>
+            <li role="none"><button role="menuitem" class="theme" id="latte">Latte</button></li>
+            <li role="none"><button role="menuitem" class="theme" id="frappe">Frappé</button></li>
+            <li role="none"><button role="menuitem" class="theme" id="macchiato">Macchiato</button></li>
+            <li role="none"><button role="menuitem" class="theme" id="mocha">Mocha</button></li>
+          </ul>
+
+          <button id="search-toggle" class="icon-button" type="button" title="Toggle Search Box (Shortkey: / )"
+  aria-label="Toggle Search Box" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar"></button>
+
+          <div id="search-wrapper" class="hidden">
+            <form id="searchbar-outer" class="searchbar-outer">
+              <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..."
+                aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+            </form>
+            <div id="searchresults-outer" class="searchresults-outer hidden">
+              <div id="searchresults-header" class="searchresults-header"></div>
+              <ul id="searchresults"></ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-title">Commentary of Dotfiles</div>
+
+        <div class="right-buttons icon-button">
+          <a href="https://github.com/CoralPink/commentary" title="Git repository" aria-label="Git repository" target="_blank" rel="noopener"></a>
+        </div>
+      </div>
+    </div>
+
+    <div id="page" class="page">
+      <div id="sidebar" class="sidebar" aria-label="Site map">
+        <nav id="side-scroll" class="sidebar-scrollbox">
+          <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../acknowledments.html"><strong aria-hidden="true">1.1.</strong> Acknowledgments</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">WezTerm</li><li class="chapter-item expanded "><a href="../wezterm/installation.html"><strong aria-hidden="true">2.</strong> Installation</a></li><li class="chapter-item expanded "><a href="../wezterm/configuration.html"><strong aria-hidden="true">3.</strong> Configuration</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../wezterm/window.html"><strong aria-hidden="true">3.1.</strong> Window</a></li><li class="chapter-item expanded "><a href="../wezterm/shell.html"><strong aria-hidden="true">3.2.</strong> Shell Prompt</a></li><li class="chapter-item expanded "><a href="../wezterm/font.html"><strong aria-hidden="true">3.3.</strong> Font</a></li><li class="chapter-item expanded "><a href="../wezterm/frame.html"><strong aria-hidden="true">3.4.</strong> Window Frame</a></li><li class="chapter-item expanded "><a href="../wezterm/keybind.html"><strong aria-hidden="true">3.5.</strong> Key Binding</a></li><li class="chapter-item expanded "><a href="../wezterm/leader.html"><strong aria-hidden="true">3.6.</strong> Leader Key</a></li></ol></li><li class="chapter-item expanded "><a href="../wezterm/format.html"><strong aria-hidden="true">4.</strong> Format</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../wezterm/window-title.html"><strong aria-hidden="true">4.1.</strong> Window Title</a></li><li class="chapter-item expanded "><a href="../wezterm/tab.html"><strong aria-hidden="true">4.2.</strong> Tab</a></li></ol></li><li class="chapter-item expanded "><a href="../wezterm/status.html"><strong aria-hidden="true">5.</strong> Status Bar</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../wezterm/left-status.html"><strong aria-hidden="true">5.1.</strong> Left Status</a></li><li class="chapter-item expanded "><a href="../wezterm/right-status.html"><strong aria-hidden="true">5.2.</strong> Right Status</a></li></ol></li><li class="chapter-item expanded "><a href="../wezterm/custom.html"><strong aria-hidden="true">6.</strong> Custom Event</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../wezterm/toggle-font.html"><strong aria-hidden="true">6.1.</strong> Toggle Font</a></li><li class="chapter-item expanded "><a href="../wezterm/dpi-detection.html"><strong aria-hidden="true">6.2.</strong> DPI Detection</a></li><li class="chapter-item expanded "><a href="../wezterm/window-decorations.html"><strong aria-hidden="true">6.3.</strong> Window Decorations</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Neovim</li><li class="chapter-item expanded "><a href="../neovim/installation.html"><strong aria-hidden="true">7.</strong> Installation</a></li><li class="chapter-item expanded "><a href="../neovim/user-config.html"><strong aria-hidden="true">8.</strong> User Config</a></li><li class="chapter-item expanded "><a href="../neovim/lua-module.html"><strong aria-hidden="true">9.</strong> Lua Module</a></li><li class="chapter-item expanded "><a href="../neovim/options/options.html"><strong aria-hidden="true">10.</strong> Options</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../neovim/options/nvim_set_option.html"><strong aria-hidden="true">10.1.</strong> nvim_set_option</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../neovim/options/termguicolors.html"><strong aria-hidden="true">10.1.1.</strong> termguicolors</a></li><li class="chapter-item expanded "><a href="../neovim/options/scrolloff.html"><strong aria-hidden="true">10.1.2.</strong> scrolloff</a></li><li class="chapter-item expanded "><a href="../neovim/options/ignorecase-smartcase.html"><strong aria-hidden="true">10.1.3.</strong> ignorecase / smartcase</a></li><li class="chapter-item expanded "><a href="../neovim/options/inccommand.html"><strong aria-hidden="true">10.1.4.</strong> inccommand</a></li><li class="chapter-item expanded "><a href="../neovim/options/clipboard.html"><strong aria-hidden="true">10.1.5.</strong> clipboard</a></li></ol></li><li class="chapter-item expanded "><a href="../neovim/options/nvim_win_set_option.html"><strong aria-hidden="true">10.2.</strong> nvim_win_set_option</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../neovim/options/number.html"><strong aria-hidden="true">10.2.1.</strong> number</a></li><li class="chapter-item expanded "><a href="../neovim/options/cursorline.html"><strong aria-hidden="true">10.2.2.</strong> cusrorline</a></li><li class="chapter-item expanded "><a href="../neovim/options/signcolumn.html"><strong aria-hidden="true">10.2.3.</strong> signcolumn</a></li><li class="chapter-item expanded "><a href="../neovim/options/wrap-colorcolumn.html"><strong aria-hidden="true">10.2.4.</strong> wrap / colorcolumn</a></li></ol></li><li class="chapter-item expanded "><a href="../neovim/options/nvim_buf_set_option.html"><strong aria-hidden="true">10.3.</strong> nvim_buf_set_option</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../neovim/options/tab.html"><strong aria-hidden="true">10.3.1.</strong> tabstop / shiftwidth / expandtab</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../neovim/au/automatic-commands.html"><strong aria-hidden="true">11.</strong> Automatic Command</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../neovim/au/nvim_create_autocmd.html"><strong aria-hidden="true">11.1.</strong> nvim_create_autocmd</a></li><li class="chapter-item expanded "><a href="../neovim/au/nvim_create_augroup.html"><strong aria-hidden="true">11.2.</strong> nvim_create_augroup</a></li></ol></li><li class="chapter-item expanded "><a href="../neovim/keybind.html"><strong aria-hidden="true">12.</strong> Key Binding</a></li><li class="chapter-item expanded "><a href="../neovim/leader.html"><strong aria-hidden="true">13.</strong> Leader Key</a></li><li class="chapter-item expanded "><a href="../neovim/function/function.html"><strong aria-hidden="true">14.</strong> Function</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../neovim/function/warming-up.html"><strong aria-hidden="true">14.1.</strong> Warming Up</a></li><li class="chapter-item expanded "><a href="../neovim/function/param-return.html"><strong aria-hidden="true">14.2.</strong> Parameters / Return Values</a></li><li class="chapter-item expanded "><a href="../neovim/function/vim-cmd.html"><strong aria-hidden="true">14.3.</strong> vim.cmd</a></li><li class="chapter-item expanded "><a href="../neovim/function/call-plugin.html"><strong aria-hidden="true">14.4.</strong> Call The Plugin</a></li></ol></li><li class="chapter-item expanded "><a href="../neovim/plugin/plugin.html"><strong aria-hidden="true">15.</strong> Plugin</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../neovim/plugin/packer.html"><strong aria-hidden="true">15.1.</strong> packer.nvim</a></li><li class="chapter-item expanded "><a href="../neovim/plugin/nvim-treesitter.html"><strong aria-hidden="true">15.2.</strong> nvim-treesitter</a></li><li class="chapter-item expanded "><a href="../neovim/plugin/onenord.html"><strong aria-hidden="true">15.3.</strong> onenord.nvim</a></li><li class="chapter-item expanded "><a href="../neovim/plugin/lualine.html"><strong aria-hidden="true">15.4.</strong> lualine.nvim</a></li><li class="chapter-item expanded "><a href="../neovim/plugin/nvim-hlslens.html"><strong aria-hidden="true">15.5.</strong> nvim-hlslens</a></li><li class="chapter-item expanded "><a href="../neovim/plugin/gitsigns.html"><strong aria-hidden="true">15.6.</strong> gitsigns</a></li><li class="chapter-item expanded "><a href="../neovim/plugin/nvim-scrollbar.html"><strong aria-hidden="true">15.7.</strong> nvim-scrollbar</a></li><li class="chapter-item expanded "><a href="../neovim/plugin/lualine-part2.html"><strong aria-hidden="true">15.8.</strong> lualine.nvim Part Ⅱ</a></li><li class="chapter-item expanded "><a href="../neovim/plugin/lualine-part3.html"><strong aria-hidden="true">15.9.</strong> lualine.nvim Part Ⅲ</a></li><li class="chapter-item expanded "><a href="../neovim/plugin/telescope.html"><strong aria-hidden="true">15.10.</strong> telescope.nvim</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../neovim/plugin/telescope-config.html"><strong aria-hidden="true">15.10.1.</strong> Config</a></li><li class="chapter-item expanded "><a href="../neovim/plugin/telescope-all-recent.html"><strong aria-hidden="true">15.10.2.</strong> telescope-all-recent</a></li></ol></li><li class="chapter-item expanded "><a href="../neovim/plugin/nvim-tree.html"><strong aria-hidden="true">15.11.</strong> nvim-tree.lua</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../neovim/plugin/nvim-tree-actions.html"><strong aria-hidden="true">15.11.1.</strong> Actions</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../neovim/plugin/nvim-tree-actions-tip.html"><strong aria-hidden="true">15.11.1.1.</strong> (Extra) for Nvim 0.10</a></li></ol></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../neovim/lsp/language-server-protocol.html"><strong aria-hidden="true">16.</strong> Language Server Protocol</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../neovim/lsp/nvim-lspconfig.html"><strong aria-hidden="true">16.1.</strong> nvim-lspconfig</a></li><li class="chapter-item expanded "><a href="../neovim/lsp/mason.html"><strong aria-hidden="true">16.2.</strong> mason.nvim</a></li><li class="chapter-item expanded "><a href="../neovim/lsp/mason-lspconfig.html"><strong aria-hidden="true">16.3.</strong> mason-lspconfig.nvim</a></li><li class="chapter-item expanded "><a href="../neovim/lsp/nvim-navic.html"><strong aria-hidden="true">16.4.</strong> nvim-navic</a></li><li class="chapter-item expanded "><a href="../neovim/lsp/nvim-navbuddy.html"><strong aria-hidden="true">16.5.</strong> nvim-navbuddy</a></li><li class="chapter-item expanded "><a href="../neovim/lsp/nvim-cmp.html"><strong aria-hidden="true">16.6.</strong> nvim-cmp</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../neovim/lsp/cmp-nvim-lsp.html"><strong aria-hidden="true">16.6.1.</strong> cmp-nvim-lsp</a></li></ol></li><li class="chapter-item expanded "><a href="../neovim/lsp/luasnip.html"><strong aria-hidden="true">16.7.</strong> LuaSnip</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../neovim/lsp/cmp_luasnip.html"><strong aria-hidden="true">16.7.1.</strong> cmp_luasnip</a></li><li class="chapter-item expanded "><a href="../neovim/lsp/friendly_snippets.html"><strong aria-hidden="true">16.7.2.</strong> Friendly Snippets</a></li></ol></li><li class="chapter-item expanded "><a href="../neovim/lsp/copilot.html"><strong aria-hidden="true">16.8.</strong> copilot.lua</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../neovim/lsp/github-copilot.html"><strong aria-hidden="true">16.8.1.</strong> (Extra) GitHub Copilot</a></li><li class="chapter-item expanded "><a href="../neovim/lsp/copilot-cmp.html"><strong aria-hidden="true">16.8.2.</strong> copilot-cmp</a></li></ol></li><li class="chapter-item expanded "><a href="../neovim/lsp/nvim-cmp-sources.html"><strong aria-hidden="true">16.9.</strong> nvim-cmp-source(s)</a></li><li class="chapter-item expanded "><a href="../neovim/lsp/fidget.html"><strong aria-hidden="true">16.10.</strong> fidget.nvim</a></li><li class="chapter-item expanded "><a href="../neovim/lsp/trouble.html"><strong aria-hidden="true">16.11.</strong> Trouble</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">... To Be Continued.</li><li class="chapter-item expanded "><a href="../outro/outroduction.html"><strong aria-hidden="true">17.</strong> Outroduction</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../outro/lazy.html"><strong aria-hidden="true">17.1.</strong> lazy.nvim</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../outro/lazy-migration-guide.html"><strong aria-hidden="true">17.1.1.</strong> Migration Guide</a></li></ol></li><li class="chapter-item expanded "><a href="../outro/nvim-notify.html"><strong aria-hidden="true">17.2.</strong> nvim-notify</a></li><li class="chapter-item expanded "><a href="../outro/nvim_set_option_value.html"><strong aria-hidden="true">17.3.</strong> nvim_set_option_value</a></li><li class="chapter-item expanded "><a href="../outro/none-ls.html"><strong aria-hidden="true">17.4.</strong> none-ls.nvim</a></li><li class="chapter-item expanded "><a href="../outro/mason-null-ls.html"><strong aria-hidden="true">17.5.</strong> mason-null-ls.nvim</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../outro/year2024.html"><strong aria-hidden="true">17.5.1.</strong> (Extra) Year 2024</a></li><li class="chapter-item expanded "><a href="../outro/linter.html"><strong aria-hidden="true">17.5.2.</strong> Linter</a></li></ol></li><li class="chapter-item expanded "><a href="../outro/lsp-meet-me.html"><strong aria-hidden="true">17.6.</strong> LSP (Meet Me)</a></li><li class="chapter-item expanded "><a href="../outro/nvim_get_option_value.html"><strong aria-hidden="true">17.7.</strong> nvim_get_option_value</a></li><li class="chapter-item expanded "><a href="../outro/nvim_set_var.html"><strong aria-hidden="true">17.8.</strong> nvim_set_var</a></li><li class="chapter-item expanded "><a href="../outro/wezterm-meet-me.html" class="active"><strong aria-hidden="true">17.9.</strong> WezTerm (Meet Me)</a></li></ol></li></ol>
+        </nav>
+      </div>
+
+      <div id="content" class="content">
+        <spacer></spacer>
+
+        <main id="main">
+          <h1 id="-wezterm-meet-me"><a class="header" href="#-wezterm-meet-me">💻 WezTerm (meet me)</a></h1>
+<div id="admonition-default" class="admonition admonish-quote">
+<div>
+<p>"March Comes in Like a Lion, and Goes Out Like a Lamb"</p>
+</div>
+</div>
+<p>前回から間を置かず、冬の終わりに子羊のようにさっさと去ろうかな〜🐑 ...とも思っていましたが、
+なんかせっかく花が咲くみたいなので、春の始まりを見届けてから行きます🌸</p>
+<div id="admonition-default-1" class="admonition admonish-success">
+<div>
+<p>I look at you all, see the love there that's sleeping</p>
+<p>While my guitar gently weeps<sup class="footnote-reference">
+<a name="to-footnote-1"><a href="#1">1</a></a>
+</sup></p>
+<p>君たちを見ていると、そこに眠っている愛が見える</p>
+<p>ギターは優しく泣くんだ</p>
+</div>
+</div>
+<p>東京での満開日は全部曇りや雨の荒々しい予報になっていたので、「なんやまだライオンおるんかいな🦁」って感じでしたね。</p>
+<p>もう "東京に空がないといふ" とかなんとかオチつけて丸く収めたろ〜かしら、とも考えましたが...。
+<img src="img/inokashira.webp" alt="inokashira" width="1000" height="666" decoding="async"></p>
+<p>ありました、空🌞</p>
+<p>そうでした、吉祥寺に「ないものは無い」のでした❗</p>
+<p><a href="https://www.kensetsu.metro.tokyo.lg.jp/jimusho/seibuk/inokashira/index.html">井の頭公園</a>には、
+もはや通ってるのかと言われるぐらい能天気に来まくってます。</p>
+<p>ここ数ヶ月ぐらいはボート乗り場を改修していて、しばらくはスワン<sup class="footnote-reference">
+<a name="to-footnote-2"><a href="#2">2</a></a>
+</sup>もボートもいませんでした。</p>
+<p>が❗</p>
+<p>...今じゃご覧の通り、すっかりですよ❗🦢🦢🦢</p>
+<div id="admonition-note" class="admonition admonish-note">
+<div class="admonition-title">
+<p>Note</p>
+<p><a class="admonition-anchor-link" href="#admonition-note"></a></p>
+</div>
+<div>
+<p>駅北口のバスロータリーの真ん中に "象の像" がありますが、
+あの<a href="https://ja.wikipedia.org/wiki/%E3%81%AF%E3%81%AA%E5%AD%90">はな子</a>🐘 がいたのもここです😇</p>
+</div>
+</div>
+<img src="img/inokashira-bird.webp" alt="inokashira-bird" width="666" height="1000" loading="lazy">
+<p>鳥さんも羽休めに来るぐらいだし🐦‍⬛</p>
+<p>こういう演奏にも巡り会えるし🎻
+<img src="img/band-sounds.webp" alt="band-sounds" width="1000" height="560" loading="lazy"></p>
+<audio controls preload="none">
+  <source src="audio/band-sounds.mp3">
+</audio>
+<p>ほらね、吉祥寺に「ないものは無い」のです🥰</p>
+<p>わたしも大好きなばしょです😄</p>
+<h2 id="-config"><a class="header" href="#-config">⚙️ Config</a></h2>
+<p>ぐるっと巡ってきましたが、最後は<code>WezTerm</code>の設定を少しだけ見直します🤗</p>
+<p><code>Config</code>ファイルの記述方法が<a href="../wezterm/configuration.html">あの頃</a>から少し変わっているので、
+ここから見直していきましょう❗</p>
+<div id="admonition-configurationhttpswezfurlongorgweztermconfigfileshtml" class="admonition admonish-info">
+<div class="admonition-title">
+<p><a href="https://wezfurlong.org/wezterm/config/files.html">Configuration</a></p>
+<p><a class="admonition-anchor-link" href="#admonition-configurationhttpswezfurlongorgweztermconfigfileshtml"></a></p>
+</div>
+<div>
+<pre><code class="language-lua">-- Pull in the wezterm API
+local wezterm = require 'wezterm'
+
+-- This will hold the configuration.
+local config = wezterm.config_builder()
+
+-- This is where you actually apply your config choices
+
+-- For example, changing the color scheme:
+config.color_scheme = 'AdventureTime'
+
+-- and finally, return the configuration to wezterm
+return config
+</code></pre>
+</div>
+</div>
+<img src="img/sotobori-bird.webp" alt="sotobori-bird" width="1000" height="666" loading="lazy">
+<div id="admonition-default-2" class="admonition admonish-success">
+<div>
+<p>I look at the floor and I see it needs sweeping</p>
+<p>目を向ければ 床の掃除が必要な気がするんだ</p>
+</div>
+</div>
+<h3 id="-config_builder"><a class="header" href="#-config_builder">🔧 config_builder</a></h3>
+<p>肝心なのはここですね。</p>
+<pre><code class="language-lua">-- This will hold the configuration.
+local config = wezterm.config_builder()
+</code></pre>
+<p><code>config_builder</code>オブジェクトを使用するように案内されています。</p>
+<div id="admonition-weztermconfig_builderhttpswezfurlongorgweztermconfigluaweztermconfig_builderhtml" class="admonition admonish-info">
+<div class="admonition-title">
+<p><a href="https://wezfurlong.org/wezterm/config/lua/wezterm/config_builder.html">wezterm.config_builder()</a></p>
+<p><a class="admonition-anchor-link" href="#admonition-weztermconfig_builderhttpswezfurlongorgweztermconfigluaweztermconfig_builderhtml"></a></p>
+</div>
+<div>
+<p>The config builder may look like a regular lua table but it is really a special userdata type that
+knows how to log warnings or generate errors if you attempt to define an invalid configuration option.</p>
+<p>config builder は、一見普通の lua テーブルのように見えますが、実は特別な userdata タイプで、
+無効な Config オプションを定義しようとすると、警告をログに記録したりエラーを生成します。</p>
+</div>
+</div>
+<p>各種設定を入れていくローカル変数の名前は<code>config</code>で案内されていますが、ここはなんでもいいです。</p>
+<p>わたしはこのパターンだと変数名は<code>M</code>にしちゃうんで、<code>M</code>で進めていいかな...❓</p>
+<div id="admonition-weztermlua" class="admonition admonish-example">
+<div class="admonition-title">
+<p>wezterm.lua</p>
+<p><a class="admonition-anchor-link" href="#admonition-weztermlua"></a></p>
+</div>
+<div>
+<p>先頭で、こんな感じでオブジェクトを定義するように変えて...。</p>
+<pre><code class="language-diff">-return {
++local wezterm = require 'wezterm'
++local M = wezterm.config_builder()
+</code></pre>
+</div>
+</div>
+<div id="admonition-default-3" class="admonition admonish-example">
+<div>
+<p>このオブジェクトに対して色々追加していきます。例えば...</p>
+<pre><code class="language-diff">-color_scheme = 'Catppuccin Mocha',
++M.color_scheme = 'Catppuccin Mocha'
+
+-window_background_opacity = 0.93,
++M.window_background_opacity = 0.93
+</code></pre>
+<p>こんな感じで書き換えていけば OK です。(末尾の<code>,</code>を取り除くのを忘れないで❗)</p>
+</div>
+</div>
+<div id="admonition-default-4" class="admonition admonish-example">
+<div>
+<p>...そしたら、最後にこのオブジェクトを返してあげましょう😌</p>
+<pre><code class="language-diff">-}
++return M
+</code></pre>
+</div>
+</div>
+<p>これで完璧😉</p>
+<div id="admonition-note-1" class="admonition admonish-note">
+<div class="admonition-title">
+<p>Note</p>
+<p><a class="admonition-anchor-link" href="#admonition-note-1"></a></p>
+</div>
+<div>
+<p>これもやっぱり<code>lua</code>の慣習なんだけど、<code>Matrix</code>(行列) のイニシャルで<code>M</code>だよね...❓</p>
+<p>(ぶっちゃけ、ちゃんと調べたことない😮)</p>
+</div>
+</div>
+<div id="admonition-default-5" class="admonition admonish-success">
+<div>
+<p>I don't know why nobody told you</p>
+<p>How to unfold your love</p>
+<p>わからないんだ 誰も教えてくれなかった</p>
+<p>どうすれば愛を伝えられる</p>
+</div>
+</div>
+<img src="img/tokyo-daijingu.webp" alt="tokyo-daijingu" width="1000" height="666" loading="lazy">
+<p><a href="https://tokyodaijingu.or.jp">東京大神宮</a>もちょいちょい参拝させてもらってます⛩️</p>
+<p>この辺まで来たらこっちも見て回りたくなるでしょ 🚶‍♀️</p>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: center"><a href="https://visit-chiyoda.tokyo/app/spot/detail/225">新見附橋</a></th><th style="text-align: center"><a href="https://visit-chiyoda.tokyo/app/spot/detail/274">外濠公園</a></th></tr></thead><tbody>
+<tr><td style="text-align: center"><img src="img/shin-mituke.webp" alt="shin-mituke" /></td><td style="text-align: center"><img src="img/sotobori.webp" alt="sotobori" /></td></tr>
+</tbody></table>
+</div>
+<h3 id="-font"><a class="header" href="#-font">🧚‍♀️ Font</a></h3>
+<p>フォントについては、このサイトでは以下のように紹介していました。</p>
+<pre><code class="language-lua">font = require("wezterm").font("Firge35Nerd Console"),
+</code></pre>
+<p>特に不満がなければこのままでもいいんですが、
+最新のフォントを自分で追っかけたい場合なんかだと、後の項で出てくる<code>font_with_fall_back</code>を使うと良いです。</p>
+<p>...ってことで、まずはフォントを用意しましょう❗</p>
+<h4 id="-nerd-fonts"><a class="header" href="#-nerd-fonts">🪺 nerd-fonts</a></h4>
+<p><code>nerd-fonts</code>は<code>WezTerm</code>に含まれているので特に設定はいらないんだけど、
+<a href="../wezterm/font.html#%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0%E3%83%95%E3%82%A9%E3%83%B3%E3%83%88-firge-%E3%83%95%E3%82%A1%E3%83%BC%E3%82%B8">前回</a>は結局<code>Nerd Font</code>が含まれているバージョンを使う方法を紹介していました。</p>
+<p>2024/04/17 時点では<code>Firge</code>と<code>WezTerm</code>のどちらよりも本家の<code>nerd-fonts</code>のバージョンが進んでいて、
+新しいアイコンも続々と増えているので、定期的に確認してみるのも楽しいと思います😆</p>
+<p>なので、今回は本家の<code>nerd-fonts</code>を使う方法で進めます。</p>
+<div id="admonition-releases--v320" class="admonition admonish-info">
+<div class="admonition-title">
+<p>Releases / v3.2.0</p>
+<p><a class="admonition-anchor-link" href="#admonition-releases--v320"></a></p>
+</div>
+<div>
+<p>The Easter release. Lets see which eggs can be found:</p>
+<p>イースターリリースだよ。どんな卵が見つかるかな：</p>
+</div>
+</div>
+<div id="admonition-note-2" class="admonition admonish-note">
+<div class="admonition-title">
+<p>Note</p>
+<p><a class="admonition-anchor-link" href="#admonition-note-2"></a></p>
+</div>
+<div>
+<p>くどいようなんですが、現状で不満がなければ<code>WezTerm</code>に含まれているので、これを行わなくても支障はありません🐤</p>
+</div>
+</div>
+<p><a href="https://github.com/ryanoasis/nerd-fonts/releases">Releases</a>から最新版をダウンロードさせてもらいましょう😉</p>
+<p>これはやっぱり、好きな卵🥚 を選べば良いのですが、わたしは<code>NerdFontsSymbolsOnly</code>を使用しています。</p>
+<pre><code class="language-adminosh note">`NerdFontsSymbolsOnly.tar.xz`もしくは`NerdFontsSymbolsOnly.zip`は、文字通りシンボルオンリーです🐣
+</code></pre>
+<p>今回はせっかくなので、この<code>NerdFontsSymbolsOnly</code>を使った方法で進めていきます。</p>
+<h4 id="-firacode"><a class="header" href="#-firacode">❤️‍🔥 FiraCode</a></h4>
+<p>で、次に英字フォントを用意するんですが、ここでは一例として<code>FiraCode</code>を紹介します。</p>
+<div id="admonition-firacodehttpsgithubcomtonskyfiracode" class="admonition admonish-info">
+<div class="admonition-title">
+<p><a href="https://github.com/tonsky/FiraCode">FiraCode</a></p>
+<p><a class="admonition-anchor-link" href="#admonition-firacodehttpsgithubcomtonskyfiracode"></a></p>
+</div>
+<div>
+<p>Fira Code: free monospaced font with programming ligatures</p>
+<p>Fira Code: プログラミング合字のフリー等幅フォント</p>
+</div>
+</div>
+<p>これも素直に<a href="https://github.com/tonsky/FiraCode/releases">Releases</a>からダウンロードさせてもらうのが簡単でしょう😊</p>
+<h4 id="-ヒラギノ角ゴシック"><a class="header" href="#-ヒラギノ角ゴシック">🎏 ヒラギノ角ゴシック</a></h4>
+<p>これだけだと "漢字・ひらがな・カタカナ" がイマイチに戻っちゃうので、日本語に対応したフォントも用意しましょう。</p>
+<p>わたしは<code>macOS</code>に標準で入っている<code>ヒラギノ角ゴシック</code>を使うので、特に示せる手順もありませんでした😅</p>
+<h4 id="-font_with_fall_back"><a class="header" href="#-font_with_fall_back">🐣 font_with_fall_back</a></h4>
+<p>で、ここまでに用意したフォントを<code>WezTerm</code>で使うために<code>font_with_fall_back</code>があるわけです❗</p>
+<div id="admonition-weztermfont_with_fallbackfamilies--attributeshttpswezfurlongorgweztermconfigluaweztermfont_with_fallbackhtml" class="admonition admonish-info">
+<div class="admonition-title">
+<p><a href="https://wezfurlong.org/wezterm/config/lua/wezterm/font_with_fallback.html">wezterm.font_with_fallback(families [, attributes])</a></p>
+<p><a class="admonition-anchor-link" href="#admonition-weztermfont_with_fallbackfamilies--attributeshttpswezfurlongorgweztermconfigluaweztermfont_with_fallbackhtml"></a></p>
+</div>
+<div>
+<p>This function constructs a lua table that configures a font with fallback processing.
+Glyphs are looked up in the first font in the list but if missing the next font is checked and so on.</p>
+<p>この関数は、フォールバック処理でフォントを設定する lua テーブルを構築します。
+グリフはリストの最初のフォントで検索されますが、見つからない場合は次のフォントがチェックされます。</p>
+<p>The first parameter is a table listing the fonts in their preferred order:</p>
+<p>最初のパラメータは、フォントを優先する順番に並べたテーブルです：</p>
+<pre><code class="language-lua">local wezterm = require 'wezterm'
+
+return {
+  font = wezterm.font_with_fallback { 'JetBrains Mono', 'Noto Color Emoji' },
+}
+</code></pre>
+</div>
+</div>
+<p>これで、複数のフォントを好みで組み合わせて使用することができます😌</p>
+<p>まずはこんな感じで書き換えてから...。</p>
+<div id="admonition-weztermlua-1" class="admonition admonish-example">
+<div class="admonition-title">
+<p>wezterm.lua</p>
+<p><a class="admonition-anchor-link" href="#admonition-weztermlua-1"></a></p>
+</div>
+<div>
+<pre><code class="language-diff">- font = require("wezterm").font("Firge35Nerd Console"),
++ M.font = wezterm.font_with_fallback {
++ }
+</code></pre>
+</div>
+</div>
+<p>この配列にフォントを追加しましょう。</p>
+<div id="admonition-weztermlua-2" class="admonition admonish-example">
+<div class="admonition-title">
+<p>wezterm.lua</p>
+<p><a class="admonition-anchor-link" href="#admonition-weztermlua-2"></a></p>
+</div>
+<div>
+<pre><code class="language-diff"> M.font = wezterm.font_with_fallback {
++ 'Fira Code',
++ 'ヒラギノ角ゴシック',
++ 'Symbols Nerd Font',
+ }
+</code></pre>
+</div>
+</div>
+<div id="admonition-tip" class="admonition admonish-tip">
+<div class="admonition-title">
+<p>Tip</p>
+<p><a class="admonition-anchor-link" href="#admonition-tip"></a></p>
+</div>
+<div>
+<p><code>macOS</code>の場合は、さらにこんなのを入れておくのもいいかも...❓</p>
+<pre><code class="language-diff"> M.font = wezterm.font_with_fallback {
+  'Fira Code',
+  'ヒラギノ角ゴシック',
+  'Symbols Nerd Font',
++ 'Apple Color Emoji',
+ }
+</code></pre>
+<p>他の<code>OS</code>でも似たようなフォントセットがあるのかどうかは、わたしがよく知らないのでごめんなさい😿</p>
+</div>
+</div>
+<p>綺麗に表示できたかな❓☺️</p>
+<h3 id="-window"><a class="header" href="#-window">🪟 Window</a></h3>
+<p>「そういえばライトアップされた桜をまだ見てないな〜」と気づきました。</p>
+<p>満開日もとうに過ぎて、おまけに雨も降っちゃったんで、もう無理かなーとも思いましたが...。</p>
+<p>ありました、<a href="https://www.happo-en.com">八芳園</a>🌝
+<img src="img/happo-en1.webp" alt="happo-en1" width="1000" height="666" loading="lazy"></p>
+<p>ここ場所が白金台なので、ちょっと前のわたしならビビり散らかしちゃうに違いありませんでした。</p>
+<p>が❗</p>
+<p>安心してください❗</p>
+<p>今のわたしは "とやマネーゼ"...❗</p>
+<p>そう❗"6000 とやマネーゼ" なのです🥴</p>
+<div id="admonition-default-6" class="admonition admonish-success">
+<div>
+<p>I look at the world and I notice it's turning</p>
+<p>目を向ければ 世界が変わりつつあることに気づいたんだ</p>
+</div>
+</div>
+<p>たとえ "億万シロカネーゼ" と並んだとしても互角であると言えるのです❗</p>
+<p>ごめんあそばせ〜🤭
+<img src="img/happo-en2.webp" alt="happo-en2" width="666" height="1000" loading="lazy"></p>
+<div id="admonition-default-7" class="admonition admonish-success">
+<div>
+<p>I don't know how someone controlled you</p>
+<p>They bought and sold you</p>
+<p>わからないんだよ 操られていることが</p>
+<p>君は誰かに 売られて 買われてる</p>
+</div>
+</div>
+<h4 id="-window_decorations"><a class="header" href="#-window_decorations">💖 window_decorations</a></h4>
+<div id="admonition-window_decorationshttpswezfurlongorgweztermconfigluaconfigwindow_decorationshtml" class="admonition admonish-info">
+<div class="admonition-title">
+<p><a href="https://wezfurlong.org/wezterm/config/lua/config/window_decorations.html">window_decorations</a></p>
+<p><a class="admonition-anchor-link" href="#admonition-window_decorationshttpswezfurlongorgweztermconfigluaconfigwindow_decorationshtml"></a></p>
+</div>
+<div>
+<ul>
+<li><code>window_decorations = "INTEGRATED_BUTTONS|RESIZE"</code> - place window management buttons (minimize, maximize, close) into the tab bar instead of showing a title bar.</li>
+</ul>
+<p>タイトルバーを表示する代わりに、ウィンドウ管理ボタン (最小化、最大化、閉じる) をタブバーに配置する。</p>
+</div>
+</div>
+<div id="admonition-weztermlua-3" class="admonition admonish-example">
+<div class="admonition-title">
+<p>wezterm.lua</p>
+<p><a class="admonition-anchor-link" href="#admonition-weztermlua-3"></a></p>
+</div>
+<div>
+<pre><code class="language-lua">M.window_decorations = 'INTEGRATED_BUTTONS|RESIZE'
+</code></pre>
+</div>
+</div>
+<p>これさえあれば <a href="../wezterm/window-decorations.html#configuring-mouse-assignments">Configuring Mouse Assignments</a>
+で書いていたコードはもう ぽいっちょ❗うるのねん❗</p>
+<div id="admonition-mousebindslua" class="admonition admonish-example">
+<div class="admonition-title">
+<p>mousebinds.lua</p>
+<p><a class="admonition-anchor-link" href="#admonition-mousebindslua"></a></p>
+</div>
+<div>
+<pre><code class="language-diff"> return {
+   mouse_bindings = {
+-    {
+-       event = { Down = { streak = 1, button = 'Left' } },
+-       mods = 'NONE',
+-       action = act.EmitEvent 'show-title-bar',
+-    },
+   },
+ }
+</code></pre>
+</div>
+</div>
+<div id="admonition-eventlua" class="admonition admonish-example">
+<div class="admonition-title">
+<p>event.lua</p>
+<p><a class="admonition-anchor-link" href="#admonition-eventlua"></a></p>
+</div>
+<div>
+<pre><code class="language-diff">- local TITLE_BAR_DISPLAY_TIME = 3000
+</code></pre>
+<pre><code class="language-diff">- wezterm.on('window-focus-changed', function(window, pane)
+-   if window:is_focused() then
+-     return
+-   end
+-
+-   DisableWindowDecorations(window)
+- end)
+-
+- wezterm.on('show-title-bar', function(window, pane)
+-   local overrides = window:get_config_overrides() or {}
+-
+-   overrides.window_decorations = 'TITLE | RESIZE'
+-   window:set_config_overrides(overrides)
+- end)
+</code></pre>
+</div>
+</div>
+<p>...ってやれば、こんな外観になるはずです🍦</p>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: center">before</th><th style="text-align: center">after</th></tr></thead><tbody>
+<tr><td style="text-align: center"><img src="../wezterm/img/decorations.webp" alt="decorations" /></td><td style="text-align: center"><img src="img/integrated_buttons.webp" alt="integrated_buttons" /></td></tr>
+</tbody></table>
+</div><div id="admonition-note-3" class="admonition admonish-note">
+<div class="admonition-title">
+<p>Note</p>
+<p><a class="admonition-anchor-link" href="#admonition-note-3"></a></p>
+</div>
+<div>
+<p><a href="../wezterm/status.html">Status Bar</a>に表示していた項目は、各々でうまく調整してください😅</p>
+<p>(特に<a href="../wezterm/left-status.html">Left Status</a>は邪魔に見えちゃってるかもしれない...。)</p>
+</div>
+</div>
+<p>もうこれまでに散々この状態のスクリーンショットを出してしまっていましたが❗</p>
+<div id="admonition-default-8" class="admonition admonish-success">
+<div>
+<p>With every mistake, we must surely be learning<sup class="footnote-reference">
+<a name="to-footnote-3"><a href="#3">3</a></a>
+</sup></p>
+<p>全ての過ちに、学び取るものがあるはずなんだ</p>
+</div>
+</div>
+<h2 id="-wrap-up"><a class="header" href="#-wrap-up">🎁 Wrap Up</a></h2>
+<p>無理やり詰め込んだ感じもあるけど、これでやりたかった事は大体やれたかな❗</p>
+<p>この章も、ちょっと注釈みたいなの並べて早く終わるものだと思ってたんだけど、なんか結果的にはガッツリやってました😅</p>
+<div id="admonition-default-9" class="admonition admonish-success">
+<div>
+<p>I don't know how you were diverted</p>
+<p>You were perverted, too</p>
+<p>わからないんだ 君がどのように逸れてしまったのか</p>
+<p>歪んでしまったんだ、君も</p>
+</div>
+</div>
+<p>でも、ちゃんと<a href="outroduction.html">やり遂げる</a>ことが出来ただろう❓😏</p>
+<p>新しいことを始めるのもいいし、今やっていることのレベルを上げるのもいいし、
+そろそろみんな次のステップに進まないとね😆</p>
+<h2 id="-still-my-guitar-gently-weeps"><a class="header" href="#-still-my-guitar-gently-weeps">🎸 Still, my guitar gently weeps</a></h2>
+<p>な〜んて言いながら、もう一回だけ話飛ぶんですけど、オランダに行ってきたんですよ〜😋
+<img src="img/ukima1.webp" alt="ukima1" width="1000" height="666" loading="lazy">
+<img src="img/ukima2.webp" alt="ukima2" width="1000" height="666" loading="lazy"></p>
+<p>間違えました、<a href="https://www.city.itabashi.tokyo.jp/bousai/toshikeiakku/kotsu/1044242/1044694.html">いたばしのオランダ</a>でした🦧</p>
+<div id="admonition-default-10" class="admonition admonish-success">
+<div>
+<p>I don't know how you were inverted</p>
+<p>No one alerted you</p>
+<p>わからないんだ 君がどのように倒錯してしまったのか</p>
+<p>誰も君に言ってくれなかったんだ</p>
+</div>
+</div>
+<p>色々開き直って、ずっとすっとぼけながらここまで来たんだけど、結局何が言いたいかっていうとね...、</p>
+<div id="admonition--thanks-for-reading-" class="admonition admonish-quote">
+<div class="admonition-title">
+<p>🪸 Thanks for reading !</p>
+<p><a class="admonition-anchor-link" href="#admonition--thanks-for-reading-"></a></p>
+</div>
+<div>
+<p>前を向いて、まわりに目を向けてごらん。</p>
+<p>...ほら❗わるくないだろ❓🤗<sup class="footnote-reference">
+<a name="to-footnote-4"><a href="#4">4</a></a>
+</sup></p>
+</div>
+</div>
+<div class="footnote-definition" id=1>
+<p><a href="#to-footnote-1"><sup>1:</sup></a> While My Guitar Gently Weeps (by <a href="https://en.wikipedia.org/wiki/The_Beatles">The Beatles</a>):
+George Harisson によって書かれ、彼が "眠っている愛" と呼ぶ "普遍的な愛" に対する世界の実現不可能な可能性への落胆を歌っている。</p>
+<p>Harisson が Warrington の両親を訪ねていたときにこの曲のインスピレーションが湧き、"易経 (変化の書)" を読み始めた。
+「物事は単なる偶然に過ぎないという西洋的な見方とは対照的に、
+全てのものは他の全てのものに対して相対的であるという東洋的な概念に基づいているように僕には思えた」。
+この相対主義という考え方を受け入れ、本を開いてたまたま最初に目にした言葉が「優しく泣く」であったことに基づいて曲を書くことにした。</p>
+<p>1968年の春に महर्षि महेश योगी (Maharishi Mahesh Yogi) の下で超越瞑想を学んでいたインドから帰国後の The Beatles 内での不調和な雰囲気を反映している。
+バンドメンバーの仲間意識の欠如に対し、
+Harisson は友人の <a href="https://en.wikipedia.org/wiki/Eric_Clapton">Eric Clapton</a> をレコーディングに招くことで対抗した。</p>
+<p>9月6日、Surrey から London へ向かう車中で、Harisson は Claptonにこの曲でギターを弾いてほしいと頼んだ。</p>
+<p>Clapton は、ソングライターとしての Harisson の才能を認めており、
+その能力は長い間 Lennon と McCartney の陰に隠れていると考えていたが、それでも最初は参加を渋った。
+「それはできない。The Beatles のレコードで演奏する人なんて誰もいないよ」。</p>
+<p>結果として Clapton はリード・ギターをオーヴァーダビングしたが、その貢献については正式にクレジットされなかった。</p>
+<p>Clapton は「"While My Guitar Gently Weeps" はグループ内での George の精神的な孤立を訴えている」と述べている。</p>
+<p>歌詞の中で、Harisson は普遍的な愛というテーマと、
+インド音楽の影響を受けた "Within You Without You" のような楽曲で顕著であった、哲学的な懸念を再び取り上げている。</p>
+<p>この曲は、人々に対する普遍的な愛が全ての個人の中に潜在していながら、実現されないままであることを嘆くものであり、
+多くの聴衆が Harisson の作品を Lennon-McCartney の作品と互角とも言えるほど素晴らしいことに気付くきっかけとなった。
+<a href="https://en.wikipedia.org/wiki/While_My_Guitar_Gently_Weeps">Wikipedia</a>より</p>
+</div><div class="footnote-definition" id=2>
+<p><a href="#to-footnote-2"><sup>2:</sup></a> Harisson は <a href="https://en.wikipedia.org/wiki/Cream_(band)">Cream</a> のレコーディングに参加することで Crapton に応酬した。
+「Eric が曲を書くのを手伝ったんだ。Cream のアルバムのために曲を考えなければならなかったんだけど、Eric はまだ書いていなかったんだ。
+僕たちは向かい合って仕事をしていて、僕は歌詞を書いていた。Eric はそれを逆さまにして読んで、'BADGE って何だ？'
+(手書きの 'Bridge' という文字を読み間違えた)。その後、酔っ払った Ringo が入ってきて、
+'I told you 'bout the swans that they live in the park (白鳥が公園に住んでいることも話した)' という一節をくれたんだ。」
+この時に制作された Badge は1969年、Cream の最後のアルバム Goodbye に収録された。
+<a href="https://www.beatlesbible.com/1968/11/21/george-harrison-performs-on-badge-cream/">The Beatles Bible</a>より</p>
+</div><div class="footnote-definition" id=3>
+<p><a href="#to-footnote-3"><sup>3:</sup></a> Bridge の間、Harisson は <a href="https://en.wikipedia.org/wiki/Bob_Dylan">Bob Dylan</a> 風の繰り返しの韻律を採用し、
+人々がいかにこの愛を顕在化させる能力から遠ざかってしまったかを伝えている。</p>
+</div><div class="footnote-definition" id=4>
+<p><a href="#to-footnote-4"><sup>4:</sup></a> この言い回しはもちろん John Lennon のまね〜🤪</div></p>
+
+
+          <nav class="nav-wrapper" aria-label="Page navigation">
+            <a rel="prev" href="../outro/nvim_set_var.html" class="nav-chapters previous icon-button" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+               nvim_set_var
+            </a>
+
+          </nav>
+        </main>
+
+        <spacer></spacer>
+
+        <div class="righttoc" aria-label="Table of contents">
+          <nav class="pagetoc"></nav>
+        </div>
+      </div>
+    </div>
+
+    <link rel="stylesheet" href="../css/style.css" async>
+    
+
+    <script defer type="module" src="../book.js" id = "bookjs" data-pathtoroot="../"></script>
+    
+  </body>
+</html>
