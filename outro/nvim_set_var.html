@@ -179,18 +179,7 @@
 </code></pre>
 </div>
 </div>
-<p><code>nvim_set_var</code>は<code>global</code>変数に対して値をセットする汎用的な<code>API</code>なので、このあとの項に出てくる使い方はあくまでも一例です。</p>
-<div id="admonition-tip" class="admonition admonish-tip">
-<div class="admonition-title">
-<p>Tip</p>
-<p><a class="admonition-anchor-link" href="#admonition-tip"></a></p>
-</div>
-<div>
-<p>このサイトで示している他の使い方としては
-<a href="../neovim/leader.html#mapleader">mapleader</a>や<a href="../neovim/leader.html#maplocalleader">maplocalleader</a>などがあります。</p>
-</div>
-</div>
-<p>そんな<code>nvim_set_var</code>こと Captain Marvel<sup class="footnote-reference">
+<p><code>nvim_set_var</code>こと Captain Marvel<sup class="footnote-reference">
 <a name="to-footnote-1"><a href="#1">1</a></a>
 </sup>は<a href="https://en.wikipedia.org/wiki/Captain_Marvel_(DC_Comics)">Shazam</a>とも
 Superman<sup class="footnote-reference">
@@ -200,6 +189,20 @@ Superman<sup class="footnote-reference">
 <a name="to-footnote-3"><a href="#3">3</a></a>
 </sup>
 ともまた違った魅力があるのです❗かぁっくいー❤️</p>
+<div id="admonition-tip" class="admonition admonish-tip">
+<div class="admonition-title">
+<p>Tip</p>
+<p><a class="admonition-anchor-link" href="#admonition-tip"></a></p>
+</div>
+<div>
+<p><code>nvim_set_var</code>は<code>global</code>変数に対して値をセットする汎用的な<code>API</code>なので、この節での使い方はあくまでも一例です。</p>
+<p>このサイトで示している他の使い方としては
+<a href="../neovim/leader.html#mapleader">mapleader</a>や<a href="../neovim/leader.html#maplocalleader">maplocalleader</a>などがあります。</p>
+</div>
+</div>
+<p>ぶっちゃけ、このあと出てくるヘルプの文面は少し古く感じられるので、
+今となっては特段効果のある<code>Tips</code>ではないかもしれません。</p>
+<p>ただ、トリはずっと前からこれって決めてたんで、このままいっちゃいます😅</p>
 <div id="admonition-default-5" class="admonition admonish-success">
 <div>
 <p>The children asked him if to kill was not a sin</p>
@@ -234,8 +237,6 @@ require 'keybinds'
 </code></pre>
 </div>
 </div>
-<p>ヘルプの文面を見ても内容が古く感じられるので、そんなに必要ないかもしれませんが、
-トリはずっと前からこれって決めてたんで、このままいっちゃいます😅</p>
 <p>一人でずっとわーわーゆーとりますが、いよいよこのサイトで扱う<code>Neovim</code>最後の節です❗</p>
 <div id="admonition-default-7" class="admonition admonish-success">
 <div>
@@ -310,7 +311,7 @@ python -m pip install --user --upgrade pynvim
 <p><a class="admonition-anchor-link" href="#admonition-note-1"></a></p>
 </div>
 <div>
-<p>ヘルプでも触れられていますが、ちょっと前までは<code>Python 2</code>のコンフィグも用意されていましたが、今は<code>Python 3</code>だけになっています。</p>
+<p>ヘルプでも触れられていますが、古くは<code>Python 2</code>のコンフィグも用意されていましたが、今は<code>Python 3</code>だけになっています。</p>
 </div>
 </div>
 <p>このサイトで取り上げてきたプラグインやコードに限って言うと、
@@ -321,7 +322,7 @@ python -m pip install --user --upgrade pynvim
 <p><a class="admonition-anchor-link" href="#admonition-tip-1"></a></p>
 </div>
 <div>
-<p>ちなみにここで言う「全く使用していない」は「<code>Neovim</code>本体の動作には使用していない」という意味です。</p>
+<p>ここで言う「全く使用していない」は "<code>Neovim</code>本体の動作には使用していない" という意味です。</p>
 <p>「<code>Python</code>のコードを書くのに使ってるよー」って言うのとは、また別のおはなしです😉</p>
 <p>...の、はずです。</p>
 </div>
@@ -545,7 +546,7 @@ To disable Perl support:
 </code></pre>
 </div>
 </div>
-<h3 id="-nodejs-integration"><a class="header" href="#-nodejs-integration">🪵 Node.js Integration</a></h3>
+<h3 id="-nodejs-integration"><a class="header" href="#-nodejs-integration">🌳 Node.js Integration</a></h3>
 <p><a href="https://www.pref.ishikawa.jp/siro-niwa/kenrokuen/">兼六園</a>にはアオサギもやってくるらしいよ。
 <img src="img/kenroku-en.webp" alt="kenroku-en" width="666" height="1000" loading="lazy"></p>
 <p>これがアオサギなのかはよくわかんないですけど😅</p>
@@ -677,10 +678,11 @@ Nancy によれば、その場にいた全員が Rik の行動の必要性を認
 <p>Lennon は後に Playboy のインタビューで、この曲について
 「"Bungalow Bill" は、短い休暇を取って哀れな虎を2、3頭撃ち殺した男が、神と共に部落に帰ってくるというストーリーで書いた。
 <a href="https://en.wikipedia.org/wiki/Jungle_Jim">Jungle Jim</a>というキャラクターがいて、
-それを<a href="https://en.wikipedia.org/wiki/Buffalo_Bill">Buffalo Bill</a>とくっつけた」と語っている。</p>
+それを<a href="https://en.wikipedia.org/wiki/Buffalo_Bill">Buffalo Bill</a>と組み合わせた。
+10代の社会的コメントのような歌で、ちょっとしたジョークなんだ」と語っている。</p>
 <p>McCartney は本作について
 「今も僕のお気に入りの一つ。それは今の僕のスタンスとすごく共通するところがあるからだ。
-この曲のメッセージは「本当にあの虎を撃つ必要があったのか？お前は立派な男ではなかったのか？お前は勇敢な男ではなかったのか？というところ。
+この曲のメッセージは "本当にあの虎を撃つ必要があったのか? お前は立派な男ではなかったのか? お前は勇敢な男ではなかったのか?" というところ。
 John はそれを、すごくうまく表現していると思う」と評している。</p>
 <p>この曲は Lennon と共に オノ・ヨーコがリード・ヴォーカルをとっており、
 The Beatles のメンバー以外がリード・ヴォーカルをとった唯一の曲である。
