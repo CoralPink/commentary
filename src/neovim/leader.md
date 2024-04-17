@@ -215,6 +215,8 @@ vim.api.nvim_set_var('maplocalleader', '_')
 これも設定前に実行するとエラーが出てしまいますが、やっぱり害はありません。
 ~~~
 
+## Wrap Up
+
 ```admonish success
 リーダーキーはこんなもんかな☺️
 

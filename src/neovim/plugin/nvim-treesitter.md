@@ -384,7 +384,7 @@ Plugin authors are encouraged to write new healthchecks. |health-dev|
 プラグインによっては、今回のようにヘルスチェックを提供してくれているので、困った時はこれも参考にすると良いです😉
 ```
 
-## Wrap up
+## Wrap Up
 
 ```admonish success
 さて、ここまで来たら次にやることはもう決まってますね😉 カラーテーマです❗
