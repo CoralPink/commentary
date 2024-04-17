@@ -83,7 +83,7 @@ require("scrollbar.handlers.gitsigns").setup()
 
 スクリーンショットでは少しわかりにくいかも知れませんが、検索文字列の行もスクロールバー上で表示がされてます😆
 
-## Wrap up
+## Wrap Up
 
 びっくりするぐらい高速でしたね😵‍💫
 
