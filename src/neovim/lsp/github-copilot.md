@@ -164,7 +164,7 @@ Waiting, it might take a while and this popup will auto close once done
 `copilot.lua`は、一部のファイルタイプ (例えば`Markdown`など) では起動しないようなデフォルト設定がされているので注意❗
 ```
 
-## Wrap up
+## Wrap Up
 
 ```admonish success
 おめでとう❗ 登録完了です🎉
