@@ -4,8 +4,9 @@
 "March Comes in Like a Lion, and Goes Out Like a Lamb"
 ```
 
-前回から間を置かず、冬の終わりに子羊のようにさっさと去ろうかな〜🐑 ...とも思っていましたが、
-なんかせっかく花が咲くみたいなので、春の始まりを見届けてから行きます🌸
+前回から間を置かず、3月の終わりに子羊のように去ろうかな〜🐑 ...とも思っていましたが、
+"はるのかぜが あんなにうたっている" ことを子供たちに教えてもらったので、
+これはもう春の始まりを見届けていかなきゃいけない...と、思った今日この頃でした🌸
 
 ```admonish success title=""
 I look at you all, see the love there that's sleeping
@@ -34,7 +35,7 @@ Clapton は、ソングライターとしての Harisson の才能を認めて�
 Clapton は「"While My Guitar Gently Weeps" はグループ内での George の精神的な孤立を訴えている」と述べている。
 
 歌詞の中で、Harisson は普遍的な愛というテーマと、
-インド音楽の影響を受けた "Within You Without You" のような楽曲で顕著であった、哲学的な懸念を再び取り上げている。
+インド音楽の影響を受けた "Within You Without You" のような楽曲で顕著であった哲学的な懸念を再び取り上げている。
 
 この曲は、人々に対する普遍的な愛が全ての個人の中に潜在していながら、実現されないままであることを嘆くものであり、
 多くの聴衆が Harisson の作品を Lennon-McCartney の作品と互角とも言えるほど素晴らしいことに気付くきっかけとなった。
@@ -59,7 +60,7 @@ Clapton は「"While My Guitar Gently Weeps" はグループ内での George の
 [井の頭公園](https://www.kensetsu.metro.tokyo.lg.jp/jimusho/seibuk/inokashira/index.html)には、
 もはや通ってるのかと言われるぐらい能天気に来まくってます。
 
-ここ数ヶ月ぐらいはボート乗り場を改修していて、しばらくはスワン{{footnote:
+ここ数ヶ月ぐらいは池のボート乗り場を改修していて、しばらくはスワン{{footnote:
 Harisson は [Cream](https://en.wikipedia.org/wiki/Cream_(band)) のレコーディングに参加することで Crapton に応酬した。
 「Eric が曲を書くのを手伝ったんだ。Cream のアルバムのために曲を考えなければならなかったんだけど、Eric はまだ書いていなかったんだ。
 僕たちは向かい合って仕事をしていて、僕は歌詞を書いていた。Eric はそれを逆さまにして読んで、'BADGE って何だ？'
@@ -71,10 +72,10 @@ Harisson は [Cream](https://en.wikipedia.org/wiki/Cream_(band)) のレコーデ
 
 が❗
 
-...今じゃご覧の通り、すっかりですよ❗🦢🦢🦢
+...ご覧の通り、今じゃすっかりですよ❗🦢🦢🦢
 
 ```admonish note
-駅北口のバスロータリーの真ん中に "象の像" がありますが、
+駅北口のバスロータリーの真ん中に "象の銅像" がありますが、
 あの[はな子](https://ja.wikipedia.org/wiki/はな子)🐘 がいたのもここです😇
 ```
 
@@ -82,7 +83,7 @@ Harisson は [Cream](https://en.wikipedia.org/wiki/Cream_(band)) のレコーデ
 
 鳥さんも羽休めに来るぐらいだし🐦‍⬛
 
-こういう演奏にも巡り会えるし🎻
+こんなに HAPPY✨ な演奏にも巡り会えるし🎻
 
 ![band-sounds](img/band-sounds.webp)
 
@@ -94,12 +95,12 @@ Harisson は [Cream](https://en.wikipedia.org/wiki/Cream_(band)) のレコーデ
 
 わたしも大好きなばしょです😄
 
-## ⚙️ Config
+## ⚙️ Configuration
 
 ぐるっと巡ってきましたが、最後は`WezTerm`の設定を少しだけ見直します🤗
 
-`Config`ファイルの記述方法が[あの頃](../wezterm/configuration.html)から少し変わっているので、
-ここから見直していきましょう❗
+`wezterm.lua`の記述方法が[あの頃](../wezterm/configuration.html)から少し進歩しているので、
+まずはここから始めましょう❗
 
 ~~~admonish info title="[Configuration](https://wezfurlong.org/wezterm/config/files.html)"
 ```lua
@@ -146,9 +147,9 @@ config builder は、一見普通の lua テーブルのように見えますが
 無効な Config オプションを定義しようとすると、警告をログに記録したりエラーを生成します。
 ~~~
 
-各種設定を入れていくローカル変数の名前は`config`で案内されていますが、ここはなんでもいいです。
+ローカル変数名は`config`で案内されていますが、ここはなんでもいいです。
 
-わたしはこのパターンだと変数名は`M`にしちゃうんで、`M`で進めていいかな...❓
+わたしはこのパターンだといつも`M`にしちゃうんで、`M`で進めていいかな...❓
 
 ~~~admonish example title="wezterm.lua"
 先頭で、こんな感じでオブジェクトを定義するように変えて...。
@@ -205,11 +206,11 @@ How to unfold your love
 
 [東京大神宮](https://tokyodaijingu.or.jp)もちょいちょい参拝させてもらってます⛩️
 
-この辺まで来たらこっちも見て回りたくなるでしょ 🚶‍♀️
-
 |[新見附橋](https://visit-chiyoda.tokyo/app/spot/detail/225)|[外濠公園](https://visit-chiyoda.tokyo/app/spot/detail/274)|
 |:---:|:---:|
 |![shin-mituke](img/shin-mituke.webp)|![sotobori](img/sotobori.webp)|
+
+この辺まで来たらこっちも見て回りたくなるでしょ❓ 🚶‍♀️
 
 ### 🧚‍♀️ Font
 
@@ -222,39 +223,47 @@ font = require("wezterm").font("Firge35Nerd Console"),
 特に不満がなければこのままでもいいんですが、
 最新のフォントを自分で追っかけたい場合なんかだと、後の項で出てくる`font_with_fall_back`を使うと良いです。
 
+#### ⛲ FontSets
+
 ...ってことで、まずはフォントを用意しましょう❗
 
-#### 🪺 nerd-fonts
+```admonish note
+最後にして、なぜか最初の村みたいなセリフをあらかじめ...。
+
+「ダウンロードしたフォントはインストールしないと使えないぞ❗❗」
+```
+
+##### 🪺 nerd-fonts
 
 `nerd-fonts`は`WezTerm`に含まれているので特に設定はいらないんだけど、
-[前回](../wezterm/font.html#プログラミングフォント-firge-ファージ)は結局`Nerd Font`が含まれている複合フォントを使う方法を紹介していました。
+[前回](../wezterm/font.html#プログラミングフォント-firge-ファージ)は`Nerd Font`が含まれている`FirgeNerd`を使う方法を紹介していました。
 
-2024/04/17 時点では`Firge`と`WezTerm`のどちらよりも本家の`nerd-fonts`のバージョンが進んでいて、
+2024/04/17 時点では`FirgeNerd`・`WezTerm`のどちらよりも、
+本家の`nerd-fonts`のバージョンはだいぶ進んでいて、
 新しいアイコンも続々と増えているので、定期的に確認してみるのも楽しいと思います😆
 
-なので、今回は本家の`nerd-fonts`を使う方法で進めます。
+ってことで、今回は本家の`nerd-fonts`を使った楽しいほうで進めます。
 
-```admonish info title="Releases / v3.2.0"
+```admonish info title="[Releases](https://github.com/ryanoasis/nerd-fonts/releases)/ v3.2.0"
 The Easter release. Lets see which eggs can be found:
 
-イースターリリースだよ。どんな卵が見つかるかな：
+イースターリリースだよ。どんな卵が見つかるかな:
 ```
 
 ```admonish note
-くどいようなんですが、現状で不満がなければ`WezTerm`に含まれているので、これを行わなくても支障はありません🐤
+くどいようなんですが`WezTerm`本体に既に含まれているので、
+現状で不満がなければ、これを行わなくても支障はありません🐤
 ```
 
-[Releases](https://github.com/ryanoasis/nerd-fonts/releases)から最新版をダウンロードさせてもらいましょう😉
+[Releases](https://github.com/ryanoasis/nerd-fonts/releases)から感謝しながら最新版をダウンロードしましょう😉
 
-これはやっぱり、好きな卵🥚 を選べば良いのですが、わたしは`NerdFontsSymbolsOnly`を使用しています。
+好きなたまご🥚 を選べば良いのですが、このページでは`NerdFontsSymbolsOnly`を使って進めていきます。
 
 ```admonish tip
 `NerdFontsSymbolsOnly.tar.xz`もしくは`NerdFontsSymbolsOnly.zip`は、文字通りシンボルオンリーです🐣
 ```
 
-今回はせっかくなので、この`NerdFontsSymbolsOnly`を使った方法で進めていきます。
-
-#### ❤️‍🔥 FiraCode
+##### ❤️‍🔥 FiraCode
 
 で、次に英字フォントを用意するんですが、ここでは一例として`FiraCode`を紹介します。
 
@@ -264,17 +273,17 @@ Fira Code: free monospaced font with programming ligatures
 Fira Code: プログラミング合字のフリー等幅フォント
 ```
 
-これも素直に[Releases](https://github.com/tonsky/FiraCode/releases)からダウンロードさせてもらうのが簡単でしょう😊
+これも素直に[Releases](https://github.com/tonsky/FiraCode/releases)から感謝しながらダウンロードするのが簡単でしょう😊
 
-#### 🎏 ヒラギノ角ゴシック
+##### 🎏 ヒラギノ角ゴシック
 
 これだけだと "漢字・ひらがな・カタカナ" がイマイチに戻っちゃうので、日本語に対応したフォントも用意しましょう。
 
-わたしは`macOS`に標準で入っている`ヒラギノ角ゴシック`を使うので、特に示せる手順もありませんでした😅
+わたしは`macOS`に標準で入っている`ヒラギノ角ゴシック`を使っているので、ここでは特に示せる手順がありません😅
 
 #### 🐣 font_with_fall_back
 
-で、ここまでに用意したフォントを`WezTerm`で使うために`font_with_fall_back`があるわけです❗
+フォントが用意できたら、これらを`WezTerm`で使うために`font_with_fall_back`を設定しましょう❗
 
 ~~~admonish info title="[wezterm.font_with_fallback(families [, attributes])](https://wezfurlong.org/wezterm/config/lua/wezterm/font_with_fallback.html)"
 This function constructs a lua table that configures a font with fallback processing.
@@ -296,11 +305,11 @@ return {
 ```
 ~~~
 
-これで、複数のフォントを好みで組み合わせて使用することができます😌
-
-まずはこんな感じで書き換えてから...。
+これで、複数のフォントを好きなように組み合わせて使用することができます😌
 
 ~~~admonish example title="wezterm.lua"
+まずはこんな感じで書き換えてから...、
+
 ```diff
 - font = require("wezterm").font("Firge35Nerd Console"),
 + M.font = wezterm.font_with_fallback {
@@ -308,9 +317,9 @@ return {
 ```
 ~~~
 
-この配列にフォントを追加しましょう。
+~~~admonish example title=""
+このリストに前項で用意したフォントを追加します😽
 
-~~~admonish example title="wezterm.lua"
 ```diff
  M.font = wezterm.font_with_fallback {
 + 'Fira Code',
@@ -337,6 +346,8 @@ return {
 
 綺麗に表示できたかな❓☺️
 
+![wezterm-font](img/wezterm-font.webp)
+
 ### 🪟 Window
 
 「そういえばライトアップされた桜をまだ見てないな〜」と気づきました。
@@ -347,15 +358,13 @@ return {
 
 ![happo-en1](img/happo-en1.webp)
 
-ここ場所が白金台なので、ちょっと前のわたしならビビり散らかしちゃうに違いありませんでした。
+場所が白金台なので、ちょっと前のわたしならビビり散らかしちゃうことこの上なし❗
 
-が❗
-
-安心してください❗
+...でしたが、安心してください❗
 
 今のわたしは "とやマネーゼ"...❗
 
-そう❗"6000 とやマネーゼ" なのです🥴
+"6000 とやマネーゼ" なのです🥴
 
 ```admonish success title=""
 I look at the world and I notice it's turning
@@ -363,7 +372,7 @@ I look at the world and I notice it's turning
 目を向ければ 世界が変わりつつあることに気づいたんだ
 ```
 
-たとえ "億万シロカネーゼ" と並んだとしても互角であると言えるのです❗
+たとえ "億万シロカネーゼ" と並んでも互角であることに疑いの余地はありません❗
 
 ごめんあそばせ〜🤭
 
@@ -374,7 +383,7 @@ I don't know how someone controlled you
 
 They bought and sold you
 
-わからないんだよ 操られていることが
+わからないんだね 操られていることが
 
 君は誰かに 売られて 買われてる
 ```
@@ -387,14 +396,17 @@ They bought and sold you
 タイトルバーを表示する代わりに、ウィンドウ管理ボタン (最小化、最大化、閉じる) をタブバーに配置する。
 ```
 
+これは面白いので、ぜひ取り入れてみましょう😆
+
 ~~~admonish example title="wezterm.lua"
-```lua
-M.window_decorations = 'INTEGRATED_BUTTONS|RESIZE'
+```diff
+-window_decorations = 'RESIZE',
++M.window_decorations = 'INTEGRATED_BUTTONS|RESIZE'
 ```
 ~~~
 
-これさえあれば [Configuring Mouse Assignments](../wezterm/window-decorations.html#configuring-mouse-assignments)
-で書いていたコードはもう ぽいっちょ❗うるのねん❗
+そしたら [Configuring Mouse Assignments](../wezterm/window-decorations.html#configuring-mouse-assignments)
+で書いた、タイトルバーを操作するためのコードはもう、ぽいっちょ❗うるのねん❗
 
 ~~~admonish example title="mousebinds.lua"
 ```diff
@@ -416,6 +428,18 @@ M.window_decorations = 'INTEGRATED_BUTTONS|RESIZE'
 ```
 
 ```diff
+- function DisableWindowDecorations(window, interval)
+-   if interval then
+-     wezterm.sleep_ms(interval)
+-   end
+-
+-   local overrides = window:get_config_overrides() or {}
+-   overrides.window_decorations = nil
+-   window:set_config_overrides(overrides)
+- end
+```
+
+```diff
 - wezterm.on('window-focus-changed', function(window, pane)
 -   if window:is_focused() then
 -     return
@@ -423,7 +447,9 @@ M.window_decorations = 'INTEGRATED_BUTTONS|RESIZE'
 -
 -   DisableWindowDecorations(window)
 - end)
--
+```
+
+```diff
 - wezterm.on('show-title-bar', function(window, pane)
 -   local overrides = window:get_config_overrides() or {}
 -
@@ -439,13 +465,13 @@ M.window_decorations = 'INTEGRATED_BUTTONS|RESIZE'
 |:---:|:---:|
 |![decorations](../wezterm/img/decorations.webp)|![integrated_buttons](img/integrated_buttons.webp)|
 
+このサイトでも、もう散々この状態でスクリーンショットを載せてるんですけどね❗
+
 ```admonish note
 [Status Bar](../wezterm/status.html)に表示していた項目は、各々でうまく調整してください😅
 
 (特に[Left Status](../wezterm/left-status.html)は邪魔に見えちゃってるかもしれない...。)
 ```
-
-もうこれまでに散々この状態のスクリーンショットを出してしまっていましたが❗
 
 ```admonish success title=""
 With every mistake, we must surely be learning{{footnote:
@@ -458,9 +484,9 @@ Bridge の間、Harisson は [Bob Dylan](https://en.wikipedia.org/wiki/Bob_Dylan
 
 ## 🎁 Wrap Up
 
-無理やり詰め込んだ感じもあるけど、これでやりたかった事は大体やれたかな❗
+まあ、無理やり詰め込んだ感じも否めないけど、これでわたしがやりたかった事は大体やれたかな❗
 
-この章も、ちょっと注釈みたいなの並べて早く終わるものだと思ってたんだけど、なんか結果的にはガッツリやってました😅
+この章も、ちょっと注釈みたいなの並べてさっさと終わるものだと思っていたんだけど、なんか気づけばガッツリやってました😅
 
 ```admonish success title=""
 I don't know how you were diverted
@@ -472,9 +498,10 @@ You were perverted, too
 歪んでしまったんだ、君も
 ```
 
-でも、ちゃんと[やり遂げる](outroduction.html)ことが出来ただろう❓😏
+...でも、ちゃんと[やり遂げる](outroduction.html)ことが出来ただろう❓😏
 
-新しいことを始めるのもいいし、今やっていることのレベルを上げるのもいいし、
+新しいことを始めるのもいいし、今やっていることのレベルを上げるのもいいし...。
+
 そろそろみんな次のステップに進まないとね😆
 
 ## 🎸 Still, my guitar gently weeps
@@ -496,7 +523,7 @@ No one alerted you
 誰も君に言ってくれなかったんだ
 ```
 
-色々開き直って、ずっとすっとぼけながらここまで来たんだけど、結局何が言いたいかっていうとね...、
+色々開き直って、ず〜っとすっとぼけながらここまで来たんだけど、結局何が言いたいかっていうとね...、
 
 ```admonish quote title="🪸 Thanks for reading !"
 前を向いて、まわりに目を向けてごらん。
