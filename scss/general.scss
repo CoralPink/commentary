@@ -121,13 +121,18 @@ body {
   }
 
   img,
-  audio,
   video {
     display: flex;
     margin: 1rem auto;
     border-radius: 0.4rem;
     max-width: 100%;
     height: auto;
+  }
+
+  audio {
+    display: flex;
+    margin: 1rem auto;
+    width: 70%;
   }
 
   .header {
