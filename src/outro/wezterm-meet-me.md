@@ -24,18 +24,19 @@ Harisson が Warrington の両親を訪ねていたときにこの曲のイン�
 バンドメンバーの仲間意識の欠如に対し、
 Harisson は友人の [Eric Clapton](https://en.wikipedia.org/wiki/Eric_Clapton) をレコーディングに招くことで対抗した。
 
-9月6日、Surrey から London へ向かう車中で、Harisson は Claptonにこの曲でギターを弾いてほしいと頼んだ。
+9月6日、Surrey から London へ向かう車中で、Harisson は Clapton にこの曲でギターを弾いてほしいと頼んだ。
 
 Clapton は、ソングライターとしての Harisson の才能を認めており、
 その能力は長い間 Lennon と McCartney の陰に隠れていると考えていたが、それでも最初は参加を渋った。
-「それはできない。The Beatles のレコードで演奏する人なんて誰もいないよ」。
+「それはできない。The Beatles のレコードで演奏する人なんて誰もいないよ。」
 
 結果として Clapton はリード・ギターをオーヴァーダビングしたが、その貢献については正式にクレジットされなかった。
 
 Clapton は「"While My Guitar Gently Weeps" はグループ内での George の精神的な孤立を訴えている」と述べている。
 
 歌詞の中で、Harisson は普遍的な愛というテーマと、
-インド音楽の影響を受けた "Within You Without You" のような楽曲で顕著であった哲学的な懸念を再び取り上げている。
+インド音楽の影響を受けた[Within You Without You](https://en.wikipedia.org/wiki/Within_You_Without_You)
+のような楽曲で顕著であった哲学的な懸念を再び取り上げている。
 
 この曲は、人々に対する普遍的な愛が全ての個人の中に潜在していながら、実現されないままであることを嘆くものであり、
 多くの聴衆が Harisson の作品を Lennon-McCartney の作品と互角とも言えるほど素晴らしいことに気付くきっかけとなった。
