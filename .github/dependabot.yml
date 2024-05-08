@@ -4,7 +4,7 @@ updates:
   - package-ecosystem: "cargo"
     directory: "/rs/mdbook-footnote"
     schedule:
-      interval: "weekly"
+      interval: "monthly"
     groups:
       rust:
         patterns:
@@ -43,4 +43,4 @@ updates:
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
-      interval: "daily"
+      interval: "weekly"
