@@ -26,6 +26,7 @@ jobs:
         uses: oven-sh/setup-bun@v1
         with:
           bun-version: "1.1.x"
+          no-cache: true
 
       - name: Cache Cargo
         id: cache-cargo
