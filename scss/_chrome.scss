@@ -356,51 +356,65 @@ table {
   }
 }
 
-.theme-popup {
-  .theme {
-    width: 100%;
-    border: 0;
+:popover-open {
+  margin: 0;
+  top: var.$menu-bar-height;
+  left: 2.4rem;
+  border-radius: 0.4rem;
+  font-size: 0.7rem;
+  color: var(--fg);
+  background: var(--theme-popup-bg);
+  border: 0.1rem solid var(--theme-popup-border);
+
+  #theme-list {
     margin: 0;
-    padding: 0.2rem 1.25rem;
-    line-height: 1.5rem;
-    white-space: nowrap;
-    text-align: left;
-    cursor: pointer;
-    color: inherit;
-    background: inherit;
-    font-size: inherit;
+    padding: 0.4rem;
+    list-style-type: none;
 
-    &:hover {
-      background-color: var(--theme-hover);
+    .theme {
+      width: 100%;
+      border: 0;
+      padding: 0.2rem 1.25rem;
+      line-height: 1.5rem;
+      white-space: nowrap;
+      text-align: left;
+      cursor: pointer;
+      color: inherit;
+      background: inherit;
+      font-size: inherit;
+
+      &:hover {
+        background-color: var(--theme-hover);
+      }
     }
-  }
-}
 
-.theme-selected::before {
-  $theme-width: 1rem;
+    .theme-selected::before {
+      $theme-width: 1rem;
 
-  display: inline-block;
-  content: '✓';
-  margin-left: 0 - $theme-width;
-  width: $theme-width;
-}
+      display: inline-block;
+      content: '✓';
+      margin-left: 0 - $theme-width;
+      width: $theme-width;
+    }
 
-.tooltiptext {
-  position: absolute;
-  visibility: hidden;
-  color: #fff;
-  background-color: #333;
-  left: -1.8em;
-  top: -3.5em;
-  width: 4em;
-  height: 1em;
-  text-align: center;
-  border-radius: 0.8rem;
-  padding: 0.4em 0.8em;
-  margin: 0.4em;
+    .tooltiptext {
+      position: absolute;
+      visibility: hidden;
+      color: #fff;
+      background-color: #333;
+      left: -1.8em;
+      top: -3.5em;
+      width: 4em;
+      height: 1em;
+      text-align: center;
+      border-radius: 0.8rem;
+      padding: 0.4em 0.8em;
+      margin: 0.4em;
 
-  .tooltipped & {
-    visibility: visible;
+      .tooltipped & {
+        visibility: visible;
+      }
+    }
   }
 }
 

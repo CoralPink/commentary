@@ -64,27 +64,6 @@ body {
   min-height: calc(100dvh - var.$menu-bar-height);
 }
 
-.theme-popup {
-  position: absolute;
-  top: var.$menu-bar-height;
-  left: 2.4rem;
-  border-radius: 0.4rem;
-  font-size: 0.7rem;
-  color: var(--fg);
-  background: var(--theme-popup-bg);
-  border: 0.1rem solid var(--theme-popup-border);
-  list-style-type: none;
-  margin: 0;
-  padding: 0.4rem;
-  display: none;
-  overflow: hidden;
-  z-index: 30;
-
-  .default {
-    color: var(--icons);
-  }
-}
-
 .content {
   display: grid;
   grid-template-columns: 1rem 1fr 1rem;
