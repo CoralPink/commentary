@@ -2,7 +2,7 @@ import { procCodeBlock } from './codeblock.js';
 import { initGlobalSearch, initSearch } from './searcher.js';
 import { initSidebar } from './sidebar.js';
 import { initTableOfContents } from './table-of-contents.js';
-import { initThemeSelector } from './theme-selector.js';
+import { initTheme, initThemeSelector } from './theme-selector.js';
 
 import initWasm, { attribute_external_links } from './wasm_book.js';
 
@@ -26,8 +26,9 @@ const initialize = async () => {
 };
 
 (() => {
-  initGlobalSearch();
   initSidebar();
+  initTheme();
+  initGlobalSearch();
 
   document.addEventListener('DOMContentLoaded', initialize, { once: true, passive: true });
 })();
