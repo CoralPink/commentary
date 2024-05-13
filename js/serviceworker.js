@@ -92,7 +92,7 @@ self.addEventListener('activate', event => {
     })(),
   );
   event.waitUntil(deleteOldCaches());
-});
+}, { once: false, passive: true });
 
 const extractVersionParts = cacheName => {
   const versionString = cacheName.substring(1);
@@ -119,7 +119,7 @@ self.addEventListener('install', event => {
       await cache.addAll(CACHE_LIST.map(x => CACHE_URL + x));
     })(),
   );
-});
+}, { once: false, passive: true });
 
 self.addEventListener('fetch', async event => {
   for (const x of CACHE_USE) {
@@ -147,4 +147,4 @@ self.addEventListener('fetch', async event => {
     // Ensure that the event does not finish until the respondWith promise settles
     event.waitUntil(preloadResponsePromise);
   }
-});
+}, { once: false, passive: true });
