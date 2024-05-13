@@ -143,7 +143,7 @@ export const procCodeBlock = () => {
     const parent = code.parentNode;
 
     const cb = document.importNode(clipButton, true);
-    cb.addEventListener('mouseup', codeCopy);
+    cb.addEventListener('mouseup', codeCopy, { once: false, passive: true });
 
     parent.insertBefore(cb, parent.firstChild);
   }
