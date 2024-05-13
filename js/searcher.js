@@ -2,13 +2,13 @@ import Finder from './finder.js';
 import { initTableOfContents } from './table-of-contents.js';
 import { SearchResult, marking, unmarking } from './wasm_book.js';
 
-const ELEM_BAR = document.getElementById('searchbar');
 const ELEM_WRAPPER = document.getElementById('search-wrapper');
-const ELEM_RESULTS = document.getElementById('searchresults');
+const ELEM_BAR = document.getElementById('searchbar');
 const ELEM_ICON = document.getElementById('search-toggle');
 
-const ELEM_HEADER = document.getElementById('searchresults-header');
 const ELEM_OUTER = document.getElementById('searchresults-outer');
+const ELEM_HEADER = document.getElementById('searchresults-header');
+const ELEM_RESULTS = document.getElementById('searchresults');
 
 let searchResult;
 let finder;
@@ -63,7 +63,7 @@ const searchHandler = () => {
   prevTerms = terms;
 
   if (terms === '') {
-    ELEM_OUTER.classList.add('hidden');
+    ELEM_OUTER.hidePopover();
     return;
   }
 
@@ -82,20 +82,10 @@ const searchHandler = () => {
   ELEM_HEADER.innerText = `${results.length} search results for : ${terms}`;
   searchResult.append_search_result(results, terms);
 
-  ELEM_OUTER.classList.remove('hidden');
+  ELEM_OUTER.showPopover();
 };
 
-// TODO: This funny code is because Firefox still won't let me use Popover (by default)!
-const searchPopupHandler = ev => {
-  if (ELEM_WRAPPER.classList.contains('hidden') || ELEM_ICON.contains(ev.target)) {
-    return;
-  }
-
-  if (!ELEM_WRAPPER.contains(ev.target)) {
-    hiddenSearch();
-    return;
-  }
-
+const popupHandler = ev => {
   if (ev.target.tagName !== 'A') {
     return;
   }
@@ -113,16 +103,12 @@ const searchPopupHandler = ev => {
 const hiddenSearch = () => {
   ELEM_WRAPPER.classList.add('hidden');
   ELEM_ICON.setAttribute('aria-expanded', 'false');
-
-  document.removeEventListener('mouseup', searchPopupHandler, { once: false, passive: true });
 };
 
 const showSearch = () => {
   ELEM_WRAPPER.classList.remove('hidden');
   ELEM_ICON.setAttribute('aria-expanded', 'true');
   ELEM_BAR.select();
-
-  document.addEventListener('mouseup', searchPopupHandler, { once: false, passive: true });
 };
 
 export const initSearch = (root, config) => {
@@ -143,6 +129,20 @@ export const initSearch = (root, config) => {
   ELEM_ICON.addEventListener(
     'mouseup',
     () => (ELEM_WRAPPER.classList.contains('hidden') ? showSearch() : hiddenSearch()),
+    {
+      once: false,
+      passive: true,
+    },
+  );
+
+  ELEM_OUTER.addEventListener('mouseup', popupHandler, { once: false, passive: true });
+  ELEM_OUTER.addEventListener(
+    'beforetoggle',
+    ev => {
+      if (ev.newState === 'closed') {
+        hiddenSearch();
+      }
+    },
     { once: false, passive: true },
   );
 
