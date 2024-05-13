@@ -23,6 +23,11 @@ const initialize = async () => {
 
   // Suppress "submit" events so the page doesn't reload when the user presses Enter
   document.addEventListener('submit', e => e.preventDefault(), { once: false, passive: false });
+
+  // capture hover event in iOS
+  if (globalThis.ontouchstart !== undefined) {
+    document.addEventListener('touchstart', () => {}, { once: false, passive: true });
+  }
 };
 
 (() => {

@@ -151,9 +151,4 @@ export const procCodeBlock = () => {
   setTimeout(() => {
     workerPool.release();
   }, threadNum * TIME_OUT);
-
-  // capture hover event in iOS
-  if (globalThis.ontouchstart !== undefined) {
-    document.addEventListener('touchstart', () => {}, { once: false, passive: true });
-  }
 };
