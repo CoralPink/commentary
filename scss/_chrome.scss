@@ -358,44 +358,43 @@ table {
 
 :popover-open {
   margin: 0;
-  top: var.$menu-bar-height;
-  left: 2.4rem;
-  border-radius: 0.4rem;
-  font-size: 0.7rem;
   color: var(--fg);
   background: var(--theme-popup-bg);
   border: 0.1rem solid var(--theme-popup-border);
+  border-radius: 0.4rem;
+}
 
-  #theme-list {
-    margin: 0;
-    padding: 0.4rem;
-    list-style-type: none;
+#theme-list {
+  top: var.$menu-bar-height;
+  left: 2.4rem;
+  padding: 0.4rem;
+  list-style-type: none;
+  font-size: 0.7rem;
 
-    .theme {
-      width: 100%;
-      border: 0;
-      padding: 0.2rem 1.25rem;
-      line-height: 1.5rem;
-      white-space: nowrap;
-      text-align: left;
-      cursor: pointer;
-      color: inherit;
-      background: inherit;
-      font-size: inherit;
+  .theme {
+    width: 100%;
+    border: 0;
+    padding: 0.2rem 1.25rem;
+    line-height: 1.5rem;
+    white-space: nowrap;
+    text-align: left;
+    cursor: pointer;
+    color: inherit;
+    background: inherit;
+    font-size: inherit;
 
-      &:hover {
-        background-color: var(--theme-hover);
-      }
+    &:hover {
+      background-color: var(--theme-hover);
     }
+  }
 
-    .theme-selected::before {
-      $theme-width: 1rem;
+  .theme-selected::before {
+    $theme-width: 1rem;
 
-      display: inline-block;
-      content: '✓';
-      margin-left: 0 - $theme-width;
-      width: $theme-width;
-    }
+    display: inline-block;
+    content: '✓';
+    margin-left: 0 - $theme-width;
+    width: $theme-width;
   }
 }
 
