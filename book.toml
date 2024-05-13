@@ -37,7 +37,7 @@ after = ["links"]
 
 [preprocessor.footnote]
 
-#[preprocessor.tailor]
+[preprocessor.tailor]
 
 
 # The following parameter settings are not available for this site.
