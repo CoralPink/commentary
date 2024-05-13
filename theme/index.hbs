@@ -36,17 +36,15 @@
       <div id="menu-bar" class="menu-bar">
         <div class="left-buttons">
           <button id="sidebar-toggle" class="icon-button" title="Toggle Table of Contents (Shortkey: T )" aria-label="Toggle Table of Contents" aria-controls="sidebar"></button>
-          <button popovertarget="theme-popover" class="icon-button" title="Change theme" aria-label="Change theme"
+          <button popovertarget="theme-list" class="icon-button" title="Change theme" aria-label="Change theme"
   aria-haspopup="true" aria-expanded="false" aria-controls="theme-list"></button>
-            <div id="theme-popover" popover>
-              <ul id="theme-list" aria-label="Themes" role="menu">
-                <li role="none"><button role="menuitem" class="theme" id="au-lait">Au Lait</button></li>
-                <li role="none"><button role="menuitem" class="theme" id="latte">Latte</button></li>
-                <li role="none"><button role="menuitem" class="theme" id="frappe">Frappé</button></li>
-                <li role="none"><button role="menuitem" class="theme" id="macchiato">Macchiato</button></li>
-                <li role="none"><button role="menuitem" class="theme" id="mocha">Mocha</button></li>
-              </ul>
-            </div>
+            <ul id="theme-list" aria-label="Themes" role="menu" popover>
+              <li role="none"><button role="menuitem" class="theme" id="au-lait">Au Lait</button></li>
+              <li role="none"><button role="menuitem" class="theme" id="latte">Latte</button></li>
+              <li role="none"><button role="menuitem" class="theme" id="frappe">Frappé</button></li>
+              <li role="none"><button role="menuitem" class="theme" id="macchiato">Macchiato</button></li>
+              <li role="none"><button role="menuitem" class="theme" id="mocha">Mocha</button></li>
+            </ul>
           <button id="search-toggle" class="icon-button" title="Toggle Search Box (Shortkey: / )"
   aria-label="Toggle Search Box" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar"></button>
 
@@ -55,8 +53,8 @@
               <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..."
                 aria-controls="searchresults-outer" aria-describedby="searchresults-header">
             </form>
-            <div id="searchresults-outer" class="searchresults-outer hidden">
-              <div id="searchresults-header" class="searchresults-header"></div>
+            <div id="searchresults-outer" popover>
+              <div id="searchresults-header"></div>
               <ul id="searchresults"></ul>
             </div>
           </div>
