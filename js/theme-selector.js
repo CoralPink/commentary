@@ -37,7 +37,14 @@ export const initTheme = () => {
 export const initThemeSelector = () => {
   document.getElementById(htmlClassList.value).classList.add(THEME_SELECTED);
 
-  document
-    .getElementById(THEME_LIST)
-    .addEventListener('mouseup', ev => setTheme(ev.target.id), { once: false, passive: true });
+  document.getElementById(THEME_LIST).addEventListener(
+    'mouseup',
+    ev => {
+      if (!ev.target.classList.contains('theme')) {
+        return;
+      }
+      setTheme(ev.target.id);
+    },
+    { once: false, passive: true },
+  );
 };
