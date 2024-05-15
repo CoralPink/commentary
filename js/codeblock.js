@@ -1,5 +1,5 @@
 const WORKER_PATH = '/commentary/hl-worker.js';
-const MAX_THREAD = 16;
+const MAX_THREAD = 8;
 
 const POP_WAIT = 10;
 const TIME_OUT = 300;
@@ -67,31 +67,23 @@ class WorkerPool {
 const createClipButton = () => {
   const clip = document.createElement('button');
 
-  clip.className = 'fa-copy clip-button';
-  clip.setAttribute('aria-label', 'Copy to clipboard');
-  clip.innerHTML = '<div class="tooltiptext"></div>';
+  clip.className = 'icon-button';
+  clip.setAttribute('aria-label', 'Copy to Clipboard');
+  clip.insertAdjacentText('afterbegin', '');
 
-  const buttons = document.createElement('div');
-
-  buttons.className = 'buttons';
-  buttons.insertBefore(clip, buttons.firstChild);
-
-  return buttons;
+  return clip;
 };
 
-const codeCopy = trigger => {
+const copyCode = trigger => {
   const elem = trigger.target;
 
-  const hideTooltip = () => {
-    elem.firstChild.innerText = '';
-    elem.className = 'fa-copy clip-button';
-  };
-
   const showTooltip = msg => {
-    elem.firstChild.innerText = msg;
-    elem.className = 'fa-copy tooltipped';
+    const tip = document.createElement('div');
+    tip.setAttribute('id', 'tooltiptext');
+    tip.insertAdjacentText('afterbegin', msg);
 
-    setTimeout(hideTooltip, 1200);
+    elem.appendChild(tip);
+    setTimeout(() => elem.removeChild(tip), 1200);
   };
 
   navigator.clipboard.writeText(elem.closest('pre').querySelector('code').innerText).then(
@@ -143,12 +135,11 @@ export const procCodeBlock = () => {
     const parent = code.parentNode;
 
     const cb = document.importNode(clipButton, true);
-    cb.addEventListener('mouseup', codeCopy, { once: false, passive: true });
+    cb.addEventListener('mouseup', copyCode, { once: false, passive: true });
 
     parent.insertBefore(cb, parent.firstChild);
   }
 
-  setTimeout(() => {
-    workerPool.release();
-  }, threadNum * TIME_OUT);
+  const releaseTime = (threadNum > MAX_THREAD ? threadNum / MAX_THREAD + 1 : 1) * TIME_OUT;
+  setTimeout(() => workerPool.release(), releaseTime);
 };
