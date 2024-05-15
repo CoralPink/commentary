@@ -96,7 +96,9 @@ impl SearchResult {
             }
         };
 
-        cloned_element.set_inner_html(content);
+        cloned_element
+            .insert_adjacent_html("afterbegin", content)
+            .expect("failed: insert_adjacent_html");
 
         self.parent
             .append_child(&cloned_element)

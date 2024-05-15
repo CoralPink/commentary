@@ -62,16 +62,14 @@ const searchHandler = () => {
   }
   prevTerms = terms;
 
-  if (terms === '') {
-    ELEM_OUTER.hidePopover();
-    return;
-  }
+  ELEM_RESULTS.innerText = '';
+  ELEM_OUTER.showPopover();
 
-  // If the input is a 1 character and is a single-byte character, the search process is not performed.
-  if (terms.length <= 1 && terms.charCodeAt() <= 127) {
+  // If the input is less than one half-width character, the search process is not carried out.
+  if (terms.length === 0 || (terms.length <= 1 && terms.charCodeAt() <= 127)) {
+    ELEM_HEADER.innerText = '2文字 (もしくは全角1文字) 以上を入力してください。';
     return;
   }
-  ELEM_RESULTS.innerHTML = '';
 
   const results = finder.search(terms);
 
@@ -81,8 +79,6 @@ const searchHandler = () => {
   }
   ELEM_HEADER.innerText = `${results.length} search results for : ${terms}`;
   searchResult.append_search_result(results, terms);
-
-  ELEM_OUTER.showPopover();
 };
 
 const popupHandler = ev => {
@@ -136,15 +132,6 @@ export const initSearch = (root, config) => {
   );
 
   ELEM_OUTER.addEventListener('mouseup', popupHandler, { once: false, passive: true });
-  ELEM_OUTER.addEventListener(
-    'beforetoggle',
-    ev => {
-      if (ev.newState === 'closed') {
-        hiddenSearch();
-      }
-    },
-    { once: false, passive: true },
-  );
 
   document.addEventListener(
     'keyup',
