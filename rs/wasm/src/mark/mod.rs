@@ -57,43 +57,53 @@ fn process_nodes(node: &Node, terms: &str) {
     }
 }
 
-fn get_main_content() -> Option<Element> {
-    let window = web_sys::window().expect("window not available");
-    let document = window.document().expect("document not available");
+fn get_main_content() -> Result<Element, String> {
+    let window = web_sys::window().ok_or("window not available")?;
+    let document = window.document().ok_or("document not available")?;
 
-    document.get_element_by_id("main")
+    let main = document
+        .get_element_by_id("main")
+        .ok_or("Element with id 'main' not found")?;
+
+    Ok(main)
 }
 
 #[wasm_bindgen]
 pub fn marking(terms: &str) {
-    if let Some(main) = get_main_content() {
-        let node_list = main.query_selector_all("*").expect("Failed: marking");
+    match get_main_content() {
+        Ok(main) => {
+            let node_list = main.query_selector_all("*").expect("Failed: marking");
 
-        match node_list_to_vec(node_list) {
-            Ok(nodes) => {
-                for node in nodes {
-                    process_nodes(&node, terms);
+            match node_list_to_vec(node_list) {
+                Ok(nodes) => {
+                    for node in nodes {
+                        process_nodes(&node, terms);
+                    }
+                }
+                Err(err) => {
+                    macros::console_error!("marking: {err}");
                 }
             }
-            Err(err) => {
-                macros::console_error!("{}", &err);
-            }
         }
-    } else {
-        macros::console_error!("marking: Element with id 'main' not found");
+        Err(err) => {
+            macros::console_error!("marking: {err}");
+        }
     }
 }
 
 #[wasm_bindgen]
 pub fn unmarking() {
-    if let Some(main) = get_main_content() {
-        let html = main
-            .inner_html()
-            .replace(MARK_TAG, EMPTY_STR)
-            .replace(MARK_TAG_END, EMPTY_STR);
+    match get_main_content() {
+        Ok(main) => {
+            let html = main
+                .inner_html()
+                .replace(MARK_TAG, EMPTY_STR)
+                .replace(MARK_TAG_END, EMPTY_STR);
 
-        main.set_inner_html(&html);
-    } else {
-        macros::console_error!("unmarking: Element with id 'main' not found");
+            main.set_inner_html(&html);
+        }
+        Err(err) => {
+            macros::console_error!("unmarking: {err}");
+        }
     }
 }
