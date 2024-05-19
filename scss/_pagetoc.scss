@@ -1,67 +1,61 @@
 @use 'variables' as var;
 
-.pagetoc {
-  display: none;
-}
+#pagetoc {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
 
-@media only screen and (min-width: var.$enable-pagetoc) {
-  .pagetoc {
-    position: fixed;
-    display: flex;
-    flex-direction: column;
+  border-left: 0.1em solid var.$color-pink;
+  min-width: var.$pagetoc-width;
 
-    border-left: 0.1em solid var.$color-pink;
-    min-width: var.$pagetoc-width;
+  font-size: 0.6875em;
+  font-style: italic;
 
-    font-size: 0.6875em;
-    font-style: italic;
+  a {
+    color: var(--fg);
+    text-decoration: none;
 
-    a {
-      color: var(--fg);
-      text-decoration: none;
+    padding-bottom: 0.5em;
+    padding-top: 0.5em;
 
-      padding-bottom: 0.5em;
-      padding-top: 0.5em;
+    &:hover {
+      color: var(--sidebar-active);
+      background-image: linear-gradient(to right, var(--sidebar-bg) 40%, var(--bg));
+    }
 
-      &:hover {
-        color: var(--sidebar-active);
-        background-image: linear-gradient(to right, var(--sidebar-bg) 40%, var(--bg));
-      }
+    &.active {
+      background-image: linear-gradient(to right, var(--page-toc-background) 60%, var(--bg));
+      color: var(--page-toc-color);
+    }
 
-      &.active {
-        background-image: linear-gradient(to right, var(--page-toc-background) 60%, var(--bg));
-        color: var(--page-toc-color);
-      }
+    &.H1 {
+      padding-left: 1em;
+    }
 
-      &.H1 {
-        padding-left: 1em;
-      }
+    &.H2 {
+      padding-left: 2em;
+    }
 
-      &.H2 {
-        padding-left: 2em;
-      }
+    &.H3 {
+      padding-left: 3em;
+    }
 
-      &.H3 {
-        padding-left: 3em;
-      }
+    &.H4 {
+      padding-left: 3.6em;
+    }
 
-      &.H4 {
-        padding-left: 3.6em;
-      }
+    &.H5 {
+      padding-left: 4.2em;
+    }
 
-      &.H5 {
-        padding-left: 4.2em;
-      }
-
-      &.H6 {
-        padding-left: 4.8em;
-      }
+    &.H6 {
+      padding-left: 4.8em;
     }
   }
 }
 
 @media print {
-  .righttoc {
+  #righttoc {
     display: none;
   }
 }

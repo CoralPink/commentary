@@ -47,8 +47,8 @@ class TableOfContents {
       },
     );
 
-    const pagetoc = document.getElementsByClassName('pagetoc')[0];
-    pagetoc.innerHTML = '';
+    const nav = document.createElement('nav');
+    nav.setAttribute('id', 'pagetoc');
 
     for (const el of document.getElementById('main').querySelectorAll('a.header')) {
       this.#observer.observe(el);
@@ -59,12 +59,18 @@ class TableOfContents {
       link.href = el.href;
       link.classList.add(el.parentElement.tagName);
 
-      pagetoc.appendChild(link);
+      nav.appendChild(link);
       this.#tocMap.set(el, link);
     }
+
+    const pagetoc = document.getElementById('righttoc');
+    pagetoc.appendChild(nav);
   }
 
   reset() {
+    const pagetoc = document.getElementById('righttoc');
+    pagetoc.removeChild(document.getElementById('pagetoc'));
+
     this.#tocMap.clear();
     this.#observer.disconnect();
 
