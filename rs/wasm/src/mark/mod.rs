@@ -18,7 +18,7 @@ fn node_list_to_vec(node_list: NodeList) -> Result<Vec<Element>, String> {
             if let Some(el) = node.dyn_ref::<Element>() {
                 vec.push(el.clone());
             } else {
-                return Err(format!("Node at index {} is not an Element", i));
+                return Err(format!("Node at index {i} is not an Element"));
             }
         }
     }
@@ -57,12 +57,16 @@ fn process_nodes(node: &Node, terms: &str) {
     }
 }
 
-#[wasm_bindgen]
-pub fn marking(terms: &str) {
+fn get_main_content() -> Option<Element> {
     let window = web_sys::window().expect("window not available");
     let document = window.document().expect("document not available");
 
-    if let Some(main) = document.get_element_by_id("main") {
+    document.get_element_by_id("main")
+}
+
+#[wasm_bindgen]
+pub fn marking(terms: &str) {
+    if let Some(main) = get_main_content() {
         let node_list = main.query_selector_all("*").expect("Failed: marking");
 
         match node_list_to_vec(node_list) {
@@ -75,11 +79,21 @@ pub fn marking(terms: &str) {
                 macros::console_error!("{}", &err);
             }
         }
+    } else {
+        macros::console_error!("marking: Element with id 'main' not found");
     }
 }
 
 #[wasm_bindgen]
-pub fn unmarking(str: &str) -> String {
-    str.replace(MARK_TAG, EMPTY_STR)
-        .replace(MARK_TAG_END, EMPTY_STR)
+pub fn unmarking() {
+    if let Some(main) = get_main_content() {
+        let html = main
+            .inner_html()
+            .replace(MARK_TAG, EMPTY_STR)
+            .replace(MARK_TAG_END, EMPTY_STR);
+
+        main.set_inner_html(&html);
+    } else {
+        macros::console_error!("unmarking: Element with id 'main' not found");
+    }
 }

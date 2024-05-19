@@ -21,8 +21,7 @@ const unmarkHandler = () => {
   for (const x of main.querySelectorAll('mark')) {
     x.removeEventListener('mouseup', unmarkHandler, { once: true, passive: true });
   }
-  main.innerHTML = unmarking(main.innerHTML);
-
+  unmarking();
   initTableOfContents();
 };
 
