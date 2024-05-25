@@ -153,20 +153,33 @@
 </div>
 </div>
 <p>だってほら、こっちの方が親和性高そう💕</p>
-<details id="admonition-motivation-behind-copilotlua" class="admonition admonish-info">
-<summary class="admonition-title">
-<p>Motivation behind 'copilot.lua'</p>
-<p><a class="admonition-anchor-link" href="#admonition-motivation-behind-copilotlua"></a></p>
-</summary>
-<div>
-<p>While using <code>copilot.vim</code>, for the first time since I started using neovim my laptop began to overheat. Additionally,
-I found the large chunks of ghost text moving around my code, and interfering with my existing cmp ghost text disturbing.
-As lua is far more efficient and makes things easier to integrate with modern plugins, this repository was created.</p>
-<p>copilot.vimを使っているとき、neovimを使い始めてから初めて私のラップトップがオーバーヒートし始めました。
-さらに、ゴーストテキストの大きな塊が私のコードの周りを動き回り、既存のcmpゴーストテキストと干渉していることに気づきました。
-luaの方がはるかに効率的で、最新のプラグインとの統合が容易になるため、このレポジトリが作成されました。</p>
+<div id="admonition-error-rendering-admonishment" class="admonition admonish-bug">
+<div class="admonition-title">
+<p>Error rendering admonishment</p>
+<p><a class="admonition-anchor-link" href="#admonition-error-rendering-admonishment"></a></p>
 </div>
-</details>
+<div>
+<p>Failed with:</p>
+<pre><code class="language-log">TOML parsing error: TOML parse error at line 1, column 6
+  |
+1 | info 
+  |      ^
+expected `.`, `=`
+
+</code></pre>
+<p>Original markdown input:</p>
+<pre><code class="language-markdown">~~~admonish info title="Motivation behind 'copilot.lua'", collapsible=true
+While using `copilot.vim`, for the first time since I started using neovim my laptop began to overheat. Additionally,
+I found the large chunks of ghost text moving around my code, and interfering with my existing cmp ghost text disturbing.
+As lua is far more efficient and makes things easier to integrate with modern plugins, this repository was created.
+
+copilot.vimを使っているとき、neovimを使い始めてから初めて私のラップトップがオーバーヒートし始めました。
+さらに、ゴーストテキストの大きな塊が私のコードの周りを動き回り、既存のcmpゴーストテキストと干渉していることに気づきました。
+luaの方がはるかに効率的で、最新のプラグインとの統合が容易になるため、このレポジトリが作成されました。
+~~~
+</code></pre>
+</div>
+</div>
 <div id="admonition-default-2" class="admonition admonish-success">
 <div>
 <p>Once there was a way to get back home</p>
