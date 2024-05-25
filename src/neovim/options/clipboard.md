@@ -53,7 +53,7 @@ See 'clipboard' for details and options.
 
 この先はレジスタの話が出てきて自信がない...😓
 
-~~~admonish info title="unnamed / unnamedplus" collapsible=true
+~~~admonish info title="unnamed / unnamedplus", collapsible=true
 ```txt
 These names are recognized:
 これらの名前は認識される。

@@ -44,7 +44,7 @@ jobs:
       - name: Install Cargo
         if: steps.cache-cargo.outputs.cache-hit != 'true'
         run: |
-          cargo install mdbook-admonish --version ^1.16
+          cargo install mdbook-admonish --version ^1.17
           cargo install mdbook-tailor --version ^0.6
 
           cargo install wasm-bindgen-cli --version ^0.2
