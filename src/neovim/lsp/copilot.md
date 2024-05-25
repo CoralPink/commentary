@@ -49,7 +49,7 @@ Coca-Cola{{footnote: Abbey Road 収録の Come Together の詩に登場するこ
 
 だってほら、こっちの方が親和性高そう💕
 
-~~~admonish info collapsible=true title="Motivation behind 'copilot.lua'"
+~~~admonish info title="Motivation behind 'copilot.lua'", collapsible=true
 While using `copilot.vim`, for the first time since I started using neovim my laptop began to overheat. Additionally,
 I found the large chunks of ghost text moving around my code, and interfering with my existing cmp ghost text disturbing.
 As lua is far more efficient and makes things easier to integrate with modern plugins, this repository was created.
