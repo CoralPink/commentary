@@ -156,24 +156,13 @@ See 'clipboard' for details and options.
 </div>
 </div>
 <p>この先はレジスタの話が出てきて自信がない...😓</p>
-<div id="admonition-error-rendering-admonishment" class="admonition admonish-bug">
-<div class="admonition-title">
-<p>Error rendering admonishment</p>
-<p><a class="admonition-anchor-link" href="#admonition-error-rendering-admonishment"></a></p>
-</div>
+<details id="admonition-unnamed--unnamedplus" class="admonition admonish-info">
+<summary class="admonition-title">
+<p>unnamed / unnamedplus</p>
+<p><a class="admonition-anchor-link" href="#admonition-unnamed--unnamedplus"></a></p>
+</summary>
 <div>
-<p>Failed with:</p>
-<pre><code class="language-log">TOML parsing error: TOML parse error at line 1, column 6
-  |
-1 | info 
-  |      ^
-expected `.`, `=`
-
-</code></pre>
-<p>Original markdown input:</p>
-<pre><code class="language-markdown">~~~admonish info title="unnamed / unnamedplus", collapsible=true
-```txt
-These names are recognized:
+<pre><code class="language-txt">These names are recognized:
 これらの名前は認識される。
 
                                   clipboard-unnamed
@@ -209,11 +198,9 @@ unnamedplus
 
   unnamed" がオプションに含まれている場合、
   yank と delete 操作 (put は不可) は、さらにテキストをレジスタ '+' にコピーする。
-```
-~~~
 </code></pre>
 </div>
-</div>
+</details>
 <p>なんかもうヘルプまみれですが、ここで確認しておきたいのは<code>clipboard</code>のデフォルト値ですね。</p>
 <p>これを見ると<code>""</code>となっているので、特に何も気にしないで、このように書いてしまって問題ないはずです😉</p>
 <div id="admonition-optionslua" class="admonition admonish-example">
