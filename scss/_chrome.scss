@@ -23,6 +23,10 @@
     padding: 0.2rem 0.3rem;
     vertical-align: top;
   }
+
+  summary::-webkit-details-marker {
+    display: none;
+  }
 }
 
 code {
