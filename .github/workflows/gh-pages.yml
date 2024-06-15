@@ -12,6 +12,10 @@ jobs:
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}
     steps:
+      - name: Setup Rust
+        uses: hecrj/setup-rust-action@v2
+        with:
+          rust-version: "1.79.0"
       - name: Checkout the repo
         uses: actions/checkout@v4
         with:
@@ -45,7 +49,7 @@ jobs:
         if: steps.cache-cargo.outputs.cache-hit != 'true'
         run: |
           cargo install mdbook-admonish --version ^1.17
-          cargo install mdbook-tailor --version ^0.6
+          cargo install mdbook-tailor --version ^0.7
 
           cargo install wasm-bindgen-cli --version ^0.2
           cargo install wasm-pack --version ^0.12
