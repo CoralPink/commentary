@@ -1,5 +1,9 @@
 @use 'variables' as var;
 
+@view-transition {
+  navigation: auto;
+}
+
 .content {
   mark {
     cursor: pointer;
