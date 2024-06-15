@@ -15,8 +15,7 @@ jobs:
       - name: Setup Rust
         uses: hecrj/setup-rust-action@v2
         with:
-          rust-version: "stable"
-
+          rust-version: "1.79.0"
       - name: Checkout the repo
         uses: actions/checkout@v4
         with:
