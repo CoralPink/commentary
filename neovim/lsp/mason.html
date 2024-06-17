@@ -197,8 +197,8 @@ shell/terminal as well as other 3rd party plugins.</p>
 </div>
 </div>
 <p>まあ、言ってることはわかりますよね。わかるんですけど...。</p>
-<p>少しフライングしちゃうんですが、わたしの環境では、インストールしたパッケージは<code>~/.local/share/nvim/mason</code>に配置されていきます。</p>
-<p><img src="img/mason-install-path.webp" alt="mason-install-path" /></p>
+<p>少しフライングしちゃうんですが、わたしの環境では、インストールしたパッケージは<code>~/.local/share/nvim/mason</code>に配置されていきます。
+<img src="img/mason-install-path.webp" alt="mason-install-path" width="1512" height="416" decoding="async"></p>
 <div id="admonition-question" class="admonition admonish-question">
 <div class="admonition-title">
 <p>Question</p>
@@ -257,7 +257,7 @@ Depending on your personal usage, some of these will also need to be installed. 
 <div>
 <pre><code class="language-vim">:che mason
 </code></pre>
-<p><img src="img/mason-che.webp" alt="checkhealth" /></p>
+<img src="img/mason-che.webp" alt="checkhealth" width="1512" height="1200" loading="lazy">
 </div>
 </div>
 <p>よほどの言語プロフェッショナルでもない限り、たくさんの<code>WARNING</code>が出てきちゃうと思いますが、
@@ -280,11 +280,11 @@ Depending on your personal usage, some of these will also need to be installed. 
 <p><a class="admonition-anchor-link" href="#admonition-note"></a></p>
 </div>
 <div>
-<p>例えば「<code>JavaScript</code>やりたいから<code>typescript-language-server</code>ほしいなー😆」ってなったとするじゃないですか。</p>
-<p><img src="img/mason-tsls.webp" alt="mason-failed" /></p>
+<p>例えば「<code>JavaScript</code>やりたいから<code>typescript-language-server</code>ほしいなー😆」ってなったとするじゃないですか。
+<img src="img/mason-tsls.webp" alt="mason-failed" width="1552" height="1050" loading="lazy"></p>
 <p><code>mason.nvim</code>は<code>typescript-language-server</code>のインストールに<code>npm</code>を使用するんですね。</p>
-<p>でも、もし<code>npm</code>がまだインストールされていない状態でそれをやろうとしても、</p>
-<p><img src="img/mason-failed.webp" alt="mason-failed" /></p>
+<p>でも、もし<code>npm</code>がまだインストールされていない状態でそれをやろうとしても、
+<img src="img/mason-failed.webp" alt="mason-failed" width="1552" height="1050" loading="lazy"></p>
 <pre><code class="language-txt">spawn: npm failed with exit code - and signal -. npm is not executable
 </code></pre>
 <p>って言われちゃいます。まあ、わかってる人からすればこれも「そりゃそうだー」ではあるんですが、</p>
@@ -372,8 +372,8 @@ Depending on your personal usage, some of these will also need to be installed. 
 <p>ここまで出来れば、いつも通り<code>:PackerSync</code>とかした後に</p>
 <pre><code class="language-vim">:Mason
 </code></pre>
-<p>ってするだけですね😆</p>
-<p><img src="img/mason-window.webp" alt="mason-window" /></p>
+<p>ってするだけですね😆
+<img src="img/mason-window.webp" alt="mason-window" width="1512" height="1200" loading="lazy"></p>
 <p>このウィンドウでの操作は、デフォルトで以下のようになっています。</p>
 <pre><code class="language-lua">keymaps = {
   -- Keymap to expand a package
@@ -416,17 +416,17 @@ Depending on your personal usage, some of these will also need to be installed. 
 <p>やり方は色々あると思うんですが、わたしはとりあえず検索からジャンプしちゃいます。</p>
 <pre><code class="language-vim">/lua
 </code></pre>
-<p><img src="img/install-ls1.webp" alt="install-1" /></p>
-<p>一応、情報を確認しておきましょう。<code>lua-language-server</code>にカーソルが合ってるのを確認して<kbd>return</kbd>❗</p>
-<p><img src="img/install-ls2.webp" alt="install-2" /></p>
+<img src="img/install-ls1.webp" alt="install-1" width="1512" height="1200" loading="lazy">
+<p>一応、情報を確認しておきましょう。<code>lua-language-server</code>にカーソルが合ってるのを確認して<kbd>return</kbd>❗
+<img src="img/install-ls2.webp" alt="install-2" width="1512" height="1200" loading="lazy"></p>
 <p>対応する<code>languages</code>は<code>lua</code>で、<code>categories</code>は<code>LSP</code>ですね❗</p>
 <p>これはぜひお友達になりたいと思うので、<kbd>i</kbd>をぽちっとな。</p>
-<p>一番上に戻ってみると...❓</p>
-<p><img src="img/install-ls3.webp" alt="install-3" /></p>
+<p>一番上に戻ってみると...❓
+<img src="img/install-ls3.webp" alt="install-3" width="1512" height="1200" loading="lazy"></p>
 <p><code>Installed</code>のリストに<code>lua-language-server</code>が加わりました❗もうお友達❗❗</p>
 <p>つかまえたお友達は図鑑に登録されます。</p>
-<p>なので、<code>→</code>にカーソルを合わせて<kbd>return</kbd>でさらに詳しい情報が見られます。</p>
-<p><img src="img/install-ls4.webp" alt="install-4" /></p>
+<p>なので、<code>→</code>にカーソルを合わせて<kbd>return</kbd>でさらに詳しい情報が見られます。
+<img src="img/install-ls4.webp" alt="install-4" width="1512" height="1200" loading="lazy"></p>
 <h2 id="ill-take-you-all"><a class="header" href="#ill-take-you-all">I'll take you all.</a></h2>
 <p>これでようやく会話のできるお友達をゲットだぜ❗😆
 ...と思いきや、まだ何も話してくれません。</p>
