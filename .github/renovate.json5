@@ -1,6 +1,16 @@
 {
-  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": [
-    "config:recommended"
-  ]
+	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
+	"extends": [
+    "config:recommended",
+    ":automergeMinor",
+    ":automergeDigest"
+  ],
+	"major": {
+		"dependencyDashboardApproval": true
+	},
+	"lockFileMaintenance": {
+		"enabled": true
+	},
+  // Temporary settings for operation checks.
+	"automergeSchedule": ["before 4am"]
 }
