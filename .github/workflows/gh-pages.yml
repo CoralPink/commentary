@@ -12,10 +12,6 @@ jobs:
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}
     steps:
-      - name: Setup Rust
-        uses: hecrj/setup-rust-action@v2
-        with:
-          rust-version: "1.79.0"
       - name: Checkout the repo
         uses: actions/checkout@v4
         with:
