@@ -99,7 +99,7 @@
 
         <main id="main">
           <h1 id="nvim-treelua---actions"><a class="header" href="#nvim-treelua---actions">nvim-tree.lua - Actions</a></h1>
-<div id="admonition-default" class="admonition admonish-quote">
+<div id="admonition-default" class="admonition admonish-quote" role="note">
 <div>
 <p>And when I awoke I was alone</p>
 <p>This bird has flown</p>
@@ -107,7 +107,7 @@
 <p>小鳥は飛び去っていたんだ</p>
 </div>
 </div>
-<div id="admonition-default-1" class="admonition admonish-tip">
+<div id="admonition-default-1" class="admonition admonish-tip" role="note">
 <div>
 <p>「本当に何もしてないの？」とレイコさんは僕に訊いた。</p>
 <p>「してませんよ」</p>
@@ -116,13 +116,13 @@
 </div>
 </div>
 <p>さてさて、<code>nvim-tree.lua</code>の下巻です。</p>
-<div id="admonition-default-2" class="admonition admonish-tip">
+<div id="admonition-default-2" class="admonition admonish-tip" role="note">
 <div>
 <p>「昨日はどこまで話したっけ？」とレイコさんが言った。</p>
 <p>「嵐の夜に岩つばめの巣をとりに険しい崖をのぼっていくところまでですね。」と僕は言った。</p>
 </div>
 </div>
-<div id="admonition-default-3" class="admonition admonish-tip">
+<div id="admonition-default-3" class="admonition admonish-tip" role="note">
 <div>
 <p>「あなたって真剣な顔して冗談言うからおかしいわねえ」とレイコさんは呆れたように言った。</p>
 </div>
@@ -130,10 +130,12 @@
 <h2 id="change-the-settings"><a class="header" href="#change-the-settings">Change the Settings</a></h2>
 <p>それでは前回のセッティングから拡張していくための準備をします。</p>
 <p>まずは、もうすっかりお馴染みの<code>telescope.nvim</code>を使うことを<code>packer</code>に伝えておきましょう。</p>
-<div id="admonition-extensionsinitlua" class="admonition admonish-example">
+<div id="admonition-extensionsinitlua" class="admonition admonish-example" role="note" aria-labelledby="admonition-extensionsinitlua-title">
 <div class="admonition-title">
+<div id="admonition-extensionsinitlua-title">
 <p>extensions/init.lua</p>
-<p><a class="admonition-anchor-link" href="#admonition-extensionsinitlua"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-extensionsinitlua"></a>
 </div>
 <div>
 <pre><code class="language-diff">  use {
@@ -145,10 +147,12 @@
 </code></pre>
 </div>
 </div>
-<div id="admonition-note" class="admonition admonish-note">
+<div id="admonition-note" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-title">
 <div class="admonition-title">
+<div id="admonition-note-title">
 <p>Note</p>
-<p><a class="admonition-anchor-link" href="#admonition-note"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-note"></a>
 </div>
 <div>
 <p>しれっと流しましたが、ここでも<code>telescope.nvim</code>が登場します❗</p>
@@ -157,10 +161,12 @@
 <p>次項ですぐコードを載せますが、ちょっと大きいので別ファイルにしたいと思います。
 無いものを<code>require</code>してエラーを出すのも面白くないので、読み込み先をあらかじめ用意しておきましょう。</p>
 <p>ファイル名は<code>nvim-tree-actions.lua</code>としました。</p>
-<div id="admonition-extensionsnvim-tree-actionslua" class="admonition admonish-example">
+<div id="admonition-extensionsnvim-tree-actionslua" class="admonition admonish-example" role="note" aria-labelledby="admonition-extensionsnvim-tree-actionslua-title">
 <div class="admonition-title">
+<div id="admonition-extensionsnvim-tree-actionslua-title">
 <p>extensions/nvim-tree-actions.lua</p>
-<p><a class="admonition-anchor-link" href="#admonition-extensionsnvim-tree-actionslua"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-extensionsnvim-tree-actionslua"></a>
 </div>
 <div>
 <pre><code class="language-lua">local M = {}
@@ -174,10 +180,12 @@ return M
 </div>
 </div>
 <p>これを<code>nvim-tree.lua</code>の<code>on_attach</code>に充てます。</p>
-<div id="admonition-extensionsnvim-treelua" class="admonition admonish-example">
+<div id="admonition-extensionsnvim-treelua" class="admonition admonish-example" role="note" aria-labelledby="admonition-extensionsnvim-treelua-title">
 <div class="admonition-title">
+<div id="admonition-extensionsnvim-treelua-title">
 <p>extensions/nvim-tree.lua</p>
-<p><a class="admonition-anchor-link" href="#admonition-extensionsnvim-treelua"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-extensionsnvim-treelua"></a>
 </div>
 <div>
 <pre><code class="language-diff">-  on_attach = 'default'
@@ -190,10 +198,12 @@ return M
 <h2 id="actions"><a class="header" href="#actions">Actions</a></h2>
 <p>で、早速<code>nvim-tree-actions.lua</code>をこんなんします。</p>
 <p>もう先に全部載せちゃいますが、あとで補足します。</p>
-<div id="admonition-extensionsnvim-tree-actionslua-1" class="admonition admonish-example">
+<div id="admonition-extensionsnvim-tree-actionslua-1" class="admonition admonish-example" role="note" aria-labelledby="admonition-extensionsnvim-tree-actionslua-1-title">
 <div class="admonition-title">
+<div id="admonition-extensionsnvim-tree-actionslua-1-title">
 <p>extensions/nvim-tree-actions.lua</p>
-<p><a class="admonition-anchor-link" href="#admonition-extensionsnvim-tree-actionslua-1"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-extensionsnvim-tree-actionslua-1"></a>
 </div>
 <div>
 <pre><code class="language-lua">local menuCommand = {}
@@ -318,10 +328,12 @@ return M
 </code></pre>
 </div>
 </div>
-<div id="admonition-note-1" class="admonition admonish-note">
+<div id="admonition-note-1" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-1-title">
 <div class="admonition-title">
+<div id="admonition-note-1-title">
 <p>Note</p>
-<p><a class="admonition-anchor-link" href="#admonition-note-1"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-note-1"></a>
 </div>
 <div>
 <p><code>on_attach</code>を<code>require</code>してるだけなのに、<code>on_attach</code>から直接呼ばれてないコードも動くのは不思議に見えるかもしれませんが、
@@ -334,10 +346,12 @@ return M
 </code></pre>
 <p>です。</p>
 <p>コマンドに使用できる<code>API</code>は以下を参照。</p>
-<div id="admonition-h-nvim-tree-api" class="admonition admonish-info">
+<div id="admonition-h-nvim-tree-api" class="admonition admonish-info" role="note" aria-labelledby="admonition-h-nvim-tree-api-title">
 <div class="admonition-title">
+<div id="admonition-h-nvim-tree-api-title">
 <p>:h nvim-tree-api</p>
-<p><a class="admonition-anchor-link" href="#admonition-h-nvim-tree-api"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-h-nvim-tree-api"></a>
 </div>
 <div>
 <pre><code class="language-txt">Nvim-tree's public API can be used to access features.
@@ -364,10 +378,12 @@ apiは複数のモジュールに分かれており、アクセスするには
 </tbody></table>
 </div>
 <p>となってます。</p>
-<div id="admonition-note-2" class="admonition admonish-note">
+<div id="admonition-note-2" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-2-title">
 <div class="admonition-title">
+<div id="admonition-note-2-title">
 <p>Note</p>
-<p><a class="admonition-anchor-link" href="#admonition-note-2"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-note-2"></a>
 </div>
 <div>
 <p>うっかりしがちですが、<code>lua</code>のインデックスは<code>[0]</code>ではなく<code>[1]</code>から始まります。</p>
@@ -388,10 +404,12 @@ apiは複数のモジュールに分かれており、アクセスするには
 end
 </code></pre>
 <p><code>opts</code>のあたりは<code>nvim-tree.lua</code>がオフィシャルに示しているコードほぼそのままです。</p>
-<div id="admonition-migrating-to-on_attachhttpsgithubcomnvim-treenvim-treeluawikimigrating-to-on_attach" class="admonition admonish-info">
+<div id="admonition-migrating-to-on_attachhttpsgithubcomnvim-treenvim-treeluawikimigrating-to-on_attach" class="admonition admonish-info" role="note" aria-labelledby="admonition-migrating-to-on_attachhttpsgithubcomnvim-treenvim-treeluawikimigrating-to-on_attach-title">
 <div class="admonition-title">
+<div id="admonition-migrating-to-on_attachhttpsgithubcomnvim-treenvim-treeluawikimigrating-to-on_attach-title">
 <p><a href="https://github.com/nvim-tree/nvim-tree.lua/wiki/Migrating-To-on_attach">Migrating To on_attach</a></p>
-<p><a class="admonition-anchor-link" href="#admonition-migrating-to-on_attachhttpsgithubcomnvim-treenvim-treeluawikimigrating-to-on_attach"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-migrating-to-on_attachhttpsgithubcomnvim-treenvim-treeluawikimigrating-to-on_attach"></a>
 </div>
 <div>
 <p>This function runs when the nvim-tree buffer is created.</p>
@@ -406,10 +424,12 @@ end
 <p>はい、じゃあ次❗どんどん行かないとまた長くなっちゃうんで❗</p>
 <h3 id="recipes"><a class="header" href="#recipes">Recipes</a></h3>
 <p>最初の方にある<code>actionsMenu</code>については、<code>nvim-tree.lua</code>の<code>wiki</code>で公開されているコードを好き勝手やらせてもらってます😅</p>
-<div id="admonition-creating-an-actions-menu-using-telescopehttpsgithubcomnvim-treenvim-treeluawikirecipescreating-an-actions-menu-using-telescope" class="admonition admonish-info">
+<div id="admonition-creating-an-actions-menu-using-telescopehttpsgithubcomnvim-treenvim-treeluawikirecipescreating-an-actions-menu-using-telescope" class="admonition admonish-info" role="note" aria-labelledby="admonition-creating-an-actions-menu-using-telescopehttpsgithubcomnvim-treenvim-treeluawikirecipescreating-an-actions-menu-using-telescope-title">
 <div class="admonition-title">
+<div id="admonition-creating-an-actions-menu-using-telescopehttpsgithubcomnvim-treenvim-treeluawikirecipescreating-an-actions-menu-using-telescope-title">
 <p><a href="https://github.com/nvim-tree/nvim-tree.lua/wiki/Recipes#creating-an-actions-menu-using-telescope">Creating an actions menu using Telescope</a></p>
-<p><a class="admonition-anchor-link" href="#admonition-creating-an-actions-menu-using-telescopehttpsgithubcomnvim-treenvim-treeluawikirecipescreating-an-actions-menu-using-telescope"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-creating-an-actions-menu-using-telescopehttpsgithubcomnvim-treenvim-treeluawikirecipescreating-an-actions-menu-using-telescope"></a>
 </div>
 <div>
 <p>@Tolomeo</p>
@@ -451,10 +471,12 @@ createTreeActions()
 </code></pre>
 <p>わたしはコメントアウトしちゃってるんですが、
 これを有効にするとダブルクリック (とか、ダブルタップとか) でファイルを開くことができます。</p>
-<div id="admonition-h-double-click" class="admonition admonish-info">
+<div id="admonition-h-double-click" class="admonition admonish-info" role="note" aria-labelledby="admonition-h-double-click-title">
 <div class="admonition-title">
+<div id="admonition-h-double-click-title">
 <p>:h double-click</p>
-<p><a class="admonition-anchor-link" href="#admonition-h-double-click"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-h-double-click"></a>
 </div>
 <div>
 <pre><code class="language-txt">Double, triple and quadruple clicks are supported when the GUI is active, for
@@ -471,20 +493,24 @@ Win32とxterm用です。 テキストを選択する場合、更にクリック
 </code></pre>
 </div>
 </div>
-<div id="admonition-note-3" class="admonition admonish-note">
+<div id="admonition-note-3" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-3-title">
 <div class="admonition-title">
+<div id="admonition-note-3-title">
 <p>Note</p>
-<p><a class="admonition-anchor-link" href="#admonition-note-3"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-note-3"></a>
 </div>
 <div>
 <p>クアドラプル ⭐ クリック 🤩</p>
 </div>
 </div>
 <p>もしこの辺りを追及していくのであれば、以下を足掛かりにしていくと良いかもしれません。</p>
-<div id="admonition-h-mouse-using" class="admonition admonish-info">
+<div id="admonition-h-mouse-using" class="admonition admonish-info" role="note" aria-labelledby="admonition-h-mouse-using-title">
 <div class="admonition-title">
+<div id="admonition-h-mouse-using-title">
 <p>:h mouse-using</p>
-<p><a class="admonition-anchor-link" href="#admonition-h-mouse-using"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-h-mouse-using"></a>
 </div>
 <div>
 <pre><code class="language-txt">Using the mouse                                         mouse-using
@@ -494,7 +520,7 @@ Win32とxterm用です。 テキストを選択する場合、更にクリック
 </div>
 </div>
 <h2 id="-the-end--"><a class="header" href="#-the-end--">( ...The End ? )</a></h2>
-<div id="admonition-default-4" class="admonition admonish-quote">
+<div id="admonition-default-4" class="admonition admonish-quote" role="note">
 <div>
 <p>So I lit a fire</p>
 <p>Isn’t it good Norwegian wood?</p>
@@ -506,7 +532,7 @@ Win32とxterm用です。 テキストを選択する場合、更にクリック
 </div>
 <p>いや〜...、それで締めると BAD END みたいになっちゃうんで...😿</p>
 <h2 id="the-end-"><a class="header" href="#the-end-">The End !!</a></h2>
-<div id="admonition-default-5" class="admonition admonish-tip">
+<div id="admonition-default-5" class="admonition admonish-tip" role="note">
 <div>
 <p>スチュワーデスがやってきて、僕の隣りに腰を下ろし、もう大丈夫かと訊ねた。</p>
 <p>「大丈夫です、ありがとう。ちょっと哀しくなっただけだから。
@@ -514,23 +540,25 @@ Win32とxterm用です。 テキストを選択する場合、更にクリック
 <p>と僕は言って微笑んだ。</p>
 </div>
 </div>
-<div id="admonition-default-6" class="admonition admonish-tip">
+<div id="admonition-default-6" class="admonition admonish-tip" role="note">
 <div>
 <p>「Well, I feel same way, same thing, one in a while. I know what you mean.
 (そういうこと私にもときどきありますよ。よくわかります)」</p>
 <p>彼女はそう言って首を振り、席から立ち上がってとても素敵な笑顔を僕に向けてくれた。</p>
 </div>
 </div>
-<div id="admonition-default-7" class="admonition admonish-tip">
+<div id="admonition-default-7" class="admonition admonish-tip" role="note">
 <div>
 <p>「I hope you'll have a nice trip. Auf Wiedersehen! (よい御旅行を。さようなら)」</p>
 <p>「Auf Wiedersehen!」と僕も言った。</p>
 </div>
 </div>
-<div id="admonition-assemble" class="admonition admonish-success">
+<div id="admonition-assemble" class="admonition admonish-success" role="note" aria-labelledby="admonition-assemble-title">
 <div class="admonition-title">
+<div id="admonition-assemble-title">
 <p>Assemble</p>
-<p><a class="admonition-anchor-link" href="#admonition-assemble"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-assemble"></a>
 </div>
 <div>
 <p>いいじゃない❓"ノルウェイの森"。</p>

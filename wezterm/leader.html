@@ -100,10 +100,12 @@
         <main id="main">
           <h1 id="leader-key"><a class="header" href="#leader-key">Leader Key</a></h1>
 <p>さて、前回はキーバインドを落とし込んだわけですが、今回は<code>Leader</code>キーです。</p>
-<div id="admonition-key-binding---wezs-terminal-emulatorhttpswezfurlongorgweztermconfigkeyshtmlleader-key" class="admonition admonish-info">
+<div id="admonition-key-binding---wezs-terminal-emulatorhttpswezfurlongorgweztermconfigkeyshtmlleader-key" class="admonition admonish-info" role="note" aria-labelledby="admonition-key-binding---wezs-terminal-emulatorhttpswezfurlongorgweztermconfigkeyshtmlleader-key-title">
 <div class="admonition-title">
+<div id="admonition-key-binding---wezs-terminal-emulatorhttpswezfurlongorgweztermconfigkeyshtmlleader-key-title">
 <p><a href="https://wezfurlong.org/wezterm/config/keys.html#leader-key">Key Binding - Wez's Terminal Emulator</a></p>
-<p><a class="admonition-anchor-link" href="#admonition-key-binding---wezs-terminal-emulatorhttpswezfurlongorgweztermconfigkeyshtmlleader-key"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-key-binding---wezs-terminal-emulatorhttpswezfurlongorgweztermconfigkeyshtmlleader-key"></a>
 </div>
 <div>
 <p>A leader key is a a modal modifier key. If leader is specified in the configuration then pressing that key combination will enable a virtual LEADER modifier.</p>
@@ -115,10 +117,12 @@
 <sup class="footnote-reference">
 <a name="to-footnote-1"><a href="#1">1</a></a>
 </sup></p>
-<div id="admonition-note" class="admonition admonish-note">
+<div id="admonition-note" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-title">
 <div class="admonition-title">
+<div id="admonition-note-title">
 <p>Note</p>
-<p><a class="admonition-anchor-link" href="#admonition-note"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-note"></a>
 </div>
 <div>
 <p><kbd>Ctrl-a</kbd>という表記は<kbd>Ctrl</kbd>と<kbd>a</kbd>を同時押しすることを示しています。</p>
@@ -126,30 +130,36 @@
 </div>
 <p>ということで、わたしはもうそのまま<kbd>Ctrl-a</kbd>で設定しています。
 デフォルトのままでいいやー、って場合は書かなくてもOKです。</p>
-<div id="admonition-weztermlua" class="admonition admonish-example">
+<div id="admonition-weztermlua" class="admonition admonish-example" role="note" aria-labelledby="admonition-weztermlua-title">
 <div class="admonition-title">
+<div id="admonition-weztermlua-title">
 <p>wezterm.lua</p>
-<p><a class="admonition-anchor-link" href="#admonition-weztermlua"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-weztermlua"></a>
 </div>
 <div>
 <pre><code class="language-lua">leader = { key = 'a', mods = 'CTRL', timeout_milliseconds = 2000 },
 </code></pre>
 </div>
 </div>
-<div id="admonition-note-1" class="admonition admonish-note">
+<div id="admonition-note-1" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-1-title">
 <div class="admonition-title">
+<div id="admonition-note-1-title">
 <p>Note</p>
-<p><a class="admonition-anchor-link" href="#admonition-note-1"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-note-1"></a>
 </div>
 <div>
 <p><code>timeout_milliseconds</code>のパラメータを変えていますが、これは後で触れます。デフォルトは<code>1000</code>です。</p>
 </div>
 </div>
 <p><code>vim</code>や<code>tmux</code>等を使用する場合は、これとバッティングしていないかチェックしときましょう。</p>
-<div id="admonition-warning" class="admonition admonish-warning">
+<div id="admonition-warning" class="admonition admonish-warning" role="note" aria-labelledby="admonition-warning-title">
 <div class="admonition-title">
+<div id="admonition-warning-title">
 <p>Warning</p>
-<p><a class="admonition-anchor-link" href="#admonition-warning"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-warning"></a>
 </div>
 <div>
 <p>macOSでUS配列なのに日本語IME使うような環境
@@ -163,10 +173,12 @@
 </div>
 <h2 id="timeout_milliseconds"><a class="header" href="#timeout_milliseconds">timeout_milliseconds</a></h2>
 <p>これは前項で挙げたマニュアルの文章を引用しますが、</p>
-<div id="admonition-leader-keyhttpswezfurlongorgweztermconfigkeyshtmlleader-key" class="admonition admonish-note">
+<div id="admonition-leader-keyhttpswezfurlongorgweztermconfigkeyshtmlleader-key" class="admonition admonish-note" role="note" aria-labelledby="admonition-leader-keyhttpswezfurlongorgweztermconfigkeyshtmlleader-key-title">
 <div class="admonition-title">
+<div id="admonition-leader-keyhttpswezfurlongorgweztermconfigkeyshtmlleader-key-title">
 <p><a href="https://wezfurlong.org/wezterm/config/keys.html#leader-key">Leader Key</a></p>
-<p><a class="admonition-anchor-link" href="#admonition-leader-keyhttpswezfurlongorgweztermconfigkeyshtmlleader-key"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-leader-keyhttpswezfurlongorgweztermconfigkeyshtmlleader-key"></a>
 </div>
 <div>
 <p><code>LEADER</code> stays active until a keypress is registered (whether it matches a key binding or not),
@@ -177,10 +189,12 @@ or until it has been active for the duration specified by <code>timeout_millisec
 </div>
 <p><code>Leader</code>キーが一回押されたら、とりあえず何か次のキーが押されるか、指定ミリ秒経過するまでは待つよ〜。ってことですね。</p>
 <p>例えば、</p>
-<div id="admonition-weztermlua-1" class="admonition admonish-example">
+<div id="admonition-weztermlua-1" class="admonition admonish-example" role="note" aria-labelledby="admonition-weztermlua-1-title">
 <div class="admonition-title">
+<div id="admonition-weztermlua-1-title">
 <p>wezterm.lua</p>
-<p><a class="admonition-anchor-link" href="#admonition-weztermlua-1"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-weztermlua-1"></a>
 </div>
 <div>
 <pre><code class="language-lua">{ key = 'u', mods = 'LEADER', action = act.CharSelect },
@@ -194,10 +208,12 @@ or until it has been active for the duration specified by <code>timeout_millisec
 <p>さて、皆さんはお気づきだろうか…。</p>
 <p>デフォルトのキー設定では<code>Leader</code>キーなんて一切使われていないことに…😱</p>
 <p>例えばこれ。</p>
-<div id="admonition-default-keybinds" class="admonition admonish-quote">
+<div id="admonition-default-keybinds" class="admonition admonish-quote" role="note" aria-labelledby="admonition-default-keybinds-title">
 <div class="admonition-title">
+<div id="admonition-default-keybinds-title">
 <p>Default KeyBinds</p>
-<p><a class="admonition-anchor-link" href="#admonition-default-keybinds"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-default-keybinds"></a>
 </div>
 <div>
 <pre><code class="language-lua">{ key = '"', mods = 'ALT|CTRL', action = act.SplitVertical{ domain =  'CurrentPaneDomain' } },
@@ -205,10 +221,12 @@ or until it has been active for the duration specified by <code>timeout_millisec
 </code></pre>
 </div>
 </div>
-<div id="admonition-note-2" class="admonition admonish-note">
+<div id="admonition-note-2" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-2-title">
 <div class="admonition-title">
+<div id="admonition-note-2-title">
 <p>Note</p>
-<p><a class="admonition-anchor-link" href="#admonition-note-2"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-note-2"></a>
 </div>
 <div>
 <p><code>ALT|CTRL</code>は<kbd>Alt</kbd>キーと<kbd>Ctrl</kbd>キーを同時押しです。</p>
@@ -219,10 +237,12 @@ or until it has been active for the duration specified by <code>timeout_millisec
 </div>
 …なんか、難しくないですか？
 <p>それだったら、下のようにしたほうが楽じゃないですか？</p>
-<div id="admonition-keybindslua" class="admonition admonish-example">
+<div id="admonition-keybindslua" class="admonition admonish-example" role="note" aria-labelledby="admonition-keybindslua-title">
 <div class="admonition-title">
+<div id="admonition-keybindslua-title">
 <p>keybinds.lua</p>
-<p><a class="admonition-anchor-link" href="#admonition-keybindslua"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-keybindslua"></a>
 </div>
 <div>
 <pre><code class="language-lua">{ key = '"', mods = 'LEADER', action = act.SplitVertical { domain = 'CurrentPaneDomain' } },
@@ -233,10 +253,12 @@ or until it has been active for the duration specified by <code>timeout_millisec
 <p><code>tmux</code>と同じキーバインドですね。ペイン操作も<code>WezTerm</code>に一任しちゃいます。</p>
 <p><code>tmux</code>使ってないのに同等の機能が実現できちゃうんですよ⁉️ すごくないです❓☺️</p>
 <p>もしどこかで<code>tmux</code>を使うことがあっても同一操作なので迷わず使えます、たぶん❗</p>
-<div id="admonition-note-3" class="admonition admonish-note">
+<div id="admonition-note-3" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-3-title">
 <div class="admonition-title">
+<div id="admonition-note-3-title">
 <p>Note</p>
-<p><a class="admonition-anchor-link" href="#admonition-note-3"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-note-3"></a>
 </div>
 <div>
 <p>さらにタイムリーなことに、<code>Copy Mode</code>の各種<code>jump</code>機能も実装されました。</p>
@@ -251,20 +273,24 @@ or until it has been active for the duration specified by <code>timeout_millisec
 </div>
 </div>
 <p>ということで、キーバインドは色々試してみてほしいです。</p>
-<div id="admonition-enum-keyassignment---wezs-terminal-emulatorhttpswezfurlongorgweztermconfigluakeyassignmentindexhtml" class="admonition admonish-info">
+<div id="admonition-enum-keyassignment---wezs-terminal-emulatorhttpswezfurlongorgweztermconfigluakeyassignmentindexhtml" class="admonition admonish-info" role="note" aria-labelledby="admonition-enum-keyassignment---wezs-terminal-emulatorhttpswezfurlongorgweztermconfigluakeyassignmentindexhtml-title">
 <div class="admonition-title">
+<div id="admonition-enum-keyassignment---wezs-terminal-emulatorhttpswezfurlongorgweztermconfigluakeyassignmentindexhtml-title">
 <p><a href="https://wezfurlong.org/wezterm/config/lua/keyassignment/index.html">enum: KeyAssignment - Wez's Terminal Emulator</a></p>
-<p><a class="admonition-anchor-link" href="#admonition-enum-keyassignment---wezs-terminal-emulatorhttpswezfurlongorgweztermconfigluakeyassignmentindexhtml"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-enum-keyassignment---wezs-terminal-emulatorhttpswezfurlongorgweztermconfigluakeyassignmentindexhtml"></a>
 </div>
 <div>
 <p>A KeyAssignment represents a pre-defined function that can be applied to control the Window, Tab, Pane state typically when a key or mouse event is triggered.</p>
 <p>KeyAssignment は、キーまたはマウス イベントがトリガーされたときに、通常 Window、Tab、Pane の状態を制御するために適用できる事前定義された関数を表します。</p>
 </div>
 </div>
-<div id="admonition-success" class="admonition admonish-success">
+<div id="admonition-success" class="admonition admonish-success" role="note" aria-labelledby="admonition-success-title">
 <div class="admonition-title">
+<div id="admonition-success-title">
 <p>Success</p>
-<p><a class="admonition-anchor-link" href="#admonition-success"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-success"></a>
 </div>
 <div>
 <p>キーバインドについてはこのくらいでしょうか。次からは外観を変えていきたいと思います。</p>

@@ -106,10 +106,12 @@
 <p>だからなんだって言われるとキツイんですが、一番わかりやすいところでフォントサイズの問題があって、画面のスケールが違いすぎて大きすぎたり小さすぎたりしてしまう...😢
 <img src="img/img-4k.webp" alt="img-4k" width="768" height="432" decoding="async">
 <img src="img/img-mbp.webp" alt="img-mbp" width="540" height="351" loading="lazy"></p>
-<div id="admonition-note" class="admonition admonish-note">
+<div id="admonition-note" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-title">
 <div class="admonition-title">
+<div id="admonition-note-title">
 <p>Note</p>
-<p><a class="admonition-anchor-link" href="#admonition-note"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-note"></a>
 </div>
 <div>
 <p>意図伝わりますでしょうか...😅</p>
@@ -123,20 +125,24 @@
 <h2 id="フォントサイズ切り替え"><a class="header" href="#フォントサイズ切り替え">フォントサイズ切り替え</a></h2>
 <p>この例では<code>toggle-font-size</code>というイベントを独自に作っています。</p>
 <p><code>WezTerm</code>では、フォントサイズに限らず、元の設定を直接書き換えるのではなく、オーバーライドすることで変化させます。</p>
-<div id="admonition-windowget_config_overrideshttpswezfurlongorgweztermconfigluawindowget_config_overrideshtml" class="admonition admonish-info">
+<div id="admonition-windowget_config_overrideshttpswezfurlongorgweztermconfigluawindowget_config_overrideshtml" class="admonition admonish-info" role="note" aria-labelledby="admonition-windowget_config_overrideshttpswezfurlongorgweztermconfigluawindowget_config_overrideshtml-title">
 <div class="admonition-title">
+<div id="admonition-windowget_config_overrideshttpswezfurlongorgweztermconfigluawindowget_config_overrideshtml-title">
 <p><a href="https://wezfurlong.org/wezterm/config/lua/window/get_config_overrides.html">window:get_config_overrides()</a></p>
-<p><a class="admonition-anchor-link" href="#admonition-windowget_config_overrideshttpswezfurlongorgweztermconfigluawindowget_config_overrideshtml"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-windowget_config_overrideshttpswezfurlongorgweztermconfigluawindowget_config_overrideshtml"></a>
 </div>
 <div>
 <p>Returns a copy of the current set of configuration overrides that is in effect for the window.</p>
 <p>ウィンドウに適用されている設定オーバーライドの現在のセットのコピーを返します。</p>
 </div>
 </div>
-<div id="admonition-eventlua" class="admonition admonish-example">
+<div id="admonition-eventlua" class="admonition admonish-example" role="note" aria-labelledby="admonition-eventlua-title">
 <div class="admonition-title">
+<div id="admonition-eventlua-title">
 <p>event.lua</p>
-<p><a class="admonition-anchor-link" href="#admonition-eventlua"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-eventlua"></a>
 </div>
 <div>
 <pre><code class="language-lua">local wezterm = require 'wezterm'
@@ -156,10 +162,12 @@ end)
 <li>オーバーライドされているのであれば、<code>font_size</code>を<code>nil</code>としてオーバーライドを無効化 (素の状態に戻す)。</li>
 </ul>
 <p>これでフォントサイズの切り替えが実現できます。</p>
-<div id="admonition-note-1" class="admonition admonish-note">
+<div id="admonition-note-1" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-1-title">
 <div class="admonition-title">
+<div id="admonition-note-1-title">
 <p>Note</p>
-<p><a class="admonition-anchor-link" href="#admonition-note-1"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-note-1"></a>
 </div>
 <div>
 <p>わたしは<code>wezterm.lua</code>の<code>font_size</code>を<code>14.0</code>にして、<code>14.0</code>と<code>10.0</code>を行ったり来たりできるように設定しています。
@@ -167,10 +175,12 @@ end)
 </div>
 </div>
 <p>独自イベントが呼び出されるようにするには<code>EmitEvent</code>を用います。</p>
-<div id="admonition-emiteventhttpswezfurlongorgweztermconfigluakeyassignmentemiteventhtml" class="admonition admonish-info">
+<div id="admonition-emiteventhttpswezfurlongorgweztermconfigluakeyassignmentemiteventhtml" class="admonition admonish-info" role="note" aria-labelledby="admonition-emiteventhttpswezfurlongorgweztermconfigluakeyassignmentemiteventhtml-title">
 <div class="admonition-title">
+<div id="admonition-emiteventhttpswezfurlongorgweztermconfigluakeyassignmentemiteventhtml-title">
 <p><a href="https://wezfurlong.org/wezterm/config/lua/keyassignment/EmitEvent.html">EmitEvent</a></p>
-<p><a class="admonition-anchor-link" href="#admonition-emiteventhttpswezfurlongorgweztermconfigluakeyassignmentemiteventhtml"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-emiteventhttpswezfurlongorgweztermconfigluakeyassignmentemiteventhtml"></a>
 </div>
 <div>
 <p>This action causes the equivalent of wezterm.emit(name, window, pane) to be called in the context of the current pane.</p>
@@ -178,10 +188,12 @@ end)
 </div>
 </div>
 <p>わたしはキーバインド<kbd>Ctrl-f</kbd>をトリガーとして呼び出しています。</p>
-<div id="admonition-keybindslua" class="admonition admonish-example">
+<div id="admonition-keybindslua" class="admonition admonish-example" role="note" aria-labelledby="admonition-keybindslua-title">
 <div class="admonition-title">
+<div id="admonition-keybindslua-title">
 <p>keybinds.lua</p>
-<p><a class="admonition-anchor-link" href="#admonition-keybindslua"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-keybindslua"></a>
 </div>
 <div>
 <pre><code class="language-lua">  { key = 'f', mods = 'CTRL', action = act.EmitEvent 'toggle-font-size' },
@@ -189,10 +201,12 @@ end)
 </div>
 </div>
 <p>まあ、思いっきり手動なんですけどね😅 自動で出来たら面白いんですけどね。</p>
-<div id="admonition-note-2" class="admonition admonish-note">
+<div id="admonition-note-2" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-2-title">
 <div class="admonition-title">
+<div id="admonition-note-2-title">
 <p>Note</p>
-<p><a class="admonition-anchor-link" href="#admonition-note-2"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-note-2"></a>
 </div>
 <div>
 <p>あれ❓dpi取得できるなら自動で出来るのかな。このサイト作りながら気づいてしまった...。</p>
@@ -202,19 +216,23 @@ end)
 <div class="table-wrapper"><table><thead><tr><th style="text-align: center">素の状態</th><th style="text-align: center">切り替えた状態</th></tr></thead><tbody>
 <tr><td style="text-align: center"><img src="img/font-big.webp" alt="font-big" /></td><td style="text-align: center"><img src="img/font-small.webp" alt="font-small" /></td></tr>
 </tbody></table>
-</div><div id="admonition-note-3" class="admonition admonish-note">
+</div><div id="admonition-note-3" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-3-title">
 <div class="admonition-title">
+<div id="admonition-note-3-title">
 <p>Note</p>
-<p><a class="admonition-anchor-link" href="#admonition-note-3"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-note-3"></a>
 </div>
 <div>
 <p>さらにフォントサイズを大きくして説明用に誇張しています。が、まだなんか中途半端でしたね...😿</p>
 </div>
 </div>
-<div id="admonition-success" class="admonition admonish-success">
+<div id="admonition-success" class="admonition admonish-success" role="note" aria-labelledby="admonition-success-title">
 <div class="admonition-title">
+<div id="admonition-success-title">
 <p>Success</p>
-<p><a class="admonition-anchor-link" href="#admonition-success"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-success"></a>
 </div>
 <div>
 <p>切り替えられましたね🤗</p>

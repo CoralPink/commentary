@@ -102,10 +102,12 @@
 <p>うん。まず何よりもはっきりさせておきたいのは、<code>au</code>というのは<code>autocmd</code>の先頭2文字からきているようですね。</p>
 <p>いや、なんか...、どうしても三太郎CMを思い浮かべてしまうので...🍑</p>
 <p>...え❓ わたしだけ😧⁉️ 絶対嘘だ❗</p>
-<div id="admonition-h-nvim_create_augroup" class="admonition admonish-info">
+<div id="admonition-h-nvim_create_augroup" class="admonition admonish-info" role="note" aria-labelledby="admonition-h-nvim_create_augroup-title">
 <div class="admonition-title">
+<div id="admonition-h-nvim_create_augroup-title">
 <p>:h nvim_create_augroup</p>
-<p><a class="admonition-anchor-link" href="#admonition-h-nvim_create_augroup"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-h-nvim_create_augroup"></a>
 </div>
 <div>
 <pre><code class="language-txt">nvim_create_augroup({name}, {*opts})
@@ -132,10 +134,12 @@
 </div>
 </div>
 <p><code>See also</code>って言われてるんで見ておきましょう😺</p>
-<div id="admonition-h-autocmd-groups" class="admonition admonish-info">
+<div id="admonition-h-autocmd-groups" class="admonition admonish-info" role="note" aria-labelledby="admonition-h-autocmd-groups-title">
 <div class="admonition-title">
+<div id="admonition-h-autocmd-groups-title">
 <p>:h autocmd-groups</p>
-<p><a class="admonition-anchor-link" href="#admonition-h-autocmd-groups"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-h-autocmd-groups"></a>
 </div>
 <div>
 <pre><code class="language-txt">Autocommands can be put together in a group.
@@ -148,10 +152,12 @@ This is useful for removing or executing a group of autocommands.
 </div>
 <h2 id="augroup"><a class="header" href="#augroup">augroup</a></h2>
 <p>オートコマンドは以下で確認できます。まずは現状を確認します😌</p>
-<div id="admonition-quote" class="admonition admonish-quote">
+<div id="admonition-quote" class="admonition admonish-quote" role="note" aria-labelledby="admonition-quote-title">
 <div class="admonition-title">
+<div id="admonition-quote-title">
 <p>Quote</p>
-<p><a class="admonition-anchor-link" href="#admonition-quote"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-quote"></a>
 </div>
 <div>
 <pre><code class="language-vim">:aug
@@ -165,10 +171,12 @@ This is useful for removing or executing a group of autocommands.
 <p>こんな感じですね😌</p>
 <h2 id="グループid"><a class="header" href="#グループid">グループID</a></h2>
 <p>それでは話を進めるんですが、さっきのヘルプ中に、コードが例示されていましたね。</p>
-<div id="admonition-h-nvim_create_augroup-1" class="admonition admonish-info">
+<div id="admonition-h-nvim_create_augroup-1" class="admonition admonish-info" role="note" aria-labelledby="admonition-h-nvim_create_augroup-1-title">
 <div class="admonition-title">
+<div id="admonition-h-nvim_create_augroup-1-title">
 <p>:h nvim_create_augroup</p>
-<p><a class="admonition-anchor-link" href="#admonition-h-nvim_create_augroup-1"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-h-nvim_create_augroup-1"></a>
 </div>
 <div>
 <pre><code class="language-txt">To get an existing group id, do:
@@ -183,10 +191,12 @@ This is useful for removing or executing a group of autocommands.
 <p>"既存の"って言われると、「なんで😮❓」ってなるんですけど、
 "オートコマンドグループを作成または取得する。"という最初の文言を信じることにしましょう。<code>create_augroup</code>なんだし❗</p>
 <p>パラメータは<code>name</code>には自分で決めたグループ名を、<code>opts</code>は...。更に話が長くなっちゃうんで空っぽ(デフォルト)にしときましょう。</p>
-<div id="admonition-note" class="admonition admonish-note">
+<div id="admonition-note" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-title">
 <div class="admonition-title">
+<div id="admonition-note-title">
 <p>Note</p>
-<p><a class="admonition-anchor-link" href="#admonition-note"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-note"></a>
 </div>
 <div>
 <p><code>opts</code>は<code>clear</code>オプションを含んでいますが、
@@ -201,10 +211,12 @@ This is useful for removing or executing a group of autocommands.
 <pre><code class="language-lua">local id = vim.api.nvim_create_augroup("buffer_set_options", {})
 </code></pre>
 <p>これを<code>nvim_create_autocmd</code>に組み込むので、もう一回ヘルプを確認します。</p>
-<div id="admonition-h-nvim_create_autocmd" class="admonition admonish-info">
+<div id="admonition-h-nvim_create_autocmd" class="admonition admonish-info" role="note" aria-labelledby="admonition-h-nvim_create_autocmd-title">
 <div class="admonition-title">
+<div id="admonition-h-nvim_create_autocmd-title">
 <p>:h nvim_create_autocmd</p>
-<p><a class="admonition-anchor-link" href="#admonition-h-nvim_create_autocmd"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-h-nvim_create_autocmd"></a>
 </div>
 <div>
 <pre><code class="language-txt">• {opts} Dictionary of autocommand options:
@@ -216,10 +228,12 @@ This is useful for removing or executing a group of autocommands.
 <p><code>nvim_create_augroup</code>が返してくれる<code>ID</code>をそのまま渡せば良さそうですね。</p>
 <h2 id="実践"><a class="header" href="#実践">実践</a></h2>
 <p>じゃあ、こんな感じでどうかな😆</p>
-<div id="admonition-optionslua" class="admonition admonish-example">
+<div id="admonition-optionslua" class="admonition admonish-example" role="note" aria-labelledby="admonition-optionslua-title">
 <div class="admonition-title">
+<div id="admonition-optionslua-title">
 <p>options.lua</p>
-<p><a class="admonition-anchor-link" href="#admonition-optionslua"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-optionslua"></a>
 </div>
 <div>
 <pre><code class="language-lua">-- local to buffer options:
@@ -240,10 +254,12 @@ vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWinEnter' }, {
 </div>
 <img src="img/augroup-after.webp" alt="augroup-after" width="835" height="666" loading="lazy">
 <p><code>buffer_set_options</code>の姿を確認できましたね❗これでもう完璧です😆</p>
-<div id="admonition-note-1" class="admonition admonish-note">
+<div id="admonition-note-1" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-1-title">
 <div class="admonition-title">
+<div id="admonition-note-1-title">
 <p>Note</p>
-<p><a class="admonition-anchor-link" href="#admonition-note-1"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-note-1"></a>
 </div>
 <div>
 <p>実はわたし、<code>autocmd</code>とか今まで全く触ってきてなくて、ず〜っと</p>
@@ -255,22 +271,24 @@ vim.opt.tabstop = 2
 <p>(...公開後に思いっきり書き直してますけどね😅 ここほんと怖い...。)</p>
 </div>
 </div>
-<div id="admonition-success" class="admonition admonish-success">
+<div id="admonition-success" class="admonition admonish-success" role="note" aria-labelledby="admonition-success-title">
 <div class="admonition-title">
+<div id="admonition-success-title">
 <p>Success</p>
-<p><a class="admonition-anchor-link" href="#admonition-success"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-success"></a>
 </div>
 <div>
 <p>つよい　トレーナーに　なったな❗</p>
 </div>
 </div>
-<div id="admonition-default" class="admonition admonish-success">
+<div id="admonition-default" class="admonition admonish-success" role="note">
 <div>
 <p>おまえが　ｎｖｉｍ　チャンピオン</p>
 <p>をめざす❗　といっても</p>
 </div>
 </div>
-<div id="admonition-default-1" class="admonition admonish-success">
+<div id="admonition-default-1" class="admonition admonish-success" role="note">
 <div>
 <p>だれも　わらわない❗　おうえんするぜ</p>
 </div>

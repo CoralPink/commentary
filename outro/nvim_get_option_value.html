@@ -102,10 +102,12 @@
 <p>このサイトでは以前、<code>nvim_buf_get_option</code>を使用したコードを提示していたのですが、これは既に<code>deprecated</code>です。</p>
 <p>なので必然的に<code>nvim_get_option_value</code>へお乗り換えです 🚅</p>
 <p>...まあ、そうは言っても終盤に来て説明されるまでもない事ですので、すぐ終わっちゃいます😆</p>
-<div id="admonition-h-nvim_get_option_value" class="admonition admonish-info">
+<div id="admonition-h-nvim_get_option_value" class="admonition admonish-info" role="note" aria-labelledby="admonition-h-nvim_get_option_value-title">
 <div class="admonition-title">
+<div id="admonition-h-nvim_get_option_value-title">
 <p>:h nvim_get_option_value</p>
-<p><a class="admonition-anchor-link" href="#admonition-h-nvim_get_option_value"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-h-nvim_get_option_value"></a>
 </div>
 <div>
 <pre><code class="language-txt">nvim_get_option_value({name}, {opts})                *nvim_get_option_value()*
@@ -141,10 +143,12 @@
 <p>あの辺ってなんか絶賛再開発中🏗️ でガチャガチャしてるんですよね〜。</p>
 <p>それを横目に階段で地上に上がろうとしたんですが...。</p>
 <p>封鎖されている...❗ほぼ全て😑</p>
-<div id="admonition-note" class="admonition admonish-note">
+<div id="admonition-note" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-title">
 <div class="admonition-title">
+<div id="admonition-note-title">
 <p>Note</p>
-<p><a class="admonition-anchor-link" href="#admonition-note"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-note"></a>
 </div>
 <div>
 <p>2024/03/02 時点でもまだそのままなのかは見てないから知らないんですけどね 🙃</p>
@@ -152,21 +156,21 @@
 </div>
 <p>ここでふと思うわけです。</p>
 <p>まあ🤭 Prison 👮‍♀️🩷</p>
-<div id="admonition-default" class="admonition admonish-example">
+<div id="admonition-default" class="admonition admonish-example" role="note">
 <div>
 <p>よしやろうぜ 相棒 急げ</p>
 <p>お前がやるつもりなら 他二の次</p>
 <p>囲う奴らなんてうるさいだけだ 自分では何もやっちゃいない</p>
 </div>
 </div>
-<div id="admonition-default-1" class="admonition admonish-example">
+<div id="admonition-default-1" class="admonition admonish-example" role="note">
 <div>
 <p>なんならやるまでしとけよ秘密に</p>
 <p>誰かと確認なんて不要</p>
 <p>自分のジャッジだけで 突き破れ</p>
 </div>
 </div>
-<div id="admonition-default-2" class="admonition admonish-example">
+<div id="admonition-default-2" class="admonition admonish-example" role="note">
 <div>
 <p>ド派手なフェイクやろうより</p>
 <p>クールに抉れ 奴らの過ちを突き付けろ</p>
@@ -175,10 +179,12 @@
 <h2 id="-try"><a class="header" href="#-try">🤽🏻‍♂️ Try</a></h2>
 <p>簡単ではあるんですけど、やっぱ確信は欲しいので「試しに動かしてみよー。」って思うわけです。</p>
 <p>なので、こんなコードを カ キ マ シ タ ァ❗❗</p>
-<div id="admonition-optionslua" class="admonition admonish-example">
+<div id="admonition-optionslua" class="admonition admonish-example" role="note" aria-labelledby="admonition-optionslua-title">
 <div class="admonition-title">
+<div id="admonition-optionslua-title">
 <p>options.lua</p>
-<p><a class="admonition-anchor-link" href="#admonition-optionslua"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-optionslua"></a>
 </div>
 <div>
 <pre><code class="language-lua">vim.api.nvim_create_user_command('Example', function()
@@ -192,10 +198,12 @@ end, {})
 </div>
 <p>多分こんな感じでしょう❓</p>
 <p>早速試してみましょう❗</p>
-<div id="admonition-quote" class="admonition admonish-quote">
+<div id="admonition-quote" class="admonition admonish-quote" role="note" aria-labelledby="admonition-quote-title">
 <div class="admonition-title">
+<div id="admonition-quote-title">
 <p>Quote</p>
-<p><a class="admonition-anchor-link" href="#admonition-quote"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-quote"></a>
 </div>
 <div>
 <pre><code class="language-vim">:Example
@@ -205,7 +213,7 @@ end, {})
 <p>...ってしたら、なんか実在する適当なオプションを入力してあげてください😉
 <img src="img/nvim_get_option_value.webp" alt="nvim_get_option_value" width="1000" height="585" decoding="async"></p>
 <p>はい、いけました😆</p>
-<div id="admonition-default-3" class="admonition admonish-info">
+<div id="admonition-default-3" class="admonition admonish-info" role="note">
 <div>
 <p>俺の命は戦うことを諦めない</p>
 <p>俺の命は愛に生きる</p>
@@ -213,7 +221,7 @@ end, {})
 <p>孤立しようが笑っててやる</p>
 </div>
 </div>
-<div id="admonition-default-4" class="admonition admonish-success">
+<div id="admonition-default-4" class="admonition admonish-success" role="note">
 <div>
 <p>東京が獄中だろうと</p>
 <p>俺はお前を灯そう</p>
@@ -227,10 +235,12 @@ end, {})
 <p>このサイトで言うと、
 <a href="../neovim/lsp/copilot-cmp.html#admonition-extensionsnvim-cmp-actionslua">copilot-cmp</a>で示した
 <code>extensions/nvim-cmp-actions.lua</code>で使ってるはずです。</p>
-<div id="admonition-extensionsnvim-cmp-actionslua" class="admonition admonish-example">
+<div id="admonition-extensionsnvim-cmp-actionslua" class="admonition admonish-example" role="note" aria-labelledby="admonition-extensionsnvim-cmp-actionslua-title">
 <div class="admonition-title">
+<div id="admonition-extensionsnvim-cmp-actionslua-title">
 <p>extensions/nvim-cmp-actions.lua</p>
-<p><a class="admonition-anchor-link" href="#admonition-extensionsnvim-cmp-actionslua"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-extensionsnvim-cmp-actionslua"></a>
 </div>
 <div>
 <pre><code class="language-diff">local function has_copilot()
@@ -245,10 +255,12 @@ end
 </div>
 </div>
 <p>まあ、こんなもんでしょ😇</p>
-<div id="admonition-note-1" class="admonition admonish-note">
+<div id="admonition-note-1" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-1-title">
 <div class="admonition-title">
+<div id="admonition-note-1-title">
 <p>Note</p>
-<p><a class="admonition-anchor-link" href="#admonition-note-1"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-note-1"></a>
 </div>
 <div>
 <p>ぶっちゃけ、わたしは今<code>GitHub Copilot</code>のサービスを切っているので動作確認が取れていません...😿</p>
@@ -256,14 +268,14 @@ end
 </div>
 </div>
 <p>内容なんて、もうほぼ無いよう🤣</p>
-<div id="admonition-default-5" class="admonition admonish-info">
+<div id="admonition-default-5" class="admonition admonish-info" role="note">
 <div>
 <p>ああ 現実には何もないな</p>
 <p>お前もそんな気分なんだろ</p>
 <p>打ちのめされ, 愛は踏みにじられ...</p>
 </div>
 </div>
-<div id="admonition-default-6" class="admonition admonish-info">
+<div id="admonition-default-6" class="admonition admonish-info" role="note">
 <div>
 <p>無駄にした時間を取り戻すんだ</p>
 <p>ああ 神なら分かってくれるかもしれない</p>
@@ -271,13 +283,13 @@ end
 </div>
 </div>
 <h2 id="-lost-in-paradise"><a class="header" href="#-lost-in-paradise">🎙️ LOST IN PARADISE</a></h2>
-<div id="admonition-default-7" class="admonition admonish-example">
+<div id="admonition-default-7" class="admonition admonish-example" role="note">
 <div>
 <p>また時は過ぎている 唯一平等 もう無駄にしない</p>
 <p>計画は完了するまで嘘でしかない</p>
 </div>
 </div>
-<div id="admonition-default-8" class="admonition admonish-example">
+<div id="admonition-default-8" class="admonition admonish-example" role="note">
 <div>
 <p>最高 頂く称号</p>
 <p>誰かの予想軽々超えてはるか向こう</p>
@@ -287,14 +299,14 @@ end
 </div>
 <p>なんていうかさあ...。</p>
 <p>最近色々思うこともあるんだけど、他人の言葉を使って抗うのはわたしの弱さです。</p>
-<div id="admonition-default-9" class="admonition admonish-example">
+<div id="admonition-default-9" class="admonition admonish-example" role="note">
 <div>
 <p>東京地獄から楽園へ</p>
 <p>そりゃ勝ちとるためなら戦うさ</p>
 <p>今更やわなかけできるわけねぇだろぶちかませ</p>
 </div>
 </div>
-<div id="admonition-default-10" class="admonition admonish-example">
+<div id="admonition-default-10" class="admonition admonish-example" role="note">
 <div>
 <p>頭の中から現実に</p>
 <p>変換していく綿密に</p>
@@ -305,10 +317,12 @@ end
 <p>自分でもびっくりするぐらい好き勝手やってるけど、どうか大目に見てください...😭</p>
 <p>このサイトも、ようやく Endgame なんで❗</p>
 <p>...理由になってねぇな🙄</p>
-<div id="admonition-success" class="admonition admonish-success">
+<div id="admonition-success" class="admonition admonish-success" role="note" aria-labelledby="admonition-success-title">
 <div class="admonition-title">
+<div id="admonition-success-title">
 <p>Success</p>
-<p><a class="admonition-anchor-link" href="#admonition-success"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-success"></a>
 </div>
 <div>
 <p>LOST IN PARADISE<sup class="footnote-reference">
@@ -320,19 +334,19 @@ end
 </div>
 </div>
 <h3 id="-will-return"><a class="header" href="#-will-return">🦸‍♀️ WILL RETURN</a></h3>
-<div id="admonition-default-11" class="admonition admonish-danger">
+<div id="admonition-default-11" class="admonition admonish-danger" role="note">
 <div>
 <p>What the hell is this?</p>
 <p>これは一体どういうことだ？</p>
 </div>
 </div>
-<div id="admonition-default-12" class="admonition admonish-note">
+<div id="admonition-default-12" class="admonition admonish-note" role="note">
 <div>
 <p>friday what are they firing at?</p>
 <p>friday、奴らは何を撃っている？</p>
 </div>
 </div>
-<div id="admonition-default-13" class="admonition admonish-quote">
+<div id="admonition-default-13" class="admonition admonish-quote" role="note">
 <div>
 <p>Something just entered the upper atmosphere</p>
 <p>今、何かが上層大気圏に突入しています</p>

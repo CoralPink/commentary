@@ -104,17 +104,19 @@
 <p>まだ時々暑いけどねー😆</p>
 <p>...。🙂</p>
 <p>今だ❗<code>nvim-notify</code>❗❗</p>
-<div id="admonition-nvim-notifyhttpsgithubcomrcarriganvim-notify" class="admonition admonish-info">
+<div id="admonition-nvim-notifyhttpsgithubcomrcarriganvim-notify" class="admonition admonish-info" role="note" aria-labelledby="admonition-nvim-notifyhttpsgithubcomrcarriganvim-notify-title">
 <div class="admonition-title">
+<div id="admonition-nvim-notifyhttpsgithubcomrcarriganvim-notify-title">
 <p><a href="https://github.com/rcarriga/nvim-notify">nvim-notify</a></p>
-<p><a class="admonition-anchor-link" href="#admonition-nvim-notifyhttpsgithubcomrcarriganvim-notify"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-nvim-notifyhttpsgithubcomrcarriganvim-notify"></a>
 </div>
 <div>
 <p>A fancy, configurable, notification manager for NeoVim</p>
 <p>NeoVim のための、設定可能でファンシーな通知マネージャ</p>
 </div>
 </div>
-<div id="admonition-default" class="admonition admonish-info">
+<div id="admonition-default" class="admonition admonish-info" role="note">
 <div>
 <p>Credit to <a href="https://github.com/sunjon">sunjon</a> for
 <a href="https://neovim.discourse.group/t/wip-animated-notifications-plugin/448">the design</a> that inspired the appearance of this plugin.</p>
@@ -126,10 +128,12 @@
 <h2 id="installation"><a class="header" href="#installation">Installation</a></h2>
 <p>もう簡単だとは思うんですが、それでも順番に辿っていきましょう😇</p>
 <h3 id="prerequisites"><a class="header" href="#prerequisites">Prerequisites</a></h3>
-<div id="admonition-prerequisiteshttpsgithubcomrcarriganvim-notifyblobmasterreadmemdprerequisites" class="admonition admonish-info">
+<div id="admonition-prerequisiteshttpsgithubcomrcarriganvim-notifyblobmasterreadmemdprerequisites" class="admonition admonish-info" role="note" aria-labelledby="admonition-prerequisiteshttpsgithubcomrcarriganvim-notifyblobmasterreadmemdprerequisites-title">
 <div class="admonition-title">
+<div id="admonition-prerequisiteshttpsgithubcomrcarriganvim-notifyblobmasterreadmemdprerequisites-title">
 <p><a href="https://github.com/rcarriga/nvim-notify/blob/master/README.md#prerequisites">Prerequisites</a></p>
-<p><a class="admonition-anchor-link" href="#admonition-prerequisiteshttpsgithubcomrcarriganvim-notifyblobmasterreadmemdprerequisites"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-prerequisiteshttpsgithubcomrcarriganvim-notifyblobmasterreadmemdprerequisites"></a>
 </div>
 <div>
 <p>Make sure to use a font which supported glyphs (icons), font can be found <a href="https://github.com/ryanoasis/nerd-fonts">here</a>.</p>
@@ -137,7 +141,7 @@
 </div>
 </div>
 <p>フォントはもう何度も出てきているので大丈夫でしょ❓</p>
-<div id="admonition-default-1" class="admonition admonish-info">
+<div id="admonition-default-1" class="admonition admonish-info" role="note">
 <div>
 <p>24-bit colour is required, which can be enabled by adding this to your init.lua</p>
 <p>24ビットカラーが必要です。init.luaに以下を追加することで有効にできます。</p>
@@ -148,10 +152,12 @@
 <p>24ビットカラーについては、このサイトでも
 <a href="https://coralpink.github.io/commentary/neovim/options/termguicolors.html">10.1.1. termguicolors</a> ページで取り上げてます。</p>
 <p>...いるんですが、このサイトで取り上げた<code>vim.api.nvim_set_option</code>は、もうだいぶ以前から<code>deprecated</code>とされています。</p>
-<div id="admonition-h-deprecated" class="admonition admonish-info">
+<div id="admonition-h-deprecated" class="admonition admonish-info" role="note" aria-labelledby="admonition-h-deprecated-title">
 <div class="admonition-title">
+<div id="admonition-h-deprecated-title">
 <p>:h deprecated</p>
-<p><a class="admonition-anchor-link" href="#admonition-h-deprecated"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-h-deprecated"></a>
 </div>
 <div>
 <pre><code class="language-txt">Nvim                                                            deprecated
@@ -171,10 +177,12 @@ They should not be used in new scripts, and old scripts should be updated.
 <pre><code class="language-lua">vim.api.nvim_set_option_value('termguicolors', true, { scope = 'global' })
 </code></pre>
 <p>みたいな❓</p>
-<div id="admonition-tip" class="admonition admonish-tip">
+<div id="admonition-tip" class="admonition admonish-tip" role="note" aria-labelledby="admonition-tip-title">
 <div class="admonition-title">
+<div id="admonition-tip-title">
 <p>Tip</p>
-<p><a class="admonition-anchor-link" href="#admonition-tip"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-tip"></a>
 </div>
 <div>
 <p><code>nvim_set_option()</code>に限らず、"nvim_なんちゃら_set_option" については<code>nvim_set_option_value</code>に統一されるそうです。</p>
@@ -189,17 +197,19 @@ They should not be used in new scripts, and old scripts should be updated.
 </blockquote>
 </div>
 </div>
-<div id="admonition-default-2" class="admonition admonish-info">
+<div id="admonition-default-2" class="admonition admonish-info" role="note">
 <div>
 <p>Then you can install nvim-notify with the package manager of your choice.</p>
 <p>その後、お好みのパッケージ・マネージャーで nvim-notify をインストールしてください。</p>
 </div>
 </div>
 <p>念のため<code>lazy.nvim</code>でのインストールを補足しますが、特に難しいこともありませんね😇</p>
-<div id="admonition-extensionsinitlua" class="admonition admonish-example">
+<div id="admonition-extensionsinitlua" class="admonition admonish-example" role="note" aria-labelledby="admonition-extensionsinitlua-title">
 <div class="admonition-title">
+<div id="admonition-extensionsinitlua-title">
 <p>extensions/init.lua</p>
-<p><a class="admonition-anchor-link" href="#admonition-extensionsinitlua"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-extensionsinitlua"></a>
 </div>
 <div>
 <p><strong>lazy:</strong></p>
@@ -211,10 +221,12 @@ They should not be used in new scripts, and old scripts should be updated.
 </div>
 <h2 id="usage"><a class="header" href="#usage">Usage</a></h2>
 <p>簡単だ❗</p>
-<div id="admonition-usagehttpsgithubcomrcarriganvim-notifyusage" class="admonition admonish-info">
+<div id="admonition-usagehttpsgithubcomrcarriganvim-notifyusage" class="admonition admonish-info" role="note" aria-labelledby="admonition-usagehttpsgithubcomrcarriganvim-notifyusage-title">
 <div class="admonition-title">
+<div id="admonition-usagehttpsgithubcomrcarriganvim-notifyusage-title">
 <p><a href="https://github.com/rcarriga/nvim-notify#usage">Usage</a></p>
-<p><a class="admonition-anchor-link" href="#admonition-usagehttpsgithubcomrcarriganvim-notifyusage"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-usagehttpsgithubcomrcarriganvim-notifyusage"></a>
 </div>
 <div>
 <p>Simply call the module with a message!</p>
@@ -223,17 +235,19 @@ They should not be used in new scripts, and old scripts should be updated.
 </code></pre>
 </div>
 </div>
-<div id="admonition-default-3" class="admonition admonish-info">
+<div id="admonition-default-3" class="admonition admonish-info" role="note">
 <div>
 <p>Other plugins can use the notification windows by setting it as your default notify function</p>
 <p>デフォルトの通知機能として設定することで、他のプラグインも通知ウィンドウを使用することができます。</p>
 </div>
 </div>
 <p>ということで、通知はすべて<code>nvim-notify</code>にお願いしよう❗😆</p>
-<div id="admonition-extensionsnvim-notify" class="admonition admonish-example">
+<div id="admonition-extensionsnvim-notify" class="admonition admonish-example" role="note" aria-labelledby="admonition-extensionsnvim-notify-title">
 <div class="admonition-title">
+<div id="admonition-extensionsnvim-notify-title">
 <p>extensions/nvim-notify</p>
-<p><a class="admonition-anchor-link" href="#admonition-extensionsnvim-notify"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-extensionsnvim-notify"></a>
 </div>
 <div>
 <pre><code class="language-lua">local notify = require 'notify'
@@ -244,10 +258,12 @@ vim.notify = notify
 </code></pre>
 </div>
 </div>
-<div id="admonition-warning" class="admonition admonish-warning">
+<div id="admonition-warning" class="admonition admonish-warning" role="note" aria-labelledby="admonition-warning-title">
 <div class="admonition-title">
+<div id="admonition-warning-title">
 <p>Warning</p>
-<p><a class="admonition-anchor-link" href="#admonition-warning"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-warning"></a>
 </div>
 <div>
 <p>オフィシャルでは特に書かれていないんだけど、
@@ -255,10 +271,12 @@ vim.notify = notify
 <p>入れておいた方が安全かも。</p>
 </div>
 </div>
-<div id="admonition-extensionsinitlua-1" class="admonition admonish-example">
+<div id="admonition-extensionsinitlua-1" class="admonition admonish-example" role="note" aria-labelledby="admonition-extensionsinitlua-1-title">
 <div class="admonition-title">
+<div id="admonition-extensionsinitlua-1-title">
 <p>extensions/init.lua</p>
-<p><a class="admonition-anchor-link" href="#admonition-extensionsinitlua-1"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-extensionsinitlua-1"></a>
 </div>
 <div>
 <pre><code class="language-diff"> {
@@ -279,10 +297,12 @@ vim.notify = notify
 <h2 id="viewing-history"><a class="header" href="#viewing-history">Viewing History</a></h2>
 <p>時々、「あの時に出ていた通知、なんだったんだ...😣」ってなこともあるかと思いますが、
 このコードを追加しておけばだいじょーぶ😉</p>
-<div id="admonition-viewing-historyhttpsgithubcomrcarriganvim-notifyviewing-history" class="admonition admonish-info">
+<div id="admonition-viewing-historyhttpsgithubcomrcarriganvim-notifyviewing-history" class="admonition admonish-info" role="note" aria-labelledby="admonition-viewing-historyhttpsgithubcomrcarriganvim-notifyviewing-history-title">
 <div class="admonition-title">
+<div id="admonition-viewing-historyhttpsgithubcomrcarriganvim-notifyviewing-history-title">
 <p><a href="https://github.com/rcarriga/nvim-notify#viewing-history">Viewing History</a></p>
-<p><a class="admonition-anchor-link" href="#admonition-viewing-historyhttpsgithubcomrcarriganvim-notifyviewing-history"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-viewing-historyhttpsgithubcomrcarriganvim-notifyviewing-history"></a>
 </div>
 <div>
 <p>If you have <a href="https://github.com/nvim-telescope/telescope.nvim">telescope.nvim</a>
@@ -291,10 +311,12 @@ installed then you can use the <code>notify</code> extension to search the histo
 <code>notify</code>拡張機能を使って履歴を検索することができます：</p>
 </div>
 </div>
-<div id="admonition-extensionsnvim-notifylua" class="admonition admonish-example">
+<div id="admonition-extensionsnvim-notifylua" class="admonition admonish-example" role="note" aria-labelledby="admonition-extensionsnvim-notifylua-title">
 <div class="admonition-title">
+<div id="admonition-extensionsnvim-notifylua-title">
 <p>extensions/nvim-notify.lua</p>
-<p><a class="admonition-anchor-link" href="#admonition-extensionsnvim-notifylua"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-extensionsnvim-notifylua"></a>
 </div>
 <div>
 <pre><code class="language-lua">local telescope = require 'telescope'
@@ -314,7 +336,7 @@ end)
 <p>正直、ちょっと端折りすぎてるかなーっていう感じは否めませんが、基本的にはこれで大丈夫なはずです。
 あとは手元で色々試してみて❗</p>
 <p>...だって、今日はこれだけじゃないもんね❓😉</p>
-<div id="admonition-default-4" class="admonition admonish-success">
+<div id="admonition-default-4" class="admonition admonish-success" role="note">
 <div>
 <p>時々<sup class="footnote-reference">
 <a name="to-footnote-1"><a href="#1">1</a></a>
@@ -322,10 +344,12 @@ end)
 </div>
 </div>
 <p>このニュースを取り上げないわけないもんね❗😆</p>
-<div id="admonition-nme-music-news" class="admonition admonish-tip">
+<div id="admonition-nme-music-news" class="admonition admonish-tip" role="note" aria-labelledby="admonition-nme-music-news-title">
 <div class="admonition-title">
+<div id="admonition-nme-music-news-title">
 <p>NME MUSIC NEWS</p>
-<p><a class="admonition-anchor-link" href="#admonition-nme-music-news"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-nme-music-news"></a>
 </div>
 <div>
 <p><a href="https://www.nme.com/en_au/news/music/the-beatles-final-ai-song-now-and-then-blue-red-album-reissues-trailer-documentary-3523081">The Beatles announce release of “final” song ‘Now And Then’ and expanded ‘Red’ and ‘Blue’ albums</a></p>
@@ -334,7 +358,7 @@ end)
 <p>"John の声、透き通っていたよ" と McCartney。</p>
 </div>
 </div>
-<div id="admonition-default-5" class="admonition admonish-tip">
+<div id="admonition-default-5" class="admonition admonish-tip" role="note">
 <div>
 <p>“It’s quite emotional. And we all play on it, it’s a genuine Beatles recording.
 In 2023 to still be working on Beatles music, and about to release a new song the public haven’t heard, I think it’s an exciting thing.”</p>
@@ -342,14 +366,14 @@ In 2023 to still be working on Beatles music, and about to release a new song th
 2023年、まだ Beatles の音楽に取り組んでいて、まだ人々が聴いたことのない新曲をリリースしようとしている。"</p>
 </div>
 </div>
-<div id="admonition-default-6" class="admonition admonish-success">
+<div id="admonition-default-6" class="admonition admonish-success" role="note">
 <div>
 <p>そう、本当に不思議なんだ。</p>
 <p>現実は自分の手で作るものだし、常に選択できることは分かっている。</p>
 <p>しかし、運命は一体どの程度まで決まっているものなんだろう？</p>
 </div>
 </div>
-<div id="admonition-default-7" class="admonition admonish-tip">
+<div id="admonition-default-7" class="admonition admonish-tip" role="note">
 <div>
 <p>Starr agreed: “It was the closest we’ll ever come to having him back in the room so it was very emotional for all of us.
 It was like John was there, you know. It’s far out.”</p>
@@ -358,7 +382,7 @@ It was like John was there, you know. It’s far out.”</p>
 まるで John がそこにいるようだった。遥か彼方だ。"</p>
 </div>
 </div>
-<div id="admonition-default-8" class="admonition admonish-success">
+<div id="admonition-default-8" class="admonition admonish-success" role="note">
 <div>
 <p>人生には分かれ道がつきものなんだろうか？</p>
 <p>2つの道はどちらも前もって運命が決まっているんだろうか？</p>
@@ -366,16 +390,18 @@ It was like John was there, you know. It’s far out.”</p>
 </div>
 <p>わたしが生まれた時にはもう遥か彼方だったけど、John はわたしの心を救ってくれた人。</p>
 <p>「本当にありがとう❗」届くといいな🤗</p>
-<div id="admonition-default-9" class="admonition admonish-success">
+<div id="admonition-default-9" class="admonition admonish-success" role="note">
 <div>
 <p>どっちへ行こうかと悩むとき、道は数限りなくある。</p>
 <p>その中から1つを選ぶんだけど、それが時々、ものすごく奇妙だったりする...。</p>
 </div>
 </div>
-<div id="admonition-success" class="admonition admonish-success">
+<div id="admonition-success" class="admonition admonish-success" role="note" aria-labelledby="admonition-success-title">
 <div class="admonition-title">
+<div id="admonition-success-title">
 <p>Success</p>
-<p><a class="admonition-anchor-link" href="#admonition-success"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-success"></a>
 </div>
 <div>
 <p>インタビューの締めとしては、なかなかいいね。</p>

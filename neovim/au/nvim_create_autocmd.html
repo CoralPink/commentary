@@ -100,10 +100,12 @@
         <main id="main">
           <h1 id="nvim_create_autocmd"><a class="header" href="#nvim_create_autocmd">nvim_create_autocmd</a></h1>
 <p>いつだっておじさんは熱くアドバイスしてくれます☺️</p>
-<div id="admonition-h-nvim_create_autocmd" class="admonition admonish-info">
+<div id="admonition-h-nvim_create_autocmd" class="admonition admonish-info" role="note" aria-labelledby="admonition-h-nvim_create_autocmd-title">
 <div class="admonition-title">
+<div id="admonition-h-nvim_create_autocmd-title">
 <p>:h nvim_create_autocmd</p>
-<p><a class="admonition-anchor-link" href="#admonition-h-nvim_create_autocmd"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-h-nvim_create_autocmd"></a>
 </div>
 <div>
 <pre><code class="language-txt">nvim_create_autocmd({event}, {*opts}) nvim_create_autocmd()
@@ -132,10 +134,12 @@
 <p>ヘルプではもっと色々なサンプル付きで説明されていますが、今回はここで切り上げます😅</p>
 <h2 id="autocmd"><a class="header" href="#autocmd">autocmd</a></h2>
 <p>現時点で<code>autocmd</code>がどのように登録されているのかは、以下のコマンドを実行してみると確認できます。</p>
-<div id="admonition-quote" class="admonition admonish-quote">
+<div id="admonition-quote" class="admonition admonish-quote" role="note" aria-labelledby="admonition-quote-title">
 <div class="admonition-title">
+<div id="admonition-quote-title">
 <p>Quote</p>
-<p><a class="admonition-anchor-link" href="#admonition-quote"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-quote"></a>
 </div>
 <div>
 <pre><code class="language-vim">:au
@@ -147,10 +151,12 @@
 </div>
 <img src="img/aucmd-before.webp" alt="aucmd-before" width="584" height="466" decoding="async">
 <p>こんな感じに出てきたでしょうか。</p>
-<div id="admonition-note" class="admonition admonish-note">
+<div id="admonition-note" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-title">
 <div class="admonition-title">
+<div id="admonition-note-title">
 <p>Note</p>
-<p><a class="admonition-anchor-link" href="#admonition-note"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-note"></a>
 </div>
 <div>
 <p>スクリーンショットの環境が突然変わったことは気にしないでください😺</p>
@@ -164,10 +170,12 @@
 <p>それでは、例によって一つずつ確認していきます。</p>
 <h2 id="event"><a class="header" href="#event">event</a></h2>
 <p>まずは<code>event</code>なんですが、<code>autocmd-events</code>がこれでしょう🤔</p>
-<div id="admonition-h-autocmd-events" class="admonition admonish-info">
+<div id="admonition-h-autocmd-events" class="admonition admonish-info" role="note" aria-labelledby="admonition-h-autocmd-events-title">
 <div class="admonition-title">
+<div id="admonition-h-autocmd-events-title">
 <p>:h autocmd-events</p>
-<p><a class="admonition-anchor-link" href="#admonition-h-autocmd-events"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-h-autocmd-events"></a>
 </div>
 <div>
 <pre><code class="language-txt">5. Events           autocmd-events E215 E216
@@ -183,10 +191,12 @@ The command applies to all the events in the list.
 </div>
 </div>
 <p>で、上の例で使用されていた<code>BufEnter</code>と<code>BufWinEnter</code>だけ抜粋すると以下です。</p>
-<div id="admonition-h-bufenter" class="admonition admonish-info">
+<div id="admonition-h-bufenter" class="admonition admonish-info" role="note" aria-labelledby="admonition-h-bufenter-title">
 <div class="admonition-title">
+<div id="admonition-h-bufenter-title">
 <p>:h BufEnter</p>
-<p><a class="admonition-anchor-link" href="#admonition-h-bufenter"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-h-bufenter"></a>
 </div>
 <div>
 <pre><code class="language-txt">After entering a buffer.  Useful for setting
@@ -199,10 +209,12 @@ starting to edit a buffer.
 </code></pre>
 </div>
 </div>
-<div id="admonition-h-bufwinenter" class="admonition admonish-info">
+<div id="admonition-h-bufwinenter" class="admonition admonish-info" role="note" aria-labelledby="admonition-h-bufwinenter-title">
 <div class="admonition-title">
+<div id="admonition-h-bufwinenter-title">
 <p>:h BufWinEnter</p>
-<p><a class="admonition-anchor-link" href="#admonition-h-bufwinenter"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-h-bufwinenter"></a>
 </div>
 <div>
 <pre><code class="language-txt">After a buffer is displayed in a window.  This
@@ -230,10 +242,12 @@ current buffer, since it reloads that buffer.
 </div>
 <h2 id="pattern"><a class="header" href="#pattern">pattern</a></h2>
 <p>次は<code>pattern</code>です。これは<code>file-pattern</code>として説明されています😌</p>
-<div id="admonition-h-file-pattern" class="admonition admonish-info">
+<div id="admonition-h-file-pattern" class="admonition admonish-info" role="note" aria-labelledby="admonition-h-file-pattern-title">
 <div class="admonition-title">
+<div id="admonition-h-file-pattern-title">
 <p>:h file-pattern</p>
-<p><a class="admonition-anchor-link" href="#admonition-h-file-pattern"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-h-file-pattern"></a>
 </div>
 <div>
 <pre><code class="language-txt">The pattern is interpreted like mostly used in file names:
@@ -261,10 +275,12 @@ current buffer, since it reloads that buffer.
 </div>
 <h2 id="callback"><a class="header" href="#callback">callback</a></h2>
 <p>最後に<code>callback</code>ですが、これは<code>nvim_create_autocmd</code>の中に記述が見つかります。</p>
-<div id="admonition-h-nvim_create_autocmd-1" class="admonition admonish-info">
+<div id="admonition-h-nvim_create_autocmd-1" class="admonition admonish-info" role="note" aria-labelledby="admonition-h-nvim_create_autocmd-1-title">
 <div class="admonition-title">
+<div id="admonition-h-nvim_create_autocmd-1-title">
 <p>:h nvim_create_autocmd</p>
-<p><a class="admonition-anchor-link" href="#admonition-h-nvim_create_autocmd-1"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-h-nvim_create_autocmd-1"></a>
 </div>
 <div>
 <pre><code class="language-txt">Lua function which is called when this autocommand is triggered.
@@ -285,10 +301,12 @@ Cannot be used with {command}.
 <p>...に、なります。</p>
 <p><code>event</code>については、ヘルプ内で例示を行ってくれているので、そのまま採用します。(助かったぁ😆)</p>
 <p>あとはもう、<code>pattern</code>は簡単だし、<code>callback</code>は既に書いたコードを持ってくれば良いだけですね😉</p>
-<div id="admonition-optionslua" class="admonition admonish-example">
+<div id="admonition-optionslua" class="admonition admonish-example" role="note" aria-labelledby="admonition-optionslua-title">
 <div class="admonition-title">
+<div id="admonition-optionslua-title">
 <p>options.lua</p>
-<p><a class="admonition-anchor-link" href="#admonition-optionslua"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-optionslua"></a>
 </div>
 <div>
 <pre><code class="language-lua">vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWinEnter' }, {
@@ -303,19 +321,23 @@ Cannot be used with {command}.
 </code></pre>
 </div>
 </div>
-<div id="admonition-note-1" class="admonition admonish-note">
+<div id="admonition-note-1" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-1-title">
 <div class="admonition-title">
+<div id="admonition-note-1-title">
 <p>Note</p>
-<p><a class="admonition-anchor-link" href="#admonition-note-1"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-note-1"></a>
 </div>
 <div>
 <p><code>BufWinEnter</code>が必要になるのかが判然としませんが...、どうなんだろう😅</p>
 </div>
 </div>
-<div id="admonition-tip" class="admonition admonish-tip">
+<div id="admonition-tip" class="admonition admonish-tip" role="note" aria-labelledby="admonition-tip-title">
 <div class="admonition-title">
+<div id="admonition-tip-title">
 <p>Tip</p>
-<p><a class="admonition-anchor-link" href="#admonition-tip"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-tip"></a>
 </div>
 <div>
 <p><code>pattern</code>のデフォルトは<code>'*'</code>らしいので、実は省略できちゃいます😉</p>
@@ -326,10 +348,12 @@ Cannot be used with {command}.
 <p><code>options.lua</code>に書いたイベントが登録されていることが確認できましたね❗</p>
 <p>編集画面に戻って適当にタブ入力をしてみてください。タブ幅の設定は反映されていますか❓</p>
 <p>...されてますよね⁉️</p>
-<div id="admonition-success" class="admonition admonish-success">
+<div id="admonition-success" class="admonition admonish-success" role="note" aria-labelledby="admonition-success-title">
 <div class="admonition-title">
+<div id="admonition-success-title">
 <p>Success</p>
-<p><a class="admonition-anchor-link" href="#admonition-success"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-success"></a>
 </div>
 <div>
 <p>ここまで来れば、とりあえずは期待する動作が得られているはずです😆</p>

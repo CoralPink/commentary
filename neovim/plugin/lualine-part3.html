@@ -101,14 +101,14 @@
           <h1 id="lualinenvim-part-Ⅲ"><a class="header" href="#lualinenvim-part-Ⅲ">lualine.nvim Part Ⅲ</a></h1>
 <p>2023年に帰る前に、<code>lualine.nvim</code>に関してもう一個だけやっておきたいことがあって、それが<code>TabLine</code>なんですね。</p>
 <p>...ややこしいですけど😮</p>
-<div id="admonition-default" class="admonition admonish-note">
+<div id="admonition-default" class="admonition admonish-note" role="note">
 <div>
 <p>I gave you explicit instructions not to come here, but to go directly back to 2023.</p>
 <p>ここには来ないで、そのまま2023年に戻れと明確な指示をしたはずだ。</p>
 </div>
 </div>
 <p>...されてないですけど😅</p>
-<div id="admonition-default-1" class="admonition admonish-note">
+<div id="admonition-default-1" class="admonition admonish-note" role="note">
 <div>
 <p>But it's good to see you.</p>
 <p>だが また会えて嬉しい。</p>
@@ -117,10 +117,12 @@
 <p>...❗😭</p>
 <h2 id="tabline"><a class="header" href="#tabline">TabLine</a></h2>
 <p>Cinema Part もそこそこに、早速いっちゃいましょう。</p>
-<div id="admonition-extensionlualinelua" class="admonition admonish-example">
+<div id="admonition-extensionlualinelua" class="admonition admonish-example" role="note" aria-labelledby="admonition-extensionlualinelua-title">
 <div class="admonition-title">
+<div id="admonition-extensionlualinelua-title">
 <p>extension/lualine.lua</p>
-<p><a class="admonition-anchor-link" href="#admonition-extensionlualinelua"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-extensionlualinelua"></a>
 </div>
 <div>
 <pre><code class="language-lua">local colors = require('onenord.colors').load()
@@ -166,10 +168,12 @@ require('lualine').setup {
 </code></pre>
 </div>
 </div>
-<div id="admonition-note" class="admonition admonish-note">
+<div id="admonition-note" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-title">
 <div class="admonition-title">
+<div id="admonition-note-title">
 <p>Note</p>
-<p><a class="admonition-anchor-link" href="#admonition-note"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-note"></a>
 </div>
 <div>
 <p><code>switch_color</code>の中で、colors.mypinkというものがあるんですが、これは<code>onenord.nvim</code>の<code>custom_colors</code>に定義したオリジナルカラーです。</p>
@@ -182,10 +186,12 @@ require('lualine').setup {
 <p>カスタマイズの内容は、前回の<code>sections</code>と全く同じフォーマットなので、イメージできますよね😉
 それぞれのセクションで使用するコンポーネントの指定と、あとはアイコン・カラーなんかを変えてます。</p>
 <p><code>lualine_x</code>の<code>diff</code>と<code>lualine_y</code>の<code>branch</code>については、ひと手間加えるともっと良いものが出来上がるので、次の項で😆</p>
-<div id="admonition-note-1" class="admonition admonish-note">
+<div id="admonition-note-1" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-1-title">
 <div class="admonition-title">
+<div id="admonition-note-1-title">
 <p>Note</p>
-<p><a class="admonition-anchor-link" href="#admonition-note-1"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-note-1"></a>
 </div>
 <div>
 <p>これらはカスタマイズ前のデフォルトでも使われていました。
@@ -199,10 +205,12 @@ require('lualine').setup {
 <p>しかし、ここで登場するのが<code>gitsigns.nvim</code>です❗</p>
 <p><code>git</code>の扱いに関して彼の右に出るものはいません😆</p>
 <h3 id="for-git-diff"><a class="header" href="#for-git-diff">for git-diff</a></h3>
-<div id="admonition-using-external-source-for-diffhttpsgithubcomnvim-lualinelualinenvimwikicomponent-snippetsusing-external-source-for-diff" class="admonition admonish-info">
+<div id="admonition-using-external-source-for-diffhttpsgithubcomnvim-lualinelualinenvimwikicomponent-snippetsusing-external-source-for-diff" class="admonition admonish-info" role="note" aria-labelledby="admonition-using-external-source-for-diffhttpsgithubcomnvim-lualinelualinenvimwikicomponent-snippetsusing-external-source-for-diff-title">
 <div class="admonition-title">
+<div id="admonition-using-external-source-for-diffhttpsgithubcomnvim-lualinelualinenvimwikicomponent-snippetsusing-external-source-for-diff-title">
 <p><a href="https://github.com/nvim-lualine/lualine.nvim/wiki/Component-snippets#using-external-source-for-diff">Using external source for diff</a></p>
-<p><a class="admonition-anchor-link" href="#admonition-using-external-source-for-diffhttpsgithubcomnvim-lualinelualinenvimwikicomponent-snippetsusing-external-source-for-diff"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-using-external-source-for-diffhttpsgithubcomnvim-lualinelualinenvimwikicomponent-snippetsusing-external-source-for-diff"></a>
 </div>
 <div>
 <p>If you have other plugins installed that keep track of info. lualine can reuse that info.</p>
@@ -222,19 +230,23 @@ end
 </code></pre>
 </div>
 </div>
-<div id="admonition-note-2" class="admonition admonish-note">
+<div id="admonition-note-2" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-2-title">
 <div class="admonition-title">
+<div id="admonition-note-2-title">
 <p>Note</p>
-<p><a class="admonition-anchor-link" href="#admonition-note-2"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-note-2"></a>
 </div>
 <div>
 <p><code>diff_source()</code>は<code>setup {}</code>の外に追記してください😉</p>
 </div>
 </div>
-<div id="admonition-extensionslualinenvim" class="admonition admonish-example">
+<div id="admonition-extensionslualinenvim" class="admonition admonish-example" role="note" aria-labelledby="admonition-extensionslualinenvim-title">
 <div class="admonition-title">
+<div id="admonition-extensionslualinenvim-title">
 <p>extensions/lualine.nvim</p>
-<p><a class="admonition-anchor-link" href="#admonition-extensionslualinenvim"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-extensionslualinenvim"></a>
 </div>
 <div>
 <pre><code class="language-lua">    lualine_x = {
@@ -243,30 +255,36 @@ end
 </code></pre>
 </div>
 </div>
-<div id="admonition-note-3" class="admonition admonish-note">
+<div id="admonition-note-3" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-3-title">
 <div class="admonition-title">
+<div id="admonition-note-3-title">
 <p>Note</p>
-<p><a class="admonition-anchor-link" href="#admonition-note-3"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-note-3"></a>
 </div>
 <div>
 <p><code>symbols</code>はわたしが勝手に入れてます。</p>
 </div>
 </div>
 <h3 id="for-git-branch"><a class="header" href="#for-git-branch">for git-branch</a></h3>
-<div id="admonition-using-external-source-for-branchhttpsgithubcomnvim-lualinelualinenvimwikicomponent-snippetsusing-external-source-for-branch" class="admonition admonish-info">
+<div id="admonition-using-external-source-for-branchhttpsgithubcomnvim-lualinelualinenvimwikicomponent-snippetsusing-external-source-for-branch" class="admonition admonish-info" role="note" aria-labelledby="admonition-using-external-source-for-branchhttpsgithubcomnvim-lualinelualinenvimwikicomponent-snippetsusing-external-source-for-branch-title">
 <div class="admonition-title">
+<div id="admonition-using-external-source-for-branchhttpsgithubcomnvim-lualinelualinenvimwikicomponent-snippetsusing-external-source-for-branch-title">
 <p><a href="https://github.com/nvim-lualine/lualine.nvim/wiki/Component-snippets#using-external-source-for-branch">Using external source for branch</a></p>
-<p><a class="admonition-anchor-link" href="#admonition-using-external-source-for-branchhttpsgithubcomnvim-lualinelualinenvimwikicomponent-snippetsusing-external-source-for-branch"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-using-external-source-for-branchhttpsgithubcomnvim-lualinelualinenvimwikicomponent-snippetsusing-external-source-for-branch"></a>
 </div>
 <div>
 <p>If you have other plugins installed that keep track of branch info. lualine can reuse that info.</p>
 <p>もし他にブランチ情報を持っているプラグインをインストールしているのなら、lualine はその情報を再利用することができます。</p>
 </div>
 </div>
-<div id="admonition-extensionslualinenvim-1" class="admonition admonish-example">
+<div id="admonition-extensionslualinenvim-1" class="admonition admonish-example" role="note" aria-labelledby="admonition-extensionslualinenvim-1-title">
 <div class="admonition-title">
+<div id="admonition-extensionslualinenvim-1-title">
 <p>extensions/lualine.nvim</p>
-<p><a class="admonition-anchor-link" href="#admonition-extensionslualinenvim-1"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-extensionslualinenvim-1"></a>
 </div>
 <div>
 <pre><code class="language-lua">    lualine_y = {
@@ -275,10 +293,12 @@ end
 </code></pre>
 </div>
 </div>
-<div id="admonition-note-4" class="admonition admonish-note">
+<div id="admonition-note-4" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-4-title">
 <div class="admonition-title">
+<div id="admonition-note-4-title">
 <p>Note</p>
-<p><a class="admonition-anchor-link" href="#admonition-note-4"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-note-4"></a>
 </div>
 <div>
 <p>これもやっぱり<code>icon</code>と<code>color</code>はわたしが勝手に入れてます。</p>
@@ -292,10 +312,12 @@ end
 <h2 id="winbar"><a class="header" href="#winbar">WinBar</a></h2>
 <p>わたしはまだちょっと用途を見出せていないというか、<code>Tabline</code>だけで満足しちゃってるので使ってないんですが、
 <code>Winbar</code>というものがあって、これもやっぱり<code>lualine.nvim</code>を使って設定できます。</p>
-<div id="admonition-winbarhttpsgithubcomnvim-lualinelualinenvimwinbar" class="admonition admonish-info">
+<div id="admonition-winbarhttpsgithubcomnvim-lualinelualinenvimwinbar" class="admonition admonish-info" role="note" aria-labelledby="admonition-winbarhttpsgithubcomnvim-lualinelualinenvimwinbar-title">
 <div class="admonition-title">
+<div id="admonition-winbarhttpsgithubcomnvim-lualinelualinenvimwinbar-title">
 <p><a href="https://github.com/nvim-lualine/lualine.nvim#winbar">Winbar</a></p>
-<p><a class="admonition-anchor-link" href="#admonition-winbarhttpsgithubcomnvim-lualinelualinenvimwinbar"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-winbarhttpsgithubcomnvim-lualinelualinenvimwinbar"></a>
 </div>
 <div>
 <p>From neovim-0.8 you can customize your winbar with lualine. Winbar configuration is similar to statusline.</p>
@@ -305,10 +327,12 @@ end
 <h2 id="the-end"><a class="header" href="#the-end">The End</a></h2>
 <p>ああ、これで心置きなく2023年に戻れそうです。</p>
 <p>戻ったら<code>packer</code>やみんなにも教えてあげよう☺️</p>
-<div id="admonition-extensionsinitlua" class="admonition admonish-example">
+<div id="admonition-extensionsinitlua" class="admonition admonish-example" role="note" aria-labelledby="admonition-extensionsinitlua-title">
 <div class="admonition-title">
+<div id="admonition-extensionsinitlua-title">
 <p>extensions/init.lua</p>
-<p><a class="admonition-anchor-link" href="#admonition-extensionsinitlua"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-extensionsinitlua"></a>
 </div>
 <div>
 <pre><code class="language-lua">use {
@@ -321,28 +345,30 @@ end
 </code></pre>
 </div>
 </div>
-<div id="admonition-assemble" class="admonition admonish-success">
+<div id="admonition-assemble" class="admonition admonish-success" role="note" aria-labelledby="admonition-assemble-title">
 <div class="admonition-title">
+<div id="admonition-assemble-title">
 <p>Assemble</p>
-<p><a class="admonition-anchor-link" href="#admonition-assemble"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-assemble"></a>
 </div>
 <div>
 <p>これ、"敢えて"❗ 引用するよ❓</p>
 </div>
 </div>
-<div id="admonition-default-2" class="admonition admonish-success">
+<div id="admonition-default-2" class="admonition admonish-success" role="note">
 <div>
 <p>It means your future hasn’t been written yet.</p>
 <p>きみの未来はまだ白紙なんだよ。</p>
 </div>
 </div>
-<div id="admonition-default-3" class="admonition admonish-success">
+<div id="admonition-default-3" class="admonition admonish-success" role="note">
 <div>
 <p>No one’s has. Your future is whatever you make it.</p>
 <p>他の誰でもない。きみの未来はきみが描くんだ。</p>
 </div>
 </div>
-<div id="admonition-default-4" class="admonition admonish-success">
+<div id="admonition-default-4" class="admonition admonish-success" role="note">
 <div>
 <p>So make it a good one!!</p>
 <p>だからこそ良いものにしよう!!</p>

@@ -99,7 +99,7 @@
 
         <main id="main">
           <h1 id="-wezterm-meet-me"><a class="header" href="#-wezterm-meet-me">💻 WezTerm (meet me)</a></h1>
-<div id="admonition-default" class="admonition admonish-quote">
+<div id="admonition-default" class="admonition admonish-quote" role="note">
 <div>
 <p>"March Comes in Like a Lion, and Goes Out Like a Lamb"</p>
 </div>
@@ -107,7 +107,7 @@
 <p>前回から間を置かず、3月の終わりに子羊のように去ろうかな〜🐑 ...とも思っていましたが、
 "はるのかぜが あんなにうたっている" ことを子供たちに教えてもらったので、
 これはもう春の始まりを見届けていかなきゃいけない...と、思った今日この頃でした🌸</p>
-<div id="admonition-default-1" class="admonition admonish-success">
+<div id="admonition-default-1" class="admonition admonish-success" role="note">
 <div>
 <p>I look at you all, see the love there that's sleeping</p>
 <p>While my guitar gently weeps<sup class="footnote-reference">
@@ -129,10 +129,12 @@
 </sup>もボートもいませんでした。</p>
 <p>が❗</p>
 <p>...ご覧の通り、今じゃすっかりですよ❗🦢🦢🦢</p>
-<div id="admonition-note" class="admonition admonish-note">
+<div id="admonition-note" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-title">
 <div class="admonition-title">
+<div id="admonition-note-title">
 <p>Note</p>
-<p><a class="admonition-anchor-link" href="#admonition-note"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-note"></a>
 </div>
 <div>
 <p>駅北口のバスロータリーの真ん中に "象の銅像" がありますが、
@@ -152,10 +154,12 @@
 <p>ぐるっと巡ってきましたが、最後は<code>WezTerm</code>の設定を少しだけ見直します🤗</p>
 <p><code>wezterm.lua</code>の記述方法が<a href="../wezterm/configuration.html">あの頃</a>から少し進歩しているので、
 まずはここから始めましょう❗</p>
-<div id="admonition-configurationhttpswezfurlongorgweztermconfigfileshtml" class="admonition admonish-info">
+<div id="admonition-configurationhttpswezfurlongorgweztermconfigfileshtml" class="admonition admonish-info" role="note" aria-labelledby="admonition-configurationhttpswezfurlongorgweztermconfigfileshtml-title">
 <div class="admonition-title">
+<div id="admonition-configurationhttpswezfurlongorgweztermconfigfileshtml-title">
 <p><a href="https://wezfurlong.org/wezterm/config/files.html">Configuration</a></p>
-<p><a class="admonition-anchor-link" href="#admonition-configurationhttpswezfurlongorgweztermconfigfileshtml"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-configurationhttpswezfurlongorgweztermconfigfileshtml"></a>
 </div>
 <div>
 <pre><code class="language-lua">-- Pull in the wezterm API
@@ -175,7 +179,7 @@ return config
 </div>
 </div>
 <img src="img/sotobori-bird.webp" alt="sotobori-bird" width="1000" height="666" loading="lazy">
-<div id="admonition-default-2" class="admonition admonish-success">
+<div id="admonition-default-2" class="admonition admonish-success" role="note">
 <div>
 <p>I look at the floor and I see it needs sweeping</p>
 <p>目を向ければ 床の掃除が必要な気がするんだ</p>
@@ -187,10 +191,12 @@ return config
 local config = wezterm.config_builder()
 </code></pre>
 <p><code>config_builder</code>オブジェクトを使用するように案内されています。</p>
-<div id="admonition-weztermconfig_builderhttpswezfurlongorgweztermconfigluaweztermconfig_builderhtml" class="admonition admonish-info">
+<div id="admonition-weztermconfig_builderhttpswezfurlongorgweztermconfigluaweztermconfig_builderhtml" class="admonition admonish-info" role="note" aria-labelledby="admonition-weztermconfig_builderhttpswezfurlongorgweztermconfigluaweztermconfig_builderhtml-title">
 <div class="admonition-title">
+<div id="admonition-weztermconfig_builderhttpswezfurlongorgweztermconfigluaweztermconfig_builderhtml-title">
 <p><a href="https://wezfurlong.org/wezterm/config/lua/wezterm/config_builder.html">wezterm.config_builder()</a></p>
-<p><a class="admonition-anchor-link" href="#admonition-weztermconfig_builderhttpswezfurlongorgweztermconfigluaweztermconfig_builderhtml"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-weztermconfig_builderhttpswezfurlongorgweztermconfigluaweztermconfig_builderhtml"></a>
 </div>
 <div>
 <p>The config builder may look like a regular lua table but it is really a special userdata type that
@@ -201,10 +207,12 @@ knows how to log warnings or generate errors if you attempt to define an invalid
 </div>
 <p>ローカル変数名は<code>config</code>で案内されていますが、ここはなんでもいいです。</p>
 <p>わたしはこのパターンだといつも<code>M</code>にしちゃうんで、<code>M</code>で進めていいかな...❓</p>
-<div id="admonition-weztermlua" class="admonition admonish-example">
+<div id="admonition-weztermlua" class="admonition admonish-example" role="note" aria-labelledby="admonition-weztermlua-title">
 <div class="admonition-title">
+<div id="admonition-weztermlua-title">
 <p>wezterm.lua</p>
-<p><a class="admonition-anchor-link" href="#admonition-weztermlua"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-weztermlua"></a>
 </div>
 <div>
 <p>先頭で、こんな感じでオブジェクトを定義するように変えて...。</p>
@@ -214,7 +222,7 @@ knows how to log warnings or generate errors if you attempt to define an invalid
 </code></pre>
 </div>
 </div>
-<div id="admonition-default-3" class="admonition admonish-example">
+<div id="admonition-default-3" class="admonition admonish-example" role="note">
 <div>
 <p>このオブジェクトに対して色々追加していきます。例えば...</p>
 <pre><code class="language-diff">-color_scheme = 'Catppuccin Mocha',
@@ -226,7 +234,7 @@ knows how to log warnings or generate errors if you attempt to define an invalid
 <p>こんな感じで書き換えていけば OK です。(末尾の<code>,</code>を取り除くのを忘れないで❗)</p>
 </div>
 </div>
-<div id="admonition-default-4" class="admonition admonish-example">
+<div id="admonition-default-4" class="admonition admonish-example" role="note">
 <div>
 <p>...そしたら、最後にこのオブジェクトを返してあげましょう😌</p>
 <pre><code class="language-diff">-}
@@ -235,17 +243,19 @@ knows how to log warnings or generate errors if you attempt to define an invalid
 </div>
 </div>
 <p>これで完璧😉</p>
-<div id="admonition-note-1" class="admonition admonish-note">
+<div id="admonition-note-1" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-1-title">
 <div class="admonition-title">
+<div id="admonition-note-1-title">
 <p>Note</p>
-<p><a class="admonition-anchor-link" href="#admonition-note-1"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-note-1"></a>
 </div>
 <div>
 <p>これもやっぱり<code>lua</code>の慣習なんだけど、<code>Matrix</code>(行列) のイニシャルで<code>M</code>だよね...❓</p>
 <p>(ぶっちゃけ、ちゃんと調べたことない😮)</p>
 </div>
 </div>
-<div id="admonition-default-5" class="admonition admonish-success">
+<div id="admonition-default-5" class="admonition admonish-success" role="note">
 <div>
 <p>I don't know why nobody told you</p>
 <p>How to unfold your love</p>
@@ -268,10 +278,12 @@ knows how to log warnings or generate errors if you attempt to define an invalid
 最新のフォントを自分で追っかけたい場合なんかだと、後の項で出てくる<code>font_with_fall_back</code>を使うと良いです。</p>
 <h4 id="-fontsets"><a class="header" href="#-fontsets">⛲ FontSets</a></h4>
 <p>...ってことで、まずはフォントを用意しましょう❗</p>
-<div id="admonition-note-2" class="admonition admonish-note">
+<div id="admonition-note-2" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-2-title">
 <div class="admonition-title">
+<div id="admonition-note-2-title">
 <p>Note</p>
-<p><a class="admonition-anchor-link" href="#admonition-note-2"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-note-2"></a>
 </div>
 <div>
 <p>最後にして、なぜか最初の村みたいなセリフをあらかじめ...。</p>
@@ -285,20 +297,24 @@ knows how to log warnings or generate errors if you attempt to define an invalid
 本家の<code>nerd-fonts</code>のバージョンはだいぶ進んでいて、
 新しいアイコンも続々と増えているので、定期的に確認してみるのも楽しいと思います😆</p>
 <p>ってことで、今回は本家の<code>nerd-fonts</code>を使った楽しいほうで進めます。</p>
-<div id="admonition-releaseshttpsgithubcomryanoasisnerd-fontsreleases-v320" class="admonition admonish-info">
+<div id="admonition-releaseshttpsgithubcomryanoasisnerd-fontsreleases-v320" class="admonition admonish-info" role="note" aria-labelledby="admonition-releaseshttpsgithubcomryanoasisnerd-fontsreleases-v320-title">
 <div class="admonition-title">
+<div id="admonition-releaseshttpsgithubcomryanoasisnerd-fontsreleases-v320-title">
 <p><a href="https://github.com/ryanoasis/nerd-fonts/releases">Releases</a>/ v3.2.0</p>
-<p><a class="admonition-anchor-link" href="#admonition-releaseshttpsgithubcomryanoasisnerd-fontsreleases-v320"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-releaseshttpsgithubcomryanoasisnerd-fontsreleases-v320"></a>
 </div>
 <div>
 <p>The Easter release. Lets see which eggs can be found:</p>
 <p>イースターリリースだよ。どんな卵が見つかるかな:</p>
 </div>
 </div>
-<div id="admonition-note-3" class="admonition admonish-note">
+<div id="admonition-note-3" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-3-title">
 <div class="admonition-title">
+<div id="admonition-note-3-title">
 <p>Note</p>
-<p><a class="admonition-anchor-link" href="#admonition-note-3"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-note-3"></a>
 </div>
 <div>
 <p>くどいようなんですが<code>WezTerm</code>本体に既に含まれているので、
@@ -307,10 +323,12 @@ knows how to log warnings or generate errors if you attempt to define an invalid
 </div>
 <p><a href="https://github.com/ryanoasis/nerd-fonts/releases">Releases</a>から感謝しながら最新版をダウンロードしましょう😉</p>
 <p>好きなたまご🥚 を選べば良いのですが、このページでは<code>NerdFontsSymbolsOnly</code>を使って進めていきます。</p>
-<div id="admonition-tip" class="admonition admonish-tip">
+<div id="admonition-tip" class="admonition admonish-tip" role="note" aria-labelledby="admonition-tip-title">
 <div class="admonition-title">
+<div id="admonition-tip-title">
 <p>Tip</p>
-<p><a class="admonition-anchor-link" href="#admonition-tip"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-tip"></a>
 </div>
 <div>
 <p><code>NerdFontsSymbolsOnly.tar.xz</code>もしくは<code>NerdFontsSymbolsOnly.zip</code>は、文字通りシンボルオンリーです🐣</p>
@@ -318,10 +336,12 @@ knows how to log warnings or generate errors if you attempt to define an invalid
 </div>
 <h5 id="-firacode"><a class="header" href="#-firacode">❤️‍🔥 FiraCode</a></h5>
 <p>で、次に英字フォントを用意するんですが、ここでは一例として<code>FiraCode</code>を紹介します。</p>
-<div id="admonition-firacodehttpsgithubcomtonskyfiracode" class="admonition admonish-info">
+<div id="admonition-firacodehttpsgithubcomtonskyfiracode" class="admonition admonish-info" role="note" aria-labelledby="admonition-firacodehttpsgithubcomtonskyfiracode-title">
 <div class="admonition-title">
+<div id="admonition-firacodehttpsgithubcomtonskyfiracode-title">
 <p><a href="https://github.com/tonsky/FiraCode">FiraCode</a></p>
-<p><a class="admonition-anchor-link" href="#admonition-firacodehttpsgithubcomtonskyfiracode"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-firacodehttpsgithubcomtonskyfiracode"></a>
 </div>
 <div>
 <p>Fira Code: free monospaced font with programming ligatures</p>
@@ -334,10 +354,12 @@ knows how to log warnings or generate errors if you attempt to define an invalid
 <p>わたしは<code>macOS</code>に標準で入っている<code>ヒラギノ角ゴシック</code>を使っているので、ここでは特に示せる手順がありません😅</p>
 <h4 id="-font_with_fall_back"><a class="header" href="#-font_with_fall_back">🐣 font_with_fall_back</a></h4>
 <p>フォントが用意できたら、これらを<code>WezTerm</code>で使うために<code>font_with_fall_back</code>を設定しましょう❗</p>
-<div id="admonition-weztermfont_with_fallbackfamilies--attributeshttpswezfurlongorgweztermconfigluaweztermfont_with_fallbackhtml" class="admonition admonish-info">
+<div id="admonition-weztermfont_with_fallbackfamilies--attributeshttpswezfurlongorgweztermconfigluaweztermfont_with_fallbackhtml" class="admonition admonish-info" role="note" aria-labelledby="admonition-weztermfont_with_fallbackfamilies--attributeshttpswezfurlongorgweztermconfigluaweztermfont_with_fallbackhtml-title">
 <div class="admonition-title">
+<div id="admonition-weztermfont_with_fallbackfamilies--attributeshttpswezfurlongorgweztermconfigluaweztermfont_with_fallbackhtml-title">
 <p><a href="https://wezfurlong.org/wezterm/config/lua/wezterm/font_with_fallback.html">wezterm.font_with_fallback(families [, attributes])</a></p>
-<p><a class="admonition-anchor-link" href="#admonition-weztermfont_with_fallbackfamilies--attributeshttpswezfurlongorgweztermconfigluaweztermfont_with_fallbackhtml"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-weztermfont_with_fallbackfamilies--attributeshttpswezfurlongorgweztermconfigluaweztermfont_with_fallbackhtml"></a>
 </div>
 <div>
 <p>This function constructs a lua table that configures a font with fallback processing.
@@ -355,10 +377,12 @@ return {
 </div>
 </div>
 <p>これで、複数のフォントを好きなように組み合わせて使用することができます😌</p>
-<div id="admonition-weztermlua-1" class="admonition admonish-example">
+<div id="admonition-weztermlua-1" class="admonition admonish-example" role="note" aria-labelledby="admonition-weztermlua-1-title">
 <div class="admonition-title">
+<div id="admonition-weztermlua-1-title">
 <p>wezterm.lua</p>
-<p><a class="admonition-anchor-link" href="#admonition-weztermlua-1"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-weztermlua-1"></a>
 </div>
 <div>
 <p>まずはこんな感じで書き換えてから...、</p>
@@ -368,7 +392,7 @@ return {
 </code></pre>
 </div>
 </div>
-<div id="admonition-default-6" class="admonition admonish-example">
+<div id="admonition-default-6" class="admonition admonish-example" role="note">
 <div>
 <p>このリストに前節で用意したフォントを追加します😽</p>
 <pre><code class="language-diff"> M.font = wezterm.font_with_fallback {
@@ -379,10 +403,12 @@ return {
 </code></pre>
 </div>
 </div>
-<div id="admonition-tip-1" class="admonition admonish-tip">
+<div id="admonition-tip-1" class="admonition admonish-tip" role="note" aria-labelledby="admonition-tip-1-title">
 <div class="admonition-title">
+<div id="admonition-tip-1-title">
 <p>Tip</p>
-<p><a class="admonition-anchor-link" href="#admonition-tip-1"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-tip-1"></a>
 </div>
 <div>
 <p><code>macOS</code>の場合は、さらにこんなのを入れておくのもいいかも...❓</p>
@@ -407,7 +433,7 @@ return {
 <p>...でしたが、安心してください❗</p>
 <p>今のわたしは "とやマネーゼ"...❗</p>
 <p>"6000 とやマネーゼ" なのです🥴</p>
-<div id="admonition-default-7" class="admonition admonish-success">
+<div id="admonition-default-7" class="admonition admonish-success" role="note">
 <div>
 <p>I look at the world and I notice it's turning</p>
 <p>目を向ければ 世界が変わりつつあることに気づいたんだ</p>
@@ -416,7 +442,7 @@ return {
 <p>たとえ "億万シロカネーゼ" と並んでも互角であることに疑いの余地はありません❗</p>
 <p>ごめんあそばせ〜🤭
 <img src="img/happo-en2.webp" alt="happo-en2" width="666" height="1000" loading="lazy"></p>
-<div id="admonition-default-8" class="admonition admonish-success">
+<div id="admonition-default-8" class="admonition admonish-success" role="note">
 <div>
 <p>I don't know how someone controlled you</p>
 <p>They bought and sold you</p>
@@ -425,10 +451,12 @@ return {
 </div>
 </div>
 <h4 id="-window_decorations"><a class="header" href="#-window_decorations">💖 window_decorations</a></h4>
-<div id="admonition-window_decorationshttpswezfurlongorgweztermconfigluaconfigwindow_decorationshtml" class="admonition admonish-info">
+<div id="admonition-window_decorationshttpswezfurlongorgweztermconfigluaconfigwindow_decorationshtml" class="admonition admonish-info" role="note" aria-labelledby="admonition-window_decorationshttpswezfurlongorgweztermconfigluaconfigwindow_decorationshtml-title">
 <div class="admonition-title">
+<div id="admonition-window_decorationshttpswezfurlongorgweztermconfigluaconfigwindow_decorationshtml-title">
 <p><a href="https://wezfurlong.org/wezterm/config/lua/config/window_decorations.html">window_decorations</a></p>
-<p><a class="admonition-anchor-link" href="#admonition-window_decorationshttpswezfurlongorgweztermconfigluaconfigwindow_decorationshtml"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-window_decorationshttpswezfurlongorgweztermconfigluaconfigwindow_decorationshtml"></a>
 </div>
 <div>
 <ul>
@@ -438,10 +466,12 @@ return {
 </div>
 </div>
 <p>これは面白いので、ぜひ取り入れてみましょう😆</p>
-<div id="admonition-weztermlua-2" class="admonition admonish-example">
+<div id="admonition-weztermlua-2" class="admonition admonish-example" role="note" aria-labelledby="admonition-weztermlua-2-title">
 <div class="admonition-title">
+<div id="admonition-weztermlua-2-title">
 <p>wezterm.lua</p>
-<p><a class="admonition-anchor-link" href="#admonition-weztermlua-2"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-weztermlua-2"></a>
 </div>
 <div>
 <pre><code class="language-diff">-window_decorations = 'RESIZE',
@@ -451,10 +481,12 @@ return {
 </div>
 <p>そしたら <a href="../wezterm/window-decorations.html#configuring-mouse-assignments">Configuring Mouse Assignments</a>
 で書いた、タイトルバーを操作するためのコードはもう、ぽいっちょ❗うるのねん❗</p>
-<div id="admonition-mousebindslua" class="admonition admonish-example">
+<div id="admonition-mousebindslua" class="admonition admonish-example" role="note" aria-labelledby="admonition-mousebindslua-title">
 <div class="admonition-title">
+<div id="admonition-mousebindslua-title">
 <p>mousebinds.lua</p>
-<p><a class="admonition-anchor-link" href="#admonition-mousebindslua"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-mousebindslua"></a>
 </div>
 <div>
 <pre><code class="language-diff"> return {
@@ -469,10 +501,12 @@ return {
 </code></pre>
 </div>
 </div>
-<div id="admonition-eventlua" class="admonition admonish-example">
+<div id="admonition-eventlua" class="admonition admonish-example" role="note" aria-labelledby="admonition-eventlua-title">
 <div class="admonition-title">
+<div id="admonition-eventlua-title">
 <p>event.lua</p>
-<p><a class="admonition-anchor-link" href="#admonition-eventlua"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-eventlua"></a>
 </div>
 <div>
 <pre><code class="language-diff">- local TITLE_BAR_DISPLAY_TIME = 3000
@@ -510,17 +544,19 @@ return {
 </tbody></table>
 </div>
 <p>このサイトでも、もう散々この状態でスクリーンショットを載せてるんですけどね❗</p>
-<div id="admonition-note-4" class="admonition admonish-note">
+<div id="admonition-note-4" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-4-title">
 <div class="admonition-title">
+<div id="admonition-note-4-title">
 <p>Note</p>
-<p><a class="admonition-anchor-link" href="#admonition-note-4"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-note-4"></a>
 </div>
 <div>
 <p><a href="../wezterm/status.html">Status Bar</a>に表示していた項目は、各々でうまく調整してください😅</p>
 <p>(特に<a href="../wezterm/left-status.html">Left Status</a>は邪魔に見えちゃってるかもしれない...。)</p>
 </div>
 </div>
-<div id="admonition-default-9" class="admonition admonish-success">
+<div id="admonition-default-9" class="admonition admonish-success" role="note">
 <div>
 <p>With every mistake, we must surely be learning<sup class="footnote-reference">
 <a name="to-footnote-3"><a href="#3">3</a></a>
@@ -531,7 +567,7 @@ return {
 <h2 id="-wrap-up"><a class="header" href="#-wrap-up">🎁 Wrap Up</a></h2>
 <p>まあ、無理やり詰め込んだ感じも否めないけど、これでわたしがやりたかった事は大体やれたかな❗</p>
 <p>この章も、ちょっと注釈みたいなの並べてさっさと終わるものだと思っていたんだけど、なんか気づけばガッツリやってました😅</p>
-<div id="admonition-default-10" class="admonition admonish-success">
+<div id="admonition-default-10" class="admonition admonish-success" role="note">
 <div>
 <p>I don't know how you were diverted</p>
 <p>You were perverted, too</p>
@@ -547,7 +583,7 @@ return {
 <img src="img/ukima1.webp" alt="ukima1" width="1000" height="666" loading="lazy">
 <img src="img/ukima2.webp" alt="ukima2" width="1000" height="666" loading="lazy"></p>
 <p>間違えました、<a href="https://www.city.itabashi.tokyo.jp/bousai/toshikeiakku/kotsu/1044242/1044694.html">いたばしのオランダ</a>でした🦧</p>
-<div id="admonition-default-11" class="admonition admonish-success">
+<div id="admonition-default-11" class="admonition admonish-success" role="note">
 <div>
 <p>I don't know how you were inverted</p>
 <p>No one alerted you</p>
@@ -556,10 +592,12 @@ return {
 </div>
 </div>
 <p>色々開き直って、ず〜っとすっとぼけながらここまで来たんだけど、結局何が言いたいかっていうとね...、</p>
-<div id="admonition--thanks-for-reading-" class="admonition admonish-quote">
+<div id="admonition--thanks-for-reading-" class="admonition admonish-quote" role="note" aria-labelledby="admonition--thanks-for-reading--title">
 <div class="admonition-title">
+<div id="admonition--thanks-for-reading--title">
 <p>🪸 Thanks for reading !</p>
-<p><a class="admonition-anchor-link" href="#admonition--thanks-for-reading-"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition--thanks-for-reading-"></a>
 </div>
 <div>
 <p>前を向いて、まわりに目を向けてごらん。</p>

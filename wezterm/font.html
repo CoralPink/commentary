@@ -101,10 +101,12 @@
           <h1 id="font"><a class="header" href="#font">Font</a></h1>
 <p>これはもう、ほんとに好きなフォントでいいです。</p>
 <p>以下に再掲しますが、<code>Starship</code>を使用する場合も<code>WezTerm</code>であれば<code>Nerd Font</code>を考慮する必要がありません😆</p>
-<div id="admonition-weztermnerdfontshttpswezfurlongorgweztermconfigluaweztermnerdfontshtml" class="admonition admonish-info">
+<div id="admonition-weztermnerdfontshttpswezfurlongorgweztermconfigluaweztermnerdfontshtml" class="admonition admonish-info" role="note" aria-labelledby="admonition-weztermnerdfontshttpswezfurlongorgweztermconfigluaweztermnerdfontshtml-title">
 <div class="admonition-title">
+<div id="admonition-weztermnerdfontshttpswezfurlongorgweztermconfigluaweztermnerdfontshtml-title">
 <p><a href="https://wezfurlong.org/wezterm/config/lua/wezterm/nerdfonts.html">wezterm.nerdfonts</a></p>
-<p><a class="admonition-anchor-link" href="#admonition-weztermnerdfontshttpswezfurlongorgweztermconfigluaweztermnerdfontshtml"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-weztermnerdfontshttpswezfurlongorgweztermconfigluaweztermnerdfontshtml"></a>
 </div>
 <div>
 <p>WezTerm includes Nerd Font Symbols Font as a default font fallback which means that these
@@ -118,20 +120,24 @@ special symbols are available even without requiring you to use a patched font.<
 <p>なんてことがあるので、次項に続くわけです。</p>
 <h2 id="プログラミングフォント-firge-ファージ"><a class="header" href="#プログラミングフォント-firge-ファージ">プログラミングフォント Firge (ファージ)</a></h2>
 <p>例として、わたしが普段お世話になっているフォントを紹介します。</p>
-<div id="admonition-github---yuru7firgehttpsgithubcomyuru7firge" class="admonition admonish-info">
+<div id="admonition-github---yuru7firgehttpsgithubcomyuru7firge" class="admonition admonish-info" role="note" aria-labelledby="admonition-github---yuru7firgehttpsgithubcomyuru7firge-title">
 <div class="admonition-title">
+<div id="admonition-github---yuru7firgehttpsgithubcomyuru7firge-title">
 <p><a href="https://github.com/yuru7/Firge">GitHub - yuru7/Firge</a></p>
-<p><a class="admonition-anchor-link" href="#admonition-github---yuru7firgehttpsgithubcomyuru7firge"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-github---yuru7firgehttpsgithubcomyuru7firge"></a>
 </div>
 <div>
 <p>Fira Mono と源真ゴシックを合成したプログラミングフォント Firge (ファージ)</p>
 </div>
 </div>
 <p>「ダウンロードはこちら」というリンクから、お言葉に甘えて<code>FirgeNerd_v0.2.0.zip</code>をダウンロードします。ありがとー💕</p>
-<div id="admonition-note" class="admonition admonish-note">
+<div id="admonition-note" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-title">
 <div class="admonition-title">
+<div id="admonition-note-title">
 <p>Note</p>
-<p><a class="admonition-anchor-link" href="#admonition-note"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-note"></a>
 </div>
 <div>
 <p><code>Nerd Font</code>いらないって言いながら<code>Nerd</code>とか言ってんの何なの⁉️ ってなっちゃうんですが、なんかごめんなさい。</p>
@@ -147,20 +153,24 @@ special symbols are available even without requiring you to use a patched font.<
 <p>ほらできた🤗</p>
 <h2 id="wezterm-設定"><a class="header" href="#wezterm-設定">WezTerm 設定</a></h2>
 <p>で、このフォントを<code>WezTerm</code>に設定すれば良さそう。</p>
-<div id="admonition-weztermlua" class="admonition admonish-example">
+<div id="admonition-weztermlua" class="admonition admonish-example" role="note" aria-labelledby="admonition-weztermlua-title">
 <div class="admonition-title">
+<div id="admonition-weztermlua-title">
 <p>wezterm.lua</p>
-<p><a class="admonition-anchor-link" href="#admonition-weztermlua"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-weztermlua"></a>
 </div>
 <div>
 <pre><code class="language-lua">font = require("wezterm").font("Firge35Nerd Console"),
 </code></pre>
 </div>
 </div>
-<div id="admonition-weztermfonthttpswezfurlongorgweztermconfigluaweztermfonthtml" class="admonition admonish-info">
+<div id="admonition-weztermfonthttpswezfurlongorgweztermconfigluaweztermfonthtml" class="admonition admonish-info" role="note" aria-labelledby="admonition-weztermfonthttpswezfurlongorgweztermconfigluaweztermfonthtml-title">
 <div class="admonition-title">
+<div id="admonition-weztermfonthttpswezfurlongorgweztermconfigluaweztermfonthtml-title">
 <p><a href="https://wezfurlong.org/wezterm/config/lua/wezterm/font.html">wezterm.font</a></p>
-<p><a class="admonition-anchor-link" href="#admonition-weztermfonthttpswezfurlongorgweztermconfigluaweztermfonthtml"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-weztermfonthttpswezfurlongorgweztermconfigluaweztermfonthtml"></a>
 </div>
 <div>
 <p>The first parameter is the name of the font; the name can be one of the following types of names:</p>
@@ -178,10 +188,12 @@ special symbols are available even without requiring you to use a patched font.<
 </div>
 </div>
 <p>わたしは<code>Firge35NerdConsole-Regular.ttf</code>をインストールして、ファミリー名の<code>Firge35Nerd Console</code>で指定しています。</p>
-<div id="admonition-note-1" class="admonition admonish-note">
+<div id="admonition-note-1" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-1-title">
 <div class="admonition-title">
+<div id="admonition-note-1-title">
 <p>Note</p>
-<p><a class="admonition-anchor-link" href="#admonition-note-1"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-note-1"></a>
 </div>
 <div>
 <p>ファミリー名は<code>Font Book</code>アプリケーションで確認できます。「識別子」項目の中ですね。</p>
@@ -190,20 +202,24 @@ special symbols are available even without requiring you to use a patched font.<
 </div>
 </div>
 <p>フォントサイズも指定できるので、一緒に入れておきましょう。</p>
-<div id="admonition-weztermlua-1" class="admonition admonish-example">
+<div id="admonition-weztermlua-1" class="admonition admonish-example" role="note" aria-labelledby="admonition-weztermlua-1-title">
 <div class="admonition-title">
+<div id="admonition-weztermlua-1-title">
 <p>wezterm.lua</p>
-<p><a class="admonition-anchor-link" href="#admonition-weztermlua-1"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-weztermlua-1"></a>
 </div>
 <div>
 <pre><code class="language-lua">font_size = 12.0,
 </code></pre>
 </div>
 </div>
-<div id="admonition-font_sizehttpswezfurlongorgweztermconfigluaconfigfont_sizehtml" class="admonition admonish-info">
+<div id="admonition-font_sizehttpswezfurlongorgweztermconfigluaconfigfont_sizehtml" class="admonition admonish-info" role="note" aria-labelledby="admonition-font_sizehttpswezfurlongorgweztermconfigluaconfigfont_sizehtml-title">
 <div class="admonition-title">
+<div id="admonition-font_sizehttpswezfurlongorgweztermconfigluaconfigfont_sizehtml-title">
 <p><a href="https://wezfurlong.org/wezterm/config/lua/config/font_size.html">font_size</a></p>
-<p><a class="admonition-anchor-link" href="#admonition-font_sizehttpswezfurlongorgweztermconfigluaconfigfont_sizehtml"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-font_sizehttpswezfurlongorgweztermconfigluaconfigfont_sizehtml"></a>
 </div>
 <div>
 <p>Specifies the size of the font, measured in points.</p>
@@ -213,10 +229,12 @@ special symbols are available even without requiring you to use a patched font.<
 </div>
 </div>
 <p>上の例はデフォルト値そのままですが、お好みで調整してください。</p>
-<div id="admonition-success" class="admonition admonish-success">
+<div id="admonition-success" class="admonition admonish-success" role="note" aria-labelledby="admonition-success-title">
 <div class="admonition-title">
+<div id="admonition-success-title">
 <p>Success</p>
-<p><a class="admonition-anchor-link" href="#admonition-success"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-success"></a>
 </div>
 <div>
 <p>どうでしょう？明らかに日本語が綺麗になりました❗️

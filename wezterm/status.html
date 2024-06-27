@@ -101,10 +101,12 @@
           <h1 id="status-bar"><a class="header" href="#status-bar">Status Bar</a></h1>
 <p>今度はステータスバーを飾り付けちゃおっかなーと思います😆</p>
 <p><code>status.lua</code>というファイルを追加しましょう。</p>
-<div id="admonition-statuslua" class="admonition admonish-example">
+<div id="admonition-statuslua" class="admonition admonish-example" role="note" aria-labelledby="admonition-statuslua-title">
 <div class="admonition-title">
+<div id="admonition-statuslua-title">
 <p>status.lua</p>
-<p><a class="admonition-anchor-link" href="#admonition-statuslua"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-statuslua"></a>
 </div>
 <div>
 <pre><code class="language-lua">local wezterm = require 'wezterm'
@@ -115,10 +117,12 @@ end)
 </div>
 </div>
 <p>もうお馴染みですね😉 <code>wezterm.lua</code>から読み込みましょう。</p>
-<div id="admonition-weztermlua" class="admonition admonish-example">
+<div id="admonition-weztermlua" class="admonition admonish-example" role="note" aria-labelledby="admonition-weztermlua-title">
 <div class="admonition-title">
+<div id="admonition-weztermlua-title">
 <p>wezterm.lua</p>
-<p><a class="admonition-anchor-link" href="#admonition-weztermlua"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-weztermlua"></a>
 </div>
 <div>
 <pre><code class="language-lua">require 'status'
@@ -131,10 +135,12 @@ return {
 </div>
 </div>
 <p>さて、<code>wezterm.on</code>を利用して<code>update-status</code>イベントをフックします。</p>
-<div id="admonition-update-statushttpswezfurlongorgweztermconfigluawindow-eventsupdate-statushtml" class="admonition admonish-info">
+<div id="admonition-update-statushttpswezfurlongorgweztermconfigluawindow-eventsupdate-statushtml" class="admonition admonish-info" role="note" aria-labelledby="admonition-update-statushttpswezfurlongorgweztermconfigluawindow-eventsupdate-statushtml-title">
 <div class="admonition-title">
+<div id="admonition-update-statushttpswezfurlongorgweztermconfigluawindow-eventsupdate-statushtml-title">
 <p><a href="https://wezfurlong.org/wezterm/config/lua/window-events/update-status.html">update-status</a></p>
-<p><a class="admonition-anchor-link" href="#admonition-update-statushttpswezfurlongorgweztermconfigluawindow-eventsupdate-statushtml"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-update-statushttpswezfurlongorgweztermconfigluawindow-eventsupdate-statushtml"></a>
 </div>
 <div>
 <p>The update-status event is emitted periodically (based on the interval specified by the status_update_interval configuration value).</p>
@@ -144,10 +150,12 @@ return {
 </div>
 </div>
 <p>とのことなので、<code>wezterm.lua</code>の中でステータス更新間隔を指定しておきましょう。</p>
-<div id="admonition-weztermlua-1" class="admonition admonish-example">
+<div id="admonition-weztermlua-1" class="admonition admonish-example" role="note" aria-labelledby="admonition-weztermlua-1-title">
 <div class="admonition-title">
+<div id="admonition-weztermlua-1-title">
 <p>wezterm.lua</p>
-<p><a class="admonition-anchor-link" href="#admonition-weztermlua-1"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-weztermlua-1"></a>
 </div>
 <div>
 <pre><code class="language-lua">return {
@@ -156,10 +164,12 @@ return {
 </code></pre>
 </div>
 </div>
-<div id="admonition-status_update_intervalhttpswezfurlongorgweztermconfigluaconfigstatus_update_intervalhtml" class="admonition admonish-info">
+<div id="admonition-status_update_intervalhttpswezfurlongorgweztermconfigluaconfigstatus_update_intervalhtml" class="admonition admonish-info" role="note" aria-labelledby="admonition-status_update_intervalhttpswezfurlongorgweztermconfigluaconfigstatus_update_intervalhtml-title">
 <div class="admonition-title">
+<div id="admonition-status_update_intervalhttpswezfurlongorgweztermconfigluaconfigstatus_update_intervalhtml-title">
 <p><a href="https://wezfurlong.org/wezterm/config/lua/config/status_update_interval.html">status_update_interval</a></p>
-<p><a class="admonition-anchor-link" href="#admonition-status_update_intervalhttpswezfurlongorgweztermconfigluaconfigstatus_update_intervalhtml"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-status_update_intervalhttpswezfurlongorgweztermconfigluaconfigstatus_update_intervalhtml"></a>
 </div>
 <div>
 <p>Specifies the number of milliseconds that need to elapse between triggering the update-right-status hook.</p>
@@ -167,19 +177,23 @@ return {
 </div>
 </div>
 <p>デフォルトは<code>1000ミリ秒(=1秒)</code>です。そのままで良ければ必要ありません。</p>
-<div id="admonition-warning" class="admonition admonish-warning">
+<div id="admonition-warning" class="admonition admonish-warning" role="note" aria-labelledby="admonition-warning-title">
 <div class="admonition-title">
+<div id="admonition-warning-title">
 <p>Warning</p>
-<p><a class="admonition-anchor-link" href="#admonition-warning"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-warning"></a>
 </div>
 <div>
 <p>ドキュメントでは<code>update-right-status</code>となっていますが、前出の<code>update-status</code>が後継仕様となっているので、こちらを使っていきます。</p>
 </div>
 </div>
-<div id="admonition-success" class="admonition admonish-success">
+<div id="admonition-success" class="admonition admonish-success" role="note" aria-labelledby="admonition-success-title">
 <div class="admonition-title">
+<div id="admonition-success-title">
 <p>Success</p>
-<p><a class="admonition-anchor-link" href="#admonition-success"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-success"></a>
 </div>
 <div>
 <p>それでは次に進みましょう❗</p>

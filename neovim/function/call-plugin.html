@@ -105,10 +105,12 @@
 <p>こんな感じで😉
 <img src="img/make-dir.webp" alt="make-dir" width="696" height="256" decoding="async"></p>
 <p>うん😄 そうしたら<code>lesson/init.lua</code>にコードを入れておきます。</p>
-<div id="admonition-lessoninitlua" class="admonition admonish-example">
+<div id="admonition-lessoninitlua" class="admonition admonish-example" role="note" aria-labelledby="admonition-lessoninitlua-title">
 <div class="admonition-title">
+<div id="admonition-lessoninitlua-title">
 <p>lesson/init.lua</p>
-<p><a class="admonition-anchor-link" href="#admonition-lessoninitlua"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-lessoninitlua"></a>
 </div>
 <div>
 <pre><code class="language-lua">local M = {}
@@ -121,20 +123,24 @@ return M
 </code></pre>
 </div>
 </div>
-<div id="admonition-note" class="admonition admonish-note">
+<div id="admonition-note" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-title">
 <div class="admonition-title">
+<div id="admonition-note-title">
 <p>Note</p>
-<p><a class="admonition-anchor-link" href="#admonition-note"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-note"></a>
 </div>
 <div>
 <p><code>local M</code>とかなんやねんっていう疑問は、プラグインを作る側になったら知ることでしょう❗きっと☺️</p>
 </div>
 </div>
 <p>で、これを呼び出したいんですが、結局また<code>keybinds.lua</code>を使ってしまいます。</p>
-<div id="admonition-keybindslua" class="admonition admonish-example">
+<div id="admonition-keybindslua" class="admonition admonish-example" role="note" aria-labelledby="admonition-keybindslua-title">
 <div class="admonition-title">
+<div id="admonition-keybindslua-title">
 <p>keybinds.lua</p>
-<p><a class="admonition-anchor-link" href="#admonition-keybindslua"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-keybindslua"></a>
 </div>
 <div>
 <pre><code class="language-lua">local lesson = require 'lesson'
@@ -146,10 +152,12 @@ vim.keymap.set('n', '&lt;Leader&gt;9', lesson.myprint)
 <p>じゃあ、ぽちぽちっと<kbd>Leader</kbd><kbd>9</kbd>で呼んでみましょう...。動くかなぁ〜❓
 <img src="img/call-function5.webp" alt="call-function5" width="674" height="62" loading="lazy"></p>
 <p>動いたぁ〜❗😆</p>
-<div id="admonition-tip" class="admonition admonish-tip">
+<div id="admonition-tip" class="admonition admonish-tip" role="note" aria-labelledby="admonition-tip-title">
 <div class="admonition-title">
+<div id="admonition-tip-title">
 <p>Tip</p>
-<p><a class="admonition-anchor-link" href="#admonition-tip"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-tip"></a>
 </div>
 <div>
 <p><code>local</code>変数を使わずに以下のように書くこともできます。</p>
@@ -162,10 +170,12 @@ vim.keymap.set('n', '&lt;Leader&gt;9', lesson.myprint)
 <p><code>:source</code>について、<code>14.1 Warming Up</code>で触れたんですが、一個気にしたいことがあって、それが<code>require</code>です。</p>
 <p><code>require</code>には二度目以降の呼び出しはキャッシュを読みにいくっていう賢いとしか言いようがない仕様があるんですけど、
 例えば<code>require</code>の先をどんなに更新していようとも、<code>:so</code>だと更新前のキャッシュを実行するだけになるみたいなんですね。</p>
-<div id="admonition-the-require-functionhttpswwwluaorgpil81html" class="admonition admonish-info">
+<div id="admonition-the-require-functionhttpswwwluaorgpil81html" class="admonition admonish-info" role="note" aria-labelledby="admonition-the-require-functionhttpswwwluaorgpil81html-title">
 <div class="admonition-title">
+<div id="admonition-the-require-functionhttpswwwluaorgpil81html-title">
 <p><a href="https://www.lua.org/pil/8.1.html">The require Function</a></p>
-<p><a class="admonition-anchor-link" href="#admonition-the-require-functionhttpswwwluaorgpil81html"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-the-require-functionhttpswwwluaorgpil81html"></a>
 </div>
 <div>
 <p>require controls whether a file has already been run to avoid duplicating the work.</p>
@@ -173,10 +183,12 @@ vim.keymap.set('n', '&lt;Leader&gt;9', lesson.myprint)
 </div>
 </div>
 <p>例えば、<code>Neovim</code>を終了させずに下の変更を反映させる方法が見つからない...。</p>
-<div id="admonition-question" class="admonition admonish-question">
+<div id="admonition-question" class="admonition admonish-question" role="note" aria-labelledby="admonition-question-title">
 <div class="admonition-title">
+<div id="admonition-question-title">
 <p>Question</p>
-<p><a class="admonition-anchor-link" href="#admonition-question"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-question"></a>
 </div>
 <div>
 <p>上の項でやった<code>myprint</code>の文言を変えて...。
@@ -186,10 +198,12 @@ vim.keymap.set('n', '&lt;Leader&gt;9', lesson.myprint)
 </div>
 </div>
 <p>なので、なんか思った通りいかないー❗ってなっても慌てないで😉</p>
-<div id="admonition-note-1" class="admonition admonish-note">
+<div id="admonition-note-1" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-1-title">
 <div class="admonition-title">
+<div id="admonition-note-1-title">
 <p>Note</p>
-<p><a class="admonition-anchor-link" href="#admonition-note-1"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-note-1"></a>
 </div>
 <div>
 <p>わたしはこの辺りが全く掴めないので、いつも再起動しまくってます😆</p>
@@ -200,10 +214,12 @@ vim.keymap.set('n', '&lt;Leader&gt;9', lesson.myprint)
 <h2 id="nvim_create_user_command"><a class="header" href="#nvim_create_user_command">nvim_create_user_command</a></h2>
 <p>もう一個だけやっておきたいのは、独自コマンドからプラグインを使うパターンです。</p>
 <p>今度は<code>nvim</code>ディレクトリまで上がって、<code>plugin/lesson</code>ディレクトリを作成してください。</p>
-<div id="admonition-command" class="admonition admonish-quote">
+<div id="admonition-command" class="admonition admonish-quote" role="note" aria-labelledby="admonition-command-title">
 <div class="admonition-title">
+<div id="admonition-command-title">
 <p>Command</p>
-<p><a class="admonition-anchor-link" href="#admonition-command"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-command"></a>
 </div>
 <div>
 <pre><code class="language-sh">mkdir -p plugin/lesson
@@ -211,10 +227,12 @@ vim.keymap.set('n', '&lt;Leader&gt;9', lesson.myprint)
 </div>
 </div>
 <img src="img/make-dir2.webp" alt="make-dir2" width="696" height="265" loading="lazy">
-<div id="admonition-tip-1" class="admonition admonish-tip">
+<div id="admonition-tip-1" class="admonition admonish-tip" role="note" aria-labelledby="admonition-tip-1-title">
 <div class="admonition-title">
+<div id="admonition-tip-1-title">
 <p>Tip</p>
-<p><a class="admonition-anchor-link" href="#admonition-tip-1"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-tip-1"></a>
 </div>
 <div>
 <p>今回のように、2階層以上のディレクトリを作成したい場合、本来は「親ディレクトリから順に作っていかなければエラー」となりますが、</p>
@@ -226,10 +244,12 @@ mkdir plugin/lesson
 </div>
 </div>
 <p>これもあんまり深くは潜らず、さらっとだけやります。</p>
-<div id="admonition-h-nvim_create_user_command" class="admonition admonish-info">
+<div id="admonition-h-nvim_create_user_command" class="admonition admonish-info" role="note" aria-labelledby="admonition-h-nvim_create_user_command-title">
 <div class="admonition-title">
+<div id="admonition-h-nvim_create_user_command-title">
 <p>:h nvim_create_user_command</p>
-<p><a class="admonition-anchor-link" href="#admonition-h-nvim_create_user_command"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-h-nvim_create_user_command"></a>
 </div>
 <div>
 <pre><code class="language-txt">nvim_create_user_command({name}, {command}, {*opts})
@@ -248,10 +268,12 @@ mkdir plugin/lesson
 </div>
 </div>
 <p>それでは、<code>nvim/plugin/lesson/init.lua</code>にコードを書きます。</p>
-<div id="admonition-nvimpluginlessoninitlua" class="admonition admonish-example">
+<div id="admonition-nvimpluginlessoninitlua" class="admonition admonish-example" role="note" aria-labelledby="admonition-nvimpluginlessoninitlua-title">
 <div class="admonition-title">
+<div id="admonition-nvimpluginlessoninitlua-title">
 <p>nvim/plugin/lesson/init.lua</p>
-<p><a class="admonition-anchor-link" href="#admonition-nvimpluginlessoninitlua"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-nvimpluginlessoninitlua"></a>
 </div>
 <div>
 <pre><code class="language-lua">vim.api.nvim_create_user_command('Order', function()
@@ -262,10 +284,12 @@ end, {})
 </code></pre>
 </div>
 </div>
-<div id="admonition-note-2" class="admonition admonish-note">
+<div id="admonition-note-2" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-2-title">
 <div class="admonition-title">
+<div id="admonition-note-2-title">
 <p>Note</p>
-<p><a class="admonition-anchor-link" href="#admonition-note-2"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-note-2"></a>
 </div>
 <div>
 <p>コードは<code>:h input</code>の<code>Example</code>から持ってきて、<code>lua</code>で動くように書き換えました。</p>
@@ -283,10 +307,12 @@ end, {})
 </div>
 </div>
 <p><code>plugin</code>ディレクトリに置いた<code>lua</code>ファイルは<code>require</code>などをしなくても自動で読み込まれます。</p>
-<div id="admonition-note-3" class="admonition admonish-note">
+<div id="admonition-note-3" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-3-title">
 <div class="admonition-title">
+<div id="admonition-note-3-title">
 <p>Note</p>
-<p><a class="admonition-anchor-link" href="#admonition-note-3"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-note-3"></a>
 </div>
 <div>
 <p>これもやっぱり<code>9. Lua Module</code>で触れてました。<code>Runtime files</code>項です😉</p>
@@ -299,10 +325,12 @@ end, {})
 <img src="img/beer.webp" alt="beer" width="696" height="75" loading="lazy"></p>
 <p>乾杯❗🍻
 <img src="img/cheers.webp" alt="cheers" width="696" height="98" loading="lazy"></p>
-<div id="admonition-note-4" class="admonition admonish-note">
+<div id="admonition-note-4" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-4-title">
 <div class="admonition-title">
+<div id="admonition-note-4-title">
 <p>Note</p>
-<p><a class="admonition-anchor-link" href="#admonition-note-4"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-note-4"></a>
 </div>
 <div>
 <p>飲み終わったら<code>plugin</code>ディレクトリは消しておきましょう。<code>lesson</code>ディレクトリとrequire、keymapも忘れずに...。</p>
@@ -312,16 +340,18 @@ end, {})
 <p>本当はもっと<code>:h packages</code>で説明されているような、本格的なものを作れたら良かったんだけど、
 わたしがその領域にまで達していないので、かなりチープな付け焼き刃になってしまっているんですが、雰囲気くらいは伝わったでしょうか...❓😅</p>
 <p>お互い、頑張りましょう🤗</p>
-<div id="admonition-success" class="admonition admonish-success">
+<div id="admonition-success" class="admonition admonish-success" role="note" aria-labelledby="admonition-success-title">
 <div class="admonition-title">
+<div id="admonition-success-title">
 <p>Success</p>
-<p><a class="admonition-anchor-link" href="#admonition-success"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-success"></a>
 </div>
 <div>
 <p>次の章で、ついに...⁉️</p>
 </div>
 </div>
-<div id="admonition-default" class="admonition admonish-success">
+<div id="admonition-default" class="admonition admonish-success" role="note">
 <div>
 <div style="text-align: center">
   PLUG-IN WILL RETURN

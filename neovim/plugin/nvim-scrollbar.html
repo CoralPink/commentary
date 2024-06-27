@@ -100,20 +100,24 @@
         <main id="main">
           <h1 id="nvim-scrollbar"><a class="header" href="#nvim-scrollbar">nvim-scrollbar</a></h1>
 <p>聖夜🌃は間近です。その前にスクロールバーを追加してみます🎄</p>
-<div id="admonition-nvim-scrollbarhttpsgithubcompetertrihonvim-scrollbar" class="admonition admonish-info">
+<div id="admonition-nvim-scrollbarhttpsgithubcompetertrihonvim-scrollbar" class="admonition admonish-info" role="note" aria-labelledby="admonition-nvim-scrollbarhttpsgithubcompetertrihonvim-scrollbar-title">
 <div class="admonition-title">
+<div id="admonition-nvim-scrollbarhttpsgithubcompetertrihonvim-scrollbar-title">
 <p><a href="https://github.com/petertriho/nvim-scrollbar">nvim-scrollbar</a></p>
-<p><a class="admonition-anchor-link" href="#admonition-nvim-scrollbarhttpsgithubcompetertrihonvim-scrollbar"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-nvim-scrollbarhttpsgithubcompetertrihonvim-scrollbar"></a>
 </div>
 <div>
 <p>Extensible Neovim Scrollbar</p>
 <p>拡張可能なNeovimスクロールバー</p>
 </div>
 </div>
-<div id="admonition-requirements" class="admonition admonish-abstract">
+<div id="admonition-requirements" class="admonition admonish-abstract" role="note" aria-labelledby="admonition-requirements-title">
 <div class="admonition-title">
+<div id="admonition-requirements-title">
 <p>Requirements</p>
-<p><a class="admonition-anchor-link" href="#admonition-requirements"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-requirements"></a>
 </div>
 <div>
 <p>Neovim &gt;= 0.5.1</p>
@@ -123,10 +127,12 @@
 </div>
 <p><code>nvim-hlslens</code>も<code>gitsigns.nvim</code>も、とっても見覚えあるやつですね😉</p>
 <p>両方とも<code>optional</code>ということですが、これはぜひ積極的に取り入れていきましょう❗</p>
-<div id="admonition-note" class="admonition admonish-note">
+<div id="admonition-note" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-title">
 <div class="admonition-title">
+<div id="admonition-note-title">
 <p>Note</p>
-<p><a class="admonition-anchor-link" href="#admonition-note"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-note"></a>
 </div>
 <div>
 <p>というか、最初から取り入れるつもりで進めてたんですけどね😸</p>
@@ -136,10 +142,12 @@
 <p>これはもう本当に簡単です。<sup class="footnote-reference">
 <a name="to-footnote-1"><a href="#1">1</a></a>
 </sup></p>
-<div id="admonition-extensionsnvim-scrollbarlua" class="admonition admonish-example">
+<div id="admonition-extensionsnvim-scrollbarlua" class="admonition admonish-example" role="note" aria-labelledby="admonition-extensionsnvim-scrollbarlua-title">
 <div class="admonition-title">
+<div id="admonition-extensionsnvim-scrollbarlua-title">
 <p>extensions/nvim-scrollbar.lua</p>
-<p><a class="admonition-anchor-link" href="#admonition-extensionsnvim-scrollbarlua"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-extensionsnvim-scrollbarlua"></a>
 </div>
 <div>
 <pre><code class="language-lua">require('scrollbar').setup()
@@ -149,10 +157,12 @@ require("scrollbar.handlers.gitsigns").setup()
 </code></pre>
 </div>
 </div>
-<div id="admonition-note-1" class="admonition admonish-note">
+<div id="admonition-note-1" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-1-title">
 <div class="admonition-title">
+<div id="admonition-note-1-title">
 <p>Note</p>
-<p><a class="admonition-anchor-link" href="#admonition-note-1"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-note-1"></a>
 </div>
 <div>
 <p>もし細かく設定したい場合は
@@ -165,10 +175,12 @@ require("scrollbar.handlers.gitsigns").setup()
 <pre><code class="language-lua">require("scrollbar.handlers.gitsigns").setup()
 </code></pre>
 <p>...で、それぞれのプラグインを必要とします。<code>pakcer</code>にも教えといてあげましょう🫶</p>
-<div id="admonition-extensionsinitlua" class="admonition admonish-example">
+<div id="admonition-extensionsinitlua" class="admonition admonish-example" role="note" aria-labelledby="admonition-extensionsinitlua-title">
 <div class="admonition-title">
+<div id="admonition-extensionsinitlua-title">
 <p>extensions/init.lua</p>
-<p><a class="admonition-anchor-link" href="#admonition-extensionsinitlua"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-extensionsinitlua"></a>
 </div>
 <div>
 <pre><code class="language-lua">  use {
@@ -194,16 +206,18 @@ require("scrollbar.handlers.gitsigns").setup()
 <p>びっくりするぐらい高速でしたね😵‍💫</p>
 <p>ただ、わたしもちょっと急いで書いたので、また落ち着いたら取りこぼした部分を追記なり修正なりしていきます。</p>
 <p>と、いうことで...❗</p>
-<div id="admonition-assemble" class="admonition admonish-success">
+<div id="admonition-assemble" class="admonition admonish-success" role="note" aria-labelledby="admonition-assemble-title">
 <div class="admonition-title">
+<div id="admonition-assemble-title">
 <p>Assemble</p>
-<p><a class="admonition-anchor-link" href="#admonition-assemble"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-assemble"></a>
 </div>
 <div>
 <p>A very merry Christmas❗🍾</p>
 </div>
 </div>
-<div id="admonition-default" class="admonition admonish-success">
+<div id="admonition-default" class="admonition admonish-success" role="note">
 <div>
 <div style="text-align: center">
 <div style="font-size: 300%; line-height: 0;">

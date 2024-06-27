@@ -101,10 +101,12 @@
           <h1 id="signcolumn"><a class="header" href="#signcolumn">signcolumn</a></h1>
 <p>この段階で出てこられても、ちょっと説明に困る部分もあるんですが...。</p>
 <p>まあ、外観に影響する部分なので、先にやっちゃうことにします😉</p>
-<div id="admonition-h-signcolumn" class="admonition admonish-note">
+<div id="admonition-h-signcolumn" class="admonition admonish-note" role="note" aria-labelledby="admonition-h-signcolumn-title">
 <div class="admonition-title">
+<div id="admonition-h-signcolumn-title">
 <p>:h signcolumn</p>
-<p><a class="admonition-anchor-link" href="#admonition-h-signcolumn"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-h-signcolumn"></a>
 </div>
 <div>
 <pre><code class="language-txt">'signcolumn' 'scl'  string (default "auto")
@@ -155,10 +157,12 @@ When and how to draw the signcolumn. Valid values are:
 <p>ですね。</p>
 <p><code>auto</code>は表示と非表示が動的に切り替わるので、編集中にぺこぱこすることがあります。</p>
 <p>わたしは固定しちゃう方が好きです😆</p>
-<div id="admonition-optionslua" class="admonition admonish-example">
+<div id="admonition-optionslua" class="admonition admonish-example" role="note" aria-labelledby="admonition-optionslua-title">
 <div class="admonition-title">
+<div id="admonition-optionslua-title">
 <p>options.lua</p>
-<p><a class="admonition-anchor-link" href="#admonition-optionslua"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-optionslua"></a>
 </div>
 <div>
 <pre><code class="language-lua">vim.api.nvim_win_set_option(0, 'signcolumn', 'yes:1')
@@ -181,10 +185,12 @@ When and how to draw the signcolumn. Valid values are:
 <p>まあこれくらいなら、なんか見た目的に面白いなーと思うんですが、
 <code>Untracked file</code>とか開くと行番号が全部隠れちゃうので、やっぱクセつよですよね...。
 <img src="img/sign-number-untracked.webp" alt="sign-number-untracked" width="533" height="588" loading="lazy"></p>
-<div id="admonition-success" class="admonition admonish-success">
+<div id="admonition-success" class="admonition admonish-success" role="note" aria-labelledby="admonition-success-title">
 <div class="admonition-title">
+<div id="admonition-success-title">
 <p>Success</p>
-<p><a class="admonition-anchor-link" href="#admonition-success"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-success"></a>
 </div>
 <div>
 <p>次は、上のスクリーンショットで一足早く登場してしまった<code>wrap</code>を片付けちゃいます😌</p>

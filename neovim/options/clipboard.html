@@ -100,10 +100,12 @@
         <main id="main">
           <h1 id="clipboard"><a class="header" href="#clipboard">ClipBoard</a></h1>
 <p>そうだそうだ。大事なものを忘れていました😅</p>
-<div id="admonition-h-clipboard" class="admonition admonish-info">
+<div id="admonition-h-clipboard" class="admonition admonish-info" role="note" aria-labelledby="admonition-h-clipboard-title">
 <div class="admonition-title">
+<div id="admonition-h-clipboard-title">
 <p>:h clipboard</p>
-<p><a class="admonition-anchor-link" href="#admonition-h-clipboard"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-h-clipboard"></a>
 </div>
 <div>
 <pre><code class="language-txt">Nvim has no direct connection to the system clipboard. Instead it depends on
@@ -130,10 +132,12 @@ See 'clipboard' for details and options.
 <p>これを設定しておくとクリップボードをシステムと共有できます☺️</p>
 <p>要は、クリップボードを介して<code>Neovim</code>の文字列を他のアプリケーションに持って行ったり、来たりができるんですね❗便利😆</p>
 <p>上のヘルプの中で、ほぼ答えは書いてくれてるんですが、詳細 (<code>options</code>の中にある<code>clipboard</code>) も確認してみましょう。</p>
-<div id="admonition-tip" class="admonition admonish-tip">
+<div id="admonition-tip" class="admonition admonish-tip" role="note" aria-labelledby="admonition-tip-title">
 <div class="admonition-title">
+<div id="admonition-tip-title">
 <p>Tip</p>
-<p><a class="admonition-anchor-link" href="#admonition-tip"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-tip"></a>
 </div>
 <div>
 <p>今回、<code>provider の clipboard</code>と、<code>options の clipboard</code>を見たいのですが、</p>
@@ -142,10 +146,12 @@ See 'clipboard' for details and options.
 <p>この先でもいくつか出てくるので、頭の片隅にでも置いといていただければ...。</p>
 </div>
 </div>
-<div id="admonition-h-clipboard-1" class="admonition admonish-info">
+<div id="admonition-h-clipboard-1" class="admonition admonish-info" role="note" aria-labelledby="admonition-h-clipboard-1-title">
 <div class="admonition-title">
+<div id="admonition-h-clipboard-1-title">
 <p>:h 'clipboard'</p>
-<p><a class="admonition-anchor-link" href="#admonition-h-clipboard-1"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-h-clipboard-1"></a>
 </div>
 <div>
 <pre><code class="language-txt">'clipboard' 'cb' string	(default "")
@@ -157,10 +163,12 @@ See 'clipboard' for details and options.
 </div>
 </div>
 <p>この先はレジスタの話が出てきて自信がない...😓</p>
-<details id="admonition-unnamed--unnamedplus" class="admonition admonish-info">
+<details id="admonition-unnamed--unnamedplus" class="admonition admonish-info" role="note" aria-labelledby="admonition-unnamed--unnamedplus-title">
 <summary class="admonition-title">
+<div id="admonition-unnamed--unnamedplus-title">
 <p>unnamed / unnamedplus</p>
-<p><a class="admonition-anchor-link" href="#admonition-unnamed--unnamedplus"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-unnamed--unnamedplus"></a>
 </summary>
 <div>
 <pre><code class="language-txt">These names are recognized:
@@ -204,10 +212,12 @@ unnamedplus
 </details>
 <p>なんかもうヘルプまみれですが、ここで確認しておきたいのは<code>clipboard</code>のデフォルト値ですね。</p>
 <p>これを見ると<code>""</code>となっているので、特に何も気にしないで、このように書いてしまって問題ないはずです😉</p>
-<div id="admonition-optionslua" class="admonition admonish-example">
+<div id="admonition-optionslua" class="admonition admonish-example" role="note" aria-labelledby="admonition-optionslua-title">
 <div class="admonition-title">
+<div id="admonition-optionslua-title">
 <p>options.lua</p>
-<p><a class="admonition-anchor-link" href="#admonition-optionslua"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-optionslua"></a>
 </div>
 <div>
 <pre><code class="language-lua">vim.api.nvim_set_option('clipboard', 'unnamedplus')
@@ -217,10 +227,12 @@ unnamedplus
 <p>もしヘルプに従った書き方にしたい場合は、以下のようになると思います。</p>
 <pre><code class="language-lua">vim.opt.clipboard:append 'unnamedplus'
 </code></pre>
-<div id="admonition-h-vimoptappend" class="admonition admonish-info">
+<div id="admonition-h-vimoptappend" class="admonition admonish-info" role="note" aria-labelledby="admonition-h-vimoptappend-title">
 <div class="admonition-title">
+<div id="admonition-h-vimoptappend-title">
 <p>:h vim.opt:append()</p>
-<p><a class="admonition-anchor-link" href="#admonition-h-vimoptappend"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-h-vimoptappend"></a>
 </div>
 <div>
 <pre><code class="language-txt">  Append a value to string-style options. See |:set+=|
@@ -231,10 +243,12 @@ unnamedplus
 </div>
 <p>もしかしたら<code>API</code>を通して<code>追加</code>する方法があるのかもしれないんですが、ちょっとわたしが知らなくて...。</p>
 <p>とりあえずこの書き方でも同じ動作が実現できるので、お好みで😆</p>
-<div id="admonition-success" class="admonition admonish-success">
+<div id="admonition-success" class="admonition admonish-success" role="note" aria-labelledby="admonition-success-title">
 <div class="admonition-title">
+<div id="admonition-success-title">
 <p>Success</p>
-<p><a class="admonition-anchor-link" href="#admonition-success"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-success"></a>
 </div>
 <div>
 <p>全体のまとめに入っちゃうんですが、</p>

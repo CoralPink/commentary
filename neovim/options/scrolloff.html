@@ -100,10 +100,12 @@
         <main id="main">
           <h1 id="scrolloff"><a class="header" href="#scrolloff">scrolloff</a></h1>
 <p>さて、次はこんなのが飛び出してきました❗もはやルーティンですね😌</p>
-<div id="admonition-h-scrolloff" class="admonition admonish-info">
+<div id="admonition-h-scrolloff" class="admonition admonish-info" role="note" aria-labelledby="admonition-h-scrolloff-title">
 <div class="admonition-title">
+<div id="admonition-h-scrolloff-title">
 <p>:h scrolloff</p>
-<p><a class="admonition-anchor-link" href="#admonition-h-scrolloff"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-h-scrolloff"></a>
 </div>
 <div>
 <pre><code class="language-txt">'scrolloff' 'so' number	(default 0)
@@ -122,10 +124,12 @@ when long lines wrap).
 </code></pre>
 </div>
 </div>
-<div id="admonition-optionslua" class="admonition admonish-example">
+<div id="admonition-optionslua" class="admonition admonish-example" role="note" aria-labelledby="admonition-optionslua-title">
 <div class="admonition-title">
+<div id="admonition-optionslua-title">
 <p>options.lua</p>
-<p><a class="admonition-anchor-link" href="#admonition-optionslua"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-optionslua"></a>
 </div>
 <div>
 <pre><code class="language-lua">vim.api.nvim_set_option('scrolloff', 4)
@@ -139,19 +143,23 @@ when long lines wrap).
 <p>カーソル移動ではなく、本文が<code>行スクロール</code>する。
 <img src="img/scrolloff2.webp" alt="scrolloff2" width="621" height="482" loading="lazy"></p>
 <p>文字で説明するとイメージが難しいんですが、<code>0</code>の状態と比べて動かしてみれば、すぐに意味はわかると思います😸</p>
-<div id="admonition-note" class="admonition admonish-note">
+<div id="admonition-note" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-title">
 <div class="admonition-title">
+<div id="admonition-note-title">
 <p>Note</p>
-<p><a class="admonition-anchor-link" href="#admonition-note"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-note"></a>
 </div>
 <div>
 <p>ヘルプには「グローバルもしくはローカルのウィンドウ」みたいな記述がありますが、この例ではグローバルに設定しています。</p>
 </div>
 </div>
-<div id="admonition-success" class="admonition admonish-success">
+<div id="admonition-success" class="admonition admonish-success" role="note" aria-labelledby="admonition-success-title">
 <div class="admonition-title">
+<div id="admonition-success-title">
 <p>Success</p>
-<p><a class="admonition-anchor-link" href="#admonition-success"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-success"></a>
 </div>
 <div>
 <p>もし文法だったりパラメータが間違っていた場合は起動時にエラーが出るはずです。</p>

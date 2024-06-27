@@ -101,10 +101,12 @@
           <h1 id="extra-for-nvim-010"><a class="header" href="#extra-for-nvim-010">(Extra) for Nvim 0.10</a></h1>
 <p>突然ですがニュースです。</p>
 <p>ニュースとは言うものの最新ではないです❗最先端からは遅れてます😅</p>
-<div id="admonition-news" class="admonition admonish-info">
+<div id="admonition-news" class="admonition admonish-info" role="note" aria-labelledby="admonition-news-title">
 <div class="admonition-title">
+<div id="admonition-news-title">
 <p>news</p>
-<p><a class="admonition-anchor-link" href="#admonition-news"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-news"></a>
 </div>
 <div>
 <pre><code class="language-txt">Notable changes in Nvim 0.10 from 0.9                                    *news*
@@ -117,10 +119,12 @@ For changes in Nvim 0.9, see |news-0.9|.
 </div>
 <h2 id="added-features"><a class="header" href="#added-features">Added Features</a></h2>
 <p>これちょっと面白いやつ。</p>
-<div id="admonition-h-news-added" class="admonition admonish-info">
+<div id="admonition-h-news-added" class="admonition admonish-info" role="note" aria-labelledby="admonition-h-news-added-title">
 <div class="admonition-title">
+<div id="admonition-h-news-added-title">
 <p>:h news-added</p>
-<p><a class="admonition-anchor-link" href="#admonition-h-news-added"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-h-news-added"></a>
 </div>
 <div>
 <pre><code class="language-txt">ADDED FEATURES                                                     *news-added*
@@ -138,20 +142,24 @@ iterators luaref-in.
 </div>
 <h3 id="vimiter"><a class="header" href="#vimiter">vim.iter()</a></h3>
 <p>書いてあることそのままなんですが、<code>Nvim 0.10</code>からはこんな書き方ができるようになります。</p>
-<div id="admonition-note" class="admonition admonish-note">
+<div id="admonition-note" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-title">
 <div class="admonition-title">
+<div id="admonition-note-title">
 <p>Note</p>
-<p><a class="admonition-anchor-link" href="#admonition-note"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-note"></a>
 </div>
 <div>
 <p>次項より使用しているサンプルコードは
 <a href="../plugin/nvim-tree-actions.html">15.11.1 Actions</a> 節で作成したものです。</p>
 </div>
 </div>
-<div id="admonition-warning" class="admonition admonish-warning">
+<div id="admonition-warning" class="admonition admonish-warning" role="note" aria-labelledby="admonition-warning-title">
 <div class="admonition-title">
+<div id="admonition-warning-title">
 <p>Warning</p>
-<p><a class="admonition-anchor-link" href="#admonition-warning"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-warning"></a>
 </div>
 <div>
 <p><a href="https://github.com/neovim/neovim/releases/nightly">Nvim development (prerelease) build</a>
@@ -160,10 +168,12 @@ iterators luaref-in.
 </div>
 </div>
 <h4 id="createtreeactions"><a class="header" href="#createtreeactions">createTreeActions</a></h4>
-<div id="admonition-nvim-09" class="admonition admonish-quote">
+<div id="admonition-nvim-09" class="admonition admonish-quote" role="note" aria-labelledby="admonition-nvim-09-title">
 <div class="admonition-title">
+<div id="admonition-nvim-09-title">
 <p>Nvim 0.9</p>
-<p><a class="admonition-anchor-link" href="#admonition-nvim-09"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-nvim-09"></a>
 </div>
 <div>
 <pre><code class="language-lua">local function createTreeActions()
@@ -174,10 +184,12 @@ end
 </code></pre>
 </div>
 </div>
-<div id="admonition-nvim-010" class="admonition admonish-example">
+<div id="admonition-nvim-010" class="admonition admonish-example" role="note" aria-labelledby="admonition-nvim-010-title">
 <div class="admonition-title">
+<div id="admonition-nvim-010-title">
 <p>Nvim 0.10</p>
-<p><a class="admonition-anchor-link" href="#admonition-nvim-010"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-nvim-010"></a>
 </div>
 <div>
 <pre><code class="language-lua">local function createTreeActions()
@@ -190,10 +202,12 @@ end
 </div>
 <p>誰もが「なんやこいつ😮」と思っていた<code>_</code>がいなくなりました。</p>
 <h4 id="on_attach"><a class="header" href="#on_attach">on_attach</a></h4>
-<div id="admonition-nvim-09-1" class="admonition admonish-quote">
+<div id="admonition-nvim-09-1" class="admonition admonish-quote" role="note" aria-labelledby="admonition-nvim-09-1-title">
 <div class="admonition-title">
+<div id="admonition-nvim-09-1-title">
 <p>Nvim 0.9</p>
-<p><a class="admonition-anchor-link" href="#admonition-nvim-09-1"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-nvim-09-1"></a>
 </div>
 <div>
 <pre><code class="language-lua">function M.on_attach(bufnr)
@@ -210,10 +224,12 @@ end
 </code></pre>
 </div>
 </div>
-<div id="admonition-nvim-010-1" class="admonition admonish-example">
+<div id="admonition-nvim-010-1" class="admonition admonish-example" role="note" aria-labelledby="admonition-nvim-010-1-title">
 <div class="admonition-title">
+<div id="admonition-nvim-010-1-title">
 <p>Nvim 0.10</p>
-<p><a class="admonition-anchor-link" href="#admonition-nvim-010-1"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-nvim-010-1"></a>
 </div>
 <div>
 <pre><code class="language-lua">function M.on_attach(bufnr)
@@ -239,10 +255,12 @@ end
 <h2 id="wrap-up"><a class="header" href="#wrap-up">Wrap Up</a></h2>
 <p>効率面とか速度面で見た場合に優位性があるのかどうかは、
 ぶっちゃけよく知らないんですが...。</p>
-<div id="admonition-assemble" class="admonition admonish-success">
+<div id="admonition-assemble" class="admonition admonish-success" role="note" aria-labelledby="admonition-assemble-title">
 <div class="admonition-title">
+<div id="admonition-assemble-title">
 <p>Assemble</p>
-<p><a class="admonition-anchor-link" href="#admonition-assemble"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-assemble"></a>
 </div>
 <div>
 <p>でも、なんかエレガント🩷👗</p>

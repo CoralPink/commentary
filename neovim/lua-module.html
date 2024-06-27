@@ -101,10 +101,12 @@
           <h1 id="lua-module"><a class="header" href="#lua-module">Lua Module</a></h1>
 <p>なんと、これに関しては既に日本語に訳されたドキュメントが存在します。</p>
 <p>登っていきましょうとか言っておいてなんですが、まずは掘り下げちゃいます。どんまい😆</p>
-<div id="admonition-モジュールhttpsgithubcomwillelznvim-lua-guide-jablobmasterreadmejamdモジュール" class="admonition admonish-info">
+<div id="admonition-モジュールhttpsgithubcomwillelznvim-lua-guide-jablobmasterreadmejamdモジュール" class="admonition admonish-info" role="note" aria-labelledby="admonition-モジュールhttpsgithubcomwillelznvim-lua-guide-jablobmasterreadmejamdモジュール-title">
 <div class="admonition-title">
+<div id="admonition-モジュールhttpsgithubcomwillelznvim-lua-guide-jablobmasterreadmejamdモジュール-title">
 <p><a href="https://github.com/willelz/nvim-lua-guide-ja/blob/master/README.ja.md#%E3%83%A2%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%AB">モジュール</a></p>
-<p><a class="admonition-anchor-link" href="#admonition-モジュールhttpsgithubcomwillelznvim-lua-guide-jablobmasterreadmejamdモジュール"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-モジュールhttpsgithubcomwillelznvim-lua-guide-jablobmasterreadmejamdモジュール"></a>
 </div>
 <div>
 <p>Luaモジュールは、runtimepath内のlua/フォルダにあります
@@ -114,10 +116,12 @@
 </div>
 <h2 id="runtimepath"><a class="header" href="#runtimepath">runtimepath</a></h2>
 <p>一個ずつ見ていきますが、<code>runtimepath</code>は<code>Neovim</code>で以下のコマンドを使用することで確認できます。</p>
-<div id="admonition-runtimepathを確認" class="admonition admonish-quote">
+<div id="admonition-runtimepathを確認" class="admonition admonish-quote" role="note" aria-labelledby="admonition-runtimepathを確認-title">
 <div class="admonition-title">
+<div id="admonition-runtimepathを確認-title">
 <p>runtimepathを確認</p>
-<p><a class="admonition-anchor-link" href="#admonition-runtimepathを確認"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-runtimepathを確認"></a>
 </div>
 <div>
 <pre><code class="language-lua">:lua print(vim.inspect(vim.api.nvim_list_runtime_paths()))
@@ -131,20 +135,24 @@
 <a name="to-footnote-1"><a href="#1">1</a></a>
 </sup></p>
 <p>(上の例は<code>unix</code>なので<code>"/home/utm-user/.config/nvim"</code>)</p>
-<div id="admonition-note" class="admonition admonish-note">
+<div id="admonition-note" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-title">
 <div class="admonition-title">
+<div id="admonition-note-title">
 <p>Note</p>
-<p><a class="admonition-anchor-link" href="#admonition-note"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-note"></a>
 </div>
 <div>
 <p>補足しておくと、OSによってホームディレクトリは違いますが、<code>~</code>や<code>$HOME</code>を使ってアクセスできます。</p>
 </div>
 </div>
 <p>ここに<code>lua</code>ディレクトリを作成することで、上に示されている「ほとんどの場合」に合致できます。</p>
-<div id="admonition-luaディレクトリを作る" class="admonition admonish-quote">
+<div id="admonition-luaディレクトリを作る" class="admonition admonish-quote" role="note" aria-labelledby="admonition-luaディレクトリを作る-title">
 <div class="admonition-title">
+<div id="admonition-luaディレクトリを作る-title">
 <p>luaディレクトリを作る</p>
-<p><a class="admonition-anchor-link" href="#admonition-luaディレクトリを作る"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-luaディレクトリを作る"></a>
 </div>
 <div>
 <pre><code class="language-sh">mkdir ~/.config/nvim/lua
@@ -152,10 +160,12 @@
 </div>
 </div>
 <p>あと、<code>runtimepath</code>絡みでもう一つポイントがあります。</p>
-<div id="admonition-runtime-fileshttpsgithubcomwillelznvim-lua-guide-jablobmasterreadmejamdruntime-files" class="admonition admonish-info">
+<div id="admonition-runtime-fileshttpsgithubcomwillelznvim-lua-guide-jablobmasterreadmejamdruntime-files" class="admonition admonish-info" role="note" aria-labelledby="admonition-runtime-fileshttpsgithubcomwillelznvim-lua-guide-jablobmasterreadmejamdruntime-files-title">
 <div class="admonition-title">
+<div id="admonition-runtime-fileshttpsgithubcomwillelznvim-lua-guide-jablobmasterreadmejamdruntime-files-title">
 <p><a href="https://github.com/willelz/nvim-lua-guide-ja/blob/master/README.ja.md#runtime-files">Runtime files</a></p>
-<p><a class="admonition-anchor-link" href="#admonition-runtime-fileshttpsgithubcomwillelznvim-lua-guide-jablobmasterreadmejamdruntime-files"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-runtime-fileshttpsgithubcomwillelznvim-lua-guide-jablobmasterreadmejamdruntime-files"></a>
 </div>
 <div>
 <p>runtimepath内にある特定のフォルダからLuaファイルを自動的に読み込めます。 現在、次のフォルダがサポートされています。</p>
@@ -176,10 +186,12 @@
 <p><code>require()</code>は<code>WezTerm</code>でも使いましたね。</p>
 <p><code>WezTerm</code>の時は<code>wezterm.lua</code> と同じディレクトリにあるファイルを読み込むことにしか使用していませんでしたが、
 もうちょっと高機能です。</p>
-<div id="admonition-モジュールhttpsgithubcomwillelznvim-lua-guide-jablobmasterreadmejamdモジュール-1" class="admonition admonish-info">
+<div id="admonition-モジュールhttpsgithubcomwillelznvim-lua-guide-jablobmasterreadmejamdモジュール-1" class="admonition admonish-info" role="note" aria-labelledby="admonition-モジュールhttpsgithubcomwillelznvim-lua-guide-jablobmasterreadmejamdモジュール-1-title">
 <div class="admonition-title">
+<div id="admonition-モジュールhttpsgithubcomwillelznvim-lua-guide-jablobmasterreadmejamdモジュール-1-title">
 <p><a href="https://github.com/willelz/nvim-lua-guide-ja/blob/master/README.ja.md#%E3%83%A2%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%AB">モジュール</a></p>
-<p><a class="admonition-anchor-link" href="#admonition-モジュールhttpsgithubcomwillelznvim-lua-guide-jablobmasterreadmejamdモジュール-1"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-モジュールhttpsgithubcomwillelznvim-lua-guide-jablobmasterreadmejamdモジュール-1"></a>
 </div>
 <div>
 <p>次のLuaコードはmyluamodule.luaをロードします。:</p>
@@ -195,10 +207,12 @@ require('other_modules/anothermodule')
 <p>フォルダにinit.luaが含まれている場合、ファイル名を指定せずにロードできます。</p>
 </div>
 </div>
-<div id="admonition-tip" class="admonition admonish-tip">
+<div id="admonition-tip" class="admonition admonish-tip" role="note" aria-labelledby="admonition-tip-title">
 <div class="admonition-title">
+<div id="admonition-tip-title">
 <p>Tip</p>
-<p><a class="admonition-anchor-link" href="#admonition-tip"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-tip"></a>
 </div>
 <div>
 <p>最後の一文は、</p>
@@ -209,19 +223,23 @@ require('other_modules/anothermodule')
 <img src="img/lua-example.webp" alt="lua-example" width="599" height="421" loading="lazy"></p>
 </div>
 </div>
-<div id="admonition-note-1" class="admonition admonish-note">
+<div id="admonition-note-1" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-1-title">
 <div class="admonition-title">
+<div id="admonition-note-1-title">
 <p>Note</p>
-<p><a class="admonition-anchor-link" href="#admonition-note-1"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-note-1"></a>
 </div>
 <div>
 <p>ここから先、特に明記しない限りは<code>~/.config/nvim/lua</code>または<code>~/AppData/Local/nvim/lua</code>ディレクトリを前提としていきます😌</p>
 </div>
 </div>
-<div id="admonition-success" class="admonition admonish-success">
+<div id="admonition-success" class="admonition admonish-success" role="note" aria-labelledby="admonition-success-title">
 <div class="admonition-title">
+<div id="admonition-success-title">
 <p>Success</p>
-<p><a class="admonition-anchor-link" href="#admonition-success"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-success"></a>
 </div>
 <div>
 <p>どう？この流れ🐮</p>

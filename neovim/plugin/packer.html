@@ -101,26 +101,30 @@
           <h1 id="packernvim"><a class="header" href="#packernvim">packer.nvim</a></h1>
 <p>では早速ですが、まずはプラグイン/パッケージマネージャーからいきます。</p>
 <p>マネージャーだったりお作法だったりは色々あるんですが、わたしは<code>packer.nvim</code>を愛用しています😆</p>
-<div id="admonition-packernvimhttpsgithubcomwbthomasonpackernvim" class="admonition admonish-info">
+<div id="admonition-packernvimhttpsgithubcomwbthomasonpackernvim" class="admonition admonish-info" role="note" aria-labelledby="admonition-packernvimhttpsgithubcomwbthomasonpackernvim-title">
 <div class="admonition-title">
+<div id="admonition-packernvimhttpsgithubcomwbthomasonpackernvim-title">
 <p><a href="https://github.com/wbthomason/packer.nvim">packer.nvim</a></p>
-<p><a class="admonition-anchor-link" href="#admonition-packernvimhttpsgithubcomwbthomasonpackernvim"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-packernvimhttpsgithubcomwbthomasonpackernvim"></a>
 </div>
 <div>
 <p>use-package inspired plugin/package management for Neovim.</p>
 <p>use-packageにインスパイアされたNeovimのプラグイン/パッケージマネージャー。</p>
 </div>
 </div>
-<div id="admonition-default" class="admonition admonish-info">
+<div id="admonition-default" class="admonition admonish-info" role="note">
 <div>
 <p>Packer is built on native packages. You may wish to read :h packages before continuing</p>
 <p>Packerはネイティブパッケージの上に構築されています。先に進む前に :h packages を読んでおくとよいでしょう。</p>
 </div>
 </div>
-<div id="admonition-requirements" class="admonition admonish-abstract">
+<div id="admonition-requirements" class="admonition admonish-abstract" role="note" aria-labelledby="admonition-requirements-title">
 <div class="admonition-title">
+<div id="admonition-requirements-title">
 <p>Requirements</p>
-<p><a class="admonition-anchor-link" href="#admonition-requirements"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-requirements"></a>
 </div>
 <div>
 <ul>
@@ -136,10 +140,12 @@
 </div>
 <p><code>Neovim v0.5.0</code>以降と<code>LuaJIT</code>については、ここまで来て今更問題にはならないと思われますが、
 <code>Windows 10</code>で動かす場合には別途操作が必要になるみたいです。(自信がないので触れられない...😰)</p>
-<div id="admonition-note" class="admonition admonish-note">
+<div id="admonition-note" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-title">
 <div class="admonition-title">
+<div id="admonition-note-title">
 <p>Note</p>
-<p><a class="admonition-anchor-link" href="#admonition-note"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-note"></a>
 </div>
 <div>
 <p>あと、(ここには書いてないけど) 当然のように<code>git</code>を使用するので、まだの人は前節へ。</p>
@@ -152,10 +158,12 @@
 <p>「とにかく動かしてみたいから、細かい話はあとだー❗」ってなっちゃうわたしが言うのも変ですが、まあ焦らず進めましょう☺️</p>
 <h2 id="download"><a class="header" href="#download">Download</a></h2>
 <p>それでは、ターミナルから手動で<code>git</code>を使い、<code>packer.nvim</code>を所定のディレクトリ(<code>packpath</code>のいずれか)に配置します。</p>
-<div id="admonition-note-1" class="admonition admonish-note">
+<div id="admonition-note-1" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-1-title">
 <div class="admonition-title">
+<div id="admonition-note-1-title">
 <p>Note</p>
-<p><a class="admonition-anchor-link" href="#admonition-note-1"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-note-1"></a>
 </div>
 <div>
 <p><code>packpath</code>については、ちょっと自信ないんですが、</p>
@@ -166,10 +174,12 @@
 </div>
 </div>
 <p>"Quickstart" にあるように、順を追ってやっていきましょう。</p>
-<div id="admonition-git-clone" class="admonition admonish-quote">
+<div id="admonition-git-clone" class="admonition admonish-quote" role="note" aria-labelledby="admonition-git-clone-title">
 <div class="admonition-title">
+<div id="admonition-git-clone-title">
 <p>Git Clone</p>
-<p><a class="admonition-anchor-link" href="#admonition-git-clone"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-git-clone"></a>
 </div>
 <div>
 <p>Unix, Linux Installation</p>
@@ -182,10 +192,12 @@
 </div>
 <p>わたしの環境では "/home/utm-user/.local/share/nvim/site" が<code>packpath</code>に含まれていたので、例示されているパスのままで進めていますが、
 環境によってはこのパスが含まれていないかもしれません。</p>
-<div id="admonition-note-2" class="admonition admonish-note">
+<div id="admonition-note-2" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-2-title">
 <div class="admonition-title">
+<div id="admonition-note-2-title">
 <p>Note</p>
-<p><a class="admonition-anchor-link" href="#admonition-note-2"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-note-2"></a>
 </div>
 <div>
 <p>(仮想環境ではあるんですが)<code>Ubuntu Server for ARM</code>では<code>apt</code>からインストールできる<code>Neovim</code>のバージョンが異様に低かったので
@@ -201,30 +213,36 @@ git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.var/app/io.neov
 <h2 id="設定ファイル"><a class="header" href="#設定ファイル">設定ファイル</a></h2>
 <p>ここからはわたしのやり方を並べていくんですが、まずは設定ファイルを新しく作りましょう。</p>
 <p><code>lua</code>ディレクトリに新しく<code>extensions</code>ディレクトリを作成します。</p>
-<div id="admonition-extensionsディレクトリを作る" class="admonition admonish-quote">
+<div id="admonition-extensionsディレクトリを作る" class="admonition admonish-quote" role="note" aria-labelledby="admonition-extensionsディレクトリを作る-title">
 <div class="admonition-title">
+<div id="admonition-extensionsディレクトリを作る-title">
 <p>extensionsディレクトリを作る</p>
-<p><a class="admonition-anchor-link" href="#admonition-extensionsディレクトリを作る"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-extensionsディレクトリを作る"></a>
 </div>
 <div>
 <pre><code class="language-sh">mkdir extensions
 </code></pre>
 </div>
 </div>
-<div id="admonition-note-3" class="admonition admonish-note">
+<div id="admonition-note-3" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-3-title">
 <div class="admonition-title">
+<div id="admonition-note-3-title">
 <p>Note</p>
-<p><a class="admonition-anchor-link" href="#admonition-note-3"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-note-3"></a>
 </div>
 <div>
 <p>ディレクトリ名はやっぱり何でも良くて、それこそ<code>plugin</code>とかしてもいいんですが、何ならこの後すぐにややこしくなるので<code>extensions</code>としました。</p>
 </div>
 </div>
 <p>で、その中に<code>init.lua</code>を作っちゃいましょう。</p>
-<div id="admonition-extensionsinitlua" class="admonition admonish-example">
+<div id="admonition-extensionsinitlua" class="admonition admonish-example" role="note" aria-labelledby="admonition-extensionsinitlua-title">
 <div class="admonition-title">
+<div id="admonition-extensionsinitlua-title">
 <p>extensions/init.lua</p>
-<p><a class="admonition-anchor-link" href="#admonition-extensionsinitlua"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-extensionsinitlua"></a>
 </div>
 <div>
 <pre><code class="language-lua">require('packer').startup(function()
@@ -237,10 +255,12 @@ end)
 <img src="img/first-tree.webp" alt="first-tree" width="564" height="203" loading="lazy"></p>
 <p>それじゃあ<code>nvim</code>直下の<code>init.lua</code>から呼び出してあげましょう。(今作ったやつではなく、前からいるやつです。)</p>
 <p><code>options</code>とか<code>keybinds</code>を呼び出しているところに並べてあげてください😄</p>
-<div id="admonition-initlua" class="admonition admonish-example">
+<div id="admonition-initlua" class="admonition admonish-example" role="note" aria-labelledby="admonition-initlua-title">
 <div class="admonition-title">
+<div id="admonition-initlua-title">
 <p>../init.lua</p>
-<p><a class="admonition-anchor-link" href="#admonition-initlua"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-initlua"></a>
 </div>
 <div>
 <pre><code class="language-lua">require 'extensions'
@@ -250,10 +270,12 @@ end)
 <h2 id="起動"><a class="header" href="#起動">起動</a></h2>
 <p>ここまでを行った状態で<code>nvim</code>を起動すると...❓何も起きませんね😮</p>
 <p>ちなみに、今の状態で</p>
-<div id="admonition-runtimepathを確認" class="admonition admonish-quote">
+<div id="admonition-runtimepathを確認" class="admonition admonish-quote" role="note" aria-labelledby="admonition-runtimepathを確認-title">
 <div class="admonition-title">
+<div id="admonition-runtimepathを確認-title">
 <p>runtimepathを確認</p>
-<p><a class="admonition-anchor-link" href="#admonition-runtimepathを確認"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-runtimepathを確認"></a>
 </div>
 <div>
 <pre><code class="language-lua">:lua print(vim.inspect(vim.api.nvim_list_runtime_paths()))
@@ -263,10 +285,12 @@ end)
 ってやってみると、
 <img src="img/runtimepath.webp" alt="runtimepath" width="635" height="95" loading="lazy">
 <p>...なんか前より増えてますよね。...って❗しれっと<code>packer.nvim</code>いるし⁉️</p>
-<div id="admonition-h-packages" class="admonition admonish-info">
+<div id="admonition-h-packages" class="admonition admonish-info" role="note" aria-labelledby="admonition-h-packages-title">
 <div class="admonition-title">
+<div id="admonition-h-packages-title">
 <p>:h packages</p>
-<p><a class="admonition-anchor-link" href="#admonition-h-packages"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-h-packages"></a>
 </div>
 <div>
 <pre><code class="language-txt">On startup after processing your |config|, Nvim scans all directories in
@@ -338,10 +362,12 @@ supports the `--preview` flag as an optional first argument to preview updates
 `PackerUpdate`と`PackerCompile`を実行します。
 アップデートをプレビューするためのオプションの第一引数として `--preview` フラグをサポートします。
 </code></pre>
-<div id="admonition-note-4" class="admonition admonish-note">
+<div id="admonition-note-4" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-4-title">
 <div class="admonition-title">
+<div id="admonition-note-4-title">
 <p>Note</p>
-<p><a class="admonition-anchor-link" href="#admonition-note-4"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-note-4"></a>
 </div>
 <div>
 <p>基本的には、何か変更があったら<code>:PackerSync</code>を使えば、インストール、アップデート、コンパイルまで全て行ってくれます😉
@@ -359,10 +385,12 @@ optプラグインをすぐにロードする
 <h2 id="help"><a class="header" href="#help">Help</a></h2>
 <p><code>Neovim</code>プラグインの場合は、作者が書いてくれている<code>readme</code>を見れば、もうこれだけで済んでしまうことも多いんですが、
 (大抵は)<code>Neovim</code>の<code>Help</code>にもプラグイン固有の説明が追加されます。</p>
-<div id="admonition-quote" class="admonition admonish-quote">
+<div id="admonition-quote" class="admonition admonish-quote" role="note" aria-labelledby="admonition-quote-title">
 <div class="admonition-title">
+<div id="admonition-quote-title">
 <p>Quote</p>
-<p><a class="admonition-anchor-link" href="#admonition-quote"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-quote"></a>
 </div>
 <div>
 <pre><code class="language-vim">:h packer.nvim
@@ -372,10 +400,12 @@ optプラグインをすぐにロードする
 <img src="img/packer-help.webp" alt="packer-help" width="696" height="555" loading="lazy">
 <h2 id="floating-window"><a class="header" href="#floating-window">Floating Window</a></h2>
 <p>これは完全に見た目だけのお話なんですが、こんなのがあります。</p>
-<div id="admonition-using-a-floating-windowhttpsgithubcomwbthomasonpackernvimusing-a-floating-window" class="admonition admonish-info">
+<div id="admonition-using-a-floating-windowhttpsgithubcomwbthomasonpackernvimusing-a-floating-window" class="admonition admonish-info" role="note" aria-labelledby="admonition-using-a-floating-windowhttpsgithubcomwbthomasonpackernvimusing-a-floating-window-title">
 <div class="admonition-title">
+<div id="admonition-using-a-floating-windowhttpsgithubcomwbthomasonpackernvimusing-a-floating-window-title">
 <p><a href="https://github.com/wbthomason/packer.nvim#using-a-floating-window">Using a floating window</a></p>
-<p><a class="admonition-anchor-link" href="#admonition-using-a-floating-windowhttpsgithubcomwbthomasonpackernvimusing-a-floating-window"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-using-a-floating-windowhttpsgithubcomwbthomasonpackernvimusing-a-floating-window"></a>
 </div>
 <div>
 <p>You can configure Packer to use a floating window for command outputs by passing a utility function to packer's config:</p>
@@ -383,10 +413,12 @@ optプラグインをすぐにロードする
 </div>
 </div>
 <p>少しコードを変えてしまうんですが、<code>extensions/init.lua</code>を以下のようにしてみましょう。</p>
-<div id="admonition-extensionsinitlua-1" class="admonition admonish-example">
+<div id="admonition-extensionsinitlua-1" class="admonition admonish-example" role="note" aria-labelledby="admonition-extensionsinitlua-1-title">
 <div class="admonition-title">
+<div id="admonition-extensionsinitlua-1-title">
 <p>extensions/init.lua</p>
-<p><a class="admonition-anchor-link" href="#admonition-extensionsinitlua-1"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-extensionsinitlua-1"></a>
 </div>
 <div>
 <pre><code class="language-lua">require('packer').startup { function() -- '(' から '{' に変わってます
@@ -402,10 +434,12 @@ config = {
 </code></pre>
 </div>
 </div>
-<div id="admonition-note-5" class="admonition admonish-note">
+<div id="admonition-note-5" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-5-title">
 <div class="admonition-title">
+<div id="admonition-note-5-title">
 <p>Note</p>
-<p><a class="admonition-anchor-link" href="#admonition-note-5"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-note-5"></a>
 </div>
 <div>
 <p>上の例はちょっと変則的なインデントになっちゃってますが、きっちりやるならこうです。お好みで😉</p>
@@ -433,10 +467,12 @@ config = {
 <h2 id="wrap-up"><a class="header" href="#wrap-up">Wrap Up</a></h2>
 <p><code>pakcer.nvim</code>には便利な機能や設定がまだまだあるのですが、
 ここで説明だけしてもイメージが掴みにくいと思うので、使用する場面で、その都度注釈を入れていく形にしようと思ってます。</p>
-<div id="admonition-success" class="admonition admonish-success">
+<div id="admonition-success" class="admonition admonish-success" role="note" aria-labelledby="admonition-success-title">
 <div class="admonition-title">
+<div id="admonition-success-title">
 <p>Success</p>
-<p><a class="admonition-anchor-link" href="#admonition-success"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-success"></a>
 </div>
 <div>
 <p><code>packer.nvim</code>はこの後も出ずっぱりになるので、親しみを込めて今後は単に<code>packer</code>と呼びます🤗</p>

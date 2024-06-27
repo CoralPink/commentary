@@ -104,10 +104,12 @@
 <p>...な〜んてオープニングに時間をかけていると朝になってしまうので、早速いきましょう❗</p>
 <h2 id="previous"><a class="header" href="#previous">Previous...</a></h2>
 <p>ページを跨いだのでもう一回載っけときます。</p>
-<div id="admonition-extensionstelescopelua" class="admonition admonish-example">
+<div id="admonition-extensionstelescopelua" class="admonition admonish-example" role="note" aria-labelledby="admonition-extensionstelescopelua-title">
 <div class="admonition-title">
+<div id="admonition-extensionstelescopelua-title">
 <p>extensions/telescope.lua</p>
-<p><a class="admonition-anchor-link" href="#admonition-extensionstelescopelua"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-extensionstelescopelua"></a>
 </div>
 <div>
 <pre><code class="language-lua">local telescope = require 'telescope'
@@ -138,10 +140,12 @@ vim.keymap.set('n', '&lt;leader&gt;fh', builtin.help_tags)
 <p>ちょ〜っち寄り道して、先にわたしのおすすめ設定を紹介しちゃいます😆</p>
 <h2 id="help_tags-my-recommendation"><a class="header" href="#help_tags-my-recommendation">help_tags ✨My recommendation✨</a></h2>
 <p>こんなのを入れてみてください。</p>
-<div id="admonition-extensionstelescopelua-1" class="admonition admonish-example">
+<div id="admonition-extensionstelescopelua-1" class="admonition admonish-example" role="note" aria-labelledby="admonition-extensionstelescopelua-1-title">
 <div class="admonition-title">
+<div id="admonition-extensionstelescopelua-1-title">
 <p>extensions/telescope.lua</p>
-<p><a class="admonition-anchor-link" href="#admonition-extensionstelescopelua-1"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-extensionstelescopelua-1"></a>
 </div>
 <div>
 <pre><code class="language-lua">local themes = require 'telescope.themes'
@@ -157,10 +161,12 @@ end)
 <p>そしたら、<kbd>leader</kbd><kbd>h</kbd>としてみましょう。
 <img src="img/telescope-help_tags.webp" alt="telescope-help_tags" width="1512" height="1200" decoding="async"></p>
 <p>一目で分かるすっごいやつ...❗</p>
-<div id="admonition-h-help_tags" class="admonition admonish-info">
+<div id="admonition-h-help_tags" class="admonition admonish-info" role="note" aria-labelledby="admonition-h-help_tags-title">
 <div class="admonition-title">
+<div id="admonition-h-help_tags-title">
 <p>:h help_tags</p>
-<p><a class="admonition-anchor-link" href="#admonition-h-help_tags"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-h-help_tags"></a>
 </div>
 <div>
 <pre><code class="language-txt">builtin.help_tags({opts})                   telescope.builtin.help_tags()
@@ -189,10 +195,12 @@ end)
 <h3 id="defaults"><a class="header" href="#defaults">defaults</a></h3>
 <p>このサイトでは、<code>defaults</code>オプションのみを扱います。</p>
 <h4 id="mappings"><a class="header" href="#mappings">mappings</a></h4>
-<div id="admonition-h-telescopemappings" class="admonition admonish-info">
+<div id="admonition-h-telescopemappings" class="admonition admonish-info" role="note" aria-labelledby="admonition-h-telescopemappings-title">
 <div class="admonition-title">
+<div id="admonition-h-telescopemappings-title">
 <p>:h telescope.mappings</p>
-<p><a class="admonition-anchor-link" href="#admonition-h-telescopemappings"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-h-telescopemappings"></a>
 </div>
 <div>
 <p><code>telescope.mappings</code> is used to configure the keybindings within a telescope
@@ -209,10 +217,12 @@ see <code>telescope.actions</code></p>
 <p>このテーブルの値として使用できるビルトインアクションの多くは、 <code>telescope.actions</code> を参照してください。</p>
 </div>
 </div>
-<div id="admonition-tip" class="admonition admonish-tip">
+<div id="admonition-tip" class="admonition admonish-tip" role="note" aria-labelledby="admonition-tip-title">
 <div class="admonition-title">
+<div id="admonition-tip-title">
 <p>Tip</p>
-<p><a class="admonition-anchor-link" href="#admonition-tip"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-tip"></a>
 </div>
 <div>
 <p>このサイトでは、今後も<code>help</code>への参照を<code>:h</code>表記で統一しますが、もはや<code>telescope.help_tags</code>を使うほうが便利ですね😤</p>
@@ -225,10 +235,12 @@ see <code>telescope.actions</code></p>
 <p><code>telescope</code>の検索バーにいる時も<code>Insert Mode</code>・<code>Normal Mode</code>っていう概念は持っていて、
 <code>telescope</code>を開いた段階では<code>Insert Mode</code>になっています。</p>
 <p><kbd>Esc</kbd>をすれば<code>Normal Mode</code>に切り替わりますが、「え😮 <code>Normal Mode</code>要る❓」とか思っちゃう場合はこんなのもアリです。</p>
-<div id="admonition-extensionstelescopelua-2" class="admonition admonish-example">
+<div id="admonition-extensionstelescopelua-2" class="admonition admonish-example" role="note" aria-labelledby="admonition-extensionstelescopelua-2-title">
 <div class="admonition-title">
+<div id="admonition-extensionstelescopelua-2-title">
 <p>extensions/telescope.lua</p>
-<p><a class="admonition-anchor-link" href="#admonition-extensionstelescopelua-2"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-extensionstelescopelua-2"></a>
 </div>
 <div>
 <pre><code class="language-lua">    mappings = {
@@ -241,10 +253,12 @@ see <code>telescope.actions</code></p>
 </div>
 </div>
 <p>こうしておくと<kbd>Esc</kbd>で<code>telescope</code>からそのまま抜けます☺️</p>
-<div id="admonition-note" class="admonition admonish-note">
+<div id="admonition-note" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-title">
 <div class="admonition-title">
+<div id="admonition-note-title">
 <p>Note</p>
-<p><a class="admonition-anchor-link" href="#admonition-note"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-note"></a>
 </div>
 <div>
 <p><kbd>Ctrl-[</kbd>派の人も<code>&lt;esc&gt;</code>を指定しておけばOKです。</p>
@@ -252,10 +266,12 @@ see <code>telescope.actions</code></p>
 </div>
 <h6 id="which_key"><a class="header" href="#which_key">which_key</a></h6>
 <p><code>telescope</code>ウィンドウを開いた状態で<kbd>Ctrl-h</kbd>とすると操作一覧が現れます。</p>
-<div id="admonition-telescopeactionswhich_key" class="admonition admonish-info">
+<div id="admonition-telescopeactionswhich_key" class="admonition admonish-info" role="note" aria-labelledby="admonition-telescopeactionswhich_key-title">
 <div class="admonition-title">
+<div id="admonition-telescopeactionswhich_key-title">
 <p>telescope.actions.which_key()</p>
-<p><a class="admonition-anchor-link" href="#admonition-telescopeactionswhich_key"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-telescopeactionswhich_key"></a>
 </div>
 <div>
 <pre><code class="language-txt">actions.which_key({prompt_bufnr})
@@ -267,10 +283,12 @@ see <code>telescope.actions</code></p>
 </div>
 <img src="img/telescope-which.webp" alt="telescope-installation" width="2088" height="1665" loading="lazy">
 <p>以下のようにコードを加えると<code>Normal Mode</code>でも操作一覧を出すことができるんですね。</p>
-<div id="admonition-extensionstelescopelua-3" class="admonition admonish-example">
+<div id="admonition-extensionstelescopelua-3" class="admonition admonish-example" role="note" aria-labelledby="admonition-extensionstelescopelua-3-title">
 <div class="admonition-title">
+<div id="admonition-extensionstelescopelua-3-title">
 <p>extensions/telescope.lua</p>
-<p><a class="admonition-anchor-link" href="#admonition-extensionstelescopelua-3"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-extensionstelescopelua-3"></a>
 </div>
 <div>
 <pre><code class="language-lua">    mappings = {
@@ -288,10 +306,12 @@ see <code>telescope.actions</code></p>
 <p>なんていうか、すっごい行き届いてますよね☺️</p>
 <h4 id="winblend"><a class="header" href="#winblend">winblend</a></h4>
 <p>「これが<code>telescope</code>の基本形ですね〜」とか言っておきながら、<code>winblend</code>はわたしが勝手に入れてるやつでした🐱</p>
-<div id="admonition-h-winblend" class="admonition admonish-info">
+<div id="admonition-h-winblend" class="admonition admonish-info" role="note" aria-labelledby="admonition-h-winblend-title">
 <div class="admonition-title">
+<div id="admonition-h-winblend-title">
 <p>:h winblend</p>
-<p><a class="admonition-anchor-link" href="#admonition-h-winblend"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-h-winblend"></a>
 </div>
 <div>
 <pre><code class="language-txt">'winblend' 'winbl'                          number	(default 0)
@@ -312,10 +332,12 @@ UI-dependent. Works best with RGB colors. 'termguicolors'
 </div>
 </div>
 <p><code>winblend</code>は<code>Neovim</code>の<code>window</code>オプションです。</p>
-<div id="admonition-tip-1" class="admonition admonish-tip">
+<div id="admonition-tip-1" class="admonition admonish-tip" role="note" aria-labelledby="admonition-tip-1-title">
 <div class="admonition-title">
+<div id="admonition-tip-1-title">
 <p>Tip</p>
-<p><a class="admonition-anchor-link" href="#admonition-tip-1"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-tip-1"></a>
 </div>
 <div>
 <p>...なので、とにかくスケスケが好きなら、<code>options.lua</code>あたりにこんなんするのも良いと思います。</p>
@@ -326,10 +348,12 @@ UI-dependent. Works best with RGB colors. 'termguicolors'
 </div>
 </div>
 <h2 id="load_extension"><a class="header" href="#load_extension">load_extension</a></h2>
-<div id="admonition-h-telescopeload_extension" class="admonition admonish-info">
+<div id="admonition-h-telescopeload_extension" class="admonition admonish-info" role="note" aria-labelledby="admonition-h-telescopeload_extension-title">
 <div class="admonition-title">
+<div id="admonition-h-telescopeload_extension-title">
 <p>:h telescope.load_extension()</p>
-<p><a class="admonition-anchor-link" href="#admonition-h-telescopeload_extension"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-h-telescopeload_extension"></a>
 </div>
 <div>
 <pre><code class="language-txt">telescope.load_extension({name})
@@ -346,10 +370,12 @@ UI-dependent. Works best with RGB colors. 'termguicolors'
 </div>
 </div>
 <p>このサイトでは<code>telescope-fzf-native.nvim</code>のロードに使用しています😌</p>
-<div id="admonition-telescope-fzf-nativenvimhttpsgithubcomnvim-telescopetelescope-fzf-nativenvim" class="admonition admonish-info">
+<div id="admonition-telescope-fzf-nativenvimhttpsgithubcomnvim-telescopetelescope-fzf-nativenvim" class="admonition admonish-info" role="note" aria-labelledby="admonition-telescope-fzf-nativenvimhttpsgithubcomnvim-telescopetelescope-fzf-nativenvim-title">
 <div class="admonition-title">
+<div id="admonition-telescope-fzf-nativenvimhttpsgithubcomnvim-telescopetelescope-fzf-nativenvim-title">
 <p><a href="https://github.com/nvim-telescope/telescope-fzf-native.nvim">telescope-fzf-native.nvim</a></p>
-<p><a class="admonition-anchor-link" href="#admonition-telescope-fzf-nativenvimhttpsgithubcomnvim-telescopetelescope-fzf-nativenvim"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-telescope-fzf-nativenvimhttpsgithubcomnvim-telescopetelescope-fzf-nativenvim"></a>
 </div>
 <div>
 <p>fzf-native is a c port of fzf. It only covers the algorithm and implements few functions to support calculating the score.
@@ -363,10 +389,12 @@ This means that the fzf syntax is supported:</p>
 で方法が示されています。</p>
 <h2 id="builtin"><a class="header" href="#builtin">builtin</a></h2>
 <p>これはもう<code>telescope.nvim</code>がオフィシャルに機能を一覧してくれているので、これだけ示します。</p>
-<div id="admonition-pickershttpsgithubcomnvim-telescopetelescopenvimpickers" class="admonition admonish-info">
+<div id="admonition-pickershttpsgithubcomnvim-telescopetelescopenvimpickers" class="admonition admonish-info" role="note" aria-labelledby="admonition-pickershttpsgithubcomnvim-telescopetelescopenvimpickers-title">
 <div class="admonition-title">
+<div id="admonition-pickershttpsgithubcomnvim-telescopetelescopenvimpickers-title">
 <p><a href="https://github.com/nvim-telescope/telescope.nvim#pickers">Pickers</a></p>
-<p><a class="admonition-anchor-link" href="#admonition-pickershttpsgithubcomnvim-telescopetelescopenvimpickers"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-pickershttpsgithubcomnvim-telescopetelescopenvimpickers"></a>
 </div>
 <div>
 <p>Built-in functions. Ready to be bound to any key you like.</p>
@@ -378,10 +406,12 @@ This means that the fzf syntax is supported:</p>
 <li><a href="https://github.com/nvim-telescope/telescope.nvim#neovim-lsp-pickers">Vim Pickers</a>: <code>builtin.tags</code>は<code>ctags</code>を使っている人向け</li>
 <li><a href="https://github.com/nvim-telescope/telescope.nvim#neovim-lsp-pickers">Neovim LSP Pickers</a>: <code>LSP</code>が動いている前提</li>
 </ul>
-<div id="admonition-note-1" class="admonition admonish-note">
+<div id="admonition-note-1" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-1-title">
 <div class="admonition-title">
+<div id="admonition-note-1-title">
 <p>Note</p>
-<p><a class="admonition-anchor-link" href="#admonition-note-1"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-note-1"></a>
 </div>
 <div>
 <p>多分なんですが、<code>ctags</code>はこのサイトでは扱いません。</p>
@@ -398,10 +428,12 @@ This means that the fzf syntax is supported:</p>
 <pre><code class="language-lua">vim.keymap.set('n', '&lt;leader&gt;ff', builtin.find_files)
 </code></pre>
 <p>...ってしていくだけですね。全部このフォーマットでいけるはずです❗</p>
-<div id="admonition-note-2" class="admonition admonish-note">
+<div id="admonition-note-2" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-2-title">
 <div class="admonition-title">
+<div id="admonition-note-2-title">
 <p>Note</p>
-<p><a class="admonition-anchor-link" href="#admonition-note-2"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-note-2"></a>
 </div>
 <div>
 <p>もちろん、キーバインドは他のと被らないようにね😉</p>
@@ -416,10 +448,12 @@ vim.keymap.set('n', '&lt;leader&gt;h', function()
   builtin.help_tags(themes.get_ivy())
 end)
 </code></pre>
-<div id="admonition-themeshttpsgithubcomnvim-telescopetelescopenvimthemes" class="admonition admonish-info">
+<div id="admonition-themeshttpsgithubcomnvim-telescopetelescopenvimthemes" class="admonition admonish-info" role="note" aria-labelledby="admonition-themeshttpsgithubcomnvim-telescopetelescopenvimthemes-title">
 <div class="admonition-title">
+<div id="admonition-themeshttpsgithubcomnvim-telescopetelescopenvimthemes-title">
 <p><a href="https://github.com/nvim-telescope/telescope.nvim#themes">Themes</a></p>
-<p><a class="admonition-anchor-link" href="#admonition-themeshttpsgithubcomnvim-telescopetelescopenvimthemes"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-themeshttpsgithubcomnvim-telescopetelescopenvimthemes"></a>
 </div>
 <div>
 <p>Common groups of settings can be set up to allow for themes.
@@ -440,10 +474,12 @@ We have some built in themes but are looking for more cool options.</p>
 <h2 id="recipes"><a class="header" href="#recipes">Recipes</a></h2>
 <p>このサイトで紹介した内容も含めて、
 お役立ち Tips はもう既に<code>telescope.nvim</code>の<code>wiki</code>にたくさんまとまっているので、試してみると面白いです😆</p>
-<div id="admonition-configuration-recipeshttpsgithubcomnvim-telescopetelescopenvimwikiconfiguration-recipes" class="admonition admonish-info">
+<div id="admonition-configuration-recipeshttpsgithubcomnvim-telescopetelescopenvimwikiconfiguration-recipes" class="admonition admonish-info" role="note" aria-labelledby="admonition-configuration-recipeshttpsgithubcomnvim-telescopetelescopenvimwikiconfiguration-recipes-title">
 <div class="admonition-title">
+<div id="admonition-configuration-recipeshttpsgithubcomnvim-telescopetelescopenvimwikiconfiguration-recipes-title">
 <p><a href="https://github.com/nvim-telescope/telescope.nvim/wiki/Configuration-Recipes">Configuration Recipes</a></p>
-<p><a class="admonition-anchor-link" href="#admonition-configuration-recipeshttpsgithubcomnvim-telescopetelescopenvimwikiconfiguration-recipes"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-configuration-recipeshttpsgithubcomnvim-telescopetelescopenvimwikiconfiguration-recipes"></a>
 </div>
 <div>
 <p>A place for the community to share configurations and custom pickers that dont fit into core or an extension</p>
@@ -455,7 +491,7 @@ We have some built in themes but are looking for more cool options.</p>
 <code>telescope.nvim</code>は、ほんとにもう目が回る😵‍💫 ぐらい多機能なんで❗</p>
 <p>...で、なんですけど😮</p>
 <p>わたしもつい最近知った便利な<code>tip</code>があるので、次回はそんな新星のおはなしです✨</p>
-<div id="admonition-default" class="admonition admonish-info">
+<div id="admonition-default" class="admonition admonish-info" role="note">
 <div>
 <p>Fly me to the moon</p>
 <p>And let me play among the stars</p>
@@ -463,7 +499,7 @@ We have some built in themes but are looking for more cool options.</p>
 <p>あの星たちに囲まれて 遊んでみたいの</p>
 </div>
 </div>
-<div id="admonition-default-1" class="admonition admonish-info">
+<div id="admonition-default-1" class="admonition admonish-info" role="note">
 <div>
 <p>Let me see what spring is like</p>
 <p>On jupiter and mars</p>
@@ -471,10 +507,12 @@ We have some built in themes but are looking for more cool options.</p>
 <p>どんなものなんだろう 見てみたいの</p>
 </div>
 </div>
-<div id="admonition-assemble" class="admonition admonish-success">
+<div id="admonition-assemble" class="admonition admonish-success" role="note" aria-labelledby="admonition-assemble-title">
 <div class="admonition-title">
+<div id="admonition-assemble-title">
 <p>Assemble</p>
-<p><a class="admonition-anchor-link" href="#admonition-assemble"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-assemble"></a>
 </div>
 <div>
 <p>さぁ〜て、この次も❗サービス、サービスぅ💕</p>

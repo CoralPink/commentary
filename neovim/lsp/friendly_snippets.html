@@ -99,7 +99,7 @@
 
         <main id="main">
           <h1 id="friendly-snippets"><a class="header" href="#friendly-snippets">Friendly Snippets</a></h1>
-<div id="admonition-default" class="admonition admonish-success">
+<div id="admonition-default" class="admonition admonish-success" role="note">
 <div>
 <p>She came in through the bathroom window<sup class="footnote-reference">
 <a name="to-footnote-1"><a href="#1">1</a></a>
@@ -109,10 +109,12 @@
 </div>
 <p>何者かがぬるっと入って来ましたが、そんな状況に反して<code>Friendly Snippets</code>は文字通りとっても friendly です❗</p>
 <p>斬らないでください😶‍🌫️ 気楽にいきましょう❗</p>
-<div id="admonition-friendly-snippetshttpsgithubcomrafamadrizfriendly-snippets" class="admonition admonish-info">
+<div id="admonition-friendly-snippetshttpsgithubcomrafamadrizfriendly-snippets" class="admonition admonish-info" role="note" aria-labelledby="admonition-friendly-snippetshttpsgithubcomrafamadrizfriendly-snippets-title">
 <div class="admonition-title">
+<div id="admonition-friendly-snippetshttpsgithubcomrafamadrizfriendly-snippets-title">
 <p><a href="https://github.com/rafamadriz/friendly-snippets">Friendly Snippets</a></p>
-<p><a class="admonition-anchor-link" href="#admonition-friendly-snippetshttpsgithubcomrafamadrizfriendly-snippets"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-friendly-snippetshttpsgithubcomrafamadrizfriendly-snippets"></a>
 </div>
 <div>
 <p>Snippets collection for a set of different programming languages.</p>
@@ -127,10 +129,12 @@ this way you can have it all in one place.</p>
 <p>もうほんとに純粋なスニペット集です😊</p>
 <h2 id="install"><a class="header" href="#install">Install</a></h2>
 <p>これ、実際は次の項で行う<code>paths</code>で認識させればいいだけなので、<code>packer</code>には更新管理だけを行ってもらいます😺</p>
-<div id="admonition-extensionsinitlua" class="admonition admonish-example">
+<div id="admonition-extensionsinitlua" class="admonition admonish-example" role="note" aria-labelledby="admonition-extensionsinitlua-title">
 <div class="admonition-title">
+<div id="admonition-extensionsinitlua-title">
 <p>extensions/init.lua</p>
-<p><a class="admonition-anchor-link" href="#admonition-extensionsinitlua"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-extensionsinitlua"></a>
 </div>
 <div>
 <pre><code class="language-diff">  use {
@@ -151,7 +155,7 @@ this way you can have it all in one place.</p>
 </code></pre>
 </div>
 </div>
-<div id="admonition-default-1" class="admonition admonish-success">
+<div id="admonition-default-1" class="admonition admonish-success" role="note">
 <div>
 <p>Protected by a silver spoon<sup class="footnote-reference">
 <a name="to-footnote-2"><a href="#2">2</a></a>
@@ -162,10 +166,12 @@ this way you can have it all in one place.</p>
 <h2 id="setup"><a class="header" href="#setup">Setup</a></h2>
 <p><code>packer</code>を使用して取得されたのであれば、当然<code>packer</code>の管理下に配置されます。</p>
 <p>パスはちょっと複雑ですね😅</p>
-<div id="admonition-extensionsluasniplua" class="admonition admonish-example">
+<div id="admonition-extensionsluasniplua" class="admonition admonish-example" role="note" aria-labelledby="admonition-extensionsluasniplua-title">
 <div class="admonition-title">
+<div id="admonition-extensionsluasniplua-title">
 <p>extensions/luasnip.lua</p>
-<p><a class="admonition-anchor-link" href="#admonition-extensionsluasniplua"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-extensionsluasniplua"></a>
 </div>
 <div>
 <pre><code class="language-lua">require('luasnip.loaders.from_vscode').lazy_load {
@@ -177,26 +183,30 @@ this way you can have it all in one place.</p>
 </code></pre>
 </div>
 </div>
-<div id="admonition-tip" class="admonition admonish-tip">
+<div id="admonition-tip" class="admonition admonish-tip" role="note" aria-labelledby="admonition-tip-title">
 <div class="admonition-title">
+<div id="admonition-tip-title">
 <p>Tip</p>
-<p><a class="admonition-anchor-link" href="#admonition-tip"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-tip"></a>
 </div>
 <div>
 <p>コード中にある<code>..</code>は<code>lua</code>の連結演算子です。</p>
 </div>
 </div>
-<div id="admonition-note" class="admonition admonish-note">
+<div id="admonition-note" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-title">
 <div class="admonition-title">
+<div id="admonition-note-title">
 <p>Note</p>
-<p><a class="admonition-anchor-link" href="#admonition-note"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-note"></a>
 </div>
 <div>
 <p>これも本当は<code>paths</code>を指定しなければもう勝手に見つけ出してくれるんですが、
 既にパスを指定する形をとってしまっているので、"指定しない"方法と併用できないんですぅ😭</p>
 </div>
 </div>
-<div id="admonition-default-2" class="admonition admonish-success">
+<div id="admonition-default-2" class="admonition admonish-success" role="note">
 <div>
 <p>Didn't anybody tell her?</p>
 <p>Didn't anybody see?</p>
@@ -208,7 +218,7 @@ this way you can have it all in one place.</p>
 <p>ここでは気分転換に<code>html</code>を開いてみました🐙
 <img src="img/friendly-snip.webp" alt="friendly-snip" width="3104" height="2100" decoding="async"></p>
 <p>ほら❗一目でわかるすっごいやつやん👺</p>
-<div id="admonition-default-3" class="admonition admonish-success">
+<div id="admonition-default-3" class="admonition admonish-success" role="note">
 <div>
 <p>Sunday's on the phone to Monday</p>
 <p>Tuesday's on the phone to me</p>
@@ -219,10 +229,12 @@ this way you can have it all in one place.</p>
 <h2 id="super-tab"><a class="header" href="#super-tab">Super-Tab</a></h2>
 <p>...と、いうことで<code>Super-Tab</code>を実践・活用できるコレクションが手に入りました❗</p>
 <p>満を持して<code>LuaSnip</code>の<code>Keymaps</code>で説明を後回しにしていた<code>Super-Tab</code>に触れていきます🏄‍♀️</p>
-<div id="admonition-keymapsluasniphtmlkeymaps" class="admonition admonish-info">
+<div id="admonition-keymapsluasniphtmlkeymaps" class="admonition admonish-info" role="note" aria-labelledby="admonition-keymapsluasniphtmlkeymaps-title">
 <div class="admonition-title">
+<div id="admonition-keymapsluasniphtmlkeymaps-title">
 <p><a href="luasnip.html#keymaps">Keymaps</a></p>
-<p><a class="admonition-anchor-link" href="#admonition-keymapsluasniphtmlkeymaps"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-keymapsluasniphtmlkeymaps"></a>
 </div>
 <div>
 <p>nvim-cmp's wiki also contains <a href="https://github.com/hrsh7th/nvim-cmp/wiki/Example-mappings#luasnip">an example</a>
@@ -253,27 +265,31 @@ for setting up a super-tab-like mapping.</p>
 <p>書きました😆
 <img src="img/super-tab9.webp" alt="super-tab9" width="650" height="230" loading="lazy"></p>
 <p>カ キ マ シ タ ァ❗❗</p>
-<div id="admonition-tip-1" class="admonition admonish-tip">
+<div id="admonition-tip-1" class="admonition admonish-tip" role="note" aria-labelledby="admonition-tip-1-title">
 <div class="admonition-title">
+<div id="admonition-tip-1-title">
 <p>Tip</p>
-<p><a class="admonition-anchor-link" href="#admonition-tip-1"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-tip-1"></a>
 </div>
 <div>
 <p><kbd>Shift-Tab</kbd>で逆に辿っていきます🏄 これは直感的ですね😉</p>
 </div>
 </div>
 <p>こんなんで伝わったかな...👮‍♀️</p>
-<div id="admonition-note-1" class="admonition admonish-note">
+<div id="admonition-note-1" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-1-title">
 <div class="admonition-title">
+<div id="admonition-note-1-title">
 <p>Note</p>
-<p><a class="admonition-anchor-link" href="#admonition-note-1"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-note-1"></a>
 </div>
 <div>
 <p>「これが<code>Super-Tab</code>です❗」っていう説明がどこにあるのか分からなかったので、
 多分これだろうぐらいで書いちゃってますが、もし違ってたらごめんなさい🥹</p>
 </div>
 </div>
-<div id="admonition-default-4" class="admonition admonish-success">
+<div id="admonition-default-4" class="admonition admonish-success" role="note">
 <div>
 <p>And so I quit the police department</p>
 <p>And got my self a steady job</p>
@@ -284,10 +300,12 @@ for setting up a super-tab-like mapping.</p>
 <h2 id="ill-take-you-all"><a class="header" href="#ill-take-you-all">I'll take you all.</a></h2>
 <p>自分で育ててないわたしが言うのもあれですが、スニペットは<code>Neovim</code>に限らずどこでも使えます🦉</p>
 <p>今回使用したのは<code>VS Code-like</code>のスニペットです。これ大事❗覚えといてね🤗</p>
-<div id="admonition-success" class="admonition admonish-success">
+<div id="admonition-success" class="admonition admonish-success" role="note" aria-labelledby="admonition-success-title">
 <div class="admonition-title">
+<div id="admonition-success-title">
 <p>Success</p>
-<p><a class="admonition-anchor-link" href="#admonition-success"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-success"></a>
 </div>
 <div>
 <p>And though she tried her best to help me</p>

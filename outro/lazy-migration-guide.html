@@ -99,7 +99,7 @@
 
         <main id="main">
           <h1 id="-migration-from-packernvim-to--lazynvim"><a class="header" href="#-migration-from-packernvim-to--lazynvim">💝 Migration from packer.nvim to 💤 lazy.nvim</a></h1>
-<div id="admonition-default" class="admonition admonish-failure">
+<div id="admonition-default" class="admonition admonish-failure" role="note">
 <div>
 <p>Won't you come out tonight?</p>
 <p>今夜、一緒に行かない？</p>
@@ -111,10 +111,12 @@
 <p>...と、いうわけで<code>lazy.nvim</code>を本格的にセットアップします😆</p>
 <h2 id="-migration-guide"><a class="header" href="#-migration-guide">📦 Migration Guide</a></h2>
 <p><code>lazy.nvim</code>には、<code>packer.nvim</code>からの移行ガイドがちゃんと用意されています。</p>
-<div id="admonition--migration-guidehttpsgithubcomfolkelazynvim-migration-guide" class="admonition admonish-info">
+<div id="admonition--migration-guidehttpsgithubcomfolkelazynvim-migration-guide" class="admonition admonish-info" role="note" aria-labelledby="admonition--migration-guidehttpsgithubcomfolkelazynvim-migration-guide-title">
 <div class="admonition-title">
+<div id="admonition--migration-guidehttpsgithubcomfolkelazynvim-migration-guide-title">
 <p><a href="https://github.com/folke/lazy.nvim#-migration-guide">📦 Migration Guide</a></p>
-<p><a class="admonition-anchor-link" href="#admonition--migration-guidehttpsgithubcomfolkelazynvim-migration-guide"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition--migration-guidehttpsgithubcomfolkelazynvim-migration-guide"></a>
 </div>
 <div>
 <p>packer.nvim</p>
@@ -136,7 +138,7 @@
 </ul>
 </div>
 </div>
-<div id="admonition-default-1" class="admonition admonish-info">
+<div id="admonition-default-1" class="admonition admonish-info" role="note">
 <div>
 <p>With packer <code>wants</code>, <code>requires</code> and <code>after</code> can be used to manage dependencies.
 With lazy, this isn't needed for most of the Lua dependencies.
@@ -147,7 +149,7 @@ lazy を使えば、Lua の依存関係のほとんどは必要ありません�
 他のプラグインがそれらを必要とするときにロードされます。</p>
 </div>
 </div>
-<div id="admonition-default-2" class="admonition admonish-info">
+<div id="admonition-default-2" class="admonition admonish-info" role="note">
 <div>
 <p>The <code>dependencies</code> key can be used to group those required plugins with the one that requires them.
 The plugins which are added as <code>dependencies</code> will always be lazy-loaded and loaded when the plugin is loaded.</p>
@@ -157,7 +159,7 @@ The plugins which are added as <code>dependencies</code> will always be lazy-loa
 </div>
 <p>あら不思議😯</p>
 <p>これに従っていくだけでチャチャっと片付いていきます❗</p>
-<div id="admonition-default-3" class="admonition admonish-failure">
+<div id="admonition-default-3" class="admonition admonish-failure" role="note">
 <div>
 <p>When the time is right</p>
 <p>Oh, will you fight that feeling in your heart?</p>
@@ -168,10 +170,12 @@ The plugins which are added as <code>dependencies</code> will always be lazy-loa
 <h3 id="-setup--init"><a class="header" href="#-setup--init">🔸 setup ➡️ init</a></h3>
 <p>これまでの<code>packer</code>の設定に見慣れていると、
 いきなりちょっと捻くれたことしてるように見えるかもしれないんですが、わたしはこんな書き方にしてます。</p>
-<div id="admonition-extensionsinitlua" class="admonition admonish-example">
+<div id="admonition-extensionsinitlua" class="admonition admonish-example" role="note" aria-labelledby="admonition-extensionsinitlua-title">
 <div class="admonition-title">
+<div id="admonition-extensionsinitlua-title">
 <p>extensions/init.lua</p>
-<p><a class="admonition-anchor-link" href="#admonition-extensionsinitlua"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-extensionsinitlua"></a>
 </div>
 <div>
 <p>新しく<code>plugins</code>という <strong>local変数</strong> を置きます。中身はまだ、からっぽでへーきです😉</p>
@@ -203,19 +207,23 @@ require("lazy").setup()
 </code></pre>
 </div>
 </div>
-<div id="admonition-note" class="admonition admonish-note">
+<div id="admonition-note" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-title">
 <div class="admonition-title">
+<div id="admonition-note-title">
 <p>Note</p>
-<p><a class="admonition-anchor-link" href="#admonition-note"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-note"></a>
 </div>
 <div>
 <p>この記述で言えば、<code>setup()</code>さえ一番下にいれば他のコードの順番は特に問題にならないはずです。</p>
 </div>
 </div>
-<div id="admonition-extensionsinitlua-1" class="admonition admonish-example">
+<div id="admonition-extensionsinitlua-1" class="admonition admonish-example" role="note" aria-labelledby="admonition-extensionsinitlua-1-title">
 <div class="admonition-title">
+<div id="admonition-extensionsinitlua-1-title">
 <p>extensions/init.lua</p>
-<p><a class="admonition-anchor-link" href="#admonition-extensionsinitlua-1"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-extensionsinitlua-1"></a>
 </div>
 <div>
 <p>そしたら、一番下にある<code>setup</code>を書き換えます。</p>
@@ -229,10 +237,12 @@ require("lazy").setup()
 <p>ここまでで問題が無いようであれば、退避しておいた<code>packer.lua</code>からプラグインのリストを
 <strong>local変数</strong> <code>plugins</code>の中に「どかっ❗」と持ってきましょう。</p>
 <p>いよいよお引越しっぽくなってきました😆</p>
-<div id="admonition-note-1" class="admonition admonish-note">
+<div id="admonition-note-1" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-1-title">
 <div class="admonition-title">
+<div id="admonition-note-1-title">
 <p>Note</p>
-<p><a class="admonition-anchor-link" href="#admonition-note-1"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-note-1"></a>
 </div>
 <div>
 <p>当然このままでは動かないので、一旦コメントアウトしてから少しずつ進めるのもいいと思います。</p>
@@ -247,10 +257,12 @@ require("lazy").setup()
 - }
 + },
 </code></pre>
-<div id="admonition-tip" class="admonition admonish-tip">
+<div id="admonition-tip" class="admonition admonish-tip" role="note" aria-labelledby="admonition-tip-title">
 <div class="admonition-title">
+<div id="admonition-tip-title">
 <p>Tip</p>
-<p><a class="admonition-anchor-link" href="#admonition-tip"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-tip"></a>
 </div>
 <div>
 <p>大雑把ではあるものの、以下の置換構文を用いると楽です。</p>
@@ -306,7 +318,7 @@ require("lazy").setup()
   },
 </code></pre>
 <h3 id="-after-ℹ-not-needed"><a class="header" href="#-after-ℹ-not-needed">🔹 after ℹ️ not needed</a></h3>
-<div id="admonition-default-4" class="admonition admonish-info">
+<div id="admonition-default-4" class="admonition admonish-info" role="note">
 <div>
 <p>not needed for most use-cases.
 Use dependencies otherwise.</p>
@@ -344,10 +356,12 @@ Use dependencies otherwise.</p>
 <h3 id="-remove-packer-command"><a class="header" href="#-remove-packer-command">🪭 Remove Packer Command</a></h3>
 <p><code>PackerLoad</code>コマンドは<code>packer.nvim</code>の機能なのでもう使えなくなっちゃいましたが、
 前項の変更をしておけば、これは消すだけで大丈夫です😉</p>
-<div id="admonition-extensionscopilotlua" class="admonition admonish-example">
+<div id="admonition-extensionscopilotlua" class="admonition admonish-example" role="note" aria-labelledby="admonition-extensionscopilotlua-title">
 <div class="admonition-title">
+<div id="admonition-extensionscopilotlua-title">
 <p>extensions/copilot.lua</p>
-<p><a class="admonition-anchor-link" href="#admonition-extensionscopilotlua"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-extensionscopilotlua"></a>
 </div>
 <div>
 <pre><code class="language-diff">  vim.api.nvim_create_user_command('Takeoff', function()
@@ -395,10 +409,12 @@ Use dependencies otherwise.</p>
 +   config = function() require('copilot_cmp').setup() end,
 + },
 </code></pre>
-<div id="admonition-note-2" class="admonition admonish-note">
+<div id="admonition-note-2" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-2-title">
 <div class="admonition-title">
+<div id="admonition-note-2-title">
 <p>Note</p>
-<p><a class="admonition-anchor-link" href="#admonition-note-2"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-note-2"></a>
 </div>
 <div>
 <p><code>telescope</code>も同じように多層になってる気がする❗確認してみて❗</p>
@@ -408,10 +424,12 @@ Use dependencies otherwise.</p>
 <h3 id="-paths-friendly-snippets"><a class="header" href="#-paths-friendly-snippets">🧙🏽‍♂️ paths (Friendly Snippets)</a></h3>
 <p>あと、<code>friendly-snippets.nvim</code>を管理下に置いている場合は、当然<code>path</code>も変わります。</p>
 <p>追っかけましょう。</p>
-<div id="admonition-extensionsluasniplua" class="admonition admonish-example">
+<div id="admonition-extensionsluasniplua" class="admonition admonish-example" role="note" aria-labelledby="admonition-extensionsluasniplua-title">
 <div class="admonition-title">
+<div id="admonition-extensionsluasniplua-title">
 <p>extensions/luasnip.lua</p>
-<p><a class="admonition-anchor-link" href="#admonition-extensionsluasniplua"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-extensionsluasniplua"></a>
 </div>
 <div>
 <pre><code class="language-diff">  require('luasnip.loaders.from_vscode').lazy_load {
@@ -425,10 +443,12 @@ Use dependencies otherwise.</p>
 </div>
 </div>
 <h2 id="-colorscheme"><a class="header" href="#-colorscheme">🌈 ColorScheme</a></h2>
-<div id="admonition--colorschemeshttpsgithubcomfolkelazynvim-colorschemes" class="admonition admonish-example">
+<div id="admonition--colorschemeshttpsgithubcomfolkelazynvim-colorschemes" class="admonition admonish-example" role="note" aria-labelledby="admonition--colorschemeshttpsgithubcomfolkelazynvim-colorschemes-title">
 <div class="admonition-title">
+<div id="admonition--colorschemeshttpsgithubcomfolkelazynvim-colorschemes-title">
 <p><a href="https://github.com/folke/lazy.nvim#-colorschemes">🌈 Colorschemes</a></p>
-<p><a class="admonition-anchor-link" href="#admonition--colorschemeshttpsgithubcomfolkelazynvim-colorschemes"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition--colorschemeshttpsgithubcomfolkelazynvim-colorschemes"></a>
 </div>
 <div>
 <p>Colorscheme plugins can be configured with <code>lazy=true</code>.
@@ -446,10 +466,12 @@ To ensure this you can use the <code>priority=1000</code> field. <strong><em>(se
 </div>
 </div>
 <p>仰せの通りに❗</p>
-<div id="admonition-extensionsinitlua-2" class="admonition admonish-example">
+<div id="admonition-extensionsinitlua-2" class="admonition admonish-example" role="note" aria-labelledby="admonition-extensionsinitlua-2-title">
 <div class="admonition-title">
+<div id="admonition-extensionsinitlua-2-title">
 <p>extensions/init.lua</p>
-<p><a class="admonition-anchor-link" href="#admonition-extensionsinitlua-2"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-extensionsinitlua-2"></a>
 </div>
 <div>
 <pre><code class="language-lua">  {
@@ -461,10 +483,12 @@ To ensure this you can use the <code>priority=1000</code> field. <strong><em>(se
 </code></pre>
 </div>
 </div>
-<div id="admonition-note-3" class="admonition admonish-note">
+<div id="admonition-note-3" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-3-title">
 <div class="admonition-title">
+<div id="admonition-note-3-title">
 <p>Note</p>
-<p><a class="admonition-anchor-link" href="#admonition-note-3"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-note-3"></a>
 </div>
 <div>
 <p>なんでかはよく分かんないんだけど、
@@ -476,10 +500,12 @@ To ensure this you can use the <code>priority=1000</code> field. <strong><em>(se
 <p>ここまでの間に、もう<code>lazy</code>が起動時に自発的にインストールを始めてくれていたかもしれないんですが、
 これでようやく全てのプラグインが元通りに動くようになったはずです❗
 <img src="img/lazy-install.webp" alt="lazy-install" width="1552" height="1050" loading="lazy"></p>
-<div id="admonition--usagehttpsgithubcomfolkelazynvim-usage" class="admonition admonish-info">
+<div id="admonition--usagehttpsgithubcomfolkelazynvim-usage" class="admonition admonish-info" role="note" aria-labelledby="admonition--usagehttpsgithubcomfolkelazynvim-usage-title">
 <div class="admonition-title">
+<div id="admonition--usagehttpsgithubcomfolkelazynvim-usage-title">
 <p><a href="https://github.com/folke/lazy.nvim#-usage">🚀 Usage</a></p>
-<p><a class="admonition-anchor-link" href="#admonition--usagehttpsgithubcomfolkelazynvim-usage"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition--usagehttpsgithubcomfolkelazynvim-usage"></a>
 </div>
 <div>
 <p>Plugins are managed with the <code>:Lazy</code> command. Open the help with <code>&lt;?&gt;</code> to see all the key mappings.</p>
@@ -497,7 +523,7 @@ Most properties can be hovered with <code>&lt;K&gt;</code> to open links, help f
 <p>...ってして、同じ感じで使えてます😊</p>
 <h3 id="-statusline"><a class="header" href="#-statusline">🛀🏽 statusline</a></h3>
 <p>これもなんか、組み込んでおくと楽しいかも😆</p>
-<div id="admonition-default-5" class="admonition admonish-info">
+<div id="admonition-default-5" class="admonition admonish-info" role="note">
 <div>
 <p><strong>lazy.nvim</strong> provides a statusline component that you can use to show the number of pending updates.</p>
 <p><strong>lazy.nvim</strong> は、保留中の更新の数を表示するために使用できるstatuslineコンポーネントを提供します。</p>
@@ -505,10 +531,12 @@ Most properties can be hovered with <code>&lt;K&gt;</code> to open links, help f
 <p><code>config.checker.enabled=true</code>を有効にしてください。</p>
 </div>
 </div>
-<div id="admonition-extensionsinitlua-3" class="admonition admonish-example">
+<div id="admonition-extensionsinitlua-3" class="admonition admonish-example" role="note" aria-labelledby="admonition-extensionsinitlua-3-title">
 <div class="admonition-title">
+<div id="admonition-extensionsinitlua-3-title">
 <p>extensions/init.lua</p>
-<p><a class="admonition-anchor-link" href="#admonition-extensionsinitlua-3"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-extensionsinitlua-3"></a>
 </div>
 <div>
 <pre><code class="language-lua">local opts = {
@@ -523,10 +551,12 @@ Most properties can be hovered with <code>&lt;K&gt;</code> to open links, help f
 </div>
 <p>で、<code>lualine.lua</code>に組み込みましょう。</p>
 <p>もちろん、<code>statusline</code>でも<code>tabline</code>でも、<code>a</code>だろうと<code>x</code>だろうと好きな場所に入れちゃいましょう❗</p>
-<div id="admonition-extensionslualinelua" class="admonition admonish-example">
+<div id="admonition-extensionslualinelua" class="admonition admonish-example" role="note" aria-labelledby="admonition-extensionslualinelua-title">
 <div class="admonition-title">
+<div id="admonition-extensionslualinelua-title">
 <p>extensions/lualine.lua</p>
-<p><a class="admonition-anchor-link" href="#admonition-extensionslualinelua"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-extensionslualinelua"></a>
 </div>
 <div>
 <pre><code class="language-lua">require("lualine").setup {
@@ -543,10 +573,12 @@ Most properties can be hovered with <code>&lt;K&gt;</code> to open links, help f
 </code></pre>
 </div>
 </div>
-<div id="admonition-note-4" class="admonition admonish-note">
+<div id="admonition-note-4" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-4-title">
 <div class="admonition-title">
+<div id="admonition-note-4-title">
 <p>Note</p>
-<p><a class="admonition-anchor-link" href="#admonition-note-4"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-note-4"></a>
 </div>
 <div>
 <p>わたしは<code>tabline</code>に入れてますが、その場合はこんな感じで出てきます😄
@@ -557,7 +589,7 @@ Most properties can be hovered with <code>&lt;K&gt;</code> to open links, help f
 <p>...あれ❓なんか全然おわんねぇな🙄</p>
 </div>
 </div>
-<div id="admonition-default-6" class="admonition admonish-failure">
+<div id="admonition-default-6" class="admonition admonish-failure" role="note">
 <div>
 <p>Don't you know that inside</p>
 <p>There's a love you can't hide</p>
@@ -569,10 +601,12 @@ Most properties can be hovered with <code>&lt;K&gt;</code> to open links, help f
 <p><code>lockfile</code>は<code>git</code>などでバージョン管理を行っている場合や、
 複数のマシンでプラグインのバージョンを完全に同じにしたい場合に重宝する機能です。</p>
 <p>これは<code>lazy.nvim</code>が更新してくれるので、わたしたちが中身に触る必要はありません😉</p>
-<div id="admonition--lockfile-lazy-lockjsonhttpsgithubcomfolkelazynvim-lockfile-lazy-lockjson" class="admonition admonish-info">
+<div id="admonition--lockfile-lazy-lockjsonhttpsgithubcomfolkelazynvim-lockfile-lazy-lockjson" class="admonition admonish-info" role="note" aria-labelledby="admonition--lockfile-lazy-lockjsonhttpsgithubcomfolkelazynvim-lockfile-lazy-lockjson-title">
 <div class="admonition-title">
+<div id="admonition--lockfile-lazy-lockjsonhttpsgithubcomfolkelazynvim-lockfile-lazy-lockjson-title">
 <p><a href="https://github.com/folke/lazy.nvim#-lockfile-lazy-lockjson">🔒 Lockfile lazy-lock.json</a></p>
-<p><a class="admonition-anchor-link" href="#admonition--lockfile-lazy-lockjsonhttpsgithubcomfolkelazynvim-lockfile-lazy-lockjson"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition--lockfile-lazy-lockjsonhttpsgithubcomfolkelazynvim-lockfile-lazy-lockjson"></a>
 </div>
 <div>
 <p>After every <strong>update</strong>, the local lockfile is updated with the installed revisions.</p>
@@ -581,7 +615,7 @@ Most properties can be hovered with <code>&lt;K&gt;</code> to open links, help f
 <p>このファイルはバージョン管理下に置くことをお勧めします。</p>
 </div>
 </div>
-<div id="admonition-default-7" class="admonition admonish-info">
+<div id="admonition-default-7" class="admonition admonish-info" role="note">
 <div>
 <p>If you use your Neovim config on multiple machines, using the lockfile,
 you can ensure that the same version of every plugin is installed.</p>
@@ -589,7 +623,7 @@ you can ensure that the same version of every plugin is installed.</p>
 すべてのプラグインが同じバージョンでインストールされるようになります。</p>
 </div>
 </div>
-<div id="admonition-default-8" class="admonition admonish-info">
+<div id="admonition-default-8" class="admonition admonish-info" role="note">
 <div>
 <p>If you are on another machine, you can do <code>:Lazy restore</code>,
 to update all your plugins to the version from the lockfile.</p>
@@ -602,10 +636,12 @@ to update all your plugins to the version from the lockfile.</p>
 <h2 id="-performance"><a class="header" href="#-performance">⚡ Performance</a></h2>
 <p>だいぶ長くなってしまいました...😅</p>
 <p>最後にこれだけ試して終わりましょう。</p>
-<div id="admonition--performancehttpsgithubcomfolkelazynvim-performance" class="admonition admonish-info">
+<div id="admonition--performancehttpsgithubcomfolkelazynvim-performance" class="admonition admonish-info" role="note" aria-labelledby="admonition--performancehttpsgithubcomfolkelazynvim-performance-title">
 <div class="admonition-title">
+<div id="admonition--performancehttpsgithubcomfolkelazynvim-performance-title">
 <p><a href="https://github.com/folke/lazy.nvim#-performance">⚡ Performance</a></p>
-<p><a class="admonition-anchor-link" href="#admonition--performancehttpsgithubcomfolkelazynvim-performance"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition--performancehttpsgithubcomfolkelazynvim-performance"></a>
 </div>
 <div>
 <p>Great care has been taken to make the startup code (<code>lazy.core</code>) as efficient as possible.
@@ -618,7 +654,7 @@ similar to what <a href="https://github.com/lewis6991/impatient.nvim">impatient.
 <p>例えば私の設定は約<code>11ms</code>で<code>93</code>のプラグインがロードされます。私は遅延ロードを多用していますが😃</p>
 </div>
 </div>
-<div id="admonition-default-9" class="admonition admonish-info">
+<div id="admonition-default-9" class="admonition admonish-info" role="note">
 <div>
 <p><strong>lazy.nvim</strong> comes with an advanced profiler <code>:Lazy profile</code> to help you improve performance.
 The profiling view shows you why and how long it took to load your plugins.</p>
@@ -627,10 +663,12 @@ The profiling view shows you why and how long it took to load your plugins.</p>
 </div>
 </div>
 <img src="img/lazy-profile.webp" alt="lazy-profile" width="1194" height="1148" loading="lazy">
-<div id="admonition-quote" class="admonition admonish-quote">
+<div id="admonition-quote" class="admonition admonish-quote" role="note" aria-labelledby="admonition-quote-title">
 <div class="admonition-title">
+<div id="admonition-quote-title">
 <p>Quote</p>
-<p><a class="admonition-anchor-link" href="#admonition-quote"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-quote"></a>
 </div>
 <div>
 <pre><code class="language-vim">:Lazy profile
@@ -641,10 +679,12 @@ The profiling view shows you why and how long it took to load your plugins.</p>
 <p>...。🙂</p>
 <p>いえ❗お引越し直後なんて大抵散らかってるもんですから⁉️</p>
 <p>なんかもう伸びしろと可能性しかないでしょう🤣</p>
-<div id="admonition-note-5" class="admonition admonish-note">
+<div id="admonition-note-5" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-5-title">
 <div class="admonition-title">
+<div id="admonition-note-5-title">
 <p>Note</p>
-<p><a class="admonition-anchor-link" href="#admonition-note-5"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-note-5"></a>
 </div>
 <div>
 <p>でも、このままでも<code>packer</code>より起動がワンテンポ早くなった気がしません❓...しますね⁉️</p>
@@ -653,14 +693,14 @@ The profiling view shows you why and how long it took to load your plugins.</p>
 </div>
 <p>あとはここから一個一個、丁寧にチューニングしていけばもっと早くなるはずです❗</p>
 <p>...ってことで、あとは任せたよ😆</p>
-<div id="admonition-default-10" class="admonition admonish-failure">
+<div id="admonition-default-10" class="admonition admonish-failure" role="note">
 <div>
 <p>So why do you fight that feeling in your heart?</p>
 <p>それなのに、なぜハートの中でその気持ちと戦うの？</p>
 </div>
 </div>
 <h2 id="-lazy-dynamite"><a class="header" href="#-lazy-dynamite">💣 Lazy Dynamite</a></h2>
-<div id="admonition-default-11" class="admonition admonish-failure">
+<div id="admonition-default-11" class="admonition admonish-failure" role="note">
 <div>
 <p>Oh, lazy dynamite
 <sup class="footnote-reference">
@@ -672,10 +712,12 @@ The profiling view shows you why and how long it took to load your plugins.</p>
 <p><code>lazy</code>はとってもダイナマイトでしたね...😵‍💫</p>
 <p>もう達成感がハンパないです😽</p>
 <p>ちゃんと乗り越えたんだもの。えらいぞ❗</p>
-<div id="admonition-success" class="admonition admonish-success">
+<div id="admonition-success" class="admonition admonish-success" role="note" aria-labelledby="admonition-success-title">
 <div class="admonition-title">
+<div id="admonition-success-title">
 <p>Success</p>
-<p><a class="admonition-anchor-link" href="#admonition-success"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-success"></a>
 </div>
 <div>
 <p>ほらね、ちゃんと実るんだよ🤗</p>

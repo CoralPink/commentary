@@ -102,10 +102,12 @@
 <p>まずはステータスバーの左側を活用していきましょう😆</p>
 <h2 id="キーボード状態"><a class="header" href="#キーボード状態">キーボード状態</a></h2>
 <p>わたしが使っているのはキーボード状態です。ひとまずコードはこんな感じ。</p>
-<div id="admonition-statuslua" class="admonition admonish-example">
+<div id="admonition-statuslua" class="admonition admonish-example" role="note" aria-labelledby="admonition-statuslua-title">
 <div class="admonition-title">
+<div id="admonition-statuslua-title">
 <p>status.lua</p>
-<p><a class="admonition-anchor-link" href="#admonition-statuslua"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-statuslua"></a>
 </div>
 <div>
 <pre><code class="language-lua">local DEFAULT_FG = { Color = '#9a9eab' }
@@ -144,10 +146,12 @@ end
 </ul>
 <h2 id="leaderキーアクティブ"><a class="header" href="#leaderキーアクティブ">Leaderキーアクティブ</a></h2>
 <p>まずは<code>leader</code>キーの状態を以下で取得します。</p>
-<div id="admonition-windowleader_is_activehttpswezfurlongorgweztermconfigluawindowleader_is_activehtml" class="admonition admonish-info">
+<div id="admonition-windowleader_is_activehttpswezfurlongorgweztermconfigluawindowleader_is_activehtml" class="admonition admonish-info" role="note" aria-labelledby="admonition-windowleader_is_activehttpswezfurlongorgweztermconfigluawindowleader_is_activehtml-title">
 <div class="admonition-title">
+<div id="admonition-windowleader_is_activehttpswezfurlongorgweztermconfigluawindowleader_is_activehtml-title">
 <p><a href="https://wezfurlong.org/wezterm/config/lua/window/leader_is_active.html">window:leader_is_active</a></p>
-<p><a class="admonition-anchor-link" href="#admonition-windowleader_is_activehttpswezfurlongorgweztermconfigluawindowleader_is_activehtml"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-windowleader_is_activehttpswezfurlongorgweztermconfigluawindowleader_is_activehtml"></a>
 </div>
 <div>
 <p>Returns true if the Leader Key is active in the window, or false otherwise.</p>
@@ -157,10 +161,12 @@ end
 <p>上のコード例では、<code>leader</code>キーがアクティブである場合はIMEよりも優先して表示します。</p>
 <h2 id="ime状態"><a class="header" href="#ime状態">IME状態</a></h2>
 <p>次にIME状態です。</p>
-<div id="admonition-windowcomposition_statushttpswezfurlongorgweztermconfigluawindowcomposition_statushtml" class="admonition admonish-info">
+<div id="admonition-windowcomposition_statushttpswezfurlongorgweztermconfigluawindowcomposition_statushtml" class="admonition admonish-info" role="note" aria-labelledby="admonition-windowcomposition_statushttpswezfurlongorgweztermconfigluawindowcomposition_statushtml-title">
 <div class="admonition-title">
+<div id="admonition-windowcomposition_statushttpswezfurlongorgweztermconfigluawindowcomposition_statushtml-title">
 <p><a href="https://wezfurlong.org/wezterm/config/lua/window/composition_status.html">window:composition_status()</a></p>
-<p><a class="admonition-anchor-link" href="#admonition-windowcomposition_statushttpswezfurlongorgweztermconfigluawindowcomposition_statushtml"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-windowcomposition_statushttpswezfurlongorgweztermconfigluawindowcomposition_statushtml"></a>
 </div>
 <div>
 <p>Returns a string holding the current dead key or IME composition text, or nil if the input layer is not in a composition state.</p>
@@ -170,10 +176,12 @@ end
 </div>
 </div>
 <p><code>GetKeyboard()</code>では、<code>window:composition_status()</code>の結果が<code>nil</code>か否かでアイコンの色を変えてます。</p>
-<div id="admonition-note" class="admonition admonish-note">
+<div id="admonition-note" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-title">
 <div class="admonition-title">
+<div id="admonition-note-title">
 <p>Note</p>
-<p><a class="admonition-anchor-link" href="#admonition-note"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-note"></a>
 </div>
 <div>
 <p>コンポジションって何だ？🤔と思われるかもしれませんが、わたしも思ってます。</p>
@@ -184,10 +192,12 @@ end
 </div>
 </div>
 <p>さて、それでは<code>update-status</code>に繋ぎ込みましょう😄</p>
-<div id="admonition-statuslua-1" class="admonition admonish-example">
+<div id="admonition-statuslua-1" class="admonition admonish-example" role="note" aria-labelledby="admonition-statuslua-1-title">
 <div class="admonition-title">
+<div id="admonition-statuslua-1-title">
 <p>status.lua</p>
-<p><a class="admonition-anchor-link" href="#admonition-statuslua-1"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-statuslua-1"></a>
 </div>
 <div>
 <pre><code class="language-lua">local function LeftUpdate(window, pane)
@@ -207,10 +217,12 @@ end)
 <div class="table-wrapper"><table><thead><tr><th style="text-align: center">normal</th><th style="text-align: center">leader key is active</th><th style="text-align: center">composition</th></tr></thead><tbody>
 <tr><td style="text-align: center"><img src="img/key-normal.webp" alt="key-normal" /></td><td style="text-align: center"><img src="img/key-leader.webp" alt="key-leader" /></td><td style="text-align: center"><img src="img/key-ime.webp" alt="key-ime" /></td></tr>
 </tbody></table>
-</div><div id="admonition-success" class="admonition admonish-success">
+</div><div id="admonition-success" class="admonition admonish-success" role="note" aria-labelledby="admonition-success-title">
 <div class="admonition-title">
+<div id="admonition-success-title">
 <p>Success</p>
-<p><a class="admonition-anchor-link" href="#admonition-success"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-success"></a>
 </div>
 <div>
 <p>こんなもんですね。動きが出て楽しいですね😆 ...ね❗️ね❗️</p>

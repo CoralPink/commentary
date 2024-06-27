@@ -100,10 +100,12 @@
         <main id="main">
           <h1 id="onenordnvim"><a class="header" href="#onenordnvim">onenord.nvim</a></h1>
 <p>わたしの一番のお気に入りカラーテーマは<code>onenord.nvim</code>です😆</p>
-<div id="admonition-onenordnvimhttpsgithubcomrmehri01onenordnvim" class="admonition admonish-info">
+<div id="admonition-onenordnvimhttpsgithubcomrmehri01onenordnvim" class="admonition admonish-info" role="note" aria-labelledby="admonition-onenordnvimhttpsgithubcomrmehri01onenordnvim-title">
 <div class="admonition-title">
+<div id="admonition-onenordnvimhttpsgithubcomrmehri01onenordnvim-title">
 <p><a href="https://github.com/rmehri01/onenord.nvim">onenord.nvim</a></p>
-<p><a class="admonition-anchor-link" href="#admonition-onenordnvimhttpsgithubcomrmehri01onenordnvim"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-onenordnvimhttpsgithubcomrmehri01onenordnvim"></a>
 </div>
 <div>
 <p>Onenord is a Neovim theme written in Lua that combines the Nord and Atom One Dark color palettes.
@@ -113,20 +115,24 @@ More specifically, it seeks to add more vibrance to the Nord theme and provide a
 </div>
 </div>
 <p>生きていたのか。<code>Atom</code>の意志は...👁️</p>
-<div id="admonition-requirements" class="admonition admonish-abstract">
+<div id="admonition-requirements" class="admonition admonish-abstract" role="note" aria-labelledby="admonition-requirements-title">
 <div class="admonition-title">
+<div id="admonition-requirements-title">
 <p>Requirements</p>
-<p><a class="admonition-anchor-link" href="#admonition-requirements"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-requirements"></a>
 </div>
 <div>
 <p>Neovim &gt;= 0.8.0</p>
 </div>
 </div>
 <p><code>Treesitter</code>を活用するため、<code>onenord.nvim</code>の要求もこれに合わせられているようですね。</p>
-<div id="admonition-note" class="admonition admonish-note">
+<div id="admonition-note" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-title">
 <div class="admonition-title">
+<div id="admonition-note-title">
 <p>Note</p>
-<p><a class="admonition-anchor-link" href="#admonition-note"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-note"></a>
 </div>
 <div>
 <p>これはちょっと前のお話ですが、<code>nvim-treesitter</code>で大規模な変更が施されたことによる甚大な影響を受けて、<code>highlight</code>が壊滅したことがありました。</p>
@@ -137,10 +143,12 @@ More specifically, it seeks to add more vibrance to the Nord theme and provide a
 </div>
 <h2 id="install--config"><a class="header" href="#install--config">Install &amp; Config</a></h2>
 <p>じゃあ、チャチャっと❗</p>
-<div id="admonition-extensionsonenordlua" class="admonition admonish-example">
+<div id="admonition-extensionsonenordlua" class="admonition admonish-example" role="note" aria-labelledby="admonition-extensionsonenordlua-title">
 <div class="admonition-title">
+<div id="admonition-extensionsonenordlua-title">
 <p>extensions/onenord.lua</p>
-<p><a class="admonition-anchor-link" href="#admonition-extensionsonenordlua"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-extensionsonenordlua"></a>
 </div>
 <div>
 <pre><code class="language-lua">local colors = require('onenord.colors').load()
@@ -170,10 +178,12 @@ require('onenord').setup {
 </div>
 </div>
 <p>これももうテンプレートですね😉 他の<code>use</code>ブロックと同列に並べてあげてください。</p>
-<div id="admonition-extensionsinitlua" class="admonition admonish-example">
+<div id="admonition-extensionsinitlua" class="admonition admonish-example" role="note" aria-labelledby="admonition-extensionsinitlua-title">
 <div class="admonition-title">
+<div id="admonition-extensionsinitlua-title">
 <p>extensions/init.lua</p>
-<p><a class="admonition-anchor-link" href="#admonition-extensionsinitlua"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-extensionsinitlua"></a>
 </div>
 <div>
 <pre><code class="language-lua">  use {
@@ -186,10 +196,12 @@ require('onenord').setup {
 <h2 id="config-description"><a class="header" href="#config-description">Config Description</a></h2>
 <p>ある程度は変数名とコメントだけで推測できると思うんですが、上の例で使ってないものも含めてフワ〜っと触れます😆
 見た感じ、<code>disable.background</code>を<code>true</code>にしている場合は効果が無いものもありそうです。</p>
-<div id="admonition-configurationhttpsgithubcomrmehri01onenordnvimconfiguration" class="admonition admonish-info">
+<div id="admonition-configurationhttpsgithubcomrmehri01onenordnvimconfiguration" class="admonition admonish-info" role="note" aria-labelledby="admonition-configurationhttpsgithubcomrmehri01onenordnvimconfiguration-title">
 <div class="admonition-title">
+<div id="admonition-configurationhttpsgithubcomrmehri01onenordnvimconfiguration-title">
 <p><a href="https://github.com/rmehri01/onenord.nvim#configuration">Configuration</a></p>
-<p><a class="admonition-anchor-link" href="#admonition-configurationhttpsgithubcomrmehri01onenordnvimconfiguration"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-configurationhttpsgithubcomrmehri01onenordnvimconfiguration"></a>
 </div>
 <div>
 <p>The configuration of different options is done through a setup function which will handle setting the colors, so there's no need to set colorscheme yourself!</p>
@@ -239,10 +251,12 @@ styles = {
 <div class="table-wrapper"><table><thead><tr><th style="text-align: center">bold</th><th style="text-align: center">NONE</th></tr></thead><tbody>
 <tr><td style="text-align: center"><img src="img/style-bold.webp" alt="bold" /></td><td style="text-align: center"><img src="img/style-none.webp" alt="disable" /></td></tr>
 </tbody></table>
-</div><div id="admonition-note-1" class="admonition admonish-note">
+</div><div id="admonition-note-1" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-1-title">
 <div class="admonition-title">
+<div id="admonition-note-1-title">
 <p>Note</p>
-<p><a class="admonition-anchor-link" href="#admonition-note-1"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-note-1"></a>
 </div>
 <div>
 <p>例えば、<code>comments</code>を<code>italic</code>にするのもオシャレなんですが、カーソルがそのままなので個人的には使いにくいかなー、なんて😅
@@ -291,10 +305,12 @@ styles = {
 
 デフォルトの色を上書きします。
 </code></pre>
-<div id="admonition-note-2" class="admonition admonish-note">
+<div id="admonition-note-2" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-2-title">
 <div class="admonition-title">
+<div id="admonition-note-2-title">
 <p>Note</p>
-<p><a class="admonition-anchor-link" href="#admonition-note-2"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-note-2"></a>
 </div>
 <div>
 <p>説明にはありませんが、実はオリジナルの色を新しく定義することもできちゃいます。</p>
@@ -303,10 +319,12 @@ styles = {
 <h2 id="wrap-up"><a class="header" href="#wrap-up">Wrap Up</a></h2>
 <p>ここまでやっただけでも見違えるような変身っぷりですね❗
 <img src="img/onenord.webp" alt="onenord" width="696" height="555" loading="lazy"></p>
-<div id="admonition-note-3" class="admonition admonish-note">
+<div id="admonition-note-3" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-3-title">
 <div class="admonition-title">
+<div id="admonition-note-3-title">
 <p>Note</p>
-<p><a class="admonition-anchor-link" href="#admonition-note-3"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-note-3"></a>
 </div>
 <div>
 <p>前のページとの比較ではさらに変化がわかりやすいです😉</p>
@@ -318,10 +336,12 @@ styles = {
 </tbody></table>
 </div></div>
 </div>
-<div id="admonition-success" class="admonition admonish-success">
+<div id="admonition-success" class="admonition admonish-success" role="note" aria-labelledby="admonition-success-title">
 <div class="admonition-title">
+<div id="admonition-success-title">
 <p>Success</p>
-<p><a class="admonition-anchor-link" href="#admonition-success"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-success"></a>
 </div>
 <div>
 <p>なんだか、ようやくひと段落って感じがします☺️</p>

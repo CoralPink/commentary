@@ -100,10 +100,12 @@
         <main id="main">
           <h1 id="window-decorations"><a class="header" href="#window-decorations">Window Decorations</a></h1>
 <p>なんか、こんなものがあるらしい...🤔</p>
-<div id="admonition-window_decorationshttpswezfurlongorgweztermconfigluaconfigwindow_decorationshtml" class="admonition admonish-info">
+<div id="admonition-window_decorationshttpswezfurlongorgweztermconfigluaconfigwindow_decorationshtml" class="admonition admonish-info" role="note" aria-labelledby="admonition-window_decorationshttpswezfurlongorgweztermconfigluaconfigwindow_decorationshtml-title">
 <div class="admonition-title">
+<div id="admonition-window_decorationshttpswezfurlongorgweztermconfigluaconfigwindow_decorationshtml-title">
 <p><a href="https://wezfurlong.org/wezterm/config/lua/config/window_decorations.html">window_decorations</a></p>
-<p><a class="admonition-anchor-link" href="#admonition-window_decorationshttpswezfurlongorgweztermconfigluaconfigwindow_decorationshtml"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-window_decorationshttpswezfurlongorgweztermconfigluaconfigwindow_decorationshtml"></a>
 </div>
 <div>
 <p>Configures whether the window has a title bar and/or resizable border.</p>
@@ -119,10 +121,12 @@
 </tbody></table>
 </div>
 <p>タイトルバーを無効にするのはなんか面白そう。</p>
-<div id="admonition-weztermlua" class="admonition admonish-example">
+<div id="admonition-weztermlua" class="admonition admonish-example" role="note" aria-labelledby="admonition-weztermlua-title">
 <div class="admonition-title">
+<div id="admonition-weztermlua-title">
 <p>wezterm.lua</p>
-<p><a class="admonition-anchor-link" href="#admonition-weztermlua"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-weztermlua"></a>
 </div>
 <div>
 <pre><code class="language-lua">window_decorations = 'RESIZE',
@@ -137,10 +141,12 @@
 <p>...。</p>
 <p>なんて言うわけないじゃん⁉️😝</p>
 <h2 id="configuring-mouse-assignments"><a class="header" href="#configuring-mouse-assignments">Configuring Mouse Assignments</a></h2>
-<div id="admonition-mouse-bindinghttpswezfurlongorgweztermconfigmousehtmlconfiguring-mouse-assignments" class="admonition admonish-info">
+<div id="admonition-mouse-bindinghttpswezfurlongorgweztermconfigmousehtmlconfiguring-mouse-assignments" class="admonition admonish-info" role="note" aria-labelledby="admonition-mouse-bindinghttpswezfurlongorgweztermconfigmousehtmlconfiguring-mouse-assignments-title">
 <div class="admonition-title">
+<div id="admonition-mouse-bindinghttpswezfurlongorgweztermconfigmousehtmlconfiguring-mouse-assignments-title">
 <p><a href="https://wezfurlong.org/wezterm/config/mouse.html#configuring-mouse-assignments">Mouse Binding</a></p>
-<p><a class="admonition-anchor-link" href="#admonition-mouse-bindinghttpswezfurlongorgweztermconfigmousehtmlconfiguring-mouse-assignments"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-mouse-bindinghttpswezfurlongorgweztermconfigmousehtmlconfiguring-mouse-assignments"></a>
 </div>
 <div>
 <p>You can define mouse actions using the mouse_bindings configuration section:</p>
@@ -149,10 +155,12 @@
 </div>
 <p>またちょっとファイルを分けましょう。<code>mousebinds.lua</code>みたいな。</p>
 <p>もうこのまま中身まで書いちゃいます😸</p>
-<div id="admonition-mousebindslua" class="admonition admonish-example">
+<div id="admonition-mousebindslua" class="admonition admonish-example" role="note" aria-labelledby="admonition-mousebindslua-title">
 <div class="admonition-title">
+<div id="admonition-mousebindslua-title">
 <p>mousebinds.lua</p>
-<p><a class="admonition-anchor-link" href="#admonition-mousebindslua"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-mousebindslua"></a>
 </div>
 <div>
 <pre><code class="language-lua">local act = require('wezterm').action
@@ -170,10 +178,12 @@ return {
 </div>
 </div>
 <p>カスタムイベントは<code>event.lua</code>の方にまとめます。</p>
-<div id="admonition-eventlua" class="admonition admonish-example">
+<div id="admonition-eventlua" class="admonition admonish-example" role="note" aria-labelledby="admonition-eventlua-title">
 <div class="admonition-title">
+<div id="admonition-eventlua-title">
 <p>event.lua</p>
-<p><a class="admonition-anchor-link" href="#admonition-eventlua"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-eventlua"></a>
 </div>
 <div>
 <pre><code class="language-lua">wezterm.on('show-title-bar', function(window, pane)
@@ -186,10 +196,12 @@ end)
 </div>
 </div>
 <p>いつも通り、<code>wezterm.lua</code>から読み込みます。<code>keybinds</code>と同じ流れ😌</p>
-<div id="admonition-weztermlua-1" class="admonition admonish-example">
+<div id="admonition-weztermlua-1" class="admonition admonish-example" role="note" aria-labelledby="admonition-weztermlua-1-title">
 <div class="admonition-title">
+<div id="admonition-weztermlua-1-title">
 <p>wezterm.lua</p>
-<p><a class="admonition-anchor-link" href="#admonition-weztermlua-1"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-weztermlua-1"></a>
 </div>
 <div>
 <pre><code class="language-lua">  mouse_bindings = require('mousebinds').mouse_bindings,
@@ -199,10 +211,12 @@ end)
 <p>これで一回動かしてみましょう。ウィンドウをクリックすると...、
 <img src="img/decorations2.webp" alt="decorations2" width="621" height="474" loading="lazy"></p>
 <p>タイトルバーが現れました。やったね😆</p>
-<div id="admonition-tip" class="admonition admonish-tip">
+<div id="admonition-tip" class="admonition admonish-tip" role="note" aria-labelledby="admonition-tip-title">
 <div class="admonition-title">
+<div id="admonition-tip-title">
 <p>Tip</p>
-<p><a class="admonition-anchor-link" href="#admonition-tip"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-tip"></a>
 </div>
 <div>
 <p>例えば<code>Neovim</code>みたいな、マウス操作に対応しているアプリケーションを動かしてる時だと、
@@ -219,10 +233,12 @@ end)
 <p>...。</p>
 <p>なんて言うわけないじゃん⁉️😝</p>
 <h2 id="ここでも-window-focus-changed"><a class="header" href="#ここでも-window-focus-changed">ここでも window-focus-changed</a></h2>
-<div id="admonition-eventlua-1" class="admonition admonish-example">
+<div id="admonition-eventlua-1" class="admonition admonish-example" role="note" aria-labelledby="admonition-eventlua-1-title">
 <div class="admonition-title">
+<div id="admonition-eventlua-1-title">
 <p>event.lua</p>
-<p><a class="admonition-anchor-link" href="#admonition-eventlua-1"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-eventlua-1"></a>
 </div>
 <div>
 <pre><code class="language-lua">function DisableWindowDecorations(window, interval)
@@ -248,10 +264,12 @@ end)
 <p>はい。ウィンドウのフォーカスを外すと引っ込むようにしてみました。</p>
 <p>あ、前のページでも挙げてましたが、<code>wezterm.on</code>は同じイベントがいくつ被っても平気です😉</p>
 <p>こんなんなんぼあってもええですからね。</p>
-<div id="admonition-weztermonevent_name-callbackhttpswezfurlongorgweztermconfigluaweztermonhtml" class="admonition admonish-info">
+<div id="admonition-weztermonevent_name-callbackhttpswezfurlongorgweztermconfigluaweztermonhtml" class="admonition admonish-info" role="note" aria-labelledby="admonition-weztermonevent_name-callbackhttpswezfurlongorgweztermconfigluaweztermonhtml-title">
 <div class="admonition-title">
+<div id="admonition-weztermonevent_name-callbackhttpswezfurlongorgweztermconfigluaweztermonhtml-title">
 <p><a href="https://wezfurlong.org/wezterm/config/lua/wezterm/on.html">wezterm.on(event_name, callback)</a></p>
-<p><a class="admonition-anchor-link" href="#admonition-weztermonevent_name-callbackhttpswezfurlongorgweztermconfigluaweztermonhtml"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-weztermonevent_name-callbackhttpswezfurlongorgweztermconfigluaweztermonhtml"></a>
 </div>
 <div>
 <p>wezterm.on can register multiple callbacks for the same event; internally an ordered list of callbacks is maintained for each event.
@@ -262,10 +280,12 @@ When the event is emitted, each of the registered callbacks is called in the ord
 </div>
 <p>え❓😮 <code>DisableWindowDecorations</code>にある<code>interval</code>は何かって❓</p>
 <p>かなわんなあ。最初に記述した<code>show-title-bar</code>イベントに少しだけ手を加えましょ😄</p>
-<div id="admonition-eventlua-2" class="admonition admonish-example">
+<div id="admonition-eventlua-2" class="admonition admonish-example" role="note" aria-labelledby="admonition-eventlua-2-title">
 <div class="admonition-title">
+<div id="admonition-eventlua-2-title">
 <p>event.lua</p>
-<p><a class="admonition-anchor-link" href="#admonition-eventlua-2"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-eventlua-2"></a>
 </div>
 <div>
 <pre><code class="language-lua">-- これを追加して...、
@@ -286,10 +306,12 @@ end)
 <p>これで<code>TITLE_BAR_DISPLAY_TIME</code>時間経過後、勝手に消えるようになってるはずです。どうでしょう😆</p>
 <p>え❓😮 <code>DisableWindowDecorations</code>にある<code>sleep_ms()</code>は何かって❓</p>
 <p>かなわんなあ。ちょっと不自然な気がするけど、これしか無かってん...😿</p>
-<div id="admonition-weztermsleep_msmillisecondshttpswezfurlongorgweztermconfigluaweztermsleep_mshtml" class="admonition admonish-info">
+<div id="admonition-weztermsleep_msmillisecondshttpswezfurlongorgweztermconfigluaweztermsleep_mshtml" class="admonition admonish-info" role="note" aria-labelledby="admonition-weztermsleep_msmillisecondshttpswezfurlongorgweztermconfigluaweztermsleep_mshtml-title">
 <div class="admonition-title">
+<div id="admonition-weztermsleep_msmillisecondshttpswezfurlongorgweztermconfigluaweztermsleep_mshtml-title">
 <p><a href="https://wezfurlong.org/wezterm/config/lua/wezterm/sleep_ms.html">wezterm.sleep_ms(milliseconds)</a></p>
-<p><a class="admonition-anchor-link" href="#admonition-weztermsleep_msmillisecondshttpswezfurlongorgweztermconfigluaweztermsleep_mshtml"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-weztermsleep_msmillisecondshttpswezfurlongorgweztermconfigluaweztermsleep_mshtml"></a>
 </div>
 <div>
 <p>wezterm.sleep_ms suspends execution of the script for the specified number of milliseconds.
@@ -299,10 +321,12 @@ After that time period has elapsed, the script continues running at the next sta
 </div>
 </div>
 <p>他になんかもっとええのあったら教えてな〜☺️</p>
-<div id="admonition-note" class="admonition admonish-note">
+<div id="admonition-note" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-title">
 <div class="admonition-title">
+<div id="admonition-note-title">
 <p>Note</p>
-<p><a class="admonition-anchor-link" href="#admonition-note"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-note"></a>
 </div>
 <div>
 <p>うちな〜、<code>Raycast</code><sup class="footnote-reference">
@@ -316,15 +340,17 @@ After that time period has elapsed, the script continues running at the next sta
 <p>なんでやねん🫱</p>
 </div>
 </div>
-<div id="admonition-default" class="admonition admonish-note">
+<div id="admonition-default" class="admonition admonish-note" role="note">
 <div>
 <p>...あれ❓上の問題、出たり出なかったりする...。なにが違うねんな〜❗</p>
 </div>
 </div>
-<div id="admonition-success" class="admonition admonish-success">
+<div id="admonition-success" class="admonition admonish-success" role="note" aria-labelledby="admonition-success-title">
 <div class="admonition-title">
+<div id="admonition-success-title">
 <p>Success</p>
-<p><a class="admonition-anchor-link" href="#admonition-success"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-success"></a>
 </div>
 <div>
 <p>なんか色々ありましたが、実際動かしてみたらこれ、すごい面白くないですか⁉️😆</p>

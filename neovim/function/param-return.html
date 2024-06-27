@@ -113,10 +113,12 @@ vim.keymap.set('n', '&lt;Leader&gt;3', testfunc)
 </code></pre>
 <img src="img/call-function3.webp" alt="call-function3" width="696" height="82" decoding="async">
 <p>いい感じ〜❗</p>
-<div id="admonition-note" class="admonition admonish-note">
+<div id="admonition-note" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-title">
 <div class="admonition-title">
+<div id="admonition-note-title">
 <p>Note</p>
-<p><a class="admonition-anchor-link" href="#admonition-note"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-note"></a>
 </div>
 <div>
 <p>もちろん、別の場所から呼ばれない関数であれば<code>無名関数</code>を使えば良いので、
@@ -126,10 +128,12 @@ vim.keymap.set('n', '&lt;Leader&gt;3', testfunc)
 <h2 id="パラメータを渡す"><a class="header" href="#パラメータを渡す">パラメータを渡す</a></h2>
 <p>さて、上の項でなんだか急に<code>keymap.set</code>がスッキリして見えるのは、この辺りの話が関わってきます😌</p>
 <p>例えば、これはエラーになります。</p>
-<div id="admonition-error" class="admonition admonish-danger">
+<div id="admonition-error" class="admonition admonish-danger" role="note" aria-labelledby="admonition-error-title">
 <div class="admonition-title">
+<div id="admonition-error-title">
 <p>Error</p>
-<p><a class="admonition-anchor-link" href="#admonition-error"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-error"></a>
 </div>
 <div>
 <pre><code class="language-lua">function testparam(str)
@@ -167,10 +171,12 @@ vim.keymap.set('n', '&lt;Leader&gt;5', testret)
 <p>関数に<code>()</code>があったりなかったりするのはなんでなんだろうなーってなるんですけど、
 要は<code>()</code>をつけちゃうと<code>function</code>型ではなくてこの<code>functionの戻り値</code>の型は何かなー❓って判断をしに行っちゃうんですね😮</p>
 <p>今回は<code>vim.keymap.set()</code>を使用しているので、もう一回ヘルプを見返して欲しいんですけど、</p>
-<div id="admonition-h-keymapset" class="admonition admonish-info">
+<div id="admonition-h-keymapset" class="admonition admonish-info" role="note" aria-labelledby="admonition-h-keymapset-title">
 <div class="admonition-title">
+<div id="admonition-h-keymapset-title">
 <p>:h keymap.set</p>
-<p><a class="admonition-anchor-link" href="#admonition-h-keymapset"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-h-keymapset"></a>
 </div>
 <div>
 <pre><code class="language-txt">  • {rhs}   string|function
@@ -178,10 +184,12 @@ vim.keymap.set('n', '&lt;Leader&gt;5', testret)
 </div>
 </div>
 <p>これ、一回動かしてみればわかると思うんですが...、</p>
-<div id="admonition-error-1" class="admonition admonish-danger">
+<div id="admonition-error-1" class="admonition admonish-danger" role="note" aria-labelledby="admonition-error-1-title">
 <div class="admonition-title">
+<div id="admonition-error-1-title">
 <p>Error</p>
-<p><a class="admonition-anchor-link" href="#admonition-error-1"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-error-1"></a>
 </div>
 <div>
 <pre><code class="language-lua">-- "通常の function を呼び出す" 項で作った testfunc() を呼び出す
@@ -192,10 +200,12 @@ vim.keymap.set('n', '&lt;Leader&gt;6', testfunc())
 <img src="img/call-function4.webp" alt="call-function4" width="672" height="162" loading="lazy">
 <p><code>rhs: expected string|function, got nil</code>って言われちゃいます😩</p>
 <p><code>testfunc()</code>は戻り値が無いので<code>nil</code>ですね😰...ごもっとも過ぎて、ぐうの音も出ないやつ。</p>
-<div id="admonition-note-1" class="admonition admonish-note">
+<div id="admonition-note-1" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-1-title">
 <div class="admonition-title">
+<div id="admonition-note-1-title">
 <p>Note</p>
-<p><a class="admonition-anchor-link" href="#admonition-note-1"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-note-1"></a>
 </div>
 <div>
 <p>付け加えて言うと、<code>testfunc()</code>自体はちゃんと動作してるので、ここから返した後にエラーが起きたってことですよね。</p>
@@ -217,26 +227,30 @@ vim.keymap.set('n', '&lt;Leader&gt;8', testcall2())
 </code></pre>
 <p><code>keymap.set</code>の<code>{rhs}</code>が<code>testcall1()</code>は<code>string</code>、<code>testcall2()</code>は<code>function</code>で戻ってくるのでOKです❗</p>
 <p>ちゃんと<code>&lt;leader&gt;7</code>でコマンドモードに入ったり、<code>&lt;Leader&gt;8</code>でお返事されたりしますよね☺️</p>
-<div id="admonition-note-2" class="admonition admonish-note">
+<div id="admonition-note-2" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-2-title">
 <div class="admonition-title">
+<div id="admonition-note-2-title">
 <p>Note</p>
-<p><a class="admonition-anchor-link" href="#admonition-note-2"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-note-2"></a>
 </div>
 <div>
 <p>これだけだと実用性ゼロなコードにしか見えないんですけど、例えば「状態によって実行する処理を変える」とかやりたい時に使えそうですね。</p>
 </div>
 </div>
-<div id="admonition-success" class="admonition admonish-success">
+<div id="admonition-success" class="admonition admonish-success" role="note" aria-labelledby="admonition-success-title">
 <div class="admonition-title">
+<div id="admonition-success-title">
 <p>Success</p>
-<p><a class="admonition-anchor-link" href="#admonition-success"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-success"></a>
 </div>
 <div>
 <p>この辺りは言葉にしちゃうとややこしい感じがしないでもないんですけど、使っていればすぐに慣れると思います😆</p>
 <p>実際、わたしは割と感覚で書いています...😅</p>
 </div>
 </div>
-<div id="admonition-default" class="admonition admonish-success">
+<div id="admonition-default" class="admonition admonish-success" role="note">
 <div>
 <div style="text-align: center">
   FUNCTION WILL RETURN

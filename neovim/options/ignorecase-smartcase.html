@@ -100,10 +100,12 @@
         <main id="main">
           <h1 id="ignorecase--smartcase"><a class="header" href="#ignorecase--smartcase">ignorecase / smartcase</a></h1>
 <p>この2つは検索に関するオプションなのでまとめていっちゃいます😆</p>
-<div id="admonition-h-ignorecase" class="admonition admonish-info">
+<div id="admonition-h-ignorecase" class="admonition admonish-info" role="note" aria-labelledby="admonition-h-ignorecase-title">
 <div class="admonition-title">
+<div id="admonition-h-ignorecase-title">
 <p>:h ignorecase</p>
-<p><a class="admonition-anchor-link" href="#admonition-h-ignorecase"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-h-ignorecase"></a>
 </div>
 <div>
 <pre><code class="language-txt">7. Ignoring case in a pattern          /ignorecase
@@ -127,10 +129,12 @@ pattern	'ignorecase' 'smartcase' matches
 </code></pre>
 </div>
 </div>
-<div id="admonition-h-smartcase" class="admonition admonish-info">
+<div id="admonition-h-smartcase" class="admonition admonish-info" role="note" aria-labelledby="admonition-h-smartcase-title">
 <div class="admonition-title">
+<div id="admonition-h-smartcase-title">
 <p>:h smartcase</p>
-<p><a class="admonition-anchor-link" href="#admonition-h-smartcase"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-h-smartcase"></a>
 </div>
 <div>
 <pre><code class="language-txt">'smartcase' 'scs' boolean (default off)
@@ -145,10 +149,12 @@ case characters.  Only used when the search pattern is typed and
 </code></pre>
 </div>
 </div>
-<div id="admonition-optionslua" class="admonition admonish-example">
+<div id="admonition-optionslua" class="admonition admonish-example" role="note" aria-labelledby="admonition-optionslua-title">
 <div class="admonition-title">
+<div id="admonition-optionslua-title">
 <p>options.lua</p>
-<p><a class="admonition-anchor-link" href="#admonition-optionslua"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-optionslua"></a>
 </div>
 <div>
 <pre><code class="language-lua">vim.api.nvim_set_option('ignorecase', true)
@@ -157,10 +163,12 @@ vim.api.nvim_set_option('smartcase', true)
 </div>
 </div>
 <p>これは実際に動かしてみましょう😉 まずは以下の文章を入れてみて下さい。</p>
-<div id="admonition-文章例" class="admonition admonish-abstract">
+<div id="admonition-文章例" class="admonition admonish-abstract" role="note" aria-labelledby="admonition-文章例-title">
 <div class="admonition-title">
+<div id="admonition-文章例-title">
 <p>文章例</p>
-<p><a class="admonition-anchor-link" href="#admonition-文章例"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-文章例"></a>
 </div>
 <div>
 <p>She's got a ticket to ride, but she don’t care.</p>
@@ -182,20 +190,24 @@ vim.api.nvim_set_option('smartcase', true)
 <img src="img/search-she2.webp" alt="search-she1" width="521" height="244" loading="lazy">
 <p><code>She</code>だけに反応しましたね。</p>
 <p>要は、「大文字が含まれていれば大小区別するけど、含まれてないなら大小無視します。」っていう設定をしたんです。</p>
-<div id="admonition-note" class="admonition admonish-note">
+<div id="admonition-note" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-title">
 <div class="admonition-title">
+<div id="admonition-note-title">
 <p>Note</p>
-<p><a class="admonition-anchor-link" href="#admonition-note"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-note"></a>
 </div>
 <div>
 <p>ちなみに、<code>/sHe</code>と検索すると<code>sHe</code>だけに反応します。</p>
 <p>先頭かどうかに関わらず「大文字を含んでいるから」っていう理屈ですね。</p>
 </div>
 </div>
-<div id="admonition-success" class="admonition admonish-success">
+<div id="admonition-success" class="admonition admonish-success" role="note" aria-labelledby="admonition-success-title">
 <div class="admonition-title">
+<div id="admonition-success-title">
 <p>Success</p>
-<p><a class="admonition-anchor-link" href="#admonition-success"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-success"></a>
 </div>
 <div>
 <p>なんか色々難しく書いてあるので不安になりますが、動かしてみれば簡単ですね☺️</p>

@@ -101,10 +101,12 @@
           <h1 id="gitsignsnvim"><a class="header" href="#gitsignsnvim">gitsigns.nvim</a></h1>
 <p>今回は<code>gitsigns.nvim</code>です。</p>
 <p>人によっては<code>git</code>を使っていないかもしれないんだけど、これをきっかけに挑戦してみると楽しいと思います。</p>
-<div id="admonition-gitsignsnvimhttpsgithubcomlewis6991gitsignsnvim" class="admonition admonish-info">
+<div id="admonition-gitsignsnvimhttpsgithubcomlewis6991gitsignsnvim" class="admonition admonish-info" role="note" aria-labelledby="admonition-gitsignsnvimhttpsgithubcomlewis6991gitsignsnvim-title">
 <div class="admonition-title">
+<div id="admonition-gitsignsnvimhttpsgithubcomlewis6991gitsignsnvim-title">
 <p><a href="https://github.com/lewis6991/gitsigns.nvim">gitsigns.nvim</a></p>
-<p><a class="admonition-anchor-link" href="#admonition-gitsignsnvimhttpsgithubcomlewis6991gitsignsnvim"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-gitsignsnvimhttpsgithubcomlewis6991gitsignsnvim"></a>
 </div>
 <div>
 <p>Super fast git decorations implemented purely in lua/teal.</p>
@@ -112,10 +114,12 @@
 </div>
 </div>
 <p>だよねー。もう Christmas🎄 だもんねー😆 華やかな "装飾" を施していきましょう❗</p>
-<div id="admonition-requirements" class="admonition admonish-abstract">
+<div id="admonition-requirements" class="admonition admonish-abstract" role="note" aria-labelledby="admonition-requirements-title">
 <div class="admonition-title">
+<div id="admonition-requirements-title">
 <p>Requirements</p>
-<p><a class="admonition-anchor-link" href="#admonition-requirements"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-requirements"></a>
 </div>
 <div>
 <p>Neovim &gt;= 0.7.0</p>
@@ -133,10 +137,12 @@
 <p>今回は色々カスタマイズしていきたいので、
 まずは<a href="https://github.com/lewis6991/gitsigns.nvim#usage">Usage</a>に示されているデフォルトセッティングを入れておくことにしましょう。</p>
 <p>これを基に、あとでカスタマイズしていきます。</p>
-<div id="admonition-extensionsgitsignslua" class="admonition admonish-example">
+<div id="admonition-extensionsgitsignslua" class="admonition admonish-example" role="note" aria-labelledby="admonition-extensionsgitsignslua-title">
 <div class="admonition-title">
+<div id="admonition-extensionsgitsignslua-title">
 <p>extensions/gitsigns.lua</p>
-<p><a class="admonition-anchor-link" href="#admonition-extensionsgitsignslua"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-extensionsgitsignslua"></a>
 </div>
 <div>
 <pre><code class="language-lua">require('gitsigns').setup {
@@ -184,10 +190,12 @@
 </code></pre>
 </div>
 </div>
-<div id="admonition-extensionsinitlua" class="admonition admonish-example">
+<div id="admonition-extensionsinitlua" class="admonition admonish-example" role="note" aria-labelledby="admonition-extensionsinitlua-title">
 <div class="admonition-title">
+<div id="admonition-extensionsinitlua-title">
 <p>extensions/init.lua</p>
-<p><a class="admonition-anchor-link" href="#admonition-extensionsinitlua"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-extensionsinitlua"></a>
 </div>
 <div>
 <pre><code class="language-lua">use {
@@ -201,10 +209,12 @@
 <p>ってことで、もうすっかりお馴染みの<code>:PackerSync</code>😆
 <img src="img/gitsigns-install.webp" alt="gitsigns-install" width="696" height="555" decoding="async"></p>
 <p>もし<code>git</code>の管理下に居たのなら、もうこの時点で<code>sigincolumn</code>に装飾🎄がされてますね❗yeah!! 🍾</p>
-<div id="admonition-note" class="admonition admonish-note">
+<div id="admonition-note" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-title">
 <div class="admonition-title">
+<div id="admonition-note-title">
 <p>Note</p>
-<p><a class="admonition-anchor-link" href="#admonition-note"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-note"></a>
 </div>
 <div>
 <p>フライングで登場していた<a href="../options/signcolumn.html">signcolumn</a>
@@ -212,10 +222,12 @@
 <p>まあなんか、やってやったぜってな感じはあります☺️</p>
 </div>
 </div>
-<div id="admonition-warning" class="admonition admonish-warning">
+<div id="admonition-warning" class="admonition admonish-warning" role="note" aria-labelledby="admonition-warning-title">
 <div class="admonition-title">
+<div id="admonition-warning-title">
 <p>Warning</p>
-<p><a class="admonition-anchor-link" href="#admonition-warning"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-warning"></a>
 </div>
 <div>
 <p><code>Neovim</code>の<code>nightly</code>ビルドや開発ビルドを実行している場合は、<code>tag</code>オプションを使用しないでください!</p>
@@ -230,20 +242,24 @@
 <p>カスタマイズに入る前に、キーマップも入れておきましょう。</p>
 <p>キーマップはデフォルトでは有効になっていないようなので、
 これも<a href="https://github.com/lewis6991/gitsigns.nvim#keymaps">Keymaps</a>からそのまま貼り付けちゃいます。</p>
-<div id="admonition-keymaps" class="admonition admonish-info">
+<div id="admonition-keymaps" class="admonition admonish-info" role="note" aria-labelledby="admonition-keymaps-title">
 <div class="admonition-title">
+<div id="admonition-keymaps-title">
 <p>Keymaps</p>
-<p><a class="admonition-anchor-link" href="#admonition-keymaps"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-keymaps"></a>
 </div>
 <div>
 <p>Gitsigns provides an on_attach callback which can be used to setup buffer mappings.</p>
 <p>Gitsigns は on_attach コールバックを提供し、buffer マッピングの設定に使用することができます。</p>
 </div>
 </div>
-<div id="admonition-extensionsgitsignslua-1" class="admonition admonish-example">
+<div id="admonition-extensionsgitsignslua-1" class="admonition admonish-example" role="note" aria-labelledby="admonition-extensionsgitsignslua-1-title">
 <div class="admonition-title">
+<div id="admonition-extensionsgitsignslua-1-title">
 <p>extensions/gitsigns.lua</p>
-<p><a class="admonition-anchor-link" href="#admonition-extensionsgitsignslua-1"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-extensionsgitsignslua-1"></a>
 </div>
 <div>
 <pre><code class="language-lua">-- require('gitsigns').setup {
@@ -296,10 +312,12 @@
 <p>「<code>on_attach</code>と言われても...」、という感じには多少なるものの、<code>map()</code>が<code>vim.keymap.set()</code>に繋いでくれてるのは、まあなんか分かりますよね😉</p>
 <p>パラメータもほぼそのままなので、カスタマイズをしたい場合は<code>map()</code>を追加・変更していけば良さそうです。</p>
 <p>使用できる機能は以下で説明されています。</p>
-<div id="admonition-h-gitsigns-functions" class="admonition admonish-info">
+<div id="admonition-h-gitsigns-functions" class="admonition admonish-info" role="note" aria-labelledby="admonition-h-gitsigns-functions-title">
 <div class="admonition-title">
+<div id="admonition-h-gitsigns-functions-title">
 <p>:h gitsigns-functions</p>
-<p><a class="admonition-anchor-link" href="#admonition-h-gitsigns-functions"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-h-gitsigns-functions"></a>
 </div>
 <div>
 <pre><code class="language-txt">Note functions with the {async} attribute are run asynchronously and are
@@ -318,10 +336,12 @@ non-blocking (return immediately).
 <h3 id="signs"><a class="header" href="#signs">signs</a></h3>
 <p>ここは表示する<code>text</code>だけ変えてます。</p>
 <p><code>untracked</code>については、後に出てくる<code>attach_to_untracked</code>を無効にすると使用されないので定義していません。</p>
-<div id="admonition-extensionsgitsignslua-2" class="admonition admonish-example">
+<div id="admonition-extensionsgitsignslua-2" class="admonition admonish-example" role="note" aria-labelledby="admonition-extensionsgitsignslua-2-title">
 <div class="admonition-title">
+<div id="admonition-extensionsgitsignslua-2-title">
 <p>extensions/gitsigns.lua</p>
-<p><a class="admonition-anchor-link" href="#admonition-extensionsgitsignslua-2"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-extensionsgitsignslua-2"></a>
 </div>
 <div>
 <pre><code class="language-lua">  signs = {
@@ -339,20 +359,24 @@ non-blocking (return immediately).
 </tbody></table>
 </div>
 <h3 id="word_diff"><a class="header" href="#word_diff">word_diff</a></h3>
-<div id="admonition-extensionsgitsignslua-3" class="admonition admonish-example">
+<div id="admonition-extensionsgitsignslua-3" class="admonition admonish-example" role="note" aria-labelledby="admonition-extensionsgitsignslua-3-title">
 <div class="admonition-title">
+<div id="admonition-extensionsgitsignslua-3-title">
 <p>extensions/gitsigns.lua</p>
-<p><a class="admonition-anchor-link" href="#admonition-extensionsgitsignslua-3"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-extensionsgitsignslua-3"></a>
 </div>
 <div>
 <pre><code class="language-lua">  word_diff = true,
 </code></pre>
 </div>
 </div>
-<div id="admonition-h-gitsigns-config-word_diff" class="admonition admonish-info">
+<div id="admonition-h-gitsigns-config-word_diff" class="admonition admonish-info" role="note" aria-labelledby="admonition-h-gitsigns-config-word_diff-title">
 <div class="admonition-title">
+<div id="admonition-h-gitsigns-config-word_diff-title">
 <p>:h gitsigns-config-word_diff</p>
-<p><a class="admonition-anchor-link" href="#admonition-h-gitsigns-config-word_diff"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-h-gitsigns-config-word_diff"></a>
 </div>
 <div>
 <pre><code class="language-txt">word_diff                                          gitsigns-config-word_diff
@@ -384,10 +408,12 @@ non-blocking (return immediately).
 <p>...ちょっと派手すぎません❗❓</p>
 <p>何十人も集まるようなパーティーであれば、このぐらい盛り上がってくれれば、それはもう大変に開き甲斐のあるパーティーです🥳</p>
 <p>でも、普段使いで❓これを❗❓いや〜...、それはなにかこう、特別な勇気が必要になってくるような...。</p>
-<div id="admonition-note-1" class="admonition admonish-note">
+<div id="admonition-note-1" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-1-title">
 <div class="admonition-title">
+<div id="admonition-note-1-title">
 <p>Note</p>
-<p><a class="admonition-anchor-link" href="#admonition-note-1"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-note-1"></a>
 </div>
 <div>
 <p>「それは<code>git</code>の運用が下手なんだ」と言われればそうなんですけどね😿</p>
@@ -397,10 +423,12 @@ non-blocking (return immediately).
 <p>そういえば<code>:h gitsigns-config-word_diff</code>の中で、これに関して使用している<code>highlights</code>が示されてますよね。</p>
 <p><code>highlights</code>といえば心強い味方が既にいました❗<code>onenord.nvim</code>です😆</p>
 <p><code>extensions/onenord.lua</code>を引っ張り出してきて、以下を追記してみましょう。</p>
-<div id="admonition-extensionsonenordlua" class="admonition admonish-example">
+<div id="admonition-extensionsonenordlua" class="admonition admonish-example" role="note" aria-labelledby="admonition-extensionsonenordlua-title">
 <div class="admonition-title">
+<div id="admonition-extensionsonenordlua-title">
 <p>extensions/onenord.lua</p>
-<p><a class="admonition-anchor-link" href="#admonition-extensionsonenordlua"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-extensionsonenordlua"></a>
 </div>
 <div>
 <pre><code class="language-lua">  custom_highlights = {
@@ -417,10 +445,12 @@ non-blocking (return immediately).
 <img src="img/custom_highlights_after.webp" alt="custom_highlights_before_after" width="1220" height="670" loading="lazy">
 <p>ありがとう...❗onenord...❗</p>
 <h3 id="attach_to_untracked"><a class="header" href="#attach_to_untracked">attach_to_untracked</a></h3>
-<div id="admonition-extensionsgitsignslua-4" class="admonition admonish-example">
+<div id="admonition-extensionsgitsignslua-4" class="admonition admonish-example" role="note" aria-labelledby="admonition-extensionsgitsignslua-4-title">
 <div class="admonition-title">
+<div id="admonition-extensionsgitsignslua-4-title">
 <p>extensions/gitsigns.lua</p>
-<p><a class="admonition-anchor-link" href="#admonition-extensionsgitsignslua-4"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-extensionsgitsignslua-4"></a>
 </div>
 <div>
 <pre><code class="language-lua">  attach_to_untracked = false,
@@ -428,10 +458,12 @@ non-blocking (return immediately).
 </div>
 </div>
 <p>これは、わたしが今の今まで気づいていなかったんですが...。</p>
-<div id="admonition-h-gitsigns-config-attach_to_untracked" class="admonition admonish-info">
+<div id="admonition-h-gitsigns-config-attach_to_untracked" class="admonition admonish-info" role="note" aria-labelledby="admonition-h-gitsigns-config-attach_to_untracked-title">
 <div class="admonition-title">
+<div id="admonition-h-gitsigns-config-attach_to_untracked-title">
 <p>:h gitsigns-config-attach_to_untracked</p>
-<p><a class="admonition-anchor-link" href="#admonition-h-gitsigns-config-attach_to_untracked"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-h-gitsigns-config-attach_to_untracked"></a>
 </div>
 <div>
 <pre><code class="language-txt">attach_to_untracked                      *gitsigns-config-attach_to_untracked*
@@ -447,10 +479,12 @@ non-blocking (return immediately).
 <code>number</code>オプションを"クセつよ"呼ばわりしてたんですが、わたしが無知なだけでした...。</p>
 <p>ほんとごめんなさい😭</p>
 <h3 id="current_line_blame_formatter"><a class="header" href="#current_line_blame_formatter">current_line_blame_formatter</a></h3>
-<div id="admonition-extensionsgitsignslua-5" class="admonition admonish-example">
+<div id="admonition-extensionsgitsignslua-5" class="admonition admonish-example" role="note" aria-labelledby="admonition-extensionsgitsignslua-5-title">
 <div class="admonition-title">
+<div id="admonition-extensionsgitsignslua-5-title">
 <p>extensions/gitsigns.lua</p>
-<p><a class="admonition-anchor-link" href="#admonition-extensionsgitsignslua-5"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-extensionsgitsignslua-5"></a>
 </div>
 <div>
 <pre><code class="language-lua">  current_line_blame_formatter = '&lt;summary&gt; (&lt;author_time:%Y/%m&gt;)',
@@ -458,10 +492,12 @@ non-blocking (return immediately).
 </div>
 </div>
 <p>わたし自身はそんなにうまく活用できてないんですが、これはちょっと面白いやつです。</p>
-<div id="admonition-gitsigns-config-current_line_blame_formatter" class="admonition admonish-info">
+<div id="admonition-gitsigns-config-current_line_blame_formatter" class="admonition admonish-info" role="note" aria-labelledby="admonition-gitsigns-config-current_line_blame_formatter-title">
 <div class="admonition-title">
+<div id="admonition-gitsigns-config-current_line_blame_formatter-title">
 <p>gitsigns-config-current_line_blame_formatter</p>
-<p><a class="admonition-anchor-link" href="#admonition-gitsigns-config-current_line_blame_formatter"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-gitsigns-config-current_line_blame_formatter"></a>
 </div>
 <div>
 <pre><code class="language-txt">current_line_blame_formatter    gitsigns-config-current_line_blame_formatter
@@ -479,10 +515,12 @@ non-blocking (return immediately).
 </div>
 <p>フォーマット指定子については量が多いので手元で確認してもらうとして、
 デフォルトで<code>current_line_brame</code>を有効化するかどうかは、以下のパラメータです。</p>
-<div id="admonition-gitsigns-config-current_line_blame" class="admonition admonish-info">
+<div id="admonition-gitsigns-config-current_line_blame" class="admonition admonish-info" role="note" aria-labelledby="admonition-gitsigns-config-current_line_blame-title">
 <div class="admonition-title">
+<div id="admonition-gitsigns-config-current_line_blame-title">
 <p>gitsigns-config-current_line_blame</p>
-<p><a class="admonition-anchor-link" href="#admonition-gitsigns-config-current_line_blame"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-gitsigns-config-current_line_blame"></a>
 </div>
 <div>
 <pre><code class="language-txt">current_line_blame                        gitsigns-config-current_line_blame
@@ -511,10 +549,12 @@ non-blocking (return immediately).
 </div>
 <p><code>summary</code>が表示されました😆</p>
 <p>これだとちょっと見にくいな〜と思ったら、また<code>onenord.lua</code>に<code>GitSignsCurrentLineBlame</code>を追加して好きなように変えられます。</p>
-<div id="admonition-note-2" class="admonition admonish-note">
+<div id="admonition-note-2" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-2-title">
 <div class="admonition-title">
+<div id="admonition-note-2-title">
 <p>Note</p>
-<p><a class="admonition-anchor-link" href="#admonition-note-2"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-note-2"></a>
 </div>
 <div>
 <p><code>gitsigns</code>を<code>GitSign</code>とか言っちゃっててかわいいですね❗❗...はい、ごめんなさい🥹</p>
@@ -522,10 +562,12 @@ non-blocking (return immediately).
 </div>
 <h2 id="wrap-up"><a class="header" href="#wrap-up">Wrap Up</a></h2>
 <p>賑やかな装飾を施せましたね❗サンタさんも大喜びです🎅</p>
-<div id="admonition-assemble" class="admonition admonish-success">
+<div id="admonition-assemble" class="admonition admonish-success" role="note" aria-labelledby="admonition-assemble-title">
 <div class="admonition-title">
+<div id="admonition-assemble-title">
 <p>Assemble</p>
-<p><a class="admonition-anchor-link" href="#admonition-assemble"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-assemble"></a>
 </div>
 <div>
 <p>冒頭でも少し書いてるんですが、やっぱり<code>git</code>を使い出すと世界が広がるし、色々知れて楽しいと思うので、

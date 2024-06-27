@@ -101,10 +101,12 @@
           <h1 id="termguicolors"><a class="header" href="#termguicolors">termguicolors</a></h1>
 <p>それでは前項でGETした<code>nvim_set_option()</code>を使ってカスタマイズを進めていきましょう😸</p>
 <p>掲題のお名前からある程度は推測できちゃうんですが、最初なのでまあ、のほほん☺️ と。</p>
-<div id="admonition-h-termguicolors" class="admonition admonish-info">
+<div id="admonition-h-termguicolors" class="admonition admonish-info" role="note" aria-labelledby="admonition-h-termguicolors-title">
 <div class="admonition-title">
+<div id="admonition-h-termguicolors-title">
 <p>:h termguicolors</p>
-<p><a class="admonition-anchor-link" href="#admonition-h-termguicolors"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-h-termguicolors"></a>
 </div>
 <div>
 <pre><code class="language-txt">'termguicolors' 'tgc' boolean (default off)
@@ -115,10 +117,12 @@ Enables 24-bit RGB color in the |TUI|.
 </code></pre>
 </div>
 </div>
-<div id="admonition-optionslua" class="admonition admonish-example">
+<div id="admonition-optionslua" class="admonition admonish-example" role="note" aria-labelledby="admonition-optionslua-title">
 <div class="admonition-title">
+<div id="admonition-optionslua-title">
 <p>options.lua</p>
-<p><a class="admonition-anchor-link" href="#admonition-optionslua"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-optionslua"></a>
 </div>
 <div>
 <pre><code class="language-lua">vim.api.nvim_set_option('termguicolors', true)
@@ -126,10 +130,12 @@ Enables 24-bit RGB color in the |TUI|.
 </div>
 </div>
 <p>「24ビットRGBカラーを有効にする<code>global</code>なオプション、<code>termguicolors</code>もしくは<code>tgc</code>は、<code>boolean</code>値(デフォルト<code>off</code>)だよ。」ってのがなんか伝わってきますね🤔</p>
-<div id="admonition-warning" class="admonition admonish-warning">
+<div id="admonition-warning" class="admonition admonish-warning" role="note" aria-labelledby="admonition-warning-title">
 <div class="admonition-title">
+<div id="admonition-warning-title">
 <p>Warning</p>
-<p><a class="admonition-anchor-link" href="#admonition-warning"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-warning"></a>
 </div>
 <div>
 <p>すごい今さらなんですけど、ヘルプとかドキュメントとか、わたしが勝手に抜粋した上で載っけてるので、一回は手元で開いてみてください😌</p>
@@ -137,19 +143,23 @@ Enables 24-bit RGB color in the |TUI|.
 </div>
 <p>...わたしも全ての意味を理解しているわけではないのでこの辺で切り上げちゃうんですが、</p>
 <p>「24ビットRGBカラーを使いたいから<code>on</code>にしちゃえー❗」っていうのが上の設定です。</p>
-<div id="admonition-note" class="admonition admonish-note">
+<div id="admonition-note" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-title">
 <div class="admonition-title">
+<div id="admonition-note-title">
 <p>Note</p>
-<p><a class="admonition-anchor-link" href="#admonition-note"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-note"></a>
 </div>
 <div>
 <p>そのまま素直に<code>on</code>とか<code>off</code>って書いちゃうとエラーが出て悲しいので、<code>boolean</code>(<code>true</code>か<code>false</code>)で指定してください😉</p>
 </div>
 </div>
-<div id="admonition-tip" class="admonition admonish-tip">
+<div id="admonition-tip" class="admonition admonish-tip" role="note" aria-labelledby="admonition-tip-title">
 <div class="admonition-title">
+<div id="admonition-tip-title">
 <p>Tip</p>
-<p><a class="admonition-anchor-link" href="#admonition-tip"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-tip"></a>
 </div>
 <div>
 <p>ヘルプの1行目にあるのはコマンドですね。</p>
@@ -163,17 +173,19 @@ Enables 24-bit RGB color in the |TUI|.
 <p>一時的に設定を変えたくなった時などに便利です。</p>
 </div>
 </div>
-<div id="admonition-success" class="admonition admonish-success">
+<div id="admonition-success" class="admonition admonish-success" role="note" aria-labelledby="admonition-success-title">
 <div class="admonition-title">
+<div id="admonition-success-title">
 <p>Success</p>
-<p><a class="admonition-anchor-link" href="#admonition-success"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-success"></a>
 </div>
 <div>
 <p>こんな感じです。簡単でしょ😆</p>
 <p>しばらくはこんなのが続きます。</p>
 </div>
 </div>
-<div id="admonition-default" class="admonition admonish-success">
+<div id="admonition-default" class="admonition admonish-success" role="note">
 <div>
 <p>タマムシ　にじいろ　ゆめの　いろ<sup class="footnote-reference">
 <a name="to-footnote-1"><a href="#1">1</a></a>

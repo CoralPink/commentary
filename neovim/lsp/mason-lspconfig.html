@@ -101,10 +101,12 @@
           <h1 id="mason-lspconfignvim"><a class="header" href="#mason-lspconfignvim">mason-lspconfig.nvim</a></h1>
 <p>わかる人には既に色々見透かされているとは思ってますが、そんなものは気にせず、ど真ん中をぶっちぎります❗</p>
 <p><code>mason-lspconfig.nvim</code>のお通りだー❗</p>
-<div id="admonition-mason-lspconfignvimhttpsgithubcomwilliambomanmason-lspconfignvim" class="admonition admonish-info">
+<div id="admonition-mason-lspconfignvimhttpsgithubcomwilliambomanmason-lspconfignvim" class="admonition admonish-info" role="note" aria-labelledby="admonition-mason-lspconfignvimhttpsgithubcomwilliambomanmason-lspconfignvim-title">
 <div class="admonition-title">
+<div id="admonition-mason-lspconfignvimhttpsgithubcomwilliambomanmason-lspconfignvim-title">
 <p><a href="https://github.com/williamboman/mason-lspconfig.nvim">mason-lspconfig.nvim</a></p>
-<p><a class="admonition-anchor-link" href="#admonition-mason-lspconfignvimhttpsgithubcomwilliambomanmason-lspconfignvim"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-mason-lspconfignvimhttpsgithubcomwilliambomanmason-lspconfignvim"></a>
 </div>
 <div>
 <p><code>mason-lspconfig</code> bridges <code>mason.nvim</code> with the <code>lspconfig</code> plugin - making it easier to use both plugins together.</p>
@@ -114,7 +116,7 @@
 </div>
 </div>
 <p>なんだかとってもややこしいですね😑</p>
-<div id="admonition-default" class="admonition admonish-success">
+<div id="admonition-default" class="admonition admonish-success" role="note">
 <div>
 <p>This ain't song for the broken-hearted</p>
 <p>心に傷を負った者のために これを歌うわけじゃない</p>
@@ -122,10 +124,12 @@
 </div>
 <h2 id="install"><a class="header" href="#install">Install</a></h2>
 <p>これは<code>mason.nvim</code>とセットで入れておきましょう。</p>
-<div id="admonition-extensionsmasonlua" class="admonition admonish-example">
+<div id="admonition-extensionsmasonlua" class="admonition admonish-example" role="note" aria-labelledby="admonition-extensionsmasonlua-title">
 <div class="admonition-title">
+<div id="admonition-extensionsmasonlua-title">
 <p>extensions/mason.lua</p>
-<p><a class="admonition-anchor-link" href="#admonition-extensionsmasonlua"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-extensionsmasonlua"></a>
 </div>
 <div>
 <pre><code class="language-diff">use {
@@ -141,10 +145,12 @@
 <p><code>nvim-lspconfig</code>も呼び出す必要があるので、これもプラスで❗</p>
 <h2 id="config"><a class="header" href="#config">Config</a></h2>
 <p>で、これに関するコンフィグも<code>mason.lua</code>にまとめちゃいます。</p>
-<div id="admonition-extensionsmasonlua-1" class="admonition admonish-example">
+<div id="admonition-extensionsmasonlua-1" class="admonition admonish-example" role="note" aria-labelledby="admonition-extensionsmasonlua-1-title">
 <div class="admonition-title">
+<div id="admonition-extensionsmasonlua-1-title">
 <p>extensions/mason.lua</p>
-<p><a class="admonition-anchor-link" href="#admonition-extensionsmasonlua-1"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-extensionsmasonlua-1"></a>
 </div>
 <div>
 <pre><code class="language-lua">require('mason').setup {
@@ -169,10 +175,12 @@ require('mason-lspconfig').setup_handlers {
 </sup>です❗</p>
 <p>ただこれ...、かけるオーラの比率をほんの少しでも間違えると途端にアウトなので、
 だいぶ気をつけて使ってください...。</p>
-<div id="admonition-mason-lspconfigsetup_handlers" class="admonition admonish-info">
+<div id="admonition-mason-lspconfigsetup_handlers" class="admonition admonish-info" role="note" aria-labelledby="admonition-mason-lspconfigsetup_handlers-title">
 <div class="admonition-title">
+<div id="admonition-mason-lspconfigsetup_handlers-title">
 <p>mason-lspconfig.setup_handlers()</p>
-<p><a class="admonition-anchor-link" href="#admonition-mason-lspconfigsetup_handlers"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-mason-lspconfigsetup_handlers"></a>
 </div>
 <div>
 <pre><code class="language-txt">                                            mason-lspconfig.setup_handlers()
@@ -218,13 +226,13 @@ setup_handlers({handlers})
 <code>mason.nvim</code>が提供してくれるお手軽さが、かなり損なわれてしまいます。</p>
 <p>でも、それではあまりにも勿体ないので、
 これを理解した上で使用する分にはいいんじゃないかな〜って思うことにします❗そうします😆</p>
-<div id="admonition-default-1" class="admonition admonish-success">
+<div id="admonition-default-1" class="admonition admonish-success" role="note">
 <div>
 <p>It's my life!</p>
 <p>これが俺の人生だ！</p>
 </div>
 </div>
-<div id="admonition-default-2" class="admonition admonish-success">
+<div id="admonition-default-2" class="admonition admonish-success" role="note">
 <div>
 <p>My heart is like an open highway</p>
 <p>Like Frankie said</p>
@@ -236,7 +244,7 @@ setup_handlers({handlers})
 </div>
 <h2 id="for-the-ones-who-stood-their-ground"><a class="header" href="#for-the-ones-who-stood-their-ground">For the ones who stood their ground</a></h2>
 <p>ここまで来れば、ついに<code>LSP</code>でお話ができます❗がんばったね🤗</p>
-<div id="admonition-default-3" class="admonition admonish-success">
+<div id="admonition-default-3" class="admonition admonish-success" role="note">
 <div>
 <p>This is for the ones who stood their ground</p>
 <p>For Tommy and Gina who never backed down</p>
@@ -251,10 +259,12 @@ setup_handlers({handlers})
 <p>としてみましょう。
 <img src="img/lspinfo.webp" alt="lspinfo" width="1512" height="1200" decoding="async"></p>
 <p>うわっ❗めっちゃお話ししてくれそう🥰</p>
-<div id="admonition-tip" class="admonition admonish-tip">
+<div id="admonition-tip" class="admonition admonish-tip" role="note" aria-labelledby="admonition-tip-title">
 <div class="admonition-title">
+<div id="admonition-tip-title">
 <p>Tip</p>
-<p><a class="admonition-anchor-link" href="#admonition-tip"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-tip"></a>
 </div>
 <div>
 <p><code>:LspInfo</code>は<code>nvim-lspconfig</code>の機能です😉</p>
@@ -262,10 +272,12 @@ setup_handlers({handlers})
 </div>
 <h3 id="signature-help"><a class="header" href="#signature-help">Signature Help</a></h3>
 <p>じゃあ、試しに<code>lua</code>ファイルに記述されている<code>require</code>にカーソルを持っていって、<kbd>Ctrl-k</kbd>としてみましょう。</p>
-<div id="admonition-note" class="admonition admonish-note">
+<div id="admonition-note" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-title">
 <div class="admonition-title">
+<div id="admonition-note-title">
 <p>Note</p>
-<p><a class="admonition-anchor-link" href="#admonition-note"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-note"></a>
 </div>
 <div>
 <p><code>nvim-lspconfig.lua</code>にキーマッピングを設定しましたね😌 もしデフォルトから変更している場合は読み替えてください。</p>
@@ -279,10 +291,12 @@ setup_handlers({handlers})
 <p>やーい怒られたぁ🤣</p>
 <h4 id="lualine"><a class="header" href="#lualine">lualine</a></h4>
 <p><code>Diagnositcs</code>に関連して、もう一個やっておきましょう。おもむろに<code>lualine.lua</code>を開いて、こんなのを入れてみましょう。</p>
-<div id="admonition-extensionslualinelua" class="admonition admonish-example">
+<div id="admonition-extensionslualinelua" class="admonition admonish-example" role="note" aria-labelledby="admonition-extensionslualinelua-title">
 <div class="admonition-title">
+<div id="admonition-extensionslualinelua-title">
 <p>extensions/lualine.lua</p>
-<p><a class="admonition-anchor-link" href="#admonition-extensionslualinelua"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-extensionslualinelua"></a>
 </div>
 <div>
 <pre><code class="language-lua">sections = {
@@ -312,7 +326,7 @@ setup_handlers({handlers})
 <p>これさえやっておけば、他の言語の<code>LSP</code>を追加したくなった時も "基本的には" <code>mason</code>を操作するだけで良くなります。</p>
 <p>結構な達成感じゃないでしょうか☺️</p>
 <p>しかし、この章の冒頭にある綿密な<a href="language-server-protocol.html#start">ロードマップ</a>でも示されていましたが、これはまだ序盤です。</p>
-<div id="admonition-default-4" class="admonition admonish-note">
+<div id="admonition-default-4" class="admonition admonish-note" role="note">
 <div>
 <p>やるのかい やらないのかい</p>
 <p>どっっちなんっっだいっ❗❗<sup class="footnote-reference">
@@ -322,10 +336,12 @@ setup_handlers({handlers})
 </div>
 <p>やーーーーーーーーーーーるっ💪</p>
 <p>"世界一のワガママ" の実現を目指して😆 パワー❗❗</p>
-<div id="admonition-success" class="admonition admonish-success">
+<div id="admonition-success" class="admonition admonish-success" role="note" aria-labelledby="admonition-success-title">
 <div class="admonition-title">
+<div id="admonition-success-title">
 <p>Success</p>
-<p><a class="admonition-anchor-link" href="#admonition-success"></a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-success"></a>
 </div>
 <div>
 <p>Better stand tall when they're calling you out</p>
@@ -334,7 +350,7 @@ setup_handlers({handlers})
 <p>自分を曲げるな、挫けるな、それから、一歩も引くなよ</p>
 </div>
 </div>
-<div id="admonition-default-5" class="admonition admonish-success">
+<div id="admonition-default-5" class="admonition admonish-success" role="note">
 <div>
 <p>I just wanna live while I'm alive</p>
 <p>It's my life!</p>
