@@ -1,0 +1,22 @@
+name: test rs footnote
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+env:
+  CARGO_TERM_COLOR: always
+
+
+jobs:
+  test_job:
+    runs-on: macos-14
+    name: Testing
+    steps:
+      - uses: actions/checkout@v4
+      - name: "Test local rust"
+        uses: Kristories/cargo-test@v1.0.0
+        with:
+          manifest-path: './rs/mdbook-footnote/Cargo.toml'
