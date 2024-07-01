@@ -8,6 +8,8 @@ js/dist
 js/highlight.js
 js/wasm_book.js
 
+rs/mdbook-footnote/test/result.md
+
 css/*.css
 css/*.css.map
 *.tmp
