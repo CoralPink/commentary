@@ -5,11 +5,12 @@
     ":automergeMinor",
     ":automergeDigest"
   ],
-	"major": {
+  "major": {
 		"dependencyDashboardApproval": true
 	},
 	"lockFileMaintenance": {
-		"enabled": true
+		"enabled": true,
+    "automerge": true
 	},
   // Temporary settings for operation checks.
 	"automergeSchedule": ["before 4am"]
