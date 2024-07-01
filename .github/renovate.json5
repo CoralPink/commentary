@@ -11,7 +11,5 @@
 	"lockFileMaintenance": {
 		"enabled": true,
     "automerge": true
-	},
-  // Temporary settings for operation checks.
-	"automergeSchedule": ["before 4am"]
+	}
 }
