@@ -13,24 +13,24 @@ jobs:
       group: ${{ github.workflow }}-${{ github.ref }}
     steps:
       - name: Checkout the repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4
         with:
           fetch-depth: 0
 
       - name: Setup mdBook
-        uses: peaceiris/actions-mdbook@v2
+        uses: peaceiris/actions-mdbook@ee69d230fe19748b7abf22df32acaa93833fad08 # v2
         with:
           mdbook-version: "0.4.40"
 
       - name: Setup Bun
-        uses: oven-sh/setup-bun@v2
+        uses: oven-sh/setup-bun@123c6c4e2fea3eb7bffaa91a85eb6b3d505bf7af # v2
         with:
           bun-version: "latest"
           no-cache: true
 
       - name: Cache Cargo
         id: cache-cargo
-        uses: actions/cache@v4
+        uses: actions/cache@0c45773b623bea8c8e75f6c82b208c3cf94ea4f9 # v4
         with:
           save-always: 'true'
           path: |
@@ -100,7 +100,7 @@ jobs:
           rm -rf book/fonts
 
       - name: Deploy
-        uses: peaceiris/actions-gh-pages@v4
+        uses: peaceiris/actions-gh-pages@4f9cc6602d3f66b9c108549d475ec49e8ef4d45e # v4
         if: ${{ github.ref == 'refs/heads/main' }}
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
