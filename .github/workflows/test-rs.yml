@@ -1,10 +1,10 @@
 name: test rs
 
 on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+  workflow_run:
+    workflows: ["github pages"]
+    types:
+      - completed
 
 env:
   CARGO_TERM_COLOR: always
