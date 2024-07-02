@@ -15,8 +15,8 @@ jobs:
     runs-on: macos-14
     name: Testing
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4
       - name: "Test local rust"
-        uses: Kristories/cargo-test@v1.0.0
+        uses: Kristories/cargo-test@55a4112b486d64c66db881cdc80e7d66af5fe110 # v1.0.0
         with:
           manifest-path: './rs/mdbook-footnote/Cargo.toml'
