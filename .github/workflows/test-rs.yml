@@ -2,8 +2,7 @@ name: test-rs
 
 on:
   workflow_run:
-    workflows:
-      - github-pages
+    workflows: [ "github-pages" ]
     types:
       - completed
 
