@@ -1,15 +1,20 @@
 {
 	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
 	"extends": [
-    "config:recommended",
+    "config:best-practices",
+
+    // Require Dependency Dashboard approval for major updates.
+    ":approveMajorUpdates",
+
+    // Do not separate patch and minor upgrades into separate PRs for the same dependency.
+    ":combinePatchMinorReleases",
+
+    // Automerge patch and minor upgrades if they pass tests.
     ":automergeMinor",
-    ":automergeDigest"
+    // Automerge digest upgrades if they pass tests.
+    ":automergeDigest",
+
+    // Run lock file maintenance (updates) early Monday mornings.
+    ":maintainLockFilesWeekly",
   ],
-  "major": {
-		"dependencyDashboardApproval": true
-	},
-	"lockFileMaintenance": {
-		"enabled": true,
-    "automerge": true
-	}
 }
