@@ -1,4 +1,4 @@
-name: test rs footnote
+name: test rs
 
 on:
   push:
@@ -12,7 +12,6 @@ env:
 jobs:
   test_job:
     runs-on: macos-14
-    name: Testing
     steps:
       - name: Checkout the repo
         uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4
@@ -32,7 +31,7 @@ jobs:
             target/
           key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
 
-      - name: "Test local rust"
+      - name: Test mdbook-footnote
         uses: Kristories/cargo-test@55a4112b486d64c66db881cdc80e7d66af5fe110 # v1.0.0
         with:
           manifest-path: './rs/mdbook-footnote/Cargo.toml'
