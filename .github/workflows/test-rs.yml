@@ -2,7 +2,8 @@ name: test rs
 
 on:
   workflow_run:
-    workflows: github pages
+    workflows:
+      - github pages
     types:
       - completed
 
@@ -35,4 +36,3 @@ jobs:
         uses: Kristories/cargo-test@55a4112b486d64c66db881cdc80e7d66af5fe110 # v1.0.0
         with:
           manifest-path: './rs/mdbook-footnote/Cargo.toml'
-
