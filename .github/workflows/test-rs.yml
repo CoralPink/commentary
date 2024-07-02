@@ -1,0 +1,38 @@
+name: test rs
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  test_job:
+    runs-on: macos-14
+    steps:
+      - name: Checkout the repo
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4
+        with:
+          fetch-depth: 0
+
+      - name: Cache Cargo
+        id: cache-cargo
+        uses: actions/cache@0c45773b623bea8c8e75f6c82b208c3cf94ea4f9 # v4
+        with:
+          save-always: 'true'
+          path: |
+            ~/.cargo/bin/
+            ~/.cargo/registry/index/
+            ~/.cargo/registry/cache/
+            ~/.cargo/git/db/
+            target/
+          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+
+      - name: Test mdbook-footnote
+        uses: Kristories/cargo-test@55a4112b486d64c66db881cdc80e7d66af5fe110 # v1.0.0
+        with:
+          manifest-path: './rs/mdbook-footnote/Cargo.toml'
+
