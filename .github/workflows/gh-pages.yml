@@ -62,7 +62,7 @@ jobs:
         run: |
           pushd js
           bun create-highlight.bun.sh
-          bun install
+          bun install --production
           bun run build.js
           cp -r dist/. ../src/
           pushd
@@ -70,7 +70,7 @@ jobs:
       - name: Build Scss
         run: |
           pushd scss
-          bun install
+          bun install --production
           bun run compile general.scss ../src/css/general.css
           bun run compile style.scss ../src/css/style.css
           pushd
