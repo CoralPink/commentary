@@ -22,6 +22,10 @@ jobs:
           bun-version: "latest"
           no-cache: true
 
+      - name: Build Js
+        run: |
+          bun install
+
       - name: Test javascript
         run: |
           bun test
