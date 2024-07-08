@@ -24,6 +24,7 @@ jobs:
 
       - name: Build Js
         run: |
+          cd js
           bun install
 
       - name: Test javascript
