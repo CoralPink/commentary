@@ -1,0 +1,28 @@
+name: test js
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  test_job:
+    runs-on: macos-14
+    steps:
+      - name: Checkout the repo
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4
+        with:
+          sparse-checkout: |
+            js
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@123c6c4e2fea3eb7bffaa91a85eb6b3d505bf7af # v2
+        with:
+          bun-version: "latest"
+          no-cache: true
+
+      - name: Test javascript
+        run: |
+          bun test
+
