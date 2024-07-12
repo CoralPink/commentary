@@ -1,4 +1,4 @@
-name: test rs
+name: test-cargo-rs
 
 on:
   push:
@@ -15,9 +15,11 @@ jobs:
     steps:
       - name: Checkout the repo
         uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4
-
-      - name: Test mdbook-footnote
-        uses: Kristories/cargo-test@55a4112b486d64c66db881cdc80e7d66af5fe110 # v1.0.0
         with:
-          manifest-path: './rs/mdbook-footnote/Cargo.toml'
+          sparse-checkout: |
+            rs
 
+      - name: Test Cargo
+        working-directory: rs
+        run: |
+          cargo test --verbose

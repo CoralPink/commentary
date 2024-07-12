@@ -1,4 +1,4 @@
-name: test js
+name: test-bun-js
 
 on:
   push:
@@ -22,8 +22,8 @@ jobs:
           bun-version: "latest"
           no-cache: true
 
-      - name: Build and Test Js
+      - name: Test Bun
+        working-directory: js
         run: |
-          cd js
           bun install
           bun test
