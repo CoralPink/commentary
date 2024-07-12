@@ -1,4 +1,4 @@
-name: github pages
+name: github-pages
 
 on:
   push:
@@ -51,29 +51,26 @@ jobs:
           cargo install --path ./rs/mdbook-footnote
 
       - name: Build Wasm
+        working-directory: rs/wasm
         run: |
-          pushd rs/wasm
           wasm-pack build --target web
           cp pkg/wasm_book.js ../../js
           cp pkg/wasm_book_bg.wasm ../../src
-          pushd
 
       - name: Build Js
+        working-directory: js
         run: |
-          pushd js
           bun create-highlight.bun.sh
           bun install --production
           bun run build.js
           cp -r dist/. ../src/
-          pushd
 
       - name: Build Scss
+        working-directory: scss
         run: |
-          pushd scss
           bun install --production
           bun run compile general.scss ../src/css/general.css
           bun run compile style.scss ../src/css/style.css
-          pushd
 
       - name: Build mdBook
         run: |
