@@ -19,7 +19,7 @@ jobs:
           sparse-checkout: |
             rs
 
-      - name: Test Cargo
-        working-directory: rs
+      - name: Test Cargo (mdbook-footnote)
+        working-directory: rs/mdbook-footnote
         run: |
           cargo test --verbose
