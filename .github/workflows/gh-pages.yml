@@ -58,23 +58,11 @@ jobs:
         run: |
           wasm-pack build --target web
 
-      - name: Copy Wasm
-        working-directory: rs/wasm
-        run: |
-          mkdir -p ../../js && cp pkg/wasm_book.js ../../js
-          mkdir -p ../../src && cp pkg/wasm_book_bg.wasm ../../src
-
-      - name: Upload wasm_book.js
-        uses: actions/upload-artifact@v3
+      - name: Upload wasm_pkg
+        uses: actions/upload-artifact@v4
         with:
-          name: wasm-book-js
-          path: js/wasm_book.js
-
-      - name: Upload wasm_book_bg.wasm
-        uses: actions/upload-artifact@v3
-        with:
-          name: wasm-book-wasm
-          path: src/wasm_book_bg.wasm
+          name: wasm-book
+          path: 'rs/wasm/pkg'
 
   build-js:
     name: Build JS
@@ -87,10 +75,11 @@ jobs:
           sparse-checkout: |
             js
 
-      - name: Download wasm_book.js
-        uses: actions/download-artifact@v3
+      - name: Download wasm_pkg
+        uses: actions/download-artifact@v4
         with:
-          name: wasm-book-js
+          name: wasm-book
+          path: js
 
       - name: Setup Bun
         uses: oven-sh/setup-bun@4bc047ad259df6fc24a6c9b0f9a0cb08cf17fbe5 # v2
@@ -166,10 +155,11 @@ jobs:
             .
             src
 
-      - name: Download wasm_book.js
-        uses: actions/download-artifact@v3
+      - name: Download wasm_pkg
+        uses: actions/download-artifact@v4
         with:
-          name: wasm-book-wasm
+          name: wasm-book
+          path: src
 
       - name: Setup mdBook
         uses: peaceiris/actions-mdbook@ee69d230fe19748b7abf22df32acaa93833fad08 # v2
