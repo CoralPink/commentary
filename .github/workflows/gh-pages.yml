@@ -79,7 +79,11 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: wasm-book
-          path: js
+          path: pkg
+
+      - name: Copy wasm_js
+        run: |
+          cp pkg/wasm_book.js js
 
       - name: Setup Bun
         uses: oven-sh/setup-bun@4bc047ad259df6fc24a6c9b0f9a0cb08cf17fbe5 # v2
@@ -159,7 +163,11 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: wasm-book
-          path: src
+          path: pkg
+
+      - name: Copy wasm_js
+        run: |
+          cp pkg/wasm_book_bg.wasm src
 
       - name: Setup mdBook
         uses: peaceiris/actions-mdbook@ee69d230fe19748b7abf22df32acaa93833fad08 # v2
