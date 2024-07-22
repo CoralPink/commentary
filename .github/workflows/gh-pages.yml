@@ -57,8 +57,12 @@ jobs:
         working-directory: rs/wasm
         run: |
           wasm-pack build --target web
-          cp pkg/wasm_book.js ../../js
-          cp pkg/wasm_book_bg.wasm ../../src
+
+      - name: Copy Wasm
+        working-directory: rs/wasm
+        run: |
+          mkdir -p ../../js && cp pkg/wasm_book.js ../../js
+          mkdir -p ../../src && cp pkg/wasm_book_bg.wasm ../../src
 
       - name: Upload wasm_book.js
         uses: actions/upload-artifact@v3
