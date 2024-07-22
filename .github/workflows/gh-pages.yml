@@ -60,6 +60,18 @@ jobs:
           cp pkg/wasm_book.js ../../js
           cp pkg/wasm_book_bg.wasm ../../src
 
+      - name: Upload wasm_book.js
+        uses: actions/upload-artifact@v3
+        with:
+          name: wasm-book-js
+          path: js/wasm_book.js
+
+      - name: Upload wasm_book_bg.wasm
+        uses: actions/upload-artifact@v3
+        with:
+          name: wasm-book-wasm
+          path: src/wasm_book_bg.wasm
+
   build-js:
     name: Build JS
     runs-on: macos-14
@@ -70,6 +82,11 @@ jobs:
         with:
           sparse-checkout: |
             js
+
+      - name: Download wasm_book.js
+        uses: actions/download-artifact@v3
+        with:
+          name: wasm-book-js
 
       - name: Setup Bun
         uses: oven-sh/setup-bun@4bc047ad259df6fc24a6c9b0f9a0cb08cf17fbe5 # v2
@@ -144,6 +161,11 @@ jobs:
           sparse-checkout: |
             .
             src
+
+      - name: Download wasm_book.js
+        uses: actions/download-artifact@v3
+        with:
+          name: wasm-book-wasm
 
       - name: Setup mdBook
         uses: peaceiris/actions-mdbook@ee69d230fe19748b7abf22df32acaa93833fad08 # v2
