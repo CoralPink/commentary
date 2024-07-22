@@ -147,8 +147,8 @@ jobs:
         run: |
           cargo test --verbose
 
-  build-mdbook:
-    name: Build mdBook
+  deploy-mdbook:
+    name: Deploy mdBook
     runs-on: macos-14
     needs: [build-wasm, build-js, build-scss, test-mdbook-backend]
     steps:
@@ -186,11 +186,6 @@ jobs:
         run: |
           mdbook build
 
-  deploy:
-    name: Deploy
-    runs-on: macos-14
-    needs: build-mdbook
-    steps:
       - name: Remove Unneeded Files
         run: |
           rm book/ayu-highlight.css
