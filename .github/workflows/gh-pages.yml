@@ -14,8 +14,6 @@ jobs:
   build-wasm:
     name: Build Wasm
     runs-on: macos-14
-    env:
-      CARGO_TERM_COLOR: always
     steps:
       - name: Cache Cargo
         id: cache-cargo
@@ -139,8 +137,6 @@ jobs:
   test-mdbook-backend:
     name: Test mdBook Backend
     runs-on: macos-14
-    env:
-      CARGO_TERM_COLOR: always
     steps:
       - name: Checkout the repo
         uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4
@@ -167,8 +163,6 @@ jobs:
   build-mdbook:
     name: Build mdBook
     runs-on: macos-14
-    env:
-      CARGO_TERM_COLOR: always
     needs: [build-wasm, build-js, build-scss, test-mdbook-backend]
     steps:
       - name: Checkout the repo
@@ -258,8 +252,6 @@ jobs:
   deploy-mdbook:
     name: Deploy mdBook
     runs-on: macos-14
-    env:
-      CARGO_TERM_COLOR: always
     needs: build-mdbook
     steps:
       - name: Download Book
