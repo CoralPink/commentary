@@ -124,7 +124,6 @@ jobs:
         working-directory: scss
         run: |
           bun install --production
-          mkdir dist
           bun run compile general.scss dist/general.css
           bun run compile style.scss dist/style.css
 
