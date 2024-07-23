@@ -129,7 +129,7 @@ jobs:
           bun run compile general.scss dist/general.css
           bun run compile style.scss dist/style.css
 
-      - name: Upload SCSS
+      - name: Upload CSS
         uses: actions/upload-artifact@v4
         with:
           name: build-css
