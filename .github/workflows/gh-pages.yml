@@ -10,32 +10,24 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
-env:
-  CARGO_TERM_COLOR: always
-
 jobs:
-  set-cargo:
-    name: Set Cargo
+  build-wasm:
+    name: Build Wasm
     runs-on: macos-14
+    env:
+      CARGO_TERM_COLOR: always
     steps:
       - name: Cache Cargo
-        id: cache-cargo
         uses: actions/cache@0c45773b623bea8c8e75f6c82b208c3cf94ea4f9 # v4
         with:
-          save-always: 'true'
           path: |
             ~/.cargo/bin/
             ~/.cargo/registry/index/
             ~/.cargo/registry/cache/
             ~/.cargo/git/db/
             target/
-          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+          key: wasm-${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
 
-  build-wasm:
-    name: Build Wasm
-    runs-on: macos-14
-    needs: set-cargo
-    steps:
       - name: Install Cargo
         if: steps.cache-cargo.outputs.cache-hit != 'true'
         run: |
@@ -62,7 +54,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: wasm-book
-          path: 'rs/wasm/pkg'
+          path: rs/wasm/pkg
 
   build-js:
     name: Build JS
@@ -83,7 +75,7 @@ jobs:
 
       - name: Copy wasm_js
         run: |
-          cp pkg/wasm_book.js js
+          cp -r pkg/wasm_book.js js
 
       - name: Setup Bun
         uses: oven-sh/setup-bun@4bc047ad259df6fc24a6c9b0f9a0cb08cf17fbe5 # v2
@@ -106,7 +98,12 @@ jobs:
         working-directory: js
         run: |
           bun run build.js
-          cp -r dist/. ../src/
+
+      - name: Upload JS
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-js
+          path: js/dist
 
   build-scss:
     name: Build SCSS
@@ -128,13 +125,21 @@ jobs:
         working-directory: scss
         run: |
           bun install --production
-          bun run compile general.scss ../src/css/general.css
-          bun run compile style.scss ../src/css/style.css
+          mkdir dist
+          bun run compile general.scss dist/general.css
+          bun run compile style.scss dist/style.css
+
+      - name: Upload SCSS
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-css
+          path: scss/dist
 
   test-mdbook-backend:
     name: Test mdBook Backend
     runs-on: macos-14
-    needs: set-cargo
+    env:
+      CARGO_TERM_COLOR: always
     steps:
       - name: Checkout the repo
         uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4
@@ -142,14 +147,27 @@ jobs:
           sparse-checkout: |
             rs/mdbook-footnote
 
+      - name: Cache Cargo
+        uses: actions/cache@0c45773b623bea8c8e75f6c82b208c3cf94ea4f9 # v4
+        with:
+          path: |
+            ~/.cargo/bin/
+            ~/.cargo/registry/index/
+            ~/.cargo/registry/cache/
+            ~/.cargo/git/db/
+            target/
+          key: build-test-backend${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+
       - name: Test Cargo (mdbook-footnote)
         working-directory: rs/mdbook-footnote
         run: |
           cargo test --verbose
 
-  deploy-mdbook:
-    name: Deploy mdBook
+  build-mdbook:
+    name: Build mdBook
     runs-on: macos-14
+    env:
+      CARGO_TERM_COLOR: always
     needs: [build-wasm, build-js, build-scss, test-mdbook-backend]
     steps:
       - name: Checkout the repo
@@ -166,14 +184,39 @@ jobs:
           name: wasm-book
           path: pkg
 
-      - name: Copy wasm_js
+      - name: Download JS
+        uses: actions/download-artifact@v4
+        with:
+          name: build-js
+          path: js
+
+      - name: Download CSS
+        uses: actions/download-artifact@v4
+        with:
+          name: build-css
+          path: css
+
+      - name: Copy Files
         run: |
           cp pkg/wasm_book_bg.wasm src
+          cp -r js/* src
+          cp -r css/* src
 
       - name: Setup mdBook
         uses: peaceiris/actions-mdbook@ee69d230fe19748b7abf22df32acaa93833fad08 # v2
         with:
           mdbook-version: "0.4.40"
+
+      - name: Cache Cargo
+        uses: actions/cache@0c45773b623bea8c8e75f6c82b208c3cf94ea4f9 # v4
+        with:
+          path: |
+            ~/.cargo/bin/
+            ~/.cargo/registry/index/
+            ~/.cargo/registry/cache/
+            ~/.cargo/git/db/
+            target/
+          key: backend-${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
 
       - name: Setup Backend
         if: steps.cache-cargo.outputs.cache-hit != 'true'
@@ -204,9 +247,32 @@ jobs:
           rm -rf book/FontAwesome
           rm -rf book/fonts
 
+      - name: Upload Book
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-mdbook
+          path: book
+
+  deploy-mdbook:
+    name: Deploy mdBook
+    runs-on: macos-14
+    env:
+      CARGO_TERM_COLOR: always
+    needs: build-mdbook
+    steps:
+      - name: Download Book
+        uses: actions/download-artifact@v4
+        with:
+          name: build-mdbook
+          path: book
+
+      - name: List Segments
+        run: |
+          ls -al book
+
       - name: Deploy
         uses: peaceiris/actions-gh-pages@4f9cc6602d3f66b9c108549d475ec49e8ef4d45e # v4
         if: ${{ github.ref == 'refs/heads/main' }}
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./book
+          publish_dir: book
