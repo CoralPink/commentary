@@ -127,6 +127,11 @@ jobs:
           bun run compile general.scss dist/general.css
           bun run compile style.scss dist/style.css
 
+      - name: Debug
+        working-directory: scss
+        run: |
+          ls -al dist
+
       - name: Upload CSS
         uses: actions/upload-artifact@v4
         with:
@@ -190,11 +195,21 @@ jobs:
           name: build-css
           path: css
 
+      - name: Debug
+        working-directory: scss
+        run: |
+          ls -al css
+
       - name: Copy Files
         run: |
           cp pkg/wasm_book_bg.wasm src
           cp -r js/* src
           cp -r css/* src
+
+      - name: Debug
+        working-directory: scss
+        run: |
+          ls -alR src
 
       - name: Setup mdBook
         uses: peaceiris/actions-mdbook@ee69d230fe19748b7abf22df32acaa93833fad08 # v2
@@ -241,6 +256,11 @@ jobs:
           rm -rf book/searchindex.js
           rm -rf book/FontAwesome
           rm -rf book/fonts
+
+      - name: Debug
+        working-directory: scss
+        run: |
+          ls -alR book
 
       - name: Upload Book
         uses: actions/upload-artifact@v4
