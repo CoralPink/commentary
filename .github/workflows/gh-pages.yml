@@ -206,7 +206,6 @@ jobs:
           cp -r css/* src
 
       - name: Debug
-        working-directory: scss
         run: |
           ls -alR src
 
