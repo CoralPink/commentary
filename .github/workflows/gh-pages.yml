@@ -196,7 +196,6 @@ jobs:
           path: css
 
       - name: Debug
-        working-directory: scss
         run: |
           ls -al css
 
@@ -258,7 +257,6 @@ jobs:
           rm -rf book/fonts
 
       - name: Debug
-        working-directory: scss
         run: |
           ls -alR book
 
