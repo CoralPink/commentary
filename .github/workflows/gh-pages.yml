@@ -202,8 +202,8 @@ jobs:
       - name: Copy Files
         run: |
           cp pkg/wasm_book_bg.wasm src
-          cp -r js/* src
-          cp -r css/* src
+          cp js/* src
+          cp -r css src
 
       - name: Debug
         run: |
