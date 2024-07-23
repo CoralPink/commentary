@@ -60,8 +60,10 @@ body {
     display: grid;
   }
 
-  grid-template-columns: var.$sidebar-width 1fr;
-  min-height: calc(100dvh - var.$menu-bar-height);
+  & {
+    grid-template-columns: var.$sidebar-width 1fr;
+    min-height: calc(100dvh - var.$menu-bar-height);
+  }
 }
 
 .content {
