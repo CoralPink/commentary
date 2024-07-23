@@ -1,0 +1,29 @@
+name: test-bun-js
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  test_job:
+    runs-on: macos-14
+    steps:
+      - name: Checkout the repo
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4
+        with:
+          sparse-checkout: |
+            js
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@4bc047ad259df6fc24a6c9b0f9a0cb08cf17fbe5 # v2
+        with:
+          bun-version: "latest"
+          no-cache: true
+
+      - name: Test Bun
+        working-directory: js
+        run: |
+          bun install
+          bun test
