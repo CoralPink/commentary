@@ -172,8 +172,9 @@ jobs:
         with:
           sparse-checkout: |
             .
-            src
             rs/mdbook-footnote
+            src
+            theme
 
       - name: Download wasm_pkg
         uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16 # v4
@@ -199,10 +200,9 @@ jobs:
           cp js/* src
           cp -r css src
 
-      - name: Setup mdBook
-        uses: peaceiris/actions-mdbook@ee69d230fe19748b7abf22df32acaa93833fad08 # v2
-        with:
-          mdbook-version: "0.4.40"
+      - name: Debug
+        run: |
+          ls -alR
 
       - name: Cache Cargo
         id: cache-cargo
@@ -222,6 +222,11 @@ jobs:
           cargo install mdbook-admonish
           cargo install mdbook-tailor
           cargo install --path ./rs/mdbook-footnote
+
+      - name: Setup mdBook
+        uses: peaceiris/actions-mdbook@ee69d230fe19748b7abf22df32acaa93833fad08 # v2
+        with:
+          mdbook-version: "0.4.40"
 
       - name: Build mdBook
         run: |
