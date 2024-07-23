@@ -50,7 +50,7 @@ jobs:
           wasm-pack build --target web
 
       - name: Upload wasm_pkg
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@0b2256b8c012f0828dc542b3febcab082c67f72b # v4
         with:
           name: wasm-book
           path: rs/wasm/pkg
@@ -68,7 +68,7 @@ jobs:
             js
 
       - name: Download wasm_pkg
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16 # v4
         with:
           name: wasm-book
           path: pkg
@@ -100,7 +100,7 @@ jobs:
           bun run build.js
 
       - name: Upload JS
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@0b2256b8c012f0828dc542b3febcab082c67f72b # v4
         with:
           name: build-js
           path: js/dist
@@ -130,7 +130,7 @@ jobs:
           bun run compile style.scss dist/style.css
 
       - name: Upload CSS
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@0b2256b8c012f0828dc542b3febcab082c67f72b # v4
         with:
           name: build-css
           path: scss/dist
@@ -176,19 +176,19 @@ jobs:
             rs/mdbook-footnote
 
       - name: Download wasm_pkg
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16 # v4
         with:
           name: wasm-book
           path: pkg
 
       - name: Download JS
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16 # v4
         with:
           name: build-js
           path: js
 
       - name: Download CSS
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16 # v4
         with:
           name: build-css
           path: css
@@ -246,7 +246,7 @@ jobs:
           rm -rf book/fonts
 
       - name: Upload Book
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@0b2256b8c012f0828dc542b3febcab082c67f72b # v4
         with:
           name: build-mdbook
           path: book
@@ -258,7 +258,7 @@ jobs:
     needs: build-mdbook
     steps:
       - name: Download Book
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16 # v4
         with:
           name: build-mdbook
           path: book
