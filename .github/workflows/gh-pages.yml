@@ -132,7 +132,7 @@ jobs:
         with:
           name: build-css
           path: scss/dist
-
+          if-no-files-found: error
   test-mdbook-backend:
     name: Test mdBook Backend
     runs-on: macos-14
