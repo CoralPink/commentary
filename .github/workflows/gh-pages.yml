@@ -200,10 +200,6 @@ jobs:
           cp js/* src
           cp -r css src
 
-      - name: Debug
-        run: |
-          ls -alR
-
       - name: Cache Cargo
         id: cache-cargo
         uses: actions/cache@0c45773b623bea8c8e75f6c82b208c3cf94ea4f9 # v4
