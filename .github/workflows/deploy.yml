@@ -1,0 +1,31 @@
+name: Deploy
+
+on:
+  workflow_run: [Build mdBook]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  deploy-mdbook:
+    name: Deploy mdBook
+    runs-on: macos-14
+    needs: build-mdbook
+    steps:
+      - name: Download Book
+        uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16 # v4
+        with:
+          name: build-mdbook
+          path: book
+
+      - name: List Segments
+        run: |
+          ls -alR book
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@4f9cc6602d3f66b9c108549d475ec49e8ef4d45e # v4
+        if: ${{ github.ref == 'refs/heads/main' }}
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: book

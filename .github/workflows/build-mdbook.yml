@@ -1,0 +1,101 @@
+name: Build mdBook
+
+on:
+  workflow_run: [Build Script, Build SCSS, Test mdBook Backend]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-mdbook:
+    name: Build mdBook
+    runs-on: macos-14
+    needs: [build-wasm, build-js, build-scss, test-mdbook-backend]
+    steps:
+      - name: Checkout the repo
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4
+        with:
+          sparse-checkout: |
+            .
+            rs/mdbook-footnote
+            src
+            theme
+
+      - name: Download wasm_pkg
+        uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16 # v4
+        with:
+          name: wasm-book
+          path: pkg
+
+      - name: Download JS
+        uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16 # v4
+        with:
+          name: build-js
+          path: js
+
+      - name: Download CSS
+        uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16 # v4
+        with:
+          name: build-css
+          path: css
+
+      - name: Copy Files
+        run: |
+          cp pkg/wasm_book_bg.wasm src
+          cp js/* src
+          cp -r css src
+
+      - name: Cache Cargo
+        id: cache-cargo
+        uses: actions/cache@0c45773b623bea8c8e75f6c82b208c3cf94ea4f9 # v4
+        with:
+          path: |
+            ~/.cargo/bin/
+            ~/.cargo/registry/index/
+            ~/.cargo/registry/cache/
+            ~/.cargo/git/db/
+            target/
+          key: backend-${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+
+      - name: Setup Backend
+        if: steps.cache-cargo.outputs.cache-hit != 'true'
+        run: |
+          cargo install mdbook-admonish
+          cargo install mdbook-tailor
+          cargo install --path ./rs/mdbook-footnote
+
+      - name: Setup mdBook
+        uses: peaceiris/actions-mdbook@ee69d230fe19748b7abf22df32acaa93833fad08 # v2
+        with:
+          mdbook-version: "0.4.40"
+
+      - name: Build mdBook
+        run: |
+          mdbook build
+
+      - name: Remove Unneeded Files
+        run: |
+          rm book/ayu-highlight.css
+          rm book/clipboard.min.js
+          rm book/elasticlunr.min.js
+          rm book/favicon.png
+          rm book/fonts.css
+          rm book/highlight.css
+          rm book/highlight.js
+          rm book/searcher.js
+          rm book/tomorrow-night.css
+          rm book/css/chrome.css
+          rm book/css/variables.css
+          rm book/mark.min.js
+          rm -rf book/searchindex.js
+          rm -rf book/FontAwesome
+          rm -rf book/fonts
+
+      - name: Upload Book
+        uses: actions/upload-artifact@0b2256b8c012f0828dc542b3febcab082c67f72b # v4
+        with:
+          name: build-mdbook
+          path: book
+          if-no-files-found: error
+
