@@ -1,7 +1,7 @@
 name: Build mdBook
 
 on:
-  workflow_run: ["Build Script, Build SCSS, Test mdBook Backend"]
+  workflow_run: ["Build Script", "Build SCSS", "Test mdBook Backend"]
     types:
       - completed
 
