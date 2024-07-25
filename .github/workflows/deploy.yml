@@ -13,7 +13,7 @@ concurrency:
 jobs:
   deploy-mdbook:
     name: Deploy mdBook
-    runs-on: macos-14
+    runs-on: ubuntu-latest
     steps:
       - name: Download Book
         uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16 # v4
