@@ -1,9 +1,10 @@
 name: Deploy
 
 on:
-  workflow_run: [Build mdBook]
-  types:
-    - completed
+  workflow_run:
+    workflows: ["Build mdBook"]
+    types:
+      - completed
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
