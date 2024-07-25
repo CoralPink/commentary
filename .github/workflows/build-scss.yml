@@ -1,0 +1,43 @@
+name: Build SCSS
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-scss:
+    name: Build SCSS
+    runs-on: macos-14
+    steps:
+      - name: Checkout the repo
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4
+        with:
+          sparse-checkout: |
+            scss
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@4bc047ad259df6fc24a6c9b0f9a0cb08cf17fbe5 # v2
+        with:
+          bun-version: "latest"
+          no-cache: true
+
+      - name: Build SCSS
+        working-directory: scss
+        run: |
+          bun install --production
+          bun run compile general.scss dist/general.css
+          bun run compile style.scss dist/style.css
+
+      - name: Upload CSS
+        uses: actions/upload-artifact@0b2256b8c012f0828dc542b3febcab082c67f72b # v4
+        with:
+          name: build-css
+          path: scss/dist
+          if-no-files-found: error
+

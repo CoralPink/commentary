@@ -1,0 +1,108 @@
+name: Build Script
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-wasm:
+    name: Build Wasm
+    runs-on: macos-14
+    steps:
+      - name: Cache Cargo
+        id: cache-cargo
+        uses: actions/cache@0c45773b623bea8c8e75f6c82b208c3cf94ea4f9 # v4
+        with:
+          path: |
+            ~/.cargo/bin/
+            ~/.cargo/registry/index/
+            ~/.cargo/registry/cache/
+            ~/.cargo/git/db/
+            target/
+          key: wasm-${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+
+      - name: Install Cargo
+        if: steps.cache-cargo.outputs.cache-hit != 'true'
+        run: |
+          cargo install wasm-bindgen-cli
+          cargo install wasm-pack
+
+      - name: Checkout the repo
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4
+        with:
+          sparse-checkout: |
+            rs/wasm
+
+      - name: Test Cargo
+        working-directory: rs/wasm
+        run: |
+          cargo test --verbose
+
+      - name: Build Wasm
+        working-directory: rs/wasm
+        run: |
+          wasm-pack build --target web
+
+      - name: Upload wasm_pkg
+        uses: actions/upload-artifact@0b2256b8c012f0828dc542b3febcab082c67f72b # v4
+        with:
+          name: wasm-book
+          path: rs/wasm/pkg
+          if-no-files-found: error
+
+  build-js:
+    name: Build JS
+    runs-on: macos-14
+    needs: build-wasm
+    steps:
+      - name: Checkout the repo
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4
+        with:
+          sparse-checkout: |
+            js
+
+      - name: Download wasm_pkg
+        uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16 # v4
+        with:
+          name: wasm-book
+          path: pkg
+
+      - name: Copy wasm_js
+        run: |
+          cp pkg/wasm_book.js js
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@4bc047ad259df6fc24a6c9b0f9a0cb08cf17fbe5 # v2
+        with:
+          bun-version: "latest"
+          no-cache: true
+
+      - name: Install
+        working-directory: js
+        run: |
+          bun install
+          bun create-highlight.bun.sh
+
+      - name: Test Bun
+        working-directory: js
+        run: |
+          bun test
+
+      - name: Build
+        working-directory: js
+        run: |
+          bun run build.js
+
+      - name: Upload JS
+        uses: actions/upload-artifact@0b2256b8c012f0828dc542b3febcab082c67f72b # v4
+        with:
+          name: build-js
+          path: js/dist
+          if-no-files-found: error
+
