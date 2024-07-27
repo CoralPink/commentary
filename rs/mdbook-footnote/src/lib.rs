@@ -1,8 +1,8 @@
 use mdbook::{book::Book, errors::Error};
-use once_cell::sync::Lazy;
 use regex::Regex;
+use std::sync::LazyLock;
 
-static FOOTNOTE_RE: Lazy<Regex> = Lazy::new(|| {
+static FOOTNOTE_RE: LazyLock<Regex> = LazyLock::new(|| {
     Regex::new(r"(?s)\{\{footnote:\s*(?P<content>.*?)\}\}").expect("Invalid regex for FOOTNOTE_RE")
 });
 
