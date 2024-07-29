@@ -13,7 +13,7 @@ concurrency:
 jobs:
   build-wasm:
     name: Build Wasm
-    runs-on: macos-14
+    runs-on: ubuntu-latest
     steps:
       - name: Cache Cargo
         id: cache-cargo
@@ -39,10 +39,16 @@ jobs:
           sparse-checkout: |
             rs/wasm
 
-      - name: Test Cargo
+      - name: Setup geckodriver
+        uses: browser-actions/setup-geckodriver@latest
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - run: geckodriver --version
+
+      - name: Test Wasm
         working-directory: rs/wasm
         run: |
-          cargo test --verbose
+          wasm-pack test --headless --firefox
 
       - name: Build Wasm
         working-directory: rs/wasm
