@@ -11,16 +11,77 @@ pub fn attribute_external_links() {
     let window = web_sys::window().unwrap();
     let document = window.document().unwrap();
 
-    let elements = document
-        .get_element_by_id("main")
-        .expect("id 'main' not found")
-        .query_selector_all(r#"a[href^="http"]"#)
-        .unwrap();
+    let node_array = node_list_to_array(
+        document
+            .get_element_by_id("main")
+            .expect("id 'main' not found")
+            .query_selector_all(r#"a[href^="http"]"#)
+            .unwrap(),
+    );
 
-    for el in node_list_to_array(elements).iter() {
-        if let Some(el) = el.dyn_ref::<Element>() {
+    for node in node_array.iter() {
+        if let Some(el) = node.dyn_ref::<Element>() {
             el.set_attribute("target", "_blank").unwrap();
-            el.set_attribute("rel", "noopener").unwrap();
+        }
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use wasm_bindgen::prelude::*;
+    use wasm_bindgen_test::*;
+    use web_sys::{Document, Element};
+
+    wasm_bindgen_test_configure!(run_in_browser);
+
+    #[wasm_bindgen_test]
+    fn test_attribute_external_links() {
+
+        /* 1. Creating test cases. */
+        let window = web_sys::window().unwrap();
+        let document: Document = window.document().unwrap();
+
+        let main = document.create_element("div").unwrap();
+        main.set_id("main");
+
+        document.body().unwrap().append_child(&main).unwrap();
+
+        let create_test_case = |url: &str| {
+            let link = document.create_element("a").unwrap();
+            link.set_attribute("href", url).unwrap();
+
+            main.append_child(&link).unwrap();
+        };
+
+        create_test_case("http://example.com");
+        create_test_case("https://example.com");
+        create_test_case("example.html");
+        create_test_case("../example.html");
+        create_test_case("#1");
+
+        /* 2. Call the function under test. */
+        super::attribute_external_links();
+
+        /* 3. If the `href` of the link starts with "http", check whether the "_blank" attribute is given to "target",
+              otherwise check that the "target" attribute is not present. */
+        let node_array = super::node_list_to_array(
+            document
+                .get_element_by_id("main")
+                .expect("id 'main' not found")
+                .query_selector_all(r#"a[href^="http"]"#)
+                .unwrap(),
+        );
+
+        for node in node_array.iter() {
+            if let Some(el) = node.dyn_ref::<Element>() {
+                let href = el.get_attribute("href").unwrap_or_default();
+
+                if href.starts_with("http") {
+                    assert_eq!(el.get_attribute("target").unwrap(), "_blank");
+                } else {
+                    assert!(el.get_attribute("target").is_none());
+                }
+            }
         }
     }
 }
