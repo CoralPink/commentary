@@ -13,7 +13,7 @@ concurrency:
 jobs:
   build-wasm:
     name: Build Wasm
-    runs-on: macos-14
+    runs-on: ubuntu-latest
     steps:
       - name: Cache Cargo
         id: cache-cargo
