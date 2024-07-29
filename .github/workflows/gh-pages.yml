@@ -39,6 +39,12 @@ jobs:
           sparse-checkout: |
             rs/wasm
 
+      - name: Setup geckodriver
+        uses: browser-actions/setup-geckodriver@latest
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - run: geckodriver --version
+
       - name: Test Cargo
         working-directory: rs/wasm
         run: |
