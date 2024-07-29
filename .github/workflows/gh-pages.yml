@@ -42,7 +42,7 @@ jobs:
       - name: Test Cargo
         working-directory: rs/wasm
         run: |
-          cargo test --verbose
+          wasm-pack test --headless --firefox
 
       - name: Build Wasm
         working-directory: rs/wasm
