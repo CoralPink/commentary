@@ -46,10 +46,18 @@ jobs:
         run: |
           firefox --version
 
+      - name: Setup Chrome
+        uses: browser-actions/setup-chrome@v1
+        id: setup-chrome
+
+      - name: Chrome Version
+        run: |
+          ${{ steps.setup-chrome.outputs.chrome-path }} --version
+
       - name: Test Wasm
         working-directory: rs/wasm
         run: |
-          wasm-pack test --headless --firefox
+          wasm-pack test --headless --firefox --chrome
 
       - name: Build Wasm
         working-directory: rs/wasm
