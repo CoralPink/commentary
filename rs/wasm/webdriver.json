@@ -1,9 +1,32 @@
 {
+	"goog:chromeOptions": {
+		"args": [
+			"--headless",
+			"--disable-gpu",
+      "--disable-dev-shm-usage",
+      "--window-size=1280,800",
+      "--enable-logging",
+      "--v=1",
+      "--no-first-run"
+		],
+    "prefs": {
+      "browser.startup.homepage": "about:blank",
+      "homepage": "about:blank",
+      "profile.default_content_setting_values.notifications": 2,
+      "session.restore_on_startup": 0
+    }
+	},
 	"moz:firefoxOptions": {
+		"args": [
+      "-headless",
+      "--disable-gpu",
+      "--window-size=1280,800"
+    ],
 		"prefs": {
-			"media.navigator.streams.fake": true,
+			"browser.startup.page": 0,
+			"browser.startup.homepage": "about:blank",
+			"devtools.console.stdout.content": true,
 			"media.navigator.permission.disabled": true
-		},
-		"args": []
+		}
 	}
 }
