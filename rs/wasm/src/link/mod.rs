@@ -15,7 +15,7 @@ pub fn attribute_external_links() {
         document
             .get_element_by_id("main")
             .expect("id 'main' not found")
-            .query_selector_all(r#"a[href^="http"]"#)
+            .query_selector_all(r#"a[href^="http://"], a[href^="https://"]"#)
             .unwrap(),
     );
 
@@ -28,6 +28,7 @@ pub fn attribute_external_links() {
 
 #[cfg(test)]
 mod tests {
+    use macros::log;
     use wasm_bindgen::prelude::*;
     use wasm_bindgen_test::*;
     use web_sys::{Document, Element};
@@ -36,7 +37,6 @@ mod tests {
 
     #[wasm_bindgen_test]
     fn test_attribute_external_links() {
-
         /* 1. Creating test cases. */
         let window = web_sys::window().unwrap();
         let document: Document = window.document().unwrap();
@@ -55,20 +55,27 @@ mod tests {
 
         create_test_case("http://example.com");
         create_test_case("https://example.com");
+        create_test_case("https://example.com/abc.html");
+
         create_test_case("example.html");
         create_test_case("../example.html");
         create_test_case("#1");
 
+        create_test_case("http.html");
+        create_test_case("http/example.html");
+
         /* 2. Call the function under test. */
         super::attribute_external_links();
 
-        /* 3. If the `href` of the link starts with "http", check whether the "_blank" attribute is given to "target",
-              otherwise check that the "target" attribute is not present. */
+        /*
+         * 3. If the `href` of the link starts with "http", check whether the "_blank" attribute is given to "target",
+         *    otherwise check that the "target" attribute is not present.
+         */
         let node_array = super::node_list_to_array(
             document
                 .get_element_by_id("main")
                 .expect("id 'main' not found")
-                .query_selector_all(r#"a[href^="http"]"#)
+                .query_selector_all("a")
                 .unwrap(),
         );
 
@@ -76,10 +83,12 @@ mod tests {
             if let Some(el) = node.dyn_ref::<Element>() {
                 let href = el.get_attribute("href").unwrap_or_default();
 
-                if href.starts_with("http") {
+                if href.starts_with("http://") || href.starts_with("https://") {
                     assert_eq!(el.get_attribute("target").unwrap(), "_blank");
+                    macros::console_log!("[OK] _blank: {href}");
                 } else {
                     assert!(el.get_attribute("target").is_none());
+                    macros::console_log!("[OK]   none: {href}");
                 }
             }
         }
