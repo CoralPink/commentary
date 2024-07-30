@@ -13,7 +13,7 @@ concurrency:
 jobs:
   build-wasm:
     name: Build Wasm
-    runs-on: ubuntu-latest
+    runs-on: macos-14
     steps:
       - name: Cache Cargo
         id: cache-cargo
@@ -39,11 +39,12 @@ jobs:
           sparse-checkout: |
             rs/wasm
 
-      - name: Setup geckodriver
-        uses: browser-actions/setup-geckodriver@latest
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-      - run: geckodriver --version
+      - name: Setup Firefox
+        uses: browser-actions/setup-firefox@v1
+
+      - name: Firefox Version
+        run: |
+          firefox --version
 
       - name: Test Wasm
         working-directory: rs/wasm
@@ -245,22 +246,23 @@ jobs:
           mdbook build
 
       - name: Remove Unneeded Files
+        working-directory: book
         run: |
-          rm book/ayu-highlight.css
-          rm book/clipboard.min.js
-          rm book/elasticlunr.min.js
-          rm book/favicon.png
-          rm book/fonts.css
-          rm book/highlight.css
-          rm book/highlight.js
-          rm book/searcher.js
-          rm book/tomorrow-night.css
-          rm book/css/chrome.css
-          rm book/css/variables.css
-          rm book/mark.min.js
-          rm -rf book/searchindex.js
-          rm -rf book/FontAwesome
-          rm -rf book/fonts
+          rm ayu-highlight.css
+          rm clipboard.min.js
+          rm elasticlunr.min.js
+          rm favicon.png
+          rm fonts.css
+          rm highlight.css
+          rm highlight.js
+          rm searcher.js
+          rm tomorrow-night.css
+          rm css/chrome.css
+          rm css/variables.css
+          rm mark.min.js
+          rm searchindex.js
+          rm -rf FontAwesome
+          rm -rf fonts
 
       - name: Upload Book
         uses: actions/upload-artifact@0b2256b8c012f0828dc542b3febcab082c67f72b # v4
