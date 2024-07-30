@@ -39,13 +39,6 @@ jobs:
           sparse-checkout: |
             rs/wasm
 
-      - name: Setup Firefox
-        uses: browser-actions/setup-firefox@v1
-
-      - name: Firefox Version
-        run: |
-          firefox --version
-
       - name: Setup Chrome
         uses: browser-actions/setup-chrome@v1
         id: setup-chrome
@@ -54,10 +47,17 @@ jobs:
         run: |
           ${{ steps.setup-chrome.outputs.chrome-path }} --version
 
+      - name: Setup Firefox
+        uses: browser-actions/setup-firefox@v1
+
+      - name: Firefox Version
+        run: |
+          firefox --version
+
       - name: Test Wasm
         working-directory: rs/wasm
         run: |
-          wasm-pack test --headless --firefox --chrome
+          wasm-pack test --headless --chrome --firefox
 
       - name: Build Wasm
         working-directory: rs/wasm
