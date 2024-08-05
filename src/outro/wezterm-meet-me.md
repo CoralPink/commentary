@@ -38,8 +38,7 @@ Clapton は「"While My Guitar Gently Weeps" はグループ内での George の
 インド音楽の影響を受けた[Within You Without You](https://en.wikipedia.org/wiki/Within_You_Without_You)
 のような楽曲で顕著であった哲学的な懸念を再び取り上げている。
 
-この曲は、人々に対する普遍的な愛が全ての個人の中に潜在していながら、実現されないままであることを嘆くものであり、
-多くの聴衆が Harisson の作品を Lennon-McCartney の作品と互角とも言えるほど素晴らしいことに気付くきっかけとなった。
+この曲は、多くの聴衆が Harisson の作品を Lennon-McCartney の作品と互角とも言えるほど素晴らしいことに気付くきっかけとなった。
 [Wikipedia](https://en.wikipedia.org/wiki/While_My_Guitar_Gently_Weeps)より
 }}
 
@@ -505,7 +504,7 @@ You were perverted, too
 
 そろそろみんな次のステップに進まないとね😆
 
-## 🎸 Still, my guitar gently weeps
+## 🎸 While My Guitar Gently Weeps
 
 な〜んて言いながら、もう一回だけ話飛ぶんですけど、オランダに行ってきたんですよ〜😋
 
@@ -531,4 +530,45 @@ No one alerted you
 
 ...ほら❗わるくないだろ❓🤗{{footnote: この言い回しはもちろん John Lennon のまね〜🤪}}
 
+```
+
+### 🎸 Still, my guitar gently weeps
+
+```admonish success title=""
+耐えず見かねてなのか、いやなんかもう自分が「耐えられまへん」なのかもしれないんだけど、
+縁あって再登場だ。{{footnote: 2024/08 追記。}}
+
+> When you’re through with life
+>
+> And all hope is lost
+>
+> きみが全てを尽くして
+>
+> 目の前が真っ暗になったとしても
+
+いや、知ってるよ。大人達が「下がった」だの「落ちた」だの騒いでるのは 🫠
+
+なんならわたしも巻き込まれてるし🙃
+
+> And when the night is cloudy
+>
+> たとえ夜が曇っていたとしても
+
+なんなら 9020.T も持ってるし🤣
+
+でも、"ドンドンぶち上がる" 花火を見てる方がよっぽど健全だと気づいたんだ❗
+
+<video controls preload="none" poster="img/itabashi-hanabi-thumbnail.webp" width="960" height="540">
+  <source src="img/itabashi-hanabi.mp4" type="video/mp4">
+</video>
+
+> There is still a light that shines on me
+>
+> それでも僕を照らす光はある
+
+...ほら❗わるくないだろ❓🤗
+
+> 悩みなんざ吹っ飛ばせ！
+>
+> 笑え 笑え！
 ```
