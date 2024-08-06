@@ -79,7 +79,7 @@ jobs:
           wasm-pack build --target web
 
       - name: Upload wasm_pkg
-        uses: actions/upload-artifact@89ef406dd8d7e03cfd12d9e0a4a378f454709029 # v4
+        uses: actions/upload-artifact@834a144ee995460fba8ed112a2fc961b36a5ec5a # v4
         with:
           name: wasm-book
           path: rs/wasm/pkg
@@ -150,7 +150,7 @@ jobs:
           bun run build.js
 
       - name: Upload JS
-        uses: actions/upload-artifact@89ef406dd8d7e03cfd12d9e0a4a378f454709029 # v4
+        uses: actions/upload-artifact@834a144ee995460fba8ed112a2fc961b36a5ec5a # v4
         with:
           name: build-js
           path: js/dist
@@ -180,7 +180,7 @@ jobs:
           bun run compile style.scss dist/style.css
 
       - name: Upload CSS
-        uses: actions/upload-artifact@89ef406dd8d7e03cfd12d9e0a4a378f454709029 # v4
+        uses: actions/upload-artifact@834a144ee995460fba8ed112a2fc961b36a5ec5a # v4
         with:
           name: build-css
           path: scss/dist
@@ -298,7 +298,7 @@ jobs:
           rm -rf fonts
 
       - name: Upload Book
-        uses: actions/upload-artifact@89ef406dd8d7e03cfd12d9e0a4a378f454709029 # v4
+        uses: actions/upload-artifact@834a144ee995460fba8ed112a2fc961b36a5ec5a # v4
         with:
           name: build-mdbook
           path: book
