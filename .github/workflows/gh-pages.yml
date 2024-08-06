@@ -211,11 +211,6 @@ jobs:
           sparse-checkout: |
             rs/mdbook-footnote
 
-      - name: Setup Rust
-        uses: hecrj/setup-rust-action@v2
-        with:
-          rust-version: "1.80.0"
-
       - name: Cache Cargo
         uses: actions/cache@0c45773b623bea8c8e75f6c82b208c3cf94ea4f9 # v4
         with:
@@ -269,11 +264,6 @@ jobs:
           cp pkg/wasm_book_bg.wasm src
           cp js/* src
           cp -r css src
-
-      - name: Setup Rust
-        uses: hecrj/setup-rust-action@v2
-        with:
-          rust-version: "1.80.0"
 
       - name: Cache Cargo
         id: cache-cargo
