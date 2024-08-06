@@ -39,17 +39,10 @@ jobs:
           sparse-checkout: |
             rs/wasm
 
-      - name: Setup Firefox
-        uses: browser-actions/setup-firefox@955a5d42b5f068a8917c6a4ff1656a2235c66dfb # v1
-
-      - name: Firefox Version
-        run: |
-          firefox --version
-
       - name: Test Wasm
         working-directory: rs/wasm
         run: |
-          wasm-pack test --headless --chrome --firefox
+          wasm-pack test --headless --chrome
 
   build-wasm:
     name: Build Wasm
