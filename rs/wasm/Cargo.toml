@@ -23,7 +23,7 @@ strip = "symbols"
 [dependencies]
 js-sys = "=0.3.69"
 macros = { path = "macros" }
-serde = { version = "=1.0.204", features = ["derive"] }
+serde = { version = "=1.0.205", features = ["derive"] }
 serde-wasm-bindgen = "=0.6.5"
 wasm-bindgen = "=0.2.92"
 
