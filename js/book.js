@@ -11,7 +11,7 @@ const initialize = async () => {
 
   const [config, _] = await Promise.all([
     fetch(`${root}searchindex.json`).then(response => response.json()),
-    initWasm({ module_or_path: './wasm_book_bg.wasm' }),
+    initWasm({ module_or_path: `${root}wasm_book_bg.wasm` }),
 
     initTableOfContents(),
     procCodeBlock(),
