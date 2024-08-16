@@ -17,4 +17,7 @@
     // Run lock file maintenance (updates) early Monday mornings.
     ":maintainLockFilesWeekly",
   ],
+  "labels": [
+    "dependencies"
+  },
 }
