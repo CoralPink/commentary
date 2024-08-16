@@ -11,6 +11,6 @@ reviews:
   auto_review:
     enabled: true
     drafts: false
-    labels: ["dependencies"]
+    ignore_title_keywords: ["fix(deps):"]
 chat:
   auto_reply: true
