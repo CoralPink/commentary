@@ -11,5 +11,6 @@ reviews:
   auto_review:
     enabled: true
     drafts: false
+    labels: ["dependencies"]
 chat:
   auto_reply: true
