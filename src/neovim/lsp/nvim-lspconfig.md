@@ -239,6 +239,10 @@ Yes, it was my way
 
 ...。😮
 
+> しんじれば
+>
+> チャンピオンも　ゆめ　じゃない❗
+
 こうなったらお祝いだー❗❗🥳
 
 ```admonish success title=""
@@ -257,7 +261,18 @@ Yes, it was my way
 おなじ夢を 語り合う
 ```
 
-宴もたけなわではございますが、わたしから一言。
+まだまだ続くぞー❗
+
+```admonish success title=""
+<video controls preload="none" poster="img/mm-bon-odori-thumbnail.webp" width="960" height="540">
+  <source src="img/mm-bon-odori.mp4" type="video/mp4">
+</video>
+```
+
+宴もたけなわではございますが、
+
+とりあえ〜ずぅ ここぉ まあ でぇ〜〜〜え ってかぁ⁉️
+
 
 ```admonish success
 でんどう　いり　おめでとう❗

@@ -121,8 +121,10 @@ nvim-lsp が動作していることは、技術的にはプラグインをセ�
 ~~~admonish example title="extensions/fidget.lua"
 ```lua
 require('fidget').setup {
-  text = {
-    spinner = 'meter',
+  progress = {
+    display = {
+      progress_icon = { pattern = 'meter', period = 1 },
+    },
   },
 }
 ```
@@ -140,7 +142,7 @@ The following table shows the default options for this plugin:
 
 #### 五 : Spinners
 
-めっちゃありますが、わたしは`spinner`だけ変えてます😆
+めっちゃありますが、わたしは`progress_icon`だけ変えてます😆
 
 ```admonish info title="[Spinners](https://github.com/j-hui/fidget.nvim/blob/main/doc/fidget.md#spinners)"
 See <lua/fidget/spinners.lua> of this plugin's source code to see how each animation is defined.
@@ -154,23 +156,25 @@ See <lua/fidget/spinners.lua> of this plugin's source code to see how each anima
 
 ## 六 : Setup
 
-これももういつも通りなんですが一点だけ、「`legacy`ブランチに固定しておいてね。」とのことです。(2023/08/28 現在)
+2024/08/21 現在では、以下の設定はもう必要ありません😉
 
-```admonish info title="[Quickstart](https://github.com/j-hui/fidget.nvim#quickstart)"
-NOTE: fidget.nvim will soon be completely rewritten.
-In the meantime, these instructions will pin your configuration to the legacy branch to avoid breaking changes.
+> これももういつも通りなんですが一点だけ、「`legacy`ブランチに固定しておいてね。」とのことです。(2023/08/28 現在)
 
-注意: fidget.nvimは間もなく完全に書き直される予定です。
-それまでの間レガシーブランチに固定し、あなたの設定を壊さないようにします。
-```
+> "[Quickstart](https://github.com/j-hui/fidget.nvim#quickstart)"
+> NOTE: fidget.nvim will soon be completely rewritten.
+> In the meantime, these instructions will pin your configuration to the legacy branch to avoid breaking changes.
+>
+> 注意: fidget.nvimは間もなく完全に書き直される予定です。
+> それまでの間レガシーブランチに固定し、あなたの設定を壊さないようにします。
 
-固定しておきましょう😉
+> 固定しておきましょう😉
+
+いつも通りでOKです❗
 
 ~~~admonish example title="extensions/init.lua"
 ```lua
   use {
     'j-hui/fidget.nvim',
-    tag = 'legacy',
     config = function() require 'extensions.fidget' end,
     requires = 'neovim/nvim-lspconfig',
   }
