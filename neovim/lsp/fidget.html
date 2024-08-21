@@ -300,15 +300,23 @@ In the meantime, these instructions will pin your configuration to the legacy br
 <blockquote>
 <p>固定しておきましょう😉</p>
 </blockquote>
-<pre><code class="language-lua">  // "extensions/init.lua"
-  use {
+<p>いつも通りでOKです❗</p>
+<div id="admonition-extensionsinitlua" class="admonition admonish-example" role="note" aria-labelledby="admonition-extensionsinitlua-title">
+<div class="admonition-title">
+<div id="admonition-extensionsinitlua-title">
+<p>extensions/init.lua</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-extensionsinitlua"></a>
+</div>
+<div>
+<pre><code class="language-lua">  use {
     'j-hui/fidget.nvim',
-    tag = 'legacy',
     config = function() require 'extensions.fidget' end,
     requires = 'neovim/nvim-lspconfig',
   }
 </code></pre>
-<p>気にせず先に進みましょう❗</p>
+</div>
+</div>
 <h2 id="七--try"><a class="header" href="#七--try">七 : Try!</a></h2>
 <p>例えば<code>typescript-language-server</code>が動く環境で<code>js</code>ファイルを開けば...、</p>
 <img src="img/fidget1.webp" alt="fidget1" width="540" height="120" loading="lazy">
