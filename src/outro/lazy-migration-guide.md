@@ -218,20 +218,6 @@ require("lazy").setup()
 },
 ```
 
-### 🔹 tag='' ➡️ version=""
-
-これも同じ❗
-
-```diff
-  {
-    'j-hui/fidget.nvim',
--   tag = 'legacy',
-+   version = 'legacy',
-    config = function() require 'extensions.fidget' end,
-    dependencies = 'neovim/nvim-lspconfig',
-  },
-```
-
 ### 🔹 after ℹ️ not needed
 
 ```admonish info title=""
