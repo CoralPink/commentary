@@ -246,8 +246,10 @@ For an up-to-date list of LSP servers this plugin is known to work with, see
 </div>
 <div>
 <pre><code class="language-lua">require('fidget').setup {
-  text = {
-    spinner = 'meter',
+  progress = {
+    display = {
+      progress_icon = { pattern = 'meter', period = 1 },
+    },
   },
 }
 </code></pre>
@@ -268,7 +270,7 @@ For an up-to-date list of LSP servers this plugin is known to work with, see
 </div>
 <p>めっちゃある❗</p>
 <h4 id="五--spinners"><a class="header" href="#五--spinners">五 : Spinners</a></h4>
-<p>めっちゃありますが、わたしは<code>spinner</code>だけ変えてます😆</p>
+<p>めっちゃありますが、わたしは<code>progress_icon</code>だけ変えてます😆</p>
 <div id="admonition-spinnershttpsgithubcomj-huifidgetnvimblobmaindocfidgetmdspinners" class="admonition admonish-info" role="note" aria-labelledby="admonition-spinnershttpsgithubcomj-huifidgetnvimblobmaindocfidgetmdspinners-title">
 <div class="admonition-title">
 <div id="admonition-spinnershttpsgithubcomj-huifidgetnvimblobmaindocfidgetmdspinners-title">
