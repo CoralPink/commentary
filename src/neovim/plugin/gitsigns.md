@@ -43,30 +43,40 @@ gitの新しいバージョン。古いバージョンでは、一部の機能�
 ```lua
 require('gitsigns').setup {
   signs = {
-    add          = { hl = 'GitSignsAdd'   , text = '│', numhl='GitSignsAddNr'   , linehl='GitSignsAddLn'    },
-    change       = { hl = 'GitSignsChange', text = '│', numhl='GitSignsChangeNr', linehl='GitSignsChangeLn' },
-    delete       = { hl = 'GitSignsDelete', text = '_', numhl='GitSignsDeleteNr', linehl='GitSignsDeleteLn' },
-    topdelete    = { hl = 'GitSignsDelete', text = '‾', numhl='GitSignsDeleteNr', linehl='GitSignsDeleteLn' },
-    changedelete = { hl = 'GitSignsChange', text = '~', numhl='GitSignsChangeNr', linehl='GitSignsChangeLn' },
-    untracked    = { hl = 'GitSignsAdd'   , text = '┆', numhl='GitSignsAddNr'   , linehl='GitSignsAddLn'    },
+    add          = { text = '┃' },
+    change       = { text = '┃' },
+    delete       = { text = '_' },
+    topdelete    = { text = '‾' },
+    changedelete = { text = '~' },
+    untracked    = { text = '┆' },
   },
+  signs_staged = {
+    add          = { text = '┃' },
+    change       = { text = '┃' },
+    delete       = { text = '_' },
+    topdelete    = { text = '‾' },
+    changedelete = { text = '~' },
+    untracked    = { text = '┆' },
+  },
+  signs_staged_enable = true,
   signcolumn = true,  -- Toggle with `:Gitsigns toggle_signs`
   numhl      = false, -- Toggle with `:Gitsigns toggle_numhl`
   linehl     = false, -- Toggle with `:Gitsigns toggle_linehl`
   word_diff  = false, -- Toggle with `:Gitsigns toggle_word_diff`
   watch_gitdir = {
-    interval = 1000,
     follow_files = true
   },
-  attach_to_untracked = true,
+  auto_attach = true,
+  attach_to_untracked = false,
   current_line_blame = false, -- Toggle with `:Gitsigns toggle_current_line_blame`
   current_line_blame_opts = {
     virt_text = true,
     virt_text_pos = 'eol', -- 'eol' | 'overlay' | 'right_align'
     delay = 1000,
     ignore_whitespace = false,
+    virt_text_priority = 100,
   },
-  current_line_blame_formatter = '<author>, <author_time:%Y-%m-%d> - <summary>',
+  current_line_blame_formatter = '<author>, <author_time:%R> - <summary>',
   sign_priority = 6,
   update_debounce = 100,
   status_formatter = nil, -- Use default
@@ -79,9 +89,6 @@ require('gitsigns').setup {
     row = 0,
     col = 1
   },
-  yadm = {
-    enable = false
-  },
 }
 ```
 ~~~
@@ -90,7 +97,6 @@ require('gitsigns').setup {
 ```lua
 use {
   'lewis6991/gitsigns.nvim',
-  -- tag = 'release',
   config = function() require 'extensions.gitsigns' end,
 }
 ```
@@ -107,20 +113,6 @@ use {
 からここまでに2ヶ月かかりました...。
 
 まあなんか、やってやったぜってな感じはあります☺️
-```
-
-```admonish warning
-`Neovim`の`nightly`ビルドや開発ビルドを実行している場合は、`tag`オプションを使用しないでください!
-
-(※`Stable Release`を使用している場合は入れてね!)
-
-...と記載されているのですが、なぜかアップデート確認 (次回以降の`:PackerSync`) で失敗します。
-
-![gitsigns-install](img/gitsigns-install-failed.webp)
-
-これは`packer`の問題なのかな...。ごめんなさい、今ちょっと高速なんで、また今度確認してみます😣
-
-あ、上の例では既にコメントアウトしてます。
 ```
 
 ## Keymaps
@@ -143,7 +135,7 @@ Gitsigns は on_attach コールバックを提供し、buffer マッピング�
 -- setup の中にペーストします。
 
   on_attach = function(bufnr)
-    local gs = package.loaded.gitsigns
+    local gitsigns = require('gitsigns')
 
     local function map(mode, l, r, opts)
       opts = opts or {}
@@ -153,33 +145,40 @@ Gitsigns は on_attach コールバックを提供し、buffer マッピング�
 
     -- Navigation
     map('n', ']c', function()
-      if vim.wo.diff then return ']c' end
-      vim.schedule(function() gs.next_hunk() end)
-      return '<Ignore>'
-    end, {expr=true})
+      if vim.wo.diff then
+        vim.cmd.normal({']c', bang = true})
+      else
+        gitsigns.nav_hunk('next')
+      end
+    end)
 
     map('n', '[c', function()
-      if vim.wo.diff then return '[c' end
-      vim.schedule(function() gs.prev_hunk() end)
-      return '<Ignore>'
-    end, {expr=true})
+      if vim.wo.diff then
+        vim.cmd.normal({'[c', bang = true})
+      else
+        gitsigns.nav_hunk('prev')
+      end
+    end)
 
     -- Actions
-    map({'n', 'v'}, '<leader>hs', ':Gitsigns stage_hunk<CR>')
-    map({'n', 'v'}, '<leader>hr', ':Gitsigns reset_hunk<CR>')
-    map('n', '<leader>hS', gs.stage_buffer)
-    map('n', '<leader>hu', gs.undo_stage_hunk)
-    map('n', '<leader>hR', gs.reset_buffer)
-    map('n', '<leader>hp', gs.preview_hunk)
-    map('n', '<leader>hb', function() gs.blame_line{full=true} end)
-    map('n', '<leader>tb', gs.toggle_current_line_blame)
-    map('n', '<leader>hd', gs.diffthis)
-    map('n', '<leader>hD', function() gs.diffthis('~') end)
-    map('n', '<leader>td', gs.toggle_deleted)
+    map('n', '<leader>hs', gitsigns.stage_hunk)
+    map('n', '<leader>hr', gitsigns.reset_hunk)
+    map('v', '<leader>hs', function() gitsigns.stage_hunk {vim.fn.line('.'), vim.fn.line('v')} end)
+    map('v', '<leader>hr', function() gitsigns.reset_hunk {vim.fn.line('.'), vim.fn.line('v')} end)
+    map('n', '<leader>hS', gitsigns.stage_buffer)
+    map('n', '<leader>hu', gitsigns.undo_stage_hunk)
+    map('n', '<leader>hR', gitsigns.reset_buffer)
+    map('n', '<leader>hp', gitsigns.preview_hunk)
+    map('n', '<leader>hb', function() gitsigns.blame_line{full=true} end)
+    map('n', '<leader>tb', gitsigns.toggle_current_line_blame)
+    map('n', '<leader>hd', gitsigns.diffthis)
+    map('n', '<leader>hD', function() gitsigns.diffthis('~') end)
+    map('n', '<leader>td', gitsigns.toggle_deleted)
 
     -- Text object
     map({'o', 'x'}, 'ih', ':<C-U>Gitsigns select_hunk<CR>')
   end
+
 -- }
 ```
 ~~~
@@ -213,20 +212,27 @@ non-blocking (return immediately).
 
 もちろん、このままがいい❗って場合はスキップしちゃって構いません。デフォルトでも全然イケてるプラグインです😆
 
-### signs
+### signs / signs_staged
 
-ここは表示する`text`だけ変えてます。
-
-`untracked`については、後に出てくる`attach_to_untracked`を無効にすると使用されないので定義していません。
+ここでは表示する`text`を変えてみました。
 
 ~~~admonish example title="extensions/gitsigns.lua"
 ```lua
   signs = {
-    add =          { hl = 'GitSignsAdd',    text = ' ▎', numhl = 'GitSignsAddNr',    linehl = 'GitSignsAddLn' },
-    change =       { hl = 'GitSignsChange', text = ' ▎', numhl = 'GitSignsChangeNr', linehl = 'GitSignsChangeLn' },
-    delete =       { hl = 'GitSignsDelete', text = ' ', numhl = 'GitSignsDeleteNr', linehl = 'GitSignsDeleteLn' },
-    topdelete =    { hl = 'GitSignsDelete', text = ' ', numhl = 'GitSignsDeleteNr', linehl = 'GitSignsDeleteLn' },
-    changedelete = { hl = 'GitSignsChange', text = '▎ ', numhl = 'GitSignsChangeNr', linehl = 'GitSignsChangeLn' },
+    add = { text = ' ▎' },
+    change = { text = ' ▎' },
+    delete = { text = ' ' },
+    topdelete = { text = ' ' },
+    changedelete = { text = '~' },
+    untracked = { text = '▎ ' },
+  },
+  signs_staged = {
+    add = { text = ' ▎' },
+    change = { text = ' ▎' },
+    delete = { text = ' ' },
+    topdelete = { text = ' ' },
+    changedelete = { text = '~' },
+    untracked = { text = '▎ ' },
   },
 ```
 ~~~
@@ -361,7 +367,7 @@ current_line_blame_formatter    gitsigns-config-current_line_blame_formatter
 ~~~
 
 フォーマット指定子については量が多いので手元で確認してもらうとして、
-デフォルトで`current_line_brame`を有効化するかどうかは、以下のパラメータです。
+デフォルトで`current_line_blame`を有効化するかどうかは、以下のパラメータです。
 
 ~~~admonish info title="gitsigns-config-current_line_blame"
 ```txt
@@ -389,11 +395,11 @@ map('n', '<leader>tb', gs.toggle_current_line_blame)
 
 |before|
 |:---:|
-|![currentr_line_brame_before](img/currentr_line_brame_before.webp)|
+|![current_line_blame_before](img/current_line_blame_before.webp)|
 
 |after|
 |:---:|
-|![currentr_line_brame_after](img/currentr_line_brame_after.webp)|
+|![current_line_blame_after](img/current_line_blame_after.webp)|
 
 `summary`が表示されました😆
 
