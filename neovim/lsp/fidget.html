@@ -286,20 +286,6 @@ For an up-to-date list of LSP servers this plugin is known to work with, see
 <p>お好みで選びましょう❗</p>
 <p>わたしは<code>meter</code>がお気に入りです☺️</p>
 <h2 id="六--setup"><a class="header" href="#六--setup">六 : Setup</a></h2>
-<p>2024/08/21 現在では、以下の設定はもう必要ありません😉</p>
-<blockquote>
-<p>これももういつも通りなんですが一点だけ、「<code>legacy</code>ブランチに固定しておいてね。」とのことです。(2023/08/28 現在)</p>
-</blockquote>
-<blockquote>
-<p>"<a href="https://github.com/j-hui/fidget.nvim#quickstart">Quickstart</a>"
-NOTE: fidget.nvim will soon be completely rewritten.
-In the meantime, these instructions will pin your configuration to the legacy branch to avoid breaking changes.</p>
-<p>注意: fidget.nvimは間もなく完全に書き直される予定です。
-それまでの間レガシーブランチに固定し、あなたの設定を壊さないようにします。</p>
-</blockquote>
-<blockquote>
-<p>固定しておきましょう😉</p>
-</blockquote>
 <p>いつも通りでOKです❗</p>
 <div id="admonition-extensionsinitlua" class="admonition admonish-example" role="note" aria-labelledby="admonition-extensionsinitlua-title">
 <div class="admonition-title">
@@ -317,11 +303,6 @@ In the meantime, these instructions will pin your configuration to the legacy br
 </code></pre>
 </div>
 </div>
-<h2 id="七--try"><a class="header" href="#七--try">七 : Try!</a></h2>
-<p>例えば<code>typescript-language-server</code>が動く環境で<code>js</code>ファイルを開けば...、</p>
-<img src="img/fidget1.webp" alt="fidget1" width="540" height="120" loading="lazy">
-<p>ここにパワーが溜まってきただろう❗❗</p>
-<img src="img/fidget2.webp" alt="fidget2" width="540" height="120" loading="lazy">
 <div id="admonition-note-2" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-2-title">
 <div class="admonition-title">
 <div id="admonition-note-2-title">
@@ -330,63 +311,25 @@ In the meantime, these instructions will pin your configuration to the legacy br
 <a class="admonition-anchor-link" href="#admonition-note-2"></a>
 </div>
 <div>
-<p>ちょっとわたしが把握してないんですが、<code>lua-language-server</code>は対応していないような気がします。</p>
-<p>(もし違ってたらごめんね...😭)</p>
+<p>2024/08/21 現在では、以下の設定はもうとっくに必要ありません😉</p>
+<blockquote>
+<p>これももういつも通りなんですが一点だけ、「<code>legacy</code>ブランチに固定しておいてね。」とのことです。(2023/08/28 現在)</p>
+</blockquote>
+<blockquote>
+<p>"<a href="https://github.com/j-hui/fidget.nvim#quickstart">Quickstart</a>"
+NOTE: fidget.nvim will soon be completely rewritten.
+In the meantime, these instructions will pin your configuration to the legacy branch to avoid breaking changes.</p>
+<p>注意: fidget.nvimは間もなく完全に書き直される予定です。
+それまでの間レガシーブランチに固定し、あなたの設定を壊さないようにします。</p>
+</blockquote>
+<p>...っていうか、一年早くない❓😨</p>
 </div>
 </div>
-<div id="admonition-tip-1" class="admonition admonish-tip" role="note" aria-labelledby="admonition-tip-1-title">
-<div class="admonition-title">
-<div id="admonition-tip-1-title">
-<p>Tip</p>
-</div>
-<a class="admonition-anchor-link" href="#admonition-tip-1"></a>
-</div>
-<div>
-<p>(ごめん、対応してた...🥲)</p>
-<img src="img/fidget-lua-ls.webp" alt="fidget-lua-ls" width="540" height="120" loading="lazy">
-<p>これは流石に看過できないので取り急ぎ❗</p>
-<p><code>nvim-lspconfig</code>の<a href="https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#lua_ls">lua_ls</a> を参考に、
-<code>extensions/mason.lua</code>を以下のようにしてみると...。</p>
-<pre><code class="language-lua">require('mason-lspconfig').setup_handlers {
-  function(server_name)
-    require('lspconfig')[server_name].setup {
-      capabilities = require('cmp_nvim_lsp').default_capabilities(),
-    }
-  end,
-
-  -- ❗ここから下に追記 ❗
-
-  ['lua_ls'] = function()
-    require('lspconfig').lua_ls.setup {
-      settings = {
-        Lua = {
-          runtime = {
-            -- Tell the language server which version of Lua you're using
-            -- (most likely LuaJIT in the case of Neovim)
-            version = 'LuaJIT'
-          },
-          -- Make the server aware of Neovim runtime files
-          workspace = {
-            checkThirdParty = false,
-            library = {
-              vim.env.VIMRUNTIME
-              -- "${3rd}/luv/library"
-              -- "${3rd}/busted/library",
-            }
-            -- or pull in all of 'runtimepath'. NOTE: this is a lot slower
-            -- library = vim.api.nvim_get_runtime_file("", true)
-          }
-        },
-      },
-    }
-  end,
-}
-</code></pre>
-<p>なんかパワー漲りまくってる...❓🤯</p>
-<img src="img/fidget-cmp.webp" alt="fidget-cmp" width="800" height="251" loading="lazy">
-<p>もっと早く気づけば良かった😱</p>
-</div>
-</div>
+<h2 id="七--try"><a class="header" href="#七--try">七 : Try!</a></h2>
+<p>例えば<code>typescript-language-server</code>が動く環境で<code>js</code>ファイルを開けば...、</p>
+<img src="img/fidget1.webp" alt="fidget1" width="540" height="120" loading="lazy">
+<p>ここにパワーが溜まってきただろう❗❗</p>
+<img src="img/fidget2.webp" alt="fidget2" width="540" height="120" loading="lazy">
 <h2 id="八--やっぱり踊りは止められぬ"><a class="header" href="#八--やっぱり踊りは止められぬ">八 : やっぱり踊りは止められぬ</a></h2>
 <div id="admonition-success" class="admonition admonish-success" role="note" aria-labelledby="admonition-success-title">
 <div class="admonition-title">

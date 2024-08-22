@@ -147,30 +147,40 @@
 <div>
 <pre><code class="language-lua">require('gitsigns').setup {
   signs = {
-    add          = { hl = 'GitSignsAdd'   , text = '│', numhl='GitSignsAddNr'   , linehl='GitSignsAddLn'    },
-    change       = { hl = 'GitSignsChange', text = '│', numhl='GitSignsChangeNr', linehl='GitSignsChangeLn' },
-    delete       = { hl = 'GitSignsDelete', text = '_', numhl='GitSignsDeleteNr', linehl='GitSignsDeleteLn' },
-    topdelete    = { hl = 'GitSignsDelete', text = '‾', numhl='GitSignsDeleteNr', linehl='GitSignsDeleteLn' },
-    changedelete = { hl = 'GitSignsChange', text = '~', numhl='GitSignsChangeNr', linehl='GitSignsChangeLn' },
-    untracked    = { hl = 'GitSignsAdd'   , text = '┆', numhl='GitSignsAddNr'   , linehl='GitSignsAddLn'    },
+    add          = { text = '┃' },
+    change       = { text = '┃' },
+    delete       = { text = '_' },
+    topdelete    = { text = '‾' },
+    changedelete = { text = '~' },
+    untracked    = { text = '┆' },
   },
+  signs_staged = {
+    add          = { text = '┃' },
+    change       = { text = '┃' },
+    delete       = { text = '_' },
+    topdelete    = { text = '‾' },
+    changedelete = { text = '~' },
+    untracked    = { text = '┆' },
+  },
+  signs_staged_enable = true,
   signcolumn = true,  -- Toggle with `:Gitsigns toggle_signs`
   numhl      = false, -- Toggle with `:Gitsigns toggle_numhl`
   linehl     = false, -- Toggle with `:Gitsigns toggle_linehl`
   word_diff  = false, -- Toggle with `:Gitsigns toggle_word_diff`
   watch_gitdir = {
-    interval = 1000,
     follow_files = true
   },
-  attach_to_untracked = true,
+  auto_attach = true,
+  attach_to_untracked = false,
   current_line_blame = false, -- Toggle with `:Gitsigns toggle_current_line_blame`
   current_line_blame_opts = {
     virt_text = true,
     virt_text_pos = 'eol', -- 'eol' | 'overlay' | 'right_align'
     delay = 1000,
     ignore_whitespace = false,
+    virt_text_priority = 100,
   },
-  current_line_blame_formatter = '&lt;author&gt;, &lt;author_time:%Y-%m-%d&gt; - &lt;summary&gt;',
+  current_line_blame_formatter = '&lt;author&gt;, &lt;author_time:%R&gt; - &lt;summary&gt;',
   sign_priority = 6,
   update_debounce = 100,
   status_formatter = nil, -- Use default
@@ -182,9 +192,6 @@
     relative = 'cursor',
     row = 0,
     col = 1
-  },
-  yadm = {
-    enable = false
   },
 }
 </code></pre>
@@ -200,7 +207,6 @@
 <div>
 <pre><code class="language-lua">use {
   'lewis6991/gitsigns.nvim',
-  -- tag = 'release',
   config = function() require 'extensions.gitsigns' end,
 }
 </code></pre>
@@ -220,22 +226,6 @@
 <p>フライングで登場していた<a href="../options/signcolumn.html">signcolumn</a>
 からここまでに2ヶ月かかりました...。</p>
 <p>まあなんか、やってやったぜってな感じはあります☺️</p>
-</div>
-</div>
-<div id="admonition-warning" class="admonition admonish-warning" role="note" aria-labelledby="admonition-warning-title">
-<div class="admonition-title">
-<div id="admonition-warning-title">
-<p>Warning</p>
-</div>
-<a class="admonition-anchor-link" href="#admonition-warning"></a>
-</div>
-<div>
-<p><code>Neovim</code>の<code>nightly</code>ビルドや開発ビルドを実行している場合は、<code>tag</code>オプションを使用しないでください!</p>
-<p>(※<code>Stable Release</code>を使用している場合は入れてね!)</p>
-<p>...と記載されているのですが、なぜかアップデート確認 (次回以降の<code>:PackerSync</code>) で失敗します。</p>
-<img src="img/gitsigns-install-failed.webp" alt="gitsigns-install" width="696" height="555" loading="lazy">
-<p>これは<code>packer</code>の問題なのかな...。ごめんなさい、今ちょっと高速なんで、また今度確認してみます😣</p>
-<p>あ、上の例では既にコメントアウトしてます。</p>
 </div>
 </div>
 <h2 id="keymaps"><a class="header" href="#keymaps">Keymaps</a></h2>
@@ -267,7 +257,7 @@
 -- setup の中にペーストします。
 
   on_attach = function(bufnr)
-    local gs = package.loaded.gitsigns
+    local gitsigns = require('gitsigns')
 
     local function map(mode, l, r, opts)
       opts = opts or {}
@@ -277,33 +267,40 @@
 
     -- Navigation
     map('n', ']c', function()
-      if vim.wo.diff then return ']c' end
-      vim.schedule(function() gs.next_hunk() end)
-      return '&lt;Ignore&gt;'
-    end, {expr=true})
+      if vim.wo.diff then
+        vim.cmd.normal({']c', bang = true})
+      else
+        gitsigns.nav_hunk('next')
+      end
+    end)
 
     map('n', '[c', function()
-      if vim.wo.diff then return '[c' end
-      vim.schedule(function() gs.prev_hunk() end)
-      return '&lt;Ignore&gt;'
-    end, {expr=true})
+      if vim.wo.diff then
+        vim.cmd.normal({'[c', bang = true})
+      else
+        gitsigns.nav_hunk('prev')
+      end
+    end)
 
     -- Actions
-    map({'n', 'v'}, '&lt;leader&gt;hs', ':Gitsigns stage_hunk&lt;CR&gt;')
-    map({'n', 'v'}, '&lt;leader&gt;hr', ':Gitsigns reset_hunk&lt;CR&gt;')
-    map('n', '&lt;leader&gt;hS', gs.stage_buffer)
-    map('n', '&lt;leader&gt;hu', gs.undo_stage_hunk)
-    map('n', '&lt;leader&gt;hR', gs.reset_buffer)
-    map('n', '&lt;leader&gt;hp', gs.preview_hunk)
-    map('n', '&lt;leader&gt;hb', function() gs.blame_line{full=true} end)
-    map('n', '&lt;leader&gt;tb', gs.toggle_current_line_blame)
-    map('n', '&lt;leader&gt;hd', gs.diffthis)
-    map('n', '&lt;leader&gt;hD', function() gs.diffthis('~') end)
-    map('n', '&lt;leader&gt;td', gs.toggle_deleted)
+    map('n', '&lt;leader&gt;hs', gitsigns.stage_hunk)
+    map('n', '&lt;leader&gt;hr', gitsigns.reset_hunk)
+    map('v', '&lt;leader&gt;hs', function() gitsigns.stage_hunk {vim.fn.line('.'), vim.fn.line('v')} end)
+    map('v', '&lt;leader&gt;hr', function() gitsigns.reset_hunk {vim.fn.line('.'), vim.fn.line('v')} end)
+    map('n', '&lt;leader&gt;hS', gitsigns.stage_buffer)
+    map('n', '&lt;leader&gt;hu', gitsigns.undo_stage_hunk)
+    map('n', '&lt;leader&gt;hR', gitsigns.reset_buffer)
+    map('n', '&lt;leader&gt;hp', gitsigns.preview_hunk)
+    map('n', '&lt;leader&gt;hb', function() gitsigns.blame_line{full=true} end)
+    map('n', '&lt;leader&gt;tb', gitsigns.toggle_current_line_blame)
+    map('n', '&lt;leader&gt;hd', gitsigns.diffthis)
+    map('n', '&lt;leader&gt;hD', function() gitsigns.diffthis('~') end)
+    map('n', '&lt;leader&gt;td', gitsigns.toggle_deleted)
 
     -- Text object
     map({'o', 'x'}, 'ih', ':&lt;C-U&gt;Gitsigns select_hunk&lt;CR&gt;')
   end
+
 -- }
 </code></pre>
 </div>
@@ -333,9 +330,8 @@ non-blocking (return immediately).
 <h2 id="config"><a class="header" href="#config">Config</a></h2>
 <p>手始めに、装飾を少しアレンジしてみます。</p>
 <p>もちろん、このままがいい❗って場合はスキップしちゃって構いません。デフォルトでも全然イケてるプラグインです😆</p>
-<h3 id="signs"><a class="header" href="#signs">signs</a></h3>
-<p>ここは表示する<code>text</code>だけ変えてます。</p>
-<p><code>untracked</code>については、後に出てくる<code>attach_to_untracked</code>を無効にすると使用されないので定義していません。</p>
+<h3 id="signs--signs_staged"><a class="header" href="#signs--signs_staged">signs / signs_staged</a></h3>
+<p>ここでは表示する<code>text</code>を変えてみました。</p>
 <div id="admonition-extensionsgitsignslua-2" class="admonition admonish-example" role="note" aria-labelledby="admonition-extensionsgitsignslua-2-title">
 <div class="admonition-title">
 <div id="admonition-extensionsgitsignslua-2-title">
@@ -345,11 +341,20 @@ non-blocking (return immediately).
 </div>
 <div>
 <pre><code class="language-lua">  signs = {
-    add =          { hl = 'GitSignsAdd',    text = ' ▎', numhl = 'GitSignsAddNr',    linehl = 'GitSignsAddLn' },
-    change =       { hl = 'GitSignsChange', text = ' ▎', numhl = 'GitSignsChangeNr', linehl = 'GitSignsChangeLn' },
-    delete =       { hl = 'GitSignsDelete', text = ' ', numhl = 'GitSignsDeleteNr', linehl = 'GitSignsDeleteLn' },
-    topdelete =    { hl = 'GitSignsDelete', text = ' ', numhl = 'GitSignsDeleteNr', linehl = 'GitSignsDeleteLn' },
-    changedelete = { hl = 'GitSignsChange', text = '▎ ', numhl = 'GitSignsChangeNr', linehl = 'GitSignsChangeLn' },
+    add = { text = ' ▎' },
+    change = { text = ' ▎' },
+    delete = { text = ' ' },
+    topdelete = { text = ' ' },
+    changedelete = { text = '~' },
+    untracked = { text = '▎ ' },
+  },
+  signs_staged = {
+    add = { text = ' ▎' },
+    change = { text = ' ▎' },
+    delete = { text = ' ' },
+    topdelete = { text = ' ' },
+    changedelete = { text = '~' },
+    untracked = { text = '▎ ' },
   },
 </code></pre>
 </div>
@@ -514,7 +519,7 @@ non-blocking (return immediately).
 </div>
 </div>
 <p>フォーマット指定子については量が多いので手元で確認してもらうとして、
-デフォルトで<code>current_line_brame</code>を有効化するかどうかは、以下のパラメータです。</p>
+デフォルトで<code>current_line_blame</code>を有効化するかどうかは、以下のパラメータです。</p>
 <div id="admonition-gitsigns-config-current_line_blame" class="admonition admonish-info" role="note" aria-labelledby="admonition-gitsigns-config-current_line_blame-title">
 <div class="admonition-title">
 <div id="admonition-gitsigns-config-current_line_blame-title">
@@ -541,10 +546,10 @@ non-blocking (return immediately).
 <p><kbd>leader</kbd><kbd>t</kbd><kbd>b</kbd>としてみましょう。</p>
 <p>変更箇所に持っていくとあら不思議😮</p>
 <div class="table-wrapper"><table><thead><tr><th style="text-align: center">before</th></tr></thead><tbody>
-<tr><td style="text-align: center"><img src="img/currentr_line_brame_before.webp" alt="currentr_line_brame_before" width="696" height="252" loading="lazy"></td></tr>
+<tr><td style="text-align: center"><img src="img/current_line_blame_before.webp" alt="current_line_blame_before" width="696" height="252" loading="lazy"></td></tr>
 </tbody></table>
 </div><div class="table-wrapper"><table><thead><tr><th style="text-align: center">after</th></tr></thead><tbody>
-<tr><td style="text-align: center"><img src="img/currentr_line_brame_after.webp" alt="currentr_line_brame_after" width="696" height="252" loading="lazy"></td></tr>
+<tr><td style="text-align: center"><img src="img/current_line_blame_after.webp" alt="current_line_blame_after" width="696" height="252" loading="lazy"></td></tr>
 </tbody></table>
 </div>
 <p><code>summary</code>が表示されました😆</p>
