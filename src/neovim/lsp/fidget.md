@@ -156,19 +156,6 @@ See <lua/fidget/spinners.lua> of this plugin's source code to see how each anima
 
 ## 六 : Setup
 
-2024/08/21 現在では、以下の設定はもう必要ありません😉
-
-> これももういつも通りなんですが一点だけ、「`legacy`ブランチに固定しておいてね。」とのことです。(2023/08/28 現在)
-
-> "[Quickstart](https://github.com/j-hui/fidget.nvim#quickstart)"
-> NOTE: fidget.nvim will soon be completely rewritten.
-> In the meantime, these instructions will pin your configuration to the legacy branch to avoid breaking changes.
->
-> 注意: fidget.nvimは間もなく完全に書き直される予定です。
-> それまでの間レガシーブランチに固定し、あなたの設定を壊さないようにします。
-
-> 固定しておきましょう😉
-
 いつも通りでOKです❗
 
 ~~~admonish example title="extensions/init.lua"
@@ -181,6 +168,21 @@ See <lua/fidget/spinners.lua> of this plugin's source code to see how each anima
 ```
 ~~~
 
+~~~admonish note
+2024/08/21 現在では、以下の設定はもうとっくに必要ありません😉
+
+> これももういつも通りなんですが一点だけ、「`legacy`ブランチに固定しておいてね。」とのことです。(2023/08/28 現在)
+
+> "[Quickstart](https://github.com/j-hui/fidget.nvim#quickstart)"
+> NOTE: fidget.nvim will soon be completely rewritten.
+> In the meantime, these instructions will pin your configuration to the legacy branch to avoid breaking changes.
+>
+> 注意: fidget.nvimは間もなく完全に書き直される予定です。
+> それまでの間レガシーブランチに固定し、あなたの設定を壊さないようにします。
+
+...っていうか、一年早くない❓😨
+~~~
+
 ## 七 : Try!
 
 例えば`typescript-language-server`が動く環境で`js`ファイルを開けば...、
@@ -190,66 +192,6 @@ See <lua/fidget/spinners.lua> of this plugin's source code to see how each anima
 ここにパワーが溜まってきただろう❗❗
 
 ![fidget2](img/fidget2.webp)
-
-```admonish note
-ちょっとわたしが把握してないんですが、`lua-language-server`は対応していないような気がします。
-
-(もし違ってたらごめんね...😭)
-```
-
-~~~admonish tip
-(ごめん、対応してた...🥲)
-
-![fidget-lua-ls](img/fidget-lua-ls.webp)
-
-これは流石に看過できないので取り急ぎ❗
-
-`nvim-lspconfig`の[lua_ls](https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#lua_ls) を参考に、
-`extensions/mason.lua`を以下のようにしてみると...。
-
-```lua
-require('mason-lspconfig').setup_handlers {
-  function(server_name)
-    require('lspconfig')[server_name].setup {
-      capabilities = require('cmp_nvim_lsp').default_capabilities(),
-    }
-  end,
-
-  -- ❗ここから下に追記 ❗
-
-  ['lua_ls'] = function()
-    require('lspconfig').lua_ls.setup {
-      settings = {
-        Lua = {
-          runtime = {
-            -- Tell the language server which version of Lua you're using
-            -- (most likely LuaJIT in the case of Neovim)
-            version = 'LuaJIT'
-          },
-          -- Make the server aware of Neovim runtime files
-          workspace = {
-            checkThirdParty = false,
-            library = {
-              vim.env.VIMRUNTIME
-              -- "${3rd}/luv/library"
-              -- "${3rd}/busted/library",
-            }
-            -- or pull in all of 'runtimepath'. NOTE: this is a lot slower
-            -- library = vim.api.nvim_get_runtime_file("", true)
-          }
-        },
-      },
-    }
-  end,
-}
-```
-
-なんかパワー漲りまくってる...❓🤯
-
-![fidget-cmp](img/fidget-cmp.webp)
-
-もっと早く気づけば良かった😱
-~~~
 
 ## 八 : やっぱり踊りは止められぬ
 

@@ -124,25 +124,47 @@ Visual Studio Code に 100万近くインストールされており、Lua 言�
 
 100万とか言わないでください。1Kが霞むんで🤣
 
-わたしも[割と最近まで気づかなかった](../neovim/lsp/fidget.html#admonition-tip-1)んですが、
-`Neovim`を使う場合はこれを入れておくと楽しいです🤗
+わたしはだいぶ長〜い間気づきませんでしたが、
+`nvim-lspconfig`の[lua_ls](https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#lua_ls)を参考に
+以下のコードを追加してみると...。
 
 ~~~admonish example title="extensions/mason.lua"
 ```lua
 ['lua_ls'] = function()
   lsp.lua_ls.setup {
-    settings = {
-      Lua = {
+    on_init = function(client)
+      -- わたしの環境では workspace_folders が存在しないケースがあったので対処しています.
+      if not client.workspace_folders then
+        return
+      end
+
+      local path = client.workspace_folders[1].name
+
+      if vim.uv.fs_stat(path .. '/.luarc.json') or vim.uv.fs_stat(path .. '/.luarc.jsonc') then
+        return
+      end
+
+      client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
         runtime = {
+          -- Tell the language server which version of Lua you're using
+          -- (most likely LuaJIT in the case of Neovim)
           version = 'LuaJIT',
         },
         workspace = {
           checkThirdParty = false,
           library = {
             vim.env.VIMRUNTIME,
+            -- Depending on the usage, you might want to add additional paths here.
+            -- "${3rd}/luv/library"
+            -- "${3rd}/busted/library",
           },
+          -- or pull in all of 'runtimepath'. NOTE: this is a lot slower
+          -- library = vim.api.nvim_get_runtime_file("", true)
         },
-      },
+      })
+    end,
+    settings = {
+      Lua = {},
     },
   }
 end,
@@ -151,7 +173,13 @@ end,
 
 こうすると`Neovim`固有のAPIが`lua_ls`を通して補完候補に現れます😉
 
-![fidget-cmp](../neovim/lsp/img/fidget-cmp.webp)
+![nvim-cmp-lua-ls](img/nvim-cmp-lua-ls.webp)
+
+[fidget.nvim](../neovim/lsp/fidget.html#七--try)を使用しているのであれば、ここでもパワーが溜まってきただろう❗❗
+
+![fidget-lua-ls](img/fidget-lua-ls.webp)
+
+`Neovim`を使う場合はこれを入れておくと楽しいです🤗
 
 ### 🐶 rust-analyzer (Rust)
 
