@@ -79,9 +79,10 @@ use {
 ```
 ~~~
 
-|before|after|
+|||
 |:---:|:---:|
-|![cmp-buffer-before](img/cmp-buffer-before.webp)|![cmp-buffer-after](img/cmp-buffer-after.webp)|
+|**before**|![cmp-buffer-before](img/cmp-buffer-before.webp)|
+|**after**|![cmp-buffer-after](img/cmp-buffer-after.webp)|
 
 ~~~admonish example title="extensions/nvim-cmp.lua"
 ```diff
@@ -119,9 +120,10 @@ Lua's `[[ ]]` string literals are particularly useful here to avoid escaping all
 Luaの`[[ ]]`文字列リテラルは、正規表現の記述に使用されるバックスラッシュ(`\`) のエスケープを回避するために特に有用です。
 ```
 
-|before|after|
+|||
 |:---:|:---:|
-|![cmp-buffer-find-before](img/cmp-buffer-find-before.webp)|![cmp-buffer-find-after](img/cmp-buffer-find-after.webp)|
+|**before**|![cmp-buffer-find-before](img/cmp-buffer-find-before.webp)|
+|**after**|![cmp-buffer-find-after](img/cmp-buffer-find-after.webp)|
 
 ### cmp-cmdline
 
@@ -169,9 +171,10 @@ cmp.setup.cmdline({ '/', '?' }, {
 ```
 ~~~
 
-|before|after|
+|||
 |:---:|:---:|
-|![cmp-cmdline-before](img/cmp-cmdline-before.webp)|![cmp-cmdline-after](img/cmp-cmdline-after.webp)|
+|**before**|![cmp-cmdline-before](img/cmp-cmdline-before.webp)|
+|**after**|![cmp-cmdline-after](img/cmp-cmdline-after.webp)|
 
 ### cmp-path
 
@@ -292,9 +295,10 @@ cmp.setup {
 ```
 ~~~
 
-|before|after|
+|||
 |:---:|:---:|
-|![lspkind-before](img/lspkind-before.webp)|![lspkind-after](img/lspkind-after.webp)|
+|**before**|![lspkind-before](img/lspkind-before.webp)|
+|**after**|![lspkind-after](img/lspkind-after.webp)|
 
 ```admonish note title="(Plus: cmp-path)"
 ![lspkind-path-after](img/lspkind-path-after.webp)

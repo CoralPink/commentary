@@ -26,13 +26,10 @@ vim.api.nvim_win_set_option(0, 'cursorline', true)
 
 これは動かしてみれば一目瞭然ですね😉
 
-before:
-
-![cursorline1](img/cursorline-before.webp)
-
-after:
-
-![cursorline2](img/cursorline-after.webp)
+|||
+|:---:|:---:|
+|**before**|![cursorline1](img/cursorline-before.webp)
+|**after**|![cursorline2](img/cursorline-after.webp)
 
 しっかりと"カーソルのあるテキスト行を強調表示"してますね❗
 
