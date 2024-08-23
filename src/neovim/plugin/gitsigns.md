@@ -237,9 +237,10 @@ non-blocking (return immediately).
 ```
 ~~~
 
-|before|after|
+|||
 |:---:|:---:|
-|![signs-default](img/signs-before.webp)|![signs-costom](img/signs-after.webp)|
+|**before**|![signs-default](img/signs-before.webp)|
+|**after**|![signs-costom](img/signs-after.webp)|
 
 ### word_diff
 
@@ -393,13 +394,10 @@ map('n', '<leader>tb', gs.toggle_current_line_blame)
 
 変更箇所に持っていくとあら不思議😮
 
-|before|
-|:---:|
-|![current_line_blame_before](img/current_line_blame_before.webp)|
-
-|after|
-|:---:|
-|![current_line_blame_after](img/current_line_blame_after.webp)|
+|||
+|:---:|:---:|
+|**before**|![current_line_blame_before](img/current_line_blame_before.webp)|
+|**after**|![current_line_blame_after](img/current_line_blame_after.webp)|
 
 `summary`が表示されました😆
 

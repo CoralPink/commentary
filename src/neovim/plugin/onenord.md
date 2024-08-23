@@ -101,9 +101,10 @@ Split window borders
 ウィンドウの境界にボーダーを表示します。
 ```
 
-|true|false|
+|||
 |:---:|:---:|
-|![enable](img/borders-true.webp)|![disable](img/borders-false.webp)|
+|**true**|![enable](img/borders-true.webp)|
+|**false**|![disable](img/borders-false.webp)|
 
 ### fade_nc
 
@@ -113,9 +114,10 @@ Fade non-current windows, making them more distinguishable
 現在のウィンドウ以外をフェードさせ、区別しやすくする。
 ```
 
-|true|false|
+|||
 |:---:|:---:|
-|![enable](img/fade_nc-true.webp)|![disable](img/fade_nc-false.webp)|
+|**true**|![enable](img/fade_nc-true.webp)|
+|**false**|![disable](img/fade_nc-false.webp)|
 
 ### styles
 
@@ -137,9 +139,10 @@ styles = {
 },
 ```
 
-|bold|NONE|
+|||
 |:---:|:---:|
-|![bold](img/style-bold.webp)|![disable](img/style-none.webp)|
+|**bold**|![bold](img/style-bold.webp)|
+|**NONE**|![none](img/style-none.webp)|
 
 ```admonish note
 例えば、`comments`を`italic`にするのもオシャレなんですが、カーソルがそのままなので個人的には使いにくいかなー、なんて😅
@@ -158,9 +161,10 @@ Disable setting the background color
 
 これを`true`として無効化すると、ターミナルの背景色やアルファチャンネル値がそのまま反映されます。
 
-|true|false|
+|||
 |:---:|:---:|
-|![enable](img/background-true.webp)|![disable](img/background-false.webp)|
+|**true**|![enable](img/background-true.webp)|
+|**false**|![disable](img/background-false.webp)|
 
 #### cursorline
 
@@ -196,9 +200,10 @@ Overwrite default highlight groups
 デフォルトのハイライトグループを上書きします。
 ```
 
-|customize|none|
+|||
 |:---:|:---:|
-|![enable](img/custom_highlight.webp)|![disable](img/custom_highlight-none.webp)|
+|**customize**|![Customize](img/custom_highlight.webp)|
+|**none**|![Non customized](img/custom_highlight-none.webp)|
 
 ちょっと見えにくいかな...。上の例では`}`です。
 
@@ -223,13 +228,11 @@ Overwrite default colors
 ```admonish note
 前のページとの比較ではさらに変化がわかりやすいです😉
 
-|default|nvim-treesitter|
-|:---:|:---:|
-|![color1](img/color1.webp)|![color2](img/color2.webp)|
-
-|onenord.nvim|
-|:---:|
-|![color3](img/color3.webp)|
+||||
+|:---:|:---:|:---:|
+|**default**|![color1](img/color1.webp)|
+|**nvim-treesitter**|![color2](img/color2.webp)|
+|**onenord.nvim**|![color3](img/color3.webp)|
 ```
 
 ```admonish success

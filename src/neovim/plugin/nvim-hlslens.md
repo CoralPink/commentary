@@ -185,9 +185,10 @@ vim.opt.shortmess:append 'S'
 
 ウガンダの子供達への支援メッセージってもう無くなってるの❗❓
 
-|nvim|vim|
+|||
 |:---:|:---:|
-|![intro-nvim](img/intro-nvim.webp)|![intro-vim](img/intro-vim.webp)|
+|**nvim**|![intro-nvim](img/intro-nvim.webp)|
+|**vim**|![intro-vim](img/intro-vim.webp)|
 
 `vi`では出たけど😮
 

@@ -170,11 +170,10 @@ globalstatus = false,       -- enable global statusline (have a single statuslin
 
 ここまでで以下のように見た目の変化があるはずです。
 
-|before|
-|:---:|
-|![lualine-options-before](img/lualine-options-before.webp)|
-|after|
-|![lualine-options-before](img/lualine-options-after.webp)|
+|||
+|:---:|:---:|
+|**before**|![lualine-options-before](img/lualine-options-before.webp)|
+|**after**|![lualine-options-before](img/lualine-options-after.webp)|
 
 `separators`を変えることによって、ステータスラインがやわらか〜な印象になりましたね。
 

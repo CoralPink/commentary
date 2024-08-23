@@ -306,6 +306,10 @@ table {
 
     th {
       padding: 0.3rem 0.2rem;
+
+      &:empty {
+        display: none;
+      }
     }
 
     tr {
