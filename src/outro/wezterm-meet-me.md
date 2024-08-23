@@ -206,9 +206,14 @@ How to unfold your love
 
 [東京大神宮](https://tokyodaijingu.or.jp)もちょいちょい参拝させてもらってます⛩️
 
-|[新見附橋](https://visit-chiyoda.tokyo/app/spot/detail/225)|[外濠公園](https://visit-chiyoda.tokyo/app/spot/detail/274)|
-|:---:|:---:|
-|![shin-mituke](img/shin-mituke.webp)|![sotobori](img/sotobori.webp)|
+
+|[新見附橋](https://visit-chiyoda.tokyo/app/spot/detail/225)|
+|:---|
+|![shin-mituke](img/shin-mituke.webp)|
+
+|[外濠公園](https://visit-chiyoda.tokyo/app/spot/detail/274)|
+|:---|
+![sotobori](img/sotobori.webp)|
 
 この辺まで来たらこっちも見て回りたくなるでしょ❓ 🚶‍♀️
 
@@ -461,9 +466,10 @@ They bought and sold you
 
 ...ってやれば、こんな外観になるはずです🍦
 
-|before|after|
+|||
 |:---:|:---:|
-|![decorations](../wezterm/img/decorations.webp)|![integrated_buttons](img/integrated_buttons.webp)|
+|**before**|![decorations](../wezterm/img/decorations.webp)
+|**after**|![integrated_buttons](img/integrated_buttons.webp)|
 
 このサイトでも、もう散々この状態でスクリーンショットを載せてるんですけどね❗
 

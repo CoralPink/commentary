@@ -44,9 +44,10 @@ A C compiler in your path and libstdc++ installed [(Windows users please read th
 `Linux`の場合、もしかしたら別途インストールが必要かもしれないので手っ取り早く解決方法だけ載っけちゃうんですが、
 `gcc-c++`、もしくは`clang`をインストールするのが良さそうです。
 
-|gcc-c++|clang|
+|||
 |:---:|:---:|
-|![gcc_cpp](img/gcc-cpp.webp)|![gcc_cpp](img/clang.webp)|
+|**gcc-c++**|![gcc_cpp](img/gcc-cpp.webp)|
+|**clang**|![gcc_cpp](img/clang.webp)|
 
 ```admonish note
 Readmeにも明記されているように`libstdc++`も必要になるはずなので、`gcc`だとうまくいきませんでした😮
@@ -174,10 +175,10 @@ config = string or function, -- Specifies code to run after this plugin is loade
 ```admonish warning
 もしここでエラーが起きるようであれば、もう一度`C compiler`を確認してみてください😣
 ```
-
-|default|nvim-treesitter|
+|||
 |:---:|:---:|
-|![color1](img/color1.webp)|![color2](img/color2.webp)|
+|**default**|![color1](img/color1.webp)|
+|**nvim-treesitter**|![color2](img/color2.webp)|
 
 ```admonish note
 これは例が面白くないのであれなんですが、オフィシャルイメージを見るとこんなに変わってます❗
@@ -198,7 +199,6 @@ COMMANDS
 ~~~
 
 ちなみに、わたしはほぼ`:TSUpdate`しか使ってません❗ sitter って言うぐらいなので、特に操作しなくてもしっかりお世話してくれます👶
-
 
 ## Modules
 

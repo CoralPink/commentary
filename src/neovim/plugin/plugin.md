@@ -9,10 +9,10 @@
 もうこれ以上ないってくらいにメジャーなソフトなので、
 インストール方法をここで取り上げるとかはしないんですが、大抵のパッケージマネージャーから`install`できますよね☺️
 
-|homebrew|dnf|
+|||
 |:---:|:---:|
-|![git-homebrew](img/git-homebrew.webp)|![git-dnf](img/git-dnf.webp)
-
+|**homebrew**|![git-homebrew](img/git-homebrew.webp)|
+|**dnf**|![git-dnf](img/git-dnf.webp)|
 
 ```admonish note
 `Windows`とかはインストーラを使用するのかもしれないんだけど、むしろわたしの方がワカラナイ...😰

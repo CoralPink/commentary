@@ -217,9 +217,10 @@ require('luasnip.loaders.from_vscode').lazy_load {
 
 そしたらなんか適当に`nvim`を起動して、`Insert`モードからおもむろに "t" を入力してみましょう。
 
-|Step 1.|Step 2.|
+|||
 |:---:|:---:|
-|![snip-example1](img/snip-example1.webp)|![snip-example2](img/snip-example2.webp)|
+|**Step1.**|![snip-example1](img/snip-example1.webp)|
+|**Step2.**|![snip-example2](img/snip-example2.webp)|
 
 「これが`snippet`かぁ〜。」っていうのが伝わるといいな🥹 ...伝わったかな❓
 
