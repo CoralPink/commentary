@@ -228,8 +228,8 @@ Overwrite default colors
 ```admonish note
 前のページとの比較ではさらに変化がわかりやすいです😉
 
-||||
-|:---:|:---:|:---:|
+|||
+|:---:|:---:|
 |**default**|![color1](img/color1.webp)|
 |**nvim-treesitter**|![color2](img/color2.webp)|
 |**onenord.nvim**|![color3](img/color3.webp)|
