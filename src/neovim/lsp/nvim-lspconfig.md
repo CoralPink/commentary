@@ -8,14 +8,14 @@ Nvim LSP クライアント (:help lsp) のコンフィグです。
 
 さて、まずは`LSP`活用の基盤を築きましょう❗`nvim-lspconfig`の登場です😆
 
-```admonish quote title=""
+```admonish success title=""
 And now, the end is near
 
 And so I face the final curtain
 
 そして今、終わりが近づいている
 
-そして私は最後の幕に臨む
+そして私は 最後の幕に臨む
 ```
 
 ## LSP
@@ -73,6 +73,16 @@ nvim-lspconfig は他の Vim プラグインと同様に、例えば packer.nvim
 
 なんかもう何を言ってるのか全然分かる😑
 
+```admonish success title=""
+Regrets, I've had a few
+
+But then again, too few to mention
+
+後悔、まあ いくつかある
+
+とはいえ、言及するには少なすぎる
+```
+
 ## Configuration
 
 ```admonish info title="[Suggested configuration](https://github.com/neovim/nvim-lspconfig#suggested-configuration)"
@@ -89,18 +99,14 @@ omnifunc (<c-x><c-o>) による補完を手動でトリガしています。
 {{footnote:それぞれ、`Python`、`TypeScript`、`Rust`の Language Server です。}}
 のセットアップがされていますが、大胆にも、このサイトではこれらをスキップして、もっと汎用的な方法をとります❗
 
-```admonish quote title=""
-I traveled each and every highway
+```admonish success title=""
+I did what I had to do
 
-And more, much more than this
+And saw it through without exemption
 
-I did it my way.
+私はすべきことをしたし
 
-私は、あらゆるハイウェイを旅した
-
-そしてこれよりももっと、これ以上ないってくらい
-
-わたしの道を旅したんだ
+例外なく それをやり通したんだ
 ```
 
 と、いうことで、ここではキーマップの設定だけしちゃいましょう😌
@@ -148,9 +154,9 @@ vim.api.nvim_create_autocmd('LspAttach', {
 ```
 ~~~
 
-いやー、ほんとにキーマップの設定だけなので、サンプルそのままでしたね😅
+ほんとにキーマップの設定だけなので、サンプルそのままでしたね😅
 
-それだけ、面倒な設定をうまく包み込んでくれてるってことです。
+それだけ面倒な設定をうまく包み込んでくれてるってことです。
 
 ~~~admonish note
 っていうだけなのもつまんないので、ちょっとだけ...。
@@ -164,7 +170,7 @@ vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
 これ、元の動作の方が使いやすいと思うのはわたしだけなのかな...。
 ~~~
 
-ただ、お話し相手がいない状態なので、まだ何にもできないんですけどね😅
+ただ、まだお話し相手がいない状態なので、何にもできないんですけどね😅
 
 あとこれ、いつもの❗
 
@@ -176,6 +182,39 @@ use {
 }
 ```
 ~~~
+
+```admonish success title=""
+I traveled each and every highway
+
+私はあらゆる道を旅してきた
+```
+
+```admonish success title=""
+And more, much more than this
+
+I did it my way
+{{footnote: My Way (by [Frank Sinatra](https://en.wikipedia.org/wiki/Frank_Sinatra)):
+Jacques Revaux が作曲し、Gilles Thibaut と Claude François が作詞した。
+英語の歌詞はフランス語の原曲をアレンジしたものであり、[Paul Anka](https://en.wikipedia.org/wiki/Paul_Anka)が書いた。
+
+Claude François が 1967年に初演したフランス歌曲[Comme d'habitude](https://en.wikipedia.org/wiki/Comme_d%27habitude)の音楽に乗せて
+Frank Sinatra が 1969年に広めた曲である。
+
+Sinatra の他にも、[Elvis Presley](https://en.wikipedia.org/wiki/Elvis_Presley)、
+[Sid Vicious](https://en.wikipedia.org/wiki/Sid_Vicious)など、さまざまなパフォーマーによって歌われた。
+[Wikipedia](https://en.wikipedia.org/wiki/My_Way)より
+
+曲の中で語り手は、自分の死が近付く中で自分の決断や過去を振り返り、人生で起こったすべての苦難に対して
+「他人に流されることなく、自信を持って自分の信じる道を歩んできた」と誇りを持っている。
+(もちろん、nvimトレーナーは目の前が真っ暗になることはあっても死ぬことはないです😉)
+
+自分自身を毅然と持ち、人生を悔いなく生きることの大切さを象徴するものとして、多くの人々に共感を与えた。
+}}
+
+だがそれ以上にもっと、もっと大事なのは
+
+私が私の意思で切り開いてきたことだ
+```
 
 ### LspAttach
 
@@ -204,6 +243,26 @@ LSPクライアントがバッファにアタッチした後 (に発生するイ
 このサイトの[10章](../options/options.html)・[11章](../au/automatic-commands.html)の主人公。
 現チャンピオン❗}}" に任せておけば安心ですね。
 
+```admonish success title=""
+I've loved, I've laughed and cried
+
+I've had my fill; my share of losing
+
+愛してきた、笑ってきた、涙だって流した
+
+十分に味わった; 負けることだってあった
+```
+
+```admonish success title=""
+And now, as tears subside
+
+I find it all so amusing
+
+しかし 涙はもう引いた
+
+今となっては、全てがただ可笑しく思えるんだ
+```
+
 ## I'll take you all.
 
 ここはこれだけです。もう簡単でしょう❓
@@ -226,17 +285,11 @@ Amazonのセールに合わせて自分へのご褒美を送ってあげたり�
 
 nvimトレーナーは努力を続けていたってこと⁉️
 
-```admonish quote title=""
+```admonish success title=""
 Yes, it was my way
-{{footnote: My Way (by [Frank Sinatra](https://en.wikipedia.org/wiki/Frank_Sinatra)):
-主人公の男性が、自分の死が近付く中、自分の人生で起こったすべての苦難に対して行ったことについて、
-後悔せず自信を持っている、と語る内容である。[Wikipedia](https://en.wikipedia.org/wiki/My_Way)より
-(もちろん、nvimトレーナーは目の前が真っ暗になることはあっても死ぬことはないです😉)
-}}
 
-そう、それが私の生きる道
+そう、私が歩んできた道
 ```
-
 ...。😮
 
 > しんじれば
@@ -245,25 +298,7 @@ Yes, it was my way
 
 こうなったらお祝いだー❗❗🥳
 
-```admonish success title=""
-ライバルどうし おかしいね
-
-"まだまだ育てが 足りないぜ！"
-
-それでも ホラ
-```
-
-```admonish success title=""
-選んだ道が 同じ道だから
-
-"負けないぞ！"って いいながら
-
-おなじ夢を 語り合う
-```
-
-まだまだ続くぞー❗
-
-```admonish success title=""
+```admonish quote title=""
 <video controls preload="none" poster="img/mm-bon-odori-thumbnail.webp" width="960" height="540">
   <source src="img/mm-bon-odori.mp4" type="video/mp4">
 </video>
@@ -272,7 +307,27 @@ Yes, it was my way
 宴もたけなわではございますが、
 
 とりあえ〜ずぅ ここぉ まあ でぇ〜〜〜え ってかぁ⁉️
+{{footnote: ポケモン音頭 (by ガルーラ小林):
+1998年2月10日に[とりかえっこプリーズ](https://ja.wikipedia.org/wiki/とりかえっこプリーズ)のカップリング曲として
+ピカチュウレコードからリリースされた。}}
 
+```admonish danger title=""
+ライバル{{footnote: ライバル! (by [松本梨香](https://ja.wikipedia.org/wiki/松本梨香)):
+松本梨香の9作目のシングル。1999年3月25日にピカチュウレコードからリリースされた。
+[Wikipedia](https://ja.wikipedia.org/wiki/ライバル!)より}}どうし おかしいね
+
+"まだまだ育てが 足りないぜ！"
+
+それでも ホラ
+```
+
+```admonish danger title=""
+選んだ道が 同じ道だから
+
+"負けないぞ！"って いいながら
+
+おなじ夢を 語り合う
+```
 
 ```admonish success
 でんどう　いり　おめでとう❗
