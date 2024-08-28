@@ -182,7 +182,7 @@ jobs:
       - name: Upload CSS
         uses: actions/upload-artifact@834a144ee995460fba8ed112a2fc961b36a5ec5a # v4
         with:
-          name: build-css
+          name: css
           path: scss/dist
           if-no-files-found: error
 
@@ -233,9 +233,9 @@ jobs:
 
       - name: Copy Files
         run: |
-          cp artifacts/wasm-book/pkg/wasm_book_bg.wasm src
+          cp artifacts/wasm-book/wasm_book_bg.wasm src
           cp artifacts/build-js/* src
-          cp -r artifacts/build-css src
+          cp -r artifacts/css src
 
       - name: Cache Cargo
         id: cache-cargo
