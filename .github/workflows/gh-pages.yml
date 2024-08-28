@@ -226,29 +226,20 @@ jobs:
             src
             theme
 
-      - name: Download wasm_pkg
+      - name: Download Artifacts
         uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16 # v4
         with:
-          name: wasm-book
-          path: pkg
-
-      - name: Download JS
-        uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16 # v4
-        with:
-          name: build-js
-          path: js
-
-      - name: Download CSS
-        uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16 # v4
-        with:
-          name: build-css
-          path: css
+          name: |
+            wasm-book
+            build-js
+            build-css
+          path: artifacts
 
       - name: Copy Files
         run: |
-          cp pkg/wasm_book_bg.wasm src
-          cp js/* src
-          cp -r css src
+          cp artifacts/wasm-book/pkg/wasm_book_bg.wasm src
+          cp artifacts/build-js/* src
+          cp -r artifacts/build-css src
 
       - name: Cache Cargo
         id: cache-cargo
