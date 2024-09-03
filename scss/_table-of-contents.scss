@@ -54,50 +54,57 @@
   }
 }
 
-#undertoc {
+#bottomtoc {
+  display: flex;
   position: fixed;
   bottom: 0;
 
   border-top: 0.1em solid var.$color-pink;
   width: 100dvw;
-  min-height: var.$menu-bar-height;
+  height: var.$pagetoc-bottom-height;
 
   background-color: var(--bg);
-  z-index: 10;
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  & #pagetoc-mobile {
-    position: fixed;
+  ::-webkit-scrollbar {
+    height: var.$scrollbar-webkit-height;
+  }
 
+  ::-webkit-scrollbar-thumb {
+    background: var(--scrollbar);
+    border-radius: 1rem;
+  }
+
+  & #pagetoc-mobile {
     display: flex;
     flex-direction: row;
 
-    width: 100dvw;
     overflow-x: auto;
 
-    border-left: .1em solid #ffb2cc;
-    min-width: 100dvw;
-    font-size: .6875em;
+    font-size: .5625em;
     font-style: italic;
 
+    padding: 1em;
+    gap: 1em;
+
+    scrollbar-width: thin;
+
     a {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
       color: var(--fg);
       text-decoration: none;
 
-      padding: 1em;
-
-      &:hover {
-        color: var(--sidebar-active);
-        background: linear-gradient(to top, var(--sidebar-bg) 64%, var(--bg));
-      }
+      white-space: nowrap;
 
       &.active {
         background: linear-gradient(to top, var(--page-toc-background) 64%, var(--bg));
         color: var(--page-toc-color);
       }
-
     }
   }
 

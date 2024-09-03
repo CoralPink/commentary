@@ -18,7 +18,7 @@ body {
   scrollbar-color: var(--scrollbar) var(--bg);
 
   &::-webkit-scrollbar {
-    width: var.$scrollbar-width;
+    width: var.$scrollbar-webkit-width;
   }
 
   &::-webkit-scrollbar-track {
@@ -35,7 +35,7 @@ body {
   scrollbar-color: var(--scrollbar) var(--bg);
 
   ::-webkit-scrollbar {
-    width: var.$scrollbar-width;
+    width: var.$scrollbar-webkit-width;
   }
 
   ::-webkit-scrollbar-thumb {
@@ -47,7 +47,7 @@ body {
 .sidebar-scrollbox {
   position: fixed;
   top: var.$menu-bar-height;
-  bottom: 0;
+  bottom: var.$pagetoc-bottom-height;
   width: var.$sidebar-width;
   overflow-y: scroll;
 }
@@ -76,6 +76,8 @@ body {
   }
 
   main {
+    margin-bottom: var.$pagetoc-bottom-height;
+
     font-size: 0.9rem;
     min-width: 0;
     word-break: auto-phrase;

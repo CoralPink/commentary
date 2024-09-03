@@ -5,7 +5,7 @@ const ENV_MOBILE = 1;
 
 const ELEMENT_TOC = {
   display: ['pagetoc', 'pagetoc-mobile'],
-  toc: ['righttoc', 'undertoc'],
+  toc: ['righttoc', 'bottomtoc'],
 };
 
 const tocMap = new Map();
@@ -21,7 +21,7 @@ const addActive = entry => {
   }
   const active = tocMap.get(entry.target);
   active.classList.add('active');
-  active.scrollIntoView({ block: 'center' });
+  active.scrollIntoView({ inline: 'center' });
 };
 
 const removeActive = entry => {
