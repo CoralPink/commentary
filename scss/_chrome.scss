@@ -53,7 +53,7 @@ code {
 
 mark {
   color: var(--fg);
-  background: linear-gradient(rgba(0, 0, 0, 0) 70%, var(--search-mark-bg));
+  background: linear-gradient(rgba(0, 0, 0, 0) 64%, var(--search-mark-bg));
 }
 
 .icon-button {
@@ -262,12 +262,12 @@ pre {
 
       &:hover {
         color: var(--sidebar-active);
-        background-image: linear-gradient(to right, var(--sidebar-bg) 40%, var(--bg));
+        background: linear-gradient(to right, var(--sidebar-bg) 64%, var(--bg));
       }
 
       &.active {
         color: var(--page-toc-color);
-        background-image: linear-gradient(to right, var(--page-toc-background) 60%, var(--bg));
+        background: linear-gradient(to right, var(--page-toc-background) 64%, var(--bg));
       }
     }
 
@@ -275,7 +275,7 @@ pre {
       color: var(--sidebar-fg);
       margin: 1.2rem auto 0.2rem;
       font-weight: bold;
-      background-image: linear-gradient(to right, var.$color_pink, var(--sidebar-bg));
+      background: linear-gradient(to right, var.$color_pink, var(--sidebar-bg));
       background-repeat: no-repeat;
       background-size: 100% 0.1rem;
       background-position: bottom;
