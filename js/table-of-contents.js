@@ -14,6 +14,8 @@ let observer;
 let environment;
 let onlyActive = null;
 
+const isChromium = !!window.chrome;
+
 const addActive = entry => {
   if (onlyActive !== null) {
     onlyActive.classList.remove('active');
@@ -21,6 +23,18 @@ const addActive = entry => {
   }
   const active = tocMap.get(entry.target);
   active.classList.add('active');
+
+  if (environment === ENV_PC) {
+    return;
+  }
+
+  // TODO: Only chromium operates differently, so the process is temporarily divided and dealt with as an emergency measure.
+  //       However, even this is not sufficient...
+  if (isChromium) {
+    active.addEventListener('scrollend', ev => ev.scrollIntoView({ inline: 'center' }), { once: true, passive: true });
+    return;
+  }
+
   active.scrollIntoView({ inline: 'center' });
 };
 
