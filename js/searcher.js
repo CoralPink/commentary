@@ -1,5 +1,5 @@
 import Finder from './finder.js';
-import { initTableOfContents } from './table-of-contents.js';
+import { tocReset } from './table-of-contents.js';
 import { SearchResult, marking, unmarking } from './wasm_book.js';
 
 const ELEM_WRAPPER = document.getElementById('search-wrapper');
@@ -22,7 +22,7 @@ const unmarkHandler = () => {
     x.removeEventListener('mouseup', unmarkHandler, { once: true, passive: true });
   }
   unmarking();
-  initTableOfContents();
+  tocReset();
 };
 
 const escapeHtml = str =>

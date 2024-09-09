@@ -18,7 +18,7 @@ body {
   scrollbar-color: var(--scrollbar) var(--bg);
 
   &::-webkit-scrollbar {
-    width: var.$scrollbar-width;
+    width: var.$scrollbar-webkit-width;
   }
 
   &::-webkit-scrollbar-track {
@@ -35,7 +35,7 @@ body {
   scrollbar-color: var(--scrollbar) var(--bg);
 
   ::-webkit-scrollbar {
-    width: var.$scrollbar-width;
+    width: var.$scrollbar-webkit-width;
   }
 
   ::-webkit-scrollbar-thumb {
@@ -47,7 +47,7 @@ body {
 .sidebar-scrollbox {
   position: fixed;
   top: var.$menu-bar-height;
-  bottom: 0;
+  bottom: var.$pagetoc-bottom-height;
   width: var.$sidebar-width;
   overflow-y: scroll;
 }
@@ -71,11 +71,13 @@ body {
   grid-template-columns: 1rem 1fr 1rem;
   column-gap: 1rem;
 
-  @media only screen and (min-width: var.$enable-pagetoc) {
+  @media only screen and (min-width: var.$mobile-max-width) {
     grid-template-columns: 1rem 1fr 0 var.$pagetoc-width 0;
   }
 
   main {
+    margin-bottom: var.$pagetoc-bottom-height;
+
     font-size: 0.9rem;
     min-width: 0;
     word-break: auto-phrase;

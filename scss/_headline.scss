@@ -23,17 +23,17 @@
 }
 
 @mixin headline-high($bg-height) {
-  background-image: linear-gradient(to right, var.$color_purple 0%, 10%, var.$color_pink 80%, var(--bg));
+  background: linear-gradient(to right, var.$color_purple 0%, 10%, var.$color_pink 80%, var(--bg));
   @include headline-common($bg-height);
 }
 
 @mixin headline-middle($bg-height) {
-  background-image: linear-gradient(to right, var.$color_pink 80%, var(--bg));
+  background: linear-gradient(to right, var.$color_pink 80%, var(--bg));
   @include headline-common($bg-height);
 }
 
 @mixin headline-low($bg-height: 0.1rem) {
-  background-image: linear-gradient(to right, var.$color_purple 80%, var(--bg));
+  background: linear-gradient(to right, var.$color_purple 80%, var(--bg));
   @include headline-common($bg-height);
 }
 
