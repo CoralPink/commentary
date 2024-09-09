@@ -25,7 +25,7 @@ jobs:
             ~/.cargo/registry/cache/
             ~/.cargo/git/db/
             target/
-          key: wasm-${{ runner.os }}-cargo
+          key: wasm-${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
 
       - name: Install Cargo
         if: steps.cache-cargo.outputs.cache-hit != 'true'
@@ -59,8 +59,7 @@ jobs:
             ~/.cargo/registry/cache/
             ~/.cargo/git/db/
             target/
-          key: wasm-${{ runner.os }}-cargo
-
+          key: wasm-${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
       - name: Install Cargo
         if: steps.cache-cargo.outputs.cache-hit != 'true'
         run: |
