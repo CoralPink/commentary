@@ -565,7 +565,8 @@ No one alerted you
 でも、"ドンドンぶち上がる" 花火を見てる方がよっぽど健全だと気づいたんだ❗
 
 <video controls preload="none" poster="img/itabashi-hanabi-thumbnail.webp" width="960" height="540">
-  <source src="img/itabashi-hanabi.mp4" type="video/mp4">
+  <source src="img/itabashi-hanabi.webm" type="video/webm">
+  Your browser does not support the video/webm.
 </video>
 
 > There is still a light that shines on me

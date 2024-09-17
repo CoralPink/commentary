@@ -197,7 +197,8 @@ See <lua/fidget/spinners.lua> of this plugin's source code to see how each anima
 
 ```admonish success
 <video controls preload="none" poster="img/awa-dance3-thumbnail.webp" width="960" height="540">
-  <source src="img/awa-dance3.mp4" type="video/mp4">
+  <source src="img/awa-dance3.webm" type="video/webm">
+  Your browser does not support the video/webm.
 </video>
 ```
 
