@@ -47,22 +47,24 @@ body {
 .sidebar-scrollbox {
   position: fixed;
   top: var.$menu-bar-height;
-  bottom: var.$pagetoc-bottom-height;
   width: var.$sidebar-width;
   overflow-y: scroll;
+
+  bottom: 0;
+
+  @media only screen and (max-width: var.$mobile-max-width) {
+    bottom: var.$pagetoc-bottom-height;
+  }
 }
 
 .page {
+  grid-template-columns: var.$sidebar-width 1fr;
+  min-height: calc(100dvh - var.$menu-bar-height);
 
   // For the style attribute, display: grid or block is added from the JS code.
   // (Specify an initial value to prevent layout shift on PC.)
   @media only screen and (min-width: var.$mobile-max-width) {
     display: grid;
-  }
-
-  & {
-    grid-template-columns: var.$sidebar-width 1fr;
-    min-height: calc(100dvh - var.$menu-bar-height);
   }
 }
 
@@ -76,11 +78,13 @@ body {
   }
 
   main {
-    margin-bottom: var.$pagetoc-bottom-height;
-
     font-size: 0.9rem;
     min-width: 0;
     word-break: auto-phrase;
+
+    @media only screen and (max-width: var.$mobile-max-width) {
+      margin-bottom: var.$pagetoc-bottom-height;
+    }
 
     a {
 
