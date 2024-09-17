@@ -195,25 +195,28 @@ And more, much more than this
 I did it my way
 {{footnote: My Way (by [Frank Sinatra](https://en.wikipedia.org/wiki/Frank_Sinatra)):
 Jacques Revaux が作曲し、Gilles Thibaut と Claude François が作詞した。
+
+Claude François が 1967年に初演したフランス歌曲[Comme d'habitude](https://fr.wikipedia.org/wiki/Comme_d%27habitude)の音楽に乗せて
+Frank Sinatra が 1969年に広めた曲である。
+
 英語の歌詞はフランス語の原曲をアレンジしたものであり、[Paul Anka](https://en.wikipedia.org/wiki/Paul_Anka)が書いた。
 
-Claude François が 1967年に初演したフランス歌曲[Comme d'habitude](https://en.wikipedia.org/wiki/Comme_d%27habitude)の音楽に乗せて
-Frank Sinatra が 1969年に広めた曲である。
+原曲では "愛が冷めていく関係の中での日常" を歌っているが、
+本作は曲中の語り手が、自分の死・生涯の終わりが近付く中で、人生で起こったすべての苦難に対し
+「他人に流されることなく、自信を持って我が道を歩んできたことに "誇り" を持っている」という内容であり、
+[Édith Piaf](https://fr.wikipedia.org/wiki/Édith_Piaf)の
+[Non, je ne regrette rien](https://fr.wikipedia.org/wiki/Non,_je_ne_regrette_rien)に近い感情表現となっている。
 
 Sinatra の他にも、[Elvis Presley](https://en.wikipedia.org/wiki/Elvis_Presley)、
 [Sid Vicious](https://en.wikipedia.org/wiki/Sid_Vicious)など、さまざまなパフォーマーによって歌われた。
+
+この曲は、自分自身を毅然と持ち、人生を悔いなく生きることの大切さを象徴するものとして多くの人々に共感を与えた。
 [Wikipedia](https://en.wikipedia.org/wiki/My_Way)より
-
-曲の中で語り手は、自分の死が近付く中で自分の決断や過去を振り返り、人生で起こったすべての苦難に対して
-「他人に流されることなく、自信を持って自分の信じる道を歩んできた」と誇りを持っている。
-(もちろん、nvimトレーナーは目の前が真っ暗になることはあっても死ぬことはないです😉)
-
-自分自身を毅然と持ち、人生を悔いなく生きることの大切さを象徴するものとして、多くの人々に共感を与えた。
 }}
 
-だがそれ以上にもっと、もっと大事なのは
+だがもっと、それ以上にもっと大切なのは
 
-私が私の意思で切り開いてきたことだ
+私が私の意思で切り拓いてきた道だった
 ```
 
 ### LspAttach
@@ -287,6 +290,7 @@ nvimトレーナーは努力を続けていたってこと⁉️
 
 ```admonish success title=""
 Yes, it was my way
+{{footnote: もちろん、nvimトレーナーは目の前が真っ暗になることはあっても死ぬことはないです😉}}
 
 そう、私が歩んできた道
 ```
@@ -313,7 +317,9 @@ Yes, it was my way
 
 ```admonish danger title=""
 ライバル{{footnote: ライバル! (by [松本梨香](https://ja.wikipedia.org/wiki/松本梨香)):
-松本梨香の9作目のシングル。1999年3月25日にピカチュウレコードからリリースされた。
+1999年3月25日にピカチュウレコードからリリースされた。自身が声優として主演を務めるテレビアニメ
+[ポケットモンスター](https://ja.wikipedia.org/wiki/ポケットモンスター_(1997-2002年のアニメ))の2代目オープニングテーマに起用された。
+アニメのタイアップを手掛けるのは[めざせポケモンマスター](https://ja.wikipedia.org/wiki/めざせポケモンマスター)以来となった。
 [Wikipedia](https://ja.wikipedia.org/wiki/ライバル!)より}}どうし おかしいね
 
 "まだまだ育てが 足りないぜ！"
