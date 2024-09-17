@@ -1,4 +1,3 @@
-// @bun
 var q1=Object.create;var{getPrototypeOf:Z1,defineProperty:lq,getOwnPropertyNames:z1}=Object;var J1=Object.prototype.hasOwnProperty;var Q1=(A,S,p)=>{p=A!=null?q1(Z1(A)):{};const O=S||!A||!A.__esModule?lq(p,"default",{value:A,enumerable:!0}):p;for(let c of z1(A))if(!J1.call(O,c))lq(O,c,{get:()=>A[c],enumerable:!0});return O};var X1=(A,S)=>()=>(S||A((S={exports:{}}).exports,S),S.exports);var rq=X1((nq,Pq)=>{/*!
   Highlight.js v11.10.0 (git: 366a8bd012)
   (c) 2006-2024 Josh Goebel <hello@joshgoebel.com> and other contributors
