@@ -304,7 +304,8 @@ Yes, it was my way
 
 ```admonish quote title=""
 <video controls preload="none" poster="img/mm-bon-odori-thumbnail.webp" width="960" height="540">
-  <source src="img/mm-bon-odori.mp4" type="video/mp4">
+  <source src="img/mm-bon-odori.webm" type="video/webm">
+  Your browser does not support the video/webm.
 </video>
 ```
 
