@@ -15,11 +15,14 @@ let finder;
 
 let prevTerms;
 
+let pathToRoot;
+const handleKeyup = ev => startSearchFromKey(ev.key);
+
 const unmarkHandler = () => {
   const main = document.getElementById('main');
 
   for (const x of main.querySelectorAll('mark')) {
-    x.removeEventListener('mouseup', unmarkHandler, { once: true, passive: true });
+    x.removeEventListener('mouseup', unmarkHandler);
   }
   unmarking();
   tocReset();
@@ -106,20 +109,28 @@ const showSearch = () => {
   ELEM_BAR.select();
 };
 
-export const initSearch = (root, config) => {
-  doSearchOrMarkFromUrl();
+const initSearch = () => {
+  ELEM_ICON.removeEventListener('mouseup', initSearch);
+  document.removeEventListener('keyup', handleKeyup);
 
   try {
-    searchResult = new SearchResult(root, config.results_options.teaser_word_count, config.doc_urls);
-    finder = new Finder(config.index.documentStore.docs, config.results_options.limit_results);
+    fetch(`${pathToRoot}searchindex.json`)
+      .then(response => response.json())
+      .then(config => {
+        searchResult = new SearchResult(pathToRoot, config.results_options.teaser_word_count, config.doc_urls);
+        finder = new Finder(config.index.documentStore.docs, config.results_options.limit_results);
+      });
   } catch (e) {
     console.error(`Error during initialization: ${e}`);
-    console.log('The search function is disabled.');
+    console.info('The search function is disabled.');
     ELEM_ICON.classList.add('hidden');
     return;
   }
 
+  showSearch();
+
   ELEM_BAR.addEventListener('keyup', searchHandler, { once: false, passive: true });
+  ELEM_OUTER.addEventListener('mouseup', popupHandler, { once: false, passive: true });
 
   ELEM_ICON.addEventListener(
     'mouseup',
@@ -129,8 +140,6 @@ export const initSearch = (root, config) => {
       passive: true,
     },
   );
-
-  ELEM_OUTER.addEventListener('mouseup', popupHandler, { once: false, passive: true });
 
   document.addEventListener(
     'keyup',
@@ -152,6 +161,25 @@ export const initSearch = (root, config) => {
     },
     { once: false, passive: true },
   );
+};
+
+const startSearchFromKey = key => {
+  switch (key) {
+    case '/':
+    case 's':
+    case 'S':
+      initSearch();
+      break;
+  }
+};
+
+export const startUpSearch = root => {
+  doSearchOrMarkFromUrl();
+
+  pathToRoot = root;
+
+  ELEM_ICON.addEventListener('mouseup', initSearch, { once: true, passive: true });
+  document.addEventListener('keyup', handleKeyup, { once: false, passive: true });
 };
 
 export const initGlobalSearch = () => {
