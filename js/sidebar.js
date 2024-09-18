@@ -68,7 +68,7 @@ export const initSidebar = () => {
     .getElementById(ID_TOGGLE_BUTTON)
     .addEventListener('mouseup', () => toggleSidebar(), { once: false, passive: true });
 
-  matchMedia(`(min-width: ${SHOW_SIDEBAR_WIDTH}px)`).addEventListener(
+  window.matchMedia(`(min-width: ${SHOW_SIDEBAR_WIDTH}px)`).addEventListener(
     'change',
     event => {
       if (event.matches) {

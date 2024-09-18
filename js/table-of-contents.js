@@ -106,8 +106,7 @@ export const tocReset = () => {
 export const initTableOfContents = () => {
   initialize();
 
-  matchMedia(`(min-width: ${MOBILE_MAX_WIDTH}px)`).addEventListener('change', tocReset, {
-    once: false,
-    passive: true,
-  });
+  window
+    .matchMedia(`(min-width: ${MOBILE_MAX_WIDTH}px)`)
+    .addEventListener('change', tocReset, { once: false, passive: true });
 };
