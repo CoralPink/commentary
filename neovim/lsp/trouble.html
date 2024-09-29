@@ -247,7 +247,7 @@ For the time being (as of August, 2023), it is recommended to use one of the fol
 <pre><code class="language-lua">local trouble = require 'trouble'
 
 trouble.setup {
-  warn_no_results = false,
+  open_no_results = true,
 }
 </code></pre>
 </div>
@@ -276,7 +276,7 @@ trouble.setup {
 <p>なるようになるよ</p>
 </div>
 </div>
-<h3 id="-warn_no_results"><a class="header" href="#-warn_no_results">🔹 warn_no_results</a></h3>
+<h3 id="-open_no_results"><a class="header" href="#-open_no_results">🔹 open_no_results</a></h3>
 <div id="admonition-h-troublenvim-trouble-configuration" class="admonition admonish-info" role="note" aria-labelledby="admonition-h-troublenvim-trouble-configuration-title">
 <div class="admonition-title">
 <div id="admonition-h-troublenvim-trouble-configuration-title">
@@ -287,18 +287,19 @@ trouble.setup {
 <div>
 <pre><code class="language-txt">show a warning when there are no results
 
-結果がない場合に警告を表示する
+結果がない場合に`Trouble`ウィンドウを開く
 </code></pre>
 </div>
 </div>
 <p>結果がない(特にトラブってない健全な状態である)場合に、</p>
 <pre><code class="language-vi">:Trouble diagnostics toggle
 </code></pre>
-<p>...とかすると、<code>Trouble</code>を開かずに警告を表示するというのがデフォルト設定(<code>true</code>)ですが、
-これを<code>false</code>に設定しておくとトラブってる具合に関係なく<code>Trouble</code>が開くようになります。</p>
+<p>...とかすると、<code>Trouble</code>を開かないというのがデフォルト設定(<code>false</code>)ですが、
+これを<code>true</code>に設定しておくとトラブってる具合に関係なく<code>Trouble</code>が開くようになります。</p>
 <h2 id="-usage"><a class="header" href="#-usage">🚀 Usage</a></h2>
 <p>そしたらキーマップも入れておきましょう❗</p>
-<p>オフィシャル設定のまんま...とはいかなくなってしまっているのでちょっと不安ですけどね😅</p>
+<p>このサイトで1年間放っておいたページを改訂している関係で、
+オフィシャル設定のまんま...とはいかなくなっているのでちょっと不安ですけどね...。</p>
 <div id="admonition-note" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-title">
 <div class="admonition-title">
 <div id="admonition-note-title">
@@ -307,8 +308,8 @@ trouble.setup {
 <a class="admonition-anchor-link" href="#admonition-note"></a>
 </div>
 <div>
-<p><a href="../../outro/lazy.html">lazy.nvim</a> に先に進んでもらって、
-移行後にオフィシャル設定に従う方が良いかもしれません😨</p>
+<p>ぶっちゃけ、<a href="../../outro/lazy.html">lazy.nvim</a> に先に進んでもらって、
+移行後にオフィシャル設定に従う方が良いです😅</p>
 </div>
 </div>
 <div id="admonition--usagehttpsgithubcomfolketroublenvim-usage" class="admonition admonish-info" role="note" aria-labelledby="admonition--usagehttpsgithubcomfolketroublenvim-usage-title">
@@ -339,6 +340,7 @@ vim.keymap.set('n', '&lt;leader&gt;xQ', '&lt;cmd&gt;Trouble qflist toggle&lt;cr&
 </code></pre>
 </div>
 </div>
+<p>どっかトラブってたらごめんなさい😨</p>
 <h2 id="-colors"><a class="header" href="#-colors">🎨 Colors</a></h2>
 <div id="admonition--colorshttpsgithubcomfolketroublenvim-colors" class="admonition admonish-info" role="note" aria-labelledby="admonition--colorshttpsgithubcomfolketroublenvim-colors-title">
 <div class="admonition-title">
