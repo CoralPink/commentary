@@ -141,7 +141,7 @@ Trouble comes with the following defaults:
 local trouble = require 'trouble'
 
 trouble.setup {
-  warn_no_results = false,
+  open_no_results = true,
 }
 ```
 ~~~
@@ -166,13 +166,13 @@ Let it be
 なるようになるよ
 ```
 
-### 🔹 warn_no_results
+### 🔹 open_no_results
 
 ~~~admonish info title=":h trouble.nvim-trouble-configuration"
 ```txt
 show a warning when there are no results
 
-結果がない場合に警告を表示する
+結果がない場合に`Trouble`ウィンドウを開く
 ```
 ~~~
 
@@ -182,18 +182,19 @@ show a warning when there are no results
 :Trouble diagnostics toggle
 ```
 
-...とかすると、`Trouble`を開かずに警告を表示するというのがデフォルト設定(`true`)ですが、
-これを`false`に設定しておくとトラブってる具合に関係なく`Trouble`が開くようになります。
+...とかすると、`Trouble`を開かないというのがデフォルト設定(`false`)ですが、
+これを`true`に設定しておくとトラブってる具合に関係なく`Trouble`が開くようになります。
 
 ## 🚀 Usage
 
 そしたらキーマップも入れておきましょう❗
 
-オフィシャル設定のまんま...とはいかなくなってしまっているのでちょっと不安ですけどね😅
+このサイトで1年間放っておいたページを改訂している関係で、
+オフィシャル設定のまんま...とはいかなくなっているのでちょっと不安ですけどね...。
 
 ```admonish note
-[lazy.nvim](../../outro/lazy.html) に先に進んでもらって、
-移行後にオフィシャル設定に従う方が良いかもしれません😨
+ぶっちゃけ、[lazy.nvim](../../outro/lazy.html) に先に進んでもらって、
+移行後にオフィシャル設定に従う方が良いです😅
 ```
 
 ~~~admonish info title="[🚀 Usage](https://github.com/folke/trouble.nvim#-usage)"
@@ -210,6 +211,8 @@ vim.keymap.set('n', '<leader>xL', '<cmd>Trouble loclist toggle<cr>')
 vim.keymap.set('n', '<leader>xQ', '<cmd>Trouble qflist toggle<cr>')
 ```
 ~~~
+
+どっかトラブってたらごめんなさい😨
 
 ## 🎨 Colors
 
