@@ -30,6 +30,16 @@ McCartney は、1968年の The Beatles ("the White Album") のセッションに
 母親の夢を見たことがきっかけで "Let It Be" のアイデアを思いついたと語っている。
 (Mary Patricia McCartney は、彼が14歳の時に癌で亡くなっている。)
 「母と再会できて嬉しかった。その夢を見ることができて、とても恵まれていると思った。それで "Let It Be" を書いたんだ」。
+
+この曲は 1970年3月6日、McCartney が The Beatles 脱退を表明する前の最後のシングルとなった。
+
+[George Martin](https://en.wikipedia.org/wiki/George_Martin) がプロデュースしたシングル版では、
+柔らかなギター・ソロと控えめなオーケストラでミックスされているのに対し、
+[Phil Spector](https://en.wikipedia.org/wiki/Phil_Spector)がプロデュースしたアルバム版では、
+攻撃的なギター・ソロと強調されたオーケストラでミックスされている...のだが、
+McCartney は Spector のプロデュース手法 (特にオーケストラやコーラスの大規模な追加) を好ましく思っておらず、
+オーケストラやコーラスなどの装飾を排除し、よりシンプルでオリジナルの意図に近い形に戻すことを目指して制作したアルバム
+[Let It Be... Naked](https://en.wikipedia.org/wiki/Let_It_Be..._Naked)を 2003年にリリースした。
 }}
 
 言葉をかけてくれたんだ
@@ -40,22 +50,21 @@ McCartney は、1968年の The Beatles ("the White Album") のセッションに
 ## ⚡️ Requirements
 
 ```admonish abstract title="[⚡️ Requirements](https://github.com/folke/trouble.nvim#%EF%B8%8F-requirements)"
-- Neovim >= 0.7.2
-
+- Neovim >= 0.9.2
+- Neovim >= 0.10.0 **OR** the `markdown` and `markdown_inline` [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) parsers
 - Properly configured Neovim LSP client
-
 - [nvim-web-devicons](https://github.com/nvim-tree/nvim-web-devicons) is optional to enable file icons
-
 - a theme with properly configured highlight groups for Neovim Diagnostics
-
-- or install 🌈 [lsp-colors](https://github.com/folke/lsp-colors.nvim) to automatically create the missing highlight groups
-
 - a [patched font](https://www.nerdfonts.com/) for the default severity and fold icons
 ```
 
-もう今さら気にかける必要のあるものはありませんね😉
+このページの初掲は "Sep 7, 2023" なんですが、
+当初からこのサイトを進んできてくれた人には特に気にかける必要のあるものはなかったし、
+"Sep 29, 2024" 時点でも特に気にかける必要のあるものはないでしょう。
 
-そのまま進んで行きましょう。
+`Neovim`も`v0.10.1`まで進んでるしね😉
+
+そのまま行きましょう❗
 
 ## 📦 Installation
 
@@ -132,7 +141,7 @@ Trouble comes with the following defaults:
 local trouble = require 'trouble'
 
 trouble.setup {
-  use_diagnostic_signs = true,
+  warn_no_results = false,
 }
 ```
 ~~~
@@ -157,21 +166,35 @@ Let it be
 なるようになるよ
 ```
 
-### 🔹 use_diagnostic_signs
+### 🔹 warn_no_results
 
 ~~~admonish info title=":h trouble.nvim-trouble-configuration"
 ```txt
-enabling this will use the signs defined in your lsp client
+show a warning when there are no results
 
-これを有効にすると、lsp クライアントで定義された記号が使用されます。
+結果がない場合に警告を表示する
 ```
 ~~~
 
+結果がない(特にトラブってない健全な状態である)場合に、
+
+```vi
+:Trouble diagnostics toggle
+```
+
+...とかすると、`Trouble`を開かずに警告を表示するというのがデフォルト設定(`true`)ですが、
+これを`false`に設定しておくとトラブってる具合に関係なく`Trouble`が開くようになります。
+
 ## 🚀 Usage
 
-そしたら、キーマップも入れておきましょう❗
+そしたらキーマップも入れておきましょう❗
 
-...オフィシャル設定のまんまですけどね😆
+オフィシャル設定のまんま...とはいかなくなってしまっているのでちょっと不安ですけどね😅
+
+```admonish note
+[lazy.nvim](../../outro/lazy.html) に先に進んでもらって、
+移行後にオフィシャル設定に従う方が良いかもしれません😨
+```
 
 ~~~admonish info title="[🚀 Usage](https://github.com/folke/trouble.nvim#-usage)"
 Commands
@@ -179,17 +202,12 @@ Commands
 
 ~~~admonish example title="extensions/trouble.lua"
 ```lua
-vim.keymap.set('n', '<leader>xx', function() trouble.open() end)
-vim.keymap.set('n', '<leader>xw', function() trouble.open 'workspace_diagnostics' end)
-vim.keymap.set('n', '<leader>xd', function() trouble.open 'document_diagnostics' end)
-vim.keymap.set('n', '<leader>xq', function() trouble.open 'quickfix' end)
-vim.keymap.set('n', '<leader>xl', function() trouble.open 'loclist' end)
-
-vim.keymap.set('n', 'gR', function() trouble.open 'lsp_references' end)
-vim.keymap.set('n', 'gn', function() trouble.next { skip_groups = true, jump = true } end)
-vim.keymap.set('n', 'gp', function() trouble.previous { skip_groups = true, jump = true } end)
-vim.keymap.set('n', 'gF', function() trouble.first { skip_groups = true, jump = true } end)
-vim.keymap.set('n', 'gL', function() trouble.last { skip_groups = true, jump = true } end)
+vim.keymap.set('n', '<leader>xx', '<cmd>Trouble diagnostics toggle<cr>')
+vim.keymap.set('n', '<leader>xX', '<cmd>Trouble diagnostics toggle filter.buf=0<cr>')
+vim.keymap.set('n', '<leader>cs', '<cmd>Trouble symbols toggle focus=false<cr>')
+vim.keymap.set('n', '<leader>cl', '<cmd>Trouble lsp toggle focus=false win.position=right<cr>')
+vim.keymap.set('n', '<leader>xL', '<cmd>Trouble loclist toggle<cr>')
+vim.keymap.set('n', '<leader>xQ', '<cmd>Trouble qflist toggle<cr>')
 ```
 ~~~
 
@@ -245,6 +263,21 @@ let it be
 
 ...天使なのか悪魔なのかわかりません😇
 
+`Trouble`のウィンドウに移動するためには`vim`のウィンドウ操作でいけます。
+
+(下に表示されているのであれば) <kbd>Ctrl</kbd><kbd>w</kbd>からの<kbd>j</kbd>ですね。
+
+~~~admonish tip
+もし、`Trouble`を開くと同時にこのウィンドウに移動したいのであれば`focus`オプションを使用すると良いです😉
+
+```diff
+ trouble.setup {
++  focus = true,
+   warn_no_results = false,
+ }
+```
+~~~
+
 ```admonish success title=""
 Whisper words of wisdom
 
@@ -257,15 +290,11 @@ Let it be
 
 ### 🔹 Appearance
 
-`use_diagnositc_signs`を設定しなかった場合(デフォルト`false`)は以下のようになります。
+`Trouble`がデフォルトで使用するアイコンは以下です。
 
 ![trouble1](img/trouble3.webp)
 
-こっちの方がいいじゃんって思いますね❗わたしも今の今まで気づきませんでした🤣
-
-なんでかって言うと、それは[後述](trouble.html#-excuse)します。
-
-ついでなので、わたしはこの機会に新しくこんなんしてみました😮
+これでもいいんだけど、わたしはこの機会に新しくこんなんしてみました😮
 
 ~~~admonish example title="~/.config/nvim/lua/appearance.lua"
 完全新規のファイルです😆
@@ -289,26 +318,13 @@ end
 ```
 ~~~
 
-~~~admonish tip
-わたしが使っているアイコンは`Trouble`のデフォルトとは異なっています。
+もちろんお好みで❗
 
-```lua
-signs = {
-  -- icons / text used for a diagnostic
-  error = "",
-  warning = "",
-  hint = "",
-  information = "",
-  other = "",
-},
-```
-
-こっちもいいよね😆 もちろんお好みで❗
-~~~
-
+```admonish tip
 ![trouble1](img/trouble4.webp)
 
-こうすると、ちゃんと`signcolumn`(スクリーンショット左上) のアイコンとも統一されるんです😉
+`signcolumn`(スクリーンショット左上) のアイコンにも、これが使用されます😉
+```
 
 #### ▪️ diagnostic-highlights
 
@@ -388,51 +404,15 @@ culhl   highlight group used for the text item when the cursor is on the same li
   引数{list}が1つの場合、定義された各符号に対して1つの値のリストを返します。
 ~~~
 
-#### 😮‍💨 Excuse
-
-🦎 うんと、`NerdFont` (アイコンに使用) にちょっと前に大きめの変更があったんですね。
-
-[https://github.com/ryanoasis/nerd-fonts/issues/1190](https://github.com/ryanoasis/nerd-fonts/issues/1190)
-
-🦖 そんで、このサイトも追随して、何も考えずパラメータ (アイコン) 変えて悦に浸っちゃってるんですね。
-
-[commit](https://github.com/CoralPink/commentary/commit/6c1b43cd9556f7a9b0846f0c8a8eb95b1cc2242b)
-/ ([16.3. mason-lspconfig.nvim : lualine](mason-lspconfig.html#lualine))
-
-🐉 あとなんか、`Neovim`自体がこの辺りの仕様を途中で変えてたみたいなんですね。
-
-[https://github.com/folke/trouble.nvim/issues/52](https://github.com/folke/trouble.nvim/issues/52)
-
-`diagnostic-highlights`については、このサイトでは触れていませんでした。
-
-🐲 なんですが...。
-
-わたしの手元では、
-前仕様の "diagnosticSign****" パラメータがず〜っと働いているフリをしていたわけで、
-`signcolumn`には`E`とか`W`すらも出ていなかったわけです...。
-
-で、今回`Trouble`を見直していて、ようやくこのマジトラブルに気付いたわけです。
-
-⭐控えめに言ってカオスでした⭐
-
-```admonish note
-...なので、きっちり統一したい場合は`lualine.lua`も含めて見直してみて❗
-
-![trouble1](img/trouble5.webp)
-
-なんか恐れ入ります❗
-```
-
 ## 🎼 It will be all right, just let it be.
 
-いつもどおりではあるんですが、話がとっ散らかってしまいました...。
-
-しかし朗報です❗16章はこれで完結です😆
+そんなこんなで`Trouble`でした。これで当初の[ロードマップ](../lsp/language-server-protocol.html)を踏破したことになります❗
 
 「ほんと、がんばったんだねー🤗」
 
-少し前の項でもちょっと触れましたが、タイミングというか巡り合わせが良いので、
-次回は`💤lazy.nvim`を取り上げます。一気にお引越しを済ませちゃいましょう🚚
+この章も堂々の完結です😆
+
+少し前の項でもちょっと触れましたが、タイミングというか巡り合わせが良いので、次回は`💤lazy.nvim`を取り上げます。
 
 ```admonish note
 `lazy.nvim`は`Trouble`と同じく @folke さんのプロジェクトです😄
@@ -440,7 +420,9 @@ culhl   highlight group used for the text item when the cursor is on the same li
 とても綺麗に繋がりますね✨
 ```
 
-「ぜんっぜん終われへんやんけ...😑」と思われているかもしれませんが...、
+一気にお引越しを済ませちゃいましょう🚚
+
+その一方で「ぜんっぜん終われへんやんけ...😑」と思われているかもしれませんが...、
 
 次が最終章です❗
 
