@@ -120,6 +120,11 @@ setup_handlers({handlers})
 
 ```admonish success title=""
 It's my life!
+{{footnote: It's My Life (by [Bon Jovi](https://en.wikipedia.org/wiki/Bon_Jovi)):
+2000年5月23日、7枚目のアルバム Crush からのリード・シングル。
+Jon Bon Jovi, Richie Sambora, Max Martin が作曲し、Luke Ebbin が共同プロデュースした。
+この曲は、Bon Jovi の 1980年代以降のヒット・シングルの中で最もよく知られ、若いファン層を新たに獲得することとなった。
+}}
 
 これが俺の人生だ！
 ```
@@ -127,7 +132,17 @@ It's my life!
 ```admonish success title=""
 My heart is like an open highway
 
-Like Frankie said
+Like Frankie{{footnote:
+同じ New Jersey 出身の[Frank Sinatra](https://en.wikipedia.org/wiki/Frank_Sinatra)に言及した詩が特徴の一つであり、
+"My heart is like an open highway / Like Frankie said / I did it 'My Way'"というセリフでも知られている。
+
+Jon Bon Jovi と Sambora は、このセリフを巡って意見が対立したようで、Bon Jobi は次のように回想している。
+
+俺は[U-571](https://en.wikipedia.org/wiki/U-571_(film))の製作から帰ってきたばかりで、こう言ったんだ。
+"Sinatra は16本の映画を作り、80歳までツアーをした。これは俺のロールモデルだ。"
+すると Sambora は "そんな詞は書くなよ。君以外、誰も Frank Sinatra のことなんて気にしていないんだから。"
+それでもとにかく書いてみたんだ。
+}}said
 
 I did it my way
 
@@ -145,7 +160,11 @@ I did it my way
 ```admonish success title=""
 This is for the ones who stood their ground
 
-For Tommy and Gina who never backed down
+For Tommy and Gina{{footnote:
+2番の歌詞にある「決して一歩も引かなかった トミーとジーナのために」というセリフは、
+1986年に Bon Jovi と Sambora が書いた "Livin' on a Prayer" で登場した労働者階級のカップルを指している。
+[Wikipedia](https://en.wikipedia.org/wiki/It%27s_My_Life_(Bon_Jovi_song))より}}
+who never backed down
 
 この歌は 信じて立ち向かった者達に捧げる
 
@@ -259,13 +278,4 @@ It's my life!
 今 この瞬間を生きていたい
 
 これが俺の人生だ！
-{{footnote: It's My Life (by [Bon Jovi](https://en.wikipedia.org/wiki/Bon_Jovi)):
-2番の歌詞にある「決して一歩も引かなかった トミーとジーナのために」というセリフは、
-1986年のヒット曲 "Livin' on a Prayer" で初めて登場した架空のカップルを指している。
-また、同じ New Jersey 州の Frank Sinatra に言及した詩が特徴。
-Bon Jovi は次のように回想している。
-「Sinatra は16本の映画を作り、80歳までツアーをした。これは俺のロールモデルだ 」と言ったら、
-「そんな詞は書くなよ。君以外、誰も Sinatra のことなんて気にしていないんだから」と Sambora に言われた。
-それでもとにかく書いてみたんだ。[Wikipedia](https://en.wikipedia.org/wiki/It%27s_My_Life_(Bon_Jovi_song))より
-}}
 ```

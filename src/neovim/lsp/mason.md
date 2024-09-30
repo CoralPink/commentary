@@ -360,6 +360,26 @@ keymaps = {
 
 ![install-4](img/install-ls4.webp)
 
+```admonish success title=""
+We're half way there
+
+Livin' on a prayer
+{{footnote: Livin' on a Prayer (by [Bon Jovi](https://en.wikipedia.org/wiki/Bon_Jovi)):
+Jon Bon Jovi はこの曲のオリジナル・レコーディングを気に入っていなかった。
+これは 100,000,000 Bon Jovi Fans Can't Be Wrong のシークレットトラックとして見つけることができる。
+しかし、リード・ギタリストの Richie Sambora は、この曲が良いものであるとメンバーを説得し、
+新しいベースライン、異なるドラムフィル、トークボックスを使用してこの曲を作り直し、Slippery When Wet に収録した。
+
+2001年9月11日の同時多発テロ事件では、World Trade Center の作業員や緊急対応要員に何百人もの死傷者が出た。
+彼らの出身地である New Jersey は New York に次いで大きな被害を受けたが、
+バンドは New York のためにこの曲のアコースティック・バージョンを演奏した。
+[Wikipedia](https://en.wikipedia.org/wiki/Livin%27_on_a_Prayer)より}}
+
+私達はまだ道半ば
+
+粘り強く生きていくの
+```
+
 ## I'll take you all.
 
 これでようやく会話のできるお友達をゲットだぜ❗😆
@@ -372,16 +392,6 @@ keymaps = {
 ってことで、次回に続く... 🦖
 
 ```admonish success
-We're half way there
-
-Livin' on a prayer
-
-私達はまだ道半ば
-
-粘り強く生きていくの
-```
-
-```admonish success title=""
 Take my hand and we'll make it I swear
 
 Livin' on a prayer
@@ -389,10 +399,4 @@ Livin' on a prayer
 私の手を握ってよ 絶対にできる 誓ってもいいよ
 
 祈りながら生きていくの
-{{footnote: Livin' on a Prayer (by [Bon Jovi](https://en.wikipedia.org/wiki/Bon_Jovi)):
-Jon Bon Jovi はこの曲のオリジナル・レコーディングを気に入っていなかった。
-これは 100,000,000 Bon Jovi Fans Can't Be Wrong のシークレットトラックとして見つけることができる。
-しかし、リード・ギタリストの Richie Sambora は、この曲が良いものであるとメンバーを説得し、
-新しいベースライン、異なるドラムフィル、トークボックスを使用してこの曲を作り直し、Slippery When Wet に収録した。
-[Wikipedia](https://en.wikipedia.org/wiki/Livin%27_on_a_Prayer)より}}
 ```
