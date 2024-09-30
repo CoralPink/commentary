@@ -54,18 +54,24 @@
     <div class="top-bar">
       <div id="menu-bar" class="menu-bar">
         <div class="left-buttons">
-          <button id="sidebar-toggle" class="icon-button" title="Toggle Table of Contents (Shortkey: T )" aria-label="Toggle Table of Contents" aria-controls="sidebar"></button>
-          <button popovertarget="theme-list" class="icon-button" title="Change theme" aria-label="Change theme"
-  aria-haspopup="true" aria-expanded="false" aria-controls="theme-list"></button>
-            <ul id="theme-list" aria-label="Themes" role="menu" popover>
-              <li role="none"><button role="menuitem" class="theme" id="au-lait">Au Lait</button></li>
-              <li role="none"><button role="menuitem" class="theme" id="latte">Latte</button></li>
-              <li role="none"><button role="menuitem" class="theme" id="frappe">Frappé</button></li>
-              <li role="none"><button role="menuitem" class="theme" id="macchiato">Macchiato</button></li>
-              <li role="none"><button role="menuitem" class="theme" id="mocha">Mocha</button></li>
-            </ul>
-          <button id="search-toggle" class="icon-button" title="Toggle Search Box (Shortkey: / )"
-  aria-label="Toggle Search Box" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar"></button>
+          <button id="sidebar-toggle" class="icon-button" title="Toggle Table of Contents (Shortkey: T )" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+            <div class="icon-sidebar fa-icon"></div>
+          </button>
+
+          <button popovertarget="theme-list" class="icon-button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+            <div class="icon-theme fa-icon"></div>
+          </button>
+          <ul id="theme-list" aria-label="Themes" role="menu" popover>
+            <li role="none"><button role="menuitem" class="theme" id="au-lait">Au Lait</button></li>
+            <li role="none"><button role="menuitem" class="theme" id="latte">Latte</button></li>
+            <li role="none"><button role="menuitem" class="theme" id="frappe">Frappé</button></li>
+            <li role="none"><button role="menuitem" class="theme" id="macchiato">Macchiato</button></li>
+            <li role="none"><button role="menuitem" class="theme" id="mocha">Mocha</button></li>
+          </ul>
+
+          <button id="search-toggle" class="icon-button" title="Toggle Search Box (Shortkey: / )" aria-label="Toggle Search Box" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+            <div class="icon-search fa-icon"></div>
+          </button>
 
           <div id="search-wrapper" class="hidden">
             <form id="searchbar-outer" class="searchbar-outer">
@@ -81,8 +87,10 @@
 
         <div class="menu-title">Commentary of Dotfiles</div>
 
-        <div class="right-buttons icon-button">
-          <a href="https://github.com/CoralPink/commentary" title="Git repository" aria-label="Git repository" target="_blank" rel="noopener"></a>
+        <div class="right-buttons">
+          <a href="https://github.com/CoralPink/commentary" title="Git repository" aria-label="Git repository" target="_blank" rel="noopener">
+            <div class="icon-github fa-icon"></div>
+          </a>
         </div>
       </div>
     </div>
@@ -159,11 +167,11 @@
 
           <nav class="nav-wrapper" aria-label="Page navigation">
             <a rel="prev" href="../wezterm/window-decorations.html" class="nav-chapters previous icon-button" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
-               Window Decorations
+              < Window Decorations
             </a>
 
             <a rel="next" href="../neovim/user-config.html" class="nav-chapters next icon-button" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-              User Config 
+              User Config >
             </a>
           </nav>
         </main>
