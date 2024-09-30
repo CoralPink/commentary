@@ -2,7 +2,7 @@ const WORKER_PATH = '/commentary/hl-worker.js';
 const MAX_THREAD = 8;
 
 const POP_WAIT = 10;
-const TIME_OUT = 300;
+const TIME_OUT = 3000;
 
 // Singleton Class
 class WorkerPool {
@@ -117,7 +117,12 @@ export const procCodeBlock = () => {
       .pop()
       .then(worker => {
         worker.onmessage = ev => {
-          code.innerHTML = ev.data;
+          const { highlightCode, needNerdFonts } = ev.data;
+          code.innerHTML = highlightCode;
+
+          if (needNerdFonts) {
+            code.style.fontFamily = `'Symbols Nerd Font Mono', ${window.getComputedStyle(code).fontFamily}`;
+          }
           workerPool.push(worker);
         };
 
