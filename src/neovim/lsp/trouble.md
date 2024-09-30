@@ -33,12 +33,12 @@ McCartney は、1968年の The Beatles ("the White Album") のセッションに
 
 この曲は 1970年3月6日、McCartney が The Beatles 脱退を表明する前の最後のシングルとなった。
 
-[George Martin](https://en.wikipedia.org/wiki/George_Martin) がプロデュースしたシングル版では、
+[George Martin](https://en.wikipedia.org/wiki/George_Martin)がプロデュースしたシングル版では、
 柔らかなギター・ソロと控えめなオーケストラでミックスされているのに対し、
 [Phil Spector](https://en.wikipedia.org/wiki/Phil_Spector)がプロデュースしたアルバム版では、
-攻撃的なギター・ソロと強調されたオーケストラでミックスされている...のだが、
+ハードなギター・ソロと強調されたオーケストラでミックスされている。
 McCartney は Spector のプロデュース手法 (特にオーケストラやコーラスの大規模な追加) を好ましく思っておらず、
-オーケストラやコーラスなどの装飾を排除し、よりシンプルでオリジナルの意図に近い形に戻すことを目指して制作したアルバム
+これらの装飾を排除し、よりシンプルでオリジナルの意図に近い形に戻すことを目指して制作したアルバム
 [Let It Be... Naked](https://en.wikipedia.org/wiki/Let_It_Be..._Naked)を 2003年にリリースした。
 }}
 
@@ -58,11 +58,10 @@ McCartney は Spector のプロデュース手法 (特にオーケストラや�
 - a [patched font](https://www.nerdfonts.com/) for the default severity and fold icons
 ```
 
-このページの初掲は "Sep 7, 2023" なんですが、
-当初からこのサイトを進んできてくれた人には特に気にかける必要のあるものはなかったし、
-"Sep 29, 2024" 時点でも特に気にかける必要のあるものはないでしょう。
+このページの初掲は "Sep 7, 2023" なんですが、"Sep 29, 2024" の今でも、
+当初からこのサイトを進んできてくれた人が気にかける必要のあるものは特にありません😉
 
-`Neovim`も`v0.10.1`まで進んでるしね😉
+`Neovim`も`v0.10.1`まで進んでるしね😸
 
 そのまま行きましょう❗
 
@@ -176,9 +175,9 @@ show a warning when there are no results
 ```
 ~~~
 
-結果がない(特にトラブってない健全な状態である)場合に、
+特にトラブってない健全な状態で、
 
-```vi
+```vim
 :Trouble diagnostics toggle
 ```
 
@@ -276,7 +275,7 @@ let it be
 ```diff
  trouble.setup {
 +  focus = true,
-   warn_no_results = false,
+   open_no_results = true,
  }
 ```
 ~~~
@@ -425,7 +424,7 @@ culhl   highlight group used for the text item when the cursor is on the same li
 
 一気にお引越しを済ませちゃいましょう🚚
 
-その一方で「ぜんっぜん終われへんやんけ...😑」と思われているかもしれませんが...、
+「踏破したのに、ぜんっぜん終われへんやんけ...😑」と思われているかもしれませんが...、
 
 次が最終章です❗
 
