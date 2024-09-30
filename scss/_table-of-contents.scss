@@ -1,55 +1,68 @@
 @use 'variables' as var;
 
-#pagetoc {
-  position: fixed;
-  display: flex;
-  flex-direction: column;
+@mixin anchor-gradient($angle){
+  color: var(--fg);
+  text-decoration: none;
 
-  border-left: 0.1em solid var.$color-pink;
+  &:hover {
+    color: var(--sidebar-active);
+    background: linear-gradient($angle, var(--sidebar-bg) 64%, var(--bg));
+  }
+
+  &.active {
+    color: var(--page-toc-color);
+    background: linear-gradient($angle, var(--page-toc-background) 64%, var(--bg));
+  }
+}
+
+#righttoc {
+  display: flex;
   min-width: var.$pagetoc-width;
 
-  font-size: 0.6875em;
-  font-style: italic;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 
-  a {
-    color: var(--fg);
-    text-decoration: none;
+  & #pagetoc {
+    display: flex;
+    position: fixed;
+    flex-direction: column;
 
-    padding-bottom: 0.5em;
-    padding-top: 0.5em;
+    overflow-y: scroll;
 
-    &:hover {
-      color: var(--sidebar-active);
-      background: linear-gradient(to right, var(--sidebar-bg) 64%, var(--bg));
-    }
+    font-size: 0.6875em;
+    font-style: italic;
 
-    &.active {
-      background: linear-gradient(to right, var(--page-toc-background) 64%, var(--bg));
-      color: var(--page-toc-color);
-    }
+    border-left: 0.1em solid var.$color-pink;
 
-    &.H1 {
-      padding-left: 1em;
-    }
+    a {
+      @include anchor-gradient(to right);
 
-    &.H2 {
-      padding-left: 2em;
-    }
+      padding-bottom: 0.5em;
+      padding-top: 0.5em;
 
-    &.H3 {
-      padding-left: 3em;
-    }
+      &.H1 {
+        padding-left: 1em;
+      }
 
-    &.H4 {
-      padding-left: 3.6em;
-    }
+      &.H2 {
+        padding-left: 2em;
+      }
 
-    &.H5 {
-      padding-left: 4.2em;
-    }
+      &.H3 {
+        padding-left: 3em;
+      }
 
-    &.H6 {
-      padding-left: 4.8em;
+      &.H4 {
+        padding-left: 3.6em;
+      }
+
+      &.H5 {
+        padding-left: 4.2em;
+      }
+
+      &.H6 {
+        padding-left: 4.8em;
+      }
     }
   }
 }
@@ -93,18 +106,10 @@
 
     a {
       display: flex;
-      justify-content: center;
       align-items: center;
-
-      color: var(--fg);
-      text-decoration: none;
-
       white-space: nowrap;
 
-      &.active {
-        background: linear-gradient(to top, var(--page-toc-background) 64%, var(--bg));
-        color: var(--page-toc-color);
-      }
+      @include anchor-gradient(to top);
     }
   }
 
@@ -114,7 +119,7 @@
 }
 
 @media print {
-  #righttoc {
+  #righttoc, #bottomtoc {
     display: none;
   }
 }
