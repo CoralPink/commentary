@@ -69,7 +69,7 @@ const createClipButton = () => {
 
   clip.className = 'icon-button';
   clip.setAttribute('aria-label', 'Copy to Clipboard');
-  clip.insertAdjacentText('afterbegin', '');
+  clip.insertAdjacentHTML('afterbegin', '<div class="icon-copy fa-icon"></div>');
 
   return clip;
 };

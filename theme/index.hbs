@@ -93,14 +93,16 @@
 
           <nav class="nav-wrapper" aria-label="Page navigation">
             {{#previous}}
-            <a rel="prev" href="{{ path_to_root }}{{link}}" class="nav-chapters previous icon-button" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
-              < {{title}}
+            <a rel="prev" href="{{ path_to_root }}{{link}}" class="nav-chapters icon-button" title="Previous chapter" aria-label="Previous chapter">
+              <div class="icon-prev fa-icon"></div>
+              {{title}}
             </a>
             {{/previous}}
 
             {{#next}}
-            <a rel="next" href="{{ path_to_root }}{{link}}" class="nav-chapters next icon-button" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-              {{title}} >
+            <a rel="next" href="{{ path_to_root }}{{link}}" class="nav-chapters icon-button" title="Next chapter" aria-label="Next chapter">
+              {{title}}
+              <div class="icon-next fa-icon"></div>
             </a>
             {{/next}}
           </nav>
