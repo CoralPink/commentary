@@ -215,6 +215,9 @@ pre {
 }
 
 .nav-chapters {
+  display: flex;
+  align-items: center;
+
   font-size: 0.82em;
   text-align: center;
   text-decoration: none;
