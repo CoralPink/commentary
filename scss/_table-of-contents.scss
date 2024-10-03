@@ -19,9 +19,6 @@
   display: flex;
   min-width: var.$pagetoc-width;
 
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
   & #pagetoc {
     display: flex;
     position: fixed;
@@ -72,14 +69,13 @@
   position: fixed;
   bottom: 0;
 
+  font-feature-settings: "palt";
+
   border-top: 0.1em solid var.$color-pink;
   width: 100dvw;
   height: var.$pagetoc-bottom-height;
 
   background-color: var(--bg);
-
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 
   ::-webkit-scrollbar {
     height: var.$scrollbar-webkit-height;
