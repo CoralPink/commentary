@@ -1,8 +1,8 @@
 const WORKER_PATH = '/commentary/hl-worker.js';
 const MAX_THREAD = 8;
 
-const POP_WAIT = 10;
-const TIME_OUT = 3000;
+const POP_WAIT = 20;
+const TIME_OUT = 600;
 
 // Singleton Class
 class WorkerPool {
@@ -113,29 +113,29 @@ export const procCodeBlock = () => {
   const workerPool = new WorkerPool(threadNum);
 
   for (const code of codeQuery) {
-    workerPool
-      .pop()
-      .then(worker => {
+    workerPool.pop().then(
+      worker => {
         worker.onmessage = ev => {
           const { highlightCode, needNerdFonts } = ev.data;
           code.innerHTML = highlightCode;
 
           if (needNerdFonts) {
-            code.style.fontFamily = `'Symbols Nerd Font Mono', ${window.getComputedStyle(code).fontFamily}`;
+            code.style.fontFamily = `${window.getComputedStyle(code).fontFamily}, 'Symbols Nerd Font Mono'`;
           }
           workerPool.push(worker);
         };
 
-        worker.onerror = e => {
-          console.error(`Error codeBlock(): ${e}`);
+        worker.onerror = err => {
+          console.error('Error codeBlock:', err);
           workerPool.push(worker);
         };
 
         worker.postMessage([code.textContent, code.classList[0]]);
-      })
-      .catch(e => {
-        console.error(e);
-      });
+      },
+      err => {
+        console.error('Error workerPool:', err);
+      },
+    );
 
     const parent = code.parentNode;
 

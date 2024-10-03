@@ -130,28 +130,13 @@ pre {
     -webkit-align-items: center;
     gap: 1em;
 
+    color: var(--icons);
     background-color: var(--bg);
     z-index: 10;
     opacity: 0.92;
 
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-
-    .icon-button {
-      cursor: pointer;
-    }
-
-    &,
-    &:visited,
-    & .icon-button,
-    & a {
-      color: var(--icons);
-    }
-
-    &:hover,
-    & .icon-button:hover {
-      color: var(--icons-hover);
-    }
   }
 
   .left-buttons {

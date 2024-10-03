@@ -110,7 +110,6 @@ const showSearch = () => {
 };
 
 const initSearch = () => {
-  ELEM_ICON.removeEventListener('mouseup', initSearch);
   document.removeEventListener('keyup', handleKeyup);
 
   try {
@@ -123,6 +122,7 @@ const initSearch = () => {
   } catch (e) {
     console.error(`Error during initialization: ${e}`);
     console.info('The search function is disabled.');
+
     ELEM_ICON.classList.add('hidden');
     return;
   }
@@ -173,7 +173,7 @@ const startSearchFromKey = key => {
   }
 };
 
-export const startUpSearch = root => {
+export const startupSearch = root => {
   doSearchOrMarkFromUrl();
 
   pathToRoot = root;
