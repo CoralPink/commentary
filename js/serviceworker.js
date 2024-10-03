@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'v2.3.0';
+const CACHE_VERSION = 'v2.3.1';
 
 const CACHE_HOST = 'https://coralpink.github.io/';
 const CACHE_URL = '/commentary/';

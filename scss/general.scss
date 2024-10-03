@@ -73,6 +73,8 @@ body {
   grid-template-columns: 1rem 1fr 1rem;
   column-gap: 1rem;
 
+  font-feature-settings: "palt";
+
   @media only screen and (min-width: var.$mobile-max-width) {
     grid-template-columns: 1rem 1fr 0 var.$pagetoc-width 0;
   }
