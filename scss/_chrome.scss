@@ -38,9 +38,6 @@ code {
   font-family: var.$mono-font;
   font-size: var.$code-font-size;
 
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
   color: var(--inline-code-color);
   background-color: var(--quote-bg);
   padding: 0.1rem 0.3rem;
@@ -134,9 +131,6 @@ pre {
     background-color: var(--bg);
     z-index: 10;
     opacity: 0.92;
-
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
   }
 
   .left-buttons {
@@ -339,6 +333,8 @@ table {
   overflow-y: scroll;
 
   font-size: 0.9em;
+  font-feature-settings: "palt";
+
   padding: 0.8em;
   border-radius: 1.6em;
 
