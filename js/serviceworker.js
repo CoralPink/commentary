@@ -24,7 +24,6 @@ const CACHE_LIST = [
   'woff/OpenSans-Italic.woff2',
   'woff/OpenSans-Regular.woff2',
   'woff/SourceCodePro-Medium.woff2',
-  'woff/NerdFontsSymbolsOnly/SymbolsNerdFontMono-Regular.woff2',
 ];
 
 const FALLBACK_URL = `${CACHE_URL}chrome-96x96.png`;
