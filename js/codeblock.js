@@ -65,28 +65,29 @@ class WorkerPool {
 }
 
 const createClipButton = () => {
-  const clip = document.createElement('button');
+  const elem = document.createElement('button');
+  elem.setAttribute('class', 'icon-button');
+  elem.setAttribute('aria-label', 'Copy to Clipboard');
 
-  clip.className = 'icon-button';
-  clip.setAttribute('aria-label', 'Copy to Clipboard');
-  clip.insertAdjacentHTML('afterbegin', '<div class="icon-copy fa-icon"></div>');
+  const icon = elem.appendChild(document.createElement('div'));
+  icon.setAttribute('class', 'icon-copy fa-icon');
 
-  return clip;
+  return elem;
 };
 
-const copyCode = trigger => {
-  const elem = trigger.target;
-
+const copyCode = target => {
   const showTooltip = msg => {
     const tip = document.createElement('div');
     tip.setAttribute('class', 'tooltiptext');
     tip.insertAdjacentText('afterbegin', msg);
 
+    const elem = target.closest('button');
     elem.appendChild(tip);
+
     setTimeout(() => elem.removeChild(tip), 1200);
   };
 
-  navigator.clipboard.writeText(elem.closest('pre').querySelector('code').innerText).then(
+  navigator.clipboard.writeText(target.closest('pre').querySelector('code').innerText).then(
     () => showTooltip('Copied!'),
     () => showTooltip('Failed...'),
   );
@@ -140,7 +141,7 @@ export const procCodeBlock = () => {
     const parent = code.parentNode;
 
     const cb = document.importNode(clipButton, true);
-    cb.addEventListener('mouseup', copyCode, { once: false, passive: true });
+    cb.addEventListener('mouseup', ev => copyCode(ev.target), { once: false, passive: true });
 
     parent.insertBefore(cb, parent.firstChild);
   }
