@@ -1,3 +1,4 @@
+/* https://highlightjs.readthedocs.io/en/latest/css-classes-reference.html */
 .au-lait .hljs-keyword {
   color: #8839ef;
 }
@@ -191,7 +192,17 @@
 }
 
 .au-lait hr {
-  color: #acb0be;
+  border-color: #acb0be;
+  border-style: solid;
+}
+
+.au-lait del {
+  color: #7c7f93;
+}
+
+.au-lait .tooltiptext {
+  background: #e6e9ef;
+  color: #4c4f69;
 }
 
 .au-lait {
@@ -200,7 +211,7 @@
   --sidebar-bg: #e6e9ef;
   --sidebar-fg: #4c4f69;
   --sidebar-non-existant: #9ca0b0;
-  --sidebar-active: #dc8a78;
+  --sidebar-active: #1e66f5;
   --sidebar-spacer: #9ca0b0;
   --scrollbar: #9ca0b0;
   --icons: #9ca0b0;
@@ -223,4 +234,6 @@
   --searchresults-border-color: #dce0e8;
   --searchresults-li-bg: #eff1f5;
   --search-mark-bg: #fe640b;
+  --warning-border: #fe640b;
+  --color-scheme: light;
 }

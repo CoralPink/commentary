@@ -27,10 +27,6 @@
     padding: 0.2rem 0.3rem;
     vertical-align: top;
   }
-
-  summary::-webkit-details-marker {
-    display: none;
-  }
 }
 
 code {
@@ -102,10 +98,8 @@ pre {
       background-color: var(--theme-hover);
     }
 
-    #tooltiptext {
+    .tooltiptext {
       position: absolute;
-      color: #fff;
-      background-color: #333;
       top: -2.6em;
       left: -2.0em;
       border-radius: 0.8rem;
@@ -377,9 +371,5 @@ table {
         font-size: 0.8em;
       }
     }
-  }
-
-  mark {
-    font-weight: bold;
   }
 }
