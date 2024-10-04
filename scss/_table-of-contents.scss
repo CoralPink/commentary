@@ -1,6 +1,6 @@
 @use 'variables' as var;
 
-@mixin anchor-gradient($angle){
+@mixin anchor-gradient($angle) {
   color: var(--fg);
   text-decoration: none;
 
@@ -115,7 +115,9 @@
 }
 
 @media print {
-  #righttoc, #bottomtoc {
+
+  #righttoc,
+  #bottomtoc {
     display: none;
   }
 }
