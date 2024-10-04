@@ -370,9 +370,9 @@ Jon Bon Jovi はこの曲のオリジナル・レコーディングを気に入�
 しかし、リード・ギタリストの Richie Sambora は、この曲が良いものであるとメンバーを説得し、
 新しいベースライン、異なるドラムフィル、トークボックスを使用してこの曲を作り直し、Slippery When Wet に収録した。
 
-2001年9月11日の同時多発テロ事件では、World Trade Center の作業員や緊急対応要員に何百人もの死傷者が出た。
+2001年9月11日の同時多発テロ事件では、World Trade Center で働く人々や緊急対応要員に何百人もの死傷者が出た。
 彼らの出身地である New Jersey は New York に次いで大きな被害を受けたが、
-バンドは New York のためにこの曲のアコースティック・バージョンを演奏した。
+バンドは New York のためにこの曲をアコースティックに演奏し歌った。
 [Wikipedia](https://en.wikipedia.org/wiki/Livin%27_on_a_Prayer)より}}
 
 私達はまだ道半ば
