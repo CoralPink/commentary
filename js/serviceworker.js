@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'v2.4.1';
+const CACHE_VERSION = 'v2.4.2';
 
 const CACHE_HOST = 'https://coralpink.github.io/';
 const CACHE_URL = '/commentary/';
@@ -38,7 +38,7 @@ const deleteOldCaches = async () => {
   await Promise.all(cachesToDelete.map(deleteCache));
 };
 
-addEventListener(
+self.addEventListener(
   'activate',
   event => {
     event.waitUntil(clients.claim());
@@ -70,7 +70,7 @@ const shouldSkipWaiting = cacheList => {
   });
 };
 
-addEventListener(
+self.addEventListener(
   'install',
   event => {
     event.waitUntil(
@@ -111,10 +111,11 @@ const cacheFirst = async (request, preloadResponse) => {
   try {
     const responseFromNetwork = await fetch(request);
 
-    // response may be used only once
-    // we need to save clone to put one copy in cache
-    // and serve second one
-    putInCache(request, responseFromNetwork.clone());
+    // No cache processing for partial content
+    if (responseFromNetwork.status !== 206) {
+      putInCache(request, responseFromNetwork.clone());
+    }
+
     return responseFromNetwork;
   } catch (error) {
     const fallbackResponse = await caches.match(FALLBACK_URL);
@@ -126,17 +127,20 @@ const cacheFirst = async (request, preloadResponse) => {
     // when even the fallback response is not available,
     // there is nothing we can do, but we must always
     // return a Response object
-    return new Response('Network error happened', {
+    return new Response(`Network error happened: ${error}`, {
       status: 408,
       headers: { 'Content-Type': 'text/plain' },
     });
   }
 };
 
-addEventListener(
+self.addEventListener(
   'fetch',
   event => {
     if (!event.request.url.startsWith(CACHE_HOST)) {
+      return;
+    }
+    if (event.request.destination === 'document') {
       return;
     }
 
