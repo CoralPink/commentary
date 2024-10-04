@@ -79,7 +79,7 @@ const copyCode = trigger => {
 
   const showTooltip = msg => {
     const tip = document.createElement('div');
-    tip.setAttribute('id', 'tooltiptext');
+    tip.setAttribute('class', 'tooltiptext');
     tip.insertAdjacentText('afterbegin', msg);
 
     elem.appendChild(tip);

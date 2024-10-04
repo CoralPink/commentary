@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'v2.3.1';
+const CACHE_VERSION = 'v2.4.0';
 
 const CACHE_HOST = 'https://coralpink.github.io/';
 const CACHE_URL = '/commentary/';
@@ -12,7 +12,6 @@ const CACHE_LIST = [
   'css/style.css',
 
   'manifest.json',
-  'searchindex.json',
 
   'apple-touch-icon.png',
   'chrome-96x96.png',
