@@ -162,11 +162,11 @@ Love is all you need
 
 <div style="margin-top:2em"></div>
 <nav class="nav-wrapper" aria-label="Page navigation">
-<a rel="prev" href="outro/wezterm-meet-me.html" class="nav-chapters previous icon-button" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
-   WezTerm (Meet Me)
-</a>
+  <a rel="prev" href="outro/wezterm-meet-me.html" class="nav-chapters icon-button" title="Previous chapter" aria-label="Previous chapter">
+    <div class="icon-prev fa-icon"></div>
+    WezTerm (Meet Me)
+  </a>
 </nav>
-
 <div style="margin-top:140em"></div>
 
 ![風の電話1](img/denwa1.webp)
