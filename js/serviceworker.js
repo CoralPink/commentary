@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'v2.4.2';
+const CACHE_VERSION = 'v2.5.0';
 
 const CACHE_HOST = 'https://coralpink.github.io/';
 const CACHE_URL = '/commentary/';
@@ -18,10 +18,8 @@ const CACHE_LIST = [
   'favicon.ico',
   'favicon.svg',
 
-  'woff/OpenSans-Bold.woff2',
   'woff/OpenSans-BoldItalic.woff2',
   'woff/OpenSans-Italic.woff2',
-  'woff/OpenSans-Regular.woff2',
   'woff/SourceCodePro-Medium.woff2',
 ];
 

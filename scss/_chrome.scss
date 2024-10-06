@@ -31,8 +31,11 @@
 
 code {
   display: inline;
+
   font-family: var.$mono-font;
   font-size: var.$code-font-size;
+  line-height: 1.4;
+  vertical-align: middle;
 
   color: var(--inline-code-color);
   background-color: var(--quote-bg);
@@ -118,7 +121,6 @@ pre {
 
     display: flex;
     align-items: center;
-    -webkit-align-items: center;
     gap: 1em;
 
     color: var(--icons);
@@ -135,12 +137,15 @@ pre {
   }
 
   .menu-title {
+    flex: 1;
+
+    font-family: var.$italic-font;
     font-size: 0.7em;
     font-style: italic;
+
     text-align: right;
-    flex: 1;
-    white-space: nowrap;
     text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   .right-buttons {
@@ -224,8 +229,10 @@ pre {
   margin-bottom: 2em;
   padding-left: 1em;
   line-height: 2.2em;
-  font-size: 0.7em;
+
+  font-family: var.$italic-font;
   font-style: italic;
+  font-size: 0.6875em;
 
   li {
     list-style-type: none;
@@ -326,7 +333,7 @@ table {
   margin: 0 auto;
   overflow-y: scroll;
 
-  font-size: 0.9em;
+  font-size: var.$base-font-size;
   font-feature-settings: "palt";
 
   padding: 0.8em;
@@ -343,13 +350,18 @@ table {
     padding-left: 0.4rem;
 
     a {
+      font-family: var.$italic-font;
+      font-style: italic;
+
       color: var(--links);
       text-decoration: none;
     }
 
     #score {
-      font-size: 0.6875rem;
+      font-family: var.$italic-font;
       font-style: italic;
+      font-size: 0.6875rem;
+
       color: var(--search-score);
       float: right;
     }
@@ -368,7 +380,6 @@ table {
         display: block;
         clear: both;
         margin: 0.4rem 0 0 1.25rem;
-        font-size: 0.8em;
       }
     }
   }
