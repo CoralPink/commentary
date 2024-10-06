@@ -26,7 +26,8 @@
 
     overflow-y: scroll;
 
-    font-size: 0.6875em;
+    font-family: var.$italic-font;
+    font-size: 0.625em;
     font-style: italic;
 
     border-left: 0.1em solid var.$color-pink;
@@ -92,6 +93,7 @@
 
     overflow-x: auto;
 
+    font-family: var.$italic-font;
     font-size: .5625em;
     font-style: italic;
 

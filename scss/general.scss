@@ -11,7 +11,6 @@ body {
   display: flex;
   flex-direction: column;
 
-  font-family: 'Open Sans', sans-serif;
   color: var(--fg);
   background-color: var(--bg);
 
@@ -80,8 +79,12 @@ body {
   }
 
   main {
-    font-size: 0.9rem;
     min-width: 0;
+
+    font-family: var.$base-font;
+    font-size: var.$base-font-size;
+    letter-spacing: normal;
+    line-height: 1.6;
     word-break: auto-phrase;
 
     @media only screen and (max-width: var.$mobile-max-width) {
