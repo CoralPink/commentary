@@ -110,6 +110,7 @@ const showSearch = () => {
 };
 
 const initSearch = () => {
+  ELEM_ICON.removeEventListener('mouseup', initSearch);
   document.removeEventListener('keyup', handleKeyup);
 
   try {
