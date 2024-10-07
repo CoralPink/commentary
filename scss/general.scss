@@ -14,6 +14,8 @@ body {
   color: var(--fg);
   background-color: var(--bg);
 
+  font-family: var.$base-font;
+
   scrollbar-color: var(--scrollbar) var(--bg);
 
   &::-webkit-scrollbar {
@@ -81,7 +83,6 @@ body {
   main {
     min-width: 0;
 
-    font-family: var.$base-font;
     font-size: var.$base-font-size;
     letter-spacing: normal;
     line-height: 1.6;
