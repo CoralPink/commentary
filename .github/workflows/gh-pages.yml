@@ -78,7 +78,7 @@ jobs:
           wasm-pack build --target web
 
       - name: Upload wasm_pkg
-        uses: actions/upload-artifact@604373da6381bf24206979c74d06a550515601b9 # v4
+        uses: actions/upload-artifact@84480863f228bb9747b473957fcc9e309aa96097 # v4
         with:
           name: wasm-book
           path: rs/wasm/pkg
@@ -149,7 +149,7 @@ jobs:
           bun run build.js
 
       - name: Upload JS
-        uses: actions/upload-artifact@604373da6381bf24206979c74d06a550515601b9 # v4
+        uses: actions/upload-artifact@84480863f228bb9747b473957fcc9e309aa96097 # v4
         with:
           name: build-js
           path: js/dist
@@ -179,7 +179,7 @@ jobs:
           bun run compile style.scss dist/style.css
 
       - name: Upload CSS
-        uses: actions/upload-artifact@604373da6381bf24206979c74d06a550515601b9 # v4
+        uses: actions/upload-artifact@84480863f228bb9747b473957fcc9e309aa96097 # v4
         with:
           name: css
           path: scss/dist
