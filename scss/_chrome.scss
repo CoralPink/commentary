@@ -337,7 +337,7 @@ table {
   font-feature-settings: "palt";
 
   padding: 0.8em;
-  border-radius: 1.6em;
+  border-radius: 1rem;
 
   &>#searchresults-header {
     font-weight: bold;
@@ -346,40 +346,44 @@ table {
   }
 
   ul {
-    list-style: none;
     padding-left: 0.4rem;
 
-    a {
-      font-family: var.$italic-font;
-      font-style: italic;
-
-      color: var(--links);
-      text-decoration: none;
-    }
-
-    #score {
-      font-family: var.$italic-font;
-      font-style: italic;
-      font-size: 0.6875rem;
-
-      color: var(--search-score);
-      float: right;
-    }
-
     li {
-      font-size: 0.9em;
-      padding: 0.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4em;
 
-      &.focus {
+      font-size: .94em;
+      padding: .5rem;
+
+      cursor: pointer;
+
+      &:focus {
         background-color: var(--searchresults-li-bg);
+        border-radius: 0.4rem
       }
-    }
 
-    span {
-      &.teaser {
-        display: block;
-        clear: both;
-        margin: 0.4rem 0 0 1.25rem;
+      a {
+        font-family: var.$italic-font;
+        font-style: italic;
+
+        color: var(--links);
+        text-decoration: none;
+      }
+
+      span {
+        padding-left: 1em;
+      }
+
+      #score {
+        display: flex;
+        justify-content: flex-end;
+
+        color: var(--search-score);
+
+        font-family: var.$italic-font;
+        font-style: italic;
+        font-size: 0.6875rem;
       }
     }
   }
