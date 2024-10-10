@@ -57,6 +57,11 @@ const doSearchOrMarkFromUrl = () => {
 };
 
 const jumpUrl = aElement => {
+  if (aElement === null) {
+    console.warn('The link does not exist.');
+    return;
+  }
+
   const url = new URL(aElement.href);
 
   const clickedURL = url.origin + url.pathname;
@@ -79,6 +84,11 @@ const popupFocus = ev => {
 
 const searchMouseupHandler = ev => {
   const li = ev.target.closest('li');
+
+  if (li === null) {
+    console.warn('The li element does not exist.');
+    return;
+  }
 
   if (li !== focusedLi) {
     focusedLi = li;
