@@ -66,8 +66,6 @@ const jumpUrl = aElement => {
     hiddenSearch();
     unmarkHandler();
     doSearchOrMarkFromUrl();
-
-    ELEM_RESULTS.removeEventListener('keydown', popupFocus);
   }
   window.location.href = url.href;
 };
@@ -84,7 +82,6 @@ const searchMouseupHandler = ev => {
 
   if (li !== focusedLi) {
     focusedLi = li;
-    li.focus();
     return;
   }
   jumpUrl(li.querySelector('a'));
@@ -119,8 +116,6 @@ const searchHandler = () => {
   }
   ELEM_HEADER.innerText = `${results.length} search results for : ${terms}`;
   searchResult.append_search_result(results, terms);
-
-  ELEM_RESULTS.addEventListener('keydown', popupFocus, { once: false, passive: true });
 };
 
 const hiddenSearch = () => {
@@ -128,6 +123,7 @@ const hiddenSearch = () => {
   ELEM_ICON.setAttribute('aria-expanded', 'false');
 
   ELEM_BAR.removeEventListener('keyup', searchHandler);
+  ELEM_RESULTS.removeEventListener('keyup', popupFocus);
   ELEM_OUTER.removeEventListener('mouseup', searchMouseupHandler);
 
   prevTerms = undefined;
@@ -138,6 +134,7 @@ const showSearch = () => {
   ELEM_ICON.setAttribute('aria-expanded', 'true');
 
   ELEM_BAR.addEventListener('keyup', searchHandler, { once: false, passive: true });
+  ELEM_RESULTS.addEventListener('keyup', popupFocus, { once: false, passive: true });
   ELEM_OUTER.addEventListener('mouseup', searchMouseupHandler, { once: false, passive: true });
 
   ELEM_BAR.select();
