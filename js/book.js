@@ -11,12 +11,10 @@ const initialize = async () => {
   procCodeBlock();
   initThemeSelector();
 
-  const root = document.getElementById('bookjs').dataset.pathtoroot;
-
-  initWasm({ module_or_path: `${root}wasm_book_bg.wasm` }).then(
+  initWasm().then(
     () => {
       attribute_external_links();
-      startupSearch(root);
+      startupSearch(document.getElementById('bookjs').dataset.pathtoroot);
     },
     err => console.error(err),
   );
