@@ -10,13 +10,13 @@ const ELEM_OUTER = document.getElementById('searchresults-outer');
 const ELEM_HEADER = document.getElementById('searchresults-header');
 const ELEM_RESULTS = document.getElementById('searchresults');
 
+let pathToRoot;
+
 let searchResult;
 let finder;
 
 let prevTerms;
-
-let pathToRoot;
-const handleKeyup = ev => startSearchFromKey(ev.key);
+let focusedLi;
 
 const unmarkHandler = () => {
   const main = document.getElementById('main');
@@ -56,6 +56,51 @@ const doSearchOrMarkFromUrl = () => {
   }
 };
 
+const jumpUrl = aElement => {
+  if (aElement === null) {
+    console.warn('The link does not exist.');
+    return;
+  }
+
+  const url = new URL(aElement.href);
+
+  const clickedURL = url.origin + url.pathname;
+  const currentURL = window.location.origin + window.location.pathname;
+
+  if (clickedURL === currentURL) {
+    hiddenSearch();
+    unmarkHandler();
+    doSearchOrMarkFromUrl();
+  }
+  window.location.href = url.href;
+};
+
+const popupFocus = ev => {
+  if (ev.key !== 'Enter') {
+    return;
+  }
+  jumpUrl(ev.target.querySelector('a'));
+};
+
+const searchMouseupHandler = ev => {
+  const li = ev.target.closest('li');
+
+  if (li === null) {
+    console.warn('The li element does not exist.');
+    return;
+  }
+
+  if (li !== focusedLi) {
+    focusedLi = li;
+    return;
+  }
+  jumpUrl(li.querySelector('a'));
+};
+
+const handleKeyup = ev => {
+  startSearchFromKey(ev.key);
+};
+
 const searchHandler = () => {
   const terms = ELEM_BAR.value.trim();
 
@@ -83,29 +128,25 @@ const searchHandler = () => {
   searchResult.append_search_result(results, terms);
 };
 
-const popupHandler = ev => {
-  if (ev.target.tagName !== 'A') {
-    return;
-  }
-
-  const currentURL = window.location.origin + window.location.pathname;
-  const clickedURL = ev.target.origin + ev.target.pathname;
-
-  if (currentURL === clickedURL) {
-    hiddenSearch();
-    unmarkHandler();
-    doSearchOrMarkFromUrl();
-  }
-};
-
 const hiddenSearch = () => {
   ELEM_WRAPPER.classList.add('hidden');
   ELEM_ICON.setAttribute('aria-expanded', 'false');
+
+  ELEM_BAR.removeEventListener('keyup', searchHandler);
+  ELEM_RESULTS.removeEventListener('keyup', popupFocus);
+  ELEM_OUTER.removeEventListener('mouseup', searchMouseupHandler);
+
+  prevTerms = undefined;
 };
 
 const showSearch = () => {
   ELEM_WRAPPER.classList.remove('hidden');
   ELEM_ICON.setAttribute('aria-expanded', 'true');
+
+  ELEM_BAR.addEventListener('keyup', searchHandler, { once: false, passive: true });
+  ELEM_RESULTS.addEventListener('keyup', popupFocus, { once: false, passive: true });
+  ELEM_OUTER.addEventListener('mouseup', searchMouseupHandler, { once: false, passive: true });
+
   ELEM_BAR.select();
 };
 
@@ -129,9 +170,6 @@ const initSearch = () => {
   }
 
   showSearch();
-
-  ELEM_BAR.addEventListener('keyup', searchHandler, { once: false, passive: true });
-  ELEM_OUTER.addEventListener('mouseup', popupHandler, { once: false, passive: true });
 
   ELEM_ICON.addEventListener(
     'mouseup',

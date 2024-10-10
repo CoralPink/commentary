@@ -1,5 +1,9 @@
 @use 'variables' as var;
 
+@view-transition {
+  navigation: auto;
+}
+
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;
