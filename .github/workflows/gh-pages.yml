@@ -13,7 +13,7 @@ concurrency:
 jobs:
   test-wasm:
     name: Test Wasm
-    runs-on: macos-14
+    runs-on: macos-15
     steps:
       - name: Checkout the repo
         uses: actions/checkout@eef61447b9ff4aafe5dcd4e0bbf5d482be7e7871 # v4
@@ -46,7 +46,7 @@ jobs:
 
   build-wasm:
     name: Build Wasm
-    runs-on: macos-14
+    runs-on: macos-15
     needs: test-wasm
     steps:
       - name: Checkout the repo
@@ -86,7 +86,7 @@ jobs:
 
   test-js:
     name: Test JS
-    runs-on: macos-14
+    runs-on: macos-15
     steps:
       - name: Checkout the repo
         uses: actions/checkout@eef61447b9ff4aafe5dcd4e0bbf5d482be7e7871 # v4
@@ -112,7 +112,7 @@ jobs:
 
   build-js:
     name: Build JS
-    runs-on: macos-14
+    runs-on: macos-15
     needs: [test-js, build-wasm]
     steps:
       - name: Checkout the repo
@@ -157,7 +157,7 @@ jobs:
 
   build-scss:
     name: Build SCSS
-    runs-on: macos-14
+    runs-on: macos-15
     steps:
       - name: Checkout the repo
         uses: actions/checkout@eef61447b9ff4aafe5dcd4e0bbf5d482be7e7871 # v4
@@ -187,7 +187,7 @@ jobs:
 
   test-mdbook-backend:
     name: Test mdBook Backend
-    runs-on: macos-14
+    runs-on: macos-15
     steps:
       - name: Checkout the repo
         uses: actions/checkout@eef61447b9ff4aafe5dcd4e0bbf5d482be7e7871 # v4
@@ -213,7 +213,7 @@ jobs:
 
   build-and-deploy:
     name: Build and Deploy
-    runs-on: macos-14
+    runs-on: macos-15
     if: ${{ github.ref == 'refs/heads/main' }}
     needs: [build-wasm, build-js, build-scss, test-mdbook-backend]
     steps:
