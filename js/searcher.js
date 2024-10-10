@@ -16,6 +16,7 @@ let searchResult;
 let finder;
 
 let prevTerms;
+let focusedLi;
 
 const unmarkHandler = () => {
   const main = document.getElementById('main');
@@ -56,17 +57,19 @@ const doSearchOrMarkFromUrl = () => {
 };
 
 const jumpUrl = aElement => {
-  const currentURL = window.location.origin + window.location.pathname;
-  const clickedURL = aElement.origin + aElement.pathname;
+  const url = new URL(aElement.href);
 
-  if (currentURL === clickedURL) {
+  const clickedURL = url.origin + url.pathname;
+  const currentURL = window.location.origin + window.location.pathname;
+
+  if (clickedURL === currentURL) {
     hiddenSearch();
     unmarkHandler();
     doSearchOrMarkFromUrl();
 
     ELEM_RESULTS.removeEventListener('keydown', popupFocus);
   }
-  aElement.click();
+  window.location.href = url.href;
 };
 
 const popupFocus = ev => {
@@ -77,14 +80,14 @@ const popupFocus = ev => {
 };
 
 const searchMouseupHandler = ev => {
-  if (ev.target.tagName !== 'A') {
+  const li = ev.target.closest('li');
+
+  if (li !== focusedLi) {
+    focusedLi = li;
+    li.focus();
     return;
   }
-  jumpUrl(ev.target);
-};
-
-const searchDblclickHandler = ev => {
-  jumpUrl(ev.target.closest('li').querySelector('a'));
+  jumpUrl(li.querySelector('a'));
 };
 
 const handleKeyup = ev => {
@@ -125,9 +128,7 @@ const hiddenSearch = () => {
   ELEM_ICON.setAttribute('aria-expanded', 'false');
 
   ELEM_BAR.removeEventListener('keyup', searchHandler);
-
   ELEM_OUTER.removeEventListener('mouseup', searchMouseupHandler);
-  ELEM_OUTER.removeEventListener('dblclick', searchDblclickHandler);
 
   prevTerms = undefined;
 };
@@ -137,9 +138,7 @@ const showSearch = () => {
   ELEM_ICON.setAttribute('aria-expanded', 'true');
 
   ELEM_BAR.addEventListener('keyup', searchHandler, { once: false, passive: true });
-
   ELEM_OUTER.addEventListener('mouseup', searchMouseupHandler, { once: false, passive: true });
-  ELEM_OUTER.addEventListener('dblclick', searchDblclickHandler, { once: false, passive: true });
 
   ELEM_BAR.select();
 };
