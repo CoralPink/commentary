@@ -5,11 +5,10 @@
 }
 
 #searchbar {
-  min-width: 10rem;
-  height: 1.4rem;
-  margin: 0.5rem 0.25rem;
-  padding: 0.5rem 1rem;
-  border: 0.1rem solid var(--searchbar-border-color);
+  height: 2em;
+  margin: 0.5em 0.25em;
+  padding: 0.7em 1.4em;
+  border: 0.1em solid var(--searchbar-border-color);
   border-radius: 1em;
   background-color: var(--searchbar-bg);
   color: var(--searchbar-fg);
