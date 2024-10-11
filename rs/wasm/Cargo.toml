@@ -21,14 +21,14 @@ opt-level = "s"
 strip = "symbols"
 
 [dependencies]
-js-sys = "=0.3.71"
+js-sys = "=0.3.72"
 macros = { path = "macros" }
 serde = { version = "=1.0.210", features = ["derive"] }
 serde-wasm-bindgen = "=0.6.5"
-wasm-bindgen = "=0.2.94"
+wasm-bindgen = "=0.2.95"
 
 [dependencies.web-sys]
-version = "=0.3.71"
+version = "=0.3.72"
 features = [
   "Document",
   "Element",
@@ -38,4 +38,4 @@ features = [
 ]
 
 [dev-dependencies]
-wasm-bindgen-test = "=0.3.44"
+wasm-bindgen-test = "=0.3.45"
