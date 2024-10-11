@@ -6,7 +6,7 @@ import { initTheme, initThemeSelector } from './theme-selector.js';
 
 import initWasm, { attribute_external_links } from './wasm_book.js';
 
-const initialize = async () => {
+const initialize = () => {
   initTableOfContents();
   procCodeBlock();
   initThemeSelector();
