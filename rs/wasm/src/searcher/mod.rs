@@ -138,7 +138,7 @@ impl SearchResult {
             let score_bar = scoring_notation(el.score);
 
             self.add_element(&format!(
-                r#"<a href="{}{}?mark={}#{}">{}</a><span aria-label="Search Result Teaser">{}</span><div id="score">{}</div>"#,
+                r#"<a href="{}{}?mark={}#{}" tabindex="-1">{}</a><span aria-label="Search Result Teaser">{}</span><div id="score">{}</div>"#,
                 &self.path_to_root, page, mark, head, el.doc.breadcrumbs, teaser, score_bar
             ));
         });
