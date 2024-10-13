@@ -550,6 +550,32 @@ defined sign.</p>
 引数{list}が1つの場合、定義された各符号に対して1つの値のリストを返します。</p>
 </div>
 </div>
+<div id="admonition-deprecated" class="admonition admonish-warning" role="note" aria-labelledby="admonition-deprecated-title">
+<div class="admonition-title">
+<div id="admonition-deprecated-title">
+<p>Deprecated</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-deprecated"></a>
+</div>
+<div>
+<img src="img/deprecated-warn.webp" alt="deprecated-warn" width="658" height="23" loading="lazy">
+<p>なんかうっかり "見つけてしまった" のか、もしくは "見つかってしまった" と言うべきなのか、
+<code>sign_define()</code>は<code>Nvim 0.12</code>で削除されてしまうみたい...😿</p>
+<img src="img/deprecated-che.webp" alt="deprecated-che" width="653" height="150" loading="lazy">
+<p>ほなしゃーないなぁってことで、<code>Nvim 0.12</code>が来る前に書き換えておきましょう。</p>
+<pre><code class="language-lua">local sev = vim.diagnostic.severity
+local symbols = { [sev.ERROR] = '', [sev.WARN] = '', [sev.INFO] = '', [sev.HINT] = '󰌶' }
+
+vim.diagnostic.config {
+  signs = {
+    text = symbols,
+  },
+}
+</code></pre>
+<img src="img/deprecated-ok.webp" alt="deprecated-che" width="658" height="56" loading="lazy">
+<p>わたしの<code>lua</code>パワーでは、このコードは難易度が高すぎるんだけど、これで OK だそうです😅</p>
+</div>
+</div>
 <h2 id="-it-will-be-all-right-just-let-it-be"><a class="header" href="#-it-will-be-all-right-just-let-it-be">🎼 It will be all right, just let it be.</a></h2>
 <p>そんなこんなで<code>Trouble</code>でした。これで当初の<a href="../lsp/language-server-protocol.html">ロードマップ</a>を踏破したことになります❗</p>
 <p>「ほんと、がんばったんだねー🤗」</p>
