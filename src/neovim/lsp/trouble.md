@@ -406,6 +406,32 @@ culhl   highlight group used for the text item when the cursor is on the same li
   引数{list}が1つの場合、定義された各符号に対して1つの値のリストを返します。
 ~~~
 
+~~~admonish warning title="Deprecated"
+![deprecated-warn](img/deprecated-warn.webp)
+
+なんかうっかり "見つけてしまった" のか、もしくは "見つかってしまった" と言うべきなのか、
+`sign_define()`は`Nvim 0.12`で削除されてしまうみたい...😿
+
+![deprecated-che](img/deprecated-che.webp)
+
+ほなしゃーないなぁってことで、`Nvim 0.12`が来る前に書き換えておきましょう。
+
+```lua
+local sev = vim.diagnostic.severity
+local symbols = { [sev.ERROR] = '', [sev.WARN] = '', [sev.INFO] = '', [sev.HINT] = '󰌶' }
+
+vim.diagnostic.config {
+  signs = {
+    text = symbols,
+  },
+}
+```
+
+![deprecated-che](img/deprecated-ok.webp)
+
+わたしの`lua`パワーでは、このコードは難易度が高すぎるんだけど、これで OK だそうです😅
+~~~
+
 ## 🎼 It will be all right, just let it be.
 
 そんなこんなで`Trouble`でした。これで当初の[ロードマップ](../lsp/language-server-protocol.html)を踏破したことになります❗
