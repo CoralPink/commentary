@@ -47,6 +47,13 @@ $url-next: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2
   margin-left: 0.8em;
 }
 
+.icon-button {
+  border: none;
+  background: none;
+
+  cursor: pointer;
+}
+
 .fa-icon {
   width: 1em;
   height: 1em;
@@ -56,8 +63,6 @@ $url-next: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2
   -webkit-mask-repeat: no-repeat;
   mask-size: contain;
   -webkit-mask-size: contain;
-
-  cursor: pointer;
 
   &:hover {
     background-color: var(--icons-hover);

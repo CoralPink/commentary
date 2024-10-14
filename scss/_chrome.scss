@@ -1,56 +1,15 @@
 @use 'variables' as var;
 
-.content {
-  mark {
-    cursor: pointer;
-  }
-
-  blockquote {
-    padding: 0 1em;
-    color: #9e9e9e;
-    border-left: 0.25em solid #9e9e9e;
-    margin: 0;
-  }
-
-  kbd {
-    background-color: var(--table-border-color);
-    border-radius: 0.4em;
-    box-shadow: inset 0 -0.3em 0 var(--theme-popup-border);
-    display: inline-block;
-    font-size: var.$code-font-size;
-    font-family: var.$mono-font;
-    margin: 0 0.14em;
-    padding: 0.3em 0.4em;
-    vertical-align: top;
-  }
-}
-
 code {
-  display: inline;
+  &:not(pre code) {
+    font-size: 0.82em;
 
-  font-family: var.$mono-font;
-  font-size: var.$code-font-size;
-  line-height: 1.4;
-  vertical-align: middle;
-
-  color: var(--inline-code-color);
-  background-color: var(--quote-bg);
-  padding: 0.1rem 0.3rem;
-  border-radius: 0.2rem;
-
-  mark {
     color: var(--inline-code-color);
+    background-color: var(--quote-bg);
+
+    padding: .1em .4em;
+    border-radius: 0.4em;
   }
-}
-
-mark {
-  color: var(--fg);
-  background: linear-gradient(rgba(0, 0, 0, 0) 64%, var(--search-mark-bg));
-}
-
-.icon-button {
-  border: none;
-  background: none;
 }
 
 pre {
@@ -59,37 +18,34 @@ pre {
   &>code {
     display: block;
     overflow-x: auto;
+    font-family: var.$mono-font;
+    font-size: var.$code-font-size;
+    line-height: 1.3;
+    padding: 1em;
 
-    padding: 0.7rem;
-    border-radius: 0.4rem;
+    border: .1em solid var(--quote-border);
   }
 
-  &:hover>.icon-button {
+  &:hover .icon-button {
     visibility: visible;
     opacity: 1;
   }
 
-  &>.icon-button {
+  .icon-button {
     position: absolute;
     top: 0.3rem;
     right: 0;
 
-    color: var(--sidebar-fg);
+    border: 0.1rem solid var(--icons);
+    border-radius: 0.4rem;
     background-color: var(--theme-popup-bg);
-
+    color: var(--sidebar-fg);
     cursor: pointer;
+    margin: 0 0.4rem;
+    padding: 0.4rem;
     visibility: hidden;
     opacity: 0;
-
-    margin: 0 0.4rem;
-    padding: 0.4rem 0.4rem;
-
-    border: 0.1rem var(--table-border-color) solid;
-    border-color: var(--icons);
-    border-radius: 0.4rem;
-
-    transition: 300ms;
-    transition-property: color, border-color, background-color;
+    transition: opacity 300ms, color 300ms, border-color 300ms, background-color 300ms;
 
     &:hover {
       color: var(--sidebar-active);
@@ -99,10 +55,12 @@ pre {
 
     .tooltiptext {
       position: absolute;
-      top: -2.6em;
-      left: -2.0em;
+      top: -2.7em;
+      left: 50%;
+      transform: translateX(-50%);
       border-radius: 0.8rem;
       padding: 0.5em 1.2em;
+      white-space: nowrap;
     }
   }
 }
@@ -158,7 +116,7 @@ pre {
   top: var.$menu-bar-height;
 
   color: var(--fg);
-  background: var(--theme-popup-bg);
+  background-color: var(--theme-popup-bg);
   border: 0.1rem solid var(--theme-popup-border);
 }
 
@@ -178,9 +136,8 @@ pre {
     white-space: nowrap;
     text-align: left;
     cursor: pointer;
-    color: inherit;
-    background: inherit;
-    font-size: inherit;
+    color: var(--fg);
+    background-color: var(--theme-popup-bg);
 
     &:hover {
       background-color: var(--theme-hover);
@@ -217,7 +174,7 @@ pre {
   background-color: var(--sidebar-bg);
 
   &:hover {
-    background: var(--page-toc-background);
+    background-color: var(--toc-bg);
   }
 }
 
@@ -244,8 +201,8 @@ pre {
       }
 
       &.active {
-        color: var(--page-toc-color);
-        background: linear-gradient(to right, var(--page-toc-background) 64%, var(--bg));
+        color: var(--toc-fg);
+        background: linear-gradient(to right, var(--toc-bg) 64%, var(--bg));
       }
     }
 
@@ -275,7 +232,7 @@ table {
   }
 
   thead {
-    background: var(--table-header-bg);
+    background-color: var(--table-header-bg);
 
     td {
       font-weight: 700;
@@ -298,13 +255,41 @@ table {
   tbody {
     tr {
       &:nth-child(2n) {
-        background: var(--table-alternate-bg); // Alternate background colors for rows
+        background-color: var(--table-alternate-bg);
       }
     }
   }
 }
 
-.section {
-  padding-left: 0.5rem;
+blockquote {
+  padding: 0 1em;
+  color: var(--blockquote-color);
+  border-left: 0.25em solid var(--blockquote-color);
+  margin: 0;
 }
 
+kbd {
+  display: inline-block;
+
+  font-family: var.$mono-font;
+  font-size: var.$code-font-size;
+  vertical-align: top;
+
+  background-color: var(--table-border-color);
+  border-radius: 0.4em;
+  box-shadow: inset 0 -0.3em 0 var(--theme-popup-border);
+
+  margin: 0 0.14em;
+  padding: 0.3em 0.4em;
+}
+
+mark {
+  color: inherit;
+  background: linear-gradient(rgba(0, 0, 0, 0) 64%, var(--search-mark-bg));
+
+  cursor: pointer;
+}
+
+.section {
+  padding-left: 0.7em;
+}

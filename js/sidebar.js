@@ -19,6 +19,7 @@ const showSidebar = (write = true) => {
 
   if (active) {
     active.scrollIntoView({ block: 'center' });
+    active.setAttribute('aria-current', 'true');
   }
 
   if (write) {

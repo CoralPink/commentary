@@ -7,6 +7,7 @@
   src: url(../woff/OpenSans-Italic.woff2) format('woff2');
   font-display: swap;
 }
+
 @font-face {
   font-family: 'Open Sans';
   font-style: italic;
@@ -15,13 +16,13 @@
   font-display: swap;
 }
 
-// Source Code Pro is under the Open Font License.
-// See https://github.com/adobe-fonts/source-code-pro/blob/release/LICENSE.md
+// Fira Code: free monospaced font with programming ligatures
+// https://github.com/tonsky/FiraCode/blob/master/LICENSE
 @font-face {
-  font-family: 'Source Code Pro';
+  font-family: 'Fira Code';
   font-style: normal;
   font-weight: normal;
-  src: url(../woff/SourceCodePro-Medium.woff2) format('woff2');
+  src: url(../woff/FiraCode-VF.woff2) format('woff2');
   font-display: swap;
 }
 

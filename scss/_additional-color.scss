@@ -1,16 +1,18 @@
 .au-lait,
 .latte {
-  --page-toc-background: #fff8c5;
-  --page-toc-color: #1f2328;
+  --toc-bg: #fff8c5;
+  --toc-fg: #1f2328;
 
   --search-score: #40a02b;
+  --blockquote-color: #9e9e9e;
 }
 
 .frappe,
 .macchiato,
 .mocha {
-  --page-toc-background: #4b2900;
-  --page-toc-color: #f8e3a1;
+  --toc-bg: #4b2900;
+  --toc-fg: #f8e3a1;
 
   --search-score: #00c853;
+  --blockquote-color: #9e9e9e;
 }

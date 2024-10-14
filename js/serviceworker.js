@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'v2.6.2';
+const CACHE_VERSION = 'v3.0.0';
 
 const CACHE_HOST = 'https://coralpink.github.io/';
 const CACHE_URL = '/commentary/';
@@ -11,16 +11,16 @@ const CACHE_LIST = [
   'css/general.css',
   'css/style.css',
 
-  'manifest.json',
+  'woff/OpenSans-BoldItalic.woff2',
+  'woff/OpenSans-Italic.woff2',
+  'woff/FiraCode-VF.woff2',
 
   'apple-touch-icon.png',
   'chrome-96x96.png',
   'favicon.ico',
   'favicon.svg',
 
-  'woff/OpenSans-BoldItalic.woff2',
-  'woff/OpenSans-Italic.woff2',
-  'woff/SourceCodePro-Medium.woff2',
+  'manifest.json',
 ];
 
 const FALLBACK_URL = `${CACHE_URL}chrome-96x96.png`;
