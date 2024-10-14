@@ -42,7 +42,7 @@
           <button popovertarget="theme-list" class="icon-button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
             <div class="icon-theme fa-icon"></div>
           </button>
-          <ul id="theme-list" role="menu" popover>
+          <ul id="theme-list" aria-label="Theme selection menu" role="menu" popover>
             <li role="none"><button role="menuitem" class="theme" id="au-lait">Au Lait</button></li>
             <li role="none"><button role="menuitem" class="theme" id="latte">Latte</button></li>
             <li role="none"><button role="menuitem" class="theme" id="frappe">Frappé</button></li>
@@ -90,25 +90,27 @@
       <div id="content" class="content">
         <spacer></spacer>
 
-        <article id="main">
-          {{{ content }}}
+        <main id="main">
+          <article>
+            {{{ content }}}
 
-          <nav class="nav-wrapper" aria-label="Page navigation">
-            {{#previous}}
-            <a rel="prev" href="{{ path_to_root }}{{link}}" class="nav-chapters" aria-label="Previous chapter: {{title}}">
-              <div class="icon-prev fa-icon"></div>
-              {{title}}
-            </a>
-            {{/previous}}
+            <nav class="nav-wrapper" aria-label="Page navigation">
+              {{#previous}}
+              <a rel="prev" href="{{ path_to_root }}{{link}}" class="nav-chapters" aria-label="Previous chapter: {{title}}">
+                <div class="icon-prev fa-icon"></div>
+                {{title}}
+              </a>
+              {{/previous}}
 
-            {{#next}}
-            <a rel="next" href="{{ path_to_root }}{{link}}" class="nav-chapters" aria-label="Next chapter: {{title}}">
-              {{title}}
-              <div class="icon-next fa-icon"></div>
-            </a>
-            {{/next}}
-          </nav>
-        </article>
+              {{#next}}
+              <a rel="next" href="{{ path_to_root }}{{link}}" class="nav-chapters" aria-label="Next chapter: {{title}}">
+                {{title}}
+                <div class="icon-next fa-icon"></div>
+              </a>
+              {{/next}}
+            </nav>
+          </article>
+        </main>
 
         <spacer></spacer>
 

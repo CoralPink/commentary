@@ -84,7 +84,7 @@ body {
     grid-template-columns: 1rem 1fr 0 var.$pagetoc-width 0;
   }
 
-  #main {
+  main {
     min-width: 0;
 
     font-size: var.$base-font-size;

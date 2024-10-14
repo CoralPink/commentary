@@ -45,7 +45,7 @@ pre {
     padding: 0.4rem;
     visibility: hidden;
     opacity: 0;
-    transition: color 300ms, border-color 300ms, background-color 300ms;
+    transition: opacity 300ms, color 300ms, border-color 300ms, background-color 300ms;
 
     &:hover {
       color: var(--sidebar-active);
@@ -263,8 +263,8 @@ table {
 
 blockquote {
   padding: 0 1em;
-  color: #9e9e9e;
-  border-left: 0.25em solid #9e9e9e;
+  color: var(--blockquote-color);
+  border-left: 0.25em solid var(--blockquote-color);
   margin: 0;
 }
 
