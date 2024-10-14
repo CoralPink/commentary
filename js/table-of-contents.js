@@ -23,6 +23,7 @@ const addActive = entry => {
   }
   const active = tocMap.get(entry.target);
   active.classList.add('active');
+  active.setAttribute('aria-current', 'true');
 
   if (environment === ENV_PC) {
     return;
@@ -53,7 +54,9 @@ const removeActive = entry => {
     onlyActive = active;
     return;
   }
-  tocMap.get(entry.target).classList.remove('active');
+  const target = tocMap.get(entry.target);
+  target.classList.remove('active');
+  target.removeAttribute('aria-current');
 };
 
 const initialize = () => {
@@ -73,6 +76,8 @@ const initialize = () => {
 
   const nav = document.createElement('nav');
   nav.setAttribute('id', ELEMENT_TOC.display[environment]);
+  nav.setAttribute('role', 'navigation');
+  nav.setAttribute('aria-label', 'Table of Contents');
 
   for (const el of document.getElementById('main').querySelectorAll('a.header')) {
     observer.observe(el);
