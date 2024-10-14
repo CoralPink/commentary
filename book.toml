@@ -4,6 +4,7 @@ author = "CoralPink"
 description = "WezTerm と Neovim の設定例 (dotfiles) を紹介するサイトです🤗 - This site introduces WezTerm and Neovim dotfiles."
 src = "src"
 language = "ja"
+text-direction = "ltr"
 
 [build]
 create-missing = false
