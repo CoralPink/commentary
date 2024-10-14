@@ -27,12 +27,23 @@ body {
   }
 
   &::-webkit-scrollbar-track {
-    background: var(--bg);
+    background-color: var(--bg);
   }
 
   &::-webkit-scrollbar-thumb {
-    background: var(--scrollbar);
+    background-color: var(--scrollbar);
     border-radius: 0.8rem;
+  }
+}
+
+.page {
+  grid-template-columns: var.$sidebar-width 1fr;
+  min-height: calc(100dvh - var.$menu-bar-height);
+
+  // For the style attribute, display: grid or block is added from the JS code.
+  // (Specify an initial value to prevent layout shift on PC.)
+  @media only screen and (min-width: var.$mobile-max-width) {
+    display: grid;
   }
 }
 
@@ -44,7 +55,7 @@ body {
   }
 
   ::-webkit-scrollbar-thumb {
-    background: var(--scrollbar);
+    background-color: var(--scrollbar);
     border-radius: 1rem;
   }
 }
@@ -62,17 +73,6 @@ body {
   }
 }
 
-.page {
-  grid-template-columns: var.$sidebar-width 1fr;
-  min-height: calc(100dvh - var.$menu-bar-height);
-
-  // For the style attribute, display: grid or block is added from the JS code.
-  // (Specify an initial value to prevent layout shift on PC.)
-  @media only screen and (min-width: var.$mobile-max-width) {
-    display: grid;
-  }
-}
-
 .content {
   display: grid;
   grid-template-columns: 1rem 1fr 1rem;
@@ -84,7 +84,7 @@ body {
     grid-template-columns: 1rem 1fr 0 var.$pagetoc-width 0;
   }
 
-  main {
+  #main {
     min-width: 0;
 
     font-size: var.$base-font-size;
@@ -101,17 +101,22 @@ body {
       &:link,
       &:visited {
         color: var(--links);
-        margin-left: 0.2rem;
-        margin-right: 0.2rem;
+        margin-left: 0.2em;
+        margin-right: 0.2em;
       }
-    }
 
-    .admonition-title {
-      a {
-        text-decoration: none;
+      &.header {
+        &:link {
+          color: var(--fg);
+          text-decoration: none;
+        }
 
-        &:hover {
-          text-decoration: underline;
+        &:visited {
+          color: var(--fg);
+        }
+
+        &:visited:hover {
+          text-decoration: none;
         }
       }
     }
@@ -132,20 +137,6 @@ body {
     width: 70%;
   }
 
-  .header {
-    &:link {
-      color: var(--fg);
-      text-decoration: none;
-    }
-
-    &:visited {
-      color: var(--fg);
-    }
-
-    &:visited:hover {
-      text-decoration: none;
-    }
-  }
 }
 
 .hidden {

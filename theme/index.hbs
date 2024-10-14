@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="{{ language }}" prefix="og: https://ogp.me/ns#">
+<html lang="{{ language }}" dir="{{ text_direction }}" prefix="og: https://ogp.me/ns#">
   <head>
     <meta charset="UTF-8">
     <title>{{ title }}</title>
@@ -35,14 +35,14 @@
     <div class="top-bar">
       <div id="menu-bar" class="menu-bar">
         <div class="left-buttons">
-          <button id="sidebar-toggle" class="icon-button" title="Toggle Table of Contents (Shortkey: T )" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+          <button id="sidebar-toggle" class="icon-button" title="Toggle Table of Contents (Shortkey: T )" aria-label="Toggle Table of Contents" aria-keyshortcuts="T" aria-controls="sidebar">
             <div class="icon-sidebar fa-icon"></div>
           </button>
 
           <button popovertarget="theme-list" class="icon-button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
             <div class="icon-theme fa-icon"></div>
           </button>
-          <ul id="theme-list" aria-label="Themes" role="menu" popover>
+          <ul id="theme-list" role="menu" popover>
             <li role="none"><button role="menuitem" class="theme" id="au-lait">Au Lait</button></li>
             <li role="none"><button role="menuitem" class="theme" id="latte">Latte</button></li>
             <li role="none"><button role="menuitem" class="theme" id="frappe">Frappé</button></li>
@@ -70,9 +70,11 @@
 
         <div class="right-buttons">
           {{#if git_repository_url}}
-          <a href="{{git_repository_url}}" title="Git repository" aria-label="Git repository" target="_blank" rel="noopener">
-            <div class="icon-github fa-icon"></div>
-          </a>
+          <address>
+            <a href="{{git_repository_url}}" title="Open the GitHub repository" aria-label="Open the GitHub repository." target="_blank" rel="noopener">
+              <div class="icon-github fa-icon"></div>
+            </a>
+          </address>
           {{/if}}
         </div>
       </div>
@@ -88,25 +90,25 @@
       <div id="content" class="content">
         <spacer></spacer>
 
-        <main id="main">
+        <article id="main">
           {{{ content }}}
 
           <nav class="nav-wrapper" aria-label="Page navigation">
             {{#previous}}
-            <a rel="prev" href="{{ path_to_root }}{{link}}" class="nav-chapters icon-button" title="Previous chapter" aria-label="Previous chapter">
+            <a rel="prev" href="{{ path_to_root }}{{link}}" class="nav-chapters" aria-label="Previous chapter: {{title}}">
               <div class="icon-prev fa-icon"></div>
               {{title}}
             </a>
             {{/previous}}
 
             {{#next}}
-            <a rel="next" href="{{ path_to_root }}{{link}}" class="nav-chapters icon-button" title="Next chapter" aria-label="Next chapter">
+            <a rel="next" href="{{ path_to_root }}{{link}}" class="nav-chapters" aria-label="Next chapter: {{title}}">
               {{title}}
               <div class="icon-next fa-icon"></div>
             </a>
             {{/next}}
           </nav>
-        </main>
+        </article>
 
         <spacer></spacer>
 
