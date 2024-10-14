@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="ja" prefix="og: https://ogp.me/ns#">
+<html lang="ja" dir="ltr" prefix="og: https://ogp.me/ns#">
   <head>
     <meta charset="UTF-8">
     <title>copilot.lua - Commentary of Dotfiles</title>
@@ -54,14 +54,14 @@
     <div class="top-bar">
       <div id="menu-bar" class="menu-bar">
         <div class="left-buttons">
-          <button id="sidebar-toggle" class="icon-button" title="Toggle Table of Contents (Shortkey: T )" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+          <button id="sidebar-toggle" class="icon-button" title="Toggle Table of Contents (Shortkey: T )" aria-label="Toggle Table of Contents" aria-keyshortcuts="T" aria-controls="sidebar">
             <div class="icon-sidebar fa-icon"></div>
           </button>
 
           <button popovertarget="theme-list" class="icon-button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
             <div class="icon-theme fa-icon"></div>
           </button>
-          <ul id="theme-list" aria-label="Themes" role="menu" popover>
+          <ul id="theme-list" aria-label="Theme selection menu" role="menu" popover>
             <li role="none"><button role="menuitem" class="theme" id="au-lait">Au Lait</button></li>
             <li role="none"><button role="menuitem" class="theme" id="latte">Latte</button></li>
             <li role="none"><button role="menuitem" class="theme" id="frappe">Frappé</button></li>
@@ -88,9 +88,11 @@
         <div class="menu-title">Commentary of Dotfiles</div>
 
         <div class="right-buttons">
-          <a href="https://github.com/CoralPink/commentary" title="Git repository" aria-label="Git repository" target="_blank" rel="noopener">
-            <div class="icon-github fa-icon"></div>
-          </a>
+          <address>
+            <a href="https://github.com/CoralPink/commentary" title="Open the GitHub repository" aria-label="Open the GitHub repository." target="_blank">
+              <div class="icon-github fa-icon"></div>
+            </a>
+          </address>
         </div>
       </div>
     </div>
@@ -106,7 +108,8 @@
         <spacer></spacer>
 
         <main id="main">
-          <h1 id="copilotlua"><a class="header" href="#copilotlua">copilot.lua</a></h1>
+          <article>
+            <h1 id="copilotlua"><a class="header" href="#copilotlua">copilot.lua</a></h1>
 <div id="admonition-default" class="admonition admonish-success" role="note">
 <div>
 <p>ソロソロォ カエル ジカン デェス 😴🙏
@@ -557,12 +560,12 @@ THE BEATLES WILL RETURN
 </div>
 </div>
 </div>
-<div class="footnote-definition" id=1>
+<aside class="footnote-definition" role="doc-footnote" id=1 aria-labelledby=1>
 <p><a href="#to-footnote-1"><sup>1:</sup></a> 2013年、東京ドームで Paul が言ってたやつです。
-前回の「カ キ マ シ タ ァ❗❗」も同じライブからの出典でした。わたしは1日目を観に行った人です😆</div><div class="footnote-definition" id=2></p>
+前回の「カ キ マ シ タ ァ❗❗」も同じライブからの出典でした。わたしは1日目を観に行った人です😆</aside><aside class="footnote-definition" role="doc-footnote" id=2 aria-labelledby=2></p>
 <p><a href="#to-footnote-2"><sup>2:</sup></a> Abbey Road 収録の Come Together の詩に登場することでも有名🍹
 偶然の出来事も、いつもは見過ごしてしまうあの瞬間も、61年連続増配はダテじゃない💰
-関係ないんだけど Steve Jobs の "砂糖水をどうのこうの" は Pepsi でした。</div><div class="footnote-definition" id=3></p>
+関係ないんだけど Steve Jobs の "砂糖水をどうのこうの" は Pepsi でした。</aside><aside class="footnote-definition" role="doc-footnote" id=3 aria-labelledby=3></p>
 <p><a href="#to-footnote-3"><sup>3:</sup></a> Golden Slumbers (by <a href="https://en.wikipedia.org/wiki/The_Beatles">The Beatles</a>):
 McCartney が実父 Jim（James McCartney）の家でピアノを演奏しているときに、
 義妹 Ruth のピアノ教本の中から Thomas Dekker の『Golden Slumbers』という子守唄を発見した。この時のことを McCartney は
@@ -573,19 +576,20 @@ McCartney が実父 Jim（James McCartney）の家でピアノを演奏してい
 手持ちの別の曲の断片とうまく合わさった」と語っている。<a href="https://en.wikipedia.org/wiki/Golden_Slumbers">Wikipedia</a>より
 また、スコットランドでオノ・ヨーコと仲良くドライブ中🚗
 飛び出してきた ねこちゃん🐈 を避けて派手に負傷した John Lennon は参加していないのが余計に泣けてくる。</p>
-</div>
+</aside>
 
-          <nav class="nav-wrapper" aria-label="Page navigation">
-            <a rel="prev" href="../../neovim/lsp/friendly_snippets.html" class="nav-chapters icon-button" title="Previous chapter" aria-label="Previous chapter">
-              <div class="icon-prev fa-icon"></div>
-              Friendly Snippets
-            </a>
+            <nav class="nav-wrapper" aria-label="Page navigation">
+              <a rel="prev" href="../../neovim/lsp/friendly_snippets.html" class="nav-chapters" aria-label="Previous chapter: Friendly Snippets">
+                <div class="icon-prev fa-icon"></div>
+                Friendly Snippets
+              </a>
 
-            <a rel="next" href="../../neovim/lsp/github-copilot.html" class="nav-chapters icon-button" title="Next chapter" aria-label="Next chapter">
-              (Extra) GitHub Copilot
-              <div class="icon-next fa-icon"></div>
-            </a>
-          </nav>
+              <a rel="next" href="../../neovim/lsp/github-copilot.html" class="nav-chapters" aria-label="Next chapter: (Extra) GitHub Copilot">
+                (Extra) GitHub Copilot
+                <div class="icon-next fa-icon"></div>
+              </a>
+            </nav>
+          </article>
         </main>
 
         <spacer></spacer>

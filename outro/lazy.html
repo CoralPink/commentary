@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="ja" prefix="og: https://ogp.me/ns#">
+<html lang="ja" dir="ltr" prefix="og: https://ogp.me/ns#">
   <head>
     <meta charset="UTF-8">
     <title>lazy.nvim - Commentary of Dotfiles</title>
@@ -54,14 +54,14 @@
     <div class="top-bar">
       <div id="menu-bar" class="menu-bar">
         <div class="left-buttons">
-          <button id="sidebar-toggle" class="icon-button" title="Toggle Table of Contents (Shortkey: T )" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+          <button id="sidebar-toggle" class="icon-button" title="Toggle Table of Contents (Shortkey: T )" aria-label="Toggle Table of Contents" aria-keyshortcuts="T" aria-controls="sidebar">
             <div class="icon-sidebar fa-icon"></div>
           </button>
 
           <button popovertarget="theme-list" class="icon-button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
             <div class="icon-theme fa-icon"></div>
           </button>
-          <ul id="theme-list" aria-label="Themes" role="menu" popover>
+          <ul id="theme-list" aria-label="Theme selection menu" role="menu" popover>
             <li role="none"><button role="menuitem" class="theme" id="au-lait">Au Lait</button></li>
             <li role="none"><button role="menuitem" class="theme" id="latte">Latte</button></li>
             <li role="none"><button role="menuitem" class="theme" id="frappe">Frappé</button></li>
@@ -88,9 +88,11 @@
         <div class="menu-title">Commentary of Dotfiles</div>
 
         <div class="right-buttons">
-          <a href="https://github.com/CoralPink/commentary" title="Git repository" aria-label="Git repository" target="_blank" rel="noopener">
-            <div class="icon-github fa-icon"></div>
-          </a>
+          <address>
+            <a href="https://github.com/CoralPink/commentary" title="Open the GitHub repository" aria-label="Open the GitHub repository." target="_blank">
+              <div class="icon-github fa-icon"></div>
+            </a>
+          </address>
         </div>
       </div>
     </div>
@@ -106,7 +108,8 @@
         <spacer></spacer>
 
         <main id="main">
-          <h1 id="-lazynvim"><a class="header" href="#-lazynvim">💤 lazy.nvim</a></h1>
+          <article>
+            <h1 id="-lazynvim"><a class="header" href="#-lazynvim">💤 lazy.nvim</a></h1>
 <div id="admonition-default" class="admonition admonish-success" role="note">
 <div>
 <p>When I wake up early in the morning</p>
@@ -724,35 +727,36 @@ To enable the new loader, add the following at the top of your <code>init.lua</c
 <p>眠気を待つんだ</p>
 </div>
 </div>
-<div class="footnote-definition" id=1>
+<aside class="footnote-definition" role="doc-footnote" id=1 aria-labelledby=1>
 <p><a href="#to-footnote-1"><sup>1:</sup></a> I'm Only Sleeping (by <a href="https://en.wikipedia.org/wiki/The_Beatles">The Beatles</a>):
 Lennon が書いた「I'm Only Sleeping」の歌詞の最初の草稿は、1966年の手紙の裏に書かれており、
 歌詞に時折読み込まれる薬物による陶酔感よりも、むしろベッドにいることの喜びについて書いていたことがうかがえる。
 ツアー中でない間、Lennon は通常、睡眠、読書、執筆、テレビ鑑賞に時間を費やしており、しばしばドラッグの影響下にあった。
 1966年3月4日に発行された Evening Standard 紙の記事で、
 Lennon の友人である Maureen Cleav は「彼はほとんどいつまでも眠ることができ、おそらくイギリスで最も怠け者だ」と書いている。</p>
-</div><div class="footnote-definition" id=2>
+</aside><aside class="footnote-definition" role="doc-footnote" id=2 aria-labelledby=2>
 <p><a href="#to-footnote-2"><sup>2:</sup></a> 2つ目のブリッジの前のブレイクでは、あくびの音が聞こえ、その前に Lennon が McCartney に "Yawn, Paul." と言った。</p>
-</div><div class="footnote-definition" id=3>
+</aside><aside class="footnote-definition" role="doc-footnote" id=3 aria-labelledby=3>
 <p><a href="#to-footnote-3"><sup>3:</sup></a> この曲は、プロデューサーの George Martin との5時間に及ぶ深夜のレコーディング・セッションで、
 George Harrison が弾いた逆回転のギター・デュエットという当時としてはユニークなサウンドを特徴としている。
 Harrison は、テープを逆回転させることで夢のようなムードに合うように、このパートを完成させた。
 エンジニアの Geoff Emerick は、この綿密な作業を「延々と続く」と表現した。
 「ヘッドホンを締め付け、眉間にしわを寄せて集中する George の姿が今でも目に浮かぶ」。
 <a href="https://en.wikipedia.org/wiki/I%27m_Only_Sleeping#Covers">Wikipedia</a>より</p>
-</div>
+</aside>
 
-          <nav class="nav-wrapper" aria-label="Page navigation">
-            <a rel="prev" href="../outro/outroduction.html" class="nav-chapters icon-button" title="Previous chapter" aria-label="Previous chapter">
-              <div class="icon-prev fa-icon"></div>
-              Outroduction
-            </a>
+            <nav class="nav-wrapper" aria-label="Page navigation">
+              <a rel="prev" href="../outro/outroduction.html" class="nav-chapters" aria-label="Previous chapter: Outroduction">
+                <div class="icon-prev fa-icon"></div>
+                Outroduction
+              </a>
 
-            <a rel="next" href="../outro/lazy-migration-guide.html" class="nav-chapters icon-button" title="Next chapter" aria-label="Next chapter">
-              Migration Guide
-              <div class="icon-next fa-icon"></div>
-            </a>
-          </nav>
+              <a rel="next" href="../outro/lazy-migration-guide.html" class="nav-chapters" aria-label="Next chapter: Migration Guide">
+                Migration Guide
+                <div class="icon-next fa-icon"></div>
+              </a>
+            </nav>
+          </article>
         </main>
 
         <spacer></spacer>

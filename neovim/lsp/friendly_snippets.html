@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="ja" prefix="og: https://ogp.me/ns#">
+<html lang="ja" dir="ltr" prefix="og: https://ogp.me/ns#">
   <head>
     <meta charset="UTF-8">
     <title>Friendly Snippets - Commentary of Dotfiles</title>
@@ -54,14 +54,14 @@
     <div class="top-bar">
       <div id="menu-bar" class="menu-bar">
         <div class="left-buttons">
-          <button id="sidebar-toggle" class="icon-button" title="Toggle Table of Contents (Shortkey: T )" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+          <button id="sidebar-toggle" class="icon-button" title="Toggle Table of Contents (Shortkey: T )" aria-label="Toggle Table of Contents" aria-keyshortcuts="T" aria-controls="sidebar">
             <div class="icon-sidebar fa-icon"></div>
           </button>
 
           <button popovertarget="theme-list" class="icon-button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
             <div class="icon-theme fa-icon"></div>
           </button>
-          <ul id="theme-list" aria-label="Themes" role="menu" popover>
+          <ul id="theme-list" aria-label="Theme selection menu" role="menu" popover>
             <li role="none"><button role="menuitem" class="theme" id="au-lait">Au Lait</button></li>
             <li role="none"><button role="menuitem" class="theme" id="latte">Latte</button></li>
             <li role="none"><button role="menuitem" class="theme" id="frappe">Frappé</button></li>
@@ -88,9 +88,11 @@
         <div class="menu-title">Commentary of Dotfiles</div>
 
         <div class="right-buttons">
-          <a href="https://github.com/CoralPink/commentary" title="Git repository" aria-label="Git repository" target="_blank" rel="noopener">
-            <div class="icon-github fa-icon"></div>
-          </a>
+          <address>
+            <a href="https://github.com/CoralPink/commentary" title="Open the GitHub repository" aria-label="Open the GitHub repository." target="_blank">
+              <div class="icon-github fa-icon"></div>
+            </a>
+          </address>
         </div>
       </div>
     </div>
@@ -106,7 +108,8 @@
         <spacer></spacer>
 
         <main id="main">
-          <h1 id="friendly-snippets"><a class="header" href="#friendly-snippets">Friendly Snippets</a></h1>
+          <article>
+            <h1 id="friendly-snippets"><a class="header" href="#friendly-snippets">Friendly Snippets</a></h1>
 <div id="admonition-default" class="admonition admonish-success" role="note">
 <div>
 <p>She came in through the bathroom window<sup class="footnote-reference"><a name="to-footnote-1"><a href="#1">1</a></a></sup></p>
@@ -318,7 +321,7 @@ for setting up a super-tab-like mapping.</p>
 <p>こっそり盗むことはできても、強引に奪うことはできないんだね</p>
 </div>
 </div>
-<div class="footnote-definition" id=1>
+<aside class="footnote-definition" role="doc-footnote" id=1 aria-labelledby=1>
 <p><a href="#to-footnote-1"><sup>1:</sup></a> She came in through the bathroom window (by <a href="https://en.wikipedia.org/wiki/The_Beatles">The Beatles</a>):
 歌詞の内容は、McCartney の留守中にファンが自宅に忍び込むというエピソードが元になっている。
 また、"So I quit the police department (だからぼくは警察署を辞めた)" というフレーズは、
@@ -331,26 +334,27 @@ John F.Kennedy 国際空港に向かっていたときに見た、
 Paul がふと "She Came In Through The Bathroom Window (彼女は浴室の窓から入ってきた)"というフレーズを口にした。
 つまりあのフレーズは何年も前からあるわけで、それをやっと仕上げたわけだ」と語っている。
 <a href="https://en.wikipedia.org/wiki/She_Came_In_Through_the_Bathroom_Window">Wikipedia</a>より</p>
-</div><div class="footnote-definition" id=2>
+</aside><aside class="footnote-definition" role="doc-footnote" id=2 aria-labelledby=2>
 <p><a href="#to-footnote-2"><sup>2:</sup></a> 「このフレーズは、彼女が裕福な家庭や特権階級に生まれたことを指しています。
 一般的な意味では、"born with a silver spoon in one's mouth"というフレーズは、特権階級に生まれた人々を表現する際に使われることがあります。
 歌詞では、彼女が窃盗や侵入の行為を行い、それが裕福な家庭や特権的な環境に反するものであることを描写しています。
 "Protected by a silver spoon"というフレーズは、彼女が裕福な出自によって守られているという皮肉めいた意味合いを持っています。
 ただし、歌詞の具体的な意図や背景は、曲の作者である<code>ポール・マッカートニーに尋ねることが必要</code>です。」<a href="https://chat.openai.com/">ChatGPT</a>より</p>
-<p>...。...はっ❗Bathroom windowからぬるっと入って尋ねればいいんだ🤣 ...んなアホな🙄</div></p>
+<p>...。...はっ❗Bathroom windowからぬるっと入って尋ねればいいんだ🤣 ...んなアホな🙄</aside></p>
 
 
-          <nav class="nav-wrapper" aria-label="Page navigation">
-            <a rel="prev" href="../../neovim/lsp/cmp_luasnip.html" class="nav-chapters icon-button" title="Previous chapter" aria-label="Previous chapter">
-              <div class="icon-prev fa-icon"></div>
-              cmp_luasnip
-            </a>
+            <nav class="nav-wrapper" aria-label="Page navigation">
+              <a rel="prev" href="../../neovim/lsp/cmp_luasnip.html" class="nav-chapters" aria-label="Previous chapter: cmp_luasnip">
+                <div class="icon-prev fa-icon"></div>
+                cmp_luasnip
+              </a>
 
-            <a rel="next" href="../../neovim/lsp/copilot.html" class="nav-chapters icon-button" title="Next chapter" aria-label="Next chapter">
-              copilot.lua
-              <div class="icon-next fa-icon"></div>
-            </a>
-          </nav>
+              <a rel="next" href="../../neovim/lsp/copilot.html" class="nav-chapters" aria-label="Next chapter: copilot.lua">
+                copilot.lua
+                <div class="icon-next fa-icon"></div>
+              </a>
+            </nav>
+          </article>
         </main>
 
         <spacer></spacer>

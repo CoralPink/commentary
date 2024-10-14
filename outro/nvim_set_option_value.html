@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="ja" prefix="og: https://ogp.me/ns#">
+<html lang="ja" dir="ltr" prefix="og: https://ogp.me/ns#">
   <head>
     <meta charset="UTF-8">
     <title>nvim_set_option_value - Commentary of Dotfiles</title>
@@ -54,14 +54,14 @@
     <div class="top-bar">
       <div id="menu-bar" class="menu-bar">
         <div class="left-buttons">
-          <button id="sidebar-toggle" class="icon-button" title="Toggle Table of Contents (Shortkey: T )" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+          <button id="sidebar-toggle" class="icon-button" title="Toggle Table of Contents (Shortkey: T )" aria-label="Toggle Table of Contents" aria-keyshortcuts="T" aria-controls="sidebar">
             <div class="icon-sidebar fa-icon"></div>
           </button>
 
           <button popovertarget="theme-list" class="icon-button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
             <div class="icon-theme fa-icon"></div>
           </button>
-          <ul id="theme-list" aria-label="Themes" role="menu" popover>
+          <ul id="theme-list" aria-label="Theme selection menu" role="menu" popover>
             <li role="none"><button role="menuitem" class="theme" id="au-lait">Au Lait</button></li>
             <li role="none"><button role="menuitem" class="theme" id="latte">Latte</button></li>
             <li role="none"><button role="menuitem" class="theme" id="frappe">Frappé</button></li>
@@ -88,9 +88,11 @@
         <div class="menu-title">Commentary of Dotfiles</div>
 
         <div class="right-buttons">
-          <a href="https://github.com/CoralPink/commentary" title="Git repository" aria-label="Git repository" target="_blank" rel="noopener">
-            <div class="icon-github fa-icon"></div>
-          </a>
+          <address>
+            <a href="https://github.com/CoralPink/commentary" title="Open the GitHub repository" aria-label="Open the GitHub repository." target="_blank">
+              <div class="icon-github fa-icon"></div>
+            </a>
+          </address>
         </div>
       </div>
     </div>
@@ -106,7 +108,8 @@
         <spacer></spacer>
 
         <main id="main">
-          <h1 id="nvim_set_option_value"><a class="header" href="#nvim_set_option_value">nvim_set_option_value</a></h1>
+          <article>
+            <h1 id="nvim_set_option_value"><a class="header" href="#nvim_set_option_value">nvim_set_option_value</a></h1>
 <p><code>一粒万倍日</code> が連続4日で続いてて、今日が4日目らしいですね🥳</p>
 <p>"万倍" の4乗で "京倍" ですって。</p>
 <p>そういえば最近、新しく"京" 🗼を見下ろせる麻布台ヒルズって場所を知ったんだよねー。</p>
@@ -493,7 +496,7 @@ end
 <p>Hela, heba helloa, hela!</p>
 </div>
 </div>
-<div class="footnote-definition" id=1>
+<aside class="footnote-definition" role="doc-footnote" id=1 aria-labelledby=1>
 <p><a href="#to-footnote-1"><sup>1:</sup></a> Hello, Goodbye (by <a href="https://en.wikipedia.org/wiki/The_Beatles">The Beatles</a>):
 Lennon-McCartney とクレジットされているが、この曲は Paul McCartney の単独作詞によるものである。
 作曲は、McCartney と The Beatles のマネージャー Brian Epstein のアシスタントであった
@@ -510,19 +513,20 @@ McCartney は、この歌詞は彼の星座である双子座を反映して、�
 「相対する事柄について書いたもので、Gimignano の影響かな。曲にするのは簡単だった」
 「いつだって僕はポジティブな方面に立ってる。それは今でも変わらないよ」
 <a href="https://en.wikipedia.org/wiki/Hello,_Goodbye">Wikipedia</a> より</p>
-</div>
+</aside>
 
-          <nav class="nav-wrapper" aria-label="Page navigation">
-            <a rel="prev" href="../outro/nvim-notify.html" class="nav-chapters icon-button" title="Previous chapter" aria-label="Previous chapter">
-              <div class="icon-prev fa-icon"></div>
-              nvim-notify
-            </a>
+            <nav class="nav-wrapper" aria-label="Page navigation">
+              <a rel="prev" href="../outro/nvim-notify.html" class="nav-chapters" aria-label="Previous chapter: nvim-notify">
+                <div class="icon-prev fa-icon"></div>
+                nvim-notify
+              </a>
 
-            <a rel="next" href="../outro/none-ls.html" class="nav-chapters icon-button" title="Next chapter" aria-label="Next chapter">
-              none-ls.nvim
-              <div class="icon-next fa-icon"></div>
-            </a>
-          </nav>
+              <a rel="next" href="../outro/none-ls.html" class="nav-chapters" aria-label="Next chapter: none-ls.nvim">
+                none-ls.nvim
+                <div class="icon-next fa-icon"></div>
+              </a>
+            </nav>
+          </article>
         </main>
 
         <spacer></spacer>

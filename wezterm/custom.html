@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="ja" prefix="og: https://ogp.me/ns#">
+<html lang="ja" dir="ltr" prefix="og: https://ogp.me/ns#">
   <head>
     <meta charset="UTF-8">
     <title>Custom Event - Commentary of Dotfiles</title>
@@ -54,14 +54,14 @@
     <div class="top-bar">
       <div id="menu-bar" class="menu-bar">
         <div class="left-buttons">
-          <button id="sidebar-toggle" class="icon-button" title="Toggle Table of Contents (Shortkey: T )" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+          <button id="sidebar-toggle" class="icon-button" title="Toggle Table of Contents (Shortkey: T )" aria-label="Toggle Table of Contents" aria-keyshortcuts="T" aria-controls="sidebar">
             <div class="icon-sidebar fa-icon"></div>
           </button>
 
           <button popovertarget="theme-list" class="icon-button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
             <div class="icon-theme fa-icon"></div>
           </button>
-          <ul id="theme-list" aria-label="Themes" role="menu" popover>
+          <ul id="theme-list" aria-label="Theme selection menu" role="menu" popover>
             <li role="none"><button role="menuitem" class="theme" id="au-lait">Au Lait</button></li>
             <li role="none"><button role="menuitem" class="theme" id="latte">Latte</button></li>
             <li role="none"><button role="menuitem" class="theme" id="frappe">Frappé</button></li>
@@ -88,9 +88,11 @@
         <div class="menu-title">Commentary of Dotfiles</div>
 
         <div class="right-buttons">
-          <a href="https://github.com/CoralPink/commentary" title="Git repository" aria-label="Git repository" target="_blank" rel="noopener">
-            <div class="icon-github fa-icon"></div>
-          </a>
+          <address>
+            <a href="https://github.com/CoralPink/commentary" title="Open the GitHub repository" aria-label="Open the GitHub repository." target="_blank">
+              <div class="icon-github fa-icon"></div>
+            </a>
+          </address>
         </div>
       </div>
     </div>
@@ -106,7 +108,8 @@
         <spacer></spacer>
 
         <main id="main">
-          <h1 id="custom-event"><a class="header" href="#custom-event">Custom Event</a></h1>
+          <article>
+            <h1 id="custom-event"><a class="header" href="#custom-event">Custom Event</a></h1>
 <p>さて、一通り片付いたかな〜って感じなので、ここは付録みたいなものです🥳</p>
 <p>お付き合いいただける方は<code>event.lua</code>とでもしてまたファイルを作成しましょう。</p>
 <div id="admonition-eventlua" class="admonition admonish-example" role="note" aria-labelledby="admonition-eventlua-title">
@@ -147,17 +150,18 @@
 </div>
 
 
-          <nav class="nav-wrapper" aria-label="Page navigation">
-            <a rel="prev" href="../wezterm/right-status.html" class="nav-chapters icon-button" title="Previous chapter" aria-label="Previous chapter">
-              <div class="icon-prev fa-icon"></div>
-              Right Status
-            </a>
+            <nav class="nav-wrapper" aria-label="Page navigation">
+              <a rel="prev" href="../wezterm/right-status.html" class="nav-chapters" aria-label="Previous chapter: Right Status">
+                <div class="icon-prev fa-icon"></div>
+                Right Status
+              </a>
 
-            <a rel="next" href="../wezterm/toggle-font.html" class="nav-chapters icon-button" title="Next chapter" aria-label="Next chapter">
-              Toggle Font
-              <div class="icon-next fa-icon"></div>
-            </a>
-          </nav>
+              <a rel="next" href="../wezterm/toggle-font.html" class="nav-chapters" aria-label="Next chapter: Toggle Font">
+                Toggle Font
+                <div class="icon-next fa-icon"></div>
+              </a>
+            </nav>
+          </article>
         </main>
 
         <spacer></spacer>

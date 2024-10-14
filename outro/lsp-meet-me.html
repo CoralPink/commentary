@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="ja" prefix="og: https://ogp.me/ns#">
+<html lang="ja" dir="ltr" prefix="og: https://ogp.me/ns#">
   <head>
     <meta charset="UTF-8">
     <title>LSP (Meet Me) - Commentary of Dotfiles</title>
@@ -54,14 +54,14 @@
     <div class="top-bar">
       <div id="menu-bar" class="menu-bar">
         <div class="left-buttons">
-          <button id="sidebar-toggle" class="icon-button" title="Toggle Table of Contents (Shortkey: T )" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+          <button id="sidebar-toggle" class="icon-button" title="Toggle Table of Contents (Shortkey: T )" aria-label="Toggle Table of Contents" aria-keyshortcuts="T" aria-controls="sidebar">
             <div class="icon-sidebar fa-icon"></div>
           </button>
 
           <button popovertarget="theme-list" class="icon-button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
             <div class="icon-theme fa-icon"></div>
           </button>
-          <ul id="theme-list" aria-label="Themes" role="menu" popover>
+          <ul id="theme-list" aria-label="Theme selection menu" role="menu" popover>
             <li role="none"><button role="menuitem" class="theme" id="au-lait">Au Lait</button></li>
             <li role="none"><button role="menuitem" class="theme" id="latte">Latte</button></li>
             <li role="none"><button role="menuitem" class="theme" id="frappe">Frappé</button></li>
@@ -88,9 +88,11 @@
         <div class="menu-title">Commentary of Dotfiles</div>
 
         <div class="right-buttons">
-          <a href="https://github.com/CoralPink/commentary" title="Git repository" aria-label="Git repository" target="_blank" rel="noopener">
-            <div class="icon-github fa-icon"></div>
-          </a>
+          <address>
+            <a href="https://github.com/CoralPink/commentary" title="Open the GitHub repository" aria-label="Open the GitHub repository." target="_blank">
+              <div class="icon-github fa-icon"></div>
+            </a>
+          </address>
         </div>
       </div>
     </div>
@@ -106,7 +108,8 @@
         <spacer></spacer>
 
         <main id="main">
-          <h1 id="-lsp-meet-me"><a class="header" href="#-lsp-meet-me">🍑 LSP (Meet Me)</a></h1>
+          <article>
+            <h1 id="-lsp-meet-me"><a class="header" href="#-lsp-meet-me">🍑 LSP (Meet Me)</a></h1>
 <p>このサイトを見たな❗これでお前とも縁ができた❗</p>
 <img src="img/search-console.webp" alt="search-console" width="505" height="600" decoding="async">
 <p>個人でやってる趣味 (暇つぶしとも言う😅) にしては、なかなか身に余る光栄です。</p>
@@ -588,7 +591,7 @@ SourceKit-LSP は Swift Package Manager を使用するプロジェクトをサ�
 」という おはなし。</p>
 </div>
 </div>
-<div class="footnote-definition" id=1>
+<aside class="footnote-definition" role="doc-footnote" id=1 aria-labelledby=1>
 <p><a href="#to-footnote-1"><sup>1:</sup></a> 『暴太郎戦隊ドンブラザーズ』（あばたろうせんたいドンブラザーズ）は、2022年3月6日から2023年2月26日まで
 テレビ朝日系列で放送された東映制作の特撮テレビドラマ、および作中で主人公たちが変身するヒーローの名称。
 モチーフは日本を代表するおとぎ話の一つ・『桃太郎』であり、
@@ -597,21 +600,22 @@ SourceKit-LSP は Swift Package Manager を使用するプロジェクトをサ�
 「暴太郎」という名称は、「アバター戦隊」か「桃太郎戦隊」かで悩んでいた企画陣に対し、
 ある人物が両方をまとめて「暴太郎」にすればいいと意見を出して採用された。
 <a href="https://ja.wikipedia.org/wiki/%E6%9A%B4%E5%A4%AA%E9%83%8E%E6%88%A6%E9%9A%8A%E3%83%89%E3%83%B3%E3%83%96%E3%83%A9%E3%82%B6%E3%83%BC%E3%82%BA">Wikipedia</a>より</p>
-</div><div class="footnote-definition" id=2>
-<p><a href="#to-footnote-2"><sup>2:</sup></a> 実際は<code>nvim_get_option_value</code>の おはなしで、このサイトの最終回まではあと 3回...か、4回❗</div></p>
+</aside><aside class="footnote-definition" role="doc-footnote" id=2 aria-labelledby=2>
+<p><a href="#to-footnote-2"><sup>2:</sup></a> 実際は<code>nvim_get_option_value</code>の おはなしで、このサイトの最終回まではあと 3回...か、4回❗</aside></p>
 
 
-          <nav class="nav-wrapper" aria-label="Page navigation">
-            <a rel="prev" href="../outro/linter.html" class="nav-chapters icon-button" title="Previous chapter" aria-label="Previous chapter">
-              <div class="icon-prev fa-icon"></div>
-              Linter
-            </a>
+            <nav class="nav-wrapper" aria-label="Page navigation">
+              <a rel="prev" href="../outro/linter.html" class="nav-chapters" aria-label="Previous chapter: Linter">
+                <div class="icon-prev fa-icon"></div>
+                Linter
+              </a>
 
-            <a rel="next" href="../outro/nvim_get_option_value.html" class="nav-chapters icon-button" title="Next chapter" aria-label="Next chapter">
-              nvim_get_option_value
-              <div class="icon-next fa-icon"></div>
-            </a>
-          </nav>
+              <a rel="next" href="../outro/nvim_get_option_value.html" class="nav-chapters" aria-label="Next chapter: nvim_get_option_value">
+                nvim_get_option_value
+                <div class="icon-next fa-icon"></div>
+              </a>
+            </nav>
+          </article>
         </main>
 
         <spacer></spacer>

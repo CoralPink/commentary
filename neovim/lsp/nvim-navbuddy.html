@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="ja" prefix="og: https://ogp.me/ns#">
+<html lang="ja" dir="ltr" prefix="og: https://ogp.me/ns#">
   <head>
     <meta charset="UTF-8">
     <title>nvim-navbuddy - Commentary of Dotfiles</title>
@@ -54,14 +54,14 @@
     <div class="top-bar">
       <div id="menu-bar" class="menu-bar">
         <div class="left-buttons">
-          <button id="sidebar-toggle" class="icon-button" title="Toggle Table of Contents (Shortkey: T )" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+          <button id="sidebar-toggle" class="icon-button" title="Toggle Table of Contents (Shortkey: T )" aria-label="Toggle Table of Contents" aria-keyshortcuts="T" aria-controls="sidebar">
             <div class="icon-sidebar fa-icon"></div>
           </button>
 
           <button popovertarget="theme-list" class="icon-button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
             <div class="icon-theme fa-icon"></div>
           </button>
-          <ul id="theme-list" aria-label="Themes" role="menu" popover>
+          <ul id="theme-list" aria-label="Theme selection menu" role="menu" popover>
             <li role="none"><button role="menuitem" class="theme" id="au-lait">Au Lait</button></li>
             <li role="none"><button role="menuitem" class="theme" id="latte">Latte</button></li>
             <li role="none"><button role="menuitem" class="theme" id="frappe">Frappé</button></li>
@@ -88,9 +88,11 @@
         <div class="menu-title">Commentary of Dotfiles</div>
 
         <div class="right-buttons">
-          <a href="https://github.com/CoralPink/commentary" title="Git repository" aria-label="Git repository" target="_blank" rel="noopener">
-            <div class="icon-github fa-icon"></div>
-          </a>
+          <address>
+            <a href="https://github.com/CoralPink/commentary" title="Open the GitHub repository" aria-label="Open the GitHub repository." target="_blank">
+              <div class="icon-github fa-icon"></div>
+            </a>
+          </address>
         </div>
       </div>
     </div>
@@ -106,7 +108,8 @@
         <spacer></spacer>
 
         <main id="main">
-          <h1 id="nvim-navbuddy"><a class="header" href="#nvim-navbuddy">nvim-navbuddy</a></h1>
+          <article>
+            <h1 id="nvim-navbuddy"><a class="header" href="#nvim-navbuddy">nvim-navbuddy</a></h1>
 <p><code>nvim-navic</code>で紹介されているように、完全なパンくず<sup class="footnote-reference"><a name="to-footnote-1"><a href="#1">1</a></a></sup>
 体験ができるようにしてみましょう❗</p>
 <p>"ヘンゼルとグレーテル" はグリム童話🧒👧 で、グリム童話はグリム兄弟👨👨 がまとめた童話集で...。</p>
@@ -566,7 +569,7 @@ require('nvim-navbuddy').setup {
 <p>それでは楽しいゴールデンウィークを🤗</p>
 </div>
 </div>
-<div class="footnote-definition" id=1>
+<aside class="footnote-definition" role="doc-footnote" id=1 aria-labelledby=1>
 <p><a href="#to-footnote-1"><sup>1:</sup></a> パンくずリスト（breadcrumb list）は、ウェブサイト内でのウェブページの位置を、
 ツリー構造を持ったハイパーリンクの一覧として示すもの。パンくずナビ、トピックパス、フットパスとも言う。</p>
 <p>英語では単に“breadcrumbs”または“breadcrumb navigation”というのが一般的である。</p>
@@ -575,28 +578,29 @@ require('nvim-navbuddy').setup {
 <p>「パンくずリスト」という名前は、
 童話『ヘンゼルとグレーテル』で、主人公が森で迷子にならないように通り道にパンくずを置いていった、というエピソードに由来する。
 <a href="https://ja.wikipedia.org/wiki/%E3%83%91%E3%83%B3%E3%81%8F%E3%81%9A%E3%83%AA%E3%82%B9%E3%83%88">Wikipedia</a>より</p>
-</div><div class="footnote-definition" id=2>
-<p><a href="#to-footnote-2"><sup>2:</sup></a> よしいくぞうってなるやつ🤣</div><div class="footnote-definition" id=3></p>
-<p><a href="#to-footnote-3"><sup>3:</sup></a> なんか知らない間にドッジボールが続いていましたが、こっちも完結❗</div><div class="footnote-definition" id=4></p>
-<p><a href="#to-footnote-4"><sup>4:</sup></a> ん⁉️ "地区P" とは言わないんれすね❗(これ言いたかっただけ😆)</div><div class="footnote-definition" id=5></p>
+</aside><aside class="footnote-definition" role="doc-footnote" id=2 aria-labelledby=2>
+<p><a href="#to-footnote-2"><sup>2:</sup></a> よしいくぞうってなるやつ🤣</aside><aside class="footnote-definition" role="doc-footnote" id=3 aria-labelledby=3></p>
+<p><a href="#to-footnote-3"><sup>3:</sup></a> なんか知らない間にドッジボールが続いていましたが、こっちも完結❗</aside><aside class="footnote-definition" role="doc-footnote" id=4 aria-labelledby=4></p>
+<p><a href="#to-footnote-4"><sup>4:</sup></a> ん⁉️ "地区P" とは言わないんれすね❗(これ言いたかっただけ😆)</aside><aside class="footnote-definition" role="doc-footnote" id=5 aria-labelledby=5></p>
 <p><a href="#to-footnote-5"><sup>5:</sup></a> Friends Will Be Friends (by <a href="https://en.wikipedia.org/wiki/Queen_(band)">Queen</a>):
 Freddie Mercury と John Deacon が作曲し、1986年6月9日にアルバム『A Kind of Magic』のシングルとしてリリースされた。
 <a href="https://en.wikipedia.org/wiki/Friends_Will_Be_Friends">Wikipedia</a>より。</p>
 <p>絶対不変と思われていたQueenのライブセットリスト (Roger の "Radio Ga Ga"、Brian の "We Will Rock You" と Freddie の"We Are the Champions") に、
 最後にして John の "Friends Will Be Friends" が加わった❗っていうエピソードすき。</p>
-</div>
+</aside>
 
-          <nav class="nav-wrapper" aria-label="Page navigation">
-            <a rel="prev" href="../../neovim/lsp/nvim-navic.html" class="nav-chapters icon-button" title="Previous chapter" aria-label="Previous chapter">
-              <div class="icon-prev fa-icon"></div>
-              nvim-navic
-            </a>
+            <nav class="nav-wrapper" aria-label="Page navigation">
+              <a rel="prev" href="../../neovim/lsp/nvim-navic.html" class="nav-chapters" aria-label="Previous chapter: nvim-navic">
+                <div class="icon-prev fa-icon"></div>
+                nvim-navic
+              </a>
 
-            <a rel="next" href="../../neovim/lsp/nvim-cmp.html" class="nav-chapters icon-button" title="Next chapter" aria-label="Next chapter">
-              nvim-cmp
-              <div class="icon-next fa-icon"></div>
-            </a>
-          </nav>
+              <a rel="next" href="../../neovim/lsp/nvim-cmp.html" class="nav-chapters" aria-label="Next chapter: nvim-cmp">
+                nvim-cmp
+                <div class="icon-next fa-icon"></div>
+              </a>
+            </nav>
+          </article>
         </main>
 
         <spacer></spacer>

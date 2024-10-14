@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="ja" prefix="og: https://ogp.me/ns#">
+<html lang="ja" dir="ltr" prefix="og: https://ogp.me/ns#">
   <head>
     <meta charset="UTF-8">
     <title>cmp-nvim-lsp - Commentary of Dotfiles</title>
@@ -54,14 +54,14 @@
     <div class="top-bar">
       <div id="menu-bar" class="menu-bar">
         <div class="left-buttons">
-          <button id="sidebar-toggle" class="icon-button" title="Toggle Table of Contents (Shortkey: T )" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+          <button id="sidebar-toggle" class="icon-button" title="Toggle Table of Contents (Shortkey: T )" aria-label="Toggle Table of Contents" aria-keyshortcuts="T" aria-controls="sidebar">
             <div class="icon-sidebar fa-icon"></div>
           </button>
 
           <button popovertarget="theme-list" class="icon-button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
             <div class="icon-theme fa-icon"></div>
           </button>
-          <ul id="theme-list" aria-label="Themes" role="menu" popover>
+          <ul id="theme-list" aria-label="Theme selection menu" role="menu" popover>
             <li role="none"><button role="menuitem" class="theme" id="au-lait">Au Lait</button></li>
             <li role="none"><button role="menuitem" class="theme" id="latte">Latte</button></li>
             <li role="none"><button role="menuitem" class="theme" id="frappe">Frappé</button></li>
@@ -88,9 +88,11 @@
         <div class="menu-title">Commentary of Dotfiles</div>
 
         <div class="right-buttons">
-          <a href="https://github.com/CoralPink/commentary" title="Git repository" aria-label="Git repository" target="_blank" rel="noopener">
-            <div class="icon-github fa-icon"></div>
-          </a>
+          <address>
+            <a href="https://github.com/CoralPink/commentary" title="Open the GitHub repository" aria-label="Open the GitHub repository." target="_blank">
+              <div class="icon-github fa-icon"></div>
+            </a>
+          </address>
         </div>
       </div>
     </div>
@@ -106,7 +108,8 @@
         <spacer></spacer>
 
         <main id="main">
-          <h1 id="cmp-nvim-lsp"><a class="header" href="#cmp-nvim-lsp">cmp-nvim-lsp</a></h1>
+          <article>
+            <h1 id="cmp-nvim-lsp"><a class="header" href="#cmp-nvim-lsp">cmp-nvim-lsp</a></h1>
 <p>今回は、いよいよコード補完を実現させます🤗</p>
 <div id="admonition-cmp-nvim-lsphttpsgithubcomhrsh7thcmp-nvim-lsp" class="admonition admonish-info" role="note" aria-labelledby="admonition-cmp-nvim-lsphttpsgithubcomhrsh7thcmp-nvim-lsp-title">
 <div class="admonition-title">
@@ -335,7 +338,7 @@ nvim-cmp は、omnifunc に代わる手動トリガーによる補完機能を�
 <p>みんな幸せ</p>
 </div>
 </div>
-<div class="footnote-definition" id=1>
+<aside class="footnote-definition" role="doc-footnote" id=1 aria-labelledby=1>
 <p><a href="#to-footnote-1"><sup>1:</sup></a> Sun King (by <a href="https://en.wikipedia.org/wiki/The_Beatles">The Beatles</a>):
 タイトルの "Sun King" とは、"Louis XIV (ルイ14世)" の別称である。
 曲名は当初 "Here Comes the Sun King" となっていたが、"Here Comes The Sun" と混同することから現在の曲名になった。
@@ -344,19 +347,20 @@ nvim-cmp は、omnifunc に代わる手動トリガーによる補完機能を�
 "Here comes the sun king" の出番になった。かまわないだろう？
 彼がやってくると、誰もが幸せになって "cuando para mucho" だのなんだの (イタリア語やポルトガル語の単語を適当に並べたもの) が始まるんだ」と語っている。
 <a href="https://en.wikipedia.org/wiki/Sun_King_(song)">Wikipedia</a>より</p>
-</div>
+</aside>
 
-          <nav class="nav-wrapper" aria-label="Page navigation">
-            <a rel="prev" href="../../neovim/lsp/nvim-cmp.html" class="nav-chapters icon-button" title="Previous chapter" aria-label="Previous chapter">
-              <div class="icon-prev fa-icon"></div>
-              nvim-cmp
-            </a>
+            <nav class="nav-wrapper" aria-label="Page navigation">
+              <a rel="prev" href="../../neovim/lsp/nvim-cmp.html" class="nav-chapters" aria-label="Previous chapter: nvim-cmp">
+                <div class="icon-prev fa-icon"></div>
+                nvim-cmp
+              </a>
 
-            <a rel="next" href="../../neovim/lsp/luasnip.html" class="nav-chapters icon-button" title="Next chapter" aria-label="Next chapter">
-              LuaSnip
-              <div class="icon-next fa-icon"></div>
-            </a>
-          </nav>
+              <a rel="next" href="../../neovim/lsp/luasnip.html" class="nav-chapters" aria-label="Next chapter: LuaSnip">
+                LuaSnip
+                <div class="icon-next fa-icon"></div>
+              </a>
+            </nav>
+          </article>
         </main>
 
         <spacer></spacer>

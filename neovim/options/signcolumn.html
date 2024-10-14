@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="ja" prefix="og: https://ogp.me/ns#">
+<html lang="ja" dir="ltr" prefix="og: https://ogp.me/ns#">
   <head>
     <meta charset="UTF-8">
     <title>signcolumn - Commentary of Dotfiles</title>
@@ -54,14 +54,14 @@
     <div class="top-bar">
       <div id="menu-bar" class="menu-bar">
         <div class="left-buttons">
-          <button id="sidebar-toggle" class="icon-button" title="Toggle Table of Contents (Shortkey: T )" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+          <button id="sidebar-toggle" class="icon-button" title="Toggle Table of Contents (Shortkey: T )" aria-label="Toggle Table of Contents" aria-keyshortcuts="T" aria-controls="sidebar">
             <div class="icon-sidebar fa-icon"></div>
           </button>
 
           <button popovertarget="theme-list" class="icon-button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
             <div class="icon-theme fa-icon"></div>
           </button>
-          <ul id="theme-list" aria-label="Themes" role="menu" popover>
+          <ul id="theme-list" aria-label="Theme selection menu" role="menu" popover>
             <li role="none"><button role="menuitem" class="theme" id="au-lait">Au Lait</button></li>
             <li role="none"><button role="menuitem" class="theme" id="latte">Latte</button></li>
             <li role="none"><button role="menuitem" class="theme" id="frappe">Frappé</button></li>
@@ -88,9 +88,11 @@
         <div class="menu-title">Commentary of Dotfiles</div>
 
         <div class="right-buttons">
-          <a href="https://github.com/CoralPink/commentary" title="Git repository" aria-label="Git repository" target="_blank" rel="noopener">
-            <div class="icon-github fa-icon"></div>
-          </a>
+          <address>
+            <a href="https://github.com/CoralPink/commentary" title="Open the GitHub repository" aria-label="Open the GitHub repository." target="_blank">
+              <div class="icon-github fa-icon"></div>
+            </a>
+          </address>
         </div>
       </div>
     </div>
@@ -106,7 +108,8 @@
         <spacer></spacer>
 
         <main id="main">
-          <h1 id="signcolumn"><a class="header" href="#signcolumn">signcolumn</a></h1>
+          <article>
+            <h1 id="signcolumn"><a class="header" href="#signcolumn">signcolumn</a></h1>
 <p>この段階で出てこられても、ちょっと説明に困る部分もあるんですが...。</p>
 <p>まあ、外観に影響する部分なので、先にやっちゃうことにします😉</p>
 <div id="admonition-h-signcolumn" class="admonition admonish-note" role="note" aria-labelledby="admonition-h-signcolumn-title">
@@ -200,22 +203,23 @@ When and how to draw the signcolumn. Valid values are:
 <p>次は、上のスクリーンショットで一足早く登場してしまった<code>wrap</code>を片付けちゃいます😌</p>
 </div>
 </div>
-<div class="footnote-definition" id=1>
-<p><a href="#to-footnote-1"><sup>1:</sup></a> <a href="https://github.com/lewis6991/gitsigns.nvim">https://github.com/lewis6991/gitsigns.nvim</a></div><div class="footnote-definition" id=2></p>
-<p><a href="#to-footnote-2"><sup>2:</sup></a> プラグインについてはこのサイトでも取り上げたいんですが、もうちょっとかかりそうです😓</div></p>
+<aside class="footnote-definition" role="doc-footnote" id=1 aria-labelledby=1>
+<p><a href="#to-footnote-1"><sup>1:</sup></a> <a href="https://github.com/lewis6991/gitsigns.nvim">https://github.com/lewis6991/gitsigns.nvim</a></aside><aside class="footnote-definition" role="doc-footnote" id=2 aria-labelledby=2></p>
+<p><a href="#to-footnote-2"><sup>2:</sup></a> プラグインについてはこのサイトでも取り上げたいんですが、もうちょっとかかりそうです😓</aside></p>
 
 
-          <nav class="nav-wrapper" aria-label="Page navigation">
-            <a rel="prev" href="../../neovim/options/cursorline.html" class="nav-chapters icon-button" title="Previous chapter" aria-label="Previous chapter">
-              <div class="icon-prev fa-icon"></div>
-              cusrorline
-            </a>
+            <nav class="nav-wrapper" aria-label="Page navigation">
+              <a rel="prev" href="../../neovim/options/cursorline.html" class="nav-chapters" aria-label="Previous chapter: cusrorline">
+                <div class="icon-prev fa-icon"></div>
+                cusrorline
+              </a>
 
-            <a rel="next" href="../../neovim/options/wrap-colorcolumn.html" class="nav-chapters icon-button" title="Next chapter" aria-label="Next chapter">
-              wrap / colorcolumn
-              <div class="icon-next fa-icon"></div>
-            </a>
-          </nav>
+              <a rel="next" href="../../neovim/options/wrap-colorcolumn.html" class="nav-chapters" aria-label="Next chapter: wrap / colorcolumn">
+                wrap / colorcolumn
+                <div class="icon-next fa-icon"></div>
+              </a>
+            </nav>
+          </article>
         </main>
 
         <spacer></spacer>

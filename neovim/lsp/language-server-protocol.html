@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="ja" prefix="og: https://ogp.me/ns#">
+<html lang="ja" dir="ltr" prefix="og: https://ogp.me/ns#">
   <head>
     <meta charset="UTF-8">
     <title>Language Server Protocol - Commentary of Dotfiles</title>
@@ -54,14 +54,14 @@
     <div class="top-bar">
       <div id="menu-bar" class="menu-bar">
         <div class="left-buttons">
-          <button id="sidebar-toggle" class="icon-button" title="Toggle Table of Contents (Shortkey: T )" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+          <button id="sidebar-toggle" class="icon-button" title="Toggle Table of Contents (Shortkey: T )" aria-label="Toggle Table of Contents" aria-keyshortcuts="T" aria-controls="sidebar">
             <div class="icon-sidebar fa-icon"></div>
           </button>
 
           <button popovertarget="theme-list" class="icon-button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
             <div class="icon-theme fa-icon"></div>
           </button>
-          <ul id="theme-list" aria-label="Themes" role="menu" popover>
+          <ul id="theme-list" aria-label="Theme selection menu" role="menu" popover>
             <li role="none"><button role="menuitem" class="theme" id="au-lait">Au Lait</button></li>
             <li role="none"><button role="menuitem" class="theme" id="latte">Latte</button></li>
             <li role="none"><button role="menuitem" class="theme" id="frappe">Frappé</button></li>
@@ -88,9 +88,11 @@
         <div class="menu-title">Commentary of Dotfiles</div>
 
         <div class="right-buttons">
-          <a href="https://github.com/CoralPink/commentary" title="Git repository" aria-label="Git repository" target="_blank" rel="noopener">
-            <div class="icon-github fa-icon"></div>
-          </a>
+          <address>
+            <a href="https://github.com/CoralPink/commentary" title="Open the GitHub repository" aria-label="Open the GitHub repository." target="_blank">
+              <div class="icon-github fa-icon"></div>
+            </a>
+          </address>
         </div>
       </div>
     </div>
@@ -106,7 +108,8 @@
         <spacer></spacer>
 
         <main id="main">
-          <h1 id="language-server-protocol"><a class="header" href="#language-server-protocol">Language Server Protocol</a></h1>
+          <article>
+            <h1 id="language-server-protocol"><a class="header" href="#language-server-protocol">Language Server Protocol</a></h1>
 <p>久しぶりに章が変わりました。</p>
 <p><code>packer</code>でプラグインを入れて設定して〜...っていう流れに変わりはないんですけどね❗</p>
 <h2 id="start"><a class="header" href="#start">START</a></h2>
@@ -189,22 +192,23 @@
 <p>俺らのワガママは、世界一だ❗❗❗</p>
 </div>
 </div>
-<div class="footnote-definition" id=1>
-<p><a href="#to-footnote-1"><sup>1:</sup></a> なるほど "春" だね🌸 東京はなんかずっと雨だけどね❗</div><div class="footnote-definition" id=2></p>
+<aside class="footnote-definition" role="doc-footnote" id=1 aria-labelledby=1>
+<p><a href="#to-footnote-1"><sup>1:</sup></a> なるほど "春" だね🌸 東京はなんかずっと雨だけどね❗</aside><aside class="footnote-definition" role="doc-footnote" id=2 aria-labelledby=2></p>
 <p><a href="#to-footnote-2"><sup>2:</sup></a> <a href="https://bigcomicbros.net/work/38477/">トリリオンゲーム</a> <a href="https://big-3.tameshiyo.me/SPE01TRILLION">第1話 世界一のワガママ</a>より</p>
-</div>
+</aside>
 
-          <nav class="nav-wrapper" aria-label="Page navigation">
-            <a rel="prev" href="../../neovim/plugin/nvim-tree-actions-tip.html" class="nav-chapters icon-button" title="Previous chapter" aria-label="Previous chapter">
-              <div class="icon-prev fa-icon"></div>
-              (Extra) for Nvim 0.10
-            </a>
+            <nav class="nav-wrapper" aria-label="Page navigation">
+              <a rel="prev" href="../../neovim/plugin/nvim-tree-actions-tip.html" class="nav-chapters" aria-label="Previous chapter: (Extra) for Nvim 0.10">
+                <div class="icon-prev fa-icon"></div>
+                (Extra) for Nvim 0.10
+              </a>
 
-            <a rel="next" href="../../neovim/lsp/nvim-lspconfig.html" class="nav-chapters icon-button" title="Next chapter" aria-label="Next chapter">
-              nvim-lspconfig
-              <div class="icon-next fa-icon"></div>
-            </a>
-          </nav>
+              <a rel="next" href="../../neovim/lsp/nvim-lspconfig.html" class="nav-chapters" aria-label="Next chapter: nvim-lspconfig">
+                nvim-lspconfig
+                <div class="icon-next fa-icon"></div>
+              </a>
+            </nav>
+          </article>
         </main>
 
         <spacer></spacer>

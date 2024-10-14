@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="ja" prefix="og: https://ogp.me/ns#">
+<html lang="ja" dir="ltr" prefix="og: https://ogp.me/ns#">
   <head>
     <meta charset="UTF-8">
     <title>nvim-navic - Commentary of Dotfiles</title>
@@ -54,14 +54,14 @@
     <div class="top-bar">
       <div id="menu-bar" class="menu-bar">
         <div class="left-buttons">
-          <button id="sidebar-toggle" class="icon-button" title="Toggle Table of Contents (Shortkey: T )" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+          <button id="sidebar-toggle" class="icon-button" title="Toggle Table of Contents (Shortkey: T )" aria-label="Toggle Table of Contents" aria-keyshortcuts="T" aria-controls="sidebar">
             <div class="icon-sidebar fa-icon"></div>
           </button>
 
           <button popovertarget="theme-list" class="icon-button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
             <div class="icon-theme fa-icon"></div>
           </button>
-          <ul id="theme-list" aria-label="Themes" role="menu" popover>
+          <ul id="theme-list" aria-label="Theme selection menu" role="menu" popover>
             <li role="none"><button role="menuitem" class="theme" id="au-lait">Au Lait</button></li>
             <li role="none"><button role="menuitem" class="theme" id="latte">Latte</button></li>
             <li role="none"><button role="menuitem" class="theme" id="frappe">Frappé</button></li>
@@ -88,9 +88,11 @@
         <div class="menu-title">Commentary of Dotfiles</div>
 
         <div class="right-buttons">
-          <a href="https://github.com/CoralPink/commentary" title="Git repository" aria-label="Git repository" target="_blank" rel="noopener">
-            <div class="icon-github fa-icon"></div>
-          </a>
+          <address>
+            <a href="https://github.com/CoralPink/commentary" title="Open the GitHub repository" aria-label="Open the GitHub repository." target="_blank">
+              <div class="icon-github fa-icon"></div>
+            </a>
+          </address>
         </div>
       </div>
     </div>
@@ -106,7 +108,8 @@
         <spacer></spacer>
 
         <main id="main">
-          <h1 id="nvim-navic"><a class="header" href="#nvim-navic">nvim-navic</a></h1>
+          <article>
+            <h1 id="nvim-navic"><a class="header" href="#nvim-navic">nvim-navic</a></h1>
 <p>今回はのほほんと<code>nvim-navic</code>を導入してみましょう。</p>
 <div id="admonition-nvim-navichttpsgithubcomsmiteshpnvim-navic" class="admonition admonish-info" role="note" aria-labelledby="admonition-nvim-navichttpsgithubcomsmiteshpnvim-navic-title">
 <div class="admonition-title">
@@ -621,32 +624,33 @@ It should help if you are facing performance issues in large files. Read the doc
 <p>道中の標識にも目を向けて</p>
 </div>
 </div>
-<div class="footnote-definition" id=1>
+<aside class="footnote-definition" role="doc-footnote" id=1 aria-labelledby=1>
 <p><a href="#to-footnote-1"><sup>1:</sup></a> 当初、インド地域航法衛星システム(Indian Regional Navigation Satellite System/IRNSS)と呼称されていたが、
 2016年4月にモディ首相によって名称変更が行われ，「NavIC」（Navigation Indian Constellation）と呼ばれることになった。
 <a href="https://ja.wikipedia.org/wiki/%E3%82%A4%E3%83%B3%E3%83%89%E5%9C%B0%E5%9F%9F%E8%88%AA%E6%B3%95%E8%A1%9B%E6%98%9F%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0">Wikipedia</a>より</p>
-</div><div class="footnote-definition" id=2>
+</aside><aside class="footnote-definition" role="doc-footnote" id=2 aria-labelledby=2>
 <p><a href="#to-footnote-2"><sup>2:</sup></a> We've Only Just Begun (by <a href="https://en.wikipedia.org/wiki/The_Carpenters">The Carpenters</a>)
 元々は、California 州の Crocker National Bank のCMソングとして制作され、
 タイトルのとおり「2人はまだ始まったばかり（We've Only Just Begun）」と結婚によって新しい人生を踏み出すことについて歌われている。
 この曲は、アレンジャーとしての Richard の能力と、ボーカルとしての Karen の能力が最も発揮されているということで、
 Richard は「Carpenters の代表曲を挙げるなら『We've Only Just Begun』だな」と語っている。
 <a href="https://en.wikipedia.org/wiki/We%27ve_Only_Just_Begun">Wikipedia</a>より</p>
-</div><div class="footnote-definition" id=3>
-<p><a href="#to-footnote-3"><sup>3:</sup></a> ドッジボールは続いている...❗</div></p>
+</aside><aside class="footnote-definition" role="doc-footnote" id=3 aria-labelledby=3>
+<p><a href="#to-footnote-3"><sup>3:</sup></a> ドッジボールは続いている...❗</aside></p>
 
 
-          <nav class="nav-wrapper" aria-label="Page navigation">
-            <a rel="prev" href="../../neovim/lsp/mason-lspconfig.html" class="nav-chapters icon-button" title="Previous chapter" aria-label="Previous chapter">
-              <div class="icon-prev fa-icon"></div>
-              mason-lspconfig.nvim
-            </a>
+            <nav class="nav-wrapper" aria-label="Page navigation">
+              <a rel="prev" href="../../neovim/lsp/mason-lspconfig.html" class="nav-chapters" aria-label="Previous chapter: mason-lspconfig.nvim">
+                <div class="icon-prev fa-icon"></div>
+                mason-lspconfig.nvim
+              </a>
 
-            <a rel="next" href="../../neovim/lsp/nvim-navbuddy.html" class="nav-chapters icon-button" title="Next chapter" aria-label="Next chapter">
-              nvim-navbuddy
-              <div class="icon-next fa-icon"></div>
-            </a>
-          </nav>
+              <a rel="next" href="../../neovim/lsp/nvim-navbuddy.html" class="nav-chapters" aria-label="Next chapter: nvim-navbuddy">
+                nvim-navbuddy
+                <div class="icon-next fa-icon"></div>
+              </a>
+            </nav>
+          </article>
         </main>
 
         <spacer></spacer>
