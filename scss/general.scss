@@ -110,13 +110,8 @@ body {
           color: var(--fg);
           text-decoration: none;
         }
-
         &:visited {
           color: var(--fg);
-        }
-
-        &:visited:hover {
-          text-decoration: none;
         }
       }
     }
