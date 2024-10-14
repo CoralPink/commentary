@@ -1,6 +1,6 @@
 [package]
 name = "mdbook-footnote"
-version = "1.2.0"
+version = "1.3.0"
 authors = ["David Drysdale <dmd@lurklurk.org>", "CoralPink"]
 edition = "2021"
 rust-version = "1.80"

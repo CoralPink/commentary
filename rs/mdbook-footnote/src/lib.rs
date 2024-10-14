@@ -28,7 +28,7 @@ pub fn replacing(mut book: Book) -> Result<Book, Error> {
                 for (idx, content) in footnotes.into_iter().enumerate() {
                     let num = idx + 1;
                     chap.content += &format!(
-                      "<div class=\"footnote-definition\" id={num}>\n\n[<sup>{num}:</sup>](#to-footnote-{num}) {content}</div>");
+                        "<aside class=\"footnote-definition\" role=\"doc-footnote\" id={num} aria-labelledby={num}>\n\n[<sup>{num}:</sup>](#to-footnote-{num}) {content}</aside>");
                 }
             }
         }
