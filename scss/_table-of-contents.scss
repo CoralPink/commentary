@@ -10,19 +10,19 @@
   }
 
   &.active {
-    color: var(--page-toc-color);
-    background: linear-gradient($angle, var(--page-toc-background) 64%, var(--bg));
+    color: var(--toc-fg);
+    background: linear-gradient($angle, var(--toc-bg) 64%, var(--bg));
   }
 }
 
 #righttoc {
   display: flex;
-  min-width: var.$pagetoc-width;
 
   & #pagetoc {
     display: flex;
     position: fixed;
     flex-direction: column;
+    min-width: var.$pagetoc-width;
 
     overflow-y: scroll;
 
@@ -83,7 +83,7 @@
   }
 
   ::-webkit-scrollbar-thumb {
-    background: var(--scrollbar);
+    background-color: var(--scrollbar);
     border-radius: 1rem;
   }
 

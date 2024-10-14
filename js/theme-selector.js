@@ -23,8 +23,13 @@ const setTheme = next => {
   htmlClassList.replace(current, next);
   setStyle();
 
-  document.getElementById(current).classList.remove(THEME_SELECTED);
-  document.getElementById(next).classList.add(THEME_SELECTED);
+  const currentButton = document.getElementById(current);
+  currentButton.classList.remove(THEME_SELECTED);
+  currentButton.removeAttribute('aria-current');
+
+  const nextButton = document.getElementById(next);
+  nextButton.classList.add(THEME_SELECTED);
+  nextButton.setAttribute('aria-current', 'true');
 
   writeLocalStorage(SAVE_STORAGE, next);
 };
