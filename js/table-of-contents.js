@@ -67,7 +67,6 @@ const initialize = () => {
       }
     },
     {
-      root: document.getElementById('content main'),
       threshold: 1.0,
     },
   );
