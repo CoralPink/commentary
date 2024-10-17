@@ -1,4 +1,5 @@
 import { writeLocalStorage } from './storage.js';
+import { getRootVariableNum } from './css-variables.js';
 
 const SHOW_SIDEBAR_WIDTH = 1200;
 
@@ -57,8 +58,9 @@ const toggleHandler = ev => {
 };
 
 export const initSidebar = () => {
-  // FIXME: The definitions are all over the place.
-  if (window.innerWidth < 750) {
+  const mobile_max_width = getRootVariableNum('--mobile-max-width');
+
+  if (window.innerWidth < mobile_max_width) {
     hideSidebar();
   } else {
     localStorage.getItem('mdbook-sidebar') === 'hidden' ? hideSidebar(false) : showSidebar(false);

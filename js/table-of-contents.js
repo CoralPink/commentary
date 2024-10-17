@@ -1,4 +1,6 @@
-const MOBILE_MAX_WIDTH = 680;
+import { getRootVariableNum } from './css-variables.js';
+
+const mobileMaxWidth = getRootVariableNum('--mobile-max-width')
 
 const ENV_PC = 0;
 const ENV_MOBILE = 1;
@@ -71,7 +73,7 @@ const initialize = () => {
     },
   );
 
-  environment = window.innerWidth >= MOBILE_MAX_WIDTH ? ENV_PC : ENV_MOBILE;
+  environment = window.innerWidth >= mobileMaxWidth ? ENV_PC : ENV_MOBILE;
 
   const nav = document.createElement('nav');
   nav.setAttribute('id', ELEMENT_TOC.display[environment]);
@@ -111,6 +113,6 @@ export const initTableOfContents = () => {
   initialize();
 
   window
-    .matchMedia(`(min-width: ${MOBILE_MAX_WIDTH}px)`)
+    .matchMedia(`(min-width: ${mobileMaxWidth}px)`)
     .addEventListener('change', tocReset, { once: false, passive: true });
 };
