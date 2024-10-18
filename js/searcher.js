@@ -182,7 +182,7 @@ const initSearch = () => {
   document.addEventListener(
     'keyup',
     e => {
-      if (getComputedStyle(ELEM_WRAPPER) === 'hidden') {
+      if (getComputedStyle(ELEM_WRAPPER).visibility === 'hidden') {
         switch (e.key) {
           case '/':
           case 's':
