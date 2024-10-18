@@ -174,7 +174,7 @@ const initSearch = () => {
   ELEM_ICON.addEventListener(
     'mouseup',
     () => {
-      getComputedStyle(ELEM_WRAPPER) === 'hidden' ? showSearch() : hiddenSearch();
+      getComputedStyle(ELEM_WRAPPER).visibility === 'hidden' ? showSearch() : hiddenSearch();
     },
     { once: false, passive: true },
   );
