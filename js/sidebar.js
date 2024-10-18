@@ -8,11 +8,11 @@ const ID_SIDEBAR = 'sidebar';
 const ID_TOGGLE_BUTTON = 'sidebar-toggle';
 
 const showSidebar = (write = true) => {
-  document.getElementById(ID_PAGE).style.display = 'grid';
+  document.getElementById(ID_PAGE).classList.add('show-sidebar');
 
   const sidebar = document.getElementById(ID_SIDEBAR);
   sidebar.style.display = 'block';
-  sidebar.setAttribute('aria-hidden', false);
+  sidebar.removeAttribute('aria-hidden');
 
   document.getElementById(ID_TOGGLE_BUTTON).setAttribute('aria-expanded', true);
 
@@ -20,7 +20,7 @@ const showSidebar = (write = true) => {
 
   if (active) {
     active.scrollIntoView({ block: 'center' });
-    active.setAttribute('aria-current', 'true');
+    active.setAttribute('aria-current', 'page');
   }
 
   if (write) {
@@ -29,7 +29,7 @@ const showSidebar = (write = true) => {
 };
 
 const hideSidebar = (write = true) => {
-  document.getElementById(ID_PAGE).style.display = 'block';
+  document.getElementById(ID_PAGE).classList.remove('show-sidebar');
 
   const sidebar = document.getElementById(ID_SIDEBAR);
   sidebar.style.display = 'none';
@@ -69,7 +69,7 @@ export const initSidebar = () => {
   document.addEventListener('keyup', toggleHandler, { once: false, passive: true });
   document
     .getElementById(ID_TOGGLE_BUTTON)
-    .addEventListener('mouseup', () => toggleSidebar(), { once: false, passive: true });
+    .addEventListener('click', () => toggleSidebar(), { once: false, passive: true });
 
   window.matchMedia(`(min-width: ${SHOW_SIDEBAR_WIDTH}px)`).addEventListener(
     'change',

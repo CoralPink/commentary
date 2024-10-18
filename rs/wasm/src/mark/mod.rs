@@ -57,22 +57,22 @@ fn process_nodes(node: &Node, terms: &str) {
     }
 }
 
-fn get_main_content() -> Result<Element, String> {
+fn get_article_content() -> Result<Element, String> {
     let window = web_sys::window().ok_or("window not available")?;
     let document = window.document().ok_or("document not available")?;
 
-    let main = document
-        .get_element_by_id("main")
-        .ok_or("Element with id 'main' not found")?;
+    let article = document
+        .get_element_by_id("article")
+        .ok_or("Element with id 'article' not found")?;
 
-    Ok(main)
+    Ok(article)
 }
 
 #[wasm_bindgen]
 pub fn marking(terms: &str) {
-    match get_main_content() {
-        Ok(main) => {
-            let node_list = main.query_selector_all("*").expect("Failed: marking");
+    match get_article_content() {
+        Ok(article) => {
+            let node_list = article.query_selector_all("*").expect("Failed: marking");
 
             match node_list_to_vec(node_list) {
                 Ok(nodes) => {
@@ -93,14 +93,14 @@ pub fn marking(terms: &str) {
 
 #[wasm_bindgen]
 pub fn unmarking() {
-    match get_main_content() {
-        Ok(main) => {
-            let html = main
+    match get_article_content() {
+        Ok(article) => {
+            let html = article
                 .inner_html()
                 .replace(MARK_TAG, EMPTY_STR)
                 .replace(MARK_TAG_END, EMPTY_STR);
 
-            main.set_inner_html(&html);
+            article.set_inner_html(&html);
         }
         Err(err) => {
             macros::console_error!("unmarking: {err}");

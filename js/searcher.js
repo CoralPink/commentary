@@ -19,10 +19,10 @@ let prevTerms;
 let focusedLi;
 
 const unmarkHandler = () => {
-  const main = document.getElementById('main');
+  const article = document.getElementById('article');
 
-  for (const x of main.querySelectorAll('mark')) {
-    x.removeEventListener('mouseup', unmarkHandler);
+  for (const x of article.querySelectorAll('mark')) {
+    x.removeEventListener('click', unmarkHandler);
   }
   unmarking();
   tocReset();
@@ -51,8 +51,8 @@ const doSearchOrMarkFromUrl = () => {
 
   marking(terms);
 
-  for (const x of main.querySelectorAll('mark')) {
-    x.addEventListener('mouseup', unmarkHandler, { once: true, passive: true });
+  for (const x of article.querySelectorAll('mark')) {
+    x.addEventListener('click', unmarkHandler, { once: true, passive: true });
   }
 };
 
@@ -129,29 +129,29 @@ const searchHandler = () => {
 };
 
 const hiddenSearch = () => {
-  ELEM_WRAPPER.classList.add('hidden');
+  ELEM_WRAPPER.style.visibility = 'hidden';
   ELEM_ICON.setAttribute('aria-expanded', 'false');
 
   ELEM_BAR.removeEventListener('keyup', searchHandler);
   ELEM_RESULTS.removeEventListener('keyup', popupFocus);
-  ELEM_OUTER.removeEventListener('mouseup', searchMouseupHandler);
+  ELEM_OUTER.removeEventListener('click', searchMouseupHandler);
 
   prevTerms = undefined;
 };
 
 const showSearch = () => {
-  ELEM_WRAPPER.classList.remove('hidden');
+  ELEM_WRAPPER.style.visibility = 'visible';
   ELEM_ICON.setAttribute('aria-expanded', 'true');
 
   ELEM_BAR.addEventListener('keyup', searchHandler, { once: false, passive: true });
   ELEM_RESULTS.addEventListener('keyup', popupFocus, { once: false, passive: true });
-  ELEM_OUTER.addEventListener('mouseup', searchMouseupHandler, { once: false, passive: true });
+  ELEM_OUTER.addEventListener('click', searchMouseupHandler, { once: false, passive: true });
 
   ELEM_BAR.select();
 };
 
 const initSearch = () => {
-  ELEM_ICON.removeEventListener('mouseup', initSearch);
+  ELEM_ICON.removeEventListener('click', initSearch);
   document.removeEventListener('keyup', handleKeyup);
 
   try {
@@ -165,25 +165,24 @@ const initSearch = () => {
     console.error(`Error during initialization: ${e}`);
     console.info('The search function is disabled.');
 
-    ELEM_ICON.classList.add('hidden');
+    ELEM_ICON.style.display = 'none';
     return;
   }
 
   showSearch();
 
   ELEM_ICON.addEventListener(
-    'mouseup',
-    () => (ELEM_WRAPPER.classList.contains('hidden') ? showSearch() : hiddenSearch()),
-    {
-      once: false,
-      passive: true,
+    'click',
+    () => {
+      getComputedStyle(ELEM_WRAPPER).visibility === 'hidden' ? showSearch() : hiddenSearch();
     },
+    { once: false, passive: true },
   );
 
   document.addEventListener(
     'keyup',
     e => {
-      if (ELEM_WRAPPER.classList.contains('hidden')) {
+      if (getComputedStyle(ELEM_WRAPPER).visibility === 'hidden') {
         switch (e.key) {
           case '/':
           case 's':
@@ -217,7 +216,7 @@ export const startupSearch = root => {
 
   pathToRoot = root;
 
-  ELEM_ICON.addEventListener('mouseup', initSearch, { once: true, passive: true });
+  ELEM_ICON.addEventListener('click', initSearch, { once: true, passive: true });
   document.addEventListener('keyup', handleKeyup, { once: false, passive: true });
 };
 
