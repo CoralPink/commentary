@@ -11,8 +11,6 @@ const THEME_COLORS = [
 const THEME_SELECTED = 'theme-selected';
 const SAVE_STORAGE = 'mdbook-theme';
 
-const htmlClassList = document.querySelector('html').classList;
-
 const setStyle = () => {
   document.querySelector('meta[name="theme-color"]').content = globalThis.getComputedStyle(
     document.body,
@@ -20,13 +18,13 @@ const setStyle = () => {
 };
 
 const setTheme = next => {
-  const current = htmlClassList.value;
+  const current = document.querySelector('html').classList.value;
 
   if (next === current) {
     return;
   }
 
-  htmlClassList.replace(current, next);
+  document.querySelector('html').classList.replace(current, next);
   setStyle();
 
   const currentButton = document.getElementById(current);
@@ -41,7 +39,7 @@ const setTheme = next => {
 };
 
 export const initTheme = () => {
-  document.querySelector('html').classList.add(htmlClassList.value);
+  document.querySelector('html').classList.add(document.querySelector('html').classList.value);
   setStyle();
 };
 
@@ -53,7 +51,7 @@ export const initThemeSelector = () => {
   themeList.setAttribute('role', 'menu');
   themeList.setAttribute('popover', '');
 
-  const currentTheme = htmlClassList.value;
+  const currentTheme = document.documentElement.className;
 
   for (const theme of THEME_COLORS) {
     const li = document.createElement('li');

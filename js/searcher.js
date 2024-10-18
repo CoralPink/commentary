@@ -165,7 +165,7 @@ const initSearch = () => {
     console.error(`Error during initialization: ${e}`);
     console.info('The search function is disabled.');
 
-    ELEM_ICON.setAttribute('display', 'none');
+    ELEM_ICON.style.display = 'none';
     return;
   }
 
