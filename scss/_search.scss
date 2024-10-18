@@ -1,7 +1,7 @@
 @use 'variables' as var;
 
-.search-wrapper {
-  flex-basis: 60%;
+#search-wrapper {
+  visibility: hidden;
 }
 
 #searchbar {
@@ -78,4 +78,11 @@
       }
     }
   }
+}
+
+mark {
+  color: inherit;
+  background: linear-gradient(rgba(0, 0, 0, 0) 64%, var(--search-mark-bg));
+
+  cursor: pointer;
 }

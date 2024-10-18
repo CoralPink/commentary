@@ -13,8 +13,8 @@ pub fn attribute_external_links() {
 
     let node_array = node_list_to_array(
         document
-            .get_element_by_id("main")
-            .expect("id 'main' not found")
+            .get_element_by_id("article")
+            .expect("id 'article' not found")
             .query_selector_all(r#"a[href^="http://"], a[href^="https://"]"#)
             .unwrap(),
     );
@@ -41,16 +41,16 @@ mod tests {
         let window = web_sys::window().unwrap();
         let document: Document = window.document().unwrap();
 
-        let main = document.create_element("div").unwrap();
-        main.set_id("main");
+        let article = document.create_element("article").unwrap();
+        article.set_id("article");
 
-        document.body().unwrap().append_child(&main).unwrap();
+        document.body().unwrap().append_child(&article).unwrap();
 
         let create_test_case = |url: &str| {
             let link = document.create_element("a").unwrap();
             link.set_attribute("href", url).unwrap();
 
-            main.append_child(&link).unwrap();
+            article.append_child(&link).unwrap();
         };
 
         create_test_case("http://example.com");
@@ -73,8 +73,8 @@ mod tests {
          */
         let node_array = super::node_list_to_array(
             document
-                .get_element_by_id("main")
-                .expect("id 'main' not found")
+                .get_element_by_id("article")
+                .expect("id 'article' not found")
                 .query_selector_all("a")
                 .unwrap(),
         );

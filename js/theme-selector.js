@@ -1,9 +1,15 @@
 import { writeLocalStorage } from './storage.js';
 
-const SAVE_STORAGE = 'mdbook-theme';
+const THEME_COLORS = [
+  { id: 'au-lait', label: 'Au Lait' },
+  { id: 'latte', label: 'Latte' },
+  { id: 'frappe', label: 'Frappé' },
+  { id: 'macchiato', label: 'Macchiato' },
+  { id: 'mocha', label: 'Mocha' },
+];
 
-const THEME_LIST = 'theme-list';
 const THEME_SELECTED = 'theme-selected';
+const SAVE_STORAGE = 'mdbook-theme';
 
 const htmlClassList = document.querySelector('html').classList;
 
@@ -40,9 +46,36 @@ export const initTheme = () => {
 };
 
 export const initThemeSelector = () => {
-  document.getElementById(htmlClassList.value).classList.add(THEME_SELECTED);
+  const themeList = document.createElement('ul');
 
-  document.getElementById(THEME_LIST).addEventListener(
+  themeList.id = 'theme-list';
+  themeList.setAttribute('aria-label', 'Theme selection menu');
+  themeList.setAttribute('role', 'menu');
+  themeList.setAttribute('popover', '');
+
+  const currentTheme = htmlClassList.value;
+
+  for (const theme of THEME_COLORS) {
+    const li = document.createElement('li');
+    li.setAttribute('role', 'none');
+
+    const button = document.createElement('button');
+    button.setAttribute('role', 'menuitem');
+    button.className = 'theme';
+    button.id = theme.id;
+    button.textContent = theme.label;
+
+    li.appendChild(button);
+
+    themeList.appendChild(li);
+
+    if (button.id === currentTheme) {
+      button.classList.add(THEME_SELECTED);
+    }
+  }
+  document.getElementById('top-bar').appendChild(themeList);
+
+  themeList.addEventListener(
     'mouseup',
     ev => {
       if (!ev.target.classList.contains('theme')) {

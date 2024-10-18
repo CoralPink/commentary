@@ -32,9 +32,9 @@
   <body>
     {{> header}}
 
-    <div class="top-bar">
-      <div id="menu-bar" class="menu-bar">
-        <div class="left-buttons">
+    <div id="top-bar">
+      <div id="menu">
+        <div id="left-buttons">
           <button id="sidebar-toggle" class="icon-button" title="Toggle Table of Contents (Shortkey: T )" aria-label="Toggle Table of Contents" aria-keyshortcuts="T" aria-controls="sidebar">
             <div class="icon-sidebar fa-icon"></div>
           </button>
@@ -42,20 +42,13 @@
           <button popovertarget="theme-list" class="icon-button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
             <div class="icon-theme fa-icon"></div>
           </button>
-          <ul id="theme-list" aria-label="Theme selection menu" role="menu" popover>
-            <li role="none"><button role="menuitem" class="theme" id="au-lait">Au Lait</button></li>
-            <li role="none"><button role="menuitem" class="theme" id="latte">Latte</button></li>
-            <li role="none"><button role="menuitem" class="theme" id="frappe">Frappé</button></li>
-            <li role="none"><button role="menuitem" class="theme" id="macchiato">Macchiato</button></li>
-            <li role="none"><button role="menuitem" class="theme" id="mocha">Mocha</button></li>
-          </ul>
 
           <button id="search-toggle" class="icon-button" title="Toggle Search Box (Shortkey: / )" aria-label="Toggle Search Box" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
             <div class="icon-search fa-icon"></div>
           </button>
 
-          <div id="search-wrapper" class="hidden">
-            <form id="searchbar-outer" class="searchbar-outer">
+          <div id="search-wrapper">
+            <form id="searchbar-outer">
               <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..."
                 aria-controls="searchresults-outer" aria-describedby="searchresults-header">
             </form>
@@ -66,9 +59,9 @@
           </div>
         </div>
 
-        <div class="menu-title">{{ book_title }}</div>
+        <div id="book-title">{{ book_title }}</div>
 
-        <div class="right-buttons">
+        <div id="right-buttons">
           {{#if git_repository_url}}
           <address>
             <a href="{{git_repository_url}}" title="Open the GitHub repository" aria-label="Open the GitHub repository." target="_blank">
@@ -80,49 +73,41 @@
       </div>
     </div>
 
-    <div id="page" class="page">
-      <div id="sidebar" class="sidebar" aria-label="Site map">
-        <nav id="side-scroll" class="sidebar-scrollbox">
+    <div id="page">
+      <aside id="sidebar" aria-label="Site map">
+        <nav id="sidebar-scrollbox">
           {{#toc}}{{/toc}}
         </nav>
-      </div>
+      </aside>
 
-      <div id="content" class="content">
-        <div></div>
+      <main>
+        <article id="article">
+          {{{ content }}}
 
-        <main id="main">
-          <article>
-            {{{ content }}}
+          <nav class="nav-wrapper" aria-label="Page navigation">
+            {{#previous}}
+            <a rel="prev" href="{{ path_to_root }}{{link}}" class="nav-chapters" aria-label="Previous chapter: {{title}}">
+              <div class="icon-prev fa-icon"></div>
+              {{title}}
+            </a>
+            {{/previous}}
+            {{#next}}
+            <a rel="next" href="{{ path_to_root }}{{link}}" class="nav-chapters" aria-label="Next chapter: {{title}}">
+              {{title}}
+              <div class="icon-next fa-icon"></div>
+            </a>
+            {{/next}}
+          </nav>
+        </article>
+      </main>
 
-            <nav class="nav-wrapper" aria-label="Page navigation">
-              {{#previous}}
-              <a rel="prev" href="{{ path_to_root }}{{link}}" class="nav-chapters" aria-label="Previous chapter: {{title}}">
-                <div class="icon-prev fa-icon"></div>
-                {{title}}
-              </a>
-              {{/previous}}
-
-              {{#next}}
-              <a rel="next" href="{{ path_to_root }}{{link}}" class="nav-chapters" aria-label="Next chapter: {{title}}">
-                {{title}}
-                <div class="icon-next fa-icon"></div>
-              </a>
-              {{/next}}
-            </nav>
-          </article>
-        </main>
-
-        <div></div>
-
-        <div id="righttoc"></div>
-      </div>
-      <div id="bottomtoc"></div>
+      <aside id="table-of-contents"></aside>
     </div>
 
     <link rel="stylesheet" href="{{ path_to_root }}css/style.css" async>
     {{#each additional_css}}<link rel="stylesheet" href="{{ ../path_to_root }}{{ this }}" async>{{/each}}
 
-    <script defer type="module" src="{{ path_to_root }}book.js" id = "bookjs" data-pathtoroot="{{ path_to_root }}"></script>
-    {{#each additional_js}}<script defer src="{{ ../path_to_root }}{{this}}"></script>{{/each}}
+    <script defer type="module" src="{{ path_to_root }}book.js" id="bookjs" data-pathtoroot="{{ path_to_root }}"></script>
+    {{#each additional_js}}<script defer src="{{ ../path_to_root }}{{ this }}"></script>{{/each}}
   </body>
 </html>

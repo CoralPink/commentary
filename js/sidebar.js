@@ -8,11 +8,11 @@ const ID_SIDEBAR = 'sidebar';
 const ID_TOGGLE_BUTTON = 'sidebar-toggle';
 
 const showSidebar = (write = true) => {
-  document.getElementById(ID_PAGE).style.display = 'grid';
+  document.getElementById(ID_PAGE).classList.add('show-sidebar');
 
   const sidebar = document.getElementById(ID_SIDEBAR);
   sidebar.style.display = 'block';
-  sidebar.setAttribute('aria-hidden', false);
+  sidebar.removeAttribute('aria-hidden');
 
   document.getElementById(ID_TOGGLE_BUTTON).setAttribute('aria-expanded', true);
 
@@ -29,7 +29,7 @@ const showSidebar = (write = true) => {
 };
 
 const hideSidebar = (write = true) => {
-  document.getElementById(ID_PAGE).style.display = 'block';
+  document.getElementById(ID_PAGE).classList.remove('show-sidebar');
 
   const sidebar = document.getElementById(ID_SIDEBAR);
   sidebar.style.display = 'none';

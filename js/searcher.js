@@ -19,9 +19,9 @@ let prevTerms;
 let focusedLi;
 
 const unmarkHandler = () => {
-  const main = document.getElementById('main');
+  const article = document.getElementById('article');
 
-  for (const x of main.querySelectorAll('mark')) {
+  for (const x of article.querySelectorAll('mark')) {
     x.removeEventListener('mouseup', unmarkHandler);
   }
   unmarking();
@@ -51,7 +51,7 @@ const doSearchOrMarkFromUrl = () => {
 
   marking(terms);
 
-  for (const x of main.querySelectorAll('mark')) {
+  for (const x of article.querySelectorAll('mark')) {
     x.addEventListener('mouseup', unmarkHandler, { once: true, passive: true });
   }
 };
@@ -129,7 +129,7 @@ const searchHandler = () => {
 };
 
 const hiddenSearch = () => {
-  ELEM_WRAPPER.classList.add('hidden');
+  ELEM_WRAPPER.style.visibility = 'hidden';
   ELEM_ICON.setAttribute('aria-expanded', 'false');
 
   ELEM_BAR.removeEventListener('keyup', searchHandler);
@@ -140,7 +140,7 @@ const hiddenSearch = () => {
 };
 
 const showSearch = () => {
-  ELEM_WRAPPER.classList.remove('hidden');
+  ELEM_WRAPPER.style.visibility = 'visible';
   ELEM_ICON.setAttribute('aria-expanded', 'true');
 
   ELEM_BAR.addEventListener('keyup', searchHandler, { once: false, passive: true });
@@ -165,7 +165,7 @@ const initSearch = () => {
     console.error(`Error during initialization: ${e}`);
     console.info('The search function is disabled.');
 
-    ELEM_ICON.classList.add('hidden');
+    ELEM_ICON.setAttribute('display', 'none');
     return;
   }
 
@@ -173,17 +173,16 @@ const initSearch = () => {
 
   ELEM_ICON.addEventListener(
     'mouseup',
-    () => (ELEM_WRAPPER.classList.contains('hidden') ? showSearch() : hiddenSearch()),
-    {
-      once: false,
-      passive: true,
+    () => {
+      getComputedStyle(ELEM_WRAPPER) === 'hidden' ? showSearch() : hiddenSearch();
     },
+    { once: false, passive: true },
   );
 
   document.addEventListener(
     'keyup',
     e => {
-      if (ELEM_WRAPPER.classList.contains('hidden')) {
+      if (getComputedStyle(ELEM_WRAPPER) === 'hidden') {
         switch (e.key) {
           case '/':
           case 's':
