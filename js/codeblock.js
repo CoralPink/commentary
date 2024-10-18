@@ -66,12 +66,13 @@ class WorkerPool {
 
 const createClipButton = () => {
   const elem = document.createElement('button');
-  elem.setAttribute('class', 'icon-button');
+  elem.setAttribute('class', 'copy-button');
   elem.setAttribute('aria-label', 'Copy to Clipboard');
 
-  const icon = elem.appendChild(document.createElement('div'));
+  const icon = document.createElement('div');
   icon.setAttribute('class', 'icon-copy fa-icon');
 
+  elem.appendChild(icon);
   return elem;
 };
 
@@ -94,13 +95,13 @@ const copyCode = target => {
 };
 
 export const procCodeBlock = () => {
-  const main = document.getElementById('main');
+  const article = document.getElementById('article');
 
-  if (main === null) {
+  if (article === null) {
     return;
   }
 
-  const codeQuery = Array.from(main.querySelectorAll('pre code')).filter(
+  const codeQuery = Array.from(article.querySelectorAll('pre code')).filter(
     code => !code.classList.contains('language-txt'),
   );
 
@@ -141,7 +142,7 @@ export const procCodeBlock = () => {
     const parent = code.parentNode;
 
     const cb = document.importNode(clipButton, true);
-    cb.addEventListener('mouseup', ev => copyCode(ev.target), { once: false, passive: true });
+    cb.addEventListener('click', ev => copyCode(ev.target), { once: false, passive: true });
 
     parent.insertBefore(cb, parent.firstChild);
   }

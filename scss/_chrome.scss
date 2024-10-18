@@ -26,26 +26,28 @@ pre {
     border: .1em solid var(--quote-border);
   }
 
-  &:hover .icon-button {
+  &:hover .copy-button {
     visibility: visible;
     opacity: 1;
   }
 
-  .icon-button {
+  .copy-button {
     position: absolute;
     top: 0.3rem;
     right: 0;
+    margin: 0 0.4rem;
+    padding: 0.4rem;
+
+    color: var(--sidebar-fg);
+    background-color: var(--theme-popup-bg);
 
     border: 0.1rem solid var(--icons);
     border-radius: 0.4rem;
-    background-color: var(--theme-popup-bg);
-    color: var(--sidebar-fg);
-    cursor: pointer;
-    margin: 0 0.4rem;
-    padding: 0.4rem;
-    visibility: hidden;
+
     opacity: 0;
     transition: opacity 300ms, color 300ms, border-color 300ms, background-color 300ms;
+
+    cursor: pointer;
 
     &:hover {
       color: var(--sidebar-active);
@@ -58,6 +60,7 @@ pre {
       top: -2.7em;
       left: 50%;
       transform: translateX(-50%);
+
       border-radius: 0.8rem;
       padding: 0.5em 1.2em;
       white-space: nowrap;
@@ -65,10 +68,10 @@ pre {
   }
 }
 
-.top-bar {
+#top-bar {
   flex-basis: var.$menu-bar-height;
 
-  .menu-bar {
+  &>#menu {
     position: fixed;
     width: 100dvw;
     height: var.$menu-bar-height;
@@ -81,33 +84,34 @@ pre {
     background-color: var(--bg);
     z-index: 10;
     opacity: 0.92;
-  }
 
-  .left-buttons {
-    margin-left: 1rem;
+    &>#left-buttons {
+      min-width: 0;
+      margin-left: 1rem;
 
-    display: flex;
-    gap: 0.85em;
-  }
+      display: flex;
+      gap: 0.85em;
+    }
 
-  .menu-title {
-    flex: 1;
+    &>#book-title {
+      flex: 1;
 
-    font-family: var.$italic-font;
-    font-size: 0.7em;
-    font-style: italic;
+      font-family: var.$italic-font;
+      font-size: 0.7em;
+      font-style: italic;
 
-    text-align: right;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
+      text-align: right;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
 
-  .right-buttons {
-    margin-right: 1.3rem;
+    &>#right-buttons {
+      margin-right: 1.3rem;
 
-    a {
-      text-decoration: none;
-      color: inherit;
+      &>a {
+        text-decoration: none;
+        color: inherit;
+      }
     }
   }
 }
@@ -190,7 +194,11 @@ pre {
   li {
     list-style-type: none;
 
-    a {
+    &>.section {
+      padding-left: 0.7em;
+    }
+
+    &>a {
       display: block;
       color: var(--sidebar-fg);
       text-decoration: none;
@@ -220,42 +228,42 @@ pre {
 
 .table-wrapper {
   overflow-x: auto; // make wide tables scroll if they overflow
-}
 
-table {
-  margin: 1rem auto;
-  border-collapse: collapse;
-
-  td {
-    border: 0.1rem var(--table-border-color) solid;
-    padding: 0.375rem 0.8125rem;
-  }
-
-  thead {
-    background-color: var(--table-header-bg);
+  &>table {
+    margin: 1rem auto;
+    border-collapse: collapse;
 
     td {
-      font-weight: 700;
-      border: none;
+      border: 0.1rem var(--table-border-color) solid;
+      padding: 0.375rem 0.8125rem;
     }
 
-    th {
-      padding: 0.3rem 0.2rem;
+    thead {
+      background-color: var(--table-header-bg);
 
-      &:empty {
-        display: none;
+      td {
+        font-weight: 700;
+        border: none;
+      }
+
+      th {
+        padding: 0.3rem 0.2rem;
+
+        &:empty {
+          display: none;
+        }
+      }
+
+      tr {
+        border: 0.1rem var(--table-header-bg) solid;
       }
     }
 
-    tr {
-      border: 0.1rem var(--table-header-bg) solid;
-    }
-  }
-
-  tbody {
-    tr {
-      &:nth-child(2n) {
-        background-color: var(--table-alternate-bg);
+    tbody {
+      tr {
+        &:nth-child(2n) {
+          background-color: var(--table-alternate-bg);
+        }
       }
     }
   }
@@ -281,15 +289,4 @@ kbd {
 
   margin: 0 0.14em;
   padding: 0.3em 0.4em;
-}
-
-mark {
-  color: inherit;
-  background: linear-gradient(rgba(0, 0, 0, 0) 64%, var(--search-mark-bg));
-
-  cursor: pointer;
-}
-
-.section {
-  padding-left: 0.7em;
 }

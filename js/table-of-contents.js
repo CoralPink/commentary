@@ -1,22 +1,18 @@
 import { getRootVariableNum } from './css-variables.js';
 
-const mobileMaxWidth = getRootVariableNum('--mobile-max-width')
-
 const ENV_PC = 0;
 const ENV_MOBILE = 1;
 
-const ELEMENT_TOC = {
-  display: ['pagetoc', 'pagetoc-mobile'],
-  toc: ['righttoc', 'bottomtoc'],
-};
+const ELEMENT_TOC = ['righttoc', 'bottomtoc'];
+
+const mobileMaxWidth = getRootVariableNum('--mobile-max-width');
+const isChromium = !!window.chrome;
 
 const tocMap = new Map();
 let observer;
 
 let environment;
 let onlyActive = null;
-
-const isChromium = !!window.chrome;
 
 const addActive = entry => {
   if (onlyActive !== null) {
@@ -68,19 +64,17 @@ const initialize = () => {
         x.isIntersecting ? addActive(x) : removeActive(x);
       }
     },
-    {
-      threshold: 1.0,
-    },
+    { threshold: 1.0 },
   );
 
   environment = window.innerWidth >= mobileMaxWidth ? ENV_PC : ENV_MOBILE;
 
   const nav = document.createElement('nav');
-  nav.setAttribute('id', ELEMENT_TOC.display[environment]);
+  nav.setAttribute('id', 'pagetoc');
   nav.setAttribute('role', 'navigation');
   nav.setAttribute('aria-label', 'Table of Contents');
 
-  for (const el of document.getElementById('main').querySelectorAll('a.header')) {
+  for (const el of document.getElementById('article').querySelectorAll('a.header')) {
     observer.observe(el);
 
     const link = document.createElement('a');
@@ -93,15 +87,16 @@ const initialize = () => {
     tocMap.set(el, link);
   }
 
-  const toc = document.getElementById(ELEMENT_TOC.toc[environment]);
-  toc.setAttribute('display', 'block');
+  const toc = document.getElementById('table-of-contents');
+  toc.classList.add(ELEMENT_TOC[environment]);
   toc.appendChild(nav);
 };
 
 export const tocReset = () => {
-  const toc = document.getElementById(ELEMENT_TOC.toc[environment]);
-  toc.setAttribute('display', 'none');
-  toc.removeChild(document.getElementById(ELEMENT_TOC.display[environment]));
+  const toc = document.getElementById('table-of-contents');
+
+  toc.classList.remove(ELEMENT_TOC[environment]);
+  toc.removeChild(document.getElementById('pagetoc'));
 
   tocMap.clear();
   observer.disconnect();

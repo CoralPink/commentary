@@ -1,11 +1,15 @@
 import { writeLocalStorage } from './storage.js';
 
-const SAVE_STORAGE = 'mdbook-theme';
+const THEME_COLORS = [
+  { id: 'au-lait', label: 'Au Lait' },
+  { id: 'latte', label: 'Latte' },
+  { id: 'frappe', label: 'Frappé' },
+  { id: 'macchiato', label: 'Macchiato' },
+  { id: 'mocha', label: 'Mocha' },
+];
 
-const THEME_LIST = 'theme-list';
 const THEME_SELECTED = 'theme-selected';
-
-const htmlClassList = document.querySelector('html').classList;
+const SAVE_STORAGE = 'mdbook-theme';
 
 const setStyle = () => {
   document.querySelector('meta[name="theme-color"]').content = globalThis.getComputedStyle(
@@ -14,13 +18,13 @@ const setStyle = () => {
 };
 
 const setTheme = next => {
-  const current = htmlClassList.value;
+  const current = document.querySelector('html').classList.value;
 
   if (next === current) {
     return;
   }
 
-  htmlClassList.replace(current, next);
+  document.querySelector('html').classList.replace(current, next);
   setStyle();
 
   const currentButton = document.getElementById(current);
@@ -35,20 +39,49 @@ const setTheme = next => {
 };
 
 export const initTheme = () => {
-  document.querySelector('html').classList.add(htmlClassList.value);
+  document.querySelector('html').classList.add(document.querySelector('html').classList.value);
   setStyle();
 };
 
 export const initThemeSelector = () => {
-  document.getElementById(htmlClassList.value).classList.add(THEME_SELECTED);
+  const themeList = document.createElement('ul');
 
-  document.getElementById(THEME_LIST).addEventListener(
-    'mouseup',
+  themeList.id = 'theme-list';
+  themeList.setAttribute('aria-label', 'Theme selection menu');
+  themeList.setAttribute('role', 'menu');
+  themeList.setAttribute('popover', '');
+
+  const currentTheme = document.documentElement.className;
+
+  for (const theme of THEME_COLORS) {
+    const li = document.createElement('li');
+    li.setAttribute('role', 'none');
+
+    const button = document.createElement('button');
+    button.setAttribute('role', 'menuitem');
+    button.className = 'theme';
+    button.id = theme.id;
+    button.textContent = theme.label;
+
+    li.appendChild(button);
+
+    themeList.appendChild(li);
+
+    if (button.id === currentTheme) {
+      button.classList.add(THEME_SELECTED);
+      button.setAttribute('aria-current', 'true');
+    }
+  }
+  document.getElementById('top-bar').appendChild(themeList);
+  themeList.addEventListener(
+    'click',
     ev => {
-      if (!ev.target.classList.contains('theme')) {
+      const button = ev.target.closest('button.theme');
+
+      if (!button) {
         return;
       }
-      setTheme(ev.target.id);
+      setTheme(button.id);
     },
     { once: false, passive: true },
   );
