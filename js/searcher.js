@@ -22,7 +22,7 @@ const unmarkHandler = () => {
   const article = document.getElementById('article');
 
   for (const x of article.querySelectorAll('mark')) {
-    x.removeEventListener('mouseup', unmarkHandler);
+    x.removeEventListener('click', unmarkHandler);
   }
   unmarking();
   tocReset();
@@ -52,7 +52,7 @@ const doSearchOrMarkFromUrl = () => {
   marking(terms);
 
   for (const x of article.querySelectorAll('mark')) {
-    x.addEventListener('mouseup', unmarkHandler, { once: true, passive: true });
+    x.addEventListener('click', unmarkHandler, { once: true, passive: true });
   }
 };
 
@@ -134,7 +134,7 @@ const hiddenSearch = () => {
 
   ELEM_BAR.removeEventListener('keyup', searchHandler);
   ELEM_RESULTS.removeEventListener('keyup', popupFocus);
-  ELEM_OUTER.removeEventListener('mouseup', searchMouseupHandler);
+  ELEM_OUTER.removeEventListener('click', searchMouseupHandler);
 
   prevTerms = undefined;
 };
@@ -145,13 +145,13 @@ const showSearch = () => {
 
   ELEM_BAR.addEventListener('keyup', searchHandler, { once: false, passive: true });
   ELEM_RESULTS.addEventListener('keyup', popupFocus, { once: false, passive: true });
-  ELEM_OUTER.addEventListener('mouseup', searchMouseupHandler, { once: false, passive: true });
+  ELEM_OUTER.addEventListener('click', searchMouseupHandler, { once: false, passive: true });
 
   ELEM_BAR.select();
 };
 
 const initSearch = () => {
-  ELEM_ICON.removeEventListener('mouseup', initSearch);
+  ELEM_ICON.removeEventListener('click', initSearch);
   document.removeEventListener('keyup', handleKeyup);
 
   try {
@@ -172,7 +172,7 @@ const initSearch = () => {
   showSearch();
 
   ELEM_ICON.addEventListener(
-    'mouseup',
+    'click',
     () => {
       getComputedStyle(ELEM_WRAPPER).visibility === 'hidden' ? showSearch() : hiddenSearch();
     },
@@ -216,7 +216,7 @@ export const startupSearch = root => {
 
   pathToRoot = root;
 
-  ELEM_ICON.addEventListener('mouseup', initSearch, { once: true, passive: true });
+  ELEM_ICON.addEventListener('click', initSearch, { once: true, passive: true });
   document.addEventListener('keyup', handleKeyup, { once: false, passive: true });
 };
 

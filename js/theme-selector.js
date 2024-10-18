@@ -69,17 +69,19 @@ export const initThemeSelector = () => {
 
     if (button.id === currentTheme) {
       button.classList.add(THEME_SELECTED);
+      button.setAttribute('aria-current', 'true');
     }
   }
   document.getElementById('top-bar').appendChild(themeList);
-
   themeList.addEventListener(
-    'mouseup',
+    'click',
     ev => {
-      if (!ev.target.classList.contains('theme')) {
+      const button = ev.target.closest('button.theme');
+
+      if (!button) {
         return;
       }
-      setTheme(ev.target.id);
+      setTheme(button.id);
     },
     { once: false, passive: true },
   );

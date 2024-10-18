@@ -20,7 +20,7 @@ const showSidebar = (write = true) => {
 
   if (active) {
     active.scrollIntoView({ block: 'center' });
-    active.setAttribute('aria-current', 'true');
+    active.setAttribute('aria-current', 'page');
   }
 
   if (write) {
@@ -69,7 +69,7 @@ export const initSidebar = () => {
   document.addEventListener('keyup', toggleHandler, { once: false, passive: true });
   document
     .getElementById(ID_TOGGLE_BUTTON)
-    .addEventListener('mouseup', () => toggleSidebar(), { once: false, passive: true });
+    .addEventListener('click', () => toggleSidebar(), { once: false, passive: true });
 
   window.matchMedia(`(min-width: ${SHOW_SIDEBAR_WIDTH}px)`).addEventListener(
     'change',

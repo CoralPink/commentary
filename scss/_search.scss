@@ -85,4 +85,9 @@ mark {
   background: linear-gradient(rgba(0, 0, 0, 0) 64%, var(--search-mark-bg));
 
   cursor: pointer;
+
+  &:focus {
+    outline: 2px solid var(--links);
+    outline-offset: 2px;
+  }
 }
