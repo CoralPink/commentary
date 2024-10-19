@@ -7,6 +7,8 @@ const ID_PAGE = 'page';
 const ID_SIDEBAR = 'sidebar';
 const ID_TOGGLE_BUTTON = 'sidebar-toggle';
 
+const SAVE_STORAGE = 'mdbook-sidebar';
+
 const showSidebar = (write = true) => {
   document.getElementById(ID_PAGE).classList.add('show-sidebar');
 
@@ -24,7 +26,7 @@ const showSidebar = (write = true) => {
   }
 
   if (write) {
-    writeLocalStorage('mdbook-sidebar', 'visible');
+    writeLocalStorage(SAVE_STORAGE, 'visible');
   }
 };
 
@@ -38,7 +40,7 @@ const hideSidebar = (write = true) => {
   document.getElementById(ID_TOGGLE_BUTTON).setAttribute('aria-expanded', false);
 
   if (write) {
-    writeLocalStorage('mdbook-sidebar', 'hidden');
+    writeLocalStorage(SAVE_STORAGE, 'hidden');
   }
 };
 
@@ -63,7 +65,7 @@ export const initSidebar = () => {
   if (window.innerWidth < mobile_max_width) {
     hideSidebar();
   } else {
-    localStorage.getItem('mdbook-sidebar') === 'hidden' ? hideSidebar(false) : showSidebar(false);
+    localStorage.getItem(SAVE_STORAGE) === 'hidden' ? hideSidebar(false) : showSidebar(false);
   }
 
   document.addEventListener('keyup', toggleHandler, { once: false, passive: true });
