@@ -52,10 +52,6 @@ body {
 }
 
 #sidebar {
-  // The initial state is none, and if necessary, it is changed to block by operation from js.
-  // (I have not tried it in all environments, so I don't know yet if these initial values are correct...)
-  display: none;
-
   scrollbar-color: var(--scrollbar) var(--bg);
 
   ::-webkit-scrollbar {
@@ -65,6 +61,14 @@ body {
   ::-webkit-scrollbar-thumb {
     background-color: var(--scrollbar);
     border-radius: 1rem;
+  }
+
+  // The initial state should be block/none, depending on the screen area.
+  //
+  // This initial value is not necessarily accurate.
+  // (As it does not address the case where a user jumps in with the sidebar closed in a large area.)
+  @media (max-width: var.$mobile-max-width) {
+    display: none;
   }
 }
 
