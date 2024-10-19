@@ -27,11 +27,15 @@
     <meta property="og:site_name" content="Commentary of Dotfiles">
     <meta property="og:description" content="{{ description }}">
 
-    <link rel="stylesheet" href="{{ path_to_root }}css/general.css" async>
+    <link rel="stylesheet" href="{{ path_to_root }}css/general.css">
+    <link rel="preload" href="{{ path_to_root }}css/style.css" as="style" onload="this.rel='stylesheet'">
+
+    <script type="module" src="{{ path_to_root }}book.js" id="bookjs" data-pathtoroot="{{ path_to_root }}" defer></script>
+
+    {{#each additional_css}}<link rel="preload" href="{{ ../path_to_root }}{{ this }} as="style" onload="this.rel='stylesheet'"">{{/each}}
+    {{#each additional_js}}<script src="{{ ../path_to_root }}{{ this }}" defer></script>{{/each}}
   </head>
   <body>
-    {{> header}}
-
     <div id="top-bar">
       <div id="menu">
         <div id="left-buttons">
@@ -104,10 +108,10 @@
       <aside id="table-of-contents"></aside>
     </div>
 
-    <link rel="stylesheet" href="{{ path_to_root }}css/style.css" async>
-    {{#each additional_css}}<link rel="stylesheet" href="{{ ../path_to_root }}{{ this }}" async>{{/each}}
-
-    <script defer type="module" src="{{ path_to_root }}book.js" id="bookjs" data-pathtoroot="{{ path_to_root }}"></script>
-    {{#each additional_js}}<script defer src="{{ ../path_to_root }}{{ this }}"></script>{{/each}}
+    <script>
+      (async()=>{if("serviceWorker"in navigator)
+      try{await navigator.serviceWorker.register("{{path_to_root}}serviceworker.js",{scope:"/commentary/"})}
+      catch(r){console.error(`Registration failed with ${r}`)}})();
+    </script>
   </body>
 </html>
