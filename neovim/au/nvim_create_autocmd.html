@@ -5,11 +5,22 @@
     <title>nvim_create_autocmd - Commentary of Dotfiles</title>
 
     <link rel="dns-prefetch" href="https://www.googletagmanager.com/">
+    <link rel="preconnect" href="https://www.googletagmanager.com/" crossorigin>
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-WMN96QT');</script>
+    
+    <noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WMN96QT" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    
+    <script>
+    (()=>{let e=localStorage.getItem("mdbook-theme");
+    e||(e=matchMedia("(prefers-color-scheme: dark)").matches?"macchiato":"latte"),
+    document.querySelector("html").classList.add(e)})();
+    </script>
 
     <meta name="description" content="WezTerm と Neovim の設定例 (dotfiles) を紹介するサイトです🤗 - This site introduces WezTerm and Neovim dotfiles.">
     <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=2.0">
@@ -32,25 +43,15 @@
     <meta property="og:site_name" content="Commentary of Dotfiles">
     <meta property="og:description" content="WezTerm と Neovim の設定例 (dotfiles) を紹介するサイトです🤗 - This site introduces WezTerm and Neovim dotfiles.">
 
-    <link rel="stylesheet" href="../../css/general.css" async>
+    <link rel="stylesheet" href="../../css/general.css">
+    <link rel="preload" href="../../css/style.css" as="style" onload="this.rel='stylesheet'">
+
+    <script type="module" src="../../book.js" id="bookjs" data-pathtoroot="../../" defer></script>
+
+    
+    
   </head>
   <body>
-    <noscript>
-    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WMN96QT" height="0" width="0" style="display:none;visibility:hidden"></iframe>
-    </noscript>
-    
-    <script>
-    (()=>{let e=localStorage.getItem("mdbook-theme");
-    e||(e=matchMedia("(prefers-color-scheme: dark)").matches?"macchiato":"latte"),
-    document.querySelector("html").classList.add(e)})();
-    </script>
-    
-    <script>
-    (async()=>{if("serviceWorker"in navigator)
-    try{await navigator.serviceWorker.register("../../serviceworker.js",{scope:"/commentary/"})}
-    catch(r){console.error(`Registration failed with ${r}`)}})();
-    </script>
-
     <div id="top-bar">
       <div id="menu">
         <div id="left-buttons">
@@ -381,10 +382,10 @@ Cannot be used with {command}.
       <aside id="table-of-contents"></aside>
     </div>
 
-    <link rel="stylesheet" href="../../css/style.css" async>
-    
-
-    <script defer type="module" src="../../book.js" id="bookjs" data-pathtoroot="../../"></script>
-    
+    <script>
+      (async()=>{if("serviceWorker"in navigator)
+      try{await navigator.serviceWorker.register("../../serviceworker.js",{scope:"/commentary/"})}
+      catch(r){console.error(`Registration failed with ${r}`)}})();
+    </script>
   </body>
 </html>
