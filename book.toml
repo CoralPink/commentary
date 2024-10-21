@@ -10,8 +10,6 @@ text-direction = "ltr"
 create-missing = false
 
 [output.html]
-default-theme = "latte"
-preferred-dark-theme = "macchiato"
 git-repository-url = "https://github.com/CoralPink/commentary"
 site-url = "/commentary/"
 
@@ -40,6 +38,12 @@ after = ["links"]
 
 [preprocessor.tailor]
 
+
+# The following is not used because the same functionality has been moved to `theme-selector.js`.
+
+#[output.html]
+#default-theme = "latte"
+#preferred-dark-theme = "macchiato"
 
 # The following parameter settings are not available for this site.
 # It is not known if it will be possible to enable these settings in the future.
