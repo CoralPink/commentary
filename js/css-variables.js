@@ -1,2 +1,2 @@
 export const getRootVariableNum = name =>
-  Number.parseInt(getComputedStyle(document.documentElement).getPropertyValue(name), 10);
+  Number.parseInt(window.getComputedStyle(document.documentElement).getPropertyValue(name), 10);
