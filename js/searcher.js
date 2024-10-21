@@ -174,7 +174,7 @@ const initSearch = () => {
   ELEM_ICON.addEventListener(
     'click',
     () => {
-      getComputedStyle(ELEM_WRAPPER).visibility === 'hidden' ? showSearch() : hiddenSearch();
+      window.getComputedStyle(ELEM_WRAPPER).visibility === 'hidden' ? showSearch() : hiddenSearch();
     },
     { once: false, passive: true },
   );
@@ -182,7 +182,7 @@ const initSearch = () => {
   document.addEventListener(
     'keyup',
     e => {
-      if (getComputedStyle(ELEM_WRAPPER).visibility === 'hidden') {
+      if (window.getComputedStyle(ELEM_WRAPPER).visibility === 'hidden') {
         switch (e.key) {
           case '/':
           case 's':
