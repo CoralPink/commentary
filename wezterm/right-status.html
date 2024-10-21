@@ -15,12 +15,6 @@
     <noscript>
     <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WMN96QT" height="0" width="0" style="display:none;visibility:hidden"></iframe>
     </noscript>
-    
-    <script>
-    (()=>{let e=localStorage.getItem("mdbook-theme");
-    e||(e=matchMedia("(prefers-color-scheme: dark)").matches?"macchiato":"latte"),
-    document.querySelector("html").classList.add(e)})();
-    </script>
 
     <meta name="description" content="WezTerm と Neovim の設定例 (dotfiles) を紹介するサイトです🤗 - This site introduces WezTerm and Neovim dotfiles.">
     <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=2.0">
@@ -59,7 +53,7 @@
             <div class="icon-sidebar fa-icon"></div>
           </button>
 
-          <button popovertarget="theme-list" class="icon-button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+          <button popovertarget="theme-list" id="theme-selector" class="icon-button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
             <div class="icon-theme fa-icon"></div>
           </button>
 
