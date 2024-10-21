@@ -8,13 +8,18 @@ const THEME_COLORS = [
   { id: 'mocha', label: 'Mocha' },
 ];
 
+const DEFAULT_THEME = THEME_COLORS[1].id;
+const PREFERRED_DARK_THEME = THEME_COLORS[3].id;
+
 const THEME_SELECTED = 'theme-selected';
 const SAVE_STORAGE = 'mdbook-theme';
 
+const ID_THEME_SELECTOR = 'theme-selector';
+
 const setStyle = () => {
-  document.querySelector('meta[name="theme-color"]').content = globalThis.getComputedStyle(
-    document.body,
-  ).backgroundColor;
+  setTimeout(() => {
+    document.querySelector('meta[name="theme-color"]').content = window.getComputedStyle(document.body).backgroundColor;
+  });
 };
 
 const setTheme = next => {
@@ -38,12 +43,7 @@ const setTheme = next => {
   writeLocalStorage(SAVE_STORAGE, next);
 };
 
-export const initTheme = () => {
-  document.querySelector('html').classList.add(document.querySelector('html').classList.value);
-  setStyle();
-};
-
-export const initThemeSelector = () => {
+const initThemeSelector = () => {
   const themeList = document.createElement('ul');
 
   themeList.id = 'theme-list';
@@ -72,7 +72,9 @@ export const initThemeSelector = () => {
       button.setAttribute('aria-current', 'true');
     }
   }
+
   document.getElementById('top-bar').appendChild(themeList);
+
   themeList.addEventListener(
     'click',
     ev => {
@@ -85,4 +87,18 @@ export const initThemeSelector = () => {
     },
     { once: false, passive: true },
   );
+};
+
+export const initThemeColor = () => {
+  let theme = localStorage.getItem('mdbook-theme');
+
+  if (!theme) {
+    theme = matchMedia('(prefers-color-scheme: dark)').matches ? PREFERRED_DARK_THEME : DEFAULT_THEME;
+  }
+  document.querySelector('html').classList.add(theme);
+  setStyle();
+
+  document
+    .getElementById(ID_THEME_SELECTOR)
+    .addEventListener('click', initThemeSelector, { once: true, passive: true });
 };
