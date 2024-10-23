@@ -13,20 +13,12 @@ nvim-cmp の luasnip 補完ソース。
 ```admonish success title=""
 Well, you should see Polythene Pam {{footnote:
 Polythene Pam (by [The Beatles](https://en.wikipedia.org/wiki/The_Beatles)):
-タイトルの "Polythene" は、ポリエチレンの (主にイギリスでの) 別称。
-Lennon は、本作をきつめの Liverpool 訛りで歌っている。
-本作のモチーフについて、Lennon は「とある女性と僕たちを最初にマスコミに露出してくれた、
-イギリス版の Irwin Allen Ginsberg ともいえる男との思い出。
-1963年8月のツアー中に会ったんだけど、僕は女連れで、向こうにも僕に会わせたいという女がいた。
-その女はポリエチレンを身に纏っていると聞いていたけど、本当にそうだった。
-長靴やキルトは着けてない。あれは僕の捏造だ。ポリ袋の中の変態的なセックス。
-とにかく曲のネタが欲しかったんだ」と語っている。
-George Harisson は、テレビシリーズ『The Beatles Anthology』のインタビューで、
-「僕がこの曲を気に入ったのは、すごく Liverpool っぽかったからだ。
-コミカルでありながら、シリアスなところもある曲を書く人間はいなかった。
-この曲はとても上出来なロックンロール・ナンバーだったけど、明らかにジョークなのに、誰も笑わず、
-誰もピンときていないと、もどかしくなってくることもある」と語っている。
-[Wikipedia](https://en.wikipedia.org/wiki/Polythene_Pam)より
+タイトルの "polythene" は、ポリエチレンの (主にイギリスでの) 別称。
+
+1980年、Lennon は Polythene Pam についてこう語っている:「ジャージーのとある女性と、イギリスの
+"[Allen Ginsberg](https://en.wikipedia.org/wiki/Allen_Ginsberg)に対する答えのような男" とのちょっとした出来事を思い出していたんだ。
+ツアー中に彼に会って、彼のアパートに連れて行かれたんだけど、僕は女連れで、向こうにも僕に会わせたいという女がいた。
+彼は彼女が "polythene の服を着ている" と言った。」
 }}
 
 She's so good-looking but she looks like a man
@@ -93,7 +85,13 @@ Get a dose of her in jackboots and kilt
 
 She's killer-diller when she's dressed to the hilt
 
-軍用ブーツとキルトを着けた彼女を見てみなよ
+軍用ブーツとキルトを着けた彼女を見てみなよ{{footnote:
+「これは僕の模造だ。彼女はジャックブーツもキルトも履いていなかった。
+ポリ袋の中の変態的なセックス。とにかく曲のネタが欲しかったんだ。」
+
+彼はまた、この曲のインスピレーションを
+"ジャックブーツとキルトを身にまとった神話的な[Liverpool](https://en.wikipedia.org/wiki/Liverpool) の清掃員" と表現した。
+}}
 
 思いっきり着飾った彼女は とびっきり素晴らしい
 ```
@@ -241,7 +239,16 @@ Yes, you could say she was attactively built
 
 彼女は "The News of the World" に載るような子だよ
 
-そうさ、彼女は魅力的だと言っていい
+そうさ、彼女は魅力的だと言っていい{{footnote:
+この曲は、非常に強い Liverpool 訛りの[Scouse](https://en.wikipedia.org/wiki/Scouse)で歌われている。
+
+Harisson は、テレビシリーズ "The Beatles Anthology" のインタビューで、
+「僕がこの曲を気に入ったのは、すごく Liverpool っぽかったからだ。
+コミカルでありながら、シリアスなところもある曲を書く人間はいなかった。
+この曲はとても上出来なロックンロール・ナンバーだったけど、明らかにジョークなのに、誰も笑わず、
+誰もピンときていないと、もどかしくなってくることもある」と語っている。
+[Wikipedia](https://en.wikipedia.org/wiki/Polythene_Pam)より
+}}
 ```
 
 わたし自身はと言えば、自分のスニペットはほぼ育ててないんですよねー😅
@@ -252,9 +259,19 @@ Yes, you could say she was attactively built
 ```admonish success
 Gonna come out now Ha-ha-ha
 
+今に出てくるよ ははは
+
+<video controls preload="none" poster="img/tokyo-yakei-thumbnail.webp" width="960" height="540">
+  <source src="img/tokyo-yakei.webm" type="video/webm">
+  Your browser does not support the video/webm.
+</video>
+
 Wow look out! it's-
 
-今に出てくるよ ははは😆
+おい見ろ！あれは-
 
-おい見ろ！ あれは-
+<video controls preload="none" poster="img/tokyo-yakei2-thumbnail.webp" width="960" height="540">
+  <source src="img/tokyo-yakei2.webm" type="video/webm">
+  Your browser does not support the video/webm.
+</video>
 ```
