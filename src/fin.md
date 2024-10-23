@@ -161,8 +161,8 @@ Love is all you need
 </div>
 
 <div style="margin-top:2em"></div>
-<nav class="nav-wrapper" aria-label="Page navigation">
-  <a rel="prev" href="outro/wezterm-meet-me.html" class="nav-chapters" aria-label="Previous chapter: WezTerm (Meet Me)">
+<nav id="nav-wrapper" aria-label="Page navigation">
+  <a rel="prev" href="outro/wezterm-meet-me.html" id="nav-chapters" aria-label="Previous chapter: WezTerm (Meet Me)">
     <div class="icon-prev fa-icon"></div>
     WezTerm (Meet Me)
   </a>

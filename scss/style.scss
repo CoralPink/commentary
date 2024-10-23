@@ -1,7 +1,4 @@
-@use 'fonts';
-
-@use 'chrome';
-@use 'headline';
+@use 'presentation';
 
 @use 'catppuccin';
 @use 'additional-color';
@@ -15,4 +12,5 @@
 
 @use 'table-of-contents';
 @use 'footnote';
+@use 'theme-list';
 @use 'search';

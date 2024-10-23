@@ -1,3 +1,6 @@
+@use 'fonts';
+@use 'headline';
+
 @use 'variables' as var;
 
 @view-transition {
@@ -32,6 +35,54 @@ body {
   &::-webkit-scrollbar-thumb {
     background-color: var(--scrollbar);
     border-radius: 0.8rem;
+  }
+}
+
+#top-bar {
+  flex-basis: var.$menu-bar-height;
+
+  &>#menu {
+    position: fixed;
+    width: 100dvw;
+    height: var.$menu-bar-height;
+
+    display: flex;
+    align-items: center;
+    gap: 1em;
+
+    color: var(--icons);
+    background-color: var(--bg);
+    z-index: 10;
+    opacity: 0.92;
+
+    &>#left-buttons {
+      min-width: 0;
+      margin-left: 1rem;
+
+      display: flex;
+      gap: 0.85em;
+    }
+
+    &>#book-title {
+      flex: 1;
+
+      font-family: var.$italic-font;
+      font-size: 0.7em;
+      font-style: italic;
+
+      text-align: right;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    &>#right-buttons {
+      margin-right: 1.3rem;
+
+      &>a {
+        text-decoration: none;
+        color: inherit;
+      }
+    }
   }
 }
 
@@ -103,6 +154,18 @@ article {
   line-height: 1.6;
   word-break: auto-phrase;
 
+  code {
+    &:not(pre code) {
+      font-size: 0.82em;
+
+      color: var(--inline-code-color);
+      background-color: var(--quote-bg);
+
+      padding: .1em .4em;
+      border-radius: 0.4em;
+    }
+  }
+
   a {
 
     &:link,
@@ -137,5 +200,29 @@ article {
     display: flex;
     margin: 1rem auto;
     width: 70%;
+  }
+
+  &>#nav-wrapper {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2em;
+
+    &>#nav-chapters {
+      display: flex;
+      align-items: center;
+
+      font-size: 0.82em;
+      text-align: center;
+      text-decoration: none;
+
+      max-width: 50%;
+      padding: 1em;
+      border-radius: 0.8rem;
+      background-color: var(--sidebar-bg);
+
+      &:hover {
+        background-color: var(--toc-bg);
+      }
+    }
   }
 }
