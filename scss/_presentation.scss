@@ -1,17 +1,5 @@
 @use 'variables' as var;
 
-code {
-  &:not(pre code) {
-    font-size: 0.82em;
-
-    color: var(--inline-code-color);
-    background-color: var(--quote-bg);
-
-    padding: .1em .4em;
-    border-radius: 0.4em;
-  }
-}
-
 pre {
   position: relative;
 
@@ -68,118 +56,12 @@ pre {
   }
 }
 
-#top-bar {
-  flex-basis: var.$menu-bar-height;
-
-  &>#menu {
-    position: fixed;
-    width: 100dvw;
-    height: var.$menu-bar-height;
-
-    display: flex;
-    align-items: center;
-    gap: 1em;
-
-    color: var(--icons);
-    background-color: var(--bg);
-    z-index: 10;
-    opacity: 0.92;
-
-    &>#left-buttons {
-      min-width: 0;
-      margin-left: 1rem;
-
-      display: flex;
-      gap: 0.85em;
-    }
-
-    &>#book-title {
-      flex: 1;
-
-      font-family: var.$italic-font;
-      font-size: 0.7em;
-      font-style: italic;
-
-      text-align: right;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-
-    &>#right-buttons {
-      margin-right: 1.3rem;
-
-      &>a {
-        text-decoration: none;
-        color: inherit;
-      }
-    }
-  }
-}
-
 :popover-open {
   top: var.$menu-bar-height;
 
   color: var(--fg);
   background-color: var(--theme-popup-bg);
   border: 0.1rem solid var(--theme-popup-border);
-}
-
-#theme-list {
-  margin: 0 2.4rem;
-  padding: 0.4rem;
-  list-style-type: none;
-  font-size: 0.7rem;
-
-  border-radius: 0.4rem;
-
-  .theme {
-    width: 100%;
-    border: 0;
-    padding: 0.2rem 1.25rem;
-    line-height: 1.5rem;
-    white-space: nowrap;
-    text-align: left;
-    cursor: pointer;
-    color: var(--fg);
-    background-color: var(--theme-popup-bg);
-
-    &:hover {
-      background-color: var(--theme-hover);
-    }
-  }
-
-  .theme-selected::before {
-    $theme-width: 1rem;
-
-    display: inline-block;
-    content: '✓';
-    margin-left: 0 - $theme-width;
-    width: $theme-width;
-  }
-}
-
-.nav-wrapper {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 2em;
-}
-
-.nav-chapters {
-  display: flex;
-  align-items: center;
-
-  font-size: 0.82em;
-  text-align: center;
-  text-decoration: none;
-
-  max-width: 50%;
-  padding: 1em;
-  border-radius: 0.8rem;
-  background-color: var(--sidebar-bg);
-
-  &:hover {
-    background-color: var(--toc-bg);
-  }
 }
 
 .chapter {
