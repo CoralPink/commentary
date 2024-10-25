@@ -261,7 +261,7 @@ Gonna come out now Ha-ha-ha
 
 今に出てくるよ ははは
 
-<video controls preload="none" poster="img/tokyo-yakei-thumbnail.webp" width="960" height="540">
+<video controls preload="none" poster="img/tokyo-yakei-thumbnail.webp" width="700" height="393">
   <source src="img/tokyo-yakei.webm" type="video/webm">
   Your browser does not support the video/webm.
 </video>
@@ -270,7 +270,7 @@ Wow look out! it's-
 
 おい見ろ！あれは-
 
-<video controls preload="none" poster="img/tokyo-yakei2-thumbnail.webp" width="960" height="540">
+<video controls preload="none" poster="img/tokyo-yakei2-thumbnail.webp" width="700" height="393">
   <source src="img/tokyo-yakei2.webm" type="video/webm">
   Your browser does not support the video/webm.
 </video>
