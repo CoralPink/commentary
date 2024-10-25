@@ -23,11 +23,12 @@ if [ ! -e ./node_modules ]; then
 fi
 bun run compile general.scss ../src/css/general.css
 bun run compile style.scss ../src/css/style.css
-bun run compile catppuccin/au-lait.scss ../src/css/theme/au-lait.css
-bun run compile catppuccin/frappe.scss ../src/css/theme/frappe.css
-bun run compile catppuccin/latte.scss ../src/css/theme/latte.css
-bun run compile catppuccin/macchiato.scss ../src/css/theme/macchiato.css
-bun run compile catppuccin/mocha.scss ../src/css/theme/mocha.css
+for theme in au-lait frappe latte macchiato mocha; do
+  if ! bun run compile "catppuccin/$theme.scss" "../src/css/theme/$theme.css"; then
+    echo "Failed to compile $theme theme"
+    exit 1
+  fi
+done
 pushd
 
 mdbook build --dest-dir commentary

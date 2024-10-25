@@ -42,7 +42,7 @@ const setColorTitleBar = (retry = 0) => {
   // But if it still doesn't work, give up!
 
   if (retry >= COLOR_TITLE_BAR_MAX_RETRY) {
-    console.warning('Failed to set theme color to title bar...');
+    console.warn('Failed to set theme color to title bar...');
     return;
   }
 
