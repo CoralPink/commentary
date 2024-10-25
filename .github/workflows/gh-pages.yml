@@ -164,6 +164,7 @@ jobs:
         with:
           sparse-checkout: |
             scss
+            scss/catppuccin
 
       - name: Setup Bun
         uses: oven-sh/setup-bun@4bc047ad259df6fc24a6c9b0f9a0cb08cf17fbe5 # v2
@@ -177,6 +178,11 @@ jobs:
           bun install --production
           bun run compile general.scss dist/general.css
           bun run compile style.scss dist/style.css
+          bun run compile catppuccin/au-lait.scss dist/theme/au-lait.css
+          bun run compile catppuccin/frappe.scss dist/theme/frappe.css
+          bun run compile catppuccin/latte.scss dist/theme/latte.css
+          bun run compile catppuccin/macchiato.scss dist/theme/macchiato.css
+          bun run compile catppuccin/mocha.scss dist/theme/mocha.css
 
       - name: Upload CSS
         uses: actions/upload-artifact@b4b15b8c7c6ac21ea08fcf65892d2ee8f75cf882 # v4
