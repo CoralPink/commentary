@@ -7,14 +7,16 @@ import { initThemeColor } from './theme-selector.js';
 import initWasm, { attribute_external_links } from './wasm_book.js';
 
 const initialize = () => {
+  const rootPath = document.getElementById('bookjs').dataset.pathtoroot;
+
+  initThemeColor(rootPath);
   initTableOfContents();
   procCodeBlock();
-  initThemeColor();
 
   initWasm().then(
     () => {
       attribute_external_links();
-      startupSearch(document.getElementById('bookjs').dataset.pathtoroot);
+      startupSearch(rootPath);
     },
     err => console.error(err),
   );
