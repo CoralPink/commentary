@@ -7,6 +7,10 @@
   navigation: auto;
 }
 
+:root {
+  --mobile-max-width: #{var.$mobile-max-width};
+}
+
 html {
   scroll-behavior: smooth;
 }

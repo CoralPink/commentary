@@ -1,16 +1,11 @@
+@use 'icons';
+@use 'mdbook-admonish';
 @use 'presentation';
 
-@use 'catppuccin';
-@use 'additional-color';
-@use 'catppuccin-au-lait';
-
-@use 'icons';
-
-@use 'mdbook-admonish';
 @use 'additional-admonish';
-@use 'catppuccin-admonish';
+@use 'additional-color';
 
-@use 'table-of-contents';
 @use 'footnote';
-@use 'theme-list';
 @use 'search';
+@use 'table-of-contents';
+@use 'theme-list';

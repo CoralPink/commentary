@@ -1,5 +1,7 @@
 import { writeLocalStorage } from './storage.js';
+import { getRootVariable } from './css-variables.js';
 
+const CSS_DIRECTORY = 'css/theme';
 const THEME_COLORS = [
   { id: 'au-lait', label: 'Au Lait' },
   { id: 'latte', label: 'Latte' },
@@ -14,12 +16,48 @@ const PREFERRED_DARK_THEME = THEME_COLORS[3].id;
 const THEME_SELECTED = 'theme-selected';
 const SAVE_STORAGE = 'mdbook-theme';
 
+const COLOR_TITLE_BAR_MAX_RETRY = 3;
+
 const ID_THEME_SELECTOR = 'theme-selector';
 
-const setStyle = () => {
+let rootPath;
+
+const unloadStyle = theme => {
+  for (const link of document.querySelectorAll('link[rel="stylesheet"]')) {
+    if (link.href.endsWith(`${CSS_DIRECTORY}/${theme}.css`)) {
+      link.parentNode.removeChild(link);
+    }
+  }
+};
+
+const setColorTitleBar = (retry = 0) => {
+  const color = getRootVariable('--bg');
+
+  if (color) {
+    document.querySelector('meta[name="theme-color"]').content = color;
+    return;
+  }
+
+  // You will not get the CSS variables if the timing is not right, so try several times repeatedly.
+  // But if it still doesn't work, give up!
+
+  if (retry >= COLOR_TITLE_BAR_MAX_RETRY) {
+    console.warning('Failed to set theme color to title bar...');
+    return;
+  }
+
   setTimeout(() => {
-    document.querySelector('meta[name="theme-color"]').content = window.getComputedStyle(document.body).backgroundColor;
+    setColorTitleBar(retry + 1);
   });
+};
+
+const loadStyle = theme => {
+  const link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.href = `${rootPath}${CSS_DIRECTORY}/${theme}.css`;
+
+  document.head.appendChild(link);
+  setColorTitleBar();
 };
 
 const setTheme = next => {
@@ -30,7 +68,10 @@ const setTheme = next => {
   }
 
   document.querySelector('html').classList.replace(current, next);
-  setStyle();
+
+  // Although it seems irregular, unloading takes place first.
+  unloadStyle(current);
+  loadStyle(next);
 
   const currentButton = document.getElementById(current);
   currentButton.classList.remove(THEME_SELECTED);
@@ -89,14 +130,16 @@ const initThemeSelector = () => {
   );
 };
 
-export const initThemeColor = () => {
+export const initThemeColor = root => {
+  rootPath = root;
+
   let theme = localStorage.getItem('mdbook-theme');
 
   if (!theme) {
     theme = matchMedia('(prefers-color-scheme: dark)').matches ? PREFERRED_DARK_THEME : DEFAULT_THEME;
   }
   document.querySelector('html').classList.add(theme);
-  setStyle();
+  loadStyle(theme);
 
   document
     .getElementById(ID_THEME_SELECTOR)
