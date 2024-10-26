@@ -67,11 +67,11 @@ const setTheme = next => {
     return;
   }
 
-  document.querySelector('html').classList.replace(current, next);
-
   // Although it seems irregular, unloading takes place first.
   unloadStyle(current);
+
   loadStyle(next);
+  document.querySelector('html').classList.replace(current, next);
 
   const currentButton = document.getElementById(current);
   currentButton.classList.remove(THEME_SELECTED);
@@ -115,6 +115,7 @@ const initThemeSelector = () => {
   }
 
   document.getElementById('top-bar').appendChild(themeList);
+  document.body.style.transition = 'background-color 0.5s ease';
 
   themeList.addEventListener(
     'click',

@@ -55,7 +55,8 @@ body {
     gap: 1em;
 
     color: var(--icons);
-    background-color: var(--bg);
+    background-color: inherit;
+
     z-index: 10;
     opacity: 0.92;
 
