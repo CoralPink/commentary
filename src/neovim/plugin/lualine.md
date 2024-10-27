@@ -227,27 +227,32 @@ CoralPink は
 ~~~admonish quote title=""
 Hey, CaP..., you read me...?
 
-(キャップ...、聞こえるか...?)
+キャップ...、聞こえるか...?
 ~~~
 
 ~~~admonish quote title=""
 ...It's nvim Trainer. Can you hear me...?
 
-(...nvimトレーナー
+...nvimトレーナー
 {{footnote:
 このサイトの
 [10章](../options/options.html)・
 [11章](../au/automatic-commands.html)の主人公。(はじめてしゃべった😮)
 みらいのチャンピオン。
 }}
-だ。聞こえるか...?)
+だ。聞こえるか...?
 ~~~
 
 ~~~admonish quote title=""
-On your next.
+On your radar.
 
-(次を見てみろ。)
+君の視界にいるよ。
 ~~~
+
+<video controls preload="none" poster="img/nihonbashi-parade-thumbnail.webp" width="700" height="393">
+  <source src="img/nihonbashi-parade.webm" type="video/webm">
+  Your browser does not support the video/webm.
+</video>
 
 ~~~admonish info title=":h showmode"
 ```txt
