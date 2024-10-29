@@ -61,7 +61,7 @@ Clapton は「"While My Guitar Gently Weeps" はグループ内での George の
 もはや通ってるのかと言われるぐらい能天気に来まくってます。
 
 ここ数ヶ月ぐらいは池のボート乗り場を改修していて、しばらくはスワン{{footnote:
-Harisson は [Cream](https://en.wikipedia.org/wiki/Cream_(band)) のレコーディングに参加することで Crapton に応酬した。
+Harisson は [Cream](https://en.wikipedia.org/wiki/Cream_(band)) のレコーディングに参加することで Clapton に応酬した。
 「Eric が曲を書くのを手伝ったんだ。Cream のアルバムのために曲を考えなければならなかったんだけど、Eric はまだ書いていなかったんだ。
 僕たちは向かい合って仕事をしていて、僕は歌詞を書いていた。Eric はそれを逆さまにして読んで、'BADGE って何だ？'
 (手書きの 'Bridge' という文字を読み間違えた)。その後、酔っ払った Ringo が入ってきて、
