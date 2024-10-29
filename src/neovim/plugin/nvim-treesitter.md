@@ -175,6 +175,7 @@ config = string or function, -- Specifies code to run after this plugin is loade
 ```admonish warning
 もしここでエラーが起きるようであれば、もう一度`C compiler`を確認してみてください😣
 ```
+
 |||
 |:---:|:---:|
 |**default**|![color1](img/color1.webp)|
