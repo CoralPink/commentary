@@ -3,6 +3,6 @@
     "fzf": "0.5.2"
   },
   "devDependencies": {
-    "@happy-dom/global-registrator": "15.7.4"
+    "@happy-dom/global-registrator": "15.8.0"
   }
 }
