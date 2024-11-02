@@ -197,7 +197,16 @@ ensure_dependencies = true, -- Should packer install plugin dependencies?
 
 「やることが多すぎる。それは間違いない。」{{footnote: たまたま Elon Musk も同じようなこと言ってた。}}
 
-あまりにも話が進まない...❗手詰まり感がすごい...😰
+```admonish warning title=""
+Everybody had a hard year{{footnote: I've Got a Feeling (by [The Beatles](https://en.wikipedia.org/wiki/The_Beatles)):
+それぞれ別に制作されていた
+McCartney の "I've Got a Feeling" と Lennon の "Everybody Had a Hard Year" の2曲を組み合わせて完成した楽曲であり、
+1969年1月30日、[rooftop concert](https://en.wikipedia.org/wiki/The_Beatles%27_rooftop_concert) で収録された。
+[Wikipedia](https://en.wikipedia.org/wiki/I%27ve_Got_a_Feeling)より
+}}
+
+みんな大変な年だった
+```
 
 ちょっともう...、本当に...、気が遠くなってしまって...。
 
@@ -246,6 +255,12 @@ Hey, CaP..., you read me...?
 
 ...❗
 
+```admonish warning title=""
+Everybody had a good time
+
+みんな嬉しい瞬間があった
+```
+
 ~~~admonish question title=""
 On your radar.{{footnote:
 アメリカメディアや業界関係者の間では、
@@ -283,6 +298,12 @@ Emmy Awards では同賞創設以来過去最多となる合計18冠を獲得。
 </video>
 ~~~
 
+```admonish warning title=""
+Everybody had a wet dream
+
+みんな熱い夢を見た
+```
+
 ~~~admonish info title=":h showmode"
 ```txt
 'showmode' 'smd'    boolean (default: on)
@@ -307,13 +328,17 @@ vim.api.nvim_set_option('showmode', false)
 ```
 ~~~
 
-```admonish success title="Assemble"
 ![show-mode-false](img/show-mode-false.webp)
 
 `lualine.nvim`のカスタマイズについては、仲間をふやして次の街で❗😉
+
+```admonish warning title=""
+Everybody saw the sunshine
+
+みんな陽の光を浴びた
 ```
 
-```admonish success title=""
+```admonish success title="Assemble"
 <div style="text-align: center">
   NVIM TRAINER IS BACK!!
 
