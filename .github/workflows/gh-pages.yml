@@ -282,6 +282,8 @@ jobs:
           rm highlight.css
           rm highlight.js
           rm searcher.js
+          rm toc.html
+          rm toc.js
           rm tomorrow-night.css
           rm css/chrome.css
           rm css/variables.css
