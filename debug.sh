@@ -41,6 +41,8 @@ mdbook build --dest-dir commentary
 #rm commentary/highlight.css
 #rm commentary/highlight.js
 #rm commentary/searcher.js
+#rm commentary/toc.html
+#rm commentary/toc.js
 #rm commentary/tomorrow-night.css
 #rm commentary/css/chrome.css
 #rm commentary/css/variables.css
