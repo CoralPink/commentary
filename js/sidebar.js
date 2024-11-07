@@ -1,15 +1,54 @@
 import { writeLocalStorage } from './storage.js';
 import { getRootVariableNum } from './css-variables.js';
 
+import { TABLE_OF_CONTENTS } from './sidebar-list.js';
+
 const SHOW_SIDEBAR_WIDTH = 1200;
 
 const ID_PAGE = 'page';
 const ID_SIDEBAR = 'sidebar';
+const ID_SCROLLBOX = 'sidebar-scrollbox';
 const ID_TOGGLE_BUTTON = 'sidebar-toggle';
 
 const SAVE_STORAGE = 'mdbook-sidebar';
 
+let rootPath;
+let isInitialize = false;
+
+/*
+ * TODO: Referring to the mdbook v0.4.41, we will first try to force them to incorporate it!!
+ */
+const getCurrentUrl = () => {
+  const current = document.location.href.toString();
+  return new URL(current.endsWith('/') ? `${current} + 'index.html` : current);
+};
+
+const initContent = () => {
+  if (isInitialize) {
+    return;
+  }
+  isInitialize = true;
+
+  const currentUrl = getCurrentUrl();
+
+  const sidebarScrollbox = document.getElementById(ID_SCROLLBOX);
+  sidebarScrollbox.innerHTML = TABLE_OF_CONTENTS;
+
+  const rootUrl = new URL(rootPath, window.location.href);
+
+  for (const link of sidebarScrollbox.querySelectorAll('a')) {
+    const linkUrl = new URL(link.getAttribute('href'), rootUrl);
+
+    if (linkUrl.pathname === currentUrl.pathname) {
+      link.classList.add('active');
+    }
+    link.href = linkUrl.href;
+  }
+};
+
 const showSidebar = (write = true) => {
+  initContent();
+
   document.getElementById(ID_PAGE).classList.add('show-sidebar');
 
   const sidebar = document.getElementById(ID_SIDEBAR);
@@ -17,7 +56,6 @@ const showSidebar = (write = true) => {
   sidebar.removeAttribute('aria-hidden');
 
   document.getElementById(ID_TOGGLE_BUTTON).setAttribute('aria-expanded', true);
-
   const active = sidebar.querySelector('.active');
 
   if (active) {
@@ -59,7 +97,9 @@ const toggleHandler = ev => {
   }
 };
 
-export const initSidebar = () => {
+export const initSidebar = root => {
+  rootPath = root;
+
   const mobile_max_width = getRootVariableNum('--mobile-max-width');
 
   if (window.innerWidth < mobile_max_width) {
