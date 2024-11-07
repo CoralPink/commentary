@@ -56,6 +56,7 @@ const showSidebar = (write = true) => {
   sidebar.removeAttribute('aria-hidden');
 
   document.getElementById(ID_TOGGLE_BUTTON).setAttribute('aria-expanded', true);
+
   const active = sidebar.querySelector('.active');
 
   if (active) {
