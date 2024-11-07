@@ -23,7 +23,7 @@ const initialize = () => {
 };
 
 (() => {
-  initSidebar();
+  initSidebar(document.getElementById('bookjs').dataset.pathtoroot);
   initGlobalSearch();
 
   document.addEventListener('DOMContentLoaded', initialize, { once: true, passive: true });
