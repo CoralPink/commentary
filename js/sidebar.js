@@ -20,7 +20,7 @@ let isInitialize = false;
  */
 const getCurrentUrl = () => {
   const current = document.location.href.toString();
-  return new URL(current.endsWith('/') ? `${current} + 'index.html` : current);
+  return new URL(current.endsWith('/') ? `${current}index.html` : current);
 };
 
 const initContent = () => {
