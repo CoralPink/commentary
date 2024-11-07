@@ -16,6 +16,9 @@
 
     // Run lock file maintenance (updates) early Monday mornings.
     ":maintainLockFilesWeekly",
+
+    // Preserve (but continue to upgrade) any existing SemVer ranges.
+    ":preserveSemverRanges",
   ],
   "labels": [
     "dependencies"
