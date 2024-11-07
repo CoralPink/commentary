@@ -44,6 +44,7 @@ const initContent = () => {
     }
     link.href = linkUrl.href;
   }
+  sidebarScrollbox.setAttribute('aria-busy', 'false');
 };
 
 const showSidebar = (write = true) => {
