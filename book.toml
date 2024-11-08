@@ -13,10 +13,6 @@ create-missing = false
 git-repository-url = "https://github.com/CoralPink/commentary"
 site-url = "/commentary/"
 
-[output.html.fold]
-enable = false
-level = 2
-
 [output.html.playground]
 copy-js = false
 runnable = false
@@ -38,6 +34,12 @@ after = ["links"]
 
 [preprocessor.tailor]
 
+
+# Does not work on this site.
+
+#[output.html.fold]
+#enable = false
+#level = 0
 
 # The following is not used because the same functionality has been moved to `theme-selector.js`.
 
