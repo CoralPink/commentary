@@ -54,7 +54,7 @@ const initContent = async () => {
     if (linkUrl.pathname === currentUrl.pathname) {
       link.classList.add('active');
 
-      link.scrollIntoView({ block: 'center', behavior: 'smooth' });
+      link.scrollIntoView({ block: 'center' });
       link.setAttribute('aria-current', 'page');
     }
     link.href = linkUrl.href;
