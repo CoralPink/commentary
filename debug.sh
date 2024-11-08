@@ -4,7 +4,7 @@ pushd rs/wasm
 wasm-pack build --target web
 cp pkg/wasm_book.js ../../js
 cp pkg/wasm_book_bg.wasm ../../src
-pushd
+popd
 
 pushd js
 if [ ! -e ./node_modules ]; then
@@ -15,7 +15,7 @@ if [ ! -e ./highlight.js ]; then
 fi
 bun run build.js
 cp -r dist/. ../src/
-pushd
+popd
 
 pushd scss
 if [ ! -e ./node_modules ]; then
@@ -29,26 +29,32 @@ for theme in au-lait frappe latte macchiato mocha; do
     exit 1
   fi
 done
-pushd
+popd
 
 mdbook build --dest-dir commentary
 
-#rm commentary/ayu-highlight.css
-#rm commentary/clipboard.min.js
-#rm commentary/elasticlunr.min.js
-#rm commentary/favicon.png
-#rm commentary/fonts.css
-#rm commentary/highlight.css
-#rm commentary/highlight.js
-#rm commentary/searcher.js
-#rm commentary/toc.html
-#rm commentary/toc.js
-#rm commentary/tomorrow-night.css
-#rm commentary/css/chrome.css
-#rm commentary/css/variables.css
-#rm commentary/mark.min.js
-#rm -rf commentary/searchindex.js
-#rm -rf commentary/FontAwesome
-#rm -rf commentary/fonts
+pushd commentary
+sed -e 's/<li class="chapter-item expanded ">/<li class="chapter-item">/g' -e 's/ target="_parent"//g' toc.html > pagelist.html
+popd
+
+#pushd commentary
+#rm ayu-highlight.css
+#rm clipboard.min.js
+#rm elasticlunr.min.js
+#rm favicon.png
+#rm fonts.css
+#rm highlight.css
+#rm highlight.js
+#rm searcher.js
+#rm toc.html
+#rm toc.js
+#rm tomorrow-night.css
+#rm css/chrome.css
+#rm css/variables.css
+#rm mark.min.js
+#rm -rf searchindex.js
+#rm -rf FontAwesome
+#rm -rf fonts
+#popd
 
 echo '\n🐥 complete!'

@@ -1,7 +1,7 @@
 import { writeLocalStorage } from './storage.js';
 import { getRootVariableNum } from './css-variables.js';
 
-import { TABLE_OF_CONTENTS } from './sidebar-list.js';
+const PAGE_LIST = 'pagelist.html';
 
 const SHOW_SIDEBAR_WIDTH = 1200;
 
@@ -13,34 +13,49 @@ const ID_TOGGLE_BUTTON = 'sidebar-toggle';
 const SAVE_STORAGE = 'mdbook-sidebar';
 
 let rootPath;
-let isInitialize = false;
+let isInitialized = false;
 
-/*
- * TODO: Referring to the mdbook v0.4.41, we will first try to force them to incorporate it!!
- */
 const getCurrentUrl = () => {
   const current = document.location.href.toString();
   return new URL(current.endsWith('/') ? `${current}index.html` : current);
 };
 
-const initContent = () => {
-  if (isInitialize) {
+const loadSitemap = async () => {
+  const response = await fetch(`${rootPath}${PAGE_LIST}`);
+
+  if (!response.ok) {
+    throw new Error(`Failed to fetch ${rootPath}${PAGE_LIST}: HTTP ${response.status}`);
+  }
+  return await response.text();
+};
+
+const initContent = async () => {
+  if (isInitialized) {
     return;
   }
-  isInitialize = true;
-
-  const currentUrl = getCurrentUrl();
-
-  const sidebarScrollbox = document.getElementById(ID_SCROLLBOX);
-  sidebarScrollbox.innerHTML = TABLE_OF_CONTENTS;
+  isInitialized = true;
 
   const rootUrl = new URL(rootPath, window.location.href);
+  const currentUrl = getCurrentUrl();
+
+  try {
+    document.getElementById(ID_SIDEBAR).insertAdjacentHTML('afterbegin', await loadSitemap());
+  } catch (err) {
+    document.getElementById(ID_SIDEBAR).insertAdjacentHTML('afterbegin', '<p>Error loading sidebar content.</p>');
+    console.error(`Failed to load pagelist - ${err.message}`);
+    return;
+  }
+
+  const sidebarScrollbox = document.getElementById(ID_SCROLLBOX);
 
   for (const link of sidebarScrollbox.querySelectorAll('a')) {
     const linkUrl = new URL(link.getAttribute('href'), rootUrl);
 
     if (linkUrl.pathname === currentUrl.pathname) {
       link.classList.add('active');
+
+      link.scrollIntoView({ block: 'center' });
+      link.setAttribute('aria-current', 'page');
     }
     link.href = linkUrl.href;
   }
@@ -57,13 +72,6 @@ const showSidebar = (write = true) => {
   sidebar.removeAttribute('aria-hidden');
 
   document.getElementById(ID_TOGGLE_BUTTON).setAttribute('aria-expanded', true);
-
-  const active = sidebar.querySelector('.active');
-
-  if (active) {
-    active.scrollIntoView({ block: 'center' });
-    active.setAttribute('aria-current', 'page');
-  }
 
   if (write) {
     writeLocalStorage(SAVE_STORAGE, 'visible');
