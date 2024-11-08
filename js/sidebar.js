@@ -13,7 +13,7 @@ const ID_TOGGLE_BUTTON = 'sidebar-toggle';
 const SAVE_STORAGE = 'mdbook-sidebar';
 
 let rootPath;
-let isInitialize = false;
+let isInitialized = false;
 
 const getCurrentUrl = () => {
   const current = document.location.href.toString();
@@ -24,16 +24,16 @@ const loadSitemap = async () => {
   const response = await fetch(`${rootPath}${PAGE_LIST}`);
 
   if (!response.ok) {
-    throw new Error(`status: ${response.status}`);
+    throw new Error(`Failed to fetch ${rootPath}${PAGE_LIST}: HTTP ${response.status}`);
   }
   return await response.text();
 };
 
 const initContent = async () => {
-  if (isInitialize) {
+  if (isInitialized) {
     return;
   }
-  isInitialize = true;
+  isInitialized = true;
 
   const rootUrl = new URL(rootPath, window.location.href);
   const currentUrl = getCurrentUrl();
@@ -41,6 +41,7 @@ const initContent = async () => {
   try {
     document.getElementById(ID_SIDEBAR).insertAdjacentHTML('afterbegin', await loadSitemap());
   } catch (err) {
+    document.getElementById(ID_SIDEBAR).insertAdjacentHTML('afterbegin', '<p>Error loading sidebar content.</p>');
     console.error(`Failed to load pagelist - ${err.message}`);
     return;
   }
@@ -53,7 +54,7 @@ const initContent = async () => {
     if (linkUrl.pathname === currentUrl.pathname) {
       link.classList.add('active');
 
-      link.scrollIntoView({ block: 'center' });
+      link.scrollIntoView({ block: 'center', behavior: 'smooth' });
       link.setAttribute('aria-current', 'page');
     }
     link.href = linkUrl.href;
