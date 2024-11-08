@@ -24,7 +24,7 @@ const loadSitemap = async () => {
   const response = await fetch(`${rootPath}${PAGE_LIST}`);
 
   if (!response.ok) {
-    throw new Error(`status: ${response.status})`);
+    throw new Error(`status: ${response.status}`);
   }
   return await response.text();
 };
