@@ -265,11 +265,16 @@ jobs:
       - name: Setup mdBook
         uses: peaceiris/actions-mdbook@ee69d230fe19748b7abf22df32acaa93833fad08 # v2
         with:
-          mdbook-version: "0.4.41"
+          mdbook-version: "0.4.42"
 
       - name: Build mdBook
         run: |
           mdbook build
+
+      - name: Generate Page List
+        working-directory: book
+        run: |
+          sed -e 's/<li class="chapter-item expanded ">/<li class="chapter-item">/g' -e 's/ target="_parent"//g' toc.html > pagelist.html
 
       - name: Remove Unneeded Files
         working-directory: book
