@@ -336,11 +336,11 @@ McCartney は、「メドレーをちょっと意味のある連句で締めた�
 
 <div style="margin-top:2em"></div>
 <nav id="nav-wrapper" aria-label="Page navigation">
-  <a rel="prev" href="../../neovim/lsp/copilot-cmp.html" id="nav-chapters" aria-label="Previous chapter: copilot-cmp">
+  <a rel="prev" href="../../neovim/lsp/copilot-cmp.html" class="chapters" id="prev" aria-label="Previous chapter: copilot-cmp">
     <div class="icon-prev fa-icon"></div>
     copilot-cmp
   </a>
-  <a rel="next" href="../../neovim/lsp/fidget.html" id="nav-chapters" aria-label="Next chapter: fidget.nvim">
+  <a rel="next" href="../../neovim/lsp/fidget.html" class="chapters" id="next" aria-label="Next chapter: fidget.nvim">
     fidget.nvim
     <div class="icon-next fa-icon"></div>
   </a>

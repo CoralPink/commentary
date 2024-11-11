@@ -17,6 +17,7 @@ const THEME_SELECTED = 'theme-selected';
 const SAVE_STORAGE = 'mdbook-theme';
 
 const COLOR_TITLE_BAR_MAX_RETRY = 3;
+const COLOR_TITLE_BAR_RETRY_DELAY_TIME = 8;
 
 const ID_THEME_SELECTOR = 'theme-selector';
 
@@ -48,7 +49,7 @@ const setColorTitleBar = (retry = 0) => {
 
   setTimeout(() => {
     setColorTitleBar(retry + 1);
-  });
+  }, COLOR_TITLE_BAR_RETRY_DELAY_TIME);
 };
 
 const loadStyle = theme => {

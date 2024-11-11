@@ -26,4 +26,3 @@ I just had to let it go
 
 ぼくはもう手放すしかなかったんだ
 ```
-
