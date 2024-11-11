@@ -8,8 +8,7 @@
   font-family: var.$italic-font;
   font-style: italic;
 
-  margin-top: 0.75rem - var.$menu-bar-height;
-  padding-top: var.$menu-bar-height;
+  scroll-margin-top: var.$menu-bar-height;
 
   &:target {
     &::before {
