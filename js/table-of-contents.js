@@ -6,6 +6,7 @@ const ENV_MOBILE = 1;
 const ELEMENT_TOC = ['righttoc', 'bottomtoc'];
 
 const mobileMaxWidth = getRootVariableNum('--mobile-max-width');
+const isChromium = !!window.chrome;
 
 const tocMap = new Map();
 let observer;
@@ -26,9 +27,14 @@ const addActive = entry => {
     return;
   }
 
-  // TODO: After a page jump on the iPhone, the user is sometimes unintentionally taken to the end of the page.
-  //       We will see if we can prevent this by using 'scrollend'.
-  active.addEventListener('scrollend', ev => ev.scrollIntoView({ inline: 'center' }), { once: true, passive: true });
+  // TODO: Only chromium operates differently, so the process is temporarily divided and dealt with as an emergency measure.
+  //       However, even this is not sufficient...
+  if (isChromium) {
+    active.addEventListener('scrollend', ev => ev.scrollIntoView({ inline: 'center' }), { once: true, passive: true });
+    return;
+  }
+
+  active.scrollIntoView({ inline: 'center' });
 };
 
 const removeActive = entry => {
