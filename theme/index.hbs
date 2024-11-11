@@ -85,13 +85,13 @@
 
           <nav id="nav-wrapper" aria-label="Page navigation">
             {{#previous}}
-            <a rel="prev" href="{{ path_to_root }}{{link}}" id="nav-chapters" aria-label="Previous chapter: {{title}}">
+            <a rel="prev" href="{{ path_to_root }}{{link}}" class="chapters" id="prev" aria-label="Previous chapter: {{title}}">
               <div class="icon-prev fa-icon"></div>
               {{title}}
             </a>
             {{/previous}}
             {{#next}}
-            <a rel="next" href="{{ path_to_root }}{{link}}" id="nav-chapters" aria-label="Next chapter: {{title}}">
+            <a rel="next" href="{{ path_to_root }}{{link}}" class="chapters" id="next" aria-label="Next chapter: {{title}}">
               {{title}}
               <div class="icon-next fa-icon"></div>
             </a>

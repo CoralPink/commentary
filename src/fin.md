@@ -108,7 +108,7 @@ Love is all you need
 
 <div style="margin-top:7em"></div>
 
-<div class="footnote-definition">
+<div class="ft-definition">
 <p>All You Need Is Love (by <a href="https://en.wikipedia.org/wiki/The_Beatles">The Beatles</a>):
 は、1967年7月にアルバム未収録シングルとしてリリースされた。</p>
 <p>John Lennon によって書かれ、Lennon-McCartney としてクレジットされている。
@@ -118,7 +118,7 @@ Love is all you need
 <p>この番組は衛星を通じて放送され、25カ国で4億人以上の人々に視聴された。</p>
 </div>
 
-<div class="footnote-definition">
+<div class="ft-definition">
 <p>Lennon の歌詞は、番組の国際的な視聴者に配慮して意図的に単純化され、
 <a href="https://en.wikipedia.org/wiki/Summer_of_Love">Summer of Love</a>にまつわる
 <a href="https://en.wikipedia.org/wiki/Utopia">Utopia</a>の理想を捉えたものだった。</p>
@@ -131,7 +131,7 @@ Love is all you need
 <a href="https://en.wikipedia.org/wiki/She_Loves_You">She Loves You</a>の引用で終わる。</p>
 </div>
 
-<div class="footnote-definition">
+<div class="ft-definition">
 <p>The Beatles は (ドラムセットの後ろにいた Starr を除いて) 高いスツールに座り、13人編成のオーケストラを従えた。
 バンドは床に座った友人や知人に囲まれ、フェードアウトの間、リフレインに合わせて一緒に歌った。</p>
 <p>これには
@@ -145,14 +145,14 @@ Love is all you need
 </p>
 </div>
 
-<div class="footnote-definition">
+<div class="ft-definition">
 <p>この曲の愛の重要性の提唱は、1965年に Lennon が
 <a href="https://en.wikipedia.org/wiki/The_Word_(song)">The Word</a>の歌詞でこの考えを述べたこと、
 そして Harisson が<a href="https://en.wikipedia.org/wiki/Within_You_Without_You">Within You Without You</a>の中で
 「僕らの愛があれば、世界を救うことができる」と宣言したことに続くものであった。</p>
 </div>
 
-<div class="footnote-definition">
+<div class="ft-definition">
 <p>The Beatles のマネージャー Brian Epstein は、このパフォーマンスをバンドの "最高の" 瞬間であると評した。</p>
 <p>また、"Melody Maker" 誌に寄せた声明の中で次のように述べている:
 「インスピレーションに満ちた曲で、彼らは本当に世界にメッセージを伝えたかったんだ。
@@ -162,11 +162,12 @@ Love is all you need
 
 <div style="margin-top:2em"></div>
 <nav id="nav-wrapper" aria-label="Page navigation">
-  <a rel="prev" href="outro/wezterm-meet-me.html" id="nav-chapters" aria-label="Previous chapter: WezTerm (Meet Me)">
+  <a rel="prev" href="outro/wezterm-meet-me.html" class="chapters" id="prev" aria-label="Previous chapter: WezTerm (Meet Me)">
     <div class="icon-prev fa-icon"></div>
     WezTerm (Meet Me)
   </a>
 </nav>
+
 <div style="margin-top:140em"></div>
 
 ![風の電話1](img/denwa1.webp)

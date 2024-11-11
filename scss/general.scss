@@ -181,14 +181,8 @@ article {
     }
 
     &.header {
-      &:link {
-        color: var(--fg);
-        text-decoration: none;
-      }
-
-      &:visited {
-        color: var(--fg);
-      }
+      color: var(--fg);
+      text-decoration: none;
     }
   }
 
@@ -209,10 +203,11 @@ article {
 
   &>#nav-wrapper {
     display: flex;
-    justify-content: space-between;
+
+    margin-top: 2em;
     margin-bottom: 2em;
 
-    &>#nav-chapters {
+    &>.chapters {
       display: flex;
       align-items: center;
 
@@ -228,6 +223,14 @@ article {
       &:hover {
         background-color: var(--toc-bg);
       }
+    }
+
+    &>#prev {
+      margin-right: auto;
+    }
+
+    &>#next {
+      margin-left: auto;
     }
   }
 }
