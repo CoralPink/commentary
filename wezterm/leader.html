@@ -105,7 +105,7 @@
 </div>
 <p><code>Leader</code>キーという概念は<code>WezTerm</code>特有のものではく、<code>tmux</code>や<code>vim</code>など古参のソフトウェアでも用いられています。</p>
 <p>WezTerm でのデフォルトは<kbd>Ctrl-a</kbd>です。
-<sup class="footnote-reference"><a name="to-footnote-1"><a href="#1">1</a></a></sup></p>
+<sup class="ft-reference"><a name="to-ft-1" href="#ft-1">1</a></sup></p>
 <div id="admonition-note" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-title">
 <div class="admonition-title">
 <div id="admonition-note-title">
@@ -152,7 +152,7 @@
 </div>
 <div>
 <p>macOSでUS配列なのに日本語IME使うような環境
-<sup class="footnote-reference"><a name="to-footnote-2"><a href="#2">2</a></a></sup>
+<sup class="ft-reference"><a name="to-ft-2" href="#ft-2">2</a></sup>
 では<kbd>Ctrl-Space</kbd>が入力ソースの切り替えに割り当てられています。</p>
 <p>OSのショートカットキー等も含め、あらかじめ確認しておきましょう。</p>
 <p>他のと被っちゃうと困っちゃいます。</p>
@@ -217,7 +217,7 @@ or until it has been active for the duration specified by <code>timeout_millisec
 </div>
 <div>
 <p><code>ALT|CTRL</code>は<kbd>Alt</kbd>キーと<kbd>Ctrl</kbd>キーを同時押しです。</p>
-<p>さらに<code>"</code>を押せと言われれば<kbd>Shift</kbd>キーを押しながら<kbd>'</kbd>です。<sup class="footnote-reference"><a name="to-footnote-3"><a href="#3">3</a></a></sup></p>
+<p>さらに<code>"</code>を押せと言われれば<kbd>Shift</kbd>キーを押しながら<kbd>'</kbd>です。<sup class="ft-reference"><a name="to-ft-3" href="#ft-3">3</a></sup></p>
 </div>
 </div>
 …なんか、難しくないですか？
@@ -252,7 +252,7 @@ or until it has been active for the duration specified by <code>timeout_millisec
 <pre><code class="language-lua">  { key = '[', mods = 'LEADER', action = act.ActivateCopyMode },
 </code></pre>
 <p><code>jump</code>機能はデフォルトのままで<code>tmux</code>と同じキーバインドが割り当てられているようなので、そのままいけます。
-<sup class="footnote-reference"><a name="to-footnote-4"><a href="#4">4</a></a></sup></p>
+<sup class="ft-reference"><a name="to-ft-4" href="#ft-4">4</a></sup></p>
 </div>
 </div>
 <p>ということで、キーバインドは色々試してみてほしいです。</p>
@@ -279,26 +279,26 @@ or until it has been active for the duration specified by <code>timeout_millisec
 <p>キーバインドについてはこのくらいでしょうか。次からは外観を変えていきたいと思います。</p>
 </div>
 </div>
-<aside class="footnote-definition" role="doc-footnote" id="1">
-<p><a href="#to-footnote-1"><sup>1:</sup></a> tmux のデフォルトは <kbd>CTRL-b</kbd>、vimのデフォルトは<kbd>\</kbd>です。
+<aside class="ft-definition" role="doc-footnote" id="ft-1">
+<p><sup><a href="#to-ft-1">1:</a></sup>tmux のデフォルトは <kbd>CTRL-b</kbd>、vimのデフォルトは<kbd>\</kbd>です。
 ちょっと遠い位置に置かれていて大変なので、<code>Leader</code>キーのカスタマイズは一般的に行われているみたいです。
 メジャーなカスタマイズ先は<kbd>CTRL-a</kbd>や、<kbd>CTRL-j</kbd>、<kbd>CTRL-,</kbd>、<kbd>CTRL-Space</kbd>あたりでしょうか❓</p>
 </aside>
-<aside class="footnote-definition" role="doc-footnote" id="2">
-<p><a href="#to-footnote-2"><sup>2:</sup></a> 色んな意味で少数派なんですけどね😅 わたしもこの環境です。</aside></p>
-<aside class="footnote-definition" role="doc-footnote" id="3">
-<p><a href="#to-footnote-3"><sup>3:</sup></a> USキーボードの場合。</aside></p>
-<aside class="footnote-definition" role="doc-footnote" id="4">
-<p><a href="#to-footnote-4"><sup>4:</sup></a> <a href="keybind.html#%E8%AA%AD%E3%81%BF%E8%BE%BC%E3%81%BF%E5%85%88%E3%82%92%E5%88%87%E3%82%8A%E6%9B%BF%E3%81%88%E3%82%8B">3.5 Keybind</a>で「いや、デフォルトのキーバインド無効にしたじゃないかー👿」と思われた方、ごもっともです...。
+<aside class="ft-definition" role="doc-footnote" id="ft-2">
+<p><sup><a href="#to-ft-2">2:</a></sup>色んな意味で少数派なんですけどね😅 わたしもこの環境です。</aside></p>
+<aside class="ft-definition" role="doc-footnote" id="ft-3">
+<p><sup><a href="#to-ft-3">3:</a></sup>USキーボードの場合。</aside></p>
+<aside class="ft-definition" role="doc-footnote" id="ft-4">
+<p><sup><a href="#to-ft-4">4:</a></sup><a href="keybind.html#%E8%AA%AD%E3%81%BF%E8%BE%BC%E3%81%BF%E5%85%88%E3%82%92%E5%88%87%E3%82%8A%E6%9B%BF%E3%81%88%E3%82%8B">3.5 Keybind</a>で「いや、デフォルトのキーバインド無効にしたじゃないかー👿」と思われた方、ごもっともです...。
 実は<code>copy-mode</code>のキーバインドには触れていませんでした。ちょっとこの辺、複雑ですよね...。また今度改編します。</aside></p>
 
 
           <nav id="nav-wrapper" aria-label="Page navigation">
-            <a rel="prev" href="../wezterm/keybind.html" id="nav-chapters" aria-label="Previous chapter: Key Binding">
+            <a rel="prev" href="../wezterm/keybind.html" class="chapters" id="prev" aria-label="Previous chapter: Key Binding">
               <div class="icon-prev fa-icon"></div>
               Key Binding
             </a>
-            <a rel="next" href="../wezterm/format.html" id="nav-chapters" aria-label="Next chapter: Format">
+            <a rel="next" href="../wezterm/format.html" class="chapters" id="next" aria-label="Next chapter: Format">
               Format
               <div class="icon-next fa-icon"></div>
             </a>
