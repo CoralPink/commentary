@@ -1,28 +1,19 @@
 @use 'variables.scss' as var;
 
-.footnote-definition {
-  font-size: 0.715em;
-  margin-top: 0.5em;
+.ft-definition {
+  font-size: 0.75em;
+  margin-top: 0.8em;
+
+  a {
+    text-decoration: none;
+  }
 
   p {
     display: inline;
-
-    &>a {
-      text-decoration: none;
-
-      &>sup {
-        font-size: 1em;
-      }
-    }
-  }
-
-  :not(&)+&,
-  &+ :not(&) {
-    margin-top: 2em;
   }
 }
 
-.footnote-reference {
+.ft-reference {
   a {
     text-decoration: none;
     margin-top: 0 - (var.$menu-bar-height + var.$jump-shift);
