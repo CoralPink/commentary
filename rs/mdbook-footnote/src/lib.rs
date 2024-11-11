@@ -2,6 +2,9 @@ use mdbook::{book::Book, errors::Error};
 use regex::Regex;
 use std::sync::LazyLock;
 
+const FT_REF: &str = "ft-reference";
+const FT_DEF: &str = "ft-definition";
+
 static FOOTNOTE_RE: LazyLock<Regex> = LazyLock::new(|| {
     Regex::new(r"(?s)\{\{footnote:\s*(?P<content>.*?)\}\}").expect("Invalid regex for FOOTNOTE_RE")
 });
@@ -17,18 +20,17 @@ pub fn replacing(mut book: Book) -> Result<Book, Error> {
                     footnotes.push(content);
 
                     let idx = footnotes.len();
-
-                    format!(
-                        "<sup class=\"footnote-reference\"><a name=\"to-footnote-{idx}\">[{idx}](#{idx})</a></sup>"
-                    )
+                    format!("<sup class=\"{FT_REF}\"><a name=\"to-ft-{idx}\" href=\"#ft-{idx}\">{idx}</a></sup>")
                 })
                 .to_string();
 
             if !footnotes.is_empty() {
-                for (idx, content) in footnotes.into_iter().enumerate() {
-                    let num = idx + 1;
+                for (num, content) in footnotes.into_iter().enumerate() {
+                    let idx = num + 1;
+
                     chap.content += &format!(
-                        "<aside class=\"footnote-definition\" role=\"doc-footnote\" id=\"{num}\">\n\n[<sup>{num}:</sup>](#to-footnote-{num}) {content}</aside>\n");
+                        "\n<aside class=\"{FT_DEF}\" role=\"doc-footnote\" id=\"ft-{idx}\">\n\n<sup><a href=\"#to-ft-{idx}\">{idx}:</a></sup>{content}</aside>"
+                    );
                 }
             }
         }
