@@ -3,6 +3,7 @@
 .ft-definition {
   font-size: 0.75em;
   margin-top: 0.8em;
+  scroll-margin-top: var.$menu-bar-height;
 
   a {
     text-decoration: none;
@@ -16,7 +17,6 @@
 .ft-reference {
   a {
     text-decoration: none;
-    margin-top: 0 - (var.$menu-bar-height + var.$jump-shift);
-    padding-top: var.$menu-bar-height + var.$jump-shift;
+    scroll-margin-top: var.$menu-bar-height;
   }
 }

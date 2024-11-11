@@ -1,3 +1,9 @@
+@use 'variables' as var;
+
+.admonition {
+  scroll-margin-top: var.$menu-bar-height;
+}
+
 .admonition-title {
   a {
     text-decoration: none;
