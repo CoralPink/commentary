@@ -1,4 +1,4 @@
-import { getRootVariableNum } from './css-variables.js';
+import { getRootVariableNum } from './css-loader.js';
 
 const ENV_PC = 0;
 const ENV_MOBILE = 1;
