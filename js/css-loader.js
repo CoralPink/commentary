@@ -22,7 +22,7 @@ export const loadStyleSheet = fileName => {
     const link = document.createElement('link');
 
     link.rel = 'stylesheet';
-    link.href = fileName;
+    link.href = new URL(fileName, window.location.href).href;
 
     link.onload = () => resolve();
     link.onerror = () => reject(new Error(`Failed to load stylesheet: ${fileName}`));
