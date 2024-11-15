@@ -1,5 +1,10 @@
 @use 'variables' as var;
 
+#search-wrapper {
+  visibility: hidden;
+  z-index: 1;
+}
+
 #searchbar {
   height: 2em;
   margin: 0.5em 0.25em;
@@ -73,5 +78,17 @@
         font-size: 0.6875rem;
       }
     }
+  }
+}
+
+mark {
+  color: inherit;
+  background: linear-gradient(rgba(0, 0, 0, 0) 64%, var(--search-mark-bg));
+
+  cursor: pointer;
+
+  &:focus {
+    outline: 2px solid var(--links);
+    outline-offset: 2px;
   }
 }
