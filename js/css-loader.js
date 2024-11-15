@@ -31,15 +31,23 @@ export const loadStyleSheet = fileName => {
   });
 };
 
-export const unloadStyleSheet = fileName => {
+export const unloadStyleSheet = (fileName, { throwIfNotFound = false } = {}) => {
+  const resolvedHref = new URL(fileName, window.location.href).href;
+  let found = false;
+
   for (const link of document.querySelectorAll('link[rel="stylesheet"]')) {
-    if (link.href.endsWith(`css/${fileName}.css`)) {
+    if (link.href === resolvedHref) {
       link.onload = null;
       link.onerror = null;
       link.parentNode.removeChild(link);
-      return;
+      found = true;
+      break;
     }
   }
-  // If not applicable, throw an error.
-  throw new Error(`Failed to unload stylesheet: ${fileName}`);
+  
+  if (!found && throwIfNotFound) {
+    throw new Error(`Stylesheet not found: ${fileName}`);
+  }
+  
+  return found;
 };
