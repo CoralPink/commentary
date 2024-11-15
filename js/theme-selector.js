@@ -1,7 +1,10 @@
 import { writeLocalStorage } from './storage.js';
-import { getRootVariable } from './css-variables.js';
+import { getRootVariable, loadStyleSheet, unloadStyleSheet } from './css-loader.js';
 
-const CSS_DIRECTORY = 'css/theme';
+const STYLE_THEMELIST = 'css/theme-list.css';
+
+const THEME_DIRECTORY = 'css/theme';
+
 const THEME_COLORS = [
   { id: 'au-lait', label: 'Au Lait' },
   { id: 'latte', label: 'Latte' },
@@ -22,14 +25,6 @@ const COLOR_TITLE_BAR_RETRY_DELAY_MS = 8;
 const ID_THEME_SELECTOR = 'theme-selector';
 
 let rootPath;
-
-const unloadStyle = theme => {
-  for (const link of document.querySelectorAll('link[rel="stylesheet"]')) {
-    if (link.href.endsWith(`${CSS_DIRECTORY}/${theme}.css`)) {
-      link.parentNode.removeChild(link);
-    }
-  }
-};
 
 const setColorTitleBar = (retry = 0) => {
   const color = getRootVariable('--bg');
@@ -52,15 +47,6 @@ const setColorTitleBar = (retry = 0) => {
   }, COLOR_TITLE_BAR_RETRY_DELAY_MS);
 };
 
-const loadStyle = theme => {
-  const link = document.createElement('link');
-  link.rel = 'stylesheet';
-  link.href = `${rootPath}${CSS_DIRECTORY}/${theme}.css`;
-
-  document.head.appendChild(link);
-  setColorTitleBar();
-};
-
 const setTheme = next => {
   const current = document.querySelector('html').classList.value;
 
@@ -69,9 +55,9 @@ const setTheme = next => {
   }
 
   // Although it seems irregular, unloading takes place first.
-  unloadStyle(current);
+  unloadStyleSheet(`theme/${current}`);
 
-  loadStyle(next);
+  loadStyleSheet(`${rootPath}${THEME_DIRECTORY}/${next}.css`);
   document.querySelector('html').classList.replace(current, next);
 
   const currentButton = document.getElementById(current);
@@ -86,6 +72,8 @@ const setTheme = next => {
 };
 
 const initThemeSelector = () => {
+  loadStyleSheet(`${rootPath}${STYLE_THEMELIST}`);
+
   const themeList = document.createElement('ul');
 
   themeList.id = 'theme-list';
@@ -97,22 +85,18 @@ const initThemeSelector = () => {
 
   for (const theme of THEME_COLORS) {
     const li = document.createElement('li');
-    li.setAttribute('role', 'none');
 
-    const button = document.createElement('button');
-    button.setAttribute('role', 'menuitem');
-    button.className = 'theme';
-    button.id = theme.id;
-    button.textContent = theme.label;
+    li.setAttribute('role', 'menuitem');
+    li.className = 'theme';
+    li.id = theme.id;
+    li.textContent = theme.label;
 
-    li.appendChild(button);
+    if (li.id === currentTheme) {
+      li.classList.add(THEME_SELECTED);
+      li.setAttribute('aria-current', 'true');
+    }
 
     themeList.appendChild(li);
-
-    if (button.id === currentTheme) {
-      button.classList.add(THEME_SELECTED);
-      button.setAttribute('aria-current', 'true');
-    }
   }
 
   document.getElementById('top-bar').appendChild(themeList);
@@ -121,12 +105,11 @@ const initThemeSelector = () => {
   themeList.addEventListener(
     'click',
     ev => {
-      const button = ev.target.closest('button.theme');
+      const li = ev.target.closest('li.theme');
 
-      if (!button) {
-        return;
+      if (li) {
+        setTheme(li.id);
       }
-      setTheme(button.id);
     },
     { once: false, passive: true },
   );
@@ -141,7 +124,7 @@ export const initThemeColor = root => {
     theme = matchMedia('(prefers-color-scheme: dark)').matches ? PREFERRED_DARK_THEME : DEFAULT_THEME;
   }
   document.querySelector('html').classList.add(theme);
-  loadStyle(theme);
+  loadStyleSheet(`${rootPath}${THEME_DIRECTORY}/${theme}.css`);
 
   document
     .getElementById(ID_THEME_SELECTOR)

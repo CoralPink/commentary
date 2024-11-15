@@ -1,7 +1,8 @@
 import { writeLocalStorage } from './storage.js';
-import { getRootVariableNum } from './css-variables.js';
+import { getRootVariableNum, loadStyleSheet } from './css-loader.js';
 
 const PAGE_LIST = 'pagelist.html';
+const STYLE_CHAPTER = 'css/chapter.css';
 
 const SHOW_SIDEBAR_WIDTH = 1200;
 
@@ -39,6 +40,7 @@ const initContent = async () => {
   const currentUrl = getCurrentUrl();
 
   try {
+    loadStyleSheet(`${rootPath}${STYLE_CHAPTER}`);
     document.getElementById(ID_SIDEBAR).insertAdjacentHTML('afterbegin', await loadSitemap());
   } catch (err) {
     document.getElementById(ID_SIDEBAR).insertAdjacentHTML('afterbegin', '<p>Error loading sidebar content.</p>');

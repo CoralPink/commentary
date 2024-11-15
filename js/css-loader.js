@@ -16,3 +16,19 @@ export const getRootVariableNum = name => {
 
   return num;
 };
+
+export const loadStyleSheet = fileName => {
+  const link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.href = `./${fileName}`;
+
+  document.head.appendChild(link);
+};
+
+export const unloadStyleSheet = fileName => {
+  for (const link of document.querySelectorAll('link[rel="stylesheet"]')) {
+    if (link.href.endsWith(`css/${fileName}.css`)) {
+      link.parentNode.removeChild(link);
+    }
+  }
+};

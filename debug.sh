@@ -21,8 +21,11 @@ pushd scss
 if [ ! -e ./node_modules ]; then
   bun install
 fi
+bun run compile chapter.scss ../src/css/chapter.css
 bun run compile general.scss ../src/css/general.css
+bun run compile search.scss ../src/css/search.css
 bun run compile style.scss ../src/css/style.css
+bun run compile theme-list.scss ../src/css/theme-list.css
 for theme in au-lait frappe latte macchiato mocha; do
   if ! bun run compile "catppuccin/$theme.scss" "../src/css/theme/$theme.css"; then
     echo "Failed to compile $theme theme"
@@ -34,7 +37,11 @@ popd
 mdbook build --dest-dir commentary
 
 pushd commentary
-sed -e 's/<li class="chapter-item expanded ">/<li class="chapter-item">/g' -e 's/ target="_parent"//g' toc.html > pagelist.html
+sed \
+  -e 's/<ol class="section">/<ol>/g' \
+  -e 's/<li class="chapter-item expanded ">/<li>/g' \
+  -e 's/ target="_parent"//g' \
+  toc.html > pagelist.html
 popd
 
 #pushd commentary

@@ -66,6 +66,12 @@ body {
 
       display: flex;
       gap: 0.85em;
+
+      &>#search-wrapper {
+        visibility: hidden;
+        z-index: 1;
+      }
+
     }
 
     &>#book-title {
@@ -125,19 +131,6 @@ body {
   // (As it does not address the case where a user jumps in with the sidebar closed in a large area.)
   @media (max-width: var.$mobile-max-width) {
     display: none;
-  }
-}
-
-#sidebar-scrollbox {
-  position: fixed;
-  top: var.$menu-bar-height;
-  width: var.$sidebar-width;
-  overflow-y: scroll;
-
-  bottom: 0;
-
-  @media (max-width: var.$mobile-max-width) {
-    bottom: var.$pagetoc-bottom-shift;
   }
 }
 
