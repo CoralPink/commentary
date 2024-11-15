@@ -176,11 +176,11 @@ jobs:
         working-directory: scss
         run: |
           bun install --production
-          bun run compile chapter.scss ../src/css/chapter.css
-          bun run compile general.scss ../src/css/general.css
-          bun run compile search.scss ../src/css/search.css
-          bun run compile style.scss ../src/css/style.css
-          bun run compile theme-list.scss ../src/css/theme-list.css
+          bun run compile chapter.scss dist/chapter.css
+          bun run compile general.scss dist/general.css
+          bun run compile search.scss dist/search.css
+          bun run compile style.scss dist/style.css
+          bun run compile theme-list.scss dist/theme-list.css
           bun run compile catppuccin/au-lait.scss dist/theme/au-lait.css
           bun run compile catppuccin/frappe.scss dist/theme/frappe.css
           bun run compile catppuccin/latte.scss dist/theme/latte.css

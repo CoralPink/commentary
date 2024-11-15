@@ -3,7 +3,7 @@ import { tocReset } from './table-of-contents.js';
 import { SearchResult, marking, unmarking } from './wasm_book.js';
 import { loadStyleSheet } from './css-loader.js';
 
-const STYLE_SEARCH = 'css/delay-search.css';
+const STYLE_SEARCH = 'css/search.css';
 
 const ELEM_WRAPPER = document.getElementById('search-wrapper');
 const ELEM_BAR = document.getElementById('searchbar');
