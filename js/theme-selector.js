@@ -19,32 +19,26 @@ const PREFERRED_DARK_THEME = THEME_COLORS[3].id;
 const THEME_SELECTED = 'theme-selected';
 const SAVE_STORAGE = 'mdbook-theme';
 
-const COLOR_TITLE_BAR_MAX_RETRY = 3;
-const COLOR_TITLE_BAR_RETRY_DELAY_MS = 8;
-
 const ID_THEME_SELECTOR = 'theme-selector';
 
 let rootPath;
 
-const setColorTitleBar = (retry = 0) => {
+const setColorTitleBar = () => {
   const color = getRootVariable('--bg');
 
-  if (color) {
-    document.querySelector('meta[name="theme-color"]').content = color;
-    return;
+  if (!color) {
+    throw new Error('Failed to set theme color to title bar...');
   }
+  document.querySelector('meta[name="theme-color"]').content = color;
+};
 
-  // You will not get the CSS variables if the timing is not right, so try several times repeatedly.
-  // But if it still doesn't work, give up!
-
-  if (retry >= COLOR_TITLE_BAR_MAX_RETRY) {
-    console.warn('Failed to set theme color to title bar...');
-    return;
+const loadStyle = async style => {
+  try {
+    await loadStyleSheet(`${rootPath}${THEME_DIRECTORY}/${style}.css`);
+    setColorTitleBar();
+  } catch (err) {
+    console.warn(err);
   }
-
-  setTimeout(() => {
-    setColorTitleBar(retry + 1);
-  }, COLOR_TITLE_BAR_RETRY_DELAY_MS);
 };
 
 const setTheme = next => {
@@ -54,10 +48,9 @@ const setTheme = next => {
     return;
   }
 
-  // Although it seems irregular, unloading takes place first.
+  loadStyle(next);
   unloadStyleSheet(`theme/${current}`);
 
-  loadStyleSheet(`${rootPath}${THEME_DIRECTORY}/${next}.css`);
   document.querySelector('html').classList.replace(current, next);
 
   const currentButton = document.getElementById(current);
@@ -71,8 +64,8 @@ const setTheme = next => {
   writeLocalStorage(SAVE_STORAGE, next);
 };
 
-const initThemeSelector = () => {
-  loadStyleSheet(`${rootPath}${STYLE_THEMELIST}`);
+const initThemeSelector = async () => {
+  await loadStyleSheet(`${rootPath}${STYLE_THEMELIST}`);
 
   const themeList = document.createElement('ul');
 
@@ -123,8 +116,8 @@ export const initThemeColor = root => {
   if (!theme) {
     theme = matchMedia('(prefers-color-scheme: dark)').matches ? PREFERRED_DARK_THEME : DEFAULT_THEME;
   }
+  loadStyle(theme);
   document.querySelector('html').classList.add(theme);
-  loadStyleSheet(`${rootPath}${THEME_DIRECTORY}/${theme}.css`);
 
   document
     .getElementById(ID_THEME_SELECTOR)

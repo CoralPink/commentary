@@ -40,7 +40,7 @@ const initContent = async () => {
   const currentUrl = getCurrentUrl();
 
   try {
-    loadStyleSheet(`${rootPath}${STYLE_CHAPTER}`);
+    await loadStyleSheet(`${rootPath}${STYLE_CHAPTER}`);
     document.getElementById(ID_SIDEBAR).insertAdjacentHTML('afterbegin', await loadSitemap());
   } catch (err) {
     document.getElementById(ID_SIDEBAR).insertAdjacentHTML('afterbegin', '<p>Error loading sidebar content.</p>');

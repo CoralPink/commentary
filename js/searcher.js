@@ -153,12 +153,12 @@ const showSearch = () => {
   ELEM_BAR.select();
 };
 
-const initSearch = () => {
+const initSearch = async () => {
   ELEM_ICON.removeEventListener('click', initSearch);
   document.removeEventListener('keyup', handleKeyup);
 
   try {
-    loadStyleSheet(`${rootPath}${STYLE_SEARCH}`);
+    await loadStyleSheet(`${rootPath}${STYLE_SEARCH}`);
 
     fetch(`${rootPath}searchindex.json`)
       .then(response => response.json())

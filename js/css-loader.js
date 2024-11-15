@@ -18,17 +18,28 @@ export const getRootVariableNum = name => {
 };
 
 export const loadStyleSheet = fileName => {
-  const link = document.createElement('link');
-  link.rel = 'stylesheet';
-  link.href = `./${fileName}`;
+  return new Promise((resolve, reject) => {
+    const link = document.createElement('link');
 
-  document.head.appendChild(link);
+    link.rel = 'stylesheet';
+    link.href = fileName;
+
+    link.onload = () => resolve();
+    link.onerror = () => reject(new Error(`Failed to load stylesheet: ${fileName}`));
+
+    document.head.appendChild(link);
+  });
 };
 
 export const unloadStyleSheet = fileName => {
   for (const link of document.querySelectorAll('link[rel="stylesheet"]')) {
     if (link.href.endsWith(`css/${fileName}.css`)) {
+      link.onload = null;
+      link.onerror = null;
       link.parentNode.removeChild(link);
+      return;
     }
   }
+  // If not applicable, throw an error.
+  throw new Error(`Failed to unload stylesheet: ${fileName}`);
 };
