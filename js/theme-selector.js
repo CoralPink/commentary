@@ -23,21 +23,12 @@ const ID_THEME_SELECTOR = 'theme-selector';
 
 let rootPath;
 
-const setColorTitleBar = () => {
-  const color = getRootVariable('--bg');
-
-  if (!color) {
-    throw new Error('Failed to set theme color to title bar...');
-  }
-  document.querySelector('meta[name="theme-color"]').content = color;
-};
-
 const loadStyle = async style => {
   try {
     await loadStyleSheet(`${rootPath}${THEME_DIRECTORY}/${style}.css`);
-    setColorTitleBar();
+    document.querySelector('meta[name="theme-color"]').content = getRootVariable('--bg') || '#ffffff';
   } catch (err) {
-    console.warn(err);
+    console.warn(`Failed to load theme style '${style}':`, err);
   }
 };
 

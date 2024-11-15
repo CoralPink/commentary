@@ -8,7 +8,7 @@ export const getRootVariable = name => {
 
 export const getRootVariableNum = name => {
   const value = getRootVariable(name);
-  const num = Number.parseInt(value, 10);
+  const num = Number.parseFloat(value);
 
   if (Number.isNaN(num)) {
     throw new Error(`CSS variable "${name}" value "${value}" could not be parsed as a number`);
