@@ -1,6 +1,9 @@
 import Finder from './finder.js';
 import { tocReset } from './table-of-contents.js';
 import { SearchResult, marking, unmarking } from './wasm_book.js';
+import { loadStyleSheet } from './css-loader.js';
+
+const STYLE_SEARCH = 'css/delay-search.css';
 
 const ELEM_WRAPPER = document.getElementById('search-wrapper');
 const ELEM_BAR = document.getElementById('searchbar');
@@ -10,7 +13,7 @@ const ELEM_OUTER = document.getElementById('searchresults-outer');
 const ELEM_HEADER = document.getElementById('searchresults-header');
 const ELEM_RESULTS = document.getElementById('searchresults');
 
-let pathToRoot;
+let rootPath;
 
 let searchResult;
 let finder;
@@ -150,15 +153,17 @@ const showSearch = () => {
   ELEM_BAR.select();
 };
 
-const initSearch = () => {
+const initSearch = async () => {
   ELEM_ICON.removeEventListener('click', initSearch);
   document.removeEventListener('keyup', handleKeyup);
 
   try {
-    fetch(`${pathToRoot}searchindex.json`)
+    await loadStyleSheet(`${rootPath}${STYLE_SEARCH}`);
+
+    fetch(`${rootPath}searchindex.json`)
       .then(response => response.json())
       .then(config => {
-        searchResult = new SearchResult(pathToRoot, config.results_options.teaser_word_count, config.doc_urls);
+        searchResult = new SearchResult(rootPath, config.results_options.teaser_word_count, config.doc_urls);
         finder = new Finder(config.index.documentStore.docs, config.results_options.limit_results);
       });
   } catch (e) {
@@ -214,7 +219,7 @@ const startSearchFromKey = key => {
 export const startupSearch = root => {
   doSearchOrMarkFromUrl();
 
-  pathToRoot = root;
+  rootPath = root;
 
   ELEM_ICON.addEventListener('click', initSearch, { once: true, passive: true });
   document.addEventListener('keyup', handleKeyup, { once: false, passive: true });
