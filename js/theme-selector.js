@@ -106,6 +106,8 @@ const initThemeSelector = async () => {
     },
     { once: false, passive: true },
   );
+
+  themeList.showPopover();
 };
 
 export const initThemeColor = root => {

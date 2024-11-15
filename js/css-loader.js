@@ -33,21 +33,20 @@ export const loadStyleSheet = fileName => {
 
 export const unloadStyleSheet = (fileName, { throwIfNotFound = false } = {}) => {
   const resolvedHref = new URL(fileName, window.location.href).href;
-  let found = false;
 
-  for (const link of document.querySelectorAll('link[rel="stylesheet"]')) {
-    if (link.href === resolvedHref) {
-      link.onload = null;
-      link.onerror = null;
-      link.parentNode.removeChild(link);
-      found = true;
-      break;
+  const remove = () => {
+    for (const link of document.querySelectorAll('link[rel="stylesheet"]')) {
+      if (link.href === resolvedHref) {
+        link.onload = null;
+        link.onerror = null;
+        link.parentNode.removeChild(link);
+        return true;
+      }
     }
-  }
-  
-  if (!found && throwIfNotFound) {
+    return false;
+  };
+
+  if (!remove() && throwIfNotFound) {
     throw new Error(`Stylesheet not found: ${fileName}`);
   }
-  
-  return found;
 };
