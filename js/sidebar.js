@@ -36,14 +36,17 @@ const initContent = async () => {
   }
   isInitialized = true;
 
+  const sidebar = document.getElementById(ID_SIDEBAR);
+  sidebar.setAttribute('aria-busy', 'true');
+
   const rootUrl = new URL(rootPath, window.location.href);
   const currentUrl = getCurrentUrl();
 
   try {
     await loadStyleSheet(`${rootPath}${STYLE_CHAPTER}`);
-    document.getElementById(ID_SIDEBAR).insertAdjacentHTML('afterbegin', await loadSitemap());
+    sidebar.insertAdjacentHTML('afterbegin', await loadSitemap());
   } catch (err) {
-    document.getElementById(ID_SIDEBAR).insertAdjacentHTML('afterbegin', '<p>Error loading sidebar content.</p>');
+    sidebar.insertAdjacentHTML('afterbegin', '<p>Error loading sidebar content.</p>');
     console.error(`Failed to load pagelist - ${err.message}`);
     return;
   }
@@ -61,7 +64,7 @@ const initContent = async () => {
     }
     link.href = linkUrl.href;
   }
-  sidebarScrollbox.setAttribute('aria-busy', 'false');
+  sidebar.setAttribute('aria-busy', 'false');
 };
 
 const showSidebar = (write = true) => {
