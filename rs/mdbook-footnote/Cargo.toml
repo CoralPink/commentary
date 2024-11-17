@@ -11,7 +11,7 @@ clap = "=4.5.21"
 mdbook = "=0.4.42"
 regex = "=1.11.1"
 semver = "=1.0.23"
-serde_json = "=1.0.132"
+serde_json = "=1.0.133"
 
 [dev-dependencies]
 pretty_assertions = "=1.4.1"
