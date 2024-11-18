@@ -175,10 +175,10 @@ Sources found installed in `mason` will automatically be setup for null-ls.
 これを理解した上で使用する分にはいいんじゃないかな〜って思うことにします❗そうします😆
 
 ```admonish success title=""
-And so happy Christmas (War is over)
-{{footnote: Happy Xmas (War Is Over) (by [John & Yoko / Plastic Ono Band](https://en.wikipedia.org/wiki/Plastic_Ono_Band)
-with the [Harlem](https://en.wikipedia.org/wiki/Harlem) Community Choir)
-[Wikipedia](https://en.wikipedia.org/wiki/Happy_Xmas_(War_Is_Over)) より
+And so happy Christmas (War is over){{footnote:
+[Happy Xmas (War Is Over)](https://en.wikipedia.org/wiki/Happy_Xmas_(War_Is_Over)):
+by [John & Yoko / Plastic Ono Band](https://en.wikipedia.org/wiki/Plastic_Ono_Band)
+with the [Harlem](https://en.wikipedia.org/wiki/Harlem) Community Choir より
 }}
 ```
 
@@ -307,7 +307,7 @@ section to understand how the default configs can be overridden.
 ...あ❗もうおたのしみでしたか😸
 
 ```admonish success title=""
-<div style="text-align: center" font-weight: bold">
+<div style="text-align: center; font-weight: bold" translate="no">
 <div style="font-size: 800%; line-height: 0;">
 
 WAR
