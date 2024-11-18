@@ -333,7 +333,7 @@ McCartney は、観客に参加を求めるミュージック・ホールの伝�
 !!
 ```
 
-<div style="text-align: center; font-size: 110%; line-height: 0;">
+<div style="text-align: center; font-size: 110%; line-height: 0" translate="no">
 <div style="margin-top: 4rem"></div>
 
 All Together Now
