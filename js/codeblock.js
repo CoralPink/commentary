@@ -124,6 +124,8 @@ export const procCodeBlock = () => {
           if (needNerdFonts) {
             code.style.fontFamily = `${window.getComputedStyle(code).fontFamily}, 'Symbols Nerd Font Mono'`;
           }
+          code.setAttribute('translate', 'no');
+
           workerPool.push(worker);
         };
 
