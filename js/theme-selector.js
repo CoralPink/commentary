@@ -3,7 +3,7 @@ import { getRootVariable, loadStyleSheet, unloadStyleSheet } from './css-loader.
 
 const STYLE_THEMELIST = 'css/theme-list.css';
 
-const THEME_DIRECTORY = 'css/theme';
+const THEME_DIRECTORY = 'css/theme/';
 
 const THEME_COLORS = [
   { id: 'au-lait', label: 'Au Lait' },
@@ -16,6 +16,8 @@ const THEME_COLORS = [
 const DEFAULT_THEME = THEME_COLORS[1].id;
 const PREFERRED_DARK_THEME = THEME_COLORS[3].id;
 
+const CHANGE_TRANSITION = 'background-color 0.5s ease';
+
 const THEME_SELECTED = 'theme-selected';
 const SAVE_STORAGE = 'mdbook-theme';
 
@@ -23,10 +25,16 @@ const ID_THEME_SELECTOR = 'theme-selector';
 
 let rootPath;
 
+const isDarkThemeRequired = () => matchMedia('(prefers-color-scheme: dark)').matches;
+
 const loadStyle = async style => {
   try {
-    await loadStyleSheet(`${rootPath}${THEME_DIRECTORY}/${style}.css`);
-    document.querySelector('meta[name="theme-color"]').content = getRootVariable('--bg') || '#ffffff';
+    await loadStyleSheet(`${rootPath}${THEME_DIRECTORY}${style}.css`);
+
+    // Apply the same color as the background color ('--bg') to the title bar. (Effective in Safari only)
+    // ...If you fail to get '--bg', fool it well!
+    document.querySelector('meta[name="theme-color"]').content =
+      getRootVariable('--bg') ?? (isDarkThemeRequired() ? '#24273a' : '#eff1f5');
   } catch (err) {
     console.warn(`Failed to load theme style '${style}':`, err);
   }
@@ -40,7 +48,7 @@ const setTheme = next => {
   }
 
   loadStyle(next);
-  unloadStyleSheet(`theme/${current}`);
+  unloadStyleSheet(`${rootPath}${THEME_DIRECTORY}${current}.css`);
 
   document.querySelector('html').classList.replace(current, next);
 
@@ -84,15 +92,13 @@ const initThemeSelector = async () => {
   }
 
   document.getElementById('top-bar').appendChild(themeList);
-  document.body.style.transition = 'background-color 0.5s ease';
+  document.body.style.transition = CHANGE_TRANSITION;
 
   themeList.addEventListener(
     'click',
     ev => {
-      const li = ev.target.closest('li.theme');
-
-      if (li) {
-        setTheme(li.id);
+      if (ev.target.matches('li.theme')) {
+        setTheme(ev.target.id);
       }
     },
     { once: false, passive: true },
@@ -104,11 +110,10 @@ const initThemeSelector = async () => {
 export const initThemeColor = root => {
   rootPath = root;
 
-  let theme = localStorage.getItem('mdbook-theme');
+  // If the user has already specified a theme, that theme will be applied;
+  // if not, it will be applied based on system requirements.
+  const theme = localStorage.getItem('mdbook-theme') ?? (isDarkThemeRequired() ? PREFERRED_DARK_THEME : DEFAULT_THEME);
 
-  if (!theme) {
-    theme = matchMedia('(prefers-color-scheme: dark)').matches ? PREFERRED_DARK_THEME : DEFAULT_THEME;
-  }
   loadStyle(theme);
   document.querySelector('html').classList.add(theme);
 
