@@ -76,7 +76,7 @@ require('scrollbar.handlers.search').setup() -- これは nvim-hlslens
 require("scrollbar.handlers.gitsigns").setup()
 ```
 
-...で、それぞれのプラグインを必要とします。`pakcer`にも教えといてあげましょう🫶
+...で、それぞれのプラグインを必要とします。`packer`にも教えといてあげましょう🫶
 
 ~~~admonish example title="extensions/init.lua"
 ```lua
@@ -145,7 +145,7 @@ It's only in my dreams
 A very merry Christmas❗🍾 {{footnote:
 [Happy Xmas (War Is Over)](https://en.wikipedia.org/wiki/Happy_Xmas_(War_Is_Over)):
 by [John & Yoko / Plastic Ono Band](https://en.wikipedia.org/wiki/Plastic_Ono_Band)
-with the [Harlem](https://en.wikipedia.org/wiki/Harlem) Community Choir より
+with the [Harlem](https://en.wikipedia.org/wiki/Harlem) Community Choir
 }}
 ```
 
@@ -178,7 +178,8 @@ And I can change the world{{footnote:
 最も有名なのは [Eric Clapton](https://en.wikipedia.org/wiki/Eric_Clapton) のバージョンだが、
 これよりも先に[Wynonna Judd](https://en.wikipedia.org/wiki/Wynonna_Judd) がアルバム収録曲としてリリースしている。
 
-楽曲制作者の一人である[Tommy Sims](https://en.wikipedia.org/wiki/Tommy_Sims)が作成したデモテープを聴いた Clapton 曰く、
+2013年、Clapton は Mojo 誌のインタビューで、
+楽曲制作者の一人である[Tommy Sims](https://en.wikipedia.org/wiki/Tommy_Sims)が作成したデモテープを聴いたとき、
 "なんだか[Paul McCartney](https://en.wikipedia.org/wiki/Paul_McCartney) が演奏しているように感じられた" と語っている。
 [Wikipedia](https://en.wikipedia.org/wiki/Change_the_World)より
 }}
