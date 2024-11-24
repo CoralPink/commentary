@@ -261,17 +261,54 @@ Gonna come out now Ha-ha-ha
 
 今に出てくるよ ははは
 
-<video controls preload="none" poster="img/tokyo-yakei-thumbnail.webp" width="700" height="393">
-  <source src="img/tokyo-yakei.webm" type="video/webm">
-  Your browser does not support the video/webm.
-</video>
+<div id="randomVideo1"></div>
 
 Wow look out! it's-
 
 おい見ろ！あれは-
 
-<video controls preload="none" poster="img/tokyo-yakei2-thumbnail.webp" width="700" height="393">
-  <source src="img/tokyo-yakei2.webm" type="video/webm">
-  Your browser does not support the video/webm.
-</video>
+<div id="randomVideo2"></div>
 ```
+
+<!-- Roulette! -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const PATH_PREFIX= 'img/tokyo-yakei';
+
+  const videos = [
+    { vd1: '1a', vd2: '2a', probability: 95 },
+    { vd1: '1b', vd2: '2b', probability: 5 },
+  ];
+
+  const totalProbability = videos.reduce((sum, video) => sum + video.probability, 0);
+  const random = Math.random() * totalProbability;
+
+  let cumulativeProbability = 0;
+
+  const replaceVideo = (id, hit) => {
+    const v = document.createElement("video");
+    v.setAttribute('poster', `${PATH_PREFIX}-${hit}-thumbnail.webp`);
+    v.setAttribute("width", '700');
+    v.setAttribute("height", '393');
+    v.setAttribute("controls", "true");
+    v.setAttribute("preload", "none");
+
+    const s = document.createElement("source");
+    s.setAttribute('src', `${PATH_PREFIX}-${hit}.webm`);
+    s.setAttribute("type", "video/webm");
+
+    v.appendChild(s);
+    document.getElementById(id).replaceWith(v);
+  }
+
+  for (const video of videos) {
+    cumulativeProbability += video.probability;
+
+    if (random <= cumulativeProbability) {
+      replaceVideo('randomVideo1', video.vd1);
+      replaceVideo('randomVideo2', video.vd2);
+      return;
+    }
+  }
+});
+</script>
