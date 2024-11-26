@@ -2,17 +2,17 @@
 // See http://www.apache.org/licenses/LICENSE-2.0
 @font-face {
   font-family: 'Open Sans';
-  font-style: italic;
+  src: url(../woff2/OpenSans-Italic.woff2) format('woff2');
   font-weight: normal;
-  src: url(../woff/OpenSans-Italic.woff2) format('woff2');
+  font-style: italic;
   font-display: swap;
 }
 
 @font-face {
   font-family: 'Open Sans';
-  font-style: italic;
+  src: url(../woff2/OpenSans-BoldItalic.woff2) format('woff2');
   font-weight: bold;
-  src: url(../woff/OpenSans-BoldItalic.woff2) format('woff2');
+  font-style: italic;
   font-display: swap;
 }
 
@@ -20,9 +20,9 @@
 // https://github.com/tonsky/FiraCode/blob/master/LICENSE
 @font-face {
   font-family: 'Fira Code';
+  src: url(../woff2/FiraCode-VF.woff2) format('woff2-variations');
+  font-weight: 300 700;
   font-style: normal;
-  font-weight: normal;
-  src: url(../woff/FiraCode-VF.woff2) format('woff2');
   font-display: swap;
 }
 
@@ -30,8 +30,8 @@
 // See https://github.com/ryanoasis/nerd-fonts/blob/master/LICENSE
 @font-face {
   font-family: 'Symbols Nerd Font Mono';
-  font-style: normal;
+  src: url(../woff2/SymbolsNerdFontMono-Regular.woff2) format('woff2');
   font-weight: normal;
-  src: url(../woff/NerdFontsSymbolsOnly/SymbolsNerdFontMono-Regular.woff2) format('woff2');
+  font-style: normal;
   font-display: swap;
 }
