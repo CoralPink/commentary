@@ -260,7 +260,7 @@ jobs:
     name: Build and Deploy
     runs-on: macos-15
     if: ${{ github.ref == 'refs/heads/main' }}
-    needs: [build-wasm, build-js, build-scss, convert-woff2 test-mdbook-backend]
+    needs: [build-wasm, build-js, build-scss, convert-woff2, test-mdbook-backend]
     steps:
       - name: Checkout the repo
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
