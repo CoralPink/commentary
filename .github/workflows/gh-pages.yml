@@ -212,17 +212,21 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pip-
 
-      - name: Install
+      - name: Install Poetry
         run: |
-          pip install fonttools
-          pip install brotli
+          pip install poetry
+
+      - name: Install Dependencies
+        working-directory: fonts
+        run: |
+          poetry install --no-root
 
       - name: Convert Woff2
         working-directory: fonts
         run: |
-          python convert.py NerdFontsSymbolsOnly/SymbolsNerdFontMono-Regular.ttf woff2
-          python convert.py Open_Sans/static/OpenSans-BoldItalic.ttf woff2
-          python convert.py Open_Sans/static/OpenSans-Italic.ttf woff2
+          poetry run python convert.py NerdFontsSymbolsOnly/SymbolsNerdFontMono-Regular.ttf woff2
+          poetry run python convert.py Open_Sans/static/OpenSans-BoldItalic.ttf woff2
+          poetry run python convert.py Open_Sans/static/OpenSans-Italic.ttf woff2
 
       - name: Copy Woff2
         working-directory: fonts
