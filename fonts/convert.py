@@ -4,8 +4,14 @@ from fontTools.ttLib import TTFont
 
 def convert_ttf_to_woff2(input_path, output_dir):
     # Create output folder if it does not exist
-    if not os.path.exists(output_dir):
-        os.makedirs(output_dir)
+    try:
+        os.makedirs(output_dir, exist_ok=True)
+    except PermissionError:
+        print(f"Error: Permission denied when creating directory '{output_dir}'")
+        sys.exit(1)
+    except OSError as e:
+        print(f"Error creating directory '{output_dir}': {str(e)}")
+        sys.exit(1)
 
     # Determine if input is a file or directory
     # - File
