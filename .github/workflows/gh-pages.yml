@@ -206,14 +206,15 @@ jobs:
 
       - name: Install Poetry
         run: |
-          pip install poetry
+          curl -sSL https://install.python-poetry.org | python -
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
 
       - name: Cache Poetry virtualenv
         uses: actions/cache@6849a6489940f00c2f30c0fb92c6274307ccb58a # v4
         with:
           path: /Users/runner/Library/Caches/pypoetry/virtualenvs
-          key: ${{ runner.os }}-poetry-${{ hashFiles('**/poetry.lock') }}
-          restore-keys: ${{ runner.os }}-poetry-
+          key: python-${{ runner.os }}-poetry-${{ hashFiles('**/poetry.lock') }}
+          restore-keys: python-${{ runner.os }}-poetry-
 
       - name: Install Dependencies
         working-directory: fonts
