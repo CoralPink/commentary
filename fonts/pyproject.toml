@@ -1,0 +1,10 @@
+[tool.poetry]
+name = "font-generate"
+version = "0.1.0"
+description = "Font conversion utilities"
+authors = ["CoralPink"]
+
+[tool.poetry.dependencies]
+python = "^3.13"
+brotli = "^1.1.0"
+fonttools = "^4.55.0"

@@ -42,6 +42,13 @@ body {
   }
 }
 
+@media (min-resolution: 2dppx) {
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
 #top-bar {
   flex-basis: var.$menu-bar-height;
 

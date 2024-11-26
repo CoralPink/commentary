@@ -17,6 +17,20 @@ bun run build.js
 cp -r dist/. ../src/
 popd
 
+if [ ! -e ./src/woff2 ]; then
+pushd fonts
+python3 -m venv myenv
+source myenv/bin/activate
+pip install --upgrade pip
+pip install poetry
+poetry install --no-root
+poetry run python convert.py NerdFontsSymbolsOnly/SymbolsNerdFontMono-Regular.ttf ../src/woff2
+poetry run python convert.py Open_Sans/static/OpenSans-BoldItalic.ttf ../src/woff2
+poetry run python convert.py Open_Sans/static/OpenSans-Italic.ttf ../src/woff2
+cp Fira\ Code/FiraCode-VF.woff2 ../src/woff2
+popd
+fi
+
 pushd scss
 if [ ! -e ./node_modules ]; then
   bun install
