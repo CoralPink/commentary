@@ -208,13 +208,13 @@ jobs:
         uses: actions/cache@6849a6489940f00c2f30c0fb92c6274307ccb58a # v4
         with:
           path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-poetry-1.7.1
+          key: ${{ runner.os }}-pip-poetry
           restore-keys: |
             ${{ runner.os }}-pip-
 
       - name: Install Poetry
         run: |
-          pip install poetry==1.7.1
+          pip install poetry
 
       - name: Cache Poetry virtualenv
         uses: actions/cache@6849a6489940f00c2f30c0fb92c6274307ccb58a # v4
