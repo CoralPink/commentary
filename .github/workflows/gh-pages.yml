@@ -236,7 +236,10 @@ jobs:
       - name: Copy Woff2
         working-directory: fonts
         run: |
-          cp Fira\ Code/FiraCode-VF.woff2 woff2
+          cp "Fira Code/FiraCode-VF.woff2" woff2 || {
+            echo "Error: Failed to copy FiraCode font"
+            exit 1
+          }
 
       - name: Upload font artifacts
         uses: actions/upload-artifact@b4b15b8c7c6ac21ea08fcf65892d2ee8f75cf882 # v4
