@@ -214,6 +214,7 @@ jobs:
       - name: Install Poetry
         run: |
           pip install poetry
+          poetry config virtualenvs.path
 
       - name: Cache Poetry virtualenv
         uses: actions/cache@6849a6489940f00c2f30c0fb92c6274307ccb58a # v4
