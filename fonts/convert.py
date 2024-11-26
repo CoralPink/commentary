@@ -2,6 +2,15 @@ import os
 import sys
 from fontTools.ttLib import TTFont
 
+def convert_single_file(input_file, output_file):
+    try:
+        font = TTFont(input_file)
+        font.flavor = "woff2"
+        font.save(output_file)
+        print(f"Converted {input_file} to {output_file}")
+    except Exception as e:
+        print(f"Error converting {input_file}: {str(e)}")
+
 def convert_ttf_to_woff2(input_path, output_dir):
     # Create output folder if it does not exist
     try:
@@ -18,10 +27,7 @@ def convert_ttf_to_woff2(input_path, output_dir):
     if os.path.isfile(input_path):
         if input_path.endswith(".ttf"):
             output_path = os.path.join(output_dir, os.path.basename(input_path).replace(".ttf", ".woff2"))
-            font = TTFont(input_path)
-            font.flavor = "woff2"
-            font.save(output_path)
-            print(f"Converted {input_path} to {output_path}")
+            convert_single_file(input_path, output_path)
         else:
             print(f"Error: The file '{input_path}' is not a TTF file.")
 
@@ -31,10 +37,7 @@ def convert_ttf_to_woff2(input_path, output_dir):
             if file.endswith(".ttf"):
                 input_file_path = os.path.join(input_path, file)
                 output_path = os.path.join(output_dir, file.replace(".ttf", ".woff2"))
-                font = TTFont(input_file_path)
-                font.flavor = "woff2"
-                font.save(output_path)
-                print(f"Converted {input_file_path} to {output_path}")
+                convert_single_file(input_file_path, output_path)
 
     # - Other
     else:
