@@ -11,10 +11,26 @@ def convert_single_file(input_file, output_file):
     except Exception as e:
         print(f"Error converting {input_file}: {str(e)}")
 
-def convert_ttf_to_woff2(input_path, output_dir):
-    # Create output folder if it does not exist
+from typing import Union
+from pathlib import Path
+
+def convert_ttf_to_woff2(input_path: Union[str, Path], output_dir: Union[str, Path]) -> None:
+    """
+    Convert TTF font files to WOFF2 format.
+
+    Args:
+        input_path: Path to TTF file or directory containing TTF files
+        output_dir: Directory where WOFF2 files will be saved
+
+    Raises:
+        OSError: If directory creation fails
+        ValueError: If input path is invalid
+    """
+    input_path = Path(input_path)
+    output_dir = Path(output_dir)
+
     try:
-        os.makedirs(output_dir, exist_ok=True)
+        output_dir.mkdir(parents=True, exist_ok=True)
     except PermissionError:
         print(f"Error: Permission denied when creating directory '{output_dir}'")
         sys.exit(1)
@@ -22,24 +38,31 @@ def convert_ttf_to_woff2(input_path, output_dir):
         print(f"Error creating directory '{output_dir}': {str(e)}")
         sys.exit(1)
 
-    # Determine if input is a file or directory
-    # - File
-    if os.path.isfile(input_path):
-        if input_path.endswith(".ttf"):
-            output_path = os.path.join(output_dir, os.path.basename(input_path).replace(".ttf", ".woff2"))
+    if input_path.is_file():
+        if input_path.suffix.lower() == '.ttf':
+            output_path = output_dir / input_path.name.replace('.ttf', '.woff2')
+            # Ensure output path is within output_dir
+            if not output_path.resolve().is_relative_to(output_dir.resolve()):
+                print(f"Error: Invalid output path '{output_path}'")
+                sys.exit(1)
             convert_single_file(input_path, output_path)
         else:
             print(f"Error: The file '{input_path}' is not a TTF file.")
 
-    # - Directory
-    elif os.path.isdir(input_path):
-        for file in os.listdir(input_path):
-            if file.endswith(".ttf"):
-                input_file_path = os.path.join(input_path, file)
-                output_path = os.path.join(output_dir, file.replace(".ttf", ".woff2"))
+    elif input_path.is_dir():
+        ttf_files = list(input_path.glob("*.ttf"))
+        if not ttf_files:
+            print(f"Warning: No TTF files found in '{input_path}'")
+            return
+        
+        print(f"Found {len(ttf_files)} TTF files to convert...")
+        for i, input_file_path in enumerate(ttf_files, 1):
+            print(f"Converting file {i}/{len(ttf_files)}: {input_file_path.name}")
+            output_path = output_dir / input_file_path.name.replace('.ttf', '.woff2')
+            if not output_path.resolve().is_relative_to(output_dir.resolve()):
+                print(f"Error: Invalid output path '{output_path}'")
+                continue
                 convert_single_file(input_file_path, output_path)
-
-    # - Other
     else:
         print(f"Error: The path '{input_path}' is neither a valid file nor a directory.")
 
