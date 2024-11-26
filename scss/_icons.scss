@@ -12,38 +12,33 @@ $url-copy: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2
 $url-prev: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg>');
 $url-next: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg>');
 
-@mixin mask-icon($url) {
-  mask-image: $url;
-  -webkit-mask-image: $url;
-}
-
 .icon-sidebar {
-  @include mask-icon($url-sidebar);
+  mask-image: $url-sidebar;
 }
 
 .icon-theme {
-  @include mask-icon($url-theme);
+  mask-image: $url-theme;
 }
 
 .icon-search {
-  @include mask-icon($url-search);
+  mask-image: $url-search;
 }
 
 .icon-github {
-  @include mask-icon($url-github);
+  mask-image: $url-github;
 }
 
 .icon-copy {
-  @include mask-icon($url-copy);
+  mask-image: $url-copy;
 }
 
 .icon-prev {
-  @include mask-icon($url-prev);
+  mask-image: $url-prev;
   margin-right: 0.8em;
 }
 
 .icon-next {
-  @include mask-icon($url-next);
+  mask-image: $url-next;
   margin-left: 0.8em;
 }
 
@@ -60,9 +55,7 @@ $url-next: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2
   background-color: var(--icons);
 
   mask-repeat: no-repeat;
-  -webkit-mask-repeat: no-repeat;
   mask-size: contain;
-  -webkit-mask-size: contain;
 
   &:hover {
     background-color: var(--icons-hover);
