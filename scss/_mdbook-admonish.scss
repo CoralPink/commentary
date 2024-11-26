@@ -87,11 +87,8 @@ html :is(.admonition-title, summary.admonition-title):last-child {
   print-color-adjust: exact;
   -webkit-print-color-adjust: exact;
   mask-image: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"></svg>');
-  -webkit-mask-image: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"></svg>');
   mask-repeat: no-repeat;
-  -webkit-mask-repeat: no-repeat;
   mask-size: contain;
-  -webkit-mask-size: contain;
   content: "";
 }
 
@@ -121,11 +118,8 @@ details.admonition>summary.admonition-title::after {
   width: 1rem;
   background-color: currentcolor;
   mask-image: $md-details-icon;
-  -webkit-mask-image: $md-details-icon;
   mask-repeat: no-repeat;
-  -webkit-mask-repeat: no-repeat;
   mask-size: contain;
-  -webkit-mask-size: contain;
   content: "";
   transform: rotate(0deg);
   transition: transform 0.25s;
@@ -150,9 +144,7 @@ summary.admonition-title::-webkit-details-marker {
 :is(.admonish-note)> :is(.admonition-title, summary.admonition-title)::before {
   background-color: #448aff;
   mask-image: $md-admonition-icon-note;
-  -webkit-mask-image: $md-admonition-icon-note;
   mask-repeat: no-repeat;
-  -webkit-mask-repeat: no-repeat;
   mask-size: contain;
 }
 
@@ -167,9 +159,7 @@ summary.admonition-title::-webkit-details-marker {
 :is(.admonish-abstract, .admonish-summary, .admonish-tldr)> :is(.admonition-title, summary.admonition-title)::before {
   background-color: #00b0ff;
   mask-image: $md-admonition-icon-abstract;
-  -webkit-mask-image: $md-admonition-icon-abstract;
   mask-repeat: no-repeat;
-  -webkit-mask-repeat: no-repeat;
   mask-size: contain;
 }
 
@@ -184,9 +174,7 @@ summary.admonition-title::-webkit-details-marker {
 :is(.admonish-info, .admonish-todo)> :is(.admonition-title, summary.admonition-title)::before {
   background-color: #00b8d4;
   mask-image: $md-admonition-icon-info;
-  -webkit-mask-image: $md-admonition-icon-info;
   mask-repeat: no-repeat;
-  -webkit-mask-repeat: no-repeat;
   mask-size: contain;
 }
 
@@ -201,9 +189,7 @@ summary.admonition-title::-webkit-details-marker {
 :is(.admonish-tip, .admonish-hint, .admonish-important)> :is(.admonition-title, summary.admonition-title)::before {
   background-color: #00bfa5;
   mask-image: $md-admonition-icon-tip;
-  -webkit-mask-image: $md-admonition-icon-tip;
   mask-repeat: no-repeat;
-  -webkit-mask-repeat: no-repeat;
   mask-size: contain;
 }
 
@@ -218,9 +204,7 @@ summary.admonition-title::-webkit-details-marker {
 :is(.admonish-success, .admonish-check, .admonish-done)> :is(.admonition-title, summary.admonition-title)::before {
   background-color: #00c853;
   mask-image: $md-admonition-icon-success;
-  -webkit-mask-image: $md-admonition-icon-success;
   mask-repeat: no-repeat;
-  -webkit-mask-repeat: no-repeat;
   mask-size: contain;
 }
 
@@ -235,9 +219,7 @@ summary.admonition-title::-webkit-details-marker {
 :is(.admonish-question, .admonish-help, .admonish-faq)> :is(.admonition-title, summary.admonition-title)::before {
   background-color: #64dd17;
   mask-image: $md-admonition-icon-question;
-  -webkit-mask-image: $md-admonition-icon-question;
   mask-repeat: no-repeat;
-  -webkit-mask-repeat: no-repeat;
   mask-size: contain;
 }
 
@@ -252,9 +234,7 @@ summary.admonition-title::-webkit-details-marker {
 :is(.admonish-warning, .admonish-caution, .admonish-attention)> :is(.admonition-title, summary.admonition-title)::before {
   background-color: #ff9100;
   mask-image: $md-admonition-icon-warning;
-  -webkit-mask-image: $md-admonition-icon-warning;
   mask-repeat: no-repeat;
-  -webkit-mask-repeat: no-repeat;
   mask-size: contain;
 }
 
@@ -269,9 +249,7 @@ summary.admonition-title::-webkit-details-marker {
 :is(.admonish-failure, .admonish-fail, .admonish-missing)> :is(.admonition-title, summary.admonition-title)::before {
   background-color: #ff5252;
   mask-image: $md-admonition-icon-failure;
-  -webkit-mask-image: $md-admonition-icon-failure;
   mask-repeat: no-repeat;
-  -webkit-mask-repeat: no-repeat;
   mask-size: contain;
 }
 
@@ -286,9 +264,7 @@ summary.admonition-title::-webkit-details-marker {
 :is(.admonish-danger, .admonish-error)> :is(.admonition-title, summary.admonition-title)::before {
   background-color: #ff1744;
   mask-image: $md-admonition-icon-danger;
-  -webkit-mask-image: $md-admonition-icon-danger;
   mask-repeat: no-repeat;
-  -webkit-mask-repeat: no-repeat;
   mask-size: contain;
 }
 
@@ -303,9 +279,7 @@ summary.admonition-title::-webkit-details-marker {
 :is(.admonish-bug)> :is(.admonition-title, summary.admonition-title)::before {
   background-color: #f50057;
   mask-image: $md-admonition-icon-bug;
-  -webkit-mask-image: $md-admonition-icon-bug;
   mask-repeat: no-repeat;
-  -webkit-mask-repeat: no-repeat;
   mask-size: contain;
 }
 
@@ -320,9 +294,7 @@ summary.admonition-title::-webkit-details-marker {
 :is(.admonish-example)> :is(.admonition-title, summary.admonition-title)::before {
   background-color: #7c4dff;
   mask-image: $md-admonition-icon-example;
-  -webkit-mask-image: $md-admonition-icon-example;
   mask-repeat: no-repeat;
-  -webkit-mask-repeat: no-repeat;
   mask-size: contain;
 }
 
@@ -337,8 +309,6 @@ summary.admonition-title::-webkit-details-marker {
 :is(.admonish-quote, .admonish-cite)> :is(.admonition-title, summary.admonition-title)::before {
   background-color: #9e9e9e;
   mask-image: $md-admonition-icon-quote;
-  -webkit-mask-image: $md-admonition-icon-quote;
   mask-repeat: no-repeat;
-  -webkit-mask-repeat: no-repeat;
   mask-size: contain;
 }
