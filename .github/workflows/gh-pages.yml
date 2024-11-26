@@ -208,9 +208,8 @@ jobs:
         uses: actions/cache@6849a6489940f00c2f30c0fb92c6274307ccb58a # v4
         with:
           path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-poetry
-          restore-keys: |
-            ${{ runner.os }}-pip-
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/poetry.lock') }}
+          restore-keys: ${{ runner.os }}-pip-
 
       - name: Install Poetry
         run: |
@@ -221,11 +220,13 @@ jobs:
         with:
           path: ~/.cache/pypoetry/virtualenvs
           key: ${{ runner.os }}-poetry-${{ hashFiles('**/poetry.lock') }}
+          restore-keys: ${{ runner.os }}-poetry-
 
       - name: Install Dependencies
         working-directory: fonts
         run: |
           poetry install --no-root
+
       - name: Convert Woff2
         working-directory: fonts
         run: |
@@ -236,10 +237,8 @@ jobs:
       - name: Copy Woff2
         working-directory: fonts
         run: |
-          cp "Fira Code/FiraCode-VF.woff2" woff2 || {
-            echo "Error: Failed to copy FiraCode font"
-            exit 1
-          }
+          set -e
+          cp "Fira Code/FiraCode-VF.woff2" woff2
 
       - name: Upload font artifacts
         uses: actions/upload-artifact@b4b15b8c7c6ac21ea08fcf65892d2ee8f75cf882 # v4
