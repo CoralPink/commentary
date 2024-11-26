@@ -1,5 +1,6 @@
 book
 commentary
+myenv
 node_modules
 pkg
 target
@@ -18,10 +19,9 @@ css/*.css.map
 src/*.js
 src/css
 src/*.LICENSE.txt
-theme/css
+src/woff2
 
 theme/book.js
-
-convert.sh
+theme/css
 
 .DS_Store

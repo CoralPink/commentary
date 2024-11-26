@@ -194,6 +194,42 @@ jobs:
           path: scss/dist
           if-no-files-found: error
 
+  convert-woff2:
+    name: Convert WOFF2
+    runs-on: macos-15
+    steps:
+      - name: Cache Pip
+        uses: actions/cache@6849a6489940f00c2f30c0fb92c6274307ccb58a # v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
+      - name: Install
+        run: |
+          pip install fonttools
+          pip install brotli
+
+      - name: Convert Woff2
+        working-directory: fonts
+        run: |
+          python convert.py NerdFontsSymbolsOnly/SymbolsNerdFontMono-Regular.ttf woff2
+          python convert.py Open_Sans/static/OpenSans-BoldItalic.ttf woff2
+          python convert.py Open_Sans/static/OpenSans-Italic.ttf woff2
+
+      - name: Copy Woff2
+        working-directory: fonts
+        run: |
+          cp Fira\ Code/FiraCode-VF.woff2 woff2
+
+      - name: Upload font artifacts
+        uses: actions/upload-artifact@b4b15b8c7c6ac21ea08fcf65892d2ee8f75cf882 # v4
+        with:
+          name: woff2
+          path: fonts/woff2
+          if-no-files-found: error
+
   test-mdbook-backend:
     name: Test mdBook Backend
     runs-on: macos-15
@@ -224,7 +260,7 @@ jobs:
     name: Build and Deploy
     runs-on: macos-15
     if: ${{ github.ref == 'refs/heads/main' }}
-    needs: [build-wasm, build-js, build-scss, test-mdbook-backend]
+    needs: [build-wasm, build-js, build-scss, convert-woff2 test-mdbook-backend]
     steps:
       - name: Checkout the repo
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
@@ -244,6 +280,7 @@ jobs:
         run: |
           cp artifacts/wasm-book/wasm_book_bg.wasm src
           cp artifacts/build-js/* src
+          cp -r artifacts/woff2 src
           cp -r artifacts/css src
 
       - name: Cache Cargo
