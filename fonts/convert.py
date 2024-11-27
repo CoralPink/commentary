@@ -1,6 +1,9 @@
 import os
 import sys
+
 from fontTools.ttLib import TTFont
+from pathlib import Path
+from typing import Union
 
 def convert_single_file(input_file, output_file):
     try:
@@ -10,9 +13,6 @@ def convert_single_file(input_file, output_file):
         print(f"Converted {input_file} to {output_file}")
     except Exception as e:
         print(f"Error converting {input_file}: {str(e)}")
-
-from typing import Union
-from pathlib import Path
 
 def convert_ttf_to_woff2(input_path: Union[str, Path], output_dir: Union[str, Path]) -> None:
     """
@@ -41,28 +41,34 @@ def convert_ttf_to_woff2(input_path: Union[str, Path], output_dir: Union[str, Pa
     if input_path.is_file():
         if input_path.suffix.lower() == '.ttf':
             output_path = output_dir / input_path.name.replace('.ttf', '.woff2')
+
             # Ensure output path is within output_dir
             if not output_path.resolve().is_relative_to(output_dir.resolve()):
                 print(f"Error: Invalid output path '{output_path}'")
                 sys.exit(1)
             convert_single_file(input_path, output_path)
+
         else:
             print(f"Error: The file '{input_path}' is not a TTF file.")
 
     elif input_path.is_dir():
         ttf_files = list(input_path.glob("*.ttf"))
+
         if not ttf_files:
             print(f"Warning: No TTF files found in '{input_path}'")
             return
-        
+
         print(f"Found {len(ttf_files)} TTF files to convert...")
+
         for i, input_file_path in enumerate(ttf_files, 1):
             print(f"Converting file {i}/{len(ttf_files)}: {input_file_path.name}")
             output_path = output_dir / input_file_path.name.replace('.ttf', '.woff2')
+
             if not output_path.resolve().is_relative_to(output_dir.resolve()):
                 print(f"Error: Invalid output path '{output_path}'")
                 continue
-                convert_single_file(input_file_path, output_path)
+
+            convert_single_file(input_file_path, output_path)
     else:
         print(f"Error: The path '{input_path}' is neither a valid file nor a directory.")
 

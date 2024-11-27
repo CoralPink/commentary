@@ -210,4 +210,4 @@ woff = ["brotli (>=1.0.1)", "brotlicffi (>=0.8.0)", "zopfli (>=0.1.4)"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.13"
-content-hash = "dd062f6c0a2ed9eb81845fc6ad11b22a9767570cc1795a669152f5774d62280b"
+content-hash = "120b5e8556aff1764b41e1960975c79c1a66072b4c9aa37bdb839f3d3301549e"
