@@ -13,6 +13,9 @@ rs/mdbook-footnote/test/result.md
 
 css/*.css
 css/*.css.map
+
+scss/dist
+
 *.tmp
 *.wasm
 

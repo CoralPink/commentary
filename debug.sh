@@ -35,17 +35,8 @@ pushd scss
 if [ ! -e ./node_modules ]; then
   bun install
 fi
-bun run compile chapter.scss ../src/css/chapter.css
-bun run compile general.scss ../src/css/general.css
-bun run compile search.scss ../src/css/search.css
-bun run compile style.scss ../src/css/style.css
-bun run compile theme-list.scss ../src/css/theme-list.css
-for theme in au-lait frappe latte macchiato mocha; do
-  if ! bun run compile "catppuccin/$theme.scss" "../src/css/theme/$theme.css"; then
-    echo "Failed to compile $theme theme"
-    exit 1
-  fi
-done
+bun run build.js
+cp -r dist/ ../src/css/
 popd
 
 mdbook build --dest-dir commentary
