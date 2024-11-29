@@ -23,26 +23,31 @@ const bunBuild = async () =>
   });
 
 const teaserCompress = async result => {
-  for (const file of result.outputs) {
-    const code = await readFile(file.path, 'utf8');
+  const compressionOptions = {
+    compress: true,
+    mangle: true,
+    output: { comments: false },
+  };
 
-    const compressed = await minify(code, {
-      compress: true,
-      mangle: true,
-      output: {
-        comments: false,
-      },
-    });
+  try {
+    await Promise.all(result.outputs.map(async file => {
+      const code = await readFile(file.path, 'utf8');
 
-    const fileName = path.basename(file.path).padEnd(20, ' ');
-    const bunByteLength = Buffer.byteLength(code, 'utf8');
-    const terserByteLength = Buffer.byteLength(compressed.code, 'utf8');
+      const compressed = await minify(code, compressionOptions);
 
-    console.info(
-      `[INFO]: ${CLR_BC}teaser${CLR_RESET} ${CLR_C}${fileName}${CLR_RESET}🍞 ${bunByteLength} -> 🥪 ${terserByteLength} byte`,
-    );
+      const fileName = path.basename(file.path).padEnd(20, ' ');
+      const bunByteLength = Buffer.byteLength(code, 'utf8');
+      const terserByteLength = Buffer.byteLength(compressed.code, 'utf8');
 
-    await writeFile(file.path, compressed.code);
+      console.info(
+        `[INFO]: ${CLR_BC}teaser${CLR_RESET} ${CLR_C}${fileName}${CLR_RESET}🍞 ${bunByteLength} -> 🥪 ${terserByteLength} byte`,
+      );
+
+      await writeFile(file.path, compressed.code);
+    }));
+  } catch (error) {
+    console.error('Error during compression:', error);
+    throw error;
   }
 };
 
