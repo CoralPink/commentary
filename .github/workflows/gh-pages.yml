@@ -121,6 +121,15 @@ jobs:
           sparse-checkout: |
             js
 
+      - name: Cache dependencies
+        uses: actions/cache@6849a6489940f00c2f30c0fb92c6274307ccb58a # v4
+        with:
+          path: |
+            ~/.bun/install/cache
+            js/node_modules
+          key: js-${{ runner.os }}-bun-${{ hashFiles('**/bun.lockb') }}
+          restore-keys: js-${{ runner.os }}-bun-
+
       - name: Download wasm_pkg
         uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16 # v4
         with:
@@ -176,16 +185,7 @@ jobs:
         working-directory: scss
         run: |
           bun install --production
-          bun run compile chapter.scss dist/chapter.css
-          bun run compile general.scss dist/general.css
-          bun run compile search.scss dist/search.css
-          bun run compile style.scss dist/style.css
-          bun run compile theme-list.scss dist/theme-list.css
-          bun run compile catppuccin/au-lait.scss dist/theme/au-lait.css
-          bun run compile catppuccin/frappe.scss dist/theme/frappe.css
-          bun run compile catppuccin/latte.scss dist/theme/latte.css
-          bun run compile catppuccin/macchiato.scss dist/theme/macchiato.css
-          bun run compile catppuccin/mocha.scss dist/theme/mocha.css
+          bun run build.js
 
       - name: Upload CSS
         uses: actions/upload-artifact@b4b15b8c7c6ac21ea08fcf65892d2ee8f75cf882 # v4

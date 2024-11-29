@@ -1,8 +1,9 @@
 {
   "dependencies": {
-    "fzf": "0.5.2"
+    "fzf": "0.5.2",
+    "terser": "^5.36.0"
   },
   "devDependencies": {
-    "@happy-dom/global-registrator": "^15.11.0"
+    "@happy-dom/global-registrator": "^15.11.7"
   }
 }
