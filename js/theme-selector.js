@@ -3,7 +3,7 @@ import { getRootVariable, loadStyleSheet, unloadStyleSheet } from './css-loader.
 
 const STYLE_THEMELIST = 'css/theme-list.css';
 
-const THEME_DIRECTORY = 'css/theme/';
+const THEME_DIRECTORY = 'css/catppuccin/';
 
 const THEME_COLORS = [
   { id: 'au-lait', label: 'Au Lait' },
