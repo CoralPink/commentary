@@ -30,21 +30,23 @@ const teaserCompress = async result => {
   };
 
   try {
-    await Promise.all(result.outputs.map(async file => {
-      const code = await readFile(file.path, 'utf8');
+    await Promise.all(
+      result.outputs.map(async file => {
+        const code = await readFile(file.path, 'utf8');
 
-      const compressed = await minify(code, compressionOptions);
+        const compressed = await minify(code, compressionOptions);
 
-      const fileName = path.basename(file.path).padEnd(20, ' ');
-      const bunByteLength = Buffer.byteLength(code, 'utf8');
-      const terserByteLength = Buffer.byteLength(compressed.code, 'utf8');
+        const fileName = path.basename(file.path).padEnd(20, ' ');
+        const bunByteLength = Buffer.byteLength(code, 'utf8');
+        const terserByteLength = Buffer.byteLength(compressed.code, 'utf8');
 
-      console.info(
-        `[INFO]: ${CLR_BC}teaser${CLR_RESET} ${CLR_C}${fileName}${CLR_RESET}🍞 ${bunByteLength} -> 🥪 ${terserByteLength} byte`,
-      );
+        console.info(
+          `[INFO]: ${CLR_BC}teaser${CLR_RESET} ${CLR_C}${fileName}${CLR_RESET}🍞 ${bunByteLength} -> 🥪 ${terserByteLength} byte`,
+        );
 
-      await writeFile(file.path, compressed.code);
-    }));
+        await writeFile(file.path, compressed.code);
+      }),
+    );
   } catch (error) {
     console.error('Error during compression:', error);
     throw error;
@@ -52,7 +54,7 @@ const teaserCompress = async result => {
 };
 
 (async () => {
-  console.info(`[INFO]: 👩🏼‍🍳 I'm going to bake ${CLR_BC}bun${CLR_RESET} now!`);
+  console.info(`[INFO]: 👩 I'm going to bake ${CLR_BC}bun${CLR_RESET} now!`);
   const start = performance.now();
 
   const result = await bunBuild();
