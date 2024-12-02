@@ -33,7 +33,7 @@ const compileScss = async (input, output) => {
 
     const fileName = input.padEnd(32, ' ');
     const cssSize = Buffer.byteLength(result.css, 'utf8');
-    console.info(`[INFO]:   ${CLR_BC}sass${CLR_RESET} ${CLR_C}${fileName}${CLR_RESET}🎁 ${cssSize} byte`);
+    console.info(`[INFO]:   ${CLR_BC}sass${CLR_RESET} ${CLR_C}${fileName}${CLR_RESET}🎁 ${cssSize} bytes`);
 
     await writeFile(output, result.css);
   } catch (err) {
