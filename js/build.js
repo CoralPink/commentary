@@ -41,7 +41,7 @@ const teaserCompress = async result => {
         const terserByteLength = Buffer.byteLength(compressed.code, 'utf8');
 
         console.info(
-          `[INFO]: ${CLR_BC}teaser${CLR_RESET} ${CLR_C}${fileName}${CLR_RESET}🍞 ${bunByteLength} -> 🥪 ${terserByteLength} byte`,
+          `[INFO]: ${CLR_BC}teaser${CLR_RESET} ${CLR_C}${fileName}${CLR_RESET}🍞 ${bunByteLength} -> 🥪 ${terserByteLength} bytes`,
         );
 
         await writeFile(file.path, compressed.code);
