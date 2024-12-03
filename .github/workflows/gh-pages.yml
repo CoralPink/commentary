@@ -205,6 +205,7 @@ jobs:
             fonts
 
       - name: Cache Woff2 output
+        id: cache-woff2
         uses: actions/cache@6849a6489940f00c2f30c0fb92c6274307ccb58a # v4
         with:
           path: fonts/woff2
@@ -213,36 +214,26 @@ jobs:
             python-${{ runner.os }}-fonts-
 
       - name: Install Poetry
-        if: steps.cache.outputs.cache-hit != 'true'
+        if: steps.cache-woff2.outputs.cache-hit != 'true'
         run: |
           curl -sSL https://install.python-poetry.org | python -
           echo "$HOME/.local/bin" >> $GITHUB_PATH
 
       - name: Install Dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
+        if: steps.cache-woff2.outputs.cache-hit != 'true'
         working-directory: fonts
         run: |
           poetry install --no-root
 
-      - name: Make Directory
-        if: steps.cache.outputs.cache-hit != 'true'
-        working-directory: fonts
-        run: |
-          mkdir -p woff2
-
-      - name: Convert Woff2
-        if: steps.cache.outputs.cache-hit != 'true'
-        working-directory: fonts
-        run: |
-          poetry run python convert.py NerdFontsSymbolsOnly/SymbolsNerdFontMono-Regular.ttf woff2
-          poetry run python convert.py Open_Sans/static/OpenSans-BoldItalic.ttf woff2
-          poetry run python convert.py Open_Sans/static/OpenSans-Italic.ttf woff2
-
-      - name: Copy Woff2
-        if: steps.cache.outputs.cache-hit != 'true'
+      - name: Convert and Copy Woff2
+        if: steps.cache-woff2.outputs.cache-hit != 'true'
         working-directory: fonts
         run: |
           set -e
+          mkdir -p woff2
+          poetry run python convert.py NerdFontsSymbolsOnly/SymbolsNerdFontMono-Regular.ttf woff2
+          poetry run python convert.py Open_Sans/static/OpenSans-BoldItalic.ttf woff2
+          poetry run python convert.py Open_Sans/static/OpenSans-Italic.ttf woff2
           cp "Fira Code/FiraCode-VF.woff2" woff2
 
       - name: Upload font artifacts
