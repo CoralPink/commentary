@@ -216,11 +216,7 @@ jobs:
       - name: Install Poetry
         if: steps.cache-woff2.outputs.cache-hit != 'true'
         run: |
-          curl -sSL https://install.python-poetry.org/install-poetry.py > install-poetry.py
-          gpg --keyserver hkps://keys.openpgp.org --recv-keys 4AC22D58E05B4C1B
-          curl -sSL https://install.python-poetry.org/install-poetry.py.asc > install-poetry.py.asc
-          gpg --verify install-poetry.py.asc install-poetry.py
-          python install-poetry.py
+          curl -sSL https://install.python-poetry.org | python -
           echo "$HOME/.local/bin" >> $GITHUB_PATH
 
       - name: Install Dependencies
