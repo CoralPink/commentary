@@ -14,6 +14,7 @@ const ELEM_RESULTS = document.getElementById('searchresults');
 
 const INITIAL_HEADER = '2文字 (もしくは全角1文字) 以上を入力してください...';
 
+const FETCH_TIMEOUT = 10000;
 const DEBOUNCE_DELAY_MS = 80;
 
 let rootPath;
@@ -165,6 +166,21 @@ const showSearch = () => {
   pop.showPopover();
 };
 
+const fetchRequest = async url => {
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => {
+    controller.abort();
+    alert('The request has timed out.');
+  }, FETCH_TIMEOUT);
+
+  const response = await fetch(url, {
+    signal: controller.signal,
+  });
+  clearTimeout(timeoutId);
+
+  return response;
+};
+
 const initSearch = async () => {
   document.removeEventListener('keyup', startSearchFromKey);
 
@@ -174,7 +190,7 @@ const initSearch = async () => {
   try {
     await loadStyleSheet(`${rootPath}${STYLE_SEARCH}`);
 
-    const response = await fetch(`${rootPath}searchindex.json`);
+    const response = await fetchRequest(`${rootPath}searchindex.json`);
     const config = await response.json();
 
     searchResult = new SearchResult(rootPath, config.results_options.teaser_word_count, config.doc_urls);
@@ -184,6 +200,7 @@ const initSearch = async () => {
     console.info('The search function is disabled.');
 
     icon.style.display = 'none';
+    alert('Search is currently unavailable.');
     return;
   }
 
