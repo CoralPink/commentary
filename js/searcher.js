@@ -102,14 +102,17 @@ const searchMouseupHandler = ev => {
   jumpUrl(li.querySelector('a'));
 };
 
-const checkAsciiCharacters = s => s.charCodeAt(0) <= 127;
+const isFullWidthOrAscii = s => {
+  const code = s.charCodeAt(0);
+  return code <= 127 || (code >= 0xff01 && code <= 0xff5e);
+};
 
 const showResults = () => {
   const terms = ELEM_BAR.value.trim();
   ELEM_RESULTS.innerText = '';
 
   // If the input is less than one half-width character, the search process is not carried out.
-  if (terms.length === 0 || (terms.length <= 1 && checkAsciiCharacters(terms))) {
+  if (terms.length === 0 || (terms.length <= 1 && isFullWidthOrAscii(terms))) {
     ELEM_HEADER.innerText = INITIAL_HEADER;
     return;
   }
