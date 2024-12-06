@@ -51,15 +51,12 @@
             <div class="icon-search fa-icon"></div>
           </button>
 
-          <div id="search-wrapper">
-            <form id="searchbar-outer">
-              <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..."
-                aria-controls="searchresults-outer" aria-describedby="searchresults-header">
-            </form>
-            <div id="searchresults-outer" tabindex="-1" popover>
-              <div id="searchresults-header"></div>
-              <ul id="searchresults" aria-live="polite" role="status"></ul>
-            </div>
+          <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..."
+            aria-controls="results-header" aria-describedby="results-header">
+
+          <div id="search-pop" tabindex="-1" popover>
+            <div id="results-header"></div>
+            <ul id="searchresults" aria-live="polite" role="status"></ul>
           </div>
         </div>
 
