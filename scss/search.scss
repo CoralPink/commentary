@@ -10,7 +10,7 @@
   color: var(--searchbar-fg);
 }
 
-#searchresults-outer {
+#search-pop{
   width: 84dvw;
   max-height: 88dvh;
   margin: 0 auto;
@@ -22,7 +22,7 @@
   padding: 0.8em;
   border-radius: 1rem;
 
-  &>#searchresults-header {
+  &>#results-header {
     font-weight: bold;
     padding: 1rem 0 0 0.3rem;
     color: var(--searchresults-header-fg);

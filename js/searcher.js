@@ -5,20 +5,21 @@ import { loadStyleSheet } from './css-loader.js';
 
 const STYLE_SEARCH = 'css/search.css';
 
-const ELEM_WRAPPER = document.getElementById('search-wrapper');
-const ELEM_BAR = document.getElementById('searchbar');
-const ELEM_ICON = document.getElementById('search-toggle');
+const ID_ICON = 'search-toggle';
+const ID_POP = 'search-pop';
 
-const ELEM_OUTER = document.getElementById('searchresults-outer');
-const ELEM_HEADER = document.getElementById('searchresults-header');
+const ELEM_BAR = document.getElementById('searchbar');
+const ELEM_HEADER = document.getElementById('results-header');
 const ELEM_RESULTS = document.getElementById('searchresults');
+
+const INITIAL_HEADER = '2文字 (もしくは全角1文字) 以上を入力してください...';
 
 let rootPath;
 
 let searchResult;
 let finder;
 
-let prevTerms;
+let prevTerms = '';
 let focusedLi;
 
 const unmarkHandler = () => {
@@ -50,7 +51,7 @@ const doSearchOrMarkFromUrl = () => {
     return;
   }
   const terms = escapeHtml(params);
-  ELEM_BAR.value = terms;
+  prevTerms = terms;
 
   marking(terms);
 
@@ -100,24 +101,12 @@ const searchMouseupHandler = ev => {
   jumpUrl(li.querySelector('a'));
 };
 
-const handleKeyup = ev => {
-  startSearchFromKey(ev.key);
-};
-
-const searchHandler = () => {
-  const terms = ELEM_BAR.value.trim();
-
-  if (terms === prevTerms) {
-    return;
-  }
-  prevTerms = terms;
-
+const showResults = terms => {
   ELEM_RESULTS.innerText = '';
-  ELEM_OUTER.showPopover();
 
   // If the input is less than one half-width character, the search process is not carried out.
   if (terms.length === 0 || (terms.length <= 1 && terms.charCodeAt() <= 127)) {
-    ELEM_HEADER.innerText = '2文字 (もしくは全角1文字) 以上を入力してください。';
+    ELEM_HEADER.innerText = INITIAL_HEADER;
     return;
   }
 
@@ -131,55 +120,83 @@ const searchHandler = () => {
   searchResult.append_search_result(results, terms);
 };
 
+const searchHandler = () => {
+  const terms = ELEM_BAR.value.trim();
+
+  if (terms === prevTerms) {
+    return;
+  }
+  prevTerms = terms;
+
+  showResults(terms);
+};
+
+const closedPopover = ev => {
+  if (ev.newState === 'closed') {
+    hiddenSearch();
+  }
+};
+
 const hiddenSearch = () => {
-  ELEM_WRAPPER.style.visibility = 'hidden';
-  ELEM_ICON.setAttribute('aria-expanded', 'false');
+  document.getElementById(ID_ICON).setAttribute('aria-expanded', 'false');
 
+  ELEM_BAR.style.visibility = 'hidden';
   ELEM_BAR.removeEventListener('keyup', searchHandler);
-  ELEM_RESULTS.removeEventListener('keyup', popupFocus);
-  ELEM_OUTER.removeEventListener('click', searchMouseupHandler);
 
-  prevTerms = undefined;
+  ELEM_RESULTS.removeEventListener('keyup', popupFocus);
+
+  const pop = document.getElementById(ID_POP);
+  pop.removeEventListener('click', searchMouseupHandler);
+  pop.removeEventListener('toggle', closedPopover);
+  pop.hidePopover();
 };
 
 const showSearch = () => {
-  ELEM_WRAPPER.style.visibility = 'visible';
-  ELEM_ICON.setAttribute('aria-expanded', 'true');
+  document.getElementById(ID_ICON).setAttribute('aria-expanded', 'true');
 
+  ELEM_BAR.value = prevTerms;
+  showResults(prevTerms);
+
+  ELEM_BAR.style.visibility = 'visible';
   ELEM_BAR.addEventListener('keyup', searchHandler, { once: false, passive: true });
-  ELEM_RESULTS.addEventListener('keyup', popupFocus, { once: false, passive: true });
-  ELEM_OUTER.addEventListener('click', searchMouseupHandler, { once: false, passive: true });
-
   ELEM_BAR.select();
+
+  ELEM_RESULTS.addEventListener('keyup', popupFocus, { once: false, passive: true });
+
+  const pop = document.getElementById(ID_POP);
+  pop.addEventListener('click', searchMouseupHandler, { once: false, passive: true });
+  pop.addEventListener('toggle', closedPopover);
+  pop.showPopover();
 };
 
 const initSearch = async () => {
-  ELEM_ICON.removeEventListener('click', initSearch);
-  document.removeEventListener('keyup', handleKeyup);
+  document.removeEventListener('keyup', startSearchFromKey);
+
+  const icon = document.getElementById(ID_ICON);
+  icon.removeEventListener('click', initSearch);
 
   try {
     await loadStyleSheet(`${rootPath}${STYLE_SEARCH}`);
 
-    fetch(`${rootPath}searchindex.json`)
-      .then(response => response.json())
-      .then(config => {
-        searchResult = new SearchResult(rootPath, config.results_options.teaser_word_count, config.doc_urls);
-        finder = new Finder(config.index.documentStore.docs, config.results_options.limit_results);
-      });
+    const response = await fetch(`${rootPath}searchindex.json`);
+    const config = await response.json();
+
+    searchResult = new SearchResult(rootPath, config.results_options.teaser_word_count, config.doc_urls);
+    finder = new Finder(config.index.documentStore.docs, config.results_options.limit_results);
   } catch (e) {
     console.error(`Error during initialization: ${e}`);
     console.info('The search function is disabled.');
 
-    ELEM_ICON.style.display = 'none';
+    icon.style.display = 'none';
     return;
   }
 
   showSearch();
 
-  ELEM_ICON.addEventListener(
+  icon.addEventListener(
     'click',
     () => {
-      window.getComputedStyle(ELEM_WRAPPER).visibility === 'hidden' ? showSearch() : hiddenSearch();
+      window.getComputedStyle(ELEM_BAR).visibility === 'hidden' ? showSearch() : hiddenSearch();
     },
     { once: false, passive: true },
   );
@@ -187,27 +204,26 @@ const initSearch = async () => {
   document.addEventListener(
     'keyup',
     e => {
-      if (window.getComputedStyle(ELEM_WRAPPER).visibility === 'hidden') {
-        switch (e.key) {
-          case '/':
-          case 's':
-          case 'S':
+      switch (e.key) {
+        case '/':
+        case 's':
+        case 'S':
+          if (window.getComputedStyle(ELEM_BAR).visibility === 'hidden') {
             showSearch();
-            break;
-        }
-        return;
-      }
+          }
+          break;
 
-      if (e.key === 'Escape') {
-        hiddenSearch();
+        case 'Escape':
+          hiddenSearch();
+          break;
       }
     },
     { once: false, passive: true },
   );
 };
 
-const startSearchFromKey = key => {
-  switch (key) {
+const startSearchFromKey = ev => {
+  switch (ev.key) {
     case '/':
     case 's':
     case 'S':
@@ -221,8 +237,8 @@ export const startupSearch = root => {
 
   rootPath = root;
 
-  ELEM_ICON.addEventListener('click', initSearch, { once: true, passive: true });
-  document.addEventListener('keyup', handleKeyup, { once: false, passive: true });
+  document.getElementById(ID_ICON).addEventListener('click', initSearch, { once: true, passive: true });
+  document.addEventListener('keyup', startSearchFromKey, { once: false, passive: true });
 };
 
 export const initGlobalSearch = () => {
