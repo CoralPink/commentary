@@ -22,7 +22,6 @@ let rootPath;
 let searchResult;
 let finder;
 
-let debounceTimer;
 let focusedLi;
 
 const unmarkHandler = () => {
@@ -127,9 +126,13 @@ const showResults = () => {
   searchResult.append_search_result(results, terms);
 };
 
-const searchHandler = () => {
-  clearTimeout(debounceTimer);
-  debounceTimer = setTimeout(showResults, DEBOUNCE_DELAY_MS);
+const searchHandler = fn => {
+  let debounceTimer;
+
+  return () => {
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(() => fn(), DEBOUNCE_DELAY_MS);
+  };
 };
 
 const closedPopover = ev => {
@@ -142,7 +145,7 @@ const hiddenSearch = () => {
   document.getElementById(ID_ICON).setAttribute('aria-expanded', 'false');
 
   ELEM_BAR.style.visibility = 'hidden';
-  ELEM_BAR.removeEventListener('input', searchHandler);
+  ELEM_BAR.removeEventListener('input', searchHandler(showResults));
 
   ELEM_RESULTS.removeEventListener('keyup', popupFocus);
 
@@ -158,7 +161,7 @@ const showSearch = () => {
   showResults();
 
   ELEM_BAR.style.visibility = 'visible';
-  ELEM_BAR.addEventListener('input', searchHandler, { once: false, passive: true });
+  ELEM_BAR.addEventListener('input', searchHandler(showResults), { once: false, passive: true });
   ELEM_BAR.select();
 
   ELEM_RESULTS.addEventListener('keyup', popupFocus, { once: false, passive: true });
