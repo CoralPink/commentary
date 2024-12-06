@@ -1,7 +1,7 @@
-const TERM_WEIGHT: u32 = 40;
+const TERM_WEIGHT: usize = 40;
 
 pub struct Teaser {
-    vec: Vec<(String, u32, usize)>,
+    vec: Vec<(String, usize, usize)>,
     found: bool,
 }
 
@@ -22,7 +22,7 @@ impl Teaser {
         self.found = false;
     }
 
-    fn window_weight(&self, end: usize) -> Vec<u32> {
+    fn window_weight(&self, end: usize) -> Vec<usize> {
         let mut ret = Vec::new();
         let mut sum = 0;
 
@@ -41,8 +41,8 @@ impl Teaser {
         ret
     }
 
-    fn calc_range(&self, count: usize) -> (usize, usize) {
-        let end = std::cmp::min(self.vec.len(), count);
+    fn calc_range(&self, count: u8) -> (usize, usize) {
+        let end = std::cmp::min(self.vec.len(), count as usize);
 
         if !self.found {
             return (0, end);
@@ -63,7 +63,7 @@ impl Teaser {
         (start, end)
     }
 
-    fn highlighting(&self, body: &str, count: usize) -> String {
+    fn highlighting(&self, body: &str, count: u8) -> String {
         if self.vec.is_empty() {
             return body.to_string();
         }
@@ -94,7 +94,7 @@ impl Teaser {
         highlight.join("")
     }
 
-    pub fn search_result_excerpt(&mut self, body: &str, terms: Vec<&str>, count: usize) -> String {
+    pub fn search_result_excerpt(&mut self, body: &str, terms: Vec<&str>, count: u8) -> String {
         let mut idx = 0;
 
         for whole in body.to_lowercase().split(". ") {

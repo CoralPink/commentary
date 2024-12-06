@@ -36,7 +36,7 @@ pub struct DocObject {
 pub struct ResultObject {
     doc: DocObject,
     key: String,
-    score: usize,
+    score: u16,
 }
 
 #[wasm_bindgen]
@@ -44,7 +44,7 @@ pub struct SearchResult {
     path_to_root: String,
     li_element: Element,
     parent: Element,
-    count: usize,
+    count: u8,
     teaser: Teaser,
     url_table: Vec<String>,
 }
@@ -52,11 +52,7 @@ pub struct SearchResult {
 #[wasm_bindgen]
 impl SearchResult {
     #[wasm_bindgen(constructor)]
-    pub fn new(
-        path_to_root: &str,
-        count: usize,
-        doc_urls: &Array,
-    ) -> Result<SearchResult, JsValue> {
+    pub fn new(path_to_root: &str, count: u8, doc_urls: &Array) -> Result<SearchResult, JsValue> {
         let window = web_sys::window().ok_or("No global `window` exists")?;
         let document = window
             .document()
@@ -85,7 +81,7 @@ impl SearchResult {
         })
     }
 
-    fn add_element(&mut self, content: &str) {
+    fn add_element(&self, content: &str) {
         let node: Node = self
             .li_element
             .clone_node_with_deep(true)
@@ -109,7 +105,7 @@ impl SearchResult {
     }
 
     pub fn append_search_result(&mut self, results: &Array, term: &str) {
-        let elements: Vec<ResultObject> = serde_wasm_bindgen::from_value(results.into())
+        let result: Vec<ResultObject> = serde_wasm_bindgen::from_value(results.into())
             .expect("Failed to deserialize JsValue to Vec<ResultObject>");
 
         let terms = term.split_whitespace().collect::<Vec<&str>>();
@@ -119,7 +115,7 @@ impl SearchResult {
             .unwrap_or_default()
             .replace('\'', "%27");
 
-        elements.into_iter().for_each(|el| {
+        result.into_iter().for_each(|el| {
             self.teaser.clear();
 
             let idx = match el.key.parse::<usize>() {
@@ -131,15 +127,16 @@ impl SearchResult {
             };
 
             let (page, head) = parse_uri(&self.url_table[idx]);
-            let teaser = self
+
+            let result = self
                 .teaser
                 .search_result_excerpt(&el.doc.body, terms.clone(), self.count);
 
-            let score_bar = scoring_notation(el.score);
+            let score = scoring_notation(el.score as usize);
 
             self.add_element(&format!(
                 r#"<a href="{}{}?mark={}#{}" tabindex="-1">{}</a><span>{}</span><div id="score">{}</div>"#,
-                &self.path_to_root, page, mark, head, el.doc.breadcrumbs, teaser, score_bar
+                &self.path_to_root, page, mark, head, el.doc.breadcrumbs, result, score
             ));
         });
     }
