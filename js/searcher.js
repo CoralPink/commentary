@@ -101,12 +101,14 @@ const searchMouseupHandler = ev => {
   jumpUrl(li.querySelector('a'));
 };
 
+const checkAsciiCharacters = s => s.charCodeAt(0) <= 127;
+
 const showResults = () => {
   const terms = ELEM_BAR.value.trim();
   ELEM_RESULTS.innerText = '';
 
   // If the input is less than one half-width character, the search process is not carried out.
-  if (terms.length === 0 || (terms.length <= 1 && terms.charCodeAt() <= 127)) {
+  if (terms.length === 0 || (terms.length <= 1 && checkAsciiCharacters(terms))) {
     ELEM_HEADER.innerText = INITIAL_HEADER;
     return;
   }
@@ -236,6 +238,10 @@ export const startupSearch = root => {
 };
 
 export const initGlobalSearch = () => {
-  globalThis.search = globalThis.search || {};
-  globalThis.search.hasFocus = () => ELEM_BAR === document.activeElement;
+  if (!globalThis.search) {
+    globalThis.search = {
+      hasFocus: () => ELEM_BAR instanceof HTMLElement && ELEM_BAR === document.activeElement,
+    };
+    Object.freeze(globalThis.search);
+  }
 };
