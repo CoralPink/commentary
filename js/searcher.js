@@ -14,12 +14,14 @@ const ELEM_RESULTS = document.getElementById('searchresults');
 
 const INITIAL_HEADER = '2文字 (もしくは全角1文字) 以上を入力してください...';
 
+const DEBOUNCE_DELAY_MS = 80;
+
 let rootPath;
 
 let searchResult;
 let finder;
 
-let prevTerms = '';
+let debounceTimer;
 let focusedLi;
 
 const unmarkHandler = () => {
@@ -50,10 +52,8 @@ const doSearchOrMarkFromUrl = () => {
   if (!params) {
     return;
   }
-  const terms = escapeHtml(params);
-  prevTerms = terms;
 
-  marking(terms);
+  marking(escapeHtml(params));
 
   for (const x of article.querySelectorAll('mark')) {
     x.addEventListener('click', unmarkHandler, { once: true, passive: true });
@@ -101,7 +101,8 @@ const searchMouseupHandler = ev => {
   jumpUrl(li.querySelector('a'));
 };
 
-const showResults = terms => {
+const showResults = () => {
+  const terms = ELEM_BAR.value.trim();
   ELEM_RESULTS.innerText = '';
 
   // If the input is less than one half-width character, the search process is not carried out.
@@ -121,14 +122,8 @@ const showResults = terms => {
 };
 
 const searchHandler = () => {
-  const terms = ELEM_BAR.value.trim();
-
-  if (terms === prevTerms) {
-    return;
-  }
-  prevTerms = terms;
-
-  showResults(terms);
+  clearTimeout(debounceTimer);
+  debounceTimer = setTimeout(showResults, DEBOUNCE_DELAY_MS);
 };
 
 const closedPopover = ev => {
@@ -141,7 +136,7 @@ const hiddenSearch = () => {
   document.getElementById(ID_ICON).setAttribute('aria-expanded', 'false');
 
   ELEM_BAR.style.visibility = 'hidden';
-  ELEM_BAR.removeEventListener('keyup', searchHandler);
+  ELEM_BAR.removeEventListener('input', searchHandler);
 
   ELEM_RESULTS.removeEventListener('keyup', popupFocus);
 
@@ -154,11 +149,10 @@ const hiddenSearch = () => {
 const showSearch = () => {
   document.getElementById(ID_ICON).setAttribute('aria-expanded', 'true');
 
-  ELEM_BAR.value = prevTerms;
-  showResults(prevTerms);
+  showResults();
 
   ELEM_BAR.style.visibility = 'visible';
-  ELEM_BAR.addEventListener('keyup', searchHandler, { once: false, passive: true });
+  ELEM_BAR.addEventListener('input', searchHandler, { once: false, passive: true });
   ELEM_BAR.select();
 
   ELEM_RESULTS.addEventListener('keyup', popupFocus, { once: false, passive: true });
