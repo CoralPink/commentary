@@ -1,4 +1,5 @@
 import Finder from './finder.js';
+
 import { tocReset } from './table-of-contents.js';
 import { SearchResult, marking, unmarking } from './wasm_book.js';
 import { loadStyleSheet } from './css-loader.js';
