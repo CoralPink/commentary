@@ -1,16 +1,6 @@
 @use 'variables' as var;
 
-#searchbar {
-  height: 2em;
-  margin: 0.5em 0.25em;
-  padding: 0.7em 1.4em;
-  border: 0.1em solid var(--searchbar-border-color);
-  border-radius: 1em;
-  background-color: var(--searchbar-bg);
-  color: var(--searchbar-fg);
-}
-
-#search-pop{
+#search-pop {
   width: 84dvw;
   max-height: 88dvh;
   margin: 0 auto;
@@ -21,6 +11,17 @@
 
   padding: 0.8em;
   border-radius: 1rem;
+
+  &>#searchbar {
+    width: 50dvw;
+    padding: 0.7em 1.4em;
+
+    color: var(--searchbar-fg);
+
+    border: 0.1em solid var(--searchbar-border-color);
+    border-radius: 1em;
+    background-color: var(--searchbar-bg);
+  }
 
   &>#results-header {
     font-weight: bold;
