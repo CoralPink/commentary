@@ -91,7 +91,6 @@ const searchMouseupHandler = ev => {
   const li = ev.target.closest('li');
 
   if (li === null) {
-    console.warn('The li element does not exist.');
     return;
   }
 
