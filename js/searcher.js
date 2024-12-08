@@ -162,7 +162,6 @@ const showSearch = () => {
 
   ELEM_BAR.style.visibility = 'visible';
   ELEM_BAR.addEventListener('input', searchHandler(showResults), { once: false, passive: true });
-  ELEM_BAR.select();
 
   ELEM_RESULTS.addEventListener('keyup', popupFocus, { once: false, passive: true });
 
@@ -170,6 +169,9 @@ const showSearch = () => {
   pop.addEventListener('click', searchMouseupHandler, { once: false, passive: true });
   pop.addEventListener('toggle', closedPopover);
   pop.showPopover();
+
+  ELEM_BAR.focus();
+  ELEM_BAR.select();
 };
 
 const fetchRequest = async url => {
