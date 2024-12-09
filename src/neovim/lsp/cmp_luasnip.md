@@ -285,8 +285,8 @@ document.addEventListener(
     const replaceVideo = (id, hit) => {
       const v = document.createElement('video');
       v.setAttribute('poster', `${PATH_PREFIX}-${hit}-thumbnail.webp`);
-      v.setAttribute('width', '700');
-      v.setAttribute('height', '393');
+      v.setAttribute('width', '1280');
+      v.setAttribute('height', '720');
       v.setAttribute('controls', 'true');
       v.setAttribute('preload', 'none');
 

@@ -564,7 +564,7 @@ No one alerted you
 
 でも、"ドンドンぶち上がる" 花火を見てる方がよっぽど健全だと気づいたんだ❗
 
-<video controls preload="none" poster="img/itabashi-hanabi-thumbnail.webp" width="960" height="540">
+<video controls preload="none" width="1280" height="720" poster="img/itabashi-hanabi-thumbnail.webp">
   <source src="img/itabashi-hanabi.webm" type="video/webm">
   Your browser does not support the video/webm.
 </video>
