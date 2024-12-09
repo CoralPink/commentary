@@ -303,7 +303,7 @@ Yes, it was my way
 こうなったらお祝いだー❗❗🥳
 
 ```admonish quote title=""
-<video controls preload="none" poster="img/mm-bon-odori-thumbnail.webp" width="960" height="540">
+<video controls preload="none" width="1280" height="720" poster="img/mm-bon-odori-thumbnail.webp">
   <source src="img/mm-bon-odori.webm" type="video/webm">
   Your browser does not support the video/webm.
 </video>
