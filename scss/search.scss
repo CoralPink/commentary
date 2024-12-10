@@ -3,9 +3,12 @@
 @use 'variables' as var;
 
 /*
-When I try to type on my iPhone, it zooms in on itself and does not release this zoom when I finish typing.
-This site considers this behavior undesirable, so we have cheated the system.
-*/
+ * When I try to type on my iPhone, it zooms in on itself and does not release this zoom when I finish typing.
+ * This site considers this behavior undesirable, so we have cheated the system.
+ *
+ * note: iOS automatically zooms when input elements have a font size smaller than 16px.
+ * This mixin maintains a larger base font size while visually scaling down the input, preventing the zoom.
+ */
 @mixin responsive-input($base-font-size, $desired-font-size) {
   $scale: math.div($desired-font-size, $base-font-size);
 
