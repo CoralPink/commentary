@@ -1,5 +1,5 @@
 import { procCodeBlock } from './codeblock.js';
-import { initGlobalSearch, startupSearch } from './searcher.js';
+import { startupSearch } from './searcher.js';
 import { initSidebar } from './sidebar.js';
 import { initTableOfContents } from './table-of-contents.js';
 import { initThemeColor } from './theme-selector.js';
@@ -24,7 +24,6 @@ const initialize = () => {
 
 (() => {
   initSidebar(document.getElementById('bookjs').dataset.pathtoroot);
-  initGlobalSearch();
 
   document.addEventListener('DOMContentLoaded', initialize, { once: true, passive: true });
 
