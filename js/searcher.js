@@ -9,16 +9,16 @@ const STYLE_SEARCH = 'css/search.css';
 const ID_ICON = 'search-toggle';
 const ID_POP = 'search-pop';
 
-const ELEM_BAR = document.getElementById('searchbar');
-const ELEM_HEADER = document.getElementById('results-header');
-const ELEM_RESULTS = document.getElementById('searchresults');
-
 const INITIAL_HEADER = '2文字 (もしくは全角1文字) 以上を入力してください...';
 
 const FETCH_TIMEOUT = 10000;
 const DEBOUNCE_DELAY_MS = 80;
 
 let rootPath;
+
+let elmSearchBar;
+let elmHeader;
+let elmResults;
 
 let searchResult;
 let finder;
@@ -107,22 +107,22 @@ const isFullWidthOrAscii = s => {
 };
 
 const showResults = () => {
-  const terms = ELEM_BAR.value.trim();
-  ELEM_RESULTS.innerText = '';
+  const terms = elmSearchBar.value.trim();
+  elmResults.innerText = '';
 
   // If the input is less than one half-width character, the search process is not carried out.
   if (terms.length === 0 || (terms.length <= 1 && isFullWidthOrAscii(terms))) {
-    ELEM_HEADER.innerText = INITIAL_HEADER;
+    elmHeader.innerText = INITIAL_HEADER;
     return;
   }
 
   const results = finder.search(terms);
 
   if (results.length === 0) {
-    ELEM_HEADER.innerText = `No search result for : ${terms}`;
+    elmHeader.innerText = `No search result for : ${terms}`;
     return;
   }
-  ELEM_HEADER.innerText = `${results.length} search results for : ${terms}`;
+  elmHeader.innerText = `${results.length} search results for : ${terms}`;
   searchResult.append_search_result(results, terms);
 };
 
@@ -144,10 +144,9 @@ const closedPopover = ev => {
 const hiddenSearch = () => {
   document.getElementById(ID_ICON).setAttribute('aria-expanded', 'false');
 
-  ELEM_BAR.style.visibility = 'hidden';
-  ELEM_BAR.removeEventListener('input', searchHandler(showResults));
+  elmSearchBar.removeEventListener('input', searchHandler(showResults));
 
-  ELEM_RESULTS.removeEventListener('keyup', popupFocus);
+  elmResults.removeEventListener('keyup', popupFocus);
 
   const pop = document.getElementById(ID_POP);
   pop.removeEventListener('click', searchMouseupHandler);
@@ -160,18 +159,17 @@ const showSearch = () => {
 
   showResults();
 
-  ELEM_BAR.style.visibility = 'visible';
-  ELEM_BAR.addEventListener('input', searchHandler(showResults), { once: false, passive: true });
+  elmSearchBar.addEventListener('input', searchHandler(showResults), { once: false, passive: true });
 
-  ELEM_RESULTS.addEventListener('keyup', popupFocus, { once: false, passive: true });
+  elmResults.addEventListener('keyup', popupFocus, { once: false, passive: true });
 
   const pop = document.getElementById(ID_POP);
   pop.addEventListener('click', searchMouseupHandler, { once: false, passive: true });
   pop.addEventListener('toggle', closedPopover);
   pop.showPopover();
 
-  ELEM_BAR.focus();
-  ELEM_BAR.select();
+  elmSearchBar.focus();
+  elmSearchBar.select();
 };
 
 const fetchRequest = async url => {
@@ -212,12 +210,15 @@ const initSearch = async () => {
     return;
   }
 
+  elmHeader = document.getElementById('results-header');
+  elmResults = document.getElementById('searchresults');
+
   showSearch();
 
   icon.addEventListener(
     'click',
     () => {
-      window.getComputedStyle(ELEM_BAR).visibility === 'hidden' ? showSearch() : hiddenSearch();
+      document.getElementById(ID_POP).checkVisibility() ? hiddenSearch() : showSearch();
     },
     { once: false, passive: true },
   );
@@ -229,7 +230,7 @@ const initSearch = async () => {
         case '/':
         case 's':
         case 'S':
-          if (window.getComputedStyle(ELEM_BAR).visibility === 'hidden') {
+          if (!document.getElementById(ID_POP).checkVisibility()) {
             showSearch();
           }
           break;
@@ -254,19 +255,19 @@ const startSearchFromKey = ev => {
 };
 
 export const startupSearch = root => {
+  elmSearchBar = document.getElementById('searchbar');
+
+  if (!globalThis.search) {
+    globalThis.search = {
+      hasFocus: () => elmSearchBar instanceof HTMLElement && elmSearchBar === document.activeElement,
+    };
+    Object.freeze(globalThis.search);
+  }
+
   doSearchOrMarkFromUrl();
 
   rootPath = root;
 
   document.getElementById(ID_ICON).addEventListener('click', initSearch, { once: true, passive: true });
   document.addEventListener('keyup', startSearchFromKey, { once: false, passive: true });
-};
-
-export const initGlobalSearch = () => {
-  if (!globalThis.search) {
-    globalThis.search = {
-      hasFocus: () => ELEM_BAR instanceof HTMLElement && ELEM_BAR === document.activeElement,
-    };
-    Object.freeze(globalThis.search);
-  }
 };

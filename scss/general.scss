@@ -73,12 +73,6 @@ body {
 
       display: flex;
       gap: 0.85em;
-
-      &>#searchbar {
-        visibility: hidden;
-        z-index: 9;
-      }
-
     }
 
     &>#book-title {
