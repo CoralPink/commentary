@@ -10,7 +10,7 @@ license = "Apache-2.0"
 clap = "=4.5.23"
 mdbook = "=0.4.43"
 regex = "=1.11.1"
-semver = "=1.0.23"
+semver = "=1.0.24"
 serde_json = "=1.0.133"
 
 [dev-dependencies]
