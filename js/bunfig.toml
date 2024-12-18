@@ -1,3 +1,6 @@
 [test]
 preload = "./happydom.ts"
 coverage = true
+
+[install]
+saveTextLockfile = true
