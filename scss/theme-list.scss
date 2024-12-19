@@ -1,3 +1,11 @@
+body,
+code,
+kbd,
+.chapters,
+#menu {
+  transition: color 0.5s, border-color 0.4s, background-color 0.3s;
+}
+
 #theme-list {
   min-width: 6rem;
   max-width: 100%;

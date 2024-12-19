@@ -97,17 +97,12 @@ const hideSidebar = (write = true) => {
   }
 };
 
-const toggleSidebar = () =>
-  document.getElementById(ID_SIDEBAR).style.display === 'block' ? hideSidebar() : showSidebar();
+const toggleSidebar = () => (document.getElementById(ID_SIDEBAR).checkVisibility() ? hideSidebar() : showSidebar());
 
-const toggleHandler = ev => {
-  if (globalThis.search.hasFocus()) {
-    return;
-  }
-
-  if (ev.key === 't' || ev.key === 'T') {
+const toggleHandler = key => {
+  if (key === 't' || key === 'T') {
     toggleSidebar();
-  } else if (ev.key === 'Escape') {
+  } else if (key === 'Escape') {
     hideSidebar();
   }
 };
@@ -123,7 +118,7 @@ export const initSidebar = root => {
     localStorage.getItem(SAVE_STORAGE) === 'hidden' ? hideSidebar(false) : showSidebar(false);
   }
 
-  document.addEventListener('keyup', toggleHandler, { once: false, passive: true });
+  document.addEventListener('keyup', ev => toggleHandler(ev.key), { once: false, passive: true });
   document
     .getElementById(ID_TOGGLE_BUTTON)
     .addEventListener('click', () => toggleSidebar(), { once: false, passive: true });
