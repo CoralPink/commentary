@@ -127,7 +127,7 @@ jobs:
           path: |
             ~/.bun/install/cache
             js/node_modules
-          key: js-${{ runner.os }}-bun-${{ hashFiles('**/bun.lockb') }}
+          key: js-${{ runner.os }}-bun-${{ hashFiles('**/bun.lock') }}
           restore-keys: js-${{ runner.os }}-bun-
 
       - name: Download wasm_pkg
