@@ -210,6 +210,7 @@ const initSearch = async () => {
     return;
   }
 
+  elmSearchBar = document.getElementById('searchbar');
   elmHeader = document.getElementById('results-header');
   elmResults = document.getElementById('searchresults');
 
@@ -255,15 +256,6 @@ const startSearchFromKey = ev => {
 };
 
 export const startupSearch = root => {
-  elmSearchBar = document.getElementById('searchbar');
-
-  if (!globalThis.search) {
-    globalThis.search = {
-      hasFocus: () => elmSearchBar instanceof HTMLElement && elmSearchBar === document.activeElement,
-    };
-    Object.freeze(globalThis.search);
-  }
-
   doSearchOrMarkFromUrl();
 
   rootPath = root;

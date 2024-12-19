@@ -16,8 +16,6 @@ const THEME_COLORS = [
 const DEFAULT_THEME = THEME_COLORS[1].id;
 const PREFERRED_DARK_THEME = THEME_COLORS[3].id;
 
-const CHANGE_TRANSITION = 'background-color 0.5s ease';
-
 const THEME_SELECTED = 'theme-selected';
 const SAVE_STORAGE = 'mdbook-theme';
 
@@ -91,9 +89,6 @@ const initThemeSelector = async () => {
     themeList.appendChild(li);
   }
 
-  document.getElementById('top-bar').appendChild(themeList);
-  document.body.style.transition = CHANGE_TRANSITION;
-
   themeList.addEventListener(
     'click',
     ev => {
@@ -104,6 +99,7 @@ const initThemeSelector = async () => {
     { once: false, passive: true },
   );
 
+  document.getElementById('top-bar').appendChild(themeList);
   themeList.showPopover();
 };
 
