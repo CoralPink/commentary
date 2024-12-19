@@ -57,14 +57,19 @@ impl SearchResult {
         let document = window
             .document()
             .ok_or("Should have a document on window")?;
-        let parent = document
-            .get_element_by_id("searchresults")
-            .ok_or("No element with ID `searchresults`")?;
 
         let li_element = document.create_element("li").expect("failed: create <li>");
+
         li_element
             .set_attribute("tabindex", "0")
             .expect("failed: set tabindex");
+        li_element
+            .set_attribute("role", "option")
+            .expect("failed: set role");
+
+        let parent = document
+            .get_element_by_id("searchresults")
+            .ok_or("No element with ID `searchresults`")?;
 
         let url_table: Vec<String> = doc_urls
             .iter()
@@ -81,7 +86,7 @@ impl SearchResult {
         })
     }
 
-    fn add_element(&self, content: &str) {
+    fn add_element(&self, content: &str, page: &str, score: &u16) {
         let node: Node = self
             .li_element
             .clone_node_with_deep(true)
@@ -94,6 +99,10 @@ impl SearchResult {
                 return;
             }
         };
+
+        cloned_element
+            .set_attribute("aria-label", &format!("{page} {score}pt"))
+            .expect("failed: set aria-label");
 
         cloned_element
             .insert_adjacent_html("afterbegin", content)
@@ -132,12 +141,13 @@ impl SearchResult {
                 .teaser
                 .search_result_excerpt(&el.doc.body, terms.clone(), self.count);
 
-            let score = scoring_notation(el.score as usize);
+            let score_bar = scoring_notation(el.score as usize);
 
             self.add_element(&format!(
-                r#"<a href="{}{}?mark={}#{}" tabindex="-1">{}</a><span>{}</span><div id="score">{}</div>"#,
-                &self.path_to_root, page, mark, head, el.doc.breadcrumbs, result, score
-            ));
+                r#"<a href="{}{}?mark={}#{}" tabindex="-1">{}</a><span aria-hidden="true">{}</span><div id="score" role="meter" aria-label="score:{}pt">{}</div>"#,
+                &self.path_to_root, page, mark, head, el.doc.breadcrumbs, result, el.score, score_bar),
+                page, &el.score
+            );
         });
     }
 }
