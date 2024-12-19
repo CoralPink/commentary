@@ -144,7 +144,7 @@ impl SearchResult {
             let score_bar = scoring_notation(el.score as usize);
 
             self.add_element(&format!(
-                r#"<a href="{}{}?mark={}#{}" tabindex="-1">{}</a><span aria-hidden="true">{}</span><div id="score" aria-label="score:{}pt">{}</div>"#,
+                r#"<a href="{}{}?mark={}#{}" tabindex="-1">{}</a><span aria-hidden="true">{}</span><div id="score" role="meter" aria-label="score:{}pt">{}</div>"#,
                 &self.path_to_root, page, mark, head, el.doc.breadcrumbs, result, el.score, score_bar),
                 page, &el.score
             );
