@@ -323,7 +323,7 @@ or wrap the call in another function (see <a href="https://github.com/prochri/te
 <h2 id="wrap-up"><a class="header" href="#wrap-up">Wrap Up</a></h2>
 <p>外部ツールとの連携にもだいぶ慣れてきたでしょうし、割とすんなり動いたんじゃないでしょうか。</p>
 <p>まあ当然、すんなり動くように作ってくれている @prochriさんがすごいんですけどね❗</p>
-<p>最後にもう一度、<code>telesope.nvim</code>の紹介文を引用して幕引きです😌</p>
+<p>最後にもう一度、<code>telesope.nvim</code>の紹介文を引用して幕引きです😌<sup class="ft-reference"><a name="to-ft-3" href="#ft-3">3</a></sup></p>
 <div id="admonition-assemble" class="admonition admonish-success" role="note" aria-labelledby="admonition-assemble-title">
 <div class="admonition-title">
 <div id="admonition-assemble-title">
@@ -334,6 +334,7 @@ or wrap the call in another function (see <a href="https://github.com/prochri/te
 <div>
 <p>Gaze deeply into unknown regions using the power of the moon.</p>
 <p>月の力を借りて、未知の領域を深く覗き込む。</p>
+<div id="mountain"></div>
 </div>
 </div>
 <div style="color: #999999; font-size: 90%" >
@@ -360,13 +361,28 @@ We should have looked into each other more closely...
 <p>To my only father.</p>
 </div>
 </div>
+<script>
+document.addEventListener('DOMContentLoaded', async () => {
+  try {
+    const module = await import(`${document.getElementById('bookjs').dataset.pathtoroot}replace-dom.js`);
+    module.replaceId([
+      { id: 'mountain',
+        src: { light:'img/mount-day.webp', dark: 'img/mount-night.webp'},
+        alt: 'mt.fuji',
+      },
+    ]);
+  } catch (e) { console.error(`Error: ${e}`); }
+});
+</script>
 <aside class="ft-definition" role="doc-footnote" id="ft-1">
 <p><sup><a href="#to-ft-1">1:</a></sup><a href="https://en.wikipedia.org/wiki/Drive_My_Car_(song)">Drive My Car</a>:
 タイトルの「Drive My Car」は「性交」の意を持つ古いブルースの隠語で、McCartney も古いブルースの隠語として使用したことを明かしている。</p>
 </aside>
 <aside class="ft-definition" role="doc-footnote" id="ft-2">
 <p><sup><a href="#to-ft-2">2:</a></sup>ちょっともやもやするものですから❗🤣</aside></p>
-
+<aside class="ft-definition" role="doc-footnote" id="ft-3">
+<p><sup><a href="#to-ft-3">3:</a></sup>15.10 節はサイトのカラーテーマを変えると、昼と夜の風景も連動して切り替わるっていう "遊び" をやってました。</p>
+</aside>
 
           <nav id="nav-wrapper" aria-label="Page navigation">
             <a rel="prev" href="../../neovim/plugin/telescope-config.html" class="chapters" id="prev" aria-label="Previous chapter: Config">

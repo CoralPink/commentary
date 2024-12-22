@@ -149,6 +149,7 @@ end)
 <p>そしたら、<kbd>leader</kbd><kbd>h</kbd>としてみましょう。</p>
 <img src="img/telescope-help_tags.webp" alt="telescope-help_tags" width="1512" height="1200" decoding="async">
 <p>一目で分かるすっごいやつ...❗</p>
+<div id="disney"></div>
 <div id="admonition-h-help_tags" class="admonition admonish-info" role="note" aria-labelledby="admonition-h-help_tags-title">
 <div class="admonition-title">
 <div id="admonition-h-help_tags-title">
@@ -506,6 +507,19 @@ We have some built in themes but are looking for more cool options.</p>
 <p>さぁ〜て、この次も❗サービス、サービスぅ💕</p>
 </div>
 </div>
+<script>
+document.addEventListener('DOMContentLoaded', async () => {
+  try {
+    const module = await import(`${document.getElementById('bookjs').dataset.pathtoroot}replace-dom.js`);
+    module.replaceId([
+      { id: 'disney',
+        src: { light:'img/yoda.webp', dark: 'img/avengers.webp'},
+        alt: 'super star!!',
+      },
+    ]);
+  } catch (e) { console.error(`Error: ${e}`); }
+});
+</script>
 
 
           <nav id="nav-wrapper" aria-label="Page navigation">
