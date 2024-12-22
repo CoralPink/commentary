@@ -230,12 +230,16 @@ after = string or list,      -- Specifies plugins to load before this plugin.
 
 まあ当然、すんなり動くように作ってくれている @prochriさんがすごいんですけどね❗
 
-最後にもう一度、`telesope.nvim`の紹介文を引用して幕引きです😌
+最後にもう一度、`telesope.nvim`の紹介文を引用して幕引きです😌{{footnote:
+15.10 節はサイトのカラーテーマを変えると、昼と夜の風景も連動して切り替わるっていう "遊び" をやってました。
+}}
 
 ```admonish success title="Assemble"
 Gaze deeply into unknown regions using the power of the moon.
 
 月の力を借りて、未知の領域を深く覗き込む。
+
+<div id="mountain"></div>
 ```
 
 <div style="color: #999999; font-size: 90%" >
@@ -269,3 +273,17 @@ We should have looked into each other more closely...
 To my only father.
 </div>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', async () => {
+  try {
+    const module = await import(`${document.getElementById('bookjs').dataset.pathtoroot}replace-dom.js`);
+    module.replaceId([
+      { id: 'mountain',
+        src: { light:'img/mount-day.webp', dark: 'img/mount-night.webp'},
+        alt: 'mt.fuji',
+      },
+    ]);
+  } catch (e) { console.error(`Error: ${e}`); }
+});
+</script>
