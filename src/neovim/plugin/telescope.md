@@ -8,6 +8,8 @@ Gaze deeply into unknown regions using the power of the moon.
 月の力を借りて、未知の領域を深く覗き込む。
 ```
 
+<div id="sky-garden"></div>
+
 とってもロマンチックな見出し🥰
 
 ```admonish info title=""
@@ -368,3 +370,17 @@ Telescope の使用方法と設定方法を理解することができます。
 
 偶然もチャンスに換える 生き方が好きよ
 ```
+
+<script>
+document.addEventListener('DOMContentLoaded', async () => {
+  try {
+    const module = await import(`${document.getElementById('bookjs').dataset.pathtoroot}replace-dom.js`);
+    module.replaceId([
+      { id: 'sky-garden',
+        src: { light:'img/sky-garden-light.webp', dark: 'img/sky-garden-dark.webp'},
+        alt: 'sky-garden',
+      },
+    ]);
+  } catch (e) { console.error(`Error: ${e}`); }
+});
+</script>

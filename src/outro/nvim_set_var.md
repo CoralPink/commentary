@@ -444,7 +444,10 @@ vim.api.nvim_set_var('loaded_ruby_provider', 0)
 
 ![toyama-canal](img/toyama-station.webp)
 
-東京の都電が車と同じ右折車線に縦に並んでる様も見ていて結構な Chaos っぷりだと思ってるんだけど、
+東京の都電が車と同じ右折車線に縦に並んでる様{{footnote:
+なんか<a href="img/asukayama.webm" target="_blank">こんな感じ</a>
+(リンク先は 20MB あるので注意)。この日はなぜか公園で阿波踊りをやっていたので Chaos に更なる拍車がかかっていた...。
+}}も見ていて結構な Chaos っぷりだと思ってるんだけど、
 この横並びもなかなかナイスな Chaos and Creation❗
 
 ~~~admonish info title=":h provider-perl"
