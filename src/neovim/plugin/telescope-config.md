@@ -63,6 +63,8 @@ end)
 
 一目で分かるすっごいやつ...❗
 
+<div id="disney"></div>
+
 ~~~admonish info title=":h help_tags"
 ```txt
 builtin.help_tags({opts})                   telescope.builtin.help_tags()
@@ -374,3 +376,17 @@ On jupiter and mars
 ```admonish success title="Assemble"
 さぁ〜て、この次も❗サービス、サービスぅ💕
 ```
+
+<script>
+document.addEventListener('DOMContentLoaded', async () => {
+  try {
+    const module = await import(`${document.getElementById('bookjs').dataset.pathtoroot}replace-dom.js`);
+    module.replaceId([
+      { id: 'disney',
+        src: { light:'img/yoda.webp', dark: 'img/avengers.webp'},
+        alt: 'super star!!',
+      },
+    ]);
+  } catch (e) { console.error(`Error: ${e}`); }
+});
+</script>

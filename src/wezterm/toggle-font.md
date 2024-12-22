@@ -98,5 +98,14 @@ This action causes the equivalent of wezterm.emit(name, window, pane) to be call
 ```admonish success
 切り替えられましたね🤗
 
-気持ちいい〜❗️
+<video controls preload="none" width="1280" height="720" poster="img/kujira-no-senaka-thumbnail.webp">
+  <source src="img/kujira-no-senaka.webm" type="video/webm">
+  Your browser does not support the video/webm.
+</video>
+
+気持ちいい〜❗️{{footnote:
+このサイトでは時々、話に脈略があるのかないのかよくわからないムービーやピクチャが差し込まれていて、
+なんだかとってもクセが強いんですが、わたしが遊びでやってるだけです 🧸
+どうか深く考えないでください... 🐻
+}}
 ```
