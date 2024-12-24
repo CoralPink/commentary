@@ -60,13 +60,13 @@ A Happy New Year!!
 ...　...　...　...
 ~~~
 
-~~~admonish note title=""
+~~~admonish question title=""
 Hey, CaP..., you read me...?
 
 (キャップ...、聞こえるか...?)
 ~~~
 
-~~~admonish note title=""
+~~~admonish question title=""
 ...It's nvim Trainer. Can you hear me...?
 
 (...nvimトレーナーだ。聞こえるか...?)
@@ -74,16 +74,16 @@ Hey, CaP..., you read me...?
 
 ...❗
 
-```admonish fail title=""
+```admonish quote title=""
 I'm back. ...I'm back from the future!!
 
 (わたしは戻ってきたんだ。...未来から戻ってきたんだ!!)
 ```
 
-~~~admonish note title=""
-On your next.
+~~~admonish question title=""
+On your radar.
 
-(次を見てみろ。)
+君の視界にいるよ。
 ~~~
 
 ## options
@@ -325,7 +325,6 @@ Microsoftが開発したものがオープンスタンダードになってい�
 
 ## To Be Concluded...
 
-```admonish success title="Assemble"
 `lualine.nvim`は...❗ なんと...❗
 
 まだ続きます😮
@@ -334,4 +333,39 @@ Microsoftが開発したものがオープンスタンダードになってい�
 でも区切りとしてはとても自然だと思うので、やっぱり思い切ってもう一回だけ跨ぎます😆
 
 次回、`lualine.nvim` PartⅢ  に続く。続くったら続く...🐈🐈🐈
+
+```admonish warn title=""
+Is your name CoralPink?
+
+君の名前は CoralPink?
+```
+
+```admonish quote title=""
+Yeah.
+
+ええ。
+```
+
+```admonish warn title=""
+I've got something for you.
+
+A letter.
+
+君に渡したいものがあるんだ。
+
+手紙だ。
+```
+
+```admonish quote title=""
+A letter for me?
+
+That’s impossible...
+
+わたしに手紙?
+
+そんなことあり得ない...。
+```
+
+```admonish success title="TO BE CONCLUDED ...>"
+![letter](img/letter.webp)
 ```

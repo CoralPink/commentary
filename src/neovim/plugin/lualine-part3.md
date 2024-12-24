@@ -202,9 +202,7 @@ use {
 ```
 ~~~
 
-```admonish success title="Assemble"
 これ、"敢えて"❗ 引用するよ❓
-```
 
 ```admonish success title=""
 It means your future hasn’t been written yet.
@@ -218,7 +216,29 @@ No one’s has. Your future is whatever you make it.
 他の誰でもない。きみの未来はきみが描くんだ。
 ```
 
-```admonish success title=""
+```admonish quote title=""
+<video controls preload="none" width="1280" height="720" poster="img/sanrio-puroland-thumbnail.webp">
+  <source src="img/sanrio-puroland.webm" type="video/webm">
+  Your browser does not support the video/webm.
+</video>
+
+[サンリオピューロランド](https://en.wikipedia.org/wiki/Sanrio_Puroland)より
+{{footnote:
+2024年6月、日本皇室との宮中晩餐会に先立ち、イギリスの[Charles 国王](https://en.wikipedia.org/wiki/Charles_III) はスピーチで
+[ハローキティ](https://ja.wikipedia.org/wiki/ハローキティ)の
+[誕生日を祝福](https://www.townandcountrymag.com/society/tradition/a61410928/king-charles-japan-state-banquet-speech/)した。
+}}
+{{footnote:
+それを知ったわたしは思い出したように 8136.T を買い、文字通り "桁違い" の強さに圧倒されていた。
+PO 実施の発表があった際は、一気に 700円もの ゴロピカドン となり、流石に「ポムポムプリン してらんない😨」と顔色が ハンギョドン になった。
+...が、翌日にはなんかもう圧倒的 シナモロール で魅了し けろけろけろっぴ ってな具合で ポチャッコ としていた。
+
+ホルダーはみんな「オリエンタルランドを倒すなんてダメよ❗」とハートで知っており (多摩テックは勝手に倒れたんだよ🤫)、
+口を揃えて言う。「やさしいキティといっしょなら つられてやさしくなっちゃうの🩷」
+}}
+```
+
+```admonish success title="THE END"
 So make it a good one!!
 
 だからこそ良いものにしよう!!
