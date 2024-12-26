@@ -16,6 +16,8 @@ const SAVE_STORAGE = 'mdbook-sidebar';
 let rootPath;
 let isInitialized = false;
 
+let searchPop;
+
 const getCurrentUrl = () => {
   const current = document.location.href.toString();
   return new URL(current.endsWith('/') ? `${current}index.html` : current);
@@ -100,6 +102,10 @@ const hideSidebar = (write = true) => {
 const toggleSidebar = () => (document.getElementById(ID_SIDEBAR).checkVisibility() ? hideSidebar() : showSidebar());
 
 const toggleHandler = key => {
+  if (searchPop.checkVisibility()) {
+    return;
+  }
+
   if (key === 't' || key === 'T') {
     toggleSidebar();
   } else if (key === 'Escape') {
@@ -117,6 +123,8 @@ export const initSidebar = root => {
   } else {
     localStorage.getItem(SAVE_STORAGE) === 'hidden' ? hideSidebar(false) : showSidebar(false);
   }
+
+  searchPop = document.getElementById('search-pop');
 
   document.addEventListener('keyup', ev => toggleHandler(ev.key), { once: false, passive: true });
   document
