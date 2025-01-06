@@ -23,7 +23,7 @@ python3 -m venv myenv
 source myenv/bin/activate
 pip install --upgrade pip
 pip install poetry
-poetry install --no-root
+poetry install
 poetry run python convert.py NerdFontsSymbolsOnly/SymbolsNerdFontMono-Regular.ttf ../src/woff2
 poetry run python convert.py Open_Sans/static/OpenSans-BoldItalic.ttf ../src/woff2
 poetry run python convert.py Open_Sans/static/OpenSans-Italic.ttf ../src/woff2
