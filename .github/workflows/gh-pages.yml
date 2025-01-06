@@ -224,7 +224,7 @@ jobs:
         working-directory: fonts
         run: |
           set -e
-          poetry install --no-root
+          poetry install
 
       - name: Convert and Copy Woff2
         if: steps.cache-woff2.outputs.cache-hit != 'true'
