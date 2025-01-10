@@ -78,7 +78,7 @@ jobs:
           wasm-pack build --target web
 
       - name: Upload wasm_pkg
-        uses: actions/upload-artifact@6f51ac03b9356f520e9adb1b1b7802705f340c2b # v4
+        uses: actions/upload-artifact@65c4c4a1ddee5b72f698fdd19549f0f0fb45cf08 # v4
         with:
           name: wasm-book
           path: rs/wasm/pkg
@@ -158,7 +158,7 @@ jobs:
           bun run build.js
 
       - name: Upload JS
-        uses: actions/upload-artifact@6f51ac03b9356f520e9adb1b1b7802705f340c2b # v4
+        uses: actions/upload-artifact@65c4c4a1ddee5b72f698fdd19549f0f0fb45cf08 # v4
         with:
           name: build-js
           path: js/dist
@@ -188,7 +188,7 @@ jobs:
           bun run build.js
 
       - name: Upload CSS
-        uses: actions/upload-artifact@6f51ac03b9356f520e9adb1b1b7802705f340c2b # v4
+        uses: actions/upload-artifact@65c4c4a1ddee5b72f698fdd19549f0f0fb45cf08 # v4
         with:
           name: css
           path: scss/dist
@@ -238,7 +238,7 @@ jobs:
           cp "Fira Code/FiraCode-VF.woff2" woff2
 
       - name: Upload font artifacts
-        uses: actions/upload-artifact@6f51ac03b9356f520e9adb1b1b7802705f340c2b # v4
+        uses: actions/upload-artifact@65c4c4a1ddee5b72f698fdd19549f0f0fb45cf08 # v4
         with:
           name: woff2
           path: fonts/woff2
