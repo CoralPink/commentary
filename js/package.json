@@ -4,6 +4,6 @@
     "terser": "5.37.0"
   },
   "devDependencies": {
-    "@happy-dom/global-registrator": "^15.11.7"
+    "@happy-dom/global-registrator": "latest"
   }
 }
