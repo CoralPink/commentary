@@ -3,10 +3,10 @@ name = "font-generate"
 version = "0.1.0"
 description = "Font conversion utilities"
 authors = [
-  { name = "CoralPink", email = "teqt6ytqt@mozmail.com>"}
+  { name = "CoralPink", email = "teqt6ytqt@mozmail.com>" }
 ]
 readme = "README.md"
-requires-python = ">=3.13"
+requires-python = ">=3.13,<4.0"
 
 dependencies = [
   "brotli ==1.1.0",
