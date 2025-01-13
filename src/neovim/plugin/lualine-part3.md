@@ -243,3 +243,7 @@ So make it a good one!!
 
 だからこそ良いものにしよう!!
 ```
+
+```admonish quote title=""
+![banquet](img/banquet.webp)
+```
