@@ -135,6 +135,10 @@ const searchMouseupHandler = ev => {
 };
 
 const focusinHandler = ev => {
+
+  // As far as I have tested, the order in which events are called is `focusin`->`click`.
+  // I have to call it in the order `click`->`focusin` or the expected behavior will not happen, so I am putting a delay on this process.
+  // If there is another solution, it should be changed immediately!!
   setTimeout(() => {
     elmPop.setAttribute('aria-activedescendant', ev.target.id);
 
