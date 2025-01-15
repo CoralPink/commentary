@@ -1,6 +1,6 @@
 [package]
 name = "wasm-book"
-version = "0.6.1"
+version = "0.7.0"
 authors = ["CoralPink <teqt6ytqt@mozmail.com>"]
 edition = "2021"
 rust-version = "1.74"
