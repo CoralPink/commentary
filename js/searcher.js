@@ -7,7 +7,6 @@ import { loadStyleSheet } from './css-loader.js';
 const STYLE_SEARCH = 'css/search.css';
 
 const ID_ICON = 'search-toggle';
-const ID_POP = 'search-pop';
 
 const INITIAL_HEADER = '2文字 (もしくは全角1文字) 以上を入力してください...';
 
@@ -16,6 +15,7 @@ const DEBOUNCE_DELAY_MS = 80;
 
 let rootPath;
 
+let elmPop;
 let elmSearchBar;
 let elmHeader;
 let elmResults;
@@ -87,20 +87,6 @@ const popupFocus = ev => {
   jumpUrl(ev.target.querySelector('a'));
 };
 
-const searchMouseupHandler = ev => {
-  const li = ev.target.closest('li');
-
-  if (li === null) {
-    return;
-  }
-
-  if (li !== focusedLi) {
-    focusedLi = li;
-    return;
-  }
-  jumpUrl(li.querySelector('a'));
-};
-
 const isFullWidthOrAscii = s => {
   const code = s.charCodeAt(0);
   return code <= 127 || (code >= 0xff01 && code <= 0xff5e);
@@ -135,6 +121,39 @@ const searchHandler = fn => {
   };
 };
 
+const searchMouseupHandler = ev => {
+  const li = ev.target.closest('li');
+
+  if (li === null) {
+    return;
+  }
+
+  if (focusedLi !== li) {
+    return;
+  }
+  jumpUrl(li.querySelector('a'));
+};
+
+const focusinHandler = ev => {
+
+  // As far as I have tested, the order in which events are called is `focusin`->`click`.
+  // I have to call it in the order `click`->`focusin` or the expected behavior will not happen, so I am putting a delay on this process.
+  // If there is another solution, it should be changed immediately!!
+  setTimeout(() => {
+    elmPop.setAttribute('aria-activedescendant', ev.target.id);
+
+    const li = ev.target.closest('li');
+
+    if (li === null) {
+      return;
+    }
+    focusedLi?.removeAttribute('aria-selected');
+    li.setAttribute('aria-selected', 'true');
+
+    focusedLi = li;
+  }, 8);
+};
+
 const closedPopover = ev => {
   if (ev.newState === 'closed') {
     hiddenSearch();
@@ -148,10 +167,11 @@ const hiddenSearch = () => {
 
   elmResults.removeEventListener('keyup', popupFocus);
 
-  const pop = document.getElementById(ID_POP);
-  pop.removeEventListener('click', searchMouseupHandler);
-  pop.removeEventListener('toggle', closedPopover);
-  pop.hidePopover();
+  elmPop.removeEventListener('click', searchMouseupHandler);
+  elmPop.removeEventListener('focusin', focusinHandler);
+  elmPop.removeEventListener('toggle', closedPopover);
+
+  elmPop.hidePopover();
 };
 
 const showSearch = () => {
@@ -163,10 +183,11 @@ const showSearch = () => {
 
   elmResults.addEventListener('keyup', popupFocus, { once: false, passive: true });
 
-  const pop = document.getElementById(ID_POP);
-  pop.addEventListener('click', searchMouseupHandler, { once: false, passive: true });
-  pop.addEventListener('toggle', closedPopover);
-  pop.showPopover();
+  elmPop.addEventListener('click', searchMouseupHandler, { once: false, passive: true });
+  elmPop.addEventListener('focusin', focusinHandler, { once: false, passive: true });
+  elmPop.addEventListener('toggle', closedPopover, { once: false, passive: true });
+
+  elmPop.showPopover();
 
   elmSearchBar.focus();
   elmSearchBar.select();
@@ -210,6 +231,7 @@ const initSearch = async () => {
     return;
   }
 
+  elmPop = document.getElementById('search-pop');
   elmSearchBar = document.getElementById('searchbar');
   elmHeader = document.getElementById('results-header');
   elmResults = document.getElementById('searchresults');
@@ -219,7 +241,7 @@ const initSearch = async () => {
   icon.addEventListener(
     'click',
     () => {
-      document.getElementById(ID_POP).checkVisibility() ? hiddenSearch() : showSearch();
+      elmPop.checkVisibility() ? hiddenSearch() : showSearch();
     },
     { once: false, passive: true },
   );
@@ -231,7 +253,7 @@ const initSearch = async () => {
         case '/':
         case 's':
         case 'S':
-          if (!document.getElementById(ID_POP).checkVisibility()) {
+          if (!elmPop.checkVisibility()) {
             showSearch();
           }
           break;
