@@ -151,7 +151,7 @@ const focusinHandler = ev => {
     li.setAttribute('aria-selected', 'true');
 
     focusedLi = li;
-  }, 1);
+  }, 8);
 };
 
 const closedPopover = ev => {
