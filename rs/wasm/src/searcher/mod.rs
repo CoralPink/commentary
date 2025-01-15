@@ -86,7 +86,7 @@ impl SearchResult {
         })
     }
 
-    fn add_element(&self, content: &str, page: &str, score: &u16) {
+    fn add_element(&self, content: &str, id: &u16, page: &str, score: &u16) {
         let node: Node = self
             .li_element
             .clone_node_with_deep(true)
@@ -99,6 +99,10 @@ impl SearchResult {
                 return;
             }
         };
+
+        cloned_element
+            .set_attribute("id", &format!("s{id}"))
+            .expect("failed: set aria-label");
 
         cloned_element
             .set_attribute("aria-label", &format!("{page} {score}pt"))
@@ -124,6 +128,8 @@ impl SearchResult {
             .unwrap_or_default()
             .replace('\'', "%27");
 
+        let mut id_cnt = 0;
+
         result.into_iter().for_each(|el| {
             self.teaser.clear();
 
@@ -146,8 +152,10 @@ impl SearchResult {
             self.add_element(&format!(
                 r#"<a href="{}{}?mark={}#{}" tabindex="-1">{}</a><span aria-hidden="true">{}</span><div id="score" role="meter" aria-label="score:{}pt">{}</div>"#,
                 &self.path_to_root, page, mark, head, el.doc.breadcrumbs, result, el.score, score_bar),
-                page, &el.score
+                &id_cnt, page, &el.score
             );
+
+            id_cnt += 1;
         });
     }
 }
