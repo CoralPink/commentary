@@ -36,6 +36,7 @@ pushd scss
 if [ ! -e ./node_modules ]; then
   bun install
 fi
+rm -rf dist
 bun run build.js
 cp -r dist/ ../src/css/
 popd
