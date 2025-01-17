@@ -5,9 +5,9 @@
   },
   "devDependencies": {
     "@happy-dom/global-registrator": "latest",
-    "@types/bun": "latest"
-  },
-  "peerDependencies": {
-    "typescript": "latest"
+    "@happy-dom/global-registrator": "latest",
+    "@types/bun": "^1.0.0",
+    "typescript": "^5.3.0"
+  }
   }
 }
