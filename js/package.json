@@ -4,6 +4,10 @@
     "terser": "5.37.0"
   },
   "devDependencies": {
-    "@happy-dom/global-registrator": "latest"
+    "@happy-dom/global-registrator": "latest",
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "latest"
   }
 }
