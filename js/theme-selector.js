@@ -1,5 +1,5 @@
-import { writeLocalStorage } from './storage.js';
-import { getRootVariable, loadStyleSheet, unloadStyleSheet } from './css-loader.js';
+import { writeLocalStorage } from './storage';
+import { getRootVariable, loadStyleSheet, unloadStyleSheet } from './css-loader';
 
 const STYLE_THEMELIST = 'css/theme-list.css';
 

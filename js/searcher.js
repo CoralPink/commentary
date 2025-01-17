@@ -1,8 +1,8 @@
-import Finder from './finder.js';
+import Finder from './finder';
 
-import { tocReset } from './table-of-contents.js';
-import { SearchResult, marking, unmarking } from './wasm_book.js';
-import { loadStyleSheet } from './css-loader.js';
+import { tocReset } from './table-of-contents';
+import { SearchResult, marking, unmarking } from './wasm_book';
+import { loadStyleSheet } from './css-loader';
 
 const STYLE_SEARCH = 'css/search.css';
 
