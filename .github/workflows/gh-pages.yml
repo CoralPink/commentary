@@ -97,7 +97,7 @@ jobs:
       - name: Setup Bun
         uses: oven-sh/setup-bun@4bc047ad259df6fc24a6c9b0f9a0cb08cf17fbe5 # v2
         with:
-          bun-version: "latest"
+          bun-version-file: ".bun-version"
           no-cache: true
 
       - name: Install
@@ -144,7 +144,7 @@ jobs:
       - name: Setup Bun
         uses: oven-sh/setup-bun@4bc047ad259df6fc24a6c9b0f9a0cb08cf17fbe5 # v2
         with:
-          bun-version: "latest"
+          bun-version-file: ".bun-version"
           no-cache: true
 
       - name: Install
@@ -179,7 +179,7 @@ jobs:
       - name: Setup Bun
         uses: oven-sh/setup-bun@4bc047ad259df6fc24a6c9b0f9a0cb08cf17fbe5 # v2
         with:
-          bun-version: "latest"
+          bun-version-file: ".bun-version"
           no-cache: true
 
       - name: Build SCSS
