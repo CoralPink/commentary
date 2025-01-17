@@ -16,6 +16,7 @@ css/*.css.map
 
 scss/dist
 
+*.d.ts
 *.tmp
 *.wasm
 
