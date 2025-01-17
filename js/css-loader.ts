@@ -1,12 +1,13 @@
-export const getRootVariable = name => {
+export const getRootVariable = (name: string): string => {
   try {
     return window.getComputedStyle(document.documentElement).getPropertyValue(name).trim();
-  } catch (err) {
-    throw new Error(`Failed to get CSS variable: ${name}`, err);
+  } catch (err: unknown) {
+    const msg = err instanceof Error ? err.message : 'Unknown error.';
+    throw new Error(`Failed to get CSS variable: ${name}. ${msg}`);
   }
 };
 
-export const getRootVariableNum = name => {
+export const getRootVariableNum = (name: string): number => {
   const value = getRootVariable(name);
   const num = Number.parseFloat(value);
 
@@ -17,7 +18,7 @@ export const getRootVariableNum = name => {
   return num;
 };
 
-export const loadStyleSheet = fileName => {
+export const loadStyleSheet = (fileName: string): Promise<void> => {
   return new Promise((resolve, reject) => {
     const link = document.createElement('link');
 
@@ -31,17 +32,23 @@ export const loadStyleSheet = fileName => {
   });
 };
 
-export const unloadStyleSheet = (fileName, { throwIfNotFound = false } = {}) => {
+export const unloadStyleSheet = (fileName: string, throwIfNotFound = false): void => {
   const resolvedHref = new URL(fileName, window.location.href).href;
 
-  const remove = () => {
-    for (const link of document.querySelectorAll('link[rel="stylesheet"]')) {
-      if (link.href === resolvedHref) {
-        link.onload = null;
-        link.onerror = null;
-        link.parentNode.removeChild(link);
-        return true;
+  const remove = (): boolean => {
+    for (const query of Array.from(document.querySelectorAll('link[rel="stylesheet"]'))) {
+      const link = query as HTMLLinkElement;
+
+      if (link.href !== resolvedHref) {
+        continue;
       }
+
+      link.onload = null;
+      link.onerror = null;
+
+      link.parentNode?.removeChild(link);
+
+      return true;
     }
     return false;
   };
