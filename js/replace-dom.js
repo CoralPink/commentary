@@ -1,4 +1,4 @@
-import { getRootVariable } from './css-loader.js';
+import { getRootVariable } from './css-loader';
 
 const DELAY_MS = 4;  // I feel like it needs to have some delay to work properly...
 
