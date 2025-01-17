@@ -6,8 +6,12 @@ import { initThemeColor } from './theme-selector.js';
 
 import initWasm, { attribute_external_links } from './wasm_book.js';
 
-const initialize = () => {
-  const rootPath = document.getElementById('bookjs').dataset.pathtoroot;
+interface DataSet extends DOMStringMap {
+  pathtoroot?: string;
+}
+
+const initialize = (): void => {
+  const rootPath = (document.getElementById('bookjs')?.dataset as DataSet).pathtoroot;
 
   initThemeColor(rootPath);
   initTableOfContents();
@@ -22,8 +26,8 @@ const initialize = () => {
   );
 };
 
-(() => {
-  initSidebar(document.getElementById('bookjs').dataset.pathtoroot);
+((): void => {
+  initSidebar((document.getElementById('bookjs')?.dataset as DataSet).pathtoroot);
 
   document.addEventListener('DOMContentLoaded', initialize, { once: true, passive: true });
 
