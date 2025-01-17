@@ -1,10 +1,10 @@
-import { procCodeBlock } from './codeblock.js';
-import { startupSearch } from './searcher.js';
-import { initSidebar } from './sidebar.js';
-import { initTableOfContents } from './table-of-contents.js';
-import { initThemeColor } from './theme-selector.js';
+import { procCodeBlock } from './codeblock';
+import { startupSearch } from './searcher';
+import { initSidebar } from './sidebar';
+import { initTableOfContents } from './table-of-contents';
+import { initThemeColor } from './theme-selector';
 
-import initWasm, { attribute_external_links } from './wasm_book.js';
+import initWasm, { attribute_external_links } from './wasm_book';
 
 interface DataSet extends DOMStringMap {
   pathtoroot?: string;

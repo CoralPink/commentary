@@ -1,4 +1,4 @@
-import hljs from './highlight.js/build/highlight.js';
+import hljs from './highlight.js/build/highlight';
 
 const DELETEING_PREFIX = 'language-'.length;
 
