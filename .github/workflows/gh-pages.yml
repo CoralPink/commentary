@@ -139,6 +139,7 @@ jobs:
       - name: Copy wasm_js
         run: |
           cp pkg/wasm_book.js js
+          cp pkg/wasm_book.d.ts js
 
       - name: Setup Bun
         uses: oven-sh/setup-bun@4bc047ad259df6fc24a6c9b0f9a0cb08cf17fbe5 # v2

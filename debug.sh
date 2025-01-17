@@ -3,6 +3,7 @@ set -eu
 pushd rs/wasm
 wasm-pack build --target web
 cp pkg/wasm_book.js ../../js
+cp pkg/wasm_book.d.ts ../../js
 cp pkg/wasm_book_bg.wasm ../../src
 popd
 
