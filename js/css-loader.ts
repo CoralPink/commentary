@@ -29,9 +29,17 @@ export const loadStyleSheet = (fileName: string, options: { signal?: AbortSignal
     link.rel = 'stylesheet';
     link.href = new URL(fileName, window.location.href).href;
 
+    const abortHandler = () => {
+      cleanup();
+      link.parentNode?.removeChild(link);
+      reject(new Error('Stylesheet loading was aborted'));
+    };
+    options.signal?.addEventListener('abort', abortHandler);
+
     const cleanup = () => {
       link.onload = null;
       link.onerror = null;
+      options.signal?.removeEventListener('abort', abortHandler);
     };
 
     link.onload = () => {
@@ -44,12 +52,6 @@ export const loadStyleSheet = (fileName: string, options: { signal?: AbortSignal
     };
 
     document.head.appendChild(link);
-
-    options.signal?.addEventListener('abort', () => {
-      cleanup();
-      link.parentNode?.removeChild(link);
-      reject(new Error('Stylesheet loading was aborted'));
-    });
   });
 };
 
