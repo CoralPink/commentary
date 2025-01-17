@@ -18,17 +18,38 @@ export const getRootVariableNum = (name: string): number => {
   return num;
 };
 
-export const loadStyleSheet = (fileName: string): Promise<void> => {
+export const loadStyleSheet = (fileName: string, options: { signal?: AbortSignal } = {}): Promise<void> => {
   return new Promise((resolve, reject) => {
-    const link = document.createElement('link');
+    if (options.signal?.aborted) {
+      reject(new Error('Stylesheet loading was aborted'));
+      return;
+    }
 
+    const link = document.createElement('link');
     link.rel = 'stylesheet';
     link.href = new URL(fileName, window.location.href).href;
 
-    link.onload = () => resolve();
-    link.onerror = () => reject(new Error(`Failed to load stylesheet: ${fileName}`));
+    const cleanup = () => {
+      link.onload = null;
+      link.onerror = null;
+    };
+
+    link.onload = () => {
+      cleanup();
+      resolve();
+    };
+    link.onerror = () => {
+      cleanup();
+      reject(new Error(`Failed to load stylesheet: ${fileName}`));
+    };
 
     document.head.appendChild(link);
+
+    options.signal?.addEventListener('abort', () => {
+      cleanup();
+      link.parentNode?.removeChild(link);
+      reject(new Error('Stylesheet loading was aborted'));
+    });
   });
 };
 
@@ -36,9 +57,12 @@ export const unloadStyleSheet = (fileName: string, throwIfNotFound = false): voi
   const resolvedHref = new URL(fileName, window.location.href).href;
 
   const remove = (): boolean => {
-    for (const query of Array.from(document.querySelectorAll('link[rel="stylesheet"]'))) {
-      const link = query as HTMLLinkElement;
+    const isStylesheetLink = (element: Element): element is HTMLLinkElement =>
+      element instanceof HTMLLinkElement && element.rel === 'stylesheet';
 
+    const stylesheetLinks = Array.from(document.querySelectorAll('link')).filter(isStylesheetLink);
+
+    for (const link of stylesheetLinks) {
       if (link.href !== resolvedHref) {
         continue;
       }
