@@ -23,7 +23,7 @@ const waitForStyle = (property: string): Promise<string> => {
   const start = Date.now();
 
   return new Promise((resolve, reject) => {
-    const checkStyle = () => {
+    const checkStyle = (): void => {
       const value = getRootVariable(property);
 
       if (value !== '') {
@@ -63,7 +63,11 @@ const processBatch = (batch: ImageObject[], scheme: string) => {
     img.setAttribute('id', x.id);
     img.setAttribute('src', scheme === 'light' ? x.src.light : x.src.dark);
     img.setAttribute('alt', x.alt);
-    img.setAttribute('decoding', 'lazy');
+    img.setAttribute('loading', 'lazy');
+
+    img.onerror = () => {
+      console.error(`Failed to load image for id: ${x.id}`);
+    };
 
     elm.replaceWith(img);
   }
