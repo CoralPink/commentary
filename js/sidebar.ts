@@ -59,9 +59,9 @@ const initContent = async (): Promise<void> => {
   }
 
   const sidebarScrollbox = document.getElementById(ID_SCROLLBOX) as HTMLElement;
+  const isAnchorElement = (element: Element): element is HTMLAnchorElement => element instanceof HTMLAnchorElement;
 
-  for (const x of Array.from(sidebarScrollbox.querySelectorAll('a') ?? [])) {
-    const link = x as HTMLAnchorElement;
+  for (const link of Array.from(sidebarScrollbox.querySelectorAll('a')).filter(isAnchorElement)) {
     const href = link.getAttribute('href');
 
     if (href === null) {
