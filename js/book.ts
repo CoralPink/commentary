@@ -7,7 +7,7 @@ import { initThemeColor } from './theme-selector';
 import initWasm, { attribute_external_links } from './wasm_book';
 
 interface DataSet extends DOMStringMap {
-  pathtoroot?: string;
+  pathtoroot: string;
 }
 
 const initialize = (): void => {
