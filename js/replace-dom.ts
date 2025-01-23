@@ -40,7 +40,13 @@ const waitForStyle = (property: string): Promise<string> => {
 };
 
 const replaceProc = async (imageObjectArray: ImageObject[]): Promise<void> => {
-  const scheme = await waitForStyle('--color-scheme');
+  let scheme: string;
+  try {
+    scheme = await waitForStyle('--color-scheme');
+  } catch (error) {
+    console.error('Failed to get color scheme:', error);
+    scheme = 'light'; // fallback to light theme
+  }
 
   for (const x of imageObjectArray) {
     const elm = document.getElementById(x.id);
