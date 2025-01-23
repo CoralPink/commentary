@@ -92,8 +92,19 @@ const initialize = (): void => {
   nav.setAttribute('role', 'navigation');
   nav.setAttribute('aria-label', 'Table of Contents');
 
-  for (const x of Array.from(document.getElementById('article')?.querySelectorAll('a.header') ?? [])) {
+  const article = document.getElementById('article');
+  if (!article) {
+    console.error('Article element not found');
+    return;
+  }
+  
+  const headers = article.querySelectorAll('a.header');
+  for (const x of Array.from(headers)) {
     const el = x as HTMLAnchorElement;
+    if (!el.parentElement) {
+      console.error('Header element has no parent');
+      continue;
+    }
 
     observer.observe(el);
 
