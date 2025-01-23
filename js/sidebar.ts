@@ -13,17 +13,17 @@ const ID_TOGGLE_BUTTON = 'sidebar-toggle';
 
 const SAVE_STORAGE = 'mdbook-sidebar';
 
-let rootPath;
+let rootPath: string;
 let isInitialized = false;
 
-let searchPop;
+let searchPop: HTMLElement;
 
-const getCurrentUrl = () => {
+const getCurrentUrl = (): URL => {
   const current = document.location.href.toString();
   return new URL(current.endsWith('/') ? `${current}index.html` : current);
 };
 
-const loadSitemap = async () => {
+const loadSitemap = async (): Promise<string> => {
   const response = await fetch(`${rootPath}${PAGE_LIST}`);
 
   if (!response.ok) {
@@ -32,13 +32,13 @@ const loadSitemap = async () => {
   return await response.text();
 };
 
-const initContent = async () => {
+const initContent = async (): Promise<void> => {
   if (isInitialized) {
     return;
   }
   isInitialized = true;
 
-  const sidebar = document.getElementById(ID_SIDEBAR);
+  const sidebar = document.getElementById(ID_SIDEBAR) as HTMLElement;
   sidebar.setAttribute('aria-busy', 'true');
 
   const rootUrl = new URL(rootPath, window.location.href);
@@ -47,20 +47,32 @@ const initContent = async () => {
   try {
     await loadStyleSheet(`${rootPath}${STYLE_CHAPTER}`);
     sidebar.insertAdjacentHTML('afterbegin', await loadSitemap());
-  } catch (err) {
-    sidebar.insertAdjacentHTML('afterbegin', '<p>Error loading sidebar content.</p>');
-    console.error(`Failed to load pagelist - ${err.message}`);
+  } catch (err: unknown) {
+    if (err instanceof Error) {
+      sidebar.insertAdjacentHTML('afterbegin', '<p>Error loading sidebar content.</p>');
+      console.error(`Failed to load pagelist - ${err.message}`);
+    } else {
+      sidebar.insertAdjacentHTML('afterbegin', '<p>An unknown error occurred.</p>');
+      console.error('An unknown error occurred');
+    }
     return;
   }
 
-  const sidebarScrollbox = document.getElementById(ID_SCROLLBOX);
+  const sidebarScrollbox = document.getElementById(ID_SCROLLBOX) as HTMLElement;
+  const isAnchorElement = (element: Element): element is HTMLAnchorElement => element instanceof HTMLAnchorElement;
 
-  for (const link of sidebarScrollbox.querySelectorAll('a')) {
-    const linkUrl = new URL(link.getAttribute('href'), rootUrl);
+  for (const link of Array.from(sidebarScrollbox.querySelectorAll('a')).filter(isAnchorElement)) {
+    const href = link.getAttribute('href');
+
+    if (href === null) {
+      console.error('No href attribute found for link:', link);
+      continue;
+    }
+
+    const linkUrl = new URL(href, rootUrl);
 
     if (linkUrl.pathname === currentUrl.pathname) {
       link.classList.add('active');
-
       link.scrollIntoView({ block: 'center' });
       link.setAttribute('aria-current', 'page');
     }
@@ -69,39 +81,40 @@ const initContent = async () => {
   sidebar.setAttribute('aria-busy', 'false');
 };
 
-const showSidebar = (write = true) => {
+const showSidebar = (write = true): void => {
   initContent();
 
-  document.getElementById(ID_PAGE).classList.add('show-sidebar');
+  document.getElementById(ID_PAGE)?.classList.add('show-sidebar');
 
-  const sidebar = document.getElementById(ID_SIDEBAR);
+  const sidebar = document.getElementById(ID_SIDEBAR) as HTMLElement;
   sidebar.style.display = 'block';
   sidebar.removeAttribute('aria-hidden');
 
-  document.getElementById(ID_TOGGLE_BUTTON).setAttribute('aria-expanded', true);
+  document.getElementById(ID_TOGGLE_BUTTON)?.setAttribute('aria-expanded', 'true');
 
   if (write) {
     writeLocalStorage(SAVE_STORAGE, 'visible');
   }
 };
 
-const hideSidebar = (write = true) => {
-  document.getElementById(ID_PAGE).classList.remove('show-sidebar');
+const hideSidebar = (write = true): void => {
+  document.getElementById(ID_PAGE)?.classList.remove('show-sidebar');
 
-  const sidebar = document.getElementById(ID_SIDEBAR);
+  const sidebar = document.getElementById(ID_SIDEBAR) as HTMLElement;
   sidebar.style.display = 'none';
-  sidebar.setAttribute('aria-hidden', true);
+  sidebar.setAttribute('aria-hidden', 'true');
 
-  document.getElementById(ID_TOGGLE_BUTTON).setAttribute('aria-expanded', false);
+  document.getElementById(ID_TOGGLE_BUTTON)?.setAttribute('aria-expanded', 'false');
 
   if (write) {
     writeLocalStorage(SAVE_STORAGE, 'hidden');
   }
 };
 
-const toggleSidebar = () => (document.getElementById(ID_SIDEBAR).checkVisibility() ? hideSidebar() : showSidebar());
+const toggleSidebar = (): void =>
+  document.getElementById(ID_SIDEBAR)?.checkVisibility() ? hideSidebar() : showSidebar();
 
-const toggleHandler = key => {
+const toggleHandler = (key: string): void => {
   if (searchPop.checkVisibility()) {
     return;
   }
@@ -113,7 +126,7 @@ const toggleHandler = key => {
   }
 };
 
-export const initSidebar = root => {
+export const initSidebar = (root: string): void => {
   rootPath = root;
 
   const mobile_max_width = getRootVariableNum('--mobile-max-width');
@@ -124,12 +137,12 @@ export const initSidebar = root => {
     localStorage.getItem(SAVE_STORAGE) === 'hidden' ? hideSidebar(false) : showSidebar(false);
   }
 
-  searchPop = document.getElementById('search-pop');
+  searchPop = document.getElementById('search-pop') as HTMLElement;
 
   document.addEventListener('keyup', ev => toggleHandler(ev.key), { once: false, passive: true });
   document
     .getElementById(ID_TOGGLE_BUTTON)
-    .addEventListener('click', () => toggleSidebar(), { once: false, passive: true });
+    ?.addEventListener('click', () => toggleSidebar(), { once: false, passive: true });
 
   window.matchMedia(`(min-width: ${SHOW_SIDEBAR_WIDTH}px)`).addEventListener(
     'change',
