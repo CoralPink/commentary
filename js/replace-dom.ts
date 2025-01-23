@@ -1,7 +1,9 @@
 import { getRootVariable } from './css-loader';
 
-const INTERVAL_MS = 8;
-const TIMEOUT_MS = 50;
+const INTERVAL_MS = 50;
+const TIMEOUT_MS = 1000;
+
+const BATCH_SIZE = 2;
 
 interface BaseObject {
   id: string;
@@ -29,7 +31,7 @@ const waitForStyle = (property: string): Promise<string> => {
         return;
       }
       if (Date.now() - start >= TIMEOUT_MS) {
-        reject(new Error(`Timeout: ${property}`));
+        reject(new Error(`Timeout waiting for CSS variable "${property}" after ${TIMEOUT_MS}ms`));
         return;
       }
       setTimeout(checkStyle, INTERVAL_MS);
@@ -39,16 +41,17 @@ const waitForStyle = (property: string): Promise<string> => {
   });
 };
 
-const replaceProc = async (imageObjectArray: ImageObject[]): Promise<void> => {
-  let scheme: string;
-  try {
-    scheme = await waitForStyle('--color-scheme');
-  } catch (error) {
-    console.error('Failed to get color scheme:', error);
-    scheme = 'light'; // fallback to light theme
-  }
+const debounce = <T extends BaseObject>(fn: (...args: T[]) => void, delay: number): ((...args: T[]) => void) => {
+  let timeoutId: ReturnType<typeof setTimeout>;
 
-  for (const x of imageObjectArray) {
+  return (...args: T[]) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => fn(...args), delay);
+  };
+};
+
+const processBatch = (batch: ImageObject[], scheme: string) => {
+  for (const x of batch) {
     const elm = document.getElementById(x.id);
 
     if (elm === null) {
@@ -66,15 +69,26 @@ const replaceProc = async (imageObjectArray: ImageObject[]): Promise<void> => {
   }
 };
 
-const debounce = <T extends BaseObject>(fn: (...args: T[]) => void, delay: number): ((...args: T[]) => void) => {
-  let timeoutId: ReturnType<typeof setTimeout>;
+const replaceProc = async (imageObjectArray: ImageObject[]): Promise<void> => {
+  let scheme: string;
 
-  return (...args: T[]) => {
-    clearTimeout(timeoutId);
-    timeoutId = setTimeout(() => fn(...args), delay);
-  };
+  try {
+    scheme = await waitForStyle('--color-scheme');
+  } catch (error) {
+    console.error('Failed to get color scheme:', error);
+    return;
+  }
+
+  for (let i = 0; i < imageObjectArray.length; i += BATCH_SIZE) {
+    requestAnimationFrame(() => processBatch(imageObjectArray.slice(i, i + BATCH_SIZE), scheme));
+  }
 };
 
+/**
+ * Replaces images based on color scheme and observes class changes.
+ * @param imageObjectArray - Array of image objects to process
+ * @returns A cleanup function that disconnects the observer when called
+ */
 export const replaceId = (imageObjectArray: ImageObject[]): (() => void) => {
   replaceProc(imageObjectArray);
 
