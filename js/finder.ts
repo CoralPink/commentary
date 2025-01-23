@@ -20,11 +20,11 @@ export default class Finder {
   private fzf: Fzf<string[]>;
 
   private docs: Record<string, Omit<StoreDoc, 'id' | 'title'>> = {};
-  private titles: string[] = [];
+  private titlesByKey: Record<string, string> = {};
 
   constructor(storeDocs: Record<string, StoreDoc>, limit: number) {
     for (const [key, { id, title, ...rest }] of Object.entries(storeDocs)) {
-      this.titles.push(title);
+      this.titlesByKey[key] = title;
       this.docs[key] = rest;
     }
 
