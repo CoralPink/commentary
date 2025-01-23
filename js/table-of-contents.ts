@@ -93,12 +93,14 @@ const initialize = (): void => {
   nav.setAttribute('aria-label', 'Table of Contents');
 
   const article = document.getElementById('article');
+
   if (!article) {
     console.error('Article element not found');
     return;
   }
-  
+
   const headers = article.querySelectorAll('a.header');
+
   for (const x of Array.from(headers)) {
     const el = x as HTMLAnchorElement;
     if (!el.parentElement) {
@@ -136,8 +138,9 @@ export const tocReset = (): void => {
     console.error('Table-of-contents does not exist');
     return;
   }
-  
+
   const pagetoc = document.getElementById('pagetoc');
+
   if (pagetoc === null) {
     console.error('Pagetoc element not found');
     return;
@@ -153,7 +156,12 @@ export const tocReset = (): void => {
 };
 
 export const initTableOfContents = (): void => {
-  mobileMaxWidth = getRootVariableNum('--mobile-max-width');
+  try {
+    mobileMaxWidth = getRootVariableNum('--mobile-max-width');
+  } catch (err: unknown) {
+    console.error(`Failed to load "mobile-max-width"`);
+    mobileMaxWidth = 999;
+  }
 
   initialize();
 
