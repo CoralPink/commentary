@@ -125,8 +125,15 @@ export const tocReset = (): void => {
     console.error('Table-of-contents does not exist');
     return;
   }
+  
+  const pagetoc = document.getElementById('pagetoc');
+  if (pagetoc === null) {
+    console.error('Pagetoc element not found');
+    return;
+  }
+
   toc.classList.remove(ELEMENT_TOC[environment]);
-  toc.removeChild(document.getElementById('pagetoc') as HTMLElement);
+  toc.removeChild(pagetoc);
 
   tocMap.clear();
   observer.disconnect();
