@@ -3,13 +3,16 @@ import { getRootVariable } from './css-loader';
 const INTERVAL_MS = 8;
 const TIMEOUT_MS = 50;
 
+interface BaseObject {
+  id: string;
+}
+
 interface ImageSrc {
   light: string;
   dark: string;
 }
 
-interface ReplaceImageObject {
-  id: string;
+interface ImageObject extends BaseObject {
   src: ImageSrc;
   alt: string;
 }
@@ -36,10 +39,10 @@ const waitForStyle = (property: string): Promise<string> => {
   });
 };
 
-const replaceProc = async (replaceImageObjectArray: ReplaceImageObject[]): Promise<void> => {
+const replaceProc = async (imageObjectArray: ImageObject[]): Promise<void> => {
   const scheme = await waitForStyle('--color-scheme');
 
-  for (const x of replaceImageObjectArray) {
+  for (const x of imageObjectArray) {
     const elm = document.getElementById(x.id);
 
     if (elm === null) {
@@ -57,16 +60,32 @@ const replaceProc = async (replaceImageObjectArray: ReplaceImageObject[]): Promi
   }
 };
 
-export const replaceId = (replaceImageObjectArray: ReplaceImageObject[]): void => {
-  replaceProc(replaceImageObjectArray);
+const debounce = <T extends BaseObject>(fn: (...args: T[]) => void, delay: number): ((...args: T[]) => void) => {
+  let timeoutId: ReturnType<typeof setTimeout>;
+
+  return (...args: T[]) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => fn(...args), delay);
+  };
+};
+
+export const replaceId = (imageObjectArray: ImageObject[]): (() => void) => {
+  replaceProc(imageObjectArray);
+
+  const debouncedReplace = debounce(() => replaceProc(imageObjectArray), 150);
 
   const observer = new MutationObserver(mutations => {
     for (const x of mutations) {
       if (x.attributeName === 'class') {
-        replaceProc(replaceImageObjectArray);
+        debouncedReplace();
       }
     }
   });
 
   observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+
+  // Cleanup function that can be called when needed
+  return () => {
+    observer.disconnect();
+  };
 };
