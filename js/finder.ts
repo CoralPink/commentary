@@ -30,7 +30,7 @@ export default class Finder {
 
     const options: FzfOptions<string> = {
       limit,
-      selector: x => `${this.titles[+x]} ${this.docs[x].body}`,
+      selector: x => `${this.titlesByKey[x]} ${this.docs[x].body}`,
       tiebreakers: [byStartAsc],
     };
 
