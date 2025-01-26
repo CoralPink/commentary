@@ -16,6 +16,9 @@ const THEME_COLORS = [
 const DEFAULT_THEME = THEME_COLORS[1].id;
 const PREFERRED_DARK_THEME = THEME_COLORS[3].id;
 
+const DARK_FALLBACK_COLOR = '#24273a';
+const LIGHT_FALLBACK_COLOR = '#eff1f5';
+
 const THEME_SELECTED = 'theme-selected';
 const SAVE_STORAGE = 'mdbook-theme';
 
@@ -35,9 +38,11 @@ const loadStyle = async (style: string): Promise<void> => {
       console.error('Meta tag with name "theme-color" not found.');
       return;
     }
+
     // Apply the same color as the background color ('--bg') to the title bar. (Effective in Safari only)
     // ...If you fail to get '--bg', fool it well!
-    metaThemeColor.content = getRootVariable('--bg') ?? (isDarkThemeRequired() ? '#24273a' : '#eff1f5');
+    metaThemeColor.content =
+      getRootVariable('--bg') ?? (isDarkThemeRequired() ? DARK_FALLBACK_COLOR : LIGHT_FALLBACK_COLOR);
   } catch (err) {
     console.warn(`Failed to load theme style '${style}':`, err);
   }
@@ -113,11 +118,7 @@ const initThemeSelector = async (): Promise<void> => {
     ev => {
       const target = ev.target;
 
-      if (!(target instanceof Element)) {
-        return;
-      }
-
-      if (target.matches('li.theme')) {
+      if (target instanceof Element && target.matches('li.theme')) {
         setTheme(target.id);
       }
     },

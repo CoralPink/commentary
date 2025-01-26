@@ -47,7 +47,7 @@ const escapeHtml = (str: string): string =>
       '>': '&gt;',
       '"': '&quot;',
       "'": '&#39;',
-    };
+    } as const;
 
     if (!map[match]) {
       throw new Error(`Unexpected character: ${match}`);
@@ -242,7 +242,14 @@ const fetchRequest = async (url: string): Promise<Response> => {
     return response;
   } catch (e) {
     clearTimeout(timeoutId);
-    console.error('Error with fetch request:', e);
+
+    if (e instanceof Error) {
+      if (e.name === 'AbortError') {
+        console.error('Request timed out:', e.message);
+      } else {
+        console.error('Network error:', e.message);
+      }
+    }
     throw e;
   }
 };
@@ -275,10 +282,25 @@ const initSearch = async (): Promise<void> => {
     return;
   }
 
-  elmPop = document.getElementById('search-pop') as HTMLElement;
-  elmSearchBar = document.getElementById('searchbar') as HTMLInputElement;
-  elmHeader = document.getElementById('results-header') as HTMLElement;
-  elmResults = document.getElementById('searchresults') as HTMLElement;
+  const elements = {
+    pop: document.getElementById('search-pop'),
+    searchBar: document.getElementById('searchbar'),
+    header: document.getElementById('results-header'),
+    results: document.getElementById('searchresults'),
+  };
+
+  if (!elements.pop || !elements.searchBar || !elements.header || !elements.results) {
+    throw new Error('Required DOM elements not found');
+  }
+
+  if (!(elements.searchBar instanceof HTMLInputElement)) {
+    throw new Error('searchbar element is not an input element');
+  }
+
+  elmPop = elements.pop;
+  elmSearchBar = elements.searchBar;
+  elmHeader = elements.header;
+  elmResults = elements.results;
 
   showSearch();
 

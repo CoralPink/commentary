@@ -5,7 +5,7 @@ const CACHE_VERSION = 'v5.0.0';
 const CACHE_HOST = 'https://coralpink.github.io/';
 const CACHE_URL = '/commentary/';
 
-const CACHE_LIST: string[] = [
+const CACHE_LIST: readonly string[] = [
   'book.js',
   'hl-worker.js',
   'wasm_book_bg.wasm',
@@ -97,7 +97,7 @@ const cacheFirst = async (
   // Next try to use the preloaded response, if it's there
   const preloadResponseResult = await preloadResponse;
 
-  if (preloadResponseResult) {
+  if (preloadResponseResult && preloadResponseResult instanceof Response) {
     putInCache(request, preloadResponseResult.clone());
     return preloadResponseResult;
   }
