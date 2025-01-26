@@ -32,15 +32,8 @@ const loadStyle = async (style: string): Promise<void> => {
   try {
     await loadStyleSheet(`${rootPath}${THEME_DIRECTORY}${style}.css`);
 
-    const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+    const metaThemeColor = document.querySelector('meta[name="theme-color"]') as HTMLMetaElement;
 
-    if (!(metaThemeColor instanceof HTMLMetaElement)) {
-      console.error('Meta tag with name "theme-color" not found.');
-      return;
-    }
-
-    // Apply the same color as the background color ('--bg') to the title bar. (Effective in Safari only)
-    // ...If you fail to get '--bg', fool it well!
     metaThemeColor.content =
       getRootVariable('--bg') ?? (isDarkThemeRequired() ? DARK_FALLBACK_COLOR : LIGHT_FALLBACK_COLOR);
   } catch (err) {
@@ -51,7 +44,8 @@ const loadStyle = async (style: string): Promise<void> => {
 const setTheme = (next: string): void => {
   const html = document.querySelector('html');
 
-  if (html === null) {
+  if (!html) {
+    console.error('HTML element not found');
     return;
   }
 
@@ -68,8 +62,8 @@ const setTheme = (next: string): void => {
   const currentButton = document.getElementById(current);
   const nextButton = document.getElementById(next);
 
-  if (currentButton === null || nextButton === null) {
-    console.error('Current or Next element not found');
+  if (!currentButton || !nextButton) {
+    console.error(`Theme button not found: ${!currentButton ? current : next}`);
     return;
   }
 
@@ -139,6 +133,7 @@ export const initThemeColor = (root: string): void => {
   const themeSelector = document.getElementById(ID_THEME_SELECTOR);
 
   if (themeSelector === null) {
+    console.error(`ID:'${ID_THEME_SELECTOR}' not found`);
     return;
   }
   themeSelector.addEventListener('click', initThemeSelector, { once: true, passive: true });
