@@ -13,41 +13,50 @@ const INITIAL_HEADER = '2文字 (もしくは全角1文字) 以上を入力し�
 const FETCH_TIMEOUT = 10000;
 const DEBOUNCE_DELAY_MS = 80;
 
-let rootPath;
+let rootPath: string;
 
-let elmPop;
-let elmSearchBar;
-let elmHeader;
-let elmResults;
+let elmPop: HTMLElement;
+let elmSearchBar: HTMLInputElement;
+let elmHeader: HTMLElement;
+let elmResults: HTMLElement;
 
-let searchResult;
-let finder;
+let searchResult: SearchResult;
+let finder: Finder;
 
-let focusedLi;
+let focusedLi: Element;
 
-const unmarkHandler = () => {
+const unmarkHandler = (): void => {
   const article = document.getElementById('article');
 
-  for (const x of article.querySelectorAll('mark')) {
+  if (article === null) {
+    return;
+  }
+
+  for (const x of Array.from(article.querySelectorAll('mark'))) {
     x.removeEventListener('click', unmarkHandler);
   }
   unmarking();
   tocReset();
 };
 
-const escapeHtml = str =>
+const escapeHtml = (str: string): string =>
   decodeURIComponent(str).replace(/[&<>"']/g, match => {
-    return {
+    const map: { [key: string]: string } = {
       '&': '&amp;',
       '<': '&lt;',
       '>': '&gt;',
       '"': '&quot;',
       "'": '&#39;',
-    }[match];
+    };
+
+    if (!map[match]) {
+      throw new Error(`Unexpected character: ${match}`);
+    }
+    return map[match];
   });
 
 // On reload or browser history backwards/forwards events, parse the url and do search or mark
-const doSearchOrMarkFromUrl = () => {
+const doSearchOrMarkFromUrl = (): void => {
   const params = new URLSearchParams(globalThis.location.search).get('mark');
 
   if (!params) {
@@ -56,12 +65,18 @@ const doSearchOrMarkFromUrl = () => {
 
   marking(escapeHtml(params));
 
-  for (const x of article.querySelectorAll('mark')) {
+  const article = document.getElementById('article');
+
+  if (article === null) {
+    return;
+  }
+
+  for (const x of Array.from(article.querySelectorAll('mark'))) {
     x.addEventListener('click', unmarkHandler, { once: true, passive: true });
   }
 };
 
-const jumpUrl = aElement => {
+const jumpUrl = (aElement: HTMLAnchorElement): void => {
   if (aElement === null) {
     console.warn('The link does not exist.');
     return;
@@ -80,19 +95,26 @@ const jumpUrl = aElement => {
   window.location.href = url.href;
 };
 
-const popupFocus = ev => {
+const popupFocus = (ev: KeyboardEvent): void => {
   if (ev.key !== 'Enter') {
     return;
   }
-  jumpUrl(ev.target.querySelector('a'));
+
+  const target = ev.target as HTMLElement;
+  const anchor = target.querySelector('a');
+
+  if (anchor === null) {
+    return;
+  }
+  jumpUrl(anchor);
 };
 
-const isFullWidthOrAscii = s => {
+const isFullWidthOrAscii = (s: string): boolean => {
   const code = s.charCodeAt(0);
   return code <= 127 || (code >= 0xff01 && code <= 0xff5e);
 };
 
-const showResults = () => {
+const showResults = (): void => {
   const terms = elmSearchBar.value.trim();
   elmResults.innerText = '';
 
@@ -112,17 +134,20 @@ const showResults = () => {
   searchResult.append_search_result(results, terms);
 };
 
-const searchHandler = fn => {
-  let debounceTimer;
+const searchHandler = (fn: () => void): (() => void) => {
+  let debounceTimer: ReturnType<typeof setTimeout> | undefined;
 
   return () => {
-    clearTimeout(debounceTimer);
+    if (debounceTimer) {
+      clearTimeout(debounceTimer);
+    }
     debounceTimer = setTimeout(() => fn(), DEBOUNCE_DELAY_MS);
   };
 };
 
-const searchMouseupHandler = ev => {
-  const li = ev.target.closest('li');
+const searchMouseupHandler = (ev: MouseEvent): void => {
+  const target = ev.target as HTMLElement;
+  const li = target.closest('li');
 
   if (li === null) {
     return;
@@ -131,18 +156,25 @@ const searchMouseupHandler = ev => {
   if (focusedLi !== li) {
     return;
   }
-  jumpUrl(li.querySelector('a'));
+
+  const a = li.querySelector('a');
+
+  if (a === null) {
+    return;
+  }
+  jumpUrl(a);
 };
 
-const focusinHandler = ev => {
+const focusinHandler = (ev: Event): void => {
+  const target = ev.target as HTMLElement;
 
   // As far as I have tested, the order in which events are called is `focusin`->`click`.
   // I have to call it in the order `click`->`focusin` or the expected behavior will not happen, so I am putting a delay on this process.
   // If there is another solution, it should be changed immediately!!
   setTimeout(() => {
-    elmPop.setAttribute('aria-activedescendant', ev.target.id);
+    elmPop.setAttribute('aria-activedescendant', target.id);
 
-    const li = ev.target.closest('li');
+    const li = target.closest('li');
 
     if (li === null) {
       return;
@@ -154,17 +186,18 @@ const focusinHandler = ev => {
   }, 8);
 };
 
-const closedPopover = ev => {
-  if (ev.newState === 'closed') {
+const closedPopover = (ev: Event): void => {
+  const customEvent = ev as CustomEvent;
+
+  if (customEvent.detail?.newState === 'closed') {
     hiddenSearch();
   }
 };
 
-const hiddenSearch = () => {
-  document.getElementById(ID_ICON).setAttribute('aria-expanded', 'false');
+const hiddenSearch = (): void => {
+  document.getElementById(ID_ICON)?.setAttribute('aria-expanded', 'false');
 
   elmSearchBar.removeEventListener('input', searchHandler(showResults));
-
   elmResults.removeEventListener('keyup', popupFocus);
 
   elmPop.removeEventListener('click', searchMouseupHandler);
@@ -174,8 +207,8 @@ const hiddenSearch = () => {
   elmPop.hidePopover();
 };
 
-const showSearch = () => {
-  document.getElementById(ID_ICON).setAttribute('aria-expanded', 'true');
+const showSearch = (): void => {
+  document.getElementById(ID_ICON)?.setAttribute('aria-expanded', 'true');
 
   showResults();
 
@@ -193,25 +226,36 @@ const showSearch = () => {
   elmSearchBar.select();
 };
 
-const fetchRequest = async url => {
+const fetchRequest = async (url: string): Promise<Response> => {
   const controller = new AbortController();
   const timeoutId = setTimeout(() => {
     controller.abort();
     alert('The request has timed out.');
   }, FETCH_TIMEOUT);
 
-  const response = await fetch(url, {
-    signal: controller.signal,
-  });
-  clearTimeout(timeoutId);
+  try {
+    const response = await fetch(url, {
+      signal: controller.signal,
+    });
+    clearTimeout(timeoutId);
 
-  return response;
+    return response;
+  } catch (e) {
+    clearTimeout(timeoutId);
+    console.error('Error with fetch request:', e);
+    throw e;
+  }
 };
 
-const initSearch = async () => {
+const initSearch = async (): Promise<void> => {
   document.removeEventListener('keyup', startSearchFromKey);
 
   const icon = document.getElementById(ID_ICON);
+
+  if (icon === null) {
+    return;
+  }
+
   icon.removeEventListener('click', initSearch);
 
   try {
@@ -231,10 +275,10 @@ const initSearch = async () => {
     return;
   }
 
-  elmPop = document.getElementById('search-pop');
-  elmSearchBar = document.getElementById('searchbar');
-  elmHeader = document.getElementById('results-header');
-  elmResults = document.getElementById('searchresults');
+  elmPop = document.getElementById('search-pop') as HTMLElement;
+  elmSearchBar = document.getElementById('searchbar') as HTMLInputElement;
+  elmHeader = document.getElementById('results-header') as HTMLElement;
+  elmResults = document.getElementById('searchresults') as HTMLElement;
 
   showSearch();
 
@@ -267,7 +311,7 @@ const initSearch = async () => {
   );
 };
 
-const startSearchFromKey = ev => {
+const startSearchFromKey = (ev: KeyboardEvent): void => {
   switch (ev.key) {
     case '/':
     case 's':
@@ -277,11 +321,11 @@ const startSearchFromKey = ev => {
   }
 };
 
-export const startupSearch = root => {
+export const startupSearch = (root: string): void => {
   doSearchOrMarkFromUrl();
 
   rootPath = root;
 
-  document.getElementById(ID_ICON).addEventListener('click', initSearch, { once: true, passive: true });
+  document.getElementById(ID_ICON)?.addEventListener('click', initSearch, { once: true, passive: true });
   document.addEventListener('keyup', startSearchFromKey, { once: false, passive: true });
 };
