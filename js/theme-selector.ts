@@ -38,8 +38,6 @@ const loadStyle = async (style: string): Promise<void> => {
     // Apply the same color as the background color ('--bg') to the title bar. (Effective in Safari only)
     // ...If you fail to get '--bg', fool it well!
     metaThemeColor.content = getRootVariable('--bg') ?? (isDarkThemeRequired() ? '#24273a' : '#eff1f5');
-
-    getRootVariable('--bg') ?? (isDarkThemeRequired() ? '#24273a' : '#eff1f5');
   } catch (err) {
     console.warn(`Failed to load theme style '${style}':`, err);
   }
