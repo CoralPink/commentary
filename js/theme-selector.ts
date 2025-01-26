@@ -16,52 +16,67 @@ const THEME_COLORS = [
 const DEFAULT_THEME = THEME_COLORS[1].id;
 const PREFERRED_DARK_THEME = THEME_COLORS[3].id;
 
+const DARK_FALLBACK_COLOR = '#24273a';
+const LIGHT_FALLBACK_COLOR = '#eff1f5';
+
 const THEME_SELECTED = 'theme-selected';
 const SAVE_STORAGE = 'mdbook-theme';
 
 const ID_THEME_SELECTOR = 'theme-selector';
 
-let rootPath;
+let rootPath: string;
 
 const isDarkThemeRequired = () => matchMedia('(prefers-color-scheme: dark)').matches;
 
-const loadStyle = async style => {
+const loadStyle = async (style: string): Promise<void> => {
   try {
     await loadStyleSheet(`${rootPath}${THEME_DIRECTORY}${style}.css`);
 
-    // Apply the same color as the background color ('--bg') to the title bar. (Effective in Safari only)
-    // ...If you fail to get '--bg', fool it well!
-    document.querySelector('meta[name="theme-color"]').content =
-      getRootVariable('--bg') ?? (isDarkThemeRequired() ? '#24273a' : '#eff1f5');
+    const metaThemeColor = document.querySelector('meta[name="theme-color"]') as HTMLMetaElement;
+
+    metaThemeColor.content =
+      getRootVariable('--bg') ?? (isDarkThemeRequired() ? DARK_FALLBACK_COLOR : LIGHT_FALLBACK_COLOR);
   } catch (err) {
     console.warn(`Failed to load theme style '${style}':`, err);
   }
 };
 
-const setTheme = next => {
-  const current = document.querySelector('html').classList.value;
+const setTheme = (next: string): void => {
+  const html = document.querySelector('html');
+
+  if (!html) {
+    console.error('HTML element not found');
+    return;
+  }
+
+  const current = html.classList.value;
 
   if (next === current) {
     return;
   }
-
   loadStyle(next);
   unloadStyleSheet(`${rootPath}${THEME_DIRECTORY}${current}.css`);
 
-  document.querySelector('html').classList.replace(current, next);
+  html.classList.replace(current, next);
 
   const currentButton = document.getElementById(current);
+  const nextButton = document.getElementById(next);
+
+  if (!currentButton || !nextButton) {
+    console.error(`Theme button not found: ${!currentButton ? current : next}`);
+    return;
+  }
+
   currentButton.classList.remove(THEME_SELECTED);
   currentButton.removeAttribute('aria-current');
 
-  const nextButton = document.getElementById(next);
   nextButton.classList.add(THEME_SELECTED);
   nextButton.setAttribute('aria-current', 'true');
 
   writeLocalStorage(SAVE_STORAGE, next);
 };
 
-const initThemeSelector = async () => {
+const initThemeSelector = async (): Promise<void> => {
   await loadStyleSheet(`${rootPath}${STYLE_THEMELIST}`);
 
   const themeList = document.createElement('ul');
@@ -92,18 +107,20 @@ const initThemeSelector = async () => {
   themeList.addEventListener(
     'click',
     ev => {
-      if (ev.target.matches('li.theme')) {
-        setTheme(ev.target.id);
+      const target = ev.target;
+
+      if (target instanceof Element && target.matches('li.theme')) {
+        setTheme(target.id);
       }
     },
     { once: false, passive: true },
   );
 
-  document.getElementById('top-bar').appendChild(themeList);
+  document.getElementById('top-bar')?.appendChild(themeList);
   themeList.showPopover();
 };
 
-export const initThemeColor = root => {
+export const initThemeColor = (root: string): void => {
   rootPath = root;
 
   // If the user has already specified a theme, that theme will be applied;
@@ -111,9 +128,13 @@ export const initThemeColor = root => {
   const theme = localStorage.getItem('mdbook-theme') ?? (isDarkThemeRequired() ? PREFERRED_DARK_THEME : DEFAULT_THEME);
 
   loadStyle(theme);
-  document.querySelector('html').classList.add(theme);
+  document.querySelector('html')?.classList.add(theme);
 
-  document
-    .getElementById(ID_THEME_SELECTOR)
-    .addEventListener('click', initThemeSelector, { once: true, passive: true });
+  const themeSelector = document.getElementById(ID_THEME_SELECTOR);
+
+  if (themeSelector === null) {
+    console.error(`ID:'${ID_THEME_SELECTOR}' not found`);
+    return;
+  }
+  themeSelector.addEventListener('click', initThemeSelector, { once: true, passive: true });
 };
