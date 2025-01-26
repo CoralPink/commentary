@@ -7,7 +7,7 @@ const TIME_OUT = 600;
 // Singleton Class
 class WorkerPool {
   private static instance: WorkerPool | undefined;
-  private workers: Worker[] = [];
+  private workerRefs: WeakRef<Worker>[] = [];
 
   constructor(threadNum = 0) {
     if (WorkerPool.instance) {
@@ -16,22 +16,25 @@ class WorkerPool {
     }
 
     for (let i = 0; i < Math.min(threadNum, MAX_THREAD); i++) {
-      this.workers.push(new Worker(WORKER_PATH));
+      this.workerRefs.push(new WeakRef(new Worker(WORKER_PATH)));
     }
 
     WorkerPool.instance = this;
   }
 
   release(): void {
-    for (const worker of this.workers) {
-      worker.terminate();
+    for (const workerRef of this.workerRefs) {
+      const worker = workerRef.deref();
+      if (worker) {
+        worker.terminate();
+      }
     }
-    this.workers.length = 0;
+    this.workerRefs.length = 0;
     WorkerPool.instance = undefined;
   }
 
   push(worker: Worker): void {
-    this.workers.push(worker);
+    this.workerRefs.push(new WeakRef(worker));
   }
 
   async pop(): Promise<Worker> {
@@ -39,7 +42,8 @@ class WorkerPool {
 
     const workerPromise = new Promise<Worker>(resolve => {
       const checkAndPop = () => {
-        const worker = this.workers.pop();
+        const workerRef = this.workerRefs.pop();
+        const worker = workerRef?.deref();
 
         if (worker) {
           resolve(worker);
