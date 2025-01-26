@@ -1,9 +1,11 @@
-const CACHE_VERSION = 'v4.5.0';
+declare const self: ServiceWorkerGlobalScope;
+
+const CACHE_VERSION = 'v5.0.0';
 
 const CACHE_HOST = 'https://coralpink.github.io/';
 const CACHE_URL = '/commentary/';
 
-const CACHE_LIST = [
+const CACHE_LIST: readonly string[] = [
   'book.js',
   'hl-worker.js',
   'wasm_book_bg.wasm',
@@ -25,41 +27,36 @@ const CACHE_LIST = [
 
 const FALLBACK_URL = `${CACHE_URL}chrome-96x96.png`;
 
-const deleteCache = async key => {
+const deleteCache = async (key: string): Promise<void> => {
   await caches.delete(key);
 };
 
-const deleteOldCaches = async () => {
+const deleteOldCaches = async (): Promise<void> => {
   const cacheKeepList = [CACHE_VERSION];
   const keyList = await caches.keys();
   const cachesToDelete = keyList.filter(key => !cacheKeepList.includes(key));
   await Promise.all(cachesToDelete.map(deleteCache));
 };
 
-self.addEventListener(
-  'activate',
-  event => {
-    event.waitUntil(clients.claim());
+self.addEventListener('activate', (event: ExtendableEvent) => {
+  event.waitUntil(self.clients.claim());
+  event.waitUntil(
+    (async () => {
+      if (self.registration.navigationPreload) {
+        await self.registration.navigationPreload.enable();
+      }
+    })(),
+  );
+  event.waitUntil(deleteOldCaches());
+});
 
-    event.waitUntil(
-      (async () => {
-        if (self.registration.navigationPreload) {
-          await self.registration.navigationPreload.enable();
-        }
-      })(),
-    );
-    event.waitUntil(deleteOldCaches());
-  },
-  { once: false, passive: true },
-);
-
-const extractVersionParts = cacheName => {
+const extractVersionParts = (cacheName: string): { major: number; minor: number } => {
   const versionString = cacheName.substring(1);
-  const [major, minor] = versionString.split('.');
+  const [major, minor] = versionString.split('.').map(Number);
   return { major, minor };
 };
 
-const shouldSkipWaiting = cacheList => {
+const shouldSkipWaiting = async (cacheList: string[]): Promise<boolean> => {
   const target = extractVersionParts(CACHE_VERSION);
 
   return cacheList.some(cacheName => {
@@ -68,28 +65,28 @@ const shouldSkipWaiting = cacheList => {
   });
 };
 
-self.addEventListener(
-  'install',
-  event => {
-    event.waitUntil(
-      (async () => {
-        if (shouldSkipWaiting(await caches.keys())) {
-          self.skipWaiting();
-        }
-        const cache = await caches.open(CACHE_VERSION);
-        await cache.addAll(CACHE_LIST.map(x => CACHE_URL + x));
-      })(),
-    );
-  },
-  { once: false, passive: true },
-);
+self.addEventListener('install', (event: ExtendableEvent) => {
+  event.waitUntil(
+    (async () => {
+      const shouldSkip = await shouldSkipWaiting(await caches.keys());
+      if (shouldSkip) {
+        self.skipWaiting();
+      }
+      const cache = await caches.open(CACHE_VERSION);
+      await cache.addAll(CACHE_LIST.map(x => CACHE_URL + x));
+    })(),
+  );
+});
 
-const putInCache = async (request, response) => {
+const putInCache = async (request: Request, response: Response): Promise<void> => {
   const cache = await caches.open(CACHE_VERSION);
   await cache.put(request, response);
 };
 
-const cacheFirst = async (request, preloadResponse) => {
+const cacheFirst = async (
+  request: Request,
+  preloadResponse: Promise<Response | undefined> | undefined,
+): Promise<Response> => {
   // First try to get the resource from the cache
   const responseFromCache = await caches.match(request);
 
@@ -98,11 +95,11 @@ const cacheFirst = async (request, preloadResponse) => {
   }
 
   // Next try to use the preloaded response, if it's there
-  const preloadResponsePromise = await preloadResponse;
+  const preloadResponseResult = await preloadResponse;
 
-  if (preloadResponsePromise) {
-    putInCache(request, preloadResponsePromise.clone());
-    return preloadResponsePromise;
+  if (preloadResponseResult && preloadResponseResult instanceof Response) {
+    putInCache(request, preloadResponseResult.clone());
+    return preloadResponseResult;
   }
 
   // Next try to get the resource from the network
@@ -125,7 +122,7 @@ const cacheFirst = async (request, preloadResponse) => {
     // when even the fallback response is not available,
     // there is nothing we can do, but we must always
     // return a Response object
-    return new Response(`Network error happened: ${error}`, {
+    return new Response(`Network error happened: ${String(error)}`, {
       status: 408,
       headers: { 'Content-Type': 'text/plain' },
     });
@@ -134,20 +131,18 @@ const cacheFirst = async (request, preloadResponse) => {
 
 self.addEventListener(
   'fetch',
-  event => {
-    if (!event.request.url.startsWith(CACHE_HOST)) {
-      return;
-    }
-    if (event.request.destination === 'document') {
+  (event: FetchEvent): void => {
+    const request = event.request;
+
+    if (!request.url.startsWith(CACHE_HOST)) {
       return;
     }
 
-    event.respondWith(
-      (async () => {
-        const cachedResponse = await cacheFirst(event.request, event.preloadResponse);
-        return cachedResponse;
-      })(),
-    );
+    if (request.destination === 'document') {
+      return;
+    }
+
+    event.respondWith(cacheFirst(request, event.preloadResponse));
   },
   { once: false, passive: true },
 );

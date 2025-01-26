@@ -3,7 +3,7 @@ import { getRootVariableNum } from './css-loader';
 const ENV_PC: number = 0;
 const ENV_MOBILE: number = 1;
 
-const ELEMENT_TOC: string[] = ['righttoc', 'bottomtoc'];
+const ELEMENT_TOC: readonly string[] = ['righttoc', 'bottomtoc'];
 
 const tocMap: Map<HTMLElement, HTMLAnchorElement> = new Map();
 let observer: IntersectionObserver;

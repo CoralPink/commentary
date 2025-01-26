@@ -6,41 +6,46 @@ const TIME_OUT = 600;
 
 // Singleton Class
 class WorkerPool {
-  static #instance;
-  #array = [];
-
-  release() {
-    for (const worker of this.#array) {
-      worker.terminate();
-    }
-    this.#array.length = 0;
-    WorkerPool.#instance = undefined;
-  }
+  private static instance: WorkerPool | undefined;
+  private workerRefs: WeakRef<Worker>[] = [];
 
   constructor(threadNum = 0) {
-    if (WorkerPool.#instance !== undefined) {
+    if (WorkerPool.instance) {
       /* biome-ignore lint: no-constructor-return */
-      return WorkerPool.#instance;
+      return WorkerPool.instance;
     }
 
     for (let i = 0; i < Math.min(threadNum, MAX_THREAD); i++) {
-      this.#array.push(new Worker(WORKER_PATH));
+      this.workerRefs.push(new WeakRef(new Worker(WORKER_PATH)));
     }
-    WorkerPool.#instance = this;
+
+    WorkerPool.instance = this;
   }
 
-  push(thread) {
-    this.#array.push(thread);
+  release(): void {
+    for (const workerRef of this.workerRefs) {
+      const worker = workerRef.deref();
+      if (worker) {
+        worker.terminate();
+      }
+    }
+    this.workerRefs.length = 0;
+    WorkerPool.instance = undefined;
   }
 
-  async pop() {
+  push(worker: Worker): void {
+    this.workerRefs.push(new WeakRef(worker));
+  }
+
+  async pop(): Promise<Worker> {
     let retry = true;
 
-    const workerPromise = new Promise(resolve => {
+    const workerPromise = new Promise<Worker>(resolve => {
       const checkAndPop = () => {
-        const worker = this.#array.pop();
+        const workerRef = this.workerRefs.pop();
+        const worker = workerRef?.deref();
 
-        if (worker !== undefined) {
+        if (worker) {
           resolve(worker);
           return;
         }
@@ -53,18 +58,18 @@ class WorkerPool {
       checkAndPop();
     });
 
-    const timeOutPromise = new Promise((_, reject) => {
+    const timeOutPromise = new Promise<never>((_, reject) => {
       setTimeout(() => {
         retry = false;
         reject(new Error('Pool pop time out!'));
       }, TIME_OUT);
     });
 
-    return await Promise.race([workerPromise, timeOutPromise]);
+    return Promise.race([workerPromise, timeOutPromise]);
   }
 }
 
-const createClipButton = () => {
+const createClipButton = (): HTMLButtonElement => {
   const elem = document.createElement('button');
   elem.setAttribute('class', 'copy-button');
   elem.setAttribute('aria-label', 'Copy to Clipboard');
@@ -76,33 +81,41 @@ const createClipButton = () => {
   return elem;
 };
 
-const copyCode = target => {
-  const showTooltip = msg => {
+const copyCode = (target: EventTarget | null): void => {
+  if (!(target instanceof HTMLElement)) return;
+
+  const showTooltip = (msg: string): void => {
     const tip = document.createElement('div');
     tip.setAttribute('class', 'tooltiptext');
     tip.insertAdjacentText('afterbegin', msg);
 
     const elem = target.closest('button');
-    elem.appendChild(tip);
+    if (!elem) return;
 
+    elem.appendChild(tip);
     setTimeout(() => elem.removeChild(tip), 1200);
   };
 
-  navigator.clipboard.writeText(target.closest('pre').querySelector('code').innerText).then(
-    () => showTooltip('Copied!'),
-    () => showTooltip('Failed...'),
-  );
+  const pre = target.closest('pre');
+  const code = pre?.querySelector('code');
+
+  if (code) {
+    navigator.clipboard.writeText(code.innerText).then(
+      () => showTooltip('Copied!'),
+      () => showTooltip('Failed...'),
+    );
+  }
 };
 
-export const procCodeBlock = () => {
+export const procCodeBlock = (): void => {
   const article = document.getElementById('article');
 
-  if (article === null) {
+  if (!article) {
     return;
   }
 
   const codeQuery = Array.from(article.querySelectorAll('pre code')).filter(
-    code => !code.classList.contains('language-txt'),
+    (code): code is HTMLElement => !code.classList.contains('language-txt'),
   );
 
   const threadNum = codeQuery.length;
@@ -117,7 +130,7 @@ export const procCodeBlock = () => {
   for (const code of codeQuery) {
     workerPool.pop().then(
       worker => {
-        worker.onmessage = ev => {
+        worker.onmessage = (ev: MessageEvent) => {
           const { highlightCode, needNerdFonts } = ev.data;
           code.innerHTML = highlightCode;
 
@@ -129,24 +142,26 @@ export const procCodeBlock = () => {
           workerPool.push(worker);
         };
 
-        worker.onerror = err => {
-          console.error('Error codeBlock:', err);
+        worker.onerror = (err: ErrorEvent) => {
+          console.error('Error in codeBlock:', err);
           workerPool.push(worker);
         };
 
         worker.postMessage([code.textContent, code.classList[0]]);
       },
       err => {
-        console.error('Error workerPool:', err);
+        console.error('Error in workerPool:', err);
       },
     );
 
     const parent = code.parentNode;
 
-    const cb = document.importNode(clipButton, true);
-    cb.addEventListener('click', ev => copyCode(ev.target), { once: false, passive: true });
+    if (parent) {
+      const cb = document.importNode(clipButton, true);
+      cb.addEventListener('click', ev => copyCode(ev.target), { once: false, passive: true });
 
-    parent.insertBefore(cb, parent.firstChild);
+      parent.insertBefore(cb, parent.firstChild);
+    }
   }
 
   const releaseTime = (threadNum > MAX_THREAD ? threadNum / MAX_THREAD + 1 : 1) * TIME_OUT;
