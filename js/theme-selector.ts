@@ -60,25 +60,22 @@ const setTheme = (next: string): void => {
   if (next === current) {
     return;
   }
-
   loadStyle(next);
   unloadStyleSheet(`${rootPath}${THEME_DIRECTORY}${current}.css`);
 
   html.classList.replace(current, next);
 
   const currentButton = document.getElementById(current);
+  const nextButton = document.getElementById(next);
 
-  if (currentButton === null) {
+  if (currentButton === null || nextButton === null) {
+    console.error('Current or Next element not found');
     return;
   }
+
   currentButton.classList.remove(THEME_SELECTED);
   currentButton.removeAttribute('aria-current');
 
-  const nextButton = document.getElementById(next);
-
-  if (nextButton === null) {
-    return;
-  }
   nextButton.classList.add(THEME_SELECTED);
   nextButton.setAttribute('aria-current', 'true');
 
