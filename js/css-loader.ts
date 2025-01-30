@@ -18,6 +18,30 @@ export const getRootVariableNum = (name: string): number => {
   return num;
 };
 
+const removeStyleSheet = (fileName: string): boolean => {
+  const resolvedHref = new URL(fileName, window.location.href).href;
+
+  const isStylesheetLink = (element: Element): element is HTMLLinkElement =>
+    element instanceof HTMLLinkElement && element.rel === 'stylesheet';
+
+  const stylesheetLinks = Array.from(document.querySelectorAll('link')).filter(isStylesheetLink);
+
+  for (const link of stylesheetLinks) {
+    if (link.href !== resolvedHref) {
+      continue;
+    }
+
+    link.onload = null;
+    link.onerror = null;
+
+    link.parentNode?.removeChild(link);
+
+    return true;
+  }
+
+  return false;
+};
+
 export const loadStyleSheet = (fileName: string, options: { signal?: AbortSignal } = {}): Promise<void> => {
   return new Promise((resolve, reject) => {
     if (options.signal?.aborted) {
@@ -30,17 +54,18 @@ export const loadStyleSheet = (fileName: string, options: { signal?: AbortSignal
     link.href = new URL(fileName, window.location.href).href;
 
     const abortHandler = () => {
-      cleanup();
-      link.parentNode?.removeChild(link);
-      reject(new Error('Stylesheet loading was aborted'));
+      if (removeStyleSheet(fileName)) {
+        reject(new Error('Stylesheet loading was aborted'));
+      }
     };
-    options.signal?.addEventListener('abort', abortHandler);
 
     const cleanup = () => {
       link.onload = null;
       link.onerror = null;
       options.signal?.removeEventListener('abort', abortHandler);
     };
+
+    options.signal?.addEventListener('abort', abortHandler);
 
     link.onload = () => {
       cleanup();
@@ -56,30 +81,7 @@ export const loadStyleSheet = (fileName: string, options: { signal?: AbortSignal
 };
 
 export const unloadStyleSheet = (fileName: string, throwIfNotFound = false): void => {
-  const resolvedHref = new URL(fileName, window.location.href).href;
-
-  const remove = (): boolean => {
-    const isStylesheetLink = (element: Element): element is HTMLLinkElement =>
-      element instanceof HTMLLinkElement && element.rel === 'stylesheet';
-
-    const stylesheetLinks = Array.from(document.querySelectorAll('link')).filter(isStylesheetLink);
-
-    for (const link of stylesheetLinks) {
-      if (link.href !== resolvedHref) {
-        continue;
-      }
-
-      link.onload = null;
-      link.onerror = null;
-
-      link.parentNode?.removeChild(link);
-
-      return true;
-    }
-    return false;
-  };
-
-  if (!remove() && throwIfNotFound) {
+  if (!removeStyleSheet(fileName) && throwIfNotFound) {
     throw new Error(`Stylesheet not found: ${fileName}`);
   }
 };
