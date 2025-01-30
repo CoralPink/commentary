@@ -321,7 +321,7 @@ She never stops, she's a go-getter
 彼女は決して立ち止まらない、頑張り屋さんなんだ
 ```
 
-## I'll take you all.
+## Mean Mister Mustard
 
 結構色々組み込んできたんですが、まだ何も変化はありません。(なかなかハードですね...😅)
 

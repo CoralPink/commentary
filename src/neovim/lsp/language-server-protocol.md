@@ -16,7 +16,7 @@ Come va l’eco della pia campana
 敬虔な鐘の音が 遠くへと響いていくように
 ```
 
-## Road map
+## Roadmap
 
 さて❗突然ですが、この章のロードマップです❗❗
 
@@ -74,7 +74,7 @@ A Question of Honour (by [Sarah Brightman](https://en.wikipedia.org/wiki/Sarah_B
 [Wikipedia](https://en.wikipedia.org/wiki/A_Question_of_Honour_(song))より
 }}
 
-君が勝つか負けるか、それは名誉が問われる瞬間
+貴方が勝つか負けるか、それは名誉が問われる瞬間
 ```
 
 <video controls preload="none" width="1280" height="720" poster="img/yomiuri-land-thunbmail.webp">
