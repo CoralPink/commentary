@@ -5,6 +5,8 @@ node_modules
 pkg
 target
 
+fonts/poetry.lock
+
 js/dist
 js/highlight.js
 js/wasm_book.js
