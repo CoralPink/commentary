@@ -35,8 +35,8 @@ nvim-compe (または後継の nvim-cmp (cmp_luasnip)) を使って LSP-Snippets
 何よりも "繰り返し入力する必要がなくなる" という文言には魅力があります🤩
 
 ~~~admonish success title=""
-Mean Mister Mustard{{footnote:
-Mean Mister Mustard (by [The Beatles](https://en.wikipedia.org/wiki/The_Beatles)):
+Mean Mr. Mustard{{footnote:
+Mean Mr. Mustard (by [The Beatles](https://en.wikipedia.org/wiki/The_Beatles)):
 本作は1968年頃に The Beatles のメンバーがインド・ऋषिकेश (リシケーシュ) で、
 महर्षि महेश योगी (Maharishi Mahesh Yogi) のもとで瞑想修行を行っていた時期に書かれた楽曲で、
 内容は Mustard というホームレスの男の日常を綴ったものとなっている。
@@ -321,7 +321,7 @@ She never stops, she's a go-getter
 彼女は決して立ち止まらない、頑張り屋さんなんだ
 ```
 
-## Mean Mister Mustard
+## Mean Mr. Mustard
 
 結構色々組み込んできたんですが、まだ何も変化はありません。(なかなかハードですね...😅)
 
