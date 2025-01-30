@@ -1,15 +1,15 @@
 const WORKER_PATH = '/commentary/hl-worker.js';
 const MAX_THREAD = 8;
 
-const POP_WAIT = 20;
-const TIME_OUT = 600;
+const POP_WAIT_MS = 20;
+const TIME_OUT_MS = 600;
 
 // Singleton Class
 class WorkerPool {
   private static instance: WorkerPool | undefined;
   private workerRefs: WeakRef<Worker>[] = [];
 
-  constructor(threadNum = 0) {
+  public constructor(threadNum = 0) {
     if (WorkerPool.instance) {
       /* biome-ignore lint: no-constructor-return */
       return WorkerPool.instance;
@@ -22,9 +22,10 @@ class WorkerPool {
     WorkerPool.instance = this;
   }
 
-  release(): void {
+  public release(): void {
     for (const workerRef of this.workerRefs) {
       const worker = workerRef.deref();
+
       if (worker) {
         worker.terminate();
       }
@@ -33,11 +34,11 @@ class WorkerPool {
     WorkerPool.instance = undefined;
   }
 
-  push(worker: Worker): void {
+  public push(worker: Worker): void {
     this.workerRefs.push(new WeakRef(worker));
   }
 
-  async pop(): Promise<Worker> {
+  public async pop(): Promise<Worker> {
     let retry = true;
 
     const workerPromise = new Promise<Worker>(resolve => {
@@ -51,7 +52,7 @@ class WorkerPool {
         }
 
         if (retry) {
-          setTimeout(checkAndPop, POP_WAIT);
+          setTimeout(checkAndPop, POP_WAIT_MS);
         }
       };
 
@@ -62,7 +63,7 @@ class WorkerPool {
       setTimeout(() => {
         retry = false;
         reject(new Error('Pool pop time out!'));
-      }, TIME_OUT);
+      }, TIME_OUT_MS);
     });
 
     return Promise.race([workerPromise, timeOutPromise]);
@@ -82,18 +83,22 @@ const createClipButton = (): HTMLButtonElement => {
 };
 
 const copyCode = (target: EventTarget | null): void => {
-  if (!(target instanceof HTMLElement)) return;
+  if (!(target instanceof HTMLElement)) {
+    return;
+  }
 
   const showTooltip = (msg: string): void => {
     const tip = document.createElement('div');
     tip.setAttribute('class', 'tooltiptext');
     tip.insertAdjacentText('afterbegin', msg);
 
-    const elem = target.closest('button');
-    if (!elem) return;
+    const button = target.closest('button');
 
-    elem.appendChild(tip);
-    setTimeout(() => elem.removeChild(tip), 1200);
+    if (button === null) {
+      return;
+    }
+    button.appendChild(tip);
+    setTimeout(() => button.removeChild(tip), 1200);
   };
 
   const pre = target.closest('pre');
@@ -110,7 +115,7 @@ const copyCode = (target: EventTarget | null): void => {
 export const procCodeBlock = (): void => {
   const article = document.getElementById('article');
 
-  if (!article) {
+  if (article === null) {
     return;
   }
 
@@ -156,14 +161,15 @@ export const procCodeBlock = (): void => {
 
     const parent = code.parentNode;
 
-    if (parent) {
-      const cb = document.importNode(clipButton, true);
-      cb.addEventListener('click', ev => copyCode(ev.target), { once: false, passive: true });
-
-      parent.insertBefore(cb, parent.firstChild);
+    if (parent === null) {
+      continue;
     }
+    const cb = document.importNode(clipButton, true);
+    cb.addEventListener('click', ev => copyCode(ev.target), { once: false, passive: true });
+
+    parent.insertBefore(cb, parent.firstChild);
   }
 
-  const releaseTime = (threadNum > MAX_THREAD ? threadNum / MAX_THREAD + 1 : 1) * TIME_OUT;
+  const releaseTime = (threadNum > MAX_THREAD ? threadNum / MAX_THREAD + 1 : 1) * TIME_OUT_MS;
   setTimeout(() => workerPool.release(), releaseTime);
 };
