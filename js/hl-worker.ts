@@ -1,4 +1,5 @@
-import hljs from 'highlight.js';
+// @ts-ignore
+import hljs from './highlight.js/build/highlight.js';
 
 const DELETEING_PREFIX_LENGTH = 'language-'.length;
 
