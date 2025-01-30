@@ -49,12 +49,11 @@ const initContent = async (): Promise<void> => {
     sidebar.insertAdjacentHTML('afterbegin', await loadSitemap());
   } catch (err: unknown) {
     if (err instanceof Error) {
-      sidebar.insertAdjacentHTML('afterbegin', '<p>Error loading sidebar content.</p>');
       console.error(`Failed to load pagelist - ${err.message}`);
     } else {
-      sidebar.insertAdjacentHTML('afterbegin', '<p>An unknown error occurred.</p>');
       console.error('An unknown error occurred');
     }
+    sidebar.insertAdjacentHTML('afterbegin', '<p>Error loading sidebar content.</p>');
     return;
   }
 

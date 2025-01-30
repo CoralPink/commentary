@@ -5,7 +5,7 @@ const CACHE_VERSION = 'v5.0.0';
 const CACHE_HOST = 'https://coralpink.github.io/';
 const CACHE_URL = '/commentary/';
 
-const CACHE_LIST: readonly string[] = [
+const CACHE_LIST: string[] = [
   'book.js',
   'hl-worker.js',
   'wasm_book_bg.wasm',
@@ -23,7 +23,7 @@ const CACHE_LIST: readonly string[] = [
   'favicon.svg',
 
   'manifest.json',
-];
+] as const;
 
 const FALLBACK_URL = `${CACHE_URL}chrome-96x96.png`;
 

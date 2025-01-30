@@ -237,12 +237,8 @@ const fetchRequest = async (url: string): Promise<Response> => {
     const response = await fetch(url, {
       signal: controller.signal,
     });
-    clearTimeout(timeoutId);
-
     return response;
   } catch (e) {
-    clearTimeout(timeoutId);
-
     if (e instanceof Error) {
       if (e.name === 'AbortError') {
         console.error('Request timed out:', e.message);
@@ -251,6 +247,8 @@ const fetchRequest = async (url: string): Promise<Response> => {
       }
     }
     throw e;
+  } finally {
+    clearTimeout(timeoutId);
   }
 };
 

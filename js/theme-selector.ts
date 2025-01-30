@@ -5,7 +5,12 @@ const STYLE_THEMELIST = 'css/theme-list.css';
 
 const THEME_DIRECTORY = 'css/catppuccin/';
 
-const THEME_COLORS = [
+type ThemeColor = {
+  readonly id: string;
+  readonly label: string;
+};
+
+const THEME_COLORS: readonly ThemeColor[] = [
   { id: 'au-lait', label: 'Au Lait' },
   { id: 'latte', label: 'Latte' },
   { id: 'frappe', label: 'Frappé' },
@@ -34,6 +39,8 @@ const loadStyle = async (style: string): Promise<void> => {
 
     const metaThemeColor = document.querySelector('meta[name="theme-color"]') as HTMLMetaElement;
 
+    // Apply the same color as the background color ('--bg') to the title bar. (Effective in Safari only)
+    // ...If you fail to get '--bg', fool it well!
     metaThemeColor.content =
       getRootVariable('--bg') ?? (isDarkThemeRequired() ? DARK_FALLBACK_COLOR : LIGHT_FALLBACK_COLOR);
   } catch (err) {

@@ -22,7 +22,7 @@ export default class Finder {
   private docs: Record<string, Omit<StoreDoc, 'id' | 'title'>> = {};
   private titlesByKey: Record<string, string> = {};
 
-  constructor(storeDocs: Record<string, StoreDoc>, limit: number) {
+  public constructor(storeDocs: Record<string, StoreDoc>, limit: number) {
     for (const [key, { id, title, ...rest }] of Object.entries(storeDocs)) {
       this.titlesByKey[key] = title;
       this.docs[key] = rest;
