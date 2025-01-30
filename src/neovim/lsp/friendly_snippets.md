@@ -2,7 +2,7 @@
 
 ```admonish success title=""
 She came in through the bathroom window{{footnote:
-She came in through the bathroom window (by [The Beatles](https://en.wikipedia.org/wiki/The_Beatles)):
+She Came In Through The Bathroom Window (by [The Beatles](https://en.wikipedia.org/wiki/The_Beatles)):
 歌詞の内容は、McCartney の留守中にファンが自宅に忍び込むというエピソードが元になっている。
 また、"So I quit the police department (だからぼくは警察署を辞めた)" というフレーズは、
 1968年10月に後に McCartney の妻となる Linda Eastman と娘・Heather と共にタクシーで
@@ -206,7 +206,7 @@ And got my self a steady job
 それで安定した仕事に就いたんだ
 ```
 
-## I'll take you all.
+## She Came In Through The Bathroom Window
 
 自分で育ててないわたしが言うのもあれですが、スニペットは`Neovim`に限らずどこでも使えます🦉
 

@@ -240,7 +240,7 @@ sections = {
 
 `lualine`上に`Error`や`Warning`の数が表示されるようになりましたね❗
 
-## I'll take you all.
+## It's My Life
 
 だいぶ歩いてきました。
 

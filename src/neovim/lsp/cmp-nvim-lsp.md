@@ -195,7 +195,8 @@ Everybody is laughing
 急いで`nvim-lspconfig` / `mason.nvim` / `mason-lspconfig.nvim`まで戻って "履 い て" 来てください 👉🩲👈
 ```
 
-## I'll take you all.
+## Sun King
+
 この時点でも相当な満足感でしょう⁉️
 
 これだけでも機能としては十分に感じられますが、こんなもんじゃ収まりません マジで😆

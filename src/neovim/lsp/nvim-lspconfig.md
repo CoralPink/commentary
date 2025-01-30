@@ -266,7 +266,7 @@ I find it all so amusing
 今となっては、全てがただ可笑しく思えるんだ
 ```
 
-## I'll take you all.
+## My Way
 
 ここはこれだけです。もう簡単でしょう❓
 

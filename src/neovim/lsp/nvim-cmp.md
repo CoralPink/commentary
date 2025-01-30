@@ -218,7 +218,7 @@ Step on the gas and wipe that tear away
 アクセルを吹かし 涙は拭こう
 ```
 
-## I'll take you all.
+## You Never Give Me Your Money
 
 今回は`nvim-cmp`のインストールとキーマッピングだけなので、
 まだ何も変化がありませんが、これも慌てずどっしり構えておけば超だいじょうぶです😤

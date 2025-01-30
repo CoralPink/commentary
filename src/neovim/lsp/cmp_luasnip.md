@@ -226,7 +226,7 @@ require('luasnip.loaders.from_vscode').lazy_load {
 今回は`prefix`に`test`と設定しているため、入力された "t" から`test`を候補に挙げてくれるんですね😆
 ```
 
-## I'll take you all.
+## Polythene Pam
 
 ということで、ようやくスニペットが動きました。
 
