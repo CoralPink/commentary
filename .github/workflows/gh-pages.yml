@@ -150,7 +150,7 @@ jobs:
       - name: Install
         working-directory: js
         run: |
-          bun install --production
+          bun install
           bun create-highlight.bun.sh
 
       - name: Build
