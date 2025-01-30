@@ -402,7 +402,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
 ( すみません...初掲時はうっかり中にいました...😭 )
 ```
 
-## I'll take you all.
+## We've Only Just Begun
 
 のほほんとできましたね😊
 
