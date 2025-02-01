@@ -27,6 +27,7 @@ pub fn attribute_external_links() {
 }
 
 #[cfg(test)]
+#[allow(dead_code)]
 mod tests {
     use macros::log;
     use wasm_bindgen::prelude::*;
