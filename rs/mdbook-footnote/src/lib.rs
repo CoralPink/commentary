@@ -5,9 +5,8 @@ use std::sync::LazyLock;
 const FT_REF: &str = "ft-reference";
 const FT_DEF: &str = "ft-definition";
 
-static FOOTNOTE_RE: LazyLock<Regex> = LazyLock::new(|| {
-    Regex::new(r"(?s)\{\{footnote:\s*(?P<content>.*?)\}\}").expect("Invalid regex for FOOTNOTE_RE")
-});
+static FOOTNOTE_RE: LazyLock<Regex> =
+    LazyLock::new(|| Regex::new(r"(?s)\{\{footnote:\s*(?P<content>.*?)\}\}").expect("Invalid regex for FOOTNOTE_RE"));
 
 pub fn replacing(mut book: Book) -> Result<Book, Error> {
     book.for_each_mut(|item| {
@@ -74,16 +73,13 @@ mod tests {
             vec![],
         )));
 
-        println!(
-            "{CLR_C}[INFO]{CLR_RESET} Depending on the test case, [WARNING] may be displayed."
-        );
+        println!("{CLR_C}[INFO]{CLR_RESET} Depending on the test case, [WARNING] may be displayed.");
 
         match replacing(book) {
             Ok(book) => {
                 for item in book.iter() {
                     if let BookItem::Chapter(chap) = item {
-                        write_chapters_to_files(chap)
-                            .unwrap_or_else(|err| panic!("{CLR_R}ERROR{CLR_RESET}: {err}"));
+                        write_chapters_to_files(chap).unwrap_or_else(|err| panic!("{CLR_R}ERROR{CLR_RESET}: {err}"));
                         assert_eq!(
                             chap.content,
                             fs::read_to_string(String::from(TEST_DIR) + OK_RESULT).unwrap()
