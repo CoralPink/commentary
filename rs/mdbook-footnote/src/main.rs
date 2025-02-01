@@ -25,8 +25,7 @@ fn main() {
 
     if let Some(sub_args) = matches.subcommand_matches("supports") {
         handle_supports(&preprocessor, sub_args);
-    }
-    else if let Err(e) = handle_preprocessing(&preprocessor) {
+    } else if let Err(e) = handle_preprocessing(&preprocessor) {
         eprintln!("{e}");
         process::exit(1);
     }
@@ -54,17 +53,14 @@ fn handle_preprocessing(pre: &dyn Preprocessor) -> Result<(), Error> {
 }
 
 fn handle_supports(pre: &dyn Preprocessor, sub_args: &ArgMatches) -> ! {
-    let renderer = sub_args
-        .get_one::<String>("renderer")
-        .expect("Required argument");
+    let renderer = sub_args.get_one::<String>("renderer").expect("Required argument");
 
     let supported = pre.supports_renderer(renderer);
 
     // Signal whether the renderer is supported by exiting with 1 or 0.
     if supported {
         process::exit(0);
-    }
-    else {
+    } else {
         process::exit(1);
     }
 }
