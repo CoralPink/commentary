@@ -19,11 +19,7 @@ fn parse_uri(link_uri: &str) -> (&str, &str) {
 }
 
 fn scoring_notation(score: usize) -> String {
-    format!(
-        "{} ({}pt)",
-        SCORE_CHARACTER.repeat(score / SCORE_RATE),
-        score
-    )
+    format!("{} ({}pt)", SCORE_CHARACTER.repeat(score / SCORE_RATE), score)
 }
 
 #[derive(Deserialize)]
@@ -54,27 +50,18 @@ impl SearchResult {
     #[wasm_bindgen(constructor)]
     pub fn new(path_to_root: &str, count: u8, doc_urls: &Array) -> Result<SearchResult, JsValue> {
         let window = web_sys::window().ok_or("No global `window` exists")?;
-        let document = window
-            .document()
-            .ok_or("Should have a document on window")?;
+        let document = window.document().ok_or("Should have a document on window")?;
 
         let li_element = document.create_element("li").expect("failed: create <li>");
 
-        li_element
-            .set_attribute("tabindex", "0")
-            .expect("failed: set tabindex");
-        li_element
-            .set_attribute("role", "option")
-            .expect("failed: set role");
+        li_element.set_attribute("tabindex", "0").expect("failed: set tabindex");
+        li_element.set_attribute("role", "option").expect("failed: set role");
 
         let parent = document
             .get_element_by_id("searchresults")
             .ok_or("No element with ID `searchresults`")?;
 
-        let url_table: Vec<String> = doc_urls
-            .iter()
-            .filter_map(|value| value.as_string())
-            .collect();
+        let url_table: Vec<String> = doc_urls.iter().filter_map(|value| value.as_string()).collect();
 
         Ok(SearchResult {
             path_to_root: path_to_root.to_string(),
@@ -112,14 +99,12 @@ impl SearchResult {
             .insert_adjacent_html("afterbegin", content)
             .expect("failed: insert_adjacent_html");
 
-        self.parent
-            .append_child(&cloned_element)
-            .expect("failed: append_child");
+        self.parent.append_child(&cloned_element).expect("failed: append_child");
     }
 
     pub fn append_search_result(&mut self, results: &Array, term: &str) {
-        let result: Vec<ResultObject> = serde_wasm_bindgen::from_value(results.into())
-            .expect("Failed to deserialize JsValue to Vec<ResultObject>");
+        let result: Vec<ResultObject> =
+            serde_wasm_bindgen::from_value(results.into()).expect("Failed to deserialize JsValue to Vec<ResultObject>");
 
         let terms = term.split_whitespace().collect::<Vec<&str>>();
 

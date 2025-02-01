@@ -46,10 +46,7 @@ fn mark_up_text(node: &Node, terms: &str) {
 
 fn process_nodes(node: &Node, terms: &str) {
     if let Some(elm) = node.dyn_ref::<Element>() {
-        if let Some(last) = elm
-            .child_nodes()
-            .item(elm.child_nodes().length().wrapping_sub(1))
-        {
+        if let Some(last) = elm.child_nodes().item(elm.child_nodes().length().wrapping_sub(1)) {
             if last.node_type() == NODE_TYPE {
                 mark_up_text(&last, terms);
             }
