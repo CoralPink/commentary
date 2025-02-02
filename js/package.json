@@ -5,7 +5,7 @@
   },
   "devDependencies": {
     "@happy-dom/global-registrator": "latest",
-    "@types/bun": "1.2.1",
+    "@types/bun": "1.2.2",
     "typescript": "5.7.3"
   }
 }
