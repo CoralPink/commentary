@@ -1,4 +1,4 @@
-# 💇🏻‍♀️ nvim_get_option_value
+# 🦥 nvim_get_option_value
 
 このサイトでは以前、`nvim_buf_get_option`を使用したコードを提示していたのですが、これは既に`deprecated`です。
 
@@ -40,42 +40,41 @@ nvim_get_option_value({name}, {opts})                *nvim_get_option_value()*
 そういえば、先日(と言っても結構前なんだけど) 新宿に降りて、西口側に行ったんです。
 
 あの辺ってなんか絶賛再開発中🏗️ でガチャガチャしてるんですよね〜。
-
 それを横目に階段で地上に上がろうとしたんですが...。
 
 封鎖されている...❗ほぼ全て😑
 
-```admonish note
-2024/03/02 時点でもまだそのままなのかは見てないから知らないんですけどね 🙃
+```admonish success title=""
+How does it feel to be one of the beautiful people?
+
+Now that you know who you are
+
+崇高な人達の輪に加われた気分はどう?
+
+君は自分が何者かを知ったんだ
+```
+
+```admonish success title=""
+What do you want to be?
+
+And have you traveled very far?
+
+それでどうしたいの?
+
+君は届かない所に旅したつもり？
 ```
 
 ここでふと思うわけです。
 
 まあ🤭 Prison 👮‍♀️🩷
 
-```admonish example title=""
-よしやろうぜ 相棒 急げ
+```admonish success title=""
+Far as the eye can see
 
-お前がやるつもりなら 他二の次
-
-囲う奴らなんてうるさいだけだ 自分では何もやっちゃいない
+せいぜい ここから目の届く範囲だろ
 ```
 
-```admonish example title=""
-なんならやるまでしとけよ秘密に
-
-誰かと確認なんて不要
-
-自分のジャッジだけで 突き破れ
-```
-
-```admonish example title=""
-ド派手なフェイクやろうより
-
-クールに抉れ 奴らの過ちを突き付けろ
-```
-
-## 🤽🏻‍♂️ Try
+## ⚾ Try
 
 簡単ではあるんですけど、やっぱ確信は欲しいので「試しに動かしてみよー。」って思うわけです。
 
@@ -108,29 +107,35 @@ end, {})
 
 はい、いけました😆
 
-```admonish info title=""
-俺の命は戦うことを諦めない
+```admonish success title=""
+How does it feel to be one of the beautiful people?
 
-俺の命は愛に生きる
+How often have you been there?
 
-死ぬまで戦ってやるよ
+崇高な人達の輪に加わるってどんな気分?
 
-孤立しようが笑っててやる
+もう頻繁に行ってるの?
+```
+
+```admonish warning title=""
+Often enough to know
+
+知れるには十分な頻度でね
 ```
 
 ```admonish success title=""
-東京が獄中だろうと
+What did you see when you were there?
 
-俺はお前を灯そう
-
-時が荒み 夜も昼も霞めていく
-
-俺はお前を灯そう
-
-あえて言う必要はない
+そこでは何が見えるんだい?
 ```
 
-## 🧑‍✈️ copilot-cmp
+```admonish warning title=""
+Nothing that doesn't show
+
+見えないものなんて ないんだよ
+```
+
+## 🤖 copilot-cmp
 
 これでもう自信を持って扱えますね❗あとは簡単😊
 
@@ -161,61 +166,70 @@ end
 
 内容なんて、もうほぼ無いよう🤣
 
-```admonish info title=""
-ああ 現実には何もないな
+```admonish success title=""
+Baby, you're a rich man{{footnote:
+Baby, You're a Rich Man (by [The Beatles](https://en.wikipedia.org/wiki/The_Beatles)):
+Lennon の未完成曲 "One of the Beautiful People" に McCartney がコーラスをつけたのが始まりであり、
+1980年のインタビューで、Lennon は "2つの別々の曲を無理矢理 1つの曲にした" と語っている。
 
-お前もそんな気分なんだろ
+1967年当時、イギリスのアンダーグラウンドの中心人物だった作家の Barry Miles によると、
+Lennon は California の[Hippie](https://en.wikipedia.org/wiki/Hippie)現象に関する新聞記事からこの曲のインスピレーションを得たという。
+Lennon はオーボエのセッティングでシンセサイザーの前身である[Clavioline](https://en.wikipedia.org/wiki/Clavioline)を演奏し、
+インドの[Shehnai](https://en.wikipedia.org/wiki/Shehnai)を思わせる音を作り出した。
+}}
 
-打ちのめされ, 愛は踏みにじられ...
+Baby, you're a rich man
+
+ベイビー! よお リッチマン!!
+
+ベイビー! よお リッチマン!!
 ```
 
-```admonish info title=""
-無駄にした時間を取り戻すんだ
+```admonish success title=""
+Baby, you're a rich man too{{footnote:
+Lennon は "この曲の意味は「誰もが金持ちだ」ということである" と主張し、
+Harrison は "物質的な心配とは関係なく、すべての個人は自分自身の中で裕福である" というメッセージだと語っている。
+[Wikipedia](https://en.wikipedia.org/wiki/Baby,_You%27re_a_Rich_Man)より
+}}
 
-ああ 神なら分かってくれるかもしれない
-
-俺は誰にも止められない
+ベイビー! よお 君もリッチマンだ!!
 ```
 
-## 🎙️ LOST IN PARADISE
+```admonish success title=""
+You keep all your money in a big brown bag inside a zoo
 
-```admonish example title=""
-また時は過ぎている 唯一平等 もう無駄にしない
-
-計画は完了するまで嘘でしかない
+君は全てのカネを 動物園のデカい茶封筒に詰め込んでるんだ!
 ```
 
-```admonish example title=""
-最高 頂く称号
+<video controls preload="none" width="1280" height="720" poster="img/tama-zoo-thumbnail.webp">
+  <source src="img/tama-zoo.webm" type="video/webm">
+  Your browser does not support the video/webm.
+</video>
 
-誰かの予想軽々超えてはるか向こう
 
-俺はやり遂げた あれもこれもそれも
+```admonish success title=""
+What a thing to do
 
-もし逆境だとしても高みへ挑み続ける
+何を企んでるんだ!
+```
+
+## 🎺 Baby, You’re a Rich Man
+
+```admonish success title=""
+How does it feel to be one of the beautiful people?
+
+崇高な人達の輪に加われた気分はどう?
+```
+
+```admonish warning title=""
+Happy to be that way
+
+幸せに思うよ
 ```
 
 なんていうかさあ...。
 
 最近色々思うこともあるんだけど、他人の言葉を使って抗うのはわたしの弱さです。
-
-```admonish example title=""
-東京地獄から楽園へ
-
-そりゃ勝ちとるためなら戦うさ
-
-今更やわなかけできるわけねぇだろぶちかませ
-```
-
-```admonish example title=""
-頭の中から現実に
-
-変換していく綿密に
-
-眠らず Action 0時過ぎ
-
-この命が生み出す芸術品
-```
 
 自分でもびっくりするぐらい好き勝手やってるけど、どうか大目に見てください...😭
 
@@ -223,30 +237,27 @@ end
 
 ...理由になってねぇな🙄
 
+```admonish warning title=""
+Now that you've found another key
+
+さて、またひとつ鍵を見つけたよ
+```
+
 ```admonish success
-LOST IN PARADISE{{footnote:
-[LOST IN PARADISE feat.AKLO](https://en.wikipedia.org/wiki/Lost_in_Paradise_(ALI_song)):
-日本のバンド ALI が Leo, Alex, Luthfi と共作し、TVアニメ版『呪術廻戦』のエンディングテーマとしてリリースした楽曲。
-2021年、Los Angeles Angels の大谷翔平 (当時) が入場曲としても使用していた。
-[Wikipedia](https://en.wikipedia.org/wiki/ALI_(band)) より
-}} (楽園に迷い込んでしまった)
+What are you going to play?
 
-夜も昼も霞んでいく
-
-時が荒む
-
-やっと君の愛に触れることができる
+今度は何を奏でてくれるんだい？
 ```
 
 ### 🦸‍♀️ WILL RETURN
 
-```admonish danger title=""
+```admonish note title=""
 What the hell is this?
 
 これは一体どういうことだ？
 ```
 
-```admonish note title=""
+```admonish danger title=""
 friday what are they firing at?
 
 friday、奴らは何を撃っている？
@@ -255,5 +266,5 @@ friday、奴らは何を撃っている？
 ```admonish quote title=""
 Something just entered the upper atmosphere
 
-今、何かが上層大気圏に突入しています
+現在 何かが上層大気圏に突入しています
 ```
