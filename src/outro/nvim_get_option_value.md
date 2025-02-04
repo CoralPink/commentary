@@ -169,12 +169,13 @@ end
 ```admonish success title=""
 Baby, you're a rich man{{footnote:
 Baby, You're a Rich Man (by [The Beatles](https://en.wikipedia.org/wiki/The_Beatles)):
-Lennon の未完成曲 "One of the Beautiful People" に McCartney がコーラスをつけたのが始まりであり、
-1980年のインタビューで、Lennon は "2つの別々の曲を無理矢理 1つの曲にした" と語っている。
-
+Lennon の未完成曲 "One of the Beautiful People" に McCartney がコーラスを加えたのが始まりであり、
+後の1980年のインタビューで、Lennon は "2つの別々の曲を無理矢理 1つの曲にした" と語っている。
 1967年当時、イギリスのアンダーグラウンドの中心人物だった作家の Barry Miles によると、
-Lennon は California の[Hippie](https://en.wikipedia.org/wiki/Hippie)現象に関する新聞記事からこの曲のインスピレーションを得たという。
-Lennon はオーボエのセッティングでシンセサイザーの前身である[Clavioline](https://en.wikipedia.org/wiki/Clavioline)を演奏し、
+Lennon は California の[Hippie](https://en.wikipedia.org/wiki/Hippie)現象に関する新聞記事から、この曲のインスピレーションを得たという。
+詞は[With a Little Help from My Friends](https://en.wikipedia.org/wiki/With_a_Little_Help_from_My_Friends)と同様、"質問と答えのやりとり" の形式をとっている。
+
+Lennon はシンセサイザーの前身である[Clavioline](https://en.wikipedia.org/wiki/Clavioline)をオーボエのセッティングで演奏し、
 インドの[Shehnai](https://en.wikipedia.org/wiki/Shehnai)を思わせる音を作り出した。
 }}
 
@@ -187,8 +188,8 @@ Baby, you're a rich man
 
 ```admonish success title=""
 Baby, you're a rich man too{{footnote:
-Lennon は "この曲の意味は「誰もが金持ちだ」ということである" と主張し、
-Harrison は "物質的な心配とは関係なく、すべての個人は自分自身の中で裕福である" というメッセージだと語っている。
+この曲の意味を Lennon は "誰もが金持ちだ。重要なのは不平を言うのをやめること。君は金持ちで、僕らはみんな金持ちだ" と主張し、
+Harrison は "物質的な心配とは関係なく、すべての個人は自分自身の中で裕福であるというメッセージだ" と語っている。
 [Wikipedia](https://en.wikipedia.org/wiki/Baby,_You%27re_a_Rich_Man)より
 }}
 
@@ -218,7 +219,11 @@ What a thing to do
 ```admonish success title=""
 How does it feel to be one of the beautiful people?
 
+Tuned to a natural E
+
 崇高な人達の輪に加われた気分はどう?
+
+すっかり E に同調してるな
 ```
 
 ```admonish warning title=""
@@ -240,7 +245,7 @@ Happy to be that way
 ```admonish warning title=""
 Now that you've found another key
 
-さて、またひとつ鍵を見つけたよ
+さて、またひとつキーを見つけたよ
 ```
 
 ```admonish success
