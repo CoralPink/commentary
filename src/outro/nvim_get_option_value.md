@@ -251,7 +251,14 @@ Now that you've found another key
 ```admonish success
 What are you going to play?
 
-今度は何を奏でてくれるんだい？
+今度は何を奏でてくれるんだい？{{footnote:
+2025年2月、日米首脳会談において[Trump](https://en.wikipedia.org/wiki/Donald_Trump)大統領は
+(正確性は定かではないが)"They charge us, we charge them, it’s the same thing." と発言した。
+個人的にはポジティブなメッセージに見えるが、市場ではネガティブに受け取られている (ように見える)。
+![chatgpt-answer](img/chatgpt-answer.webp)
+到底、わたしに真意は分からないけど、"mutual", "fair" の方向に進むのならぜんぜん応援できる。
+...全然関係無いけど、ミドルネームが John なの今日初めて知って、なんかおでれぇたぞう 🐘
+}}
 ```
 
 ### 🦸‍♀️ WILL RETURN
