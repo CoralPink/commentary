@@ -247,17 +247,22 @@ font = require("wezterm").font("Firge35Nerd Console"),
 本家の`nerd-fonts`のバージョンはだいぶ進んでいて、
 新しいアイコンも続々と増えているので、定期的に確認してみるのも楽しいと思います😆
 
+
+```admonish note
+2025/02/10 に`WezTerm`本体に含まれる`nerd-fonts`が`v3.3.0`にアップデートされたそうです❗
+現時点で最新の`nightly build`を使用している場合、以下の手順は必要ありません🐤
+
+`WezTerm`も`nerd-fonts`も進歩を続けているので、とても頼もしいですね😸
+
+だいぶ時期は過ぎてるけど Happy Haloween!! 🎃
+```
+
 ってことで、今回は本家の`nerd-fonts`を使った楽しいほうで進めます。
 
 ```admonish info title="[Releases](https://github.com/ryanoasis/nerd-fonts/releases)/ v3.2.0"
 The Easter release. Lets see which eggs can be found:
 
 イースターリリースだよ。どんな卵が見つかるかな:
-```
-
-```admonish note
-くどいようなんですが`WezTerm`本体に既に含まれているので、
-現状で不満がなければ、これを行わなくても支障はありません🐤
 ```
 
 [Releases](https://github.com/ryanoasis/nerd-fonts/releases)から感謝しながら最新版をダウンロードしましょう😉
@@ -323,13 +328,13 @@ return {
 ~~~
 
 ~~~admonish example title=""
-このリストに前節で用意したフォントを追加します😽
+このリストに前項までに用意したフォントを追加していきます😽
 
 ```diff
  M.font = wezterm.font_with_fallback {
 + 'Fira Code',
 + 'ヒラギノ角ゴシック',
-+ 'Symbols Nerd Font',
++ 'Symbols Nerd Font',    -- (自分で用意した nerd-fonts を使用する場合)
  }
 ```
 ~~~
