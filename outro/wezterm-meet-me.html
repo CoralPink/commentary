@@ -283,6 +283,20 @@ knows how to log warnings or generate errors if you attempt to define an invalid
 <p>2024/04/17 時点では<code>FirgeNerd</code>・<code>WezTerm</code>のどちらよりも、
 本家の<code>nerd-fonts</code>のバージョンはだいぶ進んでいて、
 新しいアイコンも続々と増えているので、定期的に確認してみるのも楽しいと思います😆</p>
+<div id="admonition-note-3" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-3-title">
+<div class="admonition-title">
+<div id="admonition-note-3-title">
+<p>Note</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-note-3"></a>
+</div>
+<div>
+<p>2025/02/10 に<code>WezTerm</code>本体に含まれる<code>nerd-fonts</code>が<code>v3.3.0</code>にアップデートされたそうです❗
+現時点で最新の<code>nightly build</code>を使用している場合、以下の手順は必要ありません🐤</p>
+<p><code>WezTerm</code>も<code>nerd-fonts</code>も進歩を続けているので、とても頼もしいですね😸</p>
+<p>だいぶ時期は過ぎてるけど Happy Haloween!! 🎃</p>
+</div>
+</div>
 <p>ってことで、今回は本家の<code>nerd-fonts</code>を使った楽しいほうで進めます。</p>
 <div id="admonition-releaseshttpsgithubcomryanoasisnerd-fontsreleases-v320" class="admonition admonish-info" role="note" aria-labelledby="admonition-releaseshttpsgithubcomryanoasisnerd-fontsreleases-v320-title">
 <div class="admonition-title">
@@ -294,18 +308,6 @@ knows how to log warnings or generate errors if you attempt to define an invalid
 <div>
 <p>The Easter release. Lets see which eggs can be found:</p>
 <p>イースターリリースだよ。どんな卵が見つかるかな:</p>
-</div>
-</div>
-<div id="admonition-note-3" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-3-title">
-<div class="admonition-title">
-<div id="admonition-note-3-title">
-<p>Note</p>
-</div>
-<a class="admonition-anchor-link" href="#admonition-note-3"></a>
-</div>
-<div>
-<p>くどいようなんですが<code>WezTerm</code>本体に既に含まれているので、
-現状で不満がなければ、これを行わなくても支障はありません🐤</p>
 </div>
 </div>
 <p><a href="https://github.com/ryanoasis/nerd-fonts/releases">Releases</a>から感謝しながら最新版をダウンロードしましょう😉</p>
@@ -381,11 +383,11 @@ return {
 </div>
 <div id="admonition-default-6" class="admonition admonish-example" role="note">
 <div>
-<p>このリストに前節で用意したフォントを追加します😽</p>
+<p>このリストに前項までに用意したフォントを追加していきます😽</p>
 <pre><code class="language-diff"> M.font = wezterm.font_with_fallback {
 + 'Fira Code',
 + 'ヒラギノ角ゴシック',
-+ 'Symbols Nerd Font',
++ 'Symbols Nerd Font',    -- (自分で用意した nerd-fonts を使用する場合)
  }
 </code></pre>
 </div>
