@@ -149,7 +149,9 @@ const updateFocus = (target: HTMLElement): void => {
   focusedLi?.removeAttribute('aria-selected');
   li.setAttribute('aria-selected', 'true');
 
-  elmPop.setAttribute('aria-activedescendant', target.id);
+  if (target.id) {
+    elmPop.setAttribute('aria-activedescendant', target.id);
+  }
   focusedLi = li;
 };
 
@@ -158,7 +160,13 @@ const popupFocus = (ev: KeyboardEvent): void => {
     updateFocus(ev.target as HTMLElement);
     return;
   }
-  jumpUrl();
+  try {
+    jumpUrl();
+  } catch (error) {
+    if (error instanceof SearchNavigationError) {
+      console.warn('popupFocus - Navigation error:', error.message);
+    }
+  }
 };
 
 const searchMouseupHandler = (ev: MouseEvent): void => {
@@ -168,7 +176,14 @@ const searchMouseupHandler = (ev: MouseEvent): void => {
   if (prevFocused !== focusedLi) {
     return;
   }
-  jumpUrl();
+
+  try {
+    jumpUrl();
+  } catch (error) {
+    if (error instanceof SearchNavigationError) {
+      console.warn('searchMouseupHandler - Navigation error:', error.message);
+    }
+  }
 };
 
 const closedPopover = (ev: Event): void => {
