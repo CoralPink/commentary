@@ -25,6 +25,13 @@ let finder: Finder;
 
 let focusedLi: Element;
 
+class SearchNavigationError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = 'SearchNavigationError';
+  }
+}
+
 const unmarkHandler = (): void => {
   const article = document.getElementById('article');
 
@@ -116,8 +123,7 @@ const jumpUrl = (): void => {
   const aElement = focusedLi?.querySelector('a') as HTMLAnchorElement;
 
   if (!aElement) {
-    console.warn('The link does not exist.');
-    return;
+    throw new SearchNavigationError('The link does not exist.');
   }
 
   const url = new URL(aElement.href);
