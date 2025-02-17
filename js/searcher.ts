@@ -25,6 +25,13 @@ let finder: Finder;
 
 let focusedLi: Element;
 
+class SearchNavigationError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = 'SearchNavigationError';
+  }
+}
+
 const unmarkHandler = (): void => {
   const article = document.getElementById('article');
 
@@ -76,39 +83,6 @@ const doSearchOrMarkFromUrl = (): void => {
   }
 };
 
-const jumpUrl = (aElement: HTMLAnchorElement): void => {
-  if (aElement === null) {
-    console.warn('The link does not exist.');
-    return;
-  }
-
-  const url = new URL(aElement.href);
-
-  const clickedURL = url.origin + url.pathname;
-  const currentURL = window.location.origin + window.location.pathname;
-
-  if (clickedURL === currentURL) {
-    hiddenSearch();
-    unmarkHandler();
-    doSearchOrMarkFromUrl();
-  }
-  window.location.href = url.href;
-};
-
-const popupFocus = (ev: KeyboardEvent): void => {
-  if (ev.key !== 'Enter') {
-    return;
-  }
-
-  const target = ev.target as HTMLElement;
-  const anchor = target.querySelector('a');
-
-  if (anchor === null) {
-    return;
-  }
-  jumpUrl(anchor);
-};
-
 const isFullWidthOrAscii = (s: string): boolean => {
   const code = s.charCodeAt(0);
   return code <= 127 || (code >= 0xff01 && code <= 0xff5e);
@@ -145,45 +119,71 @@ const searchHandler = (fn: () => void): (() => void) => {
   };
 };
 
-const searchMouseupHandler = (ev: MouseEvent): void => {
-  const target = ev.target as HTMLElement;
-  const li = target.closest('li');
+const jumpUrl = (): void => {
+  const aElement = focusedLi?.querySelector('a') as HTMLAnchorElement;
 
-  if (li === null) {
-    return;
+  if (!aElement) {
+    throw new SearchNavigationError('The link does not exist.');
   }
 
-  if (focusedLi !== li) {
-    return;
+  const url = new URL(aElement.href);
+
+  const clickedURL = url.origin + url.pathname;
+  const currentURL = window.location.origin + window.location.pathname;
+
+  if (clickedURL === currentURL) {
+    hiddenSearch();
+    unmarkHandler();
+    doSearchOrMarkFromUrl();
   }
 
-  const a = li.querySelector('a');
-
-  if (a === null) {
-    return;
-  }
-  jumpUrl(a);
+  window.location.href = url.href;
 };
 
-const focusinHandler = (ev: Event): void => {
-  const target = ev.target as HTMLElement;
+const updateFocus = (target: HTMLElement): void => {
+  const li = target.closest('li');
 
-  // As far as I have tested, the order in which events are called is `focusin`->`click`.
-  // I have to call it in the order `click`->`focusin` or the expected behavior will not happen, so I am putting a delay on this process.
-  // If there is another solution, it should be changed immediately!!
-  setTimeout(() => {
+  if (!li || focusedLi === li) {
+    return;
+  }
+  focusedLi?.removeAttribute('aria-selected');
+  li.setAttribute('aria-selected', 'true');
+
+  if (target.id) {
     elmPop.setAttribute('aria-activedescendant', target.id);
+  }
+  focusedLi = li;
+};
 
-    const li = target.closest('li');
-
-    if (li === null) {
-      return;
+const popupFocus = (ev: KeyboardEvent): void => {
+  if (ev.key !== 'Enter') {
+    updateFocus(ev.target as HTMLElement);
+    return;
+  }
+  try {
+    jumpUrl();
+  } catch (error) {
+    if (error instanceof SearchNavigationError) {
+      console.warn('popupFocus - Navigation error:', error.message);
     }
-    focusedLi?.removeAttribute('aria-selected');
-    li.setAttribute('aria-selected', 'true');
+  }
+};
 
-    focusedLi = li;
-  }, 8);
+const searchMouseupHandler = (ev: MouseEvent): void => {
+  const prevFocused = focusedLi;
+  updateFocus(ev.target as HTMLElement);
+
+  if (prevFocused !== focusedLi) {
+    return;
+  }
+
+  try {
+    jumpUrl();
+  } catch (error) {
+    if (error instanceof SearchNavigationError) {
+      console.warn('searchMouseupHandler - Navigation error:', error.message);
+    }
+  }
 };
 
 const closedPopover = (ev: Event): void => {
@@ -201,7 +201,6 @@ const hiddenSearch = (): void => {
   elmResults.removeEventListener('keyup', popupFocus);
 
   elmPop.removeEventListener('click', searchMouseupHandler);
-  elmPop.removeEventListener('focusin', focusinHandler);
   elmPop.removeEventListener('toggle', closedPopover);
 
   elmPop.hidePopover();
@@ -217,7 +216,6 @@ const showSearch = (): void => {
   elmResults.addEventListener('keyup', popupFocus, { once: false, passive: true });
 
   elmPop.addEventListener('click', searchMouseupHandler, { once: false, passive: true });
-  elmPop.addEventListener('focusin', focusinHandler, { once: false, passive: true });
   elmPop.addEventListener('toggle', closedPopover, { once: false, passive: true });
 
   elmPop.showPopover();
