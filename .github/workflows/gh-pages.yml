@@ -23,7 +23,7 @@ jobs:
 
       - name: Cache Cargo
         id: cache-cargo
-        uses: actions/cache@1bd1e32a3bdc45362d1e726936510720a7c30a57 # v4
+        uses: actions/cache@0c907a75c2c80ebcb7f088228285e798b750cf8f # v4
         with:
           path: |
             ~/.cargo/bin/
@@ -57,7 +57,7 @@ jobs:
 
       - name: Cache Cargo
         id: cache-cargo
-        uses: actions/cache@1bd1e32a3bdc45362d1e726936510720a7c30a57 # v4
+        uses: actions/cache@0c907a75c2c80ebcb7f088228285e798b750cf8f # v4
         with:
           path: |
             ~/.cargo/bin/
@@ -122,7 +122,7 @@ jobs:
             js
 
       - name: Cache dependencies
-        uses: actions/cache@1bd1e32a3bdc45362d1e726936510720a7c30a57 # v4
+        uses: actions/cache@0c907a75c2c80ebcb7f088228285e798b750cf8f # v4
         with:
           path: |
             ~/.bun/install/cache
@@ -207,7 +207,7 @@ jobs:
 
       - name: Cache Woff2 output
         id: cache-woff2
-        uses: actions/cache@1bd1e32a3bdc45362d1e726936510720a7c30a57 # v4
+        uses: actions/cache@0c907a75c2c80ebcb7f088228285e798b750cf8f # v4
         with:
           path: fonts/woff2
           key: python-${{ runner.os }}-fonts-${{ hashFiles('fonts/**') }}
@@ -256,7 +256,7 @@ jobs:
             rs/mdbook-footnote
 
       - name: Cache Cargo
-        uses: actions/cache@1bd1e32a3bdc45362d1e726936510720a7c30a57 # v4
+        uses: actions/cache@0c907a75c2c80ebcb7f088228285e798b750cf8f # v4
         with:
           path: |
             ~/.cargo/bin/
@@ -300,7 +300,7 @@ jobs:
 
       - name: Cache Cargo
         id: cache-cargo
-        uses: actions/cache@1bd1e32a3bdc45362d1e726936510720a7c30a57 # v4
+        uses: actions/cache@0c907a75c2c80ebcb7f088228285e798b750cf8f # v4
         with:
           path: |
             ~/.cargo/bin/
