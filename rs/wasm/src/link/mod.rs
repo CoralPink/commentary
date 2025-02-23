@@ -99,7 +99,10 @@ mod tests {
                 let href = el.get_attribute("href").unwrap_or_default();
 
                 if href.starts_with("http://") || href.starts_with("https://") {
-                    assert_eq!(el.get_attribute("target").unwrap(), "_blank");
+                    assert_eq!(
+                        el.get_attribute("target").ok_or("target attribute not found")?,
+                        "_blank"
+                    );
                     macros::console_log!("[OK] _blank: {href}");
                 } else {
                     assert!(el.get_attribute("target").is_none());
