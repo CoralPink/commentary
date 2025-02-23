@@ -1,28 +1,40 @@
+use macros::error;
 use wasm_bindgen::prelude::*;
-use web_sys::{Element, NodeList};
+use web_sys::Element;
 
 #[wasm_bindgen]
-pub fn attribute_external_links() -> Result<(), String> {
-    let document = web_sys::window()
-        .and_then(|win| win.document())
-        .ok_or("Document not available")?;
+pub fn attribute_external_links() {
+    let document = match web_sys::window() {
+        Some(win) => win.document(),
+        None => {
+            macros::console_error!("Document not available");
+            return;
+        }
+    };
 
-    let article = document
-        .get_element_by_id("article")
-        .ok_or("Element with id 'article' not found")?;
+    let article = match document.and_then(|doc| doc.get_element_by_id("article")) {
+        Some(article) => article,
+        None => {
+            macros::console_error!("Element with id 'article' not found");
+            return;
+        }
+    };
 
-    let node_list: NodeList = article
-        .query_selector_all(r#"a[href^="http://"], a[href^="https://"]"#)
-        .map_err(|_| "Failed to select external links")?;
+    let node_list = match article.query_selector_all(r#"a[href^="http://"], a[href^="https://"]"#) {
+        Ok(node_list) => node_list,
+        Err(_) => {
+            macros::console_error!("Failed to select external links");
+            return;
+        }
+    };
 
     for i in 0..node_list.length() {
         if let Some(el) = node_list.item(i).and_then(|n| n.dyn_into::<Element>().ok()) {
-            el.set_attribute("target", "_blank")
-                .map_err(|_| "Failed to set attribute")?;
+            if el.set_attribute("target", "_blank").is_err() {
+                macros::console_error!("Failed to set attribute on element");
+            }
         }
     }
-
-    Ok(())
 }
 
 #[cfg(test)]
@@ -85,7 +97,7 @@ mod tests {
         }
 
         /* 2. Call the function under test. */
-        super::attribute_external_links()?;
+        super::attribute_external_links();
 
         /* 3. Validate results. */
         let node_list = document
