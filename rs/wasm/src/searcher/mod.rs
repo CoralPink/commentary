@@ -1,5 +1,6 @@
-use js_sys::Array;
 use serde::Deserialize;
+use urlencoding::encode;
+use wasm_bindgen::JsCast;
 use wasm_bindgen::prelude::*;
 use web_sys::{Element, HtmlElement, Node};
 
@@ -48,7 +49,7 @@ pub struct SearchResult {
 #[wasm_bindgen]
 impl SearchResult {
     #[wasm_bindgen(constructor)]
-    pub fn new(path_to_root: &str, count: u8, doc_urls: &Array) -> Result<SearchResult, JsValue> {
+    pub fn new(path_to_root: &str, count: u8, doc_urls: JsValue) -> Result<SearchResult, JsValue> {
         let window = web_sys::window().ok_or("No global `window` exists")?;
         let document = window.document().ok_or("Should have a document on window")?;
 
@@ -61,7 +62,8 @@ impl SearchResult {
             .get_element_by_id("searchresults")
             .ok_or("No element with ID `searchresults`")?;
 
-        let url_table: Vec<String> = doc_urls.iter().filter_map(|value| value.as_string()).collect();
+        let url_table: Vec<String> =
+            serde_wasm_bindgen::from_value(doc_urls).map_err(|_| "Failed to convert doc_urls to Vec<String>")?;
 
         Ok(SearchResult {
             path_to_root: path_to_root.to_string(),
@@ -89,7 +91,7 @@ impl SearchResult {
 
         cloned_element
             .set_attribute("id", &format!("s{id}"))
-            .expect("failed: set aria-label");
+            .expect("failed: set id");
 
         cloned_element
             .set_attribute("aria-label", &format!("{page} {score}pt"))
@@ -102,18 +104,14 @@ impl SearchResult {
         self.parent.append_child(&cloned_element).expect("failed: append_child");
     }
 
-    pub fn append_search_result(&mut self, results: &Array, term: &str) {
+    pub fn append_search_result(&mut self, results: &JsValue, term: &str) {
         let result: Vec<ResultObject> =
             serde_wasm_bindgen::from_value(results.into()).expect("Failed to deserialize JsValue to Vec<ResultObject>");
 
         let terms = term.split_whitespace().collect::<Vec<&str>>();
+        let mark = encode(&terms.join(" ")).into_owned().replace('\'', "%27");
 
-        let mark = js_sys::encode_uri_component(&terms.join("%20"))
-            .as_string()
-            .unwrap_or_default()
-            .replace('\'', "%27");
-
-        let mut id_cnt = 0;
+        let mut id_cnt = 1;
 
         result.into_iter().for_each(|el| {
             self.teaser.clear();
