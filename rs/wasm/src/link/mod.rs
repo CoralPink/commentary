@@ -28,13 +28,14 @@ pub fn attribute_external_links() {
         }
     };
 
-    for i in 0..node_list.length() {
-        if let Some(el) = node_list.item(i).and_then(|n| n.dyn_into::<Element>().ok()) {
+    (0..node_list.length())
+        .filter_map(|i| node_list.item(i))
+        .filter_map(|n| n.dyn_into::<Element>().ok())
+        .for_each(|el| {
             if el.set_attribute("target", "_blank").is_err() {
                 macros::console_error!("Failed to set attribute on element");
             }
-        }
-    }
+        });
 }
 
 #[cfg(test)]
@@ -106,8 +107,10 @@ mod tests {
             .query_selector_all("a")
             .map_err(|_| "Failed to select links")?;
 
-        for i in 0..node_list.length() {
-            if let Some(el) = node_list.item(i).and_then(|n| n.dyn_into::<Element>().ok()) {
+        (0..node_list.length())
+            .filter_map(|i| node_list.item(i))
+            .filter_map(|n| n.dyn_into::<Element>().ok())
+            .try_for_each(|el| {
                 let href = el.get_attribute("href").unwrap_or_default();
 
                 if href.starts_with("http://") || href.starts_with("https://") {
@@ -120,9 +123,7 @@ mod tests {
                     assert!(el.get_attribute("target").is_none());
                     macros::console_log!("[OK]   none: {href}");
                 }
-            }
-        }
-
-        Ok(())
+                Ok(())
+            })
     }
 }
