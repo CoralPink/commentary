@@ -11,19 +11,14 @@ const MARK_TAG_END: &str = "</mark>";
 const EMPTY_STR: &str = "";
 
 fn node_list_to_vec(node_list: NodeList) -> Result<Vec<Element>, String> {
-    let mut vec = Vec::new();
-
-    for i in 0..node_list.length() {
-        if let Some(node) = node_list.item(i) {
-            if let Some(el) = node.dyn_ref::<Element>() {
-                vec.push(el.clone());
-            } else {
-                return Err(format!("Node at index {i} is not an Element"));
-            }
-        }
-    }
-
-    Ok(vec)
+    (0..node_list.length())
+        .map(|i| {
+            node_list
+                .item(i)
+                .and_then(|node| node.dyn_ref::<Element>().cloned())
+                .ok_or_else(|| format!("Node at index {i} is not an Element"))
+        })
+        .collect()
 }
 
 fn mark_up_text(node: &Node, terms: &str) {
@@ -32,7 +27,7 @@ fn mark_up_text(node: &Node, terms: &str) {
 
         // I'm making a very out-of-the-box decision.
         // However, at present, I don't see any better solution....
-        if inner.as_str().trim_start().starts_with('<') {
+        if inner.trim_start().starts_with('<') {
             return;
         }
 
@@ -77,14 +72,10 @@ pub fn marking(terms: &str) {
                         process_nodes(&node, terms);
                     }
                 }
-                Err(err) => {
-                    macros::console_error!("marking: {err}");
-                }
+                Err(err) => macros::console_error!("marking: {err}"),
             }
         }
-        Err(err) => {
-            macros::console_error!("marking: {err}");
-        }
+        Err(err) => macros::console_error!("marking: {err}"),
     }
 }
 
@@ -99,8 +90,6 @@ pub fn unmarking() {
 
             article.set_inner_html(&html);
         }
-        Err(err) => {
-            macros::console_error!("unmarking: {err}");
-        }
+        Err(err) => macros::console_error!("unmarking: {err}"),
     }
 }

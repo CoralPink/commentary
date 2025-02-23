@@ -89,7 +89,7 @@ impl SearchResult {
 
         cloned_element
             .set_attribute("id", &format!("s{id}"))
-            .expect("failed: set aria-label");
+            .expect("failed: set id");
 
         cloned_element
             .set_attribute("aria-label", &format!("{page} {score}pt"))

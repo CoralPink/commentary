@@ -1,40 +1,44 @@
-use js_sys::Array;
 use wasm_bindgen::prelude::*;
 use web_sys::{Element, NodeList};
 
-fn node_list_to_array(node_list: NodeList) -> Array {
-    Array::from(&node_list)
-}
-
 #[wasm_bindgen]
-pub fn attribute_external_links() {
-    let window = web_sys::window().unwrap();
-    let document = window.document().unwrap();
+pub fn attribute_external_links() -> Result<(), String> {
+    let document = web_sys::window()
+        .and_then(|win| win.document())
+        .ok_or("Document not available")?;
 
-    let node_array = node_list_to_array(
-        document
-            .get_element_by_id("article")
-            .expect("id 'article' not found")
-            .query_selector_all(r#"a[href^="http://"], a[href^="https://"]"#)
-            .unwrap(),
-    );
+    let article = document
+        .get_element_by_id("article")
+        .ok_or("Element with id 'article' not found")?;
 
-    for node in node_array.iter() {
-        if let Some(el) = node.dyn_ref::<Element>() {
-            el.set_attribute("target", "_blank").unwrap();
+    let node_list: NodeList = article
+        .query_selector_all(r#"a[href^="http://"], a[href^="https://"]"#)
+        .map_err(|_| "Failed to select external links")?;
+
+    for i in 0..node_list.length() {
+        if let Some(el) = node_list.item(i).and_then(|n| n.dyn_into::<Element>().ok()) {
+            el.set_attribute("target", "_blank")
+                .map_err(|_| "Failed to set attribute")?;
         }
     }
+
+    Ok(())
 }
 
 #[cfg(test)]
 #[allow(dead_code)]
 mod tests {
+    use js_sys::Array;
     use macros::log;
     use wasm_bindgen::prelude::*;
     use wasm_bindgen_test::*;
-    use web_sys::{Document, Element};
+    use web_sys::{Document, Element, NodeList};
 
     wasm_bindgen_test_configure!(run_in_browser);
+
+    fn node_list_to_array(node_list: NodeList) -> Array {
+        Array::from(&node_list)
+    }
 
     #[wasm_bindgen_test]
     fn test_attribute_external_links() {
@@ -66,13 +70,13 @@ mod tests {
         create_test_case("http/example.html");
 
         /* 2. Call the function under test. */
-        super::attribute_external_links();
+        _ = super::attribute_external_links();
 
         /*
          * 3. If the `href` of the link starts with "http", check whether the "_blank" attribute is given to "target",
          *    otherwise check that the "target" attribute is not present.
          */
-        let node_array = super::node_list_to_array(
+        let node_array = node_list_to_array(
             document
                 .get_element_by_id("article")
                 .expect("id 'article' not found")
