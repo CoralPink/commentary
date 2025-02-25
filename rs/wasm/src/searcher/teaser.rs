@@ -1,4 +1,6 @@
-const TERM_WEIGHT: usize = 40;
+const DEFAULT_IMPORTANCE: usize = 2;
+const FIRST_WORD_IMPORTANCE: usize = 8;
+const MATCH_IMPORTANCE: usize = 40;
 
 const MARK_TAG: &str = "<mark>";
 const MARK_TAG_END: &str = "</mark>";
@@ -6,7 +8,7 @@ const MARK_TAG_END: &str = "</mark>";
 struct Entry {
     term: String,
     index: usize,
-    weight: usize,
+    importance: usize,
 }
 
 #[derive(Default)]
@@ -28,20 +30,17 @@ impl Teaser {
             return (0, end);
         }
 
-        let mut sum = self.entry.iter().take(end).map(|x| x.weight).sum::<usize>();
+        let mut potential = self.entry.iter().take(end).map(|x| x.importance).sum::<usize>();
 
-        let itr = std::iter::once(sum).chain((0..self.entry.len() - end).map(move |i| {
-            sum -= self.entry[i].weight;
-            sum += self.entry[i + end].weight;
-            sum
-        }));
-
-        let start = itr
+        let (start, _) = std::iter::once(potential)
+            .chain((0..self.entry.len() - end).map(move |i| {
+                potential -= self.entry[i].importance;
+                potential += self.entry[i + end].importance;
+                potential
+            }))
             .enumerate()
-            .filter(|(_, sum)| *sum > 0)
-            .map(|(i, _)| i)
-            .next()
-            .unwrap_or(0);
+            .max_by_key(|&(_, potential)| potential)
+            .unwrap_or((0, 0));
 
         (start, end)
     }
@@ -54,60 +53,60 @@ impl Teaser {
         let (start, end) = self.calc_range(count);
 
         let mut highlight = String::new();
-        let mut index = self.entry[start].index;
+        let mut idx = self.entry[start].index;
 
         for word in self.entry.iter().skip(start).take(end) {
             // missing text from index to the start of `word`
-            if index < word.index {
-                highlight.push_str(&body[index..word.index]);
-                index = word.index;
+            if idx < word.index {
+                highlight.push_str(&body[idx..word.index]);
+                idx = word.index;
             }
+
+            let s = &body[word.index..idx + word.term.len()];
 
             // Combine both conditions into one block
-            if word.weight == TERM_WEIGHT {
+            if word.importance == MATCH_IMPORTANCE {
                 highlight.push_str(MARK_TAG);
-                highlight.push_str(&body[word.index..index + word.term.len()]);
+                highlight.push_str(s);
                 highlight.push_str(MARK_TAG_END);
             } else {
-                highlight.push_str(&body[word.index..index + word.term.len()]);
+                highlight.push_str(s);
             }
 
-            index = word.index + word.term.len();
+            idx = word.index + word.term.len();
         }
 
         highlight
     }
 
-    pub fn search_result_excerpt(&mut self, body: &str, terms: Vec<&str>, count: u8) -> String {
-        let body_lower = body.to_lowercase();
-        let terms: Vec<String> = terms.iter().map(|t| t.to_lowercase()).collect();
+    pub fn search_result_excerpt(&mut self, body: &str, normalized_terms: &[String], count: u8) -> String {
+        let mut index: usize = 0;
 
-        let mut idx = 0;
+        for sentence in body.to_lowercase().split(". ") {
+            let mut importance = FIRST_WORD_IMPORTANCE;
 
-        for sentence in body_lower.split(". ") {
-            let words: Vec<&str> = sentence.split(' ').collect();
-            let mut value = 8;
-
-            for word in words {
-                if !word.is_empty() {
-                    if terms.iter().any(|term| word.contains(term)) {
-                        value = TERM_WEIGHT;
-                        self.found = true;
-                    }
-
-                    self.entry.push(Entry {
-                        term: word.to_string(),
-                        index: idx,
-                        weight: value,
-                    });
-
-                    value = 2;
+            for word in sentence.split(' ').collect::<Vec<&str>>() {
+                if word.is_empty() {
+                    index += 1; // ' ' or '.' if the last word in the sentence
+                    continue;
                 }
-                idx += word.len();
-                idx += 1; // ' ' or '.' if the last word in the sentence
+
+                if normalized_terms.iter().any(|term| word.contains(term)) {
+                    importance = MATCH_IMPORTANCE;
+                    self.found = true;
+                }
+
+                self.entry.push(Entry {
+                    term: word.to_string(),
+                    index,
+                    importance,
+                });
+
+                importance = DEFAULT_IMPORTANCE;
+                index += word.len() + 1;
             }
 
-            idx += 1; // because we split at a two-char boundary '. '
+            index += 1; // because we split at a two-char boundary '. '
         }
 
         self.highlighting(body, count)
