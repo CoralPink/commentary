@@ -12,6 +12,8 @@ use macros::error;
 const SCORE_CHARACTER: &str = "▰";
 const SCORE_RATE: usize = 8;
 
+const RESULT_ID_START: usize = 1;
+
 fn parse_uri(link_uri: &str) -> (&str, &str) {
     let uri: Vec<&str> = link_uri.split('#').collect();
     let head = if uri.len() > 1 { uri[1] } else { "" };
@@ -19,8 +21,9 @@ fn parse_uri(link_uri: &str) -> (&str, &str) {
     (uri[0], head)
 }
 
-fn scoring_notation(score: usize) -> String {
-    format!("{} ({}pt)", SCORE_CHARACTER.repeat(score / SCORE_RATE), score)
+fn scoring_notation(score: u16) -> String {
+    let str = SCORE_CHARACTER.repeat((score as usize) / SCORE_RATE);
+    format!("{str} ({score}pt)")
 }
 
 #[derive(Deserialize)]
@@ -75,7 +78,7 @@ impl SearchResult {
         })
     }
 
-    fn add_element(&self, content: &str, id: &u16, page: &str, score: &u16) {
+    fn add_element(&self, content: &str, id: &usize, page: &str, score: &u16) {
         let node: Node = self
             .li_element
             .clone_node_with_deep(true)
@@ -104,14 +107,18 @@ impl SearchResult {
         self.parent.append_child(&cloned_element).expect("failed: append_child");
     }
 
-    pub fn append_search_result(&mut self, results: &JsValue, term: &str) {
+    pub fn append_search_result(&mut self, results: &JsValue, terms: &str) {
         let result: Vec<ResultObject> =
             serde_wasm_bindgen::from_value(results.into()).expect("Failed to deserialize JsValue to Vec<ResultObject>");
 
-        let terms = term.split_whitespace().collect::<Vec<&str>>();
-        let mark = encode(&terms.join(" ")).into_owned().replace('\'', "%27");
+        let normalized_terms = terms
+            .split_whitespace()
+            .map(|t| t.to_lowercase())
+            .collect::<Vec<String>>();
 
-        let mut id_cnt = 1;
+        let mark = encode(&normalized_terms.join(" ")).into_owned().replace('\'', "%27");
+
+        let mut id_cnt = RESULT_ID_START;
 
         result.into_iter().for_each(|el| {
             self.teaser.clear();
@@ -126,15 +133,15 @@ impl SearchResult {
 
             let (page, head) = parse_uri(&self.url_table[idx]);
 
-            let result = self
+            let excerpt = self
                 .teaser
-                .search_result_excerpt(&el.doc.body, terms.clone(), self.count);
+                .search_result_excerpt(&el.doc.body, &normalized_terms, self.count);
 
-            let score_bar = scoring_notation(el.score as usize);
+            let score_bar = scoring_notation(el.score);
 
             self.add_element(&format!(
                 r#"<a href="{}{}?mark={}#{}" tabindex="-1">{}</a><span aria-hidden="true">{}</span><div id="score" role="meter" aria-label="score:{}pt">{}</div>"#,
-                &self.path_to_root, page, mark, head, el.doc.breadcrumbs, result, el.score, score_bar),
+                &self.path_to_root, page, mark, head, el.doc.breadcrumbs, excerpt, el.score, score_bar),
                 &id_cnt, page, &el.score
             );
 
