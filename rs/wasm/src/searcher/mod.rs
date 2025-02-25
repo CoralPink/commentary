@@ -22,8 +22,8 @@ fn parse_uri(link_uri: &str) -> (&str, &str) {
 }
 
 fn scoring_notation(score: u16) -> String {
-    let str = SCORE_CHARACTER.repeat((score as usize) / SCORE_RATE);
-    format!("{str} ({score}pt)")
+    let s = SCORE_CHARACTER.repeat((score as usize) / SCORE_RATE);
+    format!("{s} ({score}pt)")
 }
 
 #[derive(Deserialize)]

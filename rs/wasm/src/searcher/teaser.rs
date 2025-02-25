@@ -30,16 +30,16 @@ impl Teaser {
             return (0, end);
         }
 
-        let mut potencial = self.entry.iter().take(end).map(|x| x.importance).sum::<usize>();
+        let mut potential = self.entry.iter().take(end).map(|x| x.importance).sum::<usize>();
 
-        let (start, _) = std::iter::once(potencial)
+        let (start, _) = std::iter::once(potential)
             .chain((0..self.entry.len() - end).map(move |i| {
-                potencial -= self.entry[i].importance;
-                potencial += self.entry[i + end].importance;
-                potencial
+                potential -= self.entry[i].importance;
+                potential += self.entry[i + end].importance;
+                potential
             }))
             .enumerate()
-            .max_by_key(|&(_, potencial)| potencial)
+            .max_by_key(|&(_, potential)| potential)
             .unwrap_or((0, 0));
 
         (start, end)
@@ -62,15 +62,15 @@ impl Teaser {
                 idx = word.index;
             }
 
-            let str = &body[word.index..idx + word.term.len()];
+            let s = &body[word.index..idx + word.term.len()];
 
             // Combine both conditions into one block
             if word.importance == MATCH_IMPORTANCE {
                 highlight.push_str(MARK_TAG);
-                highlight.push_str(str);
+                highlight.push_str(s);
                 highlight.push_str(MARK_TAG_END);
             } else {
-                highlight.push_str(str);
+                highlight.push_str(s);
             }
 
             idx = word.index + word.term.len();
