@@ -28,7 +28,7 @@ jobs:
 
       - name: Cache Cargo
         id: cache-cargo
-        uses: actions/cache@0c907a75c2c80ebcb7f088228285e798b750cf8f # v4
+        uses: actions/cache@d4323d4df104b026a6aa633fdb11d772146be0bf # v4
         with:
           path: |
             ~/.cargo/bin/
@@ -67,7 +67,7 @@ jobs:
 
       - name: Cache Cargo
         id: cache-cargo
-        uses: actions/cache@0c907a75c2c80ebcb7f088228285e798b750cf8f # v4
+        uses: actions/cache@d4323d4df104b026a6aa633fdb11d772146be0bf # v4
         with:
           path: |
             ~/.cargo/bin/
@@ -132,7 +132,7 @@ jobs:
             js
 
       - name: Cache dependencies
-        uses: actions/cache@0c907a75c2c80ebcb7f088228285e798b750cf8f # v4
+        uses: actions/cache@d4323d4df104b026a6aa633fdb11d772146be0bf # v4
         with:
           path: |
             ~/.bun/install/cache
@@ -217,7 +217,7 @@ jobs:
 
       - name: Cache Woff2 output
         id: cache-woff2
-        uses: actions/cache@0c907a75c2c80ebcb7f088228285e798b750cf8f # v4
+        uses: actions/cache@d4323d4df104b026a6aa633fdb11d772146be0bf # v4
         with:
           path: fonts/woff2
           key: python-${{ runner.os }}-fonts-${{ hashFiles('fonts/**') }}
@@ -271,7 +271,7 @@ jobs:
           rust-version: "1.85.0"
 
       - name: Cache Cargo
-        uses: actions/cache@0c907a75c2c80ebcb7f088228285e798b750cf8f # v4
+        uses: actions/cache@d4323d4df104b026a6aa633fdb11d772146be0bf # v4
         with:
           path: |
             ~/.cargo/bin/
@@ -320,7 +320,7 @@ jobs:
 
       - name: Cache Cargo
         id: cache-cargo
-        uses: actions/cache@0c907a75c2c80ebcb7f088228285e798b750cf8f # v4
+        uses: actions/cache@d4323d4df104b026a6aa633fdb11d772146be0bf # v4
         with:
           path: |
             ~/.cargo/bin/
