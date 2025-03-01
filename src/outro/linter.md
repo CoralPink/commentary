@@ -414,3 +414,122 @@ We are all together now!!{{footnote:
 
 17.6話「えるえすぴーミーツミー」という おはなし。
 ```
+
+## Give Peace a Chance
+
+<div style="text-align: center; font-size: 100%, line-height: 1">
+<div style="margin-top: 3rem"></div>
+
+All we are saying is give peace a chance{{footnote:
+Give Peace a Chance (by [Plastic Ono Band](https://en.wikipedia.org/wiki/Plastic_Ono_Band)):
+John Lennon (当初は[Lennon–McCartney](https://en.wikipedia.org/wiki/Lennon–McCartney)とクレジットされていた)
+が作詞作曲した反戦歌。
+
+カナダの[Quebec-Montreal](https://en.wikipedia.org/wiki/Montreal)のホテルの一室で、
+記者に "ベッドに寝泊まりすることで何を達成しようとしているのか" と尋ねられた
+Lennon が、<strong>"ただ平和へのきっかけが欲しい"</strong> と即答したことから始まった。
+
+1969年7月に[Apple Records](https://en.wikipedia.org/wiki/Apple_Records)からシングルとしてリリースされたこの曲は、
+Lennon がまだ[The Beatles](https://en.wikipedia.org/wiki/The_Beatles)のメンバーだった頃に発表した初のソロ・シングルであり、
+1970年代アメリカの反戦運動のアンセムとなった。[Wikipedia](https://en.wikipedia.org/wiki/Give_Peace_a_Chance)より
+}}
+
+<div style="color: #999999; margin: 2rem">
+Everybody now, come on!
+
+みんな、一緒に
+</div>
+
+<div style="margin-top: 1rem"></div>
+
+All we are saying...
+
+<div style="color: #999999; margin: 2rem">
+It won't unless you want it and we want it now
+
+君たちが望まない限り叶わないよ。僕たちは今すぐ欲しいんだ
+</div>
+
+...is give peace a chance
+
+<div style="margin-top: 3rem"></div>
+
+All we are saying...
+
+<div style="color: #999999; margin: 2rem">
+Come together
+
+一緒に行こう
+
+</div>
+
+...is give peace a chance
+
+<div style="color: #999999; margin: 2rem">
+Come together, all together
+
+集まれ、みんな一緒に
+</div>
+
+<div style="margin-top: 3rem"></div>
+
+All we are saying is give peace a chance
+
+<div style="color: #999999; margin: 2rem">
+Can everybody hear me? Yes!
+
+みんな聞こえてる？ 聞こえてるね！
+</div>
+
+<div style="margin-top: 1rem"></div>
+
+All we are saying...
+
+<div style="color: #999999; margin: 2rem">
+We can get it tomorrow or today
+
+明日でも今日でも いつでも実現できる
+</div>
+
+...is give peace a chance
+
+<div style="color: #999999; margin: 2rem">
+Unless you want it now, I'll get it now
+
+君が今欲しくなくても、僕が欲しいんだ！
+</div>
+
+<div style="margin-top: 3rem"></div>
+
+All we are saying is give peace a chance
+
+<div style="color: #999999; margin: 2rem">
+Yes, yes
+
+いいね いいね
+</div>
+
+<div style="margin-top: 3rem"></div>
+
+All we are saying is give peace a chance{{footnote:
+いきなり壮大な理想を押し付けてるわけじゃなくて、ほんの小さなきっかけでいいんだ。
+みんなが言ってることは、本当にただそれだけ❗
+}}
+
+<div style="color: #999999; margin: 2rem">
+Okay, beautiful, yes
+
+最高だ！
+</div>
+
+<div style="color: #999999; margin: 2rem">
+We've made it!
+
+僕らはやり遂げたんだ！{{footnote:
+この加筆は (日本時間の) 2025/3/1 にしようと考えていたが、わたしも少々迷信深いので 2025/3/2 にした。
+これほど "不成就日" にふさわしくない話もないし、むしろ 2025/3/2 の "一粒万倍日" にあやかった方がいいと思ったんだ 🕊️
+}}
+</div>
+
+<div style="margin-top: 3rem"></div>
+</div>
