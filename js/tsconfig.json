@@ -18,6 +18,10 @@
     // Some stricter flags
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noPropertyAccessFromIndexSignature": true
+    "noPropertyAccessFromIndexSignature": true,
+
+    // Improved code predictability and consistency
+    "erasableSyntaxOnly": true,
+    "verbatimModuleSyntax": true
   }
 }
