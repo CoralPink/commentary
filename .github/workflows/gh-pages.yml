@@ -21,11 +21,6 @@ jobs:
           sparse-checkout: |
             rs/wasm
 
-      - name: Setup Rust
-        uses: hecrj/setup-rust-action@110f36749599534ca96628b82f52ae67e5d95a3c #v2
-        with:
-          rust-version: "1.85.0"
-
       - name: Cache Cargo
         id: cache-cargo
         uses: actions/cache@d4323d4df104b026a6aa633fdb11d772146be0bf # v4
@@ -59,11 +54,6 @@ jobs:
         with:
           sparse-checkout: |
             rs/wasm
-
-      - name: Setup Rust
-        uses: hecrj/setup-rust-action@110f36749599534ca96628b82f52ae67e5d95a3c #v2
-        with:
-          rust-version: "1.85.0"
 
       - name: Cache Cargo
         id: cache-cargo
@@ -265,11 +255,6 @@ jobs:
           sparse-checkout: |
             rs/mdbook-footnote
 
-      - name: Setup Rust
-        uses: hecrj/setup-rust-action@110f36749599534ca96628b82f52ae67e5d95a3c #v2
-        with:
-          rust-version: "1.85.0"
-
       - name: Cache Cargo
         uses: actions/cache@d4323d4df104b026a6aa633fdb11d772146be0bf # v4
         with:
@@ -312,11 +297,6 @@ jobs:
           cp artifacts/build-js/* src
           cp -r artifacts/woff2 src
           cp -r artifacts/css src
-
-      - name: Setup Rust
-        uses: hecrj/setup-rust-action@110f36749599534ca96628b82f52ae67e5d95a3c #v2
-        with:
-          rust-version: "1.85.0"
 
       - name: Cache Cargo
         id: cache-cargo
