@@ -404,7 +404,7 @@ Und jetzt alle zusammen
 ```admonish success
 We are all together now!!{{footnote:
 この曲のサブカレントについて、
-"We are all together now" (僕たちは今 みんな一緒にいる) という二重の意味を持つと McCartney は述べている。
+<strong>"We are all together now (僕たちは今 みんな一緒にいる) "</strong> という二重の意味を持つと McCartney は述べている。
 [Wikipedia](https://en.wikipedia.org/wiki/All_Together_Now_(Beatles_song))より
 }}
 ```
@@ -417,7 +417,7 @@ We are all together now!!{{footnote:
 
 ## Give Peace a Chance
 
-<div style="text-align: center; font-size: 100%, line-height: 1">
+<div style="text-align: center">
 <div style="margin-top: 3rem"></div>
 
 All we are saying is give peace a chance{{footnote:
@@ -425,9 +425,10 @@ Give Peace a Chance (by [Plastic Ono Band](https://en.wikipedia.org/wiki/Plastic
 John Lennon (当初は[Lennon–McCartney](https://en.wikipedia.org/wiki/Lennon–McCartney)とクレジットされていた)
 が作詞作曲した反戦歌。
 
-カナダの[Quebec-Montreal](https://en.wikipedia.org/wiki/Montreal)のホテルの一室で、
+この曲は、Lennon と Ono が[Montreal](https://en.wikipedia.org/wiki/Montreal)での新婚旅行中に行った、
+戦争に対する非暴力的な抗議活動[Bed-in](https://en.wikipedia.org/wiki/Bed-in)の中で、
 記者に "ベッドに寝泊まりすることで何を達成しようとしているのか" と尋ねられた
-Lennon が、<strong>"ただ平和へのきっかけが欲しい"</strong> と即答したことから始まった。
+Lennon が、なんの屈託もなく <strong>"ただ平和へのきっかけが欲しい"</strong> と答えたことから始まった。
 
 1969年7月に[Apple Records](https://en.wikipedia.org/wiki/Apple_Records)からシングルとしてリリースされたこの曲は、
 Lennon がまだ[The Beatles](https://en.wikipedia.org/wiki/The_Beatles)のメンバーだった頃に発表した初のソロ・シングルであり、
