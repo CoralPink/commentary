@@ -3,18 +3,18 @@ import type { FzfResultItem, FzfOptions } from 'fzf';
 
 const LOWER_LIMIT_SCORE = 56;
 
-interface StoreDoc {
+type StoreDoc = {
   id: string;
   title: string;
   body: string;
   key: string;
-}
+};
 
-interface SearchResult {
+type SearchResult = {
   doc: Omit<StoreDoc, 'id' | 'title'>;
   key: string;
   score: number;
-}
+};
 
 export default class Finder {
   private fzf: Fzf<string[]>;
