@@ -7,10 +7,10 @@ const DELETEING_PREFIX_LENGTH = 'language-'.length;
 const NERD_FONT_UNICODE_RANGE = /[\uE000-\uF8FF]/;
 const containsNerdFontIcon = (text: string): boolean => NERD_FONT_UNICODE_RANGE.test(text);
 
-interface PostMessageData {
+type PostMessageData = {
   highlightCode: string;
   needNerdFonts: boolean;
-}
+};
 
 self.onmessage = (ev: MessageEvent<[string, string]>): void => {
   const highlightCode = hljs.highlight(ev.data[0], {
