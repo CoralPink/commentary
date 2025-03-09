@@ -12,6 +12,7 @@ create-missing = false
 [output.html]
 git-repository-url = "https://github.com/CoralPink/commentary"
 site-url = "/commentary/"
+hash-files = false      # Defaults to `false` (in a future release, this may change to `true`).
 
 [output.html.playground]
 copy-js = false

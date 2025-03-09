@@ -11,13 +11,13 @@
     <meta name="theme-color">
     <meta name="format-detection" content="telephone=no,email=no,address=no">
 
-    <link rel="icon" href="{{ path_to_root }}favicon.ico">
-    <link rel="icon" type="image/svg+xml" href="{{ path_to_root }}favicon.svg">
+    <link rel="icon" href="{{ resource "favicon.ico"}}">
+    <link rel="icon" type="image/svg+xml" href="{{ resource "favicon.svg"}}">
 
-    <link rel="apple-touch-icon" href="{{ path_to_root }}apple-touch-icon.png">
+    <link rel="apple-touch-icon" href="{{ resource "apple-touch-icon.png"}}">
     <!--<meta name="apple-mobile-web-app-capable" content="yes">-->
 
-    <link rel="manifest" href="{{ path_to_root }}manifest.json">
+    <link rel="manifest" href="{{ resource "manifest.json"}}">
 
     <meta property="og:title" content="{{ title }}" />
     <meta property="og:type" content="website" />
@@ -27,13 +27,10 @@
     <meta property="og:site_name" content="Commentary of Dotfiles">
     <meta property="og:description" content="{{ description }}">
 
-    <link rel="stylesheet" href="{{ path_to_root }}css/general.css">
-    <link rel="preload" href="{{ path_to_root }}css/style.css" as="style" onload="this.rel='stylesheet'">
+    <link rel="stylesheet" href="{{ resource "css/general.css"}}">
+    <link rel="preload" href="{{ resource "css/style.css"}}" as="style" onload="this.rel='stylesheet'">
 
-    <script type="module" src="{{ path_to_root }}book.js" id="bookjs" data-pathtoroot="{{ path_to_root }}" defer></script>
-
-    {{#each additional_css}}<link rel="preload" href="{{ ../path_to_root }}{{ this }} as="style" onload="this.rel='stylesheet'"">{{/each}}
-    {{#each additional_js}}<script src="{{ ../path_to_root }}{{ this }}" defer></script>{{/each}}
+    <script type="module" src="{{ resource "book.js"}}" id="bookjs" data-pathtoroot="{{ path_to_root }}" defer></script>
   </head>
   <body>
     <div id="top-bar">
@@ -101,7 +98,7 @@
 
     <script>
       (async()=>{if("serviceWorker"in navigator)
-      try{await navigator.serviceWorker.register("{{path_to_root}}serviceworker.js",{scope:"/commentary/"})}
+      try{await navigator.serviceWorker.register("{{resource "serviceworker.js"}}",{scope:"/commentary/"})}
       catch(r){console.error(`Registration failed with ${r}`)}})();
     </script>
   </body>
