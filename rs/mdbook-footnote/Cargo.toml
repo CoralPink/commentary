@@ -8,7 +8,7 @@ license = "Apache-2.0"
 
 [dependencies]
 clap = "=4.5.31"
-mdbook = "=0.4.45"
+mdbook = "=0.4.46"
 regex = "=1.11.1"
 semver = "=1.0.26"
 serde_json = "=1.0.140"
