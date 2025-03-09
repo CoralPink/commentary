@@ -1,55 +1,55 @@
 # fin
 
-<div style="color: #999999; font-size: 90%;">
-<div style="text-align: center; margin-top: 4em">
+<div style="color: #999999; font-size: 90%; text-align: center;">
+<div style="margin-top: 4em">
 There's nothing you can do that can't be done
 
 できないことなんて無い
 </div>
 
-<div style="text-align: center; margin-top: 1.6em">
+<div style="margin-top: 1.6em">
 Nothing you can sing that can't be sung
 
 唄えない歌なんて無いんだ
 </div>
 
-<div style="text-align: center; margin-top: 1.6em">
+<div style="margin-top: 1.6em">
 Nothing you can say, but you can learn how to play the game
 
 きみは何も言えない、けどゲームのやり方を知ることはできる
 </div>
 
-<div style="text-align: center; margin-top: 4em">
+<div style="margin-top: 4em">
 It's easy
 
 簡単だ
 </div>
 
-<div style="text-align: center; margin-top: 7em">
+<div style="margin-top: 7em">
 Nothing you can make that can't be made
 
 作れないものは創れない
 </div>
 
-<div style="text-align: center; margin-top: 1.6em">
+<div style="margin-top: 1.6em">
 No one you can save that can't be saved
 
 掬われない人は救えないんだ
 </div>
 
-<div style="text-align: center; margin-top: 1.6em">
+<div style="margin-top: 1.6em">
 Nothing you can do, but you can learn how to be you in time
 
 きみは何もできない、けどやがて君らしく在る方法を知ることができる
 </div>
 
-<div style="text-align: center; margin-top: 4em">
+<div style="margin-top: 4em">
 It's easy
 
 焦るなよ
 </div>
 
-<div style="text-align: center; margin-top: 4em">
+<div style="margin-top: 4em">
 All you need is love
 
 All you need is love
@@ -57,51 +57,51 @@ All you need is love
 All you need is love, love
 </div>
 
-<div style="text-align: center; margin-top: 2em">
+<div style="margin-top: 2em">
 Love is all you need
 </div>
 
-<div style="text-align: center; margin-top: 7em">
+<div style="margin-top: 7em">
 There's nothing you can know that isn't known
 
 知られていないことは何もない
 </div>
 
-<div style="text-align: center; margin-top: 1.6em">
+<div style="margin-top: 1.6em">
 Nothing you can see that isn't shown
 
 示されていないものは見えないんだ
 </div>
 
-<div style="text-align: center; margin-top: 1.6em">
+<div style="margin-top: 1.6em">
 There's nowhere you can be that isn't where you're meant to be
 
 きみがいる場所は きみがいるべき場所以外にはない
 </div>
 
-<div style="text-align: center; margin-top: 4em">
+<div style="margin-top: 4em">
 It's easy
 
 気楽にいこう
 </div>
 
-<div style="text-align: center; margin-top: 4em">
+<div style="margin-top: 4em">
 All you need is love
 
 (All together now!)
 </div>
 
-<div style="text-align: center; margin-top: 2em">
+<div style="margin-top: 2em">
 All you need is love
 
 (Everybody!)
 </div>
 
-<div style="text-align: center; margin-top: 2em">
+<div style="margin-top: 2em">
 All you need is love, love
 </div>
 
-<div style="text-align: center; margin-top: 2em">
+<div style="margin-top: 2em">
 Love is all you need
 </div>
 </div>
@@ -168,11 +168,175 @@ Love is all you need
   </a>
 </nav>
 
-<div style="margin-top:140em"></div>
+<div style="margin-top: 110em"></div>
+
+<div style="color: #999999; font-size: 90%; text-align: center;">
+<div style="font-size: 70%">
+( One, Two... )
+</div>
+
+<div style="margin-top: 30em"></div>
+
+<div style="margin-top: 5em">
+I know it’s true
+
+気づいたんだ
+</div>
+
+<div style="margin-top: 3em">
+it’s all because of you
+
+君がいたからなんだ
+</div>
+
+<div style="margin-top: 3em">
+And if I make it through
+
+だからもし 僕がこれをやり遂げられたのなら
+</div>
+
+<div style="margin-top: 3em">
+it’s all because of you
+
+君がいてくれたからなんだよ
+</div>
+
+<div style="margin-top: 5em">
+And now and then
+
+だから 今も あの頃も
+</div>
+
+<div style="margin-top: 3em">
+if we must start again
+
+もし また最初からやり直すとしても
+</div>
+
+<div style="margin-top: 3em">
+Well, we will know for sure
+
+結局、僕らが辿り着くのは
+</div>
+
+<div style="margin-top: 3em">
+That I love you
+
+I love you に決まってるんだよ
+</div>
+
+<div style="margin-top: 5em">
+Now and then{{footnote:
+[Now and Then](https://en.wikipedia.org/wiki/Now_and_Then_(Beatles_song))
+}}
+
+ときどき
+</div>
+
+<div style="margin-top: 3em">
+I miss you
+
+君のことを想うんだ
+</div>
+
+<div style="margin-top: 3em">
+Oh now and then
+
+今だって あの頃だって
+</div>
+
+<div style="margin-top: 3em">
+I want you to be there for me
+
+僕は 君に そばにいてほしいんだ
+</div>
+
+<div style="margin-top: 3em">
+Always to return to me
+
+いつだって 僕のそばに帰ってきてほしい
+</div>
+
+<div style="margin-top: 5em">
+I know it’s true
+
+本当だよ
+</div>
+
+<div style="margin-top: 3em">
+It’s all because of you
+
+君とやってきたんだから
+</div>
+
+<div style="margin-top: 3em">
+And if you go away
+
+だからもし 君が去ってしまったのなら...
+</div>
+
+<div style="margin-top: 3em">
+I know you’ll never stay
+
+わかってる 君はもう決して留まれないんだ
+</div>
+
+<div style="margin-top: 8em"></div>
 
 ![風の電話1](img/denwa1.webp)
 
+<div style="margin-top: 8em">
+Now and then
+
+ときどき
+</div>
+
+<div style="margin-top: 3em">
+I miss you
+
+君を想うんだ
+</div>
+
+<div style="margin-top: 3em">
+Oh now and then
+
+今だって あの頃だって
+</div>
+
+<div style="margin-top: 3em">
+I want you to be there for me
+
+僕は 君に そばにいてほしいんだ
+</div>
+
+<div style="margin-top: 8em"></div>
+
 ![風の電話2](img/denwa2.webp)
+
+<div style="margin-top: 8em">
+気づいたんだ
+</div>
+
+<div style="margin-top: 3em">
+あなたたちが いてくれたんだね
+</div>
+
+<div style="margin-top: 3em">
+だから わたしがこれをやり遂げた時も
+</div>
+
+<div style="margin-top: 3em">
+きっと 見ていてくれたよね
+</div>
+
+<div style="margin-top: 20em"></div>
+
+<div style="margin-top: 5em; font-size: 70%">
+( Good one )
+
+( なかなかいいね )
+</div>
+</div>
 
 父と母へ捧ぐ
 {{footnote: [風の電話](https://bell-gardia.jp/guide/kaze-no-denwa/)}}
