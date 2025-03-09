@@ -5,19 +5,19 @@ const TIMEOUT_MS = 1000;
 
 const BATCH_SIZE = 2;
 
-interface BaseObject {
+type BaseObject = {
   id: string;
-}
+};
 
-interface ImageSrc {
+type ImageSrc = {
   light: string;
   dark: string;
-}
+};
 
-interface ImageObject extends BaseObject {
+type ImageObject = BaseObject & {
   src: ImageSrc;
   alt: string;
-}
+};
 
 const waitForStyle = (property: string): Promise<string> => {
   const start = Date.now();

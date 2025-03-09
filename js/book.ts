@@ -6,9 +6,9 @@ import { initThemeColor } from './theme-selector';
 
 import initWasm, { attribute_external_links } from './wasm_book';
 
-interface DataSet extends DOMStringMap {
+type DataSet = DOMStringMap & {
   pathtoroot: string;
-}
+};
 
 const initialize = (): void => {
   const rootPath = (document.getElementById('bookjs')?.dataset as DataSet).pathtoroot;
