@@ -242,32 +242,32 @@ Gaze deeply into unknown regions using the power of the moon.
 <div id="mountain"></div>
 ```
 
-<div style="color: #999999; font-size: 90%" >
-<div style="text-align: center; margin-top: 80px">
+<div style="color: #999999; font-size: 90%; text-align: center;" >
+<div style="margin-top: 8rem">
 他人の心をそっくり覗き込むなんて無理です
 
 自分が辛くなるだけです
 </div>
-<div style="text-align: center; margin-top: 30px">
+<div style="margin-top: 3rem">
 でもそれが自分自身の心なら
 
 努力次第で しっかりと覗き込むことはできるはずです
 </div>
-<div style="text-align: center; margin-top: 30px">
+<div style="margin-top: 3rem">
 結局のところ僕らがやらなくちゃならないことは
 
 自分の心と上手に
 
 正直に折り合いをつけていくことじゃないでしょうか
 </div>
-<div style="text-align: center; margin-top: 30px">
+<div style="margin-top: 3rem">
 本当に他人を見たいと思うなら
 
 自分自身を深く
 
 まっすぐ見つめるしかないんです
 </div>
-<div style="text-align: center; margin-top: 50px; margin-bottom: 80px">
+<div style="margin-top: 5rem; margin-bottom: 8rem">
 We should have looked into each other more closely...
 
 To my only father.
