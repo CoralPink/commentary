@@ -1,3 +1,4 @@
+import { debounce } from './timing';
 import Finder from './finder';
 
 import { tocReset } from './table-of-contents';
@@ -12,6 +13,8 @@ const INITIAL_HEADER = '2文字 (もしくは全角1文字) 以上を入力し�
 
 const FETCH_TIMEOUT = 10000;
 const DEBOUNCE_DELAY_MS = 80;
+
+const debounceInputProc = debounce((_: Event) => showResults(), DEBOUNCE_DELAY_MS);
 
 let rootPath: string;
 
@@ -108,17 +111,6 @@ const showResults = (): void => {
   searchResult.append_search_result(results, terms);
 };
 
-const searchHandler = (fn: () => void): (() => void) => {
-  let debounceTimer: ReturnType<typeof setTimeout> | undefined;
-
-  return () => {
-    if (debounceTimer) {
-      clearTimeout(debounceTimer);
-    }
-    debounceTimer = setTimeout(() => fn(), DEBOUNCE_DELAY_MS);
-  };
-};
-
 const jumpUrl = (): void => {
   const aElement = focusedLi?.querySelector('a') as HTMLAnchorElement;
 
@@ -197,7 +189,7 @@ const closedPopover = (ev: Event): void => {
 const hiddenSearch = (): void => {
   document.getElementById(ID_ICON)?.setAttribute('aria-expanded', 'false');
 
-  elmSearchBar.removeEventListener('input', searchHandler(showResults));
+  elmSearchBar.removeEventListener('input', debounceInputProc);
   elmResults.removeEventListener('keyup', popupFocus);
 
   elmPop.removeEventListener('click', searchMouseupHandler);
@@ -209,10 +201,7 @@ const hiddenSearch = (): void => {
 const showSearch = (): void => {
   document.getElementById(ID_ICON)?.setAttribute('aria-expanded', 'true');
 
-  showResults();
-
-  elmSearchBar.addEventListener('input', searchHandler(showResults), { once: false, passive: true });
-
+  elmSearchBar.addEventListener('input', debounceInputProc, { once: false, passive: true });
   elmResults.addEventListener('keyup', popupFocus, { once: false, passive: true });
 
   elmPop.addEventListener('click', searchMouseupHandler, { once: false, passive: true });

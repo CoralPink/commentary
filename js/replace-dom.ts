@@ -1,3 +1,4 @@
+import { debounce } from './timing';
 import { getRootVariable } from './css-loader';
 
 const INTERVAL_MS = 50;
@@ -41,50 +42,36 @@ const waitForStyle = (property: string): Promise<string> => {
   });
 };
 
-const debounce = <T extends BaseObject>(fn: (...args: T[]) => void, delay: number): ((...args: T[]) => void) => {
-  let timeoutId: ReturnType<typeof setTimeout>;
-
-  return (...args: T[]) => {
-    clearTimeout(timeoutId);
-    timeoutId = setTimeout(() => fn(...args), delay);
-  };
-};
-
 const processBatch = (batch: ImageObject[], scheme: string) => {
-  for (const x of batch) {
-    const elm = document.getElementById(x.id);
+  for (const { id, src, alt } of batch) {
+    const elm = document.getElementById(id);
 
     if (elm === null) {
-      console.warn(`id: ${x.id} element does not exist`);
+      console.warn(`id: ${id} element does not exist`);
       continue;
     }
     const img = document.createElement('img');
 
-    img.setAttribute('id', x.id);
-    img.setAttribute('src', scheme === 'light' ? x.src.light : x.src.dark);
-    img.setAttribute('alt', x.alt);
+    img.setAttribute('id', id);
+    img.setAttribute('src', scheme === 'light' ? src.light : src.dark);
+    img.setAttribute('alt', alt);
     img.setAttribute('loading', 'lazy');
 
-    img.onerror = () => {
-      console.error(`Failed to load image for id: ${x.id}`);
-    };
+    img.onerror = () => console.error(`Failed to load image for id: ${id}`);
 
     elm.replaceWith(img);
   }
 };
 
 const replaceProc = async (imageObjectArray: ImageObject[]): Promise<void> => {
-  let scheme: string;
-
   try {
-    scheme = await waitForStyle('--color-scheme');
+    const scheme = await waitForStyle('--color-scheme');
+
+    for (let i = 0; i < imageObjectArray.length; i += BATCH_SIZE) {
+      requestAnimationFrame(() => processBatch(imageObjectArray.slice(i, i + BATCH_SIZE), scheme));
+    }
   } catch (error) {
     console.error('Failed to get color scheme:', error);
-    return;
-  }
-
-  for (let i = 0; i < imageObjectArray.length; i += BATCH_SIZE) {
-    requestAnimationFrame(() => processBatch(imageObjectArray.slice(i, i + BATCH_SIZE), scheme));
   }
 };
 
@@ -96,20 +83,13 @@ const replaceProc = async (imageObjectArray: ImageObject[]): Promise<void> => {
 export const replaceId = (imageObjectArray: ImageObject[]): (() => void) => {
   replaceProc(imageObjectArray);
 
-  const debouncedReplace = debounce(() => replaceProc(imageObjectArray), 150);
+  const debouncedReplaceProc = debounce(() => replaceProc(imageObjectArray), 150);
+  const observer = new MutationObserver(() => debouncedReplaceProc());
 
-  const observer = new MutationObserver(mutations => {
-    for (const x of mutations) {
-      if (x.attributeName === 'class') {
-        debouncedReplace();
-      }
-    }
+  observer.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ['class'],
   });
 
-  observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
-
-  // Cleanup function that can be called when needed
-  return () => {
-    observer.disconnect();
-  };
+  return () => observer.disconnect();
 };
