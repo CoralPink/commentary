@@ -1,6 +1,4 @@
 import { debounce } from './timing';
-import Finder from './finder';
-
 import { tocReset } from './table-of-contents';
 import { SearchResult, marking, unmarking } from './wasm_book';
 import { loadStyleSheet } from './css-loader';
@@ -9,22 +7,16 @@ const STYLE_SEARCH = 'css/search.css';
 
 const ID_ICON = 'search-toggle';
 
-const INITIAL_HEADER = '2文字 (もしくは全角1文字) 以上を入力してください...';
-
 const FETCH_TIMEOUT = 10000;
 const DEBOUNCE_DELAY_MS = 80;
-
-const debounceInputProc = debounce((_: Event) => showResults(), DEBOUNCE_DELAY_MS);
 
 let rootPath: string;
 
 let elmPop: HTMLElement;
 let elmSearchBar: HTMLInputElement;
-let elmHeader: HTMLElement;
 let elmResults: HTMLElement;
 
 let searchResult: SearchResult;
-let finder: Finder;
 
 let focusedLi: Element;
 
@@ -86,30 +78,12 @@ const doSearchOrMarkFromUrl = (): void => {
   }
 };
 
-const isFullWidthOrAscii = (s: string): boolean => {
-  const code = s.charCodeAt(0);
-  return code <= 127 || (code >= 0xff01 && code <= 0xff5e);
-};
-
 const showResults = (): void => {
-  const terms = elmSearchBar.value.trim();
-  elmResults.innerText = '';
-
-  // If the input is less than one half-width character, the search process is not carried out.
-  if (terms.length === 0 || (terms.length <= 1 && isFullWidthOrAscii(terms))) {
-    elmHeader.innerText = INITIAL_HEADER;
-    return;
-  }
-
-  const results = finder.search(terms);
-
-  if (results.length === 0) {
-    elmHeader.innerText = `No search result for : ${terms}`;
-    return;
-  }
-  elmHeader.innerText = `${results.length} search results for : ${terms}`;
-  searchResult.append_search_result(results, terms);
+  elmResults.textContent = '';
+  searchResult.search(elmSearchBar.value.trim());
 };
+
+const debounceInputProc = debounce((_: Event) => showResults(), DEBOUNCE_DELAY_MS);
 
 const jumpUrl = (): void => {
   const aElement = focusedLi?.querySelector('a') as HTMLAnchorElement;
@@ -256,8 +230,13 @@ const initSearch = async (): Promise<void> => {
     const response = await fetchRequest(`${rootPath}searchindex.json`);
     const config = await response.json();
 
-    searchResult = new SearchResult(rootPath, config.results_options.teaser_word_count, config.doc_urls);
-    finder = new Finder(config.index.documentStore.docs, config.results_options.limit_results);
+    searchResult = new SearchResult(
+      rootPath,
+      config.results_options.teaser_word_count,
+      config.doc_urls,
+      config.index.documentStore.docs,
+      config.results_options.limit_results,
+    );
   } catch (e) {
     console.error(`Error during initialization: ${e}`);
     console.info('The search function is disabled.');
@@ -274,7 +253,7 @@ const initSearch = async (): Promise<void> => {
     results: document.getElementById('searchresults'),
   };
 
-  if (!elements.pop || !elements.searchBar || !elements.header || !elements.results) {
+  if (!elements.pop || !elements.searchBar || !elements.results) {
     throw new Error('Required DOM elements not found');
   }
 
@@ -284,7 +263,6 @@ const initSearch = async (): Promise<void> => {
 
   elmPop = elements.pop;
   elmSearchBar = elements.searchBar;
-  elmHeader = elements.header;
   elmResults = elements.results;
 
   showSearch();

@@ -21,7 +21,7 @@ opt-level = "s"
 strip = "symbols"
 
 [dependencies]
-arrayvec = "0.7.6"
+arrayvec = "=0.7.6"
 macros = { path = "macros" }
 serde = { version = "=1.0.219", features = ["derive"] }
 serde-wasm-bindgen = "=0.6.5"
