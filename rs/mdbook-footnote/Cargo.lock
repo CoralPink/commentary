@@ -419,9 +419,9 @@ dependencies = [
 
 [[package]]
 name = "elasticlunr-rs"
-version = "3.0.2"
+version = "3.0.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "41e83863a500656dfa214fee6682de9c5b9f03de6860fec531235ed2ae9f6571"
+checksum = "2d2feae8e4b9a700f5dfb266a8c2ea16d6504715f229e2ae04b78c0ecf1c532b"
 dependencies = [
  "regex",
  "serde",
@@ -647,9 +647,9 @@ dependencies = [
 
 [[package]]
 name = "handlebars"
-version = "6.3.1"
+version = "6.3.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d752747ddabc4c1a70dd28e72f2e3c218a816773e0d7faf67433f1acfa6cba7c"
+checksum = "759e2d5aea3287cb1190c8ec394f42866cb5bf74fcbf213f354e3c856ea26098"
 dependencies = [
  "derive_builder",
  "log",
@@ -1089,9 +1089,9 @@ dependencies = [
 
 [[package]]
 name = "linux-raw-sys"
-version = "0.9.2"
+version = "0.9.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "6db9c683daf087dc577b7506e9695b3d556a9f3849903fa28186283afd6809e9"
+checksum = "fe7db12097d22ec582439daf8618b8fdd1a7bef6270e9af3b1ebcd30893cf413"
 
 [[package]]
 name = "litemap"
