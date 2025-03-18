@@ -71,7 +71,7 @@ impl SearchResult {
         })
     }
 
-    fn add_element(&self, content: &str, id: &usize, page: &str, score: &usize) {
+    fn add_element(&self, content: &str, id: usize, page: &str, score: usize) {
         let node: Node = self
             .li_element
             .clone_node_with_deep(true)
@@ -128,7 +128,7 @@ impl SearchResult {
             self.add_element(&format!(
                 r#"<a href="{}{}?mark={}#{}" tabindex="-1">{}</a><span aria-hidden="true">{}</span><div id="score" role="meter" aria-label="score:{}pt">{}</div>"#,
                 &self.root_path, page, mark, head, el.doc.breadcrumbs, excerpt, el.score, score_bar),
-                &id_cnt, page, &el.score
+                id_cnt, page, el.score
             );
 
             id_cnt += 1;
