@@ -272,6 +272,7 @@ name = "wasm-book"
 version = "0.9.0"
 dependencies = [
  "arrayvec",
+ "js-sys",
  "macros",
  "serde",
  "serde-wasm-bindgen",

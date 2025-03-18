@@ -1,4 +1,5 @@
 mod function;
+mod js_util;
 mod score;
 mod search_result;
 

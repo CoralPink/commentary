@@ -1,11 +1,11 @@
 use super::*;
 use crate::searcher::function::*;
+use crate::searcher::js_util::*;
 use crate::searcher::score::*;
 
 use arrayvec::ArrayVec;
 use macros::error;
 use serde_wasm_bindgen::from_value;
-use std::collections::HashMap;
 use urlencoding::encode;
 use wasm_bindgen::JsCast;
 use wasm_bindgen::prelude::*;
@@ -21,7 +21,7 @@ pub struct SearchResult {
     header: Element,
     count: usize,
     url_table: Vec<String>,
-    store_doc: HashMap<String, DocObject>,
+    store_doc: Vec<DocObject>,
     limit: usize,
 }
 
@@ -53,8 +53,11 @@ impl SearchResult {
 
         let url_table: Vec<String> = from_value(doc_urls).map_err(|_| "Failed to convert doc_urls to Vec<String>")?;
 
-        let store_doc: HashMap<String, super::DocObject> =
-            from_value(docs).map_err(|e| JsValue::from_str(&format!("{:?}", e)))?;
+        let store_doc: Vec<DocObject> = convert_js_map_to_vec(docs)?
+            .into_iter()
+            .map(from_value)
+            .collect::<Result<_, _>>()
+            .map_err(|e| JsValue::from_str(&format!("{:?}", e)))?;
 
         Ok(SearchResult {
             root_path: root_path.to_string(),
@@ -116,7 +119,7 @@ impl SearchResult {
                 }
             };
 
-            let mut tokens = ArrayVec::<super::HighlightedToken, ARRAY_VEC_SIZE>::new();
+            let mut tokens = ArrayVec::<HighlightedToken, ARRAY_VEC_SIZE>::new();
 
             let (page, head) = parse_uri(&self.url_table[idx]);
             let excerpt = search_result_excerpt(&mut tokens, &el.doc.body, self.count, &normalized_terms);
@@ -135,7 +138,7 @@ impl SearchResult {
     fn filter(&self, terms: &str) -> Vec<ResultObject> {
         let mut results: Vec<(ResultObject, usize)> = self
             .store_doc
-            .values()
+            .iter()
             .filter_map(|doc| {
                 let content = format!("{} {}", doc.title, doc.body);
                 let score = calc_score(terms, &content);
