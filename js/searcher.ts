@@ -83,7 +83,7 @@ const showResults = (): void => {
   finder.search(elmSearchBar.value.trim());
 };
 
-const debounceInputProc = debounce((_: Event) => showResults(), DEBOUNCE_DELAY_MS);
+const debounceSearchInput = debounce((_: Event) => showResults(), DEBOUNCE_DELAY_MS);
 
 const jumpUrl = (): void => {
   const aElement = focusedLi?.querySelector('a') as HTMLAnchorElement;
@@ -163,7 +163,7 @@ const closedPopover = (ev: Event): void => {
 const hiddenSearch = (): void => {
   document.getElementById(ID_ICON)?.setAttribute('aria-expanded', 'false');
 
-  elmSearchBar.removeEventListener('input', debounceInputProc);
+  elmSearchBar.removeEventListener('input', debounceSearchInput);
   elmResults.removeEventListener('keyup', popupFocus);
 
   elmPop.removeEventListener('click', searchMouseupHandler);
@@ -175,7 +175,7 @@ const hiddenSearch = (): void => {
 const showSearch = (): void => {
   document.getElementById(ID_ICON)?.setAttribute('aria-expanded', 'true');
 
-  elmSearchBar.addEventListener('input', debounceInputProc, { once: false, passive: true });
+  elmSearchBar.addEventListener('input', debounceSearchInput, { once: false, passive: true });
   elmResults.addEventListener('keyup', popupFocus, { once: false, passive: true });
 
   elmPop.addEventListener('click', searchMouseupHandler, { once: false, passive: true });
@@ -229,6 +229,10 @@ const initSearch = async (): Promise<void> => {
 
     const response = await fetchRequest(`${rootPath}searchindex.json`);
     const config = await response.json();
+
+    if (!config.index || !config.index.documentStore || !config.results_options) {
+      throw new Error('Missing required search configuration fields');
+    }
 
     finder = new Finder(
       rootPath,
