@@ -1,8 +1,5 @@
 use arrayvec::ArrayVec;
 
-use super::ARRAY_VEC_SIZE;
-use crate::searcher::HighlightedToken;
-
 const SCORE_CHARACTER: &str = "▰";
 const SCORE_RATE: usize = 8;
 
@@ -12,6 +9,14 @@ const IMPORTANCE_MATCH: usize = 40;
 
 const MARK_TAG: &str = "<mark>";
 const MARK_TAG_END: &str = "</mark>";
+
+const ARRAY_VEC_SIZE: usize = 512;
+
+struct HighlightedToken {
+    pub text: String,
+    pub position: usize,
+    pub importance: usize,
+}
 
 pub fn is_full_width_or_ascii(s: &str) -> bool {
     if let Some(c) = s.chars().next() {
@@ -98,12 +103,8 @@ fn apply_markup(tokens: &ArrayVec<HighlightedToken, ARRAY_VEC_SIZE>, body: &str,
     highlight
 }
 
-pub fn search_result_excerpt(
-    tokens: &mut ArrayVec<HighlightedToken, ARRAY_VEC_SIZE>,
-    body: &str,
-    count: usize,
-    normalized_texts: &[String],
-) -> String {
+pub fn search_result_excerpt(body: &str, count: usize, normalized_texts: &[String]) -> String {
+    let mut tokens = ArrayVec::<HighlightedToken, ARRAY_VEC_SIZE>::new();
     let mut pos: usize = 0;
 
     for sentence in body.to_lowercase().split(". ") {
@@ -124,5 +125,5 @@ pub fn search_result_excerpt(
         pos += 1;
     }
 
-    apply_markup(tokens, body, count)
+    apply_markup(&tokens, body, count)
 }

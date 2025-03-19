@@ -1,20 +1,41 @@
-use super::*;
 use crate::searcher::function::*;
 use crate::searcher::js_util::*;
-use crate::searcher::score::*;
+use crate::searcher::algo::score::calc_score;
 
-use arrayvec::ArrayVec;
 use macros::error;
+use serde::Deserialize;
 use serde_wasm_bindgen::from_value;
 use urlencoding::encode;
 use wasm_bindgen::JsCast;
 use wasm_bindgen::prelude::*;
 use web_sys::{Element, HtmlElement, Node};
 
+pub const RESULT_ID_START: usize = 1;
+const LOWER_LIMIT_SCORE: usize = 8; //56
+
 const INITIAL_HEADER: &str = "2文字 (もしくは全角1文字) 以上を入力してください...";
 
+#[derive(Clone, Deserialize)]
+struct DocObject {
+    id: String,
+    title: String,
+    body: String,
+    breadcrumbs: String,
+}
+
+struct SearchResult {
+    doc: DocObject,
+    key: String,
+    score: usize,
+}
+
+struct ResultEntry {
+    result: SearchResult,
+    first_match_index: usize,
+}
+
 #[wasm_bindgen]
-pub struct SearchResult {
+pub struct Finder {
     root_path: String,
     li_element: Element,
     parent: Element,
@@ -26,7 +47,7 @@ pub struct SearchResult {
 }
 
 #[wasm_bindgen]
-impl SearchResult {
+impl Finder {
     #[wasm_bindgen(constructor)]
     pub fn new(
         root_path: &str,
@@ -34,7 +55,7 @@ impl SearchResult {
         doc_urls: JsValue,
         docs: JsValue,
         limit: usize,
-    ) -> Result<SearchResult, JsValue> {
+    ) -> Result<Finder, JsValue> {
         let window = web_sys::window().ok_or("No global `window` exists")?;
         let document = window.document().ok_or("Should have a document on window")?;
 
@@ -59,7 +80,7 @@ impl SearchResult {
             .collect::<Result<_, _>>()
             .map_err(|e| JsValue::from_str(&format!("{:?}", e)))?;
 
-        Ok(SearchResult {
+        Ok(Finder {
             root_path: root_path.to_string(),
             li_element,
             parent,
@@ -100,7 +121,7 @@ impl SearchResult {
         self.parent.append_child(&cloned_element).expect("failed: append_child");
     }
 
-    fn append_search_result(&self, results: Vec<ResultObject>, terms: &str) {
+    fn append_search_result(&self, results: Vec<SearchResult>, terms: &str) {
         let normalized_terms = terms
             .split_whitespace()
             .map(|t| t.to_lowercase())
@@ -119,10 +140,8 @@ impl SearchResult {
                 }
             };
 
-            let mut tokens = ArrayVec::<HighlightedToken, ARRAY_VEC_SIZE>::new();
-
             let (page, head) = parse_uri(&self.url_table[idx]);
-            let excerpt = search_result_excerpt(&mut tokens, &el.doc.body, self.count, &normalized_terms);
+            let excerpt = search_result_excerpt(&el.doc.body, self.count, &normalized_terms);
             let score_bar = scoring_notation(el.score);
 
             self.add_element(&format!(
@@ -135,31 +154,37 @@ impl SearchResult {
         });
     }
 
-    fn filter(&self, terms: &str) -> Vec<ResultObject> {
-        let mut results: Vec<(ResultObject, usize)> = self
+    fn find_matches(&self, terms: &str) -> Vec<SearchResult> {
+        let mut results: Vec<ResultEntry> = self
             .store_doc
             .iter()
             .filter_map(|doc| {
                 let content = format!("{} {}", doc.title, doc.body);
                 let score = calc_score(terms, &content);
 
-                if score == 0 {
+                if score < LOWER_LIMIT_SCORE {
                     return None;
                 }
 
-                Some((
-                    ResultObject {
+                Some(ResultEntry {
+                    result: SearchResult {
                         doc: doc.clone(),
                         key: doc.id.clone(),
                         score,
                     },
-                    content.find(terms).unwrap_or(content.len()),
-                ))
+                    first_match_index: content.find(terms).unwrap_or(content.len()),
+                })
             })
             .collect();
 
-        results.sort_by(|a, b| b.0.score.cmp(&a.0.score).then_with(|| a.1.cmp(&b.1)));
-        results.into_iter().map(|(result, _)| result).take(self.limit).collect()
+        results.sort_by(|a, b| {
+            b.result
+                .score
+                .cmp(&a.result.score)
+                .then_with(|| a.first_match_index.cmp(&b.first_match_index))
+        });
+
+        results.into_iter().map(|entry| entry.result).take(self.limit).collect()
     }
 
     pub fn search(&self, terms: &str) {
@@ -168,7 +193,7 @@ impl SearchResult {
             return;
         }
 
-        let results = self.filter(terms);
+        let results = self.find_matches(terms);
 
         if results.is_empty() {
             self.header

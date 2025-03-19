@@ -1,6 +1,6 @@
 import { debounce } from './timing';
 import { tocReset } from './table-of-contents';
-import { SearchResult, marking, unmarking } from './wasm_book';
+import { Finder, marking, unmarking } from './wasm_book';
 import { loadStyleSheet } from './css-loader';
 
 const STYLE_SEARCH = 'css/search.css';
@@ -16,7 +16,7 @@ let elmPop: HTMLElement;
 let elmSearchBar: HTMLInputElement;
 let elmResults: HTMLElement;
 
-let searchResult: SearchResult;
+let finder: Finder;
 
 let focusedLi: Element;
 
@@ -80,7 +80,7 @@ const doSearchOrMarkFromUrl = (): void => {
 
 const showResults = (): void => {
   elmResults.textContent = '';
-  searchResult.search(elmSearchBar.value.trim());
+  finder.search(elmSearchBar.value.trim());
 };
 
 const debounceInputProc = debounce((_: Event) => showResults(), DEBOUNCE_DELAY_MS);
@@ -230,7 +230,7 @@ const initSearch = async (): Promise<void> => {
     const response = await fetchRequest(`${rootPath}searchindex.json`);
     const config = await response.json();
 
-    searchResult = new SearchResult(
+    finder = new Finder(
       rootPath,
       config.results_options.teaser_word_count,
       config.doc_urls,
