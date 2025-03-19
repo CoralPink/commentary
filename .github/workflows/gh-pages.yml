@@ -13,7 +13,7 @@ concurrency:
 jobs:
   test-wasm:
     name: Test Wasm
-    runs-on: macos-15
+    runs-on: macos-latest
     steps:
       - name: Checkout the repo
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
@@ -46,7 +46,7 @@ jobs:
 
   build-wasm:
     name: Build Wasm
-    runs-on: macos-15
+    runs-on: macos-latest
     needs: test-wasm
     steps:
       - name: Checkout the repo
@@ -86,7 +86,7 @@ jobs:
 
   test-js:
     name: Test JS
-    runs-on: macos-15
+    runs-on: macos-latest
     steps:
       - name: Checkout the repo
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
@@ -112,7 +112,7 @@ jobs:
 
   build-js:
     name: Build JS
-    runs-on: macos-15
+    runs-on: macos-latest
     needs: [test-js, build-wasm]
     steps:
       - name: Checkout the repo
@@ -167,7 +167,7 @@ jobs:
 
   build-scss:
     name: Build SCSS
-    runs-on: macos-15
+    runs-on: macos-latest
     steps:
       - name: Checkout the repo
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
@@ -197,7 +197,7 @@ jobs:
 
   convert-woff2:
     name: Convert WOFF2
-    runs-on: macos-15
+    runs-on: macos-latest
     steps:
       - name: Checkout the repo
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
@@ -247,7 +247,7 @@ jobs:
 
   test-mdbook-backend:
     name: Test mdBook Backend
-    runs-on: macos-15
+    runs-on: macos-latest
     steps:
       - name: Checkout the repo
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
@@ -273,7 +273,7 @@ jobs:
 
   build-and-deploy:
     name: Build and Deploy
-    runs-on: macos-15
+    runs-on: macos-latest
     if: ${{ github.ref == 'refs/heads/main' }}
     needs: [build-wasm, build-js, build-scss, convert-woff2, test-mdbook-backend]
     steps:
