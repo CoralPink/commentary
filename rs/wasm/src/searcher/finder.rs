@@ -7,9 +7,7 @@ use macros::error;
 use serde::Deserialize;
 use serde_wasm_bindgen::from_value;
 use urlencoding::encode;
-use wasm_bindgen::JsCast;
 use wasm_bindgen::prelude::*;
-use web_sys::{Element, HtmlElement, Node};
 
 pub const RESULT_ID_START: usize = 1;
 const LOWER_LIMIT_SCORE: usize = 8; //56
@@ -49,9 +47,8 @@ struct ResultEntry<'a> {
 #[wasm_bindgen]
 pub struct Finder {
     root_path: String,
-    li_element: Element,
-    parent: Element,
-    header: Element,
+    parent: web_sys::Element,
+    header: web_sys::Element,
     teaser_word_count: usize,
     url_table: Vec<String>,
     store_doc: Vec<DocObject>,
@@ -70,11 +67,6 @@ impl Finder {
     ) -> Result<Finder, JsValue> {
         let window = web_sys::window().ok_or("No global `window` exists")?;
         let document = window.document().ok_or("Should have a document on window")?;
-
-        let li_element = document.create_element("li").expect("failed: create <li>");
-
-        li_element.set_attribute("tabindex", "0").expect("failed: set tabindex");
-        li_element.set_attribute("role", "option").expect("failed: set role");
 
         let parent = document
             .get_element_by_id("searchresults")
@@ -96,7 +88,6 @@ impl Finder {
 
         Ok(Finder {
             root_path: root_path.to_string(),
-            li_element,
             parent,
             header,
             teaser_word_count,
@@ -104,35 +95,6 @@ impl Finder {
             store_doc,
             limit,
         })
-    }
-
-    fn add_element(&self, content: &str, id: usize, page: &str, score: usize) {
-        let node: Node = self
-            .li_element
-            .clone_node_with_deep(true)
-            .expect("Failed to clone node");
-
-        let cloned_element: HtmlElement = match node.dyn_into() {
-            Ok(html_element) => html_element,
-            Err(_) => {
-                macros::console_error!("Error converting Node to HtmlElement");
-                return;
-            }
-        };
-
-        cloned_element
-            .set_attribute("id", &format!("s{id}"))
-            .expect("failed: set id");
-
-        cloned_element
-            .set_attribute("aria-label", &format!("{page} {score}pt"))
-            .expect("failed: set aria-label");
-
-        cloned_element
-            .insert_adjacent_html("afterbegin", content)
-            .expect("failed: insert_adjacent_html");
-
-        self.parent.append_child(&cloned_element).expect("failed: append_child");
     }
 
     fn append_search_result(&self, results: Vec<SearchResult>, terms: &str) {
@@ -143,6 +105,7 @@ impl Finder {
 
         let mark = encode(&normalized_terms.join(" ")).into_owned();
 
+        let mut html_buffer = String::new();
         let mut id_cnt = RESULT_ID_START;
 
         results.into_iter().for_each(|el| {
@@ -158,14 +121,17 @@ impl Finder {
             let excerpt = search_result_excerpt(&el.doc.body, self.teaser_word_count, &normalized_terms);
             let score_bar = scoring_notation(el.score);
 
-            self.add_element(&format!(
-                r#"<a href="{}{}?mark={}#{}" tabindex="-1">{}</a><span aria-hidden="true">{}</span><div id="score" role="meter" aria-label="score:{}pt">{}</div>"#,
-                &self.root_path, page, mark, head, el.doc.breadcrumbs, excerpt, el.score, score_bar),
-                id_cnt, page, el.score
-            );
+            html_buffer.push_str(&format!(
+                r#"<li tabindex="0" role="option" id="s{id_cnt}" aria-label="{page} {}pt"><a href="{}{}?mark={}#{}" tabindex="-1">{}</a><span aria-hidden="true">{}</span><div id="score" role="meter" aria-label="score:{}pt">{}</div></li>"#,
+                el.score, &self.root_path, page, mark, head, el.doc.breadcrumbs, excerpt, el.score, score_bar
+            ));
 
             id_cnt += 1;
         });
+
+        self.parent
+            .insert_adjacent_html("beforeend", &html_buffer)
+            .expect("failed: insert_adjacent_html");
     }
 
     fn find_matches<'a>(&'a self, terms: &str) -> Vec<SearchResult<'a>> {
