@@ -1,7 +1,8 @@
+use crate::searcher::algo::score::calc_score;
 use crate::searcher::function::*;
 use crate::searcher::js_util::*;
-use crate::searcher::algo::score::calc_score;
 
+use html_escape::encode_safe;
 use macros::error;
 use serde::Deserialize;
 use serde_wasm_bindgen::from_value;
@@ -15,7 +16,7 @@ const LOWER_LIMIT_SCORE: usize = 8; //56
 
 const INITIAL_HEADER: &str = "2文字 (もしくは全角1文字) 以上を入力してください...";
 
-#[derive(Clone, Deserialize)]
+#[derive(Deserialize)]
 struct DocObject {
     id: String,
     title: String,
@@ -23,14 +24,25 @@ struct DocObject {
     breadcrumbs: String,
 }
 
-struct SearchResult {
-    doc: DocObject,
+impl DocObject {
+    fn sanitize(mut self) -> Self {
+        self.title = encode_safe(&self.title).into_owned();
+        self.body = encode_safe(&self.body).into_owned();
+        self.breadcrumbs = encode_safe(&self.breadcrumbs).into_owned();
+        self.id = encode_safe(&self.id).into_owned();
+
+        self
+    }
+}
+
+struct SearchResult<'a> {
+    doc: &'a DocObject,
     key: String,
     score: usize,
 }
 
-struct ResultEntry {
-    result: SearchResult,
+struct ResultEntry<'a> {
+    result: SearchResult<'a>,
     first_match_index: usize,
 }
 
@@ -40,7 +52,7 @@ pub struct Finder {
     li_element: Element,
     parent: Element,
     header: Element,
-    count: usize,
+    teaser_word_count: usize,
     url_table: Vec<String>,
     store_doc: Vec<DocObject>,
     limit: usize,
@@ -51,7 +63,7 @@ impl Finder {
     #[wasm_bindgen(constructor)]
     pub fn new(
         root_path: &str,
-        count: usize,
+        teaser_word_count: usize,
         doc_urls: JsValue,
         docs: JsValue,
         limit: usize,
@@ -77,15 +89,17 @@ impl Finder {
         let store_doc: Vec<DocObject> = convert_js_map_to_vec(docs)?
             .into_iter()
             .map(from_value)
-            .collect::<Result<_, _>>()
-            .map_err(|e| JsValue::from_str(&format!("{:?}", e)))?;
+            .collect::<Result<Vec<DocObject>, _>>()?
+            .into_iter()
+            .map(|doc| Ok(doc.sanitize()))
+            .collect::<Result<Vec<DocObject>, JsValue>>()?;
 
         Ok(Finder {
             root_path: root_path.to_string(),
             li_element,
             parent,
             header,
-            count,
+            teaser_word_count,
             url_table,
             store_doc,
             limit,
@@ -141,7 +155,7 @@ impl Finder {
             };
 
             let (page, head) = parse_uri(&self.url_table[idx]);
-            let excerpt = search_result_excerpt(&el.doc.body, self.count, &normalized_terms);
+            let excerpt = search_result_excerpt(&el.doc.body, self.teaser_word_count, &normalized_terms);
             let score_bar = scoring_notation(el.score);
 
             self.add_element(&format!(
@@ -154,7 +168,7 @@ impl Finder {
         });
     }
 
-    fn find_matches(&self, terms: &str) -> Vec<SearchResult> {
+    fn find_matches<'a>(&'a self, terms: &str) -> Vec<SearchResult<'a>> {
         let mut results: Vec<ResultEntry> = self
             .store_doc
             .iter()
@@ -166,12 +180,10 @@ impl Finder {
                     return None;
                 }
 
+                let key = doc.id.to_owned();
+
                 Some(ResultEntry {
-                    result: SearchResult {
-                        doc: doc.clone(),
-                        key: doc.id.clone(),
-                        score,
-                    },
+                    result: SearchResult { doc, key, score },
                     first_match_index: content.find(terms).unwrap_or(content.len()),
                 })
             })

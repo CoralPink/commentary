@@ -22,6 +22,7 @@ strip = "symbols"
 
 [dependencies]
 arrayvec = "=0.7.6"
+html-escape = "=0.2.13"
 js-sys = "=0.3.77"
 macros = { path = "macros" }
 serde = { version = "=1.0.219", features = ["derive"] }
