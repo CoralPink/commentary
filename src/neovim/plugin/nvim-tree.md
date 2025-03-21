@@ -589,13 +589,6 @@ on_attachが関数でない場合、nvim-tree-mappings-default が呼び出さ�
 
 ...ただ、なんか長くなってきちゃったので、例によってここで一旦区切ります。
 
-## To Be Continued...
-
-<video controls preload="none" width="1280" height="720" poster="img/hama-rikyu-thumbnail.webp">
-  <source src="img/hama-rikyu.webm" type="video/webm">
-  Your browser does not support the video/webm.
-</video>
-
 ```admonish quote title=""
 Have you never been mellow?{{footnote:
 Have You Never Been Mellow (by: [Olivia Newton-John](https://en.wikipedia.org/wiki/Olivia_Newton-John)):
@@ -610,6 +603,8 @@ Have You Never Been Mellow (by: [Olivia Newton-John](https://en.wikipedia.org/wi
 
 風に心をほどかれて やさしくなれるでしょう？
 ```
+
+## Have You Never Been Mellow
 
 ```admonish quote title=""
 Have you never tried
@@ -630,6 +625,11 @@ Just to hear your song?
 
 幸せになれたことがあるでしょう？
 ```
+
+<video controls preload="none" width="1280" height="720" poster="img/hama-rikyu-thumbnail.webp">
+  <source src="img/hama-rikyu.webm" type="video/webm">
+  Your browser does not support the video/webm.
+</video>
 
 ```admonish quote title=""
 Have you never let someone else be strong?
