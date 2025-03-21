@@ -6,44 +6,21 @@
 A File Explorer For Neovim Written In Lua
 ```
 
-これもまた、びっくりしちゃうほど機能満載でボリュームのあるプラグインなので、上下巻でお送りします✨
+これもまた、びっくりしちゃうほど機能満載でボリュームのあるプラグインなので、のんびり2本立てでお送りします✨
 
-```admonish fail title=""
-飛行機が着地を完了すると禁煙のサインが消え、天井のスピーカーから小さな音でBGMが流れはじめた。
+```admonish quote title=""
+There was a time when I was
 
-それはどこかのオーケストラが甘く演奏するビートルズの「ノルウェイの森」だった。
+In a hurry as you are
 
-そしてそのメロディーはいつものように僕を混乱させた。
+私にも焦って生きていた時期があった
 ```
 
-```admonish tip title=""
-I once had a girl
+```admonish quote title=""
+I was like you
 
-Or should I say she once had me
-
-僕にはかつて彼女がいた
-
-いや 彼女には僕がいたと言うべきか {{footnote:
-歌詞は、冒頭でほのめかされているように、Lennon が当時の妻 Cynthia に気付かれないように、他の女性と関係を持っていたことを表している。
-[Wikipedia](https://en.wikipedia.org/wiki/Norwegian_Wood_(This_Bird_Has_Flown))より
-}}
+まるであなたのように
 ```
-
-```admonish tip title=""
-She showed me her room
-
-Isn’t it good Norwegian wood?
-
-僕は彼女の部屋に招かれた
-
-いいじゃない？ ノルウェーの木かな
-```
-
-"Beatle Mania" や "Harukists" であれば「"Drive My Car"の次やから、どうせこんなん繋いでくんねやろー」なんて、容易く想像できましたね❗
-
-世間はと言えば、先日ついにタイトルが発表された、同じく村上春樹著の「街とその不確かな壁 (The City and Its Uncertain Walls)
-{{footnote:[街とその不確かな壁](https://www.shinchosha.co.jp/special/hm/): わたしはそこまで熱狂的な Harukists ではありませんが、やっぱり楽しみにしてます☺️}}
-」の話題で持ちきりですが、なんかもう逆に街から離れて森の中へ足を踏み入れていきます... 🌲
 
 ## Requirements
 
@@ -63,7 +40,8 @@ Your terminal emulator must be configured to use that font, usually "Hack Nerd F
 
 ここまでの積み重ねがあれば、もうこんなの何も気にせず進めますね😤
 
-フォントに関しては「`Hack Nerd Font`でなければダメ」みたいにも読めますが、単に`Nerd Font`を含んだフォントセットを使用していればへーきです。
+フォントに関しては "`Hack Nerd Font`でなければダメ" みたいにも読めますが、
+単に`Nerd Font`を含んだフォントセットを使用していればへーきです。
 
 これはターミナルのお話なので、もし`WezTerm`を使用しているのであれば以下の内容で通じます😉
 
@@ -143,6 +121,22 @@ Captain Marvel と呼称することがあるんですよねー。}}
 が登場してきましたね✨
 
 ここで出番があるなんて、わたしもうっかりさんでした❗
+```
+
+```admonish quote title=""
+There was a day when I just
+
+Had to tell my point of view
+
+どうしても自分の考えを伝えたくて
+
+言わずにいられない日もあった
+```
+
+```admonish quote title=""
+I was like you
+
+今のあなたのようにね
 ```
 
 ## Install & Settings
@@ -297,6 +291,12 @@ vim.api.nvim_create_user_command('Ex', function() vim.cmd.NvimTreeToggle() end, 
 
 これもやっぱり毎回同じ文言になっちゃうんですが... ぜひ色々試してみてください😆
 
+```admonish quote title=""
+Now I don't mean to make you frown
+
+ううん、そんな顔しないで
+```
+
 ## setup
 
 ~~~admonish info title=":h nvim-tree-setup"
@@ -312,6 +312,12 @@ nvim-tree を初期化するには、setup() 関数を実行する必要があ�
 
 なので、ちょこちょことわたしが使用しているパラメータ "だけ" フワ〜っと触れます。
 と言っても、これもやっぱりある程度はパラメータの名前からイメージできるはずです😆
+
+```admonish quote title=""
+No, I just want you to slow down
+
+うん、少し顔をあげてほしいだけ
+```
 
 ### sort_by
 
@@ -583,36 +589,56 @@ on_attachが関数でない場合、nvim-tree-mappings-default が呼び出さ�
 
 ...ただ、なんか長くなってきちゃったので、例によってここで一旦区切ります。
 
-```admonish fail title=""
-「あなたまさか直子のこと忘れちゃったんじゃないでしょうね？」
+## To Be Continued...
 
-「忘れやしませんよ」と笑って言った。「ただ話に引き込まれてたんです」
+<video controls preload="none" width="1280" height="720" poster="img/hama-rikyu-thumbnail.webp">
+  <source src="img/hama-rikyu.webm" type="video/webm">
+  Your browser does not support the video/webm.
+</video>
+
+```admonish quote title=""
+Have you never been mellow?{{footnote:
+Have You Never Been Mellow (by: [Olivia Newton-John](https://en.wikipedia.org/wiki/Olivia_Newton-John)):
+[John Farrar](https://en.wikipedia.org/wiki/John_Farrar)のプロデュースで書かれたこの曲は、
+1975年1月にアルバムのリードシングルとしてリリースされた。
+アメリカでは、Newton-John にとって2作連続となる[Billboard Hot 100](https://en.wikipedia.org/wiki/Billboard_Hot_100)の
+ナンバーワン・ヒットとなり、1975年3月に同チャートのトップに立った。
+このシングルは彼女の4作連続となる[全米レコード協会](https://en.wikipedia.org/wiki/Recording_Industry_Association_of_America) (RIAA)
+による[ゴールド認定](https://en.wikipedia.org/wiki/RIAA_certification)を受けた。
+[Wikipedia](https://en.wikipedia.org/wiki/Have_You_Never_Been_Mellow_(song))より
+}}
+
+風に心をほどかれて やさしくなれるでしょう？
 ```
 
-```admonish fail title=""
-「もし話のつづき聞きたいんなら明日話してあげるわよ。長い話だから一度には話せないのよ」
+```admonish quote title=""
+Have you never tried
 
-「まるでシエラザードですね」
+To find a comfort from inside you?
 
-「うん、東京に戻れなくなっちゃうわよ」と言ってレイコさんも笑った。
+心の奥から湧いてくる
+
+安らぎを感じたことがあるでしょう？
 ```
 
-## To Be Concluded...
+```admonish quote title=""
+Have you never been happy
 
-```admonish tip title=""
-We talked until two
+Just to hear your song?
 
-And then she said, "It's time for bed"
+ただ自分の歌を聴くだけで
 
-２時まで話し込んでしまった
+幸せになれたことがあるでしょう？
+```
 
-"もう寝る時間よ" と彼女は言った
+```admonish quote title=""
+Have you never let someone else be strong?
+
+誰かに そっと身を委ねられるのはあなたの強さだよ
 ```
 
 ```admonish success title="Assemble"
 なんかもうこれだけで大ボリュームでしたね...。
 
-レイコさんは明日話してくれるそうですが、わたしは明日書けるのかな...😱
-
-...下巻に続く❗
+でもまだまだ❗次回に続く...❗
 ```
