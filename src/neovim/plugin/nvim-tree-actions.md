@@ -1,35 +1,15 @@
 # nvim-tree.lua \- Actions
 
+さてさて、`nvim-tree.lua`の続きです。
+
 ```admonish quote title=""
-And when I awoke I was alone
+Why do birds suddenly appear
 
-This bird has flown
+Every time you are near?
 
-目が覚めたら 僕は一人だった
+なぜ鳥たちは 空からそっと舞い降りてくるのでしょう？
 
-小鳥は飛び去っていたんだ
-```
-
-```admonish tip title=""
-「本当に何もしてないの？」とレイコさんは僕に訊いた。
-
-「してませんよ」
-
-「つまんないわねえ」とレイコさんはつまらなそうに言った。
-
-「そうですね」と僕はコーヒーをすすりながら言った。
-```
-
-さてさて、`nvim-tree.lua`の下巻です。
-
-```admonish tip title=""
-「昨日はどこまで話したっけ？」とレイコさんが言った。
-
-「嵐の夜に岩つばめの巣をとりに険しい崖をのぼっていくところまでですね。」と僕は言った。
-```
-
-```admonish tip title=""
-「あなたって真剣な顔して冗談言うからおかしいわねえ」とレイコさんは呆れたように言った。
+あなたがそばに来るたびに
 ```
 
 ## Change the Settings
@@ -82,6 +62,35 @@ return M
 この状態で`NvimTree`を開いてみて、エラーが出ないことを確認したら、次へ進みましょう❗
 
 ![nvim-tree-no-error](img/nvim-tree-no-error.webp)
+
+```admonish quote title=""
+Just like me, they long to be
+
+Close to you{{footnote: (They Long to Be) Close to You (by [The Carpenters](https://en.wikipedia.org/wiki/The_Carpenters)):
+[Burt Bacharach](https://en.wikipedia.org/wiki/Burt_Bacharach)と[Hal David](https://en.wikipedia.org/wiki/Hal_David)によって書かれた曲で、
+初期のバージョンの一部は Cathy Steeves によって書かれた。
+
+Bacharach と David は、この曲を[Herb Alpert](https://en.wikipedia.org/wiki/Herb_Alpert)に提供したが、
+Alpert はこの曲を録音したものの、その仕上がりに満足できずリリースしなかった。
+
+その後、1969年に[Ticket to Ride](https://en.wikipedia.org/wiki/Ticket_to_Ride_(song)#The_Carpenters)で 初めてチャート入りした Carpenters のことを知った Alpert は
+彼らにこの曲を録音するよう持ちかけた。
+Richard Carpenter は、しぶしぶアレンジを考えたが、あまり乗り気ではなかった。
+
+彼はこれを自然消滅する話だろうと思っていたが、
+"Herb が本当に彼らにこの曲を歌ってほしがっている" という噂が Richard と Karen に伝わった。
+Ticket to Ride がチャート入りしたとは言え、成績自体はそこまで芳しくなく、
+レーベル内での立場が不安定だったことを考えた Ricahrd は、再びこの曲に取り組むことを決めた。
+
+そして完成したこの曲は 1971年の[グラミー賞](https://en.wikipedia.org/wiki/Grammy_Awards)
+最優秀コンテンポラリー・パフォーマンス賞 (デュオ、グループ、コーラス)を受賞。
+1970年8月12日に全米レコード協会 (RIAA) によりゴールドに認定された。
+[Wikipedia](https://en.wikipedia.org/wiki/(They_Long_to_Be)_Close_to_You)より
+}}
+私と同じ 彼らも願っているのでしょう
+
+あなたのすぐそばにいたいんだよね
+```
 
 ## Actions
 
@@ -218,6 +227,16 @@ return M
 今日のところはひとまずこれで...。
 ```
 
+```admonish quote title=""
+Why do stars fall down from the sky
+
+Every time you walk by?
+
+なぜ星たちは 夜空からそっとこぼれてくるのでしょう？
+
+あなたが通り過ぎるたびに
+```
+
 ### keymap
 
 キーマップを定義しているのは
@@ -225,6 +244,7 @@ return M
 ```lua
 local command
 ```
+
 です。
 
 コマンドに使用できる`API`は以下を参照。
@@ -298,6 +318,16 @@ This function runs when the nvim-tree buffer is created.
 
 はい、じゃあ次❗どんどん行かないとまた長くなっちゃうんで❗
 
+```admonish quote title=""
+Just like me, they long to be
+
+Close to you
+
+私と同じ 彼らも願っているのでしょう
+
+あなたのすぐそばにいたいんだよね
+```
+
 ### Recipes
 
 最初の方にある`actionsMenu`については、`nvim-tree.lua`の`wiki`で公開されているコードを好き勝手やらせてもらってます😅
@@ -352,6 +382,26 @@ local function actionsMenu(nd)
 
 もう`telescope`の操作説明は不要ですね。項目を選べばちゃんと登録された内容が実行されます☺️
 
+```admonish quote title=""
+On the day that you were born, the angels got together
+
+And decided to create a dream come true
+
+あなたの生まれる日
+
+天使たちは集まって ひとつの夢を贈ろうと決めた
+```
+
+```admonish quote title=""
+So they sprinkled moon dust in your hair of gold
+
+And starlight in your eyes of blue
+
+金の髪には月のきらめき
+
+青い瞳は星の光
+```
+
 ### Mouse Using
 
 最後にもう一個だけ。`local command`の中にこんなのがいましたね。
@@ -393,56 +443,35 @@ Using the mouse                                         mouse-using
 ```
 ~~~
 
-## ( ...The End ? )
+```admonish quote title=""
+That is why all the girls in town
+
+Follow you all around
+
+だから街じゅうの女の子たちは
+
+みんな あなたに夢中なんだよ
+```
+
+## The End
 
 ```admonish quote title=""
-So I lit a fire
+Just like me, they long to be
 
-Isn’t it good Norwegian wood?
+Close to you
 
-だから僕は火をつけてやった
+私と同じ 彼女たちも願っているのでしょう
 
-いいじゃない？ ノルウェーの木だもんな{{footnote:
-Paul McCartney は曲の最後の節についてコメントをしている。
-「僕らの考えでは、あの男は何らかの復讐をしなければならなかった。
-"暖を取るために火をつけた" という意味でもよかったし、"彼女の家の装飾は素晴らしかった" で終わっても良かった。
-でもそうじゃなくて、復讐のためにクソみたいな場所を燃やして、それをそのままにして楽器屋に行ったってことなんだ」
-[en.wikipedia.org](https://en.wikipedia.org/wiki/Norwegian_Wood_(This_Bird_Has_Flown))より
-}}
+あなたのすぐそばにいたいんだもの
 ```
 
-いや〜...、それで締めると BAD END みたいになっちゃうんで...😿
-
-## The End !!
-
-```admonish tip title=""
-スチュワーデスがやってきて、僕の隣りに腰を下ろし、もう大丈夫かと訊ねた。
-
-「大丈夫です、ありがとう。ちょっと哀しくなっただけだから。
-(It's all right now, thank you. I only felt lonely, you know.)」
-
-と僕は言って微笑んだ。
-```
-
-```admonish tip title=""
-「Well, I feel same way, same thing, one in a while. I know what you mean.
-(そういうこと私にもときどきありますよ。よくわかります)」
-
-彼女はそう言って首を振り、席から立ち上がってとても素敵な笑顔を僕に向けてくれた。
-```
-
-```admonish tip title=""
-「I hope you'll have a nice trip. Auf Wiedersehen! (よい御旅行を。さようなら)」
-
-「Auf Wiedersehen!」と僕も言った。
-```
+<video controls preload="none" width="1280" height="720" poster="img/ueno-park-thumbnail.webp">
+  <source src="img/ueno-park.webm" type="video/webm">
+  Your browser does not support the video/webm.
+</video>
 
 ```admonish success title="Assemble"
-いいじゃない❓"ノルウェイの森"。
-
 次回からは、いよいよ`LSP`を取り上げていきます...❗
 
-桜が満開になった頃にまたお会いしましょう🌸
-
-よい春を🌸 Auf Wiedersehen! 🤗
+桜が満開になった頃にまたお会いしましょう🌸 よい春を🤗
 ```
