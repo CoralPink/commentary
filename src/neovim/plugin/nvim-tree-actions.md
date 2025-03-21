@@ -82,11 +82,12 @@ Richard Carpenter は、しぶしぶアレンジを考えたが、あまり乗�
 Ticket to Ride がチャート入りしたとは言え、成績自体はそこまで芳しくなく、
 レーベル内での立場が不安定だったことを考えた Ricahrd は、再びこの曲に取り組むことを決めた。
 
-そして完成したこの曲は 1971年の[グラミー賞](https://en.wikipedia.org/wiki/Grammy_Awards)
-最優秀コンテンポラリー・パフォーマンス賞 (デュオ、グループ、コーラス)を受賞。
-1970年8月12日に全米レコード協会 (RIAA) によりゴールドに認定された。
+そして完成したこの曲は 1970年8月12日に全米レコード協会 (RIAA) によりゴールドに認定され、
+1971年の[グラミー賞](https://en.wikipedia.org/wiki/Grammy_Awards)では
+最優秀コンテンポラリー・パフォーマンス賞 (デュオ、グループ、コーラス)を受賞した。
 [Wikipedia](https://en.wikipedia.org/wiki/(They_Long_to_Be)_Close_to_You)より
 }}
+
 私と同じ 彼らも願っているのでしょう
 
 あなたのすぐそばにいたいんだよね
@@ -397,7 +398,7 @@ So they sprinkled moon dust in your hair of gold
 
 And starlight in your eyes of blue
 
-金の髪には月のきらめき
+金の髪に月のきらめき
 
 青い瞳は星の光
 ```
@@ -453,7 +454,7 @@ Follow you all around
 みんな あなたに夢中なんだよ
 ```
 
-## The End
+## (They Long to Be) Close to You
 
 ```admonish quote title=""
 Just like me, they long to be
