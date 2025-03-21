@@ -87,7 +87,7 @@
     - [telescope-all-recent](neovim/plugin/telescope-all-recent.md)
   - [nvim-tree.lua](neovim/plugin/nvim-tree.md)
     - [Actions](neovim/plugin/nvim-tree-actions.md)
-      - [(Extra) for Nvim 0.10](neovim/plugin/nvim-tree-actions-tip.md)
+      - [Tips (vim.iter)](neovim/plugin/nvim-tree-actions-tip.md)
 
 - [Language Server Protocol](neovim/lsp/language-server-protocol.md)
   - [nvim-lspconfig](neovim/lsp/nvim-lspconfig.md)
