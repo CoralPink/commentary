@@ -84,32 +84,13 @@
       <main>
         <article id="article">
           <h1 id="nvim-treelua---actions"><a class="header" href="#nvim-treelua---actions">nvim-tree.lua - Actions</a></h1>
+<p>さてさて、<code>nvim-tree.lua</code>の続きです。</p>
 <div id="admonition-default" class="admonition admonish-quote" role="note">
 <div>
-<p>And when I awoke I was alone</p>
-<p>This bird has flown</p>
-<p>目が覚めたら 僕は一人だった</p>
-<p>小鳥は飛び去っていたんだ</p>
-</div>
-</div>
-<div id="admonition-default-1" class="admonition admonish-tip" role="note">
-<div>
-<p>「本当に何もしてないの？」とレイコさんは僕に訊いた。</p>
-<p>「してませんよ」</p>
-<p>「つまんないわねえ」とレイコさんはつまらなそうに言った。</p>
-<p>「そうですね」と僕はコーヒーをすすりながら言った。</p>
-</div>
-</div>
-<p>さてさて、<code>nvim-tree.lua</code>の下巻です。</p>
-<div id="admonition-default-2" class="admonition admonish-tip" role="note">
-<div>
-<p>「昨日はどこまで話したっけ？」とレイコさんが言った。</p>
-<p>「嵐の夜に岩つばめの巣をとりに険しい崖をのぼっていくところまでですね。」と僕は言った。</p>
-</div>
-</div>
-<div id="admonition-default-3" class="admonition admonish-tip" role="note">
-<div>
-<p>「あなたって真剣な顔して冗談言うからおかしいわねえ」とレイコさんは呆れたように言った。</p>
+<p>Why do birds suddenly appear</p>
+<p>Every time you are near?</p>
+<p>なぜ鳥たちは 空からそっと舞い降りてくるのでしょう？</p>
+<p>あなたがそばに来るたびに</p>
 </div>
 </div>
 <h2 id="change-the-settings"><a class="header" href="#change-the-settings">Change the Settings</a></h2>
@@ -180,6 +161,14 @@ return M
 </div>
 <p>この状態で<code>NvimTree</code>を開いてみて、エラーが出ないことを確認したら、次へ進みましょう❗</p>
 <img src="img/nvim-tree-no-error.webp" alt="nvim-tree-no-error" width="1512" height="1200" decoding="async">
+<div id="admonition-default-1" class="admonition admonish-quote" role="note">
+<div>
+<p>Just like me, they long to be</p>
+<p>Close to you<sup class="ft-reference"><a name="to-ft-1" href="#ft-1">1</a></sup>
+私と同じ 彼らも願っているのでしょう</p>
+<p>あなたのすぐそばにいたいんだよね</p>
+</div>
+</div>
 <h2 id="actions"><a class="header" href="#actions">Actions</a></h2>
 <p>で、早速<code>nvim-tree-actions.lua</code>をこんなんします。</p>
 <p>もう先に全部載せちゃいますが、あとで補足します。</p>
@@ -325,6 +314,14 @@ return M
 今日のところはひとまずこれで...。</p>
 </div>
 </div>
+<div id="admonition-default-2" class="admonition admonish-quote" role="note">
+<div>
+<p>Why do stars fall down from the sky</p>
+<p>Every time you walk by?</p>
+<p>なぜ星たちは 夜空からそっとこぼれてくるのでしょう？</p>
+<p>あなたが通り過ぎるたびに</p>
+</div>
+</div>
 <h3 id="keymap"><a class="header" href="#keymap">keymap</a></h3>
 <p>キーマップを定義しているのは</p>
 <pre><code class="language-lua">local command
@@ -407,6 +404,14 @@ end
 <img src="img/nvim-tree-filter.webp" alt="nvim-tree-filter" width="1512" height="1200" loading="lazy">
 <p>"FILTER" の入力欄が現れましたね。ちゃんと動いてます😉</p>
 <p>はい、じゃあ次❗どんどん行かないとまた長くなっちゃうんで❗</p>
+<div id="admonition-default-3" class="admonition admonish-quote" role="note">
+<div>
+<p>Just like me, they long to be</p>
+<p>Close to you</p>
+<p>私と同じ 彼らも願っているのでしょう</p>
+<p>あなたのすぐそばにいたいんだよね</p>
+</div>
+</div>
 <h3 id="recipes"><a class="header" href="#recipes">Recipes</a></h3>
 <p>最初の方にある<code>actionsMenu</code>については、<code>nvim-tree.lua</code>の<code>wiki</code>で公開されているコードを好き勝手やらせてもらってます😅</p>
 <div id="admonition-creating-an-actions-menu-using-telescopehttpsgithubcomnvim-treenvim-treeluawikirecipescreating-an-actions-menu-using-telescope" class="admonition admonish-info" role="note" aria-labelledby="admonition-creating-an-actions-menu-using-telescopehttpsgithubcomnvim-treenvim-treeluawikirecipescreating-an-actions-menu-using-telescope-title">
@@ -450,6 +455,22 @@ createTreeActions()
 <p>こんなん出ました❗</p>
 <img src="img/nvim-tree-menu-action.webp" alt="nvim-tree-menu-action" width="1512" height="1200" loading="lazy">
 <p>もう<code>telescope</code>の操作説明は不要ですね。項目を選べばちゃんと登録された内容が実行されます☺️</p>
+<div id="admonition-default-4" class="admonition admonish-quote" role="note">
+<div>
+<p>On the day that you were born, the angels got together</p>
+<p>And decided to create a dream come true</p>
+<p>あなたの生まれる日</p>
+<p>天使たちは集まって ひとつの夢を贈ろうと決めた</p>
+</div>
+</div>
+<div id="admonition-default-5" class="admonition admonish-quote" role="note">
+<div>
+<p>So they sprinkled moon dust in your hair of gold</p>
+<p>And starlight in your eyes of blue</p>
+<p>金の髪には月のきらめき</p>
+<p>青い瞳は星の光</p>
+</div>
+</div>
 <h3 id="mouse-using"><a class="header" href="#mouse-using">Mouse Using</a></h3>
 <p>最後にもう一個だけ。<code>local command</code>の中にこんなのがいましたね。</p>
 <pre><code class="language-lua">{ '&lt;2-LeftMouse&gt;',  node.open.edit,        'Open' },
@@ -504,38 +525,27 @@ Win32とxterm用です。 テキストを選択する場合、更にクリック
 </code></pre>
 </div>
 </div>
-<h2 id="-the-end--"><a class="header" href="#-the-end--">( ...The End ? )</a></h2>
-<div id="admonition-default-4" class="admonition admonish-quote" role="note">
+<div id="admonition-default-6" class="admonition admonish-quote" role="note">
 <div>
-<p>So I lit a fire</p>
-<p>Isn’t it good Norwegian wood?</p>
-<p>だから僕は火をつけてやった</p>
-<p>いいじゃない？ ノルウェーの木だもんな<sup class="ft-reference"><a name="to-ft-1" href="#ft-1">1</a></sup></p>
+<p>That is why all the girls in town</p>
+<p>Follow you all around</p>
+<p>だから街じゅうの女の子たちは</p>
+<p>みんな あなたに夢中なんだよ</p>
 </div>
 </div>
-<p>いや〜...、それで締めると BAD END みたいになっちゃうんで...😿</p>
-<h2 id="the-end-"><a class="header" href="#the-end-">The End !!</a></h2>
-<div id="admonition-default-5" class="admonition admonish-tip" role="note">
+<h2 id="the-end"><a class="header" href="#the-end">The End</a></h2>
+<div id="admonition-default-7" class="admonition admonish-quote" role="note">
 <div>
-<p>スチュワーデスがやってきて、僕の隣りに腰を下ろし、もう大丈夫かと訊ねた。</p>
-<p>「大丈夫です、ありがとう。ちょっと哀しくなっただけだから。
-(It's all right now, thank you. I only felt lonely, you know.)」</p>
-<p>と僕は言って微笑んだ。</p>
+<p>Just like me, they long to be</p>
+<p>Close to you</p>
+<p>私と同じ 彼女たちも願っているのでしょう</p>
+<p>あなたのすぐそばにいたいんだもの</p>
 </div>
 </div>
-<div id="admonition-default-6" class="admonition admonish-tip" role="note">
-<div>
-<p>「Well, I feel same way, same thing, one in a while. I know what you mean.
-(そういうこと私にもときどきありますよ。よくわかります)」</p>
-<p>彼女はそう言って首を振り、席から立ち上がってとても素敵な笑顔を僕に向けてくれた。</p>
-</div>
-</div>
-<div id="admonition-default-7" class="admonition admonish-tip" role="note">
-<div>
-<p>「I hope you'll have a nice trip. Auf Wiedersehen! (よい御旅行を。さようなら)」</p>
-<p>「Auf Wiedersehen!」と僕も言った。</p>
-</div>
-</div>
+<video controls preload="none" width="1280" height="720" poster="img/ueno-park-thumbnail.webp">
+  <source src="img/ueno-park.webm" type="video/webm">
+  Your browser does not support the video/webm.
+</video>
 <div id="admonition-assemble" class="admonition admonish-success" role="note" aria-labelledby="admonition-assemble-title">
 <div class="admonition-title">
 <div id="admonition-assemble-title">
@@ -544,18 +554,27 @@ Win32とxterm用です。 テキストを選択する場合、更にクリック
 <a class="admonition-anchor-link" href="#admonition-assemble"></a>
 </div>
 <div>
-<p>いいじゃない❓"ノルウェイの森"。</p>
 <p>次回からは、いよいよ<code>LSP</code>を取り上げていきます...❗</p>
-<p>桜が満開になった頃にまたお会いしましょう🌸</p>
-<p>よい春を🌸 Auf Wiedersehen! 🤗</p>
+<p>桜が満開になった頃にまたお会いしましょう🌸 よい春を🤗</p>
 </div>
 </div>
 <aside class="ft-definition" role="doc-footnote" id="ft-1">
-<p><sup><a href="#to-ft-1">1:</a></sup>Paul McCartney は曲の最後の節についてコメントをしている。
-「僕らの考えでは、あの男は何らかの復讐をしなければならなかった。
-"暖を取るために火をつけた" という意味でもよかったし、"彼女の家の装飾は素晴らしかった" で終わっても良かった。
-でもそうじゃなくて、復讐のためにクソみたいな場所を燃やして、それをそのままにして楽器屋に行ったってことなんだ」
-<a href="https://en.wikipedia.org/wiki/Norwegian_Wood_(This_Bird_Has_Flown)">en.wikipedia.org</a>より</p>
+<p><sup><a href="#to-ft-1">1:</a></sup>(They Long to Be) Close to You (by <a href="https://en.wikipedia.org/wiki/The_Carpenters">The Carpenters</a>):
+<a href="https://en.wikipedia.org/wiki/Burt_Bacharach">Burt Bacharach</a>と<a href="https://en.wikipedia.org/wiki/Hal_David">Hal David</a>によって書かれた曲で、
+初期のバージョンの一部は Cathy Steeves によって書かれた。</p>
+<p>Bacharach と David は、この曲を<a href="https://en.wikipedia.org/wiki/Herb_Alpert">Herb Alpert</a>に提供したが、
+Alpert はこの曲を録音したものの、その仕上がりに満足できずリリースしなかった。</p>
+<p>その後、1969年に<a href="https://en.wikipedia.org/wiki/Ticket_to_Ride_(song)#The_Carpenters">Ticket to Ride</a>で 初めてチャート入りした Carpenters のことを知った Alpert は
+彼らにこの曲を録音するよう持ちかけた。
+Richard Carpenter は、しぶしぶアレンジを考えたが、あまり乗り気ではなかった。</p>
+<p>彼はこれを自然消滅する話だろうと思っていたが、
+"Herb が本当に彼らにこの曲を歌ってほしがっている" という噂が Richard と Karen に伝わった。
+Ticket to Ride がチャート入りしたとは言え、成績自体はそこまで芳しくなく、
+レーベル内での立場が不安定だったことを考えた Ricahrd は、再びこの曲に取り組むことを決めた。</p>
+<p>そして完成したこの曲は 1971年の<a href="https://en.wikipedia.org/wiki/Grammy_Awards">グラミー賞</a>
+最優秀コンテンポラリー・パフォーマンス賞 (デュオ、グループ、コーラス)を受賞。
+1970年8月12日に全米レコード協会 (RIAA) によりゴールドに認定された。
+<a href="https://en.wikipedia.org/wiki/(They_Long_to_Be)_Close_to_You">Wikipedia</a>より</p>
 </aside>
 
           <nav id="nav-wrapper" aria-label="Page navigation">
@@ -563,8 +582,8 @@ Win32とxterm用です。 テキストを選択する場合、更にクリック
               <div class="icon-prev fa-icon"></div>
               nvim-tree.lua
             </a>
-            <a rel="next" href="../../neovim/plugin/nvim-tree-actions-tip.html" class="chapters" id="next" aria-label="Next chapter: (Extra) for Nvim 0.10">
-              (Extra) for Nvim 0.10
+            <a rel="next" href="../../neovim/plugin/nvim-tree-actions-tip.html" class="chapters" id="next" aria-label="Next chapter: Tips (vim.iter)">
+              Tips (vim.iter)
               <div class="icon-next fa-icon"></div>
             </a>
           </nav>
