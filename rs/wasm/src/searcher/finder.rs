@@ -1,3 +1,7 @@
+/// The finder module provides WebAssembly-based search functionality.
+/// It includes methods for initializing the searcher, executing searches,
+/// and rendering search results in the DOM.
+
 use crate::searcher::algo::score::calc_score;
 use crate::searcher::function::*;
 use crate::searcher::js_util::*;

@@ -19,12 +19,10 @@ struct HighlightedToken {
 }
 
 pub fn is_full_width_or_ascii(s: &str) -> bool {
-    if let Some(c) = s.chars().next() {
+    s.chars().all(|c| {
         let code = c as u32;
         code <= 127 || (0xFF01..=0xFF5E).contains(&code)
-    } else {
-        false
-    }
+    })
 }
 
 pub fn parse_uri(link_uri: &str) -> (&str, &str) {

@@ -1,7 +1,7 @@
 //! The scoring algorithm is inspired by
 //! [junegunn/fzf](https://github.com/junegunn/fzf/blob/923c3a814de39ff906d675834af634252b3d2b3f/src/algo/algo.go).
 //!
-//!...Though it's not a perfect replica, to be honest.
+//! ...Though it's not a perfect replica, to be honest.
 //! Sincere thanks to junegunn!
 pub mod score {
     const SCORE_MATCH: isize = 16;
