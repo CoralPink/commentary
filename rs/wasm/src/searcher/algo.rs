@@ -5,28 +5,40 @@
 //! Sincere thanks to junegunn!
 //!
 pub mod score {
+    // Base score for a matching character
     const SCORE_MATCH: isize = 16;
+    // Penalty for starting a gap between matches
     const SCORE_GAP_START: isize = -3;
+    // Penalty for each character in a gap
     const SCORE_GAP_EXTENSION: isize = -1;
 
+    // Bonus for matches at word boundaries
     const BONUS_BOUNDARY: isize = SCORE_MATCH / 2;
+    // Bonus for matches after non-alphanumeric characters
     const BONUS_NON_WORD: isize = SCORE_MATCH / 2;
+    // Bonus for matches in camelCase or snake_case transitions
     const BONUS_CAMEL123: isize = BONUS_BOUNDARY + SCORE_GAP_EXTENSION;
+    // Bonus for consecutive matches
     const BONUS_CONSECUTIVE: isize = -(SCORE_GAP_START + SCORE_GAP_EXTENSION);
+    // Multiplier for the first matching character
     const BONUS_FIRST_CHAR_MULTIPLIER: isize = 2;
 
+    // Bonus for matches after whitespace
     const BONUS_WHITESPACE: isize = BONUS_BOUNDARY + 2;
+    // Bonus for matches after delimiters like '/' or ':'
     const BONUS_DELIMITER: isize = BONUS_BOUNDARY + 1;
 
+    // Bonus matrix for transitions between different character classes
+    // Higher values indicate more significant word boundaries
     const BONUS_MATRIX: [[isize; 6]; 6] = [
         // Prev: Whitespace, Delimiter, Lowercase, Uppercase, Digit, Other
         /* Curr: */
         [0, 0, 0, 0, 0, 0],  // Whitespace
         [0, 0, 0, 0, 0, 0],  // Delimiter
-        [10, 5, 0, 0, 0, 0], // Lowercase
-        [12, 6, 6, 0, 0, 0], // Uppercase
-        [8, 4, 0, 0, 0, 0],  // Digit
-        [5, 3, 0, 0, 0, 0],  // Other
+        [10, 5, 0, 0, 0, 0], // Lowercase (high bonus after space/delimiter)
+        [12, 6, 6, 0, 0, 0], // Uppercase (highest bonus for camelCase and PascalCase)
+        [8, 4, 0, 0, 0, 0],  // Digit (medium bonus after space/delimiter)
+        [5, 3, 0, 0, 0, 0],  // Other (small bonus after space/delimiter)
     ];
 
     // Define a common set of delimiters used throughout the module

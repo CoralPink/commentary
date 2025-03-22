@@ -160,61 +160,61 @@ impl Finder {
         results.into_iter().map(|entry| entry.result).take(self.limit).collect()
     }
 
-pub fn search(&self, terms: &str) {
-    let trimmed_terms = terms.trim();
-    let is_ascii = is_full_width_or_ascii(terms);
+    pub fn search(&self, terms: &str) {
+        let trimmed_terms = terms.trim();
+        let is_ascii = is_full_width_or_ascii(terms);
 
-    if trimmed_terms.is_empty() || (trimmed_terms.len() <= 1 && !is_ascii) {
-        self.header.set_text_content(Some(INITIAL_HEADER));
-        return;
-    }
-
-    // Split the search terms by whitespace
-    let term_tokens: Vec<&str> = trimmed_terms.split_whitespace().collect();
-
-    let minimum_score = if is_ascii {
-        SCORE_LOWER_LIMIT
-    } else {
-        SCORE_LOWER_LIMIT_ASCII
-    };
-
-    // If there are multiple tokens, search for each one separately
-    let results = if term_tokens.len() > 1 {
-        // Get results for each token
-        let mut all_results = Vec::new();
-        for token in &term_tokens {
-            all_results.extend(self.find_matches(token, minimum_score));
+        if trimmed_terms.is_empty() || (trimmed_terms.len() <= 1 && !is_ascii) {
+            self.header.set_text_content(Some(INITIAL_HEADER));
+            return;
         }
-        
-        // Sort and deduplicate results based on doc.id
-        all_results.sort_by(|a, b| b.score.cmp(&a.score));
-        let mut deduplicated = Vec::new();
-        let mut seen_ids = std::collections::HashSet::new();
-        
-        for result in all_results {
-            if seen_ids.insert(&result.doc.id) {
-                deduplicated.push(result);
-                if deduplicated.len() >= self.limit {
-                    break;
+
+        // Split the search terms by whitespace
+        let term_tokens: Vec<&str> = trimmed_terms.split_whitespace().collect();
+
+        let minimum_score = if is_ascii {
+            SCORE_LOWER_LIMIT
+        } else {
+            SCORE_LOWER_LIMIT_ASCII
+        };
+
+        // If there are multiple tokens, search for each one separately
+        let results = if term_tokens.len() > 1 {
+            // Get results for each token
+            let mut all_results = Vec::new();
+            for token in &term_tokens {
+                all_results.extend(self.find_matches(token, minimum_score));
+            }
+
+            // Sort and deduplicate results based on doc.id
+            all_results.sort_by(|a, b| b.score.cmp(&a.score));
+            let mut deduplicated = Vec::new();
+            let mut seen_ids = std::collections::HashSet::new();
+
+            for result in all_results {
+                if seen_ids.insert(&result.doc.id) {
+                    deduplicated.push(result);
+                    if deduplicated.len() >= self.limit {
+                        break;
+                    }
                 }
             }
+            deduplicated
+        } else if !term_tokens.is_empty() {
+            self.find_matches(term_tokens[0], minimum_score)
+        } else {
+            Vec::new()
+        };
+
+        if results.is_empty() {
+            self.header
+                .set_text_content(Some(&format!("No search result for : {trimmed_terms}")));
+            return;
         }
-        deduplicated
-    } else if !term_tokens.is_empty() {
-        self.find_matches(term_tokens[0], minimum_score)
-    } else {
-        Vec::new()
-    };
 
-    if results.is_empty() {
         self.header
-            .set_text_content(Some(&format!("No search result for : {trimmed_terms}")));
-        return;
+            .set_text_content(Some(&format!("{} search results for : {trimmed_terms}", results.len())));
+
+        self.append_search_result(results, trimmed_terms);
     }
-
-    self.header
-        .set_text_content(Some(&format!("{} search results for : {trimmed_terms}", results.len())));
-
-    self.append_search_result(results, trimmed_terms);
-}
 }
