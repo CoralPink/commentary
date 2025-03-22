@@ -3,7 +3,7 @@
 /// It includes methods for initializing the searcher, executing searches,
 /// and rendering search results in the DOM.
 ///
-use crate::searcher::algo::score::calc_score;
+use crate::searcher::algo::score;
 use crate::searcher::function::*;
 use crate::searcher::js_util::*;
 
@@ -134,7 +134,7 @@ impl Finder {
             .iter()
             .filter_map(|doc| {
                 let content = format!("{} {}", doc.title, doc.body);
-                let score = calc_score(terms, &content);
+                let score = score::compute(terms, &content);
 
                 if score < minimum_score {
                     return None;
