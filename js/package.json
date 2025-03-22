@@ -1,6 +1,5 @@
 {
   "dependencies": {
-    "fzf": "0.5.2",
     "terser": "5.39.0"
   },
   "devDependencies": {
