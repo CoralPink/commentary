@@ -65,15 +65,33 @@ pub mod score {
         BONUS_MATRIX[prev_idx][curr_idx]
     }
 
-    fn boundary_bonus(curr: char, prev: Option<char>) -> isize {
-        match prev {
-            Some(p) if p.is_whitespace() => BONUS_WHITESPACE, // after a blank space
-            Some('/' | ':' | ';' | ',') => BONUS_DELIMITER,   //After the delimiter
-            Some(p) if p.is_lowercase() && curr.is_uppercase() => BONUS_CAMEL123, // Camel case boundaries
-            Some(p) if !p.is_alphanumeric() => BONUS_NON_WORD, // after the symbol
-            _ => 0,
-        }
+// Define a common set of delimiters used throughout the module
+const DELIMITERS: [char; 4] = ['/', ':', ';', ','];
+
+fn is_delimiter(c: char) -> bool {
+    DELIMITERS.contains(&c)
+}
+
+fn classify_char(c: char) -> CharClass {
+    if c.is_whitespace() {
+        CharClass::Whitespace
+    } else if is_delimiter(c) {
+        CharClass::Delimiter
+    } else if c.is_ascii_lowercase() {
+        CharClass::Lowercase
+    // ... rest of the function remains the same
     }
+}
+
+fn boundary_bonus(curr: char, prev: Option<char>) -> isize {
+    match prev {
+        Some(p) if p.is_whitespace() => BONUS_WHITESPACE, // after a blank space
+        Some(p) if is_delimiter(p) => BONUS_DELIMITER,    // After the delimiter
+        Some(p) if p.is_lowercase() && curr.is_uppercase() => BONUS_CAMEL123, // Camel case boundaries
+        Some(p) if !p.is_alphanumeric() => BONUS_NON_WORD, // after the symbol
+        _ => 0,
+    }
+}
 
     pub fn compute(query: &str, text: &str) -> usize {
         let mut score: isize = 0;
