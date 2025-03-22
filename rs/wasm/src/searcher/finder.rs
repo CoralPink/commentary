@@ -1,7 +1,8 @@
+///
 /// The finder module provides WebAssembly-based search functionality.
 /// It includes methods for initializing the searcher, executing searches,
 /// and rendering search results in the DOM.
-
+///
 use crate::searcher::algo::score::calc_score;
 use crate::searcher::function::*;
 use crate::searcher::js_util::*;
@@ -13,8 +14,8 @@ use serde_wasm_bindgen::from_value;
 use urlencoding::encode;
 use wasm_bindgen::prelude::*;
 
-pub const RESULT_ID_START: usize = 1;
-const LOWER_LIMIT_SCORE: usize = 8; //56
+const SCORE_LOWER_LIMIT: usize = 64;
+const SCORE_LOWER_LIMIT_ASCII: usize = 1;
 
 const INITIAL_HEADER: &str = "2文字 (もしくは全角1文字) 以上を入力してください...";
 
@@ -53,7 +54,6 @@ pub struct Finder {
     root_path: String,
     parent: web_sys::Element,
     header: web_sys::Element,
-    teaser_word_count: usize,
     url_table: Vec<String>,
     store_doc: Vec<DocObject>,
     limit: usize,
@@ -62,13 +62,7 @@ pub struct Finder {
 #[wasm_bindgen]
 impl Finder {
     #[wasm_bindgen(constructor)]
-    pub fn new(
-        root_path: &str,
-        teaser_word_count: usize,
-        doc_urls: JsValue,
-        docs: JsValue,
-        limit: usize,
-    ) -> Result<Finder, JsValue> {
+    pub fn new(root_path: &str, doc_urls: JsValue, docs: JsValue, limit: usize) -> Result<Finder, JsValue> {
         let window = web_sys::window().ok_or("No global `window` exists")?;
         let document = window.document().ok_or("Should have a document on window")?;
 
@@ -90,11 +84,10 @@ impl Finder {
             .map(|doc| Ok(doc.sanitize()))
             .collect::<Result<Vec<DocObject>, JsValue>>()?;
 
-        Ok(Finder {
+        Ok(Self {
             root_path: root_path.to_string(),
             parent,
             header,
-            teaser_word_count,
             url_table,
             store_doc,
             limit,
@@ -110,7 +103,6 @@ impl Finder {
         let mark = encode(&normalized_terms.join(" ")).into_owned();
 
         let mut html_buffer = String::new();
-        let mut id_cnt = RESULT_ID_START;
 
         results.into_iter().for_each(|el| {
             let idx = match el.key.parse::<usize>() {
@@ -122,15 +114,13 @@ impl Finder {
             };
 
             let (page, head) = parse_uri(&self.url_table[idx]);
-            let excerpt = search_result_excerpt(&el.doc.body, self.teaser_word_count, &normalized_terms);
+            let excerpt = search_result_excerpt(&el.doc.body, &normalized_terms);
             let score_bar = scoring_notation(el.score);
 
             html_buffer.push_str(&format!(
-                r#"<li tabindex="0" role="option" id="s{id_cnt}" aria-label="{page} {}pt"><a href="{}{}?mark={}#{}" tabindex="-1">{}</a><span aria-hidden="true">{}</span><div id="score" role="meter" aria-label="score:{}pt">{}</div></li>"#,
-                el.score, &self.root_path, page, mark, head, el.doc.breadcrumbs, excerpt, el.score, score_bar
+                r#"<li tabindex="0" role="option" id="s{}" aria-label="{} {}pt"><a href="{}{}?mark={}#{}" tabindex="-1">{}</a><span aria-hidden="true">{}</span><div id="score" role="meter" aria-label="score:{}pt">{}</div></li>"#,
+                el.doc.id, page, el.score, &self.root_path, page, mark, head, el.doc.breadcrumbs, excerpt, el.score, score_bar
             ));
-
-            id_cnt += 1;
         });
 
         self.parent
@@ -138,7 +128,7 @@ impl Finder {
             .expect("failed: insert_adjacent_html");
     }
 
-    fn find_matches<'a>(&'a self, terms: &str) -> Vec<SearchResult<'a>> {
+    fn find_matches<'a>(&'a self, terms: &str, minimum_score: usize) -> Vec<SearchResult<'a>> {
         let mut results: Vec<ResultEntry> = self
             .store_doc
             .iter()
@@ -146,7 +136,7 @@ impl Finder {
                 let content = format!("{} {}", doc.title, doc.body);
                 let score = calc_score(terms, &content);
 
-                if score < LOWER_LIMIT_SCORE {
+                if score < minimum_score {
                     return None;
                 }
 
@@ -164,18 +154,27 @@ impl Finder {
                 .score
                 .cmp(&a.result.score)
                 .then_with(|| a.first_match_index.cmp(&b.first_match_index))
+                .then_with(|| a.result.doc.id.cmp(&b.result.doc.id))
         });
 
         results.into_iter().map(|entry| entry.result).take(self.limit).collect()
     }
 
     pub fn search(&self, terms: &str) {
-        if terms.is_empty() || (terms.len() <= 1 && is_full_width_or_ascii(terms)) {
+        let is_ascii = is_full_width_or_ascii(terms);
+
+        if terms.is_empty() || (terms.len() <= 1 && !is_ascii) {
             self.header.set_text_content(Some(INITIAL_HEADER));
             return;
         }
 
-        let results = self.find_matches(terms);
+        let minimum_score = if is_ascii {
+            SCORE_LOWER_LIMIT
+        } else {
+            SCORE_LOWER_LIMIT_ASCII
+        };
+
+        let results = self.find_matches(terms, minimum_score);
 
         if results.is_empty() {
             self.header

@@ -236,7 +236,6 @@ const initSearch = async (): Promise<void> => {
 
     finder = new Finder(
       rootPath,
-      config.results_options.teaser_word_count,
       config.doc_urls,
       config.index.documentStore.docs,
       config.results_options.limit_results,
