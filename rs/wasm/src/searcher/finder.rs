@@ -173,7 +173,10 @@ impl Finder {
         results.into_iter().map(|entry| entry.result).take(self.limit).collect()
     }
 
-    fn aggregate_results(&self, term_tokens: &[&str], trimmed_terms: &str, minimum_score: usize) -> Vec<SearchResult> {
+    fn aggregate_results(&self, terms: &str, minimum_score: usize) -> Vec<SearchResult> {
+        let trimmed_terms = terms.trim();
+        let term_tokens: Vec<&str> = trimmed_terms.split_whitespace().collect();
+
         if term_tokens.len() == 1 {
             return self.find_matches(term_tokens[0], None);
         }
@@ -219,32 +222,28 @@ impl Finder {
     }
 
     pub fn search(&self, terms: &str) {
-        let trimmed_terms = terms.trim();
-        let is_ascii = is_full_width_or_ascii(trimmed_terms);
-
-        if trimmed_terms.is_empty() || (trimmed_terms.len() <= 1 && !is_ascii) {
+        if terms.len() <= 1 {
             self.header.set_text_content(Some(INITIAL_HEADER));
             return;
         }
 
-        let term_tokens: Vec<&str> = trimmed_terms.split_whitespace().collect();
-
-        let minimum_score = if is_ascii {
+        let minimum_score = if is_full_width_or_ascii(terms) {
             SCORE_LOWER_LIMIT
         } else {
             SCORE_LOWER_LIMIT_ASCII
         };
 
-        let results = self.aggregate_results(&term_tokens, trimmed_terms, minimum_score);
+        let results = self.aggregate_results(terms, minimum_score);
 
         if results.is_empty() {
             self.header
-                .set_text_content(Some(&format!("No search result for : {trimmed_terms}")));
+                .set_text_content(Some(&format!("No search result for : {terms}")));
             return;
         }
 
         self.header
-            .set_text_content(Some(&format!("{} search results for : {trimmed_terms}", results.len())));
-        self.append_search_result(results, trimmed_terms);
+            .set_text_content(Some(&format!("{} search results for : {terms}", results.len())));
+
+        self.append_search_result(results, terms);
     }
 }
