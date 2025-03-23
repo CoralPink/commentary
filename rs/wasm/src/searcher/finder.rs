@@ -11,11 +11,12 @@ use html_escape::encode_safe;
 use macros::error;
 use serde::Deserialize;
 use serde_wasm_bindgen::from_value;
+use std::collections::HashMap;
 use urlencoding::encode;
 use wasm_bindgen::prelude::*;
 
 const SCORE_LOWER_LIMIT: usize = 64;
-const SCORE_LOWER_LIMIT_ASCII: usize = 1;
+const SCORE_LOWER_LIMIT_ASCII: usize = 32;
 
 const INITIAL_HEADER: &str = "2文字 (もしくは全角1文字) 以上を入力してください...";
 
@@ -128,15 +129,19 @@ impl Finder {
             .expect("failed: insert_adjacent_html");
     }
 
-    fn find_matches<'a>(&'a self, terms: &str, minimum_score: usize) -> Vec<SearchResult<'a>> {
-        let mut results: Vec<ResultEntry> = self
-            .store_doc
-            .iter()
+    fn find_matches<'a>(&'a self, term: &str, docs: Option<&[&'a DocObject]>) -> Vec<SearchResult<'a>> {
+        let target_docs: Vec<&DocObject> = match docs {
+            Some(d) => d.to_vec(),
+            None => self.store_doc.iter().collect(),
+        };
+
+        let mut results: Vec<ResultEntry> = target_docs
+            .into_iter()
             .filter_map(|doc| {
                 let content = format!("{} {}", doc.title, doc.body);
-                let score = score::compute(terms, &content);
+                let score = score::compute(term, &content);
 
-                if score < minimum_score {
+                if score == 0 {
                     return None;
                 }
 
@@ -144,7 +149,7 @@ impl Finder {
 
                 Some(ResultEntry {
                     result: SearchResult { doc, key, score },
-                    first_match_index: content.find(terms).unwrap_or(content.len()),
+                    first_match_index: content.find(term).unwrap_or(content.len()),
                 })
             })
             .collect();
@@ -160,16 +165,60 @@ impl Finder {
         results.into_iter().map(|entry| entry.result).take(self.limit).collect()
     }
 
+    fn aggregate_results(&self, term_tokens: &[&str], trimmed_terms: &str, minimum_score: usize) -> Vec<SearchResult> {
+        if term_tokens.len() == 1 {
+            return self.find_matches(term_tokens[0], None);
+        }
+
+        let mut results_map: HashMap<String, SearchResult> = HashMap::new();
+
+        let mut sorted_tokens = term_tokens.to_vec();
+        sorted_tokens.sort_by_key(|token| token.len());
+
+        let trimmed_lower = trimmed_terms.to_lowercase();
+        let filtered_docs: Vec<&DocObject> = self
+            .store_doc
+            .iter()
+            .filter(|doc| {
+                let body_lower = doc.body.to_lowercase();
+                body_lower.contains(&trimmed_lower) || term_tokens.iter().all(|&term| body_lower.contains(term))
+            })
+            .collect();
+
+        for (i, token) in sorted_tokens.iter().enumerate() {
+            let results = self.find_matches(token, Some(&filtered_docs));
+
+            if i == 0 {
+                for result in results {
+                    results_map.insert(result.doc.id.clone(), result);
+                }
+            } else {
+                for result in results {
+                    if let Some(existing) = results_map.get_mut(&result.doc.id) {
+                        existing.score += result.score;
+                    }
+                }
+            }
+        }
+
+        results_map.retain(|_, result| result.score >= minimum_score);
+
+        let mut results: Vec<SearchResult> = results_map.into_values().collect();
+        results.sort_by(|a, b| b.score.cmp(&a.score));
+        results.truncate(self.limit);
+
+        results
+    }
+
     pub fn search(&self, terms: &str) {
         let trimmed_terms = terms.trim();
-        let is_ascii = is_full_width_or_ascii(terms);
+        let is_ascii = is_full_width_or_ascii(trimmed_terms);
 
         if trimmed_terms.is_empty() || (trimmed_terms.len() <= 1 && !is_ascii) {
             self.header.set_text_content(Some(INITIAL_HEADER));
             return;
         }
 
-        // Split the search terms by whitespace
         let term_tokens: Vec<&str> = trimmed_terms.split_whitespace().collect();
 
         let minimum_score = if is_ascii {
@@ -178,33 +227,7 @@ impl Finder {
             SCORE_LOWER_LIMIT_ASCII
         };
 
-        // If there are multiple tokens, search for each one separately
-        let results = if term_tokens.len() > 1 {
-            // Get results for each token
-            let mut all_results = Vec::new();
-            for token in &term_tokens {
-                all_results.extend(self.find_matches(token, minimum_score));
-            }
-
-            // Sort and deduplicate results based on doc.id
-            all_results.sort_by(|a, b| b.score.cmp(&a.score));
-            let mut deduplicated = Vec::new();
-            let mut seen_ids = std::collections::HashSet::new();
-
-            for result in all_results {
-                if seen_ids.insert(&result.doc.id) {
-                    deduplicated.push(result);
-                    if deduplicated.len() >= self.limit {
-                        break;
-                    }
-                }
-            }
-            deduplicated
-        } else if !term_tokens.is_empty() {
-            self.find_matches(term_tokens[0], minimum_score)
-        } else {
-            Vec::new()
-        };
+        let results = self.aggregate_results(&term_tokens, trimmed_terms, minimum_score);
 
         if results.is_empty() {
             self.header
@@ -214,7 +237,6 @@ impl Finder {
 
         self.header
             .set_text_content(Some(&format!("{} search results for : {trimmed_terms}", results.len())));
-
         self.append_search_result(results, trimmed_terms);
     }
 }
