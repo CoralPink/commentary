@@ -20,6 +20,8 @@ const SCORE_LOWER_LIMIT_ASCII: usize = 32;
 
 const INITIAL_HEADER: &str = "2文字 (もしくは全角1文字) 以上を入力してください...";
 
+const BUFFER_HTML_SIZE: usize = 200_000;
+
 #[derive(Deserialize)]
 struct DocObject {
     id: String,
@@ -103,7 +105,7 @@ impl Finder {
 
         let mark = encode(&normalized_terms.join(" ")).into_owned();
 
-        let mut html_buffer = String::new();
+        let mut html_buffer = String::with_capacity(BUFFER_HTML_SIZE);
 
         results.into_iter().for_each(|el| {
             let idx = match el.key.parse::<usize>() {
