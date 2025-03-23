@@ -139,7 +139,13 @@ impl Finder {
             .into_iter()
             .filter_map(|doc| {
                 let content = format!("{} {}", doc.title, doc.body);
-                let score = score::compute(term, &content);
+
+                // TODO: `Score::compute` also takes into account lowercase and uppercase scores,
+                //       but they are temporarily disabled.
+                let content_lower = content.to_lowercase();
+                let terms_lower = term.to_lowercase();
+
+                let score = score::compute(&terms_lower, &content_lower);
 
                 if score == 0 {
                     return None;
