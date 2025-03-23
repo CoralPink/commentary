@@ -23,7 +23,6 @@ enable = false
 
 [output.html.search]
 limit-results = 100      # maximum number of search results
-teaser-word-count = 20   # number of words used for a search result teaser
 copy-js = true           # (apparently, searchindex.json will not be created unless this is enabled.)
 
 [preprocessor.admonish]
@@ -53,6 +52,7 @@ after = ["links"]
 
 #[output.html.search]
 #enable = true            # enables the search feature
+#teaser-word-count = 20   # number of words used for a search result teaser
 #use-boolean-and = true   # multiple search terms must all match
 #boost-title = 2          # ranking boost factor for matches in headers
 #boost-hierarchy = 1      # ranking boost factor for matches in page names
