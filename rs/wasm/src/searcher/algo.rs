@@ -96,39 +96,41 @@ pub mod score {
 
     pub fn compute(query: &str, text: &str) -> usize {
         let mut score: isize = 0;
+
         let mut last_match = None;
-
-        let query_chars: Vec<char> = query.chars().collect();
-        let text_chars: Vec<char> = text.chars().collect();
-
+        let mut query_chars = query.chars();
         let mut query_idx = 0;
+        let mut query_char = query_chars.next();
 
-        for (i, &c) in text_chars.iter().enumerate() {
-            if query_idx < query_chars.len() && query_chars[query_idx] == c {
-                let mut calc: isize = SCORE_MATCH;
+        for (i, c) in text.chars().enumerate() {
+            if let Some(qc) = query_char {
+                if qc == c {
+                    let mut calc: isize = SCORE_MATCH;
 
-                if let Some(last) = last_match {
-                    if last + 1 == i {
-                        calc += BONUS_CONSECUTIVE;
-                    } else {
-                        calc += SCORE_GAP_START + SCORE_GAP_EXTENSION * ((i - last) as isize);
+                    if let Some(last) = last_match {
+                        if last + 1 == i {
+                            calc += BONUS_CONSECUTIVE;
+                        } else {
+                            calc += SCORE_GAP_START + SCORE_GAP_EXTENSION * ((i - last) as isize);
+                        }
                     }
+
+                    let prev_char = text.chars().nth(i.wrapping_sub(1));
+                    calc += boundary_bonus(c, prev_char);
+                    calc += bonus_matrix(c, prev_char);
+                    if query_idx == 0 {
+                        calc *= BONUS_FIRST_CHAR_MULTIPLIER;
+                    }
+
+                    score += calc;
+
+                    last_match = Some(i);
+                    query_idx += 1;
+                    query_char = query_chars.next();
                 }
-
-                let prev_char = text_chars.get(i.wrapping_sub(1)).copied();
-                calc += boundary_bonus(c, prev_char);
-                calc += bonus_matrix(c, prev_char);
-
-                if query_idx == 0 {
-                    calc *= BONUS_FIRST_CHAR_MULTIPLIER;
-                }
-
-                score += calc;
-                last_match = Some(i);
-                query_idx += 1;
             }
 
-            if query_idx == query_chars.len() {
+            if query_char.is_none() {
                 break;
             }
         }
