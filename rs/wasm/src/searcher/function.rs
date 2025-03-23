@@ -1,10 +1,10 @@
 use arrayvec::ArrayVec;
 
-use super::ARRAY_VEC_SIZE;
-use crate::searcher::HighlightedToken;
+const TEASER_WORD_COUNT: usize = 40;
 
 const SCORE_CHARACTER: &str = "▰";
-const SCORE_RATE: usize = 8;
+const SCORE_RATE: usize = 4;
+const SCORE_MAX_BAR: usize = 255;
 
 const IMPORTANCE_DEFAULT: usize = 2;
 const IMPORTANCE_FIRST_WORD: usize = 8;
@@ -13,12 +13,27 @@ const IMPORTANCE_MATCH: usize = 40;
 const MARK_TAG: &str = "<mark>";
 const MARK_TAG_END: &str = "</mark>";
 
+const ARRAY_VEC_SIZE: usize = 512;
+
+struct HighlightedToken {
+    pub text: String,
+    pub position: usize,
+    pub importance: usize,
+}
+
+pub fn is_full_width_or_ascii(s: &str) -> bool {
+    s.chars().all(|c| {
+        let code = c as u32;
+        code <= 127 || (0xFF01..=0xFF5E).contains(&code)
+    })
+}
+
 pub fn parse_uri(link_uri: &str) -> (&str, &str) {
     link_uri.split_once('#').unwrap_or((link_uri, ""))
 }
 
-pub fn scoring_notation(score: u16) -> String {
-    let s = SCORE_CHARACTER.repeat((score as usize) / SCORE_RATE);
+pub fn scoring_notation(score: usize) -> String {
+    let s = SCORE_CHARACTER.repeat(std::cmp::min(score, SCORE_MAX_BAR) / SCORE_RATE);
     format!("{s} ({score}pt)")
 }
 
@@ -34,8 +49,8 @@ fn compute_importance(text: &str, pos: usize, normalized_texts: &[String]) -> us
     }
 }
 
-fn calc_excerpt_range_position(tokens: &ArrayVec<HighlightedToken, ARRAY_VEC_SIZE>, count: usize) -> (usize, usize) {
-    let end = std::cmp::min(tokens.len(), count);
+fn calc_excerpt_range_position(tokens: &ArrayVec<HighlightedToken, ARRAY_VEC_SIZE>) -> (usize, usize) {
+    let end = std::cmp::min(tokens.len(), TEASER_WORD_COUNT);
 
     if !tokens.iter().any(|x| x.importance == IMPORTANCE_MATCH) {
         return (0, end);
@@ -57,44 +72,40 @@ fn calc_excerpt_range_position(tokens: &ArrayVec<HighlightedToken, ARRAY_VEC_SIZ
     (start, end)
 }
 
-fn apply_markup(tokens: &ArrayVec<HighlightedToken, ARRAY_VEC_SIZE>, body: &str, count: usize) -> String {
+fn apply_markup(tokens: &ArrayVec<HighlightedToken, ARRAY_VEC_SIZE>, body: &str) -> String {
     if tokens.is_empty() {
         return body.to_string();
     }
 
-    let (start, end) = calc_excerpt_range_position(tokens, count);
+    let (start, end) = calc_excerpt_range_position(tokens);
 
-    let mut highlight = String::new();
+    let mut markup_body = String::new();
     let mut idx = tokens[start].position;
 
     for token in tokens.iter().skip(start).take(end) {
         if idx < token.position {
-            highlight.push_str(&body[idx..token.position]);
+            markup_body.push_str(&body[idx..token.position]);
             idx = token.position;
         }
 
         let s = &body[token.position..idx + token.text.len()];
 
         if token.importance == IMPORTANCE_MATCH {
-            highlight.push_str(MARK_TAG);
-            highlight.push_str(s);
-            highlight.push_str(MARK_TAG_END);
+            markup_body.push_str(MARK_TAG);
+            markup_body.push_str(s);
+            markup_body.push_str(MARK_TAG_END);
         } else {
-            highlight.push_str(s);
+            markup_body.push_str(s);
         }
 
         idx = token.position + token.text.len();
     }
 
-    highlight
+    markup_body
 }
 
-pub fn search_result_excerpt(
-    tokens: &mut ArrayVec<HighlightedToken, ARRAY_VEC_SIZE>,
-    body: &str,
-    count: usize,
-    normalized_texts: &[String],
-) -> String {
+pub fn search_result_excerpt(body: &str, normalized_texts: &[String]) -> String {
+    let mut tokens = ArrayVec::<HighlightedToken, ARRAY_VEC_SIZE>::new();
     let mut pos: usize = 0;
 
     for sentence in body.to_lowercase().split(". ") {
@@ -115,5 +126,8 @@ pub fn search_result_excerpt(
         pos += 1;
     }
 
-    apply_markup(tokens, body, count)
+    if tokens.is_empty() {
+        return body.to_string();
+    }
+    apply_markup(&tokens, body)
 }
