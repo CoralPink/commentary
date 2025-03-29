@@ -186,6 +186,8 @@ Baby, you're a rich man
 ベイビー! よお リッチマン!!
 ```
 
+![money](img/money.webp)
+
 ```admonish success title=""
 Baby, you're a rich man too{{footnote:
 この曲の意味を Lennon は "誰もが金持ちだ。重要なのは不平を言うのをやめること。君は金持ちで、僕らはみんな金持ちだ" と主張し、
