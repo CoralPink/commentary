@@ -109,7 +109,7 @@ init.luaの最初の部分でnetrwを無効にする (強く推奨)
 わたしが普段使用している環境では`extensions/nvim-tree.lua`の先頭に置いています。
 
 これは、`nvim-tree`の使用をやめた際に「`netrw`の "無効化を無効化" できる」という利便性を得るためですが、
-本当にこれで問題が無いのかどうかは、ちょっと不確かな壁です😅
+本当にこれで問題が無いのかどうかは、ちょっと不確かなのです😅
 
 なので、このサイトでは素直に`nvim`ディレクトリ直下の`init.lua`の最初の部分に置くことをオススメしていきます❗
 ```
@@ -132,6 +132,8 @@ Had to tell my point of view
 
 言わずにいられない日もあった
 ```
+
+![mitaka-totoro](img/ueno-bird.webp)
 
 ```admonish quote title=""
 I was like you
@@ -291,12 +293,6 @@ vim.api.nvim_create_user_command('Ex', function() vim.cmd.NvimTreeToggle() end, 
 
 これもやっぱり毎回同じ文言になっちゃうんですが... ぜひ色々試してみてください😆
 
-```admonish quote title=""
-Now I don't mean to make you frown
-
-ううん、そんな顔しないで
-```
-
 ## setup
 
 ~~~admonish info title=":h nvim-tree-setup"
@@ -312,6 +308,14 @@ nvim-tree を初期化するには、setup() 関数を実行する必要があ�
 
 なので、ちょこちょことわたしが使用しているパラメータ "だけ" フワ〜っと触れます。
 と言っても、これもやっぱりある程度はパラメータの名前からイメージできるはずです😆
+
+```admonish quote title=""
+Now I don't mean to make you frown
+
+ううん、そんな顔しないで
+```
+
+![mitaka-totoro](img/mitaka-totoro.webp)
 
 ```admonish quote title=""
 No, I just want you to slow down
@@ -501,7 +505,7 @@ to appear in the signcolumn.
 ~~~
 
 だいぶ以前に「なんで "決定" が [×ボタン] なんだー⁉️ 」とかいうゲームコントローラーの話題があって、
-これと似てる気がするんですが、どうしても`unsgated`が`✗`って慣れない...。`deleted`じゃないの❓それ😮
+これと似てる気がするんですが、どうしても`unstaged`が`✗`って慣れない...。`deleted`じゃないの❓それ😮
 
 あと`untracked`⭐😋
 
@@ -636,6 +640,8 @@ Have you never let someone else be strong?
 
 誰かに そっと身を委ねられるのはあなたの強さだよ
 ```
+
+![mitaka-guardian-deity](img/mitaka-guardian-deity.webp)
 
 ```admonish success title="Assemble"
 なんかもうこれだけで大ボリュームでしたね...。
