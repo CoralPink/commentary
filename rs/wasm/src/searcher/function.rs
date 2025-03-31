@@ -3,8 +3,8 @@ use arrayvec::ArrayVec;
 const TEASER_WORD_COUNT: usize = 40;
 
 const SCORE_CHARACTER: &str = "▰";
-const SCORE_RATE: usize = 4;
-const SCORE_MAX_BAR: usize = 255;
+const SCORE_RATE: usize = 8;
+const SCORE_MAX_BAR: usize = 256;
 
 const IMPORTANCE_DEFAULT: usize = 2;
 const IMPORTANCE_FIRST_WORD: usize = 8;
