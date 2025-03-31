@@ -206,7 +206,7 @@ impl Finder {
                 .iter()
                 .filter(|doc| {
                     let body = doc.body.to_lowercase();
-                    body.contains( &lower ) || tokens.iter().all(| &term | body.contains( &term .to_lowercase()))
+                    body.contains(&lower) || tokens.iter().all(|&term| body.contains(&term.to_lowercase()))
                 })
                 .collect::<Vec<&DocObject>>()
         };
