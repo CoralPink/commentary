@@ -103,9 +103,11 @@ pub mod score {
         let mut query_idx = 0;
         let mut query_char = query_chars.next();
 
-        for (i, c) in text.chars().enumerate() {
+        let text_chars: Vec<char> = text.chars().collect();
+
+        for (i, c) in text_chars.iter().enumerate() {
             if let Some(qc) = query_char {
-                if qc != c {
+                if qc != *c {
                     continue;
                 }
 
@@ -119,10 +121,10 @@ pub mod score {
                     }
                 }
 
-                let prev_char = text.chars().nth(i.wrapping_sub(1));
+                let prev_char = text_chars.get(i.wrapping_sub(1));
 
-                calc += boundary_bonus(c, prev_char);
-                calc += bonus_matrix(c, prev_char);
+                calc += boundary_bonus(*c, prev_char.cloned());
+                calc += bonus_matrix(*c, prev_char.cloned());
 
                 if query_idx == 0 {
                     calc *= BONUS_FIRST_CHAR_MULTIPLIER;
