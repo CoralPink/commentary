@@ -22,7 +22,9 @@ const INITIAL_HEADER: &str = "2文字 (もしくは全角1文字) 以上を入�
 
 const BUFFER_HTML_SIZE: usize = 200_000;
 
+// maximum number of search results
 const LIMIT_RESULTS: usize = 100;
+// Maximum number of search words (entering more words than this will simply be ignored).
 const MAX_TOKENS: usize = 8;
 
 #[derive(Deserialize)]
