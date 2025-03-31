@@ -1,6 +1,6 @@
 declare const self: ServiceWorkerGlobalScope;
 
-const CACHE_VERSION = 'v6.0.0';
+const CACHE_VERSION = 'v6.1.0';
 
 const CACHE_HOST = 'https://coralpink.github.io/';
 const CACHE_URL = '/commentary/';
