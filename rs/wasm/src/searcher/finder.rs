@@ -7,11 +7,11 @@ use crate::searcher::algo::score;
 use crate::searcher::function::*;
 use crate::searcher::js_util::*;
 
+use arrayvec::ArrayVec;
 use html_escape::encode_safe;
 use macros::error;
 use serde::Deserialize;
 use serde_wasm_bindgen::from_value;
-use std::collections::HashMap;
 use urlencoding::encode;
 use wasm_bindgen::prelude::*;
 
@@ -21,6 +21,9 @@ const SCORE_LOWER_LIMIT_ASCII: usize = 32;
 const INITIAL_HEADER: &str = "2文字 (もしくは全角1文字) 以上を入力してください...";
 
 const BUFFER_HTML_SIZE: usize = 200_000;
+
+const LIMIT_RESULTS: usize = 100;
+const MAX_TOKENS: usize = 8;
 
 #[derive(Deserialize)]
 struct DocObject {
@@ -32,24 +35,33 @@ struct DocObject {
 
 impl DocObject {
     fn sanitize(mut self) -> Self {
+        self.id = encode_safe(&self.id).into_owned();
         self.title = encode_safe(&self.title).into_owned();
         self.body = encode_safe(&self.body).into_owned();
         self.breadcrumbs = encode_safe(&self.breadcrumbs).into_owned();
-        self.id = encode_safe(&self.id).into_owned();
 
         self
     }
 }
 
-struct SearchResult<'a> {
+struct ResultEntry<'a> {
     doc: &'a DocObject,
-    key: String,
     score: usize,
+    first_index: usize,
+    id: usize,
 }
 
-struct ResultEntry<'a> {
-    result: SearchResult<'a>,
-    first_match_index: usize,
+fn split_limited<const N: usize>(input: &str) -> ArrayVec<&str, N> {
+    let mut vec = ArrayVec::new();
+
+    for x in input.split_whitespace() {
+        if vec.len() >= N {
+            break;
+        }
+        vec.push(x);
+    }
+
+    vec
 }
 
 #[wasm_bindgen]
@@ -59,13 +71,12 @@ pub struct Finder {
     header: web_sys::Element,
     url_table: Vec<String>,
     store_doc: Vec<DocObject>,
-    limit: usize,
 }
 
 #[wasm_bindgen]
 impl Finder {
     #[wasm_bindgen(constructor)]
-    pub fn new(root_path: &str, doc_urls: JsValue, docs: JsValue, limit: usize) -> Result<Finder, JsValue> {
+    pub fn new(root_path: &str, doc_urls: JsValue, docs: JsValue) -> Result<Finder, JsValue> {
         let window = web_sys::window().ok_or("No global `window` exists")?;
         let document = window.document().ok_or("Should have a document on window")?;
 
@@ -93,11 +104,10 @@ impl Finder {
             header,
             url_table,
             store_doc,
-            limit,
         })
     }
 
-    fn append_search_result(&self, results: Vec<SearchResult>, terms: &str) {
+    fn append_search_result(&self, results: ArrayVec<ResultEntry, LIMIT_RESULTS>, terms: &str) {
         let normalized_terms = terms
             .split_whitespace()
             .map(|t| t.to_lowercase())
@@ -108,10 +118,10 @@ impl Finder {
         let mut html_buffer = String::with_capacity(BUFFER_HTML_SIZE);
 
         results.into_iter().for_each(|el| {
-            let idx = match el.key.parse::<usize>() {
+            let idx = match el.doc.id.parse::<usize>() {
                 Ok(n) => n,
                 Err(_) => {
-                    macros::console_error!("Error: Invalid result.ref: {}", el.key);
+                    macros::console_error!("Error: Invalid result.ref: {}", el.doc.id);
                     return;
                 }
             };
@@ -131,7 +141,11 @@ impl Finder {
             .expect("failed: insert_adjacent_html");
     }
 
-    fn find_matches<'a>(&'a self, term: &str, docs: Option<&[&'a DocObject]>) -> Vec<SearchResult<'a>> {
+    fn find_matches<'a>(
+        &'a self,
+        term: &str,
+        docs: Option<&[&'a DocObject]>,
+    ) -> ArrayVec<ResultEntry<'a>, LIMIT_RESULTS> {
         let target_docs: Vec<&DocObject> = match docs {
             Some(d) => d.to_vec(),
             None => self.store_doc.iter().collect(),
@@ -140,85 +154,84 @@ impl Finder {
         let mut results: Vec<ResultEntry> = target_docs
             .into_iter()
             .filter_map(|doc| {
-                let content = format!("{} {}", doc.title, doc.body);
+                let body_score = score::compute(term, &doc.body);
+                let breadcrumbs_score = score::compute(term, &doc.breadcrumbs);
 
-                // TODO: `Score::compute` also takes into account lowercase and uppercase scores,
-                //       but they are temporarily disabled.
-                let content_lower = content.to_lowercase();
-                let terms_lower = term.to_lowercase();
-
-                let score = score::compute(&terms_lower, &content_lower);
+                let score = body_score + breadcrumbs_score;
 
                 if score == 0 {
                     return None;
                 }
-
-                let key = doc.id.to_owned();
+                let first_index = doc.body.find(term).unwrap_or(usize::MAX);
+                let id = doc.id.parse::<usize>().unwrap_or(usize::MAX);
 
                 Some(ResultEntry {
-                    result: SearchResult { doc, key, score },
-                    first_match_index: content.find(term).unwrap_or(content.len()),
+                    doc,
+                    score,
+                    first_index,
+                    id,
                 })
             })
             .collect();
 
         results.sort_by(|a, b| {
-            b.result
-                .score
-                .cmp(&a.result.score)
-                .then_with(|| a.first_match_index.cmp(&b.first_match_index))
-                .then_with(|| a.result.doc.id.cmp(&b.result.doc.id))
+            b.score
+                .cmp(&a.score)
+                .then_with(|| a.id.cmp(&b.id))
+                .then_with(|| a.first_index.cmp(&b.first_index))
         });
 
-        results.into_iter().map(|entry| entry.result).take(self.limit).collect()
+        results.into_iter().take(LIMIT_RESULTS).collect()
     }
 
-    fn aggregate_results(&self, terms: &str, minimum_score: usize) -> Vec<SearchResult> {
-        let trimmed_terms = terms.trim();
-        let term_tokens: Vec<&str> = trimmed_terms.split_whitespace().collect();
+    fn aggregate_results(&self, terms: &str, minimum_score: usize) -> ArrayVec<ResultEntry, LIMIT_RESULTS> {
+        let trimmed = terms.trim();
 
-        if term_tokens.len() == 1 {
-            return self.find_matches(term_tokens[0], None);
+        if trimmed.len() == 1 {
+            let mut results = self.find_matches(terms, None);
+            results.retain(|result| result.score >= minimum_score);
+
+            return results;
         }
 
-        let mut results_map: HashMap<String, SearchResult> = HashMap::new();
+        let mut tokens: ArrayVec<&str, MAX_TOKENS> = split_limited::<MAX_TOKENS>(trimmed);
+        tokens.sort_by_key(|x| self.store_doc.iter().filter(|doc| doc.body.contains(x)).count());
 
-        let mut sorted_tokens = term_tokens.to_vec();
-        sorted_tokens.sort_by_key(|token| token.len());
+        let hit_docs = {
+            let lower = trimmed.to_lowercase();
 
-        let trimmed_lower = trimmed_terms.to_lowercase();
-        let filtered_docs: Vec<&DocObject> = self
-            .store_doc
-            .iter()
-            .filter(|doc| {
-                let body_lower = doc.body.to_lowercase();
-                body_lower.contains(&trimmed_lower) || term_tokens.iter().all(|&term| body_lower.contains(term))
-            })
-            .collect();
+            self.store_doc
+                .iter()
+                .filter(|doc| {
+                    let body = doc.body.to_lowercase();
+                    body.contains(&lower) || tokens.iter().all(|&term| body.contains(term))
+                })
+                .collect::<Vec<&DocObject>>()
+        };
 
-        for (i, token) in sorted_tokens.iter().enumerate() {
-            let results = self.find_matches(token, Some(&filtered_docs));
+        let mut entry = Vec::with_capacity(hit_docs.len().min(LIMIT_RESULTS));
 
-            if i == 0 {
-                for result in results {
-                    results_map.insert(result.doc.id.clone(), result);
-                }
-            } else {
-                for result in results {
-                    if let Some(existing) = results_map.get_mut(&result.doc.id) {
-                        existing.score += result.score;
-                    }
+        for (idx, token) in tokens.iter().enumerate() {
+            let results = self.find_matches(token, Some(&hit_docs));
+
+            if idx == 0 {
+                entry.extend(results);
+                continue;
+            }
+
+            for x in results {
+                if let Some(existing) = entry.iter_mut().find(|entry| entry.doc.id == x.doc.id) {
+                    existing.score += x.score;
+                } else {
+                    entry.push(x);
                 }
             }
         }
 
-        results_map.retain(|_, result| result.score >= minimum_score);
+        entry.sort_by(|a, b| b.score.cmp(&a.score));
+        entry.truncate(LIMIT_RESULTS);
 
-        let mut results: Vec<SearchResult> = results_map.into_values().collect();
-        results.sort_by(|a, b| b.score.cmp(&a.score));
-        results.truncate(self.limit);
-
-        results
+        entry.into_iter().collect()
     }
 
     pub fn search(&self, terms: &str) {

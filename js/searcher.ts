@@ -230,16 +230,10 @@ const initSearch = async (): Promise<void> => {
     const response = await fetchRequest(`${rootPath}searchindex.json`);
     const config = await response.json();
 
-    if (!config.index || !config.index.documentStore || !config.results_options) {
+    if (!config.doc_urls || !config.index.documentStore.docs) {
       throw new Error('Missing required search configuration fields');
     }
-
-    finder = new Finder(
-      rootPath,
-      config.doc_urls,
-      config.index.documentStore.docs,
-      config.results_options.limit_results,
-    );
+    finder = new Finder(rootPath, config.doc_urls, config.index.documentStore.docs);
   } catch (e) {
     console.error(`Error during initialization: ${e}`);
     console.info('The search function is disabled.');
