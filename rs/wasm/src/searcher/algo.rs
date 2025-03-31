@@ -1,5 +1,4 @@
-//! The scoring algorithm is inspired by
-//! [junegunn/fzf](https://github.com/junegunn/fzf/blob/923c3a814de39ff906d675834af634252b3d2b3f/src/algo/algo.go).
+//! The scoring algorithm is inspired by [junegunn/fzf](https://github.com/junegunn/fzf/blob/master/src/algo/algo.go)
 //!
 //! ...Though it's not a perfect replica, to be honest.
 //! Sincere thanks to junegunn!
@@ -48,7 +47,7 @@ pub mod score {
         DELIMITERS.contains(&c)
     }
 
-    #[derive(Clone, PartialEq, Eq)]
+    #[derive(PartialEq, Eq)]
     enum CharClass {
         Whitespace,
         Delimiter,
@@ -75,21 +74,23 @@ pub mod score {
     }
 
     fn bonus_matrix(curr: char, prev: Option<char>) -> isize {
-        let prev_class = prev.map_or(CharClass::Other, classify_char);
-        let curr_class = classify_char(curr);
+        let prev = prev.map_or(CharClass::Other, classify_char);
+        let curr = classify_char(curr);
 
-        let prev_idx = prev_class as usize;
-        let curr_idx = curr_class as usize;
-
-        BONUS_MATRIX[prev_idx][curr_idx]
+        BONUS_MATRIX[prev as usize][curr as usize]
     }
 
     fn boundary_bonus(curr: char, prev: Option<char>) -> isize {
         match prev {
-            Some(p) if p.is_whitespace() => BONUS_WHITESPACE, // after a blank space
-            Some(p) if is_delimiter(p) => BONUS_DELIMITER,    // After the delimiter
-            Some(p) if p.is_lowercase() && curr.is_uppercase() => BONUS_CAMEL123, // Camel case boundaries
-            Some(p) if !p.is_alphanumeric() => BONUS_NON_WORD, // after the symbol
+            // after a blank space
+            Some(p) if p.is_whitespace() => BONUS_WHITESPACE,
+            //After the delimiter
+            Some(p) if is_delimiter(p) => BONUS_DELIMITER,
+            //Camel case boundaries
+            Some(p) if p.is_lowercase() && curr.is_uppercase() => BONUS_CAMEL123,
+            // after the symbol
+            Some(p) if !p.is_alphanumeric() => BONUS_NON_WORD,
+            // no match
             _ => 0,
         }
     }
@@ -102,32 +103,38 @@ pub mod score {
         let mut query_idx = 0;
         let mut query_char = query_chars.next();
 
-        for (i, c) in text.chars().enumerate() {
+        let text_chars: Vec<char> = text.chars().collect();
+
+        for (i, c) in text_chars.iter().enumerate() {
             if let Some(qc) = query_char {
-                if qc == c {
-                    let mut calc: isize = SCORE_MATCH;
-
-                    if let Some(last) = last_match {
-                        if last + 1 == i {
-                            calc += BONUS_CONSECUTIVE;
-                        } else {
-                            calc += SCORE_GAP_START + SCORE_GAP_EXTENSION * ((i - last) as isize);
-                        }
-                    }
-
-                    let prev_char = text.chars().nth(i.wrapping_sub(1));
-                    calc += boundary_bonus(c, prev_char);
-                    calc += bonus_matrix(c, prev_char);
-                    if query_idx == 0 {
-                        calc *= BONUS_FIRST_CHAR_MULTIPLIER;
-                    }
-
-                    score += calc;
-
-                    last_match = Some(i);
-                    query_idx += 1;
-                    query_char = query_chars.next();
+                if qc != *c {
+                    continue;
                 }
+
+                let mut calc: isize = SCORE_MATCH;
+
+                if let Some(last) = last_match {
+                    if last + 1 == i {
+                        calc += BONUS_CONSECUTIVE;
+                    } else {
+                        calc += SCORE_GAP_START + SCORE_GAP_EXTENSION * ((i - last) as isize);
+                    }
+                }
+
+                let prev_char = text_chars.get(i.wrapping_sub(1));
+
+                calc += boundary_bonus(*c, prev_char.cloned());
+                calc += bonus_matrix(*c, prev_char.cloned());
+
+                if query_idx == 0 {
+                    calc *= BONUS_FIRST_CHAR_MULTIPLIER;
+                }
+
+                score += calc;
+
+                last_match = Some(i);
+                query_idx += 1;
+                query_char = query_chars.next();
             }
 
             if query_char.is_none() {
