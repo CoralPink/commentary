@@ -50,7 +50,7 @@ sed \
   toc.html > pagelist.html
 
 sed -E 's/^Object\.assign\(window\.search, //; s/\);$//' searchindex.js > searchindex.json
-jq empty searchindex.json && printf '\e[33m🧶 The search index has been correctly converted!!\e[0m\n'
+jq empty searchindex.json && printf '    \e[1;32mFinished\e[0m convert search index \e[33m🧶Did it!!\e[0m\n'
 popd
 
 #pushd commentary
