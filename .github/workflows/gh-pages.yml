@@ -274,7 +274,7 @@ jobs:
   build-and-deploy:
     name: Build and Deploy
     runs-on: macos-latest
-    if: ${{ github.ref == 'refs/heads/main' }}
+#    if: ${{ github.ref == 'refs/heads/main' }}
     needs: [build-wasm, build-js, build-scss, convert-woff2, test-mdbook-backend]
     steps:
       - name: Checkout the repo
