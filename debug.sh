@@ -48,6 +48,9 @@ sed \
   -e 's|<li class="chapter-item expanded ">|<li>|g' \
   -e 's| target="_parent"||g' \
   toc.html > pagelist.html
+
+sed -E 's/^Object\.assign\(window\.search, //; s/\);$//' searchindex.js > searchindex.json
+jq empty searchindex.json && printf '\e[33m🧶 The search index has been correctly converted!!\e[0m\n'
 popd
 
 #pushd commentary
