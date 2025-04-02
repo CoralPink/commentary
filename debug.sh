@@ -64,7 +64,6 @@ popd
 #rm highlight.js
 #rm searcher.js
 #rm searchindex.js
-#rm searchindex.json
 #rm toc.html
 #rm toc.js
 #rm tomorrow-night.css
