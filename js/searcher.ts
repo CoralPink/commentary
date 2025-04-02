@@ -221,7 +221,7 @@ const fetchAndDecompress = async (url: string) => {
   }
 
   /* biome-ignore lint: no-explicit-any */
-  const stream = response.body.pipeThrough(new DecompressionStream('brotli' as any));
+  const stream = response.body.pipeThrough(new DecompressionStream('gzip' as any));
   const decompressed = await new Response(stream).arrayBuffer();
 
   return JSON.parse(new TextDecoder().decode(decompressed));
@@ -241,7 +241,7 @@ const initSearch = async (): Promise<void> => {
   try {
     await loadStyleSheet(`${rootPath}${STYLE_SEARCH}`);
 
-    const config = await fetchAndDecompress(`${rootPath}searchindex.json.br`);
+    const config = await fetchAndDecompress(`${rootPath}searchindex.json.gz`);
 
     if (!config.doc_urls || !config.index.documentStore.docs) {
       throw new Error('Missing required search configuration fields');

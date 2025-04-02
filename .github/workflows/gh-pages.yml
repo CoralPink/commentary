@@ -344,8 +344,7 @@ jobs:
       - name: Compress Search Index
         working-directory: book
         run: |
-          brew install brotli
-          brotli searchindex.json
+          gzip searchindex.json
 
       - name: Remove Unneeded Files
         working-directory: book
