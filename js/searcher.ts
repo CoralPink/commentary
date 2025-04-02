@@ -213,6 +213,20 @@ const fetchRequest = async (url: string): Promise<Response> => {
   }
 };
 
+const fetchAndDecompress = async (url: string) => {
+  const response = await fetchRequest(url);
+
+  if (!response.body) {
+    throw new Error('Response body is null');
+  }
+
+  /* biome-ignore lint: no-explicit-any */
+  const stream = response.body.pipeThrough(new DecompressionStream('brotli' as any));
+  const decompressed = await new Response(stream).arrayBuffer();
+
+  return JSON.parse(new TextDecoder().decode(decompressed));
+};
+
 const initSearch = async (): Promise<void> => {
   document.removeEventListener('keyup', startSearchFromKey);
 
@@ -227,8 +241,7 @@ const initSearch = async (): Promise<void> => {
   try {
     await loadStyleSheet(`${rootPath}${STYLE_SEARCH}`);
 
-    const response = await fetchRequest(`${rootPath}searchindex.json`);
-    const config = await response.json();
+    const config = await fetchAndDecompress(`${rootPath}searchindex.json.br`);
 
     if (!config.doc_urls || !config.index.documentStore.docs) {
       throw new Error('Missing required search configuration fields');
