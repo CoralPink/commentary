@@ -3,6 +3,8 @@ import { tocReset } from './table-of-contents';
 import { Finder, marking, unmarking } from './wasm_book';
 import { loadStyleSheet } from './css-loader';
 
+type CompressionFormat = 'gzip' | 'deflate' | 'br';
+
 const STYLE_SEARCH = 'css/search.css';
 
 const ID_ICON = 'search-toggle';
@@ -220,8 +222,9 @@ const fetchAndDecompress = async (url: string) => {
     throw new Error('Response body is null');
   }
 
-  /* biome-ignore lint: no-explicit-any */
-  const stream = response.body.pipeThrough(new DecompressionStream('gzip' as any));
+  const format: CompressionFormat = 'gzip';
+  const stream = response.body.pipeThrough(new DecompressionStream(format));
+
   const decompressed = await new Response(stream).arrayBuffer();
 
   return JSON.parse(new TextDecoder().decode(decompressed));
