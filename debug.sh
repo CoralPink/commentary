@@ -51,6 +51,7 @@ sed \
 
 sed -E 's/^Object\.assign\(window\.search, //; s/\);$//' searchindex.js > searchindex.json
 jq empty searchindex.json && printf '    \e[1;32mFinished\e[0m convert search index \e[33m🧶Did it!!\e[0m\n'
+gzip searchindex.json
 popd
 
 #pushd commentary
@@ -62,13 +63,13 @@ popd
 #rm highlight.css
 #rm highlight.js
 #rm searcher.js
+#rm searchindex.js
 #rm toc.html
 #rm toc.js
 #rm tomorrow-night.css
 #rm css/chrome.css
 #rm css/variables.css
 #rm mark.min.js
-#rm -rf searchindex.js
 #rm -rf FontAwesome
 #rm -rf fonts
 #popd

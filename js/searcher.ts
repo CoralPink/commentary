@@ -3,6 +3,8 @@ import { tocReset } from './table-of-contents';
 import { Finder, marking, unmarking } from './wasm_book';
 import { loadStyleSheet } from './css-loader';
 
+type CompressionFormat = 'gzip' | 'deflate' | 'br';
+
 const STYLE_SEARCH = 'css/search.css';
 
 const ID_ICON = 'search-toggle';
@@ -213,6 +215,21 @@ const fetchRequest = async (url: string): Promise<Response> => {
   }
 };
 
+const fetchAndDecompress = async (url: string) => {
+  const response = await fetchRequest(url);
+
+  if (!response.body) {
+    throw new Error('Response body is null');
+  }
+
+  const format: CompressionFormat = 'gzip';
+  const stream = response.body.pipeThrough(new DecompressionStream(format));
+
+  const decompressed = await new Response(stream).arrayBuffer();
+
+  return JSON.parse(new TextDecoder().decode(decompressed));
+};
+
 const initSearch = async (): Promise<void> => {
   document.removeEventListener('keyup', startSearchFromKey);
 
@@ -227,8 +244,7 @@ const initSearch = async (): Promise<void> => {
   try {
     await loadStyleSheet(`${rootPath}${STYLE_SEARCH}`);
 
-    const response = await fetchRequest(`${rootPath}searchindex.json`);
-    const config = await response.json();
+    const config = await fetchAndDecompress(`${rootPath}searchindex.json.gz`);
 
     if (!config.doc_urls || !config.index.documentStore.docs) {
       throw new Error('Missing required search configuration fields');
