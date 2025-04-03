@@ -10,7 +10,7 @@ requires-python = ">=3.13,<4.0"
 
 dependencies = [
   "brotli ==1.1.0",
-  "fonttools ==4.56.0",
+  "fonttools ==4.57.0",
 ]
 
 [tool.poetry]
