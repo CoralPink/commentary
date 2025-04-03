@@ -344,7 +344,6 @@ jobs:
       - name: Compress Search Index
         working-directory: book
         run: |
-          brew install brotli
           brotli searchindex.json
           gzip -k searchindex.json
 
