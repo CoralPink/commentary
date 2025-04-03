@@ -3,7 +3,7 @@ import { tocReset } from './table-of-contents';
 import { Finder, marking, unmarking } from './wasm_book';
 import { loadStyleSheet } from './css-loader';
 
-type CompressionFormat = 'gzip' | 'deflate' | 'br';
+type CompressionFormat = 'gzip' | 'deflate' | 'deflate-raw' | 'brotli';
 
 const STYLE_SEARCH = 'css/search.css';
 
@@ -216,13 +216,15 @@ const fetchRequest = async (url: string): Promise<Response> => {
 };
 
 const fetchAndDecompress = async (url: string) => {
-  const response = await fetchRequest(url);
+  const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+  const response = await fetchRequest(`${url}${isSafari ? '.br' : '.gz'}`);
 
   if (!response.body) {
     throw new Error('Response body is null');
   }
 
-  const format: CompressionFormat = 'gzip';
+  const format: CompressionFormat = isSafari ? 'brotli' : 'gzip';
+  /* @ts-ignore */
   const stream = response.body.pipeThrough(new DecompressionStream(format));
 
   const decompressed = await new Response(stream).arrayBuffer();
@@ -244,7 +246,7 @@ const initSearch = async (): Promise<void> => {
   try {
     await loadStyleSheet(`${rootPath}${STYLE_SEARCH}`);
 
-    const config = await fetchAndDecompress(`${rootPath}searchindex.json.gz`);
+    const config = await fetchAndDecompress(`${rootPath}searchindex.json`);
 
     if (!config.doc_urls || !config.index.documentStore.docs) {
       throw new Error('Missing required search configuration fields');
