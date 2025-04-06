@@ -3,7 +3,7 @@ import { tocReset } from './table-of-contents';
 import { Finder, marking, unmarking } from './wasm_book';
 import { loadStyleSheet } from './css-loader';
 
-type CompressionFormat = 'gzip' | 'deflate' | 'br';
+type CompressionFormat = 'gzip' | 'deflate' | 'deflate-raw' | 'brotli';
 
 const STYLE_SEARCH = 'css/search.css';
 
@@ -215,14 +215,41 @@ const fetchRequest = async (url: string): Promise<Response> => {
   }
 };
 
+/*
+ * TODO:
+ * Currently, Brotli can only be used with Safari 18.4 or later.
+ *
+ * It is possible that other browsers may support Brotli in the future,
+ * in which case it should be rewritten to be more versatile!!
+ */
+const isUseBrotli = (): boolean => {
+  const ua = navigator.userAgent;
+
+  const isSafari = /^((?!chrome|android).)*safari/i.test(ua);
+
+  if (!isSafari) {
+    return false;
+  }
+
+  const match = ua.match(/Version\/(\d+)\.(\d+)/);
+
+  if (!match) {
+    return false;
+  }
+  const [major, minor] = match.slice(1, 3).map(Number);
+  return major > 18 || (major === 18 && minor >= 4);
+};
+
 const fetchAndDecompress = async (url: string) => {
-  const response = await fetchRequest(url);
+  const isBrotli = isUseBrotli();
+  const response = await fetchRequest(`${url}${isBrotli ? '.br' : '.gz'}`);
 
   if (!response.body) {
     throw new Error('Response body is null');
   }
 
-  const format: CompressionFormat = 'gzip';
+  const format: CompressionFormat = isBrotli ? 'brotli' : 'gzip';
+  /* @ts-ignore */
   const stream = response.body.pipeThrough(new DecompressionStream(format));
 
   const decompressed = await new Response(stream).arrayBuffer();
@@ -244,7 +271,7 @@ const initSearch = async (): Promise<void> => {
   try {
     await loadStyleSheet(`${rootPath}${STYLE_SEARCH}`);
 
-    const config = await fetchAndDecompress(`${rootPath}searchindex.json.gz`);
+    const config = await fetchAndDecompress(`${rootPath}searchindex.json`);
 
     if (!config.doc_urls || !config.index.documentStore.docs) {
       throw new Error('Missing required search configuration fields');
