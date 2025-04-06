@@ -344,7 +344,8 @@ jobs:
       - name: Compress Search Index
         working-directory: book
         run: |
-          gzip searchindex.json
+          brotli searchindex.json
+          gzip -k searchindex.json
 
       - name: Remove Unneeded Files
         working-directory: book
@@ -356,14 +357,15 @@ jobs:
           rm fonts.css
           rm highlight.css
           rm highlight.js
+          rm mark.min.js
           rm searcher.js
           rm searchindex.js
+          rm searchindex.json
           rm toc.html
           rm toc.js
           rm tomorrow-night.css
           rm css/chrome.css
           rm css/variables.css
-          rm mark.min.js
           rm -rf FontAwesome
           rm -rf fonts
 
