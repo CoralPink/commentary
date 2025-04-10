@@ -52,7 +52,7 @@ sed \
 sed -E 's/^Object\.assign\(window\.search, //; s/\);$//' searchindex.js > searchindex.json
 jq empty searchindex.json && printf '    \e[1;32mFinished\e[0m convert search index \e[33m🧶Did it!!\e[0m\n'
 brotli searchindex.json
-gzip -k searchindex.json
+gzip --best --keep --no-name searchindex.json
 popd
 
 #pushd commentary
