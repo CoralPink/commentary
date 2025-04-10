@@ -345,7 +345,7 @@ jobs:
         working-directory: book
         run: |
           brotli searchindex.json
-          gzip -k searchindex.json
+          gzip --best --keep --no-name searchindex.json
 
       - name: Remove Unneeded Files
         working-directory: book
