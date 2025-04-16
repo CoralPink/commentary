@@ -32,10 +32,10 @@ pub mod score {
     const BONUS_MATRIX: [[isize; 6]; 6] = [
         // Prev: Whitespace, Delimiter, Lowercase, Uppercase, Digit, Other
         /* Curr: */
-        [0, 0, 0, 0, 0, 0],  // Whitespace
-        [0, 0, 0, 0, 0, 0],  // Delimiter
-        [10, 5, 0, 0, 0, 0], // Lowercase (high bonus after space/delimiter)
-        [12, 6, 6, 0, 0, 0], // Uppercase (highest bonus for camelCase and PascalCase)
+        [4, 4, 0, 1, 2, 2],  // Whitespace
+        [2, 2, 0, 1, 4, 4],  // Delimiter
+        [8, 4, 0, 0, 0, 0],  // Lowercase (high bonus after space/delimiter)
+        [10, 5, 1, 0, 0, 0], // Uppercase (highest bonus for camelCase and PascalCase)
         [8, 4, 0, 0, 0, 0],  // Digit (medium bonus after space/delimiter)
         [5, 3, 0, 0, 0, 0],  // Other (small bonus after space/delimiter)
     ];

@@ -18,6 +18,14 @@ use wasm_bindgen::prelude::*;
 const SCORE_LOWER_LIMIT: usize = 64;
 const SCORE_LOWER_LIMIT_ASCII: usize = 32;
 
+const SCORE_HEADER_BOOST_BASE: f32 = 8.0;
+const SCORE_HEADER_LENGTH_DECAY_EXPONENT: f32 = 0.4;
+
+const SCORE_HEADER_PARSE: char = '»';
+
+const ID_RESULTS_HEADER: &str = "results-header";
+const ID_RESULTS: &str = "searchresults";
+
 const INITIAL_HEADER: &str = "2文字 (もしくは全角1文字) 以上を入力してください...";
 
 const BUFFER_HTML_SIZE: usize = 200_000;
@@ -66,11 +74,25 @@ fn split_limited<const N: usize>(input: &str) -> ArrayVec<&str, N> {
     vec
 }
 
+fn get_header_score(term: &str, breadcrumbs: &str) -> usize {
+    breadcrumbs
+        .split(SCORE_HEADER_PARSE)
+        .map(str::trim)
+        .next_back()
+        .map(|header| {
+            let len = header.len().max(1) as f32;
+            let boost = SCORE_HEADER_BOOST_BASE * (1.0 / len.powf(SCORE_HEADER_LENGTH_DECAY_EXPONENT));
+
+            (score::compute(term, header) as f32 * boost).round() as usize
+        })
+        .unwrap_or(0)
+}
+
 #[wasm_bindgen]
 pub struct Finder {
     root_path: String,
-    parent: web_sys::Element,
-    header: web_sys::Element,
+    elm_header: web_sys::Element,
+    elem_result: web_sys::Element,
     url_table: Vec<String>,
     store_doc: Vec<DocObject>,
 }
@@ -82,13 +104,13 @@ impl Finder {
         let window = web_sys::window().ok_or("No global `window` exists")?;
         let document = window.document().ok_or("Should have a document on window")?;
 
-        let parent = document
-            .get_element_by_id("searchresults")
-            .ok_or("No element with ID `searchresults`")?;
-
-        let header = document
-            .get_element_by_id("results-header")
+        let elm_header = document
+            .get_element_by_id(ID_RESULTS_HEADER)
             .ok_or("No element with ID `results-header`")?;
+
+        let elem_result = document
+            .get_element_by_id(ID_RESULTS)
+            .ok_or("No element with ID `searchresults`")?;
 
         let url_table: Vec<String> = from_value(doc_urls).map_err(|_| "Failed to convert doc_urls to Vec<String>")?;
 
@@ -102,8 +124,8 @@ impl Finder {
 
         Ok(Self {
             root_path: root_path.to_string(),
-            parent,
-            header,
+            elm_header,
+            elem_result,
             url_table,
             store_doc,
         })
@@ -138,7 +160,7 @@ impl Finder {
             ));
         });
 
-        self.parent
+        self.elem_result
             .insert_adjacent_html("beforeend", &html_buffer)
             .expect("failed: insert_adjacent_html");
     }
@@ -157,7 +179,7 @@ impl Finder {
             .into_iter()
             .filter_map(|doc| {
                 let body_score = score::compute(term, &doc.body);
-                let breadcrumbs_score = score::compute(term, &doc.breadcrumbs);
+                let breadcrumbs_score = get_header_score(term, &doc.breadcrumbs);
 
                 let score = body_score + breadcrumbs_score;
 
@@ -189,13 +211,6 @@ impl Finder {
     fn aggregate_results(&self, terms: &str, minimum_score: usize) -> ArrayVec<ResultEntry, LIMIT_RESULTS> {
         let trimmed = terms.trim();
 
-        if trimmed.len() == 1 {
-            let mut results = self.find_matches(terms, None);
-            results.retain(|result| result.score >= minimum_score);
-
-            return results;
-        }
-
         let mut tokens: ArrayVec<&str, MAX_TOKENS> = split_limited::<MAX_TOKENS>(trimmed);
         tokens.sort_by_key(|x| self.store_doc.iter().filter(|doc| doc.body.contains(x)).count());
 
@@ -222,7 +237,7 @@ impl Finder {
             }
 
             for x in results {
-                if let Some(existing) = entry.iter_mut().find(|entry| entry.doc.id == x.doc.id) {
+                if let Some(existing) = entry.iter_mut().find(|y| y.doc.id == x.doc.id) {
                     existing.score += x.score;
                 } else {
                     entry.push(x);
@@ -230,6 +245,7 @@ impl Finder {
             }
         }
 
+        entry.retain(|x| x.score >= minimum_score);
         entry.sort_by(|a, b| b.score.cmp(&a.score));
         entry.truncate(LIMIT_RESULTS);
 
@@ -238,7 +254,7 @@ impl Finder {
 
     pub fn search(&self, terms: &str) {
         if terms.len() <= 1 {
-            self.header.set_text_content(Some(INITIAL_HEADER));
+            self.elm_header.set_text_content(Some(INITIAL_HEADER));
             return;
         }
 
@@ -251,12 +267,12 @@ impl Finder {
         let results = self.aggregate_results(terms, minimum_score);
 
         if results.is_empty() {
-            self.header
+            self.elm_header
                 .set_text_content(Some(&format!("No search result for : {terms}")));
             return;
         }
 
-        self.header
+        self.elm_header
             .set_text_content(Some(&format!("{} search results for : {terms}", results.len())));
 
         self.append_search_result(results, terms);
