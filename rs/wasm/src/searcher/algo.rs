@@ -11,6 +11,9 @@ pub mod score {
     // Penalty for each character in a gap
     const SCORE_GAP_EXTENSION: isize = -1;
 
+    // Maximum distance between matching characters before gap penalty stops increasing
+    const SCORE_GAP_MAX_DISTANCE: usize = 20;
+
     // Bonus for matches at word boundaries
     const BONUS_BOUNDARY: isize = SCORE_MATCH / 2;
     // Bonus for matches after non-alphanumeric characters
@@ -117,7 +120,11 @@ pub mod score {
                     if last + 1 == i {
                         calc += BONUS_CONSECUTIVE;
                     } else {
-                        calc += SCORE_GAP_START + SCORE_GAP_EXTENSION * ((i - last) as isize);
+                        let distance = (i.saturating_sub(last).min(SCORE_GAP_MAX_DISTANCE) as f32)
+                            .sqrt()
+                            .round() as isize;
+
+                        calc += SCORE_GAP_START + SCORE_GAP_EXTENSION * distance;
                     }
                 }
 
