@@ -87,9 +87,9 @@ pub mod score {
         match prev {
             // after a blank space
             Some(p) if p.is_whitespace() => BONUS_WHITESPACE,
-            //After the delimiter
+            // After the delimiter
             Some(p) if is_delimiter(p) => BONUS_DELIMITER,
-            //Camel case boundaries
+            // Camel case boundaries
             Some(p) if p.is_lowercase() && curr.is_uppercase() => BONUS_CAMEL123,
             // after the symbol
             Some(p) if !p.is_alphanumeric() => BONUS_NON_WORD,
@@ -101,26 +101,24 @@ pub mod score {
     pub fn compute(query: &str, text: &str) -> usize {
         let mut score: isize = 0;
 
-        let mut last_match = None;
+        let mut last_match: Option<usize> = None;
         let mut query_chars = query.chars();
         let mut query_idx = 0;
         let mut query_char = query_chars.next();
 
-        let text_chars: Vec<char> = text.chars().collect();
-
-        for (i, c) in text_chars.iter().enumerate() {
+        for (idx, curr) in text.char_indices() {
             if let Some(qc) = query_char {
-                if qc != *c {
+                if qc != curr {
                     continue;
                 }
 
                 let mut calc: isize = SCORE_MATCH;
 
                 if let Some(last) = last_match {
-                    if last + 1 == i {
+                    if last + 1 == idx {
                         calc += BONUS_CONSECUTIVE;
                     } else {
-                        let distance = (i.saturating_sub(last).min(SCORE_GAP_MAX_DISTANCE) as f32)
+                        let distance = (idx.saturating_sub(last).min(SCORE_GAP_MAX_DISTANCE) as f32)
                             .sqrt()
                             .round() as isize;
 
@@ -128,10 +126,10 @@ pub mod score {
                     }
                 }
 
-                let prev_char = text_chars.get(i.wrapping_sub(1));
+                let prev_char = text[..idx].chars().next_back();
 
-                calc += boundary_bonus(*c, prev_char.cloned());
-                calc += bonus_matrix(*c, prev_char.cloned());
+                calc += boundary_bonus(curr, prev_char);
+                calc += bonus_matrix(curr, prev_char);
 
                 if query_idx == 0 {
                     calc *= BONUS_FIRST_CHAR_MULTIPLIER;
@@ -139,7 +137,7 @@ pub mod score {
 
                 score += calc;
 
-                last_match = Some(i);
+                last_match = Some(idx);
                 query_idx += 1;
                 query_char = query_chars.next();
             }
