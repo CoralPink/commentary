@@ -131,7 +131,7 @@ const initialize = (): void => {
   toc.appendChild(nav);
 };
 
-export const tocReset = (): void => {
+const tocReset = (): void => {
   const toc = document.getElementById('table-of-contents');
 
   if (toc === null) {
