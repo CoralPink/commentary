@@ -12,7 +12,7 @@ pub mod score {
     const SCORE_GAP_EXTENSION: isize = -1;
 
     // Maximum distance between matching characters before gap penalty stops increasing
-    const SCORE_GAP_MAX_DISTANCE: usize = 20;
+    const SCORE_GAP_MAX_DISTANCE: usize = 640;
 
     // Bonus for matches at word boundaries
     const BONUS_BOUNDARY: isize = SCORE_MATCH / 2;
