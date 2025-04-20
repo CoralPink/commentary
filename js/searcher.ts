@@ -1,5 +1,4 @@
 import { debounce } from './timing';
-import { tocReset } from './table-of-contents';
 import { Finder, marking, unmarking } from './wasm_book';
 import { loadStyleSheet } from './css-loader';
 
@@ -40,24 +39,7 @@ const unmarkHandler = (): void => {
     x.removeEventListener('click', unmarkHandler);
   }
   unmarking();
-  tocReset();
 };
-
-const escapeHtml = (str: string): string =>
-  decodeURIComponent(str).replace(/[&<>"']/g, match => {
-    const map: { [key: string]: string } = {
-      '&': '&amp;',
-      '<': '&lt;',
-      '>': '&gt;',
-      '"': '&quot;',
-      "'": '&#39;',
-    } as const;
-
-    if (!map[match]) {
-      throw new Error(`Unexpected character: ${match}`);
-    }
-    return map[match];
-  });
 
 // On reload or browser history backwards/forwards events, parse the url and do search or mark
 const doSearchOrMarkFromUrl = (): void => {
@@ -67,7 +49,7 @@ const doSearchOrMarkFromUrl = (): void => {
     return;
   }
 
-  marking(escapeHtml(params));
+  marking(params);
 
   const article = document.getElementById('article');
 
