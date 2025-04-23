@@ -11,6 +11,7 @@ use crate::searcher::js_util::*;
 use arrayvec::ArrayVec;
 use getset::Getters;
 use html_escape::encode_safe;
+use macros::error;
 use serde::Deserialize;
 use serde_wasm_bindgen::from_value;
 use urlencoding::encode;
@@ -128,6 +129,9 @@ impl Finder {
                     r#"<li tabindex="0" role="option" id="s{}" aria-label="{} {}pt"><a href="{}{}?mark={}#{}" tabindex="-1">{}</a><span aria-hidden="true">{}</span><div id="score" role="meter" aria-label="score:{}pt">{}</div></li>"#,
                     el.id, page, el.score, &self.root_path, page, mark, head, el.doc.breadcrumbs, excerpt, el.score, score_bar
                 ));
+            }
+            else {
+                macros::console_error!("Missing URL for document ID: {}", el.id);
             }
         });
 
