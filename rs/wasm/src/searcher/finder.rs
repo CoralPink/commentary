@@ -3,11 +3,13 @@
 /// It includes methods for initializing the searcher, executing searches,
 /// and rendering search results in the DOM.
 ///
-use crate::searcher::algo::score;
 use crate::searcher::function::*;
+use crate::searcher::highlight::*;
+use crate::searcher::hit_list::HitList;
 use crate::searcher::js_util::*;
 
 use arrayvec::ArrayVec;
+use getset::Getters;
 use html_escape::encode_safe;
 use macros::error;
 use serde::Deserialize;
@@ -18,11 +20,6 @@ use wasm_bindgen::prelude::*;
 const SCORE_LOWER_LIMIT: usize = 64;
 const SCORE_LOWER_LIMIT_ASCII: usize = 32;
 
-const SCORE_HEADER_BOOST_BASE: f32 = 8.0;
-const SCORE_HEADER_LENGTH_DECAY_EXPONENT: f32 = 0.4;
-
-const SCORE_HEADER_PARSE: char = '»';
-
 const ID_RESULTS_HEADER: &str = "results-header";
 const ID_RESULTS: &str = "searchresults";
 
@@ -30,16 +27,18 @@ const INITIAL_HEADER: &str = "2文字 (もしくは全角1文字) 以上を入�
 
 const BUFFER_HTML_SIZE: usize = 200_000;
 
-// maximum number of search results
-const LIMIT_RESULTS: usize = 100;
 // Maximum number of search words (entering more words than this will simply be ignored).
 const MAX_TOKENS: usize = 8;
 
-#[derive(Deserialize)]
-struct DocObject {
+#[derive(Deserialize, Getters)]
+pub struct DocObject {
+    #[get = "pub"]
     id: String,
+    #[get = "pub"]
     title: String,
+    #[get = "pub"]
     body: String,
+    #[get = "pub"]
     breadcrumbs: String,
 }
 
@@ -54,13 +53,6 @@ impl DocObject {
     }
 }
 
-struct ResultEntry<'a> {
-    doc: &'a DocObject,
-    score: usize,
-    first_index: usize,
-    id: usize,
-}
-
 fn split_limited<const N: usize>(input: &str) -> ArrayVec<&str, N> {
     let mut vec = ArrayVec::new();
 
@@ -72,20 +64,6 @@ fn split_limited<const N: usize>(input: &str) -> ArrayVec<&str, N> {
     }
 
     vec
-}
-
-fn get_header_score(term: &str, breadcrumbs: &str) -> usize {
-    breadcrumbs
-        .split(SCORE_HEADER_PARSE)
-        .map(str::trim)
-        .next_back()
-        .map(|header| {
-            let len = header.len().max(1) as f32;
-            let boost = SCORE_HEADER_BOOST_BASE * (1.0 / len.powf(SCORE_HEADER_LENGTH_DECAY_EXPONENT));
-
-            (score::compute(term, header) as f32 * boost).round() as usize
-        })
-        .unwrap_or(0)
 }
 
 #[wasm_bindgen]
@@ -131,7 +109,7 @@ impl Finder {
         })
     }
 
-    fn append_search_result(&self, results: ArrayVec<ResultEntry, LIMIT_RESULTS>, terms: &str) {
+    fn append_search_result(&self, results: HitList, terms: &str) {
         let normalized_terms = terms
             .split_whitespace()
             .map(|t| t.to_lowercase())
@@ -142,22 +120,19 @@ impl Finder {
         let mut html_buffer = String::with_capacity(BUFFER_HTML_SIZE);
 
         results.into_iter().for_each(|el| {
-            let idx = match el.doc.id.parse::<usize>() {
-                Ok(n) => n,
-                Err(_) => {
-                    macros::console_error!("Error: Invalid result.ref: {}", el.doc.id);
-                    return;
-                }
-            };
+            if let Some(url) = self.url_table.get(*el.id()) {
+                let (page, head) = parse_uri(url);
+                let excerpt = search_result_excerpt(&el.doc().body, &normalized_terms);
+                let score_bar = scoring_notation(*el.score());
 
-            let (page, head) = parse_uri(&self.url_table[idx]);
-            let excerpt = search_result_excerpt(&el.doc.body, &normalized_terms);
-            let score_bar = scoring_notation(el.score);
-
-            html_buffer.push_str(&format!(
-                r#"<li tabindex="0" role="option" id="s{}" aria-label="{} {}pt"><a href="{}{}?mark={}#{}" tabindex="-1">{}</a><span aria-hidden="true">{}</span><div id="score" role="meter" aria-label="score:{}pt">{}</div></li>"#,
-                el.doc.id, page, el.score, &self.root_path, page, mark, head, el.doc.breadcrumbs, excerpt, el.score, score_bar
-            ));
+                html_buffer.push_str(&format!(
+                    r#"<li tabindex="0" role="option" id="s{}" aria-label="{} {}pt"><a href="{}{}?mark={}#{}" tabindex="-1">{}</a><span aria-hidden="true">{}</span><div id="score" role="meter" aria-label="score:{}pt">{}</div></li>"#,
+                    el.id(), page, el.score(), &self.root_path, page, mark, head, el.doc().breadcrumbs, excerpt, el.score(), score_bar
+                ));
+            }
+            else {
+                macros::console_error!("Missing URL for document ID: {}", *el.id());
+            }
         });
 
         self.elem_result
@@ -165,50 +140,7 @@ impl Finder {
             .expect("failed: insert_adjacent_html");
     }
 
-    fn find_matches<'a>(
-        &'a self,
-        term: &str,
-        docs: Option<&[&'a DocObject]>,
-    ) -> ArrayVec<ResultEntry<'a>, LIMIT_RESULTS> {
-        let target_docs: Vec<&DocObject> = match docs {
-            Some(d) => d.to_vec(),
-            None => self.store_doc.iter().collect(),
-        };
-
-        let mut results: Vec<ResultEntry> = target_docs
-            .into_iter()
-            .filter_map(|doc| {
-                let body_score = score::compute(term, &doc.body);
-                let breadcrumbs_score = get_header_score(term, &doc.breadcrumbs);
-
-                let score = body_score + breadcrumbs_score;
-
-                if score == 0 {
-                    return None;
-                }
-                let first_index = doc.body.find(term).unwrap_or(usize::MAX);
-                let id = doc.id.parse::<usize>().unwrap_or(usize::MAX);
-
-                Some(ResultEntry {
-                    doc,
-                    score,
-                    first_index,
-                    id,
-                })
-            })
-            .collect();
-
-        results.sort_by(|a, b| {
-            b.score
-                .cmp(&a.score)
-                .then_with(|| a.id.cmp(&b.id))
-                .then_with(|| a.first_index.cmp(&b.first_index))
-        });
-
-        results.into_iter().take(LIMIT_RESULTS).collect()
-    }
-
-    fn aggregate_results(&self, terms: &str, minimum_score: usize) -> ArrayVec<ResultEntry, LIMIT_RESULTS> {
+    fn aggregate_results<'a>(&'a self, terms: &'a str, minimum_score: usize) -> HitList<'a> {
         let trimmed = terms.trim();
 
         let mut tokens: ArrayVec<&str, MAX_TOKENS> = split_limited::<MAX_TOKENS>(trimmed);
@@ -226,30 +158,7 @@ impl Finder {
                 .collect::<Vec<&DocObject>>()
         };
 
-        let mut entry = Vec::with_capacity(hit_docs.len().min(LIMIT_RESULTS));
-
-        for (idx, token) in tokens.iter().enumerate() {
-            let results = self.find_matches(token, Some(&hit_docs));
-
-            if idx == 0 {
-                entry.extend(results);
-                continue;
-            }
-
-            for x in results {
-                if let Some(existing) = entry.iter_mut().find(|y| y.doc.id == x.doc.id) {
-                    existing.score += x.score;
-                } else {
-                    entry.push(x);
-                }
-            }
-        }
-
-        entry.retain(|x| x.score >= minimum_score);
-        entry.sort_by(|a, b| b.score.cmp(&a.score));
-        entry.truncate(LIMIT_RESULTS);
-
-        entry.into_iter().collect()
+        HitList::from_token_set(tokens, hit_docs, minimum_score)
     }
 
     pub fn search(&self, terms: &str) {
