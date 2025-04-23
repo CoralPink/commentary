@@ -3,6 +3,7 @@ use crate::searcher::finder::DocObject;
 
 use arrayvec::ArrayVec;
 use getset::Getters;
+use macros::error;
 use std::ops::{Deref, DerefMut};
 
 /// maximum number of search results
@@ -131,10 +132,12 @@ impl<'a> HitList<'a> {
                 if score == 0 {
                     return None;
                 }
-                if let Ok(id) = doc.id().parse::<usize>() {
-                    Some(Hit { doc, score, id })
-                } else {
-                    None
+                match doc.id().parse::<usize>() {
+                    Ok(id) => Some(Hit { doc, score, id }),
+                    Err(_) => {
+                        macros::console_error!("Failed to parse document ID: {}", doc.id());
+                        None
+                    }
                 }
             })
             .collect();
