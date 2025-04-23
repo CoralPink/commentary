@@ -1,5 +1,4 @@
 use super::*;
-use crate::mark::article::with_article;
 
 use html_escape::encode_safe;
 use wasm_bindgen::prelude::*;
@@ -100,11 +99,9 @@ fn highlight_text_nodes(document: &Document, element: &Element, terms: &[&str]) 
 }
 
 #[wasm_bindgen]
-pub fn marking(params: &str) {
+pub fn marking(elm: &Element, params: &str) {
     let encoded = encode_safe(params);
     let terms: Vec<&str> = encoded.split_whitespace().collect();
 
-    with_article(|article| {
-        highlight_text_nodes(&article.owner_document().unwrap(), &article, &terms);
-    });
+    highlight_text_nodes(&elm.owner_document().unwrap(), elm, &terms);
 }
