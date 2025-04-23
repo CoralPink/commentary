@@ -62,7 +62,7 @@ impl Default for HitList<'_> {
 
 impl HitList<'_> {
     pub fn new() -> Self {
-        HitList(ArrayVec::new())
+        Self::default()
     }
 }
 
