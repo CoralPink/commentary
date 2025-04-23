@@ -7,11 +7,23 @@ use std::ops::{Deref, DerefMut};
 /// maximum number of search results
 pub const LIMIT_RESULTS: usize = 100;
 
+/// Base multiplier for header match scores
 const SCORE_HEADER_BOOST_BASE: f32 = 8.0;
+/// Controls how quickly the header boost decays as header length increases
 const SCORE_HEADER_LENGTH_DECAY_EXPONENT: f32 = 0.4;
-
+/// Character used to split header breadcrumbs
 const SCORE_HEADER_PARSE: char = '»';
 
+/// Calculates a relevance score for a search term within a document header.
+/// The score is boosted inversely proportional to header length, with the boost
+/// decaying at a rate controlled by SCORE_HEADER_LENGTH_DECAY_EXPONENT.
+///
+/// # Arguments
+/// * `term` - The search term to match
+/// * `breadcrumbs` - The document header path with sections separated by '»'
+///
+/// # Returns
+/// A weighted score with higher values for shorter headers
 fn get_header_score(term: &str, breadcrumbs: &str) -> usize {
     breadcrumbs
         .split(SCORE_HEADER_PARSE)
@@ -30,12 +42,16 @@ fn get_body_score(term: &str, body: &str) -> usize {
     score::compute(term, body)
 }
 
+/// Represents a single search result with its relevance score.
+/// Contains a reference to the matched document and its parsed ID.
 pub struct Hit<'a> {
     pub doc: &'a DocObject,
     pub score: usize,
     pub id: usize,
 }
 
+/// A collection of search hits with a fixed maximum capacity.
+/// Provides methods for scoring, merging, and ranking search results.
 pub struct HitList<'a>(ArrayVec<Hit<'a>, LIMIT_RESULTS>);
 
 impl Default for HitList<'_> {
