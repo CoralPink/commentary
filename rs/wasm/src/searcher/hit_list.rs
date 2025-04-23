@@ -102,8 +102,11 @@ impl<'a> HitList<'a> {
                 if score == 0 {
                     return None;
                 }
-                let id = doc.id.parse::<usize>().unwrap_or(usize::MAX);
-                Some(Hit { doc, score, id })
+                if let Ok(id) = doc.id.parse::<usize>() {
+                    Some(Hit { doc, score, id })
+                } else {
+                    None
+                }
             })
             .collect();
 

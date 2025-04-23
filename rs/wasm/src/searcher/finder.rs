@@ -5,8 +5,8 @@
 ///
 use crate::searcher::function::*;
 use crate::searcher::highlight::*;
-use crate::searcher::js_util::*;
 use crate::searcher::hit_list::HitList;
+use crate::searcher::js_util::*;
 
 use arrayvec::ArrayVec;
 use html_escape::encode_safe;
@@ -114,14 +114,16 @@ impl Finder {
         let mut html_buffer = String::with_capacity(BUFFER_HTML_SIZE);
 
         results.into_iter().for_each(|el| {
-            let (page, head) = parse_uri(&self.url_table[el.id]);
-            let excerpt = search_result_excerpt(&el.doc.body, &normalized_terms);
-            let score_bar = scoring_notation(el.score);
+            if let Some(url) = self.url_table.get(el.id) {
+                let (page, head) = parse_uri(url);
+                let excerpt = search_result_excerpt(&el.doc.body, &normalized_terms);
+                let score_bar = scoring_notation(el.score);
 
-            html_buffer.push_str(&format!(
-                r#"<li tabindex="0" role="option" id="s{}" aria-label="{} {}pt"><a href="{}{}?mark={}#{}" tabindex="-1">{}</a><span aria-hidden="true">{}</span><div id="score" role="meter" aria-label="score:{}pt">{}</div></li>"#,
-                el.id, page, el.score, &self.root_path, page, mark, head, el.doc.breadcrumbs, excerpt, el.score, score_bar
-            ));
+                html_buffer.push_str(&format!(
+                    r#"<li tabindex="0" role="option" id="s{}" aria-label="{} {}pt"><a href="{}{}?mark={}#{}" tabindex="-1">{}</a><span aria-hidden="true">{}</span><div id="score" role="meter" aria-label="score:{}pt">{}</div></li>"#,
+                    el.id, page, el.score, &self.root_path, page, mark, head, el.doc.breadcrumbs, excerpt, el.score, score_bar
+                ));
+            }
         });
 
         self.elem_result
