@@ -88,7 +88,7 @@ pub fn search_result_excerpt(body: &str, normalized_texts: &[String]) -> String 
     let mut tokens = ArrayVec::<HighlightedToken, ARRAY_VEC_SIZE>::new();
     let mut pos: usize = 0;
 
-    for sentence in body.to_lowercase().split(". ") {
+    for sentence in body.split(". ") {
         for text in sentence.split(' ').collect::<Vec<&str>>() {
             if text.is_empty() {
                 pos += 1;
