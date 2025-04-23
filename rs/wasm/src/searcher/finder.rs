@@ -120,18 +120,18 @@ impl Finder {
         let mut html_buffer = String::with_capacity(BUFFER_HTML_SIZE);
 
         results.into_iter().for_each(|el| {
-            if let Some(url) = self.url_table.get(el.id) {
+            if let Some(url) = self.url_table.get(*el.id()) {
                 let (page, head) = parse_uri(url);
-                let excerpt = search_result_excerpt(&el.doc.body, &normalized_terms);
-                let score_bar = scoring_notation(el.score);
+                let excerpt = search_result_excerpt(&el.doc().body, &normalized_terms);
+                let score_bar = scoring_notation(*el.score());
 
                 html_buffer.push_str(&format!(
                     r#"<li tabindex="0" role="option" id="s{}" aria-label="{} {}pt"><a href="{}{}?mark={}#{}" tabindex="-1">{}</a><span aria-hidden="true">{}</span><div id="score" role="meter" aria-label="score:{}pt">{}</div></li>"#,
-                    el.id, page, el.score, &self.root_path, page, mark, head, el.doc.breadcrumbs, excerpt, el.score, score_bar
+                    el.id(), page, el.score(), &self.root_path, page, mark, head, el.doc().breadcrumbs, excerpt, el.score(), score_bar
                 ));
             }
             else {
-                macros::console_error!("Missing URL for document ID: {}", el.id);
+                macros::console_error!("Missing URL for document ID: {}", *el.id());
             }
         });
 

@@ -12,9 +12,9 @@ const MARK_TAG_END: &str = "</mark>";
 const ARRAY_VEC_SIZE: usize = 512;
 
 struct HighlightedToken {
-    pub text: String,
-    pub position: usize,
-    pub importance: usize,
+    text: String,
+    position: usize,
+    importance: usize,
 }
 
 fn compute_importance(text: &str, pos: usize, normalized_texts: &[String]) -> usize {

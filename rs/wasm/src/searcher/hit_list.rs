@@ -2,6 +2,7 @@ use crate::searcher::algo::score;
 use crate::searcher::finder::DocObject;
 
 use arrayvec::ArrayVec;
+use getset::Getters;
 use std::ops::{Deref, DerefMut};
 
 /// maximum number of search results
@@ -44,10 +45,14 @@ fn get_body_score(term: &str, body: &str) -> usize {
 
 /// Represents a single search result with its relevance score.
 /// Contains a reference to the matched document and its parsed ID.
+#[derive(Getters)]
 pub struct Hit<'a> {
-    pub doc: &'a DocObject,
-    pub score: usize,
-    pub id: usize,
+    #[get = "pub"]
+    doc: &'a DocObject,
+    #[get = "pub"]
+    score: usize,
+    #[get = "pub"]
+    id: usize,
 }
 
 /// A collection of search hits with a fixed maximum capacity.
