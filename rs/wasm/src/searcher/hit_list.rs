@@ -97,12 +97,12 @@ impl<'a> HitList<'a> {
         let mut results: Vec<Hit<'a>> = docs
             .into_iter()
             .filter_map(|doc| {
-                let score = get_header_score(term, &doc.breadcrumbs) + get_body_score(term, &doc.body);
+                let score = get_header_score(term, doc.breadcrumbs()) + get_body_score(term, doc.body());
 
                 if score == 0 {
                     return None;
                 }
-                if let Ok(id) = doc.id.parse::<usize>() {
+                if let Ok(id) = doc.id().parse::<usize>() {
                     Some(Hit { doc, score, id })
                 } else {
                     None

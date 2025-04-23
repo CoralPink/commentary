@@ -9,6 +9,7 @@ use crate::searcher::hit_list::HitList;
 use crate::searcher::js_util::*;
 
 use arrayvec::ArrayVec;
+use getset::Getters;
 use html_escape::encode_safe;
 use serde::Deserialize;
 use serde_wasm_bindgen::from_value;
@@ -28,12 +29,16 @@ const BUFFER_HTML_SIZE: usize = 200_000;
 // Maximum number of search words (entering more words than this will simply be ignored).
 const MAX_TOKENS: usize = 8;
 
-#[derive(Deserialize)]
+#[derive(Deserialize, Getters)]
 pub struct DocObject {
-    pub id: String,
-    pub title: String,
-    pub body: String,
-    pub breadcrumbs: String,
+    #[get = "pub"]
+    id: String,
+    #[get = "pub"]
+    title: String,
+    #[get = "pub"]
+    body: String,
+    #[get = "pub"]
+    breadcrumbs: String,
 }
 
 impl DocObject {
