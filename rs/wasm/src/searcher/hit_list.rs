@@ -97,6 +97,14 @@ impl<'a> IntoIterator for HitList<'a> {
 
 impl<'a> HitList<'a> {
     pub fn merge(mut self, ml: HitList<'a>) -> Self {
+        // If both lists are at or near capacity, ensure we keep highest-scoring hits
+        if self.len() + ml.len() > LIMIT_RESULTS {
+            let mut all_hits: Vec<Hit<'a>> = self.into_iter().chain(ml).collect();
+            all_hits.sort_by(|a, b| b.score.cmp(&a.score).then_with(|| a.id.cmp(&b.id)));
+            return Self(all_hits.into_iter().take(LIMIT_RESULTS).collect());
+        }
+
+        // Fast path for the common case when we're not at capacity
         for x in ml {
             if let Some(existing) = self.iter_mut().find(|y| y.id == x.id) {
                 existing.score += x.score;
