@@ -169,7 +169,6 @@ const showSearch = (): void => {
 
   elmPop.showPopover();
 
-  elmSearchBar.focus();
   elmSearchBar.select();
 };
 
