@@ -81,6 +81,7 @@ const jumpHeader = (ev: MouseEvent, el: HTMLAnchorElement): void => {
 
   if (target) {
     target.scrollIntoView({ behavior: 'smooth' });
+    history.replaceState(null, '', `#${target.id}`);
   }
 };
 
