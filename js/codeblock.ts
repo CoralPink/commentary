@@ -1,74 +1,6 @@
 const WORKER_PATH = '/commentary/hl-worker.js';
-const MAX_THREAD = 8;
 
-const POP_WAIT_MS = 20;
-const TIME_OUT_MS = 600;
-
-// Singleton Class
-class WorkerPool {
-  private static instance: WorkerPool | undefined;
-  private workerRefs: WeakRef<Worker>[] = [];
-
-  public constructor(threadNum = 0) {
-    if (WorkerPool.instance) {
-      /* biome-ignore lint: no-constructor-return */
-      return WorkerPool.instance;
-    }
-
-    for (let i = 0; i < Math.min(threadNum, MAX_THREAD); i++) {
-      this.workerRefs.push(new WeakRef(new Worker(WORKER_PATH)));
-    }
-
-    WorkerPool.instance = this;
-  }
-
-  public release(): void {
-    for (const workerRef of this.workerRefs) {
-      const worker = workerRef.deref();
-
-      if (worker) {
-        worker.terminate();
-      }
-    }
-    this.workerRefs.length = 0;
-    WorkerPool.instance = undefined;
-  }
-
-  public push(worker: Worker): void {
-    this.workerRefs.push(new WeakRef(worker));
-  }
-
-  public async pop(): Promise<Worker> {
-    let retry = true;
-
-    const workerPromise = new Promise<Worker>(resolve => {
-      const checkAndPop = () => {
-        const workerRef = this.workerRefs.pop();
-        const worker = workerRef?.deref();
-
-        if (worker) {
-          resolve(worker);
-          return;
-        }
-
-        if (retry) {
-          setTimeout(checkAndPop, POP_WAIT_MS);
-        }
-      };
-
-      checkAndPop();
-    });
-
-    const timeOutPromise = new Promise<never>((_, reject) => {
-      setTimeout(() => {
-        retry = false;
-        reject(new Error('Pool pop time out!'));
-      }, TIME_OUT_MS);
-    });
-
-    return Promise.race([workerPromise, timeOutPromise]);
-  }
-}
+const TOOLTIP_FADEOUT_MS = 1200;
 
 const createClipButton = (): HTMLButtonElement => {
   const elem = document.createElement('button');
@@ -82,35 +14,82 @@ const createClipButton = (): HTMLButtonElement => {
   return elem;
 };
 
+const showTooltip = (target: HTMLElement, msg: string): void => {
+  const tip = document.createElement('div');
+  tip.setAttribute('class', 'tooltiptext');
+  tip.insertAdjacentText('afterbegin', msg);
+
+  const button = target.closest('button');
+
+  if (button === null) {
+    return;
+  }
+  button.appendChild(tip);
+
+  setTimeout(() => button.removeChild(tip), TOOLTIP_FADEOUT_MS);
+};
+
 const copyCode = (target: EventTarget | null): void => {
   if (!(target instanceof HTMLElement)) {
     return;
   }
-
-  const showTooltip = (msg: string): void => {
-    const tip = document.createElement('div');
-    tip.setAttribute('class', 'tooltiptext');
-    tip.insertAdjacentText('afterbegin', msg);
-
-    const button = target.closest('button');
-
-    if (button === null) {
-      return;
-    }
-    button.appendChild(tip);
-    setTimeout(() => button.removeChild(tip), 1200);
-  };
 
   const pre = target.closest('pre');
   const code = pre?.querySelector('code');
 
   if (code) {
     navigator.clipboard.writeText(code.innerText).then(
-      () => showTooltip('Copied!'),
-      () => showTooltip('Failed...'),
+      () => showTooltip(target, 'Copied!'),
+      () => showTooltip(target, 'Failed...'),
     );
   }
 };
+
+const observer = new IntersectionObserver(
+  entries => {
+    const clipButton = createClipButton();
+
+    for (const entry of entries) {
+      if (!entry.isIntersecting) {
+        continue;
+      }
+      const code = entry.target as HTMLElement;
+      observer.unobserve(code);
+
+      const worker = new Worker(WORKER_PATH);
+
+      worker.onmessage = (ev: MessageEvent) => {
+        const { highlightCode, needNerdFonts } = ev.data;
+        code.innerHTML = highlightCode;
+
+        if (needNerdFonts) {
+          code.style.fontFamily = `${window.getComputedStyle(code).fontFamily}, 'Symbols Nerd Font Mono'`;
+        }
+        code.setAttribute('translate', 'no');
+
+        worker.terminate();
+      };
+
+      worker.onerror = (err: ErrorEvent) => {
+        console.error('Error in codeBlock:', err);
+        worker.terminate();
+      };
+
+      worker.postMessage([code.textContent, code.classList[0]]);
+
+      const parent = code.parentNode;
+
+      if (parent === null) {
+        continue;
+      }
+      const cb = document.importNode(clipButton, true);
+      cb.addEventListener('click', ev => copyCode(ev.target), { once: false, passive: true });
+
+      parent.insertBefore(cb, parent.firstChild);
+    }
+  },
+  { threshold: 0 },
+);
 
 export const procCodeBlock = (): void => {
   const article = document.getElementById('article');
@@ -123,53 +102,7 @@ export const procCodeBlock = (): void => {
     (code): code is HTMLElement => !code.classList.contains('language-txt'),
   );
 
-  const threadNum = codeQuery.length;
-
-  if (threadNum <= 0) {
-    return;
-  }
-
-  const clipButton = createClipButton();
-  const workerPool = new WorkerPool(threadNum);
-
   for (const code of codeQuery) {
-    workerPool.pop().then(
-      worker => {
-        worker.onmessage = (ev: MessageEvent) => {
-          const { highlightCode, needNerdFonts } = ev.data;
-          code.innerHTML = highlightCode;
-
-          if (needNerdFonts) {
-            code.style.fontFamily = `${window.getComputedStyle(code).fontFamily}, 'Symbols Nerd Font Mono'`;
-          }
-          code.setAttribute('translate', 'no');
-
-          workerPool.push(worker);
-        };
-
-        worker.onerror = (err: ErrorEvent) => {
-          console.error('Error in codeBlock:', err);
-          workerPool.push(worker);
-        };
-
-        worker.postMessage([code.textContent, code.classList[0]]);
-      },
-      err => {
-        console.error('Error in workerPool:', err);
-      },
-    );
-
-    const parent = code.parentNode;
-
-    if (parent === null) {
-      continue;
-    }
-    const cb = document.importNode(clipButton, true);
-    cb.addEventListener('click', ev => copyCode(ev.target), { once: false, passive: true });
-
-    parent.insertBefore(cb, parent.firstChild);
+    observer.observe(code);
   }
-
-  const releaseTime = (threadNum > MAX_THREAD ? threadNum / MAX_THREAD + 1 : 1) * TIME_OUT_MS;
-  setTimeout(() => workerPool.release(), releaseTime);
 };

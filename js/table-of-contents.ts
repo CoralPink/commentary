@@ -74,6 +74,16 @@ function* reverseItr(array: IntersectionObserverEntry[]): Generator<Intersection
   }
 }
 
+const jumpHeader = (ev: MouseEvent, el: HTMLAnchorElement): void => {
+  ev.preventDefault();
+
+  const target = document.getElementById(decodeURIComponent(el.hash.slice(1)));
+
+  if (target) {
+    target.scrollIntoView({ behavior: 'smooth' });
+  }
+};
+
 const initialize = (): void => {
   observer = new IntersectionObserver(
     (entries: IntersectionObserverEntry[]) => {
@@ -103,6 +113,7 @@ const initialize = (): void => {
 
   for (const x of Array.from(headers)) {
     const el = x as HTMLAnchorElement;
+
     if (!el.parentElement) {
       console.error('Header element has no parent');
       continue;
@@ -115,6 +126,8 @@ const initialize = (): void => {
     link.appendChild(document.createTextNode(el.text));
     link.href = el.href;
     link.classList.add(el.parentElement?.tagName ?? '');
+
+    link.addEventListener('click', ev => jumpHeader(ev, el), { once: false, passive: false });
 
     nav.appendChild(link);
     tocMap.set(el, link);
