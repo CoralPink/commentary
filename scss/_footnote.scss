@@ -7,7 +7,7 @@
 
   a {
     text-decoration: none;
-  };
+  }
   p {
     display: inline;
   }
@@ -20,7 +20,7 @@
 
     background: none;
     border: none;
-    color: --links;
+    color: var(--links);
     cursor: pointer;
     padding: 0;
     font: inherit;
@@ -55,7 +55,13 @@
 
   a {
     text-decoration: none;
-  };
+
+    &:link, &:visited {
+      color: var(--links);
+      margin-left: .2em;
+      margin-right: .2em;
+    }
+  }
   p {
     display: inline;
   }
