@@ -1,7 +1,7 @@
 # 🎠 Watching the Wheels
 
 ```admonish success title=""
-I'm just sitting here watching the wheels<sup class="ft-reference"><a name="to-ft-1" href="#ft-1">1</a></sup>go 'round and 'round
+I'm just sitting here watching the wheels<sup class="ft-reference"><button id="to-ft-1" data-href="#ft-1">1</button></sup>go 'round and 'round
 
 I really love to watch them roll
 

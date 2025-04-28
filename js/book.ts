@@ -1,4 +1,5 @@
 import { procCodeBlock } from './codeblock';
+import { initFootnote } from './footnote';
 import { startupSearch } from './searcher';
 import { initSidebar } from './sidebar';
 import { initTableOfContents } from './table-of-contents';
@@ -15,6 +16,8 @@ const initialize = (): void => {
 
   initThemeColor(rootPath);
   initTableOfContents();
+  initFootnote();
+
   procCodeBlock();
 
   initWasm().then(

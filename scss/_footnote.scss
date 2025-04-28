@@ -8,15 +8,61 @@
   a {
     text-decoration: none;
   }
-
   p {
     display: inline;
   }
 }
 
 .ft-reference {
-  a {
+  button {
     text-decoration: none;
     scroll-margin-top: var.$menu-bar-height;
+
+    background: none;
+    border: none;
+    color: var(--links);
+    cursor: pointer;
+    padding: 0;
+    font: inherit;
+  }
+}
+
+.ft-pop {
+  color: var(--fg);
+  background-color: var(--theme-popup-bg);
+  border: .1rem solid var(--theme-popup-border);
+
+  width: 88vw;
+  max-height: 64vw;
+  margin: 1rem auto;
+  padding: 1rem 1rem;
+  border-radius: .8rem;
+  font-size: .64rem;
+  text-align: left;
+  overflow-y: scroll;
+
+  position: absolute;
+  transform: translateX(-50%) scale(0.95);
+  left: 50%;
+  z-index: 20;
+  opacity: 0;
+  transition: opacity 150ms ease, transform 150ms ease;
+
+  &.show {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+  }
+
+  a {
+    text-decoration: none;
+
+    &:link, &:visited {
+      color: var(--links);
+      margin-left: .2em;
+      margin-right: .2em;
+    }
+  }
+  p {
+    display: inline;
   }
 }

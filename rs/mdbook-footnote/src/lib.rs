@@ -19,7 +19,7 @@ pub fn replacing(mut book: Book) -> Result<Book, Error> {
                     footnotes.push(content);
 
                     let idx = footnotes.len();
-                    format!("<sup class=\"{FT_REF}\"><a name=\"to-ft-{idx}\" href=\"#ft-{idx}\">{idx}</a></sup>")
+                    format!("<sup class=\"{FT_REF}\"><button id=\"to-ft-{idx}\" data-href=\"#ft-{idx}\">{idx}</button></sup>")
                 })
                 .to_string();
 
