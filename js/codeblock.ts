@@ -91,18 +91,16 @@ const observer = new IntersectionObserver(
   { threshold: 0 },
 );
 
-export const procCodeBlock = (): void => {
+export const initCodeBlock = (): void => {
   const article = document.getElementById('article');
 
   if (article === null) {
     return;
   }
 
-  const codeQuery = Array.from(article.querySelectorAll('pre code')).filter(
-    (code): code is HTMLElement => !code.classList.contains('language-txt'),
-  );
-
-  for (const code of codeQuery) {
-    observer.observe(code);
+  for (const x of Array.from(article.querySelectorAll('pre code')).filter(
+    (y): y is HTMLElement => !y.classList.contains('language-txt'),
+  )) {
+    observer.observe(x);
   }
 };

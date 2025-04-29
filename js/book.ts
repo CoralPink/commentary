@@ -1,4 +1,4 @@
-import { procCodeBlock } from './codeblock';
+import { initCodeBlock } from './codeblock';
 import { initFootnote } from './footnote';
 import { startupSearch } from './searcher';
 import { initSidebar } from './sidebar';
@@ -11,26 +11,27 @@ type DataSet = DOMStringMap & {
   pathtoroot: string;
 };
 
-const initialize = (): void => {
-  const rootPath = (document.getElementById('bookjs')?.dataset as DataSet).pathtoroot;
+const wasmPromise = initWasm();
+const rootPath = (document.getElementById('bookjs')?.dataset as DataSet).pathtoroot;
 
-  initThemeColor(rootPath);
+const initialize = async (): Promise<void> => {
   initTableOfContents();
+  initCodeBlock();
   initFootnote();
 
-  procCodeBlock();
+  try {
+    await wasmPromise;
 
-  initWasm().then(
-    () => {
-      attribute_external_links();
-      startupSearch(rootPath);
-    },
-    err => console.error(err),
-  );
+    attribute_external_links();
+    startupSearch(rootPath);
+  } catch (err) {
+    console.error(err);
+  }
 };
 
 ((): void => {
-  initSidebar((document.getElementById('bookjs')?.dataset as DataSet).pathtoroot);
+  initThemeColor(rootPath);
+  initSidebar(rootPath);
 
   document.addEventListener('DOMContentLoaded', initialize, { once: true, passive: true });
 
