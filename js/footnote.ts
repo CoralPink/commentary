@@ -29,6 +29,23 @@ const closeFootnotePop = (target: HTMLElement, elm: HTMLElement): void => {
   elm.addEventListener('transitionend', handleTransitionEnd);
 };
 
+const insertFootnote = (pop: HTMLElement, footnote: HTMLElement): void => {
+  pop.insertAdjacentHTML('afterbegin', footnote.innerHTML);
+  const sup = pop.querySelector('p > sup a[href^="#to-ft-"]');
+
+  if (!sup) {
+    return;
+  }
+
+  const oldHref = sup.getAttribute('href');
+
+  if (!oldHref) {
+    return;
+  }
+
+  sup.setAttribute('href', oldHref.replace(/^#to-ft-/, '#ft-'));
+};
+
 const handleFootnoteClick = (target: EventTarget | null): void => {
   if (!(target instanceof HTMLElement)) {
     return;
@@ -60,11 +77,12 @@ const handleFootnoteClick = (target: EventTarget | null): void => {
 
   const pop = document.createElement('aside');
 
-  pop.insertAdjacentHTML('afterbegin', footnote.innerHTML);
   pop.style.top = `${calcTop(target, pop) + window.scrollY}px`;
   pop.setAttribute('class', 'ft-pop');
   pop.setAttribute('role', 'tooltip');
   pop.setAttribute('id', popIdStr);
+
+  insertFootnote(pop, footnote);
 
   requestAnimationFrame(() => {
     pop.classList.add('show');
