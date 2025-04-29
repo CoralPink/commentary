@@ -1,14 +1,32 @@
-const closePopover = (tip: HTMLElement) => {
-  tip.classList.remove('show');
+const POTISION_GAP = 10;
 
-  const handleTransitionEnd = (event: TransitionEvent) => {
-    if (event.propertyName === 'opacity') {
-      tip.removeEventListener('transitionend', handleTransitionEnd);
-      tip.remove();
+const calcTop = (target: HTMLElement, pop: HTMLElement): number => {
+  const rect = target.getBoundingClientRect();
+  const popHeight = pop.offsetHeight;
+
+  const top = rect.bottom + POTISION_GAP;
+
+  // Flip above if overflowing viewport bottom
+  if (top + popHeight > window.innerHeight - POTISION_GAP) {
+    return rect.top - popHeight - POTISION_GAP;
+  }
+  return top;
+};
+
+const closeFootnotePop = (target: HTMLElement, elm: HTMLElement): void => {
+  elm.classList.remove('show');
+
+  target.removeAttribute('aria-expanded');
+  target.removeAttribute('aria-controls');
+
+  const handleTransitionEnd = (ev: TransitionEvent) => {
+    if (ev.propertyName === 'opacity') {
+      elm.removeEventListener('transitionend', handleTransitionEnd);
+      elm.remove();
     }
   };
 
-  tip.addEventListener('transitionend', handleTransitionEnd);
+  elm.addEventListener('transitionend', handleTransitionEnd);
 };
 
 const handleFootnoteClick = (target: EventTarget | null): void => {
@@ -22,61 +40,62 @@ const handleFootnoteClick = (target: EventTarget | null): void => {
     return;
   }
 
-  const footnote = document.getElementById(href.slice(1));
+  const ftId = href.slice(1);
+  const popIdStr = `popover-${ftId}`;
 
-  if (!footnote) {
+  // If this pop is already open, do nothing
+  if (document.getElementById(popIdStr)) {
     return;
   }
 
-  const tip = document.createElement('aside');
-  tip.setAttribute('class', 'ft-pop');
-  tip.insertAdjacentHTML('afterbegin', footnote.innerHTML);
+  const footnote = document.getElementById(ftId);
 
-  tip.setAttribute('role', 'tooltip');
-  tip.setAttribute('id', `popover-${href.slice(1)}`);
+  if (!footnote) {
+    console.error(`footnote for ${ftId} does not exist.`);
+    return;
+  }
 
   target.setAttribute('aria-expanded', 'true');
-  target.setAttribute('aria-controls', `popover-${href.slice(1)}`);
+  target.setAttribute('aria-controls', popIdStr);
 
-  document.body.appendChild(tip);
+  const pop = document.createElement('aside');
 
-  const rect = (target as HTMLElement).getBoundingClientRect();
-  const popHeight = tip.offsetHeight;
-  const gap = 10;
-  let top = rect.bottom + gap;
-
-  // Flip above if overflowing viewport bottom
-  if (top + popHeight > window.innerHeight - gap) {
-    top = rect.top - popHeight - gap;
-  }
-  tip.style.position = 'absolute';
-  tip.style.top = `${top + window.scrollY}px`;
+  pop.insertAdjacentHTML('afterbegin', footnote.innerHTML);
+  pop.style.top = `${calcTop(target, pop) + window.scrollY}px`;
+  pop.setAttribute('class', 'ft-pop');
+  pop.setAttribute('role', 'tooltip');
+  pop.setAttribute('id', popIdStr);
 
   requestAnimationFrame(() => {
-    tip.classList.add('show');
+    pop.classList.add('show');
   });
 
-  // Connect the button to the popover for accessibility
-  const onClickOutside = (ev: MouseEvent) => {
+  document.body.appendChild(pop);
+
+  const onClickOutside = (ev: MouseEvent): void => {
     if (!(ev.target instanceof Node)) {
       return;
     }
-
-    if (!tip.contains(ev.target) && target !== ev.target) {
-      closePopover(tip);
-
-      target.setAttribute('aria-expanded', 'false');
-      target.removeAttribute('aria-controls');
-
-      document.removeEventListener('click', onClickOutside);
+    if (pop.contains(ev.target) || target === ev.target) {
+      return;
     }
+
+    closeFootnotePop(target, pop);
+    document.removeEventListener('click', onClickOutside);
   };
 
   document.addEventListener('click', onClickOutside, { once: false, passive: true });
 };
 
 export const initFootnote = (): void => {
-  for (const sup of Array.from(document.querySelectorAll('sup.ft-reference'))) {
-    sup.addEventListener('click', ev => handleFootnoteClick(ev.target), { once: false, passive: true });
+  const article = document.getElementById('article');
+
+  if (article === null) {
+    console.error('Article element not found');
+    return;
+  }
+
+  for (const x of Array.from(article.querySelectorAll('sup.ft-reference'))) {
+    x.addEventListener('click', ev => handleFootnoteClick(ev.target), { once: false, passive: true });
   }
 };
