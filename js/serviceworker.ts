@@ -1,11 +1,12 @@
 declare const self: ServiceWorkerGlobalScope;
 
-const CACHE_VERSION = 'v7.2.1';
+const CACHE_VERSION = 'v7.2.2';
 
 const CACHE_HOST = 'https://coralpink.github.io/';
 const CACHE_URL = '/commentary/';
+const FALLBACK_IMAGE = 'chrome-96x96.png';
 
-const CACHE_LIST: string[] = [
+const installList: string[] = [
   'book.js',
   'hl-worker.js',
   'wasm_book_bg.wasm',
@@ -17,15 +18,10 @@ const CACHE_LIST: string[] = [
   'woff2/OpenSans-Italic.woff2',
   'woff2/FiraCode-VF.woff2',
 
-  'apple-touch-icon.png',
-  'chrome-96x96.png',
-  'favicon.ico',
-  'favicon.svg',
-
-  'manifest.json',
+  FALLBACK_IMAGE,
 ] as const;
 
-const FALLBACK_URL = `${CACHE_URL}chrome-96x96.png`;
+const skipTypes = new Set(['document', 'image', 'video']);
 
 const deleteCache = async (key: string): Promise<void> => {
   await caches.delete(key);
@@ -38,16 +34,14 @@ const deleteOldCaches = async (): Promise<void> => {
   await Promise.all(cachesToDelete.map(deleteCache));
 };
 
-self.addEventListener('activate', (event: ExtendableEvent) => {
-  event.waitUntil(self.clients.claim());
+self.addEventListener('activate', event => {
   event.waitUntil(
     (async () => {
-      if (self.registration.navigationPreload) {
-        await self.registration.navigationPreload.enable();
-      }
+      await self.clients.claim();
+      await self.registration.navigationPreload?.enable();
+      await deleteOldCaches();
     })(),
   );
-  event.waitUntil(deleteOldCaches());
 });
 
 const extractVersionParts = (cacheName: string): { major: number; minor: number } => {
@@ -73,7 +67,7 @@ self.addEventListener('install', (event: ExtendableEvent) => {
         self.skipWaiting();
       }
       const cache = await caches.open(CACHE_VERSION);
-      await cache.addAll(CACHE_LIST.map(x => CACHE_URL + x));
+      await cache.addAll(installList.map(x => CACHE_URL + x));
     })(),
   );
 });
@@ -87,19 +81,19 @@ const cacheFirst = async (
   request: Request,
   preloadResponse: Promise<Response | undefined> | undefined,
 ): Promise<Response> => {
-  // First try to get the resource from the cache
-  const responseFromCache = await caches.match(request);
-
-  if (responseFromCache) {
-    return responseFromCache;
-  }
-
-  // Next try to use the preloaded response, if it's there
+  // First try to use the preloaded response, if it's there
   const preloadResponseResult = await preloadResponse;
 
   if (preloadResponseResult && preloadResponseResult instanceof Response) {
     putInCache(request, preloadResponseResult.clone());
     return preloadResponseResult;
+  }
+
+  // Next try to get the resource from the cache
+  const responseFromCache = await caches.match(request);
+
+  if (responseFromCache) {
+    return responseFromCache;
   }
 
   // Next try to get the resource from the network
@@ -113,7 +107,7 @@ const cacheFirst = async (
 
     return responseFromNetwork;
   } catch (error) {
-    const fallbackResponse = await caches.match(FALLBACK_URL);
+    const fallbackResponse = await caches.match(`${CACHE_URL}${FALLBACK_IMAGE}`);
 
     if (fallbackResponse) {
       return fallbackResponse;
@@ -138,7 +132,7 @@ self.addEventListener(
       return;
     }
 
-    if (request.destination === 'document') {
+    if (skipTypes.has(request.destination)) {
       return;
     }
 
