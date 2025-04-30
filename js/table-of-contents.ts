@@ -3,7 +3,7 @@ import { getRootVariableNum } from './css-loader';
 const ENV_PC: number = 0;
 const ENV_MOBILE: number = 1;
 
-const ELEMENT_TOC: string[] = ['righttoc', 'bottomtoc'] as const;
+const elementToc = ['righttoc', 'bottomtoc'] as const satisfies readonly string[];
 
 const tocMap: Map<HTMLElement, HTMLAnchorElement> = new Map();
 let observer: IntersectionObserver;
@@ -141,7 +141,7 @@ const initialize = (): void => {
     return;
   }
 
-  toc.classList.add(ELEMENT_TOC[environment]);
+  toc.classList.add(elementToc[environment]);
   toc.appendChild(nav);
 };
 
@@ -160,7 +160,7 @@ const tocReset = (): void => {
     return;
   }
 
-  toc.classList.remove(ELEMENT_TOC[environment]);
+  toc.classList.remove(elementToc[environment]);
   toc.removeChild(pagetoc);
 
   tocMap.clear();

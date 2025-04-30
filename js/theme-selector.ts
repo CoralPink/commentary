@@ -10,16 +10,18 @@ type ThemeColor = {
   readonly label: string;
 };
 
-const THEME_COLORS: readonly ThemeColor[] = [
+const themeColors = [
   { id: 'au-lait', label: 'Au Lait' },
   { id: 'latte', label: 'Latte' },
   { id: 'frappe', label: 'Frappé' },
   { id: 'macchiato', label: 'Macchiato' },
   { id: 'mocha', label: 'Mocha' },
-];
+] as const satisfies readonly ThemeColor[];
 
-const DEFAULT_THEME = THEME_COLORS[1].id;
-const PREFERRED_DARK_THEME = THEME_COLORS[3].id;
+type ThemeColorId = (typeof themeColors)[number]['id'];
+
+const DEFAULT_THEME: ThemeColorId = themeColors[1].id;
+const PREFERRED_DARK_THEME: ThemeColorId = themeColors[3].id;
 
 const DARK_FALLBACK_COLOR = '#24273a';
 const LIGHT_FALLBACK_COLOR = '#eff1f5';
@@ -95,7 +97,7 @@ const initThemeSelector = async (): Promise<void> => {
 
   const currentTheme = document.documentElement.className;
 
-  for (const theme of THEME_COLORS) {
+  for (const theme of themeColors) {
     const li = document.createElement('li');
 
     li.setAttribute('role', 'menuitem');
