@@ -1,12 +1,11 @@
 declare const self: ServiceWorkerGlobalScope;
 
-const CACHE_VERSION = 'v7.2.2';
+const CACHE_VERSION = 'v7.2.3';
 
-const CACHE_HOST = 'https://coralpink.github.io/';
 const CACHE_URL = '/commentary/';
 const FALLBACK_IMAGE = 'chrome-96x96.png';
 
-const installList: string[] = [
+const installList = [
   'book.js',
   'hl-worker.js',
   'wasm_book_bg.wasm',
@@ -19,38 +18,18 @@ const installList: string[] = [
   'woff2/FiraCode-VF.woff2',
 
   FALLBACK_IMAGE,
-] as const;
+] as const satisfies readonly string[];
 
-const skipTypes = new Set(['document', 'image', 'video']);
-
-const deleteCache = async (key: string): Promise<void> => {
-  await caches.delete(key);
-};
-
-const deleteOldCaches = async (): Promise<void> => {
-  const cacheKeepList = [CACHE_VERSION];
-  const keyList = await caches.keys();
-  const cachesToDelete = keyList.filter(key => !cacheKeepList.includes(key));
-  await Promise.all(cachesToDelete.map(deleteCache));
-};
-
-self.addEventListener('activate', event => {
-  event.waitUntil(
-    (async () => {
-      await self.clients.claim();
-      await self.registration.navigationPreload?.enable();
-      await deleteOldCaches();
-    })(),
-  );
-});
+const skipDestination = new Set(['document', 'image', 'video', 'audio']);
 
 const extractVersionParts = (cacheName: string): { major: number; minor: number } => {
   const versionString = cacheName.substring(1);
   const [major, minor] = versionString.split('.').map(Number);
+
   return { major, minor };
 };
 
-const shouldSkipWaiting = async (cacheList: string[]): Promise<boolean> => {
+const shouldSkipWaiting = (cacheList: string[]): boolean => {
   const target = extractVersionParts(CACHE_VERSION);
 
   return cacheList.some(cacheName => {
@@ -59,10 +38,11 @@ const shouldSkipWaiting = async (cacheList: string[]): Promise<boolean> => {
   });
 };
 
-self.addEventListener('install', (event: ExtendableEvent) => {
+self.addEventListener('install', (event: ExtendableEvent): void => {
   event.waitUntil(
     (async () => {
-      const shouldSkip = await shouldSkipWaiting(await caches.keys());
+      const shouldSkip = shouldSkipWaiting(await caches.keys());
+
       if (shouldSkip) {
         self.skipWaiting();
       }
@@ -72,31 +52,57 @@ self.addEventListener('install', (event: ExtendableEvent) => {
   );
 });
 
-const putInCache = async (request: Request, response: Response): Promise<void> => {
-  const cache = await caches.open(CACHE_VERSION);
-  await cache.put(request, response);
+const deleteCache = (key: string): Promise<boolean> => caches.delete(key);
+
+const deleteOldCaches = async (): Promise<void> => {
+  const keyList = await caches.keys();
+  const cachesToDelete = keyList.filter(key => ![CACHE_VERSION].includes(key));
+
+  await Promise.all(cachesToDelete.map(deleteCache));
+};
+
+self.addEventListener('activate', (event: ExtendableEvent): void => {
+  event.waitUntil(
+    Promise.all([self.clients.claim(), self.registration.navigationPreload?.enable(), deleteOldCaches()]),
+  );
+});
+
+const putInCache = (request: Request, response: Response): Promise<void> =>
+  caches.open(CACHE_VERSION).then(cache => cache.put(request, response));
+
+const usePreload = async (
+  request: Request,
+  preloadResponse: Promise<Response | undefined> | undefined,
+  saveToCache = false,
+): Promise<Response | undefined> => {
+  const preload = await preloadResponse;
+
+  if (preload && saveToCache) {
+    putInCache(request, preload.clone());
+  }
+
+  return preload;
 };
 
 const cacheFirst = async (
   request: Request,
   preloadResponse: Promise<Response | undefined> | undefined,
 ): Promise<Response> => {
-  // First try to use the preloaded response, if it's there
-  const preloadResponseResult = await preloadResponse;
+  // 1. use the preloaded response, if it's there
+  const preload = await usePreload(request, preloadResponse, true);
 
-  if (preloadResponseResult && preloadResponseResult instanceof Response) {
-    putInCache(request, preloadResponseResult.clone());
-    return preloadResponseResult;
+  if (preload) {
+    return preload;
   }
 
-  // Next try to get the resource from the cache
+  // 2. get the resource from the cache
   const responseFromCache = await caches.match(request);
 
   if (responseFromCache) {
     return responseFromCache;
   }
 
-  // Next try to get the resource from the network
+  // 3. get the resource from the network
   try {
     const responseFromNetwork = await fetch(request);
 
@@ -114,8 +120,7 @@ const cacheFirst = async (
     }
 
     // when even the fallback response is not available,
-    // there is nothing we can do, but we must always
-    // return a Response object
+    // there is nothing we can do, but we must always return a Response object
     return new Response(`Network error happened: ${String(error)}`, {
       status: 408,
       headers: { 'Content-Type': 'text/plain' },
@@ -123,20 +128,35 @@ const cacheFirst = async (
   }
 };
 
+const preloadProc = async (
+  request: Request,
+  preloadResponse: Promise<Response | undefined> | undefined,
+): Promise<Response> => (await usePreload(request, preloadResponse)) ?? fetch(request);
+
 self.addEventListener(
   'fetch',
   (event: FetchEvent): void => {
     const request = event.request;
 
-    if (!request.url.startsWith(CACHE_HOST)) {
+    // Cross origins are not processed
+    if (new URL(request.url).origin !== self.origin) {
       return;
     }
 
-    if (skipTypes.has(request.destination)) {
+    const isPreload = event.preloadResponse;
+
+    if (!skipDestination.has(request.destination)) {
+      event.respondWith(cacheFirst(request, isPreload));
       return;
     }
 
-    event.respondWith(cacheFirst(request, event.preloadResponse));
+    // Only chrome-based browsers can use `preloadResponse` (as of May 2024).
+    // If you are using this, you must pass `respondWith()` or you will get an error output to the browser console...
+    //
+    // It would be easy to simply disable it, but that wouldn't be fun either, would it?
+    if (isPreload !== undefined) {
+      event.respondWith(preloadProc(request, isPreload));
+    }
   },
   { once: false, passive: true },
 );
