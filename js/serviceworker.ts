@@ -1,6 +1,6 @@
 declare const self: ServiceWorkerGlobalScope;
 
-const CACHE_VERSION = 'v7.2.3';
+const CACHE_VERSION = 'v7.2.4';
 
 const CACHE_URL = '/commentary/';
 const FALLBACK_IMAGE = 'chrome-96x96.png';
@@ -12,6 +12,8 @@ const installList = [
 
   'css/general.css',
   'css/style.css',
+  'css/catppuccin/latte.css',
+  'css/catppuccin/macchiato.css',
 
   'woff2/OpenSans-BoldItalic.woff2',
   'woff2/OpenSans-Italic.woff2',
@@ -21,6 +23,12 @@ const installList = [
 ] as const satisfies readonly string[];
 
 const skipDestination = new Set(['document', 'image', 'video', 'audio']);
+
+// Only chrome-based browsers can use `preloadResponse` (as of May 2024).
+// However, it seems that `navigationPreload` can be configured to enable pseudo(?) in all browsers.
+// (So I've already decided to judge by `userAgent`...)
+const ua = navigator.userAgent;
+const isUsePreload = /Chrome|Chromium|Edg|OPR/.test(ua) && !/Firefox/.test(ua) && !/\bVersion\/[\d.]+.*Safari/.test(ua);
 
 const extractVersionParts = (cacheName: string): { major: number; minor: number } => {
   const versionString = cacheName.substring(1);
@@ -61,10 +69,14 @@ const deleteOldCaches = async (): Promise<void> => {
   await Promise.all(cachesToDelete.map(deleteCache));
 };
 
+const enablePreload = async (): Promise<void> => {
+  if (isUsePreload) {
+    await self.registration.navigationPreload?.enable();
+  }
+};
+
 self.addEventListener('activate', (event: ExtendableEvent): void => {
-  event.waitUntil(
-    Promise.all([self.clients.claim(), self.registration.navigationPreload?.enable(), deleteOldCaches()]),
-  );
+  event.waitUntil(Promise.all([self.clients.claim(), enablePreload(), deleteOldCaches()]));
 });
 
 const putInCache = (request: Request, response: Response): Promise<void> =>
@@ -84,22 +96,21 @@ const usePreload = async (
   return preload;
 };
 
-const cacheFirst = async (
-  request: Request,
-  preloadResponse: Promise<Response | undefined> | undefined,
-): Promise<Response> => {
-  // 1. use the preloaded response, if it's there
-  const preload = await usePreload(request, preloadResponse, true);
-
-  if (preload) {
-    return preload;
-  }
-
-  // 2. get the resource from the cache
+const cacheFirst = async (request: Request, preloadResponse: Promise<Response | undefined>): Promise<Response> => {
+  // 1. get the resource from the cache
   const responseFromCache = await caches.match(request);
 
   if (responseFromCache) {
     return responseFromCache;
+  }
+
+  // 2. use the preloaded response, if it's there
+  if (isUsePreload) {
+    const preload = await usePreload(request, preloadResponse, true);
+
+    if (preload) {
+      return preload;
+    }
   }
 
   // 3. get the resource from the network
@@ -133,30 +144,21 @@ const preloadProc = async (
   preloadResponse: Promise<Response | undefined> | undefined,
 ): Promise<Response> => (await usePreload(request, preloadResponse)) ?? fetch(request);
 
-self.addEventListener(
-  'fetch',
-  (event: FetchEvent): void => {
-    const request = event.request;
+self.addEventListener('fetch', (event: FetchEvent): void => {
+  const request = event.request;
 
-    // Cross origins are not processed
-    if (new URL(request.url).origin !== self.origin) {
-      return;
-    }
+  // Cross origins are not processed
+  if (new URL(request.url).origin !== self.origin) {
+    return;
+  }
 
-    const isPreload = event.preloadResponse;
+  if (!skipDestination.has(request.destination)) {
+    event.respondWith(cacheFirst(request, event.preloadResponse));
+    return;
+  }
 
-    if (!skipDestination.has(request.destination)) {
-      event.respondWith(cacheFirst(request, isPreload));
-      return;
-    }
-
-    // Only chrome-based browsers can use `preloadResponse` (as of May 2024).
-    // If you are using this, you must pass `respondWith()` or you will get an error output to the browser console...
-    //
-    // It would be easy to simply disable it, but that wouldn't be fun either, would it?
-    if (isPreload !== undefined) {
-      event.respondWith(preloadProc(request, isPreload));
-    }
-  },
-  { once: false, passive: true },
-);
+  // When using `preload`, an error is output to the browser console if it is not processed internally.
+  if (isUsePreload) {
+    event.respondWith(preloadProc(request, event.preloadResponse));
+  }
+});
