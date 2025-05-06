@@ -1,11 +1,10 @@
 #!/usr/bin/env zsh
-# shellcheck shell=zsh
 set -euo pipefail
 
-input=${1:-toc.html}
-output=${2:-pagelist.html}
+input="${1:-toc.html}"
+output="${2:-pagelist.html}"
 
-if [ ! -f toc.html ]; then
+if [ ! -f "$input" ]; then
   echo "Error: '$input' not found" >&2
   exit 1
 fi
