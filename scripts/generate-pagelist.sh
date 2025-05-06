@@ -2,8 +2,11 @@
 # shellcheck shell=zsh
 set -euo pipefail
 
+input=${1:-toc.html}
+output=${2:-pagelist.html}
+
 if [ ! -f toc.html ]; then
-  echo "Error: toc.html not found" >&2
+  echo "Error: '$input' not found" >&2
   exit 1
 fi
 
@@ -16,4 +19,4 @@ sed \
   -e 's|<ol class="section">|<ol>|g' \
   -e 's|<li class="chapter-item expanded ">|<li>|g' \
   -e 's| target="_parent"||g' \
-  toc.html > pagelist.html
+  "$input" > "$output"
