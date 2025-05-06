@@ -43,13 +43,8 @@ popd
 mdbook build --dest-dir commentary
 
 pushd commentary
-sed \
-  -e 's|<ol class="section">|<ol>|g' \
-  -e 's|<li class="chapter-item expanded ">|<li>|g' \
-  -e 's| target="_parent"||g' \
-  toc.html > pagelist.html
-
-sed -E 's/^Object\.assign\(window\.search, //; s/\);$//' searchindex.js > searchindex.json
+../scripts/generate-pagelist.sh
+node ../scripts/extract-json.js
 jq empty searchindex.json && printf '    \e[1;32mFinished\e[0m convert search index \e[33m🧶Did it!!\e[0m\n'
 brotli searchindex.json
 gzip --best --keep --no-name searchindex.json

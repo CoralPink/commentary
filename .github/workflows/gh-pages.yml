@@ -287,6 +287,7 @@ jobs:
           sparse-checkout: |
             .
             rs/mdbook-footnote
+            scripts
             src
             theme
 
@@ -324,7 +325,7 @@ jobs:
       - name: Setup mdBook
         uses: peaceiris/actions-mdbook@ee69d230fe19748b7abf22df32acaa93833fad08 # v2
         with:
-          mdbook-version: "0.4.48"
+          mdbook-version: "0.4.49"
 
       - name: Build mdBook
         run: |
@@ -333,17 +334,12 @@ jobs:
       - name: Generate Page List
         working-directory: book
         run: |
-          sed \
-            -e 's|<ol class="section">|<ol>|g' \
-            -e 's|<li class="chapter-item expanded ">|<li>|g' \
-            -e 's| target="_parent"||g' \
-            toc.html > pagelist.html
+          ../scripts/generate-pagelist.sh
 
       - name: Generate Search Index
         working-directory: book
         run: |
-          sed -E 's/^Object\.assign\(window\.search, //; s/\);$//' searchindex.js > searchindex.json
-          jq empty searchindex.json && printf '\e[1;32mFinished\e[0m convert search index \e[33m🧶Did it!!\e[0m\n'
+          node ../scripts/extract-json.js
 
       - name: Compress Search Index
         working-directory: book
