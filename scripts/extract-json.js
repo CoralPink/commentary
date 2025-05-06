@@ -24,7 +24,7 @@ eval(`
 `);
 
 try {
-  fs.writeFileSync(jsonName, JSON.stringify(sandbox.result, null, 2));
+  fs.writeFileSync(jsonName, JSON.stringify(sandbox.result));
 
   console.info(`✅ complete: ${jsonName}`);
 } catch (error) {
