@@ -32,7 +32,7 @@ use {
   'williamboman/mason.nvim',
   config = function() require 'extensions.mason' end,
 + requires = {
-+   'williamboman/mason-lspconfig.nvim', 'neovim/nvim-lspconfig',
++   'williamboman/mason-lspconfig.nvim',
 + }
 }
 ```
@@ -54,9 +54,9 @@ require('mason').setup {
 }
 
 -- ここに追記
-require('mason-lspconfig').setup_handlers {
+require('mason-lspconfig').setup {
   function(server_name)
-    require('lspconfig')[server_name].setup {}
+    vim.lsp.enable(server_name);
   end,
 }
 ```
@@ -248,17 +248,8 @@ sections = {
 
 結構な達成感じゃないでしょうか☺️
 
-しかし、この章の冒頭にある綿密な[ロードマップ](language-server-protocol.html#start)でも示されていましたが、これはまだ序盤です。
-
-```admonish note title=""
-やるのかい やらないのかい
-
-どっっちなんっっだいっ❗❗{{footnote: なかやまきんに君です}}
-```
-
-やーーーーーーーーーーーるっ💪
-
-"世界一のワガママ" の実現を目指して😆 パワー❗❗
+しかし、この章の冒頭にある[ロードマップ](language-server-protocol.html#start)でも示されていましたが、
+これはまだ序章にすぎません❗
 
 ```admonish success
 Better stand tall when they're calling you out

@@ -116,8 +116,8 @@ And saw it through without exemption
 -- Global mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 vim.keymap.set('n', '<space>e', vim.diagnostic.open_float)
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
+vim.keymap.set('n', '[d', function() vim.diagnostic.jump({ count = 1}) end)
+vim.keymap.set('n', ']d', function() vim.diagnostic.jump({ count = -1}) end)
 vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist)
 
 -- Use LspAttach autocommand to only map the following keys
@@ -282,9 +282,9 @@ I find it all so amusing
 
 nvimトレーナーは "ｎｖｉｍチャンピオン" なの⁉️ いつの間に⁉️
 
-わたしが遊んでたりサボってたり、Ohtani-saaaaaaan!!⚾とか Shazaaaaaaam!!🦸 とか叫んでたり、
-Amazonのセールに合わせて自分へのご褒美を送ってあげたり受け取ったり、
-なんか天気悪いなー🙄とか、さくらさくら〜🌸 とか、トリリオンゲーム6巻を読み耽っていた間にも
+わたしが遊んでたりサボってたり Shazaaaaaaam!!🦸 とか叫んでたり、
+Amazon のセールに合わせて自分へのご褒美を送ってあげたり受け取ったり、
+さくらさくら〜🌸 とか舞い踊って酔い潰れていた間にも
 
 nvimトレーナーは努力を続けていたってこと⁉️
 
