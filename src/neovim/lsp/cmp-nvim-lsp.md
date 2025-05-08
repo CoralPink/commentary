@@ -25,7 +25,46 @@ Here comes the sun king
 太陽王がやってきた
 ```
 
-## Capabilities
+## Setup / Install
+
+まずは`nvim-cmp`の`requires`に`cmp-nvim-lsp`を入れてあげましょう😉
+
+~~~admonish example title="extensions/init.lua"
+```diff
+  use {
+    'hrsh7th/nvim-cmp',
+    config = function() require 'extensions.nvim-cmp' end,
++   requires = {
++     'hrsh7th/cmp-nvim-lsp',
++   }
+  }
+```
+~~~
+
+### Sources
+
+前回作成した`nvim-cmp.lua`を開いて、「補完ソースは`cmp-nvim-lsp`を通して取得するんだよ🦜 」と`nvim-cmp`に宣言しておきましょう😆
+
+~~~admonish example title="extensions/nvim-cmp.lua"
+```diff
+cmp.setup {
+  mapping = map.preset.insert {
+
+    -- (中略)
+
+  },
+
++ sources = cmp.config.sources {
++   { name = 'nvim_lsp' },
++ },
+}
+```
+~~~
+
+### Capabilities
+
+`cmp-nvim-lsp`のセットアップにおいて最も重要なのは、
+"サーバに送信する機能をオーバーライドする必要がある" というところでしょうか。
 
 ```admonish info title="[Capabilities](https://github.com/hrsh7th/cmp-nvim-lsp#capabilities)"
 Language servers provide different completion results depending on the capabilities of the client.
@@ -49,89 +88,25 @@ nvim-cmp provides manually triggered completion that can replace omnifunc. See :
 nvim-cmp は、omnifunc に代わる手動トリガーによる補完機能を提供します。詳しくは :help cmp-faq を参照してください。
 ```
 
-最も重要なのは、"サーバに送信する機能をオーバーライドする必要がある" というところでしょうか。
-次項からやっていきましょう。
-
-## Setup / Install
-
-オフィシャルに示されているコードと順番が逆になってしまいますが、先に`Capabilities`からやっていきます。
-
-### Capabilities
-
 本来は使用する言語サーバーの`setup`ごとに`capabilities`をオーバーライドする必要がありますが、
-このサイトでは`mason-lspconfig`でまとめて行う方法をとってきました☀️
+これもまとめて簡単に (ざっくりと) やっちゃいましょう😎
 
-なので、これもまとめて簡単にやっちゃいましょう😎
+`cmp.setup`の最後にでも、こんな感じで追記します。
 
-`mason.lua`を開いてこんなんしとけばOKです🧚‍♀️🧚
-
-~~~admonish example title="extensions/mason.lua"
+~~~admonish example title="extensions/nvim-cmp.lua"
 ```diff
-require('mason-lspconfig').setup_handlers {
-  function(server_name)
--   require('lspconfig')[server_name].setup {}
-+   require('lspconfig')[server_name].setup {
-+     capabilities = require('cmp_nvim_lsp').default_capabilities(),
-+   }
-  end,
+cmp.setup {
+
+  ...
+
++ vim.lsp.config('*', {
++   capabilities = require('cmp_nvim_lsp').default_capabilities()
++ })
 }
 ```
 ~~~
 
 一網打尽ですね🏝️
-
-併せて`packer`に「`mason-lspconfig`の設定に`cmp-nvim-lsp`を使用するよ❗」、と教えておいてあげるとさらに安心🐶
-
-~~~admonish example title="extensions/init.lua"
-```diff
-  use {
-    'williamboman/mason.nvim',
-    config = function() require 'extensions.mason' end,
-    requires = {
-      'williamboman/mason-lspconfig.nvim', 'neovim/nvim-lspconfig',
-+     'hrsh7th/cmp-nvim-lsp',
-    }
-  }
-```
-~~~
-
-これだけやっておけば、あとは`mason-lspconfig`が全ての言語サーバーに適用してくれるはずです。
-
-### Plugin Install
-
-で、その流れのまま`nvim-cmp`の`requires`にも`cmp-nvim-lsp`を入れてあげましょう😉
-
-~~~admonish example title="extensions/init.lua"
-```diff
-  use {
-    'hrsh7th/nvim-cmp',
-    config = function() require 'extensions.nvim-cmp' end,
-+   requires = {
-+     'hrsh7th/cmp-nvim-lsp',
-+   }
-  }
-```
-~~~
-
-### Sources
-
-んでもってさらに、 「補完ソースは`cmp-nvim-lsp`を通して取得するんだよ🦜 」と、`nvim-cmp`に宣言しておきましょう😆
-
-~~~admonish example title="extensions/nvim-cmp.lua"
-```diff
-cmp.setup {
-  mapping = map.preset.insert {
-
-    -- (中略)
-
-  },
-
-+ sources = cmp.config.sources {
-+   { name = 'nvim_lsp' },
-+ },
-}
-```
-~~~
 
 ### Re Config
 
