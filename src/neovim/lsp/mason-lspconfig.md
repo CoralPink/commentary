@@ -66,58 +66,6 @@ require('mason-lspconfig').setup {
 
 ドッジボールで言ったらキルア{{footnote: HUNTER X HUNTER です}}です❗
 
-ただこれ...、かけるオーラの比率をほんの少しでも間違えると途端にアウトなので、
-だいぶ気をつけて使ってください...。
-
-~~~admonish info title="mason-lspconfig.setup_handlers()"
-```txt
-                                            mason-lspconfig.setup_handlers()
-setup_handlers({handlers})
-  Advanced feature
-    This is an advanced, opt-in, feature that requires some careful
-    reading of the documentation.
-
-    これは、高度なオプトインの機能であり、いくつかの慎重さが必要です。
-    ドキュメントを注意深く読む必要があります。
-
-    The recommended method to set up servers with lspconfig is to do so by
-    following their guides, see lspconfig-quickstart.
-
-    lspconfigでサーバをセットアップするには、
-    lspconfig-quickstartを参照して、そのガイドに従って行うことが推奨されます。
-
-  Registers the provided {handlers}, to be called by mason when an installed
-  server supported by lspconfig is ready to be set up.
-
-  lspconfig がサポートするインストール済みサーバーのセットアップが完了したときに mason から呼び出される {handlers} を登録する。
-
-  When this function is called, all servers that are currently installed
-  will be considered ready to be set up. When a new server is installed
-  during a session, it will be considered ready to be set up when
-  installation succeeds.
-
-  この関数が呼び出されると、現在インストールされているすべてのサーバーがセットアップ可能な状態にあるとみなされる。
-  セッション中に新しいサーバーがインストールされた場合、インストールに成功した時点でセットアップの準備ができたとみなされます。
-
-  {handlers} is a table where the keys are the name of an lspconfig server,
-  and the values are the function to be called when that server is ready to
-  be set up (i.e. is installed).
-
-  {handlers}は、キーがlspconfigサーバーの名前で、
-  値がそのサーバーがセットアップの準備ができた（すなわちインストールされた）ときに呼び出される関数であるテーブルです。
-```
-~~~
-
-推奨される方法はこれではなくて他にあるので、「使う場合は注意してね😉」ってことです。
-
-例えば、それはもうめちゃくちゃ言語プロフェッショナルが扱う場合は、`setup_handlers()`は使用せずに、個別にやったほうがきっちりできるはずです。
-
-...ただ、そうでもない場合、言語ごとに一個一個の設定をしていかなきゃならないってなると、
-`mason.nvim`が提供してくれるお手軽さが、かなり損なわれてしまいます。
-
-でも、それではあまりにも勿体ないので、
-これを理解した上で使用する分にはいいんじゃないかな〜って思うことにします❗そうします😆
-
 ```admonish success title=""
 It's my life!
 {{footnote: It's My Life (by [Bon Jovi](https://en.wikipedia.org/wiki/Bon_Jovi)):
@@ -128,6 +76,32 @@ Jon Bon Jovi, Richie Sambora, Max Martin が作曲し、Luke Ebbin が共同プ�
 
 これが俺の人生だ！
 ```
+
+ただこれ...、かけるオーラの比率をほんの少しでも間違えると途端にアウトなので、
+だいぶ気をつけて使ってください...。
+
+~~~admonish info title="mason-lspconfig.setup()"
+```txt
+                                                     mason-lspconfig.setup()
+setup({config})
+  Sets up mason with the provided {config} (see |mason-lspconfig-settings|).
+
+  指定された {config} で mason を設定する (mason-lspconfig-settings を参照)。
+```
+~~~
+
+例えば、それはもうめちゃくちゃ言語プロフェッショナルが扱う場合は`mason-lspconfig.nvim`自体を使用せず、
+個別にやったほうがきっちりできるはずです。
+
+...ただ、そうでもない場合、言語ごとに一個一個の設定をしていかなきゃならないってなると、
+`mason-lspconfig.nvim`が提供してくれるお手軽さが損なわれてしまいます。
+
+```admonish warning
+推奨される方法はこれではなくて他にあるので、「使う場合は注意してね」ってことです😉
+```
+
+でも、それではあまりにも勿体ないので、
+これを理解した上で使用する分にはいいんじゃないかな〜って思うことにします❗そうします😆
 
 ```admonish success title=""
 My heart is like an open highway
@@ -150,7 +124,7 @@ I did it my way
 
 フランキーが歌ったように
 
-俺は 俺の道を歩むんだ
+俺は 俺の道を行くんだ
 ```
 
 ## For the ones who stood their ground
