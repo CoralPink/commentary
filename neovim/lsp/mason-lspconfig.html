@@ -156,59 +156,6 @@ require('mason-lspconfig').setup {
 </div>
 <p>これだけです❗マジです。地味ながらとっても重要なやつです。</p>
 <p>ドッジボールで言ったらキルア<sup class="ft-reference"><button id="to-ft-1" data-href="#ft-1">1</button></sup>です❗</p>
-<p>ただこれ...、かけるオーラの比率をほんの少しでも間違えると途端にアウトなので、
-だいぶ気をつけて使ってください...。</p>
-<div id="admonition-mason-lspconfigsetup_handlers" class="admonition admonish-info" role="note" aria-labelledby="admonition-mason-lspconfigsetup_handlers-title">
-<div class="admonition-title">
-<div id="admonition-mason-lspconfigsetup_handlers-title">
-<p>mason-lspconfig.setup_handlers()</p>
-</div>
-<a class="admonition-anchor-link" href="#admonition-mason-lspconfigsetup_handlers"></a>
-</div>
-<div>
-<pre><code class="language-txt">                                            mason-lspconfig.setup_handlers()
-setup_handlers({handlers})
-  Advanced feature
-    This is an advanced, opt-in, feature that requires some careful
-    reading of the documentation.
-
-    これは、高度なオプトインの機能であり、いくつかの慎重さが必要です。
-    ドキュメントを注意深く読む必要があります。
-
-    The recommended method to set up servers with lspconfig is to do so by
-    following their guides, see lspconfig-quickstart.
-
-    lspconfigでサーバをセットアップするには、
-    lspconfig-quickstartを参照して、そのガイドに従って行うことが推奨されます。
-
-  Registers the provided {handlers}, to be called by mason when an installed
-  server supported by lspconfig is ready to be set up.
-
-  lspconfig がサポートするインストール済みサーバーのセットアップが完了したときに mason から呼び出される {handlers} を登録する。
-
-  When this function is called, all servers that are currently installed
-  will be considered ready to be set up. When a new server is installed
-  during a session, it will be considered ready to be set up when
-  installation succeeds.
-
-  この関数が呼び出されると、現在インストールされているすべてのサーバーがセットアップ可能な状態にあるとみなされる。
-  セッション中に新しいサーバーがインストールされた場合、インストールに成功した時点でセットアップの準備ができたとみなされます。
-
-  {handlers} is a table where the keys are the name of an lspconfig server,
-  and the values are the function to be called when that server is ready to
-  be set up (i.e. is installed).
-
-  {handlers}は、キーがlspconfigサーバーの名前で、
-  値がそのサーバーがセットアップの準備ができた（すなわちインストールされた）ときに呼び出される関数であるテーブルです。
-</code></pre>
-</div>
-</div>
-<p>推奨される方法はこれではなくて他にあるので、「使う場合は注意してね😉」ってことです。</p>
-<p>例えば、それはもうめちゃくちゃ言語プロフェッショナルが扱う場合は、<code>setup_handlers()</code>は使用せずに、個別にやったほうがきっちりできるはずです。</p>
-<p>...ただ、そうでもない場合、言語ごとに一個一個の設定をしていかなきゃならないってなると、
-<code>mason.nvim</code>が提供してくれるお手軽さが、かなり損なわれてしまいます。</p>
-<p>でも、それではあまりにも勿体ないので、
-これを理解した上で使用する分にはいいんじゃないかな〜って思うことにします❗そうします😆</p>
 <div id="admonition-default-1" class="admonition admonish-success" role="note">
 <div>
 <p>It's my life!
@@ -216,6 +163,41 @@ setup_handlers({handlers})
 <p>これが俺の人生だ！</p>
 </div>
 </div>
+<p>ただこれ...、かけるオーラの比率をほんの少しでも間違えると途端にアウトなので、
+だいぶ気をつけて使ってください...。</p>
+<div id="admonition-mason-lspconfigsetup" class="admonition admonish-info" role="note" aria-labelledby="admonition-mason-lspconfigsetup-title">
+<div class="admonition-title">
+<div id="admonition-mason-lspconfigsetup-title">
+<p>mason-lspconfig.setup()</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-mason-lspconfigsetup"></a>
+</div>
+<div>
+<pre><code class="language-txt">                                                     mason-lspconfig.setup()
+setup({config})
+  Sets up mason with the provided {config} (see |mason-lspconfig-settings|).
+
+  指定された {config} で mason を設定する (mason-lspconfig-settings を参照)。
+</code></pre>
+</div>
+</div>
+<p>例えば、それはもうめちゃくちゃ言語プロフェッショナルが扱う場合は<code>mason-lspconfig.nvim</code>自体を使用せず、
+個別にやったほうがきっちりできるはずです。</p>
+<p>...ただ、そうでもない場合、言語ごとに一個一個の設定をしていかなきゃならないってなると、
+<code>mason-lspconfig.nvim</code>が提供してくれるお手軽さが損なわれてしまいます。</p>
+<div id="admonition-warning" class="admonition admonish-warning" role="note" aria-labelledby="admonition-warning-title">
+<div class="admonition-title">
+<div id="admonition-warning-title">
+<p>Warning</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-warning"></a>
+</div>
+<div>
+<p>推奨される方法はこれではなくて他にあるので、「使う場合は注意してね」ってことです😉</p>
+</div>
+</div>
+<p>でも、それではあまりにも勿体ないので、
+これを理解した上で使用する分にはいいんじゃないかな〜って思うことにします❗そうします😆</p>
 <div id="admonition-default-2" class="admonition admonish-success" role="note">
 <div>
 <p>My heart is like an open highway</p>
@@ -223,7 +205,7 @@ setup_handlers({handlers})
 <p>I did it my way</p>
 <p>俺の心は まるで見通しの良いハイウェイだ</p>
 <p>フランキーが歌ったように</p>
-<p>俺は 俺の道を歩むんだ</p>
+<p>俺は 俺の道を行くんだ</p>
 </div>
 </div>
 <h2 id="for-the-ones-who-stood-their-ground"><a class="header" href="#for-the-ones-who-stood-their-ground">For the ones who stood their ground</a></h2>

@@ -105,7 +105,53 @@
 <p>太陽王がやってきた</p>
 </div>
 </div>
-<h2 id="capabilities"><a class="header" href="#capabilities">Capabilities</a></h2>
+<h2 id="setup--install"><a class="header" href="#setup--install">Setup / Install</a></h2>
+<p>まずは<code>nvim-cmp</code>の<code>requires</code>に<code>cmp-nvim-lsp</code>を入れてあげましょう😉</p>
+<div id="admonition-extensionsinitlua" class="admonition admonish-example" role="note" aria-labelledby="admonition-extensionsinitlua-title">
+<div class="admonition-title">
+<div id="admonition-extensionsinitlua-title">
+<p>extensions/init.lua</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-extensionsinitlua"></a>
+</div>
+<div>
+<pre><code class="language-diff">  use {
+    'hrsh7th/nvim-cmp',
+    config = function() require 'extensions.nvim-cmp' end,
++   requires = {
++     'hrsh7th/cmp-nvim-lsp',
++   }
+  }
+</code></pre>
+</div>
+</div>
+<h3 id="sources"><a class="header" href="#sources">Sources</a></h3>
+<p>前回作成した<code>nvim-cmp.lua</code>を開いて、「補完ソースは<code>cmp-nvim-lsp</code>を通して取得するんだよ🦜 」と<code>nvim-cmp</code>に宣言しておきましょう😆</p>
+<div id="admonition-extensionsnvim-cmplua" class="admonition admonish-example" role="note" aria-labelledby="admonition-extensionsnvim-cmplua-title">
+<div class="admonition-title">
+<div id="admonition-extensionsnvim-cmplua-title">
+<p>extensions/nvim-cmp.lua</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-extensionsnvim-cmplua"></a>
+</div>
+<div>
+<pre><code class="language-diff">cmp.setup {
+  mapping = map.preset.insert {
+
+    -- (中略)
+
+  },
+
++ sources = cmp.config.sources {
++   { name = 'nvim_lsp' },
++ },
+}
+</code></pre>
+</div>
+</div>
+<h3 id="capabilities"><a class="header" href="#capabilities">Capabilities</a></h3>
+<p><code>cmp-nvim-lsp</code>のセットアップにおいて最も重要なのは、
+"サーバに送信する機能をオーバーライドする必要がある" というところでしょうか。</p>
 <div id="admonition-capabilitieshttpsgithubcomhrsh7thcmp-nvim-lspcapabilities" class="admonition admonish-info" role="note" aria-labelledby="admonition-capabilitieshttpsgithubcomhrsh7thcmp-nvim-lspcapabilities-title">
 <div class="admonition-title">
 <div id="admonition-capabilitieshttpsgithubcomhrsh7thcmp-nvim-lspcapabilities-title">
@@ -130,100 +176,26 @@ nvim-cmp provides manually triggered completion that can replace omnifunc. See :
 nvim-cmp は、omnifunc に代わる手動トリガーによる補完機能を提供します。詳しくは :help cmp-faq を参照してください。</p>
 </div>
 </div>
-<p>最も重要なのは、"サーバに送信する機能をオーバーライドする必要がある" というところでしょうか。
-次項からやっていきましょう。</p>
-<h2 id="setup--install"><a class="header" href="#setup--install">Setup / Install</a></h2>
-<p>オフィシャルに示されているコードと順番が逆になってしまいますが、先に<code>Capabilities</code>からやっていきます。</p>
-<h3 id="capabilities-1"><a class="header" href="#capabilities-1">Capabilities</a></h3>
 <p>本来は使用する言語サーバーの<code>setup</code>ごとに<code>capabilities</code>をオーバーライドする必要がありますが、
 このサイトでは<code>mason-lspconfig</code>でまとめて行う方法をとってきました☀️</p>
-<p>なので、これもまとめて簡単にやっちゃいましょう😎</p>
-<p><code>mason.lua</code>を開いてこんなんしとけばOKです🧚‍♀️🧚</p>
-<div id="admonition-extensionsmasonlua" class="admonition admonish-example" role="note" aria-labelledby="admonition-extensionsmasonlua-title">
+<p>これもまとめて簡単にやっちゃいましょう😎</p>
+<div id="admonition-extensionsnvim-cmplua-1" class="admonition admonish-example" role="note" aria-labelledby="admonition-extensionsnvim-cmplua-1-title">
 <div class="admonition-title">
-<div id="admonition-extensionsmasonlua-title">
-<p>extensions/mason.lua</p>
+<div id="admonition-extensionsnvim-cmplua-1-title">
+<p>extensions/nvim-cmp.lua</p>
 </div>
-<a class="admonition-anchor-link" href="#admonition-extensionsmasonlua"></a>
+<a class="admonition-anchor-link" href="#admonition-extensionsnvim-cmplua-1"></a>
 </div>
 <div>
-<pre><code class="language-diff">require('mason-lspconfig').setup_handlers {
-  function(server_name)
--   require('lspconfig')[server_name].setup {}
-+   require('lspconfig')[server_name].setup {
-+     capabilities = require('cmp_nvim_lsp').default_capabilities(),
-+   }
-  end,
+<pre><code class="language-diff">cmp.setup {
++ vim.lsp.config('*', {
++   capabilities = require('cmp_nvim_lsp').default_capabilities()
++ })
 }
 </code></pre>
 </div>
 </div>
 <p>一網打尽ですね🏝️</p>
-<p>併せて<code>packer</code>に「<code>mason-lspconfig</code>の設定に<code>cmp-nvim-lsp</code>を使用するよ❗」、と教えておいてあげるとさらに安心🐶</p>
-<div id="admonition-extensionsinitlua" class="admonition admonish-example" role="note" aria-labelledby="admonition-extensionsinitlua-title">
-<div class="admonition-title">
-<div id="admonition-extensionsinitlua-title">
-<p>extensions/init.lua</p>
-</div>
-<a class="admonition-anchor-link" href="#admonition-extensionsinitlua"></a>
-</div>
-<div>
-<pre><code class="language-diff">  use {
-    'williamboman/mason.nvim',
-    config = function() require 'extensions.mason' end,
-    requires = {
-      'williamboman/mason-lspconfig.nvim', 'neovim/nvim-lspconfig',
-+     'hrsh7th/cmp-nvim-lsp',
-    }
-  }
-</code></pre>
-</div>
-</div>
-<p>これだけやっておけば、あとは<code>mason-lspconfig</code>が全ての言語サーバーに適用してくれるはずです。</p>
-<h3 id="plugin-install"><a class="header" href="#plugin-install">Plugin Install</a></h3>
-<p>で、その流れのまま<code>nvim-cmp</code>の<code>requires</code>にも<code>cmp-nvim-lsp</code>を入れてあげましょう😉</p>
-<div id="admonition-extensionsinitlua-1" class="admonition admonish-example" role="note" aria-labelledby="admonition-extensionsinitlua-1-title">
-<div class="admonition-title">
-<div id="admonition-extensionsinitlua-1-title">
-<p>extensions/init.lua</p>
-</div>
-<a class="admonition-anchor-link" href="#admonition-extensionsinitlua-1"></a>
-</div>
-<div>
-<pre><code class="language-diff">  use {
-    'hrsh7th/nvim-cmp',
-    config = function() require 'extensions.nvim-cmp' end,
-+   requires = {
-+     'hrsh7th/cmp-nvim-lsp',
-+   }
-  }
-</code></pre>
-</div>
-</div>
-<h3 id="sources"><a class="header" href="#sources">Sources</a></h3>
-<p>んでもってさらに、 「補完ソースは<code>cmp-nvim-lsp</code>を通して取得するんだよ🦜 」と、<code>nvim-cmp</code>に宣言しておきましょう😆</p>
-<div id="admonition-extensionsnvim-cmplua" class="admonition admonish-example" role="note" aria-labelledby="admonition-extensionsnvim-cmplua-title">
-<div class="admonition-title">
-<div id="admonition-extensionsnvim-cmplua-title">
-<p>extensions/nvim-cmp.lua</p>
-</div>
-<a class="admonition-anchor-link" href="#admonition-extensionsnvim-cmplua"></a>
-</div>
-<div>
-<pre><code class="language-diff">cmp.setup {
-  mapping = map.preset.insert {
-
-    -- (中略)
-
-  },
-
-+ sources = cmp.config.sources {
-+   { name = 'nvim_lsp' },
-+ },
-}
-</code></pre>
-</div>
-</div>
 <h3 id="re-config"><a class="header" href="#re-config">Re Config</a></h3>
 <p>もう一個だけ。</p>
 <p>以前、<code>nvim-lspconfig.lua</code>の中に、こんなコードを入れていると思います。</p>
