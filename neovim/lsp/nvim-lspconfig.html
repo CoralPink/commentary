@@ -226,8 +226,8 @@ omnifunc (<c-x><c-o>) による補完を手動でトリガしています。</p>
 <pre><code class="language-lua">-- Global mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 vim.keymap.set('n', '&lt;space&gt;e', vim.diagnostic.open_float)
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
+vim.keymap.set('n', '[d', function() vim.diagnostic.jump({ count = 1}) end)
+vim.keymap.set('n', ']d', function() vim.diagnostic.jump({ count = -1}) end)
 vim.keymap.set('n', '&lt;space&gt;q', vim.diagnostic.setloclist)
 
 -- Use LspAttach autocommand to only map the following keys
@@ -378,9 +378,9 @@ LSPクライアントがバッファにアタッチした後 (に発生するイ
 <p>...ん❓😑</p>
 <p>え、ちょっと待って。</p>
 <p>nvimトレーナーは "ｎｖｉｍチャンピオン" なの⁉️ いつの間に⁉️</p>
-<p>わたしが遊んでたりサボってたり、Ohtani-saaaaaaan!!⚾とか Shazaaaaaaam!!🦸 とか叫んでたり、
-Amazonのセールに合わせて自分へのご褒美を送ってあげたり受け取ったり、
-なんか天気悪いなー🙄とか、さくらさくら〜🌸 とか、トリリオンゲーム6巻を読み耽っていた間にも</p>
+<p>わたしが遊んでたりサボってたり Shazaaaaaaam!!🦸 とか叫んでたり、
+Amazon のセールに合わせて自分へのご褒美を送ってあげたり受け取ったり、
+さくらさくら〜🌸 とか舞い踊って酔い潰れていた間にも</p>
 <p>nvimトレーナーは努力を続けていたってこと⁉️</p>
 <div id="admonition-default-7" class="admonition admonish-success" role="note">
 <div>
