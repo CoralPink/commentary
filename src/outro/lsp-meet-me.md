@@ -27,11 +27,9 @@ require('mason').setup {
   },
 }
 
-require('mason-lspconfig').setup_handlers {
+require('mason-lspconfig').setup {
   function(server_name)
-    require('lspconfig')[server_name].setup {
-      capabilities = require('cmp_nvim_lsp').default_capabilities(),
-    }
+    vim.lsp.enable(server_name);
   end,
 }
 ```
@@ -65,27 +63,13 @@ require('mason').setup {
 
 ここから一歩進めて、「固有の設定を入れてみよう」というのがこの節のおはなしです。
 
-まず最初に、この先を簡潔に書くために、あらかじめこんなん仕込んでおきます🤫
-
-~~~admonish example title="extensions/mason.lua"
-```diff
-+local lsp = require 'lspconfig'
-
- require('mason-lspconfig').setup_handlers {
-   function(server_name)
-     require('lspconfig')[server_name].setup {
-       capabilities = require('cmp_nvim_lsp').default_capabilities(),
-     }
-   end,
-
-   -- (ここに mason.nvim でインストールした lsp の固有設定を必要に応じて追加していきます)
-
- }
-```
-~~~
-
 ```admonish note title="脳人"
-[nvim-lspconfig](../neovim/lsp/nvim-lspconfig.html)はもうお馴染みですね😉
+
+このページは 2025/05/08 に、以下の環境に対応できるようにサンプルコードを書き直しています。
+
+mason-lspconfig.nvim [Requirements](https://github.com/mason-org/mason-lspconfig.nvim?tab=readme-ov-file#requirements)
+
+とりあえずエラーなんかは出てこないはずですが、わたしも細かいところまでは確認しきれていないのは許して😘
 ```
 
 ```admonish danger title=""
@@ -131,7 +115,7 @@ Visual Studio Code に 100万近くインストールされており、Lua 言�
 ~~~admonish example title="extensions/mason.lua"
 ```lua
 ['lua_ls'] = function()
-  lsp.lua_ls.setup {
+  vim.lsp.config('lua_ls', {
     on_init = function(client)
       -- わたしの環境では workspace_folders が存在しないケースがあったので対処しています.
       if not client.workspace_folders then
@@ -149,6 +133,10 @@ Visual Studio Code に 100万近くインストールされており、Lua 言�
           -- Tell the language server which version of Lua you're using
           -- (most likely LuaJIT in the case of Neovim)
           version = 'LuaJIT',
+          path = {
+            'lua/?.lua',
+            'lua/?/init.lua',
+          },
         },
         workspace = {
           checkThirdParty = false,
@@ -166,7 +154,7 @@ Visual Studio Code に 100万近くインストールされており、Lua 言�
     settings = {
       Lua = {},
     },
-  }
+  })
 end,
 ```
 ~~~
@@ -201,7 +189,7 @@ Rust の優れた IDE サポートを作成するための、より大きな rls
 ~~~admonish example title="extensions/mason.lua"
 ```lua
 ['rust_analyzer'] = function()
-  lsp.rust_analyzer.setup {
+  vim.lsp.config('rust_analyzer', {
     settings = {
       ['rust-analyzer'] = {
         diagnostic = { enable = false },
@@ -210,7 +198,7 @@ Rust の優れた IDE サポートを作成するための、より大きな rls
         procMacro = { enable = true },
       },
     },
-  }
+  })
 end,
 ```
 ~~~
@@ -245,19 +233,20 @@ Lints はカテゴリに分かれており、
 
 ~~~admonish example title="extensions/mason.lua"
 ```diff
-  ['rust_analyzer'] = function()
-    lsp.rust_analyzer.setup {
-      settings = {
-        ['rust-analyzer'] = {
-          diagnostic = { enable = false },
-          assist = { importGranularity = 'module', importPrefix = 'self' },
-          cargo = { allFeatures = true, loadOutDirsFromCheck = true },
-          procMacro = { enable = true },
-+         checkOnSave = { allFeatures = true, command = 'clippy' },
-        },
+['rust_analyzer'] = function()
+  vim.lsp.config('rust_analyzer', {
+    settings = {
+      ['rust-analyzer'] = {
+        diagnostic = { enable = false },
+        assist = { importGranularity = 'module', importPrefix = 'self' },
+        cargo = { allFeatures = true, loadOutDirsFromCheck = true },
+        procMacro = { enable = true },
++       checkOnSave = { enable = true },
++       command = { 'clippy' },
       },
-    }
-  end,
+    },
+  })
+end,
 ```
 ~~~
 
@@ -288,16 +277,14 @@ Nvim で`:help lspconfig-all`を実行するとこのファイルを見ること
 これは[nvim-lspconfig.lua](../neovim/lsp/nvim-lspconfig.html#admonition-extensionsnvim-lspconfiglua)の末尾に置いてます。
 
 ~~~admonish example title="extensions/nvim-lspconfig.lua"
-```diff
+```lua
  vim.api.nvim_create_autocmd('LspAttach', {
 
-   ...
+   -- ...
 
  })
 
-+local lsp = require 'lspconfig'
-
- (ここから先に固有の設定を追加していきます)
+-- (ここから先に固有の設定を追加していきます)
 
 ```
 ~~~
@@ -329,9 +316,9 @@ SourceKit-LSP は Swift Package Manager を使用するプロジェクトをサ�
 
 ~~~admonish example title="extensions/nvim-lspconfig.lua"
 ```lua
-lsp.sourcekit.setup {
+vim.lsp.config('sourcekit', {
   filetypes = { 'swift', 'objective-c', 'objective-cpp' },
-}
+})
 ```
 ~~~
 
@@ -355,7 +342,7 @@ ccls は[cquery](https://github.com/jacobdufault/cquery)に由来する、C/C++/
 
 ~~~admonish example title="extensions/nvim-lspconfig.lua"
 ```lua
-lsp.ccls.setup {
+vim.lsp.config('ccls', {
   init_options = {
     compilationDatabaseDirectory = 'build',
     index = {
@@ -366,7 +353,7 @@ lsp.ccls.setup {
       excludeArgs = { '-frounding-math' },
     },
   },
-}
+})
 ```
 ~~~
 
