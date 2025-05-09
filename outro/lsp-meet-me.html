@@ -156,9 +156,16 @@ require('mason-lspconfig').setup {
 <a class="admonition-anchor-link" href="#admonition-脳人"></a>
 </div>
 <div>
-<p>このページは 2025/05/08 に、以下の環境に対応できるようにサンプルコードを書き直しています。</p>
-<p>mason-lspconfig.nvim <a href="https://github.com/mason-org/mason-lspconfig.nvim?tab=readme-ov-file#requirements">Requirements</a></p>
-<p>とりあえずエラーなんかは出てこないはずですが、わたしも細かいところまでは確認しきれていないのは許して😘</p>
+<p>このページは 2025/05/08 に、以下の環境にあわせてサンプルコードを書き直しています。</p>
+<blockquote>
+<p>:h mason-lspconfig-requirements</p>
+</blockquote>
+<ul>
+<li>neovim &gt;= 0.11.0</li>
+<li>mason.nvim &gt;= 2.0.0</li>
+<li>nvim-lspconfig &gt;= 2.0.0</li>
+</ul>
+<p>諸々、細かいところまで把握しきれていないのは許して😘</p>
 </div>
 </div>
 <div id="admonition-default-2" class="admonition admonish-danger" role="note">
@@ -168,7 +175,7 @@ require('mason-lspconfig').setup {
 </div>
 </div>
 <h2 id="-runtimepath"><a class="header" href="#-runtimepath">🕶️ runtimepath</a></h2>
-<p>あるところに<code>runtimepath</code>というものがおりましたよね。</p>
+<p>そういえば、あるところに<code>runtimepath</code>というものがおりました。</p>
 <div id="admonition-h-runtimepath" class="admonition admonish-info" role="note" aria-labelledby="admonition-h-runtimepath-title">
 <div class="admonition-title">
 <div id="admonition-h-runtimepath-title">
@@ -177,53 +184,53 @@ require('mason-lspconfig').setup {
 <a class="admonition-anchor-link" href="#admonition-h-runtimepath"></a>
 </div>
 <div>
-<pre><code class="language-txt">                                                          *'runtimepath'* *'rtp'* *vimfiles*
-'runtimepath' 'rtp'	string	(default "$XDG_CONFIG_HOME/nvim,
-                     $XDG_CONFIG_DIRS[1]/nvim,
-                     $XDG_CONFIG_DIRS[2]/nvim,
-                     …
-                     $XDG_DATA_HOME/nvim[-data]/site,
-                     $XDG_DATA_DIRS[1]/nvim/site,
-                     $XDG_DATA_DIRS[2]/nvim/site,
-                     …
-                     $VIMRUNTIME,
-                     …
-                     $XDG_DATA_DIRS[2]/nvim/site/after,
-                     $XDG_DATA_DIRS[1]/nvim/site/after,
-                     $XDG_DATA_HOME/nvim[-data]/site/after,
-                     …
-                     $XDG_CONFIG_DIRS[2]/nvim/after,
-                     $XDG_CONFIG_DIRS[1]/nvim/after,
-                     $XDG_CONFIG_HOME/nvim/after")
-                    global
-	List of directories to be searched for these runtime files:
-	  filetype.lua	filetypes |new-filetype|
-	  autoload/	automatically loaded scripts |autoload-functions|
-	  colors/	color scheme files |:colorscheme|
-	  compiler/	compiler files |:compiler|
-	  doc/		documentation |write-local-help|
-	  ftplugin/	filetype plugins |write-filetype-plugin|
-	  indent/	indent scripts |indent-expression|
-	  keymap/	key mapping files |mbyte-keymap|
-	  lang/		menu translations |:menutrans|
-	  lsp/		LSP client configurations |lsp-config|
-	  lua/		|Lua| plugins
-	  menu.vim	GUI menus |menu.vim|
-	  pack/		packages |:packadd|
-	  parser/	|treesitter| syntax parsers
-	  plugin/	plugin scripts |write-plugin|
-	  queries/	|treesitter| queries
-	  rplugin/	|remote-plugin| scripts
-	  spell/	spell checking files |spell|
-	  syntax/	syntax files |mysyntaxfile|
-	  tutor/	tutorial files |:Tutor|
+<pre><code class="language-txt">                                               'runtimepath' 'rtp' vimfiles
+'runtimepath' 'rtp' string (default "$XDG_CONFIG_HOME/nvim,
+                                     $XDG_CONFIG_DIRS[1]/nvim,
+                                     $XDG_CONFIG_DIRS[2]/nvim,
+                                     …
+                                     $XDG_DATA_HOME/nvim[-data]/site,
+                                     $XDG_DATA_DIRS[1]/nvim/site,
+                                     $XDG_DATA_DIRS[2]/nvim/site,
+                                     …
+                                     $VIMRUNTIME,
+                                     …
+                                     $XDG_DATA_DIRS[2]/nvim/site/after,
+                                     $XDG_DATA_DIRS[1]/nvim/site/after,
+                                     $XDG_DATA_HOME/nvim[-data]/site/after,
+                                     …
+                                     $XDG_CONFIG_DIRS[2]/nvim/after,
+                                     $XDG_CONFIG_DIRS[1]/nvim/after,
+                                     $XDG_CONFIG_HOME/nvim/after")
+                            global
+    List of directories to be searched for these runtime files:
+        filetype.lua	filetypes |new-filetype|
+        autoload/	automatically loaded scripts |autoload-functions|
+        colors/	color scheme files |:colorscheme|
+        compiler/	compiler files |:compiler|
+        doc/		documentation |write-local-help|
+        ftplugin/	filetype plugins |write-filetype-plugin|
+        indent/	indent scripts |indent-expression|
+        keymap/	key mapping files |mbyte-keymap|
+        lang/		menu translations |:menutrans|
+        lsp/		LSP client configurations |lsp-config|
+        lua/		|Lua| plugins
+        menu.vim	GUI menus |menu.vim|
+        pack/		packages |:packadd|
+        parser/	|treesitter| syntax parsers
+        plugin/	plugin scripts |write-plugin|
+        queries/	|treesitter| queries
+        rplugin/	|remote-plugin| scripts
+        spell/	spell checking files |spell|
+        syntax/	syntax files |mysyntaxfile|
+        tutor/	tutorial files |:Tutor|
 
-	And any other file searched for with the |:runtime| command.
+  And any other file searched for with the |:runtime| command.
 </code></pre>
 </div>
 </div>
-<p>なんだか色々記載はありますが、とりあえずここで言いたいのは
-"プラグイン設定は<code>lua</code>に、LSPクライアント設定は<code>lsp</code>に行きました" ということだけです👵</p>
+<p>大きなリストが どんぶらこ〜 どんぶらこ〜 と流れてきましたが、とりあえずここでの おはなし は
+"プラグイン設定は<code>lua</code>に、LSPクライアント設定は<code>lsp</code>に行きました。" ということだけです👵</p>
 <p>...いや、"行くべきです" と言うべきか👴</p>
 <p>だからもし、こんな感じになってるとしたら...</p>
 <pre><code class="language-txt">.
@@ -474,23 +481,59 @@ You can choose how much Clippy is supposed to <del>annoy</del> help you by chang
 </div>
 <p>普段使っている言語によっては<code>mason.nvim</code>にない<code>LSP</code>を使用したいこともあると思うんですが、
 まあ大抵はなんとかなります😗</p>
-<div id="admonition-configurationshttpsgithubcomneovimnvim-lspconfigblobmasterdocserver_configurationsmd" class="admonition admonish-info" role="note" aria-labelledby="admonition-configurationshttpsgithubcomneovimnvim-lspconfigblobmasterdocserver_configurationsmd-title">
+<p>さっき流れてきたリストの中に</p>
+<pre><code class="language-text">plugin/	plugin scripts |write-plugin|
+</code></pre>
+<p>というものがありました。これを割って食べましょう🍑</p>
+<p>同じ要領で、トップに<code>plugin</code>ディレクトリと、その中に<code>lsp-manual.lua</code>を作成します。</p>
+<pre><code class="language-diff"> .
+ ├── init.lua
+ ├── lazy-lock.json
+ ├── lsp
+ │   ├── ccls.lua
+ │   ├── lua_ls.lua
+ │   ├── rust_analyzer.lua
+ │   └── sourcekit.lua
+ ├── lua
+ │   ├── extensions
+ │   │   ├── ...
+ │   ├── ...
+ │
++├── plugin
++│   └── lsp-manual.lua
+ └── snippets
+     ├── ...
+</code></pre>
+<div id="admonition-warning" class="admonition admonish-warning" role="note" aria-labelledby="admonition-warning-title">
 <div class="admonition-title">
-<div id="admonition-configurationshttpsgithubcomneovimnvim-lspconfigblobmasterdocserver_configurationsmd-title">
-<p><a href="https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md">Configurations</a></p>
+<div id="admonition-warning-title">
+<p>Warning</p>
 </div>
-<a class="admonition-anchor-link" href="#admonition-configurationshttpsgithubcomneovimnvim-lspconfigblobmasterdocserver_configurationsmd"></a>
+<a class="admonition-anchor-link" href="#admonition-warning"></a>
 </div>
 <div>
-<p>LSP configs provided by nvim-lspconfig are listed below.
-This documentation is autogenerated from the Lua files.
-You can view this file in Nvim by running <code>:help lspconfig-all</code>.</p>
-<p>nvim-lspconfigが提供するLSPコンフィグを以下に示します。
-このドキュメントは Lua ファイルから自動生成されます。
-Nvim で<code>:help lspconfig-all</code>を実行するとこのファイルを見ることができます。</p>
+<p>既に<code>plugin</code>ディレクトリが存在している場合、中身はそのままにして<code>lsp-manual.lua</code>を作成すれば良いです。</p>
+<p>(<code>lua</code>ファイルの方の名前はなんでも平気です 🌛)</p>
 </div>
 </div>
-<p>...で、例えば私が使っている (入っているだけとも言う😅) <code>lsp</code>は以下です。</p>
+<div id="admonition-pluginlsp-manuallua" class="admonition admonish-example" role="note" aria-labelledby="admonition-pluginlsp-manuallua-title">
+<div class="admonition-title">
+<div id="admonition-pluginlsp-manuallua-title">
+<p>plugin/lsp-manual.lua</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-pluginlsp-manuallua"></a>
+</div>
+<div>
+<pre><code class="language-lua">local manual_lsp = {
+  -- ここに LSP クライアント名を追加していきます
+}
+
+vim.lsp.enable(manual_lsp)
+</code></pre>
+</div>
+</div>
+<p>こうしておくと、<code>lsp-manual.lua</code>が自動的に読み込まれて、<code>mason.nvim</code>管理下にいない<code>lsp</code>を有効化できます。</p>
+<p>...と、いうことで 私が使っている (入っているだけとも言う😅) <code>lsp</code>を例にして おみこし は続きます 🐦‍🔥</p>
 <h3 id="-sourcekit-lsp-swift"><a class="header" href="#-sourcekit-lsp-swift">🐲 SourceKit-LSP (Swift)</a></h3>
 <div id="admonition-default-8" class="admonition admonish-question" role="note">
 <div>
@@ -533,8 +576,24 @@ SourceKit-LSP は Swift Package Manager を使用するプロジェクトをサ�
 </code></pre>
 </div>
 </div>
+<div id="admonition-pluginlsp-manuallua-1" class="admonition admonish-example" role="note" aria-labelledby="admonition-pluginlsp-manuallua-1-title">
+<div class="admonition-title">
+<div id="admonition-pluginlsp-manuallua-1-title">
+<p>plugin/lsp-manual.lua</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-pluginlsp-manuallua-1"></a>
+</div>
+<div>
+<pre><code class="language-diff"> local manual_lsp = {
++  'sourcekit'
+ }
+
+vim.lsp.enable(manual_lsp)
+</code></pre>
+</div>
+</div>
 <img src="img/sourcekit-lsp.webp" alt="sourcekit-lsp" width="800" height="406" loading="lazy">
-<p>普段使ってないからなんか妙に余裕ないけど許して (その一) 😅</p>
+<p>だいぶ古いスクリーンショットだからなんか妙に余裕ないけど許して (その一) 😅</p>
 <h3 id="-ccls-cc"><a class="header" href="#-ccls-cc">🐯 ccls (C/C++)</a></h3>
 <div id="admonition-default-9" class="admonition admonish-warning" role="note">
 <div>
@@ -577,8 +636,25 @@ SourceKit-LSP は Swift Package Manager を使用するプロジェクトをサ�
 </code></pre>
 </div>
 </div>
+<div id="admonition-pluginlsp-manuallua-2" class="admonition admonish-example" role="note" aria-labelledby="admonition-pluginlsp-manuallua-2-title">
+<div class="admonition-title">
+<div id="admonition-pluginlsp-manuallua-2-title">
+<p>plugin/lsp-manual.lua</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-pluginlsp-manuallua-2"></a>
+</div>
+<div>
+<pre><code class="language-diff"> local manual_lsp = {
++ 'ccls',
+  'sourcekit'
+}
+
+ vim.lsp.enable(manual_lsp)
+</code></pre>
+</div>
+</div>
 <img src="img/ccls.webp" alt="ccls" width="800" height="407" loading="lazy">
-<p>普段使ってないからなんか妙に余裕ないけど許して (その二) 😅</p>
+<p>だいぶ古いスクリーンショットだからなんか妙に余裕ないけど許して (その二) 😅</p>
 <h2 id="-root-directory"><a class="header" href="#-root-directory">🦈 Root Directory</a></h2>
 <p>ちなみになんですが...。</p>
 <p>毎度のことながら、なんかじょーずにいかないなーと思ったら<code>LspInfo</code>を確認してみましょう。</p>
