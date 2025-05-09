@@ -64,11 +64,15 @@ require('mason').setup {
 ここから一歩進めて、「固有の設定を入れてみよう」というのがこの節のおはなしです。
 
 ```admonish note title="脳人"
-このページは 2025/05/08 に、以下の環境に対応できるようにサンプルコードを書き直しています。
+このページは 2025/05/08 に、以下の環境にあわせてサンプルコードを書き直しています。
 
-mason-lspconfig.nvim [Requirements](https://github.com/mason-org/mason-lspconfig.nvim?tab=readme-ov-file#requirements)
+> :h mason-lspconfig-requirements
 
-とりあえずエラーなんかは出てこないはずですが、わたしも細かいところまでは確認しきれていないのは許して😘
+* neovim >= 0.11.0
+* mason.nvim >= 2.0.0
+* nvim-lspconfig >= 2.0.0
+
+諸々、細かいところまで把握しきれていないのは許して😘
 ```
 
 ```admonish danger title=""
@@ -79,57 +83,57 @@ mason-lspconfig.nvim [Requirements](https://github.com/mason-org/mason-lspconfig
 
 ## 🕶️ runtimepath
 
-あるところに`runtimepath`というものがおりましたよね。
+そういえば、あるところに`runtimepath`というものがおりました。
 
 ~~~admonish info title=":h runtimepath"
 ```txt
-                                                          *'runtimepath'* *'rtp'* *vimfiles*
-'runtimepath' 'rtp'	string	(default "$XDG_CONFIG_HOME/nvim,
-                     $XDG_CONFIG_DIRS[1]/nvim,
-                     $XDG_CONFIG_DIRS[2]/nvim,
-                     …
-                     $XDG_DATA_HOME/nvim[-data]/site,
-                     $XDG_DATA_DIRS[1]/nvim/site,
-                     $XDG_DATA_DIRS[2]/nvim/site,
-                     …
-                     $VIMRUNTIME,
-                     …
-                     $XDG_DATA_DIRS[2]/nvim/site/after,
-                     $XDG_DATA_DIRS[1]/nvim/site/after,
-                     $XDG_DATA_HOME/nvim[-data]/site/after,
-                     …
-                     $XDG_CONFIG_DIRS[2]/nvim/after,
-                     $XDG_CONFIG_DIRS[1]/nvim/after,
-                     $XDG_CONFIG_HOME/nvim/after")
-                    global
-	List of directories to be searched for these runtime files:
-	  filetype.lua	filetypes |new-filetype|
-	  autoload/	automatically loaded scripts |autoload-functions|
-	  colors/	color scheme files |:colorscheme|
-	  compiler/	compiler files |:compiler|
-	  doc/		documentation |write-local-help|
-	  ftplugin/	filetype plugins |write-filetype-plugin|
-	  indent/	indent scripts |indent-expression|
-	  keymap/	key mapping files |mbyte-keymap|
-	  lang/		menu translations |:menutrans|
-	  lsp/		LSP client configurations |lsp-config|
-	  lua/		|Lua| plugins
-	  menu.vim	GUI menus |menu.vim|
-	  pack/		packages |:packadd|
-	  parser/	|treesitter| syntax parsers
-	  plugin/	plugin scripts |write-plugin|
-	  queries/	|treesitter| queries
-	  rplugin/	|remote-plugin| scripts
-	  spell/	spell checking files |spell|
-	  syntax/	syntax files |mysyntaxfile|
-	  tutor/	tutorial files |:Tutor|
+                                               'runtimepath' 'rtp' vimfiles
+'runtimepath' 'rtp' string (default "$XDG_CONFIG_HOME/nvim,
+                                     $XDG_CONFIG_DIRS[1]/nvim,
+                                     $XDG_CONFIG_DIRS[2]/nvim,
+                                     …
+                                     $XDG_DATA_HOME/nvim[-data]/site,
+                                     $XDG_DATA_DIRS[1]/nvim/site,
+                                     $XDG_DATA_DIRS[2]/nvim/site,
+                                     …
+                                     $VIMRUNTIME,
+                                     …
+                                     $XDG_DATA_DIRS[2]/nvim/site/after,
+                                     $XDG_DATA_DIRS[1]/nvim/site/after,
+                                     $XDG_DATA_HOME/nvim[-data]/site/after,
+                                     …
+                                     $XDG_CONFIG_DIRS[2]/nvim/after,
+                                     $XDG_CONFIG_DIRS[1]/nvim/after,
+                                     $XDG_CONFIG_HOME/nvim/after")
+                            global
+    List of directories to be searched for these runtime files:
+        filetype.lua	filetypes |new-filetype|
+        autoload/	automatically loaded scripts |autoload-functions|
+        colors/	color scheme files |:colorscheme|
+        compiler/	compiler files |:compiler|
+        doc/		documentation |write-local-help|
+        ftplugin/	filetype plugins |write-filetype-plugin|
+        indent/	indent scripts |indent-expression|
+        keymap/	key mapping files |mbyte-keymap|
+        lang/		menu translations |:menutrans|
+        lsp/		LSP client configurations |lsp-config|
+        lua/		|Lua| plugins
+        menu.vim	GUI menus |menu.vim|
+        pack/		packages |:packadd|
+        parser/	|treesitter| syntax parsers
+        plugin/	plugin scripts |write-plugin|
+        queries/	|treesitter| queries
+        rplugin/	|remote-plugin| scripts
+        spell/	spell checking files |spell|
+        syntax/	syntax files |mysyntaxfile|
+        tutor/	tutorial files |:Tutor|
 
-	And any other file searched for with the |:runtime| command.
+  And any other file searched for with the |:runtime| command.
 ```
 ~~~
 
-なんだか色々記載はありますが、とりあえずここで言いたいのは
-"プラグイン設定は`lua`に、LSPクライアント設定は`lsp`に行きました" ということだけです👵
+大きなリストが どんぶらこ〜 どんぶらこ〜 と流れてきましたが、とりあえずここでの おはなし は
+"プラグイン設定は`lua`に、LSPクライアント設定は`lsp`に行きました。" ということだけです👵
 
 ...いや、"行くべきです" と言うべきか👴
 
@@ -370,17 +374,55 @@ vim.lsp.config('rust_analyzer', {
 普段使っている言語によっては`mason.nvim`にない`LSP`を使用したいこともあると思うんですが、
 まあ大抵はなんとかなります😗
 
-```admonish info title="[Configurations](https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md)"
-LSP configs provided by nvim-lspconfig are listed below.
-This documentation is autogenerated from the Lua files.
-You can view this file in Nvim by running `:help lspconfig-all`.
+さっき流れてきたリストの中に
 
-nvim-lspconfigが提供するLSPコンフィグを以下に示します。
-このドキュメントは Lua ファイルから自動生成されます。
-Nvim で`:help lspconfig-all`を実行するとこのファイルを見ることができます。
+```text
+plugin/	plugin scripts |write-plugin|
 ```
 
-...で、例えば私が使っている (入っているだけとも言う😅) `lsp`は以下です。
+というものがありました。これを割って食べましょう🍑
+
+同じ要領で、トップに`plugin`ディレクトリと、その中に`lsp-manual.lua`を作成します。
+
+```diff
+ .
+ ├── init.lua
+ ├── lazy-lock.json
+ ├── lsp
+ │   ├── ccls.lua
+ │   ├── lua_ls.lua
+ │   ├── rust_analyzer.lua
+ │   └── sourcekit.lua
+ ├── lua
+ │   ├── extensions
+ │   │   ├── ...
+ │   ├── ...
+ │
++├── plugin
++│   └── lsp-manual.lua
+ └── snippets
+     ├── ...
+```
+
+```admonish warning
+既に`plugin`ディレクトリが存在している場合、中身はそのままにして`lsp-manual.lua`を作成すれば良いです。
+
+(`lua`ファイルの方の名前はなんでも平気です 🌛)
+```
+
+~~~admonish example title="plugin/lsp-manual.lua"
+```lua
+local manual_lsp = {
+  -- ここに LSP クライアント名を追加していきます
+}
+
+vim.lsp.enable(manual_lsp)
+```
+~~~
+
+こうしておくと、`lsp-manual.lua`が自動的に読み込まれて、`mason.nvim`管理下にいない`lsp`を有効化できます。
+
+...と、いうことで 私が使っている (入っているだけとも言う😅) `lsp`を例にして おみこし は続きます 🐦‍🔥
 
 ### 🐲 SourceKit-LSP (Swift)
 
@@ -413,9 +455,19 @@ vim.lsp.config('sourcekit', {
 ```
 ~~~
 
+~~~admonish example title="plugin/lsp-manual.lua"
+```diff
+ local manual_lsp = {
++  'sourcekit'
+ }
+
+vim.lsp.enable(manual_lsp)
+```
+~~~
+
 ![sourcekit-lsp](img/sourcekit-lsp.webp)
 
-普段使ってないからなんか妙に余裕ないけど許して (その一) 😅
+だいぶ古いスクリーンショットだからなんか妙に余裕ないけど許して (その一) 😅
 
 ### 🐯 ccls (C/C++)
 
@@ -448,9 +500,20 @@ vim.lsp.config('ccls', {
 ```
 ~~~
 
+~~~admonish example title="plugin/lsp-manual.lua"
+```diff
+ local manual_lsp = {
++ 'ccls',
+  'sourcekit'
+}
+
+ vim.lsp.enable(manual_lsp)
+```
+~~~
+
 ![ccls](img/ccls.webp)
 
-普段使ってないからなんか妙に余裕ないけど許して (その二) 😅
+だいぶ古いスクリーンショットだからなんか妙に余裕ないけど許して (その二) 😅
 
 ## 🦈 Root Directory
 
