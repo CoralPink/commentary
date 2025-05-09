@@ -64,7 +64,6 @@ require('mason').setup {
 ここから一歩進めて、「固有の設定を入れてみよう」というのがこの節のおはなしです。
 
 ```admonish note title="脳人"
-
 このページは 2025/05/08 に、以下の環境に対応できるようにサンプルコードを書き直しています。
 
 mason-lspconfig.nvim [Requirements](https://github.com/mason-org/mason-lspconfig.nvim?tab=readme-ov-file#requirements)
@@ -78,11 +77,124 @@ mason-lspconfig.nvim [Requirements](https://github.com/mason-org/mason-lspconfig
 この世は楽園！
 ```
 
-## 🕶️ Specific Settings
+## 🕶️ runtimepath
 
-ここでは`lua_ls`と`rust-analyzer`を例に進めていきます。
+あるところに`runtimepath`というものがおりましたよね。
+
+~~~admonish info title=":h runtimepath"
+```txt
+                                                          *'runtimepath'* *'rtp'* *vimfiles*
+'runtimepath' 'rtp'	string	(default "$XDG_CONFIG_HOME/nvim,
+                     $XDG_CONFIG_DIRS[1]/nvim,
+                     $XDG_CONFIG_DIRS[2]/nvim,
+                     …
+                     $XDG_DATA_HOME/nvim[-data]/site,
+                     $XDG_DATA_DIRS[1]/nvim/site,
+                     $XDG_DATA_DIRS[2]/nvim/site,
+                     …
+                     $VIMRUNTIME,
+                     …
+                     $XDG_DATA_DIRS[2]/nvim/site/after,
+                     $XDG_DATA_DIRS[1]/nvim/site/after,
+                     $XDG_DATA_HOME/nvim[-data]/site/after,
+                     …
+                     $XDG_CONFIG_DIRS[2]/nvim/after,
+                     $XDG_CONFIG_DIRS[1]/nvim/after,
+                     $XDG_CONFIG_HOME/nvim/after")
+                    global
+	List of directories to be searched for these runtime files:
+	  filetype.lua	filetypes |new-filetype|
+	  autoload/	automatically loaded scripts |autoload-functions|
+	  colors/	color scheme files |:colorscheme|
+	  compiler/	compiler files |:compiler|
+	  doc/		documentation |write-local-help|
+	  ftplugin/	filetype plugins |write-filetype-plugin|
+	  indent/	indent scripts |indent-expression|
+	  keymap/	key mapping files |mbyte-keymap|
+	  lang/		menu translations |:menutrans|
+	  lsp/		LSP client configurations |lsp-config|
+	  lua/		|Lua| plugins
+	  menu.vim	GUI menus |menu.vim|
+	  pack/		packages |:packadd|
+	  parser/	|treesitter| syntax parsers
+	  plugin/	plugin scripts |write-plugin|
+	  queries/	|treesitter| queries
+	  rplugin/	|remote-plugin| scripts
+	  spell/	spell checking files |spell|
+	  syntax/	syntax files |mysyntaxfile|
+	  tutor/	tutorial files |:Tutor|
+
+	And any other file searched for with the |:runtime| command.
+```
+~~~
+
+なんだか色々記載はありますが、とりあえずここで言いたいのは
+"プラグイン設定は`lua`に、LSPクライアント設定は`lsp`に行きました" ということだけです👵
+
+...いや、"行くべきです" と言うべきか👴
+
+だからもし、こんな感じになってるとしたら...
+
+```txt
+.
+├── init.lua
+├── lazy-lock.json
+├── lua
+│   ├── extensions
+│   │   ├── ...
+│   ├── ...
+│
+└── snippets
+    ├── ...
+```
+
+トップディレクトリ (`.config/nvim`) でこんなんしましょう🐱
+
+```bash
+mkdir lsp
+```
+
+そしたらこんなんなりますね🌳
+
+```diff
+ .
+ ├── init.lua
+ ├── lazy-lock.json
++├── lsp
+ ├── lua
+ │   ├── extensions
+ │   │   ├── ...
+ │   ├── ...
+ │
+ └── snippets
+     ├── ...
+```
+
+この節で示すコードは、この`lsp`ディレクトリにファイルを新規で作成していきます。
+
+~~~admonish note title="脳人"
+先に示したほうがイメージがつくと思うので出しちゃいますが、最終的にはこんな形になります🌳🌳🌳
+
+```diff
+ .
+ ├── init.lua
+ ├── lazy-lock.json
++├── lsp
++│   ├── ccls.lua
++│   ├── lua_ls.lua
++│   ├── rust_analyzer.lua
++│   └── sourcekit.lua
+ ├── lua
+ │   ├── extensions
+ │   │   ├── ...
+ │   ├── ...
+ │
+ └── snippets
+     ├── ...
+```
 
 当然ながら、これらを実際にインストールするかどうかはおまかせします😆
+~~~
 
 ```admonish danger title=""
 悩みなんざ吹っ飛ばせ！
@@ -109,53 +221,52 @@ Visual Studio Code に 100万近くインストールされており、Lua 言�
 100万とか言わないでください。1Kが霞むんで🤣
 
 わたしはだいぶ長〜い間気づきませんでしたが、
-`nvim-lspconfig`の[lua_ls](https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#lua_ls)を参考に
-以下のコードを追加してみると...。
+`nvim-lspconfig`の[lua_ls](https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#lua_ls)を参考にして、
+以下のようにしてみると...。
 
-~~~admonish example title="extensions/mason.lua"
+~~~admonish example title="lsp/lua_ls.lua"
 ```lua
-['lua_ls'] = function()
-  vim.lsp.config('lua_ls', {
-    on_init = function(client)
-      -- わたしの環境では workspace_folders が存在しないケースがあったので対処しています.
-      if not client.workspace_folders then
-        return
-      end
-
+vim.lsp.config('lua_ls', {
+  on_init = function(client)
+    if client.workspace_folders then
       local path = client.workspace_folders[1].name
-
-      if vim.uv.fs_stat(path .. '/.luarc.json') or vim.uv.fs_stat(path .. '/.luarc.jsonc') then
+      if
+        path ~= vim.fn.stdpath('config')
+        and (vim.uv.fs_stat(path .. '/.luarc.json') or vim.uv.fs_stat(path .. '/.luarc.jsonc'))
+      then
         return
       end
+    end
 
-      client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
-        runtime = {
-          -- Tell the language server which version of Lua you're using
-          -- (most likely LuaJIT in the case of Neovim)
-          version = 'LuaJIT',
-          path = {
-            'lua/?.lua',
-            'lua/?/init.lua',
-          },
+    client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
+      runtime = {
+        -- Tell the language server which version of Lua you're using (most
+        -- likely LuaJIT in the case of Neovim)
+        version = 'LuaJIT',
+        -- Tell the language server how to find Lua modules same way as Neovim
+        -- (see `:h lua-module-load`)
+        path = {
+          'lua/?.lua',
+          'lua/?/init.lua',
         },
-        workspace = {
-          checkThirdParty = false,
-          library = {
-            vim.env.VIMRUNTIME,
-            -- Depending on the usage, you might want to add additional paths here.
-            -- "${3rd}/luv/library"
-            -- "${3rd}/busted/library",
-          },
-          -- or pull in all of 'runtimepath'. NOTE: this is a lot slower
-          -- library = vim.api.nvim_get_runtime_file("", true)
-        },
-      })
-    end,
-    settings = {
-      Lua = {},
-    },
-  })
-end,
+      },
+      -- Make the server aware of Neovim runtime files
+      workspace = {
+        checkThirdParty = false,
+        library = {
+          vim.env.VIMRUNTIME
+          -- Depending on the usage, you might want to add additional paths
+          -- here.
+          -- '${3rd}/luv/library'
+          -- '${3rd}/busted/library'
+        }
+      }
+    })
+  end,
+  settings = {
+    Lua = {}
+  }
+})
 ```
 ~~~
 
@@ -167,7 +278,7 @@ end,
 
 ![fidget-lua-ls](img/fidget-lua-ls.webp)
 
-`Neovim`を使う場合はこれを入れておくと楽しいです🤗
+`Neovim`を使う場合はこれを置いておくと楽しいです🤗
 
 ### 🐶 rust-analyzer (Rust)
 
@@ -186,20 +297,18 @@ Rust の優れた IDE サポートを作成するための、より大きな rls
 と、いうことで`Rust`にはこれがいいんじゃないかと思うんだけど、
 どこを見て持ってきたのかが思い出せなくて見つからない...😑
 
-~~~admonish example title="extensions/mason.lua"
+~~~admonish example title="lsp/rust_analyzer.lua"
 ```lua
-['rust_analyzer'] = function()
-  vim.lsp.config('rust_analyzer', {
-    settings = {
-      ['rust-analyzer'] = {
-        diagnostic = { enable = false },
-        assist = { importGranularity = 'module', importPrefix = 'self' },
-        cargo = { allFeatures = true, loadOutDirsFromCheck = true },
-        procMacro = { enable = true },
-      },
+vim.lsp.config('rust_analyzer', {
+  settings = {
+    ['rust-analyzer'] = {
+      diagnostic = { enable = false },
+      assist = { importGranularity = 'module', importPrefix = 'self' },
+      cargo = { allFeatures = true, loadOutDirsFromCheck = true },
+      procMacro = { enable = true },
     },
-  })
-end,
+  },
+})
 ```
 ~~~
 
@@ -231,22 +340,20 @@ Lints はカテゴリに分かれており、
 
 `Rust`の環境を入れると、たぶん自然にインストールされてるやつです。
 
-~~~admonish example title="extensions/mason.lua"
+~~~admonish example title="lsp/rust_analyzer.lua"
 ```diff
-['rust_analyzer'] = function()
-  vim.lsp.config('rust_analyzer', {
-    settings = {
-      ['rust-analyzer'] = {
-        diagnostic = { enable = false },
-        assist = { importGranularity = 'module', importPrefix = 'self' },
-        cargo = { allFeatures = true, loadOutDirsFromCheck = true },
-        procMacro = { enable = true },
-+       checkOnSave = { enable = true },
-+       command = { 'clippy' },
-      },
+vim.lsp.config('rust_analyzer', {
+  settings = {
+    ['rust-analyzer'] = {
+      diagnostic = { enable = false },
+      assist = { importGranularity = 'module', importPrefix = 'self' },
+      cargo = { allFeatures = true, loadOutDirsFromCheck = true },
+      procMacro = { enable = true },
++     checkOnSave = { enable = true },
++     command = { 'clippy' },
     },
-  })
-end,
+  },
+})
 ```
 ~~~
 
@@ -260,8 +367,8 @@ end,
 打ち解けりゃ鬼も笑う
 ```
 
-普段使っている言語によっては、`mason.nvim`にない`LSP`を使用したいこともあると思うんですが、
-`nvim-lspconfig`を使用しているのであれば、まあ大抵はなんとかなります😗
+普段使っている言語によっては`mason.nvim`にない`LSP`を使用したいこともあると思うんですが、
+まあ大抵はなんとかなります😗
 
 ```admonish info title="[Configurations](https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md)"
 LSP configs provided by nvim-lspconfig are listed below.
@@ -272,22 +379,6 @@ nvim-lspconfigが提供するLSPコンフィグを以下に示します。
 このドキュメントは Lua ファイルから自動生成されます。
 Nvim で`:help lspconfig-all`を実行するとこのファイルを見ることができます。
 ```
-
-わたしの場合、
-これは[nvim-lspconfig.lua](../neovim/lsp/nvim-lspconfig.html#admonition-extensionsnvim-lspconfiglua)の末尾に置いてます。
-
-~~~admonish example title="extensions/nvim-lspconfig.lua"
-```lua
- vim.api.nvim_create_autocmd('LspAttach', {
-
-   -- ...
-
- })
-
--- (ここから先に固有の設定を追加していきます)
-
-```
-~~~
 
 ...で、例えば私が使っている (入っているだけとも言う😅) `lsp`は以下です。
 
@@ -314,7 +405,7 @@ SourceKit-LSP は Swift Package Manager を使用するプロジェクトをサ�
 
 `macOS`で`Xcode`をインストールしている環境であれば、これも自然に入ってます。
 
-~~~admonish example title="extensions/nvim-lspconfig.lua"
+~~~admonish example title="lsp/sourcekit.lua"
 ```lua
 vim.lsp.config('sourcekit', {
   filetypes = { 'swift', 'objective-c', 'objective-cpp' },
@@ -340,7 +431,7 @@ ccls は[cquery](https://github.com/jacobdufault/cquery)に由来する、C/C++/
 
 これは`brew`とか`apt`とか使えばお手軽ですね😉
 
-~~~admonish example title="extensions/nvim-lspconfig.lua"
+~~~admonish example title="lsp/ccls.lua"
 ```lua
 vim.lsp.config('ccls', {
   init_options = {
