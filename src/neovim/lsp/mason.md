@@ -130,6 +130,8 @@ For love
 ## Requirements
 
 ```admonish abstract title="[Requirements](https://github.com/williamboman/mason.nvim#requirements)"
+> [`:h mason-requirements`][help-mason-requirements]
+
 mason.nvim relaxes the minimum requirements by attempting multiple different utilities
 (for example, wget, curl, and Invoke-WebRequest are all perfect substitutes).
 The minimum recommended requirements are:
@@ -138,15 +140,35 @@ mason.nvimは、複数の異なるユーティリティを試すことで、最�
 (例えば、wget、curl、Invoke-WebRequestはすべて完璧な代用品です）。
 最低限推奨される要件は以下の通りです：
 
-- neovim >= 0.7.0
-- For Unix systems: git(1), curl(1) or wget(1), unzip(1), tar(1), gzip(1)
-- For Windows systems: pwsh or powershell, git, tar, and 7zip or peazip or archiver or winzip or WinRAR
+- neovim `>= 0.10.0`
+- For Unix systems:
+    - `git(1)`
+    - `curl(1)` or `GNU wget(1)`
+    - `unzip(1)`
+    - GNU tar (`tar(1)` or `gtar(1)` depending on platform)
+    - `gzip(1)`
+-   For Windows systems:
+    - pwsh or powershell
+    - git
+    - GNU tar
+    - One of the following:
+        - [7zip][7zip]
+        - [peazip][peazip]
+        - [archiver][archiver]
+        - [winzip][winzip]
+        - [WinRAR][winrar]
 
-Note that mason.nvim will regularly shell out to external package managers, such as cargo and npm.
-Depending on your personal usage, some of these will also need to be installed. Refer to :checkhealth mason for a full list.
+Note that `mason.nvim` will regularly shell out to external package managers, such as `cargo` and `npm`. Depending on
+your personal usage, some of these will also need to be installed. Refer to `:checkhealth mason` for a full list.
 
 mason.nvim は定期的に cargo や npm などの外部パッケージマネージャにシェルアウトすることに留意してください。
 使い方によっては、これらのパッケージもインストールする必要があります。全リストは :checkhealth mason を参照してください。
+
+[7zip]: https://www.7-zip.org/
+[archiver]: https://github.com/mholt/archiver
+[peazip]: https://peazip.github.io/
+[winzip]: https://www.winzip.com/
+[winrar]: https://www.win-rar.com/
 ```
 
 これもやっぱり`checkhealth`を確認しておきましょう。

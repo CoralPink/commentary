@@ -108,6 +108,10 @@ cmp.setup {
 
 一網打尽ですね🏝️
 
+```admonish warning
+vim.lsp.config() は、`Neovim 0.11` で導入された新しい LSP 設定インターフェースです。
+```
+
 ### Re Config
 
 もう一個だけ。
