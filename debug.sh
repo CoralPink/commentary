@@ -45,7 +45,6 @@ mdbook build --dest-dir commentary
 pushd commentary
 ../scripts/generate-pagelist.sh
 node ../scripts/extract-json.js
-jq empty searchindex.json && printf '    \e[1;32mFinished\e[0m convert search index \e[33m🧶Did it!!\e[0m\n'
 brotli searchindex.json
 gzip --best --keep --no-name searchindex.json
 popd
