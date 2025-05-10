@@ -182,8 +182,18 @@ Everybody is laughing
 
 メドレーはまだまだ続く... 🎶
 
-```admonish success
+```admonish success title=""
 Everybody is happy
 
 みんな幸せ
+```
+
+![sun-king1](img/sun-king1.webp)
+
+![sun-king2](img/sun-king2.webp)
+
+```admonish success
+Here comes the sun king
+
+太陽王がやってきた
 ```
