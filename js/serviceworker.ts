@@ -1,6 +1,6 @@
 declare const self: ServiceWorkerGlobalScope;
 
-const CACHE_VERSION = 'v7.2.4';
+const CACHE_VERSION = 'v7.3.0';
 
 const CACHE_URL = '/commentary/';
 const FALLBACK_IMAGE = 'chrome-96x96.png';
@@ -24,7 +24,7 @@ const installList = [
 
 const skipDestination = new Set(['document', 'image', 'video', 'audio']);
 
-// Only chrome-based browsers can use `preloadResponse` (as of May 2024).
+// Only chrome-based browsers can use `preloadResponse` (as of May 2025).
 // However, it seems that `navigationPreload` can be configured to enable pseudo(?) in all browsers.
 // (So I've already decided to judge by `userAgent`...)
 const ua = navigator.userAgent;
