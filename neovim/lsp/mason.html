@@ -228,6 +228,9 @@ shell/terminal as well as other 3rd party plugins.</p>
 <a class="admonition-anchor-link" href="#admonition-requirementshttpsgithubcomwilliambomanmasonnvimrequirements"></a>
 </div>
 <div>
+<blockquote>
+<p>[<code>:h mason-requirements</code>][help-mason-requirements]</p>
+</blockquote>
 <p>mason.nvim relaxes the minimum requirements by attempting multiple different utilities
 (for example, wget, curl, and Invoke-WebRequest are all perfect substitutes).
 The minimum recommended requirements are:</p>
@@ -235,12 +238,35 @@ The minimum recommended requirements are:</p>
 (例えば、wget、curl、Invoke-WebRequestはすべて完璧な代用品です）。
 最低限推奨される要件は以下の通りです：</p>
 <ul>
-<li>neovim &gt;= 0.7.0</li>
-<li>For Unix systems: git(1), curl(1) or wget(1), unzip(1), tar(1), gzip(1)</li>
-<li>For Windows systems: pwsh or powershell, git, tar, and 7zip or peazip or archiver or winzip or WinRAR</li>
+<li>neovim <code>&gt;= 0.10.0</code></li>
+<li>For Unix systems:
+<ul>
+<li><code>git(1)</code></li>
+<li><code>curl(1)</code> or <code>GNU wget(1)</code></li>
+<li><code>unzip(1)</code></li>
+<li>GNU tar (<code>tar(1)</code> or <code>gtar(1)</code> depending on platform)</li>
+<li><code>gzip(1)</code></li>
 </ul>
-<p>Note that mason.nvim will regularly shell out to external package managers, such as cargo and npm.
-Depending on your personal usage, some of these will also need to be installed. Refer to :checkhealth mason for a full list.</p>
+</li>
+<li>For Windows systems:
+<ul>
+<li>pwsh or powershell</li>
+<li>git</li>
+<li>GNU tar</li>
+<li>One of the following:
+<ul>
+<li><a href="https://www.7-zip.org/">7zip</a></li>
+<li><a href="https://peazip.github.io/">peazip</a></li>
+<li><a href="https://github.com/mholt/archiver">archiver</a></li>
+<li><a href="https://www.winzip.com/">winzip</a></li>
+<li><a href="https://www.win-rar.com/">WinRAR</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Note that <code>mason.nvim</code> will regularly shell out to external package managers, such as <code>cargo</code> and <code>npm</code>. Depending on
+your personal usage, some of these will also need to be installed. Refer to <code>:checkhealth mason</code> for a full list.</p>
 <p>mason.nvim は定期的に cargo や npm などの外部パッケージマネージャにシェルアウトすることに留意してください。
 使い方によっては、これらのパッケージもインストールする必要があります。全リストは :checkhealth mason を参照してください。</p>
 </div>
