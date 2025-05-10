@@ -257,9 +257,18 @@ What are you going to play?
 2025年2月、日米首脳会談において[Trump](https://en.wikipedia.org/wiki/Donald_Trump)大統領は
 (正確性は定かではないが)"They charge us, we charge them, it’s the same thing." と発言した。
 個人的にはポジティブなメッセージに見えるが、市場ではネガティブに受け取られている (ように見える)。
+
 ![chatgpt-answer](img/chatgpt-answer.webp)
+
 到底、わたしに真意は分からないけど、"mutual", "fair" の方向に進むのならぜんぜん応援できる。
 ...全然関係無いけど、ミドルネームが John なの今日初めて知って、なんかおでれぇたぞう 🐘
+
+![sun-king3](img/sun-king3.webp)
+
+...これで終わると流石にひどいと思うので、
+「13 が怖がられるのは、"世界の外" に一歩踏み出す力を持っているから。
+でもそれは同時に "次の秩序を開く鍵" でもある」とも言われたよ、と追記しておく。
+(ただ、個人的には America First 強すぎなんじゃない？とも思っている。)
 }}
 ```
 
