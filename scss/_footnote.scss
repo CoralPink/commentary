@@ -27,21 +27,19 @@
   }
 }
 
-@mixin center-by-ratio($width, $margin-ratio: 0.5) {
-  position: absolute;
-  left: 50%;
-  width: $width;
-  margin-left: -($width * $margin-ratio);
-}
-
 .ft-pop {
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 84dvw;
+  margin-left: auto;
+  margin-right: auto;
+
   color: var(--fg);
   background-color: var(--theme-popup-bg);
   border: 0.1rem solid var(--theme-popup-border);
 
-  @include center-by-ratio(88vw, 0.5);
-
-  max-height: 64vw;
+  max-height: 64dvh;
   padding: 1rem 1rem;
   border-radius: .8rem;
   font-size: .64rem;
@@ -51,7 +49,7 @@
   transform: scale(0.95);
   z-index: 20;
   opacity: 0;
-  transition: opacity 150ms ease;
+  transition: opacity 150ms ease, transform 150ms ease;
 
   &.show {
     opacity: 1;
