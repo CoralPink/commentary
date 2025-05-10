@@ -413,7 +413,7 @@ plugin/	plugin scripts |write-plugin|
 ~~~admonish example title="plugin/lsp-manual.lua"
 ```lua
 local manual_lsp = {
-  -- ここに LSP クライアント名を追加していきます
+  -- ここに オトモたち を追加していきます
 }
 
 vim.lsp.enable(manual_lsp)
@@ -481,7 +481,7 @@ ccls, which originates from [cquery](https://github.com/jacobdufault/cquery), is
 ccls は[cquery](https://github.com/jacobdufault/cquery)に由来する、C/C++/Objective-C 言語サーバーです。
 ```
 
-これは`brew`とか`apt`とか使えばお手軽ですね😉
+これは`brew`とか`apt`とか使えばお手軽にインストールできますね😉
 
 ~~~admonish example title="lsp/ccls.lua"
 ```lua
@@ -528,7 +528,7 @@ vim.lsp.config('ccls', {
 
 ![root-directory](img/root-directory.webp)
 
-普段使ってないからなんか妙に余裕ないけど許して (その三) 😅
+だいぶ古いスクリーンショットだからなんか妙に余裕ないけど許して(その三) 😅
 
 ## 🍑 Don't Boo! ドンブラザーズ
 

@@ -19,7 +19,7 @@ In a hurry as you are
 ```admonish quote title=""
 I was like you
 
-まるであなたのように
+まるであなたのようにね
 ```
 
 ## Requirements
@@ -54,6 +54,8 @@ Your terminal emulator must be configured to use that font, usually "Hack Nerd F
 ## First Of All
 
 `nvim-tree.lua`のインストールより先にやっておきたいことがあって、それが`netrw`の無効化です。
+
+![atago-cat](img/atago-cat.webp)
 
 ### netrw
 
@@ -133,7 +135,7 @@ Had to tell my point of view
 言わずにいられない日もあった
 ```
 
-![mitaka-totoro](img/ueno-bird.webp)
+![ueno-bird](img/ueno-bird.webp)
 
 ```admonish quote title=""
 I was like you
@@ -593,6 +595,8 @@ on_attachが関数でない場合、nvim-tree-mappings-default が呼び出さ�
 
 ...ただ、なんか長くなってきちゃったので、例によってここで一旦区切ります。
 
+## Have You Never Been Mellow
+
 ```admonish quote title=""
 Have you never been mellow?{{footnote:
 Have You Never Been Mellow (by: [Olivia Newton-John](https://en.wikipedia.org/wiki/Olivia_Newton-John)):
@@ -608,8 +612,6 @@ Have You Never Been Mellow (by: [Olivia Newton-John](https://en.wikipedia.org/wi
 風に心をほどかれて やさしくなれるでしょう？
 ```
 
-## Have You Never Been Mellow
-
 ```admonish quote title=""
 Have you never tried
 
@@ -620,28 +622,28 @@ To find a comfort from inside you?
 安らぎを感じたことがあるでしょう？
 ```
 
-```admonish quote title=""
-Have you never been happy
-
-Just to hear your song?
-
-ただ自分の歌を聴くだけで
-
-幸せになれたことがあるでしょう？
-```
-
 <video controls preload="none" width="1280" height="720" poster="img/hama-rikyu-thumbnail.webp">
   <source src="img/hama-rikyu.webm" type="video/webm">
   Your browser does not support the video/webm.
 </video>
 
 ```admonish quote title=""
+Have you never been happy
+
+Just to hear your song?
+
+ただ自分の歌に 耳をすませば
+
+それだけで幸せになれたでしょう？
+```
+
+![mitaka-guardian-deity](img/mitaka-guardian-deity.webp)
+
+```admonish quote title=""
 Have you never let someone else be strong?
 
 誰かに そっと身を委ねられるのはあなたの強さだよ
 ```
-
-![mitaka-guardian-deity](img/mitaka-guardian-deity.webp)
 
 ```admonish success title="Assemble"
 なんかもうこれだけで大ボリュームでしたね...。

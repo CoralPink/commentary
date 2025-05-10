@@ -22,6 +22,24 @@ This ain't song for the broken-hearted
 心に傷を負った者のために これを歌うわけじゃない
 ```
 
+## Requirements
+
+```admonish info title="[Requirements](https://github.com/mason-org/mason-lspconfig.nvim#requirements)"
+> :h mason-lspconfig-requirements
+
+* neovim >= 0.11.0
+* mason.nvim >= 2.0.0
+* nvim-lspconfig >= 2.0.0
+```
+
+`mason.nvim`は`neovim 0.10.x`にも対応していますが、
+この`mason-lspconfig.nvim`は、さらにもう一歩先に進んでいます。
+
+このページの初掲は`Apr 1, 2023`ですが、
+ここで示すサンプルコードはこれに対応したものに書き換えているのですが...
+
+まあ、なんか...、隔世の感があるぅぅぅ😼
+
 ## Install
 
 これは`mason.nvim`とセットで入れておきましょう。
