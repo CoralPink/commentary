@@ -2,6 +2,11 @@ set -eu
 
 pushd rs/wasm
 wasm-pack build --target web
+wasm-opt ./pkg/wasm_book_bg.wasm \
+  -o ./pkg/wasm_book_bg.wasm \
+  -O \
+  --enable-nontrapping-float-to-int \
+  --enable-bulk-memory
 cp pkg/wasm_book.js ../../js
 cp pkg/wasm_book.d.ts ../../js
 cp pkg/wasm_book_bg.wasm ../../src
