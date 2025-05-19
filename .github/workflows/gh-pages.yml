@@ -216,14 +216,15 @@ jobs:
           restore-keys: |
             python-${{ runner.os }}-fonts-
 
-      - name: Convert and Copy Woff2
-        if: steps.cache-woff2.outputs.cache-hit != 'true'
-        working-directory: fonts
+      - name: Setup Uv
         uses: astral-sh/setup-uv@v6.0.1
         with:
           version: "0.7.5"
+
+      - name: Convert and Copy Woff2
+        if: steps.cache-woff2.outputs.cache-hit != 'true'
+        working-directory: fonts
         run: |
-          set -e
           mkdir -p woff2
           uv run convert.py NerdFontsSymbolsOnly/SymbolsNerdFontMono-Regular.ttf woff2
           uv run convert.py Open_Sans/static/OpenSans-BoldItalic.ttf woff2
