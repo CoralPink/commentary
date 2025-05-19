@@ -79,10 +79,13 @@ jobs:
         run: |
           wasm-pack build --target web
 
+      - name: Install Binaryen
+        run: |
+          brew install binaryen
+
       - name: Optimization Wasm
         working-directory: rs/wasm
         run: |
-          brew install binaryen
           wasm-opt ./pkg/wasm_book_bg.wasm \
             -o ./pkg/wasm_book_bg.wasm \
             -O \
