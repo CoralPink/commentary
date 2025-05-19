@@ -63,20 +63,15 @@ use {
 で、これに関するコンフィグも`mason.lua`にまとめちゃいます。
 
 ~~~admonish example title="extensions/mason.lua"
-```lua
-require('mason').setup {
-  ui = {
-    check_outdated_packages_on_open = false,
-    border = 'single',
-  },
-}
+```diff
+ require('mason').setup {
+   ui = {
+     check_outdated_packages_on_open = false,
+     border = 'single',
+   },
+ }
 
--- ここに追記
-require('mason-lspconfig').setup {
-  function(server_name)
-    vim.lsp.enable(server_name);
-  end,
-}
++require('mason-lspconfig').setup()
 ```
 ~~~
 
