@@ -27,11 +27,7 @@ require('mason').setup {
   },
 }
 
-require('mason-lspconfig').setup {
-  function(server_name)
-    vim.lsp.enable(server_name);
-  end,
-}
+require('mason-lspconfig').setup()
 ```
 ~~~
 
