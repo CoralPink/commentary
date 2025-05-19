@@ -79,6 +79,19 @@ jobs:
         run: |
           wasm-pack build --target web
 
+      - name: Install Binaryen
+        run: |
+          brew install binaryen
+
+      - name: Optimization Wasm
+        working-directory: rs/wasm
+        run: |
+          wasm-opt ./pkg/wasm_book_bg.wasm \
+            -o ./pkg/wasm_book_bg.wasm \
+            -O \
+            --enable-nontrapping-float-to-int \
+            --enable-bulk-memory
+
       - name: Upload wasm_pkg
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
