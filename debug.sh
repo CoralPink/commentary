@@ -19,10 +19,6 @@ cp -r dist/. ../src/
 popd
 
 if [ ! -e ./src/woff2 ]; then
-  if ! command -v uv >/dev/null; then
-    echo "Error: 'uv' is not installed. Install via 'pip install uv' or refer to project docs."
-    exit 1
-  fi
   pushd fonts
   mkdir -p ../src/woff2
   for font in \
