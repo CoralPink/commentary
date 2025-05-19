@@ -1,5 +1,6 @@
 import { initCodeBlock } from './codeblock';
 import { initFootnote } from './footnote';
+import { doSearchOrMarkFromUrl } from './mark';
 import { startupSearch } from './searcher';
 import { initSidebar } from './sidebar';
 import { initTableOfContents } from './table-of-contents';
@@ -12,26 +13,23 @@ type DataSet = DOMStringMap & {
 };
 
 const wasmPromise = initWasm();
-const rootPath = (document.getElementById('bookjs')?.dataset as DataSet).pathtoroot;
 
 const initialize = async (): Promise<void> => {
   initTableOfContents();
   initCodeBlock();
   initFootnote();
 
-  try {
-    await wasmPromise;
-
-    attribute_external_links();
-    startupSearch(rootPath);
-  } catch (err) {
-    console.error(err);
-  }
+  await wasmPromise;
+  doSearchOrMarkFromUrl();
+  attribute_external_links();
 };
 
 ((): void => {
+  const rootPath = (document.getElementById('bookjs')?.dataset as DataSet).pathtoroot;
+
   initThemeColor(rootPath);
   initSidebar(rootPath);
+  startupSearch(rootPath);
 
   document.addEventListener('DOMContentLoaded', initialize, { once: true, passive: true });
 

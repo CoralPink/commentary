@@ -1,6 +1,7 @@
-import { debounce } from './timing';
-import { Finder, marking, unmarking } from './wasm_book';
 import { loadStyleSheet } from './css-loader';
+import { doSearchOrMarkFromUrl, unmarkHandler } from './mark';
+import { debounce } from './timing';
+import { Finder } from './wasm_book';
 
 type CompressionFormat = 'gzip' | 'deflate' | 'deflate-raw' | 'brotli';
 
@@ -27,42 +28,6 @@ class SearchNavigationError extends Error {
     this.name = 'SearchNavigationError';
   }
 }
-
-const unmarkHandler = (): void => {
-  const article = document.getElementById('article');
-
-  if (article === null) {
-    console.error('Article element not found');
-    return;
-  }
-
-  for (const x of Array.from(article.querySelectorAll('mark'))) {
-    x.removeEventListener('click', unmarkHandler);
-  }
-  unmarking(article);
-};
-
-// On reload or browser history backwards/forwards events, parse the url and do search or mark
-const doSearchOrMarkFromUrl = (): void => {
-  const params = new URLSearchParams(globalThis.location.search).get('mark');
-
-  if (!params) {
-    return;
-  }
-
-  const article = document.getElementById('article');
-
-  if (article === null) {
-    console.error('Article element not found');
-    return;
-  }
-
-  marking(article, params);
-
-  for (const x of Array.from(article.querySelectorAll('mark'))) {
-    x.addEventListener('click', unmarkHandler, { once: true, passive: true });
-  }
-};
 
 const showResults = (): void => {
   elmResults.textContent = '';
@@ -330,8 +295,6 @@ const startSearchFromKey = (ev: KeyboardEvent): void => {
 };
 
 export const startupSearch = (root: string): void => {
-  doSearchOrMarkFromUrl();
-
   rootPath = root;
 
   document.getElementById(ID_ICON)?.addEventListener('click', initSearch, { once: true, passive: true });
