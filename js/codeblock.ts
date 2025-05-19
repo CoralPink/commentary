@@ -2,6 +2,22 @@ const WORKER_PATH = '/commentary/hl-worker.js';
 
 const TOOLTIP_FADEOUT_MS = 1200;
 
+let clipButton: HTMLButtonElement;
+
+const observer = new IntersectionObserver(
+  entries => {
+    for (const entry of entries) {
+      if (entry.isIntersecting) {
+        const code = entry.target as HTMLElement;
+        highlight(code);
+
+        observer.unobserve(code);
+      }
+    }
+  },
+  { threshold: 0 },
+);
+
 const createClipButton = (): HTMLButtonElement => {
   const elem = document.createElement('button');
   elem.setAttribute('class', 'copy-button');
@@ -45,51 +61,38 @@ const copyCode = (target: EventTarget | null): void => {
   }
 };
 
-const observer = new IntersectionObserver(
-  entries => {
-    const clipButton = createClipButton();
+const highlight = (code: HTMLElement): void => {
+  const worker = new Worker(WORKER_PATH);
 
-    for (const entry of entries) {
-      if (!entry.isIntersecting) {
-        continue;
-      }
-      const code = entry.target as HTMLElement;
-      observer.unobserve(code);
+  worker.onmessage = (ev: MessageEvent) => {
+    const { highlightCode, needNerdFonts } = ev.data;
+    code.innerHTML = highlightCode;
 
-      const worker = new Worker(WORKER_PATH);
-
-      worker.onmessage = (ev: MessageEvent) => {
-        const { highlightCode, needNerdFonts } = ev.data;
-        code.innerHTML = highlightCode;
-
-        if (needNerdFonts) {
-          code.style.fontFamily = `${window.getComputedStyle(code).fontFamily}, 'Symbols Nerd Font Mono'`;
-        }
-        code.setAttribute('translate', 'no');
-
-        worker.terminate();
-      };
-
-      worker.onerror = (err: ErrorEvent) => {
-        console.error('Error in codeBlock:', err);
-        worker.terminate();
-      };
-
-      worker.postMessage([code.textContent, code.classList[0]]);
-
-      const parent = code.parentNode;
-
-      if (parent === null) {
-        continue;
-      }
-      const cb = document.importNode(clipButton, true);
-      cb.addEventListener('click', ev => copyCode(ev.target), { once: false, passive: true });
-
-      parent.insertBefore(cb, parent.firstChild);
+    if (needNerdFonts) {
+      code.style.fontFamily = `${window.getComputedStyle(code).fontFamily}, 'Symbols Nerd Font Mono'`;
     }
-  },
-  { threshold: 0 },
-);
+    code.setAttribute('translate', 'no');
+
+    worker.terminate();
+  };
+
+  worker.onerror = (err: ErrorEvent) => {
+    console.error('Error in codeBlock:', err);
+    worker.terminate();
+  };
+
+  worker.postMessage([code.textContent, code.classList[0]]);
+
+  const parent = code.parentNode;
+
+  if (parent === null) {
+    return;
+  }
+  const cb = document.importNode(clipButton, true);
+  cb.addEventListener('click', ev => copyCode(ev.target), { once: false, passive: true });
+
+  parent.insertBefore(cb, parent.firstChild);
+};
 
 export const initCodeBlock = (): void => {
   const article = document.getElementById('article');
@@ -103,4 +106,6 @@ export const initCodeBlock = (): void => {
   )) {
     observer.observe(x);
   }
+
+  clipButton = createClipButton();
 };
