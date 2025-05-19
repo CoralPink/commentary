@@ -19,12 +19,20 @@ cp -r dist/. ../src/
 popd
 
 if [ ! -e ./src/woff2 ]; then
-pushd fonts
-uv run convert.py NerdFontsSymbolsOnly/SymbolsNerdFontMono-Regular.ttf ../src/woff2
-uv run convert.py Open_Sans/static/OpenSans-BoldItalic.ttf ../src/woff2
-uv run convert.py Open_Sans/static/OpenSans-Italic.ttf ../src/woff2
-cp Fira\ Code/FiraCode-VF.woff2 ../src/woff2
-popd
+  if ! command -v uv >/dev/null; then
+    echo "Error: 'uv' is not installed. Install via 'pip install uv' or refer to project docs."
+    exit 1
+  fi
+  pushd fonts
+  mkdir -p ../src/woff2
+  for font in \
+    "NerdFontsSymbolsOnly/SymbolsNerdFontMono-Regular.ttf" \
+    "Open_Sans/static/OpenSans-BoldItalic.ttf" \
+    "Open_Sans/static/OpenSans-Italic.ttf"; do
+    uv run convert.py "$font" ../src/woff2
+  done
+  cp "Fira Code/FiraCode-VF.woff2" ../src/woff2
+  popd
 fi
 
 pushd scss
