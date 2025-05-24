@@ -227,9 +227,10 @@ jobs:
             python-${{ runner.os }}-fonts-
 
       - name: Setup Uv
+        if: steps.cache-woff2.outputs.cache-hit != 'true'
         uses: astral-sh/setup-uv@f0ec1fc3b38f5e7cd731bb6ce540c5af426746bb # v6.1.0
         with:
-          version: "0.7.5"
+          version: "0.7.8"
 
       - name: Convert and Copy Woff2
         if: steps.cache-woff2.outputs.cache-hit != 'true'
@@ -326,7 +327,7 @@ jobs:
       - name: Setup mdBook
         uses: peaceiris/actions-mdbook@ee69d230fe19748b7abf22df32acaa93833fad08 # v2
         with:
-          mdbook-version: "0.4.49"
+          mdbook-version: "0.4.50"
 
       - name: Build mdBook
         run: |
