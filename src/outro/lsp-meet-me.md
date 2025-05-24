@@ -372,7 +372,7 @@ vim.lsp.config('rust_analyzer', {
 
 さっき流れてきたリストの中に
 
-```text
+```txt
 plugin/	plugin scripts |write-plugin|
 ```
 
