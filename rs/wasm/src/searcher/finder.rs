@@ -70,7 +70,7 @@ fn split_limited<const N: usize>(input: &str) -> ArrayVec<&str, N> {
 pub struct Finder {
     root_path: String,
     elm_header: web_sys::Element,
-    elem_result: web_sys::Element,
+    elm_result: web_sys::Element,
     url_table: Vec<String>,
     store_doc: Vec<DocObject>,
 }
@@ -86,7 +86,7 @@ impl Finder {
             .get_element_by_id(ID_RESULTS_HEADER)
             .ok_or("No element with ID `results-header`")?;
 
-        let elem_result = document
+        let elm_result = document
             .get_element_by_id(ID_RESULTS)
             .ok_or("No element with ID `searchresults`")?;
 
@@ -103,7 +103,7 @@ impl Finder {
         Ok(Self {
             root_path: root_path.to_string(),
             elm_header,
-            elem_result,
+            elm_result,
             url_table,
             store_doc,
         })
@@ -135,7 +135,7 @@ impl Finder {
             }
         });
 
-        self.elem_result
+        self.elm_result
             .insert_adjacent_html("beforeend", &html_buffer)
             .expect("failed: insert_adjacent_html");
     }
