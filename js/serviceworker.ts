@@ -1,13 +1,12 @@
 declare const self: ServiceWorkerGlobalScope;
 
-const CACHE_VERSION = 'v7.3.0';
+const CACHE_VERSION = 'v7.4.0';
 
 const CACHE_URL = '/commentary/';
 const FALLBACK_IMAGE = 'chrome-96x96.png';
 
 const installList = [
   'book.js',
-  'hl-worker.js',
   'wasm_book_bg.wasm',
 
   'css/general.css',

@@ -4,7 +4,7 @@ import { Buffer } from 'bun:buffer';
 
 import path from 'bun:path';
 
-const ENTRY_POINTS = ['book.ts', 'hl-worker.ts', 'replace-dom.ts', 'serviceworker.ts'];
+const ENTRY_POINTS = ['book.ts', 'hl-worker.ts', 'hl-sharedworker.ts', 'replace-dom.ts', 'serviceworker.ts'];
 const OUT_DIR = './dist';
 
 const CLR_RESET = '\x1b[0m';
