@@ -1,34 +1,10 @@
-const WORKER_PATH = '/commentary/hl-worker.js';
+import { initWorker } from './hl-initialize';
+import { type SendToWorker, type Payload, isErrorPayload } from './hl-types';
 
 const TOOLTIP_FADEOUT_MS = 1200;
 
+let sendToWorker: SendToWorker;
 let clipButton: HTMLButtonElement;
-
-const observer = new IntersectionObserver(
-  entries => {
-    for (const entry of entries) {
-      if (entry.isIntersecting) {
-        const code = entry.target as HTMLElement;
-        highlight(code);
-
-        observer.unobserve(code);
-      }
-    }
-  },
-  { threshold: 0 },
-);
-
-const createClipButton = (): HTMLButtonElement => {
-  const elem = document.createElement('button');
-  elem.setAttribute('class', 'copy-button');
-  elem.setAttribute('aria-label', 'Copy to Clipboard');
-
-  const icon = document.createElement('div');
-  icon.setAttribute('class', 'icon-copy fa-icon');
-
-  elem.appendChild(icon);
-  return elem;
-};
 
 const showTooltip = (target: HTMLElement, msg: string): void => {
   const tip = document.createElement('div');
@@ -50,48 +26,71 @@ const copyCode = (target: EventTarget | null): void => {
     return;
   }
 
-  const pre = target.closest('pre');
-  const code = pre?.querySelector('code');
+  const code = target.closest('pre')?.querySelector('code');
 
-  if (code) {
-    navigator.clipboard.writeText(code.innerText).then(
-      () => showTooltip(target, 'Copied!'),
-      () => showTooltip(target, 'Failed...'),
-    );
+  if (!code) {
+    return;
   }
+
+  navigator.clipboard.writeText(code.innerText).then(
+    () => showTooltip(target, 'Copied!'),
+    () => showTooltip(target, 'Failed...'),
+  );
 };
 
 const highlight = (code: HTMLElement): void => {
-  const worker = new Worker(WORKER_PATH);
-
-  worker.onmessage = (ev: MessageEvent) => {
-    const { highlightCode, needNerdFonts } = ev.data;
-    code.innerHTML = highlightCode;
-
-    if (needNerdFonts) {
-      code.style.fontFamily = `${window.getComputedStyle(code).fontFamily}, 'Symbols Nerd Font Mono'`;
-    }
-    code.setAttribute('translate', 'no');
-
-    worker.terminate();
-  };
-
-  worker.onerror = (err: ErrorEvent) => {
-    console.error('Error in codeBlock:', err);
-    worker.terminate();
-  };
-
-  worker.postMessage([code.textContent, code.classList[0]]);
-
   const parent = code.parentNode;
 
-  if (parent === null) {
+  if (parent === null || code.textContent === null) {
     return;
   }
-  const cb = document.importNode(clipButton, true);
-  cb.addEventListener('click', ev => copyCode(ev.target), { once: false, passive: true });
 
-  parent.insertBefore(cb, parent.firstChild);
+  sendToWorker(code.textContent, code.classList[0], (res: Payload) => {
+    if (isErrorPayload(res)) {
+      return;
+    }
+    code.setAttribute('translate', 'no');
+    code.innerHTML = res.highlightCode;
+
+    if (res.needNerdFonts) {
+      code.style.fontFamily = `${window.getComputedStyle(code).fontFamily}, 'Symbols Nerd Font Mono'`;
+    }
+
+    const cb = document.importNode(clipButton, true);
+    cb.addEventListener('click', ev => copyCode(ev.target), { once: false, passive: true });
+
+    parent.insertBefore(cb, parent.firstChild);
+  });
+};
+
+const observer = new IntersectionObserver(
+  entries => {
+    for (const entry of entries) {
+      if (!entry.isIntersecting) {
+        continue;
+      }
+
+      const code = entry.target as HTMLElement;
+      highlight(code);
+
+      observer.unobserve(code);
+    }
+  },
+  { threshold: 0 },
+);
+
+const createClipButton = (): HTMLButtonElement => {
+  const elm = document.createElement('button');
+
+  elm.setAttribute('class', 'copy-button');
+  elm.setAttribute('aria-label', 'Copy to Clipboard');
+
+  const icon = document.createElement('div');
+  icon.setAttribute('class', 'icon-copy fa-icon');
+
+  elm.appendChild(icon);
+
+  return elm;
 };
 
 export const initCodeBlock = (): void => {
@@ -101,11 +100,16 @@ export const initCodeBlock = (): void => {
     return;
   }
 
-  for (const x of Array.from(article.querySelectorAll('pre code')).filter(
-    (y): y is HTMLElement => !y.classList.contains('language-txt'),
-  )) {
-    observer.observe(x);
+  const codeBlocks = Array.from(article.querySelectorAll('pre code'));
+
+  if (codeBlocks.length === 0) {
+    return;
   }
 
   clipButton = createClipButton();
+  sendToWorker = initWorker();
+
+  for (const x of codeBlocks.filter((y): y is HTMLElement => !y.classList.contains('language-txt'))) {
+    observer.observe(x);
+  }
 };
