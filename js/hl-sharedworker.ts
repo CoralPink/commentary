@@ -1,32 +1,35 @@
 // @ts-ignore
 import hljs from './highlight.js/build/highlight.js';
-import type { WorkerResponse } from './hl-types';
+import { extractLanguage, containsNerdFontIcon } from './hl-language.js';
 
-const DELETEING_PREFIX_LENGTH = 'language-'.length;
+import type { Payload, WorkerResponse } from './hl-types';
 
-// Unicode Private Use Area (PUA) range used by Nerd Fonts
-const NERD_FONT_UNICODE_RANGE = /[\uE000-\uF8FF]/;
-const containsNerdFontIcon = (text: string): boolean => NERD_FONT_UNICODE_RANGE.test(text);
-
-type Request = {
+type HighlightRequest = {
   id: number;
   text: string;
   lang: string;
 };
 
-(self as unknown as SharedWorkerGlobalScope).onconnect = ev => {
+const sharedWorker = self as unknown as SharedWorkerGlobalScope;
+
+sharedWorker.onconnect = ev => {
   const port = ev.ports[0];
 
-  port.onmessage = (msg: MessageEvent<Request>) => {
+  port.onmessage = (msg: MessageEvent<HighlightRequest>) => {
     const { id, text, lang } = msg.data;
 
-    const highlightCode = hljs.highlight(text, {
-      language: lang.slice(DELETEING_PREFIX_LENGTH),
-      ignoreIllegals: true,
-    }).value;
+    try {
+      const highlightCode = hljs.highlight(text, {
+        language: extractLanguage(lang),
+        ignoreIllegals: false,
+      }).value;
 
-    const needNerdFonts = containsNerdFontIcon(text);
+      const needNerdFonts = containsNerdFontIcon(text);
 
-    port.postMessage({ id, payload: { highlightCode, needNerdFonts } } as WorkerResponse);
+      port.postMessage({ id, payload: { highlightCode, needNerdFonts } as Payload } as WorkerResponse);
+    } catch (err) {
+      const error = String(err instanceof Error ? err.message : err);
+      port.postMessage({ id, payload: { error } as Payload } as WorkerResponse);
+    }
   };
 };

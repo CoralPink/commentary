@@ -1,5 +1,5 @@
 import { initWorker } from './hl-initialize';
-import type { Payload, SendToWorker } from './hl-types';
+import { type SendToWorker, type Payload, isErrorPayload } from './hl-types';
 
 const TOOLTIP_FADEOUT_MS = 1200;
 
@@ -26,15 +26,16 @@ const copyCode = (target: EventTarget | null): void => {
     return;
   }
 
-  const pre = target.closest('pre');
-  const code = pre?.querySelector('code');
+  const code = target.closest('pre')?.querySelector('code');
 
-  if (code) {
-    navigator.clipboard.writeText(code.innerText).then(
-      () => showTooltip(target, 'Copied!'),
-      () => showTooltip(target, 'Failed...'),
-    );
+  if (!code) {
+    return;
   }
+
+  navigator.clipboard.writeText(code.innerText).then(
+    () => showTooltip(target, 'Copied!'),
+    () => showTooltip(target, 'Failed...'),
+  );
 };
 
 const highlight = (code: HTMLElement): void => {
@@ -45,6 +46,9 @@ const highlight = (code: HTMLElement): void => {
   }
 
   sendToWorker(code.textContent, code.classList[0], (res: Payload) => {
+    if (isErrorPayload(res)) {
+      return;
+    }
     code.setAttribute('translate', 'no');
     code.innerHTML = res.highlightCode;
 

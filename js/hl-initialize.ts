@@ -2,10 +2,9 @@
  * @fileoverview This module initializes a SharedWorker or a fallback Worker,
  * depending on the platform support.
  *
- * It handles worker communication for syntax highlighting tasks.
  * See: https://developer.mozilla.org/en-US/docs/Web/API/SharedWorker
  */
-import type { WorkerResponse, SendToWorker, Payload } from './hl-types';
+import { type WorkerResponse, type SendToWorker, type Payload, isErrorPayload } from './hl-types';
 
 const SHAREDWORKER_PATH = '/commentary/hl-sharedworker.js';
 const WORKER_PATH = '/commentary/hl-worker.js';
@@ -23,18 +22,25 @@ const useSharedWorker = (): SendToWorker => {
   let sharedId = 0;
 
   const sharedWorker = new SharedWorker(SHAREDWORKER_PATH);
-  sharedWorker.port.start();
+
+  sharedWorker.onerror = (err: ErrorEvent) => {
+    console.error('SharedWorker error:', err);
+  };
 
   sharedWorker.port.onmessage = (ev: MessageEvent<WorkerResponse>) => {
     const { id, payload } = ev.data;
+
+    if (isErrorPayload(payload)) {
+      console.error(payload.error);
+      callbacks.delete(id);
+      return;
+    }
 
     callbacks.get(id)?.(payload);
     callbacks.delete(id);
   };
 
-  sharedWorker.onerror = (err: ErrorEvent) => {
-    console.error('SharedWorker error:', err);
-  };
+  sharedWorker.port.start();
 
   return (text, lang, callback) => {
     const id = sharedId++;
