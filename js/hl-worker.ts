@@ -1,24 +1,23 @@
 // @ts-ignore
 import hljs from './highlight.js/build/highlight.js';
+import { extractLanguage, containsNerdFontIcon } from './hl-language.js';
 
-const DELETEING_PREFIX_LENGTH = 'language-'.length;
+import type { Payload } from './hl-types';
 
-// Unicode Private Use Area (PUA) range used by Nerd Fonts
-const NERD_FONT_UNICODE_RANGE = /[\uE000-\uF8FF]/;
-const containsNerdFontIcon = (text: string): boolean => NERD_FONT_UNICODE_RANGE.test(text);
+type HighlightRequest = [text: string, lang: string];
 
-type PostMessageData = {
-  highlightCode: string;
-  needNerdFonts: boolean;
-};
+self.onmessage = (ev: MessageEvent<HighlightRequest>): void => {
+  try {
+    const highlightCode = hljs.highlight(ev.data[0], {
+      language: extractLanguage(ev.data[1]),
+      ignoreIllegals: false,
+    }).value;
 
-self.onmessage = (ev: MessageEvent<[string, string]>): void => {
-  const highlightCode = hljs.highlight(ev.data[0], {
-    language: ev.data[1].slice(DELETEING_PREFIX_LENGTH),
-    ignoreIllegals: true,
-  }).value;
+    const needNerdFonts = containsNerdFontIcon(ev.data[0]);
 
-  const needNerdFonts = containsNerdFontIcon(ev.data[0]);
-
-  postMessage({ highlightCode, needNerdFonts } as PostMessageData);
+    postMessage({ highlightCode, needNerdFonts } as Payload);
+  } catch (err) {
+    const error = String(err instanceof Error ? err.message : err);
+    postMessage({ error } as Payload);
+  }
 };
