@@ -41,12 +41,12 @@ const useSharedWorker = (): SendToWorker => {
     }
 
     const callback = callbacks.get(id);
-    if (callback) {
-      callback(payload);
-      callbacks.delete(id);
-    }
 
-    callbacks.get(id)?.(payload);
+    if (!callback) {
+      console.error(`Unknown ID(${id}) was used`);
+      return;
+    }
+    callback(payload);
     callbacks.delete(id);
   };
 
