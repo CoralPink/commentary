@@ -38,8 +38,12 @@ const useSharedWorker = (): SendToWorker => {
 
     if (isErrorPayload(payload)) {
       console.error(payload.error);
+    }
+
+    const callback = callbacks.get(id);
+    if (callback) {
+      callback(payload);
       callbacks.delete(id);
-      return;
     }
 
     callbacks.get(id)?.(payload);
