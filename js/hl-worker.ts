@@ -4,9 +4,9 @@ import { extractLanguage, containsNerdFontIcon } from './hl-language.js';
 
 import type { Payload } from './hl-types';
 
-type HilightRequest = [text: string, lang: string];
+type HighlightRequest = [text: string, lang: string];
 
-self.onmessage = (ev: MessageEvent<HilightRequest>): void => {
+self.onmessage = (ev: MessageEvent<HighlightRequest>): void => {
   try {
     const highlightCode = hljs.highlight(ev.data[0], {
       language: extractLanguage(ev.data[1]),
