@@ -24,7 +24,13 @@ const useSharedWorker = (): SendToWorker => {
   const sharedWorker = new SharedWorker(SHAREDWORKER_PATH);
 
   sharedWorker.onerror = (err: ErrorEvent) => {
-    console.error('SharedWorker error:', err);
+    console.error(err);
+
+    // Notify pending callbacks of errors
+    for (const callback of callbacks.values()) {
+      callback({ error: 'Error in sharedworker' });
+    }
+    callbacks.clear();
   };
 
   sharedWorker.port.onmessage = (ev: MessageEvent<WorkerResponse>) => {
