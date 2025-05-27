@@ -4,6 +4,8 @@
  *
  * See: https://developer.mozilla.org/en-US/docs/Web/API/SharedWorker
  */
+import { v7 as uuidv7 } from 'uuid';
+
 import { type WorkerResponse, type SendToWorker, type Payload, isErrorPayload } from './hl-types';
 
 const SHAREDWORKER_PATH = '/commentary/hl-sharedworker.js';
@@ -18,8 +20,7 @@ type WorkerCallback = (data: Payload) => void;
  * This helps reduce resource usage and enables inter-tab communication.
  */
 const useSharedWorker = (): SendToWorker => {
-  const callbacks = new Map<number, WorkerCallback>();
-  let sharedId = 0;
+  const callbacks = new Map<string, WorkerCallback>();
 
   const sharedWorker = new SharedWorker(SHAREDWORKER_PATH);
 
@@ -53,7 +54,7 @@ const useSharedWorker = (): SendToWorker => {
   sharedWorker.port.start();
 
   return (text, lang, callback) => {
-    const id = sharedId++;
+    const id = uuidv7();
 
     callbacks.set(id, callback);
     sharedWorker.port.postMessage({ id, text, lang });
