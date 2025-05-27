@@ -8,7 +8,7 @@ export const isErrorPayload = (payload: Payload): payload is ErrorPayload => {
 }
 
 export type WorkerResponse = {
-  id: number;
+  id: string;
   payload: Payload;
 };
 
