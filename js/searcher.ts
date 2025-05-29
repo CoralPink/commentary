@@ -3,6 +3,11 @@ import { doSearchOrMarkFromUrl, unmarkHandler } from './mark';
 import { debounce } from './timing';
 import { Finder } from './wasm_book';
 
+type SearchResult = {
+  header: string;
+  html: string | undefined;
+};
+
 type CompressionFormat = 'gzip' | 'deflate' | 'deflate-raw' | 'brotli';
 
 const STYLE_SEARCH = 'css/search.css';
@@ -16,6 +21,7 @@ let rootPath: string;
 
 let elmPop: HTMLElement;
 let elmSearchBar: HTMLInputElement;
+let elmHeader: HTMLElement;
 let elmResults: HTMLElement;
 
 let finder: Finder;
@@ -30,8 +36,14 @@ class SearchNavigationError extends Error {
 }
 
 const showResults = (): void => {
+  const result = finder.search(elmSearchBar.value.trim()) as SearchResult;
+
+  elmHeader.textContent = result.header;
   elmResults.textContent = '';
-  finder.search(elmSearchBar.value.trim());
+
+  if (result.html !== undefined) {
+    elmResults.insertAdjacentHTML('beforeend', result.html);
+  }
 };
 
 const debounceSearchInput = debounce((_: Event) => showResults(), DEBOUNCE_DELAY_MS);
@@ -241,7 +253,7 @@ const initSearch = async (): Promise<void> => {
     results: document.getElementById('searchresults'),
   };
 
-  if (!elements.pop || !elements.searchBar || !elements.results) {
+  if (!elements.pop || !elements.searchBar || !elements.header || !elements.results) {
     throw new Error('Required DOM elements not found');
   }
 
@@ -251,6 +263,7 @@ const initSearch = async (): Promise<void> => {
 
   elmPop = elements.pop;
   elmSearchBar = elements.searchBar;
+  elmHeader = elements.header;
   elmResults = elements.results;
 
   showSearch();
