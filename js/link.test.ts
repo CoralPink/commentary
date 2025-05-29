@@ -3,16 +3,28 @@
 import { attributeExternalLinks } from './link';
 import { test, expect } from 'bun:test';
 
-const TEST_URLS = ['http://example.com', 'https://example.com', 'example.html', '#top'];
+const TEST_URLS = [
+  'http://example.com',
+  'https://example.com',
+  'https://example.com/abc.html',
+  'example.html',
+  '../example.html',
+  '#1',
+  'http.html',
+  'http/example.html',
+  '#http',
+];
 
 test('adds _blank to external links', () => {
   const article = document.createElement('article');
   article.id = 'article';
+
   document.body.appendChild(article);
 
   for (const href of TEST_URLS) {
     const a = document.createElement('a');
     a.href = href;
+
     article.appendChild(a);
   }
 
@@ -21,11 +33,10 @@ test('adds _blank to external links', () => {
   for (const link of Array.from(article.querySelectorAll('a'))) {
     const href = link.getAttribute('href');
 
-    if (!href) {
-      expect(link.getAttribute('href')).toBeNull();
-      continue;
-    }
-    if (href.startsWith('http://') || href.startsWith('https://')) {
+    expect(href).not.toBeNull();
+
+    // biome-ignore lint/style/noNonNullAssertion: Type inference just hasn't caught up!
+    if (href!.startsWith('http://') || href!.startsWith('https://')) {
       expect(link.getAttribute('target')).toBe('_blank');
       expect(link.getAttribute('rel')).toBe('noopener');
     } else {

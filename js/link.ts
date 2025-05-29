@@ -5,7 +5,7 @@ export const attributeExternalLinks = () => {
     return;
   }
 
-  for (const el of Array.from(article.querySelectorAll('a[href^="http"]'))) {
+  for (const el of Array.from(article.querySelectorAll('a[href^="http://"], a[href^="https://"]'))) {
     el.setAttribute('target', '_blank');
     el.setAttribute('rel', 'noopener');
   }
