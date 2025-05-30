@@ -1,19 +1,17 @@
-import { describe, it, expect, beforeEach } from 'bun:test';
+/// <reference lib="dom" />
+
 import { doSearchOrMarkFromUrl, unmarkHandler } from '../mark';
-
-const setupDom = (bodyHtml: string, markQuery: string) => {
-  document.body.innerHTML = `<div id="article">${bodyHtml}</div>`;
-
-  // Imitate location to affect URLSearchParams
-  Object.defineProperty(window, 'location', {
-    value: new URL(`https://example.com/?mark=${encodeURIComponent(markQuery)}`),
-    writable: true,
-  });
-};
+import { test, describe, it, expect, beforeEach } from 'bun:test';
 
 describe('highlightTextNodesSimple', () => {
   beforeEach(() => {
-    setupDom('<p>This is a lazy dog and a required task.</p>', 'lazy required');
+    document.body.innerHTML = `<div id="article"><p>This is a lazy dog and a required task.</p></div>`;
+
+    // Imitate location to affect URLSearchParams
+    Object.defineProperty(window, 'location', {
+      value: new URL(`https://example.com/?mark=${encodeURIComponent('lazy required')}`),
+      writable: true,
+    });
   });
 
   it('should wrap matched terms in <mark>', () => {
@@ -23,6 +21,7 @@ describe('highlightTextNodesSimple', () => {
     const marks = article.querySelectorAll('mark');
 
     expect(marks.length).toBe(2);
+
     expect(marks[0].textContent).toBe('lazy');
     expect(marks[1].textContent).toBe('required');
   });
@@ -39,9 +38,25 @@ describe('highlightTextNodesSimple', () => {
 
     const newMarks = article.querySelectorAll('mark');
     expect(newMarks.length).toBe(0);
+
     expect(article.textContent).toContain('lazy');
     expect(article.textContent).toContain('required');
   });
+});
+
+test("does nothing if no 'mark' param in URL", () => {
+  document.body.innerHTML = `
+    <div id="article">
+      <p>This is a test</p>
+    </div>
+  `;
+
+  Object.defineProperty(globalThis, 'location', {
+    value: new URL('https://example.com/'),
+    writable: true,
+  });
+
+  expect(() => doSearchOrMarkFromUrl()).not.toThrow();
 });
 
 describe('unmarkHandler', () => {
@@ -74,4 +89,16 @@ describe('unmarkHandler', () => {
     expect(text).toContain('lazy');
     expect(text).toContain('required');
   });
+});
+
+test('does nothing if article element is not found', () => {
+  document.getElementById('article')?.remove();
+
+  Object.defineProperty(globalThis, 'location', {
+    value: new URL('https://example.com/?mark=lazy'),
+    writable: true,
+  });
+
+  expect(() => doSearchOrMarkFromUrl()).not.toThrow();
+  expect(() => unmarkHandler()).not.toThrow();
 });
