@@ -1,7 +1,7 @@
 import { loadStyleSheet } from './css-loader';
 import { doSearchOrMarkFromUrl, unmarkHandler } from './mark';
 import { debounce } from './timing';
-import { Finder } from './wasm_book';
+import initWasm, { Finder } from './wasm_book';
 
 type SearchResult = {
   header: string;
@@ -218,6 +218,8 @@ const fetchAndDecompress = async (url: string) => {
 };
 
 const initSearch = async (): Promise<void> => {
+  const wasmPromise = initWasm();
+
   document.removeEventListener('keyup', startSearchFromKey);
 
   const icon = document.getElementById(ID_ICON);
@@ -236,6 +238,8 @@ const initSearch = async (): Promise<void> => {
     if (!config.doc_urls || !config.index.documentStore.docs) {
       throw new Error('Missing required search configuration fields');
     }
+
+    await wasmPromise;
     finder = new Finder(rootPath, config.doc_urls, config.index.documentStore.docs);
   } catch (e) {
     console.error(`Error during initialization: ${e}`);

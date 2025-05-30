@@ -7,21 +7,15 @@ import { initSidebar } from './sidebar';
 import { initTableOfContents } from './table-of-contents';
 import { initThemeColor } from './theme-selector';
 
-import initWasm from './wasm_book';
-
 type DataSet = DOMStringMap & {
   pathtoroot: string;
 };
-
-const wasmPromise = initWasm();
 
 const initialize = async (): Promise<void> => {
   initTableOfContents();
   initCodeBlock();
   initFootnote();
   attributeExternalLinks();
-
-  await wasmPromise;
 
   doSearchOrMarkFromUrl();
 };
