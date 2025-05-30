@@ -1,6 +1,6 @@
 /// <reference lib="dom" />
 
-import { attributeExternalLinks } from './link';
+import { attributeExternalLinks } from '../link';
 import { test, expect } from 'bun:test';
 
 const TEST_URLS = [
@@ -35,7 +35,6 @@ test('adds _blank to external links', () => {
 
     expect(href).not.toBeNull();
 
-    // biome-ignore lint/style/noNonNullAssertion: Type inference just hasn't caught up!
     if (href!.startsWith('http://') || href!.startsWith('https://')) {
       expect(link.getAttribute('target')).toBe('_blank');
       expect(link.getAttribute('rel')).toBe('noopener');
