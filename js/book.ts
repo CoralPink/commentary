@@ -1,27 +1,23 @@
 import { initCodeBlock } from './codeblock';
 import { initFootnote } from './footnote';
+import { attributeExternalLinks } from './link';
 import { doSearchOrMarkFromUrl } from './mark';
 import { startupSearch } from './searcher';
 import { initSidebar } from './sidebar';
 import { initTableOfContents } from './table-of-contents';
 import { initThemeColor } from './theme-selector';
 
-import initWasm, { attribute_external_links } from './wasm_book';
-
 type DataSet = DOMStringMap & {
   pathtoroot: string;
 };
-
-const wasmPromise = initWasm();
 
 const initialize = async (): Promise<void> => {
   initTableOfContents();
   initCodeBlock();
   initFootnote();
+  attributeExternalLinks();
 
-  await wasmPromise;
   doSearchOrMarkFromUrl();
-  attribute_external_links();
 };
 
 ((): void => {
