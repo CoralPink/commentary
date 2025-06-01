@@ -1,6 +1,18 @@
+import initWasm, { get_match_range } from './wasm_book';
+
 const TAG_MARK = 'mark';
 
-type BestMatch = { index: number; term: string } | null;
+type RangeIndex = {
+  start: number;
+  end: number;
+  matched: string;
+  term: string;
+};
+
+type MatchResult = {
+  index: RangeIndex[];
+  hadMatch: boolean;
+};
 
 const getTextNodes = (element: HTMLElement): Text[] => {
   const textNodes: Text[] = [];
@@ -18,58 +30,7 @@ const getTextNodes = (element: HTMLElement): Text[] => {
   return textNodes;
 };
 
-const highlightTextNodesSimple = (element: HTMLElement, terms: string[]): void => {
-  const textNodes = getTextNodes(element);
-
-  for (const node of textNodes) {
-    const text = node.textContent;
-
-    if (!text) {
-      continue;
-    }
-
-    const fragment = document.createDocumentFragment();
-
-    let pos = 0;
-    let foundMatch = false;
-
-    while (pos < text.length) {
-      let bestMatch: BestMatch = null;
-
-      for (const term of terms) {
-        const index = text.indexOf(term, pos);
-
-        if (index !== -1 && (!bestMatch || index < bestMatch.index)) {
-          bestMatch = { index, term };
-        }
-      }
-
-      if (!bestMatch) {
-        fragment.appendChild(document.createTextNode(text.slice(pos)));
-        break;
-      }
-
-      foundMatch = true;
-
-      if (bestMatch.index > pos) {
-        fragment.appendChild(document.createTextNode(text.slice(pos, bestMatch.index)));
-      }
-
-      const mark = document.createElement('mark');
-      mark.textContent = bestMatch.term;
-
-      fragment.appendChild(mark);
-
-      pos = bestMatch.index + bestMatch.term.length;
-    }
-
-    if (foundMatch && node.parentNode) {
-      node.parentNode.replaceChild(fragment, node);
-    }
-  }
-};
-
-export const unmarkHandler = (): void => {
+export const unmarking = (): void => {
   const article = document.getElementById('article');
 
   if (article === null) {
@@ -78,7 +39,7 @@ export const unmarkHandler = (): void => {
   }
 
   for (const x of Array.from(article.querySelectorAll(TAG_MARK))) {
-    x.removeEventListener('click', unmarkHandler);
+    x.removeEventListener('click', unmarking);
 
     const parent = x.parentNode;
 
@@ -93,7 +54,54 @@ export const unmarkHandler = (): void => {
   }
 };
 
-export const doSearchOrMarkFromUrl = (): void => {
+const marking = async (element: HTMLElement, terms: string[]): Promise<void> => {
+  if (terms.length === 0) {
+    return;
+  }
+
+  await initWasm();
+
+  for (const node of getTextNodes(element)) {
+    const textContent = node.textContent;
+
+    if (!node.parentNode || !textContent) {
+      continue;
+    }
+
+    const result: MatchResult = get_match_range(terms.join(' '), textContent);
+
+    if (!result.hadMatch) {
+      continue;
+    }
+
+    const fragment = document.createDocumentFragment();
+
+    let currentPos = 0;
+
+    for (const x of result.index) {
+      if (x.start > currentPos) {
+        const plainText = textContent.slice(currentPos, x.start);
+        fragment.appendChild(document.createTextNode(plainText));
+      }
+
+      const mark = document.createElement(TAG_MARK);
+      mark.textContent = x.matched;
+      mark.addEventListener('click', unmarking, { once: true, passive: true });
+
+      fragment.appendChild(mark);
+
+      currentPos = x.end;
+    }
+
+    if (currentPos < textContent.length) {
+      fragment.appendChild(document.createTextNode(textContent.slice(currentPos)));
+    }
+
+    node.parentNode.replaceChild(fragment, node);
+  }
+};
+
+export const doMarkFromUrl = (): void => {
   const params = new URLSearchParams(globalThis.location.search).get('mark');
 
   if (!params) {
@@ -107,11 +115,5 @@ export const doSearchOrMarkFromUrl = (): void => {
     return;
   }
 
-  const terms: string[] = params.trim().split(/\s+/);
-
-  highlightTextNodesSimple(article, terms);
-
-  for (const x of Array.from(article.querySelectorAll(TAG_MARK))) {
-    x.addEventListener('click', unmarkHandler, { once: true, passive: true });
-  }
+  marking(article, params.trim().split(/\s+/));
 };

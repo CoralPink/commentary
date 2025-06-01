@@ -1,5 +1,5 @@
 import { loadStyleSheet } from './css-loader';
-import { doSearchOrMarkFromUrl, unmarkHandler } from './mark';
+import { doMarkFromUrl, unmarking } from './mark';
 import { debounce } from './timing';
 import initWasm, { Finder } from './wasm_book';
 
@@ -62,8 +62,9 @@ const jumpUrl = (): void => {
 
   if (clickedURL === currentURL) {
     hiddenSearch();
-    unmarkHandler();
-    doSearchOrMarkFromUrl();
+
+    unmarking();
+    doMarkFromUrl();
   }
 
   window.location.href = url.href;

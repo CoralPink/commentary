@@ -1,7 +1,7 @@
 import { initCodeBlock } from './codeblock';
 import { initFootnote } from './footnote';
 import { attributeExternalLinks } from './link';
-import { doSearchOrMarkFromUrl } from './mark';
+import { doMarkFromUrl } from './mark';
 import { startupSearch } from './searcher';
 import { initSidebar } from './sidebar';
 import { initTableOfContents } from './table-of-contents';
@@ -15,9 +15,9 @@ const initialize = async (): Promise<void> => {
   initTableOfContents();
   initCodeBlock();
   initFootnote();
-  attributeExternalLinks();
 
-  doSearchOrMarkFromUrl();
+  attributeExternalLinks();
+  doMarkFromUrl();
 };
 
 ((): void => {
