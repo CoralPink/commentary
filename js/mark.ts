@@ -20,11 +20,7 @@ const getTextNodes = (element: HTMLElement): Text[] => {
   const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT);
 
   while (walker.nextNode()) {
-    const currentNode = walker.currentNode;
-
-    if (currentNode.nodeType === Node.TEXT_NODE) {
-      textNodes.push(currentNode as Text);
-    }
+    textNodes.push(walker.currentNode as Text);
   }
 
   return textNodes;
@@ -34,7 +30,7 @@ export const unmarking = (): void => {
   const article = document.getElementById('article');
 
   if (article === null) {
-    console.error('unmarkHandler: Article element not found');
+    console.error('unmarking: Article element not found');
     return;
   }
 
@@ -62,7 +58,7 @@ const marking = async (element: HTMLElement, terms: string[]): Promise<void> => 
   try {
     await initWasm();
   } catch (error) {
-    console.error('Failed to initialize WASM:', error);
+    console.error('marking: ', error);
     return;
   }
 
@@ -116,7 +112,7 @@ export const doMarkFromUrl = (): void => {
   const article = document.getElementById('article');
 
   if (article === null) {
-    console.error('marking: Article element not found');
+    console.error('doMarkFromUrl: Article element not found');
     return;
   }
 
