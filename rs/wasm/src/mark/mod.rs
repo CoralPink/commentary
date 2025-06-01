@@ -34,6 +34,8 @@ pub fn get_match_range(terms: &str, text: &str) -> JsValue {
         utf16_index += utf16_len;
     }
 
+    byte_to_utf16[byte_index] = utf16_index;
+
     let terms: Vec<&str> = terms.split_whitespace().collect();
     let lower_text = text.to_lowercase();
 
@@ -45,16 +47,14 @@ pub fn get_match_range(terms: &str, text: &str) -> JsValue {
 
         while let Some(found) = lower_text[pos..].find(&lower_term) {
             let byte_start = pos + found;
-            let byte_end = byte_start + term.len();
+            let byte_len: usize = term.chars().map(|c| c.len_utf8()).sum();
+            let byte_end = byte_start + byte_len;
 
-            let matched = text[byte_start..]
-                .chars()
-                .take(term.chars().count())
-                .collect::<String>();
+            let matched = text[byte_start..byte_end].to_string();
 
             index.push(RangeIndex {
                 start: byte_to_utf16[byte_start],
-                end: byte_to_utf16[byte_end - 1] + 1,
+                end: byte_to_utf16[byte_end],
                 matched,
                 term: (*term).to_string(),
             });
