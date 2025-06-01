@@ -96,4 +96,83 @@ mod tests {
         assert_eq!(first.matched, "Rust");
         assert_eq!(first.start < first.end, true);
     }
+
+    #[wasm_bindgen_test]
+    fn test_case_insensitive_matching() {
+        let text = "Rust rust RUST";
+        let terms = "rust";
+        let parsed: MatchResult = from_value(get_match_range(terms, text)).unwrap();
+        assert_eq!(parsed.had_match, true);
+        assert_eq!(parsed.index.len(), 3);
+        let matched_terms: Vec<_> = parsed.index.iter().map(|r| r.matched.clone()).collect();
+        assert_eq!(
+            matched_terms,
+            vec!["Rust".to_string(), "rust".to_string(), "RUST".to_string()]
+        );
+    }
+
+    #[wasm_bindgen_test]
+    fn test_unicode_accented_characters() {
+        let text = "Café au lait";
+        let terms = "café";
+        let parsed: MatchResult = from_value(get_match_range(terms, text)).unwrap();
+        assert_eq!(parsed.had_match, true);
+        assert_eq!(parsed.index.len(), 1);
+        let first = &parsed.index[0];
+        assert_eq!(first.matched, "Café");
+        assert_eq!(first.start, 0);
+        assert_eq!(first.end, 4);
+    }
+
+    #[wasm_bindgen_test]
+    fn test_unicode_emoji_surrogate_pairs() {
+        let text = "😊😊";
+        let terms = "😊";
+        let parsed: MatchResult = from_value(get_match_range(terms, text)).unwrap();
+        assert_eq!(parsed.had_match, true);
+        assert_eq!(parsed.index.len(), 2);
+        assert_eq!(parsed.index[0].matched, "😊");
+        assert_eq!(parsed.index[1].matched, "😊");
+        // Ensure UTF-16 indices increase
+        assert!(parsed.index[0].start < parsed.index[1].start);
+    }
+
+    #[wasm_bindgen_test]
+    fn test_multiple_search_terms() {
+        let text = "foo bar baz foo";
+        let terms = "foo baz";
+        let parsed: MatchResult = from_value(get_match_range(terms, text)).unwrap();
+        assert_eq!(parsed.had_match, true);
+        // Should find two 'foo' and one 'baz'
+        assert_eq!(parsed.index.iter().filter(|r| r.term == "foo").count(), 2);
+        assert_eq!(parsed.index.iter().filter(|r| r.term == "baz").count(), 1);
+    }
+
+    #[wasm_bindgen_test]
+    fn test_overlapping_matches() {
+        let text = "ababa";
+        let terms = "aba";
+        let parsed: MatchResult = from_value(get_match_range(terms, text)).unwrap();
+        assert_eq!(parsed.had_match, true);
+        // current implementation finds non-overlapping matches only
+        assert_eq!(parsed.index.len(), 1);
+        assert_eq!(parsed.index[0].matched, "aba");
+        assert_eq!(parsed.index[0].start, 0);
+        assert_eq!(parsed.index[0].end, 3);
+    }
+
+    #[wasm_bindgen_test]
+    fn test_empty_and_whitespace_inputs() {
+        // Empty text
+        let parsed_empty_text: MatchResult = from_value(get_match_range("rust", "")).unwrap();
+        assert_eq!(parsed_empty_text.had_match, false);
+        assert_eq!(parsed_empty_text.index.len(), 0);
+        // Empty terms
+        let parsed_empty_terms: MatchResult = from_value(get_match_range("", "Rust")).unwrap();
+        assert_eq!(parsed_empty_terms.had_match, false);
+        assert_eq!(parsed_empty_terms.index.len(), 0);
+        // Whitespace-only terms
+        let parsed_whitespace: MatchResult = from_value(get_match_range("   ", "Rust")).unwrap();
+        assert_eq!(parsed_whitespace.had_match, false);
+    }
 }
