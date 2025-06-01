@@ -2,7 +2,7 @@
 /// The finder module provides WebAssembly-based search functionality.
 ///
 /// It includes methods for initializing the searcher, executing searches,
-/// perfrom a search, an return the serch results as an HTML string.
+/// perfrom a search, and return the serch results as an HTML string.
 ///
 use crate::searcher::function::*;
 use crate::searcher::highlight::*;
