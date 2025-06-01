@@ -96,8 +96,7 @@ mod tests {
         assert_eq!(first.matched, "Rust");
         assert_eq!(first.start < first.end, true);
     }
-
-    #[wasm_bindgen_test]
+#[wasm_bindgen_test]
     fn test_case_insensitive_matching() {
         let text = "Rust rust RUST";
         let terms = "rust";
@@ -105,10 +104,7 @@ mod tests {
         assert_eq!(parsed.had_match, true);
         assert_eq!(parsed.index.len(), 3);
         let matched_terms: Vec<_> = parsed.index.iter().map(|r| r.matched.clone()).collect();
-        assert_eq!(
-            matched_terms,
-            vec!["Rust".to_string(), "rust".to_string(), "RUST".to_string()]
-        );
+        assert_eq!(matched_terms, vec!["Rust".to_string(), "rust".to_string(), "RUST".to_string()]);
     }
 
     #[wasm_bindgen_test]
