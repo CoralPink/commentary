@@ -1,7 +1,12 @@
 import { loadStyleSheet } from './css-loader';
-import { doSearchOrMarkFromUrl, unmarkHandler } from './mark';
+import { doMarkFromUrl, unmarking } from './mark';
 import { debounce } from './timing';
-import { Finder } from './wasm_book';
+import initWasm, { Finder } from './wasm_book';
+
+type SearchResult = {
+  header: string;
+  html: string | undefined;
+};
 
 type CompressionFormat = 'gzip' | 'deflate' | 'deflate-raw' | 'brotli';
 
@@ -16,6 +21,7 @@ let rootPath: string;
 
 let elmPop: HTMLElement;
 let elmSearchBar: HTMLInputElement;
+let elmHeader: HTMLElement;
 let elmResults: HTMLElement;
 
 let finder: Finder;
@@ -30,8 +36,14 @@ class SearchNavigationError extends Error {
 }
 
 const showResults = (): void => {
+  const result = finder.search(elmSearchBar.value.trim()) as SearchResult;
+
+  elmHeader.textContent = result.header;
   elmResults.textContent = '';
-  finder.search(elmSearchBar.value.trim());
+
+  if (result.html !== undefined) {
+    elmResults.insertAdjacentHTML('beforeend', result.html);
+  }
 };
 
 const debounceSearchInput = debounce((_: Event) => showResults(), DEBOUNCE_DELAY_MS);
@@ -50,8 +62,9 @@ const jumpUrl = (): void => {
 
   if (clickedURL === currentURL) {
     hiddenSearch();
-    unmarkHandler();
-    doSearchOrMarkFromUrl();
+
+    unmarking();
+    doMarkFromUrl();
   }
 
   window.location.href = url.href;
@@ -206,6 +219,8 @@ const fetchAndDecompress = async (url: string) => {
 };
 
 const initSearch = async (): Promise<void> => {
+  const wasmPromise = initWasm();
+
   document.removeEventListener('keyup', startSearchFromKey);
 
   const icon = document.getElementById(ID_ICON);
@@ -224,6 +239,8 @@ const initSearch = async (): Promise<void> => {
     if (!config.doc_urls || !config.index.documentStore.docs) {
       throw new Error('Missing required search configuration fields');
     }
+
+    await wasmPromise;
     finder = new Finder(rootPath, config.doc_urls, config.index.documentStore.docs);
   } catch (e) {
     console.error(`Error during initialization: ${e}`);
@@ -241,7 +258,7 @@ const initSearch = async (): Promise<void> => {
     results: document.getElementById('searchresults'),
   };
 
-  if (!elements.pop || !elements.searchBar || !elements.results) {
+  if (!elements.pop || !elements.searchBar || !elements.header || !elements.results) {
     throw new Error('Required DOM elements not found');
   }
 
@@ -251,6 +268,7 @@ const initSearch = async (): Promise<void> => {
 
   elmPop = elements.pop;
   elmSearchBar = elements.searchBar;
+  elmHeader = elements.header;
   elmResults = elements.results;
 
   showSearch();

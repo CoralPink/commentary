@@ -1,7 +1,8 @@
 ///
 /// The finder module provides WebAssembly-based search functionality.
+///
 /// It includes methods for initializing the searcher, executing searches,
-/// and rendering search results in the DOM.
+/// perfrom a search, and return the serch results as an HTML string.
 ///
 use crate::searcher::function::*;
 use crate::searcher::highlight::*;
@@ -12,16 +13,13 @@ use arrayvec::ArrayVec;
 use getset::Getters;
 use html_escape::encode_safe;
 use macros::error;
-use serde::Deserialize;
-use serde_wasm_bindgen::from_value;
+use serde::{Deserialize, Serialize};
+use serde_wasm_bindgen::{from_value, to_value};
 use urlencoding::encode;
 use wasm_bindgen::prelude::*;
 
 const SCORE_LOWER_LIMIT: usize = 64;
 const SCORE_LOWER_LIMIT_ASCII: usize = 32;
-
-const ID_RESULTS_HEADER: &str = "results-header";
-const ID_RESULTS: &str = "searchresults";
 
 const INITIAL_HEADER: &str = "2文字 (もしくは全角1文字) 以上を入力してください...";
 
@@ -29,6 +27,12 @@ const BUFFER_HTML_SIZE: usize = 200_000;
 
 // Maximum number of search words (entering more words than this will simply be ignored).
 const MAX_TOKENS: usize = 8;
+
+#[derive(Serialize)]
+pub struct SearchResult {
+    pub header: String,
+    pub html: Option<String>,
+}
 
 #[derive(Deserialize, Getters)]
 pub struct DocObject {
@@ -69,8 +73,6 @@ fn split_limited<const N: usize>(input: &str) -> ArrayVec<&str, N> {
 #[wasm_bindgen]
 pub struct Finder {
     root_path: String,
-    elm_header: web_sys::Element,
-    elm_result: web_sys::Element,
     url_table: Vec<String>,
     store_doc: Vec<DocObject>,
 }
@@ -79,17 +81,6 @@ pub struct Finder {
 impl Finder {
     #[wasm_bindgen(constructor)]
     pub fn new(root_path: &str, doc_urls: JsValue, docs: JsValue) -> Result<Finder, JsValue> {
-        let window = web_sys::window().ok_or("No global `window` exists")?;
-        let document = window.document().ok_or("Should have a document on window")?;
-
-        let elm_header = document
-            .get_element_by_id(ID_RESULTS_HEADER)
-            .ok_or("No element with ID `results-header`")?;
-
-        let elm_result = document
-            .get_element_by_id(ID_RESULTS)
-            .ok_or("No element with ID `searchresults`")?;
-
         let url_table: Vec<String> = from_value(doc_urls).map_err(|_| "Failed to convert doc_urls to Vec<String>")?;
 
         let store_doc: Vec<DocObject> = convert_js_map_to_vec(docs)?
@@ -102,42 +93,9 @@ impl Finder {
 
         Ok(Self {
             root_path: root_path.to_string(),
-            elm_header,
-            elm_result,
             url_table,
             store_doc,
         })
-    }
-
-    fn append_search_result(&self, results: HitList, terms: &str) {
-        let normalized_terms = terms
-            .split_whitespace()
-            .map(|t| t.to_lowercase())
-            .collect::<Vec<String>>();
-
-        let mark = encode(&normalized_terms.join(" ")).into_owned();
-
-        let mut html_buffer = String::with_capacity(BUFFER_HTML_SIZE);
-
-        results.into_iter().for_each(|el| {
-            if let Some(url) = self.url_table.get(*el.id()) {
-                let (page, head) = parse_uri(url);
-                let excerpt = search_result_excerpt(&el.doc().body, &normalized_terms);
-                let score_bar = scoring_notation(*el.score());
-
-                html_buffer.push_str(&format!(
-                    r#"<li tabindex="0" role="option" id="s{}" aria-label="{} {}pt"><a href="{}{}?mark={}#{}" tabindex="-1">{}</a><span aria-hidden="true">{}</span><div id="score" role="meter" aria-label="score:{}pt">{}</div></li>"#,
-                    el.id(), page, el.score(), &self.root_path, page, mark, head, el.doc().breadcrumbs, excerpt, el.score(), score_bar
-                ));
-            }
-            else {
-                macros::console_error!("Missing URL for document ID: {}", *el.id());
-            }
-        });
-
-        self.elm_result
-            .insert_adjacent_html("beforeend", &html_buffer)
-            .expect("failed: insert_adjacent_html");
     }
 
     fn aggregate_results<'a>(&'a self, terms: &'a str, minimum_score: usize) -> HitList<'a> {
@@ -161,10 +119,38 @@ impl Finder {
         HitList::from_token_set(tokens, hit_docs, minimum_score)
     }
 
-    pub fn search(&self, terms: &str) {
+    fn build_search_result(&self, results: HitList, terms: &str, html_buffer: &mut String) {
+        let normalized_terms = terms
+            .split_whitespace()
+            .map(|t| t.to_lowercase())
+            .collect::<Vec<String>>();
+
+        let mark = encode(&normalized_terms.join(" ")).into_owned();
+
+        results.into_iter().for_each(|el| {
+            if let Some(url) = self.url_table.get(*el.id()) {
+                let (page, head) = parse_uri(url);
+                let excerpt = search_result_excerpt(&el.doc().body, &normalized_terms);
+                let score_bar = scoring_notation(*el.score());
+
+                html_buffer.push_str(&format!(
+                    r#"<li tabindex="0" role="option" id="s{}" aria-label="{} {}pt"><a href="{}{}?mark={}#{}" tabindex="-1">{}</a><span aria-hidden="true">{}</span><div id="score" role="meter" aria-label="score:{}pt">{}</div></li>"#,
+                    el.id(), page, el.score(), &self.root_path, page, mark, head, el.doc().breadcrumbs, excerpt, el.score(), score_bar
+                ));
+            }
+            else {
+                macros::console_error!("Missing URL for document ID: {}", *el.id());
+            }
+        });
+    }
+
+    pub fn search(&self, terms: &str) -> JsValue {
         if terms.len() <= 1 {
-            self.elm_header.set_text_content(Some(INITIAL_HEADER));
-            return;
+            let result = SearchResult {
+                header: INITIAL_HEADER.to_string(),
+                html: None,
+            };
+            return to_value(&result).unwrap();
         }
 
         let minimum_score = if is_full_width_or_ascii(terms) {
@@ -176,14 +162,21 @@ impl Finder {
         let results = self.aggregate_results(terms, minimum_score);
 
         if results.is_empty() {
-            self.elm_header
-                .set_text_content(Some(&format!("No search result for : {terms}")));
-            return;
+            let result = SearchResult {
+                header: format!("No search result for : {terms}"),
+                html: None,
+            };
+            return to_value(&result).unwrap();
         }
 
-        self.elm_header
-            .set_text_content(Some(&format!("{} search results for : {terms}", results.len())));
+        let header = format!("{} search results for : {terms}", results.len());
+        let mut html_buffer = String::with_capacity(BUFFER_HTML_SIZE);
+        self.build_search_result(results, terms, &mut html_buffer);
 
-        self.append_search_result(results, terms);
+        to_value(&SearchResult {
+            header,
+            html: Some(html_buffer),
+        })
+        .unwrap()
     }
 }

@@ -1,21 +1,108 @@
-import { marking, unmarking } from './wasm_book';
+import initWasm, { get_match_range } from './wasm_book';
 
-export const unmarkHandler = (): void => {
+const TAG_MARK = 'mark';
+
+type RangeIndex = {
+  start: number;
+  end: number;
+  matched: string;
+  term: string;
+};
+
+type MatchResult = {
+  index: RangeIndex[];
+  hadMatch: boolean;
+};
+
+const getTextNodes = (element: HTMLElement): Text[] => {
+  const textNodes: Text[] = [];
+
+  const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT);
+
+  while (walker.nextNode()) {
+    textNodes.push(walker.currentNode as Text);
+  }
+
+  return textNodes;
+};
+
+export const unmarking = (): void => {
   const article = document.getElementById('article');
 
   if (article === null) {
-    console.error('Article element not found');
+    console.error('unmarking: Article element not found');
     return;
   }
 
-  for (const x of Array.from(article.querySelectorAll('mark'))) {
-    x.removeEventListener('click', unmarkHandler);
+  for (const x of Array.from(article.querySelectorAll(TAG_MARK))) {
+    x.removeEventListener('click', unmarking);
+
+    const parent = x.parentNode;
+
+    if (!parent) {
+      continue;
+    }
+
+    while (x.firstChild) {
+      parent.insertBefore(x.firstChild, x);
+    }
+    parent.removeChild(x);
   }
-  unmarking(article);
 };
 
-// On reload or browser history backwards/forwards events, parse the url and do search or mark
-export const doSearchOrMarkFromUrl = (): void => {
+const marking = async (element: HTMLElement, terms: string[]): Promise<void> => {
+  if (terms.length === 0) {
+    return;
+  }
+
+  try {
+    await initWasm();
+  } catch (error) {
+    console.error('marking: ', error);
+    return;
+  }
+
+  for (const node of getTextNodes(element)) {
+    const textContent = node.textContent;
+
+    if (!node.parentNode || !textContent) {
+      continue;
+    }
+
+    const result: MatchResult = get_match_range(terms.join(' '), textContent);
+
+    if (!result.hadMatch) {
+      continue;
+    }
+
+    const fragment = document.createDocumentFragment();
+
+    let currentPos = 0;
+
+    for (const x of result.index) {
+      if (x.start > currentPos) {
+        const plainText = textContent.slice(currentPos, x.start);
+        fragment.appendChild(document.createTextNode(plainText));
+      }
+
+      const mark = document.createElement(TAG_MARK);
+      mark.textContent = x.matched;
+      mark.addEventListener('click', unmarking, { once: true, passive: true });
+
+      fragment.appendChild(mark);
+
+      currentPos = x.end;
+    }
+
+    if (currentPos < textContent.length) {
+      fragment.appendChild(document.createTextNode(textContent.slice(currentPos)));
+    }
+
+    node.parentNode.replaceChild(fragment, node);
+  }
+};
+
+export const doMarkFromUrl = (): void => {
   const params = new URLSearchParams(globalThis.location.search).get('mark');
 
   if (!params) {
@@ -25,13 +112,9 @@ export const doSearchOrMarkFromUrl = (): void => {
   const article = document.getElementById('article');
 
   if (article === null) {
-    console.error('Article element not found');
+    console.error('doMarkFromUrl: Article element not found');
     return;
   }
 
-  marking(article, params);
-
-  for (const x of Array.from(article.querySelectorAll('mark'))) {
-    x.addEventListener('click', unmarkHandler, { once: true, passive: true });
-  }
+  marking(article, params.trim().split(/\s+/));
 };
