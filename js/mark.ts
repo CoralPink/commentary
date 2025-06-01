@@ -59,7 +59,12 @@ const marking = async (element: HTMLElement, terms: string[]): Promise<void> => 
     return;
   }
 
-  await initWasm();
+  try {
+    await initWasm();
+  } catch (error) {
+    console.error('Failed to initialize WASM:', error);
+    return;
+  }
 
   for (const node of getTextNodes(element)) {
     const textContent = node.textContent;
