@@ -1,27 +1,10 @@
 {
-  "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
-  "organizeImports": {
-    "enabled": true
-  },
-  "formatter": {
-    "enabled": true,
-    "indentStyle": "space",
-    "lineWidth": 120
-  },
+  "extends": ["../biome.json"],
   "linter": {
-    "enabled": true,
     "rules": {
-      "recommended": true,
       "style": {
         "noNonNullAssertion": "off"
       }
-    }
-  },
-  "javascript": {
-    "formatter": {
-      "quoteStyle": "single",
-      "jsxQuoteStyle": "single",
-      "arrowParentheses": "asNeeded"
     }
   }
 }
