@@ -54,7 +54,7 @@ const teaserCompress = async result => {
 };
 
 (async () => {
-  console.info(`[INFO]: 👩 I'm going to bake ${CLR_BC}bun${CLR_RESET} now!`);
+  console.info(`[INFO]: 👩‍🍳 I'm going to bake ${CLR_BC}bun${CLR_RESET} now!`);
   const start = performance.now();
 
   const result = await bunBuild();
