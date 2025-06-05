@@ -29,9 +29,9 @@ const BUFFER_HTML_SIZE: usize = 200_000;
 const MAX_TOKENS: usize = 8;
 
 #[derive(Serialize)]
-pub struct SearchResult {
-    pub header: String,
-    pub html: Option<String>,
+struct SearchResult {
+    header: String,
+    html: Option<String>,
 }
 
 #[derive(Deserialize, Getters)]
