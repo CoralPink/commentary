@@ -1,5 +1,5 @@
 {
-  "extends": ["../biome.json"],
+  "extends": ["../../biome.json"],
   "linter": {
     "rules": {
       "style": {
