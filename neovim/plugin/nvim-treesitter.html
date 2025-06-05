@@ -180,7 +180,7 @@ In general, compatibility with Nvim 0.X is removed after the release of Nvim 0.(
 </div>
 <div>
 <p>これも既に示されていることですが、
-Neovim 0.10.0 以下の使用を続ける理由がある場合は<code>master</code>ブランチを使用しましょう。(更新自体は止まってます❗)</p>
+Neovim 0.10.X 以下の使用を続ける理由がある場合は<code>master</code>ブランチを使用しましょう。(更新自体は止まってます❗)</p>
 </div>
 </div>
 <h3 id="tarcurl"><a class="header" href="#tarcurl">tar,curl</a></h3>
@@ -255,11 +255,13 @@ Neovim 0.10.0 以下の使用を続ける理由がある場合は<code>master</c
 <pre><code class="language-lua">require('packer').startup { function()
   use 'wbthomason/packer.nvim'
 
+  -- 前節で入れたpackerと同列に並べる
   use {
     'nvim-treesitter/nvim-treesitter',
     branch = 'main',
     run = ':TSUpdate',
   }
+
 end,
 
 -- (以下略)
@@ -275,7 +277,7 @@ end,
 <a class="admonition-anchor-link" href="#admonition-warning-1"></a>
 </div>
 <div>
-<p>もし Neovim 0.11.0 より古いバージョンで使用するのであれば、branch を'master' に変えておいて❗</p>
+<p>もし Neovim 0.11.0 より古いバージョンで使用するのであれば、branch を'master' に変えておいてね❗</p>
 <pre><code class="language-diff">-    branch = 'main',
 +    branch = 'master',
 </code></pre>
