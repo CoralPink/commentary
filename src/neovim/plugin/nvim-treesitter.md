@@ -1,37 +1,108 @@
 # nvim-treesitter
 
-```admonish info title="[nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)"
-The goal of nvim-treesitter is both to provide a simple and easy way to use the
-interface for tree-sitter in Neovim and to provide some basic functionality such as
-highlighting based on it:
+今回は `nvim-treesitter`を使ってみましょう😆
 
-nvim-treesitter の目的は、Neovim で tree-sitter のインターフェースをシンプルかつ簡単に使う方法を提供することと、
-それを元にハイライトなどの基本的な機能を提供することの両方です。
+これさえ使いこなせれば、様々な言語のプログラムコードだったり、
+時には`markdown`の編集など、様々な場面で役立ってくれるはずです❗
+
+```admonish info title="[nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter/tree/main)"
+The `nvim-treesitter` plugin provides
+
+`nvim-treesitter`プラグインは以下を提供します。
+
+1. functions for installing, updating, and removing [**tree-sitter parsers**](https://github.com/nvim-treesitter/nvim-treesitter/blob/main/SUPPORTED_LANGUAGES.md);
+2. a collection of **queries** for enabling tree-sitter features built into Neovim for these languages;
+3. a staging ground for [treesitter-based features](https://github.com/nvim-treesitter/nvim-treesitter/tree/main) considered for upstreaming to Neovim.
+
+For details on these and how to help improving them, see [CONTRIBUTING.md](https://github.com/nvim-treesitter/nvim-treesitter/blob/main/CONTRIBUTING.md).
+
+1. [**tree-sitter parsers**](SUPPORTED_LANGUAGES.md) のインストール、更新、削除機能;
+2. Neovim に組み込まれた tree-sitter 機能をこれらの言語で有効にするための **クエリ** 集。
+3. Neovim へのアップストリームが検討されている [treesitter-based features](https://github.com/nvim-treesitter/nvim-treesitter/tree/main)のステージング・グラウンド。
+
+これらの詳細と改良の支援方法については、[CONTRIBUTING.md](https://github.com/nvim-treesitter/nvim-treesitter/blob/main/CONTRIBUTING.md)を参照してください。
 ```
 
-```admonish abstract title="[Requirements](https://github.com/nvim-treesitter/nvim-treesitter#requirements)"
-Neovim 0.8.0 or later built with tree-sitter 0.20.3+ (latest nightly recommended)
+```admonish danger title="CAUTION"
+This is a full, incompatible, rewrite.
+If you can't or don't want to update, check out the
+[`master` branch](https://github.com/nvim-treesitter/nvim-treesitter/blob/master/README.md)
+(which is locked but will remain available for backward compatibility).
 
-tar and curl in your path (or alternatively git)
-
-A C compiler in your path and libstdc++ installed [(Windows users please read this!)](https://github.com/nvim-treesitter/nvim-treesitter/wiki/Windows-support).
+これは互換性のない完全な書き換えです。
+アップデートができない、またはしたくない場合は、masterブランチをチェックしてください
+(ロックされていますが、後方互換性のために引き続き利用可能です)。
 ```
+
+このページの初掲は **Dec 4, 2022** ですが、
+巡り巡って **Jun 5, 2025** 時点の状況に合わせて内容を書き換えています。
+
+ところどころ、スクリーンショットが古いままになってたりはしますが、気にしないでください❗
 
 ## Requirements
 
-ここは一個ずつ確認していきます。
+一個ずつ確認していきましょう。
 
-### Neovim 0.8.0 or later
+```admonish info title="[Requirements](https://github.com/nvim-treesitter/nvim-treesitter#requirements)"
+- Neovim 0.11.0 or later (nightly)
+- `tar` and `curl` in your path
+- [`tree-sitter`](https://github.com/tree-sitter/tree-sitter) CLI (0.25.0 or later)
+- a C compiler in your path (see <https://docs.rs/cc/latest/cc/#compile-time-requirements>)
+- `Node` (23.0.0 or later) for some parsers (see the [list of supported languages](https://github.com/nvim-treesitter/nvim-treesitter/blob/main/SUPPORTED_LANGUAGES.md))
+```
 
-まずは`Neovim 0.8.0` 以降が必須とされていることに注意が必要です。
+```admonish abstract title="IMPORTANT"
+The **support policy** for Neovim is
 
-2022-11-30 時点で、`stable release`はもう一つ進んで`0.8.1`となっていますが、念の為確かめておきましょう。
+1. the _latest_ [stable release](https://github.com/neovim/neovim/releases/tag/stable);
+2. the _latest_ [nightly prerelease](https://github.com/neovim/neovim/releases/tag/nightly).
 
-### git (tar,curl)
+Other versions may work but are neither tested nor considered for fixes.
+In general, compatibility with Nvim 0.X is removed after the release of Nvim 0.(X+1).1.
 
-これは`packer`を導入する前に、既に`git`をインストールしているはずなので大丈夫😉
+他のバージョンでも動作する可能性はありますが、テストも修正も考慮されていません。
+一般的に、Nvim 0.X との互換性は Nvim 0.(X+1).1 のリリース後に削除されます。
+```
 
-気になる場合は`tar`と`curl`も確認しておきましょう。
+### Neovim 0.11.0 or later (nightly)
+
+まずは`Neovim 0.11.0` 以降が必須とされていることに注意が必要です。
+
+```admonish warning
+これも既に示されていることですが、
+Neovim 0.10.X 以下の使用を続ける理由がある場合は`master`ブランチを使用しましょう。(更新自体は止まってます❗)
+```
+
+### tar,curl
+
+自分の環境で`tar`,`curl`を使用できるかを確認するには`which`コマンドを使ってみると良いです 😉
+
+```sh
+which tar
+```
+
+```sh
+which curl
+```
+
+なんかそれっぽいパスが表示されていれば、きっと OK でしょう😆
+
+私の環境で言えば、`tar` は最初から入っていたし、
+`curl` は `brew install` で簡単にインストールできました。
+
+![which-tar-curl](img/which-tar-curl.webp)
+
+### tree-sitter CLI (0.25.0 or later)
+
+これも`which`コマンドで確認できます。
+
+```sh
+which tree-sitter
+```
+
+`Homebrew`でインストールしている場合は `Required`として、一緒にインストールされているはずです。
+
+![which-tar-curl](img/which-tree-sitter.webp)
 
 ### C compiler
 
@@ -53,6 +124,25 @@ A C compiler in your path and libstdc++ installed [(Windows users please read th
 Readmeにも明記されているように`libstdc++`も必要になるはずなので、`gcc`だとうまくいきませんでした😮
 ```
 
+### Node (23.0.0 or later) for some parsers
+
+書いてあることそのままですが、"一部の" パーサーでは `Node v23` 以降を必要とします。
+
+2025/06/05 時点では `LTS`バージョンが v22.16.0 らしいので、
+場合に依っては なんか妙にハードルが高く感じられるかもしれません。
+
+例えば[Node.js®をダウンロードする](https://nodejs.org/ja/download/)
+に最初に示されている通りに進んでしまうとうまく行かない (かもしれない) ...😰
+
+`current`バージョンは `v24` まで進んでいるので、単純に「`brew`や`apt` を使った方が簡単だぞ❗」というのは簡単なんだけど...、
+はっきり言って、私はここで責任を負わされたくありません 😤
+
+「**もし必要になったら** 乗り越えて❗」ぐらいで見逃してください...🥹
+
+```admonish note
+よくわかんねー ってなっちゃう場合、ここはスキップして進みましょう 🐈
+```
+
 ## Install
 
 前項の確認さえ済めば、あとは`packer`にお願いするだけで「あっ❗」と言う間に終わります😆
@@ -65,100 +155,69 @@ require('packer').startup { function()
   use 'wbthomason/packer.nvim'
 
   -- 前節で入れたpackerと同列に並べる
-  use 'nvim-treesitter/nvim-treesitter'
+  use {
+    'nvim-treesitter/nvim-treesitter',
+    branch = 'main',
+    run = ':TSUpdate',
+  }
+
 end,
+
 -- (以下略)
+
 ```
 ~~~
 
-で、`:PackerSync`を実行しましょう❗
+~~~admonish warning
+もし Neovim 0.11.0 より古いバージョンで使用するのであれば、branch を'master' に変えておいてね❗
+
+```diff
+-    branch = 'main',
++    branch = 'master',
+```
+~~~
+
+そしたら `:PackerSync` を実行しましょう❗
 
 ![installed](img/installed.webp)
 
-簡単ですね😉 すっごい見にくいけど❗
+簡単ですね😉 **すっごい古いスクリーンショットだから** 見にくいけど❗
 
-~~~admonish note
-`nvim-treesitter`の説明では、`:TSUpdate`を併せて行うように説明されているのですが、これはあくまで`vim-plug`を使用している場合の例です。
+```admonish note
+オフィシャルに示されているのは[lazy.nvim](https://github.com/folke/lazy.nvim)を使用した設定方法なのですが、
+このサイトでは[17章](../../outro/lazy.html)までは`packer`を使用したサンプルコードを示しています。
 
-`packer.nvim`では`run`オプションで同じことができそうなんですが、これを使用すると初回だけエラーが起きてしまうので、わたしは外しています。
-
-![ErrorTSUpdate](img/error-tsupdate.webp)
-
-インストール自体は`100%`で`done.`ってなってるし、2回目以降は何事もなかったかのように`:TSUpdate`まで完走できるんですけどね。すっごい見にくいけど❗
-
-初回だけ外すか、もしくは気にしないかするのであれば超便利です。
-
-```lua
-  use {
-    'nvim-treesitter/nvim-treesitter',
-    run = ':TSUpdate',
-  }
+(これも書き直した方がいいとは思ってるんだけど...😅)
 ```
-~~~
 
 ## Config
 
-インストールが終わったら、次にやることはコンフィグですね😆
-
 `Neovim`プラグインの場合、`Readme`である程度デフォルト設定が示されていて、
-それを基に「変える？変えない？」を決めるみたいな、割とアバウトな方法にどうしてもなってくる...んじゃないかなぁと思ってるんですがどうでしょう❓
-(違ってたらごめんなさい😅)
+それを基に「変える？変えない？」を決めるみたいな、
+割とアバウトな方法にどうしてもなってくる...んじゃないかなぁと思ってるんですがどうでしょう❓
 
-とりあえずは新しくファイルを作っていきます。
+今回はもうデフォルト設定のままでいくので、何もする必要がありません❗
 
-これもやっぱり名前は何でも良いんですが、パッケージ名と揃えて`nvim-treesitter.lua`としています☺️
-
-~~~admonish example title="extensions/nvim-treesitter.lua"
-```lua
-require('nvim-treesitter.configs').setup {
-  ensure_installed = { 'lua' },
-  sync_install = true,
-  auto_install = true,
-
-  highlight = {
-    enable = true,
-  },
-
-  incremental_selection = {
-    enable = true,
-    keymaps = {
-      init_selection = 'gnn',
-      node_incremental = 'grn',
-      scope_incremental = 'grc',
-      node_decremental = 'grm',
-    },
-  },
-
-  indent = {
-    enable = true,
-  },
-}
-```
-~~~
-
-そして、これを`packer`の管理下に置いて使います。先ほど書いた`nvim-treesitter`の読み込み部分を少し書き換えます。
-
-~~~admonish example title="extensions/init.lua"
-```lua
-require('packer').startup { function()
-  use 'wbthomason/packer.nvim'
-
-  -- こんな感じで。
-  use {
-    'nvim-treesitter/nvim-treesitter',
-    config = function() require 'extensions.nvim-treesitter' end,
-  }
-end,
--- (以下略)
-```
-~~~
-
-~~~admonish info title=":h packer.use()"
 ```txt
-config = string or function, -- Specifies code to run after this plugin is loaded.
-                                このプラグインがロードされた後に実行するコードを指定します。
+setup({opts})                                          *nvim-treesitter.setup()*
+
+    Configure installation options. Needs to be specified before any
+    installation operation.
+
+    インストールオプションの設定。
+    インストール操作の前に指定する必要があります。
+
+    Note: You only need to call `setup` if you want to set non-default
+    options!
+
+    注意: `setup` を呼び出す必要があるのは、デフォルト以外のオプションを設定する場合だけです！
+
+    Parameters: ~
+    • {opts}  `(table?)` Optional parameters:
+              • {install_dir} (`string?`, default `stdpath('data')/site/`)
+                directory to install parsers and queries to. Note: will be
+                prepended to |runtimepath|.
 ```
-~~~
 
 再起動もしくは`:so`でこの状態を反映させてから`PackerSync`もしくは`PackerCompile`を実行しましょう。
 
@@ -167,10 +226,6 @@ config = string or function, -- Specifies code to run after this plugin is loade
 ![lua-installed](img/lua-installed.webp)
 
 これで、`lua`ファイルが今までよりも賢く色付けされてるはずです。どうでしょう❓
-
-```admonish note
-`ensure_installed`で指定した言語パーサのインストールが行われるはずなので、それによっては少し表示が変わります。
-```
 
 ```admonish warning
 もしここでエラーが起きるようであれば、もう一度`C compiler`を確認してみてください😣
@@ -182,7 +237,7 @@ config = string or function, -- Specifies code to run after this plugin is loade
 |**nvim-treesitter**|![color2](img/color2.webp)|
 
 ```admonish note
-これは例が面白くないのであれなんですが、オフィシャルイメージを見るとこんなに変わってます❗
+これだと例が **すっごい古い** し面白くないんですが、オフィシャルイメージを見るとこんなに変わってます❗
 
 [nvim-treesitter/wiki/Gallery](https://github.com/nvim-treesitter/nvim-treesitter/wiki/Gallery)
 
@@ -191,149 +246,162 @@ config = string or function, -- Specifies code to run after this plugin is loade
 
 ## Commands
 
-`nvim-treesitter`を入れることで使えるコマンドについては、ヘルプだけ示します。
+まず前提として、以下があります。
+
+~~~admonish info title=":h treesitter-parsers"
+```
+PARSER FILES                                              *treesitter-parsers*
+
+Parsers are the heart of treesitter. They are libraries that treesitter will
+search for in the `parser` runtime directory.
+
+Nvim includes these parsers:
+
+パーサはtreesitterの心臓部です。これらは treesitter が `parser` ランタイムディレクトリで検索するライブラリです。
+Nvimはこれらのパーサーを含んでいます：
+
+- C
+- Lua
+- Markdown
+- Vimscript
+- Vimdoc
+- Treesitter query files |ft-query-plugin|
+
+You can install more parsers manually, or with a plugin like
+https://github.com/nvim-treesitter/nvim-treesitter .
+
+手動でさらにパーサーをインストールすることもでき、
+https://github.com/nvim-treesitter/nvim-treesitter のようなプラグインを使うこともできます。
+```
+~~~
+
+で、手動でパーサーをインストールするために使うコマンドが以下に示されています。
 
 ~~~admonish info title=":h nvim-treesitter-commands"
 ```txt
-COMMANDS
+COMMANDS                                              *nvim-treesitter-commands*
 ```
 ~~~
 
-ちなみに、わたしはほぼ`:TSUpdate`しか使ってません❗ sitter って言うぐらいなので、特に操作しなくてもしっかりお世話してくれます👶
+これらのコマンドを使って好きなパーサーを管理できるわけですね 😉
 
-## Modules
+次項から、さらっとした使い方だけ示します。
 
-上の例で使用しているモジュール設定について少しだけ触れておきます。
+### TSInstall
 
-~~~admonish info title="[Modules](https://github.com/nvim-treesitter/nvim-treesitter#modules)"
+~~~admonish info title=":h TSInstall"
 ```txt
-By default, everything is disabled.
+:TSInstall {language}                                               *:TSInstall*
 
-デフォルトでは、すべて無効になっています。
+Install one or more treesitter parsers. {language} can be one or multiple
+parsers or tiers (`stable`, `unstable`, or `all` (not recommended)). This is a
+no-op of the parser(s) are already installed. Installation is performed
+asynchronously. Use *:TSInstall!* to force installation even if a parser is
+already installed.
+
+1つ以上の treeitter パーサーをインストールします。
+{language} には1つまたは複数のパーサーまたは階層 (`stable`、`unstable`、`all`(推奨しない)) を指定できます。
+パーサがすでにインストールされている場合は、このオプションは無効です。
+インストールは非同期に実行されます。
+パーサーが既にインストールされている場合でも、強制的にインストールするには *:TSInstall!* を使用します。
 ```
 ~~~
 
-### ensure_installed
+`language` の部分は
+[https://github.com/nvim-treesitter/nvim-treesitter/blob/main/SUPPORTED_LANGUAGES.md](https://github.com/nvim-treesitter/nvim-treesitter/blob/main/SUPPORTED_LANGUAGES.md)
+に示されているものから選んで指定します。
 
+例えば `rust`パーサーをインストールしたいなー😆 ってなったら以下のコマンドを使用します。
+
+```vim
+:TSInstall rust
+```
+
+### TSInstallFromGrammar
+
+~~~admonish info title=":h TSInstallFromGrammar"
 ```txt
-A list of parser names, or "all"
+:TSInstallFromGrammar {language}                         *:TSInstallFromGrammar*
 
-パーサ名のリスト、または "all"を指定する。
-```
+Like |:TSInstall| but also regenerates the `parser.c` from the original
+grammar. Useful for languages where the provided `parser.c` is outdated (e.g.,
+uses a no longer supported ABI).
 
-上の例では`lua`だけ入れてます。使用頻度の高い言語を入れておくと良いです。
-
-面倒なら`all`でも良いんですが、`auto_install`があるので、"オフライン環境で動かす"とかでなければ、そちらを活用する方が良いんじゃないかなーって思ってます。
-
-対応言語は以下の通りです。
-
-```admonish info title="[Supported languages](https://github.com/nvim-treesitter/nvim-treesitter#supported-languages)"
-List of languages for which a parser can be installed through :TSInstall
-
-`:TSInstall`でパーサをインストールできる言語のリストです。
-```
-
-### sync_install
-
-```txt
-Install parsers synchronously. (only applied to `ensure_installed`)
-
-パーサを同期的にインストールする。 (`ensure_installed` にのみ適用される)
-```
-
-「同期的インストール」...、つまりアップデートですね😉
-
-```admonish note
-`ensure_installed`に入れていないパーサについては、コマンドから`:TSUpdate`で行うことができます。
-```
-
-### auto_install
-
-```txt
-Automatically install missing parsers when entering buffer.
-
-バッファに入ったときに足りないパーサを自動的にインストールします。
-```
-
-```admonish note
-手動でインストールしたい場合はコマンドから`:TSInstall {言語}`を行いましょう。
-```
-
-### highlight
-
-```txt
-`false` will disable the whole extension
-
-false` を指定すると、拡張機能全体を無効にすることができます。
-```
-
-と、いうことなので、
-
-```lua
-highlight = {
-  enable = false
-}
-```
-...なんてしちゃえば拡張機能全体を無効にします。いや、せっかく入れたので`true`にしましょ❓
-
-ちなみに`disable`オプションを使うと、特定の言語だけ選んで除外できます。
-
-```lua
-highlight = {
-  enable = true,
-  disable = { "c", "rust" },
-},
-```
-
-### incremental_selection
-
-これについては、適当にコードを開いて`keymap`に設定した操作をしてみればなんとな〜く察せると思います。
-
-ざっくり言うと、以下の説明にある範囲選択が一回で出来ます。
-
-~~~admonish info title=":h nvim-treesitter-incremental-selection-mod"
-Incremental selection based on the named nodes from the grammar.
-
-文法からの名前付きノードに基づくインクリメンタルな選択。
-
-```txt
-- keymaps:
-  - init_selection: in normal mode, start incremental selection.
-                    ノーマルモードで、インクリメンタルな選択を開始します。
-
-  - node_incremental: in visual mode, increment to the upper named parent.
-                    ビジュアルモードで、上の名前の親にインクリメントします。
-
-  - scope_incremental: in visual mode, increment to the upper scope (as defined in `locals.scm`).
-                    ビジュアルモードで、上のスコープにインクリメントされます。
-                    (`locals.scm` で定義されている) 上位のスコープにインクリメントします。
-
-  - node_decremental: in visual mode, decrement to the previous named node.
-                    ビジュアルモードで、前の名前のノードまでデクリメントします。
+|:TSInstall| と似ているが、`parser.c` を元の文法から再生成する。
+提供された `parser.c` が古くなっている言語 (例えば、サポートされなくなった ABI を使用している場合など) に便利です。
 ```
 ~~~
 
-### indent
+あまり使う機会はないと思いますが、使い方は同じですね。
 
-実験的な機能らしいですが、インデントが賢くなる...んです⁉️ あんまり威力を実感することはないんですが、わたしはなんとなく使ってます😅
+```vim
+:TSInstallFromGrammar rust
+```
 
-これも`highlight`と同じく、言語を選んで除外できます。
+### TSUpdate
 
-~~~admonish info title=":h nvim-treesitter-indntation-mod"
+~~~admonish info title=":h TSUpdate"
 ```txt
-Indentation based on treesitter for the |=| operator.
+:TSUpdate [{language}]                                              *:TSUpdate*
 
-|=| 演算子の treesitter に基づくインデント。
+Update parsers to the `revision` specified in the manifest if this is newer
+than the installed version. If {language} is specified, update the
+corresponding parser or tier; otherwise update all installed parsers. This is
+a no-op if all (specified) parsers are up to date.
 
-NOTE: this is an experimental feature.
-      これは実験的な機能です。
+Note: It is recommended to add this command as a build step in your plugin
+manager.
 
-Query files: `indents.scm`.
-Supported options:
-- enable: `true` or `false`.
-- disable: list of languages.
+マニフェストで指定された `revision` がインストールされているバージョンより新しい場合、パーサを更新します。
+{language} が指定されている場合は、対応するパーサまたは階層を更新します。
+そうでない場合は、インストールされているすべてのパーサを更新します。
+指定された全てのパーサが最新である場合、これは省略されます。
+
+Note: このコマンドをプラグインマネージャのビルドステップとして追加することを推奨します。
 ```
 ~~~
+
+インストールされているパーサをアップデートしたいならこれ❗
+
+```vim
+:TSUpdate
+```
+
+### TSUninstall
+
+~~~admonish info title=":h TSUninstall"
+```txt
+:TSUninstall {language}                                           *:TSUninstall*
+
+Deletes the parser for one or more {language}, or all parsers with `all`.
+
+1つ以上の {language} のパーサを削除するか、`all` で全てのパーサを削除します。
+```
+~~~
+
+インストールされているパーサを削除したいならこれ❗
+
+```vim
+:TSUninstall rust
+```
+
+### TSLog
+
+~~~admonish info title=":h TSLog"
+```txt
+:TSLog                                                                  *:TSLog*
+
+Shows all messages from previous install, update, or uninstall operations.
+
+以前のインストール、アップデート、アンインストール操作のすべてのメッセージを表示します。
+```
+~~~
+
+`nvim-treesitter`で行った操作のログを確認したいならこれ❗
+
+```vim
+:TSLog
+```
 
 ## CheckHealth
 
@@ -368,7 +436,10 @@ Plugin authors are encouraged to write new healthchecks. |health-dev|
 
 結果が表示されましたね☺️
 
-診断内容はプラグインに依りますが、`nvim-treesitter`の場合は、依存ソフトウェアの確認と、OS情報・インストールされたパーサの表示を行ってくれます。
+これは **すっごい古いスクリーンショット** だけど❗
+
+診断内容はプラグインに依りますが、
+`nvim-treesitter`の場合は、依存ソフトウェアの確認と、OS情報・インストールされたパーサの表示を行ってくれます。
 
 ~~~admonish note
 これもヘルプそのままですが、指定したプラグインだけを診断することも可能です。
@@ -387,8 +458,10 @@ Plugin authors are encouraged to write new healthchecks. |health-dev|
 
 ## Wrap Up
 
-```admonish success
+というわけで `nvim-treesitter `でした。
+
 さて、ここまで来たら次にやることはもう決まってますね😉 カラーテーマです❗
 
+```admonish success
 次回でついに瞳に優しく、そう❗生まれ変わるのです😆
 ```
