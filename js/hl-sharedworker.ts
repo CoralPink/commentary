@@ -1,6 +1,6 @@
-// @ts-ignore
+// @ts-expect-error: I know there is no type information.
 import hljs from './highlight.js/build/highlight.js';
-import { extractLanguage, containsNerdFontIcon } from './hl-language.js';
+import { extractLanguage, containsNerdFontIcon } from './hl-language.ts';
 
 import type { Payload, WorkerResponse } from './hl-types';
 
@@ -26,10 +26,10 @@ sharedWorker.onconnect = ev => {
 
       const needNerdFonts = containsNerdFontIcon(text);
 
-      port.postMessage({ id, payload: { highlightCode, needNerdFonts } as Payload } as WorkerResponse);
+      port.postMessage({ id, payload: { highlightCode, needNerdFonts } as Payload } as unknown as WorkerResponse);
     } catch (err) {
       const error = String(err instanceof Error ? err.message : err);
-      port.postMessage({ id, payload: { error } as Payload } as WorkerResponse);
+      port.postMessage({ id, payload: { error } as Payload } as unknown as WorkerResponse);
     }
   };
 };

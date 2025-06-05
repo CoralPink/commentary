@@ -1,7 +1,7 @@
-import { loadStyleSheet } from './css-loader';
-import { doMarkFromUrl, unmarking } from './mark';
-import { debounce } from './timing';
-import initWasm, { Finder } from './wasm_book';
+import { loadStyleSheet } from './css-loader.ts';
+import { doMarkFromUrl, unmarking } from './mark.ts';
+import { debounce } from './timing.ts';
+import initWasm, { Finder } from './wasm_book.js';
 
 type SearchResult = {
   header: string;

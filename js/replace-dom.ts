@@ -1,5 +1,5 @@
-import { debounce } from './timing';
-import { getRootVariable } from './css-loader';
+import { debounce } from './timing.ts';
+import { getRootVariable } from './css-loader.ts';
 
 const INTERVAL_MS = 50;
 const TIMEOUT_MS = 1000;

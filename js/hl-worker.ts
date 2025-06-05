@@ -1,4 +1,4 @@
-// @ts-ignore
+// @ts-expect-error: I know there is no type information.
 import hljs from './highlight.js/build/highlight.js';
 import { extractLanguage, containsNerdFontIcon } from './hl-language.js';
 

@@ -5,7 +5,7 @@ export type Payload = SuccessPayload | ErrorPayload;
 
 export const isErrorPayload = (payload: Payload): payload is ErrorPayload => {
   return 'error' in payload;
-}
+};
 
 export type WorkerResponse = {
   id: string;
