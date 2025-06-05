@@ -102,7 +102,7 @@ impl<'a> IntoIterator for HitList<'a> {
 }
 
 impl<'a> HitList<'a> {
-    pub fn merge(mut self, ml: HitList<'a>) -> Self {
+    fn merge(mut self, ml: HitList<'a>) -> Self {
         // If both lists are at or near capacity, ensure we keep highest-scoring hits
         if self.len() + ml.len() > LIMIT_RESULTS {
             let mut all_hits: Vec<Hit<'a>> = self.into_iter().chain(ml).collect();
@@ -123,7 +123,7 @@ impl<'a> HitList<'a> {
         self
     }
 
-    pub fn from_matches(term: &str, docs: impl IntoIterator<Item = &'a DocObject>) -> Self {
+    fn from_matches(term: &str, docs: impl IntoIterator<Item = &'a DocObject>) -> Self {
         let mut results: Vec<Hit<'a>> = docs
             .into_iter()
             .filter_map(|doc| {
