@@ -1,11 +1,11 @@
-import { initCodeBlock } from './codeblock';
-import { initFootnote } from './footnote';
-import { attributeExternalLinks } from './link';
-import { doMarkFromUrl } from './mark';
-import { startupSearch } from './searcher';
-import { initSidebar } from './sidebar';
-import { initTableOfContents } from './table-of-contents';
-import { initThemeColor } from './theme-selector';
+import { initCodeBlock } from './codeblock.ts';
+import { initFootnote } from './footnote.ts';
+import { attributeExternalLinks } from './link.ts';
+import { doMarkFromUrl } from './mark.ts';
+import { startupSearch } from './searcher.ts';
+import { initSidebar } from './sidebar.ts';
+import { initTableOfContents } from './table-of-contents.ts';
+import { initThemeColor } from './theme-selector.ts';
 
 type DataSet = DOMStringMap & {
   pathtoroot: string;
