@@ -1,5 +1,5 @@
-import { initWorker } from './hl-initialize';
-import { type SendToWorker, type Payload, isErrorPayload } from './hl-types';
+import { initWorker } from './hl-initialize.ts';
+import { type SendToWorker, type Payload, isErrorPayload } from './hl-types.ts';
 
 const TOOLTIP_FADEOUT_MS = 1200;
 

@@ -1,4 +1,5 @@
-import { getRootVariableNum } from './css-loader';
+import { getRootVariableNum } from './css-loader.ts';
+import { reverseItr } from './generators.ts';
 
 const ENV_PC: number = 0;
 const ENV_MOBILE: number = 1;
@@ -67,12 +68,6 @@ const removeActive = (entry: IntersectionObserverEntry): void => {
   target.classList.remove('active');
   target.removeAttribute('aria-current');
 };
-
-function* reverseItr(array: IntersectionObserverEntry[]): Generator<IntersectionObserverEntry> {
-  for (let i = array.length - 1; i >= 0; i--) {
-    yield array[i];
-  }
-}
 
 const jumpHeader = (ev: MouseEvent, el: HTMLAnchorElement): void => {
   ev.preventDefault();

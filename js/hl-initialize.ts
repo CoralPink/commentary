@@ -6,7 +6,7 @@
  */
 import { v7 as uuidv7 } from 'uuid';
 
-import { type WorkerResponse, type SendToWorker, type Payload, isErrorPayload } from './hl-types';
+import { type WorkerResponse, type SendToWorker, type Payload, isErrorPayload } from './hl-types.ts';
 
 const SHAREDWORKER_PATH = '/commentary/hl-sharedworker.js';
 const WORKER_PATH = '/commentary/hl-worker.js';

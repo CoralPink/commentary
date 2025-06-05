@@ -1,4 +1,4 @@
-import initWasm, { get_match_range } from './wasm_book';
+import initWasm, { get_match_range } from './wasm_book.js';
 
 const TAG_MARK = 'mark';
 

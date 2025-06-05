@@ -5,11 +5,12 @@
     "target": "ESNext",
     "module": "ESNext",
     "moduleDetection": "force",
-    "allowJs": false,
 
     // Bundler mode
     "moduleResolution": "bundler",
     "noEmit": true,
+    "allowImportingTsExtensions": true,
+    "allowJs": false,
 
     // Best practices
     "strict": true,
