@@ -84,22 +84,56 @@
       <main>
         <article id="article">
           <h1 id="nvim-treesitter"><a class="header" href="#nvim-treesitter">nvim-treesitter</a></h1>
-<div id="admonition-nvim-treesitterhttpsgithubcomnvim-treesitternvim-treesitter" class="admonition admonish-info" role="note" aria-labelledby="admonition-nvim-treesitterhttpsgithubcomnvim-treesitternvim-treesitter-title">
+<p>今回は <code>nvim-treesitter</code>を使ってみましょう😆</p>
+<p>これさえ使いこなせれば、様々な言語のプログラムコードだったり、
+時には<code>markdown</code>の編集など、様々な場面で役立ってくれるはずです❗</p>
+<div id="admonition-nvim-treesitterhttpsgithubcomnvim-treesitternvim-treesittertreemain" class="admonition admonish-info" role="note" aria-labelledby="admonition-nvim-treesitterhttpsgithubcomnvim-treesitternvim-treesittertreemain-title">
 <div class="admonition-title">
-<div id="admonition-nvim-treesitterhttpsgithubcomnvim-treesitternvim-treesitter-title">
-<p><a href="https://github.com/nvim-treesitter/nvim-treesitter">nvim-treesitter</a></p>
+<div id="admonition-nvim-treesitterhttpsgithubcomnvim-treesitternvim-treesittertreemain-title">
+<p><a href="https://github.com/nvim-treesitter/nvim-treesitter/tree/main">nvim-treesitter</a></p>
 </div>
-<a class="admonition-anchor-link" href="#admonition-nvim-treesitterhttpsgithubcomnvim-treesitternvim-treesitter"></a>
+<a class="admonition-anchor-link" href="#admonition-nvim-treesitterhttpsgithubcomnvim-treesitternvim-treesittertreemain"></a>
 </div>
 <div>
-<p>The goal of nvim-treesitter is both to provide a simple and easy way to use the
-interface for tree-sitter in Neovim and to provide some basic functionality such as
-highlighting based on it:</p>
-<p>nvim-treesitter の目的は、Neovim で tree-sitter のインターフェースをシンプルかつ簡単に使う方法を提供することと、
-それを元にハイライトなどの基本的な機能を提供することの両方です。</p>
+<p>The <code>nvim-treesitter</code> plugin provides</p>
+<p><code>nvim-treesitter</code>プラグインは以下を提供します。</p>
+<ol>
+<li>functions for installing, updating, and removing <a href="https://github.com/nvim-treesitter/nvim-treesitter/blob/main/SUPPORTED_LANGUAGES.md"><strong>tree-sitter parsers</strong></a>;</li>
+<li>a collection of <strong>queries</strong> for enabling tree-sitter features built into Neovim for these languages;</li>
+<li>a staging ground for <a href="https://github.com/nvim-treesitter/nvim-treesitter/tree/main">treesitter-based features</a> considered for upstreaming to Neovim.</li>
+</ol>
+<p>For details on these and how to help improving them, see <a href="https://github.com/nvim-treesitter/nvim-treesitter/blob/main/CONTRIBUTING.md">CONTRIBUTING.md</a>.</p>
+<ol>
+<li><a href="SUPPORTED_LANGUAGES.html"><strong>tree-sitter parsers</strong></a> のインストール、更新、削除機能;</li>
+<li>Neovim に組み込まれた tree-sitter 機能をこれらの言語で有効にするための <strong>クエリ</strong> 集。</li>
+<li>Neovim へのアップストリームが検討されている <a href="https://github.com/nvim-treesitter/nvim-treesitter/tree/main">treesitter-based features</a>のステージング・グラウンド。</li>
+</ol>
+<p>これらの詳細と改良の支援方法については、<a href="https://github.com/nvim-treesitter/nvim-treesitter/blob/main/CONTRIBUTING.md">CONTRIBUTING.md</a>を参照してください。</p>
 </div>
 </div>
-<div id="admonition-requirementshttpsgithubcomnvim-treesitternvim-treesitterrequirements" class="admonition admonish-abstract" role="note" aria-labelledby="admonition-requirementshttpsgithubcomnvim-treesitternvim-treesitterrequirements-title">
+<div id="admonition-caution" class="admonition admonish-danger" role="note" aria-labelledby="admonition-caution-title">
+<div class="admonition-title">
+<div id="admonition-caution-title">
+<p>CAUTION</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-caution"></a>
+</div>
+<div>
+<p>This is a full, incompatible, rewrite.
+If you can't or don't want to update, check out the
+<a href="https://github.com/nvim-treesitter/nvim-treesitter/blob/master/README.md"><code>master</code> branch</a>
+(which is locked but will remain available for backward compatibility).</p>
+<p>これは互換性のない完全な書き換えです。
+アップデートができない、またはしたくない場合は、masterブランチをチェックしてください
+(ロックされていますが、後方互換性のために引き続き利用可能です)。</p>
+</div>
+</div>
+<p>このページの初掲は <strong>Dec 4, 2022</strong> ですが、
+巡り巡って <strong>Jun 5, 2025</strong> 時点の状況に合わせて内容を書き換えています。</p>
+<p>ところどころ、スクリーンショットが古いままになってたりはしますが、気にしないでください❗</p>
+<h2 id="requirements"><a class="header" href="#requirements">Requirements</a></h2>
+<p>一個ずつ確認していきましょう。</p>
+<div id="admonition-requirementshttpsgithubcomnvim-treesitternvim-treesitterrequirements" class="admonition admonish-info" role="note" aria-labelledby="admonition-requirementshttpsgithubcomnvim-treesitternvim-treesitterrequirements-title">
 <div class="admonition-title">
 <div id="admonition-requirementshttpsgithubcomnvim-treesitternvim-treesitterrequirements-title">
 <p><a href="https://github.com/nvim-treesitter/nvim-treesitter#requirements">Requirements</a></p>
@@ -107,19 +141,64 @@ highlighting based on it:</p>
 <a class="admonition-anchor-link" href="#admonition-requirementshttpsgithubcomnvim-treesitternvim-treesitterrequirements"></a>
 </div>
 <div>
-<p>Neovim 0.8.0 or later built with tree-sitter 0.20.3+ (latest nightly recommended)</p>
-<p>tar and curl in your path (or alternatively git)</p>
-<p>A C compiler in your path and libstdc++ installed <a href="https://github.com/nvim-treesitter/nvim-treesitter/wiki/Windows-support">(Windows users please read this!)</a>.</p>
+<ul>
+<li>Neovim 0.11.0 or later (nightly)</li>
+<li><code>tar</code> and <code>curl</code> in your path</li>
+<li><a href="https://github.com/tree-sitter/tree-sitter"><code>tree-sitter</code></a> CLI (0.25.0 or later)</li>
+<li>a C compiler in your path (see <a href="https://docs.rs/cc/latest/cc/#compile-time-requirements">https://docs.rs/cc/latest/cc/#compile-time-requirements</a>)</li>
+<li><code>Node</code> (23.0.0 or later) for some parsers (see the <a href="https://github.com/nvim-treesitter/nvim-treesitter/blob/main/SUPPORTED_LANGUAGES.md">list of supported languages</a>)</li>
+</ul>
 </div>
 </div>
-<h2 id="requirements"><a class="header" href="#requirements">Requirements</a></h2>
-<p>ここは一個ずつ確認していきます。</p>
-<h3 id="neovim-080-or-later"><a class="header" href="#neovim-080-or-later">Neovim 0.8.0 or later</a></h3>
-<p>まずは<code>Neovim 0.8.0</code> 以降が必須とされていることに注意が必要です。</p>
-<p>2022-11-30 時点で、<code>stable release</code>はもう一つ進んで<code>0.8.1</code>となっていますが、念の為確かめておきましょう。</p>
-<h3 id="git-tarcurl"><a class="header" href="#git-tarcurl">git (tar,curl)</a></h3>
-<p>これは<code>packer</code>を導入する前に、既に<code>git</code>をインストールしているはずなので大丈夫😉</p>
-<p>気になる場合は<code>tar</code>と<code>curl</code>も確認しておきましょう。</p>
+<div id="admonition-important" class="admonition admonish-abstract" role="note" aria-labelledby="admonition-important-title">
+<div class="admonition-title">
+<div id="admonition-important-title">
+<p>IMPORTANT</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-important"></a>
+</div>
+<div>
+<p>The <strong>support policy</strong> for Neovim is</p>
+<ol>
+<li>the <em>latest</em> <a href="https://github.com/neovim/neovim/releases/tag/stable">stable release</a>;</li>
+<li>the <em>latest</em> <a href="https://github.com/neovim/neovim/releases/tag/nightly">nightly prerelease</a>.</li>
+</ol>
+<p>Other versions may work but are neither tested nor considered for fixes.
+In general, compatibility with Nvim 0.X is removed after the release of Nvim 0.(X+1).1.</p>
+<p>他のバージョンでも動作する可能性はありますが、テストも修正も考慮されていません。
+一般的に、Nvim 0.X との互換性は Nvim 0.(X+1).1 のリリース後に削除されます。</p>
+</div>
+</div>
+<h3 id="neovim-0110-or-later-nightly"><a class="header" href="#neovim-0110-or-later-nightly">Neovim 0.11.0 or later (nightly)</a></h3>
+<p>まずは<code>Neovim 0.11.0</code> 以降が必須とされていることに注意が必要です。</p>
+<div id="admonition-warning" class="admonition admonish-warning" role="note" aria-labelledby="admonition-warning-title">
+<div class="admonition-title">
+<div id="admonition-warning-title">
+<p>Warning</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-warning"></a>
+</div>
+<div>
+<p>これも既に示されていることですが、
+Neovim 0.10.0 以下の使用を続ける理由がある場合は<code>master</code>ブランチを使用しましょう。(更新自体は止まってます❗)</p>
+</div>
+</div>
+<h3 id="tarcurl"><a class="header" href="#tarcurl">tar,curl</a></h3>
+<p>自分の環境で<code>tar</code>,<code>curl</code>を使用できるかを確認するには<code>which</code>コマンドを使ってみると良いです 😉</p>
+<pre><code class="language-sh">which tar
+</code></pre>
+<pre><code class="language-sh">which curl
+</code></pre>
+<p>なんかそれっぽいパスが表示されていれば、きっと OK でしょう😆</p>
+<p>私の環境で言えば、<code>tar</code> は最初から入っていたし、
+<code>curl</code> は <code>brew install</code> で簡単にインストールできました。</p>
+<img src="img/which-tar-curl.webp" alt="which-tar-curl" width="1000" height="117" fetchpriority="high">
+<h3 id="tree-sitter-cli-0250-or-later"><a class="header" href="#tree-sitter-cli-0250-or-later">tree-sitter CLI (0.25.0 or later)</a></h3>
+<p>これも<code>which</code>コマンドで確認できます。</p>
+<pre><code class="language-sh">which tree-sitter
+</code></pre>
+<p><code>Homebrew</code>でインストールしている場合は <code>Required</code>として、一緒にインストールされているはずです。</p>
+<img src="img/which-tree-sitter.webp" alt="which-tar-curl" width="1000" height="239" loading="lazy">
 <h3 id="c-compiler"><a class="header" href="#c-compiler">C compiler</a></h3>
 <p>わたしの経験で言えば<code>macOS</code>では問題になったことがありません。最低限<code>Command Line Tools</code>が入っていれば大丈夫なはずです。
 (例えば<code>Homebrew</code>のインストール時に自動で導入されます。)</p>
@@ -128,7 +207,7 @@ highlighting based on it:</p>
 <p><code>Linux</code>の場合、もしかしたら別途インストールが必要かもしれないので手っ取り早く解決方法だけ載っけちゃうんですが、
 <code>gcc-c++</code>、もしくは<code>clang</code>をインストールするのが良さそうです。</p>
 <div class="table-wrapper"><table><thead><tr><th style="text-align: center"></th><th style="text-align: center"></th></tr></thead><tbody>
-<tr><td style="text-align: center"><strong>gcc-c++</strong></td><td style="text-align: center"><img src="img/gcc-cpp.webp" alt="gcc_cpp" width="696" height="555" fetchpriority="high"></td></tr>
+<tr><td style="text-align: center"><strong>gcc-c++</strong></td><td style="text-align: center"><img src="img/gcc-cpp.webp" alt="gcc_cpp" width="696" height="555" loading="lazy"></td></tr>
 <tr><td style="text-align: center"><strong>clang</strong></td><td style="text-align: center"><img src="img/clang.webp" alt="gcc_cpp" width="696" height="555" loading="lazy"></td></tr>
 </tbody></table>
 </div><div id="admonition-note" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-title">
@@ -140,6 +219,26 @@ highlighting based on it:</p>
 </div>
 <div>
 <p>Readmeにも明記されているように<code>libstdc++</code>も必要になるはずなので、<code>gcc</code>だとうまくいきませんでした😮</p>
+</div>
+</div>
+<h3 id="node-2300-or-later-for-some-parsers"><a class="header" href="#node-2300-or-later-for-some-parsers">Node (23.0.0 or later) for some parsers</a></h3>
+<p>書いてあることそのままですが、"一部の" パーサーでは <code>Node v23</code> 以降を必要とします。</p>
+<p>2025/06/05 時点では <code>LTS</code>バージョンが v22.16.0 らしいので、
+場合に依っては なんか妙にハードルが高く感じられるかもしれません。</p>
+<p>例えば<a href="https://nodejs.org/ja/download/">Node.js®をダウンロードする</a>
+に最初に示されている通りに進んでしまうとうまく行かない (かもしれない) ...😰</p>
+<p><code>current</code>バージョンは <code>v24</code> まで進んでいるので、単純に「<code>brew</code>や<code>apt</code> を使った方が簡単だぞ❗」というのは簡単なんだけど...、
+はっきり言って、私はここで責任を負わされたくありません 😤</p>
+<p>「<strong>もし必要になったら</strong> 乗り越えて❗」ぐらいで見逃してください...🥹</p>
+<div id="admonition-note-1" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-1-title">
+<div class="admonition-title">
+<div id="admonition-note-1-title">
+<p>Note</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-note-1"></a>
+</div>
+<div>
+<p>よくわかんねー ってなっちゃう場合、ここはスキップして進みましょう 🐈</p>
 </div>
 </div>
 <h2 id="install"><a class="header" href="#install">Install</a></h2>
@@ -156,116 +255,35 @@ highlighting based on it:</p>
 <pre><code class="language-lua">require('packer').startup { function()
   use 'wbthomason/packer.nvim'
 
-  -- 前節で入れたpackerと同列に並べる
-  use 'nvim-treesitter/nvim-treesitter'
-end,
--- (以下略)
-</code></pre>
-</div>
-</div>
-<p>で、<code>:PackerSync</code>を実行しましょう❗</p>
-<img src="img/installed.webp" alt="installed" width="696" height="555" loading="lazy">
-<p>簡単ですね😉 すっごい見にくいけど❗</p>
-<div id="admonition-note-1" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-1-title">
-<div class="admonition-title">
-<div id="admonition-note-1-title">
-<p>Note</p>
-</div>
-<a class="admonition-anchor-link" href="#admonition-note-1"></a>
-</div>
-<div>
-<p><code>nvim-treesitter</code>の説明では、<code>:TSUpdate</code>を併せて行うように説明されているのですが、これはあくまで<code>vim-plug</code>を使用している場合の例です。</p>
-<p><code>packer.nvim</code>では<code>run</code>オプションで同じことができそうなんですが、これを使用すると初回だけエラーが起きてしまうので、わたしは外しています。</p>
-<img src="img/error-tsupdate.webp" alt="ErrorTSUpdate" width="696" height="555" loading="lazy">
-<p>インストール自体は<code>100%</code>で<code>done.</code>ってなってるし、2回目以降は何事もなかったかのように<code>:TSUpdate</code>まで完走できるんですけどね。すっごい見にくいけど❗</p>
-<p>初回だけ外すか、もしくは気にしないかするのであれば超便利です。</p>
-<pre><code class="language-lua">  use {
-    'nvim-treesitter/nvim-treesitter',
-    run = ':TSUpdate',
-  }
-</code></pre>
-</div>
-</div>
-<h2 id="config"><a class="header" href="#config">Config</a></h2>
-<p>インストールが終わったら、次にやることはコンフィグですね😆</p>
-<p><code>Neovim</code>プラグインの場合、<code>Readme</code>である程度デフォルト設定が示されていて、
-それを基に「変える？変えない？」を決めるみたいな、割とアバウトな方法にどうしてもなってくる...んじゃないかなぁと思ってるんですがどうでしょう❓
-(違ってたらごめんなさい😅)</p>
-<p>とりあえずは新しくファイルを作っていきます。</p>
-<p>これもやっぱり名前は何でも良いんですが、パッケージ名と揃えて<code>nvim-treesitter.lua</code>としています☺️</p>
-<div id="admonition-extensionsnvim-treesitterlua" class="admonition admonish-example" role="note" aria-labelledby="admonition-extensionsnvim-treesitterlua-title">
-<div class="admonition-title">
-<div id="admonition-extensionsnvim-treesitterlua-title">
-<p>extensions/nvim-treesitter.lua</p>
-</div>
-<a class="admonition-anchor-link" href="#admonition-extensionsnvim-treesitterlua"></a>
-</div>
-<div>
-<pre><code class="language-lua">require('nvim-treesitter.configs').setup {
-  ensure_installed = { 'lua' },
-  sync_install = true,
-  auto_install = true,
-
-  highlight = {
-    enable = true,
-  },
-
-  incremental_selection = {
-    enable = true,
-    keymaps = {
-      init_selection = 'gnn',
-      node_incremental = 'grn',
-      scope_incremental = 'grc',
-      node_decremental = 'grm',
-    },
-  },
-
-  indent = {
-    enable = true,
-  },
-}
-</code></pre>
-</div>
-</div>
-<p>そして、これを<code>packer</code>の管理下に置いて使います。先ほど書いた<code>nvim-treesitter</code>の読み込み部分を少し書き換えます。</p>
-<div id="admonition-extensionsinitlua-1" class="admonition admonish-example" role="note" aria-labelledby="admonition-extensionsinitlua-1-title">
-<div class="admonition-title">
-<div id="admonition-extensionsinitlua-1-title">
-<p>extensions/init.lua</p>
-</div>
-<a class="admonition-anchor-link" href="#admonition-extensionsinitlua-1"></a>
-</div>
-<div>
-<pre><code class="language-lua">require('packer').startup { function()
-  use 'wbthomason/packer.nvim'
-
-  -- こんな感じで。
   use {
     'nvim-treesitter/nvim-treesitter',
-    config = function() require 'extensions.nvim-treesitter' end,
+    branch = 'main',
+    run = ':TSUpdate',
   }
 end,
+
 -- (以下略)
+
 </code></pre>
 </div>
 </div>
-<div id="admonition-h-packeruse" class="admonition admonish-info" role="note" aria-labelledby="admonition-h-packeruse-title">
+<div id="admonition-warning-1" class="admonition admonish-warning" role="note" aria-labelledby="admonition-warning-1-title">
 <div class="admonition-title">
-<div id="admonition-h-packeruse-title">
-<p>:h packer.use()</p>
+<div id="admonition-warning-1-title">
+<p>Warning</p>
 </div>
-<a class="admonition-anchor-link" href="#admonition-h-packeruse"></a>
+<a class="admonition-anchor-link" href="#admonition-warning-1"></a>
 </div>
 <div>
-<pre><code class="language-txt">config = string or function, -- Specifies code to run after this plugin is loaded.
-                                このプラグインがロードされた後に実行するコードを指定します。
+<p>もし Neovim 0.11.0 より古いバージョンで使用するのであれば、branch を'master' に変えておいて❗</p>
+<pre><code class="language-diff">-    branch = 'main',
++    branch = 'master',
 </code></pre>
 </div>
 </div>
-<p>再起動もしくは<code>:so</code>でこの状態を反映させてから<code>PackerSync</code>もしくは<code>PackerCompile</code>を実行しましょう。</p>
-<p>すると、<code>nvim-treesitter</code>が動いて、最終的にこんなのが出てきました。</p>
-<img src="img/lua-installed.webp" alt="lua-installed" width="696" height="83" loading="lazy">
-<p>これで、<code>lua</code>ファイルが今までよりも賢く色付けされてるはずです。どうでしょう❓</p>
+<p>そしたら <code>:PackerSync</code> を実行しましょう❗</p>
+<img src="img/installed.webp" alt="installed" width="696" height="555" loading="lazy">
+<p>簡単ですね😉 <strong>すっごい古いスクリーンショットだから</strong> 見にくいけど❗</p>
 <div id="admonition-note-2" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-2-title">
 <div class="admonition-title">
 <div id="admonition-note-2-title">
@@ -274,15 +292,45 @@ end,
 <a class="admonition-anchor-link" href="#admonition-note-2"></a>
 </div>
 <div>
-<p><code>ensure_installed</code>で指定した言語パーサのインストールが行われるはずなので、それによっては少し表示が変わります。</p>
+<p>オフィシャルに示されているのは<a href="https://github.com/folke/lazy.nvim">lazy.nvim</a>を使用した設定方法なのですが、
+このサイトでは<a href="../../outro/lazy.html">17章</a>までは<code>packer</code>を使用したサンプルコードを示しています。</p>
+<p>(これも書き直した方がいいとは思ってるんだけど...😅)</p>
 </div>
 </div>
-<div id="admonition-warning" class="admonition admonish-warning" role="note" aria-labelledby="admonition-warning-title">
+<h2 id="config"><a class="header" href="#config">Config</a></h2>
+<p><code>Neovim</code>プラグインの場合、<code>Readme</code>である程度デフォルト設定が示されていて、
+それを基に「変える？変えない？」を決めるみたいな、
+割とアバウトな方法にどうしてもなってくる...んじゃないかなぁと思ってるんですがどうでしょう❓</p>
+<p>今回はもうデフォルト設定のままでいくので、何もする必要がありません❗</p>
+<pre><code class="language-txt">setup({opts})                                          *nvim-treesitter.setup()*
+
+    Configure installation options. Needs to be specified before any
+    installation operation.
+
+    インストールオプションの設定。
+    インストール操作の前に指定する必要があります。
+
+    Note: You only need to call `setup` if you want to set non-default
+    options!
+
+    注意: `setup` を呼び出す必要があるのは、デフォルト以外のオプションを設定する場合だけです！
+
+    Parameters: ~
+    • {opts}  `(table?)` Optional parameters:
+              • {install_dir} (`string?`, default `stdpath('data')/site/`)
+                directory to install parsers and queries to. Note: will be
+                prepended to |runtimepath|.
+</code></pre>
+<p>再起動もしくは<code>:so</code>でこの状態を反映させてから<code>PackerSync</code>もしくは<code>PackerCompile</code>を実行しましょう。</p>
+<p>すると、<code>nvim-treesitter</code>が動いて、最終的にこんなのが出てきました。</p>
+<img src="img/lua-installed.webp" alt="lua-installed" width="696" height="83" loading="lazy">
+<p>これで、<code>lua</code>ファイルが今までよりも賢く色付けされてるはずです。どうでしょう❓</p>
+<div id="admonition-warning-2" class="admonition admonish-warning" role="note" aria-labelledby="admonition-warning-2-title">
 <div class="admonition-title">
-<div id="admonition-warning-title">
+<div id="admonition-warning-2-title">
 <p>Warning</p>
 </div>
-<a class="admonition-anchor-link" href="#admonition-warning"></a>
+<a class="admonition-anchor-link" href="#admonition-warning-2"></a>
 </div>
 <div>
 <p>もしここでエラーが起きるようであれば、もう一度<code>C compiler</code>を確認してみてください😣</p>
@@ -300,13 +348,47 @@ end,
 <a class="admonition-anchor-link" href="#admonition-note-3"></a>
 </div>
 <div>
-<p>これは例が面白くないのであれなんですが、オフィシャルイメージを見るとこんなに変わってます❗</p>
+<p>これだと例が <strong>すっごい古い</strong> し面白くないんですが、オフィシャルイメージを見るとこんなに変わってます❗</p>
 <p><a href="https://github.com/nvim-treesitter/nvim-treesitter/wiki/Gallery">nvim-treesitter/wiki/Gallery</a></p>
 <p>...あっちでも<code>lua</code>は変化がわかりにいんですけどね😅</p>
 </div>
 </div>
 <h2 id="commands"><a class="header" href="#commands">Commands</a></h2>
-<p><code>nvim-treesitter</code>を入れることで使えるコマンドについては、ヘルプだけ示します。</p>
+<p>まず前提として、以下があります。</p>
+<div id="admonition-h-treesitter-parsers" class="admonition admonish-info" role="note" aria-labelledby="admonition-h-treesitter-parsers-title">
+<div class="admonition-title">
+<div id="admonition-h-treesitter-parsers-title">
+<p>:h treesitter-parsers</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-h-treesitter-parsers"></a>
+</div>
+<div>
+<pre><code>PARSER FILES                                              *treesitter-parsers*
+
+Parsers are the heart of treesitter. They are libraries that treesitter will
+search for in the `parser` runtime directory.
+
+Nvim includes these parsers:
+
+パーサはtreesitterの心臓部です。これらは treesitter が `parser` ランタイムディレクトリで検索するライブラリです。
+Nvimはこれらのパーサーを含んでいます：
+
+- C
+- Lua
+- Markdown
+- Vimscript
+- Vimdoc
+- Treesitter query files |ft-query-plugin|
+
+You can install more parsers manually, or with a plugin like
+https://github.com/nvim-treesitter/nvim-treesitter .
+
+手動でさらにパーサーをインストールすることもでき、
+https://github.com/nvim-treesitter/nvim-treesitter のようなプラグインを使うこともできます。
+</code></pre>
+</div>
+</div>
+<p>で、手動でパーサーをインストールするために使うコマンドが以下に示されています。</p>
 <div id="admonition-h-nvim-treesitter-commands" class="admonition admonish-info" role="note" aria-labelledby="admonition-h-nvim-treesitter-commands-title">
 <div class="admonition-title">
 <div id="admonition-h-nvim-treesitter-commands-title">
@@ -315,151 +397,137 @@ end,
 <a class="admonition-anchor-link" href="#admonition-h-nvim-treesitter-commands"></a>
 </div>
 <div>
-<pre><code class="language-txt">COMMANDS
+<pre><code class="language-txt">COMMANDS                                              *nvim-treesitter-commands*
 </code></pre>
 </div>
 </div>
-<p>ちなみに、わたしはほぼ<code>:TSUpdate</code>しか使ってません❗ sitter って言うぐらいなので、特に操作しなくてもしっかりお世話してくれます👶</p>
-<h2 id="modules"><a class="header" href="#modules">Modules</a></h2>
-<p>上の例で使用しているモジュール設定について少しだけ触れておきます。</p>
-<div id="admonition-moduleshttpsgithubcomnvim-treesitternvim-treesittermodules" class="admonition admonish-info" role="note" aria-labelledby="admonition-moduleshttpsgithubcomnvim-treesitternvim-treesittermodules-title">
+<p>これらのコマンドを使って好きなパーサーを管理できるわけですね 😉</p>
+<p>次項から、さらっとした使い方だけ示します。</p>
+<h3 id="tsinstall"><a class="header" href="#tsinstall">TSInstall</a></h3>
+<div id="admonition-h-tsinstall" class="admonition admonish-info" role="note" aria-labelledby="admonition-h-tsinstall-title">
 <div class="admonition-title">
-<div id="admonition-moduleshttpsgithubcomnvim-treesitternvim-treesittermodules-title">
-<p><a href="https://github.com/nvim-treesitter/nvim-treesitter#modules">Modules</a></p>
+<div id="admonition-h-tsinstall-title">
+<p>:h TSInstall</p>
 </div>
-<a class="admonition-anchor-link" href="#admonition-moduleshttpsgithubcomnvim-treesitternvim-treesittermodules"></a>
+<a class="admonition-anchor-link" href="#admonition-h-tsinstall"></a>
 </div>
 <div>
-<pre><code class="language-txt">By default, everything is disabled.
+<pre><code class="language-txt">:TSInstall {language}                                               *:TSInstall*
 
-デフォルトでは、すべて無効になっています。
+Install one or more treesitter parsers. {language} can be one or multiple
+parsers or tiers (`stable`, `unstable`, or `all` (not recommended)). This is a
+no-op of the parser(s) are already installed. Installation is performed
+asynchronously. Use *:TSInstall!* to force installation even if a parser is
+already installed.
+
+1つ以上の treeitter パーサーをインストールします。
+{language} には1つまたは複数のパーサーまたは階層 (`stable`、`unstable`、`all`(推奨しない)) を指定できます。
+パーサがすでにインストールされている場合は、このオプションは無効です。
+インストールは非同期に実行されます。
+パーサーが既にインストールされている場合でも、強制的にインストールするには *:TSInstall!* を使用します。
 </code></pre>
 </div>
 </div>
-<h3 id="ensure_installed"><a class="header" href="#ensure_installed">ensure_installed</a></h3>
-<pre><code class="language-txt">A list of parser names, or "all"
-
-パーサ名のリスト、または "all"を指定する。
+<p><code>language</code> の部分は
+<a href="https://github.com/nvim-treesitter/nvim-treesitter/blob/main/SUPPORTED_LANGUAGES.md">https://github.com/nvim-treesitter/nvim-treesitter/blob/main/SUPPORTED_LANGUAGES.md</a>
+に示されているものから選んで指定します。</p>
+<p>例えば <code>rust</code>パーサーをインストールしたいなー😆 ってなったら以下のコマンドを使用します。</p>
+<pre><code class="language-vim">:TSInstall rust
 </code></pre>
-<p>上の例では<code>lua</code>だけ入れてます。使用頻度の高い言語を入れておくと良いです。</p>
-<p>面倒なら<code>all</code>でも良いんですが、<code>auto_install</code>があるので、"オフライン環境で動かす"とかでなければ、そちらを活用する方が良いんじゃないかなーって思ってます。</p>
-<p>対応言語は以下の通りです。</p>
-<div id="admonition-supported-languageshttpsgithubcomnvim-treesitternvim-treesittersupported-languages" class="admonition admonish-info" role="note" aria-labelledby="admonition-supported-languageshttpsgithubcomnvim-treesitternvim-treesittersupported-languages-title">
+<h3 id="tsinstallfromgrammar"><a class="header" href="#tsinstallfromgrammar">TSInstallFromGrammar</a></h3>
+<div id="admonition-h-tsinstallfromgrammar" class="admonition admonish-info" role="note" aria-labelledby="admonition-h-tsinstallfromgrammar-title">
 <div class="admonition-title">
-<div id="admonition-supported-languageshttpsgithubcomnvim-treesitternvim-treesittersupported-languages-title">
-<p><a href="https://github.com/nvim-treesitter/nvim-treesitter#supported-languages">Supported languages</a></p>
+<div id="admonition-h-tsinstallfromgrammar-title">
+<p>:h TSInstallFromGrammar</p>
 </div>
-<a class="admonition-anchor-link" href="#admonition-supported-languageshttpsgithubcomnvim-treesitternvim-treesittersupported-languages"></a>
+<a class="admonition-anchor-link" href="#admonition-h-tsinstallfromgrammar"></a>
 </div>
 <div>
-<p>List of languages for which a parser can be installed through :TSInstall</p>
-<p><code>:TSInstall</code>でパーサをインストールできる言語のリストです。</p>
-</div>
-</div>
-<h3 id="sync_install"><a class="header" href="#sync_install">sync_install</a></h3>
-<pre><code class="language-txt">Install parsers synchronously. (only applied to `ensure_installed`)
+<pre><code class="language-txt">:TSInstallFromGrammar {language}                         *:TSInstallFromGrammar*
 
-パーサを同期的にインストールする。 (`ensure_installed` にのみ適用される)
+Like |:TSInstall| but also regenerates the `parser.c` from the original
+grammar. Useful for languages where the provided `parser.c` is outdated (e.g.,
+uses a no longer supported ABI).
+
+|:TSInstall| と似ているが、`parser.c` を元の文法から再生成する。
+提供された `parser.c` が古くなっている言語 (例えば、サポートされなくなった ABI を使用している場合など) に便利です。
 </code></pre>
-<p>「同期的インストール」...、つまりアップデートですね😉</p>
-<div id="admonition-note-4" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-4-title">
-<div class="admonition-title">
-<div id="admonition-note-4-title">
-<p>Note</p>
 </div>
-<a class="admonition-anchor-link" href="#admonition-note-4"></a>
+</div>
+<p>あまり使う機会はないと思いますが、使い方は同じですね。</p>
+<pre><code class="language-vim">:TSInstallFromGrammar rust
+</code></pre>
+<h3 id="tsupdate"><a class="header" href="#tsupdate">TSUpdate</a></h3>
+<div id="admonition-h-tsupdate" class="admonition admonish-info" role="note" aria-labelledby="admonition-h-tsupdate-title">
+<div class="admonition-title">
+<div id="admonition-h-tsupdate-title">
+<p>:h TSUpdate</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-h-tsupdate"></a>
 </div>
 <div>
-<p><code>ensure_installed</code>に入れていないパーサについては、コマンドから<code>:TSUpdate</code>で行うことができます。</p>
-</div>
-</div>
-<h3 id="auto_install"><a class="header" href="#auto_install">auto_install</a></h3>
-<pre><code class="language-txt">Automatically install missing parsers when entering buffer.
+<pre><code class="language-txt">:TSUpdate [{language}]                                              *:TSUpdate*
 
-バッファに入ったときに足りないパーサを自動的にインストールします。
+Update parsers to the `revision` specified in the manifest if this is newer
+than the installed version. If {language} is specified, update the
+corresponding parser or tier; otherwise update all installed parsers. This is
+a no-op if all (specified) parsers are up to date.
+
+Note: It is recommended to add this command as a build step in your plugin
+manager.
+
+マニフェストで指定された `revision` がインストールされているバージョンより新しい場合、パーサを更新します。
+{language} が指定されている場合は、対応するパーサまたは階層を更新します。
+そうでない場合は、インストールされているすべてのパーサを更新します。
+指定された全てのパーサが最新である場合、これは省略されます。
+
+Note: このコマンドをプラグインマネージャのビルドステップとして追加することを推奨します。
 </code></pre>
-<div id="admonition-note-5" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-5-title">
-<div class="admonition-title">
-<div id="admonition-note-5-title">
-<p>Note</p>
 </div>
-<a class="admonition-anchor-link" href="#admonition-note-5"></a>
+</div>
+<p>インストールされているパーサをアップデートしたいならこれ❗</p>
+<pre><code class="language-vim">:TSUpdate
+</code></pre>
+<h3 id="tsuninstall"><a class="header" href="#tsuninstall">TSUninstall</a></h3>
+<div id="admonition-h-tsuninstall" class="admonition admonish-info" role="note" aria-labelledby="admonition-h-tsuninstall-title">
+<div class="admonition-title">
+<div id="admonition-h-tsuninstall-title">
+<p>:h TSUninstall</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-h-tsuninstall"></a>
 </div>
 <div>
-<p>手動でインストールしたい場合はコマンドから<code>:TSInstall {言語}</code>を行いましょう。</p>
-</div>
-</div>
-<h3 id="highlight"><a class="header" href="#highlight">highlight</a></h3>
-<pre><code class="language-txt">`false` will disable the whole extension
+<pre><code class="language-txt">:TSUninstall {language}                                           *:TSUninstall*
 
-false` を指定すると、拡張機能全体を無効にすることができます。
+Deletes the parser for one or more {language}, or all parsers with `all`.
+
+1つ以上の {language} のパーサを削除するか、`all` で全てのパーサを削除します。
 </code></pre>
-<p>と、いうことなので、</p>
-<pre><code class="language-lua">highlight = {
-  enable = false
-}
-</code></pre>
-<p>...なんてしちゃえば拡張機能全体を無効にします。いや、せっかく入れたので<code>true</code>にしましょ❓</p>
-<p>ちなみに<code>disable</code>オプションを使うと、特定の言語だけ選んで除外できます。</p>
-<pre><code class="language-lua">highlight = {
-  enable = true,
-  disable = { "c", "rust" },
-},
-</code></pre>
-<h3 id="incremental_selection"><a class="header" href="#incremental_selection">incremental_selection</a></h3>
-<p>これについては、適当にコードを開いて<code>keymap</code>に設定した操作をしてみればなんとな〜く察せると思います。</p>
-<p>ざっくり言うと、以下の説明にある範囲選択が一回で出来ます。</p>
-<div id="admonition-h-nvim-treesitter-incremental-selection-mod" class="admonition admonish-info" role="note" aria-labelledby="admonition-h-nvim-treesitter-incremental-selection-mod-title">
-<div class="admonition-title">
-<div id="admonition-h-nvim-treesitter-incremental-selection-mod-title">
-<p>:h nvim-treesitter-incremental-selection-mod</p>
 </div>
-<a class="admonition-anchor-link" href="#admonition-h-nvim-treesitter-incremental-selection-mod"></a>
+</div>
+<p>インストールされているパーサを削除したいならこれ❗</p>
+<pre><code class="language-vim">:TSUninstall rust
+</code></pre>
+<h3 id="tslog"><a class="header" href="#tslog">TSLog</a></h3>
+<div id="admonition-h-tslog" class="admonition admonish-info" role="note" aria-labelledby="admonition-h-tslog-title">
+<div class="admonition-title">
+<div id="admonition-h-tslog-title">
+<p>:h TSLog</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-h-tslog"></a>
 </div>
 <div>
-<p>Incremental selection based on the named nodes from the grammar.</p>
-<p>文法からの名前付きノードに基づくインクリメンタルな選択。</p>
-<pre><code class="language-txt">- keymaps:
-  - init_selection: in normal mode, start incremental selection.
-                    ノーマルモードで、インクリメンタルな選択を開始します。
+<pre><code class="language-txt">:TSLog                                                                  *:TSLog*
 
-  - node_incremental: in visual mode, increment to the upper named parent.
-                    ビジュアルモードで、上の名前の親にインクリメントします。
+Shows all messages from previous install, update, or uninstall operations.
 
-  - scope_incremental: in visual mode, increment to the upper scope (as defined in `locals.scm`).
-                    ビジュアルモードで、上のスコープにインクリメントされます。
-                    (`locals.scm` で定義されている) 上位のスコープにインクリメントします。
-
-  - node_decremental: in visual mode, decrement to the previous named node.
-                    ビジュアルモードで、前の名前のノードまでデクリメントします。
+以前のインストール、アップデート、アンインストール操作のすべてのメッセージを表示します。
 </code></pre>
 </div>
 </div>
-<h3 id="indent"><a class="header" href="#indent">indent</a></h3>
-<p>実験的な機能らしいですが、インデントが賢くなる...んです⁉️ あんまり威力を実感することはないんですが、わたしはなんとなく使ってます😅</p>
-<p>これも<code>highlight</code>と同じく、言語を選んで除外できます。</p>
-<div id="admonition-h-nvim-treesitter-indntation-mod" class="admonition admonish-info" role="note" aria-labelledby="admonition-h-nvim-treesitter-indntation-mod-title">
-<div class="admonition-title">
-<div id="admonition-h-nvim-treesitter-indntation-mod-title">
-<p>:h nvim-treesitter-indntation-mod</p>
-</div>
-<a class="admonition-anchor-link" href="#admonition-h-nvim-treesitter-indntation-mod"></a>
-</div>
-<div>
-<pre><code class="language-txt">Indentation based on treesitter for the |=| operator.
-
-|=| 演算子の treesitter に基づくインデント。
-
-NOTE: this is an experimental feature.
-      これは実験的な機能です。
-
-Query files: `indents.scm`.
-Supported options:
-- enable: `true` or `false`.
-- disable: list of languages.
+<p><code>nvim-treesitter</code>で行った操作のログを確認したいならこれ❗</p>
+<pre><code class="language-vim">:TSLog
 </code></pre>
-</div>
-</div>
 <h2 id="checkhealth"><a class="header" href="#checkhealth">CheckHealth</a></h2>
 <p>これは<code>nvim-treesitter</code>に限らない<code>Neovim</code>の機能になりますが、<code>health</code>チェックというものがあります😉</p>
 <div id="admonition-h-health" class="admonition admonish-info" role="note" aria-labelledby="admonition-h-health-title">
@@ -490,13 +558,15 @@ Plugin authors are encouraged to write new healthchecks. |health-dev|
 </code></pre>
 <img src="img/checkhealth.webp" alt="checkhealth" width="974" height="777" loading="lazy">
 <p>結果が表示されましたね☺️</p>
-<p>診断内容はプラグインに依りますが、<code>nvim-treesitter</code>の場合は、依存ソフトウェアの確認と、OS情報・インストールされたパーサの表示を行ってくれます。</p>
-<div id="admonition-note-6" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-6-title">
+<p>これは <strong>すっごい古いスクリーンショット</strong> だけど❗</p>
+<p>診断内容はプラグインに依りますが、
+<code>nvim-treesitter</code>の場合は、依存ソフトウェアの確認と、OS情報・インストールされたパーサの表示を行ってくれます。</p>
+<div id="admonition-note-4" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-4-title">
 <div class="admonition-title">
-<div id="admonition-note-6-title">
+<div id="admonition-note-4-title">
 <p>Note</p>
 </div>
-<a class="admonition-anchor-link" href="#admonition-note-6"></a>
+<a class="admonition-anchor-link" href="#admonition-note-4"></a>
 </div>
 <div>
 <p>これもヘルプそのままですが、指定したプラグインだけを診断することも可能です。</p>
@@ -518,6 +588,8 @@ Plugin authors are encouraged to write new healthchecks. |health-dev|
 </div>
 </div>
 <h2 id="wrap-up"><a class="header" href="#wrap-up">Wrap Up</a></h2>
+<p>というわけで <code>nvim-treesitter </code>でした。</p>
+<p>さて、ここまで来たら次にやることはもう決まってますね😉 カラーテーマです❗</p>
 <div id="admonition-success" class="admonition admonish-success" role="note" aria-labelledby="admonition-success-title">
 <div class="admonition-title">
 <div id="admonition-success-title">
@@ -526,7 +598,6 @@ Plugin authors are encouraged to write new healthchecks. |health-dev|
 <a class="admonition-anchor-link" href="#admonition-success"></a>
 </div>
 <div>
-<p>さて、ここまで来たら次にやることはもう決まってますね😉 カラーテーマです❗</p>
 <p>次回でついに瞳に優しく、そう❗生まれ変わるのです😆</p>
 </div>
 </div>
