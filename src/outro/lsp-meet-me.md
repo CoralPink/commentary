@@ -150,7 +150,7 @@ require('mason').setup {
 
 トップディレクトリ (`.config/nvim`) でこんなんしましょう🐱
 
-```bash
+```sh
 mkdir lsp
 ```
 

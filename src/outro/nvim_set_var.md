@@ -243,7 +243,7 @@ For Python 3 plugins:
 2. Install the module (try "python" if "python3" is missing):
 ```
 
-```bash
+```sh
 python3 -m pip install --user --upgrade pynvim
 ```
 
@@ -258,7 +258,7 @@ https://github.com/neovim/neovim/wiki/Following-HEAD#20181118
 If you run into problems, uninstall _both_ then install "pynvim" again:
 ```
 
-```bash
+```sh
 python -m pip uninstall neovim pynvim
 python -m pip install --user --upgrade pynvim
 ```
@@ -409,7 +409,7 @@ RUBY QUICKSTART ~
 To use Ruby plugins with Nvim, install the latest "neovim" RubyGem:
 ```
 
-```bash
+```sh
 gem install neovim
 ```
 
@@ -465,7 +465,7 @@ PERL QUICKSTART~
 To use perl remote-plugins with Nvim, install the "Neovim::Ext" cpan package:
 ```
 
-```bash
+```sh
 cpanm -n Neovim::Ext
 ```
 
@@ -511,7 +511,7 @@ NODEJS QUICKSTART~
 To use javascript remote-plugins with Nvim, install the "neovim" npm package:
 ```
 
-```bash
+```sh
 npm install -g neovim
 ```
 
