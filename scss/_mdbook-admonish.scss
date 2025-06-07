@@ -3,7 +3,7 @@
   margin: 1em 0;
   padding: 0 0.75rem;
   color: var(--fg);
-  break-inside: avoid;
+  page-break-inside: avoid;
   background-color: inherit;
   border: 0 solid black;
   border-inline-start-width: 0.25rem;
@@ -12,6 +12,9 @@
 }
 
 @media print {
+  details.admonition::details-content {
+    display: contents;
+  }
   :is(.admonition) {
     box-shadow: none;
   }
