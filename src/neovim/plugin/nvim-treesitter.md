@@ -249,7 +249,7 @@ setup({opts})                                          *nvim-treesitter.setup()*
 まず前提として、以下があります。
 
 ~~~admonish info title=":h treesitter-parsers"
-```
+```txt
 PARSER FILES                                              *treesitter-parsers*
 
 Parsers are the heart of treesitter. They are libraries that treesitter will

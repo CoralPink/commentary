@@ -100,7 +100,7 @@ export const initCodeBlock = (): void => {
     return;
   }
 
-  const codeBlocks = Array.from(article.querySelectorAll('pre code'));
+  const codeBlocks = Array.from(article.querySelectorAll('pre code:not(.language-txt)'));
 
   if (codeBlocks.length === 0) {
     return;
@@ -109,7 +109,7 @@ export const initCodeBlock = (): void => {
   clipButton = createClipButton();
   sendToWorker = initWorker();
 
-  for (const x of codeBlocks.filter((y): y is HTMLElement => !y.classList.contains('language-txt'))) {
+  for (const x of codeBlocks) {
     observer.observe(x);
   }
 };
