@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "terser": "5.40.0",
+    "terser": "5.41.0",
     "uuid": "11.1.0"
   },
   "devDependencies": {
