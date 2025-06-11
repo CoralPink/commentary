@@ -1,11 +1,17 @@
 @use 'variables' as var;
+@use 'mixins' as mixin;
 
 #sidebar-scrollbox {
   bottom: 0;
-
   position: fixed;
+
   top: var.$menu-bar-height;
+  left: 0.1rem;
+
   width: var.$sidebar-width;
+
+  @include mixin.glassy-mask(var(--bg));
+  z-index: 50;
 
   overflow-y: scroll;
   overscroll-behavior: contain;

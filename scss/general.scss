@@ -102,7 +102,7 @@ body {
   }
 
   &.show-sidebar {
-    grid-template-columns: var.$sidebar-width 1fr;
+    grid-template-columns: 1fr;
 
     @media (min-width: var.$mobile-max-width) {
       grid-template-columns: var.$sidebar-width 1fr var.$pagetoc-width;
