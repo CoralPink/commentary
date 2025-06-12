@@ -83,9 +83,9 @@
       <aside id="sidebar" aria-label="Site map"></aside>
       <main>
         <article id="article">
-          <h1 id="gitsignsnvim"><a class="header" href="#gitsignsnvim">gitsigns.nvim</a></h1>
+          <h1 id="-gitsignsnvim"><a class="header" href="#-gitsignsnvim">🌃 gitsigns.nvim</a></h1>
 <p>今回は<code>gitsigns.nvim</code>です。</p>
-<p>人によっては<code>git</code>を使っていないかもしれないんだけど、これをきっかけに挑戦してみると楽しいと思います。</p>
+<p>人によっては<code>git</code>を全く使っていないかもしれませんが、これをきっかけに挑戦してみると楽しいと思います。</p>
 <div id="admonition-gitsignsnvimhttpsgithubcomlewis6991gitsignsnvim" class="admonition admonish-info" role="note" aria-labelledby="admonition-gitsignsnvimhttpsgithubcomlewis6991gitsignsnvim-title">
 <div class="admonition-title">
 <div id="admonition-gitsignsnvimhttpsgithubcomlewis6991gitsignsnvim-title">
@@ -94,33 +94,88 @@
 <a class="admonition-anchor-link" href="#admonition-gitsignsnvimhttpsgithubcomlewis6991gitsignsnvim"></a>
 </div>
 <div>
-<p>Super fast git decorations implemented purely in lua/teal.</p>
-<p>lua/teal でピュアに実装された超高速な git 装飾。</p>
+<p>Deep buffer integration for Git</p>
+<p>Git のための深甚なる buffer 統合</p>
 </div>
 </div>
 <p>だよねー。もう Christmas🎄 だもんねー😆 華やかな "装飾" を施していきましょう❗</p>
-<div id="admonition-requirements" class="admonition admonish-abstract" role="note" aria-labelledby="admonition-requirements-title">
-<div class="admonition-title">
-<div id="admonition-requirements-title">
-<p>Requirements</p>
+<div id="admonition-default" class="admonition admonish-success" role="note">
+<div>
+<p>I may not always love you</p>
+<p>僕が 君をいつまでも愛してるとは限らない</p>
 </div>
-<a class="admonition-anchor-link" href="#admonition-requirements"></a>
+</div>
+<h2 id="-requirements"><a class="header" href="#-requirements">📋 Requirements</a></h2>
+<div id="admonition-default-1" class="admonition admonish-abstract" role="note">
+<div>
+<p>Neovim &gt;= 0.9.0</p>
+</div>
+</div>
+<div id="admonition-tip" class="admonition admonish-tip" role="note" aria-labelledby="admonition-tip-title">
+<div class="admonition-title">
+<div id="admonition-tip-title">
+<p>Tip</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-tip"></a>
 </div>
 <div>
-<p>Neovim &gt;= 0.7.0</p>
-<p>Note: If your version of Neovim is too old, then you can use a past release.</p>
-<p>Neovimのバージョンが古すぎる場合、過去のリリースを使用することができます。</p>
-<p>Note: If you are running a development version of Neovim (aka master), then breakage may occur if your build is behind latest.</p>
-<p>Neovimの開発版(別名master)を使っている場合、ビルドが最新より遅れていると破損する可能性があります。</p>
+<p>If your version of Neovim is too old, then you can use a past <a href="https://github.com/lewis6991/gitsigns.nvim/releases">release</a>.</p>
+<p>使用している Neovim のバージョンが古すぎる場合は、過去のリリースを使用することができます。</p>
+</div>
+</div>
+<div id="admonition-warning" class="admonition admonish-warning" role="note" aria-labelledby="admonition-warning-title">
+<div class="admonition-title">
+<div id="admonition-warning-title">
+<p>Warning</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-warning"></a>
+</div>
+<div>
+<p>If you are running a development version of Neovim (aka <code>master</code>), then breakage may occur if your build is behind latest.</p>
+<p>Neovimの開発版 (別名master) を使っている場合、ビルドが最新版より遅れていると、バグが発生する可能性があります。</p>
+</div>
+</div>
+<div id="admonition-default-2" class="admonition admonish-abstract" role="note">
+<div>
 <p>Newish version of git. Older versions may not work with some features.</p>
-<p>gitの新しいバージョン。古いバージョンでは、一部の機能が動作しない可能性があります。</p>
+<p>gitの新しいバージョン。古いバージョンでは機能によっては動作しないことがあります。</p>
 </div>
 </div>
-<p><code>Neovim</code>も<code>git</code>も、「<code>stable release</code>をあえて外している😑」 とかしてなければ気にしなくて平気です。</p>
-<h2 id="installation"><a class="header" href="#installation">Installation</a></h2>
+<p>まあ、ざっくり要約すると、
+<code>Neovim</code>も<code>git</code>も "<code>stable release</code>をあえて外している😑" とかしてなければ気にしなくて平気です。</p>
+<p>大抵の場合、そのまま進んで問題ないはずです。</p>
+<div id="admonition-default-3" class="admonition admonish-success" role="note">
+<div>
+<p>But long as there are stars above you</p>
+<p>You never need to doubt it</p>
+<p>でも 君の上に星が輝く限り</p>
+<p>疑う必要はないんだ</p>
+</div>
+</div>
+<div id="admonition-default-4" class="admonition admonish-success" role="note">
+<div>
+<p>I’ll make you so sure about it</p>
+<p>この想いを 君に伝えてみせるよ</p>
+</div>
+</div>
+<h2 id="-installation--usage"><a class="header" href="#-installation--usage">🛠️ Installation &amp; Usage</a></h2>
 <p>もう意地でも聖夜🌃に間に合わせます。<code>gitsigns</code>に負けないくらい超高速でいきましょう😆</p>
+<div id="admonition-example" class="admonition admonish-example" role="note" aria-labelledby="admonition-example-title">
+<div class="admonition-title">
+<div id="admonition-example-title">
+<p>Example</p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-example"></a>
+</div>
+<div>
+<p>Install using your package manager of choice. No setup required.</p>
+<p>Optional configuration can be passed to the setup function. Here is an example with most of the default settings:
+お好きなパッケージマネージャーを使ってインストールしてください。セットアップは不要です。</p>
+<p>オプションの設定をセットアップ関数に渡すことができます。以下はデフォルト設定の例です：</p>
+</div>
+</div>
 <p>今回は色々カスタマイズしていきたいので、
-まずは<a href="https://github.com/lewis6991/gitsigns.nvim#usage">Usage</a>に示されているデフォルトセッティングを入れておくことにしましょう。</p>
+まずは<a href="https://github.com/lewis6991/gitsigns.nvim#%EF%B8%8F-installation--usage">🛠️ Installation &amp; Usage</a>に示されているデフォルトセッティングを入れておくことにしましょう。</p>
 <p>これを基に、あとでカスタマイズしていきます。</p>
 <div id="admonition-extensionsgitsignslua" class="admonition admonish-example" role="note" aria-labelledby="admonition-extensionsgitsignslua-title">
 <div class="admonition-title">
@@ -164,6 +219,7 @@
     delay = 1000,
     ignore_whitespace = false,
     virt_text_priority = 100,
+    use_focus = true,
   },
   current_line_blame_formatter = '&lt;author&gt;, &lt;author_time:%R&gt; - &lt;summary&gt;',
   sign_priority = 6,
@@ -172,7 +228,6 @@
   max_file_length = 40000, -- Disable if file is longer than this (in lines)
   preview_config = {
     -- Options passed to nvim_open_win
-    border = 'single',
     style = 'minimal',
     relative = 'cursor',
     row = 0,
@@ -199,7 +254,6 @@
 </div>
 <p>ってことで、もうすっかりお馴染みの<code>:PackerSync</code>😆</p>
 <img src="img/gitsigns-install.webp" alt="gitsigns-install" width="696" height="555" fetchpriority="high">
-<p>もし<code>git</code>の管理下に居たのなら、もうこの時点で<code>sigincolumn</code>に装飾🎄がされてますね❗yeah!! 🍾</p>
 <div id="admonition-note" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-title">
 <div class="admonition-title">
 <div id="admonition-note-title">
@@ -213,7 +267,16 @@
 <p>まあなんか、やってやったぜってな感じはあります☺️</p>
 </div>
 </div>
-<h2 id="keymaps"><a class="header" href="#keymaps">Keymaps</a></h2>
+<p>もし<code>git</code>の管理下に居たのなら、もうこの時点で<code>sigincolumn</code>に装飾🎄がされてますね❗yeah!! 🍾</p>
+<div id="admonition-default-5" class="admonition admonish-success" role="note">
+<div>
+<p>God only knows<sup class="ft-reference"><button id="to-ft-1" data-href="#ft-1">1</button></sup>
+what I’d be without you</p>
+<p>君がいてくれなかったら 僕がどうなっていたか</p>
+<p>それは 神様だけが知っている</p>
+</div>
+</div>
+<h3 id="-keymaps"><a class="header" href="#-keymaps">🎹 Keymaps</a></h3>
 <p>カスタマイズに入る前に、キーマップも入れておきましょう。</p>
 <p>キーマップはデフォルトでは有効になっていないようなので、
 これも<a href="https://github.com/lewis6991/gitsigns.nvim#keymaps">Keymaps</a>からそのまま貼り付けちゃいます。</p>
@@ -239,7 +302,7 @@
 <div>
 <pre><code class="language-lua">-- require('gitsigns').setup {
 
--- setup の中にペーストします。
+-- 📋 以下のコードを setup の中にペーストします。
 
   on_attach = function(bufnr)
     local gitsigns = require('gitsigns')
@@ -270,23 +333,41 @@
     -- Actions
     map('n', '&lt;leader&gt;hs', gitsigns.stage_hunk)
     map('n', '&lt;leader&gt;hr', gitsigns.reset_hunk)
-    map('v', '&lt;leader&gt;hs', function() gitsigns.stage_hunk {vim.fn.line('.'), vim.fn.line('v')} end)
-    map('v', '&lt;leader&gt;hr', function() gitsigns.reset_hunk {vim.fn.line('.'), vim.fn.line('v')} end)
+
+    map('v', '&lt;leader&gt;hs', function()
+      gitsigns.stage_hunk({ vim.fn.line('.'), vim.fn.line('v') })
+    end)
+
+    map('v', '&lt;leader&gt;hr', function()
+      gitsigns.reset_hunk({ vim.fn.line('.'), vim.fn.line('v') })
+    end)
+
     map('n', '&lt;leader&gt;hS', gitsigns.stage_buffer)
-    map('n', '&lt;leader&gt;hu', gitsigns.undo_stage_hunk)
     map('n', '&lt;leader&gt;hR', gitsigns.reset_buffer)
     map('n', '&lt;leader&gt;hp', gitsigns.preview_hunk)
-    map('n', '&lt;leader&gt;hb', function() gitsigns.blame_line{full=true} end)
-    map('n', '&lt;leader&gt;tb', gitsigns.toggle_current_line_blame)
+    map('n', '&lt;leader&gt;hi', gitsigns.preview_hunk_inline)
+
+    map('n', '&lt;leader&gt;hb', function()
+      gitsigns.blame_line({ full = true })
+    end)
+
     map('n', '&lt;leader&gt;hd', gitsigns.diffthis)
-    map('n', '&lt;leader&gt;hD', function() gitsigns.diffthis('~') end)
-    map('n', '&lt;leader&gt;td', gitsigns.toggle_deleted)
+
+    map('n', '&lt;leader&gt;hD', function()
+      gitsigns.diffthis('~')
+    end)
+
+    map('n', '&lt;leader&gt;hQ', function() gitsigns.setqflist('all') end)
+    map('n', '&lt;leader&gt;hq', gitsigns.setqflist)
+
+    -- Toggles
+    map('n', '&lt;leader&gt;tb', gitsigns.toggle_current_line_blame)
+    map('n', '&lt;leader&gt;tw', gitsigns.toggle_word_diff)
 
     -- Text object
-    map({'o', 'x'}, 'ih', ':&lt;C-U&gt;Gitsigns select_hunk&lt;CR&gt;')
+    map({'o', 'x'}, 'ih', gitsigns.select_hunk)
   end
-
--- }
+}
 </code></pre>
 </div>
 </div>
@@ -302,20 +383,26 @@
 <a class="admonition-anchor-link" href="#admonition-h-gitsigns-functions"></a>
 </div>
 <div>
-<pre><code class="language-txt">Note functions with the {async} attribute are run asynchronously and are
-non-blocking (return immediately).
+<pre><code class="language-txt">Note functions with the {async} attribute are run asynchronously and accept
+an optional {callback} argument.
 
-{async} 属性を持つ関数は、非同期で実行され、ノンブロッキング（即座に戻る）であることに注意してください。
+{async} 属性を持つ関数は非同期に実行され、オプションの {callback} 引数を受け付けることに注意してください。
 </code></pre>
 </div>
 </div>
 <p>キーマップにはあらかじめ機能が割り当てられていて、「こんな色々できるんだぁ☺️」とサプライズ満載なので、ぜひ色々試してみてください。</p>
 <p><code>preview_hunk</code>とかちょっとした時に便利😉</p>
 <img src="img/preview_hunk.webp" alt="preview_hunk" width="424" height="152" loading="lazy">
-<h2 id="config"><a class="header" href="#config">Config</a></h2>
+<h2 id="-customize"><a class="header" href="#-customize">🥌 Customize</a></h2>
 <p>手始めに、装飾を少しアレンジしてみます。</p>
 <p>もちろん、このままがいい❗って場合はスキップしちゃって構いません。デフォルトでも全然イケてるプラグインです😆</p>
-<h3 id="signs--signs_staged"><a class="header" href="#signs--signs_staged">signs / signs_staged</a></h3>
+<div id="admonition-default-6" class="admonition admonish-success" role="note">
+<div>
+<p>If you should ever leave me</p>
+<p>君が 僕を見限るようなことがあるかもしれない</p>
+</div>
+</div>
+<h3 id="-signs--signs_staged"><a class="header" href="#-signs--signs_staged">🖊️ signs / signs_staged</a></h3>
 <p>ここでは表示する<code>text</code>を変えてみました。</p>
 <div id="admonition-extensionsgitsignslua-2" class="admonition admonish-example" role="note" aria-labelledby="admonition-extensionsgitsignslua-2-title">
 <div class="admonition-title">
@@ -325,22 +412,22 @@ non-blocking (return immediately).
 <a class="admonition-anchor-link" href="#admonition-extensionsgitsignslua-2"></a>
 </div>
 <div>
-<pre><code class="language-lua">  signs = {
-    add = { text = ' ▎' },
-    change = { text = ' ▎' },
-    delete = { text = ' ' },
-    topdelete = { text = ' ' },
-    changedelete = { text = '~' },
-    untracked = { text = '▎ ' },
-  },
-  signs_staged = {
-    add = { text = ' ▎' },
-    change = { text = ' ▎' },
-    delete = { text = ' ' },
-    topdelete = { text = ' ' },
-    changedelete = { text = '~' },
-    untracked = { text = '▎ ' },
-  },
+<pre><code class="language-lua">signs = {
+  add = { text = ' ▎' },
+  change = { text = ' ▎' },
+  delete = { text = ' ' },
+  topdelete = { text = ' ' },
+  changedelete = { text = '~' },
+  untracked = { text = '▎ ' },
+},
+signs_staged = {
+  add = { text = ' ▎' },
+  change = { text = ' ▎' },
+  delete = { text = ' ' },
+  topdelete = { text = ' ' },
+  changedelete = { text = '~' },
+  untracked = { text = '▎ ' },
+},
 </code></pre>
 </div>
 </div>
@@ -349,7 +436,7 @@ non-blocking (return immediately).
 <tr><td style="text-align: center"><strong>after</strong></td><td style="text-align: center"><img src="img/signs-after.webp" alt="signs-costom" width="696" height="555" loading="lazy"></td></tr>
 </tbody></table>
 </div>
-<h3 id="word_diff"><a class="header" href="#word_diff">word_diff</a></h3>
+<h3 id="-word_diff"><a class="header" href="#-word_diff">🏂 word_diff</a></h3>
 <div id="admonition-extensionsgitsignslua-3" class="admonition admonish-example" role="note" aria-labelledby="admonition-extensionsgitsignslua-3-title">
 <div class="admonition-title">
 <div id="admonition-extensionsgitsignslua-3-title">
@@ -358,7 +445,7 @@ non-blocking (return immediately).
 <a class="admonition-anchor-link" href="#admonition-extensionsgitsignslua-3"></a>
 </div>
 <div>
-<pre><code class="language-lua">  word_diff = true,
+<pre><code class="language-lua">word_diff = true,
 </code></pre>
 </div>
 </div>
@@ -422,20 +509,20 @@ non-blocking (return immediately).
 <a class="admonition-anchor-link" href="#admonition-extensionsonenordlua"></a>
 </div>
 <div>
-<pre><code class="language-lua">  custom_highlights = {
-    MatchParen = { fg = colors.none, bg = colors.none, style = 'bold,underline' },
+<pre><code class="language-lua">custom_highlights = {
+  MatchParen = { fg = colors.none, bg = colors.none, style = 'bold,underline' },
 
-    -- ここに追記する
-    GitSignsAddLnInline = { fg = colors.none, bg = colors.none, style = 'underline' },
-    GitSignsChangeLnInline = { fg = colors.none, bg = colors.none, style = 'underline' },
-    GitSignsDeleteLnInline = { fg = colors.purple, bg = colors.none, style = 'bold,underline' },
-  },
+  -- ここに追記する
+  GitSignsAddLnInline = { fg = colors.none, bg = colors.none, style = 'underline' },
+  GitSignsChangeLnInline = { fg = colors.none, bg = colors.none, style = 'underline' },
+  GitSignsDeleteLnInline = { fg = colors.purple, bg = colors.none, style = 'bold,underline' },
+},
 </code></pre>
 </div>
 </div>
 <img src="img/custom_highlights_after.webp" alt="custom_highlights_before_after" width="1220" height="670" loading="lazy">
 <p>ありがとう...❗onenord...❗</p>
-<h3 id="attach_to_untracked"><a class="header" href="#attach_to_untracked">attach_to_untracked</a></h3>
+<h3 id="-attach_to_untracked"><a class="header" href="#-attach_to_untracked">🧊 attach_to_untracked</a></h3>
 <div id="admonition-extensionsgitsignslua-4" class="admonition admonish-example" role="note" aria-labelledby="admonition-extensionsgitsignslua-4-title">
 <div class="admonition-title">
 <div id="admonition-extensionsgitsignslua-4-title">
@@ -444,7 +531,7 @@ non-blocking (return immediately).
 <a class="admonition-anchor-link" href="#admonition-extensionsgitsignslua-4"></a>
 </div>
 <div>
-<pre><code class="language-lua">  attach_to_untracked = false,
+<pre><code class="language-lua">attach_to_untracked = false,
 </code></pre>
 </div>
 </div>
@@ -469,7 +556,7 @@ non-blocking (return immediately).
 <p><a href="../options/signcolumn.html">signcolumn</a>でこれを知らなくて、
 <code>number</code>オプションを"クセつよ"呼ばわりしてたんですが、わたしが無知なだけでした...。</p>
 <p>ほんとごめんなさい😭</p>
-<h3 id="current_line_blame_formatter"><a class="header" href="#current_line_blame_formatter">current_line_blame_formatter</a></h3>
+<h3 id="-current_line_blame_formatter"><a class="header" href="#-current_line_blame_formatter">🦌 current_line_blame_formatter</a></h3>
 <div id="admonition-extensionsgitsignslua-5" class="admonition admonish-example" role="note" aria-labelledby="admonition-extensionsgitsignslua-5-title">
 <div class="admonition-title">
 <div id="admonition-extensionsgitsignslua-5-title">
@@ -478,17 +565,17 @@ non-blocking (return immediately).
 <a class="admonition-anchor-link" href="#admonition-extensionsgitsignslua-5"></a>
 </div>
 <div>
-<pre><code class="language-lua">  current_line_blame_formatter = '&lt;summary&gt; (&lt;author_time:%Y/%m&gt;)',
+<pre><code class="language-lua">current_line_blame_formatter = '&lt;summary&gt; (&lt;author_time:%Y/%m&gt;)',
 </code></pre>
 </div>
 </div>
 <p>わたし自身はそんなにうまく活用できてないんですが、これはちょっと面白いやつです。</p>
-<div id="admonition-gitsigns-config-current_line_blame_formatter" class="admonition admonish-info" role="note" aria-labelledby="admonition-gitsigns-config-current_line_blame_formatter-title">
+<div id="admonition-h-gitsigns-config-current_line_blame_formatter" class="admonition admonish-info" role="note" aria-labelledby="admonition-h-gitsigns-config-current_line_blame_formatter-title">
 <div class="admonition-title">
-<div id="admonition-gitsigns-config-current_line_blame_formatter-title">
-<p>gitsigns-config-current_line_blame_formatter</p>
+<div id="admonition-h-gitsigns-config-current_line_blame_formatter-title">
+<p>:h gitsigns-config-current_line_blame_formatter</p>
 </div>
-<a class="admonition-anchor-link" href="#admonition-gitsigns-config-current_line_blame_formatter"></a>
+<a class="admonition-anchor-link" href="#admonition-h-gitsigns-config-current_line_blame_formatter"></a>
 </div>
 <div>
 <pre><code class="language-txt">current_line_blame_formatter    gitsigns-config-current_line_blame_formatter
@@ -506,12 +593,12 @@ non-blocking (return immediately).
 </div>
 <p>フォーマット指定子については量が多いので手元で確認してもらうとして、
 デフォルトで<code>current_line_blame</code>を有効化するかどうかは、以下のパラメータです。</p>
-<div id="admonition-gitsigns-config-current_line_blame" class="admonition admonish-info" role="note" aria-labelledby="admonition-gitsigns-config-current_line_blame-title">
+<div id="admonition-h-gitsigns-config-current_line_blame" class="admonition admonish-info" role="note" aria-labelledby="admonition-h-gitsigns-config-current_line_blame-title">
 <div class="admonition-title">
-<div id="admonition-gitsigns-config-current_line_blame-title">
-<p>gitsigns-config-current_line_blame</p>
+<div id="admonition-h-gitsigns-config-current_line_blame-title">
+<p>:h gitsigns-config-current_line_blame</p>
 </div>
-<a class="admonition-anchor-link" href="#admonition-gitsigns-config-current_line_blame"></a>
+<a class="admonition-anchor-link" href="#admonition-h-gitsigns-config-current_line_blame"></a>
 </div>
 <div>
 <pre><code class="language-txt">current_line_blame                        gitsigns-config-current_line_blame
@@ -549,8 +636,56 @@ non-blocking (return immediately).
 <p><code>gitsigns</code>を<code>GitSign</code>とか言っちゃっててかわいいですね❗❗...はい、ごめんなさい🥹</p>
 </div>
 </div>
-<h2 id="wrap-up"><a class="header" href="#wrap-up">Wrap Up</a></h2>
+<h2 id="-plugin-integrations"><a class="header" href="#-plugin-integrations">🔗 Plugin Integrations</a></h2>
+<p><code>gitsign.nvim</code>と連携するプラグインとして、以下が挙げられています。</p>
+<div id="admonition-vim-fugitivehttpsgithubcomtpopevim-fugitive" class="admonition admonish-info" role="note" aria-labelledby="admonition-vim-fugitivehttpsgithubcomtpopevim-fugitive-title">
+<div class="admonition-title">
+<div id="admonition-vim-fugitivehttpsgithubcomtpopevim-fugitive-title">
+<p><a href="https://github.com/tpope/vim-fugitive">vim-fugitive</a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-vim-fugitivehttpsgithubcomtpopevim-fugitive"></a>
+</div>
+<div>
+<p>When viewing revisions of a file (via <code>:0Gclog</code> for example),
+Gitsigns will attach to the fugitive buffer with the base set to the commit immediately before the commit of that revision.
+This means the signs placed in the buffer reflect the changes introduced by that revision of the file.</p>
+<p>ファイルのリビジョンを（たとえば <code>:0Gclog</code> 経由で）表示する場合、Gitsigns はそのリビジョンのコミット直前のコミットをベースとして、fugitive バッファーにアタッチします。
+つまり、バッファに配置された標識は、そのファイルのそのリビジョンで導入された変更を反映しています。</p>
+</div>
+</div>
+<div id="admonition-troublenvimhttpsgithubcomfolketroublenvim" class="admonition admonish-info" role="note" aria-labelledby="admonition-troublenvimhttpsgithubcomfolketroublenvim-title">
+<div class="admonition-title">
+<div id="admonition-troublenvimhttpsgithubcomfolketroublenvim-title">
+<p><a href="https://github.com/folke/trouble.nvim">trouble.nvim</a></p>
+</div>
+<a class="admonition-anchor-link" href="#admonition-troublenvimhttpsgithubcomfolketroublenvim"></a>
+</div>
+<div>
+<p>If installed and enabled (via <code>config.trouble</code>; defaults to true if installed),
+<code>:Gitsigns setqflist</code> or <code>:Gitsigns setloclist</code> will open Trouble instead of Neovim's built-in quickfix or location list windows.</p>
+<p>インストールされて有効になっている場合 (<code>config.trouble</code> 経由; インストールされている場合のデフォルトは true)、
+<code>:Gitsigns setqflist</code> または <code>:Gitsigns setloclist</code> は
+Neovim 組み込みのクイックフィックスまたはロケーションリストウィンドウの代わりに Trouble を開きます。</p>
+</div>
+</div>
+<p>このサイトに限った話で言うと、<code>vim-fugitive</code>は (わたしが使ったことないので) 取り上げていなくて、
+<code>trouble.nvim</code>は<a href="../lsp/trouble.html">16.11章</a> で取り上げています。...ここからだと、だいぶ先ですが😅</p>
+<p>言うまでもなく、そんなの全然気にしないで、必要ならどんどんインストールしていきましょう❗</p>
+<div id="admonition-default-7" class="admonition admonish-success" role="note">
+<div>
+<p>Though life would still go on, believe me<sup class="ft-reference"><button id="to-ft-2" data-href="#ft-2">2</button></sup></p>
+<p>The world could show nothing to me</p>
+<p>So what good would living do me?</p>
+<p>きっとその世界では もう何も見せてはくれないんだ</p>
+<p>そんなところで生きることに 何の意味がある？</p>
+<p>それでも命を続けていく限り、信じてほしい</p>
+</div>
+</div>
+<h2 id="-wrap-up"><a class="header" href="#-wrap-up">🎁 Wrap Up</a></h2>
 <p>賑やかな装飾を施せましたね❗サンタさんも大喜びです🎅</p>
+<p>冒頭でも少し書いてるんですが、やっぱり<code>git</code>を使い出すと世界が広がるし、色々知れて楽しいと思います。</p>
+<p>"<code>git</code>触ったことない❗"って人でも、このプラグインをきっかけに使い始めるのは全然アリです❗</p>
+<p>下手しても失敗しても、未来で笑い飛ばせばいいんです❗❗...はい、ごめんなさい🥹</p>
 <div id="admonition-assemble" class="admonition admonish-success" role="note" aria-labelledby="admonition-assemble-title">
 <div class="admonition-title">
 <div id="admonition-assemble-title">
@@ -559,12 +694,32 @@ non-blocking (return immediately).
 <a class="admonition-anchor-link" href="#admonition-assemble"></a>
 </div>
 <div>
-<p>冒頭でも少し書いてるんですが、やっぱり<code>git</code>を使い出すと世界が広がるし、色々知れて楽しいと思うので、
-<code>git</code>触ったことない❗って人でも、このプラグインをきっかけに使い始めるのは全然アリです❗</p>
-<p>下手しても失敗しても、未来で笑い飛ばせばいいんです❗❗...はい、ごめんなさい🥹</p>
+<p>God only knows what I’d be without you<sup class="ft-reference"><button id="to-ft-3" data-href="#ft-3">3</button></sup></p>
+<p>君がいてくれなかったら 僕がどうなっていたか</p>
+<p>それは 神様だけが知っている</p>
 </div>
 </div>
-
+<aside class="ft-definition" role="doc-footnote" id="ft-1">
+<p><sup><a href="#to-ft-1">1:</a></sup>God Only Knows (by <a href="https://en.wikipedia.org/wiki/The_Beach_Boys">The Beach Boys</a>):
+1966年のアルバム<a href="https://en.wikipedia.org/wiki/Pet_Sounds">Pet Sounds</a>に収録されている曲。
+<a href="https://en.wikipedia.org/wiki/Brian_Wilson">Brian Wilson</a>と<a href="https://en.wikipedia.org/wiki/Tony_Asher">Tony Asher</a>によって書かれたこの曲は、
+<a href="https://en.wikipedia.org/wiki/Baroque_pop">バロック</a>スタイルのラブソングで、そのハーモニーの革新性と複雑さ、珍しい楽器編成、
+歌詞と音楽の両面における典型的なポピュラー音楽の慣習の破壊によって際立っている。
+この曲は、史上最も偉大な曲のひとつであり、The Beach Boys の最高傑作であると賞賛されている。</p>
+<p>この曲の洗練された音楽性は、3つの対位法的なヴォーカルパートと弱い調性中心 (EキーとAキーの間で競い合う) によって示されている。
+歌詞は、恋人のいない人生は神によってのみ理解できると主張する語り手の視点から表現されている。
+Wilson はこの曲のきっかけを、Asher が<a href="https://en.wikipedia.org/wiki/Stella_by_Starlight">Stella by Starlight</a>のような
+スタンダード・ナンバーに親しんでいたことに求めていた。</p>
+</aside>
+<aside class="ft-definition" role="doc-footnote" id="ft-2">
+<p><sup><a href="#to-ft-2">2:</a></sup>God Only Knows を自殺願望を助長する曲と解釈する論者もいるが、そのような解釈は作曲者が意図したものではない。</p>
+</aside>
+<aside class="ft-definition" role="doc-footnote" id="ft-3">
+<p><sup><a href="#to-ft-3">3:</a></sup>この曲の高度な和声構造は、
+<a href="https://en.wikipedia.org/wiki/L%C3%A9o_Delibes">Delibes</a>, <a href="https://en.wikipedia.org/wiki/Johann_Sebastian_Bach">Bach</a>,
+<a href="https://en.wikipedia.org/wiki/Igor_Stravinsky">Stravinsky</a>といったクラシック作曲家の作品と比較されることがある。
+<a href="https://en.wikipedia.org/wiki/God_Only_Knows">Wikipedia</a>より</p>
+</aside>
 
           <nav id="nav-wrapper" aria-label="Page navigation">
             <a rel="prev" href="../../neovim/plugin/nvim-hlslens.html" class="chapters" id="prev" aria-label="Previous chapter: nvim-hlslens">
