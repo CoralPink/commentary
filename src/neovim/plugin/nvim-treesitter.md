@@ -16,7 +16,7 @@ The `nvim-treesitter` plugin provides
 
 For details on these and how to help improving them, see [CONTRIBUTING.md](https://github.com/nvim-treesitter/nvim-treesitter/blob/main/CONTRIBUTING.md).
 
-1. [**tree-sitter parsers**](SUPPORTED_LANGUAGES.md) のインストール、更新、削除機能;
+1. [**tree-sitter parsers**](https://github.com/nvim-treesitter/nvim-treesitter/blob/main/SUPPORTED_LANGUAGES.md) のインストール、更新、削除機能;
 2. Neovim に組み込まれた tree-sitter 機能をこれらの言語で有効にするための **クエリ** 集。
 3. Neovim へのアップストリームが検討されている [treesitter-based features](https://github.com/nvim-treesitter/nvim-treesitter/tree/main)のステージング・グラウンド。
 
@@ -308,7 +308,7 @@ already installed.
 ~~~
 
 `language` の部分は
-[https://github.com/nvim-treesitter/nvim-treesitter/blob/main/SUPPORTED_LANGUAGES.md](https://github.com/nvim-treesitter/nvim-treesitter/blob/main/SUPPORTED_LANGUAGES.md)
+[SUPPORTED_LANGUAGES.md](https://github.com/nvim-treesitter/nvim-treesitter/blob/main/SUPPORTED_LANGUAGES.md)
 に示されているものから選んで指定します。
 
 例えば `rust`パーサーをインストールしたいなー😆 ってなったら以下のコマンドを使用します。
