@@ -2,6 +2,7 @@
 @use 'headline';
 
 @use 'variables' as var;
+@use 'mixins' as mixin;
 
 @view-transition {
   navigation: auto;
@@ -122,12 +123,17 @@ body {
     border-radius: 1rem;
   }
 
-  // The initial state should be block/none, depending on the screen area.
-  //
-  // This initial value is not necessarily accurate.
-  // (As it does not address the case where a user jumps in with the sidebar closed in a large area.)
   @media (max-width: var.$mobile-max-width) {
-    display: none;
+    position: absolute;
+
+    top: var.$menu-bar-height;
+    bottom: 0;
+
+    left: 0.1rem;
+    width: var.$sidebar-width;
+    z-index: 50;
+
+    @include mixin.glass-filter();
   }
 }
 

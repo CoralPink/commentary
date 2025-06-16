@@ -1,16 +1,8 @@
 @use 'variables' as var;
-@use 'mixins' as mixin;
 
 #sidebar-scrollbox {
-  bottom: 0;
-  position: fixed;
-
-  top: var.$menu-bar-height;
-  left: 0.1rem;
-
-  width: var.$sidebar-width;
-
-  @include mixin.glassy-mask(var(--bg));
+  top: 0;
+  height: 100%;
   z-index: 50;
 
   overflow-y: scroll;
@@ -21,6 +13,7 @@
 
   @media (max-width: var.$mobile-max-width) {
     bottom: var.$pagetoc-bottom-shift;
+    border-right: 0.1em solid var.$color-pink;
   }
 
   &>ol {
