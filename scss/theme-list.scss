@@ -1,3 +1,5 @@
+@use 'mixins' as mixin;
+
 body,
 code,
 kbd,
@@ -13,6 +15,9 @@ kbd,
   margin: 0 2.4rem;
   padding: 0.4rem;
   font-size: 0.7rem;
+
+  border-radius: 0.4rem;
+  //@include mixin.glass-filter($radius: 0.4rem);
 
   .theme {
     border: 0;

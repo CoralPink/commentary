@@ -1,4 +1,3 @@
-@use 'mixins' as mixin;
 @use 'variables' as var;
 
 pre {
@@ -73,7 +72,8 @@ mark {
   top: var.$menu-bar-height;
 
   color: var(--fg);
-  @include mixin.glassy-mask(var(--theme-popup-bg));
+  background-color: var(--theme-popup-bg);
+  border: 0.1rem solid var(--theme-popup-border);
 }
 
 .table-wrapper {
