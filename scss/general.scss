@@ -124,7 +124,7 @@ body {
   }
 
   @media (max-width: var.$mobile-max-width) {
-    position: absolute;
+    position: fixed;
 
     top: var.$menu-bar-height;
     bottom: 0;

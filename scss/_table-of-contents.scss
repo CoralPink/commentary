@@ -70,11 +70,11 @@
 
 .bottomtoc {
   position: fixed;
-  bottom: 0;
+  bottom: 0.24rem;
 
   border-top: 0.1em solid var.$color-pink;
   width: 100dvw;
-  padding: 0.24em 0;
+  padding: 0.24rem 0;
   z-index: 30;
 
   @include mixin.glass-filter();

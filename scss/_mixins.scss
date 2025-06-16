@@ -4,13 +4,14 @@
 @mixin glass-filter($blur: 24px, $saturate: 1.4, $brightness: 1.1, $distort-scale: 15, $bg-alpha: 0.24, $radius: 1rem) {
   overflow: hidden;
   border-radius: $radius;
+  box-shadow: 0 16px 32px -8px rgba(255,56,128,0.2);
 
   &::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: inherit;
-    z-index: 0;
+    background: radial-gradient(ellipse at top left, rgba(255, 255, 255, 0.3), transparent);
+    z-index: 10;
     pointer-events: none;
   }
 
@@ -21,12 +22,11 @@
     backdrop-filter: blur($blur) saturate($saturate) brightness($brightness);
     background: rgba(255, 255, 255, $bg-alpha);
     z-index: 1;
-    pointer-events: none;
   }
 
-  > * {
+  >* {
     position: relative;
-    z-index: 2;
+    z-index: 5;
   }
 }
 
