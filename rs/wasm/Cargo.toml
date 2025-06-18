@@ -22,7 +22,7 @@ strip = "symbols"
 
 [dependencies]
 arrayvec = "=0.7.6"
-getset = "=0.1.5"
+getset = "=0.1.6"
 html-escape = "=0.2.13"
 js-sys = "=0.3.77"
 macros = { path = "macros" }
