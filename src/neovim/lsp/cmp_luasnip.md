@@ -275,23 +275,22 @@ Wow look out! it's-
 document.addEventListener(
   'DOMContentLoaded',
   () => {
-    const PATH_PREFIX = 'img/tokyo-yakei';
-
     const videos = [
-      { vd1: '1a', vd2: '2a', probability: 95 },
-      { vd1: '1b', vd2: '2b', probability: 5 },
+      { vd1: 'tokyo-yakei-1a', vd2: 'tokyo-yakei-2a', probability: 25 }, // みやび
+      { vd1: 'tokyo-yakei-1b', vd2: 'tokyo-yakei-2b', probability: 25 }, // わさび
+      { vd1: 'nya-shougi-ondo', vd2: 'saitama-tokyo', probability: 50 }, // なすび
     ];
 
     const replaceVideo = (id, hit) => {
       const v = document.createElement('video');
-      v.setAttribute('poster', `${PATH_PREFIX}-${hit}-thumbnail.webp`);
+      v.setAttribute('poster', `img/${hit}-thumbnail.webp`);
       v.setAttribute('width', '1280');
       v.setAttribute('height', '720');
       v.setAttribute('controls', 'true');
       v.setAttribute('preload', 'none');
 
       const s = document.createElement('source');
-      s.setAttribute('src', `${PATH_PREFIX}-${hit}.webm`);
+      s.setAttribute('src', `img/${hit}.webm`);
       s.setAttribute('type', 'video/webm');
 
       v.appendChild(s);
