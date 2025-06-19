@@ -188,6 +188,7 @@ I traveled each and every highway
 
 私はあらゆる道を旅してきた
 ```
+![nagashima3](img/nagashima3.webp)
 
 ```admonish success title=""
 And more, much more than this
@@ -302,12 +303,7 @@ Yes, it was my way
 
 こうなったらお祝いだー❗❗🥳
 
-```admonish quote title=""
-<video controls preload="none" width="1280" height="720" poster="img/mm-bon-odori-thumbnail.webp">
-  <source src="img/mm-bon-odori.webm" type="video/webm">
-  Your browser does not support the video/webm.
-</video>
-```
+<div id="randomVideo1"></div>
 
 宴もたけなわではございますが、
 
@@ -339,3 +335,47 @@ Yes, it was my way
 ```admonish success
 でんどう　いり　おめでとう❗
 ```
+
+<!-- Roulette! -->
+<script>
+document.addEventListener(
+  'DOMContentLoaded',
+  () => {
+    const videos = [
+      { vd: 'mm-bon-odori', probability: 88 },
+      { vd: 'anpanman', probability: 12 },
+    ];
+
+    const replaceVideo = (id, hit) => {
+      const v = document.createElement('video');
+      v.setAttribute('poster', `img/${hit}-thumbnail.webp`);
+      v.setAttribute('width', '1280');
+      v.setAttribute('height', '720');
+      v.setAttribute('controls', 'true');
+      v.setAttribute('preload', 'none');
+
+      const s = document.createElement('source');
+      s.setAttribute('src', `img/${hit}.webm`);
+      s.setAttribute('type', 'video/webm');
+
+      v.appendChild(s);
+      document.getElementById(id).replaceWith(v);
+    };
+
+    const totalProbability = videos.reduce((sum, video) => sum + video.probability, 0);
+    const random = Math.random() * totalProbability;
+
+    let cumulativeProbability = 0;
+
+    for (const video of videos) {
+      cumulativeProbability += video.probability;
+
+      if (random <= cumulativeProbability) {
+        replaceVideo('randomVideo1', video.vd);
+        return;
+      }
+    }
+  },
+  { once: true, passive: true },
+);
+</script>
