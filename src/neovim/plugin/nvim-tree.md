@@ -425,6 +425,8 @@ UI rendering setup
 UI レンダリングの設定
 ```
 
+![ueno-panda](img/ueno-panda.webp)
+
 #### highlight_git
 
 ~~~admonish info title=":h nvim-tree.renderer.highlight_git"
@@ -526,6 +528,8 @@ Configuration for various actions.
 
 様々なアクションを行うための設定。
 ```
+
+![ueno-panda](img/ueno-fang.webp)
 
 #### expand_all
 
