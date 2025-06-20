@@ -11,14 +11,10 @@ import {
   getAvailableThemes,
   switchTheme,
   type Theme,
-  type ThemeConfig,
-  type ColorPalette,
-  type Typography,
-  type Spacing
+  type ThemeConfig
 } from './index';
 
 // Mock DOM environment setup
-const originalDocument = global.document;
 
 describe('Theme Creation', () => {
   test('should create a theme with complete configuration', () => {
@@ -279,7 +275,6 @@ describe('Theme Validation', () => {
     const incompleteTheme = {
       colors: {
         primary: '#0066cc'
-        // Missing required background and foreground colors
       }
     } as any;
     
