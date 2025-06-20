@@ -28,13 +28,6 @@ let finder: Finder;
 
 let focusedLi: Element;
 
-class SearchNavigationError extends Error {
-  constructor(message: string) {
-    super(message);
-    this.name = 'SearchNavigationError';
-  }
-}
-
 const showResults = (): void => {
   const result = finder.search(elmSearchBar.value.trim()) as SearchResult;
 
@@ -102,13 +95,7 @@ const searchMouseupHandler = (ev: MouseEvent): void => {
     return;
   }
 
-  try {
-    jumpUrl();
-  } catch (error) {
-    if (error instanceof SearchNavigationError) {
-      console.warn('searchMouseupHandler - Navigation error:', error.message);
-    }
-  }
+  jumpUrl();
 };
 
 const closedPopover = (ev: Event): void => {
