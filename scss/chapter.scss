@@ -1,11 +1,8 @@
 @use 'variables' as var;
 
 #sidebar-scrollbox {
-  bottom: 0;
-
-  position: fixed;
-  top: var.$menu-bar-height;
-  width: var.$sidebar-width;
+  height: 100%;
+  z-index: 50;
 
   overflow-y: scroll;
   overscroll-behavior: contain;
@@ -14,7 +11,12 @@
   contain: layout style paint;
 
   @media (max-width: var.$mobile-max-width) {
+    top: 0;
     bottom: var.$pagetoc-bottom-shift;
+  }
+
+  @media (min-width: var.$mobile-max-width) {
+    position: fixed;
   }
 
   &>ol {

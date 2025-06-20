@@ -1,4 +1,10 @@
+@use "popup-vars" as popup;
+
 /* https://highlightjs.readthedocs.io/en/latest/css-classes-reference.html */
+
+$theme-popup-bg: #1e2030;
+$theme-popup-border: #6e738d;
+
 :root {
   --bg: #24273a;
   --fg: #cad3f5;
@@ -12,8 +18,7 @@
   --icons-hover: #939ab7;
   --links: #8aadf4;
   --inline-code-color: #f5a97f;
-  --theme-popup-bg: #1e2030;
-  --theme-popup-border: #6e738d;
+  @include popup.define-popup-vars($theme-popup-bg, $theme-popup-border);
   --theme-hover: #363a4f;
   --quote-bg: #1e2030;
   --quote-border: #181926;
