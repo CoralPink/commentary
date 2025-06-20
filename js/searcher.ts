@@ -28,13 +28,6 @@ let finder: Finder;
 
 let focusedLi: Element;
 
-class SearchNavigationError extends Error {
-  constructor(message: string) {
-    super(message);
-    this.name = 'SearchNavigationError';
-  }
-}
-
 const showResults = (): void => {
   const result = finder.search(elmSearchBar.value.trim()) as SearchResult;
 
@@ -52,7 +45,7 @@ const jumpUrl = (): void => {
   const aElement = focusedLi?.querySelector('a') as HTMLAnchorElement;
 
   if (!aElement) {
-    throw new SearchNavigationError('The link does not exist.');
+    return;
   }
 
   const url = new URL(aElement.href);
@@ -90,13 +83,8 @@ const popupFocus = (ev: KeyboardEvent): void => {
     updateFocus(ev.target as HTMLElement);
     return;
   }
-  try {
-    jumpUrl();
-  } catch (error) {
-    if (error instanceof SearchNavigationError) {
-      console.warn('popupFocus - Navigation error:', error.message);
-    }
-  }
+
+  jumpUrl();
 };
 
 const searchMouseupHandler = (ev: MouseEvent): void => {
@@ -107,13 +95,7 @@ const searchMouseupHandler = (ev: MouseEvent): void => {
     return;
   }
 
-  try {
-    jumpUrl();
-  } catch (error) {
-    if (error instanceof SearchNavigationError) {
-      console.warn('searchMouseupHandler - Navigation error:', error.message);
-    }
-  }
+  jumpUrl();
 };
 
 const closedPopover = (ev: Event): void => {
@@ -276,7 +258,9 @@ const initSearch = async (): Promise<void> => {
   icon.addEventListener(
     'click',
     () => {
-      elmPop.checkVisibility() ? hiddenSearch() : showSearch();
+      if (!elmPop.checkVisibility()) {
+        showSearch();
+      }
     },
     { once: false, passive: true },
   );
