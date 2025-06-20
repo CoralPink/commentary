@@ -19,10 +19,6 @@
     position: fixed;
   }
 
-  @media (min-width: var.$mobile-max-width) {
-    position: fixed;
-  }
-
   &>ol {
     margin-bottom: 2em;
     padding-left: 1em;
