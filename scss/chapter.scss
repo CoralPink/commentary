@@ -1,7 +1,6 @@
 @use 'variables' as var;
 
 #sidebar-scrollbox {
-  top: 0;
   height: 100%;
   z-index: 50;
 
@@ -12,8 +11,12 @@
   contain: layout style paint;
 
   @media (max-width: var.$mobile-max-width) {
+    top: 0;
     bottom: var.$pagetoc-bottom-shift;
-    border-right: 0.1em solid var.$color-pink;
+  }
+
+  @media (min-width: var.$mobile-max-width) {
+    position: fixed;
   }
 
   &>ol {
