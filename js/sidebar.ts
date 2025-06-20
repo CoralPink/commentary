@@ -101,14 +101,8 @@ const clickHide = (ev: PointerEvent): void => {
     return;
   }
 
-  const pop = document.getElementById(ID_SCROLLBOX);
-
-  if (!pop || pop.contains(ev.target as Node)) {
-    return;
-  }
-
   hideSidebar();
-  document.removeEventListener('pointerdown', clickHide);
+  document.getElementById('main')?.removeEventListener('pointerdown', clickHide);
 };
 
 const showSidebar = (write = true): void => {
@@ -127,7 +121,7 @@ const showSidebar = (write = true): void => {
   }
 
   setTimeout(() => {
-    document.addEventListener('pointerdown', clickHide, { once: false, passive: true });
+    document.getElementById('main')?.addEventListener('pointerdown', clickHide, { once: false, passive: true });
   });
 };
 

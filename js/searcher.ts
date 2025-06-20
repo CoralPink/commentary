@@ -52,7 +52,7 @@ const jumpUrl = (): void => {
   const aElement = focusedLi?.querySelector('a') as HTMLAnchorElement;
 
   if (!aElement) {
-    throw new SearchNavigationError('The link does not exist.');
+    return;
   }
 
   const url = new URL(aElement.href);
@@ -276,7 +276,9 @@ const initSearch = async (): Promise<void> => {
   icon.addEventListener(
     'click',
     () => {
-      elmPop.checkVisibility() ? hiddenSearch() : showSearch();
+      if (!elmPop.checkVisibility()) {
+        showSearch();
+      }
     },
     { once: false, passive: true },
   );
