@@ -1,4 +1,4 @@
-@use 'mixins' as mixin;
+@use 'mixins' as mixins;
 @use 'variables' as var;
 
 @mixin anchor-gradient($angle) {
@@ -77,7 +77,7 @@
   padding: 0.24rem 0;
   z-index: 30;
 
-  @include mixin.glass-filter($radius: 0.4rem);
+  @include mixins.glass-filter($radius: 0.4rem);
 
   ::-webkit-scrollbar {
     height: var.$scrollbar-webkit-height;

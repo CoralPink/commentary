@@ -1,5 +1,5 @@
 @use 'variables' as var;
-@use 'mixins' as mixin;
+@use 'mixins' as mixins;
 
 #search-pop {
   width: 84dvw;
@@ -14,7 +14,7 @@
   border-radius: 1rem;
 
   &>#searchbar {
-    @include mixin.responsive-input(1rem, 0.75rem);
+    @include mixins.responsive-input(1rem, 0.75rem);
 
     padding: 0.7em 1.4em;
 
