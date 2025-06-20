@@ -1,0 +1,48 @@
+@use "sass:math";
+@use 'variables' as var;
+
+@mixin glass-filter($blur: 4px, $saturate: 1.4, $brightness: 1.0, $overlay-alpha: 0.16, $base-alpha: 0.4, $radius: 1rem) {
+  overflow: hidden;
+  border-radius: $radius;
+  box-shadow: 0 16px 32px -8px rgba(var(--theme-popup-border-rgb), 0.2);
+  text-shadow: 0 0 1px rgba(0, 0, 0, 0.4);
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at top left, rgba(var(--theme-popup-bg-rgb), $overlay-alpha), transparent);
+    z-index: 10;
+    pointer-events: none;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    backdrop-filter: blur($blur) saturate($saturate) brightness($brightness);
+    background: rgba(var(--theme-popup-bg-rgb), $base-alpha);
+    z-index: 1;
+  }
+
+  >* {
+    position: relative;
+    z-index: 5;
+  }
+}
+
+/*
+ * When I try to type on my iPhone, it zooms in on itself and does not release this zoom when I finish typing.
+ * This site considers this behavior undesirable, so we have cheated the system.
+ *
+ * note: iOS automatically zooms when input elements have a font size smaller than 16px.
+ * This mixin maintains a larger base font size while visually scaling down the input, preventing the zoom.
+ */
+@mixin responsive-input($base-font-size, $desired-font-size) {
+  $scale: math.div($desired-font-size, $base-font-size);
+
+  font-size: $base-font-size;
+  transform: scale($scale);
+  transform-origin: left;
+  width: math.div(100%, $scale);
+}

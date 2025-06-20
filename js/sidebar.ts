@@ -14,9 +14,11 @@ const ID_TOGGLE_BUTTON = 'sidebar-toggle';
 const SAVE_STORAGE = 'mdbook-sidebar';
 
 let rootPath: string;
-let isInitialized = false;
+let mobileMaxWidth: number;
 
 let searchPop: HTMLElement;
+
+let isInitialized = false;
 
 const getCurrentUrl = (): URL => {
   const current = document.location.href.toString();
@@ -80,6 +82,29 @@ const initContent = async (): Promise<void> => {
   sidebar.setAttribute('aria-busy', 'false');
 };
 
+const hideSidebar = (write = true): void => {
+  document.getElementById(ID_PAGE)?.classList.remove('show-sidebar');
+
+  const sidebar = document.getElementById(ID_SIDEBAR) as HTMLElement;
+  sidebar.style.display = 'none';
+  sidebar.setAttribute('aria-hidden', 'true');
+
+  document.getElementById(ID_TOGGLE_BUTTON)?.setAttribute('aria-expanded', 'false');
+
+  if (write) {
+    writeLocalStorage(SAVE_STORAGE, 'hidden');
+  }
+};
+
+const clickHide = (ev: PointerEvent): void => {
+  if (window.innerWidth >= mobileMaxWidth && ev.pointerType !== 'touch') {
+    return;
+  }
+
+  hideSidebar();
+  document.getElementById('main')?.removeEventListener('pointerdown', clickHide);
+};
+
 const showSidebar = (write = true): void => {
   initContent();
 
@@ -94,20 +119,10 @@ const showSidebar = (write = true): void => {
   if (write) {
     writeLocalStorage(SAVE_STORAGE, 'visible');
   }
-};
 
-const hideSidebar = (write = true): void => {
-  document.getElementById(ID_PAGE)?.classList.remove('show-sidebar');
-
-  const sidebar = document.getElementById(ID_SIDEBAR) as HTMLElement;
-  sidebar.style.display = 'none';
-  sidebar.setAttribute('aria-hidden', 'true');
-
-  document.getElementById(ID_TOGGLE_BUTTON)?.setAttribute('aria-expanded', 'false');
-
-  if (write) {
-    writeLocalStorage(SAVE_STORAGE, 'hidden');
-  }
+  setTimeout(() => {
+    document.getElementById('main')?.addEventListener('pointerdown', clickHide, { once: false, passive: true });
+  });
 };
 
 const toggleSidebar = (): void =>
@@ -128,12 +143,17 @@ const toggleHandler = (key: string): void => {
 export const initSidebar = (root: string): void => {
   rootPath = root;
 
-  const mobile_max_width = getRootVariableNum('--mobile-max-width');
+  try {
+    mobileMaxWidth = getRootVariableNum('--mobile-max-width');
 
-  if (window.innerWidth < mobile_max_width) {
+    if (window.innerWidth < mobileMaxWidth) {
+      hideSidebar();
+    } else {
+      localStorage.getItem(SAVE_STORAGE) === 'hidden' ? hideSidebar(false) : showSidebar(false);
+    }
+  } catch (err: unknown) {
+    console.error(`Failed to load "mobile-max-width"`);
     hideSidebar();
-  } else {
-    localStorage.getItem(SAVE_STORAGE) === 'hidden' ? hideSidebar(false) : showSidebar(false);
   }
 
   searchPop = document.getElementById('search-pop') as HTMLElement;
