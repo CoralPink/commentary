@@ -90,13 +90,8 @@ const popupFocus = (ev: KeyboardEvent): void => {
     updateFocus(ev.target as HTMLElement);
     return;
   }
-  try {
-    jumpUrl();
-  } catch (error) {
-    if (error instanceof SearchNavigationError) {
-      console.warn('popupFocus - Navigation error:', error.message);
-    }
-  }
+
+  jumpUrl();
 };
 
 const searchMouseupHandler = (ev: MouseEvent): void => {
