@@ -8,6 +8,7 @@
   a {
     text-decoration: none;
   }
+
   p {
     display: inline;
   }
@@ -47,24 +48,26 @@
   overflow-y: scroll;
 
   transform: scale(0.95);
-  z-index: 20;
   opacity: 0;
   transition: opacity 150ms ease, transform 150ms ease;
 
   &.show {
     opacity: 1;
     transform: scale(1);
+    z-index: 100;
   }
 
   a {
     text-decoration: none;
 
-    &:link, &:visited {
+    &:link,
+    &:visited {
       color: var(--links);
       margin-left: .2em;
       margin-right: .2em;
     }
   }
+
   p {
     display: inline;
   }

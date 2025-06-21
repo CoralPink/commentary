@@ -2,7 +2,6 @@
 
 #sidebar-scrollbox {
   height: calc(100dvh - var.$menu-bar-height);
-  z-index: 50;
 
   overflow-y: scroll;
   overscroll-behavior: contain;
