@@ -144,7 +144,7 @@ export const initSidebar = (root: string): void => {
   rootPath = root;
 
   try {
-    mobileMaxWidth = getRootVariableNum('--mobile-max-width');
+    mobileMaxWidth = getRootVariableNum('--breakpoint-ui-wide');
 
     if (window.innerWidth < mobileMaxWidth) {
       hideSidebar();
@@ -152,7 +152,7 @@ export const initSidebar = (root: string): void => {
       localStorage.getItem(SAVE_STORAGE) === 'hidden' ? hideSidebar(false) : showSidebar(false);
     }
   } catch (err: unknown) {
-    console.error(`Failed to load "mobile-max-width"`);
+    console.error(`Failed to load "breakpoint-ui-wide"`);
     hideSidebar();
   }
 

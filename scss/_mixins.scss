@@ -3,6 +3,7 @@
 
 @mixin glass-filter($blur: 4px, $saturate: 1.4, $brightness: 1.0, $overlay-alpha: 0.16, $base-alpha: 0.4, $radius: 1rem) {
   overflow: hidden;
+  border: 1px solid rgba(var(--theme-popup-border-rgb), 0.8);
   border-radius: $radius;
   box-shadow: 0 16px 32px -8px rgba(var(--theme-popup-border-rgb), 0.2);
   text-shadow: 0 0 1px rgba(0, 0, 0, 0.4);

@@ -1,7 +1,7 @@
 @use 'variables' as var;
 
 #sidebar-scrollbox {
-  height: 100%;
+  height: calc(100dvh - var.$menu-bar-height);
   z-index: 50;
 
   overflow-y: scroll;
@@ -10,12 +10,7 @@
 
   contain: layout style paint;
 
-  @media (max-width: var.$mobile-max-width) {
-    top: 0;
-    bottom: var.$pagetoc-bottom-shift;
-  }
-
-  @media (min-width: var.$mobile-max-width) {
+  @media (min-width: var.$breakpoint-ui-wide) {
     position: fixed;
   }
 
