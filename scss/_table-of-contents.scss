@@ -33,7 +33,7 @@
     font-size: 0.625em;
     font-style: italic;
 
-    border-left: 0.1em solid var.$color-pink;
+    border-left: 1px solid var.$color-pink;
 
     a {
       @include anchor-gradient(to right);
@@ -72,12 +72,15 @@
   position: fixed;
   bottom: 0;
 
-  border-top: 0.1em solid var.$color-pink;
   width: 100dvw;
   padding: 0.24rem 0;
   z-index: 30;
 
   @include mixins.glass-filter($radius: 0.4rem);
+
+  & {
+    border-top: 1px solid var.$color-pink; // Overwrite only the top of the border
+  }
 
   ::-webkit-scrollbar {
     height: var.$scrollbar-webkit-height;
@@ -112,7 +115,7 @@
     }
   }
 
-  @media (min-width: var.$mobile-max-width) {
+  @media (min-width: var.$breakpoint-ui-wide) {
     display: none;
   }
 }

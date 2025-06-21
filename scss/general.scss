@@ -9,7 +9,7 @@
 }
 
 :root {
-  --mobile-max-width: #{var.$mobile-max-width};
+  --breakpoint-ui-wide: #{var.$breakpoint-ui-wide};
 }
 
 body {
@@ -98,20 +98,21 @@ body {
 #page {
   display: grid;
 
-  @media (min-width: var.$mobile-max-width) {
+  @media (min-width: var.$breakpoint-ui-wide) {
     grid-template-columns: 1fr var.$pagetoc-width;
   }
 
   &.show-sidebar {
     grid-template-columns: 1fr;
 
-    @media (min-width: var.$mobile-max-width) {
+    @media (min-width: var.$breakpoint-ui-wide) {
       grid-template-columns: var.$sidebar-width 1fr var.$pagetoc-width;
     }
   }
 }
 
 #sidebar {
+  height: 100dvh;
   scrollbar-color: var(--scrollbar) var(--bg);
 
   ::-webkit-scrollbar {
@@ -123,11 +124,8 @@ body {
     border-radius: 1rem;
   }
 
-  @media (max-width: var.$mobile-max-width) {
+  @media (max-width: var.$breakpoint-ui-wide) {
     position: fixed;
-
-    top: var.$menu-bar-height;
-    bottom: 0;
 
     left: 0.1rem;
     width: var.$sidebar-width;
@@ -143,7 +141,7 @@ main {
   margin-left: 2em;
   margin-right: 2em;
 
-  @media (max-width: var.$mobile-max-width) {
+  @media (max-width: var.$breakpoint-ui-wide) {
     margin-bottom: var.$pagetoc-bottom-shift;
   }
 }
