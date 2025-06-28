@@ -28,6 +28,11 @@ Neovim >= 0.8.0
 [fix!: highlight groups for neovim 0.8 #50](https://github.com/rmehri01/onenord.nvim/commit/98c64654375bc087e96bca08fd194066d778717c)
 ```
 
+<video controls preload="none" width="1280" height="720" poster="img/miracle-gift-parade-part2.webp">
+  <source src="img/miracle-gift-parade-part2.webm" type="video/webm">
+  Your browser does not support the video/webm.
+</video>
+
 ## Install & Config
 
 じゃあ、チャチャっと❗

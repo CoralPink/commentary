@@ -39,6 +39,43 @@ If you can't or don't want to update, check out the
 
 ところどころ、スクリーンショットが古いままになってたりはしますが、気にしないでください❗
 
+```admonish danger title=""
+You say you want a revolution{{footnote:
+Revolution (by [The Beatles](https://en.wikipedia.org/wiki/The_Beatles)):
+1968 年初頭の政治的抗議運動に影響された Lennon の歌詞は、
+社会変革の必要性に共感する一方で、新左翼の一部のメンバーが主張する暴力的な戦術には疑問を表明していた。
+
+これまで大体において、The Beatles は自分たちの音楽で政治的見解を公に表現することを避けていたが、
+他のメンバーの反対にもかかわらず、彼はこの曲にこだわり、シングルに収録するよう主張していた。
+(唯一あからさまに政治的な楽曲としては[Taxman](https://en.wikipedia.org/wiki/Taxman)があった。)
+
+8月にリリースされたこの曲は、政治的左派から自分たちの大義に対する裏切りであり、
+The Beatles がカウンターカルチャーの急進的な要素から外れていることの表れだと見なされた。
+
+Lennon はこの時に新左翼から受けた批判に心を痛め、
+後の 1971年のシングル[Power to the People](https://en.wikipedia.org/wiki/Power_to_the_People_(song))では
+[Marx 主義](https://en.wikipedia.org/wiki/Marxism)革命の必要性を唱えたが、
+1980年に受けた最後のインタビューでは、Revolution で表明した[平和主義](https://en.wikipedia.org/wiki/Pacifism)的な感情を再確認している。
+}}
+
+Well you know
+
+We all wanna change the world{{footnote:
+カウンターカルチャーのリーダーとして見られていたThe Bealtes、特に John Lennonは、
+[Lenin 主義](https://en.wikipedia.org/wiki/Leninism)、
+[Stalin 主義](https://en.wikipedia.org/wiki/Stalinism)、
+[Trotsky 主義](https://en.wikipedia.org/wiki/Trotskyism)、
+[毛 主義](https://en.wikipedia.org/wiki/Maoism)のグループから、革命的大義を積極的に支持するよう圧力を受けていた。
+Lennonは、Beatles がインドの ऋषिकेश で超越瞑想を学んでいる間に、最近の社会的動乱の波について曲を書くことを決めた。
+}}
+
+革命を望んでるって君は言う
+
+わかるだろ
+
+みんな世界を変えたいんだ
+```
+
 ## Requirements
 
 一個ずつ確認していきましょう。
@@ -64,6 +101,20 @@ In general, compatibility with Nvim 0.X is removed after the release of Nvim 0.(
 一般的に、Nvim 0.X との互換性は Nvim 0.(X+1).1 のリリース後に削除されます。
 ```
 
+```admonish danger title=""
+You tell me that it's evolution
+
+Well you know
+
+We all wanna change the world
+
+それが進化だと言うのなら
+
+わかってるだろ
+
+みんな世界を変えたいんだ
+```
+
 ### Neovim 0.11.0 or later (nightly)
 
 まずは`Neovim 0.11.0` 以降が必須とされていることに注意が必要です。
@@ -71,6 +122,32 @@ In general, compatibility with Nvim 0.X is removed after the release of Nvim 0.(
 ```admonish warning
 これも既に示されていることですが、
 Neovim 0.10.X 以下の使用を続ける理由がある場合は`master`ブランチを使用しましょう。(更新自体は止まってます❗)
+```
+
+```admonish danger title=""
+But when you talk about destruction
+
+Don't you know that you can count me out?{{footnote:
+11月にリリースされた[Revolution 1](https://en.wikipedia.org/wiki/Revolution_(Beatles_song)#%22Revolution_1%22)は、
+破壊的な変化に対する Lennon の不安を表しており、"count me out?" というフレーズの代わりに "count me out? - in" と歌われている。
+}}
+
+だけどもし 破壊についての話になるなら
+
+僕のことは数に入れないでくれないか？
+```
+
+```admonish danger title=""
+Don't you know it's gonna be
+
+Alright, alright, alright{{footnote:
+繰り返される "it's gonna be alright" というフレーズは、Lennon がインドで体験した超越瞑想から直接来たもので、
+政治的に何が起ころうと、神が人類の面倒を見るという考えを伝えている。
+}}
+
+鈍調な日、混沌な日
+
+オーライ、オーライ！ …オーライ？
 ```
 
 ### tar,curl
@@ -92,6 +169,23 @@ which curl
 
 ![which-tar-curl](img/which-tar-curl.webp)
 
+```admonish danger title=""
+You say you got a real solution
+
+Well you know
+
+We'd all love to see the plan{{footnote:
+Lennon の反戦感情にも関わらずまだ反体制にはなっておらず、
+Revolution では体制打倒を主張する人々の "計画を見たい" と表現している。
+}}
+
+真の解決策を得たって君は言う
+
+わかるだろ
+
+みんなそのプランを見てみたい
+```
+
 ### tree-sitter CLI (0.25.0 or later)
 
 これも`which`コマンドで確認できます。
@@ -103,6 +197,20 @@ which tree-sitter
 `Homebrew`でインストールしている場合は `Required`として、一緒にインストールされているはずです。
 
 ![which-tar-curl](img/which-tree-sitter.webp)
+
+```admonish danger title=""
+ou ask me for a contribution
+
+Well you know
+
+We're all doin' what we can
+
+僕に貢献を求めてくるけど
+
+わかってるだろ
+
+みんなできることをやっている
+```
 
 ### C compiler
 
@@ -124,6 +232,16 @@ which tree-sitter
 Readmeにも明記されているように`libstdc++`も必要になるはずなので、`gcc`だとうまくいきませんでした😮
 ```
 
+```admonish danger title=""
+But if you want money for people with minds that hate
+
+All I can tell you is brother you have to wait
+
+だけどもし、憎しみに染まった者たちのためにカネが欲しいって話になるなら
+
+僕が言えるのは 「なあ兄弟、君は待たなきゃいけない」ってことだ
+```
+
 ### Node (23.0.0 or later) for some parsers
 
 書いてあることそのままですが、"一部の" パーサーでは `Node v23` 以降を必要とします。
@@ -141,6 +259,16 @@ Readmeにも明記されているように`libstdc++`も必要になるはずな
 
 ```admonish note
 よくわかんねー ってなっちゃう場合、ここはスキップして進みましょう 🐈
+```
+
+```admonish danger title=""
+Don't you know it's gonna be
+
+Alright, alright, alright
+
+鈍調な日、こんな日
+
+オーライ、オーライ！ …オーライ？{{footnote: "なんか今の情勢よくわかんねー 😑" ってなっちゃってるってことだ。}}
 ```
 
 ## Install
@@ -244,6 +372,20 @@ setup({opts})                                          *nvim-treesitter.setup()*
 ...あっちでも`lua`は変化がわかりにいんですけどね😅
 ```
 
+```admonish danger title=""
+You say you'll change the constitution
+
+Well you know
+
+We all wanna change your head
+
+憲法を変えてやるって君は言う
+
+まあ その通りだ
+
+みんな "君のアタマ" を替えてやりたい
+```
+
 ## Commands
 
 まず前提として、以下があります。
@@ -286,6 +428,20 @@ COMMANDS                                              *nvim-treesitter-commands*
 これらのコマンドを使って好きなパーサーを管理できるわけですね 😉
 
 次項から、さらっとした使い方だけ示します。
+
+```admonish danger title=""
+You tell me it's the institution
+
+Well you know
+
+You better free your mind instead
+
+それが制度だって君は言う
+
+けど そうじゃない
+
+君は心を解放したほうがいい
+```
 
 ### TSInstall
 
@@ -456,12 +612,44 @@ Plugin authors are encouraged to write new healthchecks. |health-dev|
 プラグインによっては、今回のようにヘルスチェックを提供してくれているので、困った時はこれも参考にすると良いです😉
 ```
 
+```admonish danger title=""
+But if you go carryin' pictures of Chairman Mao
+
+You ain't gonna make it with anyone anyhow{{footnote:
+[毛沢東](https://zh.wikipedia.org/wiki/毛泽东)に言及したセリフ、
+"But if you go carryin' pictures of Chairman Mao / You ain't gonna make it with anyone anyhow" はスタジオセッションで追加された。
+その年の暮れにプロモーション・クリップを撮影していたとき、
+Lennon は監督の [Michael Lindsay-Hogg](https://en.wikipedia.org/wiki/Michael_Lindsay-Hogg) に、
+この曲の中で最も重要な歌詞だと語っているが、1972年までに Lennon は考えを改めてこう言った:
+"毛沢東主席についてあんなことを言うべきじゃなかった。"[Wikipedia](https://en.wikipedia.org/wiki/Revolution_(Beatles_song))より
+}}
+
+肌身離さず 毛主席 の写真を持っていたって
+
+どうせ誰とも上手くいかないんだから
+```
+
 ## Wrap Up
 
 というわけで `nvim-treesitter `でした。
 
 さて、ここまで来たら次にやることはもう決まってますね😉 カラーテーマです❗
 
+<video controls preload="none" width="1280" height="720" poster="img/miracle-gift-parade-part1.webp">
+  <source src="img/miracle-gift-parade-part1.webm" type="video/webm">
+  Your browser does not support the video/webm.
+</video>
+
 ```admonish success
 次回でついに瞳に優しく、そう❗生まれ変わるのです😆
+```
+
+```admonish danger title=""
+Don't you know it's gonna be
+
+Alright, alright, alright
+
+鈍調な日、越えた日
+
+オーライ、オーライ！ …オーライ？
 ```
