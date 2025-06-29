@@ -23,17 +23,6 @@ For details on these and how to help improving them, see [CONTRIBUTING.md](https
 これらの詳細と改良の支援方法については、[CONTRIBUTING.md](https://github.com/nvim-treesitter/nvim-treesitter/blob/main/CONTRIBUTING.md)を参照してください。
 ```
 
-```admonish danger title="CAUTION"
-This is a full, incompatible, rewrite.
-If you can't or don't want to update, check out the
-[`master` branch](https://github.com/nvim-treesitter/nvim-treesitter/blob/master/README.md)
-(which is locked but will remain available for backward compatibility).
-
-これは互換性のない完全な書き換えです。
-アップデートができない、またはしたくない場合は、masterブランチをチェックしてください
-(ロックされていますが、後方互換性のために引き続き利用可能です)。
-```
-
 このページの初掲は **Dec 4, 2022** ですが、
 巡り巡って **Jun 5, 2025** 時点の状況に合わせて内容を書き換えています。
 
@@ -42,14 +31,14 @@ If you can't or don't want to update, check out the
 ```admonish danger title=""
 You say you want a revolution{{footnote:
 Revolution (by [The Beatles](https://en.wikipedia.org/wiki/The_Beatles)):
-1968 年初頭の政治的抗議運動に影響された Lennon の歌詞は、
+1968年初頭の政治的抗議運動に影響された Lennon の歌詞は、
 社会変革の必要性に共感する一方で、新左翼の一部のメンバーが主張する暴力的な戦術には疑問を表明していた。
 
 これまで大体において、The Beatles は自分たちの音楽で政治的見解を公に表現することを避けていたが、
 他のメンバーの反対にもかかわらず、彼はこの曲にこだわり、シングルに収録するよう主張していた。
 (唯一あからさまに政治的な楽曲としては[Taxman](https://en.wikipedia.org/wiki/Taxman)があった。)
 
-8月にリリースされたこの曲は、政治的左派から自分たちの大義に対する裏切りであり、
+8月にリリースされたこの曲は、政治的左派から "自分たちの大義に対する裏切り" であり、
 The Beatles がカウンターカルチャーの急進的な要素から外れていることの表れだと見なされた。
 
 Lennon はこの時に新左翼から受けた批判に心を痛め、
@@ -60,14 +49,7 @@ Lennon はこの時に新左翼から受けた批判に心を痛め、
 
 Well you know
 
-We all wanna change the world{{footnote:
-カウンターカルチャーのリーダーとして見られていたThe Bealtes、特に John Lennonは、
-[Lenin 主義](https://en.wikipedia.org/wiki/Leninism)、
-[Stalin 主義](https://en.wikipedia.org/wiki/Stalinism)、
-[Trotsky 主義](https://en.wikipedia.org/wiki/Trotskyism)、
-[毛 主義](https://en.wikipedia.org/wiki/Maoism)のグループから、革命的大義を積極的に支持するよう圧力を受けていた。
-Lennonは、Beatles がインドの ऋषिकेश で超越瞑想を学んでいる間に、最近の社会的動乱の波について曲を書くことを決めた。
-}}
+We all wanna change the world
 
 革命を望んでるって君は言う
 
@@ -108,7 +90,7 @@ Well you know
 
 We all wanna change the world
 
-それが進化だと言うのなら
+君はそれを進化だって説くけど
 
 わかってるだろ
 
@@ -119,9 +101,15 @@ We all wanna change the world
 
 まずは`Neovim 0.11.0` 以降が必須とされていることに注意が必要です。
 
-```admonish warning
-これも既に示されていることですが、
-Neovim 0.10.X 以下の使用を続ける理由がある場合は`master`ブランチを使用しましょう。(更新自体は止まってます❗)
+```admonish warning title="CAUTION"
+This is a full, incompatible, rewrite.
+If you can't or don't want to update, check out the
+[`master` branch](https://github.com/nvim-treesitter/nvim-treesitter/blob/master/README.md)
+(which is locked but will remain available for backward compatibility).
+
+これは互換性のない完全な書き換えです。
+アップデートができない、またはしたくない場合は、masterブランチをチェックしてください
+(ロックされていますが、後方互換性のために引き続き利用可能です)。
 ```
 
 ```admonish danger title=""
@@ -199,13 +187,20 @@ which tree-sitter
 ![which-tar-curl](img/which-tree-sitter.webp)
 
 ```admonish danger title=""
-ou ask me for a contribution
+You ask me for a contribution
 
 Well you know
 
 We're all doin' what we can
 
-僕に貢献を求めてくるけど
+僕に貢献を求めてくるけど{{footnote:
+カウンターカルチャーのリーダーとして見られていたThe Bealtes、特に John Lennon は
+[Lenin 主義](https://en.wikipedia.org/wiki/Leninism),
+[Stalin 主義](https://en.wikipedia.org/wiki/Stalinism),
+[Trotsky 主義](https://en.wikipedia.org/wiki/Trotskyism),
+[毛 主義](https://en.wikipedia.org/wiki/Maoism)のグループから、革命的大義を積極的に支持するよう圧力を受けており、
+インドの ऋषिकेश で超越瞑想を学んでいる間に、最近の社会的動乱の波について曲を書くことを決めた。
+}}
 
 わかってるだろ
 
@@ -237,16 +232,16 @@ But if you want money for people with minds that hate
 
 All I can tell you is brother you have to wait
 
-だけどもし、憎しみに染まった者たちのためにカネが欲しいって話になるなら
+だけどもし 憎しみに染まった者たちのためにカネが欲しいって話になるなら
 
-僕が言えるのは 「なあ兄弟、君は待たなきゃいけない」ってことだ
+僕が言えるのは 「なあ兄弟、君は待たなきゃいけない」 ってことだ
 ```
 
 ### Node (23.0.0 or later) for some parsers
 
 書いてあることそのままですが、"一部の" パーサーでは `Node v23` 以降を必要とします。
 
-2025/06/05 時点では `LTS`バージョンが v22.16.0 らしいので、
+2025/06/05 時点では `LTS`バージョンが `v22` らしいので、
 場合に依っては なんか妙にハードルが高く感じられるかもしれません。
 
 例えば[Node.js®をダウンロードする](https://nodejs.org/ja/download/)
@@ -268,7 +263,7 @@ Alright, alright, alright
 
 鈍調な日、こんな日
 
-オーライ、オーライ！ …オーライ？{{footnote: "なんか今の情勢よくわかんねー 😑" ってなっちゃってるってことだ。}}
+オーライ、オーライ！ …オーライ？{{footnote: "なんか今の情勢よくわかんねー😑" ってなっちゃってるってことだ。}}
 ```
 
 ## Install
@@ -347,29 +342,14 @@ setup({opts})                                          *nvim-treesitter.setup()*
                 prepended to |runtimepath|.
 ```
 
-再起動もしくは`:so`でこの状態を反映させてから`PackerSync`もしくは`PackerCompile`を実行しましょう。
-
-すると、`nvim-treesitter`が動いて、最終的にこんなのが出てきました。
-
-![lua-installed](img/lua-installed.webp)
-
-これで、`lua`ファイルが今までよりも賢く色付けされてるはずです。どうでしょう❓
-
-```admonish warning
-もしここでエラーが起きるようであれば、もう一度`C compiler`を確認してみてください😣
-```
+```admonish note
+以下の例は`Neovim`がまだパーサーを持っていなかった頃のスクリーンショットですが、
+"適したパーサーを使用すると、こんな感じで色付けがされます" という例です。
 
 |||
 |:---:|:---:|
 |**default**|![color1](img/color1.webp)|
 |**nvim-treesitter**|![color2](img/color2.webp)|
-
-```admonish note
-これだと例が **すっごい古い** し面白くないんですが、オフィシャルイメージを見るとこんなに変わってます❗
-
-[nvim-treesitter/wiki/Gallery](https://github.com/nvim-treesitter/nvim-treesitter/wiki/Gallery)
-
-...あっちでも`lua`は変化がわかりにいんですけどね😅
 ```
 
 ```admonish danger title=""
@@ -417,15 +397,13 @@ https://github.com/nvim-treesitter/nvim-treesitter のようなプラグイン�
 ```
 ~~~
 
-で、手動でパーサーをインストールするために使うコマンドが以下に示されています。
+ということで、`nvim-treesitter`を使用してパーサーを管理するために使うコマンドが以下に示されています😉
 
 ~~~admonish info title=":h nvim-treesitter-commands"
 ```txt
 COMMANDS                                              *nvim-treesitter-commands*
 ```
 ~~~
-
-これらのコマンドを使って好きなパーサーを管理できるわけですね 😉
 
 次項から、さらっとした使い方だけ示します。
 
@@ -436,7 +414,7 @@ Well you know
 
 You better free your mind instead
 
-それが制度だって君は言う
+君はそれを制度だって説く
 
 けど そうじゃない
 
@@ -464,8 +442,16 @@ already installed.
 ~~~
 
 `language` の部分は
-[SUPPORTED_LANGUAGES.md](https://github.com/nvim-treesitter/nvim-treesitter/blob/main/SUPPORTED_LANGUAGES.md)
+[Supported languages](https://github.com/nvim-treesitter/nvim-treesitter/blob/main/SUPPORTED_LANGUAGES.md)
 に示されているものから選んで指定します。
+
+```admonish abstruct title="[Supported languages](https://github.com/nvim-treesitter/nvim-treesitter/blob/main/SUPPORTED_LANGUAGES.md)"
+The following is a list of languages for which a parser can be installed through `:TSInstall`.
+
+以下は、`:TSInstall`でパーサをインストールできる言語のリストです。
+
+...
+```
 
 例えば `rust`パーサーをインストールしたいなー😆 ってなったら以下のコマンドを使用します。
 
@@ -483,7 +469,7 @@ Like |:TSInstall| but also regenerates the `parser.c` from the original
 grammar. Useful for languages where the provided `parser.c` is outdated (e.g.,
 uses a no longer supported ABI).
 
-|:TSInstall| と似ているが、`parser.c` を元の文法から再生成する。
+|:TSInstall| と似ていますが、`parser.c` を元の文法から再生成します。
 提供された `parser.c` が古くなっている言語 (例えば、サポートされなくなった ABI を使用している場合など) に便利です。
 ```
 ~~~
@@ -569,11 +555,11 @@ health.vim is a minimal framework to help users troubleshoot configuration and
 any other environment conditions that a plugin might care about.
 
 health.vim は、プラグイン設定やその他の環境条件の
-トラブルシューティングを支援するための最小限のフレームワークである。
+トラブルシューティングを支援するための最小限のフレームワークです。
 
 Plugin authors are encouraged to write new healthchecks. |health-dev|
 
-プラグインの作者は新しいヘルスチェックを書くことが推奨されている。
+プラグインの作者は新しいヘルスチェックを書くことが推奨されています。
 ```
 ~~~
 
@@ -590,9 +576,7 @@ Plugin authors are encouraged to write new healthchecks. |health-dev|
 
 ![checkhealth](img/checkhealth.webp)
 
-結果が表示されましたね☺️
-
-これは **すっごい古いスクリーンショット** だけど❗
+結果が表示されましたね☺️ これは **すっごい古いスクリーンショット** だけど❗
 
 診断内容はプラグインに依りますが、
 `nvim-treesitter`の場合は、依存ソフトウェアの確認と、OS情報・インストールされたパーサの表示を行ってくれます。
@@ -629,7 +613,7 @@ Lennon は監督の [Michael Lindsay-Hogg](https://en.wikipedia.org/wiki/Michael
 どうせ誰とも上手くいかないんだから
 ```
 
-## Wrap Up
+## Revolution / Miracle Gift Parade 💝
 
 というわけで `nvim-treesitter `でした。
 
