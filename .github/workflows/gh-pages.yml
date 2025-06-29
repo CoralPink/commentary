@@ -280,7 +280,7 @@ jobs:
       contents: write
     name: Build and Deploy
     runs-on: macos-latest
-#    if: ${{ github.ref == 'refs/heads/main' }}
+    if: ${{ github.ref == 'refs/heads/main' }}
     needs: [build-wasm, build-js, build-scss, convert-woff2, test-mdbook-backend]
     steps:
       - name: Checkout the repo
@@ -377,7 +377,6 @@ jobs:
           ls -alR book
 
       - name: Deploy
-        if: ${{ github.ref == 'refs/heads/main' }}
         uses: peaceiris/actions-gh-pages@4f9cc6602d3f66b9c108549d475ec49e8ef4d45e # v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
