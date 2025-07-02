@@ -18,9 +18,6 @@ use serde_wasm_bindgen::{from_value, to_value};
 use urlencoding::encode;
 use wasm_bindgen::prelude::*;
 
-const SCORE_LOWER_LIMIT: usize = 64;
-const SCORE_LOWER_LIMIT_ASCII: usize = 32;
-
 const INITIAL_HEADER: &str = "2文字 (もしくは全角1文字) 以上を入力してください...";
 
 const BUFFER_HTML_SIZE: usize = 200_000;
@@ -98,7 +95,7 @@ impl Finder {
         })
     }
 
-    fn aggregate_results<'a>(&'a self, terms: &'a str, minimum_score: usize) -> HitList<'a> {
+    fn aggregate_results<'a>(&'a self, terms: &'a str) -> HitList<'a> {
         let trimmed = terms.trim();
 
         let mut tokens: ArrayVec<&str, MAX_TOKENS> = split_limited::<MAX_TOKENS>(trimmed);
@@ -110,13 +107,22 @@ impl Finder {
             self.store_doc
                 .iter()
                 .filter(|doc| {
-                    let body = doc.body.to_lowercase();
-                    body.contains(&lower) || tokens.iter().all(|&term| body.contains(&term.to_lowercase()))
+                    let body_lower = doc.body().to_lowercase();
+                    let header_lower = doc.breadcrumbs().to_lowercase();
+
+                    if body_lower.contains(&lower) || header_lower.contains(&lower) {
+                        return true;
+                    }
+
+                    tokens.iter().all(|&tok| {
+                        let tok_lower = tok.to_lowercase();
+                        body_lower.contains(&tok_lower) || header_lower.contains(&tok_lower)
+                    })
                 })
                 .collect::<Vec<&DocObject>>()
         };
 
-        HitList::from_token_set(tokens, hit_docs, minimum_score)
+        HitList::from_token_set(tokens, hit_docs)
     }
 
     fn build_search_result(&self, results: HitList, terms: &str, html_buffer: &mut String) {
@@ -153,13 +159,7 @@ impl Finder {
             return to_value(&result).unwrap();
         }
 
-        let minimum_score = if is_full_width_or_ascii(terms) {
-            SCORE_LOWER_LIMIT
-        } else {
-            SCORE_LOWER_LIMIT_ASCII
-        };
-
-        let results = self.aggregate_results(terms, minimum_score);
+        let results = self.aggregate_results(terms);
 
         if results.is_empty() {
             let result = SearchResult {
