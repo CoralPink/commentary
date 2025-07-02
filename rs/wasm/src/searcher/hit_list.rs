@@ -6,8 +6,11 @@ use getset::Getters;
 use macros::error;
 use std::ops::{Deref, DerefMut};
 
-/// maximum number of search results
+/// Maximum number of search results
 pub const LIMIT_RESULTS: usize = 100;
+
+// Minimum required search score
+const SCORE_LOWER_LIMIT: usize = 32;
 
 /// Base multiplier for header match scores
 const SCORE_HEADER_BOOST_BASE: f32 = 8.0;
@@ -146,7 +149,7 @@ impl<'a> HitList<'a> {
         Self(results.into_iter().take(LIMIT_RESULTS).collect())
     }
 
-    pub fn from_token_set<T, D>(tokens: T, docs: D, min_score: usize) -> Self
+    pub fn from_token_set<T, D>(tokens: T, docs: D) -> Self
     where
         T: IntoIterator<Item = &'a str>,
         D: IntoIterator<Item = &'a DocObject>,
@@ -159,7 +162,7 @@ impl<'a> HitList<'a> {
             .reduce(Self::merge)
             .unwrap_or_default();
 
-        combined.retain(|x| x.score >= min_score);
+        combined.retain(|x| x.score >= SCORE_LOWER_LIMIT);
         combined.sort_by(|a, b| b.score.cmp(&a.score));
         combined.truncate(LIMIT_RESULTS);
 
