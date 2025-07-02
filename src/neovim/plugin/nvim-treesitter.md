@@ -187,13 +187,7 @@ which tree-sitter
 ![which-tar-curl](img/which-tree-sitter.webp)
 
 ```admonish danger title=""
-You ask me for a contribution
-
-Well you know
-
-We're all doin' what we can
-
-僕に貢献を求めてくるけど{{footnote:
+You ask me for a contribution{{footnote:
 カウンターカルチャーのリーダーとして見られていたThe Bealtes、特に John Lennon は
 [Lenin 主義](https://en.wikipedia.org/wiki/Leninism),
 [Stalin 主義](https://en.wikipedia.org/wiki/Stalinism),
@@ -201,6 +195,12 @@ We're all doin' what we can
 [毛 主義](https://en.wikipedia.org/wiki/Maoism)のグループから、革命的大義を積極的に支持するよう圧力を受けており、
 インドの ऋषिकेश で超越瞑想を学んでいる間に、最近の社会的動乱の波について曲を書くことを決めた。
 }}
+
+Well you know
+
+We're all doin' what we can
+
+僕に貢献を求めてくるけど
 
 わかってるだろ
 
@@ -600,12 +600,12 @@ Plugin authors are encouraged to write new healthchecks. |health-dev|
 But if you go carryin' pictures of Chairman Mao
 
 You ain't gonna make it with anyone anyhow{{footnote:
-[毛沢東](https://zh.wikipedia.org/wiki/毛泽东)に言及したセリフ、
+[毛泽东](https://zh.wikipedia.org/wiki/毛泽东)に言及したセリフ、
 "But if you go carryin' pictures of Chairman Mao / You ain't gonna make it with anyone anyhow" はスタジオセッションで追加された。
 その年の暮れにプロモーション・クリップを撮影していたとき、
 Lennon は監督の [Michael Lindsay-Hogg](https://en.wikipedia.org/wiki/Michael_Lindsay-Hogg) に、
-この曲の中で最も重要な歌詞だと語っているが、1972年までに Lennon は考えを改めてこう言った:
-"毛沢東主席についてあんなことを言うべきじゃなかった。"[Wikipedia](https://en.wikipedia.org/wiki/Revolution_(Beatles_song))より
+この曲の中で最も重要な歌詞だと語っているが、1972年までに Lennon は "あんなことを言うべきじゃなかった。" と考えを改めている。
+[Wikipedia](https://en.wikipedia.org/wiki/Revolution_(Beatles_song))より
 }}
 
 肌身離さず 毛主席 の写真を持っていたって
