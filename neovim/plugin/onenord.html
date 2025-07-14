@@ -112,24 +112,6 @@ More specifically, it seeks to add more vibrance to the Nord theme and provide a
 </div>
 </div>
 <p><code>Treesitter</code>を活用するため、<code>onenord.nvim</code>の要求もこれに合わせられているようですね。</p>
-<div id="admonition-note" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-title">
-<div class="admonition-title">
-<div id="admonition-note-title">
-<p>Note</p>
-</div>
-<a class="admonition-anchor-link" href="#admonition-note"></a>
-</div>
-<div>
-<p>これはちょっと前のお話ですが、<code>nvim-treesitter</code>で大規模な変更が施されたことによる甚大な影響を受けて、<code>highlight</code>が壊滅したことがありました。</p>
-<p><a href="https://github.com/nvim-treesitter/nvim-treesitter/commit/42ab95d5e11f247c6f0c8f5181b02e816caa4a4f">feat!: remove obsolete TS* highlight groups</a></p>
-<p>なんだか世界が色褪せてしまいましたが、<code>onenord</code>は3日で救いに来てくれました🤗 My HERO❗</p>
-<p><a href="https://github.com/rmehri01/onenord.nvim/commit/98c64654375bc087e96bca08fd194066d778717c">fix!: highlight groups for neovim 0.8 #50</a></p>
-</div>
-</div>
-<video controls preload="none" width="1280" height="720" poster="img/miracle-gift-parade-part2.webp">
-  <source src="img/miracle-gift-parade-part2.webm" type="video/webm">
-  Your browser does not support the video/webm.
-</video>
 <h2 id="install--config"><a class="header" href="#install--config">Install &amp; Config</a></h2>
 <p>じゃあ、チャチャっと❗</p>
 <div id="admonition-extensionsonenordlua" class="admonition admonish-example" role="note" aria-labelledby="admonition-extensionsonenordlua-title">
@@ -243,12 +225,12 @@ styles = {
 <tr><td style="text-align: center"><strong>bold</strong></td><td style="text-align: center"><img src="img/style-bold.webp" alt="bold" width="696" height="120" loading="lazy"></td></tr>
 <tr><td style="text-align: center"><strong>NONE</strong></td><td style="text-align: center"><img src="img/style-none.webp" alt="none" width="696" height="120" loading="lazy"></td></tr>
 </tbody></table>
-</div><div id="admonition-note-1" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-1-title">
+</div><div id="admonition-note" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-title">
 <div class="admonition-title">
-<div id="admonition-note-1-title">
+<div id="admonition-note-title">
 <p>Note</p>
 </div>
-<a class="admonition-anchor-link" href="#admonition-note-1"></a>
+<a class="admonition-anchor-link" href="#admonition-note"></a>
 </div>
 <div>
 <p>例えば、<code>comments</code>を<code>italic</code>にするのもオシャレなんですが、カーソルがそのままなので個人的には使いにくいかなー、なんて😅
@@ -256,12 +238,13 @@ styles = {
 </div>
 </div>
 <h3 id="disable"><a class="header" href="#disable">disable</a></h3>
+<p>このセクションにあるものはデフォルトで有効となっていて、<code>true</code>とすると無効化されます 😉</p>
 <h4 id="background"><a class="header" href="#background">background</a></h4>
 <pre><code class="language-txt">Disable setting the background color
 
 背景色の設定を無効にします。
 </code></pre>
-<p>これを<code>true</code>として無効化すると、ターミナルの背景色やアルファチャンネル値がそのまま反映されます。</p>
+<p>これを無効化すると、ターミナルの背景色やアルファチャンネル値がそのまま反映されます。</p>
 <div class="table-wrapper"><table><thead><tr><th style="text-align: center"></th><th style="text-align: center"></th></tr></thead><tbody>
 <tr><td style="text-align: center"><strong>true</strong></td><td style="text-align: center"><img src="img/background-true.webp" alt="enable" width="696" height="555" loading="lazy"></td></tr>
 <tr><td style="text-align: center"><strong>false</strong></td><td style="text-align: center"><img src="img/background-false.webp" alt="disable" width="696" height="555" loading="lazy"></td></tr>
@@ -299,36 +282,30 @@ styles = {
 
 デフォルトの色を上書きします。
 </code></pre>
-<div id="admonition-note-2" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-2-title">
-<div class="admonition-title">
-<div id="admonition-note-2-title">
-<p>Note</p>
-</div>
-<a class="admonition-anchor-link" href="#admonition-note-2"></a>
-</div>
-<div>
-<p>説明にはありませんが、実はオリジナルの色を新しく定義することもできちゃいます。</p>
-</div>
-</div>
-<h2 id="wrap-up"><a class="header" href="#wrap-up">Wrap Up</a></h2>
-<p>ここまでやっただけでも見違えるような変身っぷりですね❗</p>
+<p>説明にはありませんが、実はオリジナルの色を新しく定義することもできちゃいます😆</p>
+<h2 id="miracle-gift-parade-part2-"><a class="header" href="#miracle-gift-parade-part2-">Miracle Gift Parade (Part2) 💝</a></h2>
+<p>そんなこんなでやってきましたが、ここまでやっただけでも...</p>
 <img src="img/onenord.webp" alt="onenord" width="696" height="555" loading="lazy">
-<div id="admonition-note-3" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-3-title">
+<p>見違えるような変身っぷり❗</p>
+<div id="admonition-note-1" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-1-title">
 <div class="admonition-title">
-<div id="admonition-note-3-title">
+<div id="admonition-note-1-title">
 <p>Note</p>
 </div>
-<a class="admonition-anchor-link" href="#admonition-note-3"></a>
+<a class="admonition-anchor-link" href="#admonition-note-1"></a>
 </div>
 <div>
-<p>前のページとの比較ではさらに変化がわかりやすいです😉</p>
-<div class="table-wrapper"><table><thead><tr><th style="text-align: center"></th><th style="text-align: center"></th></tr></thead><tbody>
-<tr><td style="text-align: center"><strong>default</strong></td><td style="text-align: center"><img src="img/color1.webp" alt="color1" width="696" height="555" loading="lazy"></td></tr>
-<tr><td style="text-align: center"><strong>nvim-treesitter</strong></td><td style="text-align: center"><img src="img/color2.webp" alt="color2" width="696" height="555" loading="lazy"></td></tr>
-<tr><td style="text-align: center"><strong>onenord.nvim</strong></td><td style="text-align: center"><img src="img/color3.webp" alt="color3" width="696" height="555" loading="lazy"></td></tr>
-</tbody></table>
-</div></div>
+<p>今となってはもう昔ばなしですが、
+<code>nvim-treesitter</code>で大規模な変更が施されたことによる影響を受けて、<code>highlight</code>が壊滅したことがありました。</p>
+<p><a href="https://github.com/nvim-treesitter/nvim-treesitter/commit/42ab95d5e11f247c6f0c8f5181b02e816caa4a4f">feat!: remove obsolete TS* highlight groups</a></p>
+<p>なんだか世界が色褪せてしまいましたが、<code>onenord</code>は3日で救いに来てくれました🤗 My HERO❗</p>
+<p><a href="https://github.com/rmehri01/onenord.nvim/commit/98c64654375bc087e96bca08fd194066d778717c">fix!: highlight groups for neovim 0.8 #50</a></p>
 </div>
+</div>
+<video controls preload="none" width="1280" height="720" poster="img/miracle-gift-parade-part2.webp">
+  <source src="img/miracle-gift-parade-part2.webm" type="video/webm">
+  Your browser does not support the video/webm.
+</video>
 <div id="admonition-success" class="admonition admonish-success" role="note" aria-labelledby="admonition-success-title">
 <div class="admonition-title">
 <div id="admonition-success-title">
@@ -337,9 +314,155 @@ styles = {
 <a class="admonition-anchor-link" href="#admonition-success"></a>
 </div>
 <div>
-<p>なんだか、ようやくひと段落って感じがします☺️</p>
-<p>わたしも頑張ったぞ、ニッポン❗トーナメントを駆け上がった景色は綺麗だろうなぁ...⚽🏆</p>
+<p>ようやくひと段落って感じですね。とっても綺麗な景色☺️</p>
 </div>
+</div>
+<h2 id="imagine-"><a class="header" href="#imagine-">Imagine 🕊️</a></h2>
+<div style="color: #999999; font-size: 90%; text-align: center;">
+<div style="margin-top: 4em">
+Imagine there’s no heaven
+<p>想像してみて 天国なんて存在しないんだ</p>
+</div>
+<div style="margin-top: 2em">
+It’s easy if you try
+<p>やってみれば簡単だ</p>
+</div>
+<div style="margin-top: 4em">
+No hell below us
+<p>俯いても地獄はないし</p>
+</div>
+<div style="margin-top: 2em">
+Above us only sky
+<p>見上げれば空だけだ</p>
+</div>
+<div style="margin-top: 4em">
+Imagine all the people
+<p>みんな今日を生きている</p>
+</div>
+<div style="margin-top: 2em">
+Living for today, I
+<p>そっと考えてみるよ、僕も</p>
+</div>
+<div style="margin-top: 7em">
+Imagine there’s no countries
+<p>想像してみて 国とか線なんて関係ないんだ</p>
+</div>
+<div style="margin-top: 2em">
+It isn’t hard to do
+<p>難しいことじゃない</p>
+</div>
+<div style="margin-top: 4em">
+Nothing to kill or die for
+<p>殺すこともないし 死ぬこともない</p>
+</div>
+<div style="margin-top: 2em">
+And no religion too
+<p>宗教だってないんだ</p>
+</div>
+<div style="margin-top: 4em">
+Imagine all the people
+<p>みんな平和に暮らしている</p>
+</div>
+<div style="margin-top: 2em">
+Living life in peace, you
+<p>そっと想ってみてよ、君も</p>
+</div>
+<div style="margin-top: 7em">
+You may say I’m a dreamer
+<p>君は夢を見過ぎだと言うかもしれない</p>
+</div>
+<div style="margin-top: 2em">
+But I’m not the only one
+<p>けれど僕は独りじゃないはずだ</p>
+</div>
+<div style="margin-top: 4em">
+I hope someday you’ll join us
+<p>いつの日か 君も仲間になろう</p>
+</div>
+<div style="margin-top: 2em">
+And the world will be as one
+<p>そして 世界はひとつになるんだ</p>
+</div>
+<div style="margin-top: 7em">
+Imagine no possessions
+<p>想像してみて 所有することに意味なんてないんだ</p>
+</div>
+<div style="margin-top: 2em">
+I wonder if you can
+<p>君にできるかな</p>
+</div>
+<div style="margin-top: 4em">
+No need for greed or hunger
+<p>欲張らなくていいし 飢えることもない</p>
+</div>
+<div style="margin-top: 2em">
+A brotherhood of man
+<p>僕らはみんな兄弟だから</p>
+</div>
+<div style="margin-top: 4em">
+Imagine all the people
+<p>世界は共に分かち合える</p>
+</div>
+<div style="margin-top: 2em">
+Sharing all the world, you
+<p>そっと信じてみてよ、君たちも</p>
+</div>
+</div>
+<div style="margin-top: 6em"></div>
+<aside class="ft-definition" role="doc-footnote">
+<p>Imagine(by <a href="https://en.wikipedia.org/wiki/John_Lennon" target="_blank" rel="noopener">John Lennon</a>・<a href="https://en.wikipedia.org/wiki/Yoko_Ono" target="_blank" rel="noopener">Yoko Ono</a>):
+John Lennon が1971年に発表した同名のアルバムに収録された曲。
+彼のソロ・キャリアで最も売れたシングル曲であり、歌詞はオノ・ヨーコが1964年に出版した著書 "グレープフルーツ" からいくつかの詩を引用し、
+リスナーに "物質主義のない、国境も国も宗教もない、平和な世界" を想像するよう促している。
+Lennon が亡くなる直前、この曲の歌詞と内容の多くは妻のオノ・ヨーコによるものだと語っており、2017年、彼女は共作のクレジットを受け取った。
+Imagine は発表以来、常に広く賞賛されてきたが、
+地政学的な国境、組織化された宗教、経済階級といった現代の社会秩序を完全に排除した上に成り立つ
+"統一と平等" を求めた歌詞が原因で論争も巻き起こした。
+<a href="https://en.wikipedia.org/wiki/Broadcast_Music,_Inc." target="_blank" rel="noopener">BMI</a> は Imagine を 20世紀で最も演奏された 100曲のひとつに選んだ。
+1999年には<a href="https://en.wikipedia.org/wiki/Recording_Industry_Association_of_America" target="_blank" rel="noopener">RIAA</a>が選ぶ
+365の<a href="https://en.wikipedia.org/wiki/Songs_of_the_Century" target="_blank" rel="noopener">Songs of the Century</a>の30位にランクされ、<a href="https://en.wikipedia.org/wiki/Grammy_Hall_of_Fame" target="_blank" rel="noopener">Grammy賞</a>の殿堂入りを果たし、
+<a href="https://en.wikipedia.org/wiki/Rock_and_Roll_Hall_of_Fame" target="_blank" rel="noopener">RRHOF</a>の
+<a href="https://en.wikipedia.org/wiki/Rock_and_Roll_Hall_of_Fame#The_Songs_That_Shaped_Rock_and_Roll" target="_blank" rel="noopener">500 Songs that Shaped Rock and Roll</a>に選出された。
+<a href="https://en.wikipedia.org/wiki/British_Hit_Singles_%26_Albums" target="_blank" rel="noopener">Guinness World Records British Hit Singles Book</a>が
+2002年に英国で行った調査では、この曲が歴代2位に選ばれ、<a href="https://en.wikipedia.org/wiki/Rolling_Stone" target="_blank" rel="noopener">Rolling Stone</a>が2004年に発表した
+<a href="https://en.wikipedia.org/wiki/Rolling_Stone%27s_500_Greatest_Songs_of_All_Time" target="_blank" rel="noopener">史上最も偉大な500曲</a>では3位にランクされ、
+2021年の改訂版では19位に位置づけが変更された。
+2005年以来、イベント主催者はニューヨークのタイムズスクエアで行われる新年の舞踏会の直前にこの曲を流している。
+2023年、この曲は "文化的、歴史的、または美学的に重要" であるとして、米国議会図書館によって米国国立レコード登録簿に保存されることが決まった。</p>
+</aside>
+<aside class="ft-definition" role="doc-footnote">
+<p>Lennon は 「Imagine という曲は、"宗教も、国も、政治もない世界を想像してごらん" と歌っていて、
+ある意味では共産党宣言そのものなんだ。もっとも、僕は特に共産主義者ってわけじゃないし、どんな運動にも属していないけどね。
+この世界には、本当の意味での共産主義国家なんて存在してないってことを理解しておくべきだよ。」と語っている。</p>
+</aside>
+<aside class="ft-definition" role="doc-footnote">
+<p>Ono は 「これは John の信念そのもの。つまり "私たちは一つの国、一つの世界、一つの人類なんだ" っていう想いね。」と語っている。</p>
+</aside>
+<aside class="ft-definition" role="doc-footnote">
+<p>Rolling Stone 誌はこの曲の歌詞をこう評している: 22行の、優雅で率直な信念の言葉。
+──それは、目的を共有した世界が、自らを修復し、変えていく力を持つという <strong>希望の詩</strong> だ。
+<a href="https://en.wikipedia.org/wiki/Imagine_(song)" target="_blank" rel="noopener">Wikipedia</a>より</p>
+</aside>
+<div style="margin-top: 4em"></div>
+<img src="img/letter2.webp" alt="letter" width="800" height="419" loading="lazy">
+<div style="color: #999999; font-size: 90%; text-align: center;">
+<div style="margin-top: 8em">
+You may say I’m a dreamer
+<p>僕は夢を見過ぎだと言われるかもしれない</p>
+</div>
+<div style="margin-top: 2em">
+But I’m not the only one
+<p>けれど僕は独りじゃないんだ</p>
+</div>
+<div style="margin-top: 4em">
+I hope someday you’ll join us
+<p>君も仲間になってくれるだろ</p>
+</div>
+<div style="margin-top: 2em">
+And the world will live as one
+<p>ほら 世界はひとつになった</p>
+</div>
+<div style="margin-top: 8em"></div>
 </div>
 
 
