@@ -390,11 +390,12 @@ Imagine は発表以来、常に広く賞賛されてきたが、
 <a href="https://en.wikipedia.org/wiki/Rock_and_Roll_Hall_of_Fame" target="_blank" rel="noopener">RRHOF</a>の
 <a href="https://en.wikipedia.org/wiki/Rock_and_Roll_Hall_of_Fame#The_Songs_That_Shaped_Rock_and_Roll" target="_blank" rel="noopener">500 Songs that Shaped Rock and Roll</a>に選出された。
 <a href="https://en.wikipedia.org/wiki/British_Hit_Singles_%26_Albums" target="_blank" rel="noopener">Guinness World Records British Hit Singles Book</a>が
-2002年に英国で行った調査では、この曲が歴代2位に選ばれ、<a href="https://en.wikipedia.org/wiki/Rolling_Stone" target="_blank" rel="noopener">Rolling Stone</a>が2004年に発表した
-<a href="https://en.wikipedia.org/wiki/Rolling_Stone%27s_500_Greatest_Songs_of_All_Time" target="_blank" rel="noopener">史上最も偉大な500曲</a>では3位にランクされ、
-2021年の改訂版では19位に位置づけが変更された。
-2005年以来、イベント主催者はニューヨークのタイムズスクエアで行われる新年の舞踏会の直前にこの曲を流している。
-2023年、この曲は "文化的、歴史的、または美学的に重要" であるとして、米国議会図書館によって米国国立レコード登録簿に保存されることが決まった。</p>
+2002年にイギリスで行った調査では、この曲が歴代2位に選ばれ、<a href="https://en.wikipedia.org/wiki/Rolling_Stone" target="_blank" rel="noopener">Rolling Stone</a>が2004年に発表した
+<a href="https://en.wikipedia.org/wiki/Rolling_Stone%27s_500_Greatest_Songs_of_All_Time" target="_blank" rel="noopener">史上最も偉大な500曲</a>では3位にランクされた。
+(2021年の改訂版では19位に変更された。)
+<p>2005年以降、年越しの<a href="https://en.wikipedia.org/wiki/Times_Square_Ball" target="_blank" rel="noopener">Times Square Ball</a>のドロップ直前に Imagine が流されるのが通例になっている。
+2023年には<a href="https://en.wikipedia.org/wiki/Library_of_Congress" target="_blank" rel="noopener">Library of Congress</a>(アメリカ議会図書館) によって、
+この曲が "文化的・歴史的・または芸術的に重要である" と認められ、<a href="https://en.wikipedia.org/wiki/National_Recording_Registry" target="_blank" rel="noopener">National Recording Registry</a> に選定された。</p>
 </aside>
 
 <aside class="ft-definition" role="doc-footnote">
