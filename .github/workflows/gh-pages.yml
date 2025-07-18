@@ -228,9 +228,9 @@ jobs:
 
       - name: Setup Uv
         if: steps.cache-woff2.outputs.cache-hit != 'true'
-        uses: astral-sh/setup-uv@bd01e18f51369d5a26f1651c3cb451d3417e3bba # v6.3.1
+        uses: astral-sh/setup-uv@05273c154d09957eb9a2377d9c988fbda431d1c5 # v6.4.0
         with:
-          version: "0.7.x"
+          version: "0.8.x"
 
       - name: Convert and Copy Woff2
         if: steps.cache-woff2.outputs.cache-hit != 'true'
