@@ -152,7 +152,7 @@ export const initSidebar = (root: string): void => {
       localStorage.getItem(SAVE_STORAGE) === 'hidden' ? hideSidebar(false) : showSidebar(false);
     }
   } catch (err: unknown) {
-    console.error(`Failed to load "breakpoint-ui-wide"`);
+    console.error(`Failed to load "breakpoint-ui-wide": ${err}`);
     hideSidebar();
   }
 

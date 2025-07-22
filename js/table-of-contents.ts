@@ -168,7 +168,7 @@ export const initTableOfContents = (): void => {
   try {
     mobileMaxWidth = getRootVariableNum('--breakpoint-ui-wide');
   } catch (err: unknown) {
-    console.error(`Failed to load "breakpoint-ui-wide"`);
+    console.error(`Failed to load "breakpoint-ui-wide": ${err}`);
     mobileMaxWidth = 999;
   }
 
