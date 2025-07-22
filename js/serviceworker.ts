@@ -7,6 +7,9 @@ const FALLBACK_IMAGE = 'chrome-96x96.png';
 
 const installList = [
   'book.js',
+  'chrome-96x96.png',
+  'favicon.ico',
+  'favicon.svg',
 
   'css/general.css',
   'css/style.css',
