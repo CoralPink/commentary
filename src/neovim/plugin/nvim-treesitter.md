@@ -637,3 +637,39 @@ Alright, alright, alright
 
 オーライ、オーライ！ …オーライ？
 ```
+
+```admonish danger title=""
+Alright...
+```
+
+```admonish danger title=""
+Alright...
+```
+
+```admonish danger title=""
+Alright...
+```
+
+```admonish danger title=""
+Alright...
+```
+
+```admonish danger title=""
+Alright...
+```
+
+```admonish danger title=""
+Alright...
+```
+
+```admonish danger title=""
+Alright...
+```
+
+```admonish danger title=""
+<div style="text-align: center; font-size: 600%">
+OH! LIE!!
+</div>
+
+![OH-LIE](img/oh-lie.webp)
+```
