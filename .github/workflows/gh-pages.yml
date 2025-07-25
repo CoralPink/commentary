@@ -68,6 +68,7 @@ jobs:
             ~/.cargo/git/db/
             target/
           key: wasm-${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+
       - name: Install Cargo
         if: steps.cache-cargo.outputs.cache-hit != 'true'
         run: |
@@ -142,7 +143,6 @@ jobs:
             ~/.bun/install/cache
             js/node_modules
           key: js-${{ runner.os }}-bun-${{ hashFiles('**/bun.lock') }}
-          restore-keys: js-${{ runner.os }}-bun-
 
       - name: Download wasm_pkg
         uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
@@ -223,8 +223,6 @@ jobs:
         with:
           path: fonts/woff2
           key: python-${{ runner.os }}-fonts-${{ hashFiles('fonts/**') }}
-          restore-keys: |
-            python-${{ runner.os }}-fonts-
 
       - name: Setup Uv
         if: steps.cache-woff2.outputs.cache-hit != 'true'
@@ -288,7 +286,7 @@ jobs:
         with:
           lfs: false # Make it clear (just in case) that lfs is not used in this step.
           sparse-checkout: |
-            .
+            book.toml
             rs/mdbook-footnote
             scripts
             src
