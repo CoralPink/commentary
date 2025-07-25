@@ -1,5 +1,5 @@
-@use 'mixins' as mixins;
 @use 'variables' as var;
+@use "utils" as utils;
 
 @mixin anchor-gradient($angle) {
   color: var(--fg);
@@ -76,7 +76,7 @@
   padding: 0.24rem 0;
   z-index: 30;
 
-  @include mixins.glass-filter($radius: 0.4rem);
+  @include utils.filter-glass($radius: 0.4rem);
 
   & {
     border-top: 1px solid var.$color-pink; // Overwrite only the top of the border
