@@ -1,9 +1,11 @@
-@use "popup-vars" as popup;
+@use "../color-channnels.scss" as cc;
 
 /* https://highlightjs.readthedocs.io/en/latest/css-classes-reference.html */
 
-$theme-popup-bg: #e6e9ef;
-$theme-popup-border: #9ca0b0;
+$popup-colors: (
+  "theme-popup-bg": #e6e9ef,
+  "theme-popup-border": #9ca0b0
+);
 
 :root {
   --bg: #eff1f5;
@@ -18,7 +20,6 @@ $theme-popup-border: #9ca0b0;
   --icons-hover: #7c7f93;
   --links: #1e66f5;
   --inline-code-color: #fe640b;
-  @include popup.define-popup-vars($theme-popup-bg, $theme-popup-border);
   --theme-hover: #ccd0da;
   --quote-bg: #e6e9ef;
   --quote-border: #dce0e8;
@@ -36,6 +37,7 @@ $theme-popup-border: #9ca0b0;
   --warning-border: #fe640b;
   --color-scheme: light;
 
+  @include cc.convert-hsl($popup-colors, 10%);
 }
 
 .hljs-keyword {
