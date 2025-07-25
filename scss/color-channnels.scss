@@ -1,0 +1,21 @@
+@use "sass:color" as c;
+
+@mixin convert-rgb($color, $prefix) {
+  @each $name, $color in $color-map {
+    --#{$name}: #{$color};
+
+    --#{$prefix}-rgb: #{c.channel($color, "red")},
+    #{c.channel($color, "green")},
+    #{c.channel($color, "blue")};
+  }
+}
+
+@mixin convert-hsl($color-map, $lightness-offset: 0%) {
+  @each $name, $color in $color-map {
+    --#{$name}: #{$color};
+
+    --#{$name}-h: #{c.channel($color, "hue", $space: hsl)};
+    --#{$name}-s: #{c.channel($color, "saturation", $space: hsl)};
+    --#{$name}-l: clamp(0%, #{c.channel($color, "lightness", $space: hsl) + $lightness-offset}, 100%);
+  }
+}
