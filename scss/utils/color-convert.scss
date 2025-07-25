@@ -1,6 +1,6 @@
 @use "sass:color" as c;
 
-@mixin convert-rgb($color, $prefix) {
+@mixin rgb($color, $prefix) {
   @each $name, $color in $color-map {
     --#{$name}: #{$color};
 
@@ -10,7 +10,7 @@
   }
 }
 
-@mixin convert-hsl($color-map, $lightness-offset: 0%) {
+@mixin hsl($color-map, $lightness-offset: 0%) {
   @each $name, $color in $color-map {
     --#{$name}: #{$color};
 

@@ -1,4 +1,4 @@
-@use "../color-channnels.scss" as cc;
+@use "../utils" as utils;
 
 /* https://highlightjs.readthedocs.io/en/latest/css-classes-reference.html */
 
@@ -37,7 +37,7 @@ $popup-colors: (
   --warning-border: #ef9f76;
   --color-scheme: dark;
 
-  @include cc.convert-hsl($popup-colors, 4%);
+  @include utils.convert-hsl($popup-colors, 4%);
 }
 
 .hljs-keyword {

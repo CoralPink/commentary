@@ -2,7 +2,7 @@
 @use 'headline';
 
 @use 'variables' as var;
-@use 'mixins' as mixins;
+@use "utils" as utils;
 
 @view-transition {
   navigation: auto;
@@ -131,7 +131,7 @@ body {
     width: var.$sidebar-width;
     z-index: 50;
 
-    @include mixins.glass-filter();
+    @include utils.filter-glass();
   }
 }
 
