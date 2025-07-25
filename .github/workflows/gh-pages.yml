@@ -286,7 +286,7 @@ jobs:
       - name: Checkout the repo
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
         with:
-          lfs: true
+          lfs: false # Make it clear (just in case) that lfs is not used in this step.
           sparse-checkout: |
             .
             rs/mdbook-footnote
