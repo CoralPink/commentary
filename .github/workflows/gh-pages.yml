@@ -17,6 +17,13 @@ jobs:
     name: Cache Media Files
     runs-on: macos-15
     steps:
+      - name: Checkout the repo
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+        with:
+          lfs: false
+          sparse-checkout: |
+            src
+
       - name: Cache Source
         id: cache-source
         uses: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684 # v4
@@ -27,13 +34,11 @@ jobs:
             src/**/*.mp3
           key: media-${{ hashFiles('src/**/*.webp', 'src/**/*.webm', 'src/**/*.mp3') }}
 
-      - name: Checkout the repo
+      - name: Ensure LFS Files Are Pulled
         if: steps.cache-source.outputs.cache-hit != 'true'
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
         with:
           lfs: true
-          sparse-checkout: |
-            src
+        run: git lfs pull
 
   test-wasm:
     name: Test Wasm
@@ -300,7 +305,7 @@ jobs:
       contents: write
     name: Build and Deploy
     runs-on: macos-15
-    if: ${{ github.ref == 'refs/heads/main' }}
+#    if: ${{ github.ref == 'refs/heads/main' }} # Temporarily disabled for operation check...
     needs: [build-wasm, build-js, build-scss, cache-media-files, convert-woff2, test-mdbook-backend]
     steps:
       - name: Restore Media Cache
@@ -417,6 +422,7 @@ jobs:
         run: |
           ls -alR book
 
+# Temporarily disabled for operation check...
 #     - name: Deploy
 #       uses: peaceiris/actions-gh-pages@4f9cc6602d3f66b9c108549d475ec49e8ef4d45e # v4
 #       with:
