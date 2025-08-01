@@ -306,19 +306,6 @@ jobs:
 #    if: ${{ github.ref == 'refs/heads/main' }} # Temporarily disabled for operation check...
     needs: [build-wasm, build-js, build-scss, cache-media-files, convert-woff2, test-mdbook-backend]
     steps:
-      - name: Restore Media Cache
-        id: cache-media
-        uses: actions/cache@v4
-        with:
-          path: tmp-media
-          key: media-${{ hashFiles('src/**/*.webp', 'src/**/*.webm', 'src/**/*.mp3') }}
-
-      - name: Fail If Media Cache Not Found
-        if: steps.cache-media.outputs.cache-hit != 'true'
-        run: |
-          echo "Media cache not found. Stopping the workflow..."
-          exit 1
-
       - name: Checkout the repo
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
         with:
@@ -329,6 +316,19 @@ jobs:
             scripts
             src
             theme
+
+      - name: Restore Media Cache
+        id: cache-media
+        uses: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684 # v4
+        with:
+          path: tmp-media
+          key: media-${{ hashFiles('src/**/*.webp', 'src/**/*.webm', 'src/**/*.mp3') }}
+
+      - name: Fail If Media Cache Not Found
+        if: steps.cache-media.outputs.cache-hit != 'true'
+        run: |
+          echo "Media cache not found. Stopping the workflow..."
+          exit 1
 
       - name: Remove LFS Pointer
         run: find src -type f \( -name '*.webp' -o -name '*.webm' -o -name '*.mp3' \) -delete
