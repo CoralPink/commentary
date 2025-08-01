@@ -40,6 +40,12 @@ jobs:
         if: steps.cache-source.outputs.cache-hit != 'true'
         run: git lfs pull
 
+      - name: Debug
+        run: |
+          echo "cache-hit: ${{ steps.cache-source.outputs.cache-hit }}"
+          echo "cache-primary-key: ${{ steps.cache-source.outputs.cache-primary-key }}"
+          echo "cache-matched-key: ${{ steps.cache-source.outputs.cache-matched-key }}"
+
   test-wasm:
     name: Test Wasm
     runs-on: macos-15
@@ -318,6 +324,10 @@ jobs:
             scripts
             src
             theme
+
+      - name: Debug
+        run: |
+          echo "Cache key: ${{ needs.cache-media-files.outputs.media-cache-key }}"
 
       - name: Restore Media Cache
         id: cache-media
