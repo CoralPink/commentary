@@ -17,7 +17,7 @@ jobs:
     name: Cache Media Files
     runs-on: macos-15
     outputs:
-      media-cache-key: ${{ steps.cache-source.outputs.cache-matched-key }}
+      media-cache-key: ${{ steps.set-cache-key.outputs.cache-key }}
     steps:
       - name: Checkout the repo
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
@@ -25,6 +25,10 @@ jobs:
           lfs: false
           sparse-checkout: |
             src
+
+      - name: Set Cache Key
+        id: set-cache-key
+        run: echo "cache-key=media-${{ hashFiles('src/**/*.webp', 'src/**/*.webm', 'src/**/*.mp3') }}" >> $GITHUB_OUTPUT
 
       - name: Cache Source
         id: cache-source
@@ -39,12 +43,6 @@ jobs:
       - name: Ensure LFS Files Are Pulled
         if: steps.cache-source.outputs.cache-hit != 'true'
         run: git lfs pull
-
-      - name: Debug
-        run: |
-          echo "cache-hit: ${{ steps.cache-source.outputs.cache-hit }}"
-          echo "cache-primary-key: ${{ steps.cache-source.outputs.cache-primary-key }}"
-          echo "cache-matched-key: ${{ steps.cache-source.outputs.cache-matched-key }}"
 
   test-wasm:
     name: Test Wasm
@@ -324,10 +322,6 @@ jobs:
             scripts
             src
             theme
-
-      - name: Debug
-        run: |
-          echo "Cache key: ${{ needs.cache-media-files.outputs.media-cache-key }}"
 
       - name: Restore Media Cache
         id: cache-media
