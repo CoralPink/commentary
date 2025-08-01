@@ -36,8 +36,6 @@ jobs:
 
       - name: Ensure LFS Files Are Pulled
         if: steps.cache-source.outputs.cache-hit != 'true'
-        with:
-          lfs: true
         run: git lfs pull
 
   test-wasm:
