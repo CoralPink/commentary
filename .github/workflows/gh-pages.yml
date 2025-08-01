@@ -314,7 +314,7 @@ jobs:
       contents: write
     name: Build and Deploy
     runs-on: macos-15
-#    if: ${{ github.ref == 'refs/heads/main' }} # Temporarily disabled for operation check...
+    if: ${{ github.ref == 'refs/heads/main' }}
     needs: [build-wasm, build-js, build-scss, cache-media-files, convert-woff2, test-mdbook-backend]
     steps:
       - name: Checkout the repo
