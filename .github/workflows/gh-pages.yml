@@ -13,6 +13,42 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  cache-media-files:
+    name: Cache Media Files
+    runs-on: macos-15
+    outputs:
+      media-cache-key: ${{ steps.set-cache-key.outputs.cache-key }}
+    steps:
+      - name: Checkout the repo
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+        with:
+          lfs: false
+          sparse-checkout: |
+            src
+
+      - name: Set Cache Key
+        id: set-cache-key
+        run: |
+          echo "cache-key=media-${{ hashFiles('src/**/*.webp', 'src/**/*.webm', 'src/**/*.mp3') }}" >> $GITHUB_OUTPUT
+
+      - name: Cache Source
+        id: cache-source
+        uses: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684 # v4
+        with:
+          path: tmp-media
+          key: media-${{ hashFiles('src/**/*.webp', 'src/**/*.webm', 'src/**/*.mp3') }}
+
+      - name: Ensure LFS Files Are Pulled
+        if: steps.cache-source.outputs.cache-hit != 'true'
+        run: |
+          git lfs pull
+
+      - name: Synchronize Media Files
+        if: steps.cache-source.outputs.cache-hit != 'true'
+        run: |
+          mkdir tmp-media
+          rsync -a --include='*/' --include='*.webp' --include='*.webm' --include='*.mp3' --exclude='*' src/ tmp-media
+
   test-wasm:
     name: Test Wasm
     runs-on: macos-15
@@ -279,7 +315,7 @@ jobs:
     name: Build and Deploy
     runs-on: macos-15
     if: ${{ github.ref == 'refs/heads/main' }}
-    needs: [build-wasm, build-js, build-scss, convert-woff2, test-mdbook-backend]
+    needs: [build-wasm, build-js, build-scss, cache-media-files, convert-woff2, test-mdbook-backend]
     steps:
       - name: Checkout the repo
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
@@ -291,6 +327,22 @@ jobs:
             scripts
             src
             theme
+
+      - name: Restore Media Cache
+        id: cache-media
+        uses: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684 # v4
+        with:
+          path: tmp-media
+          key: ${{ needs.cache-media-files.outputs.media-cache-key }}
+          fail-on-cache-miss: true
+
+      - name: Remove LFS Pointer
+        run: find src -type f \( -name '*.webp' -o -name '*.webm' -o -name '*.mp3' \) -delete
+
+      - name: Copy Cached Media Back
+        run: |
+          rsync -a tmp-media/ src/
+          rm -rf tmp-media
 
       - name: Download All Artifacts
         uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
@@ -374,6 +426,7 @@ jobs:
         run: |
           ls -alR book
 
+# Temporarily disabled for operation check...
 #     - name: Deploy
 #       uses: peaceiris/actions-gh-pages@4f9cc6602d3f66b9c108549d475ec49e8ef4d45e # v4
 #       with:
