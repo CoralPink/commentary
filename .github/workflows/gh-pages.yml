@@ -17,7 +17,7 @@ jobs:
     name: Cache Media Files
     runs-on: macos-15
     outputs:
-      media-cache-key: ${{ steps.cache-source.outputs.cache-primary-key }}
+      media-cache-key: ${{ steps.cache-source.outputs.cache-matched-key }}
     steps:
       - name: Checkout the repo
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
