@@ -325,13 +325,7 @@ jobs:
         with:
           path: tmp-media
           key: ${{ needs.cache-media-files.outputs.media-cache-key }}
-          restore-keys: media-
-
-      - name: Fail If Media Cache Not Found
-        if: steps.cache-media.outputs.cache-hit != 'true'
-        run: |
-          echo "Media cache not found. Stopping the workflow..."
-          exit 1
+          fail-on-cache-miss: true
 
       - name: Remove LFS Pointer
         run: find src -type f \( -name '*.webp' -o -name '*.webm' -o -name '*.mp3' \) -delete
