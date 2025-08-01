@@ -338,7 +338,7 @@ jobs:
 
       - name: Copy Cached Media Back
         run: |
-          rsync -a tmp-media/ src/
+          rsync -a tmp-media/src/ src/
           rm -rf tmp-media
 
       - name: Download All Artifacts
