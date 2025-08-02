@@ -16,6 +16,7 @@ jobs:
   cache-media-files:
     name: Cache Media Files
     runs-on: macos-15
+    if: ${{ github.ref == 'refs/heads/main' }}
     outputs:
       media-cache-key: ${{ steps.set-cache-key.outputs.cache-key }}
     steps:
