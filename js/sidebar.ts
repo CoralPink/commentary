@@ -14,7 +14,7 @@ const ID_TOGGLE_BUTTON = 'sidebar-toggle';
 const SAVE_STORAGE = 'mdbook-sidebar';
 
 let rootPath: string;
-let mobileMaxWidth: number;
+let uiBreak: number;
 
 let searchPop: HTMLElement;
 
@@ -97,7 +97,7 @@ const hideSidebar = (write = true): void => {
 };
 
 const clickHide = (ev: PointerEvent): void => {
-  if (window.innerWidth >= mobileMaxWidth && ev.pointerType !== 'touch') {
+  if (window.innerWidth >= uiBreak && ev.pointerType !== 'touch') {
     return;
   }
 
@@ -144,9 +144,9 @@ export const initSidebar = (root: string): void => {
   rootPath = root;
 
   try {
-    mobileMaxWidth = getRootVariableNum('--breakpoint-ui-wide');
+    uiBreak = getRootVariableNum('--breakpoint-ui-wide');
 
-    if (window.innerWidth < mobileMaxWidth) {
+    if (window.innerWidth < uiBreak) {
       hideSidebar();
     } else {
       localStorage.getItem(SAVE_STORAGE) === 'hidden' ? hideSidebar(false) : showSidebar(false);

@@ -1,23 +1,27 @@
 import { getRootVariableNum } from './css-loader.ts';
 import { reverseItr } from './generators.ts';
 
-const ENV_PC: number = 0;
-const ENV_MOBILE: number = 1;
+const Environment = {
+  WIDE: 0,
+  COMPACT: 1,
+} as const;
 
-const elementToc = ['righttoc', 'bottomtoc'] as const satisfies readonly string[];
+type Environment = (typeof Environment)[keyof typeof Environment];
+
+const tocClass = ['righttoc', 'bottomtoc'] as const;
 
 const tocMap: Map<HTMLElement, HTMLAnchorElement> = new Map();
 let observer: IntersectionObserver;
 
-let mobileMaxWidth: number;
+let uiBreak: number;
 
-let environment: number;
+let environment: Environment;
 let onlyActive: HTMLElement | null = null;
 
 let currentInlineCenter: HTMLElement | null = null;
 
 const scrollCenter = (): void => {
-  if (environment === ENV_PC || currentInlineCenter === null) {
+  if (environment === Environment.WIDE || currentInlineCenter === null) {
     return;
   }
   setTimeout(() => {
@@ -91,7 +95,7 @@ const initialize = (): void => {
     { threshold: 1.0 },
   );
 
-  environment = window.innerWidth >= mobileMaxWidth ? ENV_PC : ENV_MOBILE;
+  environment = window.innerWidth >= uiBreak ? Environment.WIDE : Environment.COMPACT;
 
   const nav: HTMLElement = document.createElement('nav');
   nav.setAttribute('id', 'pagetoc');
@@ -136,7 +140,7 @@ const initialize = (): void => {
     return;
   }
 
-  toc.classList.add(elementToc[environment]);
+  toc.classList.add(tocClass[environment]);
   toc.appendChild(nav);
 };
 
@@ -155,7 +159,7 @@ const tocReset = (): void => {
     return;
   }
 
-  toc.classList.remove(elementToc[environment]);
+  toc.classList.remove(tocClass[environment]);
   toc.removeChild(pagetoc);
 
   tocMap.clear();
@@ -166,15 +170,13 @@ const tocReset = (): void => {
 
 export const initTableOfContents = (): void => {
   try {
-    mobileMaxWidth = getRootVariableNum('--breakpoint-ui-wide');
+    uiBreak = getRootVariableNum('--breakpoint-ui-wide');
   } catch (err: unknown) {
     console.error(`Failed to load "breakpoint-ui-wide": ${err}`);
-    mobileMaxWidth = 999;
+    uiBreak = 999;
   }
 
   initialize();
 
-  window
-    .matchMedia(`(min-width: ${mobileMaxWidth}px)`)
-    .addEventListener('change', tocReset, { once: false, passive: true });
+  window.matchMedia(`(min-width: ${uiBreak}px)`).addEventListener('change', tocReset, { once: false, passive: true });
 };
