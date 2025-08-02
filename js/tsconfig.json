@@ -16,7 +16,11 @@
     "strict": true,
     "noFallthroughCasesInSwitch": true,
 
-    // Some stricter flags
+    // Stricter Typechecking Options
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
+
+    // Code cleanliness / Lint-like flags
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noPropertyAccessFromIndexSignature": true,

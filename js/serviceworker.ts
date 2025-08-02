@@ -33,7 +33,7 @@ const isUsePreload = /Chrome|Chromium|Edg|OPR/.test(ua) && !/Firefox/.test(ua) &
 
 const extractVersionParts = (cacheName: string): { major: number; minor: number } => {
   const versionString = cacheName.substring(1);
-  const [major, minor] = versionString.split('.').map(Number);
+  const [major = 0, minor = 0] = versionString.split('.').map(Number);
 
   return { major, minor };
 };
@@ -43,6 +43,7 @@ const shouldSkipWaiting = (cacheList: string[]): boolean => {
 
   return cacheList.some(cacheName => {
     const current = extractVersionParts(cacheName);
+
     return current.major < target.major || (current.major === target.major && current.minor < target.minor);
   });
 };
@@ -50,12 +51,11 @@ const shouldSkipWaiting = (cacheList: string[]): boolean => {
 self.addEventListener('install', (event: ExtendableEvent): void => {
   event.waitUntil(
     (async () => {
-      const shouldSkip = shouldSkipWaiting(await caches.keys());
-
-      if (shouldSkip) {
+      if (shouldSkipWaiting(await caches.keys())) {
         self.skipWaiting();
       }
       const cache = await caches.open(CACHE_VERSION);
+
       await cache.addAll(installList.map(x => CACHE_URL + x));
     })(),
   );

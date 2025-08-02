@@ -1,5 +1,5 @@
-import { writeLocalStorage } from './storage.ts';
 import { getRootVariableNum, loadStyleSheet } from './css-loader.ts';
+import { writeLocalStorage } from './storage.ts';
 
 const PAGE_LIST = 'pagelist.html';
 const STYLE_CHAPTER = 'css/chapter.css';
