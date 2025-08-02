@@ -1,5 +1,5 @@
 import { initWorker } from './hl-initialize.ts';
-import { type SendToWorker, type Payload, isErrorPayload } from './hl-types.ts';
+import { isErrorPayload, type Payload, type SendToWorker } from './hl-types.ts';
 
 const TOOLTIP_FADEOUT_MS = 1200;
 
@@ -45,7 +45,13 @@ const highlight = (code: HTMLElement): void => {
     return;
   }
 
-  sendToWorker(code.textContent, code.classList[0], (res: Payload) => {
+  const lang = code.classList[0];
+
+  if (lang === undefined) {
+    return;
+  }
+
+  sendToWorker(code.textContent, lang, (res: Payload): void => {
     if (isErrorPayload(res)) {
       return;
     }
