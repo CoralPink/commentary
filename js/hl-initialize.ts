@@ -6,7 +6,7 @@
  */
 import { v7 as uuidv7 } from 'uuid';
 
-import { type WorkerResponse, type SendToWorker, type Payload, isErrorPayload } from './hl-types.ts';
+import { isErrorPayload, type Payload, type SendToWorker, type WorkerResponse } from './hl-types.ts';
 
 const SHAREDWORKER_PATH = '/commentary/hl-sharedworker.js';
 const WORKER_PATH = '/commentary/hl-worker.js';
@@ -53,7 +53,7 @@ const useSharedWorker = (): SendToWorker => {
 
   sharedWorker.port.start();
 
-  return (text, lang, callback) => {
+  return (text: string, lang: string, callback: (payload: Payload) => void) => {
     const id = uuidv7();
 
     callbacks.set(id, callback);
@@ -67,7 +67,7 @@ const useSharedWorker = (): SendToWorker => {
  * This is used as a fallback when SharedWorker is not available.
  * Suitable for environments where SharedWorker is unsupported, such as Chrome on Android.
  */
-const useSimpleWorker = (): SendToWorker => (text, lang, callback) => {
+const useSimpleWorker = (): SendToWorker => (text: string, lang: string, callback: (payload: Payload) => void) => {
   const worker = new Worker(WORKER_PATH);
 
   worker.onmessage = (ev: MessageEvent<Payload>) => {

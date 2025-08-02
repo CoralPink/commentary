@@ -1,6 +1,6 @@
 // @ts-expect-error: I know there is no type information.
 import hljs from './highlight.js/build/highlight.js';
-import { extractLanguage, containsNerdFontIcon } from './hl-language.ts';
+import { containsNerdFontIcon, extractLanguage } from './hl-language.ts';
 
 import type { Payload, WorkerResponse } from './hl-types';
 
@@ -14,6 +14,12 @@ const sharedWorker = self as unknown as SharedWorkerGlobalScope;
 
 sharedWorker.onconnect = ev => {
   const port = ev.ports[0];
+
+  // The event of SharedWorkerGlobalScope.onconnect always contains one or more ports
+  // according to the specification, but the compiler will warn you about it, so leave it in.
+  if (port === undefined) {
+    throw new Error('SharedWorker: No port found');
+  }
 
   port.onmessage = (msg: MessageEvent<HighlightRequest>) => {
     const { id, text, lang } = msg.data;
