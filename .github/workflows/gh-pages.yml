@@ -34,7 +34,7 @@ jobs:
 
       - name: Cache Source
         id: cache-source
-        uses: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684 # v4
+        uses: actions/cache@0400d5f644dc74513175e3cd8d07132dd4860809 # v4
         with:
           path: tmp-media
           key: media-${{ hashFiles('src/**/*.webp', 'src/**/*.webm', 'src/**/*.mp3') }}
@@ -62,7 +62,7 @@ jobs:
 
       - name: Cache Cargo
         id: cache-cargo
-        uses: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684 # v4
+        uses: actions/cache@0400d5f644dc74513175e3cd8d07132dd4860809 # v4
         with:
           path: |
             ~/.cargo/bin/
@@ -96,7 +96,7 @@ jobs:
 
       - name: Cache Cargo
         id: cache-cargo
-        uses: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684 # v4
+        uses: actions/cache@0400d5f644dc74513175e3cd8d07132dd4860809 # v4
         with:
           path: |
             ~/.cargo/bin/
@@ -174,7 +174,7 @@ jobs:
             js
 
       - name: Cache dependencies
-        uses: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684 # v4
+        uses: actions/cache@0400d5f644dc74513175e3cd8d07132dd4860809 # v4
         with:
           path: |
             ~/.bun/install/cache
@@ -256,7 +256,7 @@ jobs:
 
       - name: Cache Woff2 output
         id: cache-woff2
-        uses: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684 # v4
+        uses: actions/cache@0400d5f644dc74513175e3cd8d07132dd4860809 # v4
         with:
           path: fonts/woff2
           key: python-${{ runner.os }}-fonts-${{ hashFiles('fonts/**') }}
@@ -295,7 +295,7 @@ jobs:
             rs/mdbook-footnote
 
       - name: Cache Cargo
-        uses: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684 # v4
+        uses: actions/cache@0400d5f644dc74513175e3cd8d07132dd4860809 # v4
         with:
           path: |
             ~/.cargo/bin/
@@ -331,7 +331,7 @@ jobs:
 
       - name: Restore Media Cache
         id: cache-media
-        uses: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684 # v4
+        uses: actions/cache@0400d5f644dc74513175e3cd8d07132dd4860809 # v4
         with:
           path: tmp-media
           key: ${{ needs.cache-media-files.outputs.media-cache-key }}
@@ -359,7 +359,7 @@ jobs:
 
       - name: Cache Cargo
         id: cache-cargo
-        uses: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684 # v4
+        uses: actions/cache@0400d5f644dc74513175e3cd8d07132dd4860809 # v4
         with:
           path: |
             ~/.cargo/bin/
