@@ -59,8 +59,22 @@ jobs:
       - name: Synchronize Media Files
         if: steps.check-cache.outputs.exact != 'true'
         run: |
-          mkdir tmp-media
-          rsync -a --include='*/' --include='*.webp' --include='*.webm' --include='*.mp3' --exclude='*' src/ tmp-media
+          rm -rf tmp-media
+          mkdir -p tmp-media
+          rsync -a --delete \
+            --include='*/' \
+            --include='*.webp' \
+            --include='*.webm' \
+            --include='*.mp3' \
+            --exclude='*' \
+            src/ tmp-media
+
+      - name: Save Media Cache (new primary key)
+        if: steps.check-cache.outputs.exact != 'true'
+        uses: actions/cache/save@0400d5f644dc74513175e3cd8d07132dd4860809 # v4
+        with:
+          path: tmp-media
+          key: ${{ steps.set-cache-key.outputs.cache-key }}
 
   test-wasm:
     name: Test Wasm
