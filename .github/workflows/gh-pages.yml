@@ -35,7 +35,7 @@ jobs:
 
       - name: Restore Media Cache (allow partial match)
         id: cache-source
-        uses: actions/cache@0400d5f644dc74513175e3cd8d07132dd4860809 # v4
+        uses: actions/cache/restore@0400d5f644dc74513175e3cd8d07132dd4860809 # v4
         with:
           path: tmp-media
           key: media-${{ hashFiles('src/**/*.webp', 'src/**/*.webm', 'src/**/*.mp3') }}
@@ -45,7 +45,7 @@ jobs:
         id: check-cache
         run: |
           if [ "${{ steps.cache-source.outputs.cache-hit }}" = "true" ] && \
-             [ "${{ steps.set-cache-key.outputs.cache-key }}" = "media-${{ hashFiles('src/**/*.webp', 'src/**/*.webm', 'src/**/*.mp3') }}" ]; then
+             [ "${{ steps.cache-source.outputs.cache-matched-key }}" = "${{ steps.set-cache-key.outputs.cache-key }}" ]; then
             echo "exact=true" >> $GITHUB_OUTPUT
           else
             echo "exact=false" >> $GITHUB_OUTPUT
