@@ -54,8 +54,7 @@ jobs:
       - name: Pull missing LFS files (on partial or miss)
         if: steps.check-cache.outputs.exact != 'true'
         run: |
-          git lfs pull
-
+          git lfs pull --include="src/**/*.webp,src/**/*.webm,src/**/*.mp3"
       - name: Synchronize Media Files
         if: steps.check-cache.outputs.exact != 'true'
         run: |
