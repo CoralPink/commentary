@@ -87,7 +87,14 @@
 <p>この節では、もう少し<code>Function</code>を深掘りします。</p>
 <p>ここで例示しているコードは実用性の無いものだけですが、できれば手元で動かしてみてください。</p>
 <p>(そして、終わったら消しておいてください...😅)</p>
-<h2 id="通常の-function-を呼び出す"><a class="header" href="#通常の-function-を呼び出す">通常の function を呼び出す</a></h2>
+<img src="img/musicforest-foutain.webp" alt="musicforest-foutain" width="1000" height="562" fetchpriority="high">
+<div id="admonition-default" class="admonition admonish-info" role="note">
+<div>
+<p>A dream is a wish your heart makes<sup class="ft-reference"><button id="to-ft-1" data-href="#ft-1">1</button></sup></p>
+<p>夢ってね あなたの心が描く願いごとなんだよ</p>
+</div>
+</div>
+<h2 id="function"><a class="header" href="#function">Function</a></h2>
 <p>前節では<code>無名関数</code>を右辺に組み込んでいましたが、これはちゃんと名前のある<code>関数</code>を呼び出す形ですね😆</p>
 <pre><code class="language-lua">function testfunc()
   print('i am test function')
@@ -96,7 +103,7 @@ end
 -- (考えるのが面倒で 3 にしてますが...) キーはなんでも構いません。
 vim.keymap.set('n', '&lt;Leader&gt;3', testfunc)
 </code></pre>
-<img src="img/call-function3.webp" alt="call-function3" width="696" height="82" fetchpriority="high">
+<img src="img/call-function3.webp" alt="call-function3" width="696" height="82" loading="lazy">
 <p>いい感じ〜❗</p>
 <div id="admonition-note" class="admonition admonish-note" role="note" aria-labelledby="admonition-note-title">
 <div class="admonition-title">
@@ -110,7 +117,16 @@ vim.keymap.set('n', '&lt;Leader&gt;3', testfunc)
 適宜使い分けていきましょう😉</p>
 </div>
 </div>
-<h2 id="パラメータを渡す"><a class="header" href="#パラメータを渡す">パラメータを渡す</a></h2>
+<div id="admonition-default-1" class="admonition admonish-info" role="note">
+<div>
+<p>When you're fast asleep</p>
+<p>In dreams, you will lose your heartaches</p>
+<p>そっと眠りについたのなら</p>
+<p>そこはもう夢の中、心の痛みなんてもうなくって</p>
+</div>
+</div>
+<img src="img/musicforest-doll.webp" alt="musicforest-doll" width="573" height="860" loading="lazy">
+<h2 id="parameter"><a class="header" href="#parameter">Parameter</a></h2>
 <p>さて、上の項でなんだか急に<code>keymap.set</code>がスッキリして見えるのは、この辺りの話が関わってきます😌</p>
 <p>例えば、これはエラーになります。</p>
 <div id="admonition-error" class="admonition admonish-danger" role="note" aria-labelledby="admonition-error-title">
@@ -136,7 +152,13 @@ end
 
 vim.keymap.set('n', '&lt;Leader&gt;4', function() testparam('hello') end)
 </code></pre>
-<h2 id="戻り値がある場合"><a class="header" href="#戻り値がある場合">戻り値がある場合</a></h2>
+<div id="admonition-default-2" class="admonition admonish-info" role="note">
+<div>
+<p>Whatever you wish for, you keep</p>
+<p>その願いはそっと膨らんでいるんだよ</p>
+</div>
+</div>
+<h2 id="return-value"><a class="header" href="#return-value">Return Value</a></h2>
 <p>戻り値があるだけの<code>function</code>は平気みたいです。</p>
 <pre><code class="language-lua">function testret()
   print 'hello'
@@ -152,7 +174,16 @@ vim.keymap.set('n', '&lt;Leader&gt;5', testret)
 <p>...結局、<code>function()</code>で囲うところに落ち着くわけです。</p>
 <pre><code class="language-lua">vim.keymap.set('n', '&lt;Leader&gt;5', function() print(testret()) end)
 </code></pre>
-<h2 id="function-呼び出し"><a class="header" href="#function-呼び出し">function 呼び出し</a></h2>
+<img src="img/musicforest.webp" alt="musicforest" width="1000" height="666" loading="lazy">
+<div id="admonition-default-3" class="admonition admonish-info" role="note">
+<div>
+<p>Have faith in your dreams and someday</p>
+<p>Your rainbow will come smiling through</p>
+<p>夢を信じていれば いつの日か</p>
+<p>微笑みにも似た虹が 夢へと続く橋をかける</p>
+</div>
+</div>
+<h2 id="call"><a class="header" href="#call">Call</a></h2>
 <p>関数に<code>()</code>があったりなかったりするのはなんでなんだろうなーってなるんですけど、
 要は<code>()</code>をつけちゃうと<code>function</code>型ではなくてこの<code>functionの戻り値</code>の型は何かなー❓って判断をしに行っちゃうんですね😮</p>
 <p>今回は<code>vim.keymap.set()</code>を使用しているので、もう一回ヘルプを見返して欲しいんですけど、</p>
@@ -223,6 +254,27 @@ vim.keymap.set('n', '&lt;Leader&gt;8', testcall2())
 <p>これだけだと実用性ゼロなコードにしか見えないんですけど、例えば「状態によって実行する処理を変える」とかやりたい時に使えそうですね。</p>
 </div>
 </div>
+<div id="admonition-default-4" class="admonition admonish-info" role="note">
+<div>
+<p>No matter how your heart is grieving</p>
+<p>If you keep on believing</p>
+<p>たとえ どんなに心が悲しみに染まっても</p>
+<p>ずっと信じていれば</p>
+</div>
+</div>
+<h2 id="wrap-up"><a class="header" href="#wrap-up">Wrap Up</a></h2>
+<p>この辺りは言葉にしちゃうとややこしい感じがしないでもないんですけど、使っていればすぐに慣れると思います😆</p>
+<p>実際、わたしは割と感覚で書いています...😅</p>
+<div id="admonition-default-5" class="admonition admonish-info" role="note">
+<div>
+<video controls preload="none" width="1280" height="720" poster="img/musicforest-sandart-thumbnail.webp">
+  <source src="img/musicforest-sandart.webm" type="video/webm">
+  Your browser does not support the video/webm.
+</video>
+<p>The dream that you wish will come true</p>
+<p>あなたの願った夢は きっと叶う</p>
+</div>
+</div>
 <div id="admonition-success" class="admonition admonish-success" role="note" aria-labelledby="admonition-success-title">
 <div class="admonition-title">
 <div id="admonition-success-title">
@@ -231,19 +283,31 @@ vim.keymap.set('n', '&lt;Leader&gt;8', testcall2())
 <a class="admonition-anchor-link" href="#admonition-success"></a>
 </div>
 <div>
-<p>この辺りは言葉にしちゃうとややこしい感じがしないでもないんですけど、使っていればすぐに慣れると思います😆</p>
-<p>実際、わたしは割と感覚で書いています...😅</p>
-</div>
-</div>
-<div id="admonition-default" class="admonition admonish-success" role="note">
-<div>
 <div style="text-align: center">
   FUNCTION WILL RETURN
 <p>ファンクションは帰ってくる</p>
 </div>
 </div>
 </div>
-
+<aside class="ft-definition" role="doc-footnote" id="ft-1">
+<p><sup><a href="#to-ft-1">1:</a></sup>A Dream Is a Wish Your Heart Makes は<a href="https://en.wikipedia.org/wiki/Walt_Disney">Walt Disney</a>film の
+映画<a href="https://en.wikipedia.org/wiki/Cinderella_(1950_film)">Cinderella</a>(1950 film) のために
+<a href="https://en.wikipedia.org/wiki/Mack_David">Mack David</a>,
+<a href="https://en.wikipedia.org/wiki/Al_Hoffman">Al Hoffman</a>,
+<a href="https://en.wikipedia.org/wiki/Jerry_Livingston">Jerry Livingston</a>が作詞・作曲した曲である。</p>
+<p>シンデレラは劇中で、友達の動物たちに "夢を見ることをやめないように" と励ましており、これは物語全体を通して続くテーマでもある。
+この曲は<a href="https://en.wikipedia.org/wiki/Franz_Liszt">Franz Liszt</a>の
+<a href="https://en.wikipedia.org/wiki/Transcendental_%C3%89tude_No._9_(Liszt)">Transcendental Étude No. 9 (Liszt)</a>にインスパイアされている。</p>
+<p>テーマとしては、この歌詞は<a href="https://en.wikipedia.org/wiki/Pinocchio_(1940_film)">Pinocchio</a>(1940 film)の
+<a href="When_You_Wish_Upon_a_Star">When You Wish Upon a Star</a>で表現された感情を想起させる。</p>
+<p>夢と願いを同一視することで、
+シンデレラの歌う詞が約束するように "叶う" 願望という比喩的な意味で "夢" という言葉を使っていることを立証している。
+これは When You Wish Upon A Star や、他のディズニー作品でも同じ約束をしている。</p>
+<p>"when you're fast asleep" という文字通りの意味、(すなわち "ぐっすり眠っているときに起こるもの" として) は、
+<a href="https://en.wikipedia.org/wiki/Sleeping_Beauty_(1959_film)">Sleeping Beauty</a>(1959) で歌われる
+<a href="https://en.wikipedia.org/wiki/Once_Upon_a_Dream_(Sleeping_Beauty_song)">Once Upon a Dream (Sleeping Beauty song)</a>で再び登場する。
+<a href="https://en.wikipedia.org/wiki/A_Dream_Is_a_Wish_Your_Heart_Makes">Wikipedia</a>より</p>
+</aside>
 
           <nav id="nav-wrapper" aria-label="Page navigation">
             <a rel="prev" href="../../neovim/function/warming-up.html" class="chapters" id="prev" aria-label="Previous chapter: Warming Up">
