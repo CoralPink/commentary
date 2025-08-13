@@ -90,6 +90,7 @@ const popupFocus = (ev: KeyboardEvent): void => {
 
 const searchMouseupHandler = (ev: MouseEvent): void => {
   const prevFocused = focusedLi;
+
   updateFocus(ev.target as HTMLElement);
 
   if (prevFocused !== focusedLi) {
@@ -135,6 +136,7 @@ const showSearch = (): void => {
 
 const fetchRequest = async (url: string): Promise<Response> => {
   const controller = new AbortController();
+
   const timeoutId = setTimeout(() => {
     controller.abort();
     alert('The request has timed out.');
@@ -168,7 +170,6 @@ const fetchRequest = async (url: string): Promise<Response> => {
  */
 const isUseBrotli = (): boolean => {
   const ua = navigator.userAgent;
-
   const isSafari = /^((?!chrome|android).)*safari/i.test(ua);
 
   if (!isSafari) {
@@ -180,7 +181,9 @@ const isUseBrotli = (): boolean => {
   if (!match) {
     return false;
   }
-  const [major, minor] = match.slice(1, 3).map(Number);
+
+  const [major = 0, minor = 0] = match.slice(1, 3).map(Number);
+
   return major > 18 || (major === 18 && minor >= 4);
 };
 
