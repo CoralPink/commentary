@@ -38,7 +38,7 @@ jobs:
         uses: actions/cache/restore@0400d5f644dc74513175e3cd8d07132dd4860809 # v4
         with:
           path: tmp-media
-          key: media-${{ hashFiles('src/**/*.webp', 'src/**/*.webm', 'src/**/*.mp3') }}
+          key: ${{ steps.set-cache-key.outputs.cache-key }}
           restore-keys: media-
 
       - name: Check if cache is exact match
