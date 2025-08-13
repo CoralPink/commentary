@@ -1,8 +1,8 @@
-import { minify } from 'terser';
-import { writeFile, readFile } from 'bun:fs/promises';
 import { Buffer } from 'bun:buffer';
-
+import { readFile, writeFile } from 'bun:fs/promises';
 import path from 'bun:path';
+
+import { minify } from 'terser';
 
 const ENTRY_POINTS = ['book.ts', 'hl-worker.ts', 'hl-sharedworker.ts', 'replace-dom.ts', 'serviceworker.ts'];
 const OUT_DIR = './dist';
