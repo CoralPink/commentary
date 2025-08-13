@@ -6,7 +6,37 @@
 
 (そして、終わったら消しておいてください...😅)
 
-## 通常の function を呼び出す
+![musicforest-foutain](img/musicforest-foutain.webp)
+
+```admonish info title=""
+A dream is a wish your heart makes{{footnote:
+A Dream Is a Wish Your Heart Makes は[Walt Disney](https://en.wikipedia.org/wiki/Walt_Disney)film の
+映画[Cinderella](https://en.wikipedia.org/wiki/Cinderella_(1950_film))(1950 film) のために
+[Mack David](https://en.wikipedia.org/wiki/Mack_David),
+[Al Hoffman](https://en.wikipedia.org/wiki/Al_Hoffman),
+[Jerry Livingston](https://en.wikipedia.org/wiki/Jerry_Livingston)が作詞・作曲した曲である。
+
+シンデレラは劇中で、友達の動物たちに "夢を見ることをやめないように" と励ましており、これは物語全体を通して続くテーマでもある。
+この曲は[Franz Liszt](https://en.wikipedia.org/wiki/Franz_Liszt)の
+[Transcendental Étude No. 9 (Liszt)](https://en.wikipedia.org/wiki/Transcendental_Étude_No._9_(Liszt))にインスパイアされている。
+
+テーマとしては、この歌詞は[Pinocchio](https://en.wikipedia.org/wiki/Pinocchio_(1940_film))(1940 film)の
+[When You Wish Upon a Star](When_You_Wish_Upon_a_Star)で表現された感情を想起させる。
+
+夢と願いを同一視することで、
+シンデレラの歌う詞が約束するように "叶う" 願望という比喩的な意味で "夢" という言葉を使っていることを立証している。
+これは When You Wish Upon A Star や、他のディズニー作品でも同じ約束をしている。
+
+"when you're fast asleep" という文字通りの意味、(すなわち "ぐっすり眠っているときに起こるもの" として) は、
+[Sleeping Beauty](https://en.wikipedia.org/wiki/Sleeping_Beauty_(1959_film))(1959) で歌われる
+[Once Upon a Dream (Sleeping Beauty song)](https://en.wikipedia.org/wiki/Once_Upon_a_Dream_(Sleeping_Beauty_song))で再び登場する。
+[Wikipedia](https://en.wikipedia.org/wiki/A_Dream_Is_a_Wish_Your_Heart_Makes)より
+}}
+
+夢ってね あなたの心が描く願いごとなんだよ
+```
+
+## Function
 
 前節では`無名関数`を右辺に組み込んでいましたが、これはちゃんと名前のある`関数`を呼び出す形ですね😆
 
@@ -28,7 +58,19 @@ vim.keymap.set('n', '<Leader>3', testfunc)
 適宜使い分けていきましょう😉
 ```
 
-## パラメータを渡す
+```admonish info title=""
+When you're fast asleep
+
+In dreams, you will lose your heartaches
+
+そっと眠りについたのなら
+
+そこはもう夢の中、心の痛みなんてもうなくって
+```
+
+![musicforest-doll](img/musicforest-doll.webp)
+
+## Parameter
 
 さて、上の項でなんだか急に`keymap.set`がスッキリして見えるのは、この辺りの話が関わってきます😌
 
@@ -54,7 +96,13 @@ end
 vim.keymap.set('n', '<Leader>4', function() testparam('hello') end)
 ```
 
-## 戻り値がある場合
+```admonish info title=""
+Whatever you wish for, you keep
+
+その願いはそっと膨らんでいるんだよ
+```
+
+## Return Value
 
 戻り値があるだけの`function`は平気みたいです。
 
@@ -81,7 +129,19 @@ vim.keymap.set('n', '<Leader>5', print(testret()))
 vim.keymap.set('n', '<Leader>5', function() print(testret()) end)
 ```
 
-## function 呼び出し
+![musicforest](img/musicforest.webp)
+
+```admonish info title=""
+Have faith in your dreams and someday
+
+Your rainbow will come smiling through
+
+夢を信じていれば いつの日か
+
+微笑みにも似た虹が 夢へと続く橋をかける
+```
+
+## Call
 
 関数に`()`があったりなかったりするのはなんでなんだろうなーってなるんですけど、
 要は`()`をつけちゃうと`function`型ではなくてこの`functionの戻り値`の型は何かなー❓って判断をしに行っちゃうんですね😮
@@ -138,13 +198,34 @@ vim.keymap.set('n', '<Leader>8', testcall2())
 これだけだと実用性ゼロなコードにしか見えないんですけど、例えば「状態によって実行する処理を変える」とかやりたい時に使えそうですね。
 ```
 
-```admonish success
+```admonish info title=""
+No matter how your heart is grieving
+
+If you keep on believing
+
+たとえ どんなに心が悲しみに染まっても
+
+ずっと信じていれば
+```
+
+## Wrap Up
+
 この辺りは言葉にしちゃうとややこしい感じがしないでもないんですけど、使っていればすぐに慣れると思います😆
 
 実際、わたしは割と感覚で書いています...😅
+
+```admonish info title=""
+<video controls preload="none" width="1280" height="720" poster="img/musicforest-sandart-thumbnail.webp">
+  <source src="img/musicforest-sandart.webm" type="video/webm">
+  Your browser does not support the video/webm.
+</video>
+
+The dream that you wish will come true
+
+あなたの願った夢は きっと叶う
 ```
 
-```admonish success title=""
+```admonish success
 <div style="text-align: center">
   FUNCTION WILL RETURN
 
