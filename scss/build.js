@@ -1,7 +1,7 @@
-import * as sass from 'sass';
-
 import { Buffer } from 'bun:buffer';
 import fs, { writeFile } from 'bun:fs/promises';
+
+import { compile } from 'sass';
 
 const CLR_RESET = '\x1b[0m';
 const CLR_BC = '\x1b[1;35m';
@@ -25,7 +25,7 @@ const compileScss = async (input, output) => {
     throw new Error('Input and output paths are required');
   }
   try {
-    const result = sass.compile(input, {
+    const result = compile(input, {
       style: 'compressed',
       sourceMap: false,
       charset: false,
