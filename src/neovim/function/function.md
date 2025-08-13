@@ -6,6 +6,15 @@
 
 乗り越えていってください❗
 
+<video controls preload="none" width="1280" height="720" poster="img/kawaguchiko-hanabi-thumbnail.webp">
+  <source src="img/kawaguchiko-hanabi.webm" type="video/webm">
+  Your browser does not support the video/webm.
+</video>
+
+...内容とは全然関係ないんだけど、花火打ち上がってたんで載っけときます🎆
+
+ただの気まぐれです⭐
+
 ```admonish success
 これはまだ前哨戦。Civil War です❗
 ```
