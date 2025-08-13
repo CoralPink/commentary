@@ -19,6 +19,7 @@ jobs:
     if: ${{ github.ref == 'refs/heads/main' }}
     outputs:
       media-cache-key: ${{ steps.set-cache-key.outputs.cache-key }}
+      cache-hit-exact: ${{ steps.check-cache.outputs.exact }}
     steps:
       - name: Checkout the repo
         uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5
@@ -32,23 +33,47 @@ jobs:
         run: |
           echo "cache-key=media-${{ hashFiles('src/**/*.webp', 'src/**/*.webm', 'src/**/*.mp3') }}" >> $GITHUB_OUTPUT
 
-      - name: Cache Source
+      - name: Restore Media Cache (allow partial match)
         id: cache-source
-        uses: actions/cache@0400d5f644dc74513175e3cd8d07132dd4860809 # v4
+        uses: actions/cache/restore@0400d5f644dc74513175e3cd8d07132dd4860809 # v4
         with:
           path: tmp-media
-          key: media-${{ hashFiles('src/**/*.webp', 'src/**/*.webm', 'src/**/*.mp3') }}
+          key: ${{ steps.set-cache-key.outputs.cache-key }}
+          restore-keys: media-
 
-      - name: Ensure LFS Files Are Pulled
-        if: steps.cache-source.outputs.cache-hit != 'true'
+      - name: Check if cache is exact match
+        id: check-cache
         run: |
-          git lfs pull
+          if [ "${{ steps.cache-source.outputs.cache-hit }}" = "true" ] && \
+             [ "${{ steps.cache-source.outputs.cache-matched-key }}" = "${{ steps.set-cache-key.outputs.cache-key }}" ]; then
+            echo "exact=true" >> $GITHUB_OUTPUT
+          else
+            echo "exact=false" >> $GITHUB_OUTPUT
+          fi
 
+      - name: Pull missing LFS files (on partial or miss)
+        if: steps.check-cache.outputs.exact != 'true'
+        run: |
+          git lfs pull --include="src/**/*.webp,src/**/*.webm,src/**/*.mp3"
       - name: Synchronize Media Files
-        if: steps.cache-source.outputs.cache-hit != 'true'
+        if: steps.check-cache.outputs.exact != 'true'
         run: |
-          mkdir tmp-media
-          rsync -a --include='*/' --include='*.webp' --include='*.webm' --include='*.mp3' --exclude='*' src/ tmp-media
+          rm -rf tmp-media
+          mkdir -p tmp-media
+          rsync -a --delete \
+            --include='*/' \
+            --include='*.webp' \
+            --include='*.webm' \
+            --include='*.mp3' \
+            --exclude='*' \
+            src/ tmp-media
+
+      - name: Save Media Cache (new primary key)
+        if: steps.check-cache.outputs.exact != 'true'
+        uses: actions/cache/save@0400d5f644dc74513175e3cd8d07132dd4860809 # v4
+        with:
+          path: tmp-media
+          key: ${{ steps.set-cache-key.outputs.cache-key }}
 
   test-wasm:
     name: Test Wasm
@@ -427,8 +452,8 @@ jobs:
         run: |
           ls -alR book
 
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@4f9cc6602d3f66b9c108549d475ec49e8ef4d45e # v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: book
+#      - name: Deploy
+#        uses: peaceiris/actions-gh-pages@4f9cc6602d3f66b9c108549d475ec49e8ef4d45e # v4
+#        with:
+#          github_token: ${{ secrets.GITHUB_TOKEN }}
+#          publish_dir: book
