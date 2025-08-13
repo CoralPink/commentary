@@ -19,6 +19,7 @@ jobs:
     if: ${{ github.ref == 'refs/heads/main' }}
     outputs:
       media-cache-key: ${{ steps.set-cache-key.outputs.cache-key }}
+      cache-hit-exact: ${{ steps.check-cache.outputs.exact }}
     steps:
       - name: Checkout the repo
         uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5
@@ -32,20 +33,31 @@ jobs:
         run: |
           echo "cache-key=media-${{ hashFiles('src/**/*.webp', 'src/**/*.webm', 'src/**/*.mp3') }}" >> $GITHUB_OUTPUT
 
-      - name: Cache Source
+      - name: Restore Media Cache (allow partial match)
         id: cache-source
         uses: actions/cache@0400d5f644dc74513175e3cd8d07132dd4860809 # v4
         with:
           path: tmp-media
           key: media-${{ hashFiles('src/**/*.webp', 'src/**/*.webm', 'src/**/*.mp3') }}
+          restore-keys: media-
 
-      - name: Ensure LFS Files Are Pulled
-        if: steps.cache-source.outputs.cache-hit != 'true'
+      - name: Check if cache is exact match
+        id: check-cache
+        run: |
+          if [ "${{ steps.cache-source.outputs.cache-hit }}" = "true" ] && \
+             [ "${{ steps.set-cache-key.outputs.cache-key }}" = "media-${{ hashFiles('src/**/*.webp', 'src/**/*.webm', 'src/**/*.mp3') }}" ]; then
+            echo "exact=true" >> $GITHUB_OUTPUT
+          else
+            echo "exact=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Pull missing LFS files (on partial or miss)
+        if: steps.check-cache.outputs.exact != 'true'
         run: |
           git lfs pull
 
       - name: Synchronize Media Files
-        if: steps.cache-source.outputs.cache-hit != 'true'
+        if: steps.check-cache.outputs.exact != 'true'
         run: |
           mkdir tmp-media
           rsync -a --include='*/' --include='*.webp' --include='*.webm' --include='*.mp3' --exclude='*' src/ tmp-media
