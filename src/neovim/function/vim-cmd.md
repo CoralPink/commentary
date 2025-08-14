@@ -62,6 +62,8 @@ vim.cmd.colorscheme('blue')
 ```
 ~~~
 
+![iyashinosatonenba1](img/iyashinosatonenba1.webp)
+
 ## Try
 
 これは単純に`:なんとか`をコードから実行できる関数です。
@@ -90,7 +92,9 @@ vim.keymap.set('n', '<Leader>9', function() vim.cmd('colorscheme blue') end)
 
 めっちゃブルーになりました😺
 
-### ちょっと寄り道 (colorscheme)
+![iyashinosatonenba1](img/iyashinosatonenba2.webp)
+
+### (Drop by) colorscheme
 
 せっかく`colorscheme`が出てきたので、少し寄り道していきます。
 
@@ -119,6 +123,8 @@ vim.keymap.set('n', '<Leader>9', function() vim.cmd('colorscheme blue') end)
 `color scheme` (もしくは`color theme`) はプラグインとして提供されているものも数多くあるので、このサイトでも取り上げます☺️
 ```
 
+![iyashinosatonenba1](img/iyashinosatonenba3.webp)
+
 ## Lua Function
 
 さらに寄り道しちゃいますが、色々総合していくと、こんな書き方ができます。
@@ -141,10 +147,12 @@ vim.keymap.set('n', '<Leader>9', function() vim.cmd.colo 'blue' end)
 ここまでくると、結構いろいろなことがコードから実行できるって分かるので、楽しくなってきますね😆
 ```
 
+![hatake-no-kakashi](img/hatake-no-kakashi.webp)
+
 ```admonish success title=""
 <div style="text-align: center">
-  VIM.CMD WILL RETURN
+VIM.CMD WILL RETURN
 
-  vim.cmd は帰ってくる
+vim.cmd は帰ってくる
 </div>
 ```
