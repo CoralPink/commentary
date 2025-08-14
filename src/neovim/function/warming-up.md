@@ -2,6 +2,8 @@
 
 まずはウォーミングアップです😉 少しずついきます。
 
+![chureito](img/chureito.webp)
+
 ## keymap
 
 まずは`12. Key Binding`で触れた`keymap`から呼び出してみましょう。
@@ -27,7 +29,7 @@ vim.keymap.set('n', 'lhs', function() print("real lua function") end)
 ```
 ~~~
 
-### source
+### :source
 
 いきなり少し寄り道します。
 
@@ -87,7 +89,13 @@ vim.keymap.set('n', 'lhs', function() print("real lua function") end)
 ちなみに言うと、この辺りが恐らく`augroup`の`clear`の話だと思うんですが、どうでしょう❓
 ```
 
-## 実行
+```admonish danger title=""
+![raccoon-kills](img/raccoon-kills.webp)
+
+...いや、ばばあ腰抜けてもうてるやないか👵
+```
+
+## Try
 
 本題に戻って、ノーマルモードで<kbd>l</kbd><kbd>h</kbd><kbd>s</kbd>と入力してみましょう。
 
@@ -103,7 +111,13 @@ vim.keymap.set('n', 'lhs', function() print("real lua function") end)
 (ぶっちゃけサンプルが不親切だと思う...🤫)
 ```
 
-## Leader キーを使った Keymap
+```admonish danger title=""
+ここはかちかち山だから、かちかち鳥が鳴いている 🐦
+
+![kachikachi](img/kachikachi.webp)
+```
+
+## Wrap Up
 
 前項みたいなことがあるので、`13.Leader Key`で設定した`Leader`キーを積極的に使っていきましょう😆
 
@@ -115,7 +129,16 @@ vim.keymap.set('n', '<Leader>l', function() print('Leader key worked too.') end)
 
 これなら安心ですね❗
 
-## Wrap Up
+```admonish danger title=""
+よくもばば...おばあさんを汁にしてじじ...おじいさんに食わせてくれたな❗
+
+![rabbit-vengeance](img/rabbit-vengeance.webp)
+
+トウガラシ入りの味噌を喰らえ❗❗{{footnote:
+タヌキのやけどが治ると、最後にウサギはタヌキの食い意地を利用して漁に誘い出した。ウサギは木の船と一回り大きな泥の船を用意し、思っていた通り欲張りなタヌキが「たくさん魚が乗せられる」と泥の船を選ぶと、自身は木の船に乗った。沖へ出たところでウサギは「木の船すいすい、泥船ぶくぶく」と船端を叩きながら歌い、「この歌を歌えば魚がたくさん寄ってくる」とタヌキを騙す。タヌキが教わったとおりに歌いながら船端を思いっきり叩いた途端、泥の船はくずれて沈みだし、タヌキはウサギに助けを求めるが、逆にウサギに「婆様の仇だ、思い知れ!!」と艪で沈められ、海に溺れてタヌキは死に、ウサギは見事に媼の仇を討ったのだった。
+[Wikipedia](https://ja.wikipedia.org/wiki/かちかち山)より
+}}
+```
 
 ```admonish success
 キー操作に機能(`function`)を割り当てて実行できましたね🤗
