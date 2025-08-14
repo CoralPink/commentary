@@ -11,24 +11,23 @@
 ```admonish info title=""
 A dream is a wish your heart makes{{footnote:
 A Dream Is a Wish Your Heart Makes は[Walt Disney](https://en.wikipedia.org/wiki/Walt_Disney)film の
-映画[Cinderella](https://en.wikipedia.org/wiki/Cinderella_(1950_film))(1950 film) のために
+1950年の映画[Cinderella](https://en.wikipedia.org/wiki/Cinderella_(1950_film))のために
 [Mack David](https://en.wikipedia.org/wiki/Mack_David),
 [Al Hoffman](https://en.wikipedia.org/wiki/Al_Hoffman),
 [Jerry Livingston](https://en.wikipedia.org/wiki/Jerry_Livingston)が作詞・作曲した曲である。
 
-シンデレラは劇中で、友達の動物たちに "夢を見ることをやめないように" と励ましており、これは物語全体を通して続くテーマでもある。
+シンデレラは劇中で、友達の動物たちに "夢見ることをやめないように" と励ましている。これは物語全体を通して続くテーマでもある。
 この曲は[Franz Liszt](https://en.wikipedia.org/wiki/Franz_Liszt)の
-[Transcendental Étude No. 9 (Liszt)](https://en.wikipedia.org/wiki/Transcendental_Étude_No._9_(Liszt))にインスパイアされている。
+[Transcendental Étude No. 9](https://en.wikipedia.org/wiki/Transcendental_Étude_No._9_(Liszt))にインスパイアされており、
+詞にあるテーマとしては 1940年の[Pinocchio](https://en.wikipedia.org/wiki/Pinocchio_(1940_film))の
+[When You Wish Upon a Star](https://en.wikipedia.org/wiki/When_You_Wish_Upon_a_Star)で表現された感情を想起させる。
 
-テーマとしては、この歌詞は[Pinocchio](https://en.wikipedia.org/wiki/Pinocchio_(1940_film))(1940 film)の
-[When You Wish Upon a Star](When_You_Wish_Upon_a_Star)で表現された感情を想起させる。
+夢と願いを同一視するシンデレラの歌う詞が約束するように、
+叶う "夢" と比喩的な意味で 眠りの中で見る "夢" という言葉を使っており、
+When You Wish Upon A Star や、他の Disney 作品でも同じ約束をしている。
 
-夢と願いを同一視することで、
-シンデレラの歌う詞が約束するように "叶う" 願望という比喩的な意味で "夢" という言葉を使っていることを立証している。
-これは When You Wish Upon A Star や、他のディズニー作品でも同じ約束をしている。
-
-"when you're fast asleep" という文字通りの意味、(すなわち "ぐっすり眠っているときに起こるもの" として) は、
-[Sleeping Beauty](https://en.wikipedia.org/wiki/Sleeping_Beauty_(1959_film))(1959) で歌われる
+"When you're fast asleep" という文字通りの意味 ("眠りの中で見る夢") としては、
+1959年の[Sleeping Beauty](https://en.wikipedia.org/wiki/Sleeping_Beauty_(1959_film))で歌われる
 [Once Upon a Dream (Sleeping Beauty song)](https://en.wikipedia.org/wiki/Once_Upon_a_Dream_(Sleeping_Beauty_song))で再び登場する。
 [Wikipedia](https://en.wikipedia.org/wiki/A_Dream_Is_a_Wish_Your_Heart_Makes)より
 }}
@@ -100,6 +99,13 @@ vim.keymap.set('n', '<Leader>4', function() testparam('hello') end)
 Whatever you wish for, you keep
 
 その願いはそっと膨らんでいるんだよ
+```
+
+```admonish warning title=""
+<video controls preload="none" width="1280" height="720" poster="img/musicforest-opera-thumbnail.webp">
+  <source src="img/musicforest-opera.webm" type="video/webm">
+  Your browser does not support the video/webm.
+</video>
 ```
 
 ## Return Value
@@ -227,8 +233,8 @@ The dream that you wish will come true
 
 ```admonish success
 <div style="text-align: center">
-  FUNCTION WILL RETURN
+FUNCTION WILL RETURN
 
-  ファンクションは帰ってくる
+ファンクションは帰ってくる
 </div>
 ```
