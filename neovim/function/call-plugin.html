@@ -85,10 +85,16 @@
         <article id="article">
           <h1 id="call-the-plugin"><a class="header" href="#call-the-plugin">Call The Plugin</a></h1>
 <p>この章もこれで最後です☺️ もうちょっとだけがんばれ❗</p>
+<div id="admonition-default" class="admonition admonish-warning" role="note">
+<div>
+<p>全然隠れてねーってばよ🍥<sup class="ft-reference"><button id="to-ft-1" data-href="#ft-1">1</button></sup></p>
+<img src="img/konoha-gakure.webp" alt="konoha-gakure" width="960" height="640" fetchpriority="high">
+</div>
+</div>
 <h2 id="require"><a class="header" href="#require">require</a></h2>
 <p>少し手順が増えますが、<code>lesson</code>ディレクトリを作って、その中に<code>init.lua</code>を配置してください。</p>
 <p>こんな感じで😉</p>
-<img src="img/make-dir.webp" alt="make-dir" width="696" height="256" fetchpriority="high">
+<img src="img/make-dir.webp" alt="make-dir" width="696" height="256" loading="lazy">
 <p>うん😄 そうしたら<code>lesson/init.lua</code>にコードを入れておきます。</p>
 <div id="admonition-lessoninitlua" class="admonition admonish-example" role="note" aria-labelledby="admonition-lessoninitlua-title">
 <div class="admonition-title">
@@ -151,7 +157,13 @@ vim.keymap.set('n', '&lt;Leader&gt;9', lesson.myprint)
 </div>
 </div>
 <p><code>keymap.set</code>からプラグインが持っている機能を呼び出すのは、よく見られる使い方です。</p>
-<h2 id="source-と-require"><a class="header" href="#source-と-require">:source と require()</a></h2>
+<div id="admonition-default-1" class="admonition admonish-warning" role="note">
+<div>
+<p>イチャイチャタクティクス🫣</p>
+<img src="img/kakashi.webp" alt="kakashi" width="640" height="960" loading="lazy">
+</div>
+</div>
+<h2 id="source--require"><a class="header" href="#source--require">:source / require()</a></h2>
 <p><code>:source</code>について、<code>14.1 Warming Up</code>で触れたんですが、一個気にしたいことがあって、それが<code>require</code>です。</p>
 <p><code>require</code>には二度目以降の呼び出しはキャッシュを読みにいくっていう賢いとしか言いようがない仕様があるんですけど、
 例えば<code>require</code>の先をどんなに更新していようとも、<code>:so</code>だと更新前のキャッシュを実行するだけになるみたいなんですね。</p>
@@ -196,6 +208,12 @@ vim.keymap.set('n', '&lt;Leader&gt;9', lesson.myprint)
 </div>
 </div>
 <p><code>require</code>のキャッシュを読み直してるだけっていう可能性を疑ったり、<code>Neovim</code>を起動し直して試すっていうことも選択のうちに入れておいて下さい😉</p>
+<div id="admonition-default-2" class="admonition admonish-warning" role="note">
+<div>
+<p>藤井くん❗ここからどうすれば勝てる...❓</p>
+<img src="img/shikamaru.webp" alt="shikamaru" width="640" height="960" loading="lazy">
+</div>
+</div>
 <h2 id="nvim_create_user_command"><a class="header" href="#nvim_create_user_command">nvim_create_user_command</a></h2>
 <p>もう一個だけやっておきたいのは、独自コマンドからプラグインを使うパターンです。</p>
 <p>今度は<code>nvim</code>ディレクトリまで上がって、<code>plugin/lesson</code>ディレクトリを作成してください。</p>
@@ -306,6 +324,12 @@ end, {})
 <p>じゃあ、実際にオーダーしてみましょう。コマンドから<code>:Order</code>と入れてみてください。</p>
 <pre><code class="language-vim">:Order
 </code></pre>
+<div id="admonition-default-3" class="admonition admonish-warning" role="note">
+<div>
+<p>ばあちゃん❓</p>
+<img src="img/tsunade.webp" alt="tsunade" width="640" height="960" loading="lazy">
+</div>
+</div>
 <p>Coffee☕ もいいけど、今日はもう終わりだし beer🍺 でいいよね😆</p>
 <img src="img/beer.webp" alt="beer" width="696" height="75" loading="lazy">
 <p>乾杯❗🍻</p>
@@ -321,10 +345,32 @@ end, {})
 <p>飲み終わったら<code>plugin</code>ディレクトリは消しておきましょう。<code>lesson</code>ディレクトリとrequire、keymapも忘れずに...。</p>
 </div>
 </div>
+<div id="admonition-default-4" class="admonition admonish-warning" role="note">
+<div>
+<p>あいやしばらく❗</p>
+<img src="img/jiraiya.webp" alt="jiraiya" width="960" height="640" loading="lazy">
+</div>
+</div>
 <h2 id="wrap-up"><a class="header" href="#wrap-up">Wrap Up</a></h2>
-<p>本当はもっと<code>:h packages</code>で説明されているような、本格的なものを作れたら良かったんだけど、
-わたしがその領域にまで達していないので、かなりチープな付け焼き刃になってしまっているんですが、雰囲気くらいは伝わったでしょうか...❓😅</p>
-<p>お互い、頑張りましょう🤗</p>
+<p>本当はもっと<code>:h packages</code>で説明されているような本格的なものを作れたら良かったんだけど、
+わたし自身がその領域にまで達していないので、かなりチープな付け焼き刃になってしまっています。</p>
+<p>雰囲気くらいは伝わったでしょうか...❓😅</p>
+<p>自信を与えてあげられるような内容ではなかったかもしれませんが、
+"熱血さえあればそうとも限らないぞ❗❗" ってことで、お互い頑張りましょう🤗</p>
+<div id="admonition-default-5" class="admonition admonish-warning" role="note">
+<div>
+<p>口寄せ🐸</p>
+<img src="img/naruto.webp" alt="naruto" width="640" height="960" loading="lazy">
+</div>
+</div>
+<div id="admonition-default-6" class="admonition admonish-warning" role="note">
+<div>
+<p>瞼には目を、歯には抜けを、書きたがるのは万国共通なのか❓😮</p>
+<img src="img/dai-nana-han.webp" alt="dai-nana-han" width="960" height="640" loading="lazy">
+<img src="img/minato-kushina.webp" alt="minato-kushina" width="960" height="640" loading="lazy">
+<p>...いや、島の者の犯行のセンも消えないか🤔</p>
+</div>
+</div>
 <div id="admonition-success" class="admonition admonish-success" role="note" aria-labelledby="admonition-success-title">
 <div class="admonition-title">
 <div id="admonition-success-title">
@@ -333,18 +379,32 @@ end, {})
 <a class="admonition-anchor-link" href="#admonition-success"></a>
 </div>
 <div>
-<p>次の章で、ついに...⁉️</p>
-</div>
-</div>
-<div id="admonition-default" class="admonition admonish-success" role="note">
-<div>
 <div style="text-align: center">
-  PLUG-IN WILL RETURN
+PLUG-IN WILL RETURN
 <p>プラグインは帰ってくる</p>
 </div>
 </div>
 </div>
-
+<aside class="ft-definition" role="doc-footnote" id="ft-1">
+<p><sup><a href="#to-ft-1">1:</a></sup>『NARUTO -ナルト-』(ナルト) は、岸本斉史による日本の漫画。
+『週刊少年ジャンプ』(集英社) において、1999年43号から2014年50号まで連載された。
+全700話で、単行本は全72巻と外伝1巻。</p>
+<p>忍同士が超常的な能力「忍術」「体術」「幻術」「仙術」を駆使して派手な戦いを繰り広げるバトルアクション漫画。
+アジア各地の民話や伝承、宗教のオマージュを巧みに取り組んだ世界観の中で主人公と仲間達の友情、裏切りと復讐、
+師弟や家族の絆が中心として描かれ、忍の世界とその起源・歴史を含めた重層的なストーリー展開となっている。</p>
+<p>中盤以降は主人公であるうずまきナルトが単に戦いではなく "対話" と "許し" を以って平和をもたらそうとするなど
+"少年漫画らしからぬ" 要素も含まれるようになり、
+読者からの支持が高い「ペイン編」での「ナルトが師である自来也を殺した敵と対話し、和解する。」という描き方は
+「ある意味でタブー (苦笑)。少年漫画では普通はやらないやり方だった。」と作者自らが後年述懐している。</p>
+<p>本作の主人公のうずまきナルトが
+「ニューズウィーク日本版」2006年10月18日号の特集「世界が尊敬する日本人100」に架空の人物として唯一選出され、
+2017年に公益財団法人新聞通信調査会がアメリカ、イギリス、フランス、中国、韓国、タイの6カ国で実施した世論調査
+「知っている日本人」では、フランスで昭和天皇と安倍晋三に次いでナルトが3位となった。
+また、Googleが、2023年の検索ランキングを発表し、カテゴリー別の「世界で最も検索された言葉」では、
+アニメ部門で「NARUTO－ナルト－ 疾風伝（Naruto: Shippuden）」が、過去25年間の検索数世界1位を記録した。
+この作品きっかけでラーメンを知った人も多く、海外のラーメンブームや売上にも貢献した。
+<a href="https://ja.wikipedia.org/wiki/NARUTO_-%E3%83%8A%E3%83%AB%E3%83%88-">Wikipedia</a>より</p>
+</aside>
 
           <nav id="nav-wrapper" aria-label="Page navigation">
             <a rel="prev" href="../../neovim/function/vim-cmd.html" class="chapters" id="prev" aria-label="Previous chapter: vim.cmd">

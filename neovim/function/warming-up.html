@@ -85,6 +85,7 @@
         <article id="article">
           <h1 id="warming-up"><a class="header" href="#warming-up">Warming Up</a></h1>
 <p>まずはウォーミングアップです😉 少しずついきます。</p>
+<img src="img/chureito.webp" alt="chureito" width="960" height="640" fetchpriority="high">
 <h2 id="keymap"><a class="header" href="#keymap">keymap</a></h2>
 <p>まずは<code>12. Key Binding</code>で触れた<code>keymap</code>から呼び出してみましょう。</p>
 <div id="admonition-h-keymapset" class="admonition admonish-info" role="note" aria-labelledby="admonition-h-keymapset-title">
@@ -118,7 +119,7 @@
 </code></pre>
 </div>
 </div>
-<h3 id="source"><a class="header" href="#source">source</a></h3>
+<h3 id="source"><a class="header" href="#source">:source</a></h3>
 <p>いきなり少し寄り道します。</p>
 <p>ここで初めて登場するんですが、<code>:source</code>というコマンドがありまして...🤔</p>
 <div id="admonition-h-source" class="admonition admonish-info" role="note" aria-labelledby="admonition-h-source-title">
@@ -139,7 +140,7 @@
 </div>
 </div>
 <p>例えば、これまだ上のコードを入れてない状態なんですけど、一回<code>:map</code>を見てみます。</p>
-<img src="img/source1.webp" alt="source1" width="696" height="555" fetchpriority="high">
+<img src="img/source1.webp" alt="source1" width="696" height="555" loading="lazy">
 <p>で、コード追加してセーブするじゃないですか。</p>
 <img src="img/source2.webp" alt="source2" width="696" height="82" loading="lazy">
 <p>で、</p>
@@ -179,7 +180,13 @@
 <p>ちなみに言うと、この辺りが恐らく<code>augroup</code>の<code>clear</code>の話だと思うんですが、どうでしょう❓</p>
 </div>
 </div>
-<h2 id="実行"><a class="header" href="#実行">実行</a></h2>
+<div id="admonition-default" class="admonition admonish-danger" role="note">
+<div>
+<img src="img/raccoon-kills.webp" alt="raccoon-kills" width="720" height="960" loading="lazy">
+<p>...いや、ばばあ腰抜けてもうてるやないか👵</p>
+</div>
+</div>
+<h2 id="try"><a class="header" href="#try">Try</a></h2>
 <p>本題に戻って、ノーマルモードで<kbd>l</kbd><kbd>h</kbd><kbd>s</kbd>と入力してみましょう。</p>
 <img src="img/call-function1.webp" alt="call-function1" width="674" height="62" loading="lazy">
 <p>...動きましたね❗</p>
@@ -196,13 +203,25 @@
 <p>(ぶっちゃけサンプルが不親切だと思う...🤫)</p>
 </div>
 </div>
-<h2 id="leader-キーを使った-keymap"><a class="header" href="#leader-キーを使った-keymap">Leader キーを使った Keymap</a></h2>
+<div id="admonition-default-1" class="admonition admonish-danger" role="note">
+<div>
+<p>ここはかちかち山だから、かちかち鳥が鳴いている 🐦</p>
+<img src="img/kachikachi.webp" alt="kachikachi" width="960" height="640" loading="lazy">
+</div>
+</div>
+<h2 id="wrap-up"><a class="header" href="#wrap-up">Wrap Up</a></h2>
 <p>前項みたいなことがあるので、<code>13.Leader Key</code>で設定した<code>Leader</code>キーを積極的に使っていきましょう😆</p>
 <pre><code class="language-lua">vim.keymap.set('n', '&lt;Leader&gt;l', function() print('Leader key worked too.') end)
 </code></pre>
 <img src="img/call-function2.webp" alt="call-function2" width="674" height="62" loading="lazy">
 <p>これなら安心ですね❗</p>
-<h2 id="wrap-up"><a class="header" href="#wrap-up">Wrap Up</a></h2>
+<div id="admonition-default-2" class="admonition admonish-danger" role="note">
+<div>
+<p>よくもばば...おばあさんを汁にしてじじ...おじいさんに食わせてくれたな❗</p>
+<img src="img/rabbit-vengeance.webp" alt="rabbit-vengeance" width="960" height="640" loading="lazy">
+<p>トウガラシ入りの味噌を喰らえ❗❗<sup class="ft-reference"><button id="to-ft-1" data-href="#ft-1">1</button></sup></p>
+</div>
+</div>
 <div id="admonition-success" class="admonition admonish-success" role="note" aria-labelledby="admonition-success-title">
 <div class="admonition-title">
 <div id="admonition-success-title">
@@ -215,7 +234,10 @@
 <p>ではウォーミングアップも済んだので、<code>function</code>を掘り下げていきます。</p>
 </div>
 </div>
-
+<aside class="ft-definition" role="doc-footnote" id="ft-1">
+<p><sup><a href="#to-ft-1">1:</a></sup>タヌキのやけどが治ると、最後にウサギはタヌキの食い意地を利用して漁に誘い出した。ウサギは木の船と一回り大きな泥の船を用意し、思っていた通り欲張りなタヌキが「たくさん魚が乗せられる」と泥の船を選ぶと、自身は木の船に乗った。沖へ出たところでウサギは「木の船すいすい、泥船ぶくぶく」と船端を叩きながら歌い、「この歌を歌えば魚がたくさん寄ってくる」とタヌキを騙す。タヌキが教わったとおりに歌いながら船端を思いっきり叩いた途端、泥の船はくずれて沈みだし、タヌキはウサギに助けを求めるが、逆にウサギに「婆様の仇だ、思い知れ!!」と艪で沈められ、海に溺れてタヌキは死に、ウサギは見事に媼の仇を討ったのだった。
+<a href="https://ja.wikipedia.org/wiki/%E3%81%8B%E3%81%A1%E3%81%8B%E3%81%A1%E5%B1%B1">Wikipedia</a>より</p>
+</aside>
 
           <nav id="nav-wrapper" aria-label="Page navigation">
             <a rel="prev" href="../../neovim/function/function.html" class="chapters" id="prev" aria-label="Previous chapter: Function">
