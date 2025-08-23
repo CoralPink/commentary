@@ -1,7 +1,7 @@
 /// <reference lib="dom" />
 
+import { expect, test } from 'bun:test';
 import { attributeExternalLinks } from '../link';
-import { test, expect } from 'bun:test';
 
 const TEST_URLS = [
   'http://example.com',
