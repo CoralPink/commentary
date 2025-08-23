@@ -27,8 +27,6 @@ nvim_set_var({name}, {value})       nvim_set_var()
 
 能力の高さゆえ、守備範囲が広大すぎて地球だけに居られない Captain Marvel
 {{footnote:
-
-Captain Marvel{{footnote:
 Captain Marvel は Marvel Comics が発行するアメリカン・コミックに登場する複数のスーパーヒーローの名前である。
 これらのバージョンのほとんどは、マーベル・ユニバースとして知られるマーベルの主要な共有宇宙に存在する。
 現在のキャラクターは Carol Danvers である。
