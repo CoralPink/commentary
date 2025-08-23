@@ -1,0 +1,47 @@
+.slider {
+  display: grid;
+  justify-items: center;
+  overflow: hidden;
+
+  .media {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+
+    &>* {
+      flex: 0 0 100%;
+      scroll-snap-align: start;
+    }
+  }
+
+  .controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    .arrow {
+      background: hsl(var(--theme-popup-border-h), var(--theme-popup-border-s), var(--theme-popup-border-l), 0.4);
+      color: var(--fg);
+      border-radius: 1rem;
+      padding: 0.5rem;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    #indicators {
+      display: flex;
+      gap: 0.5rem;
+
+      span {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--sidebar-spacer);
+
+        &.active {
+          background: var(--sidebar-active);
+        }
+      }
+    }
+  }
+}
