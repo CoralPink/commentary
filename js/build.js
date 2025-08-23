@@ -4,7 +4,7 @@ import path from 'bun:path';
 
 import { minify } from 'terser';
 
-const ENTRY_POINTS = ['book.ts', 'hl-worker.ts', 'hl-sharedworker.ts', 'replace-dom.ts', 'serviceworker.ts'];
+const ENTRY_POINTS = ['book.ts', 'hl-worker.ts', 'hl-sharedworker.ts', 'replace-dom.ts', 'serviceworker.ts', 'slider.ts'];
 const OUT_DIR = './dist';
 
 const CLR_RESET = '\x1b[0m';
