@@ -10,19 +10,18 @@
 [Wikipedia](https://en.wikipedia.org/wiki/Awa_Dance_Festival)より
 }}ってて POWER 漲ってました⭐ 🕺
 
-```admonish success title=""
-![awa-festival1](img/awa-dance1.webp)
-![awa-festival2](img/awa-dance2.webp)
-```
+<div class="slider">
+  <div class="media">
+    ![koenji-2023-1](img/awa-koenji-2023-1.webp)
+    ![koenji-2023-2](img/awa-koenji-2023-2.webp)
+    ![koenji-2023-3](img/awa-koenji-2023-3.webp)
+  </div>
+</div>
 
 ```admonish success title=""
 一かけ 二かけ 三かけて
 
 四 (し) かけた踊りは止められぬ
-
-五かけ 六かけ 七かけて
-
-八 (や) っぱり踊りは止められぬ
 ```
 
 ```admonish note
@@ -138,11 +137,26 @@ require('fidget').setup {
 The following table shows the default options for this plugin:
 ```
 
-めっちゃある❗
+やっとさー💃 やっとやっとー🕺
+
+<div class="slider">
+  <div class="media">
+    <video controls preload="none" width="1280" height="720" poster="img/awa-nihonbashi-thumbnail.webp">
+      <source src="img/awa-nihonbashi.webm" type="video/webm">
+      Your browser does not support the video/webm.
+    </video>
+    <video controls preload="none" width="1280" height="720" poster="img/awa-ogikubo-thumbnail.webp">
+      <source src="img/awa-ogikubo.webm" type="video/webm">
+      Your browser does not support the video/webm.
+    </video>
+  </div>
+</div>
+
+ようけやっとるでないで❗
 
 #### 五 : Spinners
 
-めっちゃありますが、わたしは`progress_icon`だけ変えてます😆
+ようけありますが、わたしは`progress_icon`だけ変えてます😆
 
 ```admonish info title="[Spinners](https://github.com/j-hui/fidget.nvim/blob/main/doc/fidget.md#spinners)"
 See <lua/fidget/spinners.lua> of this plugin's source code to see how each animation is defined.
@@ -168,21 +182,6 @@ See <lua/fidget/spinners.lua> of this plugin's source code to see how each anima
 ```
 ~~~
 
-~~~admonish note
-2024/08/21 現在では、以下の設定はもうとっくに必要ありません😉
-
-> これももういつも通りなんですが一点だけ、「`legacy`ブランチに固定しておいてね。」とのことです。(2023/08/28 現在)
-
-> "[Quickstart](https://github.com/j-hui/fidget.nvim#quickstart)"
-> NOTE: fidget.nvim will soon be completely rewritten.
-> In the meantime, these instructions will pin your configuration to the legacy branch to avoid breaking changes.
->
-> 注意: fidget.nvimは間もなく完全に書き直される予定です。
-> それまでの間レガシーブランチに固定し、あなたの設定を壊さないようにします。
-
-...っていうか、一年早くない❓😨
-~~~
-
 ## 七 : Try!
 
 例えば`typescript-language-server`が動く環境で`js`ファイルを開けば...、
@@ -195,27 +194,29 @@ See <lua/fidget/spinners.lua> of this plugin's source code to see how each anima
 
 ## 八 : やっぱり踊りは止められぬ
 
+<div class="slider">
+  <div class="media">
+    <video controls preload="none" width="1280" height="720" poster="img/awa-tenguren-thumbnail.webp">
+      <source src="img/awa-tenguren.webm" type="video/webm">
+      Your browser does not support the video/webm.
+    </video>
+    <video controls preload="none" width="1280" height="720" poster="img/awa-tenshouren-thumbnail.webp">
+      <source src="img/awa-tenshouren.webm" type="video/webm">
+      Your browser does not support the video/webm.
+    </video>
+  </div>
+</div>
+
 ```admonish success
-<video controls preload="none" width="1280" height="720" poster="img/awa-dance3-thumbnail.webp">
-  <source src="img/awa-dance3.webm" type="video/webm">
-  Your browser does not support the video/webm.
-</video>
+五かけ 六かけ 七かけて
+
+八 (や) っぱり踊りは止められぬ
 ```
 
-```admonish success title=""
-<div style="margin-top: 1rem; text-align: center">
-WE’RE SENDING
-
-YOU THE BILL
-
-FOR THAT,
-
-TENGU 👺{{footnote: 一応書いとくけど「冗談だぞ❗」...ん❓ っていうか、むしろこっちに請求書きちゃう❓😨}}
-</div>
-```
-
-```admonish success title=""
-<div style="margin-top: 1rem; text-align: center">
-...。🤥
-</div>
-```
+<script type="module">
+document.addEventListener('DOMContentLoaded', async () => {
+  try {
+    await import(`${document.getElementById('bookjs').dataset.pathtoroot}slider.js`);
+  } catch (e) { console.error(e); }
+});
+</script>

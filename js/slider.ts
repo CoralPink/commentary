@@ -1,55 +1,54 @@
 const CLASS_ARROW = 'arrow';
 const ID_INDICATORS = 'indicators';
 
-const ID_PREV = 'left';
-const ID_NEXT = 'right'
+const ID_PREV = 'prev';
+const ID_NEXT = 'next';
 
 type Direction = typeof ID_PREV | typeof ID_NEXT;
 type CompatibleMedia = HTMLVideoElement | HTMLImageElement;
 
-export default class Slider {
-  private slider: HTMLDivElement;
-  private media: HTMLDivElement;
-  private items: CompatibleMedia[];
-
+class Slider {
+  private medias: CompatibleMedia[];
   private indicators = document.createElement('div');
-
-  private observer = new IntersectionObserver(
-    this.handleIntersect.bind(this),
-    { threshold: 0.8 }
-  );
 
   private index = 0;
 
   private handleIntersect(entries: IntersectionObserverEntry[]) {
     for (const entry of entries) {
       if (entry.isIntersecting) {
-        this.goTo(this.items.indexOf(entry.target as CompatibleMedia), false);
+        this.goTo(this.medias.indexOf(entry.target as CompatibleMedia), false);
         return;
       }
     }
   }
 
-  constructor(sliderId: string) {
-    this.slider = document.getElementById(sliderId) as HTMLDivElement;
+  private observer = new IntersectionObserver(
+    this.handleIntersect.bind(this),
+    { threshold: 0.8 }
+  );
 
-    this.media = this.slider.querySelector<HTMLDivElement>('.media')!;
-    this.items = Array.from(this.media.querySelectorAll('video, img'));
+  constructor(slider: HTMLDivElement) {
+    this.medias = Array.from(slider.querySelector<HTMLDivElement>('.media')!.querySelectorAll('video, img'));
 
-    if (!this.slider || !this.media) {
-      console.warn('Slider not found:', sliderId);
-      return;
-    }
+    this.createIndicators();
 
-    this.items.forEach(elm => this.observer.observe(elm));
+    const controls = document.createElement('div');
+    controls.className = 'controls';
 
-    this.initIndicators();
-    this.createControls();
+    controls.appendChild(this.createArrow(ID_PREV));
+    controls.appendChild(this.indicators);
+    controls.appendChild(this.createArrow(ID_NEXT));
+
+    slider.appendChild(controls);
     this.addVideoEvent();
+
+    for (const x of Array.from(this.medias)) {
+      this.observer.observe(x);
+    }
   }
 
   private goTo(next: number, scrollInto: boolean = true): void {
-    const currentItem = this.items[this.index];
+    const currentItem = this.medias[this.index];
 
     if (!currentItem) {
       return;
@@ -60,11 +59,11 @@ export default class Slider {
       currentItem.pause();
     }
 
-    const len = this.items.length;
+    const len = this.medias.length;
     this.index = (next % len + len) % len; // Index values are looped.
 
     if (scrollInto) {
-      this.items[this.index]!.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+      this.medias[this.index]!.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
     }
 
     for (const [idx, elm] of Array.from(this.indicators.querySelectorAll<HTMLSpanElement>('span')).entries()) {
@@ -77,22 +76,26 @@ export default class Slider {
     }
   }
 
-  private initIndicators(): void {
+  private createIndicators(): void {
     this.indicators = document.createElement('div');
     this.indicators.setAttribute('id', ID_INDICATORS);
 
-    for (let i = 0; i < this.items.length; i++) {
+    const fragment = document.createDocumentFragment();
+
+    for (let i = 0; i < this.medias.length; i++) {
       const elm = document.createElement('span');
 
       if (i === 0) {
         elm.classList.add('active');
       }
       elm.addEventListener('click', () => {
-        this.goTo(i)
+        this.goTo(i);
       }, { once: false, passive: true });
 
-      this.indicators.appendChild(elm);
+      fragment.appendChild(elm);
     }
+
+    this.indicators.appendChild(fragment);
   }
 
   private createArrow = (dir: Direction): HTMLElement => {
@@ -109,19 +112,8 @@ export default class Slider {
     return arrow;
   }
 
-  private createControls(): void {
-    const controls = document.createElement('div');
-    controls.className = 'controls';
-
-    controls.appendChild(this.createArrow(ID_PREV));
-    controls.appendChild(this.indicators);
-    controls.appendChild(this.createArrow(ID_NEXT));
-
-    this.slider.appendChild(controls);
-  }
-
   private addVideoEvent = (): void => {
-    for (const item of this.items) {
+    for (const item of this.medias) {
       if (item instanceof HTMLVideoElement) {
         item.addEventListener('ended', () => {
           this.goTo(this.index + 1);
@@ -134,3 +126,18 @@ export default class Slider {
     }
   }
 }
+
+const initialize = () => {
+  for (const el of Array.from(document.querySelectorAll<HTMLDivElement>('.slider'))) {
+    new Slider(el);
+  }
+};
+
+(() => {
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initialize);
+    return;
+  }
+
+  initialize();
+})();
