@@ -1,8 +1,13 @@
 const CLASS_ARROW = 'arrow';
+const CLASS_CONTROLS = 'controls';
+
 const ID_INDICATORS = 'indicators';
 
 const ID_PREV = 'prev';
 const ID_NEXT = 'next';
+
+const BUTTON_TEXT_PREV = '◀';
+const BUTTON_TEXT_NEXT = '▶';
 
 type Direction = typeof ID_PREV | typeof ID_NEXT;
 type CompatibleMedia = HTMLVideoElement | HTMLImageElement;
@@ -13,19 +18,16 @@ class Slider {
 
   private index = 0;
 
-  private handleIntersect(entries: IntersectionObserverEntry[]) {
+  private handleIntersect = (entries: IntersectionObserverEntry[]) => {
     for (const entry of entries) {
       if (entry.isIntersecting) {
         this.goTo(this.medias.indexOf(entry.target as CompatibleMedia), false);
         return;
       }
     }
-  }
+  };
 
-  private observer = new IntersectionObserver(
-    this.handleIntersect.bind(this),
-    { threshold: 0.8 }
-  );
+  private observer = new IntersectionObserver(this.handleIntersect, { threshold: 0.8 });
 
   constructor(slider: HTMLDivElement) {
     this.medias = Array.from(slider.querySelector<HTMLDivElement>('.media')!.querySelectorAll('video, img'));
@@ -33,7 +35,7 @@ class Slider {
     this.createIndicators();
 
     const controls = document.createElement('div');
-    controls.className = 'controls';
+    controls.setAttribute('class', CLASS_CONTROLS);
 
     controls.appendChild(this.createArrow(ID_PREV));
     controls.appendChild(this.indicators);
@@ -47,36 +49,45 @@ class Slider {
     }
   }
 
-  private goTo(next: number, scrollInto: boolean = true): void {
-    const currentItem = this.medias[this.index];
-
-    if (!currentItem) {
-      return;
-    }
-
-    // Stop video before moving on
-    if (currentItem instanceof HTMLVideoElement) {
-      currentItem.pause();
-    }
-
+  private calcIndex = (next: number): number => {
     const len = this.medias.length;
-    this.index = (next % len + len) % len; // Index values are looped.
 
-    if (scrollInto) {
-      this.medias[this.index]!.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
-    }
+    return (next % len + len) % len; // Index values are looped.
+  };
 
-    for (const [idx, elm] of Array.from(this.indicators.querySelectorAll<HTMLSpanElement>('span')).entries()) {
-      if (idx === next) {
-        elm.setAttribute('class', 'active');
-      }
-      else {
-        elm.removeAttribute('class');
-      }
+  private stopVideo = (index: number): void => {
+    const current = this.medias[index];
+
+    if (current instanceof HTMLVideoElement) {
+      current.pause();
     }
   }
 
-  private createIndicators(): void {
+  private goTo = (next: number, scrollInto: boolean = true): void => {
+    const idx = this.calcIndex(next);
+
+    if (idx === this.index) {
+      return;
+    }
+
+    this.stopVideo(this.index);
+
+    if (scrollInto) {
+      this.medias[idx]!.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+    }
+
+    for (const [p, elm] of Array.from(this.indicators.querySelectorAll<HTMLSpanElement>('span')).entries()) {
+      if (p === idx) {
+        elm.setAttribute('class', 'active');
+        continue;
+      }
+      elm.removeAttribute('class');
+    }
+
+    this.index = idx;
+  }
+
+  private createIndicators = (): void => {
     this.indicators = document.createElement('div');
     this.indicators.setAttribute('id', ID_INDICATORS);
 
@@ -88,9 +99,7 @@ class Slider {
       if (i === 0) {
         elm.classList.add('active');
       }
-      elm.addEventListener('click', () => {
-        this.goTo(i);
-      }, { once: false, passive: true });
+      elm.addEventListener('click', () => { this.goTo(i); }, { once: false, passive: true });
 
       fragment.appendChild(elm);
     }
@@ -103,7 +112,7 @@ class Slider {
 
     arrow.setAttribute('class', CLASS_ARROW);
     arrow.id = dir;
-    arrow.textContent = dir === ID_PREV ? '◀' : '▶';
+    arrow.textContent = dir === ID_PREV ? BUTTON_TEXT_PREV : BUTTON_TEXT_NEXT;
 
     arrow.addEventListener('click', () => {
       this.goTo(this.index + (dir === ID_PREV ? -1 : 1))
@@ -114,15 +123,17 @@ class Slider {
 
   private addVideoEvent = (): void => {
     for (const item of this.medias) {
-      if (item instanceof HTMLVideoElement) {
-        item.addEventListener('ended', () => {
-          this.goTo(this.index + 1);
-
-          // Most of the videos on this site start with a fade-in,
-          // so unless you intentionally shift the starting position, they are all black...!
-          item.currentTime = 0.5;
-        });
+      if (!(item instanceof HTMLVideoElement)) {
+        continue;
       }
+
+      item.addEventListener('ended', () => {
+        this.goTo(this.index + 1);
+
+        // Most of the videos on this site start with a fade-in,
+        // so unless you intentionally shift the starting position, they are all black...!
+        item.currentTime = 0.5;
+      });
     }
   }
 }
