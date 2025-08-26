@@ -30,13 +30,15 @@
 
     #indicators {
       display: flex;
-      gap: 0.5rem;
+      gap: 0.7rem;
 
       span {
-        width: 10px;
-        height: 10px;
-        border-radius: 50%;
+        width: 9px;
+        height: 9px;
         background: var(--sidebar-spacer);
+        border-radius: 50%;
+        cursor: pointer;
+        user-select: none;
 
         &.active {
           background: var(--sidebar-active);
