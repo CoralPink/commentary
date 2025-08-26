@@ -168,6 +168,12 @@ See <lua/fidget/spinners.lua> of this plugin's source code to see how each anima
 
 わたしは`meter`がお気に入りです☺️
 
+```admonish warning title=""
+![starry-starry-awaodorry](img/starry-starry-awaodorry.webp)
+
+もはや避けて通る方が難しい⭐
+```
+
 ## 六 : Setup
 
 いつも通りでOKです❗
