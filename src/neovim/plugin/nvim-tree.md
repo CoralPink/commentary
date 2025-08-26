@@ -243,6 +243,8 @@ vim.keymap.set('n', '<leader>ex', vim.cmd.NvimTreeToggle)
 
 そりゃそうだと言われてしまいそうですが、閉じるときは`:q`や`:bd`なんかでもいけます。
 
+![porco-rosso](img/porco-rosso.webp)
+
 ## Customize
 
 ってことで❗
@@ -529,7 +531,7 @@ Configuration for various actions.
 様々なアクションを行うための設定。
 ```
 
-![ueno-panda](img/ueno-fang.webp)
+![ueno-fang (or should i say shitano-fang)](img/ueno-fang.webp)
 
 #### expand_all
 
