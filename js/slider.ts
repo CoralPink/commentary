@@ -97,7 +97,7 @@ class Slider {
       const elm = document.createElement('span');
 
       if (i === 0) {
-        elm.classList.add('active');
+        elm.setAttribute('class', 'active');
       }
       elm.addEventListener('click', () => { this.goTo(i); }, { once: false, passive: true });
 

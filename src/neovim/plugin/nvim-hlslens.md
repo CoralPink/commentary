@@ -1,10 +1,8 @@
 # nvim-hlslens
 
-前回、少し取り乱してしまったので、今回はのんびり小休止です。`nvim-hlslens`なんてどうでしょう❓
+今回はのんびり小休止です。`nvim-hlslens`なんてどうでしょう❓
 
-これでしたら簡単です。取り乱すなどあろうはずがありません。絶対に。{{footnote:
-お笑いで言うところの "フリ" です。
-}}
+これであれば前回のように、取り乱すなどあろうはずがありません。
 
 ```admonish info title="[nvim-hlslens](https://github.com/kevinhwang91/nvim-hlslens)"
 nvim-hlslens helps you better glance at matched information, seamlessly jump between matched instances.
@@ -18,11 +16,34 @@ Neovim 0.61 or later
 nvim-ufo (optional)
 ```
 
-[nvim-ufo](https://github.com/kevinhwang91/nvim-ufo) が`optional`とされているのですが、わたしこれ使ったことないんですよね...。
+[nvim-ufo](https://github.com/kevinhwang91/nvim-ufo) が`optional`とされているのですが、これ使ったことないんですよね...。
 
 `fold`関連の機能を強化する...のかな...❓
 
-そもそも普段`fold`使ってないので、ちょっと今回はインストールせずにいきます😅
+そもそもわたし自身が普段`fold`使ってないので、このサイトでは使用しないで進みます😅
+
+<div class="slider">
+  <div class="media">
+    ![asakusa-samba-carnival-2024-1](img/asakusa-samba-carnival-2024-1.webp)
+    ![asakusa-samba-carnival-2024-2](img/asakusa-samba-carnival-2024-2.webp)
+    ![asakusa-samba-carnival-2024-3](img/asakusa-samba-carnival-2024-3.webp)
+    ![asakusa-samba-carnival-2024-4](img/asakusa-samba-carnival-2024-4.webp)
+    ![asakusa-samba-carnival-2024-5](img/asakusa-samba-carnival-2024-5.webp)
+    ![asakusa-samba-carnival-2024-6](img/asakusa-samba-carnival-2024-6.webp)
+  </div>
+</div>
+
+踊りながらいきましょう❗{{footnote:
+浅草サンバ・カーニバル・コンテストは、東京都台東区浅草で行われるサンバ・パレードのコンテストである。
+1981年に第1回が行われた、日本で最も規模の大きなサンバイベントである。
+浅草サンバカーニバル実行委員会による主催で、毎年8月の最終土曜日に開催される。
+一日限りの開催だが、約50万人の人出があり、ブラジル以外の国で最大級、そして北半球最大のサンバカーニバルへと発展した。
+[Wikipedia](https://ja.wikipedia.org/wiki/浅草サンバカーニバル)より
+}}
+
+ブラジルのみなさん🕺 南半球のみなさん💃 聴こえますかー❗
+
+突拍子もなく載っけますが、深い意味などあろうはずがありません😇
 
 ## Installation
 
@@ -162,47 +183,14 @@ vim.opt.shortmess:append 'S'
 
 ありがとう...❗ブラックパンツァー...❗❗
 
-~~~admonish tip
-これ、あんまり関係ないんですが...、なんかいつの間にか`nvim`起動時のイントロ出なくなってません❓
-
-(面倒なので犯人探しとかはしないんですけど😑)
-
-本来であれば、`shortmess`にこんなのがいるんです。
-
-```txt
-  I  don't give the intro message when starting Vim,
-     Vimの起動時にイントロメッセージを表示しない,
-
-	 see |:intro|.
-```
-
-...まあ、`:intro`ってすれば出てくるらしいのでたまには表示してあげてください。
-~~~
+<video controls preload="none" width="1280" height="720" poster="img/asakusa-samba-carnival-2024-thumbnail.webp">
+  <source src="img/asakusa-samba-carnival-2024.webm" type="video/webm">
+  Your browser does not support the video/webm.
+</video>
 
 ## Help poor children in Uganda!
 
-あ❗え❓ちょっと待って❗❓
-
-ウガンダの子供達への支援メッセージってもう無くなってるの❗❓
-
-|||
-|:---:|:---:|
-|**nvim**|![intro-nvim](img/intro-nvim.webp)|
-|**vim**|![intro-vim](img/intro-vim.webp)|
-
-`vi`では出たけど😮
-
-|vi|
-|:---:|
-|![intro-vi](img/intro-vi.webp)|
-
-`nvim`でも[Lua Module](../lua-module.html#runtimepath)ページのスクリーンショットにはまだあったよ❓
-
-え、なんで❓意味わかんないぃぃぃぃ❗❗最近消えたってこと❗❓
-
-why!? Where are the children of Ugandaaaaaaa!!
-
-...まあ、`:h iccf`は`nvim v0.8`でも出てきたけど😮
+すごい今さらだし、無理やりなんですが...。
 
 ~~~admonish info title=":h iccf"
 ```txt
@@ -210,16 +198,16 @@ Vim is Charityware.
 You can use and copy it as much as you like,
 but you are encouraged to make a donation for needy children in Uganda.
 
-Vimはチャリティーウェアです。
+Vim はチャリティーウェアです。
 好きなだけ使ったりコピーしたりできますが、
 ウガンダの貧しい子供たちのために寄付をすることが推奨されています。
 
 Please see |kcc| below or visit the ICCF web site, available at these URLs:
-下記の |kcc| をご覧いただくか、以下のURLからICCFのウェブサイトをご覧ください。
+下記の |kcc| をご覧いただくか、以下の URL から ICCF のウェブサイトをご覧ください。
 
-	https://iccf-holland.org/
-	https://www.vim.org/iccf/
-	https://www.iccf.nl/
+  https://iccf-holland.org/
+  https://www.vim.org/iccf/
+  https://www.iccf.nl/
 
 You can also sponsor the development of Vim.
 Vim sponsors can vote for features.  See |sponsor|.
@@ -231,10 +219,16 @@ Vim のスポンサーは機能に対して投票することができます。|
 ```
 ~~~
 
-色々ありましたが、つまりこういうことです。
-
 ```admonish success title="Assemble"
 Black Panther and Uganda Forever!!
 
 (ブラックパンサーも ウガンダも 永遠に!!)
 ```
+
+<script type="module">
+document.addEventListener('DOMContentLoaded', async () => {
+  try {
+    await import(`${document.getElementById('bookjs').dataset.pathtoroot}slider.js`);
+  } catch (e) { console.error(e); }
+});
+</script>

@@ -62,7 +62,7 @@ vim.cmd.colorscheme('blue')
 ```
 ~~~
 
-![iyashinosatonenba1](img/iyashinosatonenba1.webp)
+<div id="mt-fuji"></div>
 
 ## Try
 
@@ -92,7 +92,7 @@ vim.keymap.set('n', '<Leader>9', function() vim.cmd('colorscheme blue') end)
 
 めっちゃブルーになりました😺
 
-![iyashinosatonenba1](img/iyashinosatonenba2.webp)
+![saiko](img/saiko.webp)
 
 ### (Drop by) colorscheme
 
@@ -123,7 +123,14 @@ vim.keymap.set('n', '<Leader>9', function() vim.cmd('colorscheme blue') end)
 `color scheme` (もしくは`color theme`) はプラグインとして提供されているものも数多くあるので、このサイトでも取り上げます☺️
 ```
 
-![iyashinosatonenba1](img/iyashinosatonenba3.webp)
+<div class="slider">
+  <div class="media">
+    ![iyashinosatonenba1](img/iyashinosatonenba1.webp)
+    ![iyashinosatonenba2](img/iyashinosatonenba2.webp)
+    ![iyashinosatonenba3](img/iyashinosatonenba3.webp)
+    ![iyashinosatonenba4](img/iyashinosatonenba4.webp)
+  </div>
+</div>
 
 ## Lua Function
 
@@ -151,8 +158,29 @@ vim.keymap.set('n', '<Leader>9', function() vim.cmd.colo 'blue' end)
 
 ```admonish success title=""
 <div style="text-align: center">
+
 VIM.CMD WILL RETURN
 
 vim.cmd は帰ってくる
 </div>
 ```
+
+<script type="module">
+document.addEventListener('DOMContentLoaded', async () => {
+  const rootPath = document.getElementById('bookjs').dataset.pathtoroot;
+
+  try {
+    const module = await import(`${rootPath}replace-dom.js`);
+    module.replaceId([
+      { id: 'mt-fuji',
+        src: { light:'img/kawaguchiko-mt-fuji-day.webp', dark: 'img/kawaguchiko-mt-fuji-night.webp'},
+        alt: 'kawaguchiko-mt-fuji',
+      },
+    ]);
+  } catch (e) { console.error(e); }
+
+  try {
+    await import(`${rootPath}slider.js`);
+  } catch (e) { console.error(e); }
+});
+</script>

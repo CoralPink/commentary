@@ -4,11 +4,26 @@
 
 前回の "Abbey Road, London" から「あっ❗」てな間に 1ヶ月半くらい経っているので、「そらそやわー。」てな感じですね😅
 
-そんなこんなな中、"高円寺道路, 東京" に行ってみたら 💃 阿波おど{{footnote:
-阿波踊り（あわおどり）は、阿波国（現・徳島県）を発祥とする盆踊り。
-高知のよさこい祭りと愛媛の新居浜太鼓祭りと並ぶ四国三大祭りであり、日本三大盆踊りの一つとしても知られる。
-[Wikipedia](https://en.wikipedia.org/wiki/Awa_Dance_Festival)より
-}}ってて POWER 漲ってました⭐ 🕺
+そんなこんなな中、"高円寺道路, 東京" に行ってみたら 💃 阿波おどってて POWER 漲ってました⭐ 🕺
+{{footnote:
+阿波踊り (あわおどり) は、阿波国 (現・徳島県) を発祥とする盆踊り。
+[三味線](https://ja.wikipedia.org/wiki/三味線)、[太鼓](https://ja.wikipedia.org/wiki/太鼓)、
+[鉦鼓](https://ja.wikipedia.org/wiki/鉦鼓)、[篠笛](https://ja.wikipedia.org/wiki/篠笛)などの
+2拍子の伴奏にのって連 (れん) と呼ばれる踊り手の集団が踊り歩く。
+
+現在は、阿波国以外にも伝播し、東京都など他の地域でも大規模に開催されるようになっている
+([各地の阿波踊り](https://ja.wikipedia.org/wiki/阿波踊り#各地の阿波踊り)を参照)。
+[Wikipedia](https://ja.wikipedia.org/wiki/阿波踊り)より
+}}
+{{footnote:
+東京高円寺阿波おどり (とうきょうこうえんじあわおどり) は、東京都杉並区高円寺において毎年 8月下旬に開催される阿波踊りである。
+[徳島市阿波おどり](https://ja.wikipedia.org/wiki/徳島市阿波おどり)に次ぐ大会規模で、東京周辺では最大規模の阿波踊りである。
+JR高円寺駅前から東京メトロ新高円寺駅にかけての商店街および高南通りを舞台に開催される。
+開催年を経るごとに知名度が上がり、現在では阿波踊りの本場である徳島県からも集団参加が見られるなど、
+晩夏の風物詩として定着し、[浅草サンバカーニバル](https://ja.wikipedia.org/wiki/浅草サンバカーニバル)と共に
+東京の代表的な夏祭りの1つとなっている。
+[Wikipedia](https://ja.wikipedia.org/wiki/東京高円寺阿波おどり)より
+}}
 
 <div class="slider">
   <div class="media">
@@ -87,9 +102,12 @@ Who doesn't love a little bit of eye candy?
 ```
 
 ```admonish tip
-(唐突な登場ですが) `null-ls.nvim`{{footnote: [null-ls.nvim](https://github.com/jose-elias-alvarez/null-ls.nvim):
-残念ながら、この夏休みの間に開発終了([IMPORTANT: Archiving null-ls](https://github.com/jose-elias-alvarez/null-ls.nvim/issues/1621))
-になっちゃったみたい...。Thank you for your hard work❗}}
+(唐突な登場ですが) `null-ls.nvim`{{footnote: [null-ls.nvim](https://github.com/jose-elias-alvarez/null-ls.nvim)は
+2023年の夏休みの間に開発終了([IMPORTANT: Archiving null-ls](https://github.com/jose-elias-alvarez/null-ls.nvim/issues/1621))
+になっちゃったみたい。Thank you for your hard work❗}}
+/ `none-ls.nvim`{{footnote:
+...そして null-ls.nvim の後継として生まれた[none-ls.nvim](https://github.com/nvimtools/none-ls.nvim)は、
+この[17.4章](../../outro/none-ls.html)で登場します。}}
 と併用すると、`Formatter`の進捗も可視化してくれるのが便利なんですよね〜😽
 ```
 
@@ -147,6 +165,10 @@ The following table shows the default options for this plugin:
     </video>
     <video controls preload="none" width="1280" height="720" poster="img/awa-ogikubo-thumbnail.webp">
       <source src="img/awa-ogikubo.webm" type="video/webm">
+      Your browser does not support the video/webm.
+    </video>
+    <video controls preload="none" width="1280" height="720" poster="img/awa-kichijoji-thumbnail.webp">
+      <source src="img/awa-kichijoji.webm" type="video/webm">
       Your browser does not support the video/webm.
     </video>
   </div>

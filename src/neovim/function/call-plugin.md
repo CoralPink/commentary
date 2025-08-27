@@ -268,6 +268,7 @@ Coffee☕ もいいけど、今日はもう終わりだし beer🍺 でいいよ
 
 ```admonish success
 <div style="text-align: center">
+
 PLUG-IN WILL RETURN
 
 プラグインは帰ってくる

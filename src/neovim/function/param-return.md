@@ -214,7 +214,7 @@ If you keep on believing
 ずっと信じていれば
 ```
 
-## Wrap Up
+## A Dream Is a Wish Your Heart Makes
 
 この辺りは言葉にしちゃうとややこしい感じがしないでもないんですけど、使っていればすぐに慣れると思います😆
 
@@ -233,6 +233,7 @@ The dream that you wish will come true
 
 ```admonish success
 <div style="text-align: center">
+
 FUNCTION WILL RETURN
 
 ファンクションは帰ってくる
