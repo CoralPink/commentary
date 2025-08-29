@@ -16,8 +16,8 @@
 [Wikipedia](https://ja.wikipedia.org/wiki/阿波踊り)より
 }}
 {{footnote:
-東京高円寺阿波おどり (とうきょうこうえんじあわおどり) は、東京都杉並区高円寺において毎年 8月下旬に開催される阿波踊りである。
-[徳島市阿波おどり](https://ja.wikipedia.org/wiki/徳島市阿波おどり)に次ぐ大会規模で、東京周辺では最大規模の阿波踊りである。
+東京高円寺阿波おどり (とうきょうこうえんじあわおどり) は、東京都杉並区高円寺において毎年 8月下旬に開催される阿波踊り。
+[徳島市阿波おどり](https://ja.wikipedia.org/wiki/徳島市阿波おどり)に次ぐ大会規模で、東京周辺では最大である。
 JR高円寺駅前から東京メトロ新高円寺駅にかけての商店街および高南通りを舞台に開催される。
 開催年を経るごとに知名度が上がり、現在では阿波踊りの本場である徳島県からも集団参加が見られるなど、
 晩夏の風物詩として定着し、[浅草サンバカーニバル](https://ja.wikipedia.org/wiki/浅草サンバカーニバル)と共に
@@ -107,7 +107,7 @@ Who doesn't love a little bit of eye candy?
 になっちゃったみたい。Thank you for your hard work❗}}
 / `none-ls.nvim`{{footnote:
 ...そして null-ls.nvim の後継として生まれた[none-ls.nvim](https://github.com/nvimtools/none-ls.nvim)は、
-この[17.4章](../../outro/none-ls.html)で登場します。}}
+[17.4章](../../outro/none-ls.html)で登場します。}}
 と併用すると、`Formatter`の進捗も可視化してくれるのが便利なんですよね〜😽
 ```
 
