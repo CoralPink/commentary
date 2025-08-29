@@ -13,8 +13,8 @@ type Direction = typeof ID_PREV | typeof ID_NEXT;
 type CompatibleMedia = HTMLVideoElement | HTMLImageElement;
 
 class Slider {
-  private medias: CompatibleMedia[];
-  private indicators = document.createElement('div');
+  private medias: CompatibleMedia[] = [];
+  private indicatorSpans: HTMLSpanElement[] = [];
 
   private index = 0;
 
@@ -30,18 +30,31 @@ class Slider {
   private observer = new IntersectionObserver(this.handleIntersect, { threshold: 0.8 });
 
   constructor(slider: HTMLDivElement) {
-    this.medias = Array.from(slider.querySelector<HTMLDivElement>('.media')!.querySelectorAll('video, img'));
+    const mediaContainer = slider.querySelector<HTMLDivElement>('.media');
 
-    this.createIndicators();
+    if (!mediaContainer) {
+      console.warn('The media container corresponding to slider class is not found.');
+      return;
+    }
+
+    this.medias = Array.from(mediaContainer.querySelectorAll<CompatibleMedia>('video, img'));
+
+    if (this.medias.length === 0) {
+      console.warn('No video or image elements found inside the media container.');
+      return;
+    }
+
+    const indicators = this.createIndicators();
 
     const controls = document.createElement('div');
-    controls.setAttribute('class', CLASS_CONTROLS);
+    controls.classList.add(CLASS_CONTROLS);
 
     controls.appendChild(this.createArrow(ID_PREV));
-    controls.appendChild(this.indicators);
+    controls.appendChild(indicators);
     controls.appendChild(this.createArrow(ID_NEXT));
 
     slider.appendChild(controls);
+
     this.addVideoEvent();
 
     for (const x of Array.from(this.medias)) {
@@ -49,13 +62,13 @@ class Slider {
     }
   }
 
-  private calcIndex = (next: number): number => {
+  private calcIndex(next: number): number {
     const len = this.medias.length;
 
     return (next % len + len) % len; // Index values are looped.
   };
 
-  private stopVideo = (index: number): void => {
+  private stopVideo(index: number): void {
     const current = this.medias[index];
 
     if (current instanceof HTMLVideoElement) {
@@ -63,7 +76,7 @@ class Slider {
     }
   }
 
-  private goTo = (next: number, scrollInto: boolean = true): void => {
+  private goTo(next: number, scrollInto: boolean = true): void {
     const idx = this.calcIndex(next);
 
     if (idx === this.index) {
@@ -76,41 +89,37 @@ class Slider {
       this.medias[idx]!.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
     }
 
-    for (const [p, elm] of Array.from(this.indicators.querySelectorAll<HTMLSpanElement>('span')).entries()) {
-      if (p === idx) {
-        elm.setAttribute('class', 'active');
-        continue;
-      }
-      elm.removeAttribute('class');
-    }
+    this.indicatorSpans[idx]!.classList.add('active');
+    this.indicatorSpans[this.index]!.classList.remove('active');
 
     this.index = idx;
   }
 
-  private createIndicators = (): void => {
-    this.indicators = document.createElement('div');
-    this.indicators.setAttribute('id', ID_INDICATORS);
-
+  private createIndicators(): HTMLElement {
     const fragment = document.createDocumentFragment();
 
     for (let i = 0; i < this.medias.length; i++) {
       const elm = document.createElement('span');
-
-      if (i === 0) {
-        elm.setAttribute('class', 'active');
-      }
       elm.addEventListener('click', () => { this.goTo(i); }, { once: false, passive: true });
 
       fragment.appendChild(elm);
+      this.indicatorSpans.push(elm);
     }
 
-    this.indicators.appendChild(fragment);
+    this.indicatorSpans[0]!.classList.add('active');
+
+    const indicators = document.createElement('div');
+
+    indicators.setAttribute('id', ID_INDICATORS);
+    indicators.appendChild(fragment);
+
+    return indicators;
   }
 
-  private createArrow = (dir: Direction): HTMLElement => {
+  private createArrow(dir: Direction): HTMLElement {
     const arrow = document.createElement('div');
 
-    arrow.setAttribute('class', CLASS_ARROW);
+    arrow.classList.add(CLASS_ARROW);
     arrow.id = dir;
     arrow.textContent = dir === ID_PREV ? BUTTON_TEXT_PREV : BUTTON_TEXT_NEXT;
 
@@ -121,7 +130,7 @@ class Slider {
     return arrow;
   }
 
-  private addVideoEvent = (): void => {
+  private addVideoEvent(): void {
     for (const item of this.medias) {
       if (!(item instanceof HTMLVideoElement)) {
         continue;

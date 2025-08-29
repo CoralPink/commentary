@@ -8,7 +8,7 @@ let clipButton: HTMLButtonElement;
 
 const showTooltip = (target: HTMLElement, msg: string): void => {
   const tip = document.createElement('div');
-  tip.setAttribute('class', 'tooltiptext');
+  tip.classList.add('tooltiptext');
   tip.insertAdjacentText('afterbegin', msg);
 
   const button = target.closest('button');
@@ -88,11 +88,11 @@ const observer = new IntersectionObserver(
 const createClipButton = (): HTMLButtonElement => {
   const elm = document.createElement('button');
 
-  elm.setAttribute('class', 'copy-button');
+  elm.classList.add('copy-button');
   elm.setAttribute('aria-label', 'Copy to Clipboard');
 
   const icon = document.createElement('div');
-  icon.setAttribute('class', 'icon-copy fa-icon');
+  icon.classList.add('icon-copy', 'fa-icon');
 
   elm.appendChild(icon);
 
