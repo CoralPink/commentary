@@ -77,8 +77,8 @@ const handleFootnoteClick = (target: EventTarget | null): void => {
 
   const pop = document.createElement('aside');
 
+  pop.classList.add('ft-pop');
   pop.style.top = `${calcTop(target, pop) + window.scrollY}px`;
-  pop.setAttribute('class', 'ft-pop');
   pop.setAttribute('role', 'tooltip');
   pop.setAttribute('id', popIdStr);
 
