@@ -1,6 +1,8 @@
 const CLASS_ARROW = 'arrow';
 const CLASS_CONTROLS = 'controls';
 
+const CLASS_ACTIVE = 'active';
+
 const ID_INDICATORS = 'indicators';
 
 const ID_PREV = 'prev';
@@ -8,6 +10,10 @@ const ID_NEXT = 'next';
 
 const BUTTON_TEXT_PREV = '◀';
 const BUTTON_TEXT_NEXT = '▶';
+
+const SCROLL_INTO_VIEW_OPTIONS: ScrollIntoViewOptions = {
+  behavior: 'smooth', block: 'nearest', inline: 'start'
+};
 
 type Direction = typeof ID_PREV | typeof ID_NEXT;
 type CompatibleMedia = HTMLVideoElement | HTMLImageElement;
@@ -21,7 +27,7 @@ class Slider {
   private handleIntersect = (entries: IntersectionObserverEntry[]) => {
     for (const entry of entries) {
       if (entry.isIntersecting) {
-        this.goTo(this.medias.indexOf(entry.target as CompatibleMedia), false);
+        this.goTo(this.medias.indexOf(entry.target as CompatibleMedia));
         return;
       }
     }
@@ -46,14 +52,17 @@ class Slider {
 
     const indicators = this.createIndicators();
 
+    const fragment = document.createDocumentFragment();
     const controls = document.createElement('div');
+
     controls.classList.add(CLASS_CONTROLS);
 
     controls.appendChild(this.createArrow(ID_PREV));
     controls.appendChild(indicators);
     controls.appendChild(this.createArrow(ID_NEXT));
 
-    slider.appendChild(controls);
+    fragment.appendChild(controls);
+    slider.appendChild(fragment);
 
     this.addVideoEvent();
 
@@ -61,12 +70,6 @@ class Slider {
       this.observer.observe(x);
     }
   }
-
-  private calcIndex(next: number): number {
-    const len = this.medias.length;
-
-    return (next % len + len) % len; // Index values are looped.
-  };
 
   private stopVideo(index: number): void {
     const current = this.medias[index];
@@ -76,37 +79,41 @@ class Slider {
     }
   }
 
-  private goTo(next: number, scrollInto: boolean = true): void {
-    const idx = this.calcIndex(next);
-
-    if (idx === this.index) {
+  private goTo(next: number): void {
+    if (next === this.index) {
       return;
     }
 
     this.stopVideo(this.index);
 
-    if (scrollInto) {
-      this.medias[idx]!.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
-    }
+    this.indicatorSpans[next]!.classList.add(CLASS_ACTIVE);
+    this.indicatorSpans[this.index]!.classList.remove(CLASS_ACTIVE);
 
-    this.indicatorSpans[idx]!.classList.add('active');
-    this.indicatorSpans[this.index]!.classList.remove('active');
-
-    this.index = idx;
+    this.index = next;
   }
 
   private createIndicators(): HTMLElement {
     const fragment = document.createDocumentFragment();
 
     for (let i = 0; i < this.medias.length; i++) {
-      const elm = document.createElement('span');
-      elm.addEventListener('click', () => { this.goTo(i); }, { once: false, passive: true });
+      const button = document.createElement('button');
 
-      fragment.appendChild(elm);
-      this.indicatorSpans.push(elm);
+      const thumbnail = (this.medias[i] instanceof HTMLVideoElement)
+        ? (this.medias[i] as HTMLVideoElement).poster
+        : (this.medias[i] as HTMLImageElement).src;
+
+      button.style.backgroundImage = `url('${thumbnail}')`;
+      button.setAttribute('aria-label', `Slide ${i + 1}`);
+
+      button.addEventListener('click', (): void => {
+        this.medias[i]!.scrollIntoView(SCROLL_INTO_VIEW_OPTIONS);
+      }, { once: false, passive: true });
+
+      fragment.appendChild(button);
+      this.indicatorSpans.push(button);
     }
 
-    this.indicatorSpans[0]!.classList.add('active');
+    this.indicatorSpans[0]!.classList.add(CLASS_ACTIVE);
 
     const indicators = document.createElement('div');
 
@@ -116,6 +123,13 @@ class Slider {
     return indicators;
   }
 
+  private scrollTo(next: number): void {
+    const len = this.medias.length;
+    const idx = (next % len + len) % len; // Index values are looped.
+
+    this.medias[idx]!.scrollIntoView(SCROLL_INTO_VIEW_OPTIONS);
+  };
+
   private createArrow(dir: Direction): HTMLElement {
     const arrow = document.createElement('div');
 
@@ -123,8 +137,8 @@ class Slider {
     arrow.id = dir;
     arrow.textContent = dir === ID_PREV ? BUTTON_TEXT_PREV : BUTTON_TEXT_NEXT;
 
-    arrow.addEventListener('click', () => {
-      this.goTo(this.index + (dir === ID_PREV ? -1 : 1))
+    arrow.addEventListener('click', (): void => {
+      this.scrollTo(this.index + (dir === ID_PREV ? -1 : 1));
     }, { once: false, passive: true });
 
     return arrow;
@@ -136,8 +150,8 @@ class Slider {
         continue;
       }
 
-      item.addEventListener('ended', () => {
-        this.goTo(this.index + 1);
+      item.addEventListener('ended', (): void => {
+        this.scrollTo(this.index + 1);
 
         // Most of the videos on this site start with a fade-in,
         // so unless you intentionally shift the starting position, they are all black...!
@@ -147,9 +161,20 @@ class Slider {
   }
 }
 
-const initialize = () => {
-  for (const el of Array.from(document.querySelectorAll<HTMLDivElement>('.slider'))) {
-    new Slider(el);
+const initialize = (): void => {
+  const observer = new IntersectionObserver((entries, obs) => {
+    for (const entry of entries) {
+      if (!entry.isIntersecting) {
+        continue;
+      }
+
+      new Slider(entry.target as HTMLDivElement);
+      obs.unobserve(entry.target);
+    }
+  }, { rootMargin: '3%' });
+
+  for (const elm of Array.from(document.querySelectorAll<HTMLDivElement>('.slider'))) {
+    observer.observe(elm);
   }
 };
 
