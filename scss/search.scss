@@ -45,7 +45,7 @@
       cursor: pointer;
 
       &:focus {
-        outline: 0.2rem solid var(--links);
+        outline: 2px solid var(--links);
 
         background-color: var(--searchresults-li-bg);
         border-radius: 0.4rem
