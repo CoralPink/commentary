@@ -21,7 +21,7 @@ nvim_set_var({name}, {value})       nvim_set_var()
 
 すごくシンプル❗かぁっくいー❤️
 
-章のタイトル飾れるだけの力があるのに、なんか無理やりの登場となってしまいました😅
+章のタイトルを飾れるだけの力があるのに、なんか無理やりの登場となってしまいました😅
 
 ...ただ、この後も出番はかなり限られてくると思われます。
 
@@ -30,7 +30,7 @@ nvim_set_var({name}, {value})       nvim_set_var()
 Captain Marvel は Marvel Comics が発行するアメリカン・コミックに登場する複数のスーパーヒーローの名前である。
 これらのバージョンのほとんどは、マーベル・ユニバースとして知られるマーベルの主要な共有宇宙に存在する。
 現在のキャラクターは Carol Danvers である。
-体内に取り込んだ“ライトスピード・エンジン”のコアのエネルギーによるスーパーパワーを得た直後に、
+体内に取り込んだ “ライトスピード・エンジン” のコアエネルギーによるスーパーパワーを得た直後、
 Kree の記憶改竄を受けて彼らに利用されるも、記憶を取り戻して反旗を翻し、銀河の各地で戦うヒーローとなる。
 [Captain_Marvel_(Marvel_Comics)](https://en.wikipedia.org/wiki/Captain_Marvel_(Marvel_Comics))
 }}みたいですね❗
@@ -42,13 +42,13 @@ Kree の記憶改竄を受けて彼らに利用されるも、記憶を取り戻
 vim.api.nvim_set_var('loaded_python3_provider', 0)
 ```
 
-のような使い方もできます。
+...というような使い方もできます。
 
-(ここでは中身に触れないんですが) これから環境構築するぞー❗
-...って時にやる設定ではないなー🤔と思ったので登場しませんでしたが、
-一通り構築が終わったら改めて登場する予定です。たぶん。
+(ここでは中身に触れないんですが) これから環境構築するぞー❗って時にやる設定ではないなー🤔と思ったので登場しません。
 
-ん⁉️ やっぱり、Endgame だろうがなんだろうが遅れてやってくる Captain Marvel みたいですね❗
+一通り構築が終わったら改めて登場する予定です。たぶん🙄
+
+...ん⁉️ やっぱり、Endgame だろうがなんだろうが遅れてやってくる Captain Marvel みたいですね❗
 ~~~
 
 ```admonish note
@@ -59,12 +59,12 @@ Disney+ の "The Beatles: Get Back" の中で発言してたりする「Captain 
 Shazam や the Captain としても知られる Captain Marvel は、アメリカン・コミックに登場するスーパーヒーローで、
 当初は Fawcett Comics から出版され、現在は DC Comics から出版されている。
 Shazam は Billy Batson の分身であり、魔法の言葉 "SHAZAM!"
-(6人の "不滅の長老 "の頭文字 Solomon, Hercules, Atlas, Zeus, Achilles, Mercury) を口にすることで、
+(6人の "不滅の長老 "の頭文字 `S`olomon, `H`ercules, `A`tlas, `Z`eus, `A`chilles, `M`ercury) を口にすることで、
 超人的な力、スピード、飛行能力などを持つコスチュームを着た大人に変身する。
 [Captain Marvel (DC Comics)](https://en.wikipedia.org/wiki/Captain_Marvel_(DC_Comics))
 }}のことらしいよ😉
 
-(※ このサイトでは Brie Larson のイメージだけで進んでます。)
+> ※ このサイトは Brie Larson のイメージだけで進んでます。
 ```
 
 ## mapleader
@@ -101,52 +101,52 @@ vim.api.nvim_set_var('mapleader', '\\')
 
 上の例はデフォルトと同じ<kbd>\\</kbd>になっていますが、ここを好きなキーに変えることができます。
 
-~~~admonish tip
-`WezTerm`の時にも挙げましたが、メジャーなのはこの辺でしょうか😌
-~~~
+```admonish tip
+`WezTerm`は<kbd>Ctrl</kbd>キーと同時押しするキーを指定していましたが、`Neovim`は単独で使用するキーを指定します。
+```
 
-~~~admonish tip title=""
-スペースを入れてます。`:map`ではないからっていう理屈だと思うんだけど`<Space>`だとうまくいかない。
+### Example
+
+`WezTerm`の時にも挙げましたが、メジャーなのは以下に示すこの辺でしょうか😌
+
+配列は勿論、形状とかも含めて、使用するキーボードに依るので一概には言えないんですが、
+「変えた方がいいよー」って人もいるし、「別に変えてないよー」って人もいます。
+
+つまり自由ってことです❗
+
+#### Space
 
 ```lua
 vim.api.nvim_set_var('mapleader', ' ')
 ```
-~~~
 
-~~~admonish tip title=""
-メジャーなんだけど、`,`は`Neovim`がデフォルトで機能を割り当てていることに注意。
-`vim.keymap.set`で他のキーに`,`を割り当てるなど、少し考慮が必要。
+スペースを指定しています。。
+`:map`ではないからっていう理屈だと思うんだけど`<Space>`と指定してもうまくいかなかったはず。
+
+#### , (comma)
 
 ```lua
 vim.api.nvim_set_var('mapleader', ',')
 ```
-~~~
 
-~~~admonish tip title = ""
-2文字以上を入れても良いみたいなので、何か可能性があるような無いような。
+メジャーなんだけど、<kbd>,</kbd>は`Neovim`がデフォルトで機能を割り当てていることに注意❗
+
+```admonish note
+わたしにも<kbd>,</kbd>で使用していた時代がありましたが、自然と<kbd>\\</kbd>に戻りました。
+
+US 配列を使っている場合だと、ゆーて<kbd>Return</kbd>キーのちょっと上ってだけですからね😉
+```
+
+#### Two Characters
 
 ```lua
 vim.api.nvim_set_var('mapleader', 'map')
 ```
-~~~
 
-`Neovim`は単独で使用するキーを指定します。(`WezTerm`は<kbd>Ctrl</kbd>キーと同時押しするキーを指定していました。)
+2文字以上を入れても平気みたいなので、何か可能性があるような、いや無いような...🤔
 
-なので「<kbd>Space</kbd>キーにするとOSのショートカットと被っちゃうかもよ ❗」ということは無いです。
+### echo
 
-ただ、例えば<kbd>,</kbd>にしちゃうと`Neovim`の中で被ってるよって話が出てきちゃったりします😧
-
-わたしは最近まで<kbd>,</kbd>で使用していましたが、そこまで使用頻度が高いわけでもなかったので<kbd>\\</kbd>に戻しました。
-US配列であれば、ゆーて<kbd>Return</kbd>キーの上ってだけですからね😅
-
-(配列は勿論、形状とかも含めて、使用するキーボードに依るので一概には言えないんですけどね。)
-
-```admonish note
-ここで言いたいのは、「変えた方がいいよー」って人もいるんだけど、「変えてない人もいるよー」ってことです。
-自由ってことです。
-```
-
-~~~admonish tip
 `leader`キーの確認はコマンドからできます。
 
 ```vim
@@ -156,7 +156,6 @@ US配列であれば、ゆーて<kbd>Return</kbd>キーの上ってだけです�
 ![leader](img/leader.webp)
 
 設定前に実行するとエラーが出てしまいますが、特に害はありません。
-~~~
 
 ## maplocalleader
 
@@ -188,6 +187,8 @@ global プラグインでは <Leader> を、filetype プラグインでは <Loca
 ```
 ~~~
 
+### Example
+
 こっちはなんか<kbd>_</kbd>がメジャーらしい...🤔
 
 ~~~admonish example title="keybinds.lua"
@@ -203,7 +204,8 @@ vim.api.nvim_set_var('maplocalleader', '_')
 
 ただ、あくまでも必須ではないです。`mapleader`と違って、こちらはデフォルトでも設定されていません。
 
-~~~admonish tip
+### echo
+
 これもやっぱりコマンドから確認ができます。
 
 ```vim
@@ -211,7 +213,6 @@ vim.api.nvim_set_var('maplocalleader', '_')
 ```
 
 これも設定前に実行するとエラーが出てしまいますが、やっぱり害はありません。
-~~~
 
 ## Wrap Up
 
@@ -223,6 +224,11 @@ vim.api.nvim_set_var('maplocalleader', '_')
 
 ドキドキ...❗
 ```
+
+<video controls preload="none" width="1280" height="720" poster="img/kyobashi2025-kanda2024-mix-thumbnail.webp">
+  <source src="img/kyobashi2025-kanda2024-mix.webm" type="video/webm">
+  Your browser does not support the video/webm.
+</video>
 
 ```admonish success title=""
 <div style="text-align: center">

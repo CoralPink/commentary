@@ -182,8 +182,8 @@ vim.opt.shortmess:append 'S'
 
 ありがとう...❗ブラックパンツァー...❗❗
 
-<video controls preload="none" width="1280" height="720" poster="img/asakusa-samba-carnival-2024-thumbnail.webp">
-  <source src="img/asakusa-samba-carnival-2024.webm" type="video/webm">
+<video controls preload="none" width="1280" height="720" poster="img/jimori-samba-ongakutai-2024-thumbnail.webp">
+  <source src="img/jimori-samba-ongakutai-2024.webm" type="video/webm">
   Your browser does not support the video/webm.
 </video>
 
