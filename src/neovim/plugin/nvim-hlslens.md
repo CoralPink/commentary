@@ -149,15 +149,17 @@ Vim では、quickfix コマンドはより一般的に、ファイル内の位�
 かいパンやろうの　ようすが......❗
 ```
 
-...っていうか居たの❓かいパンやろうが進化したくらいではもう取り乱しませんよ😮‍💨
+```admonish danger title=""
+![asakusa-mucle](img/asakusa-muscle.webp)
+
+筋肉の集団面接💪 今まで一番チカラをいれた部位はどこですかッ⁉️
+```
 
 ```admonish quote title=""
 おめでとう❗　かいパンやろうは
 
 ブラックパンツァーに　しんかした
 ```
-
-頷くブラックパンツァー。共に戦おうと言わんばかりに...❗
 
 ~~~admonish info title=":h shortmess"
 ```txt
@@ -169,23 +171,38 @@ Vim では、quickfix コマンドはより一般的に、ファイル内の位�
 ~~~
 
 ~~~admonish example title="extensions/nvim-hlslens.lua"
-```lua
--- (省略)
--- end, {expr = true})
+```diff
+ vim.keymap.set({'n', 'x'}, '<Leader>L', function()
+   vim.schedule(function()
+     if require('hlslens').exportLastSearchToQuickfix() then
+       vim.cmd('cw')
+     end
+   end)
+   return ':noh<CR>'
+ end, {expr = true})
 
--- そう、ここだ...。
-vim.opt.shortmess:append 'S'
++vim.opt.shortmess:append 'S'
 ```
 ~~~
 
+頷くブラックパンツァー。共に戦おうと言わんばかりに...❗
+
 ![nvim-hlslens3](img/nvim-hlslens3.webp)
 
-ありがとう...❗ブラックパンツァー...❗❗
+そこまで絞るには眠れない夜もあったろう...❗ありがとう、ブラックパンツァー...❗❗
 
-<video controls preload="none" width="1280" height="720" poster="img/jimori-samba-ongakutai-2024-thumbnail.webp">
-  <source src="img/jimori-samba-ongakutai-2024.webm" type="video/webm">
-  Your browser does not support the video/webm.
-</video>
+<div class="slider">
+  <div class="media">
+    <video controls preload="none" width="1280" height="720" poster="img/jimori-samba-ongakutai-2024-thumbnail.webp">
+      <source src="img/jimori-samba-ongakutai-2024.webm" type="video/webm">
+      Your browser does not support the video/webm.
+    </video>
+    <video controls preload="none" width="1280" height="720" poster="img/gres-barbaros-2025-thumbnail.webp">
+      <source src="img/gres-barbaros-2025.webm" type="video/webm">
+      Your browser does not support the video/webm.
+    </video>
+  </div>
+</div>
 
 ## Help poor children in Uganda!
 
@@ -222,7 +239,7 @@ Vim のスポンサーは機能に対して投票することができます。|
 ```admonish success title="Assemble"
 Black Panther and Uganda Forever!!
 
-(ブラックパンサーも ウガンダも 永遠に!!)
+ブラックパンサーも ウガンダも 永遠に!!
 ```
 
 <script type="module">
