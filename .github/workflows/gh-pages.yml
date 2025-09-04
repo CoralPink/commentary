@@ -7,8 +7,6 @@ on:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -18,7 +16,6 @@ jobs:
   cache-media-files:
     name: Cache Media Files
     runs-on: macos-15
-    if: ${{ github.ref == 'refs/heads/main' }}
     outputs:
       media-cache-key: ${{ steps.set-cache-key.outputs.cache-key }}
       cache-hit-exact: ${{ steps.check-cache.outputs.exact }}
@@ -47,7 +44,8 @@ jobs:
       - name: Check if cache is exact match
         id: check-cache
         run: |
-          if [ "${{ steps.cache-source.outputs.cache-hit }}" = "true" ] && \
+          if [ "${GITHUB_REF}" == "refs/heads/main" ] && \
+             [ "${{ steps.cache-source.outputs.cache-hit }}" = "true" ] && \
              [ "${{ steps.cache-source.outputs.cache-matched-key }}" = "${{ steps.set-cache-key.outputs.cache-key }}" ]; then
             echo "exact=true" >> $GITHUB_OUTPUT
           else
@@ -363,7 +361,7 @@ jobs:
         with:
           path: tmp-media
           key: ${{ needs.cache-media-files.outputs.media-cache-key }}
-          fail-on-cache-miss: true
+          fail-on-cache-miss: false # If there is no cache, I would like the build workflow to proceed without a cache.
 
       - name: Remove LFS Pointer
         run: find src -type f \( -name '*.webp' -o -name '*.webm' -o -name '*.mp3' \) -delete
@@ -457,16 +455,21 @@ jobs:
           ls -alR book
 
       - name: Upload Pages Artifact
+        id: deployment
         uses: actions/upload-pages-artifact@v4
         with:
           path: book
 
   deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    needs: build
+    permissions:
+      pages: write      # to deploy to Pages
+      id-token: write   # to verify the deployment originates from an appropriate source
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: build
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
