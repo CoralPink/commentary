@@ -361,7 +361,7 @@ jobs:
         with:
           path: tmp-media
           key: ${{ needs.cache-media-files.outputs.media-cache-key }}
-          fail-on-cache-miss: false # If there is no cache, I would like the build workflow to proceed without a cache.
+          fail-on-cache-miss: true
 
       - name: Remove LFS Pointer
         run: find src -type f \( -name '*.webp' -o -name '*.webm' -o -name '*.mp3' \) -delete
