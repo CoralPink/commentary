@@ -16,6 +16,7 @@ jobs:
   cache-media-files:
     name: Cache Media Files
     runs-on: macos-15
+    if: ${{ github.ref == 'refs/heads/main' }}
     outputs:
       media-cache-key: ${{ steps.set-cache-key.outputs.cache-key }}
       cache-hit-exact: ${{ steps.check-cache.outputs.exact }}
@@ -44,8 +45,7 @@ jobs:
       - name: Check if cache is exact match
         id: check-cache
         run: |
-          if [ "${GITHUB_REF}" == "refs/heads/main" ] && \
-             [ "${{ steps.cache-source.outputs.cache-hit }}" = "true" ] && \
+             if [ "${{ steps.cache-source.outputs.cache-hit }}" = "true" ] && \
              [ "${{ steps.cache-source.outputs.cache-matched-key }}" = "${{ steps.set-cache-key.outputs.cache-key }}" ]; then
             echo "exact=true" >> $GITHUB_OUTPUT
           else
