@@ -1,12 +1,12 @@
-name: github-pages
-
+name: Deploy
 on:
   push:
     branches:
       - main
   pull_request:
 
-permissions: read-all
+permissions:
+  contents: read
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -25,6 +25,7 @@ jobs:
         uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5
         with:
           lfs: false
+          fetch-depth: 0
           sparse-checkout: |
             src
 
@@ -335,18 +336,18 @@ jobs:
         run: |
           cargo test --verbose
 
-  build-and-deploy:
-    permissions:
-      contents: write
-    name: Build and Deploy
+  build:
+    name: Build
     runs-on: macos-15
-    if: ${{ github.ref == 'refs/heads/main' }}
     needs: [build-wasm, build-js, build-scss, cache-media-files, convert-woff2, test-mdbook-backend]
+    env:
+      MDBOOK_VERSION: 0.4.52
     steps:
       - name: Checkout the repo
         uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5
         with:
           lfs: false # Make it clear (just in case) that lfs is not used in this step.
+          fetch-depth: 0
           sparse-checkout: |
             book.toml
             rs/mdbook-footnote
@@ -394,19 +395,20 @@ jobs:
             target/
           key: backend-${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
 
-      - name: Setup Backend
+      - name: Install mdbook
         if: steps.cache-cargo.outputs.cache-hit != 'true'
         run: |
+          cargo install --version ${MDBOOK_VERSION} mdbook
           cargo install mdbook-admonish
           cargo install mdbook-tailor
           cargo install --path ./rs/mdbook-footnote
 
-      - name: Setup mdBook
-        uses: peaceiris/actions-mdbook@ee69d230fe19748b7abf22df32acaa93833fad08 # v2
-        with:
-          mdbook-version: "0.4.52"
+      - name: Setup Pages
+        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+        id: pages
+        uses: actions/configure-pages@v5
 
-      - name: Build mdBook
+      - name: Build Book
         run: |
           mdbook build
 
@@ -448,12 +450,24 @@ jobs:
           rm -rf FontAwesome
           rm -rf fonts
 
-      - name: List Segments
-        run: |
-          ls -alR book
-
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@4f9cc6602d3f66b9c108549d475ec49e8ef4d45e # v4
+      - name: Upload Pages Artifact
+        id: deployment
+        uses: actions/upload-pages-artifact@v4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: book
+          path: book
+
+  deploy:
+    name: Deploy
+    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+    runs-on: ubuntu-latest
+    needs: build
+    permissions:
+      pages: write      # to deploy to Pages
+      id-token: write   # to verify the deployment originates from an appropriate source
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
