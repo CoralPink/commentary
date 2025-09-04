@@ -450,10 +450,6 @@ jobs:
           rm -rf FontAwesome
           rm -rf fonts
 
-      - name: List Segments
-        run: |
-          ls -alR book
-
       - name: Upload Pages Artifact
         id: deployment
         uses: actions/upload-pages-artifact@v4
