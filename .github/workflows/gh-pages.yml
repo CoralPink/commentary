@@ -45,7 +45,7 @@ jobs:
       - name: Check if cache is exact match
         id: check-cache
         run: |
-             if [ "${{ steps.cache-source.outputs.cache-hit }}" = "true" ] && \
+          if [ "${{ steps.cache-source.outputs.cache-hit }}" = "true" ] && \
              [ "${{ steps.cache-source.outputs.cache-matched-key }}" = "${{ steps.set-cache-key.outputs.cache-key }}" ]; then
             echo "exact=true" >> $GITHUB_OUTPUT
           else
