@@ -5,7 +5,10 @@ on:
       - main
   pull_request:
 
-permissions: read-all
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -403,6 +406,7 @@ jobs:
           cargo install --path ./rs/mdbook-footnote
 
       - name: Setup Pages
+        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
         id: pages
         uses: actions/configure-pages@v5
 
@@ -452,8 +456,8 @@ jobs:
         run: |
           ls -alR book
 
-      - name: Upload Artifact
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+      - name: Upload Pages Artifact
+        uses: actions/upload-pages-artifact@v3
         with:
           path: book
 
