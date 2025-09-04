@@ -462,6 +462,7 @@ jobs:
 
   deploy:
     name: Deploy
+    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
     runs-on: ubuntu-latest
     needs: build
     permissions:
