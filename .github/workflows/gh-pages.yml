@@ -1,4 +1,5 @@
-name: Deploy
+name: GitHub Pages
+
 on:
   push:
     branches:
@@ -173,6 +174,14 @@ jobs:
           sparse-checkout: |
             js
 
+      - name: Cache dependencies
+        uses: actions/cache@0400d5f644dc74513175e3cd8d07132dd4860809 # v4
+        with:
+          path: |
+            ~/.bun/install/cache
+            js/node_modules
+          key: js-${{ runner.os }}-bun-${{ hashFiles('**/bun.lock') }}
+
       - name: Setup Bun
         uses: oven-sh/setup-bun@735343b667d3e6f658f44d0eca948eb6282f2b76 # v2
         with:
@@ -183,10 +192,10 @@ jobs:
         run: |
           bun install
 
-      - name: Test Bun
+      - name: Run Vitest
         working-directory: js
         run: |
-          bun test
+          bun vitest run
 
   build-js:
     name: Build JS
@@ -336,8 +345,8 @@ jobs:
         run: |
           cargo test --verbose
 
-  build:
-    name: Build
+  publish:
+    name: Publish
     runs-on: macos-15
     needs: [build-wasm, build-js, build-scss, cache-media-files, convert-woff2, test-mdbook-backend]
     env:
