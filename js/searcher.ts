@@ -13,7 +13,7 @@ type CompressionFormat = 'gzip' | 'deflate' | 'deflate-raw' | 'brotli';
 
 const STYLE_SEARCH = 'css/search.css';
 
-const ID_ICON = 'search-toggle';
+export const ID_SEARCH_TOGGLE = 'search-toggle';
 
 const FETCH_TIMEOUT = 10000;
 const DEBOUNCE_DELAY_MS = 80;
@@ -109,7 +109,7 @@ const closedPopover = (ev: Event): void => {
 };
 
 const hiddenSearch = (): void => {
-  document.getElementById(ID_ICON)?.setAttribute('aria-expanded', 'false');
+  document.getElementById(ID_SEARCH_TOGGLE)?.setAttribute('aria-expanded', 'false');
 
   elmSearchBar.removeEventListener('input', debounceSearchInput);
   elmResults.removeEventListener('keyup', popupFocus);
@@ -121,7 +121,7 @@ const hiddenSearch = (): void => {
 };
 
 const showSearch = (): void => {
-  document.getElementById(ID_ICON)?.setAttribute('aria-expanded', 'true');
+  document.getElementById(ID_SEARCH_TOGGLE)?.setAttribute('aria-expanded', 'true');
 
   elmSearchBar.addEventListener('input', debounceSearchInput, { once: false, passive: true });
   elmResults.addEventListener('keyup', popupFocus, { once: false, passive: true });
@@ -209,7 +209,7 @@ const initSearch = async (): Promise<void> => {
 
   document.removeEventListener('keyup', startSearchFromKey);
 
-  const icon = document.getElementById(ID_ICON);
+  const icon = document.getElementById(ID_SEARCH_TOGGLE);
 
   if (icon === null) {
     return;
@@ -303,6 +303,6 @@ const startSearchFromKey = (ev: KeyboardEvent): void => {
 export const startupSearch = (root: string): void => {
   rootPath = root;
 
-  document.getElementById(ID_ICON)?.addEventListener('click', initSearch, { once: true, passive: true });
+  document.getElementById(ID_SEARCH_TOGGLE)?.addEventListener('click', initSearch, { once: true, passive: true });
   document.addEventListener('keyup', startSearchFromKey, { once: false, passive: true });
 };
