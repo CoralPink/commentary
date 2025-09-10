@@ -4,8 +4,8 @@
     "uuid": "13.0.0"
   },
   "devDependencies": {
-    "@happy-dom/global-registrator": "latest",
     "@types/bun": "1.2.21",
+    "happy-dom": "latest",
     "typescript": "5.9.2",
     "vitest": "3.2.4"
   }
