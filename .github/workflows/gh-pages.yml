@@ -1,4 +1,5 @@
-name: Deploy
+name: GitHub Pages
+
 on:
   push:
     branches:
@@ -166,12 +167,32 @@ jobs:
   test-js:
     name: Test JS
     runs-on: macos-15
+    needs: build-wasm
     steps:
       - name: Checkout the repo
         uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5
         with:
           sparse-checkout: |
             js
+
+      - name: Cache dependencies
+        uses: actions/cache@0400d5f644dc74513175e3cd8d07132dd4860809 # v4
+        with:
+          path: |
+            ~/.bun/install/cache
+            js/node_modules
+          key: js-${{ runner.os }}-bun-${{ hashFiles('**/bun.lock') }}
+
+      - name: Download wasm_pkg
+        uses: actions/download-artifact@634f93cb2916e3fdff6788551b99b062d0335ce0 # v5
+        with:
+          name: wasm-book
+          path: pkg
+
+      - name: Copy wasm_js
+        run: |
+          cp pkg/wasm_book.js js
+          cp pkg/wasm_book.d.ts js
 
       - name: Setup Bun
         uses: oven-sh/setup-bun@735343b667d3e6f658f44d0eca948eb6282f2b76 # v2
@@ -183,10 +204,17 @@ jobs:
         run: |
           bun install
 
-      - name: Test Bun
+      - name: Run Vitest
         working-directory: js
         run: |
-          bun test
+          bun run test:ci
+
+      - name: Upload coverage
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: vitest-report
+          path: js/coverage
+          if-no-files-found: ignore
 
   build-js:
     name: Build JS
@@ -336,8 +364,8 @@ jobs:
         run: |
           cargo test --verbose
 
-  build:
-    name: Build
+  publish:
+    name: Publish
     runs-on: macos-15
     needs: [build-wasm, build-js, build-scss, cache-media-files, convert-woff2, test-mdbook-backend]
     env:
@@ -460,7 +488,7 @@ jobs:
     name: Deploy
     if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
     runs-on: ubuntu-latest
-    needs: build
+    needs: publish
     permissions:
       pages: write      # to deploy to Pages
       id-token: write   # to verify the deployment originates from an appropriate source

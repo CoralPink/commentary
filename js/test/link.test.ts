@@ -1,6 +1,6 @@
 /// <reference lib="dom" />
 
-import { expect, test } from 'bun:test';
+import { describe, expect, it, beforeEach } from 'vitest';
 import { attributeExternalLinks } from '../link';
 
 const TEST_URLS = [
@@ -15,37 +15,40 @@ const TEST_URLS = [
   '#http',
 ];
 
-test('adds _blank to external links', () => {
-  const article = document.createElement('article');
-  article.id = 'article';
+describe('attributeExternalLinks', () => {
+  beforeEach(() => {
+    // Clear document.body for each test
+    document.body.innerHTML = '';
+  });
 
-  document.body.appendChild(article);
+  it('adds _blank to external links', () => {
+    const article = document.createElement('article');
+    article.id = 'article';
+    document.body.appendChild(article);
 
-  for (const href of TEST_URLS) {
-    const a = document.createElement('a');
-    a.href = href;
-
-    article.appendChild(a);
-  }
-
-  attributeExternalLinks();
-
-  for (const link of Array.from(article.querySelectorAll('a'))) {
-    const href = link.getAttribute('href');
-
-    expect(href).not.toBeNull();
-
-    if (href!.startsWith('http://') || href!.startsWith('https://')) {
-      expect(link.getAttribute('target')).toBe('_blank');
-      expect(link.getAttribute('rel')).toBe('noopener');
-    } else {
-      expect(link.getAttribute('target')).toBeNull();
+    for (const href of TEST_URLS) {
+      const a = document.createElement('a');
+      a.href = href;
+      article.appendChild(a);
     }
-  }
-});
 
-test('does nothing if article element is not found', () => {
-  document.getElementById('article')?.remove();
+    attributeExternalLinks();
 
-  expect(() => attributeExternalLinks()).not.toThrow();
+    for (const link of Array.from(article.querySelectorAll('a'))) {
+      const href = link.getAttribute('href');
+      expect(href).not.toBeNull();
+
+      if (href!.startsWith('http://') || href!.startsWith('https://')) {
+        expect(link.getAttribute('target')).toBe('_blank');
+        expect(link.getAttribute('rel')).toBe('noopener');
+      } else {
+        expect(link.getAttribute('target')).toBeNull();
+      }
+    }
+  });
+
+  it('does nothing if article element is not found', () => {
+    document.getElementById('article')?.remove();
+    expect(() => attributeExternalLinks()).not.toThrow();
+  });
 });
