@@ -7,6 +7,7 @@ target
 
 fonts/poetry.lock
 
+js/coverage
 js/dist
 js/highlight.js
 js/wasm_book.js

@@ -207,7 +207,14 @@ jobs:
       - name: Run Vitest
         working-directory: js
         run: |
-          bun vitest run
+          bun run vitest run --coverage
+
+      - name: Upload coverage
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: coverage-js
+          path: js/coverage
+          if-no-files-found: ignore
 
   build-js:
     name: Build JS
