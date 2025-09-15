@@ -13,6 +13,8 @@ const tocClass = ['righttoc', 'bottomtoc'] as const;
 const tocMap: Map<HTMLElement, HTMLAnchorElement> = new Map();
 let observer: IntersectionObserver;
 
+let elm_toc: HTMLElement;
+
 let uiBreak: number;
 
 let environment: Environment;
@@ -95,8 +97,6 @@ const initialize = (): void => {
     { threshold: 1.0 },
   );
 
-  environment = window.innerWidth >= uiBreak ? Environment.WIDE : Environment.COMPACT;
-
   const nav: HTMLElement = document.createElement('nav');
   nav.setAttribute('id', 'pagetoc');
   nav.setAttribute('role', 'navigation');
@@ -133,25 +133,34 @@ const initialize = (): void => {
     tocMap.set(el, link);
   }
 
-  const toc = document.getElementById('table-of-contents');
+  environment = window.innerWidth >= uiBreak ? Environment.WIDE : Environment.COMPACT;
 
-  if (toc === null) {
-    console.error('Table-of-contents does not exist');
-    return;
+  if (environment === Environment.WIDE) {
+    showToc();
+  }
+  else {
+    hideToc();
   }
 
-  toc.classList.add(tocClass[environment]);
-  toc.appendChild(nav);
+  elm_toc.classList.add(tocClass[environment]);
+  elm_toc.appendChild(nav);
+};
+
+const showToc = (): void => {
+  elm_toc.style.display = 'flex';
+
+  elm_toc.removeAttribute('aria-hidden');
+  elm_toc.setAttribute('aria-expanded', 'true');
+}
+
+const hideToc = (): void => {
+  elm_toc.style.display = 'none';
+
+  elm_toc.setAttribute('aria-hidden', 'true');
+  elm_toc.setAttribute('aria-expanded', 'false');
 };
 
 const tocReset = (): void => {
-  const toc = document.getElementById('table-of-contents');
-
-  if (toc === null) {
-    console.error('Table-of-contents does not exist');
-    return;
-  }
-
   const pagetoc = document.getElementById('pagetoc');
 
   if (pagetoc === null) {
@@ -159,8 +168,8 @@ const tocReset = (): void => {
     return;
   }
 
-  toc.classList.remove(tocClass[environment]);
-  toc.removeChild(pagetoc);
+  elm_toc.classList.remove(tocClass[environment]);
+  elm_toc.removeChild(pagetoc);
 
   tocMap.clear();
   observer.disconnect();
@@ -168,7 +177,22 @@ const tocReset = (): void => {
   initialize();
 };
 
+const initToggleButton = (): void => {
+  const tocToggle = document.getElementById('toc-toggle');
+
+  if (!tocToggle) {
+    console.error('TOC toggle button not found');
+    return;
+  }
+
+  tocToggle.addEventListener('click', () => {
+    elm_toc.checkVisibility() ? hideToc() : showToc();
+  }, { once: false, passive: true });
+}
+
 export const initTableOfContents = (): void => {
+  elm_toc = document.getElementById('table-of-contents')!;
+
   try {
     uiBreak = getRootVariableNum('--breakpoint-ui-wide');
   } catch (err: unknown) {
@@ -177,6 +201,7 @@ export const initTableOfContents = (): void => {
   }
 
   initialize();
+  initToggleButton();
 
   window.matchMedia(`(min-width: ${uiBreak}px)`).addEventListener('change', tocReset, { once: false, passive: true });
 };

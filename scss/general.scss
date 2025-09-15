@@ -12,6 +12,14 @@
   --breakpoint-ui-wide: #{var.$breakpoint-ui-wide};
 }
 
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+}
+
 body {
   margin: 0;
 
@@ -50,16 +58,10 @@ body {
   flex-basis: var.$menu-bar-height;
 
   &>#menu {
-    position: fixed;
-    width: 100dvw;
     height: var.$menu-bar-height;
-
     display: flex;
     align-items: center;
     gap: 1em;
-
-    color: var(--icons);
-    background-color: var(--bg);
 
     z-index: 30;
     opacity: 0.92;
@@ -67,18 +69,16 @@ body {
     &>#left-buttons {
       min-width: 0;
       margin-left: 1rem;
-
       display: flex;
       gap: 0.85em;
     }
 
     &>#book-title {
       flex: 1;
-
+      color: var(--icons);
       font-family: var.$italic-font;
       font-size: 0.7em;
       font-style: italic;
-
       text-align: right;
       text-overflow: ellipsis;
       white-space: nowrap;
@@ -92,6 +92,13 @@ body {
         color: inherit;
       }
     }
+  }
+}
+
+@media (min-width: var.$breakpoint-ui-wide) {
+  #top-bar>#menu {
+    position: fixed;
+    width: 100dvw;
   }
 }
 
