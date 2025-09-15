@@ -5,8 +5,6 @@ node_modules
 pkg
 target
 
-fonts/poetry.lock
-
 js/coverage
 js/dist
 js/highlight.js
