@@ -63,8 +63,15 @@ body {
     align-items: center;
     gap: 1em;
 
+    background-color: var(--bg);
+
     z-index: 30;
     opacity: 0.92;
+
+    @media (min-width: var.$breakpoint-ui-wide) {
+      position: fixed;
+      width: 100dvw;
+    }
 
     &>#left-buttons {
       min-width: 0;
@@ -92,13 +99,6 @@ body {
         color: inherit;
       }
     }
-  }
-}
-
-@media (min-width: var.$breakpoint-ui-wide) {
-  #top-bar>#menu {
-    position: fixed;
-    width: 100dvw;
   }
 }
 
