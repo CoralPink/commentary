@@ -7,7 +7,7 @@
     {{> head}}
 
     <meta name="description" content="{{ description }}">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=2.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <meta name="theme-color">
     <meta name="format-detection" content="telephone=no,email=no,address=no">
 
@@ -33,10 +33,10 @@
     <script type="module" src="{{ resource "book.js"}}" id="bookjs" data-pathtoroot="{{ path_to_root }}" defer></script>
   </head>
   <body>
-    <div id="top-bar">
+    <header id="top-bar">
       <div id="menu">
         <div id="left-buttons">
-          <button id="sidebar-toggle" class="icon-button" title="Toggle Table of Contents (Shortkey: T )" aria-label="Toggle Table of Contents" aria-keyshortcuts="T" aria-controls="sidebar">
+          <button id="sidebar-toggle" class="icon-button" title="Toggle Page List (Shortkey: T )" aria-label="Toggle Page List" aria-keyshortcuts="T" aria-controls="sidebar">
             <div class="icon-sidebar fa-icon"></div>
           </button>
 
@@ -69,7 +69,7 @@
           {{/if}}
         </div>
       </div>
-    </div>
+    </header>
 
     <div id="page">
       <aside id="sidebar" aria-label="Site map"></aside>
@@ -93,7 +93,12 @@
           </nav>
         </article>
       </main>
-      <aside id="table-of-contents"></aside>
+      <div class="toc-container">
+        <aside id="table-of-contents"></aside>
+        <button id="toc-toggle" class="icon-button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="table-of-contents">
+          <div class="icon-sidebar fa-icon"></div>
+        </button>
+      </div>
     </div>
 
     <script>
