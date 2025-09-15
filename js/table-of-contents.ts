@@ -178,7 +178,14 @@ const tocReset = (): void => {
 };
 
 const initToggleButton = (): void => {
-  document.getElementById('toc-toggle')!.addEventListener('click', () => {
+  const tocToggle = document.getElementById('toc-toggle');
+
+  if (!tocToggle) {
+    console.error('TOC toggle button not found');
+    return;
+  }
+
+  tocToggle.addEventListener('click', () => {
     elm_toc.checkVisibility() ? hideToc() : showToc();
   }, { once: false, passive: true });
 }
