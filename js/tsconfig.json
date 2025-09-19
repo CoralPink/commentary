@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     // Enable latest features
-    "lib": ["ESNext", "DOM", "WebWorker"],
+    "lib": ["ESNext", "WebWorker"],
     "target": "ESNext",
     "module": "ESNext",
     "moduleDetection": "force",
@@ -30,7 +30,7 @@
     "verbatimModuleSyntax": true,
 
     // Vitest
-    "types": ["vitest/globals"],
+    "types": ["vitest/globals"]
   },
   "include": ["src", "test"]
 }

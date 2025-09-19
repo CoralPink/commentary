@@ -5,3 +5,5 @@ export const writeLocalStorage = (keyName: string, keyValue: string): void => {
     console.error(`ERROR: ${keyName} ${keyValue}\n${e}`);
   }
 };
+
+export const readLocalStorage = (keyName: string): string | null => localStorage.getItem(keyName);

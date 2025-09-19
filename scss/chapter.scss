@@ -1,7 +1,9 @@
 @use 'variables' as var;
 
+$scrollbox-shift: var.$pagetoc-bottom-shift + 2rem;
+
 #sidebar-scrollbox {
-  height: calc(100dvh - var.$menu-bar-height);
+  height: calc(100dvh - $scrollbox-shift);
 
   overflow-y: scroll;
   overscroll-behavior: contain;

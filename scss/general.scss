@@ -21,8 +21,6 @@ html {
 }
 
 body {
-  margin: 0;
-
   display: flex;
   flex-direction: column;
 
@@ -45,23 +43,27 @@ body {
     background-color: var(--scrollbar);
     border-radius: 0.8rem;
   }
-}
 
-@media (min-resolution: 2dppx) {
-  body {
+  @media (min-resolution: 2dppx) {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+@media (max-width: var.$breakpoint-ui-wide) {
+  header {
+    display: none;
   }
 }
 
 #top-bar {
   flex-basis: var.$menu-bar-height;
 
-  &>#menu {
+  #menu {
     height: var.$menu-bar-height;
     display: flex;
     align-items: center;
-    gap: 1em;
+    gap: 1rem;
 
     background-color: var(--bg);
 
@@ -73,14 +75,14 @@ body {
       width: 100dvw;
     }
 
-    &>#left-buttons {
+    #left-buttons {
       min-width: 0;
       margin-left: 1rem;
       display: flex;
-      gap: 0.85em;
+      gap: 0.8rem;
     }
 
-    &>#book-title {
+    #book-title {
       flex: 1;
       color: var(--icons);
       font-family: var.$italic-font;
@@ -91,8 +93,8 @@ body {
       white-space: nowrap;
     }
 
-    &>#right-buttons {
-      margin-right: 1.3rem;
+    #right-buttons {
+      margin-right: 2rem;
 
       &>a {
         text-decoration: none;
@@ -107,19 +109,14 @@ body {
 
   @media (min-width: var.$breakpoint-ui-wide) {
     grid-template-columns: 1fr var.$pagetoc-width;
-  }
 
-  &.show-sidebar {
-    grid-template-columns: 1fr;
-
-    @media (min-width: var.$breakpoint-ui-wide) {
+    &.show-sidebar {
       grid-template-columns: var.$sidebar-width 1fr var.$pagetoc-width;
     }
   }
 }
 
 #sidebar {
-  height: 100dvh;
   scrollbar-color: var(--scrollbar) var(--bg);
 
   ::-webkit-scrollbar {
@@ -145,8 +142,8 @@ body {
 main {
   min-width: 0;
 
-  margin-left: 2em;
-  margin-right: 2em;
+  margin-left: 1.6em;
+  margin-right: 1.6em;
 
   @media (max-width: var.$breakpoint-ui-wide) {
     margin-bottom: var.$pagetoc-bottom-shift;
@@ -233,5 +230,27 @@ article {
     &>#next {
       margin-left: auto;
     }
+  }
+}
+
+.compact-container {
+  display: none;
+
+  @media (max-width: var.$breakpoint-ui-wide) {
+    position: fixed;
+    display: flex;
+
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.8rem;
+
+    bottom: 4rem;
+    right: 0;
+
+    padding: 0.8rem 0.08rem;
+    z-index: 30;
+
+    @include utils.filter-glass($radius: 1.6rem);
   }
 }

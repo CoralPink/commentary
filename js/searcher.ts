@@ -13,7 +13,7 @@ type CompressionFormat = 'gzip' | 'deflate' | 'deflate-raw' | 'brotli';
 
 const STYLE_SEARCH = 'css/search.css';
 
-export const ID_SEARCH_TOGGLE = 'search-toggle';
+export const TARGET_SEARCH = 'search';
 
 const FETCH_TIMEOUT = 10000;
 const DEBOUNCE_DELAY_MS = 80;
@@ -109,7 +109,10 @@ const closedPopover = (ev: Event): void => {
 };
 
 const hiddenSearch = (): void => {
-  document.getElementById(ID_SEARCH_TOGGLE)?.setAttribute('aria-expanded', 'false');
+
+  for (const x of Array.from(document.querySelectorAll(`[data-target="${TARGET_SEARCH}"]`))) {
+    x.setAttribute('aria-expanded', 'false');
+  }
 
   elmSearchBar.removeEventListener('input', debounceSearchInput);
   elmResults.removeEventListener('keyup', popupFocus);
@@ -121,8 +124,9 @@ const hiddenSearch = (): void => {
 };
 
 const showSearch = (): void => {
-  document.getElementById(ID_SEARCH_TOGGLE)?.setAttribute('aria-expanded', 'true');
-
+  for (const x of Array.from(document.querySelectorAll(`[data-target="${TARGET_SEARCH}"]`))) {
+    x.setAttribute('aria-expanded', 'true');
+  }
   elmSearchBar.addEventListener('input', debounceSearchInput, { once: false, passive: true });
   elmResults.addEventListener('keyup', popupFocus, { once: false, passive: true });
 
@@ -209,13 +213,11 @@ const initSearch = async (): Promise<void> => {
 
   document.removeEventListener('keyup', startSearchFromKey);
 
-  const icon = document.getElementById(ID_SEARCH_TOGGLE);
+  const target = Array.from(document.querySelectorAll<HTMLElement>(`[data-target="${TARGET_SEARCH}"]`));
 
-  if (icon === null) {
-    return;
+  for (const x of target) {
+    x.removeEventListener('click', initSearch);
   }
-
-  icon.removeEventListener('click', initSearch);
 
   try {
     await loadStyleSheet(`${rootPath}${STYLE_SEARCH}`);
@@ -232,7 +234,10 @@ const initSearch = async (): Promise<void> => {
     console.error(`Error during initialization: ${e}`);
     console.info('The search function is disabled.');
 
-    icon.style.display = 'none';
+    for (const x of target) {
+      x.style.display = 'none';
+    }
+
     alert('Search is currently unavailable.');
     return;
   }
@@ -259,15 +264,13 @@ const initSearch = async (): Promise<void> => {
 
   showSearch();
 
-  icon.addEventListener(
-    'click',
-    () => {
+  for (const x of target) {
+    x.addEventListener('click', () => {
       if (!elmPop.checkVisibility()) {
         showSearch();
       }
-    },
-    { once: false, passive: true },
-  );
+    }, { once: false, passive: true });
+  }
 
   document.addEventListener(
     'keyup',
@@ -303,6 +306,9 @@ const startSearchFromKey = (ev: KeyboardEvent): void => {
 export const startupSearch = (root: string): void => {
   rootPath = root;
 
-  document.getElementById(ID_SEARCH_TOGGLE)?.addEventListener('click', initSearch, { once: true, passive: true });
+  for (const x of Array.from(document.querySelectorAll(`[data-target="${TARGET_SEARCH}"]`))) {
+    x.addEventListener('click', initSearch, { once: true, passive: true });
+  }
+
   document.addEventListener('keyup', startSearchFromKey, { once: false, passive: true });
 };

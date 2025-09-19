@@ -9,9 +9,12 @@ const SHOW_SIDEBAR_WIDTH = 1200;
 const ID_PAGE = 'page';
 const ID_SIDEBAR = 'sidebar';
 const ID_SCROLLBOX = 'sidebar-scrollbox';
-const ID_TOGGLE_BUTTON = 'sidebar-toggle';
 
-const SAVE_STORAGE = 'mdbook-sidebar';
+const TARGET_TOGGLE = 'sidebar';
+
+const SAVE_STORAGE_KEY = 'mdbook-sidebar';
+const SAVE_STATUS_VISIBLE = 'visible';
+const SAVE_STATUS_HIDDEN = 'hidden';
 
 let rootPath: string;
 let uiBreak: number;
@@ -89,10 +92,12 @@ const hideSidebar = (write = true): void => {
   sidebar.style.display = 'none';
   sidebar.setAttribute('aria-hidden', 'true');
 
-  document.getElementById(ID_TOGGLE_BUTTON)?.setAttribute('aria-expanded', 'false');
+  for (const x of document.querySelectorAll(`[data-target="${TARGET_TOGGLE}"]`)) {
+    x.setAttribute('aria-expanded', 'false');
+  }
 
   if (write) {
-    writeLocalStorage(SAVE_STORAGE, 'hidden');
+    writeLocalStorage(SAVE_STORAGE_KEY, SAVE_STATUS_HIDDEN);
   }
 };
 
@@ -114,10 +119,12 @@ const showSidebar = (write = true): void => {
   sidebar.style.display = 'block';
   sidebar.removeAttribute('aria-hidden');
 
-  document.getElementById(ID_TOGGLE_BUTTON)?.setAttribute('aria-expanded', 'true');
+  for (const x of document.querySelectorAll(`[data-target="${TARGET_TOGGLE}"]`)) {
+    x.setAttribute('aria-expanded', 'true');
+  }
 
   if (write) {
-    writeLocalStorage(SAVE_STORAGE, 'visible');
+    writeLocalStorage(SAVE_STORAGE_KEY, SAVE_STATUS_VISIBLE);
   }
 
   setTimeout(() => {
@@ -149,7 +156,7 @@ export const initSidebar = (root: string): void => {
     if (window.innerWidth < uiBreak) {
       hideSidebar();
     } else {
-      localStorage.getItem(SAVE_STORAGE) === 'hidden' ? hideSidebar(false) : showSidebar(false);
+      localStorage.getItem(SAVE_STORAGE_KEY) === SAVE_STATUS_HIDDEN ? hideSidebar(false) : showSidebar(false);
     }
   } catch (err: unknown) {
     console.error(`Failed to load "breakpoint-ui-wide": ${err}`);
@@ -159,9 +166,10 @@ export const initSidebar = (root: string): void => {
   searchPop = document.getElementById('search-pop') as HTMLElement;
 
   document.addEventListener('keyup', ev => toggleHandler(ev.key), { once: false, passive: true });
-  document
-    .getElementById(ID_TOGGLE_BUTTON)
-    ?.addEventListener('click', () => toggleSidebar(), { once: false, passive: true });
+
+  for (const x of document.querySelectorAll(`[data-target="${TARGET_TOGGLE}"]`)) {
+    x.addEventListener('click', () => toggleSidebar(), { once: false, passive: true });
+  }
 
   window.matchMedia(`(min-width: ${SHOW_SIDEBAR_WIDTH}px)`).addEventListener(
     'change',

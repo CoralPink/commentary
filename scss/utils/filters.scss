@@ -1,7 +1,7 @@
 @use "sass:math";
 @use '../variables' as var;
 
-@mixin glass($blur: 3px, $saturate: 1.8, $brightness: 1.04, $overlay-alpha: 0.08, $base-alpha: 0.5, $radius: 0.4rem) {
+@mixin glass($blur: 3px, $saturate: 1.8, $brightness: 1.04, $overlay-alpha: 0.08, $base-alpha: 0.5, $radius: 1.6rem) {
   overflow: hidden;
   border: 2px solid hsl(var(--theme-popup-border-h), var(--theme-popup-border-s), var(--theme-popup-border-l), 0.8);
   border-radius: $radius;

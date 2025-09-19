@@ -1,5 +1,5 @@
 import { getRootVariable, loadStyleSheet, unloadStyleSheet } from './css-loader.ts';
-import { writeLocalStorage } from './storage.ts';
+import { readLocalStorage, writeLocalStorage } from './storage.ts';
 
 const STYLE_THEMELIST = 'css/theme-list.css';
 
@@ -27,9 +27,10 @@ const DARK_FALLBACK_COLOR = '#24273a';
 const LIGHT_FALLBACK_COLOR = '#eff1f5';
 
 const THEME_SELECTED = 'theme-selected';
-const SAVE_STORAGE = 'mdbook-theme';
+const SAVE_STORAGE_KEY = 'mdbook-theme';
 
-const ID_THEME_SELECTOR = 'theme-selector';
+const TARGET_THEME_SELECTOR = 'theme-selector';
+const LIST_APPEND_ID = 'page';
 
 let rootPath: string;
 
@@ -82,7 +83,7 @@ const setTheme = (next: string): void => {
   nextButton.classList.add(THEME_SELECTED);
   nextButton.setAttribute('aria-current', 'true');
 
-  writeLocalStorage(SAVE_STORAGE, next);
+  writeLocalStorage(SAVE_STORAGE_KEY, next);
 };
 
 const initThemeSelector = async (): Promise<void> => {
@@ -125,7 +126,7 @@ const initThemeSelector = async (): Promise<void> => {
     { once: false, passive: true },
   );
 
-  document.getElementById('top-bar')?.appendChild(themeList);
+  document.getElementById(LIST_APPEND_ID)?.appendChild(themeList);
   themeList.showPopover();
 };
 
@@ -134,16 +135,12 @@ export const initThemeColor = (root: string): void => {
 
   // If the user has already specified a theme, that theme will be applied;
   // if not, it will be applied based on system requirements.
-  const theme = localStorage.getItem('mdbook-theme') ?? (isDarkThemeRequired() ? PREFERRED_DARK_THEME : DEFAULT_THEME);
+  const theme = readLocalStorage(SAVE_STORAGE_KEY) ?? (isDarkThemeRequired() ? PREFERRED_DARK_THEME : DEFAULT_THEME);
 
   loadStyle(theme);
   document.querySelector('html')?.classList.add(theme);
 
-  const themeSelector = document.getElementById(ID_THEME_SELECTOR);
-
-  if (themeSelector === null) {
-    console.error(`ID:'${ID_THEME_SELECTOR}' not found`);
-    return;
+  for (const x of document.querySelectorAll(`[data-target="${TARGET_THEME_SELECTOR}"]`)) {
+    x.addEventListener('click', initThemeSelector, { once: true, passive: true });
   }
-  themeSelector.addEventListener('click', initThemeSelector, { once: true, passive: true });
 };

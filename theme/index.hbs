@@ -10,12 +10,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <meta name="theme-color">
     <meta name="format-detection" content="telephone=no,email=no,address=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
 
     <link rel="icon" href="{{ resource "favicon.ico"}}">
     <link rel="icon" type="image/svg+xml" href="{{ resource "favicon.svg"}}">
 
     <link rel="apple-touch-icon" href="{{ resource "apple-touch-icon.png"}}">
-    <!--<meta name="apple-mobile-web-app-capable" content="yes">-->
 
     <link rel="manifest" href="{{ resource "manifest.json"}}">
 
@@ -30,31 +30,21 @@
     <link rel="stylesheet" href="{{ resource "css/general.css"}}">
     <link rel="preload" href="{{ resource "css/style.css"}}" as="style" onload="this.rel='stylesheet'">
 
-    <script type="module" src="{{ resource "book.js"}}" id="bookjs" data-pathtoroot="{{ path_to_root }}" defer></script>
+    <script type="module" src="{{ resource "book.js"}}" id="bookjs" data-pathtoroot="{{ path_to_root }}"></script>
   </head>
   <body>
     <header id="top-bar">
       <div id="menu">
         <div id="left-buttons">
-          <button id="sidebar-toggle" class="icon-button" title="Toggle Page List (Shortkey: T )" aria-label="Toggle Page List" aria-keyshortcuts="T" aria-controls="sidebar">
+          <button data-target="sidebar" class="icon-button" title="Toggle Page List (Shortkey: T )" aria-label="Toggle Page List" aria-keyshortcuts="T" aria-controls="sidebar">
             <div class="icon-sidebar fa-icon"></div>
           </button>
-
-          <button popovertarget="theme-list" id="theme-selector" class="icon-button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+          <button popovertarget="theme-list" data-target="theme-selector" class="icon-button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
             <div class="icon-theme fa-icon"></div>
           </button>
-
-          <button id="search-toggle" class="icon-button" title="Toggle Search Box (Shortkey: / )" aria-label="Toggle Search Box" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+          <button data-target="search" class="icon-button" title="Toggle Search Box (Shortkey: / )" aria-label="Toggle Search Box" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
             <div class="icon-search fa-icon"></div>
           </button>
-
-          <div id="search-pop" tabindex="-1" popover>
-            <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..."
-              aria-controls="results-header" aria-describedby="results-header">
-
-            <div id="results-header"></div>
-            <ul id="searchresults" role="listbox" aria-multiselectable="false" aria-orientation="vertical"></ul>
-          </div>
         </div>
 
         <div id="book-title">{{ book_title }}</div>
@@ -93,12 +83,42 @@
           </nav>
         </article>
       </main>
-      <div class="toc-container">
-        <aside id="table-of-contents"></aside>
-        <button id="toc-toggle" class="icon-button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="table-of-contents">
+
+      <aside class="compact-container">
+        <button data-target="sidebar" class="icon-button" title="Toggle Page List (Shortkey: T )" aria-label="Toggle Page List" aria-keyshortcuts="T" aria-controls="sidebar">
           <div class="icon-sidebar fa-icon"></div>
         </button>
-      </div>
+        <button popovertarget="theme-list" data-target="theme-selector" class="icon-button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+          <div class="icon-theme fa-icon"></div>
+        </button>
+        <button data-target="search" class="icon-button" title="Toggle Search Box (Shortkey: / )" aria-label="Toggle Search Box" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+          <div class="icon-search fa-icon"></div>
+        </button>
+        {{#if git_repository_url}}
+        <address>
+          <a href="{{git_repository_url}}" title="Open the GitHub repository" aria-label="Open the GitHub repository." target="_blank">
+            <div class="icon-github fa-icon"></div>
+          </a>
+        </address>
+        {{/if}}
+      </aside>
+
+      <aside class="toc-container">
+        <div id="table-of-contents"></div>
+
+        <button id="toc-toggle" class="icon-button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="table-of-contents">
+          <div class="icon-menu fa-icon"></div>
+        </button>
+      </aside>
+
+    </div>
+
+    <div id="search-pop" tabindex="-1" popover>
+      <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..."
+        aria-controls="results-header" aria-describedby="results-header">
+
+      <div id="results-header"></div>
+      <ul id="searchresults" role="listbox" aria-multiselectable="false" aria-orientation="vertical"></ul>
     </div>
 
     <script>
