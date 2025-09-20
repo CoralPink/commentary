@@ -24,6 +24,8 @@ body {
   display: flex;
   flex-direction: column;
 
+  margin-top: 0;
+
   color: var(--fg);
   background-color: var(--bg);
 
@@ -141,9 +143,7 @@ body {
 
 main {
   min-width: 0;
-
-  margin-left: 1.6em;
-  margin-right: 1.6em;
+  margin: 0 0.8rem;
 
   @media (max-width: var.$breakpoint-ui-wide) {
     margin-bottom: var.$pagetoc-bottom-shift;

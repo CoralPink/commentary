@@ -1,3 +1,4 @@
+import { BREAKPOINT_UI_WIDE } from './constants.ts';
 import { getRootVariableNum } from './css-loader.ts';
 import { reverseItr } from './generators.ts';
 import { readLocalStorage, writeLocalStorage } from './storage.ts';
@@ -19,8 +20,6 @@ const tocMap: Map<HTMLElement, HTMLAnchorElement> = new Map();
 let observer: IntersectionObserver;
 
 let elm_toc: HTMLElement;
-
-let uiBreak: number;
 
 let environment: Environment;
 let onlyActive: HTMLElement | null = null;
@@ -93,7 +92,7 @@ const jumpHeader = (ev: MouseEvent, el: HTMLAnchorElement): void => {
 
 const tocReset = (): void => {
   elm_toc.classList.remove(tocClass[environment]);
-  environment = window.innerWidth >= uiBreak ? Environment.WIDE : Environment.COMPACT;
+  environment = window.innerWidth >= BREAKPOINT_UI_WIDE ? Environment.WIDE : Environment.COMPACT;
 
   elm_toc.classList.add(tocClass[environment]);
 
@@ -192,15 +191,8 @@ const initToggleButton = (): void => {
 export const initTableOfContents = (): void => {
   elm_toc = document.getElementById('table-of-contents')!;
 
-  try {
-    uiBreak = getRootVariableNum('--breakpoint-ui-wide');
-  } catch (err: unknown) {
-    console.error(`Failed to load "breakpoint-ui-wide": ${err}`);
-    uiBreak = 999;
-  }
-
   initialize();
   initToggleButton();
 
-  window.matchMedia(`(min-width: ${uiBreak}px)`).addEventListener('change', tocReset, { once: false, passive: true });
+  window.matchMedia(`(min-width: ${BREAKPOINT_UI_WIDE}px)`).addEventListener('change', tocReset, { once: false, passive: true });
 };

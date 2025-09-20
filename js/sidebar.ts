@@ -1,4 +1,5 @@
-import { getRootVariableNum, loadStyleSheet } from './css-loader.ts';
+import { BREAKPOINT_UI_WIDE } from './constants.ts';
+import { loadStyleSheet } from './css-loader.ts';
 import { writeLocalStorage } from './storage.ts';
 
 const PAGE_LIST = 'pagelist.html';
@@ -17,7 +18,6 @@ const SAVE_STATUS_VISIBLE = 'visible';
 const SAVE_STATUS_HIDDEN = 'hidden';
 
 let rootPath: string;
-let uiBreak: number;
 
 let searchPop: HTMLElement;
 
@@ -102,7 +102,7 @@ const hideSidebar = (write = true): void => {
 };
 
 const clickHide = (ev: PointerEvent): void => {
-  if (window.innerWidth >= uiBreak && ev.pointerType !== 'touch') {
+  if (window.innerWidth >= BREAKPOINT_UI_WIDE && ev.pointerType !== 'touch') {
     return;
   }
 
@@ -151,9 +151,7 @@ export const initSidebar = (root: string): void => {
   rootPath = root;
 
   try {
-    uiBreak = getRootVariableNum('--breakpoint-ui-wide');
-
-    if (window.innerWidth < uiBreak) {
+    if (window.innerWidth < BREAKPOINT_UI_WIDE) {
       hideSidebar();
     } else {
       localStorage.getItem(SAVE_STORAGE_KEY) === SAVE_STATUS_HIDDEN ? hideSidebar(false) : showSidebar(false);
