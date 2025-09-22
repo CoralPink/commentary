@@ -86,7 +86,7 @@ $toc-inline-offset: 5rem !default;
 }
 
 .bottomtoc {
-  inline-size: max(0px, calc(100svw - var(--toc-inline-offset, 5rem)));
+  inline-size: max(0px, calc(100svw - $toc-inline-offset));
 
   ::-webkit-scrollbar {
     height: var.$scrollbar-webkit-height;
