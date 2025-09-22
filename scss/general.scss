@@ -132,8 +132,8 @@ body {
 
   @media (max-width: var.$breakpoint-ui-wide) {
     position: fixed;
-    top: 2.8rem;
-    height: calc(100dvh - 3.6rem);
+    top: calc(var.$menu-bar-height + env(safe-area-inset-top));
+    height: calc(99dvh - (var.$menu-bar-height + env(safe-area-inset-top)));
     z-index: 50;
 
     @include utils.filter-glass();
@@ -243,8 +243,9 @@ article {
     align-items: center;
     gap: 0.4rem;
 
+    top: calc(env(safe-area-inset-top) + 0.1rem);
     padding: 0.4rem;
-    z-index: 30;
+    z-index: 40;
 
     @include utils.filter-glass($radius: 1.6rem);
   }
