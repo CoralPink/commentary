@@ -57,7 +57,7 @@ const loadStyle = async (style: string): Promise<void> => {
   }
 };
 
-const setTheme = (next: string): void => {
+const setTheme = async (next: string): Promise<void> => {
   const html = document.querySelector('html');
 
   if (!html) {
@@ -65,30 +65,45 @@ const setTheme = (next: string): void => {
     return;
   }
 
-  const current = html.classList.value;
+  // Detect current theme safely among known IDs
+  const current = themeColors.map(t => t.id).find(id => html.classList.contains(id));
 
-  if (next === current) {
+  if (current === next) {
     return;
   }
-  loadStyle(next);
-  unloadStyleSheet(`${rootPath}${THEME_DIRECTORY}${current}.css`);
 
-  html.classList.replace(current, next);
+  // Preload new stylesheet; finalize swap after it’s ready
+  await loadStyle(next);
 
-  // If initThemeSelector() has not been performed, subsequent processing is unnecessary.
+  if (current) {
+    html.classList.replace(current, next);
+  } else {
+    html.classList.add(next);
+  }
+
+  // Refresh meta theme-color under the correct class
+  const meta = document.querySelector('meta[name="theme-color"]') as HTMLMetaElement | null;
+
+  if (meta) {
+    meta.content = getRootVariable('--bg') ?? (isDarkThemeRequired() ? DARK_FALLBACK_COLOR : LIGHT_FALLBACK_COLOR);
+  }
+
+  if (current) {
+    unloadStyleSheet(`${rootPath}${THEME_DIRECTORY}${current}.css`);
+  }
+
+  // Skip UI updates if menu not initialized
   if (!document.getElementById(ID_THEME_LIST)) {
     return;
   }
 
-  const currentButton = document.getElementById(current);
+  const currentButton = current ? document.getElementById(current) : null;
+  const nextButton = document.getElementById(next);
 
   if (!currentButton) {
     console.error(`Current theme button id not found: ${current}`);
     return;
   }
-
-  const nextButton = document.getElementById(next);
-
   if (!nextButton) {
     console.error(`Next theme button id not found: ${next}`);
     return;
