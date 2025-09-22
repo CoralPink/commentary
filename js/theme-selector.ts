@@ -129,7 +129,6 @@ const initThemeSelector = async (): Promise<void> => {
   themeList.setAttribute('role', 'list');
   themeList.setAttribute('popover', '');
 
-  //  const currentTheme = document.documentElement.className;
   const currentTheme = themeColors.map(t => t.id).find(id => document.documentElement.classList.contains(id)) ?? null;
 
   for (const theme of themeColors) {
@@ -141,7 +140,6 @@ const initThemeSelector = async (): Promise<void> => {
     li.textContent = theme.label;
 
     if (currentTheme && li.id === currentTheme) {
-      //    if (li.id === currentTheme) {
       li.classList.add(THEME_SELECTED);
       li.setAttribute('aria-current', 'true');
     }
@@ -156,11 +154,10 @@ const initThemeSelector = async (): Promise<void> => {
 
       if (target instanceof Element) {
         const item = target.closest(`li.${CLASS_THEME}`);
+
         if (item) {
           setTheme(item.id as ThemeColorId);
         }
-        //      if (target instanceof Element && target.matches(`li.${CLASS_THEME}`)) {
-        //        setTheme(target.id);
       }
     },
     { once: false, passive: true },
