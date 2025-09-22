@@ -1,5 +1,5 @@
 import { getRootVariable, loadStyleSheet, unloadStyleSheet } from './css-loader.ts';
-import { writeLocalStorage } from './storage.ts';
+import { readLocalStorage, writeLocalStorage } from './storage.ts';
 
 const STYLE_THEMELIST = 'css/theme-list.css';
 
@@ -26,14 +26,22 @@ const PREFERRED_DARK_THEME: ThemeColorId = themeColors[3].id;
 const DARK_FALLBACK_COLOR = '#24273a';
 const LIGHT_FALLBACK_COLOR = '#eff1f5';
 
-const THEME_SELECTED = 'theme-selected';
-const SAVE_STORAGE = 'mdbook-theme';
+const KEY_SAVE_STORAGE = 'mdbook-theme';
+const KEY_DARK = ':dark';
+const KEY_LIGHT = ':light';
 
-const ID_THEME_SELECTOR = 'theme-selector';
+const THEME_SELECTED = 'theme-selected';
+const TARGET_THEME_SELECTOR = 'theme-selector';
+const LIST_APPEND_ID = 'page';
+
+const ID_THEME_LIST = 'theme-list';
+const CLASS_THEME = 'theme';
 
 let rootPath: string;
 
-const isDarkThemeRequired = () => matchMedia('(prefers-color-scheme: dark)').matches;
+const prefersColor = matchMedia('(prefers-color-scheme: dark)');
+const isDarkThemeRequired = (): boolean => prefersColor.matches;
+const getFallbackColor = (): string => isDarkThemeRequired() ? DARK_FALLBACK_COLOR : LIGHT_FALLBACK_COLOR;
 
 const loadStyle = async (style: string): Promise<void> => {
   try {
@@ -43,14 +51,13 @@ const loadStyle = async (style: string): Promise<void> => {
 
     // Apply the same color as the background color ('--bg') to the title bar. (Effective in Safari only)
     // ...If you fail to get '--bg', fool it well!
-    metaThemeColor.content =
-      getRootVariable('--bg') ?? (isDarkThemeRequired() ? DARK_FALLBACK_COLOR : LIGHT_FALLBACK_COLOR);
+    metaThemeColor.content = getRootVariable('--bg') || getFallbackColor();
   } catch (err) {
     console.warn(`Failed to load theme style '${style}':`, err);
   }
 };
 
-const setTheme = (next: string): void => {
+const setTheme = async (next: ThemeColorId): Promise<void> => {
   const html = document.querySelector('html');
 
   if (!html) {
@@ -58,21 +65,47 @@ const setTheme = (next: string): void => {
     return;
   }
 
-  const current = html.classList.value;
+  // Detect current theme safely among known IDs
+  const current = themeColors.map(t => t.id).find(id => html.classList.contains(id));
 
-  if (next === current) {
+  if (current === next) {
     return;
   }
-  loadStyle(next);
-  unloadStyleSheet(`${rootPath}${THEME_DIRECTORY}${current}.css`);
 
-  html.classList.replace(current, next);
+  // Preload new stylesheet; finalize swap after it’s ready
+  await loadStyle(next);
 
-  const currentButton = document.getElementById(current);
+  if (current) {
+    html.classList.replace(current, next);
+  } else {
+    html.classList.add(next);
+  }
+
+  // Refresh meta theme-color under the correct class
+  const meta = document.querySelector('meta[name="theme-color"]') as HTMLMetaElement | null;
+
+  if (meta) {
+    meta.content = getRootVariable('--bg') || getFallbackColor();
+  }
+
+  if (current) {
+    unloadStyleSheet(`${rootPath}${THEME_DIRECTORY}${current}.css`);
+  }
+
+  // Skip UI updates if menu not initialized
+  if (!document.getElementById(ID_THEME_LIST)) {
+    return;
+  }
+
+  const currentButton = current ? document.getElementById(current) : null;
   const nextButton = document.getElementById(next);
 
-  if (!currentButton || !nextButton) {
-    console.error(`Theme button not found: ${!currentButton ? current : next}`);
+  if (!currentButton) {
+    console.error(`Current theme button id not found: ${current}`);
+    return;
+  }
+  if (!nextButton) {
+    console.error(`Next theme button id not found: ${next}`);
     return;
   }
 
@@ -82,7 +115,8 @@ const setTheme = (next: string): void => {
   nextButton.classList.add(THEME_SELECTED);
   nextButton.setAttribute('aria-current', 'true');
 
-  writeLocalStorage(SAVE_STORAGE, next);
+  const appearance = isDarkThemeRequired() ? KEY_DARK : KEY_LIGHT;
+  writeLocalStorage(`${KEY_SAVE_STORAGE}${appearance}`, next);
 };
 
 const initThemeSelector = async (): Promise<void> => {
@@ -90,22 +124,22 @@ const initThemeSelector = async (): Promise<void> => {
 
   const themeList = document.createElement('ul');
 
-  themeList.id = 'theme-list';
+  themeList.id = ID_THEME_LIST;
   themeList.setAttribute('aria-label', 'Theme selection menu');
-  themeList.setAttribute('role', 'menu');
+  themeList.setAttribute('role', 'list');
   themeList.setAttribute('popover', '');
 
-  const currentTheme = document.documentElement.className;
+  const currentTheme = themeColors.map(t => t.id).find(id => document.documentElement.classList.contains(id)) ?? null;
 
   for (const theme of themeColors) {
     const li = document.createElement('li');
 
     li.setAttribute('role', 'menuitem');
-    li.className = 'theme';
+    li.className = CLASS_THEME;
     li.id = theme.id;
     li.textContent = theme.label;
 
-    if (li.id === currentTheme) {
+    if (currentTheme && li.id === currentTheme) {
       li.classList.add(THEME_SELECTED);
       li.setAttribute('aria-current', 'true');
     }
@@ -118,32 +152,43 @@ const initThemeSelector = async (): Promise<void> => {
     ev => {
       const target = ev.target;
 
-      if (target instanceof Element && target.matches('li.theme')) {
-        setTheme(target.id);
+      if (target instanceof Element) {
+        const item = target.closest(`li.${CLASS_THEME}`);
+
+        if (item) {
+          setTheme(item.id as ThemeColorId);
+        }
       }
     },
     { once: false, passive: true },
   );
 
-  document.getElementById('top-bar')?.appendChild(themeList);
+  document.getElementById(LIST_APPEND_ID)?.appendChild(themeList);
   themeList.showPopover();
 };
+
+const changeEvent = (ev: MediaQueryListEvent): void => {
+  const appearance = ev.matches ? KEY_DARK : KEY_LIGHT;
+  const theme = readLocalStorage(`${KEY_SAVE_STORAGE}${appearance}`) ?? (ev.matches ? PREFERRED_DARK_THEME : DEFAULT_THEME);
+
+  setTheme(theme as ThemeColorId);
+}
 
 export const initThemeColor = (root: string): void => {
   rootPath = root;
 
+  const appearance = isDarkThemeRequired() ? KEY_DARK : KEY_LIGHT;
+
   // If the user has already specified a theme, that theme will be applied;
   // if not, it will be applied based on system requirements.
-  const theme = localStorage.getItem('mdbook-theme') ?? (isDarkThemeRequired() ? PREFERRED_DARK_THEME : DEFAULT_THEME);
+  const theme = readLocalStorage(`${KEY_SAVE_STORAGE}${appearance}`) ?? (isDarkThemeRequired() ? PREFERRED_DARK_THEME : DEFAULT_THEME);
 
-  loadStyle(theme);
   document.querySelector('html')?.classList.add(theme);
+  loadStyle(theme);
 
-  const themeSelector = document.getElementById(ID_THEME_SELECTOR);
+  prefersColor.addEventListener('change', changeEvent, { once: false, passive: true });
 
-  if (themeSelector === null) {
-    console.error(`ID:'${ID_THEME_SELECTOR}' not found`);
-    return;
+  for (const x of document.querySelectorAll(`[data-target="${TARGET_THEME_SELECTOR}"]`)) {
+    x.addEventListener('click', initThemeSelector, { once: true, passive: true });
   }
-  themeSelector.addEventListener('click', initThemeSelector, { once: true, passive: true });
 };
