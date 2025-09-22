@@ -133,7 +133,7 @@ body {
   @media (max-width: var.$breakpoint-ui-wide) {
     position: fixed;
     top: 2.8rem;
-    height: calc(100dvh - 7rem);
+    height: calc(100dvh - 3.6rem);
     z-index: 50;
 
     @include utils.filter-glass();
