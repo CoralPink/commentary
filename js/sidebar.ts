@@ -1,6 +1,6 @@
 import { BREAKPOINT_UI_WIDE } from './constants.ts';
 import { loadStyleSheet } from './css-loader.ts';
-import { writeLocalStorage } from './storage.ts';
+import { readLocalStorage, writeLocalStorage } from './storage.ts';
 
 const PAGE_LIST = 'pagelist.html';
 const STYLE_CHAPTER = 'css/chapter.css';
@@ -154,10 +154,10 @@ export const initSidebar = (root: string): void => {
     if (window.innerWidth < BREAKPOINT_UI_WIDE) {
       hideSidebar();
     } else {
-      localStorage.getItem(SAVE_STORAGE_KEY) === SAVE_STATUS_HIDDEN ? hideSidebar(false) : showSidebar(false);
+      readLocalStorage(SAVE_STORAGE_KEY) === SAVE_STATUS_HIDDEN ? hideSidebar(false) : showSidebar(false);
     }
   } catch (err: unknown) {
-    console.error(`Failed to load "breakpoint-ui-wide": ${err}`);
+    console.error(`Sidebar initialization error: ${err}`);
     hideSidebar();
   }
 

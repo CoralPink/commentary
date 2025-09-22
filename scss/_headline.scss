@@ -43,6 +43,7 @@
       left: 0;
       width: 100%;
       height: 100%;
+      pointer-events: none;
 
       background: linear-gradient(to top, rgba(var.$color_pink, 0.4) 0%, rgba(var.$color_purple, 0) 70%);
 
@@ -50,6 +51,16 @@
       opacity: 0;
 
       animation: glow-sweep-wide 1.2s cubic-bezier(.4, 0, .2, 1) forwards;
+    }
+  }
+
+  // reduced‑motion guard.
+  @media (prefers-reduced-motion: reduce) {
+    &:target {
+      &::after {
+        animation: none !important;
+        transition: none !important;
+      }
     }
   }
 }

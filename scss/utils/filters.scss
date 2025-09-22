@@ -3,9 +3,9 @@
 
 @mixin glass($blur: 3px, $saturate: 1.8, $brightness: 1.04, $overlay-alpha: 0.08, $base-alpha: 0.5, $radius: 1.6rem) {
   overflow: hidden;
-  border: 2px solid hsl(var(--theme-popup-border-h), var(--theme-popup-border-s), var(--theme-popup-border-l), 0.8);
+  border: 2px solid hsl(var(--theme-popup-border-h) var(--theme-popup-border-s) var(--theme-popup-border-l) / 0.8);
   border-radius: $radius;
-  box-shadow: 0 16px 32px -8px hsl(var(--theme-popup-border-h), var(--theme-popup-border-s), var(--theme-popup-border-l), 0.2);
+  box-shadow: 0 16px 32px -8px hsl(var(--theme-popup-border-h) var(--theme-popup-border-s) var(--theme-popup-border-l) / 0.2);
   text-shadow: 1px 1px 4em var(--bg);
 
   &::before {

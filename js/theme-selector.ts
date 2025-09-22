@@ -41,6 +41,7 @@ let rootPath: string;
 
 const prefersColor = matchMedia('(prefers-color-scheme: dark)');
 const isDarkThemeRequired = (): boolean => prefersColor.matches;
+const getFallbackColor = (): string => isDarkThemeRequired() ? DARK_FALLBACK_COLOR : LIGHT_FALLBACK_COLOR;
 
 const loadStyle = async (style: string): Promise<void> => {
   try {
@@ -50,14 +51,13 @@ const loadStyle = async (style: string): Promise<void> => {
 
     // Apply the same color as the background color ('--bg') to the title bar. (Effective in Safari only)
     // ...If you fail to get '--bg', fool it well!
-    metaThemeColor.content =
-      getRootVariable('--bg') ?? (isDarkThemeRequired() ? DARK_FALLBACK_COLOR : LIGHT_FALLBACK_COLOR);
+    metaThemeColor.content = getRootVariable('--bg') || getFallbackColor();
   } catch (err) {
     console.warn(`Failed to load theme style '${style}':`, err);
   }
 };
 
-const setTheme = async (next: string): Promise<void> => {
+const setTheme = async (next: ThemeColorId): Promise<void> => {
   const html = document.querySelector('html');
 
   if (!html) {
@@ -85,7 +85,7 @@ const setTheme = async (next: string): Promise<void> => {
   const meta = document.querySelector('meta[name="theme-color"]') as HTMLMetaElement | null;
 
   if (meta) {
-    meta.content = getRootVariable('--bg') ?? (isDarkThemeRequired() ? DARK_FALLBACK_COLOR : LIGHT_FALLBACK_COLOR);
+    meta.content = getRootVariable('--bg') || getFallbackColor();
   }
 
   if (current) {
@@ -126,10 +126,11 @@ const initThemeSelector = async (): Promise<void> => {
 
   themeList.id = ID_THEME_LIST;
   themeList.setAttribute('aria-label', 'Theme selection menu');
-  themeList.setAttribute('role', 'menu');
+  themeList.setAttribute('role', 'list');
   themeList.setAttribute('popover', '');
 
-  const currentTheme = document.documentElement.className;
+  //  const currentTheme = document.documentElement.className;
+  const currentTheme = themeColors.map(t => t.id).find(id => document.documentElement.classList.contains(id)) ?? null;
 
   for (const theme of themeColors) {
     const li = document.createElement('li');
@@ -139,7 +140,8 @@ const initThemeSelector = async (): Promise<void> => {
     li.id = theme.id;
     li.textContent = theme.label;
 
-    if (li.id === currentTheme) {
+    if (currentTheme && li.id === currentTheme) {
+      //    if (li.id === currentTheme) {
       li.classList.add(THEME_SELECTED);
       li.setAttribute('aria-current', 'true');
     }
@@ -152,8 +154,13 @@ const initThemeSelector = async (): Promise<void> => {
     ev => {
       const target = ev.target;
 
-      if (target instanceof Element && target.matches(`li.${CLASS_THEME}`)) {
-        setTheme(target.id);
+      if (target instanceof Element) {
+        const item = target.closest(`li.${CLASS_THEME}`);
+        if (item) {
+          setTheme(item.id as ThemeColorId);
+        }
+        //      if (target instanceof Element && target.matches(`li.${CLASS_THEME}`)) {
+        //        setTheme(target.id);
       }
     },
     { once: false, passive: true },
@@ -165,13 +172,9 @@ const initThemeSelector = async (): Promise<void> => {
 
 const changeEvent = (ev: MediaQueryListEvent): void => {
   const appearance = ev.matches ? KEY_DARK : KEY_LIGHT;
-  const theme = readLocalStorage(`${KEY_SAVE_STORAGE}${appearance}`) ?? (isDarkThemeRequired() ? PREFERRED_DARK_THEME : DEFAULT_THEME);
+  const theme = readLocalStorage(`${KEY_SAVE_STORAGE}${appearance}`) ?? (ev.matches ? PREFERRED_DARK_THEME : DEFAULT_THEME);
 
-  if (!theme) {
-    return;
-  }
-
-  setTheme(theme);
+  setTheme(theme as ThemeColorId);
 }
 
 export const initThemeColor = (root: string): void => {
@@ -186,7 +189,7 @@ export const initThemeColor = (root: string): void => {
   document.querySelector('html')?.classList.add(theme);
   loadStyle(theme);
 
-  prefersColor.addEventListener('change', changeEvent);
+  prefersColor.addEventListener('change', changeEvent, { once: false, passive: true });
 
   for (const x of document.querySelectorAll(`[data-target="${TARGET_THEME_SELECTOR}"]`)) {
     x.addEventListener('click', initThemeSelector, { once: true, passive: true });

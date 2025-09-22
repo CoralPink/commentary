@@ -91,9 +91,9 @@ const jumpHeader = (ev: MouseEvent, el: HTMLAnchorElement): void => {
 };
 
 const tocReset = (): void => {
-  elm_toc.classList.remove(tocClass[environment]);
   environment = window.innerWidth >= BREAKPOINT_UI_WIDE ? Environment.WIDE : Environment.COMPACT;
 
+  elm_toc.classList.remove(...tocClass);
   elm_toc.classList.add(tocClass[environment]);
 
   if (environment === Environment.WIDE) {
