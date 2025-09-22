@@ -1,14 +1,15 @@
 /// <reference types="vitest" />
 
+/*
 vi.mock('../css-loader');
 vi.mock('../mark');
 vi.mock('../timing', () => ({
-  debounce: vi.fn((fn: Function) => fn),
+  debounce: vi.fn(fn => fn),
 }));
-vi.mock('../wasm_book');
+*/
 
-//import { debounce } from '../timing';
-import { ID_SEARCH_TOGGLE, startupSearch } from '../searcher';
+import type { MockedFunction } from 'vitest';
+import { startupSearch, TARGET_SEARCH } from '../searcher';
 
 Object.defineProperty(window, 'location', {
   value: {
@@ -19,14 +20,17 @@ Object.defineProperty(window, 'location', {
   writable: true,
 });
 
-(globalThis as any).fetch = vi.fn();
-(globalThis as any).alert = vi.fn();
-(globalThis as any).DecompressionStream = vi.fn();
+globalThis.fetch = vi.fn() as MockedFunction<typeof fetch>;
+globalThis.alert = vi.fn() as typeof alert;
+globalThis.DecompressionStream = vi.fn() as typeof DecompressionStream;
 
 describe('Searcher Module', () => {
   beforeEach(() => {
     document.body.innerHTML = `
-      <div id="${ID_SEARCH_TOGGLE}" aria-expanded="false"></div>
+      <button data-target=${TARGET_SEARCH} class="icon-button" title="Toggle Search Box (Shortkey: / )" aria-label="Toggle Search Box" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+        <div class="icon-search fa-icon"></div>
+      </button>
+
       <div id="search-pop">
         <input id="searchbar" type="text" />
         <div id="results-header"></div>
@@ -45,17 +49,14 @@ describe('Searcher Module', () => {
 
   describe('startupSearch', () => {
     it('should initialize search with correct root path', () => {
-      const searchIcon = document.getElementById(ID_SEARCH_TOGGLE)!;
+      const searchButton = document.querySelector<HTMLButtonElement>(`[data-target="${TARGET_SEARCH}"]`)!;
+
       const mockAddEventListener = vi.fn();
-      searchIcon.addEventListener = mockAddEventListener;
+      searchButton.addEventListener = mockAddEventListener;
 
       startupSearch('/test/');
 
-      expect(mockAddEventListener).toHaveBeenCalledWith(
-        'click',
-        expect.any(Function),
-        { once: true, passive: true }
-      );
+      expect(mockAddEventListener).toHaveBeenCalledWith('click', expect.any(Function), { once: true, passive: true });
     });
 
     it('should add keyup event listener to document', () => {
@@ -63,15 +64,13 @@ describe('Searcher Module', () => {
 
       startupSearch('/test/');
 
-      expect(spy).toHaveBeenCalledWith(
-        'keyup',
-        expect.any(Function),
-        { once: false, passive: true }
-      );
+      expect(spy).toHaveBeenCalledWith('keyup', expect.any(Function), { once: false, passive: true });
     });
 
     it('should handle missing search toggle element gracefully', () => {
-      document.getElementById(ID_SEARCH_TOGGLE)?.remove();
+      const searchButton = document.querySelector(`[data-target="${TARGET_SEARCH}"]`);
+      searchButton?.remove();
+
       expect(() => startupSearch('/test/')).not.toThrow();
     });
   });
@@ -85,11 +84,9 @@ describe('Searcher Module', () => {
     });
 
     it('should handle successful fetch requests', async () => {
-      const mockResponse = { ok: true, status: 200 } as any;
-      (globalThis as any).fetch.mockResolvedValue(mockResponse);
-      expect((globalThis as any).fetch).toHaveBeenCalledTimes(0);
+      expect(globalThis.fetch).toHaveBeenCalledTimes(0);
     });
-/*
+    /*
     // TODO: AssertionError: expected "spy" to be called at least once
     it('should handle fetch timeout correctly', async () => {
       const mockAbort = vi.fn();
@@ -105,15 +102,15 @@ describe('Searcher Module', () => {
       expect(mockAbort).toHaveBeenCalled();
       expect((globalThis as any).alert).toHaveBeenCalledWith('The request has timed out.');
     });
-    */
+*/
   });
 
-/*
+  /*
   // TODO: AssertionError: expected 'false' to be 'true' // Object.is equality
   describe('DOM Manipulation and Events', () => {
     it('should toggle search popover', () => {
       startupSearch('/test/');
-      const toggle = document.getElementById(ID_SEARCH_TOGGLE)!;
+      const toggle = document.querySelector(`[data-target="${TARGET_SEARCH}"]`)!;
 
       expect(toggle.getAttribute('aria-expanded')).toBe('false');
 
@@ -132,7 +129,7 @@ describe('Searcher Module', () => {
       searchBar.value = '  test query  ';
       expect(searchBar.value.trim()).toBe('test query');
     });
-/*
+    /*
     // TODO: AssertionError: expected "spy" to be called at least once
     it('should debounce search input events', () => {
       startupSearch('/test/'); // debounce が呼ばれるようにイベント登録

@@ -1,6 +1,8 @@
 @use 'variables' as var;
 @use "utils" as utils;
 
+$toc-inline-offset: 5rem !default;
+
 @mixin anchor-gradient($angle) {
   color: var(--fg);
   text-decoration: none;
@@ -84,7 +86,7 @@
 }
 
 .bottomtoc {
-  width: 80dvw;
+  inline-size: max(0px, calc(100svw - $toc-inline-offset));
 
   ::-webkit-scrollbar {
     height: var.$scrollbar-webkit-height;

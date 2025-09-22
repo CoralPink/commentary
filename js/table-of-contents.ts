@@ -1,5 +1,7 @@
+import { BREAKPOINT_UI_WIDE } from './constants.ts';
 import { getRootVariableNum } from './css-loader.ts';
 import { reverseItr } from './generators.ts';
+import { readLocalStorage, writeLocalStorage } from './storage.ts';
 
 const Environment = {
   WIDE: 0,
@@ -10,12 +12,14 @@ type Environment = (typeof Environment)[keyof typeof Environment];
 
 const tocClass = ['righttoc', 'bottomtoc'] as const;
 
+const SAVE_STORAGE_KEY = 'compact-menu';
+const SAVE_STATUS_VISIBLE = 'visible';
+const SAVE_STATUS_HIDDEN = 'hidden';
+
 const tocMap: Map<HTMLElement, HTMLAnchorElement> = new Map();
 let observer: IntersectionObserver;
 
 let elm_toc: HTMLElement;
-
-let uiBreak: number;
 
 let environment: Environment;
 let onlyActive: HTMLElement | null = null;
@@ -86,6 +90,21 @@ const jumpHeader = (ev: MouseEvent, el: HTMLAnchorElement): void => {
   }
 };
 
+const tocReset = (): void => {
+  environment = window.innerWidth >= BREAKPOINT_UI_WIDE ? Environment.WIDE : Environment.COMPACT;
+
+  elm_toc.classList.remove(...tocClass);
+  elm_toc.classList.add(tocClass[environment]);
+
+  if (environment === Environment.WIDE) {
+    showToc();
+    return;
+  }
+
+  const status = readLocalStorage(SAVE_STORAGE_KEY);
+  (status !== null && status === SAVE_STATUS_VISIBLE) ? showToc() : hideToc();
+};
+
 const initialize = (): void => {
   observer = new IntersectionObserver(
     (entries: IntersectionObserverEntry[]) => {
@@ -133,16 +152,8 @@ const initialize = (): void => {
     tocMap.set(el, link);
   }
 
-  environment = window.innerWidth >= uiBreak ? Environment.WIDE : Environment.COMPACT;
+  tocReset();
 
-  if (environment === Environment.WIDE) {
-    showToc();
-  }
-  else {
-    hideToc();
-  }
-
-  elm_toc.classList.add(tocClass[environment]);
   elm_toc.appendChild(nav);
 };
 
@@ -151,6 +162,8 @@ const showToc = (): void => {
 
   elm_toc.removeAttribute('aria-hidden');
   elm_toc.setAttribute('aria-expanded', 'true');
+
+  writeLocalStorage(SAVE_STORAGE_KEY, SAVE_STATUS_VISIBLE);
 }
 
 const hideToc = (): void => {
@@ -158,23 +171,8 @@ const hideToc = (): void => {
 
   elm_toc.setAttribute('aria-hidden', 'true');
   elm_toc.setAttribute('aria-expanded', 'false');
-};
 
-const tocReset = (): void => {
-  const pagetoc = document.getElementById('pagetoc');
-
-  if (pagetoc === null) {
-    console.error('Pagetoc element not found');
-    return;
-  }
-
-  elm_toc.classList.remove(tocClass[environment]);
-  elm_toc.removeChild(pagetoc);
-
-  tocMap.clear();
-  observer.disconnect();
-
-  initialize();
+  writeLocalStorage(SAVE_STORAGE_KEY, SAVE_STATUS_HIDDEN);
 };
 
 const initToggleButton = (): void => {
@@ -193,15 +191,8 @@ const initToggleButton = (): void => {
 export const initTableOfContents = (): void => {
   elm_toc = document.getElementById('table-of-contents')!;
 
-  try {
-    uiBreak = getRootVariableNum('--breakpoint-ui-wide');
-  } catch (err: unknown) {
-    console.error(`Failed to load "breakpoint-ui-wide": ${err}`);
-    uiBreak = 999;
-  }
-
   initialize();
   initToggleButton();
 
-  window.matchMedia(`(min-width: ${uiBreak}px)`).addEventListener('change', tocReset, { once: false, passive: true });
+  window.matchMedia(`(min-width: ${BREAKPOINT_UI_WIDE}px)`).addEventListener('change', tocReset, { once: false, passive: true });
 };

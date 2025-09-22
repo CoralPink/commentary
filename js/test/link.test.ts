@@ -1,6 +1,5 @@
 /// <reference lib="dom" />
 
-import { describe, expect, it, beforeEach } from 'vitest';
 import { attributeExternalLinks } from '../link';
 
 const TEST_URLS = [
