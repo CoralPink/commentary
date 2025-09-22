@@ -168,8 +168,8 @@ export const initThemeColor = (root: string): void => {
   // if not, it will be applied based on system requirements.
   const theme = readLocalStorage(`${KEY_SAVE_STORAGE}${appearance}`) ?? (isDarkThemeRequired() ? PREFERRED_DARK_THEME : DEFAULT_THEME);
 
-  loadStyle(theme);
   document.querySelector('html')?.classList.add(theme);
+  loadStyle(theme);
 
   prefersColor.addEventListener('change', changeEvent);
 
