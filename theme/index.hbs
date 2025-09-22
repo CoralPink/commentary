@@ -33,7 +33,7 @@
   </head>
   <body>
     <header id="top-bar">
-      <div id="menu">
+      <div id="menu" aria-label="Action menu">
         <div id="left-buttons">
           <button data-target="sidebar" class="icon-button" title="Toggle Page List (Shortkey: T )" aria-label="Toggle Page List" aria-keyshortcuts="T" aria-controls="sidebar">
             <div class="icon-sidebar fa-icon"></div>
@@ -83,7 +83,7 @@
         </article>
       </main>
 
-      <aside class="compact-container">
+      <aside class="compact-container" aria-label="Action menu">
         <button data-target="sidebar" class="icon-button" title="Toggle Page List (Shortkey: T )" aria-label="Toggle Page List" aria-keyshortcuts="T" aria-controls="sidebar">
           <div class="icon-sidebar fa-icon"></div>
         </button>
@@ -95,7 +95,7 @@
         </button>
       </aside>
 
-      <aside class="toc-container">
+      <aside class="toc-container" aria-label="Table of contents">
         <div id="table-of-contents"></div>
 
         <button id="toc-toggle" class="icon-button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="table-of-contents">
@@ -105,11 +105,10 @@
 
     </div>
 
-    <div id="search-pop" tabindex="-1" popover>
-      <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..."
-        aria-controls="results-header" aria-describedby="results-header">
+    <div id="search-pop" tabindex="-1" popover role="dialog" aria-label="Search">
+      <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults" aria-describedby="results-header">
 
-      <div id="results-header"></div>
+      <div id="results-header" aria-live="polite"></div>
       <ul id="searchresults" role="listbox" aria-multiselectable="false" aria-orientation="vertical"></ul>
     </div>
 
