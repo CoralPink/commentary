@@ -26,15 +26,21 @@ const PREFERRED_DARK_THEME: ThemeColorId = themeColors[3].id;
 const DARK_FALLBACK_COLOR = '#24273a';
 const LIGHT_FALLBACK_COLOR = '#eff1f5';
 
-const THEME_SELECTED = 'theme-selected';
-const SAVE_STORAGE_KEY = 'mdbook-theme';
+const KEY_SAVE_STORAGE = 'mdbook-theme';
+const KEY_DARK = ':dark';
+const KEY_LIGHT = ':light';
 
+const THEME_SELECTED = 'theme-selected';
 const TARGET_THEME_SELECTOR = 'theme-selector';
 const LIST_APPEND_ID = 'page';
 
+const ID_THEME_LIST = 'theme-list';
+const CLASS_THEME = 'theme';
+
 let rootPath: string;
 
-const isDarkThemeRequired = () => matchMedia('(prefers-color-scheme: dark)').matches;
+const prefersColor = matchMedia('(prefers-color-scheme: dark)');
+const isDarkThemeRequired = (): boolean => prefersColor.matches;
 
 const loadStyle = async (style: string): Promise<void> => {
   try {
@@ -69,11 +75,22 @@ const setTheme = (next: string): void => {
 
   html.classList.replace(current, next);
 
+  // If initThemeSelector() has not been performed, subsequent processing is unnecessary.
+  if (!document.getElementById(ID_THEME_LIST)) {
+    return;
+  }
+
   const currentButton = document.getElementById(current);
+
+  if (!currentButton) {
+    console.error(`Current theme button id not found: ${current}`);
+    return;
+  }
+
   const nextButton = document.getElementById(next);
 
-  if (!currentButton || !nextButton) {
-    console.error(`Theme button not found: ${!currentButton ? current : next}`);
+  if (!nextButton) {
+    console.error(`Next theme button id not found: ${next}`);
     return;
   }
 
@@ -83,7 +100,8 @@ const setTheme = (next: string): void => {
   nextButton.classList.add(THEME_SELECTED);
   nextButton.setAttribute('aria-current', 'true');
 
-  writeLocalStorage(SAVE_STORAGE_KEY, next);
+  const appearance = isDarkThemeRequired() ? KEY_DARK : KEY_LIGHT;
+  writeLocalStorage(`${KEY_SAVE_STORAGE}${appearance}`, next);
 };
 
 const initThemeSelector = async (): Promise<void> => {
@@ -91,7 +109,7 @@ const initThemeSelector = async (): Promise<void> => {
 
   const themeList = document.createElement('ul');
 
-  themeList.id = 'theme-list';
+  themeList.id = ID_THEME_LIST;
   themeList.setAttribute('aria-label', 'Theme selection menu');
   themeList.setAttribute('role', 'menu');
   themeList.setAttribute('popover', '');
@@ -102,7 +120,7 @@ const initThemeSelector = async (): Promise<void> => {
     const li = document.createElement('li');
 
     li.setAttribute('role', 'menuitem');
-    li.className = 'theme';
+    li.className = CLASS_THEME;
     li.id = theme.id;
     li.textContent = theme.label;
 
@@ -119,7 +137,7 @@ const initThemeSelector = async (): Promise<void> => {
     ev => {
       const target = ev.target;
 
-      if (target instanceof Element && target.matches('li.theme')) {
+      if (target instanceof Element && target.matches(`li.${CLASS_THEME}`)) {
         setTheme(target.id);
       }
     },
@@ -130,15 +148,30 @@ const initThemeSelector = async (): Promise<void> => {
   themeList.showPopover();
 };
 
+const changeEvent = (ev: MediaQueryListEvent): void => {
+  const appearance = ev.matches ? KEY_DARK : KEY_LIGHT;
+  const theme = readLocalStorage(`${KEY_SAVE_STORAGE}${appearance}`) ?? (isDarkThemeRequired() ? PREFERRED_DARK_THEME : DEFAULT_THEME);
+
+  if (!theme) {
+    return;
+  }
+
+  setTheme(theme);
+}
+
 export const initThemeColor = (root: string): void => {
   rootPath = root;
 
+  const appearance = isDarkThemeRequired() ? KEY_DARK : KEY_LIGHT;
+
   // If the user has already specified a theme, that theme will be applied;
   // if not, it will be applied based on system requirements.
-  const theme = readLocalStorage(SAVE_STORAGE_KEY) ?? (isDarkThemeRequired() ? PREFERRED_DARK_THEME : DEFAULT_THEME);
+  const theme = readLocalStorage(`${KEY_SAVE_STORAGE}${appearance}`) ?? (isDarkThemeRequired() ? PREFERRED_DARK_THEME : DEFAULT_THEME);
 
   loadStyle(theme);
   document.querySelector('html')?.classList.add(theme);
+
+  prefersColor.addEventListener('change', changeEvent);
 
   for (const x of document.querySelectorAll(`[data-target="${TARGET_THEME_SELECTOR}"]`)) {
     x.addEventListener('click', initThemeSelector, { once: true, passive: true });
