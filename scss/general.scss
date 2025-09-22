@@ -21,10 +21,10 @@ html {
 }
 
 body {
-  margin: 0;
-
   display: flex;
   flex-direction: column;
+
+  margin-top: 0;
 
   color: var(--fg);
   background-color: var(--bg);
@@ -45,23 +45,27 @@ body {
     background-color: var(--scrollbar);
     border-radius: 0.8rem;
   }
-}
 
-@media (min-resolution: 2dppx) {
-  body {
+  @media (min-resolution: 2dppx) {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+@media (max-width: var.$breakpoint-ui-wide) {
+  header {
+    display: none;
   }
 }
 
 #top-bar {
   flex-basis: var.$menu-bar-height;
 
-  &>#menu {
+  #menu {
     height: var.$menu-bar-height;
     display: flex;
     align-items: center;
-    gap: 1em;
+    gap: 0.8rem;
 
     background-color: var(--bg);
 
@@ -73,14 +77,14 @@ body {
       width: 100dvw;
     }
 
-    &>#left-buttons {
+    #left-buttons {
       min-width: 0;
       margin-left: 1rem;
       display: flex;
-      gap: 0.85em;
+      gap: 0.8rem;
     }
 
-    &>#book-title {
+    #book-title {
       flex: 1;
       color: var(--icons);
       font-family: var.$italic-font;
@@ -91,8 +95,8 @@ body {
       white-space: nowrap;
     }
 
-    &>#right-buttons {
-      margin-right: 1.3rem;
+    #right-buttons {
+      margin-right: 2rem;
 
       &>a {
         text-decoration: none;
@@ -107,19 +111,14 @@ body {
 
   @media (min-width: var.$breakpoint-ui-wide) {
     grid-template-columns: 1fr var.$pagetoc-width;
-  }
 
-  &.show-sidebar {
-    grid-template-columns: 1fr;
-
-    @media (min-width: var.$breakpoint-ui-wide) {
+    &.show-sidebar {
       grid-template-columns: var.$sidebar-width 1fr var.$pagetoc-width;
     }
   }
 }
 
 #sidebar {
-  height: 100dvh;
   scrollbar-color: var(--scrollbar) var(--bg);
 
   ::-webkit-scrollbar {
@@ -133,9 +132,8 @@ body {
 
   @media (max-width: var.$breakpoint-ui-wide) {
     position: fixed;
-
-    left: 0.1rem;
-    width: var.$sidebar-width;
+    top: calc(var.$menu-bar-height + env(safe-area-inset-top));
+    height: calc(99dvh - (var.$menu-bar-height + env(safe-area-inset-top)));
     z-index: 50;
 
     @include utils.filter-glass();
@@ -144,12 +142,10 @@ body {
 
 main {
   min-width: 0;
-
-  margin-left: 2em;
-  margin-right: 2em;
+  margin: 0 0.8rem;
 
   @media (max-width: var.$breakpoint-ui-wide) {
-    margin-bottom: var.$pagetoc-bottom-shift;
+    margin: 1.6rem 0.8rem;
   }
 }
 
@@ -233,5 +229,24 @@ article {
     &>#next {
       margin-left: auto;
     }
+  }
+}
+
+.compact-container {
+  display: none;
+
+  @media (max-width: var.$breakpoint-ui-wide) {
+    position: fixed;
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+    gap: 0.4rem;
+
+    top: calc(env(safe-area-inset-top) + 0.1rem);
+    padding: 0.4rem;
+    z-index: 40;
+
+    @include utils.filter-glass($radius: 1.6rem);
   }
 }

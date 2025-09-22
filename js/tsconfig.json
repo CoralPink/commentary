@@ -30,7 +30,7 @@
     "verbatimModuleSyntax": true,
 
     // Vitest
-    "types": ["vitest/globals"],
+    "types": ["vitest/globals"]
   },
   "include": ["src", "test"]
 }

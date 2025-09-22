@@ -1,6 +1,10 @@
-declare const self: ServiceWorkerGlobalScope;
+// FIXME:
+// This file's code has some errors reported by TypeScript, but it builds fine for now.
+// ...Still, please fix them.
 
-const CACHE_VERSION = 'v7.9.1';
+/// <reference lib="webworker" />
+
+const CACHE_VERSION = 'v8.0.0';
 
 const CACHE_URL = '/commentary/';
 const FALLBACK_IMAGE = 'chrome-96x96.png';
