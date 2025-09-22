@@ -99,6 +99,7 @@ const hideSidebar = (write = true): void => {
   if (write) {
     writeLocalStorage(SAVE_STORAGE_KEY, SAVE_STATUS_HIDDEN);
   }
+  document.getElementById('main')?.removeEventListener('pointerdown', clickHide);
 };
 
 const clickHide = (ev: PointerEvent): void => {
@@ -107,7 +108,6 @@ const clickHide = (ev: PointerEvent): void => {
   }
 
   hideSidebar();
-  document.getElementById('main')?.removeEventListener('pointerdown', clickHide);
 };
 
 const showSidebar = (write = true): void => {
