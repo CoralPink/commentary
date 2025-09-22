@@ -84,7 +84,7 @@
 }
 
 .bottomtoc {
-  width: 80dvw;
+  width: calc(100dvw - 5rem);
 
   ::-webkit-scrollbar {
     height: var.$scrollbar-webkit-height;

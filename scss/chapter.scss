@@ -3,7 +3,7 @@
 $scrollbox-shift: var.$pagetoc-bottom-shift + 2rem;
 
 #sidebar-scrollbox {
-  height: calc(100dvh - $scrollbox-shift);
+  height: 100%;
 
   overflow-y: scroll;
   overscroll-behavior: contain;
@@ -13,6 +13,7 @@ $scrollbox-shift: var.$pagetoc-bottom-shift + 2rem;
 
   @media (min-width: var.$breakpoint-ui-wide) {
     position: fixed;
+    height: calc(100dvh - $scrollbox-shift);
   }
 
   &>ol {
