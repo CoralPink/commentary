@@ -163,6 +163,7 @@ jobs:
           name: wasm-book
           path: rs/wasm/pkg
           if-no-files-found: error
+          retention-days: 1
 
   test-js:
     name: Test JS
@@ -215,6 +216,7 @@ jobs:
           name: vitest-report
           path: js/coverage
           if-no-files-found: ignore
+          retention-days: 1
 
   build-js:
     name: Build JS
@@ -268,6 +270,7 @@ jobs:
           name: build-js
           path: js/dist
           if-no-files-found: error
+          retention-days: 1
 
   build-scss:
     name: Build SCSS
@@ -297,6 +300,7 @@ jobs:
           name: css
           path: scss/dist
           if-no-files-found: error
+          retention-days: 1
 
   convert-woff2:
     name: Convert WOFF2
@@ -337,6 +341,7 @@ jobs:
           name: woff2
           path: fonts/woff2
           if-no-files-found: error
+          retention-days: 1
 
   test-mdbook-backend:
     name: Test mdBook Backend
@@ -483,6 +488,7 @@ jobs:
         uses: actions/upload-pages-artifact@7b1f4a764d45c48632c6b24a0339c27f5614fb0b # v4
         with:
           path: book
+          retention-days: 1
 
   deploy:
     name: Deploy
