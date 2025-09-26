@@ -58,34 +58,38 @@ const initContent = async (): Promise<void> => {
     return;
   }
 
-  const isLoadStyleSheet = loadStyleSheet(`${rootPath}${STYLE_CHAPTER}`);
+  const promiseLoadStyleSheet = loadStyleSheet(`${rootPath}${STYLE_CHAPTER}`);
 
   const rootUrl = new URL(rootPath, window.location.href);
-  const currentUrl = getCurrentUrl();
+  const currentUrlPathName = getCurrentUrl().pathname;
 
   const sidebarScrollbox = document.getElementById(ID_SCROLLBOX) as HTMLElement;
   const isAnchorElement = (element: Element): element is HTMLAnchorElement => element instanceof HTMLAnchorElement;
 
-  for (const link of Array.from(sidebarScrollbox.querySelectorAll('a')).filter(isAnchorElement)) {
-    const href = link.getAttribute('href');
+  const links = Array.from(sidebarScrollbox.querySelectorAll('a')).filter(isAnchorElement);
+
+  for (const x of links) {
+    const href = x.getAttribute('href');
 
     if (href === null) {
-      console.error('No href attribute found for link:', link);
+      console.error('No href attribute found for link:', x);
       continue;
     }
 
     const linkUrl = new URL(href, rootUrl);
 
-    if (linkUrl.pathname === currentUrl.pathname) {
-      link.classList.add('active');
-      link.scrollIntoView({ block: 'center' });
-      link.setAttribute('aria-current', 'page');
+    if (linkUrl.pathname === currentUrlPathName) {
+      x.classList.add('active');
+      x.setAttribute('aria-current', 'page');
     }
-    link.href = linkUrl.href;
+    x.href = linkUrl.href;
   }
   sidebar.setAttribute('aria-busy', 'false');
 
-  await isLoadStyleSheet;
+  await promiseLoadStyleSheet;
+
+  // Move to the center after applying the stylesheet
+  links.find(l => l.classList.contains('active'))?.scrollIntoView({ block: 'center' });
 };
 
 const hideSidebar = (write = true): void => {
