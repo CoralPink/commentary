@@ -1,6 +1,6 @@
 [package]
 name = "mdbook-footnote"
-version = "1.6.0"
+version = "1.6.1"
 authors = ["David Drysdale <dmd@lurklurk.org>", "CoralPink"]
 edition = "2024"
 rust-version = "1.85"
@@ -9,7 +9,7 @@ license = "Apache-2.0"
 [dependencies]
 clap = "=4.5.48"
 mdbook = "=0.4.52"
-regex = "=1.11.2"
+regex = "=1.11.3"
 semver = "=1.0.27"
 serde_json = "=1.0.145"
 
