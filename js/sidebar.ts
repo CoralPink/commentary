@@ -23,11 +23,6 @@ let searchPop: HTMLElement;
 
 let isInitialized = false;
 
-const getCurrentUrl = (): URL => {
-  const current = document.location.href.toString();
-  return new URL(current.endsWith('/') ? `${current}index.html` : current);
-};
-
 const loadSitemap = async (): Promise<string> => {
   const response = await fetch(`${rootPath}${PAGE_LIST}`);
 
@@ -35,6 +30,11 @@ const loadSitemap = async (): Promise<string> => {
     throw new Error(`Failed to fetch ${rootPath}${PAGE_LIST}: HTTP ${response.status}`);
   }
   return await response.text();
+};
+
+const getCurrentUrl = (): URL => {
+  const current = document.location.href.toString();
+  return new URL(current.endsWith('/') ? `${current}index.html` : current);
 };
 
 const initContent = async (): Promise<void> => {
@@ -46,11 +46,7 @@ const initContent = async (): Promise<void> => {
   const sidebar = document.getElementById(ID_SIDEBAR) as HTMLElement;
   sidebar.setAttribute('aria-busy', 'true');
 
-  const rootUrl = new URL(rootPath, window.location.href);
-  const currentUrl = getCurrentUrl();
-
   try {
-    await loadStyleSheet(`${rootPath}${STYLE_CHAPTER}`);
     sidebar.insertAdjacentHTML('afterbegin', await loadSitemap());
   } catch (err: unknown) {
     if (err instanceof Error) {
@@ -61,6 +57,11 @@ const initContent = async (): Promise<void> => {
     sidebar.insertAdjacentHTML('afterbegin', '<p>Error loading sidebar content.</p>');
     return;
   }
+
+  const isLoadStyleSheet = loadStyleSheet(`${rootPath}${STYLE_CHAPTER}`);
+
+  const rootUrl = new URL(rootPath, window.location.href);
+  const currentUrl = getCurrentUrl();
 
   const sidebarScrollbox = document.getElementById(ID_SCROLLBOX) as HTMLElement;
   const isAnchorElement = (element: Element): element is HTMLAnchorElement => element instanceof HTMLAnchorElement;
@@ -83,6 +84,8 @@ const initContent = async (): Promise<void> => {
     link.href = linkUrl.href;
   }
   sidebar.setAttribute('aria-busy', 'false');
+
+  await isLoadStyleSheet;
 };
 
 const hideSidebar = (write = true): void => {
