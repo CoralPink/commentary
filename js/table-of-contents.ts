@@ -1,5 +1,4 @@
 import { BREAKPOINT_UI_WIDE } from './constants.ts';
-import { getRootVariableNum } from './css-loader.ts';
 import { reverseItr } from './generators.ts';
 import { readLocalStorage, writeLocalStorage } from './storage.ts';
 
@@ -19,7 +18,8 @@ const SAVE_STATUS_HIDDEN = 'hidden';
 const tocMap: Map<HTMLElement, HTMLAnchorElement> = new Map();
 let observer: IntersectionObserver;
 
-let elm_toc: HTMLElement;
+let elmToggle: HTMLButtonElement;
+let elmToc: HTMLDivElement;
 
 let environment: Environment;
 let onlyActive: HTMLElement | null = null;
@@ -93,8 +93,8 @@ const jumpHeader = (ev: MouseEvent, el: HTMLAnchorElement): void => {
 const tocReset = (): void => {
   environment = window.innerWidth >= BREAKPOINT_UI_WIDE ? Environment.WIDE : Environment.COMPACT;
 
-  elm_toc.classList.remove(...tocClass);
-  elm_toc.classList.add(tocClass[environment]);
+  elmToc.classList.remove(...tocClass);
+  elmToc.classList.add(tocClass[environment]);
 
   if (environment === Environment.WIDE) {
     showToc();
@@ -102,7 +102,18 @@ const tocReset = (): void => {
   }
 
   const status = readLocalStorage(SAVE_STORAGE_KEY);
-  (status !== null && status === SAVE_STATUS_VISIBLE) ? showToc() : hideToc();
+  status !== null && status === SAVE_STATUS_VISIBLE ? showToc() : hideToc();
+};
+
+const getHeaders = (): Array<HTMLAnchorElement> => {
+  const article = document.getElementById('article');
+
+  if (!article) {
+    console.error('Article element not found');
+    return [];
+  }
+
+  return Array.from(article.querySelectorAll('a.header'));
 };
 
 const initialize = (): void => {
@@ -116,28 +127,16 @@ const initialize = (): void => {
     { threshold: 1.0 },
   );
 
+  const fragment = document.createDocumentFragment();
+
   const nav: HTMLElement = document.createElement('nav');
   nav.setAttribute('id', 'pagetoc');
   nav.setAttribute('role', 'navigation');
   nav.setAttribute('aria-label', 'Table of Contents');
 
-  const article = document.getElementById('article');
+  fragment.appendChild(nav);
 
-  if (!article) {
-    console.error('Article element not found');
-    return;
-  }
-
-  const headers = article.querySelectorAll('a.header');
-
-  for (const x of Array.from(headers)) {
-    const el = x as HTMLAnchorElement;
-
-    if (!el.parentElement) {
-      console.error('Header element has no parent');
-      continue;
-    }
-
+  for (const el of getHeaders()) {
     observer.observe(el);
 
     const link: HTMLAnchorElement = document.createElement('a');
@@ -154,45 +153,51 @@ const initialize = (): void => {
 
   tocReset();
 
-  elm_toc.appendChild(nav);
+  elmToc.appendChild(fragment);
 };
 
 const showToc = (): void => {
-  elm_toc.style.display = 'flex';
+  elmToc.style.display = 'flex';
 
-  elm_toc.removeAttribute('aria-hidden');
-  elm_toc.setAttribute('aria-expanded', 'true');
+  elmToc.removeAttribute('aria-hidden');
+  elmToggle.setAttribute('aria-expanded', 'true');
 
   writeLocalStorage(SAVE_STORAGE_KEY, SAVE_STATUS_VISIBLE);
-}
+};
 
 const hideToc = (): void => {
-  elm_toc.style.display = 'none';
+  elmToc.style.display = 'none';
 
-  elm_toc.setAttribute('aria-hidden', 'true');
-  elm_toc.setAttribute('aria-expanded', 'false');
+  elmToc.setAttribute('aria-hidden', 'true');
+  elmToggle.setAttribute('aria-expanded', 'false');
 
   writeLocalStorage(SAVE_STORAGE_KEY, SAVE_STATUS_HIDDEN);
 };
 
 const initToggleButton = (): void => {
-  const tocToggle = document.getElementById('toc-toggle');
-
-  if (!tocToggle) {
-    console.error('TOC toggle button not found');
-    return;
-  }
-
-  tocToggle.addEventListener('click', () => {
-    elm_toc.checkVisibility() ? hideToc() : showToc();
-  }, { once: false, passive: true });
-}
+  elmToggle.addEventListener(
+    'click',
+    () => {
+      elmToc.checkVisibility() ? hideToc() : showToc();
+    },
+    { once: false, passive: true },
+  );
+};
 
 export const initTableOfContents = (): void => {
-  elm_toc = document.getElementById('table-of-contents')!;
+  elmToggle = document.getElementById('toc-toggle') as HTMLButtonElement;
+  elmToc = document.getElementById('table-of-contents') as HTMLDivElement;
+
+  if (!elmToggle || !elmToc) {
+    console.error('Table of contents not found');
+    return;
+  }
 
   initialize();
   initToggleButton();
 
-  window.matchMedia(`(min-width: ${BREAKPOINT_UI_WIDE}px)`).addEventListener('change', tocReset, { once: false, passive: true });
-};
+  window
+    .matchMedia(`(min-width: ${BREAKPOINT_UI_WIDE}px)`)
+    .addEventListener('change', tocReset, { once: false, passive: true });
+}
+
