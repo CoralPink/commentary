@@ -1,9 +1,7 @@
 import { BREAKPOINT_UI_WIDE } from './constants.ts';
-import { loadStyleSheet } from './css-loader.ts';
 import { readLocalStorage, writeLocalStorage } from './storage.ts';
 
 const PAGE_LIST = 'pagelist.html';
-const STYLE_CHAPTER = 'css/chapter.css';
 
 const SHOW_SIDEBAR_WIDTH = 1200;
 
@@ -58,8 +56,6 @@ const initContent = async (): Promise<void> => {
     return;
   }
 
-  const promiseLoadStyleSheet = loadStyleSheet(`${rootPath}${STYLE_CHAPTER}`);
-
   const rootUrl = new URL(rootPath, window.location.href);
   const currentUrlPathName = getCurrentUrl().pathname;
 
@@ -81,15 +77,12 @@ const initContent = async (): Promise<void> => {
     if (linkUrl.pathname === currentUrlPathName) {
       x.classList.add('active');
       x.setAttribute('aria-current', 'page');
+
+      x.scrollIntoView({ block: 'center' });
     }
     x.href = linkUrl.href;
   }
   sidebar.setAttribute('aria-busy', 'false');
-
-  await promiseLoadStyleSheet;
-
-  // Move to the center after applying the stylesheet
-  links.find(l => l.classList.contains('active'))?.scrollIntoView({ block: 'center' });
 };
 
 const hideSidebar = (write = true): void => {
