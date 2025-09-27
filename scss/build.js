@@ -11,7 +11,7 @@ const CLR_Y = '\x1b[33m';
 
 const OUT_DIR = 'dist/';
 
-const FILES = ['chapter', 'general', 'search', 'style', 'theme-list'];
+const FILES = ['general', 'search', 'style', 'theme-list'];
 
 const THEME_DIR = 'catppuccin/';
 const THEME_FILES = ['au-lait', 'frappe', 'latte', 'macchiato', 'mocha'];
