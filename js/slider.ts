@@ -12,7 +12,9 @@ const BUTTON_TEXT_PREV = '◀';
 const BUTTON_TEXT_NEXT = '▶';
 
 const SCROLL_INTO_VIEW_OPTIONS: ScrollIntoViewOptions = {
-  behavior: 'smooth', block: 'nearest', inline: 'start'
+  behavior: 'smooth',
+  block: 'nearest',
+  inline: 'start',
 };
 
 type Direction = typeof ID_PREV | typeof ID_NEXT;
@@ -98,16 +100,21 @@ class Slider {
     for (let i = 0; i < this.medias.length; i++) {
       const button = document.createElement('button');
 
-      const thumbnail = (this.medias[i] instanceof HTMLVideoElement)
-        ? (this.medias[i] as HTMLVideoElement).poster
-        : (this.medias[i] as HTMLImageElement).src;
+      const thumbnail =
+        this.medias[i] instanceof HTMLVideoElement
+          ? (this.medias[i] as HTMLVideoElement).poster
+          : (this.medias[i] as HTMLImageElement).src;
 
       button.style.backgroundImage = `url('${thumbnail}')`;
       button.setAttribute('aria-label', `Slide ${i + 1}`);
 
-      button.addEventListener('click', (): void => {
-        this.medias[i]!.scrollIntoView(SCROLL_INTO_VIEW_OPTIONS);
-      }, { once: false, passive: true });
+      button.addEventListener(
+        'click',
+        (): void => {
+          this.medias[i]!.scrollIntoView(SCROLL_INTO_VIEW_OPTIONS);
+        },
+        { once: false, passive: true },
+      );
 
       fragment.appendChild(button);
       this.indicatorSpans.push(button);
@@ -125,10 +132,10 @@ class Slider {
 
   private scrollTo(next: number): void {
     const len = this.medias.length;
-    const idx = (next % len + len) % len; // Index values are looped.
+    const idx = ((next % len) + len) % len; // Index values are looped.
 
     this.medias[idx]!.scrollIntoView(SCROLL_INTO_VIEW_OPTIONS);
-  };
+  }
 
   private createArrow(dir: Direction): HTMLElement {
     const arrow = document.createElement('div');
@@ -137,9 +144,13 @@ class Slider {
     arrow.id = dir;
     arrow.textContent = dir === ID_PREV ? BUTTON_TEXT_PREV : BUTTON_TEXT_NEXT;
 
-    arrow.addEventListener('click', (): void => {
-      this.scrollTo(this.index + (dir === ID_PREV ? -1 : 1));
-    }, { once: false, passive: true });
+    arrow.addEventListener(
+      'click',
+      (): void => {
+        this.scrollTo(this.index + (dir === ID_PREV ? -1 : 1));
+      },
+      { once: false, passive: true },
+    );
 
     return arrow;
   }
@@ -162,16 +173,19 @@ class Slider {
 }
 
 const initialize = (): void => {
-  const observer = new IntersectionObserver((entries, obs) => {
-    for (const entry of entries) {
-      if (!entry.isIntersecting) {
-        continue;
-      }
+  const observer = new IntersectionObserver(
+    (entries, obs) => {
+      for (const x of entries) {
+        if (!x.isIntersecting) {
+          continue;
+        }
 
-      new Slider(entry.target as HTMLDivElement);
-      obs.unobserve(entry.target);
-    }
-  }, { rootMargin: '3%' });
+        new Slider(x.target as HTMLDivElement);
+        obs.unobserve(x.target);
+      }
+    },
+    { rootMargin: '3%' },
+  );
 
   for (const elm of Array.from(document.querySelectorAll<HTMLDivElement>('.slider'))) {
     observer.observe(elm);
@@ -179,8 +193,8 @@ const initialize = (): void => {
 };
 
 (() => {
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", initialize);
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initialize);
     return;
   }
 

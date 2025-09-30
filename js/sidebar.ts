@@ -73,14 +73,17 @@ const initContent = async (): Promise<void> => {
     }
 
     const linkUrl = new URL(href, rootUrl);
-
-    if (linkUrl.pathname === currentUrlPathName) {
-      x.classList.add('active');
-      x.setAttribute('aria-current', 'page');
-
-      x.scrollIntoView({ block: 'center' });
-    }
     x.href = linkUrl.href;
+
+    if (linkUrl.pathname !== currentUrlPathName) {
+      continue;
+    }
+    x.classList.add('active');
+    x.setAttribute('aria-current', 'page');
+
+    requestAnimationFrame(() => {
+      x.scrollIntoView({ block: 'center' });
+    });
   }
   sidebar.setAttribute('aria-busy', 'false');
 };
