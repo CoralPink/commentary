@@ -146,8 +146,7 @@ jobs:
 
       - name: Install Binaryen
         run: |
-          sudo apt update
-          sudo apt install -y binaryen
+          npm install -g binaryen
 
       - name: Optimization Wasm
         working-directory: rs/wasm
