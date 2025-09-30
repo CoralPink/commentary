@@ -30,7 +30,8 @@ const scrollCenter = (): void => {
   if (environment === Environment.WIDE || currentInlineCenter === null) {
     return;
   }
-  setTimeout(() => {
+
+  requestAnimationFrame(() => {
     currentInlineCenter?.scrollIntoView({ inline: 'center' });
   });
 };
@@ -84,10 +85,14 @@ const jumpHeader = (ev: MouseEvent, el: HTMLAnchorElement): void => {
 
   const target = document.getElementById(decodeURIComponent(el.hash.slice(1)));
 
-  if (target) {
-    target.scrollIntoView({ behavior: 'smooth' });
-    history.replaceState(null, '', `#${target.id}`);
+  if (!target) {
+    return;
   }
+  history.replaceState(null, '', `#${target.id}`);
+
+  requestAnimationFrame(() => {
+    target.scrollIntoView({ behavior: 'smooth' });
+  });
 };
 
 const tocReset = (): void => {
@@ -97,12 +102,12 @@ const tocReset = (): void => {
   elmToc.classList.add(tocClass[environment]);
 
   if (environment === Environment.WIDE) {
-    showToc();
+    tocVisible();
     return;
   }
 
   const status = readLocalStorage(SAVE_STORAGE_KEY);
-  status !== null && status === SAVE_STATUS_VISIBLE ? showToc() : hideToc();
+  status !== null && status === SAVE_STATUS_VISIBLE ? tocVisible() : tocHide();
 };
 
 const getHeaders = (): Array<HTMLAnchorElement> => {
@@ -156,16 +161,18 @@ const initialize = (): void => {
   elmToc.appendChild(fragment);
 };
 
-const showToc = (): void => {
+const tocVisible = (): void => {
   elmToc.style.display = 'flex';
 
   elmToc.removeAttribute('aria-hidden');
   elmToggle.setAttribute('aria-expanded', 'true');
 
+  scrollCenter();
+
   writeLocalStorage(SAVE_STORAGE_KEY, SAVE_STATUS_VISIBLE);
 };
 
-const hideToc = (): void => {
+const tocHide = (): void => {
   elmToc.style.display = 'none';
 
   elmToc.setAttribute('aria-hidden', 'true');
@@ -178,7 +185,7 @@ const initToggleButton = (): void => {
   elmToggle.addEventListener(
     'click',
     () => {
-      elmToc.checkVisibility() ? hideToc() : showToc();
+      elmToc.checkVisibility() ? tocHide() : tocVisible();
     },
     { once: false, passive: true },
   );
@@ -199,5 +206,4 @@ export const initTableOfContents = (): void => {
   window
     .matchMedia(`(min-width: ${BREAKPOINT_UI_WIDE}px)`)
     .addEventListener('change', tocReset, { once: false, passive: true });
-}
-
+};

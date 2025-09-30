@@ -70,16 +70,14 @@ const highlight = (code: HTMLElement): void => {
 };
 
 const observer = new IntersectionObserver(
-  entries => {
-    for (const entry of entries) {
-      if (!entry.isIntersecting) {
+  (entries, obs) => {
+    for (const x of entries) {
+      if (!x.isIntersecting) {
         continue;
       }
 
-      const code = entry.target as HTMLElement;
-      highlight(code);
-
-      observer.unobserve(code);
+      highlight(x.target as HTMLElement);
+      obs.unobserve(x.target);
     }
   },
   { threshold: 0 },
