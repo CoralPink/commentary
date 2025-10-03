@@ -335,15 +335,19 @@ return {}
 `Neovim`を使う場合はこれを置いておくと楽しいです🤗
 
 ~~~admonish tip
+これもまたちょっと補足しておくんですが...
+
 ```lua
 return {}
 ```
 
-なんでこれが必要なのかって言うと、`Lua`の`require()`はモジュールが返す値を受け取る仕様なので、
-これが無いと`Neovim`が "テーブルが返ってこなかったよ" と Warning 出しちゃうらしいんですね。
+なんでこれが必要なのかって言うと、`Neovim`が内部で`require()`を使用しているっぽいんだけど、
+これは "モジュールが返す値を受け取る" という関数仕様なので、とりあえずなんか返してあげないといけないんですね。
+
+なのでこれを書いておかないと 「テーブルが返って来なかったよ⁉️」 と Warning を出しちゃいます⭐
 
 ```txt
-[WARN][2025-09-24 12:34:56] .../lua/vim/lsp.lua:427	"/Users/xxxx/.config/nvim/after/lsp/lua_ls.lua does not return a table, ignoring"
+[WARN][2025-09-24 12:34:56] .../lua/vim/lsp.lua:427 "/Users/xxxx/.config/nvim/after/lsp/lua_ls.lua does not return a table, ignoring"
 ```
 
 `:LspLog`に WARN が溜まってきただろう❗❗
@@ -432,7 +436,7 @@ vim.lsp.config('rust_analyzer', {
 
 こんな感じで、`rustc`に混じって`clippy`も怒るようになります😱
 
-## 👹 If mason is not available
+## 👹 If Mason is not available
 
 ```admonish warning title=""
 打ち解けりゃ鬼も笑う
@@ -505,7 +509,27 @@ vim.lsp.enable(manual_lsp)
      ├── ...
 ```
 
-...と、いうことで 私が使っている (入っているだけとも言う😅) `lsp`を例にして おみこし は続きます🐦‍🔥
+...と、いうことで 私が使っている (入っているだけとも言う😅) `lsp`を例にして
+おみこし{{footnote: 2025/07下旬、真夏の真っ只中でカメラに挿していたメモリーカードが壊れてしまったわたしはげんなりしながらも、
+帰ってからなんとなしに EXCERIA PLUS UHS-I U3 V30 Class10 SDXC を買った。
+以前使っていたカードは度々 "書き込み速度が低下した" だのなんだので止まっていたが、
+これに切り替えてからは"幅広い温度範囲でも動作します。"という謳い文句通りの強さで安定していた。
+ついでに思い立ったように 285A.T を買い、最近はむしろ "こっちの方がすげー" と圧倒されていた。
+2025/10/1 には、なんか急に一時 -10% の記憶喪失となり、流石に「芝生えない😨」となった。
+...が、翌日からはなんかもう圧倒的キオクを呼び覚まシ、アっ⁉️ となって今に至る。
+
+ホルダーはみんな「Samsung を倒すなんてダメよ❗」と記憶しており (東芝テックは勝...いや、怒られるよ🤫)、
+口を揃えて言う。「Western Digital といっしょなら つられて高値になっちゃうの🩷」
+}}
+{{footnote:
+...という漫談を披露しつつも、前日にカメラのバッテリーチャージを忘れていたせいで途中で力尽きてしまった。
+これすなわち "This event was shot on iPhone and edited on Mac." というオチ。おあとがよろしいようで 🙇‍♀️
+}}は続きます🐦‍🔥
+
+<video controls preload="none" width="1280" height="720" poster="img/fukuro-festival-thumbnail.webp">
+  <source src="img/fukuro-festival.webm" type="video/webm">
+  Your browser does not support the video/webm.
+</video>
 
 ### 🐲 SourceKit-LSP (Swift)
 
