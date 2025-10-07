@@ -13,20 +13,20 @@ I look at you all, see the love there that's sleeping
 
 While my guitar gently weeps{{footnote:
 While My Guitar Gently Weeps (by [The Beatles](https://en.wikipedia.org/wiki/The_Beatles)):
-George Harisson によって書かれ、彼が "眠っている愛" と呼ぶ "普遍的な愛" に対する世界の実現不可能な可能性への落胆を歌っている。
+George Harrison によって書かれ、彼が "眠っている愛" と呼ぶ "普遍的な愛" に対する世界の実現不可能な可能性への落胆を歌っている。
 
-Harisson が Warrington の両親を訪ねていたときにこの曲のインスピレーションが湧き、"易経 (変化の書)" を読み始めた。
+Harrison が Warrington の両親を訪ねていたときにこの曲のインスピレーションが湧き、"易経 (変化の書)" を読み始めた。
 「物事は単なる偶然に過ぎないという西洋的な見方とは対照的に、
 全てのものは他の全てのものに対して相対的であるという東洋的な概念に基づいているように僕には思えた」。
 この相対主義という考え方を受け入れ、本を開いてたまたま最初に目にした言葉が「優しく泣く」であったことに基づいて曲を書くことにした。
 
 1968年の春に महर्षि महेश योगी (Maharishi Mahesh Yogi) の下で超越瞑想を学んでいたインドから帰国後の The Beatles 内での不調和な雰囲気を反映している。
 バンドメンバーの仲間意識の欠如に対し、
-Harisson は友人の [Eric Clapton](https://en.wikipedia.org/wiki/Eric_Clapton) をレコーディングに招くことで対抗した。
+Harrison は友人の [Eric Clapton](https://en.wikipedia.org/wiki/Eric_Clapton) をレコーディングに招くことで対抗した。
 
-9月6日、Surrey から London へ向かう車中で、Harisson は Clapton にこの曲でギターを弾いてほしいと頼んだ。
+9月6日、Surrey から London へ向かう車中で、Harrison は Clapton にこの曲でギターを弾いてほしいと頼んだ。
 
-Clapton は、ソングライターとしての Harisson の才能を認めており、
+Clapton は、ソングライターとしての Harrison の才能を認めており、
 その能力は長い間 Lennon と McCartney の陰に隠れていると考えていたが、それでも最初は参加を渋った。
 「それはできない。The Beatles のレコードで演奏する人なんて誰もいないよ。」
 
@@ -34,11 +34,11 @@ Clapton は、ソングライターとしての Harisson の才能を認めて�
 
 Clapton は「"While My Guitar Gently Weeps" はグループ内での George の精神的な孤立を訴えている」と述べている。
 
-歌詞の中で、Harisson は普遍的な愛というテーマと、
+歌詞の中で、Harrison は普遍的な愛というテーマと、
 インド音楽の影響を受けた[Within You Without You](https://en.wikipedia.org/wiki/Within_You_Without_You)
 のような楽曲で顕著であった哲学的な懸念を再び取り上げている。
 
-この曲は、多くの聴衆が Harisson の作品を Lennon-McCartney の作品と互角とも言えるほど素晴らしいことに気付くきっかけとなった。
+この曲は、多くの聴衆が Harrison の作品を Lennon-McCartney の作品と互角とも言えるほど素晴らしいことに気付くきっかけとなった。
 [Wikipedia](https://en.wikipedia.org/wiki/While_My_Guitar_Gently_Weeps)より
 }}
 
@@ -61,7 +61,7 @@ Clapton は「"While My Guitar Gently Weeps" はグループ内での George の
 もはや通ってるのかと言われるぐらい能天気に来まくってます。
 
 ここ数ヶ月ぐらいは池のボート乗り場を改修していて、しばらくはスワン{{footnote:
-Harisson は [Cream](https://en.wikipedia.org/wiki/Cream_(band)) のレコーディングに参加することで Clapton に応酬した。
+Harrison は [Cream](https://en.wikipedia.org/wiki/Cream_(band)) のレコーディングに参加することで Clapton に応酬した。
 「Eric が曲を書くのを手伝ったんだ。Cream のアルバムのために曲を考えなければならなかったんだけど、Eric はまだ書いていなかったんだ。
 僕たちは向かい合って仕事をしていて、僕は歌詞を書いていた。Eric はそれを逆さまにして読んで、'BADGE って何だ？'
 (手書きの 'Bridge' という文字を読み間違えた)。その後、酔っ払った Ringo が入ってきて、
@@ -486,7 +486,7 @@ They bought and sold you
 
 ```admonish success title=""
 With every mistake, we must surely be learning{{footnote:
-Bridge の間、Harisson は [Bob Dylan](https://en.wikipedia.org/wiki/Bob_Dylan) 風の繰り返しの韻律を採用し、
+Bridge の間、Harrison は [Bob Dylan](https://en.wikipedia.org/wiki/Bob_Dylan) 風の繰り返しの韻律を採用し、
 人々がいかにこの愛を顕在化させる能力から遠ざかってしまったかを伝えている。
 }}
 
