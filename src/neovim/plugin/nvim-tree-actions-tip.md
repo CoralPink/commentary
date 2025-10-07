@@ -53,7 +53,7 @@ Norwegian Wood (This Bird Has Flown) (by [The Beatles](https://en.wikipedia.org/
 主に Lennon が作曲し、McCartney が作詞に参加した。
 [Bob Dylan](https://en.wikipedia.org/wiki/Bob_Dylan)の内省的な歌詞に影響を受けたこの曲は、
 ソングライターとしての Beatles の成長のマイルストーンと考えられている。
-この曲には Harisson が演奏するシタールのパートがあり、洋楽ロックのレコーディングにインドの弦楽器が初めて登場した。
+この曲には Harrison が演奏するシタールのパートがあり、洋楽ロックのレコーディングにインドの弦楽器が初めて登場した。
 }}?
 
 僕は彼女の部屋に招かれた

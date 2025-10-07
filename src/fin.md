@@ -148,7 +148,7 @@ Love is all you need
 <div class="ft-definition">
 <p>この曲の愛の重要性の提唱は、1965年に Lennon が
 <a href="https://en.wikipedia.org/wiki/The_Word_(song)">The Word</a>の歌詞でこの考えを述べたこと、
-そして Harisson が<a href="https://en.wikipedia.org/wiki/Within_You_Without_You">Within You Without You</a>の中で
+そして Harrison が<a href="https://en.wikipedia.org/wiki/Within_You_Without_You">Within You Without You</a>の中で
 「僕らの愛があれば、世界を救うことができる」と宣言したことに続くものであった。</p>
 </div>
 

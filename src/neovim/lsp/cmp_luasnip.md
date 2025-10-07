@@ -242,7 +242,7 @@ Yes, you could say she was attactively built
 そうさ、彼女は魅力的だと言っていい{{footnote:
 この曲は、非常に強い Liverpool 訛りの[Scouse](https://en.wikipedia.org/wiki/Scouse)で歌われている。
 
-Harisson は、テレビシリーズ "The Beatles Anthology" のインタビューで、
+Harrison は、テレビシリーズ "The Beatles Anthology" のインタビューで、
 「僕がこの曲を気に入ったのは、すごく Liverpool っぽかったからだ。
 コミカルでありながら、シリアスなところもある曲を書く人間はいなかった。
 この曲はとても上出来なロックンロール・ナンバーだったけど、明らかにジョークなのに、誰も笑わず、
