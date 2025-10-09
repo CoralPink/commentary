@@ -120,7 +120,15 @@ return config
 ```
 ~~~
 
-![sotobori-bird](img/sotobori-bird.webp)
+<div class="slider">
+  <div class="media">
+    ![sotobori-bird](img/sotobori-bird.webp)
+    <video controls preload="none" width="1280" height="720" poster="img/ochanomizu-thumbnail.webp">
+      <source src="img/ochanomizu.webm" type="video/webm">
+      Your browser does not support the video/webm.
+    </video>
+  </div>
+</div>
 
 ```admonish success title=""
 I look at the floor and I see it needs sweeping
@@ -202,20 +210,18 @@ How to unfold your love
 どうすれば愛を伝えられる
 ```
 
-![tokyo-daijingu](img/tokyo-daijingu.webp)
-
 [東京大神宮](https://tokyodaijingu.or.jp)もちょいちょい参拝させてもらってます⛩️
 
-
-|[新見附橋](https://visit-chiyoda.tokyo/app/spot/detail/225)|
-|:---|
-|![shin-mituke](img/shin-mituke.webp)|
-
-|[外濠公園](https://visit-chiyoda.tokyo/app/spot/detail/274)|
-|:---|
-![sotobori](img/sotobori.webp)|
-
-この辺まで来たらこっちも見て回りたくなるでしょ❓ 🚶‍♀️
+<div class="slider">
+  <div class="media">
+    ![tokyo-daijingu](img/tokyo-daijingu.webp)
+    <video controls preload="none" width="1280" height="720" poster="img/shin-mituke.webp">
+      <source src="img/iidabashi-tokyo.webm" type="video/webm">
+      Your browser does not support the video/webm.
+    </video>
+    ![sotobori](img/sotobori.webp)
+  </div>
+</div>
 
 ### 🧚‍♀️ Font
 
@@ -519,8 +525,12 @@ You were perverted, too
 
 な〜んて言いながら、もう一回だけ話飛ぶんですけど、オランダに行ってきたんですよ〜😋
 
-![ukima1](img/ukima1.webp)
-![ukima2](img/ukima2.webp)
+<div class="slider">
+  <div class="media">
+    ![ukima1](img/ukima1.webp)
+    ![ukima2](img/ukima2.webp)
+  </div>
+</div>
 
 間違えました、[いたばしのオランダ](https://www.city.itabashi.tokyo.jp/bousai/toshikeiakku/kotsu/1044242/1044694.html)でした🦧
 
@@ -584,3 +594,240 @@ No one alerted you
 >
 > 笑え 笑え！
 ```
+
+## 🕊 Free as a Bird
+
+<div style="color: #999999; font-size: 90%; text-align: center;">
+<div style="margin-top: 4em">
+Free as a bird{{footnote:Free as a Bird (by [The Beatles](https://en.wikipedia.org/wiki/The_Beatles)): 1995年12月にリリースしたシングル。
+この曲はもともと1977年に[John Lennon](https://en.wikipedia.org/wiki/John_Lennon) が自宅デモとして作曲・録音したものである。
+解散から25年、Lennon の死去から 15年後の1995年、
+[Paul McCartney](https://en.wikipedia.org/wiki/Paul_McCartney),
+[George Harrison](https://en.wikipedia.org/wiki/George_Harrison),
+[Ringo Starr](https://en.wikipedia.org/wiki/Ringo_Starr)が、このデモを組み込んだスタジオバージョンをリリースした。
+
+このシングルは、映像ドキュメンタリー[The Beatles Anthology](https://en.wikipedia.org/wiki/The_Beatles_Anthology)と
+コンピレーション・アルバム[Anthology 1](https://en.wikipedia.org/wiki/Anthology_1)のプロモーションの一環としてリリースされた。
+Anthology project において、McCartney は Lennon の未発表音源を[オノ・ヨーコ](https://en.wikipedia.org/wiki/Yoko_Ono)に提供を依頼し、
+残る3人の Beatles が参加できる形とした。
+Free as a Bird は、McCartney, Harrison, Starr が追加の楽器演奏、ボーカル、アレンジを提供した3曲
+([Real Love](https://en.wikipedia.org/wiki/Real_Love_(Beatles_song))、
+[Now and Then](https://en.wikipedia.org/wiki/Now_and_Then_(Beatles_song))のうちの1曲である。
+}}
+
+</div>
+
+<div style="margin-top: 2em">
+鳥のように自由に
+</div>
+
+<div style="margin-top: 4em">
+It's the next best thing to be
+
+free as a bird
+</div>
+
+<div style="margin-top: 2em">
+この次に最高の幸せは
+
+鳥のように気ままであること
+</div>
+
+
+<div style="margin-top: 4em">
+Home,
+</div>
+
+<div style="margin-top: 2em">
+帰ろう、
+</div>
+
+<div style="margin-top: 4em">
+home and dry
+
+Like a homing bird, I fly
+
+As a bird on wings
+</div>
+
+<div style="margin-top: 2em">
+翼を持つ鳥のように飛ぶんだ
+
+帰巣する鳥のように無事に帰り着く
+</div>
+
+<div style="margin-top: 4em">
+Whatever happened to
+
+The life that we once knew?
+</div>
+
+<div style="margin-top: 2em">
+かつて僕らの知っていた日常は
+
+どうなってしまったんだっけ？
+</div>
+
+<div style="margin-top: 4em">
+Can we really live without each other?{{footnote:
+John はこの曲を完成させていなかった。
+3人は中間部の歌詞は John が "あとは頼む" と言っているんだと考え、歌詞を付け加えることにした。
+
+McCartney は 「素晴らしいことだよ。John とまた一緒に曲を作ることができたんだから。
+John がやりたかったことはすぐにわかったから、僕らの手で書き加えることができた。
+色が指定された "ぬり絵" に、色をつけるみたいな感覚だったね。」と語っている。
+Starr は McCartney と Harrison のハーモニー、そして完成曲を聴き「まさに彼ら (The Beatles) そのものだ」と評した。
+}}
+</div>
+
+<div style="margin-top: 2em">
+僕たちは本当に互いなしに生きていけるだろうか?
+</div>
+
+<div style="margin-top: 4em">
+Where did we lose the touch
+
+that seemed to mean so much?
+</div>
+
+<div style="margin-top: 2em">
+大切なふれあいをどこで失ってしまったんだろう？
+</div>
+
+<div style="margin-top: 4em">
+It always made me feel so—
+</div>
+
+<div style="margin-top: 2em">
+それはいつだって 僕を あんなに——
+</div>
+
+<div style="margin-top: 4em">
+Free as a bird
+</div>
+
+<div style="margin-top: 2em">
+鳥のように自由に
+</div>
+
+<div style="margin-top: 4em">
+It's the next best thing to be
+
+Free as a bird
+</div>
+
+<div style="margin-top: 2em">
+この次に最高の幸せは
+
+鳥のように気ままであること
+</div>
+
+<div style="margin-top: 4em">
+Home,
+</div>
+
+<div style="margin-top: 2em">
+帰ろう、
+</div>
+
+<div style="margin-top: 4em">
+home and dry
+
+Like a homing bird, I fly
+
+As a bird on wings
+</div>
+
+<div style="margin-top: 2em">
+翼を持つ鳥のように飛ぶんだ
+
+帰巣する鳥のように無事に帰り着く
+</div>
+
+<div style="margin-top: 4em">
+Whatever happened to
+
+The love that we once knew?
+</div>
+
+<div style="margin-top: 2em">
+かつて僕らの知っていたあの愛は
+
+どうなってしまったんだろう？
+</div>
+
+<div style="margin-top: 4em">
+Always made me feel so free
+</div>
+
+<div style="margin-top: 2em">
+いつだって 僕を 自由な気持ちにさせてくれていたのに
+</div>
+
+<div style="margin-top: 4em">
+Free as a bird
+</div>
+
+<div style="margin-top: 2em">
+鳥のように自由に
+</div>
+
+<div style="margin-top: 4em">
+It's the next best thing to be
+
+Free as a bird
+</div>
+
+<div style="margin-top: 2em">
+この次に最高の幸せは
+
+鳥のように気ままであること
+</div>
+
+<div style="margin-top: 4em">
+Free as a bird
+</div>
+
+<div style="margin-top: 2em">
+鳥のように気ままに
+</div>
+
+<div style="margin-top: 4em">
+Free as a bird
+</div>
+
+<div style="margin-top: 2em">
+鳥のように自由に
+</div>
+
+<div style="margin-top: 4em">
+Free…{{footnote: Harrison は曲の終わりに、Beatlesのメンバーがファンだった北イングランドのコメディアン
+[George Formby](https://en.wikipedia.org/wiki/George_Formby) へのオマージュを捧げ、
+[バンジョー](https://en.wikipedia.org/wiki/Banjo_ukulele)を弾きながら短いコーダを加えた。
+}}
+</div>
+
+<div style="margin-top: 5em; margin-bottom: 5em; font-size: 70%">
+( !niaga ecin tuo denruT )
+{{footnote: さらにアーカイブから Lennon が "turned out nice again!" と言う声が逆再生で挿入されている。
+最終的にはなんだか "made by John Lennon" のように聴こえるが、
+McCartney によれば、これはメンバーが最終ミックスを確認した後に発見された、意図していない現象である。
+}}
+{{footnote: 2025年8月、[Anthology 4](https://en.wikipedia.org/wiki/Anthology_4)収録のため、
+Lennon のボーカルを抽出する音声復元技術を用いたリマスター版リミックスが
+[While My Guiter Gently Weeps](https://en.wikipedia.org/wiki/While_My_Guitar_Gently_Weeps),
+[Helter Skelter](https://en.wikipedia.org/wiki/Helter_Skelter_(song))と共に
+アルバムに先駆けてデジタル配信された🎉[Wikipedia](https://en.wikipedia.org/wiki/Free_as_a_Bird)より
+}}
+
+( ！ねたっがあしにきでいよたま )
+</div>
+</div>
+
+<script type="module">
+document.addEventListener('DOMContentLoaded', async () => {
+  try {
+    await import(`${document.getElementById('bookjs').dataset.pathtoroot}slider.js`);
+  } catch (e) { console.error(e); }
+});
+</script>
