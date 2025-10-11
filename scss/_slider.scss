@@ -9,6 +9,8 @@
     overflow-x: auto;
     scroll-snap-type: x mandatory;
 
+    align-items: center;
+
     &>* {
       flex: 0 0 100%;
       scroll-snap-align: start;
