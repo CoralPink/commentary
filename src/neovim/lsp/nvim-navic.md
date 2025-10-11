@@ -249,7 +249,7 @@ And yes, we’ve just begun
 {{footnote: We've Only Just Begun (by [The Carpenters](https://en.wikipedia.org/wiki/The_Carpenters))
 元々は、California 州の Crocker National Bank のCMソングとして制作され、
 タイトルのとおり「2人はまだ始まったばかり（We've Only Just Begun）」と結婚によって新しい人生を踏み出すことについて歌われている。
-この曲は、アレンジャーとしての Richard の能力と、ボーカルとしての Karen の能力が最も発揮されているということで、
+この曲は、アレンジャーとしての Richard の能力と、ヴォーカルとしての Karen の能力が最も発揮されているということで、
 Richard は「Carpenters の代表曲を挙げるなら『We've Only Just Begun』だな」と語っている。
 [Wikipedia](https://en.wikipedia.org/wiki/We%27ve_Only_Just_Begun)より
 }}
