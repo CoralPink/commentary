@@ -600,19 +600,19 @@ No one alerted you
 <div style="color: #999999; font-size: 90%; text-align: center;">
 <div style="margin-top: 4em">
 Free as a bird{{footnote:Free as a Bird (by [The Beatles](https://en.wikipedia.org/wiki/The_Beatles)): 1995年12月にリリースしたシングル。
-この曲はもともと1977年に[John Lennon](https://en.wikipedia.org/wiki/John_Lennon) が自宅デモとして作曲・録音したものである。
-解散から25年、Lennon の死去から 15年後の1995年、
+この曲はもともと 1977年に[John Lennon](https://en.wikipedia.org/wiki/John_Lennon) が自宅デモとして作曲・録音したものである。
+The Beatles の解散から 25年、Lennon の死去から 15年後の 1995年、
 [Paul McCartney](https://en.wikipedia.org/wiki/Paul_McCartney),
 [George Harrison](https://en.wikipedia.org/wiki/George_Harrison),
 [Ringo Starr](https://en.wikipedia.org/wiki/Ringo_Starr)が、このデモを組み込んだスタジオバージョンをリリースした。
 
 このシングルは、映像ドキュメンタリー[The Beatles Anthology](https://en.wikipedia.org/wiki/The_Beatles_Anthology)と
 コンピレーション・アルバム[Anthology 1](https://en.wikipedia.org/wiki/Anthology_1)のプロモーションの一環としてリリースされた。
-Anthology project において、McCartney は Lennon の未発表音源を[オノ・ヨーコ](https://en.wikipedia.org/wiki/Yoko_Ono)に提供を依頼し、
+Anthology project において、McCartney は Lennon の未発表音源の提供を[オノ・ヨーコ](https://en.wikipedia.org/wiki/Yoko_Ono)に依頼し、
 残る3人の Beatles が参加できる形とした。
-Free as a Bird は、McCartney, Harrison, Starr が追加の楽器演奏、ボーカル、アレンジを提供した3曲
-([Real Love](https://en.wikipedia.org/wiki/Real_Love_(Beatles_song))、
-[Now and Then](https://en.wikipedia.org/wiki/Now_and_Then_(Beatles_song))のうちの1曲である。
+Free as a Bird は McCartney, Harrison, Starr が追加の楽器演奏、ヴォーカル、アレンジを提供した 3曲
+(他、[Real Love](https://en.wikipedia.org/wiki/Real_Love_(Beatles_song)),
+[Now and Then](https://en.wikipedia.org/wiki/Now_and_Then_(Beatles_song))がある) のうちの 1曲である。
 }}
 
 </div>
@@ -670,13 +670,21 @@ The life that we once knew?
 
 <div style="margin-top: 4em">
 Can we really live without each other?{{footnote:
-John はこの曲を完成させていなかった。
-3人は中間部の歌詞は John が "あとは頼む" と言っているんだと考え、歌詞を付け加えることにした。
+Lennon はこの曲を完成させていなかった。
+3人は、中間部の歌詞は "John が「あとは頼む」" と言っているんだと考え、歌詞を書き加えることにした。
 
 McCartney は 「素晴らしいことだよ。John とまた一緒に曲を作ることができたんだから。
 John がやりたかったことはすぐにわかったから、僕らの手で書き加えることができた。
 色が指定された "ぬり絵" に、色をつけるみたいな感覚だったね。」と語っている。
-Starr は McCartney と Harrison のハーモニー、そして完成曲を聴き「まさに彼ら (The Beatles) そのものだ」と評した。
+
+Starr は McCartney と Harrison のハーモニー、そして完成曲を聴き "まさに彼ら (The Beatles) そのものだ" と評した。
+彼はその感想について「自分はこのプロジェクトを “外側から見ている者” として感じた」と説明している。
+
+共同プロデュースを担当した[Jeff Lynne](https://en.wikipedia.org/wiki/Jeff_Lynne)は、
+最初から "完成した曲が Beatles のように聞こえるだろう" と予想していた。それがこのプロジェクトの前提でもあったからだ。
+
+そして Harisson はこう付け加えている。
+"それが本当に彼ら (Beatles) なら Beatles のように聞こえるに決まってるさ...。もう既に彼らのように聞こえているだろう？"
 }}
 </div>
 
@@ -809,15 +817,15 @@ Free…{{footnote: Harrison は曲の終わりに、Beatlesのメンバーがフ
 
 <div style="margin-top: 5em; margin-bottom: 5em; font-size: 70%">
 ( !niaga ecin tuo denruT )
-{{footnote: さらにアーカイブから Lennon が "turned out nice again!" と言う声が逆再生で挿入されている。
-最終的にはなんだか "made by John Lennon" のように聴こえるが、
-McCartney によれば、これはメンバーが最終ミックスを確認した後に発見された、意図していない現象である。
+{{footnote: さらに Lennon が Formby の決まり文句 "Turned out nice again!" と話しているアーカイブ音源を逆再生して挿入した。
+その結果、偶然にも "Made by John Lennon" と聴こえるようになった。
+McCartney によれば、これはまったく意図したものではなく、メンバーが最終ミックスを聴き直したときに初めて気付いたという。
 }}
 {{footnote: 2025年8月、[Anthology 4](https://en.wikipedia.org/wiki/Anthology_4)収録のため、
-Lennon のボーカルを抽出する音声復元技術を用いたリマスター版リミックスが
-[While My Guiter Gently Weeps](https://en.wikipedia.org/wiki/While_My_Guitar_Gently_Weeps),
-[Helter Skelter](https://en.wikipedia.org/wiki/Helter_Skelter_(song))と共に
-アルバムに先駆けてデジタル配信された🎉[Wikipedia](https://en.wikipedia.org/wiki/Free_as_a_Bird)より
+Lennon のヴォーカルを抽出する音声復元技術を用いたリマスター版リミックスがアルバムに先駆けてデジタル配信された🎉
+同様に[Helter Skelter](https://en.wikipedia.org/wiki/Helter_Skelter_(song)),
+[While My Guiter Gently Weeps](https://en.wikipedia.org/wiki/While_My_Guitar_Gently_Weeps)も順次先行して配信されている。
+[Wikipedia](https://en.wikipedia.org/wiki/Free_as_a_Bird)より
 }}
 
 ( ！ねたっがあしにきでいよたま )
