@@ -140,6 +140,7 @@ body {
   }
 
   #sidebar-scrollbox {
+    width: var.$sidebar-width;
     height: 100%;
 
     overflow-y: scroll;
