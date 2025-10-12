@@ -693,3 +693,8 @@ MVP とは、俺のことだ！！
 {{footnote: 実際は`nvim_get_option_value`の おはなしで、このサイトの最終回まではあと 3回...か、4回❗}}
 」という おはなし。
 ```
+
+<video controls preload="none" width="1280" height="720" poster="img/tokyo-yosakoi-enya-thumbnail.webp">
+  <source src="img/tokyo-yosakoi-enya.webm" type="video/webm">
+  Your browser does not support the video/webm.
+</video>
