@@ -694,7 +694,7 @@ MVP とは、俺のことだ！！
 」という おはなし。
 ```
 
-<video controls preload="none" width="1280" height="720" poster="img/tokyo-yosakoi-enya-thumbnail.webp">
+<video controls preload="metadata" width="1280" height="720" poster="img/tokyo-yosakoi-enya-thumbnail.webp">
   <source src="img/tokyo-yosakoi-enya.webm" type="video/webm">
   Your browser does not support the video/webm.
 </video>
