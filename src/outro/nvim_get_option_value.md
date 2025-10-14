@@ -204,7 +204,7 @@ You keep all your money in a big brown bag inside a zoo
 君は全てのカネを 動物園のデカい茶封筒に詰め込んでるんだ!
 ```
 
-<video controls preload="none" width="1280" height="720" poster="img/tama-zoo-thumbnail.webp">
+<video controls preload="metadata" width="1280" height="720" poster="img/tama-zoo-thumbnail.webp">
   <source src="img/tama-zoo.webm" type="video/webm">
   Your browser does not support the video/webm.
 </video>

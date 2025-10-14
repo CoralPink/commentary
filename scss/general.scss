@@ -252,6 +252,15 @@ article {
     height: auto;
   }
 
+  video {
+    transform: none;
+    backface-visibility: visible;
+    contain: paint;
+
+    image-rendering: auto;
+    object-fit: contain;
+  }
+
   audio {
     display: flex;
     margin: 1rem auto;
