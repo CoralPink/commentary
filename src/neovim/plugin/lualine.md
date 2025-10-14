@@ -292,7 +292,7 @@ Emmy Awards では同賞創設以来過去最多となる合計18冠を獲得。
 
 君の視界にいるよ。
 
-<video controls preload="metadata" width="1280" height="720" poster="img/nihonbashi-parade-thumbnail.webp">
+<video controls preload="none" width="1280" height="720" poster="img/nihonbashi-parade-thumbnail.webp">
   <source src="img/nihonbashi-parade.webm" type="video/webm">
   Your browser does not support the video/webm.
 </video>

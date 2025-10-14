@@ -619,7 +619,7 @@ Lennon は監督の [Michael Lindsay-Hogg](https://en.wikipedia.org/wiki/Michael
 
 さて、ここまで来たら次にやることはもう決まってますね😉 カラーテーマです❗
 
-<video controls preload="metadata" width="1280" height="720" poster="img/miracle-gift-parade-part1.webp">
+<video controls preload="none" width="1280" height="720" poster="img/miracle-gift-parade-part1.webp">
   <source src="img/miracle-gift-parade-part1.webm" type="video/webm">
   Your browser does not support the video/webm.
 </video>
