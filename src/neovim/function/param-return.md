@@ -102,7 +102,7 @@ Whatever you wish for, you keep
 ```
 
 ```admonish warning title=""
-<video controls preload="metadata" width="1280" height="720" poster="img/musicforest-opera-thumbnail.webp">
+<video controls preload="none" width="1280" height="720" poster="img/musicforest-opera-thumbnail.webp">
   <source src="img/musicforest-opera.webm" type="video/webm">
   Your browser does not support the video/webm.
 </video>
@@ -221,7 +221,7 @@ If you keep on believing
 実際、わたしは割と感覚で書いています...😅
 
 ```admonish info title=""
-<video controls preload="metadata" width="1280" height="720" poster="img/musicforest-sandart-thumbnail.webp">
+<video controls preload="none" width="1280" height="720" poster="img/musicforest-sandart-thumbnail.webp">
   <source src="img/musicforest-sandart.webm" type="video/webm">
   Your browser does not support the video/webm.
 </video>

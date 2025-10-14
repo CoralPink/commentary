@@ -253,12 +253,7 @@ article {
   }
 
   video {
-    transform: none;
-    backface-visibility: visible;
     contain: paint;
-
-    image-rendering: auto;
-    object-fit: contain;
   }
 
   audio {
