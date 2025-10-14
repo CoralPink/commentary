@@ -193,11 +193,11 @@ Vim では、quickfix コマンドはより一般的に、ファイル内の位�
 
 <div class="slider">
   <div class="media">
-    <video controls preload="none" width="1280" height="720" poster="img/jimori-samba-ongakutai-2024-thumbnail.webp">
+    <video controls preload="metadata" width="1280" height="720" poster="img/jimori-samba-ongakutai-2024-thumbnail.webp">
       <source src="img/jimori-samba-ongakutai-2024.webm" type="video/webm">
       Your browser does not support the video/webm.
     </video>
-    <video controls preload="none" width="1280" height="720" poster="img/gres-barbaros-2025-thumbnail.webp">
+    <video controls preload="metadata" width="1280" height="720" poster="img/gres-barbaros-2025-thumbnail.webp">
       <source src="img/gres-barbaros-2025.webm" type="video/webm">
       Your browser does not support the video/webm.
     </video>
