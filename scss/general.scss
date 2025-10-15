@@ -1,5 +1,6 @@
 @use 'fonts';
 @use 'headline';
+@use 'plyr';
 
 @use 'variables' as var;
 @use "utils" as utils;
@@ -244,15 +245,12 @@ article {
   }
 
   img,
-  video {
+  .plyr {
     display: flex;
     margin: 1rem auto;
     border-radius: 0.4rem;
     max-width: 100%;
     height: auto;
-  }
-
-  video {
     contain: paint;
   }
 
