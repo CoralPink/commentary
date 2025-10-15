@@ -217,7 +217,7 @@ No one’s has. Your future is whatever you make it.
 ```
 
 ```admonish quote title=""
-<video controls preload="none" width="1280" height="720" poster="img/starry-starry-christmas-party-thumbnail.webp">
+<video controls preload="none" width="1280" height="720" data-poster="img/starry-starry-christmas-party-thumbnail.webp">
   <source src="img/starry-starry-christmas-party.webm" type="video/webm">
   Your browser does not support the video/webm.
 </video>

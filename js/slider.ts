@@ -97,21 +97,23 @@ class Slider {
   private createIndicators(): HTMLElement {
     const fragment = document.createDocumentFragment();
 
-    for (let i = 0; i < this.medias.length; i++) {
+    for (const media of this.medias) {
       const button = document.createElement('button');
 
       const thumbnail =
-        this.medias[i] instanceof HTMLVideoElement
-          ? (this.medias[i] as HTMLVideoElement).poster
-          : (this.medias[i] as HTMLImageElement).src;
+        media instanceof HTMLVideoElement
+          ? media.dataset.poster || media.poster || ''
+          : (media as HTMLImageElement).src;
 
       button.style.backgroundImage = `url('${thumbnail}')`;
-      button.setAttribute('aria-label', `Slide ${i + 1}`);
+
+      const fileName = thumbnail.match(/\/([^\/?#]+?)(\.[^\/.#?]+)?(?:[?#]|$)/)?.[1] ?? '';
+      button.setAttribute('aria-label', fileName);
 
       button.addEventListener(
         'click',
         (): void => {
-          this.medias[i]!.scrollIntoView(SCROLL_INTO_VIEW_OPTIONS);
+          media!.scrollIntoView(SCROLL_INTO_VIEW_OPTIONS);
         },
         { once: false, passive: true },
       );
