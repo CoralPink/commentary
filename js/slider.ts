@@ -20,6 +20,8 @@ const SCROLL_INTO_VIEW_OPTIONS: ScrollIntoViewOptions = {
 type Direction = typeof ID_PREV | typeof ID_NEXT;
 type CompatibleMedia = HTMLVideoElement | HTMLImageElement;
 
+const extractName = (s: string): string => s.match(/\/([^\/?#]+?)(\.[^\/.#?]+)?(?:[?#]|$)/)?.[1] ?? '';
+
 class Slider {
   private medias: CompatibleMedia[] = [];
   private indicatorSpans: HTMLSpanElement[] = [];
@@ -106,14 +108,12 @@ class Slider {
           : (media as HTMLImageElement).src;
 
       button.style.backgroundImage = `url('${thumbnail}')`;
-
-      const fileName = thumbnail.match(/\/([^\/?#]+?)(\.[^\/.#?]+)?(?:[?#]|$)/)?.[1] ?? '';
-      button.setAttribute('aria-label', fileName);
+      button.setAttribute('aria-label', `Slide: ${extractName(thumbnail)}`);
 
       button.addEventListener(
         'click',
         (): void => {
-          media!.scrollIntoView(SCROLL_INTO_VIEW_OPTIONS);
+          media.scrollIntoView(SCROLL_INTO_VIEW_OPTIONS);
         },
         { once: false, passive: true },
       );

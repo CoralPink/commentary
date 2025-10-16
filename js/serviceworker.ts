@@ -169,4 +169,4 @@ self.addEventListener('fetch', (event: FetchEvent): void => {
 //       it apparently ensures that the module is treated as such under `tsconfig` settings.
 //
 //       (This resolves the `typescript` error messages appearing in my environment.)
-export {}
+export { }
