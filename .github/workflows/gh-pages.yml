@@ -280,8 +280,8 @@ jobs:
         uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5
         with:
           sparse-checkout: |
+            js/package.json
             scss
-            scss/catppuccin
 
       - name: Setup Bun
         uses: oven-sh/setup-bun@735343b667d3e6f658f44d0eca948eb6282f2b76 # v2
@@ -293,6 +293,11 @@ jobs:
         run: |
           bun install --production
           bun run build.js
+
+      - name: Download Plyr Css
+        working-directory: scss
+        run: |
+          ./download-plyr-css.sh
 
       - name: Upload CSS
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
