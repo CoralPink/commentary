@@ -12,7 +12,7 @@ type DataSet = DOMStringMap & {
   pathtoroot: string;
 };
 
-const initialize = async (): Promise<void> => {
+const initialize = (): void => {
   initTableOfContents();
   initCodeBlock();
 
@@ -34,6 +34,6 @@ const initialize = async (): Promise<void> => {
 
   // capture hover event in iOS
   if (globalThis.ontouchstart !== undefined) {
-    document.addEventListener('touchstart', () => {}, { once: false, passive: true });
+    document.addEventListener('touchstart', () => { }, { once: false, passive: true });
   }
 })();
