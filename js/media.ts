@@ -11,9 +11,8 @@ export const initMedia = async (): Promise<void> => {
   }
 
   const rootPath = document.getElementById('bookjs')?.dataset.pathtoroot;
-  const loadStyleSheetPromise = loadStyleSheet(`${rootPath}${STYLE_PLYR}`);
+
+  await loadStyleSheet(`${rootPath}${STYLE_PLYR}`);
 
   Plyr.setup(video);
-
-  await loadStyleSheetPromise;
 };
