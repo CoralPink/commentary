@@ -12,7 +12,17 @@ export const initMedia = async (): Promise<void> => {
 
   const rootPath = document.getElementById('bookjs')?.dataset.pathtoroot;
 
-  await loadStyleSheet(`${rootPath}${STYLE_PLYR}`);
+  if (!rootPath) {
+    console.error('initMedia: Unable to determine root path from #bookjs element');
+    return;
+  }
+
+  try {
+    await loadStyleSheet(`${rootPath}${STYLE_PLYR}`);
+  } catch (err) {
+    console.error('Failed to load Plyr CSS, proceeding without styles:', err);
+    return;
+  }
 
   Plyr.setup(video);
 };
