@@ -41,6 +41,9 @@ if [ ! -e ./node_modules ]; then
   bun install
 fi
 bun run build.js
+if [ ! -e dist/plyr.css ]; then
+  ./download-plyr-css.sh
+fi
 cp -r dist/ ../src/css/
 popd
 
