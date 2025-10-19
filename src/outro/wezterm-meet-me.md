@@ -123,7 +123,7 @@ return config
 <div class="slider">
   <div class="media">
     ![sotobori-bird](img/sotobori-bird.webp)
-    <video preload="none" width="1280" height="720" poster="img/ochanomizu-thumbnail.webp">
+    <video preload="none" width="1280" height="720" data-poster="img/ochanomizu-thumbnail.webp">
       <source src="img/ochanomizu.webm" type="video/webm">
       Your browser does not support the video/webm.
     </video>
