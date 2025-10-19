@@ -1,3 +1,5 @@
+import { setPlyr } from './media.ts';
+
 const CLASS_ARROW = 'arrow';
 const CLASS_CONTROLS = 'controls';
 
@@ -68,9 +70,11 @@ class Slider {
     fragment.appendChild(controls);
     slider.appendChild(fragment);
 
-    this.addVideoEvent();
-
     for (const x of Array.from(this.medias)) {
+      if (x instanceof HTMLVideoElement) {
+        this.setupVideo(x);
+      }
+
       this.observer.observe(x);
     }
   }
@@ -157,37 +161,28 @@ class Slider {
     return arrow;
   }
 
-  private addVideoEvent(): void {
-    for (const item of this.medias) {
-      if (!(item instanceof HTMLVideoElement)) {
-        continue;
-      }
+  private setupVideo(item: HTMLVideoElement): void {
+    setPlyr(item);
 
-      item.addEventListener('ended', (): void => {
-        this.scrollTo(this.index + 1);
-
-        // Most of the videos on this site start with a fade-in,
-        // so unless you intentionally shift the starting position, they are all black...!
-        item.currentTime = 0.5;
-      });
-    }
+    item.addEventListener('ended', (): void => {
+      this.scrollTo(this.index + 1);
+    });
   }
 }
 
-const initialize = (): void => {
-  const observer = new IntersectionObserver(
-    (entries, obs) => {
-      for (const x of entries) {
-        if (!x.isIntersecting) {
-          continue;
-        }
+const setupSlider = (entries: IntersectionObserverEntry[], obs: IntersectionObserver): void => {
+  for (const x of entries) {
+    if (!x.isIntersecting) {
+      continue;
+    }
 
-        new Slider(x.target as HTMLDivElement);
-        obs.unobserve(x.target);
-      }
-    },
-    { rootMargin: '3%' },
-  );
+    new Slider(x.target as HTMLDivElement);
+    obs.unobserve(x.target);
+  }
+};
+
+const initialize = (): void => {
+  const observer = new IntersectionObserver(setupSlider, { rootMargin: '5%' });
 
   for (const elm of Array.from(document.querySelectorAll<HTMLDivElement>('.slider'))) {
     observer.observe(elm);

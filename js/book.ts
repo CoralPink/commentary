@@ -2,7 +2,7 @@ import { initCodeBlock } from './codeblock.ts';
 import { initFootnote } from './footnote.ts';
 import { attributeExternalLinks } from './link.ts';
 import { doMarkFromUrl } from './mark.ts';
-import { initMedia } from './media.ts';
+import { initVideo, initMedia } from './media.ts';
 import { startupSearch } from './searcher.ts';
 import { initSidebar } from './sidebar.ts';
 import { initTableOfContents } from './table-of-contents.ts';
@@ -20,7 +20,7 @@ const initialize = (): void => {
   attributeExternalLinks();
 
   initFootnote();
-  initMedia();
+  initVideo();
 };
 
 ((): void => {
@@ -28,6 +28,8 @@ const initialize = (): void => {
 
   initThemeColor(rootPath);
   initSidebar(rootPath);
+  initMedia(rootPath);
+
   startupSearch(rootPath);
 
   document.addEventListener('DOMContentLoaded', initialize, { once: true, passive: true });
