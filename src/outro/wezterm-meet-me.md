@@ -628,7 +628,7 @@ free as a bird
 </div>
 
 <div style="margin-top: 2em">
-この次に最高の幸せは
+それに次ぐものがあるとすれば
 
 鳥のように気ままであること
 </div>
@@ -725,7 +725,7 @@ Free as a bird
 </div>
 
 <div style="margin-top: 2em">
-この次に最高の幸せは
+それに次ぐものがあるとすれば
 
 鳥のように気ままであること
 </div>
@@ -772,7 +772,7 @@ Always made me feel so free
 いつだって 僕を 自由な気持ちにさせてくれていたのに
 </div>
 
-<div style="margin-top: 4em">
+<div style="margin-top: 12em">
 Free as a bird
 </div>
 
@@ -787,7 +787,7 @@ Free as a bird
 </div>
 
 <div style="margin-top: 2em">
-この次に最高の幸せは
+それに次ぐものがあるとすれば
 
 鳥のように気ままであること
 </div>
@@ -808,14 +808,16 @@ Free as a bird
 鳥のように自由に
 </div>
 
-<div style="margin-top: 4em">
-Free…{{footnote: Harrison は曲の終わりに、Beatlesのメンバーがファンだった北イングランドのコメディアン
+<div style="margin-top: 8em; margin-bottom: 8em">
+Free…{{footnote: Harrison は曲の終わりに、Beatles のメンバーがファンだった北イングランドのコメディアン
 [George Formby](https://en.wikipedia.org/wiki/George_Formby) へのオマージュを捧げ、
 [バンジョー](https://en.wikipedia.org/wiki/Banjo_ukulele)を弾きながら短いコーダを加えた。
 }}
 </div>
 
-<div style="margin-top: 5em; margin-bottom: 5em; font-size: 70%">
+![bird1](img/bird.webp)
+
+<div style="margin-top: 8em; margin-bottom: 8em; font-size: 70%">
 ( !niaga ecin tuo denruT )
 {{footnote: さらに Lennon が Formby の決まり文句 "Turned out nice again!" と話しているアーカイブ音源を逆再生して挿入した。
 その結果、偶然にも "Made by John Lennon" と聴こえるようになった。

@@ -40,7 +40,7 @@ No one you can save that can't be saved
 <div style="margin-top: 1.6em">
 Nothing you can do, but you can learn how to be you in time
 
-きみは何もできない、けどやがて君らしく在る方法を知ることができる
+きみは何もできない、けどやがて君らしく存る方法を知ることができる
 </div>
 
 <div style="margin-top: 4em">
@@ -76,7 +76,7 @@ Nothing you can see that isn't shown
 <div style="margin-top: 1.6em">
 There's nowhere you can be that isn't where you're meant to be
 
-きみがいる場所は きみがいるべき場所以外にはない
+きみが在るべきでない場所なんて どこにも或りはしない
 </div>
 
 <div style="margin-top: 4em">
