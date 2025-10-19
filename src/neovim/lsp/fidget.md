@@ -159,15 +159,15 @@ The following table shows the default options for this plugin:
 
 <div class="slider">
   <div class="media">
-    <video controls preload="none" width="1280" height="720" data-poster="img/awa-nihonbashi-thumbnail.webp">
+    <video preload="none" width="1280" height="720" poster="img/awa-nihonbashi-thumbnail.webp">
       <source src="img/awa-nihonbashi.webm" type="video/webm">
       Your browser does not support the video/webm.
     </video>
-    <video controls preload="none" width="1280" height="720" data-poster="img/awa-ogikubo-thumbnail.webp">
+    <video preload="none" width="1280" height="720" poster="img/awa-ogikubo-thumbnail.webp">
       <source src="img/awa-ogikubo.webm" type="video/webm">
       Your browser does not support the video/webm.
     </video>
-    <video controls preload="none" width="1280" height="720" data-poster="img/awa-kichijoji-thumbnail.webp">
+    <video preload="none" width="1280" height="720" poster="img/awa-kichijoji-thumbnail.webp">
       <source src="img/awa-kichijoji.webm" type="video/webm">
       Your browser does not support the video/webm.
     </video>
@@ -224,11 +224,11 @@ See <lua/fidget/spinners.lua> of this plugin's source code to see how each anima
 
 <div class="slider">
   <div class="media">
-    <video controls preload="none" width="1280" height="720" data-poster="img/awa-tenguren-thumbnail.webp">
+    <video preload="none" width="1280" height="720" data-poster="img/awa-tenguren-thumbnail.webp">
       <source src="img/awa-tenguren.webm" type="video/webm">
       Your browser does not support the video/webm.
     </video>
-    <video controls preload="none" width="1280" height="720" data-poster="img/awa-tenshouren-thumbnail.webp">
+    <video preload="none" width="1280" height="720" data-poster="img/awa-tenshouren-thumbnail.webp">
       <source src="img/awa-tenshouren.webm" type="video/webm">
       Your browser does not support the video/webm.
     </video>

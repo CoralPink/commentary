@@ -225,7 +225,7 @@ vim.api.nvim_set_var('maplocalleader', '_')
 ドキドキ...❗
 ```
 
-<video controls preload="none" width="1280" height="720" data-poster="img/kyobashi2025-kanda2024-mix-thumbnail.webp">
+<video preload="none" width="1280" height="720" data-poster="img/kyobashi2025-kanda2024-mix-thumbnail.webp">
   <source src="img/kyobashi2025-kanda2024-mix.webm" type="video/webm">
   Your browser does not support the video/webm.
 </video>

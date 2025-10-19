@@ -526,7 +526,7 @@ vim.lsp.enable(manual_lsp)
 これすなわち "This event was shot on iPhone and edited on Mac." というオチ。おあとがよろしいようで 🙇‍♀️
 }}は続きます🐦‍🔥
 
-<video controls preload="none" width="1280" height="720" data-poster="img/fukuro-festival-thumbnail.webp">
+<video preload="none" width="1280" height="720" data-poster="img/fukuro-festival-thumbnail.webp">
   <source src="img/fukuro-festival.webm" type="video/webm">
   Your browser does not support the video/webm.
 </video>
@@ -694,7 +694,7 @@ MVP とは、俺のことだ！！
 」という おはなし。
 ```
 
-<video controls preload="none" width="1280" height="720" data-poster="img/tokyo-yosakoi-enya-thumbnail.webp">
+<video preload="none" width="1280" height="720" data-poster="img/tokyo-yosakoi-enya-thumbnail.webp">
   <source src="img/tokyo-yosakoi-enya.webm" type="video/webm">
   Your browser does not support the video/webm.
 </video>

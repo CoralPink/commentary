@@ -261,13 +261,13 @@ Gonna come out now Ha-ha-ha
 
 今に出てくるよ ははは
 
-<div id="randomVideo1"></div>
+<video id="randomVideo1" preload="none" width="1280" height="720"></video>
 
 Wow look out! it's-
 
 おい見ろ！あれは-
 
-<div id="randomVideo2"></div>
+<video id="randomVideo2" preload="none" width="1280" height="720"></video>
 ```
 
 <!-- Roulette! -->
@@ -283,11 +283,10 @@ document.addEventListener(
 
     const replaceVideo = (id, hit) => {
       const v = document.createElement('video');
-      v.setAttribute('poster', `img/${hit}-thumbnail.webp`);
+      v.setAttribute('preload', 'none');
       v.setAttribute('width', '1280');
       v.setAttribute('height', '720');
-      v.setAttribute('controls', 'true');
-      v.setAttribute('preload', 'none');
+      v.setAttribute('data-poster', `img/${hit}-thumbnail.webp`);
 
       const s = document.createElement('source');
       s.setAttribute('src', `img/${hit}.webm`);

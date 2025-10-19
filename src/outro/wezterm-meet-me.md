@@ -123,7 +123,7 @@ return config
 <div class="slider">
   <div class="media">
     ![sotobori-bird](img/sotobori-bird.webp)
-    <video controls preload="none" width="1280" height="720" data-poster="img/ochanomizu-thumbnail.webp">
+    <video preload="none" width="1280" height="720" poster="img/ochanomizu-thumbnail.webp">
       <source src="img/ochanomizu.webm" type="video/webm">
       Your browser does not support the video/webm.
     </video>
@@ -215,7 +215,7 @@ How to unfold your love
 <div class="slider">
   <div class="media">
     ![tokyo-daijingu](img/tokyo-daijingu.webp)
-    <video controls preload="none" width="1280" height="720" data-poster="img/shin-mituke.webp">
+    <video preload="none" width="1280" height="720" data-poster="img/shin-mituke.webp">
       <source src="img/iidabashi-tokyo.webm" type="video/webm">
       Your browser does not support the video/webm.
     </video>
@@ -579,7 +579,7 @@ No one alerted you
 
 でも、"ドンドンぶち上がる" 花火を見てる方がよっぽど健全だと気づいたんだ❗
 
-<video controls preload="none" width="1280" height="720" data-poster="img/itabashi-hanabi-thumbnail.webp">
+<video preload="none" width="1280" height="720" data-poster="img/itabashi-hanabi-thumbnail.webp">
   <source src="img/itabashi-hanabi.webm" type="video/webm">
   Your browser does not support the video/webm.
 </video>

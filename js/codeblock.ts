@@ -69,20 +69,6 @@ const highlight = (code: HTMLElement): void => {
   });
 };
 
-const observer = new IntersectionObserver(
-  (entries, obs) => {
-    for (const x of entries) {
-      if (!x.isIntersecting) {
-        continue;
-      }
-
-      highlight(x.target as HTMLElement);
-      obs.unobserve(x.target);
-    }
-  },
-  { threshold: 0 },
-);
-
 const createClipButton = (): HTMLButtonElement => {
   const elm = document.createElement('button');
 
@@ -95,6 +81,17 @@ const createClipButton = (): HTMLButtonElement => {
   elm.appendChild(icon);
 
   return elm;
+};
+
+const setupHighlight = (entries: IntersectionObserverEntry[], obs: IntersectionObserver): void => {
+  for (const x of entries) {
+    if (!x.isIntersecting) {
+      continue;
+    }
+
+    highlight(x.target as HTMLElement);
+    obs.unobserve(x.target);
+  }
 };
 
 export const initCodeBlock = (): void => {
@@ -112,6 +109,8 @@ export const initCodeBlock = (): void => {
 
   clipButton = createClipButton();
   sendToWorker = initWorker();
+
+  const observer = new IntersectionObserver(setupHighlight, { threshold: 0 });
 
   for (const x of codeBlocks) {
     observer.observe(x);

@@ -98,7 +98,7 @@ This action causes the equivalent of wezterm.emit(name, window, pane) to be call
 ```admonish success
 切り替えられましたね🤗
 
-<video controls preload="none" width="1280" height="720" data-poster="img/kujira-no-senaka-thumbnail.webp">
+<video preload="none" width="1280" height="720" data-poster="img/kujira-no-senaka-thumbnail.webp">
   <source src="img/kujira-no-senaka.webm" type="video/webm">
   Your browser does not support the video/webm.
 </video>
