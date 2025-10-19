@@ -216,6 +216,10 @@ article {
   line-height: 1.6;
   word-break: auto-phrase;
 
+  // NOTE: Addressing the issue of unnecessary space appearing
+  //       in the X-direction when using IntersectionObserver + Plyr
+  overflow-x: clip;
+
   code {
     &:not(pre code) {
       font-size: 0.82em;
