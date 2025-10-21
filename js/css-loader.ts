@@ -1,6 +1,6 @@
 export const getRootVariable = (name: string): string => {
   try {
-    return window.getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+    return globalThis.getComputedStyle(document.documentElement).getPropertyValue(name).trim();
   } catch (err: unknown) {
     const msg = err instanceof Error ? err.message : 'Unknown error.';
     throw new Error(`Failed to get CSS variable: ${name}. ${msg}`);
@@ -19,7 +19,7 @@ export const getRootVariableNum = (name: string): number => {
 };
 
 const removeStyleSheet = (fileName: string): boolean => {
-  const resolvedHref = new URL(fileName, window.location.href).href;
+  const resolvedHref = new URL(fileName, globalThis.location.href).href;
 
   const isStylesheetLink = (element: Element): element is HTMLLinkElement =>
     element instanceof HTMLLinkElement && element.rel === 'stylesheet';
@@ -51,7 +51,7 @@ export const loadStyleSheet = (fileName: string, options: { signal?: AbortSignal
 
     const link = document.createElement('link');
     link.rel = 'stylesheet';
-    link.href = new URL(fileName, window.location.href).href;
+    link.href = new URL(fileName, globalThis.location.href).href;
 
     const abortHandler = () => {
       if (removeStyleSheet(fileName)) {

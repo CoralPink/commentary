@@ -96,7 +96,7 @@ const jumpHeader = (ev: MouseEvent, el: HTMLAnchorElement): void => {
 };
 
 const tocReset = (): void => {
-  environment = window.innerWidth >= BREAKPOINT_UI_WIDE ? Environment.WIDE : Environment.COMPACT;
+  environment = globalThis.innerWidth >= BREAKPOINT_UI_WIDE ? Environment.WIDE : Environment.COMPACT;
 
   elmToc.classList.remove(...tocClass);
   elmToc.classList.add(tocClass[environment]);
@@ -203,7 +203,7 @@ export const initTableOfContents = (): void => {
   initialize();
   initToggleButton();
 
-  window
+  globalThis
     .matchMedia(`(min-width: ${BREAKPOINT_UI_WIDE}px)`)
     .addEventListener('change', tocReset, { once: false, passive: true });
 };
