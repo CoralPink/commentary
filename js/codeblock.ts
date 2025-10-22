@@ -59,11 +59,14 @@ const highlight = (code: HTMLElement): void => {
     code.innerHTML = res.highlightCode;
 
     if (res.needNerdFonts) {
-      code.style.fontFamily = `${window.getComputedStyle(code).fontFamily}, 'Symbols Nerd Font Mono'`;
+      code.style.fontFamily = `${globalThis.getComputedStyle(code).fontFamily}, 'Symbols Nerd Font Mono'`;
     }
 
     const cb = document.importNode(clipButton, true);
-    cb.addEventListener('click', ev => copyCode(ev.target), { once: false, passive: true });
+    cb.addEventListener('click', ev => copyCode(ev.target), {
+      once: false,
+      passive: true,
+    });
 
     parent.insertBefore(cb, parent.firstChild);
   });

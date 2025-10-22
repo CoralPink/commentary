@@ -1,9 +1,9 @@
 /// <reference lib="webworker" />
 
-import hljs from './highlight.js/build/highlight.js';
+import hljs from './highlight.js';
 import { containsNerdFontIcon, extractLanguage } from './hl-language.ts';
 
-import type { Payload, WorkerResponse } from './hl-types';
+import type { Payload, WorkerResponse } from './hl-types.ts';
 
 type HighlightRequest = {
   id: number;
@@ -33,7 +33,10 @@ sharedWorker.onconnect = (ev: MessageEvent<HighlightRequest>): void => {
 
       const needNerdFonts = containsNerdFontIcon(text);
 
-      port.postMessage({ id, payload: { highlightCode, needNerdFonts } as Payload } as unknown as WorkerResponse);
+      port.postMessage({
+        id,
+        payload: { highlightCode, needNerdFonts } as Payload,
+      } as unknown as WorkerResponse);
     } catch (err) {
       const error = String(err instanceof Error ? err.message : err);
       port.postMessage({ id, payload: { error } as Payload } as unknown as WorkerResponse);

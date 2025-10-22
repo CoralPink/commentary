@@ -1,6 +1,5 @@
-/// <reference lib="dom" />
-
-import { attributeExternalLinks } from '../link';
+import { beforeEach, describe, expect, it } from 'vitest';
+import { attributeExternalLinks } from '../link.ts';
 
 const TEST_URLS = [
   'http://example.com',

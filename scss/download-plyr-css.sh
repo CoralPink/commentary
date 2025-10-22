@@ -1,7 +1,7 @@
 #!/bin/bash
 set -euo pipefail
 
-PLYR_VERSION=$(jq -r '.dependencies.plyr' ../js/package.json | sed 's/^[^0-9]*//')
+PLYR_VERSION=$(jq -r '.imports.plyr' ../js/import_map.json | sed -E 's/^.*@([0-9]+\.[0-9]+\.[0-9]+)$/\1/')
 
 echo "Fetching Plyr v${PLYR_VERSION} CSS..."
 
