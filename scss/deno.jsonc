@@ -1,14 +1,6 @@
 {
   "importMap": "./import_map.json",
   "tasks": {
-    "build": "deno run -P build.js"
-  },
-  "permissions": {
-    "default": {
-      "env": true,
-      "net": true,
-      "read": true,
-      "write": true
-    }
+    "build": "deno run --allow-read --allow-write --allow-net --allow-env build.js"
   }
 }
