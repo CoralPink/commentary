@@ -2,7 +2,7 @@ import { initCodeBlock } from './codeblock.ts';
 import { initFootnote } from './footnote.ts';
 import { attributeExternalLinks } from './link.ts';
 import { doMarkFromUrl } from './mark.ts';
-import { initVideo, initMedia } from './media.ts';
+import { initMedia, initVideo } from './media.ts';
 import { startupSearch } from './searcher.ts';
 import { initSidebar } from './sidebar.ts';
 import { initTableOfContents } from './table-of-contents.ts';

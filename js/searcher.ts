@@ -2,6 +2,7 @@ import { loadStyleSheet } from './css-loader.ts';
 import { doMarkFromUrl, unmarking } from './mark.ts';
 import { debounce } from './timing.ts';
 
+// deno-lint-ignore no-sloppy-imports
 import initWasm, { Finder } from './wasm_book.js';
 
 type SearchResult = {
@@ -211,7 +212,9 @@ const fetchAndDecompress = async (url: string) => {
   }
 
   const format: CompressionFormat = isBrotli ? 'brotli' : 'gzip';
-  /* @ts-ignore */
+
+  // biome-ignore lint: lint/suspicious/noTsIgnore
+  // @ts-ignore: `brotli` is valid in Safari
   const stream = response.body.pipeThrough(new DecompressionStream(format));
 
   const decompressed = await new Response(stream).arrayBuffer();
