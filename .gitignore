@@ -7,7 +7,7 @@ target
 
 js/coverage
 js/dist
-js/highlight.js
+js/highlight
 js/wasm_book.js
 
 rs/mdbook-footnote/test/result.md

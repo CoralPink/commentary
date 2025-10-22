@@ -1,4 +1,4 @@
-/// <reference types="vitest" />
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 /*
 vi.mock('../css-loader');
@@ -9,7 +9,7 @@ vi.mock('../timing', () => ({
 */
 
 import type { MockedFunction } from 'vitest';
-import { startupSearch, TARGET_SEARCH } from '../searcher';
+import { startupSearch, TARGET_SEARCH } from '../searcher.ts';
 
 Object.defineProperty(window, 'location', {
   value: {
@@ -64,7 +64,10 @@ describe('Searcher Module', () => {
 
       startupSearch('/test/');
 
-      expect(spy).toHaveBeenCalledWith('keyup', expect.any(Function), { once: false, passive: true });
+      expect(spy).toHaveBeenCalledWith('keyup', expect.any(Function), {
+        once: false,
+        passive: true,
+      });
     });
 
     it('should handle missing search toggle element gracefully', () => {
@@ -83,7 +86,7 @@ describe('Searcher Module', () => {
       vi.useRealTimers();
     });
 
-    it('should handle successful fetch requests', async () => {
+    it('should handle successful fetch requests', () => {
       expect(globalThis.fetch).toHaveBeenCalledTimes(0);
     });
     /*
@@ -102,7 +105,7 @@ describe('Searcher Module', () => {
       expect(mockAbort).toHaveBeenCalled();
       expect((globalThis as any).alert).toHaveBeenCalledWith('The request has timed out.');
     });
-*/
+    */
   });
 
   /*
@@ -121,7 +124,7 @@ describe('Searcher Module', () => {
       expect(toggle.getAttribute('aria-expanded')).toBe('false');
     });
   });
-*/
+  */
 
   describe('Search Functionality', () => {
     it('should trim search input correctly', () => {
@@ -139,6 +142,6 @@ describe('Searcher Module', () => {
 
       expect(debounce).toHaveBeenCalled();
     });
-*/
+    */
   });
 });

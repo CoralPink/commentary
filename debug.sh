@@ -13,13 +13,7 @@ cp pkg/wasm_book_bg.wasm ../../src
 popd
 
 pushd js
-if [ ! -e ./node_modules ]; then
-  bun install
-fi
-if [ ! -e ./highlight.js ]; then
-  bun create-highlight.bun.sh
-fi
-bun run build.js
+deno task bundle
 cp -r dist/. ../src/
 popd
 
@@ -37,10 +31,7 @@ if [ ! -e ./src/woff2 ]; then
 fi
 
 pushd scss
-if [ ! -e ./node_modules ]; then
-  bun install
-fi
-bun run build.js
+deno task build
 if [ ! -e dist/plyr.css ]; then
   ./download-plyr-css.sh
 fi

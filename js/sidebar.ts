@@ -56,7 +56,7 @@ const initContent = async (): Promise<void> => {
     return;
   }
 
-  const rootUrl = new URL(rootPath, window.location.href);
+  const rootUrl = new URL(rootPath, globalThis.location.href);
   const currentUrlPathName = getCurrentUrl().pathname;
 
   const sidebarScrollbox = document.getElementById(ID_SCROLLBOX) as HTMLElement;
@@ -106,7 +106,7 @@ const hideSidebar = (write = true): void => {
 };
 
 const clickHide = (ev: PointerEvent): void => {
-  if (window.innerWidth >= BREAKPOINT_UI_WIDE && ev.pointerType !== 'touch') {
+  if (globalThis.innerWidth >= BREAKPOINT_UI_WIDE && ev.pointerType !== 'touch') {
     return;
   }
 
@@ -154,7 +154,7 @@ export const initSidebar = (root: string): void => {
   rootPath = root;
 
   try {
-    if (window.innerWidth < BREAKPOINT_UI_WIDE) {
+    if (globalThis.innerWidth < BREAKPOINT_UI_WIDE) {
       hideSidebar();
     } else {
       readLocalStorage(SAVE_STORAGE_KEY) === SAVE_STATUS_HIDDEN ? hideSidebar(false) : showSidebar(false);
@@ -166,13 +166,19 @@ export const initSidebar = (root: string): void => {
 
   searchPop = document.getElementById('search-pop') as HTMLElement;
 
-  document.addEventListener('keyup', ev => toggleHandler(ev.key), { once: false, passive: true });
+  document.addEventListener('keyup', ev => toggleHandler(ev.key), {
+    once: false,
+    passive: true,
+  });
 
   for (const x of document.querySelectorAll(`[data-target="${TARGET_TOGGLE}"]`)) {
-    x.addEventListener('click', () => toggleSidebar(), { once: false, passive: true });
+    x.addEventListener('click', () => toggleSidebar(), {
+      once: false,
+      passive: true,
+    });
   }
 
-  window.matchMedia(`(min-width: ${SHOW_SIDEBAR_WIDTH}px)`).addEventListener(
+  globalThis.matchMedia(`(min-width: ${SHOW_SIDEBAR_WIDTH}px)`).addEventListener(
     'change',
     event => {
       if (event.matches) {

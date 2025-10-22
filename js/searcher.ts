@@ -52,7 +52,7 @@ const jumpUrl = (): void => {
   const url = new URL(aElement.href);
 
   const clickedURL = url.origin + url.pathname;
-  const currentURL = window.location.origin + window.location.pathname;
+  const currentURL = globalThis.location.origin + globalThis.location.pathname;
 
   if (clickedURL === currentURL) {
     hiddenSearch();
@@ -61,7 +61,7 @@ const jumpUrl = (): void => {
     doMarkFromUrl();
   }
 
-  window.location.href = url.href;
+  globalThis.location.href = url.href;
 };
 
 const updateFocus = (target: HTMLElement): void => {
@@ -109,7 +109,6 @@ const closedPopover = (ev: Event): void => {
 };
 
 const hiddenSearch = (): void => {
-
   for (const x of Array.from(document.querySelectorAll(`[data-target="${TARGET_SEARCH}"]`))) {
     x.setAttribute('aria-expanded', 'false');
   }
@@ -127,11 +126,23 @@ const showSearch = (): void => {
   for (const x of Array.from(document.querySelectorAll(`[data-target="${TARGET_SEARCH}"]`))) {
     x.setAttribute('aria-expanded', 'true');
   }
-  elmSearchBar.addEventListener('input', debounceSearchInput, { once: false, passive: true });
-  elmResults.addEventListener('keyup', popupFocus, { once: false, passive: true });
+  elmSearchBar.addEventListener('input', debounceSearchInput, {
+    once: false,
+    passive: true,
+  });
+  elmResults.addEventListener('keyup', popupFocus, {
+    once: false,
+    passive: true,
+  });
 
-  elmPop.addEventListener('click', searchMouseupHandler, { once: false, passive: true });
-  elmPop.addEventListener('toggle', closedPopover, { once: false, passive: true });
+  elmPop.addEventListener('click', searchMouseupHandler, {
+    once: false,
+    passive: true,
+  });
+  elmPop.addEventListener('toggle', closedPopover, {
+    once: false,
+    passive: true,
+  });
 
   elmPop.showPopover();
 
@@ -265,11 +276,15 @@ const initSearch = async (): Promise<void> => {
   showSearch();
 
   for (const x of target) {
-    x.addEventListener('click', () => {
-      if (!elmPop.checkVisibility()) {
-        showSearch();
-      }
-    }, { once: false, passive: true });
+    x.addEventListener(
+      'click',
+      () => {
+        if (!elmPop.checkVisibility()) {
+          showSearch();
+        }
+      },
+      { once: false, passive: true },
+    );
   }
 
   document.addEventListener(
@@ -310,5 +325,8 @@ export const startupSearch = (root: string): void => {
     x.addEventListener('click', initSearch, { once: true, passive: true });
   }
 
-  document.addEventListener('keyup', startSearchFromKey, { once: false, passive: true });
+  document.addEventListener('keyup', startSearchFromKey, {
+    once: false,
+    passive: true,
+  });
 };

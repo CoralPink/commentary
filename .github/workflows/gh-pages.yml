@@ -176,14 +176,6 @@ jobs:
           sparse-checkout: |
             js
 
-      - name: Cache dependencies
-        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
-        with:
-          path: |
-            ~/.bun/install/cache
-            js/node_modules
-          key: js-${{ runner.os }}-bun-${{ hashFiles('**/bun.lock') }}
-
       - name: Download wasm_pkg
         uses: actions/download-artifact@634f93cb2916e3fdff6788551b99b062d0335ce0 # v5
         with:
@@ -195,20 +187,16 @@ jobs:
           cp pkg/wasm_book.js js
           cp pkg/wasm_book.d.ts js
 
-      - name: Setup Bun
-        uses: oven-sh/setup-bun@735343b667d3e6f658f44d0eca948eb6282f2b76 # v2
+      - name: Setup Deno
+        uses: denoland/setup-deno@e95548e56dfa95d4e1a28d6f422fafe75c4c26fb # v2
         with:
-          bun-version-file: ".bun-version"
-
-      - name: Install
-        working-directory: js
-        run: |
-          bun install
+          deno-version-file: .tool-versions
+          cache: true
 
       - name: Run Vitest
         working-directory: js
         run: |
-          bun run test:ci
+          deno task test:ci
 
       - name: Upload coverage
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
@@ -229,14 +217,6 @@ jobs:
           sparse-checkout: |
             js
 
-      - name: Cache dependencies
-        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
-        with:
-          path: |
-            ~/.bun/install/cache
-            js/node_modules
-          key: js-${{ runner.os }}-bun-${{ hashFiles('**/bun.lock') }}
-
       - name: Download wasm_pkg
         uses: actions/download-artifact@634f93cb2916e3fdff6788551b99b062d0335ce0 # v5
         with:
@@ -248,21 +228,16 @@ jobs:
           cp pkg/wasm_book.js js
           cp pkg/wasm_book.d.ts js
 
-      - name: Setup Bun
-        uses: oven-sh/setup-bun@735343b667d3e6f658f44d0eca948eb6282f2b76 # v2
+      - name: Setup Deno
+        uses: denoland/setup-deno@e95548e56dfa95d4e1a28d6f422fafe75c4c26fb # v2
         with:
-          bun-version-file: ".bun-version"
-
-      - name: Install
-        working-directory: js
-        run: |
-          bun install
-          bun create-highlight.bun.sh
+          deno-version-file: .tool-versions
+          cache: true
 
       - name: Build
         working-directory: js
         run: |
-          bun run build.js
+          deno task bundle
 
       - name: Upload JS
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
@@ -283,16 +258,16 @@ jobs:
             js/package.json
             scss
 
-      - name: Setup Bun
-        uses: oven-sh/setup-bun@735343b667d3e6f658f44d0eca948eb6282f2b76 # v2
+      - name: Setup Deno
+        uses: denoland/setup-deno@e95548e56dfa95d4e1a28d6f422fafe75c4c26fb # v2
         with:
-          bun-version-file: ".bun-version"
+          deno-version-file: .tool-versions
+          cache: true
 
       - name: Build SCSS
         working-directory: scss
         run: |
-          bun install --production
-          bun run build.js
+          deno task build
 
       - name: Download Plyr Css
         working-directory: scss

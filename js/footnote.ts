@@ -7,7 +7,7 @@ const calcTop = (target: HTMLElement, pop: HTMLElement): number => {
   const top = rect.bottom + POTISION_GAP;
 
   // Flip above if overflowing viewport bottom
-  if (top + popHeight > window.innerHeight - POTISION_GAP) {
+  if (top + popHeight > globalThis.innerHeight - POTISION_GAP) {
     return rect.top - popHeight - POTISION_GAP;
   }
   return top;
@@ -78,7 +78,7 @@ const handleFootnoteClick = (target: EventTarget | null): void => {
   const pop = document.createElement('aside');
 
   pop.classList.add('ft-pop');
-  pop.style.top = `${calcTop(target, pop) + window.scrollY}px`;
+  pop.style.top = `${calcTop(target, pop) + globalThis.scrollY}px`;
   pop.setAttribute('role', 'tooltip');
   pop.setAttribute('id', popIdStr);
 
