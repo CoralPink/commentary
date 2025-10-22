@@ -215,9 +215,6 @@ article {
   letter-spacing: normal;
   line-height: 1.6;
   word-break: auto-phrase;
-
-  // NOTE: Addressing the issue of unnecessary space appearing
-  //       in the X-direction when using IntersectionObserver + Plyr
   overflow-x: clip;
 
   code {
@@ -247,11 +244,20 @@ article {
     }
   }
 
-  img,
-  .plyr {
+  img {
     display: flex;
     margin: 1rem auto;
     border-radius: 0.4rem;
+    max-width: 100%;
+    height: auto;
+  }
+
+  .plyr {
+    margin: 1rem auto;
+    border-radius: 0.4rem;
+  }
+
+  video {
     max-width: 100%;
     height: auto;
     contain: paint;
