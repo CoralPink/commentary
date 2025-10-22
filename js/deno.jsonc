@@ -1,0 +1,37 @@
+{
+  "importMap": "./import_map.json",
+  "tasks": {
+    "bundle": "rolldown -c",
+    "serve": "deno run --allow-net --allow-read --allow-sys=networkInterfaces jsr:@std/http/file-server ../",
+
+    "test": "vitest",
+    "test:ci": "vitest run --coverage"
+  },
+  "compilerOptions": {
+    "lib": ["deno.window", "esnext", "dom", "dom.iterable", "webworker"],
+    "module": "esnext",
+
+    "moduleResolution": "bundler",
+
+    "strict": true,
+    "noFallthroughCasesInSwitch": true,
+
+    // Stricter Typechecking Options
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
+
+    // Code cleanliness / Lint-like flags
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noPropertyAccessFromIndexSignature": true,
+
+    // Improved code predictability and consistency
+    "erasableSyntaxOnly": true,
+    "verbatimModuleSyntax": true
+  },
+  "lint": {
+    "exclude": ["dist/"]
+  },
+  "files": ["src/**/*.ts", "test/**/*.ts"],
+  "nodeModulesDir": "auto" // You will likely need it when using Vitest.
+}
