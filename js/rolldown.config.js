@@ -13,6 +13,15 @@ const makeConfig = input => ({
       maxWorkers: 4,
     }),
   ],
+  onLog: (level, log, _defaultHandler) => {
+    console.log(log.message);
+
+    // If you don't set it, the build seems to proceed without interruption even if warnings exist,
+    // but I don't know the correct way to stop it...
+    if (level === 'warn' || level === 'error') {
+      throw new Error();
+    }
+  },
 });
 
 export default defineConfig([

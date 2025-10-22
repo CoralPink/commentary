@@ -180,6 +180,9 @@ class Slider {
   private setupVideo(video: HTMLVideoElement): void {
     setPlyr(video);
 
+    // so it is copied from the data poster attributes. (...It's not pretty, but.)
+    video.poster = video.dataset['poster' as keyof DOMStringMap] || video.poster || '';
+
     video.addEventListener('ended', (): void => {
       this.scrollTo(this.index + 1);
     });
