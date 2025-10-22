@@ -1,6 +1,6 @@
 declare const self: ServiceWorkerGlobalScope;
 
-const CACHE_VERSION = 'v8.6.1';
+const CACHE_VERSION = 'v8.6.2';
 
 const CACHE_URL = '/commentary/';
 const FALLBACK_IMAGE = 'chrome-96x96.png';
@@ -162,9 +162,3 @@ self.addEventListener('fetch', (event: FetchEvent): void => {
     event.respondWith(preloadProc(request, event.preloadResponse));
   }
 });
-
-// NOTE: While this export may seem unusual,
-//       it apparently ensures that the module is treated as such under `tsconfig` settings.
-//
-//       (This resolves the `typescript` error messages appearing in my environment.)
-export {};
