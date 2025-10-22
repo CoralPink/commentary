@@ -1,3 +1,4 @@
+// deno-lint-ignore no-sloppy-imports
 import initWasm, { get_match_range } from './wasm_book.js';
 
 const TAG_MARK = 'mark';

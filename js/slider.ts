@@ -22,7 +22,7 @@ const SCROLL_INTO_VIEW_OPTIONS: ScrollIntoViewOptions = {
 type Direction = typeof ID_PREV | typeof ID_NEXT;
 type CompatibleMedia = HTMLVideoElement | HTMLImageElement;
 
-const extractName = (s: string): string => s.match(/\/([^\/?#]+?)(\.[^\/.#?]+)?(?:[?#]|$)/)?.[1] ?? '';
+const extractName = (s: string): string => s.match(/\/([^/?#]+?)(\.[^/.#?]+)?(?:[?#]|$)/)?.[1] ?? '';
 
 class Slider {
   private medias: CompatibleMedia[] = [];
@@ -39,7 +39,9 @@ class Slider {
     }
   };
 
-  private observer = new IntersectionObserver(this.handleIntersect, { threshold: 0.8 });
+  private observer = new IntersectionObserver(this.handleIntersect, {
+    threshold: 0.8,
+  });
 
   constructor(slider: HTMLDivElement) {
     const mediaContainer = slider.querySelector<HTMLDivElement>('.media');
@@ -94,8 +96,15 @@ class Slider {
 
     this.stopVideo(this.index);
 
-    this.indicatorSpans[next]!.classList.add(CLASS_ACTIVE);
-    this.indicatorSpans[this.index]!.classList.remove(CLASS_ACTIVE);
+    const nextSpan = this.indicatorSpans[next];
+    const currentSpan = this.indicatorSpans[this.index];
+
+    if (!nextSpan || !currentSpan) {
+      return;
+    }
+
+    nextSpan.classList.add(CLASS_ACTIVE);
+    currentSpan.classList.remove(CLASS_ACTIVE);
 
     this.index = next;
   }
@@ -108,7 +117,7 @@ class Slider {
 
       const thumbnail =
         media instanceof HTMLVideoElement
-          ? media.dataset.poster || media.poster || ''
+          ? media.dataset['poster' as keyof DOMStringMap] || media.poster || ''
           : (media as HTMLImageElement).src;
 
       button.style.backgroundImage = `url('${thumbnail}')`;
@@ -126,7 +135,10 @@ class Slider {
       this.indicatorSpans.push(button);
     }
 
-    this.indicatorSpans[0]!.classList.add(CLASS_ACTIVE);
+    if (!this.indicatorSpans[0]) {
+      throw new Error('createIndicators: Index 0 is invalid');
+    }
+    this.indicatorSpans[0].classList.add(CLASS_ACTIVE);
 
     const indicators = document.createElement('div');
 
@@ -140,7 +152,11 @@ class Slider {
     const len = this.medias.length;
     const idx = ((next % len) + len) % len; // Index values are looped.
 
-    this.medias[idx]!.scrollIntoView(SCROLL_INTO_VIEW_OPTIONS);
+    if (!this.medias[idx]) {
+      console.error(`scrollTo: The index ${idx} is invalid`);
+      return;
+    }
+    this.medias[idx].scrollIntoView(SCROLL_INTO_VIEW_OPTIONS);
   }
 
   private createArrow(dir: Direction): HTMLElement {
@@ -166,7 +182,7 @@ class Slider {
 
     // The exact size of the slider cannot be calculated without the poster image,
     // so it is copied from the data poster attributes. (...It's not pretty, but.)
-    video.poster = video.dataset.poster || video.poster || '';
+    video.poster = video.dataset['poster' as keyof DOMStringMap] || video.poster || '';
 
     video.addEventListener('ended', (): void => {
       this.scrollTo(this.index + 1);

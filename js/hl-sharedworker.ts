@@ -1,5 +1,3 @@
-/// <reference lib="webworker" />
-
 import hljs from './highlight.js';
 import { containsNerdFontIcon, extractLanguage } from './hl-language.ts';
 
