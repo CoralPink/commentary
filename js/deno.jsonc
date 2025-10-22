@@ -2,7 +2,7 @@
   "importMap": "./import_map.json",
   "tasks": {
     "bundle": "rolldown -c",
-    "serve": "deno run -A https://deno.land/std@0.224.0/http/file_server.ts ../",
+    "serve": "deno run --allow-net --allow-read --allow-sys=networkInterfaces jsr:@std/http/file-server ../",
 
     "test": "vitest",
     "test:ci": "vitest run --coverage"
