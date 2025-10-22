@@ -41,7 +41,7 @@ let rootPath: string;
 
 const prefersColor = matchMedia('(prefers-color-scheme: dark)');
 const isDarkThemeRequired = (): boolean => prefersColor.matches;
-const getFallbackColor = (): string => isDarkThemeRequired() ? DARK_FALLBACK_COLOR : LIGHT_FALLBACK_COLOR;
+const getFallbackColor = (): string => (isDarkThemeRequired() ? DARK_FALLBACK_COLOR : LIGHT_FALLBACK_COLOR);
 
 const loadStyle = async (style: string): Promise<void> => {
   try {
@@ -169,10 +169,11 @@ const initThemeSelector = async (): Promise<void> => {
 
 const changeEvent = (ev: MediaQueryListEvent): void => {
   const appearance = ev.matches ? KEY_DARK : KEY_LIGHT;
-  const theme = readLocalStorage(`${KEY_SAVE_STORAGE}${appearance}`) ?? (ev.matches ? PREFERRED_DARK_THEME : DEFAULT_THEME);
+  const theme =
+    readLocalStorage(`${KEY_SAVE_STORAGE}${appearance}`) ?? (ev.matches ? PREFERRED_DARK_THEME : DEFAULT_THEME);
 
   setTheme(theme as ThemeColorId);
-}
+};
 
 export const initThemeColor = (root: string): void => {
   rootPath = root;
@@ -181,7 +182,9 @@ export const initThemeColor = (root: string): void => {
 
   // If the user has already specified a theme, that theme will be applied;
   // if not, it will be applied based on system requirements.
-  const theme = readLocalStorage(`${KEY_SAVE_STORAGE}${appearance}`) ?? (isDarkThemeRequired() ? PREFERRED_DARK_THEME : DEFAULT_THEME);
+  const theme =
+    readLocalStorage(`${KEY_SAVE_STORAGE}${appearance}`) ??
+    (isDarkThemeRequired() ? PREFERRED_DARK_THEME : DEFAULT_THEME);
 
   document.querySelector('html')?.classList.add(theme);
   loadStyle(theme);

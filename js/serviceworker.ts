@@ -1,5 +1,3 @@
-/// <reference lib="webworker" />
-
 declare const self: ServiceWorkerGlobalScope;
 
 const CACHE_VERSION = 'v8.6.0';
@@ -169,4 +167,4 @@ self.addEventListener('fetch', (event: FetchEvent): void => {
 //       it apparently ensures that the module is treated as such under `tsconfig` settings.
 //
 //       (This resolves the `typescript` error messages appearing in my environment.)
-export { }
+export {};
