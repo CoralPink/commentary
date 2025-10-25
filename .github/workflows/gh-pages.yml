@@ -158,7 +158,7 @@ jobs:
             --enable-bulk-memory
 
       - name: Upload wasm_pkg
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v5
         with:
           name: wasm-book
           path: rs/wasm/pkg
@@ -177,7 +177,7 @@ jobs:
             js
 
       - name: Download wasm_pkg
-        uses: actions/download-artifact@634f93cb2916e3fdff6788551b99b062d0335ce0 # v5
+        uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6
         with:
           name: wasm-book
           path: pkg
@@ -199,7 +199,7 @@ jobs:
           deno task test:ci
 
       - name: Upload coverage
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v5
         with:
           name: vitest-report
           path: js/coverage
@@ -218,7 +218,7 @@ jobs:
             js
 
       - name: Download wasm_pkg
-        uses: actions/download-artifact@634f93cb2916e3fdff6788551b99b062d0335ce0 # v5
+        uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6
         with:
           name: wasm-book
           path: pkg
@@ -240,7 +240,7 @@ jobs:
           deno task bundle
 
       - name: Upload JS
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v5
         with:
           name: build-js
           path: js/dist
@@ -275,7 +275,7 @@ jobs:
           ./download-plyr-css.sh
 
       - name: Upload CSS
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v5
         with:
           name: css
           path: scss/dist
@@ -316,7 +316,7 @@ jobs:
           cp "Fira Code/FiraCode-VF.woff2" woff2
 
       - name: Upload font artifacts
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v5
         with:
           name: woff2
           path: fonts/woff2
@@ -385,7 +385,7 @@ jobs:
           rm -rf tmp-media
 
       - name: Download All Artifacts
-        uses: actions/download-artifact@634f93cb2916e3fdff6788551b99b062d0335ce0 # v5
+        uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6
         with:
           path: artifacts
 
