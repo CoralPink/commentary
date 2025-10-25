@@ -63,7 +63,7 @@ end)
 
 一目で分かるすっごいやつ...❗
 
-<div id="disney"></div>
+![yoda](img/yoda.webp)
 
 ~~~admonish info title=":h help_tags"
 ```txt
@@ -259,6 +259,8 @@ fzf-native は fzf の c 版です。これはアルゴリズムのみをカバ�
 [Telescope Setup and Configuration](https://github.com/nvim-telescope/telescope-fzf-native.nvim#installation)
 で方法が示されています。
 
+![C-3PO](img/C-3PO.webp)
+
 ## builtin
 
 これはもう`telescope.nvim`がオフィシャルに機能を一覧してくれているので、これだけ示します。
@@ -300,6 +302,8 @@ vim.keymap.set('n', '<leader>ff', builtin.find_files)
 もちろん、キーバインドは他のと被らないようにね😉
 ```
 
+![R2-D2_BB-8](img/R2-D2_BB-8.webp)
+
 ## themes
 
 ...ってことで、ようやく`themes`に辿り着きました☺️
@@ -324,14 +328,22 @@ We have some built in themes but are looking for more cool options.
 
 これはもうイメージで見たほうが早いと思うので、`help_tags`をそれぞれの`themes`で呼んでみます。
 
-|Themes|Image|
-|:---:|:---:|
-|(not param)|![telescope-theme-none](img/telescope-theme-none.webp)|
-|get_dropdown|![telescope-theme-dropdown](img/telescope-theme-dropdown.webp)|
-|get_cursor|![telescope-theme-cursor](img/telescope-theme-cursor.webp)|
-|get_ivy|![telescope-theme-ivy](img/telescope-help_tags.webp)|
+<div class="slider">
+  <div class="media">
+    ![telescope-theme-none](img/telescope-theme-none.webp)
+    ![telescope-theme-dropdown](img/telescope-theme-dropdown.webp)
+    ![telescope-theme-cursor](img/telescope-theme-cursor.webp)
+    ![telescope-theme-ivy](img/telescope-help_tags.webp)
+  </div>
+</div>
 
-もう言葉なんて入りませんね❗
+|1|2|3|4|
+|:---:|:---:|:---:|:---:|
+|(none)|get_dropdown|get_cursor|get_ivy|
+
+もう言葉なんて要りませんね❗
+
+![chewbacca](img/chewbacca.webp)
 
 ## Recipes
 
@@ -377,16 +389,10 @@ On jupiter and mars
 さぁ〜て、この次も❗サービス、サービスぅ💕
 ```
 
-<script>
+<script type="module">
 document.addEventListener('DOMContentLoaded', async () => {
   try {
-    const module = await import(`${document.getElementById('bookjs').dataset.pathtoroot}replace-dom.js`);
-    module.replaceId([
-      { id: 'disney',
-        src: { light:'img/yoda.webp', dark: 'img/avengers.webp'},
-        alt: 'super star!!',
-      },
-    ]);
-  } catch (e) { console.error(`Error: ${e}`); }
+    await import(`${document.getElementById('bookjs').dataset.pathtoroot}slider.js`);
+  } catch (e) { console.error(e); }
 });
 </script>

@@ -242,6 +242,8 @@ Happy to be that way
 
 このサイトも、ようやく Endgame なんで❗
 
+![avengers](img/avengers.webp)
+
 ...理由になってねぇな🙄
 
 ```admonish warning title=""

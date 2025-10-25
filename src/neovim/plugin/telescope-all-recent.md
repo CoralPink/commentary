@@ -122,6 +122,8 @@ sudo dnf install sqlite libsqlite3x-devel
 "2007" っていう文字がちょっと怖いけど😣
 ~~~
 
+![stormtrooper](img/stormtrooper.webp)
+
 ## Installation
 
 ここめっちゃ大事😉
@@ -211,6 +213,8 @@ after = string or list,      -- Specifies plugins to load before this plugin.
 
 これを使うことで、上にあった「必ず`telescope`の後にロードしてください。」を`packer`のコード上で表現できます。
 
+![galactic_empire](img/galactic_empire.webp)
+
 ## Check It Out
 
 `telescope-all-recent`のインストールが完了すれば、最近開いた項目が上に来ているはずです。
@@ -222,7 +226,19 @@ after = string or list,      -- Specifies plugins to load before this plugin.
 
 このスクリーンショットで伝わるのか少し不安ですが、間違いなく最近開いた項目が上に来てます❗
 
-やったね😆
+やったね😆{{footnote:
+2025年の日本橋で Star Wars のねぶたパレードをやるはずだったのに雨で中止するヨーダ...😞
+観に行くつもりだったが暇になってしまったので、代わりに 2024年に撮ったライブラリからいくつかダース。
+}}
+
+<div class="slider">
+  <div class="media">
+    ![STAR WARS](img/starwars.webp)
+    ![PEACE!](img/peace.webp)
+    ![George Lucas](img/lucas.webp)
+    ![May the 4th be with you](img/may_the_4th_be_with_you.webp)
+  </div>
+</div>
 
 ## Wrap Up
 
@@ -230,9 +246,7 @@ after = string or list,      -- Specifies plugins to load before this plugin.
 
 まあ当然、すんなり動くように作ってくれている @prochriさんがすごいんですけどね❗
 
-最後にもう一度、`telesope.nvim`の紹介文を引用して幕引きです😌{{footnote:
-15.10 節はサイトのカラーテーマを変えると、昼と夜の風景も連動して切り替わるっていう "遊び" をやってました。
-}}
+最後にもう一度、`telesope.nvim`の紹介文を引用して幕引きです😌
 
 ```admonish success title="Assemble"
 Gaze deeply into unknown regions using the power of the moon.
@@ -240,7 +254,6 @@ Gaze deeply into unknown regions using the power of the moon.
 月の力を借りて、未知の領域を深く覗き込む。
 
 <div id="mountain"></div>
-```
 
 <div style="color: #999999; font-size: 90%; text-align: center;" >
 <div style="margin-top: 8rem">
@@ -267,7 +280,17 @@ Gaze deeply into unknown regions using the power of the moon.
 
 まっすぐ見つめるしかないんです
 </div>
-<div style="margin-top: 5rem; margin-bottom: 8rem">
+</div>
+
+<div style="margin-top: 4rem"></div>
+```
+
+<div style="margin-top: 4rem"></div>
+
+![darth_vader](img/darth_vader.webp)
+
+<div style="color: #999999; font-size: 90%; text-align: center;" >
+<div style="margin-top: 4rem; margin-bottom: 4rem">
 We should have looked into each other more closely...
 
 To my only father.
@@ -284,6 +307,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         alt: 'mt.fuji',
       },
     ]);
-  } catch (e) { console.error(`Error: ${e}`); }
+  } catch (e) { console.error(e); }
+
+  try {
+    await import(`${document.getElementById('bookjs').dataset.pathtoroot}slider.js`);
+  } catch (e) { console.error(e); }
 });
 </script>
