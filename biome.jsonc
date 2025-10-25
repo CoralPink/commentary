@@ -1,7 +1,8 @@
 {
-  "$schema": "https://biomejs.dev/schemas/2.2.6/schema.json",
+  "$schema": "https://biomejs.dev/schemas/2.3.0/schema.json",
   "files": {
-    "ignoreUnknown": false
+    "ignoreUnknown": false,
+    "includes": ["**", "!!**/dist"]
   },
   "vcs": {
     "enabled": true,
@@ -11,6 +12,7 @@
   "formatter": {
     "formatWithErrors": true,
     "indentStyle": "space",
+    "lineEnding": "auto",
     "lineWidth": 120
   },
   "javascript": {
