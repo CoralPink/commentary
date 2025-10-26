@@ -61,8 +61,31 @@ end)
 
 ![telescope-help_tags](img/telescope-help_tags.webp)
 
-一目で分かるすっごいやつ...❗
+一目で分かるすっごいやつ...❗{{footnote:
+Star Warsは、[George Lucas](https://en.wikipedia.org/wiki/George_Lucas)によって創作された
+アメリカの壮大なスペースオペラ・メディア・フランチャイズであり、
+[1977年の同名映画](https://en.wikipedia.org/wiki/Star_Wars_(film))を起点として、
+瞬く間に世界的なポップカルチャー現象となった。
 
+Star Wars シリーズは、"a long time ago in a galaxy far, far away" という舞台設定のもと、
+複数の架空の時代にわたって展開されるキャラクターたちの冒険を描いている。
+そこでは人間と多種多様な (多くは人型の) エイリアン種族が共存しており、
+個人の補助や戦闘のために設計された[Droid](https://en.wikipedia.org/wiki/Droid_(Star_Wars))たちも日常的に存在する。
+
+Star Wars で描かれる宇宙は現実の宇宙と概ね似ているが、物理法則がより緩やかで、より想像力豊かな物語が可能となっている。
+その最たる例が "フォース ([The Force](https://en.wikipedia.org/wiki/The_Force))" と呼ばれる神秘的な力である。
+これは初作の中で "あらゆる生命によって生み出され、銀河を結びつけるエネルギー" と説明されており、
+一種の汎神論的な神のようにも描かれている。
+
+フォースに強く感応する者は、訓練と瞑想によって超常的な力 (念動力、予知、テレパシー、エネルギー操作など) を使うことができる。
+"フォースによって不可能はない" とも信じられており、この力を操る者たちには、相反する二つの騎士団が存在する。
+
+一方は[Jedi](https://en.wikipedia.org/wiki/Jedi)。
+銀河共和国の平和を守る調停者として "Light Side (光明面)" のフォースを用い、執着を離れ、調和を重んじる。
+
+[Wikipedia](https://en.wikipedia.org/wiki/Star_Wars)より
+([次ページへ続く](telescope-all-recent.html#to-ft-3))
+}}
 ![yoda](img/yoda.webp)
 
 ~~~admonish info title=":h help_tags"
