@@ -34,7 +34,21 @@ Doom Emacs は既にそのようなものをもたらしています。VSCodeも
 それは...ねえ❓気になっちゃうよねー☺️
 
 ```admonish fail title=""
-Baby you can drive my car
+Baby you can drive my car{{footnote:
+Drive My Car (by [The Beatles](https://en.wikipedia.org/wiki/The_Beatles)):
+「Drive My Car」は1965年10月13日に録音された。この日は The Beatles にとって、
+初めて深夜を越えて行われたレコーディング・セッションでもあった。
+McCartney は Harrison と密に協力しながら基本のリズム・トラックを作り上げた。
+二人は Harrison の提案に基づき、ベースと低音ギターで似たようなリフを奏で合う形で演奏していたという。
+
+この曲の物語は、ある女性が男性の語り手に向かって "自分はこれから有名な映画スターになる" と語り、
+彼に "私の運転手にならない?" と持ちかける。
+彼女はさらにこう付け加える―― "もしかしたら、あなたのことを愛するかもしれないわ。"
+男性が "自分にも見込みはある" と反論すると、彼女は言い返す。
+"ピーナッツみたいな稼ぎで満足してるのもいいけど、私ならもっといい思いをさせてあげられるわ。"
+やがて彼がその提案を受け入れると、彼女はこう明かす――
+"実は車なんて持ってないの。でも運転手は見つかった、それで十分よ。"
+}}
 
 Yes I’m gonna be a star
 
@@ -44,14 +58,15 @@ Yes I’m gonna be a star
 ```
 
 ```admonish fail title=""
-Baby you can drive my car
+Baby you can drive my car{{footnote:
+"Drive my car" という表現は、古いブルースで "セックスの隠喩" として使われていた言い回しである。
+この比喩は、自動車のオートマチック変速機が普及する以前の時代に広く使われていた。
+[Wikipedia](https://en.wikipedia.org/wiki/Drive_My_Car_(song))より
+}}
 
 And maybe I love you
 
-ねえ わたしと ぽかぽか{{footnote:
-[Drive My Car](https://en.wikipedia.org/wiki/Drive_My_Car_(song)):
-タイトルの「Drive My Car」は「性交」の意を持つ古いブルースの隠語で、McCartney も古いブルースの隠語として使用したことを明かしている。
-}}しようよ
+ねえ わたしと ぽかぽかしようよ
 
 そしたら きみに恋しちゃうかも
 ```
@@ -103,8 +118,8 @@ SQLite.lua はプラグイン開発の新しい可能性を提供し、主に ne
 Ensure you have sqlite3 installed locally.
 (if you are on mac it might be installed already)
 
-ローカルにsqlite3がインストールされていることを確認します。
-(macの場合、すでにインストールされている可能性があります)
+ローカルに sqlite3 がインストールされていることを確認します。
+(mac の場合、すでにインストールされている可能性があります)
 ```
 
 `Windows`や`Arch`・`Ubuntu`についてもオフィシャルに案内されているので大丈夫でしょう😉
@@ -118,11 +133,28 @@ sudo dnf install sqlite libsqlite3x-devel
 ```
 
 ![install-sqlite3](img/sqlite3.webp)
-
-"2007" っていう文字がちょっと怖いけど😣
 ~~~
 
-![stormtrooper](img/stormtrooper.webp)
+ちょっと怖いけど😣{{footnote:
+([前ページから続く](telescope-config.html#to-ft-1))
+もう一方は[Sith](https://en.wikipedia.org/wiki/Sith)。
+怒り・恐怖・攻撃性を糧に "Dark side (暗黒面)" を操る者たちである。
+Jedi が多数存在するのに対し、Sith は常に "師匠と弟子の二人" に限定されるのが原則とされる。
+
+この物語は、共和国と帝国のあいだで繰り返される銀河規模の戦争を背景としている。
+Jedi や Sith は [ライトセーバー](https://en.wikipedia.org/wiki/Lightsaber) と呼ばれる武器を使いこなす。
+これはプラズマ状の刃を持ち、ほとんどあらゆる物質を切断し、エネルギー弾を弾くことができる。
+それ以外の人々や兵士、無法者たちは、プラズマを動力とするブラスター銃を使う。
+
+銀河の外縁部では、ハット・カルテルなどの犯罪組織が支配的であり、賞金稼ぎはギャングにも政府にも雇われる。
+密輸や奴隷取引といった違法行為も盛んに行われている。
+
+Star Wars シリーズは典型的な[スペースオペラ](https://en.wikipedia.org/wiki/Space_opera)として知られるが、
+SFとファンタジーを融合した世界観によって、さまざまなジャンルの物語を語ることができる "普遍的な作品" となっている。
+[Wikipedia](https://en.wikipedia.org/wiki/Star_Wars)より
+}}
+
+![galactic_empire](img/galactic_empire.webp)
 
 ## Installation
 
@@ -175,11 +207,12 @@ lua 関数で telescope のキーバインドを作成する場合は、
 
 ![install-sqlite3](img/sqlite-nvim-ng.webp)
 
-当たり前のことを言うんですけど、たった一回`Error`を出しただけで、これを一般的に「失敗」とは言いません。
-{{footnote:ちょっともやもやするものですから❗🤣}}絶対に。
+当たり前のことを言うんですけど、たった一回`Error`を出しただけで、これを一般的に「失敗」とは言いません
+{{footnote:ちょっともやもやするものですから❗🤣}}。 絶対に。
 ```
 
 ### packer.use()
+
 少しだけいつもと違って見えるところがあるので、ちょっとだけ`packer`のおはなしになります。
 
 #### config
@@ -213,7 +246,7 @@ after = string or list,      -- Specifies plugins to load before this plugin.
 
 これを使うことで、上にあった「必ず`telescope`の後にロードしてください。」を`packer`のコード上で表現できます。
 
-![galactic_empire](img/galactic_empire.webp)
+![stormtrooper](img/stormtrooper.webp)
 
 ## Check It Out
 
@@ -226,10 +259,7 @@ after = string or list,      -- Specifies plugins to load before this plugin.
 
 このスクリーンショットで伝わるのか少し不安ですが、間違いなく最近開いた項目が上に来てます❗
 
-やったね😆{{footnote:
-2025年の日本橋で Star Wars のねぶたパレードをやるはずだったのに雨で中止するヨーダ...😞
-観に行くつもりだったが暇になってしまったので、代わりに 2024年に撮ったライブラリからいくつかダース。
-}}
+やったね😆
 
 <div class="slider">
   <div class="media">
