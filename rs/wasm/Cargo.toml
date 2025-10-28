@@ -24,7 +24,7 @@ strip = "symbols"
 arrayvec = "=0.7.6"
 getset = "=0.1.6"
 html-escape = "=0.2.13"
-js-sys = "=0.3.81"
+js-sys = "=0.3.82"
 macros = { path = "macros" }
 serde = { version = "=1.0.228", features = ["derive"] }
 serde-wasm-bindgen = "=0.6.5"
