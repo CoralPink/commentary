@@ -10,7 +10,16 @@ const makeConfig = input => ({
   plugins: [
     denoPlugin(),
     terser({
-      maxWorkers: 4,
+      compress: {
+        passes: 3,
+        pure_getters: true,
+        ecma: 2024,
+        module: true,
+        toplevel: true,
+      },
+      format: {
+        comments: false,
+      },
     }),
   ],
   onLog: (level, log, _defaultHandler) => {
