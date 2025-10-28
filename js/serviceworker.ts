@@ -1,6 +1,6 @@
 declare const self: ServiceWorkerGlobalScope;
 
-const CACHE_VERSION = 'v8.6.2';
+const CACHE_VERSION = 'v8.6.3';
 
 const CACHE_URL = '/commentary/';
 const FALLBACK_IMAGE = 'chrome-96x96.png';
