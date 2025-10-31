@@ -30,6 +30,7 @@ body {
   background-color: var(--bg);
 
   font-family: var.$base-font;
+  font-variant-emoji: unicode;
 
   scrollbar-color: var(--scrollbar) var(--bg);
 
