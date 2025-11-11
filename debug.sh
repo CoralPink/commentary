@@ -40,8 +40,14 @@ popd
 
 mdbook build --dest-dir commentary
 
+if [ ! -e scripts/node_modules ]; then
+  pushd scripts
+  npm install
+  popd
+fi
+
 pushd commentary
-../scripts/generate-pagelist.sh
+node ../scripts/generate-pagelist.js
 node ../scripts/extract-json.js
 brotli searchindex.json
 gzip --best --keep --no-name searchindex.json
