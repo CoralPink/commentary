@@ -1,8 +1,14 @@
 import { readFileSync, writeFileSync } from 'node:fs';
+import process from 'node:process';
+
+const CLR_RESET = '\x1b[0m';
+const CLR_BC = '\x1b[1;35m';
+const CLR_BG = '\x1b[1;32m';
 
 const FILE_INDEX = 'searchindex';
 
 (() => {
+  const start = performance.now();
   const sandbox = {};
 
   const extract = () => {
@@ -30,9 +36,13 @@ const FILE_INDEX = 'searchindex';
 
   try {
     writeFileSync(jsonFile, JSON.stringify(sandbox.result));
-    console.info('    \x1b[1;32mFinished\x1b[0m convert search index \x1b[33m🧶Did it!!\x1b[0m');
   } catch (error) {
     console.error(`Error writing ${jsonFile}`, error.message);
     process.exit(1);
   }
+
+  const time = Math.floor(performance.now() - start) / 1000;
+  console.info(
+    `\n${CLR_BG}✔ ${CLR_BC}extract-json${CLR_RESET} Finished in ${CLR_BG}${time} s${CLR_RESET}`,
+  );
 })();

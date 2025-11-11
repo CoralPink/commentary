@@ -425,10 +425,15 @@ jobs:
         run: |
           mdbook build
 
+      - name: Setup Scripts
+        working-directory: scripts
+        run: |
+          npm install
+
       - name: Generate Page List
         working-directory: book
         run: |
-          ../scripts/generate-pagelist.sh
+          node ../scripts/generate-pagelist.js
 
       - name: Generate Search Index
         working-directory: book
