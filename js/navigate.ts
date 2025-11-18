@@ -1,5 +1,6 @@
 import { initCodeBlock } from './codeblock.ts';
 import { ROOT_PATH } from './constants.ts';
+import { fetchText } from './fetch.ts';
 import { initFootnote } from './footnote.ts';
 import { attributeExternalLinks } from './link.ts';
 import { doMarkFromUrl } from './mark.ts';
@@ -110,7 +111,15 @@ const setBaseUrl = (elm: Element, url: URL): void => {
 };
 
 export const navigateTo = async (url: URL, pushHistory = true): Promise<void> => {
-  const htmlText = await fetch(url.pathname).then(r => r.text());
+  let htmlText: string;
+
+  try {
+    htmlText = await fetchText(url.pathname);
+  } catch {
+    // If fetch fails, perform a full reload
+    location.href = url.href;
+    return;
+  }
 
   const parser = new DOMParser();
   const parsed = parser.parseFromString(htmlText, 'text/html');

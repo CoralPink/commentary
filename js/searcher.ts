@@ -1,5 +1,6 @@
 import { ROOT_PATH } from './constants.ts';
 import { loadStyleSheet } from './css-loader.ts';
+import { fetchRequest } from './fetch.ts';
 import { doMarkFromUrl, unmarking } from './mark.ts';
 import { navigateTo } from './navigate.ts';
 import { debounce } from './timing.ts';
@@ -18,7 +19,6 @@ const STYLE_SEARCH = 'css/search.css';
 
 export const TARGET_SEARCH = 'search';
 
-const FETCH_TIMEOUT = 10000;
 const DEBOUNCE_DELAY_MS = 80;
 
 let elmPop: HTMLElement;
@@ -147,33 +147,6 @@ const showSearch = (): void => {
   elmPop.showPopover();
 
   elmSearchBar.select();
-};
-
-const fetchRequest = async (url: string): Promise<Response> => {
-  const controller = new AbortController();
-
-  const timeoutId = setTimeout(() => {
-    controller.abort();
-    alert('The request has timed out.');
-  }, FETCH_TIMEOUT);
-
-  try {
-    const response = await fetch(url, {
-      signal: controller.signal,
-    });
-    return response;
-  } catch (e) {
-    if (e instanceof Error) {
-      if (e.name === 'AbortError') {
-        console.error('Request timed out:', e.message);
-      } else {
-        console.error('Network error:', e.message);
-      }
-    }
-    throw e;
-  } finally {
-    clearTimeout(timeoutId);
-  }
 };
 
 /*

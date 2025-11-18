@@ -1,4 +1,5 @@
 import { BREAKPOINT_UI_WIDE, ROOT_PATH } from './constants.ts';
+import { fetchText} from './fetch.ts';
 import { navigateTo } from './navigate.ts';
 import { readLocalStorage, writeLocalStorage } from './storage.ts';
 
@@ -45,15 +46,6 @@ export const updateActive = (url: URL) => {
   currentSelect = target;
 };
 
-const loadPageList = async (): Promise<string> => {
-  const response = await fetch(PAGE_LIST);
-
-  if (!response.ok) {
-    throw new Error(`Failed to fetch ${PAGE_LIST}: HTTP ${response.status}`);
-  }
-  return await response.text();
-};
-
 const initLink = (): void => {
   sidebarScrollbox = document.getElementById(ID_SCROLLBOX) as HTMLElement;
 
@@ -85,7 +77,7 @@ const initContent = async (): Promise<void> => {
   sidebar.setAttribute('aria-busy', 'true');
 
   try {
-    sidebar.insertAdjacentHTML('afterbegin', await loadPageList());
+    sidebar.insertAdjacentHTML('afterbegin', await fetchText(PAGE_LIST));
   } catch (err: unknown) {
     if (err instanceof Error) {
       console.error(`Failed to load pagelist - ${err.message}`);
