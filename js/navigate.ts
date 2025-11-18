@@ -140,9 +140,10 @@ export const navigateTo = async (url: URL, pushHistory = true): Promise<void> =>
     article.scrollIntoView({ behavior: 'instant' });
   });
 
+  onNavigate?.(url);
+
   if (pushHistory) {
     history.pushState({ path: url.pathname, title: newTitle.textContent }, '', url.href);
-    onNavigate?.(url);
 
     // deno-lint-ignore no-window
     window.dataLayer.push({
