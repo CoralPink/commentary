@@ -198,8 +198,6 @@ export const initTableOfContents = (): void => {
     return;
   }
 
-  //initialize();
-
   elmToggle.addEventListener(
     'click',
     () => {

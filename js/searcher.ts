@@ -56,8 +56,6 @@ const jumpUrl = (): void => {
   const currentURL = globalThis.location.origin + globalThis.location.pathname;
 
   if (clickedURL === currentURL) {
-    hiddenSearch();
-
     unmarking();
     doMarkFromUrl();
   }

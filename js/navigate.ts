@@ -1,10 +1,9 @@
 import { initCodeBlock } from './codeblock.ts';
+import { ROOT_PATH } from './constants.ts';
 import { initFootnote } from './footnote.ts';
 import { attributeExternalLinks } from './link.ts';
 import { doMarkFromUrl } from './mark.ts';
 import { registryToc } from './table-of-contents.ts';
-
-const MODULE_PATH_DIRECTORY = `${self.origin}/commentary/`;
 
 const MODULE_REQUIREMENTS: { selector: string; module: string }[] = [
   { selector: '.slider', module: 'slider.js' },
@@ -65,7 +64,7 @@ const loadModules = async (): Promise<void> => {
   const require: Promise<void>[] = [];
 
   for (const req of MODULE_REQUIREMENTS) {
-    const url = `${MODULE_PATH_DIRECTORY}${req.module}`;
+    const url = `${ROOT_PATH}${req.module}`;
 
     if (document.querySelector(req.selector)) {
       require.push(ensureModuleLoaded(url));
