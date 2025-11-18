@@ -105,7 +105,7 @@ const initContent = async (): Promise<void> => {
       const path = ev.state?.path ?? location.pathname;
       navigateTo(new URL(path, location.origin), false);
     },
-    { once: true, passive: true },
+    { once: false, passive: true },
   );
 
   sidebar.setAttribute('aria-busy', 'false');
