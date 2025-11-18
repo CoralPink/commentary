@@ -94,6 +94,8 @@ const initContent = async (): Promise<void> => {
     }
     sidebar.insertAdjacentHTML('afterbegin', '<p>Error loading sidebar content.</p>');
     return;
+  } finally {
+    sidebar.setAttribute('aria-busy', 'false');
   }
 
   initLink();
@@ -107,8 +109,6 @@ const initContent = async (): Promise<void> => {
     },
     { once: false, passive: true },
   );
-
-  sidebar.setAttribute('aria-busy', 'false');
 };
 
 const hideSidebar = (write = true): void => {
