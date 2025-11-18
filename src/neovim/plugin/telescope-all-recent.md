@@ -282,8 +282,14 @@ after = string or list,      -- Specifies plugins to load before this plugin.
 Gaze deeply into unknown regions using the power of the moon.
 
 月の力を借りて、未知の領域を深く覗き込む。
+```
 
-<div class="replace-element" id="mountain"></div>
+<div class="slider">
+  <div class="media">
+    ![mount-day](img/mount-day.webp)
+    ![mount-night](img/mount-night.webp)
+  </div>
+</div>
 
 <div style="color: #999999; font-size: 90%; text-align: center;" >
 <div style="margin-top: 8rem">
@@ -313,9 +319,6 @@ Gaze deeply into unknown regions using the power of the moon.
 </div>
 
 <div style="margin-top: 4rem"></div>
-```
-
-<div style="margin-top: 4rem"></div>
 
 ![darth_vader](img/darth_vader.webp)
 
@@ -326,14 +329,3 @@ We should have looked into each other more closely...
 To my only father.
 </div>
 </div>
-
-<script type="module">
-document.getElementById('article').addEventListener('replaceEvent', async (ev) => {
-  ev.detail.func?.([
-      { id: 'mountain',
-        src: { light:'img/mount-day.webp', dark: 'img/mount-night.webp'},
-        alt: 'mt.fuji',
-      },
-  ]);
-});
-</script>

@@ -62,7 +62,12 @@ vim.cmd.colorscheme('blue')
 ```
 ~~~
 
-<div class="replace-element" id="mt-fuji"></div>
+<div class="slider">
+  <div class="media">
+    ![kawaguchiko-mt-fuji-day](img/kawaguchiko-mt-fuji-day.webp)
+    ![kawaguchiko-mt-fuji-night](img/kawaguchiko-mt-fuji-night.webp)
+  </div>
+</div>
 
 ## Try
 
@@ -164,14 +169,3 @@ VIM.CMD WILL RETURN
 vim.cmd は帰ってくる
 </div>
 ```
-
-<script type="module">
-document.getElementById('article').addEventListener('replaceEvent', async (ev) => {
-  ev.detail.func?.([
-    { id: 'mt-fuji',
-      src: { light:'img/kawaguchiko-mt-fuji-day.webp', dark: 'img/kawaguchiko-mt-fuji-night.webp'},
-      alt: 'kawaguchiko-mt-fuji',
-    },
-  ]);
-});
-</script>
