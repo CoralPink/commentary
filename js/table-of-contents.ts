@@ -16,7 +16,7 @@ const SAVE_STATUS_VISIBLE = 'visible';
 const SAVE_STATUS_HIDDEN = 'hidden';
 
 const tocMap: Map<HTMLElement, HTMLAnchorElement> = new Map();
-let observer: IntersectionObserver;
+let observer: IntersectionObserver | null = null;
 
 let elmToggle: HTMLButtonElement;
 let elmToc: HTMLDivElement;
@@ -121,7 +121,11 @@ const getHeaders = (): Array<HTMLAnchorElement> => {
   return Array.from(article.querySelectorAll('a.header'));
 };
 
-const initialize = (): void => {
+export const registryToc = (): void => {
+  if (observer) {
+    observer.disconnect();
+  }
+
   observer = new IntersectionObserver(
     (entries: IntersectionObserverEntry[]) => {
       for (const x of reverseItr(entries)) {
@@ -132,33 +136,37 @@ const initialize = (): void => {
     { threshold: 1.0 },
   );
 
+  const nav = document.getElementById('pagetoc');
+
+  if (!nav) {
+    console.error('nav not found.');
+    return;
+  }
+
+  nav.innerHTML = '';
+
   const fragment = document.createDocumentFragment();
-
-  const nav: HTMLElement = document.createElement('nav');
-  nav.setAttribute('id', 'pagetoc');
-  nav.setAttribute('role', 'navigation');
-  nav.setAttribute('aria-label', 'Table of Contents');
-
-  fragment.appendChild(nav);
 
   for (const el of getHeaders()) {
     observer.observe(el);
 
     const link: HTMLAnchorElement = document.createElement('a');
-
-    link.appendChild(document.createTextNode(el.text));
+    link.textContent = el.text;
     link.href = el.href;
     link.classList.add(el.parentElement?.tagName ?? '');
 
-    link.addEventListener('click', ev => jumpHeader(ev, el), { once: false, passive: false });
+    link.addEventListener('click', ev => jumpHeader(ev, el), {
+      once: false,
+      passive: false,
+    });
 
-    nav.appendChild(link);
     tocMap.set(el, link);
+    fragment.appendChild(link);
   }
 
   tocReset();
 
-  elmToc.appendChild(fragment);
+  nav.appendChild(fragment);
 };
 
 const tocVisible = (): void => {
@@ -181,7 +189,17 @@ const tocHide = (): void => {
   writeLocalStorage(SAVE_STORAGE_KEY, SAVE_STATUS_HIDDEN);
 };
 
-const initToggleButton = (): void => {
+export const initTableOfContents = (): void => {
+  elmToc = document.getElementById('table-of-contents') as HTMLDivElement;
+  elmToggle = document.getElementById('toc-toggle') as HTMLButtonElement;
+
+  if (!elmToc || !elmToggle) {
+    console.error('Table of contents not found');
+    return;
+  }
+
+  //initialize();
+
   elmToggle.addEventListener(
     'click',
     () => {
@@ -189,19 +207,6 @@ const initToggleButton = (): void => {
     },
     { once: false, passive: true },
   );
-};
-
-export const initTableOfContents = (): void => {
-  elmToggle = document.getElementById('toc-toggle') as HTMLButtonElement;
-  elmToc = document.getElementById('table-of-contents') as HTMLDivElement;
-
-  if (!elmToggle || !elmToc) {
-    console.error('Table of contents not found');
-    return;
-  }
-
-  initialize();
-  initToggleButton();
 
   globalThis
     .matchMedia(`(min-width: ${BREAKPOINT_UI_WIDE}px)`)

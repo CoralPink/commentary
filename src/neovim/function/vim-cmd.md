@@ -62,7 +62,7 @@ vim.cmd.colorscheme('blue')
 ```
 ~~~
 
-<div id="mt-fuji"></div>
+<div class="replace-element" id="mt-fuji"></div>
 
 ## Try
 
@@ -166,21 +166,12 @@ vim.cmd は帰ってくる
 ```
 
 <script type="module">
-document.addEventListener('DOMContentLoaded', async () => {
-  const rootPath = document.getElementById('bookjs').dataset.pathtoroot;
-
-  try {
-    const module = await import(`${rootPath}replace-dom.js`);
-    module.replaceId([
-      { id: 'mt-fuji',
-        src: { light:'img/kawaguchiko-mt-fuji-day.webp', dark: 'img/kawaguchiko-mt-fuji-night.webp'},
-        alt: 'kawaguchiko-mt-fuji',
-      },
-    ]);
-  } catch (e) { console.error(e); }
-
-  try {
-    await import(`${rootPath}slider.js`);
-  } catch (e) { console.error(e); }
+document.getElementById('article').addEventListener('replaceEvent', async (ev) => {
+  ev.detail.func?.([
+    { id: 'mt-fuji',
+      src: { light:'img/kawaguchiko-mt-fuji-day.webp', dark: 'img/kawaguchiko-mt-fuji-night.webp'},
+      alt: 'kawaguchiko-mt-fuji',
+    },
+  ]);
 });
 </script>

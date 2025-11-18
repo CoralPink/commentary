@@ -240,11 +240,3 @@ See <lua/fidget/spinners.lua> of this plugin's source code to see how each anima
 
 八 (や) っぱり踊りは止められぬ
 ```
-
-<script type="module">
-document.addEventListener('DOMContentLoaded', async () => {
-  try {
-    await import(`${document.getElementById('bookjs').dataset.pathtoroot}slider.js`);
-  } catch (e) { console.error(e); }
-});
-</script>

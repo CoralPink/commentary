@@ -1,41 +1,26 @@
-import { initCodeBlock } from './codeblock.ts';
-import { initFootnote } from './footnote.ts';
-import { attributeExternalLinks } from './link.ts';
-import { doMarkFromUrl } from './mark.ts';
-import { initMedia, initVideo } from './media.ts';
-import { startupSearch } from './searcher.ts';
-import { initSidebar } from './sidebar.ts';
+import { initialize, setOnNavigate } from "./navigate.ts";
+import { initSidebar } from "./sidebar.ts";
+import { initThemeColor } from "./theme-selector.ts";
+import { updateActive } from "./sidebar.ts";
 import { initTableOfContents } from './table-of-contents.ts';
-import { initThemeColor } from './theme-selector.ts';
-
-type DataSet = DOMStringMap & {
-  pathtoroot: string;
-};
-
-const initialize = (): void => {
-  initTableOfContents();
-  initCodeBlock();
-
-  doMarkFromUrl();
-  attributeExternalLinks();
-
-  initFootnote();
-  initVideo();
-};
 
 ((): void => {
-  const rootPath = (document.getElementById('bookjs')?.dataset as DataSet).pathtoroot;
+  initThemeColor();
+  initSidebar();
+  initTableOfContents();
 
-  initThemeColor(rootPath);
-  initSidebar(rootPath);
-  initMedia(rootPath);
+  setOnNavigate(updateActive);
 
-  startupSearch(rootPath);
-
-  document.addEventListener('DOMContentLoaded', initialize, { once: true, passive: true });
+  document.addEventListener("DOMContentLoaded", initialize, {
+    once: true,
+    passive: true,
+  });
 
   // capture hover event in iOS
   if (globalThis.ontouchstart !== undefined) {
-    document.addEventListener('touchstart', () => { }, { once: false, passive: true });
+    document.addEventListener("touchstart", () => {}, {
+      once: false,
+      passive: true,
+    });
   }
 })();

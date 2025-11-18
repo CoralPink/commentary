@@ -37,7 +37,8 @@ export default defineConfig([
   makeConfig('./book.ts'),
   makeConfig('./hl-worker.ts'),
   makeConfig('./hl-sharedworker.ts'),
-  makeConfig('./replace-dom.ts'),
+  makeConfig('./media.ts'),
+//  makeConfig('./replace-dom.ts'),
   makeConfig('./serviceworker.ts'),
   makeConfig('./slider.ts'),
 ]);

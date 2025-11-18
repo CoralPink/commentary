@@ -1,3 +1,5 @@
+export const ROOT_PATH = `${self.origin}/commentary/`;
+
 // Set the same value as the `breakpoint-ui-wide` used in CSS.
 //
 // TODO: Even when defined separately in JS and CSS, I believe the best approach is to create a flow detectable by testing,

@@ -1,7 +1,8 @@
-import { BREAKPOINT_UI_WIDE } from './constants.ts';
+import { BREAKPOINT_UI_WIDE, ROOT_PATH } from './constants.ts';
+import { navigateTo } from './navigate.ts';
 import { readLocalStorage, writeLocalStorage } from './storage.ts';
 
-const PAGE_LIST = 'pagelist.html';
+const PAGE_LIST = `${ROOT_PATH}pagelist.html`;
 
 const SHOW_SIDEBAR_WIDTH = 1200;
 
@@ -15,37 +16,76 @@ const SAVE_STORAGE_KEY = 'mdbook-sidebar';
 const SAVE_STATUS_VISIBLE = 'visible';
 const SAVE_STATUS_HIDDEN = 'hidden';
 
-let rootPath: string;
+let sidebarScrollbox: HTMLElement;
+let currentSelect: HTMLAnchorElement | undefined;
 
+// TODO: While the search popup is displayed, suppress sidebar processing. but it looks a bit tacky...
 let searchPop: HTMLElement;
 
-let isInitialized = false;
+export const updateActive = (url: URL) => {
+  const target = Array.from(sidebarScrollbox.querySelectorAll<HTMLAnchorElement>('a[href]')).find(
+    x => x.pathname === url.pathname,
+  );
 
-const loadSitemap = async (): Promise<string> => {
-  const response = await fetch(`${rootPath}${PAGE_LIST}`);
+  if (!target) {
+    return;
+  }
+
+  target.classList.add('active');
+  target.setAttribute('aria-current', 'page');
+
+  requestAnimationFrame(() => {
+    target.scrollIntoView({ block: 'center' });
+  });
+
+  if (currentSelect) {
+    currentSelect.classList.remove('active');
+    currentSelect.removeAttribute('aria-current');
+  }
+  currentSelect = target;
+};
+
+const loadPageList = async (): Promise<string> => {
+  const response = await fetch(PAGE_LIST);
 
   if (!response.ok) {
-    throw new Error(`Failed to fetch ${rootPath}${PAGE_LIST}: HTTP ${response.status}`);
+    throw new Error(`Failed to fetch ${PAGE_LIST}: HTTP ${response.status}`);
   }
   return await response.text();
 };
 
+const initLink = (): void => {
+  sidebarScrollbox = document.getElementById(ID_SCROLLBOX) as HTMLElement;
+
+  for (const x of Array.from(sidebarScrollbox.querySelectorAll<HTMLAnchorElement>('a[href]'))) {
+    const href = x.getAttribute('href');
+
+    if (!href) {
+      console.error('No href attribute found for link:', x);
+      continue;
+    }
+
+    const linkUrl = new URL(href, ROOT_PATH);
+    x.href = linkUrl.href;
+
+    x.addEventListener('click', ev => {
+      ev.preventDefault();
+      navigateTo(linkUrl);
+    });
+  }
+};
+
 const getCurrentUrl = (): URL => {
-  const current = document.location.href.toString();
-  return new URL(current.endsWith('/') ? `${current}index.html` : current);
+  const s = document.location.href.toString();
+  return new URL(s.endsWith('/') ? `${s}index.html` : s);
 };
 
 const initContent = async (): Promise<void> => {
-  if (isInitialized) {
-    return;
-  }
-  isInitialized = true;
-
   const sidebar = document.getElementById(ID_SIDEBAR) as HTMLElement;
   sidebar.setAttribute('aria-busy', 'true');
 
   try {
-    sidebar.insertAdjacentHTML('afterbegin', await loadSitemap());
+    sidebar.insertAdjacentHTML('afterbegin', await loadPageList());
   } catch (err: unknown) {
     if (err instanceof Error) {
       console.error(`Failed to load pagelist - ${err.message}`);
@@ -56,35 +96,18 @@ const initContent = async (): Promise<void> => {
     return;
   }
 
-  const rootUrl = new URL(rootPath, globalThis.location.href);
-  const currentUrlPathName = getCurrentUrl().pathname;
+  initLink();
+  updateActive(getCurrentUrl());
 
-  const sidebarScrollbox = document.getElementById(ID_SCROLLBOX) as HTMLElement;
-  const isAnchorElement = (element: Element): element is HTMLAnchorElement => element instanceof HTMLAnchorElement;
+  globalThis.addEventListener(
+    'popstate',
+    ev => {
+      const path = ev.state?.path ?? location.pathname;
+      navigateTo(new URL(path, location.origin), false);
+    },
+    { once: true, passive: true },
+  );
 
-  const links = Array.from(sidebarScrollbox.querySelectorAll('a')).filter(isAnchorElement);
-
-  for (const x of links) {
-    const href = x.getAttribute('href');
-
-    if (href === null) {
-      console.error('No href attribute found for link:', x);
-      continue;
-    }
-
-    const linkUrl = new URL(href, rootUrl);
-    x.href = linkUrl.href;
-
-    if (linkUrl.pathname !== currentUrlPathName) {
-      continue;
-    }
-    x.classList.add('active');
-    x.setAttribute('aria-current', 'page');
-
-    requestAnimationFrame(() => {
-      x.scrollIntoView({ block: 'center' });
-    });
-  }
   sidebar.setAttribute('aria-busy', 'false');
 };
 
@@ -114,8 +137,6 @@ const clickHide = (ev: PointerEvent): void => {
 };
 
 const showSidebar = (write = true): void => {
-  initContent();
-
   document.getElementById(ID_PAGE)?.classList.add('show-sidebar');
 
   const sidebar = document.getElementById(ID_SIDEBAR) as HTMLElement;
@@ -150,9 +171,7 @@ const toggleHandler = (key: string): void => {
   }
 };
 
-export const initSidebar = (root: string): void => {
-  rootPath = root;
-
+export const initSidebar = (): void => {
   try {
     if (globalThis.innerWidth < BREAKPOINT_UI_WIDE) {
       hideSidebar();
@@ -163,6 +182,8 @@ export const initSidebar = (root: string): void => {
     console.error(`Sidebar initialization error: ${err}`);
     hideSidebar();
   }
+
+  initContent();
 
   searchPop = document.getElementById('search-pop') as HTMLElement;
 

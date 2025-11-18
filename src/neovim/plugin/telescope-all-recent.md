@@ -283,7 +283,7 @@ Gaze deeply into unknown regions using the power of the moon.
 
 月の力を借りて、未知の領域を深く覗き込む。
 
-<div id="mountain"></div>
+<div class="replace-element" id="mountain"></div>
 
 <div style="color: #999999; font-size: 90%; text-align: center;" >
 <div style="margin-top: 8rem">
@@ -327,20 +327,13 @@ To my only father.
 </div>
 </div>
 
-<script>
-document.addEventListener('DOMContentLoaded', async () => {
-  try {
-    const module = await import(`${document.getElementById('bookjs').dataset.pathtoroot}replace-dom.js`);
-    module.replaceId([
+<script type="module">
+document.getElementById('article').addEventListener('replaceEvent', async (ev) => {
+  ev.detail.func?.([
       { id: 'mountain',
         src: { light:'img/mount-day.webp', dark: 'img/mount-night.webp'},
         alt: 'mt.fuji',
       },
-    ]);
-  } catch (e) { console.error(e); }
-
-  try {
-    await import(`${document.getElementById('bookjs').dataset.pathtoroot}slider.js`);
-  } catch (e) { console.error(e); }
+  ]);
 });
 </script>
