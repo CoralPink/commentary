@@ -2,7 +2,6 @@ import { initCodeBlock } from './codeblock.ts';
 import { initFootnote } from './footnote.ts';
 import { attributeExternalLinks } from './link.ts';
 import { doMarkFromUrl } from './mark.ts';
-import { startupSearch } from './searcher.ts';
 import { registryToc } from './table-of-contents.ts';
 
 const MODULE_PATH_DIRECTORY = `${self.origin}/commentary/`;
@@ -85,8 +84,6 @@ export const initialize = async (): Promise<void> => {
   doMarkFromUrl();
   attributeExternalLinks();
   initFootnote();
-
-  startupSearch();
 
   await promiseLoadModule;
 };

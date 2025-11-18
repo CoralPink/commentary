@@ -1,24 +1,27 @@
-import { initialize, setOnNavigate } from "./navigate.ts";
-import { initSidebar } from "./sidebar.ts";
-import { initThemeColor } from "./theme-selector.ts";
-import { updateActive } from "./sidebar.ts";
+import { initialize, setOnNavigate } from './navigate.ts';
+import { initSidebar } from './sidebar.ts';
+import { initThemeColor } from './theme-selector.ts';
+import { updateActive } from './sidebar.ts';
 import { initTableOfContents } from './table-of-contents.ts';
+import { startupSearch } from './searcher.ts';
 
 ((): void => {
+  setOnNavigate(updateActive);
+
   initThemeColor();
   initSidebar();
   initTableOfContents();
 
-  setOnNavigate(updateActive);
+  startupSearch();
 
-  document.addEventListener("DOMContentLoaded", initialize, {
+  document.addEventListener('DOMContentLoaded', initialize, {
     once: true,
     passive: true,
   });
 
   // capture hover event in iOS
   if (globalThis.ontouchstart !== undefined) {
-    document.addEventListener("touchstart", () => {}, {
+    document.addEventListener('touchstart', () => {}, {
       once: false,
       passive: true,
     });
