@@ -122,6 +122,10 @@ Often enough to know
 
 知れるには十分な頻度でね
 ```
+<video preload="none" width="1280" height="720" data-poster="img/tama-zoo-thumbnail.webp">
+  <source src="img/tama-zoo.webm" type="video/webm">
+  Your browser does not support the video/webm.
+</video>
 
 ```admonish success title=""
 What did you see when you were there?
@@ -134,6 +138,8 @@ Nothing that doesn't show
 
 見えないものなんて ないんだよ
 ```
+
+![money](img/money.webp)
 
 ## 🤖 copilot-cmp
 
@@ -186,11 +192,11 @@ Baby, you're a rich man
 ベイビー! よお リッチマン!!
 ```
 
-![money](img/money.webp)
+![zeong](img/zeong.webp)
 
 ```admonish success title=""
 Baby, you're a rich man too{{footnote:
-この曲の意味を Lennon は "誰もが金持ちだ。重要なのは不平を言うのをやめること。君は金持ちで、僕らはみんな金持ちだ" と主張し、
+この曲の意味を Lennon は "誰もが金持ちだ。重要なのは不平を言う (押し付ける) のをやめること。君は金持ちで、僕らはみんな金持ちだ" と主張し、
 Harrison は "物質的な心配とは関係なく、すべての個人は自分自身の中で裕福であるというメッセージだ" と語っている。
 [Wikipedia](https://en.wikipedia.org/wiki/Baby,_You%27re_a_Rich_Man)より
 }}
@@ -204,11 +210,7 @@ You keep all your money in a big brown bag inside a zoo
 君は全てのカネを 動物園のデカい茶封筒に詰め込んでるんだ!
 ```
 
-<video preload="none" width="1280" height="720" data-poster="img/tama-zoo-thumbnail.webp">
-  <source src="img/tama-zoo.webm" type="video/webm">
-  Your browser does not support the video/webm.
-</video>
-
+![gundam](img/gundam.webp)
 
 ```admonish success title=""
 What a thing to do
@@ -293,3 +295,5 @@ Something just entered the upper atmosphere
 
 現在 何かが上層大気圏に突入しています
 ```
+
+<div style="margin-top: 4em">

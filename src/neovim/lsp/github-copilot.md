@@ -166,6 +166,11 @@ Waiting, it might take a while and this popup will auto close once done
 
 ## Wrap Up
 
+<video preload="none" width="1280" height="720" data-poster="img/zankyosanka-thumbnail.webp">
+  <source src="img/zankyosanka.webm" type="video/webm">
+  Your browser does not support the video/webm.
+</video>
+
 ```admonish success
 おめでとう❗ 登録完了です🎉
 
