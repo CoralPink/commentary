@@ -5,6 +5,11 @@ export const fetchRequest = async (url: string): Promise<Response> => {
 
   const timeoutId = setTimeout(() => {
     controller.abort();
+
+    // TODO: the alert() is intrusive.
+    // Consider a less disruptive notification mechanism
+    // (e.g., a toast or event dispatch to a notification handler)
+    // in a future iteration if user feedback indicates this is jarring.
     alert('The request has timed out.');
   }, FETCH_TIMEOUT);
 
