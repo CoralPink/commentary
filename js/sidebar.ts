@@ -1,6 +1,5 @@
 import { BREAKPOINT_UI_WIDE, ROOT_PATH } from './constants.ts';
 import { fetchText } from './fetch.ts';
-import { navigateTo } from './navigate.ts';
 import { readLocalStorage, writeLocalStorage } from './storage.ts';
 
 const PAGE_LIST = `${ROOT_PATH}pagelist.html`;
@@ -8,7 +7,8 @@ const PAGE_LIST = `${ROOT_PATH}pagelist.html`;
 const SHOW_SIDEBAR_WIDTH = 1200;
 
 const ID_PAGE = 'page';
-const ID_SIDEBAR = 'sidebar';
+
+export const ID_SIDEBAR = 'sidebar';
 const ID_SCROLLBOX = 'sidebar-scrollbox';
 
 const TARGET_TOGGLE = 'sidebar';
@@ -67,21 +67,6 @@ const initLink = (): void => {
 
     const linkUrl = new URL(href, ROOT_PATH);
     x.href = linkUrl.href;
-
-    x.addEventListener(
-      'click',
-      (ev: MouseEvent) => {
-        // Let the browser handle new-tab / new-window behavior.
-        // (At least based on my testing on macOS, it seems unnecessary, but just in case...)
-        if (ev.button !== 0 || ev.metaKey || ev.ctrlKey || ev.shiftKey || ev.altKey) {
-          return;
-        }
-        ev.preventDefault();
-
-        navigateTo(linkUrl);
-      },
-      { once: false, passive: false },
-    );
   }
 };
 

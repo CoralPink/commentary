@@ -1,5 +1,4 @@
 import { ROOT_PATH } from './constants.ts';
-import { navigateTo } from './navigate.ts';
 
 const resolveUrl = (href: string): string => new URL(href.replace(/^(\.\.\/)+/, ''), ROOT_PATH).href;
 
@@ -23,6 +22,7 @@ export const enhanceLinks = () => {
       continue;
     }
 
+    // External link
     if (href.startsWith('http://') || href.startsWith('https://')) {
       setExternalLink(x);
       continue;
@@ -33,24 +33,10 @@ export const enhanceLinks = () => {
       continue;
     }
 
+    // Internal Link
     const linkUrlStr = resolveUrl(href);
     const linkUrl = new URL(linkUrlStr);
 
     x.href = linkUrl.href;
-
-    // Internal link
-    x.addEventListener(
-      'click',
-      (ev: MouseEvent) => {
-        if (ev.button !== 0 || ev.metaKey || ev.ctrlKey || ev.shiftKey || ev.altKey) {
-          return;
-        }
-
-        ev.preventDefault();
-
-        navigateTo(linkUrl);
-      },
-      { once: false, passive: false },
-    );
   }
 };

@@ -4,6 +4,7 @@ import { fetchText } from './fetch.ts';
 import { initFootnote } from './footnote.ts';
 import { enhanceLinks } from './link.ts';
 import { doMarkFromUrl } from './mark.ts';
+import { ID_SIDEBAR } from './sidebar.ts';
 import { registryToc } from './table-of-contents.ts';
 
 const MODULE_REQUIREMENTS: { selector: string; module: string }[] = [
@@ -160,6 +161,29 @@ export const navigateTo = async (url: URL, pushHistory = true): Promise<void> =>
   }
 };
 
+const isInternalLink = (elm: HTMLAnchorElement): boolean => {
+  // Links within the sidebar are treated as internal links without exception.
+  if (elm.closest(ID_SIDEBAR)) {
+    return true;
+  }
+
+  const href = elm.getAttribute('href');
+
+  if (!href) {
+    return false;
+  }
+
+  if (href.startsWith('http://') || href.startsWith('https://')) {
+    return false;
+  }
+
+  if (href.startsWith('#') || /^[a-zA-Z][a-zA-Z0-9+.-]*:/.test(href)) {
+    return false;
+  }
+
+  return true;
+};
+
 (() => {
   globalThis.addEventListener(
     'popstate',
@@ -171,5 +195,34 @@ export const navigateTo = async (url: URL, pushHistory = true): Promise<void> =>
       navigateTo(new URL(ev.state.path, location.origin), false);
     },
     { once: false, passive: true },
+  );
+
+  document.addEventListener(
+    'click',
+    (ev: MouseEvent) => {
+      if (ev.button !== 0 || ev.metaKey || ev.ctrlKey || ev.shiftKey || ev.altKey) {
+        return;
+      }
+
+      const target = ev.target as Element;
+
+      if (!target) {
+        return;
+      }
+
+      const anchor = target.closest<HTMLAnchorElement>('a[href]');
+
+      if (!anchor) {
+        return;
+      }
+
+      if (!isInternalLink(anchor)) {
+        return;
+      }
+
+      ev.preventDefault();
+      navigateTo(new URL(anchor.href));
+    },
+    { once: false, passive: false },
   );
 })();
