@@ -296,4 +296,4 @@ Something just entered the upper atmosphere
 現在 何かが上層大気圏に突入しています
 ```
 
-<div style="margin-top: 4em">
+<div style="margin-top: 4em"></div>
