@@ -2,7 +2,7 @@ import { initCodeBlock } from './codeblock.ts';
 import { ROOT_PATH } from './constants.ts';
 import { fetchText } from './fetch.ts';
 import { initFootnote } from './footnote.ts';
-import { attributeExternalLinks } from './link.ts';
+import { enhanceLinks } from './link.ts';
 import { doMarkFromUrl } from './mark.ts';
 import { registryToc } from './table-of-contents.ts';
 
@@ -83,7 +83,7 @@ export const initialize = async (): Promise<void> => {
   initCodeBlock();
 
   doMarkFromUrl();
-  attributeExternalLinks();
+  enhanceLinks();
   initFootnote();
 
   await promiseLoadModule;
