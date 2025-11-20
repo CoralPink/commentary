@@ -159,3 +159,17 @@ export const navigateTo = async (url: URL, pushHistory = true): Promise<void> =>
     });
   }
 };
+
+(() => {
+  globalThis.addEventListener(
+    'popstate',
+    (ev: PopStateEvent) => {
+      if (!ev.state) {
+        return;
+      }
+
+      navigateTo(new URL(ev.state.path, location.origin), false);
+    },
+    { once: false, passive: true },
+  );
+})();

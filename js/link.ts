@@ -20,11 +20,16 @@ export const enhanceLinks = () => {
 
     if (!href) {
       console.error('link: not found href');
-      return;
+      continue;
     }
 
     if (href.startsWith('http://') || href.startsWith('https://')) {
       setExternalLink(x);
+      continue;
+    }
+
+    // In-page anchors and non-http(s) schemes should keep their native behavior.
+    if (href.startsWith('#') || /^[a-zA-Z][a-zA-Z0-9+.-]*:/.test(href)) {
       continue;
     }
 
@@ -34,14 +39,18 @@ export const enhanceLinks = () => {
     x.href = linkUrl.href;
 
     // Internal link
-    x.addEventListener('click', (ev: MouseEvent) => {
-      if (ev.button !== 0 || ev.metaKey || ev.ctrlKey || ev.shiftKey || ev.altKey) {
-        return;
-      }
+    x.addEventListener(
+      'click',
+      (ev: MouseEvent) => {
+        if (ev.button !== 0 || ev.metaKey || ev.ctrlKey || ev.shiftKey || ev.altKey) {
+          return;
+        }
 
-      ev.preventDefault();
+        ev.preventDefault();
 
-      navigateTo(linkUrl);
-    });
+        navigateTo(linkUrl);
+      },
+      { once: false, passive: false },
+    );
   }
 };
