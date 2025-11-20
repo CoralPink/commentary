@@ -155,7 +155,7 @@ export const registryToc = (): void => {
     link.href = el.href;
     link.classList.add(el.parentElement?.tagName ?? '');
 
-    link.addEventListener('click', ev => jumpHeader(ev, el), {
+    link.addEventListener('click', (ev: MouseEvent) => jumpHeader(ev, el), {
       once: false,
       passive: false,
     });

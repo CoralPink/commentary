@@ -1,9 +1,8 @@
 import { initialize, setOnNavigate } from './navigate.ts';
-import { initSidebar } from './sidebar.ts';
-import { initThemeColor } from './theme-selector.ts';
-import { updateActive } from './sidebar.ts';
-import { initTableOfContents } from './table-of-contents.ts';
 import { startupSearch } from './searcher.ts';
+import { initSidebar, updateActive } from './sidebar.ts';
+import { initTableOfContents } from './table-of-contents.ts';
+import { initThemeColor } from './theme-selector.ts';
 
 ((): void => {
   setOnNavigate(updateActive);

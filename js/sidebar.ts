@@ -1,5 +1,5 @@
 import { BREAKPOINT_UI_WIDE, ROOT_PATH } from './constants.ts';
-import { fetchText} from './fetch.ts';
+import { fetchText } from './fetch.ts';
 import { navigateTo } from './navigate.ts';
 import { readLocalStorage, writeLocalStorage } from './storage.ts';
 
@@ -60,15 +60,20 @@ const initLink = (): void => {
     const linkUrl = new URL(href, ROOT_PATH);
     x.href = linkUrl.href;
 
-    x.addEventListener('click', ev => {
-      // Let the browser handle new-tab / new-window behavior.
-      // (At least based on my testing on macOS, it seems unnecessary, but just in case...)
-      if (ev.button !== 0 || ev.metaKey || ev.ctrlKey || ev.shiftKey || ev.altKey) {
-        return;
-      }
-      ev.preventDefault();
-      navigateTo(linkUrl);
-    });
+    x.addEventListener(
+      'click',
+      (ev: MouseEvent) => {
+        // Let the browser handle new-tab / new-window behavior.
+        // (At least based on my testing on macOS, it seems unnecessary, but just in case...)
+        if (ev.button !== 0 || ev.metaKey || ev.ctrlKey || ev.shiftKey || ev.altKey) {
+          return;
+        }
+        ev.preventDefault();
+
+        navigateTo(linkUrl);
+      },
+      { once: false, passive: false },
+    );
   }
 };
 
@@ -100,7 +105,7 @@ const initContent = async (): Promise<void> => {
 
   globalThis.addEventListener(
     'popstate',
-    ev => {
+    (ev: PopStateEvent) => {
       const path = ev.state?.path ?? location.pathname;
       navigateTo(new URL(path, location.origin), false);
     },
