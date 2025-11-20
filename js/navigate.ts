@@ -138,14 +138,16 @@ export const navigateTo = async (url: URL, pushHistory = true): Promise<void> =>
 
   setBaseUrl(newArticle, url);
 
-  document.startViewTransition(() => {
+  const applyContent = () => {
     article.innerHTML = newArticle.innerHTML;
     document.title = newTitle.textContent;
 
     initialize();
 
     article.scrollIntoView({ behavior: 'instant' });
-  });
+  };
+
+  'startViewTransition' in document ? document.startViewTransition(applyContent) : applyContent();
 
   onNavigate?.(url);
 
@@ -163,7 +165,7 @@ export const navigateTo = async (url: URL, pushHistory = true): Promise<void> =>
 
 const isInternalLink = (elm: HTMLAnchorElement): boolean => {
   // Links within the sidebar are treated as internal links without exception.
-  if (elm.closest(ID_SIDEBAR)) {
+  if (elm.closest(`#${ID_SIDEBAR}`)) {
     return true;
   }
 
