@@ -61,6 +61,11 @@ const initLink = (): void => {
     x.href = linkUrl.href;
 
     x.addEventListener('click', ev => {
+      // Let the browser handle new-tab / new-window behavior.
+      // (At least based on my testing on macOS, it seems unnecessary, but just in case...)
+      if (ev.button !== 0 || ev.metaKey || ev.ctrlKey || ev.shiftKey || ev.altKey) {
+        return;
+      }
       ev.preventDefault();
       navigateTo(linkUrl);
     });
