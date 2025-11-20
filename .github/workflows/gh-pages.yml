@@ -146,7 +146,7 @@ jobs:
 
       - name: Install Binaryen
         run: |
-          npm install -g binaryen
+          brew install binaryen
 
       - name: Optimization Wasm
         working-directory: rs/wasm
