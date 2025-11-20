@@ -9,7 +9,8 @@ import { registryToc } from './table-of-contents.ts';
 const MODULE_REQUIREMENTS: { selector: string; module: string }[] = [
   { selector: '.slider', module: 'slider.js' },
   { selector: 'video', module: 'media.js' },
-  { selector: '.replace-element', module: 'replace-dom.js' },
+  // TODO: We will suspend use until a reliable method is found.
+  // { selector: '.replace-element', module: 'replace-dom.js' },
 ];
 
 type ModuleEntry = {
