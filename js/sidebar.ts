@@ -17,13 +17,11 @@ const SAVE_STORAGE_KEY = 'mdbook-sidebar';
 const SAVE_STATUS_VISIBLE = 'visible';
 const SAVE_STATUS_HIDDEN = 'hidden';
 
-let sidebarScrollbox: HTMLElement;
 let currentSelect: HTMLAnchorElement | undefined;
 
-// TODO: While the search popup is displayed, suppress sidebar processing. but it looks a bit tacky...
-let searchPop: HTMLElement;
-
 export const updateActive = (url: URL) => {
+  const sidebarScrollbox = document.getElementById(ID_SCROLLBOX) as HTMLElement;
+
   const target = Array.from(sidebarScrollbox.querySelectorAll<HTMLAnchorElement>('a[href]')).find(
     x => x.pathname === url.pathname,
   );
@@ -47,7 +45,7 @@ export const updateActive = (url: URL) => {
 };
 
 const initLink = (): void => {
-  sidebarScrollbox = document.getElementById(ID_SCROLLBOX) as HTMLElement;
+  const sidebarScrollbox = document.getElementById(ID_SCROLLBOX) as HTMLElement;
 
   for (const x of Array.from(sidebarScrollbox.querySelectorAll<HTMLAnchorElement>('a[href]'))) {
     const href = x.getAttribute('href');
@@ -162,6 +160,9 @@ const toggleSidebar = (): void =>
   document.getElementById(ID_SIDEBAR)?.checkVisibility() ? hideSidebar() : showSidebar();
 
 const toggleHandler = (key: string): void => {
+  // TODO: While the search popup is displayed, suppress sidebar processing. but it looks a bit tacky...
+  const searchPop = document.getElementById('search-pop') as HTMLElement;
+
   if (searchPop.checkVisibility()) {
     return;
   }
@@ -186,8 +187,6 @@ export const initSidebar = (): void => {
   }
 
   initContent();
-
-  searchPop = document.getElementById('search-pop') as HTMLElement;
 
   document.addEventListener('keyup', ev => toggleHandler(ev.key), {
     once: false,
