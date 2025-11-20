@@ -144,7 +144,11 @@ jobs:
         run: |
           wasm-pack build --target web
 
-      - name: Install Binaryen
+      - name: Enable Homebrew
+        run: |
+          echo "PATH=/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:$PATH" >> $GITHUB_ENV
+
+      - name: Install binaryen
         run: |
           brew install binaryen
 
