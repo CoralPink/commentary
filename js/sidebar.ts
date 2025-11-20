@@ -22,6 +22,11 @@ let currentSelect: HTMLAnchorElement | undefined;
 export const updateActive = (url: URL) => {
   const sidebarScrollbox = document.getElementById(ID_SCROLLBOX) as HTMLElement;
 
+  if (!sidebarScrollbox) {
+    console.error(`sidebar: not found ${ID_SCROLLBOX}`);
+    return;
+  }
+
   const target = Array.from(sidebarScrollbox.querySelectorAll<HTMLAnchorElement>('a[href]')).find(
     x => x.pathname === url.pathname,
   );
@@ -46,6 +51,11 @@ export const updateActive = (url: URL) => {
 
 const initLink = (): void => {
   const sidebarScrollbox = document.getElementById(ID_SCROLLBOX) as HTMLElement;
+
+  if (!sidebarScrollbox) {
+    console.error(`sidebar: not found ${ID_SCROLLBOX}`);
+    return;
+  }
 
   for (const x of Array.from(sidebarScrollbox.querySelectorAll<HTMLAnchorElement>('a[href]'))) {
     const href = x.getAttribute('href');
@@ -100,15 +110,6 @@ const initContent = async (): Promise<void> => {
 
   initLink();
   updateActive(getCurrentUrl());
-
-  globalThis.addEventListener(
-    'popstate',
-    (ev: PopStateEvent) => {
-      const path = ev.state?.path ?? location.pathname;
-      navigateTo(new URL(path, location.origin), false);
-    },
-    { once: false, passive: true },
-  );
 };
 
 const hideSidebar = (write = true): void => {
