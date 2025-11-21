@@ -2,7 +2,7 @@ import { initCodeBlock } from './codeblock.ts';
 import { ROOT_PATH } from './constants.ts';
 import { fetchText } from './fetch.ts';
 import { initFootnote } from './footnote.ts';
-import { enhanceLinks, isInternalLink } from './link.ts';
+import { enhanceLinks, isNativeLink } from './link.ts';
 import { doMarkFromUrl } from './mark.ts';
 import { startupSearch } from './searcher.ts';
 import { initSidebar, updateActive } from './sidebar.ts';
@@ -211,7 +211,7 @@ export const navigateTo = async (url: URL, pushHistory = true): Promise<void> =>
         return;
       }
 
-      if (!isInternalLink(anchor)) {
+      if (isNativeLink(anchor)) {
         return;
       }
 

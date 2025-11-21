@@ -152,7 +152,7 @@ export const registryToc = (): void => {
 
     const link: HTMLAnchorElement = document.createElement('a');
     link.textContent = el.text;
-    link.href = el.href;
+    link.href = el.hash;
     link.classList.add(el.parentElement?.tagName ?? '');
 
     link.addEventListener('click', (ev: MouseEvent) => jumpHeader(ev, el), {

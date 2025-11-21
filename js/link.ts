@@ -40,6 +40,13 @@ const setExternalLink = (elm: HTMLAnchorElement): void => {
   elm.setAttribute('rel', 'noopener');
 };
 
+const setInternalLink = (elm: HTMLAnchorElement): void => {
+  const linkUrlStr = resolveUrl(elm.getAttribute('href')!);
+  const linkUrl = new URL(linkUrlStr);
+
+  elm.href = linkUrl.href;
+};
+
 const resolveUrl = (href: string): string => new URL(href.replace(/^(\.\.\/)+/, ''), ROOT_PATH).href;
 
 export const enhanceLinks = () => {
@@ -54,20 +61,17 @@ export const enhanceLinks = () => {
 
     if (kind === LinkKind.External) {
       setExternalLink(x);
-      continue;
+    } else if (kind === LinkKind.Internal) {
+      setInternalLink(x);
     }
-
-    if (kind === LinkKind.Native) {
-      continue;
-    }
-
-    const linkUrlStr = resolveUrl(x.getAttribute('href')!);
-    const linkUrl = new URL(linkUrlStr);
-
-    x.href = linkUrl.href;
   }
 };
 
-export const isInternalLink = (elm: HTMLAnchorElement): boolean => {
-  return getLinkKind(elm) === LinkKind.Internal;
+export const isNativeLink = (elm: HTMLAnchorElement): boolean => {
+  const kind = getLinkKind(elm);
+
+  if (kind === LinkKind.External) {
+    return !elm.href.startsWith(ROOT_PATH);
+  }
+  return kind === LinkKind.Native;
 };
