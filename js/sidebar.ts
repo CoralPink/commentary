@@ -38,10 +38,6 @@ export const updateActive = (url: URL) => {
   target.classList.add('active');
   target.setAttribute('aria-current', 'page');
 
-  requestAnimationFrame(() => {
-    target.scrollIntoView({ block: 'center' });
-  });
-
   if (currentSelect) {
     currentSelect.classList.remove('active');
     currentSelect.removeAttribute('aria-current');
@@ -77,6 +73,11 @@ const getCurrentUrl = (): URL => {
 
 const initContent = async (): Promise<void> => {
   const sidebar = document.getElementById(ID_SIDEBAR) as HTMLElement;
+
+  if (!sidebar) {
+    console.error(`sidebar: not found ${ID_SIDEBAR}`);
+    return;
+  }
   sidebar.setAttribute('aria-busy', 'true');
 
   try {
@@ -101,6 +102,11 @@ const hideSidebar = (write = true): void => {
   document.getElementById(ID_PAGE)?.classList.remove('show-sidebar');
 
   const sidebar = document.getElementById(ID_SIDEBAR) as HTMLElement;
+
+  if (!sidebar) {
+    console.error(`sidebar: not found ${ID_SIDEBAR}`);
+    return;
+  }
   sidebar.style.display = 'none';
   sidebar.setAttribute('aria-hidden', 'true');
 
@@ -126,6 +132,11 @@ const showSidebar = (write = true): void => {
   document.getElementById(ID_PAGE)?.classList.add('show-sidebar');
 
   const sidebar = document.getElementById(ID_SIDEBAR) as HTMLElement;
+
+  if (!sidebar) {
+    console.error(`sidebar: not found ${ID_SIDEBAR}`);
+    return;
+  }
   sidebar.style.display = 'block';
   sidebar.removeAttribute('aria-hidden');
 

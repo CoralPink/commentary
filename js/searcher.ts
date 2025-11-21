@@ -2,7 +2,7 @@ import { ROOT_PATH } from './constants.ts';
 import { loadStyleSheet } from './css-loader.ts';
 import { fetchRequest } from './fetch.ts';
 import { doMarkFromUrl, unmarking } from './mark.ts';
-import { navigateTo } from './navigate.ts';
+import { navigateTo } from './navigation.ts';
 import { debounce } from './timing.ts';
 
 // deno-lint-ignore no-sloppy-imports

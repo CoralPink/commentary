@@ -34,7 +34,7 @@ const makeConfig = input => ({
 });
 
 export default defineConfig([
-  makeConfig('./book.ts'),
+  makeConfig('./navigation.ts'),
   makeConfig('./hl-worker.ts'),
   makeConfig('./hl-sharedworker.ts'),
   makeConfig('./media.ts'),
