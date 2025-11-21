@@ -159,11 +159,14 @@ export const navigateTo = async (url: URL, pushHistory = true): Promise<void> =>
     history.pushState({ path: url.pathname, title: newTitle.textContent }, '', url.href);
 
     // deno-lint-ignore no-window
-    window.dataLayer.push({
-      event: 'page_view',
-      page_path: url.pathname,
-      page_title: newTitle.textContent,
-    });
+    // deno-lint-ignore no-window
+    if (window.dataLayer) {
+      window.dataLayer.push({
+        event: 'page_view',
+        page_path: url.pathname,
+        page_title: newTitle.textContent,
+      });
+    }
   }
 };
 
