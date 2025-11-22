@@ -134,6 +134,10 @@ const setBaseUrl = (elm: Element, url: URL): void => {
 };
 
 export const navigateTo = async (url: URL, pushHistory = true): Promise<void> => {
+  if (url.pathname === location.pathname) {
+    return;
+  }
+
   const id = getRandomId();
   currentNavigation = id;
 
@@ -208,14 +212,12 @@ export const navigateTo = async (url: URL, pushHistory = true): Promise<void> =>
   globalThis.addEventListener(
     'popstate',
     (ev: PopStateEvent) => {
-      if (!ev.state) {
-        return;
-      }
-
-      navigateTo(new URL(ev.state.path, location.origin), false);
+      const path = ev.state?.path ?? location.pathname;
+      navigateTo(new URL(path, location.origin), false);
     },
     { once: false, passive: true },
   );
+
   setOnNavigate(updateActive);
 
   initThemeColor();
