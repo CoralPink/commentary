@@ -339,5 +339,9 @@ I want you to be there for me
 </div>
 
 父と母へ捧ぐ
-{{footnote: [風の電話](https://bell-gardia.jp/guide/kaze-no-denwa/)}}
-{{footnote: [風の電話 (映画)](https://ja.wikipedia.org/wiki/風の電話_(映画)) }}
+{{footnote:
+[風の電話](https://bell-gardia.jp/guide/kaze-no-denwa/)
+}}
+{{footnote:
+[風の電話 (映画)](https://ja.wikipedia.org/wiki/風の電話_(映画))
+}}

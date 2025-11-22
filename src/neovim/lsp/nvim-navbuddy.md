@@ -403,7 +403,9 @@ require('nvim-navbuddy').setup {
 ```admonish note
 上のスクリーンショットは、`Markdown`に対して`marksman`が動いてます。これもやっぱり`mason`からインストールしてます😉
 
-行こうみんなで「marksman」🎶{{footnote: よしいくぞうってなるやつ🤣}}
+行こうみんなで「marksman」🎶{{footnote:
+よしいくぞうってなるやつ🤣
+}}
 ```
 
 ## Friends Will Be Friends
@@ -413,21 +415,24 @@ require('nvim-navbuddy').setup {
 ```admonish tip title=""
 みんなの力があったからだよ。
 
-全員(チーム) の勝利ってやつさ🩷
-{{footnote: なんか知らない間にドッジボールが続いていましたが、こっちも完結❗}}
+全員(チーム) の勝利ってやつさ🩷{{footnote:
+なんか知らない間にドッジボールが続いていましたが、こっちも完結❗
+}}
 ```
 
 さらっといいことも言います🤫
 
 という事で、やっと書き終わりました。あーお腹すいたー...。
 
-お台場青海地区P区画{{footnote: ん⁉️ "地区P" とは言わないんれすね❗(これ言いたかっただけ😆)}}で"肉フェス"やってるんだって...、喰いたい🍖
+お台場青海地区P区画{{footnote:
+ん⁉️ "地区P" とは言わないんれすね❗(これ言いたかっただけ😆)
+}}で"肉フェス"やってるんだって...、喰いたい🍖
 
 って、お話が迷子😿 ...あ、いつも通りでした😹
 
 ```admonish success title=""
-Friends will be friends
-{{footnote: Friends Will Be Friends (by [Queen](https://en.wikipedia.org/wiki/Queen_(band))):
+Friends will be friends{{footnote:
+Friends Will Be Friends (by [Queen](https://en.wikipedia.org/wiki/Queen_(band))):
 Freddie Mercury と John Deacon が作曲し、1986年6月9日にアルバム『A Kind of Magic』のシングルとしてリリースされた。
 [Wikipedia](https://en.wikipedia.org/wiki/Friends_Will_Be_Friends)より。
 

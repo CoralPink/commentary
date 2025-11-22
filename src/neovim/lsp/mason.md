@@ -386,7 +386,8 @@ keymaps = {
 We're half way there
 
 Livin' on a prayer
-{{footnote: Livin' on a Prayer (by [Bon Jovi](https://en.wikipedia.org/wiki/Bon_Jovi)):
+{{footnote:
+Livin' on a Prayer (by [Bon Jovi](https://en.wikipedia.org/wiki/Bon_Jovi)):
 Jon Bon Jovi はこの曲のオリジナル・レコーディングを気に入っていなかった。
 これは 100,000,000 Bon Jovi Fans Can't Be Wrong のシークレットトラックとして見つけることができる。
 しかし、リード・ギタリストの Richie Sambora は、この曲が良いものであるとメンバーを説得し、
@@ -395,7 +396,8 @@ Jon Bon Jovi はこの曲のオリジナル・レコーディングを気に入�
 2001年9月11日の同時多発テロ事件では、World Trade Center で働く人々や緊急対応要員に何百人もの死傷者が出た。
 彼らの出身地である New Jersey は New York に次いで大きな被害を受けたが、
 バンドは New York のためにこの曲をアコースティックに演奏し歌った。
-[Wikipedia](https://en.wikipedia.org/wiki/Livin%27_on_a_Prayer)より}}
+[Wikipedia](https://en.wikipedia.org/wiki/Livin%27_on_a_Prayer)より
+}}
 
 私達はまだ道半ば
 

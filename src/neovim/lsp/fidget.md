@@ -102,13 +102,15 @@ Who doesn't love a little bit of eye candy?
 ```
 
 ```admonish tip
-(唐突な登場ですが) `null-ls.nvim`{{footnote: [null-ls.nvim](https://github.com/jose-elias-alvarez/null-ls.nvim)は
+(唐突な登場ですが) `null-ls.nvim`{{footnote:
+[null-ls.nvim](https://github.com/jose-elias-alvarez/null-ls.nvim)は
 2023年の夏休みの間に開発終了([IMPORTANT: Archiving null-ls](https://github.com/jose-elias-alvarez/null-ls.nvim/issues/1621))
-になっちゃったみたい。Thank you for your hard work❗}}
+になっちゃったみたい。Thank you for your hard work❗
+}}
 / `none-ls.nvim`{{footnote:
 ...そして null-ls.nvim の後継として生まれた[none-ls.nvim](https://github.com/nvimtools/none-ls.nvim)は、
-[17.4章](../../outro/none-ls.html)で登場します。}}
-と併用すると、`Formatter`の進捗も可視化してくれるのが便利なんですよね〜😽
+[17.4章](../../outro/none-ls.html)で登場します。
+}}と併用すると、`Formatter`の進捗も可視化してくれるのが便利なんですよね〜😽
 ```
 
 ## 二 : Requirements

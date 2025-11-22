@@ -119,8 +119,8 @@ init.luaの最初の部分でnetrwを無効にする (強く推奨)
 ```admonish note
 この節で唐突に Captain Marvel{{footnote:
 このサイトでは、[nvim_set_var](../leader.html?highlight=nvim_set#nvim_set_var)をなんかたまに
-Captain Marvel と呼称することがあるんですよねー。}}
-が登場してきましたね✨
+Captain Marvel と呼称することがあるんですよねー。
+}} が登場してきましたね✨
 
 ここで出番があるなんて、わたしもうっかりさんでした❗
 ```

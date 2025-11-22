@@ -196,7 +196,9 @@ wezterm.sleep_ms は、指定されたミリ秒の間、スクリプトの実行
 
 
 ```admonish note
-うちな〜、`Raycast`{{footnote: [https://www.raycast.com](https://www.raycast.com)}}の`WindowManagement`使てんねんけど、よーこんな感じできっちりウィンドウ詰めるやろ〜❓
+うちな〜、`Raycast`{{footnote:
+[https://www.raycast.com](https://www.raycast.com)
+}}の`WindowManagement`使てんねんけど、よーこんな感じできっちりウィンドウ詰めるやろ〜❓
 
 ![deco-custom1](img/deco-custom1.webp)
 

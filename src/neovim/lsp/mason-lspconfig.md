@@ -77,7 +77,9 @@ use {
 
 これだけです❗マジです。地味ながらとっても重要なやつです。
 
-ドッジボールで言ったらキルア{{footnote: HUNTER X HUNTER です}}です❗
+ドッジボールで言ったらキルア{{footnote:
+HUNTER X HUNTER です
+}}です❗
 
 ```admonish success title=""
 It's my life!
@@ -150,8 +152,8 @@ This is for the ones who stood their ground
 For Tommy and Gina{{footnote:
 2番の歌詞にある「決して一歩も引かなかった トミーとジーナのために」というセリフは、
 1986年に Bon Jovi と Sambora が書いた "Livin' on a Prayer" で登場した労働者階級のカップルを指している。
-[Wikipedia](https://en.wikipedia.org/wiki/It%27s_My_Life_(Bon_Jovi_song))より}}
-who never backed down
+[Wikipedia](https://en.wikipedia.org/wiki/It%27s_My_Life_(Bon_Jovi_song))より
+}} who never backed down
 
 この歌は 信じて立ち向かった者達に捧げる
 

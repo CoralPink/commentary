@@ -59,5 +59,7 @@ vim.api.nvim_set_option('termguicolors', true)
 ```
 
 ```admonish success title=""
-タマムシ　にじいろ　ゆめの　いろ{{footnote: このページで7色使えてたら面白かったんですけど、1色足りませんでしたね...😅}}
+タマムシ　にじいろ　ゆめの　いろ{{footnote:
+このページで7色使えてたら面白かったんですけど、1色足りませんでしたね...😅
+}}
 ```

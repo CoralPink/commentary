@@ -1,9 +1,10 @@
 # copilot.lua
 
 ```admonish success title=""
-ソロソロォ カエル ジカン デェス 😴🙏
-{{footnote: 2013年、東京ドームで Paul が言ってたやつです。
-前回の「カ キ マ シ タ ァ❗❗」も同じライブからの出典でした。わたしは1日目を観に行った人です😆}}
+ソロソロォ カエル ジカン デェス 😴🙏{{footnote:
+2013年、東京ドームで Paul が言ってたやつです。
+前回の「カ キ マ シ タ ァ❗❗」も同じライブからの出典でした。わたしは1日目を観に行った人です😆
+}}
 ```
 
 このメドレーもフィナーレ目前ですが、ちょっとだけ未来に触れてみましょう。
@@ -34,9 +35,11 @@ GitHub Copilot uses the OpenAI Codex to suggest code and entire functions in rea
 GitHub Copilot は、OpenAI Codex を使用して、エディタからリアルタイムでコードや機能全体を提案します。
 ~~~
 
-Coca-Cola{{footnote: Abbey Road 収録の Come Together の詩に登場することでも有名🍹
+Coca-Cola{{footnote:
+Abbey Road 収録の Come Together の詩に登場することでも有名🍹
 偶然の出来事も、いつもは見過ごしてしまうあの瞬間も、61年連続増配はダテじゃない💰
-関係ないんだけど Steve Jobs の "砂糖水をどうのこうの" は Pepsi でした。}}
+関係ないんだけど Steve Jobs の "砂糖水をどうのこうの" は Pepsi でした。
+}}
 が名を連ねているのがおもしろいですね😋
 
 前項でも出ていましたが、GitHub が直々に提供している`copilot.vim`というプラグインもあります。
@@ -380,8 +383,8 @@ John が持っていたデモだったんだけど、このAIを通してジョ�
 ```
 
 ```admonish success title=""
-Golden slumbers
-{{footnote:Golden Slumbers (by [The Beatles](https://en.wikipedia.org/wiki/The_Beatles)):
+Golden slumbers{{footnote:
+Golden Slumbers (by [The Beatles](https://en.wikipedia.org/wiki/The_Beatles)):
 McCartney が実父 Jim（James McCartney）の家でピアノを演奏しているときに、
 義妹 Ruth のピアノ教本の中から Thomas Dekker の『Golden Slumbers』という子守唄を発見した。この時のことを McCartney は
 「リヴァプールの父の家でピアノを弾いていた。譜面台にはピアノの練習をしていた妹の Ruth の教本がスタンドに立てかけてあって、

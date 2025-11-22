@@ -22,8 +22,7 @@ Lua で書かれた neovim 用の補完エンジンプラグインです。
 そこをきっちりサポートしてくれる、とにかく明るい`mason.nvim`が既に入ってますよー❗
 
 ```admonish success title=""
-You never give me your money
-{{footnote:
+You never give me your money{{footnote:
 You Never Give Me Your Money (by [The Beatles](https://en.wikipedia.org/wiki/The_Beatles)):
 本作は1969年初頭におけるバンドのビジネス的な取引をテーマとしており、
 McCartney は「ここでの僕は、Allen Klein の僕らに対する態度を正面から非難している。
@@ -56,12 +55,11 @@ You break down
 アルバムの評価としては、B面の大部分を占めるメドレーへの評価が非常に高い。
 このメドレーについて John Lennon は「A面は良いけどB面はちょっとね。あれはジャンク（ガラクタ）を集めただけだと思うよ」と述べているが、
 Paul McCartney と Ringo Starr は「B面のメドレーは僕らの最高傑作のひとつ」と発言している。[Wikipedia](https://en.wikipedia.org/wiki/Abbey_Road)より
-}}
-へと辿り着きました🤗
+}}へと辿り着きました🤗
 
-壮大なメドレー
-{{footnote: わたし自身は John Lennon が一番好きですが、Abbey Road はA面もB面も大好きです。アナログレコードで聴いたことはないんだけど😅}}
-はここから始まります❗楽しんでいきましょう😆
+壮大なメドレー{{footnote:
+わたし自身は John Lennon が一番好きですが、Abbey Road はA面もB面も大好きです。アナログレコードで聴いたことはないんだけど😅
+}}はここから始まります❗楽しんでいきましょう😆
 
 ## Readme!
 
