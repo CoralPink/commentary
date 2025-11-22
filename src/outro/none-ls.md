@@ -35,7 +35,7 @@ Let me take you down
 少なくともこのサイトでは (語弊があるかもしれませんが) 同じものとして扱います。
 ```
 
-これさえやってしまえば、心残りなんてあろうはずがありません😉
+これさえやってしまえば、心残りなどあろうはずがありません😉
 
 ## vim.lsp.buf.format
 
@@ -167,6 +167,8 @@ But it all works out
 でも 全てうまくいくよ
 ```
 
+![beatles](img/beatles.webp)
+
 ```admonish quote title=""
 It doesn’t matter much to me
 
@@ -256,18 +258,20 @@ I think, er, no, I mean, er, yes
 
 But it’s all wrong
 
-That is I think I disagree
-
 思うにこれは、NO じゃなくて YES なんだ
 
 しかし すべて間違っている
+```
+
+```admonish quote title=""
+That is I think I disagree
 
 ぼくは同意できない
 ```
 
-そしてさらに、`mason.nvim`には心強い仲間がいるのです🤩
+そしてさらに、`mason.nvim`には心強い仲間がいるのです❗
 
-その名も`mason-null-ls.nvim`❗
+その名も`mason-null-ls.nvim`🤩
 
 つまり、もうちょっとだけ続く❗
 
@@ -277,28 +281,34 @@ That is I think I disagree
 
 ## Strawberry Fields Forever
 
-意地でも聖夜🌃には間に合わせます。
-`none-ls`に負けないくらい超スムーズにいきましょう😆
-
 ```admonish quote title="Success"
 Strawberry Fields Forever {{footnote: Strawberry Fields Forever (by [The Beatles](https://en.wikipedia.org/wiki/The_Beatles)):
 作詞は John Lennon、作曲は Lennon-McCartney。The Bealtes のこれまでのシングルとは一線を画し、
 現代のポップ・リスナーにとって斬新なリスニング体験となった。
-この曲は、Liverpool にある救世軍の児童養護施設、Strawberry Field の庭で遊んだ Lennon の幼少期の思い出に基づいて書かれている。
+この曲は[Liverpool](https://en.wikipedia.org/wiki/Liverpool)にある
+救世軍の児童養護施設[Strawberry Field](https://en.wikipedia.org/wiki/Strawberry_Field)の庭で遊んだ
+Lennon の幼少期の思い出に基づいて書かれている。
 
 John の出生時、父は商船の乗組員として航海中で不在。
-母も他の男性と同棲していたため、John は母親の長姉である "Mimi おばさん" に育てられる。
-後に Mimi は親戚に、「子どもは欲しくなかったが、John はずっと欲しかった」と打ち明けた。
+母も他の男性と同棲していたため、John は母親の長姉である[Mimi おばさん](https://en.wikipedia.org/wiki/Mimi_Smith)に育てられた。
+後に Mimi は親戚に "子どもは欲しくなかったが、John はずっと欲しかった" と打ち明けている。
 
-John の子供時代の楽しみのひとつは、毎年夏に家の近くの Calderstones Park で開かれるガーデンパーティで、
-そこでは救世軍のブラスバンドが演奏していた。
+John の子供時代の楽しみのひとつは、
+毎年夏に家の近くの[Calderstones Park](https://en.wikipedia.org/wiki/Calderstones_Park)で開かれるガーデンパーティで、
+そこでは[救世軍のブラスバンド](https://en.wikipedia.org/wiki/Salvation_Army_brass_band)が演奏していた。
 
-Lennon は 1966年9月から10月にかけて、Richard Lester の映画 "How I Won the War" の撮影中、
-Spain の Almería でこの曲を書き始めた。The Beatles は、"more popular than Jesus" (キリストよりも人気がある) という論争や、
-Pilipinas の Imelda Marcos 大統領夫人を不用意にこき下ろした反動で暴徒の標的になるなど、
-最も困難な時期を経て、ツアーを引退したばかりだった。
+Lennon は 1966年9月から10月にかけて、
+[Richard Lester](https://en.wikipedia.org/wiki/Richard_Lester)の映画
+[How I Won the War](https://en.wikipedia.org/wiki/How_I_Won_the_War)の撮影中、
+スペインの[Almería](https://en.wikipedia.org/wiki/Almería)でこの曲を書き始めた。
+The Beatles は、"more popular than Jesus" (キリストよりも人気がある) という論争や、
+フィリピンの[Imelda Marcos](https://en.wikipedia.org/wiki/Imelda_Marcos)大統領夫人への
+意図せぬ冷遇に対する暴徒の標的になるなど、最も困難な時期を経て、ツアーを引退したばかりだった。
 
-時を経て、New York City の Central Park の一角には Lennon を偲び、この曲にちなんだ区画が造られた。
+![marcos](img/marcos.webp)
+
+...時を経て、New York City の[Central Park](https://en.wikipedia.org/wiki/Central_Park)の一角には
+Lennon を偲び、この曲にちなんだ区画が造られた。
 [Wikipedia](https://en.wikipedia.org/wiki/Strawberry_Fields_Forever) より
 }}
 
@@ -306,11 +316,10 @@ Strawberry Fields は永遠なんだ
 ```
 
 ~~~admonish success title=""
-Hurry up, Mimi – we're going to be late.
-{{footnote:
-「その場所には、いつも John を魅了する何かがあった。彼は窓からそれを見ることができた。
-彼はよく救世軍のバンドがガーデンパーティで演奏しているのを聴いていて、『Mimi、はやく行こうよ。遅れてしまうよ』と私を引っ張っていった」。
-}}
+Hurry up, Mimi{{footnote:
+その場所には、いつも John を魅了する何かがあって、彼は窓からそれを見ることができた。
+彼はよく救世軍のバンドがガーデンパーティで演奏しているのを聴いていて、"Mimi、はやく行こうよ。遅れてしまうよ" と私を引っ張っていった。
+}} – we're going to be late.
 
 Mimi、はやく行こうよ。遅れてしまうよ。
 ~~~

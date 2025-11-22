@@ -177,7 +177,7 @@ require('mason').setup {
 共に踊れば繋がる縁！
 ```
 
-### 📚 Make Directory
+### 😂 Make Directory
 
 だからもし、こんな感じになってるとしたら...
 
@@ -689,9 +689,9 @@ So, let's get the party started!
 ```admonish danger title=""
 MVP とは、俺のことだ！！
 
-17.7話 「フィナーレいさみあし
-{{footnote: 実際は`nvim_get_option_value`の おはなしで、このサイトの最終回まではあと 3回...か、4回❗}}
-」という おはなし。
+17.7話 「フィナーレいさみあし{{footnote:
+実際は`nvim_get_option_value`の おはなしで、このサイトの最終回まではあと 3回...か、4回
+}}」という おはなし。
 ```
 
 <video preload="none" width="1280" height="720" data-poster="img/tokyo-yosakoi-enya-thumbnail.webp">
