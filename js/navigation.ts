@@ -19,6 +19,8 @@ const MODULE_REQUIREMENTS: { selector: string; module: string }[] = [
 
 type ModuleEntry = {
   importPromise: Promise<void>;
+
+  // NOTE: If present, initialize() must be safe to call multiple times without leaking handlers or observers.
   initialize: (() => void) | undefined;
 };
 
@@ -47,7 +49,7 @@ export const pushPageViewEvent = (path: string, title: string): void => {
   });
 };
 
-let prevUrl = new URL(location.href);
+let currentUrl = new URL(location.href);
 let currentNavigation: string;
 
 const isStaleNavigation = (id: string): boolean => currentNavigation !== id;
@@ -135,8 +137,8 @@ const setBaseUrl = (elm: Element, url: URL): void => {
   }
 };
 
-export const navigateTo = async (url: URL, pushHistory = true): Promise<void> => {
-  if (url.pathname === prevUrl.pathname) {
+export const navigateTo = async (next: URL, pushHistory = true): Promise<void> => {
+  if (next.pathname === currentUrl.pathname) {
     return;
   }
 
@@ -146,9 +148,9 @@ export const navigateTo = async (url: URL, pushHistory = true): Promise<void> =>
   let htmlText: string;
 
   try {
-    htmlText = await fetchText(url.pathname);
+    htmlText = await fetchText(next.pathname);
   } catch (err) {
-    forceReload(url, err instanceof Error ? err.message : String(err));
+    forceReload(next, err instanceof Error ? err.message : String(err));
     return;
   }
 
@@ -163,11 +165,11 @@ export const navigateTo = async (url: URL, pushHistory = true): Promise<void> =>
   const newTitle = parsed.querySelector('title');
 
   if (!newArticle || !newTitle) {
-    forceReload(url, 'navigateTo: required elements not found in fetched HTML.');
+    forceReload(next, 'navigateTo: required elements not found in fetched HTML.');
     return;
   }
 
-  setBaseUrl(newArticle, url);
+  setBaseUrl(newArticle, next);
 
   const applyContent = () => {
     // Eliminate old operations during ViewTransition
@@ -177,7 +179,7 @@ export const navigateTo = async (url: URL, pushHistory = true): Promise<void> =>
     const article = document.getElementById('article');
 
     if (!article) {
-      forceReload(url, 'applyContent: not found article');
+      forceReload(next, 'applyContent: not found article');
       return;
     }
     article.innerHTML = newArticle.innerHTML;
@@ -187,7 +189,7 @@ export const navigateTo = async (url: URL, pushHistory = true): Promise<void> =>
       console.error('Failed to initialize page modules:', err);
     });
 
-    article.scrollIntoView({ behavior: 'instant' });
+    article.scrollIntoView({ behavior: 'auto' });
   };
 
   'startViewTransition' in document ? document.startViewTransition(applyContent) : applyContent();
@@ -198,18 +200,18 @@ export const navigateTo = async (url: URL, pushHistory = true): Promise<void> =>
   }
 
   if (onNavigate !== null) {
-    onNavigate(url);
+    onNavigate(next);
   }
 
   if (pushHistory) {
     if (isStaleNavigation(id)) {
       return;
     }
-    history.pushState({ path: url.pathname, title: newTitle.textContent }, '', url.href);
-    pushPageViewEvent(url.pathname, newTitle.textContent);
+    history.pushState({ path: next.pathname, title: newTitle.textContent }, '', next.href);
+    pushPageViewEvent(next.pathname, newTitle.textContent);
   }
 
-  prevUrl = url;
+  currentUrl = next;
 };
 
 (() => {
