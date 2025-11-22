@@ -195,10 +195,13 @@ ensure_dependencies = true, -- Should packer install plugin dependencies?
 
 このページだって、半分くらいは`lualine`以外への言及になっちゃってますよね。
 
-「やることが多すぎる。それは間違いない。」{{footnote: たまたま Elon Musk も同じようなこと言ってた。}}
+「やることが多すぎる。それは間違いない。」{{footnote:
+たまたま Elon Musk も同じようなこと言ってた。
+}}
 
 ```admonish warning title=""
-Everybody had a hard year{{footnote: I've Got a Feeling (by [The Beatles](https://en.wikipedia.org/wiki/The_Beatles)):
+Everybody had a hard year{{footnote:
+I've Got a Feeling (by [The Beatles](https://en.wikipedia.org/wiki/The_Beatles)):
 それぞれ別に制作されていた
 McCartney の "I've Got a Feeling" と Lennon の "Everybody Had a Hard Year" の2曲を組み合わせて完成した楽曲であり、
 1969年1月30日、[rooftop concert](https://en.wikipedia.org/wiki/The_Beatles%27_rooftop_concert) で収録された。
@@ -217,7 +220,7 @@ CoralPink{{footnote:
 [ポケットモンスター](https://ja.wikipedia.org/wiki/ポケットモンスター)なのか
 [Shōgun](https://en.wikipedia.org/wiki/Shōgun_(2024_TV_series)) なのか、
 日本橋なのか横須賀なのか、諸国往来な世界に飛び込んでしまった。
-}}　のてには
+}} のてには
 
 たたかえる　ちからが　ない❗
 ~~~

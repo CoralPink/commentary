@@ -316,7 +316,8 @@ require('lualine').setup {
 `lualine_c`には、もう少し先で登場する予定の`LSP`{{footnote:
 [Language Server Protocol](https://microsoft.github.io/language-server-protocol/)の略。
 Microsoftが開発したものがオープンスタンダードになっているそう。
-その辺は[wikipedia](https://en.wikipedia.org/wiki/Language_Server_Protocol)で❗}}
+その辺は[wikipedia](https://en.wikipedia.org/wiki/Language_Server_Protocol)で❗
+}}
 関連の情報を表示したいと思ってます。
 
 イメージとしては[トップページ](../../index.html)のようになるので、

@@ -11,8 +11,8 @@ nvim-cmp neovimの組み込み言語サーバークライアント用ソース�
 それはもう「ちょうど夜が明けて、やがて窓から日が差してくるみたいに」。
 
 ```admonish success title=""
-Here comes the sun king
-{{footnote: Sun King (by [The Beatles](https://en.wikipedia.org/wiki/The_Beatles)):
+Here comes the sun king{{footnote:
+Sun King (by [The Beatles](https://en.wikipedia.org/wiki/The_Beatles)):
 タイトルの "Sun King" とは、"Louis XIV (ルイ14世)" の別称である。
 曲名は当初 "Here Comes the Sun King" となっていたが、"Here Comes The Sun" と混同することから現在の曲名になった。
 楽曲について、Lennon は「あったのは曲半分だけで、ずっと仕上げられないままだった。

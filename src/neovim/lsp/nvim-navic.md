@@ -14,8 +14,7 @@ LSP を使用して現在のコードコンテキストを表示するシンプ�
 
 これも`LSP`を利用して動作するプラグインです。
 
-日本で衛星の話はまだだいぶお耳が痛いですが、インドの`NavIC`
-{{footnote:
+日本で衛星の話はまだだいぶお耳が痛いですが、インドの`NavIC`{{footnote:
 当初、インド地域航法衛星システム(Indian Regional Navigation Satellite System/IRNSS)と呼称されていたが、
 2016年4月にモディ首相によって名称変更が行われ，「NavIC」（Navigation Indian Constellation）と呼ばれることになった。
 [Wikipedia](https://ja.wikipedia.org/wiki/インド地域航法衛星システム)より
@@ -245,8 +244,8 @@ use {
 ```admonish success title=""
 We’ll start out walking and learn to run
 
-And yes, we’ve just begun
-{{footnote: We've Only Just Begun (by [The Carpenters](https://en.wikipedia.org/wiki/The_Carpenters))
+And yes, we’ve just begun{{footnote:
+We've Only Just Begun (by [The Carpenters](https://en.wikipedia.org/wiki/The_Carpenters))
 元々は、California 州の Crocker National Bank のCMソングとして制作され、
 タイトルのとおり「2人はまだ始まったばかり（We've Only Just Begun）」と結婚によって新しい人生を踏み出すことについて歌われている。
 この曲は、アレンジャーとしての Richard の能力と、ヴォーカルとしての Karen の能力が最も発揮されているということで、
@@ -407,7 +406,9 @@ vim.api.nvim_create_autocmd("BufEnter", {
 のほほんとできましたね😊
 
 ちゃんと`LSP`を動かせるようになったことによる賜物です。
-「胸を張っていい❗❗{{footnote: ドッジボールは続いている...❗}}」
+「胸を張っていい❗❗{{footnote:
+ドッジボールは続いている...❗
+}}」
 
 ところで〜...、`nvim-navic`のトップにこんな一文がありましたね。
 

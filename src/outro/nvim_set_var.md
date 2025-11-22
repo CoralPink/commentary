@@ -100,8 +100,8 @@ Superman は DC Comics の出版するアメリカン・コミックで 1938年�
 Krypton星から地球に降り立ったヒューマノイド型エイリアンの難民で、超人的な能力を身につけている。
 普段はメトロポリスの新聞社 Daily Planet でジャーナリスト Clark Kent として働く。
 テレビシリーズ冒頭のナレーションは「弾丸(たま) よりも速く、力は機関車よりも強く、高いビルディングもひとっ跳び❗」。
-[Wikipedia](https://en.wikipedia.org/wiki/Superman_(franchise))より}}とも
-スッパマンさん{{footnote:
+[Wikipedia](https://en.wikipedia.org/wiki/Superman_(franchise))より
+}}ともスッパマンさん{{footnote:
 スッパマン は[Dr.スランプ](https://en.wikipedia.org/wiki/Dr._Slump)に登場する
 オカカウメ星からやってきた自称正義の味方。
 しかし行動はアホそのもので、なおかつ悪質、陰湿、陰険で根に持つタイプ。
@@ -113,8 +113,8 @@ Krypton星から地球に降り立ったヒューマノイド型エイリアン�
 電話ボックスを簡単に破壊できることを見せつけられた途端、則巻千兵衛の家への道を教え、自分の車を使わせた。
 決め台詞は「ウメボシたべてスッパマン❗」自ら付けたキャッチフレーズ的なものは
 「オカメコオロギより速く、トノサマバッタより強く、(価格が) 高いカズノコなどひとっ飛び❗」
-[Wikipedia](https://en.wikipedia.org/wiki/List_of_Dr._Slump_characters#Suppaman)より}}
-ともまた違った魅力があるのです❗かぁっくいー❤️
+[Wikipedia](https://en.wikipedia.org/wiki/List_of_Dr._Slump_characters#Suppaman)より
+}}ともまた違った魅力があるのです❗かぁっくいー❤️
 
 ```admonish tip
 `nvim_set_var`は`global`変数に対して値をセットする汎用的な`API`なので、この節での使い方はあくまでも一例です。

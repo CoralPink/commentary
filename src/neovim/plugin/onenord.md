@@ -383,7 +383,10 @@ John Lennon が1971年に発表した同名のアルバムに収録された曲�
 Lennon が亡くなる直前、この曲の歌詞と内容の多くは妻のオノ・ヨーコによるものだと語っており、2017年、彼女は共作のクレジットを受け取った。
 Imagine は発表以来、常に広く賞賛されてきたが、
 地政学的な国境、組織化された宗教、経済階級といった現代の社会秩序を完全に排除した上に成り立つ
-"統一と平等" を求めた歌詞が原因で論争も巻き起こした。
+"統一と平等" を求めた歌詞が原因で論争も巻き起こした。</p>
+</aside>
+
+<aside class="ft-definition" role="doc-footnote">
 <a href="https://en.wikipedia.org/wiki/Broadcast_Music,_Inc." target="_blank" rel="noopener">BMI</a> は Imagine を 20世紀で最も演奏された 100曲のひとつに選んだ。
 1999年には<a href="https://en.wikipedia.org/wiki/Recording_Industry_Association_of_America" target="_blank" rel="noopener">RIAA</a>が選ぶ
 365の<a href="https://en.wikipedia.org/wiki/Songs_of_the_Century" target="_blank" rel="noopener">Songs of the Century</a>の30位にランクされ、<a href="https://en.wikipedia.org/wiki/Grammy_Hall_of_Fame" target="_blank" rel="noopener">Grammy賞</a>の殿堂入りを果たし、

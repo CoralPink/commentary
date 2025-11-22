@@ -25,8 +25,9 @@ color_scheme = 'Catppuccin Mocha',
 ```admonish note
 ちなみに、このWebページのカラースキームも`Catppuccin`を使ってたりします。
 
-セルフサービスなので、左上のパレットアイコンからお好みで淹れて
-{{footnote: 誤字じゃないです。[カプチーノ](https://ja.wikipedia.org/wiki/カプチーノ)なので❗}}みてください😄
+セルフサービスなので、左上のパレットアイコンからお好みで淹れて{{footnote:
+誤字じゃないです。[カプチーノ](https://ja.wikipedia.org/wiki/カプチーノ)なので❗
+}}みてください😄
 ```
 
 ## window_background_opacity
