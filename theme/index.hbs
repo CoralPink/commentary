@@ -29,7 +29,7 @@
     <link rel="stylesheet" href="{{ resource "css/general.css"}}">
     <link rel="preload" href="{{ resource "css/style.css"}}" as="style" onload="this.rel='stylesheet'">
 
-    <script type="module" src="{{ resource "book.js"}}" id="bookjs" data-pathtoroot="{{ path_to_root }}"></script>
+    <script type="module" src="{{ resource "navigation.js"}}"></script>
   </head>
   <body>
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WMN96QT"
@@ -99,7 +99,9 @@
       </aside>
 
       <aside class="toc-container" aria-label="Table of contents">
-        <div id="table-of-contents"></div>
+        <div id="table-of-contents">
+          <nav id="pagetoc" role="navigation" aria-label="Table of Contents"></nav>
+        </div>
 
         <button id="toc-toggle" class="icon-button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="table-of-contents">
           <div class="icon-menu fa-icon"></div>

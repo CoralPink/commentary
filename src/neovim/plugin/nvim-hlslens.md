@@ -241,11 +241,3 @@ Black Panther and Uganda Forever!!
 
 ブラックパンサーも ウガンダも 永遠に!!
 ```
-
-<script type="module">
-document.addEventListener('DOMContentLoaded', async () => {
-  try {
-    await import(`${document.getElementById('bookjs').dataset.pathtoroot}slider.js`);
-  } catch (e) { console.error(e); }
-});
-</script>

@@ -62,7 +62,12 @@ vim.cmd.colorscheme('blue')
 ```
 ~~~
 
-<div id="mt-fuji"></div>
+<div class="slider">
+  <div class="media">
+    ![kawaguchiko-mt-fuji-day](img/kawaguchiko-mt-fuji-day.webp)
+    ![kawaguchiko-mt-fuji-night](img/kawaguchiko-mt-fuji-night.webp)
+  </div>
+</div>
 
 ## Try
 
@@ -164,23 +169,3 @@ VIM.CMD WILL RETURN
 vim.cmd は帰ってくる
 </div>
 ```
-
-<script type="module">
-document.addEventListener('DOMContentLoaded', async () => {
-  const rootPath = document.getElementById('bookjs').dataset.pathtoroot;
-
-  try {
-    const module = await import(`${rootPath}replace-dom.js`);
-    module.replaceId([
-      { id: 'mt-fuji',
-        src: { light:'img/kawaguchiko-mt-fuji-day.webp', dark: 'img/kawaguchiko-mt-fuji-night.webp'},
-        alt: 'kawaguchiko-mt-fuji',
-      },
-    ]);
-  } catch (e) { console.error(e); }
-
-  try {
-    await import(`${rootPath}slider.js`);
-  } catch (e) { console.error(e); }
-});
-</script>

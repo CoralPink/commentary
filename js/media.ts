@@ -1,4 +1,6 @@
 import Plyr from 'plyr';
+
+import { ROOT_PATH } from './constants.ts';
 import { loadStyleSheet } from './css-loader.ts';
 
 const STYLE_PLYR = 'css/plyr.css';
@@ -32,11 +34,10 @@ const setupMedia = (entries: IntersectionObserverEntry[], obs: IntersectionObser
   }
 };
 
-export const initVideo = (): void => {
-  const videos = Array.from(document.querySelectorAll<HTMLVideoElement>('video')).filter(
-    // Exclude <video> elements located under elements that use `slider.ts`.
-    video => !video.closest('.slider'),
-  );
+export const initialize = (): void => {
+  loadStyleSheetPromise = loadStyleSheet(`${ROOT_PATH}${STYLE_PLYR}`);
+
+  const videos = Array.from(document.querySelectorAll<HTMLVideoElement>('video'));
 
   if (videos.length === 0) {
     return;
@@ -47,12 +48,4 @@ export const initVideo = (): void => {
   for (const x of Array.from(videos)) {
     observer.observe(x);
   }
-};
-
-export const initMedia = (rootPath: string): void => {
-  if (document.querySelector('video') === null) {
-    return;
-  }
-
-  loadStyleSheetPromise = loadStyleSheet(`${rootPath}${STYLE_PLYR}`);
 };

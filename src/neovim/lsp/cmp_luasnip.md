@@ -261,56 +261,41 @@ Gonna come out now Ha-ha-ha
 
 今に出てくるよ ははは
 
-<video id="randomVideo1" preload="none" width="1280" height="720"></video>
+<div class="slider">
+  <div class="media">
+    <video preload="none" width="1280" height="720" data-poster="img/nya-shougi-ondo-thumbnail.webp">
+      <source src="img/nya-shougi-ondo.webm" type="video/webm">
+      Your browser does not support the video/webm.
+    </video>
+    <video preload="none" width="1280" height="720" data-poster="img/tokyo-yakei-1a-thumbnail.webp">
+      <source src="img/tokyo-yakei-1a.webm" type="video/webm">
+      Your browser does not support the video/webm.
+    </video>
+    <video preload="none" width="1280" height="720" data-poster="img/tokyo-yakei-1b-thumbnail.webp">
+      <source src="img/tokyo-yakei-1b.webm" type="video/webm">
+      Your browser does not support the video/webm.
+    </video>
+  </div>
+</div>
 
 Wow look out! it's-
 
 おい見ろ！あれは-
 
-<video id="randomVideo2" preload="none" width="1280" height="720"></video>
+<div class="slider">
+  <div class="media">
+    <video preload="none" width="1280" height="720" data-poster="img/saitama-tokyo-thumbnail.webp">
+      <source src="img/saitama-tokyo.webm" type="video/webm">
+      Your browser does not support the video/webm.
+    </video>
+    <video preload="none" width="1280" height="720" data-poster="img/tokyo-yakei-2a-thumbnail.webp">
+      <source src="img/tokyo-yakei-2a.webm" type="video/webm">
+      Your browser does not support the video/webm.
+    </video>
+    <video preload="none" width="1280" height="720" data-poster="img/tokyo-yakei-2b-thumbnail.webp">
+      <source src="img/tokyo-yakei-2b.webm" type="video/webm">
+      Your browser does not support the video/webm.
+    </video>
+  </div>
+</div>
 ```
-
-<!-- Roulette! -->
-<script>
-document.addEventListener(
-  'DOMContentLoaded',
-  () => {
-    const videos = [
-      { vd1: 'tokyo-yakei-1a', vd2: 'tokyo-yakei-2a', probability: 25 }, // みやび
-      { vd1: 'tokyo-yakei-1b', vd2: 'tokyo-yakei-2b', probability: 25 }, // わさび
-      { vd1: 'nya-shougi-ondo', vd2: 'saitama-tokyo', probability: 50 }, // なすび
-    ];
-
-    const replaceVideo = (id, hit) => {
-      const v = document.createElement('video');
-      v.setAttribute('preload', 'none');
-      v.setAttribute('width', '1280');
-      v.setAttribute('height', '720');
-      v.setAttribute('data-poster', `img/${hit}-thumbnail.webp`);
-
-      const s = document.createElement('source');
-      s.setAttribute('src', `img/${hit}.webm`);
-      s.setAttribute('type', 'video/webm');
-
-      v.appendChild(s);
-      document.getElementById(id).replaceWith(v);
-    };
-
-    const totalProbability = videos.reduce((sum, video) => sum + video.probability, 0);
-    const random = Math.random() * totalProbability;
-
-    let cumulativeProbability = 0;
-
-    for (const video of videos) {
-      cumulativeProbability += video.probability;
-
-      if (random <= cumulativeProbability) {
-        replaceVideo('randomVideo1', video.vd1);
-        replaceVideo('randomVideo2', video.vd2);
-        return;
-      }
-    }
-  },
-  { once: true, passive: true },
-);
-</script>

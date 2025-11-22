@@ -1,3 +1,4 @@
+import { ROOT_PATH } from './constants.ts';
 import { getRootVariable, loadStyleSheet, unloadStyleSheet } from './css-loader.ts';
 import { readLocalStorage, writeLocalStorage } from './storage.ts';
 
@@ -37,15 +38,13 @@ const LIST_APPEND_ID = 'page';
 const ID_THEME_LIST = 'theme-list';
 const CLASS_THEME = 'theme';
 
-let rootPath: string;
-
 const prefersColor = matchMedia('(prefers-color-scheme: dark)');
 const isDarkThemeRequired = (): boolean => prefersColor.matches;
 const getFallbackColor = (): string => (isDarkThemeRequired() ? DARK_FALLBACK_COLOR : LIGHT_FALLBACK_COLOR);
 
 const loadStyle = async (style: string): Promise<void> => {
   try {
-    await loadStyleSheet(`${rootPath}${THEME_DIRECTORY}${style}.css`);
+    await loadStyleSheet(`${ROOT_PATH}${THEME_DIRECTORY}${style}.css`);
 
     const metaThemeColor = document.querySelector('meta[name="theme-color"]') as HTMLMetaElement;
 
@@ -89,7 +88,7 @@ const setTheme = async (next: ThemeColorId): Promise<void> => {
   }
 
   if (current) {
-    unloadStyleSheet(`${rootPath}${THEME_DIRECTORY}${current}.css`);
+    unloadStyleSheet(`${ROOT_PATH}${THEME_DIRECTORY}${current}.css`);
   }
 
   // Skip UI updates if menu not initialized
@@ -120,7 +119,7 @@ const setTheme = async (next: ThemeColorId): Promise<void> => {
 };
 
 const initThemeSelector = async (): Promise<void> => {
-  await loadStyleSheet(`${rootPath}${STYLE_THEMELIST}`);
+  await loadStyleSheet(`${ROOT_PATH}${STYLE_THEMELIST}`);
 
   const themeList = document.createElement('ul');
 
@@ -175,9 +174,7 @@ const changeEvent = (ev: MediaQueryListEvent): void => {
   setTheme(theme as ThemeColorId);
 };
 
-export const initThemeColor = (root: string): void => {
-  rootPath = root;
-
+export const initThemeColor = (): void => {
   const appearance = isDarkThemeRequired() ? KEY_DARK : KEY_LIGHT;
 
   // If the user has already specified a theme, that theme will be applied;
@@ -189,9 +186,15 @@ export const initThemeColor = (root: string): void => {
   document.querySelector('html')?.classList.add(theme);
   loadStyle(theme);
 
-  prefersColor.addEventListener('change', changeEvent, { once: false, passive: true });
+  prefersColor.addEventListener('change', changeEvent, {
+    once: false,
+    passive: true,
+  });
 
   for (const x of document.querySelectorAll(`[data-target="${TARGET_THEME_SELECTOR}"]`)) {
-    x.addEventListener('click', initThemeSelector, { once: true, passive: true });
+    x.addEventListener('click', initThemeSelector, {
+      once: true,
+      passive: true,
+    });
   }
 };
