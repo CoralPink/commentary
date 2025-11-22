@@ -47,11 +47,13 @@ export const pushPageViewEvent = (path: string, title: string): void => {
   });
 };
 
+let prevUrl = new URL(location.href);
 let currentNavigation: string;
+
 const isStaleNavigation = (id: string): boolean => currentNavigation !== id;
 
 const forceReload = (url: URL, msg: string = 'forceReload'): void => {
-  console.log(msg);
+  console.warn(msg);
   location.href = url.href;
 };
 
@@ -134,7 +136,7 @@ const setBaseUrl = (elm: Element, url: URL): void => {
 };
 
 export const navigateTo = async (url: URL, pushHistory = true): Promise<void> => {
-  if (url.pathname === location.pathname) {
+  if (url.pathname === prevUrl.pathname) {
     return;
   }
 
@@ -206,6 +208,8 @@ export const navigateTo = async (url: URL, pushHistory = true): Promise<void> =>
     history.pushState({ path: url.pathname, title: newTitle.textContent }, '', url.href);
     pushPageViewEvent(url.pathname, newTitle.textContent);
   }
+
+  prevUrl = url;
 };
 
 (() => {
