@@ -164,9 +164,9 @@ const toggleSidebar = (): void =>
 
 const toggleHandler = (key: string): void => {
   // TODO: While the search popup is displayed, suppress sidebar processing. but it looks a bit tacky...
-  const searchPop = document.getElementById('search-pop') as HTMLElement;
+  const searchPop = document.getElementById('search-pop');
 
-  if (searchPop.checkVisibility()) {
+  if (searchPop && searchPop.checkVisibility()) {
     return;
   }
 
