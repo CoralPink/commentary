@@ -1,3 +1,37 @@
+/*
+ * TODO:
+ * Ideally, I think using the `beforeunload` event to call the cleanup process would be best,
+ * but unfortunately, it wasn't supported in the Safari on iOS...
+ *
+ * (However, if you ask whether I tested it on other browsers, I haven't!)
+ *
+ * ```html
+ * <script type="module">
+ * document.getElementById('article').addEventListener('replaceEvent', async (ev) => {
+ *   const cleanupFn = ev.detail.func?.([
+ *     { id: 'XXXX',
+ *      src: { light:'img/YYYY.webp', dark: 'img/ZZZZ.webp'},
+ *      alt: 'XXXX',
+ *    },
+ *   ]);
+ *
+ *   window.addEventListener('beforeunload', () => {
+ *     if (!cleanupFn) {
+ *       return;
+ *     }
+ *     cleanupFn();
+ *     cleanupFn = null;
+ *   });
+ * });
+ * </script>
+ * ```
+ *
+ * No alternative solution has been found yet, so it can't be used!
+ *
+ * refs: https://developer.mozilla.org/ja/docs/Web/API/Window/beforeunload_event
+ * refs: https://bugs.webkit.org/show_bug.cgi?id=219102
+ */
+
 import { getRootVariable } from './css-loader.ts';
 import { debounce } from './timing.ts';
 
@@ -5,6 +39,8 @@ const INTERVAL_MS = 50;
 const TIMEOUT_MS = 1000;
 
 const BATCH_SIZE = 2;
+
+const EVENT_REPLACE = 'replaceEvent';
 
 type BaseObject = {
   id: string;
@@ -92,4 +128,14 @@ export const replaceId = (imageObjectArray: ImageObject[]): (() => void) => {
   });
 
   return () => observer.disconnect();
+};
+
+export const initialize = (): void => {
+  const article = document.getElementById('article');
+
+  if (!article) {
+    console.error('replace-dom: article not found');
+    return;
+  }
+  article.dispatchEvent(new CustomEvent(EVENT_REPLACE, { detail: { func: replaceId } }));
 };

@@ -4,28 +4,13 @@
  *
  * See: https://developer.mozilla.org/en-US/docs/Web/API/SharedWorker
  */
+import { getRandomId } from './random.ts'
 import { isErrorPayload, type Payload, type SendToWorker, type WorkerResponse } from './hl-types.ts';
 
 const SHAREDWORKER_PATH = '/commentary/hl-sharedworker.js';
 const WORKER_PATH = '/commentary/hl-worker.js';
 
 type WorkerCallback = (data: Payload) => void;
-
-const fallbackRandomHexId = (): string => {
-  const array = new Uint8Array(16);
-  globalThis.crypto.getRandomValues(array);
-
-  return Array.from(array)
-    .map(b => b.toString(16).padStart(2, '0'))
-    .join('');
-};
-
-const randomUUID: () => string =
-  typeof globalThis.crypto === 'object' && typeof globalThis.crypto.randomUUID === 'function'
-    ? globalThis.crypto.randomUUID.bind(globalThis.crypto)
-    : fallbackRandomHexId;
-
-const getRandomId = (): string => randomUUID();
 
 /**
  * Initializes a SharedWorker-based communication system.

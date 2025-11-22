@@ -1,5 +1,8 @@
+import { ROOT_PATH } from './constants.ts';
 import { loadStyleSheet } from './css-loader.ts';
+import { fetchRequest } from './fetch.ts';
 import { doMarkFromUrl, unmarking } from './mark.ts';
+import { navigateTo } from './navigation.ts';
 import { debounce } from './timing.ts';
 
 // deno-lint-ignore no-sloppy-imports
@@ -16,10 +19,7 @@ const STYLE_SEARCH = 'css/search.css';
 
 export const TARGET_SEARCH = 'search';
 
-const FETCH_TIMEOUT = 10000;
 const DEBOUNCE_DELAY_MS = 80;
-
-let rootPath: string;
 
 let elmPop: HTMLElement;
 let elmSearchBar: HTMLInputElement;
@@ -56,13 +56,12 @@ const jumpUrl = (): void => {
   const currentURL = globalThis.location.origin + globalThis.location.pathname;
 
   if (clickedURL === currentURL) {
-    hiddenSearch();
-
     unmarking();
     doMarkFromUrl();
   }
 
-  globalThis.location.href = url.href;
+  navigateTo(url);
+  hiddenSearch();
 };
 
 const updateFocus = (target: HTMLElement): void => {
@@ -150,33 +149,6 @@ const showSearch = (): void => {
   elmSearchBar.select();
 };
 
-const fetchRequest = async (url: string): Promise<Response> => {
-  const controller = new AbortController();
-
-  const timeoutId = setTimeout(() => {
-    controller.abort();
-    alert('The request has timed out.');
-  }, FETCH_TIMEOUT);
-
-  try {
-    const response = await fetch(url, {
-      signal: controller.signal,
-    });
-    return response;
-  } catch (e) {
-    if (e instanceof Error) {
-      if (e.name === 'AbortError') {
-        console.error('Request timed out:', e.message);
-      } else {
-        console.error('Network error:', e.message);
-      }
-    }
-    throw e;
-  } finally {
-    clearTimeout(timeoutId);
-  }
-};
-
 /*
  * TODO:
  * Currently, Brotli can only be used with Safari 18.4 or later.
@@ -234,16 +206,16 @@ const initSearch = async (): Promise<void> => {
   }
 
   try {
-    await loadStyleSheet(`${rootPath}${STYLE_SEARCH}`);
+    await loadStyleSheet(`${ROOT_PATH}${STYLE_SEARCH}`);
 
-    const config = await fetchAndDecompress(`${rootPath}searchindex.json`);
+    const config = await fetchAndDecompress(`${ROOT_PATH}searchindex.json`);
 
     if (!config.doc_urls || !config.index.documentStore.docs) {
       throw new Error('Missing required search configuration fields');
     }
 
     await wasmPromise;
-    finder = new Finder(rootPath, config.doc_urls, config.index.documentStore.docs);
+    finder = new Finder(ROOT_PATH, config.doc_urls, config.index.documentStore.docs);
   } catch (e) {
     console.error(`Error during initialization: ${e}`);
     console.info('The search function is disabled.');
@@ -321,9 +293,7 @@ const startSearchFromKey = (ev: KeyboardEvent): void => {
   }
 };
 
-export const startupSearch = (root: string): void => {
-  rootPath = root;
-
+export const startupSearch = (): void => {
   for (const x of Array.from(document.querySelectorAll(`[data-target="${TARGET_SEARCH}"]`))) {
     x.addEventListener('click', initSearch, { once: true, passive: true });
   }

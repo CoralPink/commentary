@@ -8,7 +8,7 @@ Gaze deeply into unknown regions using the power of the moon.
 月の力を借りて、未知の領域を深く覗き込む。
 ```
 
-<div id="sky-garden"></div>
+![sky-garden-night](img/sky-garden-dark.webp)
 
 とってもロマンチックな見出し🥰
 
@@ -162,6 +162,8 @@ fzf-nativeを動作させるためには、cmake または make でビルドす�
 `Windows`はいつも通り自信がありませんが、
 もしかしたら`CMake`と`Microsoft C++ Build Tools on Windows`を使う方が、`MinGW`を必要としない分、簡単かもしれません。
 ```
+
+![sky-garden-day](img/sky-garden-light.webp)
 
 ### Optional dependencies
 
@@ -370,17 +372,3 @@ Telescope の使用方法と設定方法を理解することができます。
 
 偶然もチャンスに換える 生き方が好きよ
 ```
-
-<script>
-document.addEventListener('DOMContentLoaded', async () => {
-  try {
-    const module = await import(`${document.getElementById('bookjs').dataset.pathtoroot}replace-dom.js`);
-    module.replaceId([
-      { id: 'sky-garden',
-        src: { light:'img/sky-garden-light.webp', dark: 'img/sky-garden-dark.webp'},
-        alt: 'sky-garden',
-      },
-    ]);
-  } catch (e) { console.error(`Error: ${e}`); }
-});
-</script>
