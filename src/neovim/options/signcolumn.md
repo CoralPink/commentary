@@ -69,10 +69,11 @@ vim.api.nvim_win_set_option(0, 'signcolumn', 'yes:1')
 
 ![sign-number](img/sign-number.webp)
 
-上のスクリーンショットでは、`gitsigns.nvim`
-{{footnote: [https://github.com/lewis6991/gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)}}
-というプラグイン{{footnote: プラグインについてはこのサイトでも取り上げたいんですが、もうちょっとかかりそうです😓}}を使用して、
-変更箇所を`signcolumn`に表示しています。
+上のスクリーンショットでは、`gitsigns.nvim`{{footnote:
+[https://github.com/lewis6991/gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)
+}}というプラグイン{{footnote:
+プラグインについてはこのサイトでも取り上げたいんですが、もうちょっとかかりそうです😓
+}}を使用して、変更箇所を`signcolumn`に表示しています。
 
 (▶︎ とか ▎の部分がそれです。)
 

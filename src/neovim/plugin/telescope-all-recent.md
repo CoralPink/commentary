@@ -208,7 +208,9 @@ lua 関数で telescope のキーバインドを作成する場合は、
 ![install-sqlite3](img/sqlite-nvim-ng.webp)
 
 当たり前のことを言うんですけど、たった一回`Error`を出しただけで、これを一般的に「失敗」とは言いません
-{{footnote:ちょっともやもやするものですから❗🤣}}。 絶対に。
+{{footnote:
+ちょっともやもやするものですから❗🤣
+}}。絶対に。
 ```
 
 ### packer.use()

@@ -378,6 +378,8 @@ end
 
 それを糧に、モチベーション上げていきましょ❗
 
+![paul](img/paul.webp)
+
 ```admonish success
 Hela, heba helloa, cha cha cha
 

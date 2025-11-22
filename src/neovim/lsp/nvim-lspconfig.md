@@ -95,8 +95,9 @@ nvim-lspconfig はデフォルトでキーバインドを設定したり、補�
 omnifunc (<c-x><c-o>) による補完を手動でトリガしています。
 ```
 
-オフィシャルには、おっそろしく迅速に`pyright`、`tsserver`、`rust_analyzer`
-{{footnote:それぞれ、`Python`、`TypeScript`、`Rust`の Language Server です。}}
+オフィシャルには、おっそろしく迅速に`pyright`、`tsserver`、`rust_analyzer`{{footnote:
+それぞれ、`Python`、`TypeScript`、`Rust`の Language Server です。
+}}
 のセットアップがされていますが、大胆にも、このサイトではこれらをスキップして、もっと汎用的な方法をとります❗
 
 ```admonish success title=""
@@ -193,8 +194,8 @@ I traveled each and every highway
 ```admonish success title=""
 And more, much more than this
 
-I did it my way
-{{footnote: My Way (by [Frank Sinatra](https://en.wikipedia.org/wiki/Frank_Sinatra)):
+I did it my way{{footnote:
+My Way (by [Frank Sinatra](https://en.wikipedia.org/wiki/Frank_Sinatra)):
 Jacques Revaux が作曲し、Gilles Thibaut と Claude François が作詞した。
 
 Claude François が 1967年に初演したフランス歌曲[Comme d'habitude](https://fr.wikipedia.org/wiki/Comme_d%27habitude)の音楽に乗せて
@@ -245,7 +246,8 @@ LSPクライアントがバッファにアタッチした後 (に発生するイ
 
 ここはもう "nvimトレーナー{{footnote:
 このサイトの[10章](../options/options.html)・[11章](../au/automatic-commands.html)の主人公。
-現チャンピオン❗}}" に任せておけば安心ですね。
+現チャンピオン❗
+}}" に任せておけば安心ですね。
 
 ```admonish success title=""
 I've loved, I've laughed and cried
@@ -290,8 +292,9 @@ Amazon のセールに合わせて自分へのご褒美を送ってあげたり�
 nvimトレーナーは努力を続けていたってこと⁉️
 
 ```admonish success title=""
-Yes, it was my way
-{{footnote: もちろん、nvimトレーナーは目の前が真っ暗になることはあっても死ぬことはないです😉}}
+Yes, it was my way{{footnote:
+もちろん、nvimトレーナーは目の前が真っ暗になることはあっても死ぬことはないです😉
+}}
 
 そう、私が歩んできた道
 ```
@@ -318,17 +321,18 @@ Yes, it was my way
 
 宴もたけなわではございますが、
 
-とりあえ〜ずぅ ここぉ まあ でぇ〜〜〜え ってかぁ⁉️
-{{footnote: ポケモン音頭 (by ガルーラ小林):
+とりあえ〜ずぅ ここぉ まあ でぇ〜〜〜え ってかぁ⁉️{{footnote: ポケモン音頭 (by ガルーラ小林):
 1998年2月10日に[とりかえっこプリーズ](https://ja.wikipedia.org/wiki/とりかえっこプリーズ)のカップリング曲として
-ピカチュウレコードからリリースされた。}}
+ピカチュウレコードからリリースされた。
+}}
 
 ```admonish danger title=""
 ライバル{{footnote: ライバル! (by [松本梨香](https://ja.wikipedia.org/wiki/松本梨香)):
 1999年3月25日にピカチュウレコードからリリースされた。自身が声優として主演を務めるテレビアニメ
 [ポケットモンスター](https://ja.wikipedia.org/wiki/ポケットモンスター_(1997-2002年のアニメ))の2代目オープニングテーマに起用された。
 アニメのタイアップを手掛けるのは[めざせポケモンマスター](https://ja.wikipedia.org/wiki/めざせポケモンマスター)以来となった。
-[Wikipedia](https://ja.wikipedia.org/wiki/ライバル!)より}}どうし おかしいね
+[Wikipedia](https://ja.wikipedia.org/wiki/ライバル!)より
+}}どうし おかしいね
 
 "まだまだ育てが 足りないぜ！"
 
