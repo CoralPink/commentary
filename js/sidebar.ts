@@ -96,6 +96,12 @@ const initContent = async (): Promise<void> => {
 
   initLink();
   updateActive(getCurrentUrl());
+
+  requestAnimationFrame(() => {
+    if (currentSelect !== undefined) {
+      currentSelect.scrollIntoView({ block: 'center' });
+    }
+  });
 };
 
 const hideSidebar = (write = true): void => {
