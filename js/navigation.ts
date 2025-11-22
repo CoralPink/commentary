@@ -191,10 +191,9 @@ export const navigateTo = async (url: URL, pushHistory = true): Promise<void> =>
     return;
   }
 
-  if (onNavigate === null) {
-    return;
+  if (onNavigate !== null) {
+    onNavigate(url);
   }
-  onNavigate(url);
 
   if (pushHistory) {
     if (isCurrentNavigation(id)) {
