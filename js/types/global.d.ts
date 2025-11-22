@@ -1,6 +1,11 @@
-declare global {
-  interface Window {
-    dataLayer: any[];
-  }
+interface DataLayerEventBase {
+  event: string;
 }
-export {};
+
+interface PageViewEvent extends DataLayerEventBase {
+  event: 'page_view';
+  page_path: string;
+  page_title: string;
+}
+
+type DataLayerEvent = PageViewEvent;

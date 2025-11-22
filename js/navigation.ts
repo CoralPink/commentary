@@ -4,6 +4,7 @@ import { fetchText } from './fetch.ts';
 import { initFootnote } from './footnote.ts';
 import { enhanceLinks, isNativeLink } from './link.ts';
 import { doMarkFromUrl } from './mark.ts';
+import { getRandomId } from './random.ts';
 import { startupSearch } from './searcher.ts';
 import { initSidebar, updateActive } from './sidebar.ts';
 import { initTableOfContents, registryToc } from './table-of-contents.ts';
@@ -34,6 +35,24 @@ let onNavigate: ((url: URL) => void) | null = null;
 
 export const setOnNavigate = (cb: (url: URL) => void): void => {
   onNavigate = cb;
+};
+
+const dataLayer = ((globalThis as { dataLayer?: DataLayerEvent[] }).dataLayer ??= []);
+
+export const pushPageViewEvent = (path: string, title: string): void => {
+  dataLayer.push({
+    event: 'page_view',
+    page_path: path,
+    page_title: title,
+  });
+};
+
+let currentNavigation: string;
+const isCurrentNavigation = (id: string): boolean => currentNavigation !== id;
+
+const forceReload = (url: URL, msg: string = 'forceReload'): void => {
+  console.log(msg);
+  location.href = url.href;
 };
 
 const ensureModuleLoaded = (url: string): Promise<void> => {
@@ -115,32 +134,46 @@ const setBaseUrl = (elm: Element, url: URL): void => {
 };
 
 export const navigateTo = async (url: URL, pushHistory = true): Promise<void> => {
+  const id = getRandomId();
+  currentNavigation = id;
+
   let htmlText: string;
 
   try {
     htmlText = await fetchText(url.pathname);
-  } catch {
-    // If fetch fails, perform a full reload
-    location.href = url.href;
+  } catch (err) {
+    forceReload(url, err instanceof Error ? err.message : String(err));
     return;
   }
 
-  const parser = new DOMParser();
-  const parsed = parser.parseFromString(htmlText, 'text/html');
+  // If not the latest navigate, abort
+  if (isCurrentNavigation(id)) {
+    return;
+  }
 
-  const article = document.getElementById('article');
-  const newArticle = parsed.querySelector('article');
+  const parsed = new DOMParser().parseFromString(htmlText, 'text/html');
 
+  const newArticle = parsed.getElementById('article');
   const newTitle = parsed.querySelector('title');
 
-  if (!article || !newArticle || !newTitle) {
-    console.error('article not found.');
+  if (!newArticle || !newTitle) {
+    forceReload(url, 'navigateTo: required elements not found in fetched HTML.');
     return;
   }
 
   setBaseUrl(newArticle, url);
 
   const applyContent = () => {
+    // Eliminate old operations during ViewTransition
+    if (isCurrentNavigation(id)) {
+      return;
+    }
+    const article = document.getElementById('article');
+
+    if (!article) {
+      forceReload(url, 'applyContent: not found article');
+      return;
+    }
     article.innerHTML = newArticle.innerHTML;
     document.title = newTitle.textContent;
 
@@ -153,20 +186,22 @@ export const navigateTo = async (url: URL, pushHistory = true): Promise<void> =>
 
   'startViewTransition' in document ? document.startViewTransition(applyContent) : applyContent();
 
-  onNavigate?.(url);
+  // If the old navigate is used after replacement, do not add to history.
+  if (isCurrentNavigation(id)) {
+    return;
+  }
+
+  if (onNavigate === null) {
+    return;
+  }
+  onNavigate(url);
 
   if (pushHistory) {
-    history.pushState({ path: url.pathname, title: newTitle.textContent }, '', url.href);
-
-    // deno-lint-ignore no-window
-    // deno-lint-ignore no-window
-    if (window.dataLayer) {
-      window.dataLayer.push({
-        event: 'page_view',
-        page_path: url.pathname,
-        page_title: newTitle.textContent,
-      });
+    if (isCurrentNavigation(id)) {
+      return;
     }
+    history.pushState({ path: url.pathname, title: newTitle.textContent }, '', url.href);
+    pushPageViewEvent(url.pathname, newTitle.textContent);
   }
 };
 
