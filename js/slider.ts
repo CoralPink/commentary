@@ -1,5 +1,3 @@
-import { setPlyr } from './media.ts';
-
 const CLASS_ARROW = 'arrow';
 const CLASS_CONTROLS = 'controls';
 
@@ -178,8 +176,6 @@ class Slider {
   }
 
   private setupVideo(video: HTMLVideoElement): void {
-    setPlyr(video);
-
     // so it is copied from the data poster attributes. (...It's not pretty, but.)
     video.poster = video.dataset['poster' as keyof DOMStringMap] || video.poster || '';
 
@@ -200,19 +196,10 @@ const setupSlider = (entries: IntersectionObserverEntry[], obs: IntersectionObse
   }
 };
 
-const initialize = (): void => {
+export const initialize = (): void => {
   const observer = new IntersectionObserver(setupSlider, { rootMargin: '5%' });
 
   for (const elm of Array.from(document.querySelectorAll<HTMLDivElement>('.slider'))) {
     observer.observe(elm);
   }
 };
-
-(() => {
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initialize);
-    return;
-  }
-
-  initialize();
-})();

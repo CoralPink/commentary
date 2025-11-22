@@ -411,11 +411,3 @@ On jupiter and mars
 ```admonish success title="Assemble"
 さぁ〜て、この次も❗サービス、サービスぅ💕
 ```
-
-<script type="module">
-document.addEventListener('DOMContentLoaded', async () => {
-  try {
-    await import(`${document.getElementById('bookjs').dataset.pathtoroot}slider.js`);
-  } catch (e) { console.error(e); }
-});
-</script>

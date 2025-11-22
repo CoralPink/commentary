@@ -218,6 +218,8 @@ article {
   word-break: auto-phrase;
   overflow-x: clip;
 
+  scroll-margin-top: var.$menu-bar-height;
+
   code {
     &:not(pre code) {
       font-size: 0.82em;

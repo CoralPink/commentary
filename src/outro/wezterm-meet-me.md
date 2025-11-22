@@ -833,11 +833,3 @@ Lennon のヴォーカルを抽出する音声復元技術を用いたリマス�
 ( ！ねたっがあしにきでいよたま )
 </div>
 </div>
-
-<script type="module">
-document.addEventListener('DOMContentLoaded', async () => {
-  try {
-    await import(`${document.getElementById('bookjs').dataset.pathtoroot}slider.js`);
-  } catch (e) { console.error(e); }
-});
-</script>
