@@ -41,6 +41,8 @@ And a new one just begun
 そして新しい年が始まるんだ
 ```
 
+![ropoongi](img/roppongi.webp)
+
 ## Introduction
 
 ```admonish info title="[Introduction](https://github.com/jay-babu/mason-null-ls.nvim#introduction)"
