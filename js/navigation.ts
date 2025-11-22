@@ -48,7 +48,7 @@ export const pushPageViewEvent = (path: string, title: string): void => {
 };
 
 let currentNavigation: string;
-const isCurrentNavigation = (id: string): boolean => currentNavigation !== id;
+const isStaleNavigation = (id: string): boolean => currentNavigation !== id;
 
 const forceReload = (url: URL, msg: string = 'forceReload'): void => {
   console.log(msg);
@@ -147,7 +147,7 @@ export const navigateTo = async (url: URL, pushHistory = true): Promise<void> =>
   }
 
   // If not the latest navigate, abort
-  if (isCurrentNavigation(id)) {
+  if (isStaleNavigation(id)) {
     return;
   }
 
@@ -165,7 +165,7 @@ export const navigateTo = async (url: URL, pushHistory = true): Promise<void> =>
 
   const applyContent = () => {
     // Eliminate old operations during ViewTransition
-    if (isCurrentNavigation(id)) {
+    if (isStaleNavigation(id)) {
       return;
     }
     const article = document.getElementById('article');
@@ -187,7 +187,7 @@ export const navigateTo = async (url: URL, pushHistory = true): Promise<void> =>
   'startViewTransition' in document ? document.startViewTransition(applyContent) : applyContent();
 
   // If the old navigate is used after replacement, do not add to history.
-  if (isCurrentNavigation(id)) {
+  if (isStaleNavigation(id)) {
     return;
   }
 
@@ -196,7 +196,7 @@ export const navigateTo = async (url: URL, pushHistory = true): Promise<void> =>
   }
 
   if (pushHistory) {
-    if (isCurrentNavigation(id)) {
+    if (isStaleNavigation(id)) {
       return;
     }
     history.pushState({ path: url.pathname, title: newTitle.textContent }, '', url.href);

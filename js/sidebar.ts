@@ -20,7 +20,7 @@ const SAVE_STATUS_HIDDEN = 'hidden';
 let currentSelect: HTMLAnchorElement | undefined;
 
 export const updateActive = (url: URL) => {
-  const sidebarScrollbox = document.getElementById(ID_SCROLLBOX) as HTMLElement;
+  const sidebarScrollbox = document.getElementById(ID_SCROLLBOX);
 
   if (!sidebarScrollbox) {
     console.error(`sidebar: not found ${ID_SCROLLBOX}`);
@@ -46,7 +46,7 @@ export const updateActive = (url: URL) => {
 };
 
 const initLink = (): void => {
-  const sidebarScrollbox = document.getElementById(ID_SCROLLBOX) as HTMLElement;
+  const sidebarScrollbox = document.getElementById(ID_SCROLLBOX);
 
   if (!sidebarScrollbox) {
     console.error(`sidebar: not found ${ID_SCROLLBOX}`);
@@ -72,7 +72,7 @@ const getCurrentUrl = (): URL => {
 };
 
 const initContent = async (): Promise<void> => {
-  const sidebar = document.getElementById(ID_SIDEBAR) as HTMLElement;
+  const sidebar = document.getElementById(ID_SIDEBAR);
 
   if (!sidebar) {
     console.error(`sidebar: not found ${ID_SIDEBAR}`);
@@ -107,7 +107,7 @@ const initContent = async (): Promise<void> => {
 const hideSidebar = (write = true): void => {
   document.getElementById(ID_PAGE)?.classList.remove('show-sidebar');
 
-  const sidebar = document.getElementById(ID_SIDEBAR) as HTMLElement;
+  const sidebar = document.getElementById(ID_SIDEBAR);
 
   if (!sidebar) {
     console.error(`sidebar: not found ${ID_SIDEBAR}`);
@@ -137,7 +137,7 @@ const clickHide = (ev: PointerEvent): void => {
 const showSidebar = (write = true): void => {
   document.getElementById(ID_PAGE)?.classList.add('show-sidebar');
 
-  const sidebar = document.getElementById(ID_SIDEBAR) as HTMLElement;
+  const sidebar = document.getElementById(ID_SIDEBAR);
 
   if (!sidebar) {
     console.error(`sidebar: not found ${ID_SIDEBAR}`);
