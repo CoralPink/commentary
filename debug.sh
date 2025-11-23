@@ -57,7 +57,6 @@ popd
 #rm ayu-highlight.css
 #rm clipboard.min.js
 #rm elasticlunr.min.js
-#rm favicon.png
 #rm fonts.css
 #rm highlight.css
 #rm highlight.js
