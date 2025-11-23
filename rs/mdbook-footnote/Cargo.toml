@@ -1,14 +1,14 @@
 [package]
 name = "mdbook-footnote"
-version = "1.6.1"
+version = "2.0.0"
 authors = ["David Drysdale <dmd@lurklurk.org>", "CoralPink"]
 edition = "2024"
-rust-version = "1.85"
+rust-version = "1.88"
 license = "Apache-2.0"
 
 [dependencies]
 clap = "=4.5.53"
-mdbook = "=0.5.1"
+mdbook-preprocessor = "=0.5.1"
 regex = "=1.12.2"
 semver = "=1.0.27"
 serde_json = "=1.0.145"
