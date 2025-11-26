@@ -33,8 +33,9 @@ You say why and I say I don't know
 
 ただ、"買わないと当たらない" ぞ🫶🏻 ナイスフォロー❗
 
-...よし。今日も絶好調🤣
-{{footnote: ...な〜んて書いちゃったから 2024年の 9023.T の BB は見事な "落選" っぷりでした⭐}}
+...よし。今日も絶好調🤣{{footnote:
+...な〜んて書いちゃったから 2024年の 9023.T の BB は見事な "落選" っぷりでした⭐
+}}
 
 ~~~admonish info title=":h nvim_set_option_value()"
 ```txt
