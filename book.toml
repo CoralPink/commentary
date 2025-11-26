@@ -1,6 +1,6 @@
 [book]
 title = "Commentary of Dotfiles"
-author = "CoralPink"
+authors = ["CoralPink"]
 description = "WezTerm と Neovim の設定例 (dotfiles) を紹介するサイトです🤗 - This site introduces WezTerm and Neovim dotfiles."
 src = "src"
 language = "ja"
@@ -32,30 +32,3 @@ after = ["links"]
 [preprocessor.footnote]
 
 [preprocessor.tailor]
-
-
-# Does not work on this site.
-
-#[output.html.fold]
-#enable = false
-#level = 0
-
-# The following is not used because the same functionality has been moved to `theme-selector.js`.
-
-#[output.html]
-#default-theme = "latte"
-#preferred-dark-theme = "macchiato"
-
-# The following parameter settings are not available for this site.
-# It is not known if it will be possible to enable these settings in the future.
-
-#[output.html.search]
-#enable = true            # enables the search feature
-#limit-results = 100      # maximum number of search results
-#teaser-word-count = 20   # number of words used for a search result teaser
-#use-boolean-and = true   # multiple search terms must all match
-#boost-title = 2          # ranking boost factor for matches in headers
-#boost-hierarchy = 1      # ranking boost factor for matches in page names
-#boost-paragraph = 1      # ranking boost factor for matches in text
-#expand = true            # partial words will match longer terms
-#heading-split-level = 6  # link results to heading levels

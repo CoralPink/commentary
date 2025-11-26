@@ -1,4 +1,4 @@
-use mdbook::{book::Book, errors::Error};
+use mdbook_preprocessor::{book::Book, errors::Error};
 use regex::Regex;
 use std::sync::LazyLock;
 
@@ -10,7 +10,7 @@ static FOOTNOTE_RE: LazyLock<Regex> =
 
 pub fn replacing(mut book: Book) -> Result<Book, Error> {
     book.for_each_mut(|item| {
-        if let mdbook::book::BookItem::Chapter(chap) = item {
+        if let mdbook_preprocessor::book::BookItem::Chapter(chap) = item {
             let mut footnotes = vec![];
 
             chap.content = FOOTNOTE_RE
@@ -41,7 +41,7 @@ pub fn replacing(mut book: Book) -> Result<Book, Error> {
 #[cfg(test)]
 mod tests {
     use crate::replacing;
-    use mdbook::book::{Book, BookItem, Chapter};
+    use mdbook_preprocessor::book::{Book, BookItem, Chapter};
     use pretty_assertions::assert_eq;
     use std::{fs, fs::File, io::Write};
 

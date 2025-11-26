@@ -88,11 +88,11 @@ But then again, too few to mention
 ```admonish info title="[Suggested configuration](https://github.com/neovim/nvim-lspconfig#suggested-configuration)"
 nvim-lspconfig does not set keybindings or enable completion by default.
 The following example configuration provides suggested keymaps for the most commonly used language server functions,
-and manually triggered completion with omnifunc (<c-x><c-o>).
+and manually triggered completion with omnifunc (\<c-x\>\<c-o\>).
 
 nvim-lspconfig はデフォルトでキーバインドを設定したり、補完を有効にしたりしません。
 次の設定例では、最もよく使われる言語サーバ機能のキーマップを提案し、
-omnifunc (<c-x><c-o>) による補完を手動でトリガしています。
+omnifunc (\<c-x\>\<c-o\>) による補完を手動でトリガしています。
 ```
 
 オフィシャルには、おっそろしく迅速に`pyright`、`tsserver`、`rust_analyzer`{{footnote:
@@ -189,6 +189,7 @@ I traveled each and every highway
 
 私はあらゆる道を旅してきた
 ```
+
 ![nagashima3](img/nagashima3.webp)
 
 ```admonish success title=""

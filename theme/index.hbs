@@ -11,7 +11,7 @@
     <meta name="theme-color">
     <meta name="format-detection" content="telephone=no,email=no,address=no">
 
-    <link rel="icon" href="{{ resource "favicon.ico"}}">
+    <link rel="icon" type="image/png" href="{{ resource "favicon.png" }}">
     <link rel="icon" type="image/svg+xml" href="{{ resource "favicon.svg"}}">
 
     <link rel="apple-touch-icon" href="{{ resource "apple-touch-icon.png"}}">
@@ -70,18 +70,18 @@
           {{{ content }}}
 
           <nav id="nav-wrapper" aria-label="Page navigation">
-            {{#previous}}
-            <a rel="prev" href="{{ path_to_root }}{{link}}" class="chapters" id="prev" aria-label="Previous chapter: {{title}}">
+            {{#if previous}}
+            <a rel="prev" href="{{ path_to_root }}{{previous.link}}" class="chapters" id="prev" aria-label="Previous chapter: {{previous.title}}">
               <div class="icon-prev fa-icon"></div>
-              {{title}}
+              {{previous.title}}
             </a>
-            {{/previous}}
-            {{#next}}
-            <a rel="next" href="{{ path_to_root }}{{link}}" class="chapters" id="next" aria-label="Next chapter: {{title}}">
-              {{title}}
+            {{/if}}
+            {{#if next}}
+            <a rel="next" href="{{ path_to_root }}{{next.link}}" class="chapters" id="next" aria-label="Next chapter: {{next.title}}">
+              {{next.title}}
               <div class="icon-next fa-icon"></div>
             </a>
-            {{/next}}
+            {{/if}}
           </nav>
         </article>
       </main>
