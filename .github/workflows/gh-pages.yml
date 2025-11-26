@@ -416,7 +416,11 @@ jobs:
         if: steps.cache-cargo.outputs.cache-hit != 'true'
         run: |
           cargo install --version ${MDBOOK_VERSION} mdbook
-          cargo install mdbook-admonish
+
+          #cargo install mdbook-admonish
+          git clone https://github.com/CoralPink/mdbook-admonish.git -b mdbook-v0.5.x --depth 1 || exit 1
+          cargo install --path ./mdbook-admonish
+
           cargo install mdbook-tailor
           cargo install --path ./rs/mdbook-footnote
 
