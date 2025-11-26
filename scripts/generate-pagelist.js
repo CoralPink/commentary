@@ -56,6 +56,12 @@ const minify = html =>
     }
   });
 
+  // In Mdbook v0.5, <span> tags are inserted, but this site removes them. (Future plans are undecided...)
+  $('span').each((_, span) => {
+    const $span = $(span);
+    $span.replaceWith($span.html());
+  });
+
   write(HTML_OUTPUT, minify($.html()));
 
   const time = Math.floor(performance.now() - start) / 1000;
