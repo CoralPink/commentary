@@ -56,7 +56,7 @@ fn handle_supports(pre: &dyn Preprocessor, sub_args: &ArgMatches) -> ! {
     let renderer = sub_args.get_one::<String>("renderer").expect("Required argument");
 
     // Signal whether the renderer is supported by exiting with 1 or 0.
-    if pre.supports_renderer(renderer).unwrap() {
+    if pre.supports_renderer(renderer).unwrap_or(false) {
         process::exit(0);
     } else {
         process::exit(1);
