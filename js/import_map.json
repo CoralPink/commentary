@@ -1,7 +1,7 @@
 {
   "imports": {
     "plyr": "npm:plyr@3.8.3",
-    "rolldown": "npm:rolldown@1.0.0-beta.51",
+    "rolldown": "npm:rolldown@1.0.0-beta.52",
     "terser": "npm:terser@5.44.1",
 
     "@deno/rolldown-plugin": "jsr:@deno/rolldown-plugin@0.0.10",
