@@ -308,7 +308,7 @@ The Beatles は、"more popular than Jesus" (キリストよりも人気があ�
 ![marcos](img/marcos.webp)
 
 ...時を経て、New York City の[Central Park](https://en.wikipedia.org/wiki/Central_Park)の一角には
-Lennon を偲び、この曲にちなんだ区画が造られた。
+Lennon を偲び、この曲にちなんだ[区画](https://en.wikipedia.org/wiki/Strawberry_Fields_(memorial))が造られた。
 [Wikipedia](https://en.wikipedia.org/wiki/Strawberry_Fields_Forever) より
 }}
 
