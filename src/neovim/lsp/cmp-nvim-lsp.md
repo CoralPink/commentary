@@ -8,8 +8,6 @@ nvim-cmp source for neovim's built-in language server client.
 nvim-cmp neovimの組み込み言語サーバークライアント用ソース。
 ```
 
-それはもう「ちょうど夜が明けて、やがて窓から日が差してくるみたいに」。
-
 ```admonish success title=""
 Here comes the sun king{{footnote:
 Sun King (by [The Beatles](https://en.wikipedia.org/wiki/The_Beatles)):
