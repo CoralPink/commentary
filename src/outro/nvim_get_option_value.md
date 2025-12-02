@@ -137,9 +137,18 @@ What did you see when you were there?
 Nothing that doesn't show
 
 見えないものなんて ないんだよ
-```
 
 ![money](img/money.webp)
+```
+
+```admonish note title=""
+[さる‐まね【猿真似】](https://kotobank.jp/word/猿真似-512562)
+
+猿が、人間の動作を見て、そのとおりにまねること。
+
+転じて、よく考えもしないで他人のまねをすることを軽蔑していう。
+本質をわきまえないで、ただうわべだけをまねること。ひとまね。
+```
 
 ## 🤖 copilot-cmp
 

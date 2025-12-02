@@ -1,8 +1,8 @@
-# WezTerm
+# Installation
 
 まずは`WezTerm`です。
 
-## Installation
+## WezTerm
 
 インストールは`homebrew`などのパッケージ管理システムや、ホームページ上で提供されている実行ファイルをダウンロードする方法があります。
 

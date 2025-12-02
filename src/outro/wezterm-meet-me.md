@@ -830,7 +830,10 @@ McCartney によれば、これはまったく意図したものではなく、�
 {{footnote: 2025年8月、[Anthology 4](https://en.wikipedia.org/wiki/Anthology_4)収録のため、
 Lennon のヴォーカルを抽出する音声復元技術を用いたリマスター版リミックスがアルバムに先駆けてデジタル配信された🎉
 同様に[Helter Skelter](https://en.wikipedia.org/wiki/Helter_Skelter_(song)),
-[While My Guiter Gently Weeps](https://en.wikipedia.org/wiki/While_My_Guitar_Gently_Weeps)も順次先行して配信されている。
+[While My Guiter Gently Weeps](https://en.wikipedia.org/wiki/While_My_Guitar_Gently_Weeps),
+[I've Just Seen a Face](https://en.wikipedia.org/wiki/I%27ve_Just_Seen_a_Face),
+[In My Life](https://en.wikipedia.org/wiki/In_My_Life)が順次先行して配信された後、
+2025年11月21日に[Apple Records](https://en.wikipedia.org/wiki/Apple_Records)より Anthology 4 がリリースされた。
 [Wikipedia](https://en.wikipedia.org/wiki/Free_as_a_Bird)より
 }}
 

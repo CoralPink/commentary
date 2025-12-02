@@ -7,49 +7,49 @@ There's nothing you can do that can't be done
 できないことなんて無い
 </div>
 
-<div style="margin-top: 1.6em">
+<div style="margin-top: 4em">
 Nothing you can sing that can't be sung
 
 唄えない歌なんて無いんだ
 </div>
 
-<div style="margin-top: 1.6em">
+<div style="margin-top: 4em">
 Nothing you can say, but you can learn how to play the game
 
 きみは何も言えない、けどゲームのやり方を知ることはできる
 </div>
 
-<div style="margin-top: 4em">
+<div style="margin-top: 8em">
 It's easy
 
 簡単だ
 </div>
 
-<div style="margin-top: 7em">
+<div style="margin-top: 8em">
 Nothing you can make that can't be made
 
 作れないものは創れない
 </div>
 
-<div style="margin-top: 1.6em">
+<div style="margin-top: 4em">
 No one you can save that can't be saved
 
 掬われない人は救えないんだ
 </div>
 
-<div style="margin-top: 1.6em">
+<div style="margin-top: 4em">
 Nothing you can do, but you can learn how to be you in time
 
 きみは何もできない、けどやがて君らしく存る方法を知ることができる
 </div>
 
-<div style="margin-top: 4em">
+<div style="margin-top: 8em">
 It's easy
 
 焦るなよ
 </div>
 
-<div style="margin-top: 4em">
+<div style="margin-top: 8em">
 All you need is love
 
 All you need is love
@@ -57,56 +57,80 @@ All you need is love
 All you need is love, love
 </div>
 
-<div style="margin-top: 2em">
+<div style="margin-top: 4em">
 Love is all you need
 </div>
 
-<div style="margin-top: 7em">
+<div style="margin-top: 16em">
+All you need is love
+
+All you need is love
+
+All you need is love, love
+</div>
+
+<div style="margin-top: 4em">
+Love is all you need
+</div>
+
+<div style="margin-top: 8em">
 There's nothing you can know that isn't known
 
 知られていないことは何もない
 </div>
 
-<div style="margin-top: 1.6em">
+<div style="margin-top: 4em">
 Nothing you can see that isn't shown
 
 示されていないものは見えないんだ
 </div>
 
-<div style="margin-top: 1.6em">
+<div style="margin-top: 4em">
 There's nowhere you can be that isn't where you're meant to be
 
 きみが在るべきでない場所なんて どこにも或りはしない
 </div>
 
-<div style="margin-top: 4em">
+<div style="margin-top: 8em">
 It's easy
 
 気楽にいこう
 </div>
 
+<div style="margin-top: 8em">
+All you need is love
+
+All you need is love
+
+All you need is love, love
+</div>
+
 <div style="margin-top: 4em">
+Love is all you need
+</div>
+
+<div style="margin-top: 8em">
 All you need is love
 
 (All together now!)
 </div>
 
-<div style="margin-top: 2em">
+<div style="margin-top: 4em">
 All you need is love
 
 (Everybody!)
 </div>
 
-<div style="margin-top: 2em">
+<div style="margin-top: 4em">
 All you need is love, love
 </div>
 
-<div style="margin-top: 2em">
+<div style="margin-top: 4em">
 Love is all you need
 </div>
 </div>
 
-<div style="margin-top:7em"></div>
+<div style="margin-top:8em"></div>
 
 <div class="ft-definition">
 <p>All You Need Is Love (by <a href="https://en.wikipedia.org/wiki/The_Beatles">The Beatles</a>):

@@ -53,6 +53,8 @@ Can I bring my friend to tea?
 追加のインストールが手間だったり、そもそもその言語使ってないってことも当然あると思うので、
 これらを実際にインストールするかどうかはおまかせします😺
 
+![paul](img/paul.webp)
+
 ```admonish success title=""
 E, F, G, H, I, J
 

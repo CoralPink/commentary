@@ -567,19 +567,19 @@ Making all his nowhere plans for nobody
 <p>
 
 Nowhere Man (by [The Bealtes](https://en.wikipedia.org/wiki/The_Beatles")):
-1965年 10月の 21,22 日に録音された "Nowhere Man" は、人生に方向性を持たず、真の世界観を持たない男を描いている。
-The Beatles の楽曲で初めて恋愛や愛に全く関係のない曲となっており、Lennon の哲学的な傾向を持つ作詞作曲が行われた顕著な例である。
+1965年10月の 21,22日に録音された "Nowhere Man" は、人生に方向性を持たず、真の世界観を持たない男を描いている。
+The Beatles の楽曲で初めてロマンスや愛に全く関係のない曲となっており、Lennon の哲学的な傾向を持つ作詞作曲が行われた顕著な例である。
 
 Lennon, McCartney, Harrison が三声のハーモニーで歌っており、リードギターソロは Harrison と Lennon がユニゾンで演奏した。
 二人はこの曲で同一仕様の "ソニックブルー" の[Fender Stratocasters](https://en.wikipedia.org/wiki/Fender_Stratocaster)を使用している。
 
-この曲は映画[Yellow Submarine](https://en.wikipedia.org/wiki/Yellow_Submarine_(film))にも登場し、
+The Beatles の[1966年アメリカツアー](https://en.wikipedia.org/wiki/The_Beatles%27_1966_US_tour)、および同年の
+[ドイツ・日本・フィリピンツアー](https://en.wikipedia.org/wiki/The_Beatles%27_1966_tour_of_Germany,_Japan_and_the_Philippines)
+でも演奏された。
+
+この曲は 1968年の映画[Yellow Submarine](https://en.wikipedia.org/wiki/Yellow_Submarine_(film))にも登場し、
 The Beatles が "nowhere land" で出会ったキャラクター、
 [Jeremy Hillary Boob](https://en.wikipedia.org/wiki/Jeremy_Hillary_Boob)について歌っている。
-
-また、The Beatles の[1966年アメリカツアー](https://en.wikipedia.org/wiki/The_Beatles%27_1966_US_tour)、および同年の
-[ドイツ・日本・フィリピン](https://en.wikipedia.org/wiki/The_Beatles%27_1966_tour_of_Germany,_Japan_and_the_Philippines)
-でも演奏された。
 
 </p>
 </div>
@@ -588,7 +588,7 @@ The Beatles が "nowhere land" で出会ったキャラクター、
 <p>
 
 Lennon は 1980年[Playboy](https://en.wikipedia.org/wiki/Playboy)誌のインタビューでこう振り返っている:
-あの朝、意味のある良い曲を書こうと5時間もかけていたんだが、ついに諦めて横になった。
+あの朝、意味のある良い曲を書こうと 5時間もかけていたんだが、ついに諦めて横になった。
 そしたら "Norhere Man" が来た。歌詞もメロディも、全部が横になっている間に浮かんだんだ。
 
 </p>
