@@ -34,18 +34,29 @@ const setupMedia = (entries: IntersectionObserverEntry[], obs: IntersectionObser
   }
 };
 
-export const initialize = (): void => {
-  loadStyleSheetPromise = loadStyleSheet(`${ROOT_PATH}${STYLE_PLYR}`);
+const ensureStylesheetLoaded = (): ReturnType<typeof loadStyleSheet> => {
+  if (!loadStyleSheetPromise) {
+    loadStyleSheetPromise = loadStyleSheet(`${ROOT_PATH}${STYLE_PLYR}`);
+  }
+  return loadStyleSheetPromise;
+};
+
+export const initialize = (): (() => void) => {
+  ensureStylesheetLoaded();
 
   const videos = Array.from(document.querySelectorAll<HTMLVideoElement>('video'));
 
   if (videos.length === 0) {
-    return;
+    return () => {}; // no-op dispose
   }
 
-  const observer = new IntersectionObserver(setupMedia, { rootMargin: '3%' });
+  const obs = new IntersectionObserver(setupMedia, { rootMargin: '3%' });
 
   for (const x of Array.from(videos)) {
-    observer.observe(x);
+    obs.observe(x);
   }
+
+  return (): void => {
+    obs.disconnect();
+  };
 };

@@ -16,7 +16,6 @@ const SAVE_STATUS_VISIBLE = 'visible';
 const SAVE_STATUS_HIDDEN = 'hidden';
 
 const tocMap: Map<HTMLElement, HTMLAnchorElement> = new Map();
-let observer: IntersectionObserver | null = null;
 
 let elmToggle: HTMLButtonElement;
 let elmToc: HTMLDivElement;
@@ -121,12 +120,8 @@ const getHeaders = (): Array<HTMLAnchorElement> => {
   return Array.from(article.querySelectorAll('a.header'));
 };
 
-export const registryToc = (): void => {
-  if (observer) {
-    observer.disconnect();
-  }
-
-  observer = new IntersectionObserver(
+export const registryToc = (): (() => void) => {
+  const observer = new IntersectionObserver(
     (entries: IntersectionObserverEntry[]) => {
       for (const x of reverseItr(entries)) {
         x.isIntersecting ? addActive(x) : removeActive(x);
@@ -140,7 +135,7 @@ export const registryToc = (): void => {
 
   if (!nav) {
     console.error('nav not found.');
-    return;
+    return () => {}; // no-op dispose
   }
 
   nav.innerHTML = '';
@@ -167,6 +162,14 @@ export const registryToc = (): void => {
   tocReset();
 
   nav.appendChild(fragment);
+
+  return () => {
+    tocMap.clear();
+    observer.disconnect();
+
+    onlyActive = null;
+    currentInlineCenter = null;
+  };
 };
 
 const tocVisible = (): void => {

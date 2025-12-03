@@ -22,6 +22,17 @@ type CompatibleMedia = HTMLVideoElement | HTMLImageElement;
 
 const extractName = (s: string): string => s.match(/\/([^/?#]+?)(\.[^/.#?]+)?(?:[?#]|$)/)?.[1] ?? '';
 
+const setupSlider = (entries: IntersectionObserverEntry[], obs: IntersectionObserver): void => {
+  for (const x of entries) {
+    if (!x.isIntersecting) {
+      continue;
+    }
+
+    new Slider(x.target as HTMLDivElement);
+    obs.unobserve(x.target);
+  }
+};
+
 class Slider {
   private medias: CompatibleMedia[] = [];
   private indicatorSpans: HTMLSpanElement[] = [];
@@ -185,21 +196,14 @@ class Slider {
   }
 }
 
-const setupSlider = (entries: IntersectionObserverEntry[], obs: IntersectionObserver): void => {
-  for (const x of entries) {
-    if (!x.isIntersecting) {
-      continue;
-    }
-
-    new Slider(x.target as HTMLDivElement);
-    obs.unobserve(x.target);
-  }
-};
-
-export const initialize = (): void => {
-  const observer = new IntersectionObserver(setupSlider, { rootMargin: '5%' });
+export const initialize = (): (() => void) => {
+  const obs = new IntersectionObserver(setupSlider, { rootMargin: '5%' });
 
   for (const elm of Array.from(document.querySelectorAll<HTMLDivElement>('.slider'))) {
-    observer.observe(elm);
+    obs.observe(elm);
   }
+
+  return (): void => {
+    obs.disconnect();
+  };
 };
