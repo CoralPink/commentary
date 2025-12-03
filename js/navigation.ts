@@ -1,4 +1,4 @@
-import { initCodeBlock } from './codeblock.ts';
+import { initCodeBlock, registryCodeBlock } from './codeblock.ts';
 import { ROOT_PATH } from './constants.ts';
 import { fetchText } from './fetch.ts';
 import { initFootnote } from './footnote.ts';
@@ -21,10 +21,11 @@ type ModuleEntry = {
   importPromise: Promise<void>;
 
   // NOTE: If present, initialize() must be safe to call multiple times without leaking handlers or observers.
-  initialize: (() => void) | undefined;
+  initialize: (() => () => void) | undefined;
 };
 
 const loadedModules = new Map<string, ModuleEntry>();
+const activeDisposers = new Set<() => void>();
 
 const MEDIA_TAGS = [
   'img',
@@ -59,24 +60,41 @@ const forceReload = (url: URL, msg: string = 'forceReload'): void => {
   location.href = url.href;
 };
 
+const disposeAll = () => {
+  for (const fn of activeDisposers) {
+    fn();
+  }
+
+  activeDisposers.clear();
+};
+
 const ensureModuleLoaded = (url: string): Promise<void> => {
   if (loadedModules.has(url)) {
     const entry = loadedModules.get(url)!;
 
     if (entry.initialize !== undefined) {
-      entry.initialize();
+      const disposeFn = entry.initialize();
+      activeDisposers.add(disposeFn);
     }
     return entry.importPromise;
   }
 
   const importPromise = import(url)
     .then(mod => {
-      if (typeof mod.initialize === 'function') {
-        loadedModules.set(url, { importPromise, initialize: mod.initialize });
-        mod.initialize();
-      } else {
-        loadedModules.set(url, { importPromise, initialize: undefined });
+      if (typeof mod.initialize !== 'function') {
+        loadedModules.set(url, {
+          importPromise,
+          initialize: undefined,
+        });
+        return;
       }
+
+      const initialize = mod.initialize;
+
+      const disposeFn = initialize();
+      activeDisposers.add(disposeFn);
+
+      loadedModules.set(url, { importPromise, initialize });
     })
     .catch(err => {
       console.error(`Failed to load module: ${url}`, err);
@@ -84,7 +102,6 @@ const ensureModuleLoaded = (url: string): Promise<void> => {
       throw err;
     });
 
-  loadedModules.set(url, { importPromise, initialize: undefined });
   return importPromise;
 };
 
@@ -105,8 +122,11 @@ const loadModules = async (): Promise<void> => {
 export const initContents = async (): Promise<void> => {
   const promiseLoadModule = loadModules();
 
-  registryToc();
-  initCodeBlock();
+  const disposeTocFn = registryToc();
+  activeDisposers.add(disposeTocFn);
+
+  const disposeCodeFn = registryCodeBlock();
+  activeDisposers.add(disposeCodeFn);
 
   doMarkFromUrl();
   enhanceLinks();
@@ -182,8 +202,11 @@ export const navigateTo = async (next: URL, pushHistory = true): Promise<void> =
       forceReload(next, 'applyContent: not found article');
       return;
     }
+
     article.innerHTML = newArticle.innerHTML;
     document.title = newTitle.textContent;
+
+    disposeAll();
 
     initContents().catch(err => {
       console.error('Failed to initialize page modules:', err);
@@ -226,9 +249,10 @@ export const navigateTo = async (next: URL, pushHistory = true): Promise<void> =
 
   setOnNavigate(updateActive);
 
-  initThemeColor();
   initSidebar();
   initTableOfContents();
+  initCodeBlock();
+  initThemeColor();
 
   startupSearch();
 
