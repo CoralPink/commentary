@@ -9,10 +9,12 @@ const VIDEO_RESTART_OFFSET = 0.2;
 
 let loadStyleSheetPromise: ReturnType<typeof loadStyleSheet>;
 
+const plyrInstances: Plyr[] = [];
+
 export const setPlyr = async (video: HTMLVideoElement): Promise<void> => {
   await loadStyleSheetPromise;
 
-  new Plyr(video);
+  plyrInstances.push(new Plyr(video));
 
   // Most of the videos on this site start with a fade-in,
   // so unless you intentionally shift the starting position, they are all black...!
@@ -58,5 +60,10 @@ export const initialize = (): (() => void) => {
 
   return (): void => {
     obs.disconnect();
+
+    for (const x of plyrInstances) {
+      x.destroy();
+    }
+    plyrInstances.length = 0;
   };
 };

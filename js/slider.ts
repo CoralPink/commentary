@@ -22,16 +22,7 @@ type CompatibleMedia = HTMLVideoElement | HTMLImageElement;
 
 const extractName = (s: string): string => s.match(/\/([^/?#]+?)(\.[^/.#?]+)?(?:[?#]|$)/)?.[1] ?? '';
 
-const setupSlider = (entries: IntersectionObserverEntry[], obs: IntersectionObserver): void => {
-  for (const x of entries) {
-    if (!x.isIntersecting) {
-      continue;
-    }
-
-    new Slider(x.target as HTMLDivElement);
-    obs.unobserve(x.target);
-  }
-};
+const sliders: Slider[] = [];
 
 class Slider {
   private medias: CompatibleMedia[] = [];
@@ -194,7 +185,29 @@ class Slider {
       this.scrollTo(this.index + 1);
     });
   }
+
+  public dispose(): void {
+    this.observer.disconnect();
+
+    for (const x of this.indicatorSpans) {
+      x.replaceWith(x.cloneNode(true));
+    }
+
+    this.medias = [];
+    this.indicatorSpans = [];
+  }
 }
+
+const setupSlider = (entries: IntersectionObserverEntry[], obs: IntersectionObserver): void => {
+  for (const x of entries) {
+    if (!x.isIntersecting) {
+      continue;
+    }
+
+    sliders.push(new Slider(x.target as HTMLDivElement));
+    obs.unobserve(x.target);
+  }
+};
 
 export const initialize = (): (() => void) => {
   const obs = new IntersectionObserver(setupSlider, { rootMargin: '5%' });
@@ -205,5 +218,10 @@ export const initialize = (): (() => void) => {
 
   return (): void => {
     obs.disconnect();
+
+    for (const x of sliders) {
+      x.dispose();
+    }
+    sliders.length = 0;
   };
 };
