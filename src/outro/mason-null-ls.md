@@ -41,7 +41,7 @@ And a new one just begun
 そして新しい年が始まるんだ
 ```
 
-![ropoongi](img/roppongi.webp)
+![roppongi](img/roppongi.webp)
 
 ## Introduction
 
