@@ -687,7 +687,7 @@ Starr は McCartney と Harrison のハーモニー、そして完成曲を聴�
 共同プロデュースを担当した[Jeff Lynne](https://en.wikipedia.org/wiki/Jeff_Lynne)は、
 最初から "完成した曲が Beatles のように聞こえるだろう" と予想していた。それがこのプロジェクトの前提でもあったからだ。
 
-そして Harisson はこう付け加えている。
+そして Harrison はこう付け加えている。
 "それが本当に彼ら (Beatles) なら Beatles のように聞こえるに決まってるさ...。もう既に彼らのように聞こえているだろう？"
 }}
 </div>
