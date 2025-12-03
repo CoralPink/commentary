@@ -72,20 +72,6 @@ const highlight = (code: HTMLElement): void => {
   });
 };
 
-const createClipButton = (): HTMLButtonElement => {
-  const elm = document.createElement('button');
-
-  elm.classList.add('copy-button');
-  elm.setAttribute('aria-label', 'Copy to Clipboard');
-
-  const icon = document.createElement('div');
-  icon.classList.add('icon-copy', 'fa-icon');
-
-  elm.appendChild(icon);
-
-  return elm;
-};
-
 const setupHighlight = (entries: IntersectionObserverEntry[], obs: IntersectionObserver): void => {
   for (const x of entries) {
     if (!x.isIntersecting) {
@@ -97,25 +83,44 @@ const setupHighlight = (entries: IntersectionObserverEntry[], obs: IntersectionO
   }
 };
 
-export const initCodeBlock = (): void => {
+export const registryCodeBlock = (): (() => void) => {
   const article = document.getElementById('article');
 
   if (article === null) {
-    return;
+    return () => {}; // no-op dispose
   }
 
   const codeBlocks = Array.from(article.querySelectorAll('pre code:not(.language-txt)'));
 
   if (codeBlocks.length === 0) {
-    return;
+    return () => {}; // no-op dispose
   }
 
-  clipButton = createClipButton();
-  sendToWorker = initWorker();
-
-  const observer = new IntersectionObserver(setupHighlight, { threshold: 0 });
+  const obs = new IntersectionObserver(setupHighlight, { threshold: 0 });
 
   for (const x of codeBlocks) {
-    observer.observe(x);
+    obs.observe(x);
   }
+
+  return () => {
+    obs.disconnect();
+  };
+};
+
+const createClipButton = (): void => {
+  clipButton = document.createElement('button');
+
+  clipButton.classList.add('copy-button');
+  clipButton.setAttribute('aria-label', 'Copy to Clipboard');
+
+  const icon = document.createElement('div');
+  icon.classList.add('icon-copy', 'fa-icon');
+
+  clipButton.appendChild(icon);
+};
+
+export const initCodeBlock= (): void => {
+  sendToWorker = initWorker();
+
+  createClipButton();
 };
