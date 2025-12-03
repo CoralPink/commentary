@@ -203,10 +203,10 @@ export const navigateTo = async (next: URL, pushHistory = true): Promise<void> =
       return;
     }
 
+    disposeAll();
+
     article.innerHTML = newArticle.innerHTML;
     document.title = newTitle.textContent;
-
-    disposeAll();
 
     initContents().catch(err => {
       console.error('Failed to initialize page modules:', err);
