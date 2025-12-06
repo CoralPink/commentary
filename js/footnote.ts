@@ -105,15 +105,8 @@ const handleFootnoteClick = (target: EventTarget | null): void => {
   document.addEventListener('click', onClickOutside, { once: false, passive: true });
 };
 
-export const initFootnote = (): void => {
-  const article = document.getElementById('article');
-
-  if (article === null) {
-    console.error('Article element not found');
-    return;
-  }
-
-  for (const x of Array.from(article.querySelectorAll('sup.ft-reference'))) {
+export const initFootnote = (target:HTMLElement): void => {
+  for (const x of Array.from(target.querySelectorAll('sup.ft-reference'))) {
     x.addEventListener('click', ev => handleFootnoteClick(ev.target), { once: false, passive: true });
   }
 };

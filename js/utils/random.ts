@@ -1,3 +1,5 @@
+export type UUID = string & { readonly __brand: unique symbol };
+
 const fallbackRandomUUID = (): string => {
   const array = new Uint8Array(16);
   globalThis.crypto.getRandomValues(array);
@@ -13,9 +15,9 @@ const fallbackRandomUUID = (): string => {
   return `${hex.slice(0, 8)}-${hex.slice(8, 12)}-${hex.slice(12, 16)}-${hex.slice(16, 20)}-${hex.slice(20, 32)}`;
 };
 
-const randomUUID: () => string =
+const createUUID: () => string =
   typeof globalThis.crypto === 'object' && typeof globalThis.crypto.randomUUID === 'function'
     ? globalThis.crypto.randomUUID.bind(globalThis.crypto)
     : fallbackRandomUUID;
 
-export const getRandomId = (): string => randomUUID();
+export const getUUID = (): UUID => createUUID() as UUID;

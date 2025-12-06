@@ -32,8 +32,8 @@
  * refs: https://bugs.webkit.org/show_bug.cgi?id=219102
  */
 
-import { getRootVariable } from './css-loader.ts';
-import { debounce } from './timing.ts';
+import { getRootVariable } from '../utils/css-loader.ts';
+import { debounce } from '../utils/timing.ts';
 
 const INTERVAL_MS = 50;
 const TIMEOUT_MS = 1000;

@@ -1,10 +1,11 @@
-import hljs from './highlight.js';
-import { containsNerdFontIcon, extractLanguage } from './hl-language.ts';
+import hljs from "./highlight.js";
+import { containsNerdFontIcon, extractLanguage } from "./hl-language.ts";
 
-import type { Payload, WorkerResponse } from './hl-types.ts';
+import type { Payload, WorkerResponse } from "./hl-types.ts";
+import type { UUID } from "../utils/random.ts";
 
 type HighlightRequest = {
-  id: number;
+  id: UUID;
   text: string;
   lang: string;
 };
@@ -17,7 +18,7 @@ sharedWorker.onconnect = (ev: MessageEvent<HighlightRequest>): void => {
   // The event of SharedWorkerGlobalScope.onconnect always contains one or more ports
   // according to the specification, but the compiler will warn you about it, so leave it in.
   if (port === undefined) {
-    throw new Error('SharedWorker: No port found');
+    throw new Error("SharedWorker: No port found");
   }
 
   port.onmessage = (msg: MessageEvent<HighlightRequest>): void => {
@@ -37,7 +38,9 @@ sharedWorker.onconnect = (ev: MessageEvent<HighlightRequest>): void => {
       } as unknown as WorkerResponse);
     } catch (err) {
       const error = String(err instanceof Error ? err.message : err);
-      port.postMessage({ id, payload: { error } as Payload } as unknown as WorkerResponse);
+      port.postMessage(
+        { id, payload: { error } as Payload } as unknown as WorkerResponse,
+      );
     }
   };
 };

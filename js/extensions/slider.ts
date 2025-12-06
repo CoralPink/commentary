@@ -209,10 +209,10 @@ const setupSlider = (entries: IntersectionObserverEntry[], obs: IntersectionObse
   }
 };
 
-export const initialize = (): (() => void) => {
+export const initialize = (html: HTMLElement): (() => void) => {
   const obs = new IntersectionObserver(setupSlider, { rootMargin: '5%' });
 
-  for (const elm of Array.from(document.querySelectorAll<HTMLDivElement>('.slider'))) {
+  for (const elm of Array.from(html.querySelectorAll<HTMLDivElement>('.slider'))) {
     obs.observe(elm);
   }
 

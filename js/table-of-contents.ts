@@ -1,6 +1,7 @@
 import { BREAKPOINT_UI_WIDE } from './constants.ts';
-import { reverseItr } from './generators.ts';
-import { readLocalStorage, writeLocalStorage } from './storage.ts';
+
+import { reverseItr } from './utils/generators.ts';
+import { readLocalStorage, writeLocalStorage } from './utils/storage.ts';
 
 const Environment = {
   WIDE: 0,
@@ -17,6 +18,7 @@ const SAVE_STATUS_HIDDEN = 'hidden';
 
 const tocMap: Map<HTMLElement, HTMLAnchorElement> = new Map();
 
+let elmNavigation: HTMLDivElement;
 let elmToggle: HTMLButtonElement;
 let elmToc: HTMLDivElement;
 
@@ -109,18 +111,9 @@ const tocReset = (): void => {
   status !== null && status === SAVE_STATUS_VISIBLE ? tocVisible() : tocHide();
 };
 
-const getHeaders = (): Array<HTMLAnchorElement> => {
-  const article = document.getElementById('article');
+const getHeaders = (h: HTMLElement): Array<HTMLAnchorElement> => Array.from(h.querySelectorAll('a.header'));
 
-  if (!article) {
-    console.error('Article element not found');
-    return [];
-  }
-
-  return Array.from(article.querySelectorAll('a.header'));
-};
-
-export const registryToc = (): (() => void) => {
+export const registryToc = (html: HTMLElement): (() => void) => {
   const observer = new IntersectionObserver(
     (entries: IntersectionObserverEntry[]) => {
       for (const x of reverseItr(entries)) {
@@ -131,18 +124,11 @@ export const registryToc = (): (() => void) => {
     { threshold: 1.0 },
   );
 
-  const nav = document.getElementById('pagetoc');
-
-  if (!nav) {
-    console.error('nav not found.');
-    return () => {}; // no-op dispose
-  }
-
-  nav.innerHTML = '';
+  elmNavigation.innerHTML = '';
 
   const fragment = document.createDocumentFragment();
 
-  for (const el of getHeaders()) {
+  for (const el of getHeaders(html)) {
     observer.observe(el);
 
     const link: HTMLAnchorElement = document.createElement('a');
@@ -161,9 +147,9 @@ export const registryToc = (): (() => void) => {
 
   tocReset();
 
-  nav.appendChild(fragment);
+  elmNavigation.appendChild(fragment);
 
-  return () => {
+  return (): void => {
     tocMap.clear();
     observer.disconnect();
 
@@ -193,10 +179,11 @@ const tocHide = (): void => {
 };
 
 export const initTableOfContents = (): void => {
+  elmNavigation = document.getElementById('pagetoc') as HTMLDivElement;
   elmToc = document.getElementById('table-of-contents') as HTMLDivElement;
   elmToggle = document.getElementById('toc-toggle') as HTMLButtonElement;
 
-  if (!elmToc || !elmToggle) {
+  if (!elmNavigation || !elmToc || !elmToggle) {
     console.error('Table of contents not found');
     return;
   }

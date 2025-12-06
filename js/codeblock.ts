@@ -1,5 +1,5 @@
-import { initWorker } from './hl-initialize.ts';
-import { isErrorPayload, type Payload, type SendToWorker } from './hl-types.ts';
+import { initWorker } from './webworker/hl-initialize.ts';
+import { isErrorPayload, type Payload, type SendToWorker } from './webworker/hl-types.ts';
 
 const TOOLTIP_FADEOUT_MS = 1200;
 
@@ -83,14 +83,8 @@ const setupHighlight = (entries: IntersectionObserverEntry[], obs: IntersectionO
   }
 };
 
-export const registryCodeBlock = (): (() => void) => {
-  const article = document.getElementById('article');
-
-  if (article === null) {
-    return () => {}; // no-op dispose
-  }
-
-  const codeBlocks = Array.from(article.querySelectorAll('pre code:not(.language-txt)'));
+export const registryCodeBlock = (html: HTMLElement): (() => void) => {
+  const codeBlocks = Array.from(html.querySelectorAll('pre code:not(.language-txt)'));
 
   if (codeBlocks.length === 0) {
     return () => {}; // no-op dispose
@@ -119,7 +113,7 @@ const createClipButton = (): void => {
   clipButton.appendChild(icon);
 };
 
-export const initCodeBlock= (): void => {
+export const initCodeBlock = (): void => {
   sendToWorker = initWorker();
 
   createClipButton();
