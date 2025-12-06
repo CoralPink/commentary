@@ -7,35 +7,7 @@ const STYLE_PLYR = 'css/plyr.css';
 
 const VIDEO_RESTART_OFFSET = 0.2;
 
-const plyrInstances: Plyr[] = [];
-
-//let loadStyleSheetPromise: ReturnType<typeof loadStyleSheet>;
 let loadStyleSheetPromise: ReturnType<typeof loadStyleSheet> | undefined;
-
-export const setPlyr = async (video: HTMLVideoElement): Promise<void> => {
-  await ensureStylesheetLoaded();
-
-  plyrInstances.push(new Plyr(video));
-
-  // Most of the videos on this site start with a fade-in,
-  // so unless you intentionally shift the starting position, they are all black...!
-  video.addEventListener('ended', (): void => {
-    video.currentTime = VIDEO_RESTART_OFFSET;
-  });
-};
-
-const setupMedia = (entries: IntersectionObserverEntry[], obs: IntersectionObserver): void => {
-  for (const entry of entries) {
-    if (!entry.isIntersecting) {
-      continue;
-    }
-
-    const video = entry.target as HTMLVideoElement;
-    setPlyr(video);
-
-    obs.unobserve(video);
-  }
-};
 
 const ensureStylesheetLoaded = (): ReturnType<typeof loadStyleSheet> => {
   if (!loadStyleSheetPromise) {
@@ -52,6 +24,36 @@ export const initialize = (html: HTMLElement): (() => void) => {
   if (videos.length === 0) {
     return () => {}; // no-op dispose
   }
+
+  const plyrInstances: Plyr[] = [];
+
+  const setPlyr = async (video: HTMLVideoElement): Promise<Plyr> => {
+    await ensureStylesheetLoaded();
+
+    const instance = new Plyr(video);
+    plyrInstances.push(instance);
+
+    // Most of the videos on this site start with a fade-in,
+    // so unless you intentionally shift the starting position, they are all black...!
+    video.addEventListener('ended', (): void => {
+      video.currentTime = VIDEO_RESTART_OFFSET;
+    });
+
+    return instance;
+  };
+
+  const setupMedia = (entries: IntersectionObserverEntry[], obs: IntersectionObserver): void => {
+    for (const entry of entries) {
+      if (!entry.isIntersecting) {
+        continue;
+      }
+
+      const video = entry.target as HTMLVideoElement;
+      setPlyr(video);
+
+      obs.unobserve(video);
+    }
+  };
 
   const obs = new IntersectionObserver(setupMedia, { rootMargin: '3%' });
 
