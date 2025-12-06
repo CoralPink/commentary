@@ -32,6 +32,8 @@ export const pushPageViewEvent = (path: string, title: string): void => {
   });
 };
 
+const PAGE_NO_TITLE = '(No Title) - Commentary of Dotfiles'
+
 let currentUrl = new URL(globalThis.location.href);
 let currentNavigation: UUID;
 
@@ -90,7 +92,7 @@ const applyNavigation = (ctx: NavigationContext) => {
     return;
   }
 
-  document.title = ctx.title.textContent ?? '';
+  document.title = ctx.title.textContent ?? PAGE_NO_TITLE;
   article.innerHTML = ctx.article.innerHTML;
 
   initModules(article);
@@ -109,7 +111,7 @@ const finalizeNavigation = (ctx: NavigationContext) => {
 
 const pushHistoryState = (next: URL, elmTitle: HTMLTitleElement) => {
   const path = next.pathname;
-  const title = elmTitle.textContent;
+  const title = elmTitle.textContent ?? PAGE_NO_TITLE;
 
   history.pushState({ path, title }, '', next.href);
   pushPageViewEvent(path, title);
