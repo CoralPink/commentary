@@ -22,7 +22,13 @@ let loopScheduled = false;
 const runLoop = (deadline: IdleDeadline): void => {
   while (deadline.timeRemaining() > 0 && queue.length > 0) {
     const job = queue.shift()!;
-    job();
+
+    try {
+      job();
+    } catch (err) {
+      // Keep the scheduler alive even if one job misbehaves.
+      console.error('pulse: job threw an error', err);
+    }
   }
 
   if (queue.length > 0) {

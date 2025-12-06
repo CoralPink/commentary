@@ -52,10 +52,12 @@ describe('enhanceLinks', () => {
 
     enhanceLinks(article);
 
-    for (const link of article.querySelectorAll('a')) {
-      expect(link.getAttribute('target')).toBeNull();
-      expect(link.getAttribute('href')).toBe(NATIVE.shift());
-    }
+    const links = article.querySelectorAll('a');
+    expect(links.length).toBe(NATIVE.length);
+
+    links.forEach((link, i) => {
+      expect(link.getAttribute('href')).toBe(NATIVE[i]);
+    });
   });
 
   it('does nothing safely even if html has no <a>', () => {

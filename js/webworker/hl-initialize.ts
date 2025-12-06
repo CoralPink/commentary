@@ -5,7 +5,7 @@
  * See: https://developer.mozilla.org/en-US/docs/Web/API/SharedWorker
  */
 import { isErrorPayload, type Payload, type SendToWorker, type WorkerResponse } from './hl-types.ts';
-import { getUUID } from '../utils/random.ts';
+import { getUUID, type UUID } from '../utils/random.ts';
 
 const SHAREDWORKER_PATH = '/commentary/hl-sharedworker.js';
 const WORKER_PATH = '/commentary/hl-worker.js';
@@ -19,7 +19,7 @@ type WorkerCallback = (data: Payload) => void;
  * This helps reduce resource usage and enables inter-tab communication.
  */
 const useSharedWorker = (): SendToWorker => {
-  const callbacks = new Map<string, WorkerCallback>();
+  const callbacks = new Map<UUID, WorkerCallback>();
 
   const sharedWorker = new SharedWorker(SHAREDWORKER_PATH);
 

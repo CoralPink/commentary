@@ -1,32 +1,30 @@
-import Plyr from "plyr";
+import Plyr from 'plyr';
 
-import { ROOT_PATH } from "../constants.ts";
-import { loadStyleSheet } from "../utils/css-loader.ts";
+import { ROOT_PATH } from '../constants.ts';
+import { loadStyleSheet } from '../utils/css-loader.ts';
 
-const STYLE_PLYR = "css/plyr.css";
+const STYLE_PLYR = 'css/plyr.css';
 
 const VIDEO_RESTART_OFFSET = 0.2;
 
 const plyrInstances: Plyr[] = [];
 
-let loadStyleSheetPromise: ReturnType<typeof loadStyleSheet>;
+//let loadStyleSheetPromise: ReturnType<typeof loadStyleSheet>;
+let loadStyleSheetPromise: ReturnType<typeof loadStyleSheet> | undefined;
 
 export const setPlyr = async (video: HTMLVideoElement): Promise<void> => {
-  await loadStyleSheetPromise;
+  await ensureStylesheetLoaded();
 
   plyrInstances.push(new Plyr(video));
 
   // Most of the videos on this site start with a fade-in,
   // so unless you intentionally shift the starting position, they are all black...!
-  video.addEventListener("ended", (): void => {
+  video.addEventListener('ended', (): void => {
     video.currentTime = VIDEO_RESTART_OFFSET;
   });
 };
 
-const setupMedia = (
-  entries: IntersectionObserverEntry[],
-  obs: IntersectionObserver,
-): void => {
+const setupMedia = (entries: IntersectionObserverEntry[], obs: IntersectionObserver): void => {
   for (const entry of entries) {
     if (!entry.isIntersecting) {
       continue;
@@ -46,18 +44,16 @@ const ensureStylesheetLoaded = (): ReturnType<typeof loadStyleSheet> => {
   return loadStyleSheetPromise;
 };
 
-export const initialize = (html: HTMLElement): () => void => {
+export const initialize = (html: HTMLElement): (() => void) => {
   ensureStylesheetLoaded();
 
-  const videos = Array.from(
-    html.querySelectorAll<HTMLVideoElement>("video"),
-  );
+  const videos = Array.from(html.querySelectorAll<HTMLVideoElement>('video'));
 
   if (videos.length === 0) {
     return () => {}; // no-op dispose
   }
 
-  const obs = new IntersectionObserver(setupMedia, { rootMargin: "3%" });
+  const obs = new IntersectionObserver(setupMedia, { rootMargin: '3%' });
 
   for (const x of Array.from(videos)) {
     obs.observe(x);

@@ -102,7 +102,11 @@ const marking = async (element: HTMLElement, terms: string[]): Promise<void> => 
   }
 };
 
-const splitParams = (s: string) => s.trim().split(/\s+/);
+const splitParams = (s: string): string[] =>
+  s
+    .trim()
+    .split(/\s+/)
+    .filter(term => term.length > 0);
 
 export const doMarkFromUrl = (element: HTMLElement): void => {
   const params = new URLSearchParams(globalThis.location.search).get('mark');
