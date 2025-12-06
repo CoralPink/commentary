@@ -1,9 +1,10 @@
 import { ROOT_PATH } from './constants.ts';
-import { loadStyleSheet } from './css-loader.ts';
-import { fetchRequest } from './fetch.ts';
 import { doMarkFromUrl, unmarking } from './mark.ts';
 import { navigateTo } from './navigation.ts';
-import { debounce } from './timing.ts';
+
+import { loadStyleSheet } from './utils/css-loader.ts';
+import { fetchRequest } from './utils/fetch.ts';
+import { debounce } from './utils/timing.ts';
 
 // deno-lint-ignore no-sloppy-imports
 import initWasm, { Finder } from './wasm_book.js';

@@ -4,8 +4,8 @@
  *
  * See: https://developer.mozilla.org/en-US/docs/Web/API/SharedWorker
  */
-import { getRandomId } from './random.ts'
 import { isErrorPayload, type Payload, type SendToWorker, type WorkerResponse } from './hl-types.ts';
+import { getUUID } from '../utils/random.ts';
 
 const SHAREDWORKER_PATH = '/commentary/hl-sharedworker.js';
 const WORKER_PATH = '/commentary/hl-worker.js';
@@ -53,7 +53,7 @@ const useSharedWorker = (): SendToWorker => {
   sharedWorker.port.start();
 
   return (text: string, lang: string, callback: (payload: Payload) => void) => {
-    const id = getRandomId();
+    const id = getUUID();
 
     callbacks.set(id, callback);
     sharedWorker.port.postMessage({ id, text, lang });

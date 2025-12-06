@@ -82,8 +82,7 @@ const marking = async (element: HTMLElement, terms: string[]): Promise<void> => 
 
     for (const x of result.index) {
       if (x.start > currentPos) {
-        const plainText = textContent.slice(currentPos, x.start);
-        fragment.appendChild(document.createTextNode(plainText));
+        fragment.appendChild(document.createTextNode(textContent.slice(currentPos, x.start)));
       }
 
       const mark = document.createElement(TAG_MARK);
@@ -103,19 +102,14 @@ const marking = async (element: HTMLElement, terms: string[]): Promise<void> => 
   }
 };
 
-export const doMarkFromUrl = (): void => {
+const splitParams = (s: string) => s.trim().split(/\s+/);
+
+export const doMarkFromUrl = (element: HTMLElement): void => {
   const params = new URLSearchParams(globalThis.location.search).get('mark');
 
   if (!params) {
     return;
   }
 
-  const article = document.getElementById('article');
-
-  if (article === null) {
-    console.error('doMarkFromUrl: Article element not found');
-    return;
-  }
-
-  marking(article, params.trim().split(/\s+/));
+  marking(element, splitParams(params));
 };
