@@ -90,7 +90,7 @@ const applyNavigation = (ctx: NavigationContext) => {
     return;
   }
 
-  document.title = ctx.title.textContent;
+  document.title = ctx.title.textContent ?? '';
   article.innerHTML = ctx.article.innerHTML;
 
   initModules(article);
