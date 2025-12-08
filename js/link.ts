@@ -49,7 +49,7 @@ const setInternalLink = (elm: HTMLAnchorElement): void => {
   elm.href = linkUrl.href;
 };
 
-export const enhanceLinks = (html:HTMLElement) => {
+export const initLinks = (html: HTMLElement): void => {
   for (const x of html.querySelectorAll<HTMLAnchorElement>('a[href]')) {
     const kind = getLinkKind(x);
 

@@ -1,3 +1,5 @@
+import { type Disposer } from './extensions/types.ts';
+
 import { initWorker } from './webworker/hl-initialize.ts';
 import { isErrorPayload, type Payload, type SendToWorker } from './webworker/hl-types.ts';
 
@@ -83,7 +85,7 @@ const setupHighlight = (entries: IntersectionObserverEntry[], obs: IntersectionO
   }
 };
 
-export const registryCodeBlock = (html: HTMLElement): (() => void) => {
+export const initCodeBlock = (html: HTMLElement): Disposer => {
   const codeBlocks = Array.from(html.querySelectorAll('pre code:not(.language-txt)'));
 
   if (codeBlocks.length === 0) {
@@ -113,7 +115,7 @@ const createClipButton = (): void => {
   clipButton.appendChild(icon);
 };
 
-export const initCodeBlock = (): void => {
+export const bootCodeBlock = (): void => {
   sendToWorker = initWorker();
 
   createClipButton();

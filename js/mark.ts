@@ -108,7 +108,7 @@ const splitParams = (s: string): string[] =>
     .split(/\s+/)
     .filter(term => term.length > 0);
 
-export const doMarkFromUrl = (element: HTMLElement): void => {
+export const initMark = (element: HTMLElement): void => {
   const params = new URLSearchParams(globalThis.location.search).get('mark');
 
   if (!params) {
@@ -116,4 +116,15 @@ export const doMarkFromUrl = (element: HTMLElement): void => {
   }
 
   marking(element, splitParams(params));
+};
+
+export const updateMark = (id: string): void => {
+  const elm = document.getElementById(id);
+
+  if (!elm) {
+    console.error(`updateMark: ${id} element not found`);
+    return;
+  }
+
+  initMark(elm);
 };

@@ -32,6 +32,8 @@
  * refs: https://bugs.webkit.org/show_bug.cgi?id=219102
  */
 
+import { type Disposer } from './types.ts';
+
 import { getRootVariable } from '../utils/css-loader.ts';
 import { debounce } from '../utils/timing.ts';
 
@@ -130,12 +132,10 @@ export const replaceId = (imageObjectArray: ImageObject[]): (() => void) => {
   return () => observer.disconnect();
 };
 
-export const initialize = (): void => {
-  const article = document.getElementById('article');
+export const initialize = (html: HTMLElement): Disposer => {
+  html.dispatchEvent(new CustomEvent(EVENT_REPLACE, { detail: { func: replaceId } }));
 
-  if (!article) {
-    console.error('replace-dom: article not found');
-    return;
+  return () => {
+    // TODO: ...
   }
-  article.dispatchEvent(new CustomEvent(EVENT_REPLACE, { detail: { func: replaceId } }));
 };

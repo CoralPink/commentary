@@ -113,7 +113,7 @@ const tocReset = (): void => {
 
 const getHeaders = (h: HTMLElement): Array<HTMLAnchorElement> => Array.from(h.querySelectorAll('a.header'));
 
-export const registryToc = (html: HTMLElement): (() => void) => {
+export const initTableOfContents = (html: HTMLElement): (() => void) => {
   const observer = new IntersectionObserver(
     (entries: IntersectionObserverEntry[]) => {
       for (const x of reverseItr(entries)) {
@@ -178,7 +178,7 @@ const tocHide = (): void => {
   writeLocalStorage(SAVE_STORAGE_KEY, SAVE_STATUS_HIDDEN);
 };
 
-export const initTableOfContents = (): void => {
+export const bootTableOfContents = (): void => {
   elmNavigation = document.getElementById('pagetoc') as HTMLDivElement;
   elmToc = document.getElementById('table-of-contents') as HTMLDivElement;
   elmToggle = document.getElementById('toc-toggle') as HTMLButtonElement;

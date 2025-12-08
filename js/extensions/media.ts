@@ -1,5 +1,7 @@
 import Plyr from 'plyr';
 
+import { type Disposer } from './types.ts';
+
 import { ROOT_PATH } from '../constants.ts';
 import { loadStyleSheet } from '../utils/css-loader.ts';
 
@@ -9,15 +11,43 @@ const VIDEO_RESTART_OFFSET = 0.2;
 
 let loadStyleSheetPromise: ReturnType<typeof loadStyleSheet> | undefined;
 
-const ensureStylesheetLoaded = (): ReturnType<typeof loadStyleSheet> => {
+const plyrInstances: Plyr[] = [];
+
+const onVideoEnded = (ev: Event): void => {
+  (ev.currentTarget as HTMLVideoElement).currentTime = VIDEO_RESTART_OFFSET;
+};
+
+const unsetPlyr = (video: HTMLVideoElement): void => {
+  video.removeEventListener('ended', onVideoEnded);
+};
+
+const setPlyr = async (video: HTMLVideoElement): Promise<void> => {
+  await loadStyleSheetPromise;
+
+  plyrInstances.push(new Plyr(video));
+
+  // Most of the videos on this site start with a fade-in,
+  // so unless you intentionally shift the starting position, they are all black...!
+  video.addEventListener('ended', onVideoEnded);
+};
+
+const setupMedia = (entries: IntersectionObserverEntry[], obs: IntersectionObserver): void => {
+  for (const entry of entries) {
+    if (!entry.isIntersecting) {
+      continue;
+    }
+
+    const video = entry.target as HTMLVideoElement;
+    setPlyr(video);
+
+    obs.unobserve(video);
+  }
+};
+
+export const initialize = (html: HTMLElement): Disposer => {
   if (!loadStyleSheetPromise) {
     loadStyleSheetPromise = loadStyleSheet(`${ROOT_PATH}${STYLE_PLYR}`);
   }
-  return loadStyleSheetPromise;
-};
-
-export const initialize = (html: HTMLElement): (() => void) => {
-  ensureStylesheetLoaded();
 
   const videos = Array.from(html.querySelectorAll<HTMLVideoElement>('video'));
 
@@ -25,45 +55,18 @@ export const initialize = (html: HTMLElement): (() => void) => {
     return () => {}; // no-op dispose
   }
 
-  const plyrInstances: Plyr[] = [];
-
-  const setPlyr = async (video: HTMLVideoElement): Promise<Plyr> => {
-    await ensureStylesheetLoaded();
-
-    const instance = new Plyr(video);
-    plyrInstances.push(instance);
-
-    // Most of the videos on this site start with a fade-in,
-    // so unless you intentionally shift the starting position, they are all black...!
-    video.addEventListener('ended', (): void => {
-      video.currentTime = VIDEO_RESTART_OFFSET;
-    });
-
-    return instance;
-  };
-
-  const setupMedia = (entries: IntersectionObserverEntry[], obs: IntersectionObserver): void => {
-    for (const entry of entries) {
-      if (!entry.isIntersecting) {
-        continue;
-      }
-
-      const video = entry.target as HTMLVideoElement;
-      setPlyr(video);
-
-      obs.unobserve(video);
-    }
-  };
-
   const obs = new IntersectionObserver(setupMedia, { rootMargin: '3%' });
 
-  for (const x of Array.from(videos)) {
+  for (const x of videos) {
     obs.observe(x);
   }
 
   return (): void => {
     obs.disconnect();
 
+    for (const x of videos) {
+      unsetPlyr(x);
+    }
     for (const x of plyrInstances) {
       x.destroy();
     }

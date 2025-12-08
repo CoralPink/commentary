@@ -1,10 +1,10 @@
-import { initCodeBlock } from './codeblock.ts';
+import { bootCodeBlock } from './codeblock.ts';
 import { isNativeLink } from './link.ts';
-import { disposeAll, initModules } from './initialize.ts';
+import { disposeAll, initExtensions } from './initialize.ts';
 import { startupSearch } from './searcher.ts';
-import { initSidebar, updateActive } from './sidebar.ts';
-import { initTableOfContents } from './table-of-contents.ts';
-import { initThemeColor } from './theme-selector.ts';
+import { bootSidebar, updateActive } from './sidebar.ts';
+import { bootTableOfContents } from './table-of-contents.ts';
+import { bootThemeColor } from './theme-selector.ts';
 
 import { fetchText } from './utils/fetch.ts';
 import { getUUID, type UUID } from './utils/random.ts';
@@ -32,7 +32,7 @@ export const pushPageViewEvent = (path: string, title: string): void => {
   });
 };
 
-const PAGE_NO_TITLE = '(No Title) - Commentary of Dotfiles'
+const PAGE_NO_TITLE = '(No Title) - Commentary of Dotfiles';
 
 let currentUrl = new URL(globalThis.location.href);
 let currentNavigation: UUID;
@@ -95,7 +95,7 @@ const applyNavigation = (ctx: NavigationContext) => {
   document.title = ctx.title.textContent ?? PAGE_NO_TITLE;
   article.innerHTML = ctx.article.innerHTML;
 
-  initModules(article);
+  initExtensions(article);
 
   article.scrollIntoView({ behavior: 'auto' });
 };
@@ -175,10 +175,10 @@ const clickHandler = (ev: MouseEvent): void => {
   document.addEventListener(
     'DOMContentLoaded',
     () => {
-      initThemeColor();
-      initSidebar();
-      initTableOfContents();
-      initCodeBlock();
+      bootThemeColor();
+      bootSidebar();
+      bootTableOfContents();
+      bootCodeBlock();
 
       startupSearch();
 
@@ -188,7 +188,7 @@ const clickHandler = (ev: MouseEvent): void => {
         console.error('Article element not found');
         return;
       }
-      initModules(article);
+      initExtensions(article);
     },
     { once: true, passive: true },
   );

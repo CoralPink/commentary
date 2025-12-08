@@ -102,11 +102,17 @@ const handleFootnoteClick = (target: EventTarget | null): void => {
     document.removeEventListener('click', onClickOutside);
   };
 
-  document.addEventListener('click', onClickOutside, { once: false, passive: true });
+  document.addEventListener('click', onClickOutside, {
+    once: false,
+    passive: true,
+  });
 };
 
-export const initFootnote = (target:HTMLElement): void => {
-  for (const x of Array.from(target.querySelectorAll('sup.ft-reference'))) {
-    x.addEventListener('click', ev => handleFootnoteClick(ev.target), { once: false, passive: true });
+export const initFootnote = (html: HTMLElement): void => {
+  for (const x of Array.from(html.querySelectorAll('sup.ft-reference'))) {
+    x.addEventListener('click', ev => handleFootnoteClick(ev.target), {
+      once: false,
+      passive: true,
+    });
   }
 };

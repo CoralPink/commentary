@@ -178,7 +178,7 @@ const toggleHandler = (key: string): void => {
   }
 };
 
-export const initSidebar = (): void => {
+export const bootSidebar = (): void => {
   try {
     if (globalThis.innerWidth < BREAKPOINT_UI_WIDE) {
       hideSidebar();

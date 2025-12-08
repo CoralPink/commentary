@@ -10,7 +10,7 @@ export const fetchRequest = async (url: string): Promise<Response> => {
     // Consider a less disruptive notification mechanism
     // (e.g., a toast or event dispatch to a notification handler)
     // in a future iteration if user feedback indicates this is jarring.
-    alert("The request has timed out.");
+    alert('The request has timed out.');
   }, FETCH_TIMEOUT);
 
   try {
@@ -20,10 +20,10 @@ export const fetchRequest = async (url: string): Promise<Response> => {
     return response;
   } catch (e) {
     if (e instanceof Error) {
-      if (e.name === "AbortError") {
-        console.error("Request timed out:", e.message);
+      if (e.name === 'AbortError') {
+        console.error('Request timed out:', e.message);
       } else {
-        console.error("Network error:", e.message);
+        console.error('Network error:', e.message);
       }
     }
     throw e;

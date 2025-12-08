@@ -174,7 +174,7 @@ const changeEvent = (ev: MediaQueryListEvent): void => {
   setTheme(theme as ThemeColorId);
 };
 
-export const initThemeColor = (): void => {
+export const bootThemeColor = (): void => {
   const appearance = isDarkThemeRequired() ? KEY_DARK : KEY_LIGHT;
 
   // If the user has already specified a theme, that theme will be applied;
