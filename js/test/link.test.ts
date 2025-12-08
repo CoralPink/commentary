@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it } from 'vitest';
-import { enhanceLinks } from '../link.ts';
+import { initLinks } from '../link.ts';
 
-describe('enhanceLinks', () => {
+describe('initLinks', () => {
   let article: HTMLElement;
 
   beforeEach(() => {
@@ -19,7 +19,7 @@ describe('enhanceLinks', () => {
       article.appendChild(a);
     }
 
-    enhanceLinks(article);
+    initLinks(article);
 
     for (const link of article.querySelectorAll('a')) {
       expect(link.getAttribute('target')).toBe('_blank');
@@ -34,7 +34,7 @@ describe('enhanceLinks', () => {
     <a href="../bar.html"></a>
   `;
 
-    enhanceLinks(html);
+    initLinks(html);
 
     for (const link of html.querySelectorAll('a')) {
       expect(link.href).toMatch(/^https?:\/\//);
@@ -50,7 +50,7 @@ describe('enhanceLinks', () => {
       article.appendChild(a);
     }
 
-    enhanceLinks(article);
+    initLinks(article);
 
     const links = article.querySelectorAll('a');
     expect(links.length).toBe(NATIVE.length);
@@ -62,6 +62,6 @@ describe('enhanceLinks', () => {
 
   it('does nothing safely even if html has no <a>', () => {
     const emptyDiv = document.createElement('div');
-    expect(() => enhanceLinks(emptyDiv)).not.toThrow();
+    expect(() => initLinks(emptyDiv)).not.toThrow();
   });
 });
