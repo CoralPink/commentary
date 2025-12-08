@@ -2,7 +2,7 @@ type PulseCallback = (deadline: IdleDeadline) => void;
 type Pulse = (cb: PulseCallback) => number;
 
 // Do not exceed the Idle Deadline specification limit of 50ms.
-const REMAINING_RS = 49.9;
+const REMAINING_MS = 49.9;
 
 const queue: (() => void)[] = [];
 let loopScheduled = false;
@@ -15,16 +15,16 @@ let loopScheduled = false;
  */
 const emulateIdleCallback = (cb: PulseCallback): number => {
   const start = performance.now();
-  const idleUntil = start + REMAINING_RS;
+  const idleUntil = start + REMAINING_MS;
 
-  setTimeout(() => {
+  const timeoutId = setTimeout(() => {
     cb({
       didTimeout: false,
       timeRemaining: () => Math.max(0, idleUntil - performance.now()),
     } as IdleDeadline);
   }, 1);
 
-  return 0;
+  return timeoutId;
 };
 
 const idlePulse: Pulse =
@@ -81,7 +81,7 @@ export const scheduleJob = (job: () => void): void => {
   pulse(runLoop);
 };
 
-export const processChunked = <T>(items: T[], each: (x: T) => void): void => {
+export const processChunked = <T>(items: ReadonlyArray<T>, each: (x: T) => void): void => {
   let i = 0;
   const snapshot = items.length;
 
