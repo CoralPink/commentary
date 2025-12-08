@@ -1,10 +1,14 @@
-import { initWorker } from './hl-initialize.ts';
-import { isErrorPayload, type Payload, type SendToWorker } from './hl-types.ts';
+import { type Disposer } from './types.ts';
+
+import { initWorker } from '../webworker/hl-initialize.ts';
+import { isErrorPayload, type Payload, type SendToWorker } from '../webworker/hl-types.ts';
 
 const TOOLTIP_FADEOUT_MS = 1200;
 
 let sendToWorker: SendToWorker;
 let clipButton: HTMLButtonElement;
+
+let isBootstrap = false;
 
 const showTooltip = (target: HTMLElement, msg: string): void => {
   const tip = document.createElement('div');
@@ -83,14 +87,32 @@ const setupHighlight = (entries: IntersectionObserverEntry[], obs: IntersectionO
   }
 };
 
-export const registryCodeBlock = (): (() => void) => {
-  const article = document.getElementById('article');
+const createClipButton = (): void => {
+  clipButton = document.createElement('button');
 
-  if (article === null) {
-    return () => {}; // no-op dispose
+  clipButton.classList.add('copy-button');
+  clipButton.setAttribute('aria-label', 'Copy to Clipboard');
+
+  const icon = document.createElement('div');
+  icon.classList.add('icon-copy', 'fa-icon');
+
+  clipButton.appendChild(icon);
+};
+
+const bootstrap = (): void => {
+  if (isBootstrap) {
+    return;
   }
+  sendToWorker = initWorker();
+  createClipButton();
 
-  const codeBlocks = Array.from(article.querySelectorAll('pre code:not(.language-txt)'));
+  isBootstrap = true;
+};
+
+export const initialize = (html: HTMLElement): Disposer => {
+  bootstrap();
+
+  const codeBlocks = Array.from(html.querySelectorAll('pre code:not(.language-txt)'));
 
   if (codeBlocks.length === 0) {
     return () => {}; // no-op dispose
@@ -105,22 +127,4 @@ export const registryCodeBlock = (): (() => void) => {
   return () => {
     obs.disconnect();
   };
-};
-
-const createClipButton = (): void => {
-  clipButton = document.createElement('button');
-
-  clipButton.classList.add('copy-button');
-  clipButton.setAttribute('aria-label', 'Copy to Clipboard');
-
-  const icon = document.createElement('div');
-  icon.classList.add('icon-copy', 'fa-icon');
-
-  clipButton.appendChild(icon);
-};
-
-export const initCodeBlock= (): void => {
-  sendToWorker = initWorker();
-
-  createClipButton();
 };

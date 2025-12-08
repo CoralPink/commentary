@@ -1,26 +1,34 @@
 import Plyr from 'plyr';
 
-import { ROOT_PATH } from './constants.ts';
-import { loadStyleSheet } from './css-loader.ts';
+import { type Disposer } from './types.ts';
+
+import { ROOT_PATH } from '../constants.ts';
+import { loadStyleSheet } from '../utils/css-loader.ts';
 
 const STYLE_PLYR = 'css/plyr.css';
 
 const VIDEO_RESTART_OFFSET = 0.2;
 
-let loadStyleSheetPromise: ReturnType<typeof loadStyleSheet>;
+let loadStyleSheetPromise: ReturnType<typeof loadStyleSheet> | undefined;
 
 const plyrInstances: Plyr[] = [];
 
-export const setPlyr = async (video: HTMLVideoElement): Promise<void> => {
+const onVideoEnded = (ev: Event): void => {
+  (ev.currentTarget as HTMLVideoElement).currentTime = VIDEO_RESTART_OFFSET;
+};
+
+const removeEndedEvent = (video: HTMLVideoElement): void => {
+  video.removeEventListener('ended', onVideoEnded);
+};
+
+const setPlyr = async (video: HTMLVideoElement): Promise<void> => {
   await loadStyleSheetPromise;
 
   plyrInstances.push(new Plyr(video));
 
   // Most of the videos on this site start with a fade-in,
   // so unless you intentionally shift the starting position, they are all black...!
-  video.addEventListener('ended', (): void => {
-    video.currentTime = VIDEO_RESTART_OFFSET;
-  });
+  video.addEventListener('ended', onVideoEnded);
 };
 
 const setupMedia = (entries: IntersectionObserverEntry[], obs: IntersectionObserver): void => {
@@ -36,17 +44,12 @@ const setupMedia = (entries: IntersectionObserverEntry[], obs: IntersectionObser
   }
 };
 
-const ensureStylesheetLoaded = (): ReturnType<typeof loadStyleSheet> => {
+export const initialize = (html: HTMLElement): Disposer => {
   if (!loadStyleSheetPromise) {
     loadStyleSheetPromise = loadStyleSheet(`${ROOT_PATH}${STYLE_PLYR}`);
   }
-  return loadStyleSheetPromise;
-};
 
-export const initialize = (): (() => void) => {
-  ensureStylesheetLoaded();
-
-  const videos = Array.from(document.querySelectorAll<HTMLVideoElement>('video'));
+  const videos = Array.from(html.querySelectorAll<HTMLVideoElement>('video'));
 
   if (videos.length === 0) {
     return () => {}; // no-op dispose
@@ -54,13 +57,16 @@ export const initialize = (): (() => void) => {
 
   const obs = new IntersectionObserver(setupMedia, { rootMargin: '3%' });
 
-  for (const x of Array.from(videos)) {
+  for (const x of videos) {
     obs.observe(x);
   }
 
   return (): void => {
     obs.disconnect();
 
+    for (const x of videos) {
+      removeEndedEvent(x);
+    }
     for (const x of plyrInstances) {
       x.destroy();
     }

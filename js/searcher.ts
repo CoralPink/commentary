@@ -1,9 +1,10 @@
 import { ROOT_PATH } from './constants.ts';
-import { loadStyleSheet } from './css-loader.ts';
-import { fetchRequest } from './fetch.ts';
-import { doMarkFromUrl, unmarking } from './mark.ts';
+import { unmarking, updateMark } from './mark.ts';
 import { navigateTo } from './navigation.ts';
-import { debounce } from './timing.ts';
+
+import { loadStyleSheet } from './utils/css-loader.ts';
+import { fetchRequest } from './utils/fetch.ts';
+import { debounce } from './utils/timing.ts';
 
 // deno-lint-ignore no-sloppy-imports
 import initWasm, { Finder } from './wasm_book.js';
@@ -41,7 +42,8 @@ const showResults = (): void => {
   }
 };
 
-const debounceSearchInput = debounce((_: Event) => showResults(), DEBOUNCE_DELAY_MS);
+const checkURL = (url: URL): boolean =>
+  url.origin + url.pathname === globalThis.location.origin + globalThis.location.pathname;
 
 const jumpUrl = (): void => {
   const aElement = focusedLi?.querySelector('a') as HTMLAnchorElement;
@@ -52,12 +54,9 @@ const jumpUrl = (): void => {
 
   const url = new URL(aElement.href);
 
-  const clickedURL = url.origin + url.pathname;
-  const currentURL = globalThis.location.origin + globalThis.location.pathname;
-
-  if (clickedURL === currentURL) {
+  if (checkURL(url)) {
     unmarking();
-    doMarkFromUrl();
+    updateMark('article');
   }
 
   navigateTo(url);
@@ -107,6 +106,8 @@ const closedPopover = (ev: Event): void => {
     hiddenSearch();
   }
 };
+
+const debounceSearchInput = debounce((_: Event) => showResults(), DEBOUNCE_DELAY_MS);
 
 const hiddenSearch = (): void => {
   for (const x of Array.from(document.querySelectorAll(`[data-target="${TARGET_SEARCH}"]`))) {

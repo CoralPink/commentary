@@ -1,6 +1,7 @@
 import { BREAKPOINT_UI_WIDE, ROOT_PATH } from './constants.ts';
-import { fetchText } from './fetch.ts';
-import { readLocalStorage, writeLocalStorage } from './storage.ts';
+
+import { fetchText } from './utils/fetch.ts';
+import { readLocalStorage, writeLocalStorage } from './utils/storage.ts';
 
 const PAGE_LIST = `${ROOT_PATH}pagelist.html`;
 
@@ -177,7 +178,7 @@ const toggleHandler = (key: string): void => {
   }
 };
 
-export const initSidebar = (): void => {
+export const bootSidebar = (): void => {
   try {
     if (globalThis.innerWidth < BREAKPOINT_UI_WIDE) {
       hideSidebar();

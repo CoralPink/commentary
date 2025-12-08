@@ -35,10 +35,14 @@ const makeConfig = input => ({
 
 export default defineConfig([
   makeConfig('./navigation.ts'),
-  makeConfig('./hl-worker.ts'),
-  makeConfig('./hl-sharedworker.ts'),
-  makeConfig('./media.ts'),
-//  makeConfig('./replace-dom.ts'),
   makeConfig('./serviceworker.ts'),
-  makeConfig('./slider.ts'),
+
+  makeConfig('./extensions/codeblock.ts'),
+  makeConfig('./extensions/footnote.ts'),
+  makeConfig('./extensions/media.ts'),
+//  makeConfig('./extensions/replace-dom.ts'),
+  makeConfig('./extensions/slider.ts'),
+
+  makeConfig('./webworker/hl-worker.ts'),
+  makeConfig('./webworker/hl-sharedworker.ts'),
 ]);

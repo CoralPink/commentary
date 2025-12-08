@@ -1,3 +1,5 @@
+import { type Disposer } from './types.ts';
+
 const POTISION_GAP = 10;
 
 const calcTop = (target: HTMLElement, pop: HTMLElement): number => {
@@ -46,7 +48,9 @@ const insertFootnote = (pop: HTMLElement, footnote: HTMLElement): void => {
   sup.setAttribute('href', oldHref.replace(/^#to-ft-/, '#ft-'));
 };
 
-const handleFootnoteClick = (target: EventTarget | null): void => {
+const handleFootnoteClick = (ev: Event): void => {
+  const target = ev.target;
+
   if (!(target instanceof HTMLElement)) {
     return;
   }
@@ -102,18 +106,25 @@ const handleFootnoteClick = (target: EventTarget | null): void => {
     document.removeEventListener('click', onClickOutside);
   };
 
-  document.addEventListener('click', onClickOutside, { once: false, passive: true });
+  document.addEventListener('click', onClickOutside, {
+    once: false,
+    passive: true,
+  });
 };
 
-export const initFootnote = (): void => {
-  const article = document.getElementById('article');
+export const initialize = (html: HTMLElement): Disposer => {
+  const footnote = Array.from(html.querySelectorAll('sup.ft-reference'));
 
-  if (article === null) {
-    console.error('Article element not found');
-    return;
+  for (const x of footnote) {
+    x.addEventListener('click', handleFootnoteClick, {
+      once: false,
+      passive: true,
+    });
   }
 
-  for (const x of Array.from(article.querySelectorAll('sup.ft-reference'))) {
-    x.addEventListener('click', ev => handleFootnoteClick(ev.target), { once: false, passive: true });
-  }
+  return () => {
+    for (const x of footnote) {
+      x.removeEventListener('click', handleFootnoteClick);
+    }
+  };
 };

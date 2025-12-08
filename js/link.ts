@@ -40,6 +40,8 @@ const setExternalLink = (elm: HTMLAnchorElement): void => {
   elm.setAttribute('rel', 'noopener');
 };
 
+const resolveUrl = (href: string): string => new URL(href.replace(/^(\.\.\/)+/, ''), ROOT_PATH).href;
+
 const setInternalLink = (elm: HTMLAnchorElement): void => {
   const linkUrlStr = resolveUrl(elm.getAttribute('href')!);
   const linkUrl = new URL(linkUrlStr);
@@ -47,16 +49,8 @@ const setInternalLink = (elm: HTMLAnchorElement): void => {
   elm.href = linkUrl.href;
 };
 
-const resolveUrl = (href: string): string => new URL(href.replace(/^(\.\.\/)+/, ''), ROOT_PATH).href;
-
-export const enhanceLinks = () => {
-  const article = document.getElementById('article');
-
-  if (!article) {
-    return;
-  }
-
-  for (const x of article.querySelectorAll<HTMLAnchorElement>('a[href]')) {
+export const initLinks = (html: HTMLElement): void => {
+  for (const x of html.querySelectorAll<HTMLAnchorElement>('a[href]')) {
     const kind = getLinkKind(x);
 
     if (kind === LinkKind.External) {
