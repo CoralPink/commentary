@@ -1,26 +1,46 @@
 type PulseCallback = (deadline: IdleDeadline) => void;
 type Pulse = (cb: PulseCallback) => number;
 
-const createPulse: Pulse =
-  typeof globalThis.requestIdleCallback === 'function'
-    ? globalThis.requestIdleCallback.bind(globalThis)
-    : cb => {
-        setTimeout(() => {
-          cb({
-            didTimeout: false,
-            timeRemaining: () => 1,
-          } as IdleDeadline);
-        }, 0);
-        return 0;
-      };
-
-const pulse: Pulse = createPulse;
+const REMAINING_RS = 8;
 
 const queue: (() => void)[] = [];
 let loopScheduled = false;
 
+const firstFramePulse: Pulse = cb => {
+  // Use requestAnimationFrame only for the first frame
+  requestAnimationFrame(() => {
+    // After executing once, immediately replace it with idlePulse.
+    pulse = idlePulse;
+
+    cb({
+      didTimeout: false,
+      timeRemaining: () => Infinity,
+    } as IdleDeadline);
+  });
+
+  return 0;
+};
+
+let pulse: Pulse = firstFramePulse;
+
+const idlePulse: Pulse =
+  typeof requestIdleCallback === 'function'
+    ? cb => requestIdleCallback(cb)
+    : cb => {
+        setTimeout(() => {
+          cb({
+            didTimeout: false,
+            timeRemaining: () => REMAINING_RS,
+          } as IdleDeadline);
+        });
+
+        return 0;
+      };
+
 const runLoop = (deadline: IdleDeadline): void => {
-  while (deadline.timeRemaining() > 0 && queue.length > 0) {
+  let time = deadline.timeRemaining();
+
+  while (time > 0 && queue.length > 0) {
     const job = queue.shift()!;
 
     try {
@@ -29,13 +49,14 @@ const runLoop = (deadline: IdleDeadline): void => {
       // Keep the scheduler alive even if one job misbehaves.
       console.error('pulse: job threw an error', err);
     }
+    time = deadline.timeRemaining();
   }
 
-  if (queue.length > 0) {
-    pulse(runLoop);
-  } else {
+  if (queue.length === 0) {
     loopScheduled = false;
+    return;
   }
+  pulse(runLoop);
 };
 
 export const scheduleJob = (job: () => void): void => {
@@ -62,4 +83,8 @@ export const processChunked = <T>(items: T[], each: (x: T) => void): void => {
   };
 
   pulse(tick);
+};
+
+export const initPulse = (): void => {
+  pulse = firstFramePulse;
 };

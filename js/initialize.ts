@@ -98,6 +98,8 @@ const JOBS_INITIALIZE: HtmlJob[] = [
 ];
 
 export const initExtensions = (html: HTMLElement): void => {
+  initPulse();
+
   for (const job of JOBS_INITIALIZE) {
     scheduleJob(() => job(html));
   }
