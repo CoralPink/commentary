@@ -83,7 +83,6 @@ describe('Searcher Module', () => {
     searchPop.checkVisibility = vi.fn().mockReturnValue(false);
 
     HTMLInputElement.prototype.select = vi.fn();
-    vi.clearAllMocks();
   });
 
   afterEach(() => {
