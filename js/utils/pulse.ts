@@ -89,6 +89,11 @@ export const processChunked = <T>(items: T[], each: (x: T) => void): void => {
   pulse(tick);
 };
 
+/**
+ * Resets the pulse mechanism to its initial state.
+ * ⚠️  MUST only be called at page navigation or initialization boundaries,
+ * never during active job processing.
+ */
 export const initPulse = (): void => {
   pulse = firstFramePulse;
 
