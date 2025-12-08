@@ -74,7 +74,11 @@ export const processChunked = <T>(items: T[], each: (x: T) => void): void => {
 
   const tick = (deadline: IdleDeadline) => {
     while (deadline.timeRemaining() > 0 && i < items.length) {
-      each(items[i++]!);
+      try {
+        each(items[i++]!);
+      } catch (err) {
+        console.error('pulse: processChunked callback threw an error', err);
+      }
     }
 
     if (i < items.length) {
@@ -87,4 +91,7 @@ export const processChunked = <T>(items: T[], each: (x: T) => void): void => {
 
 export const initPulse = (): void => {
   pulse = firstFramePulse;
+
+  queue.length = 0;
+  loopScheduled = false;
 };
