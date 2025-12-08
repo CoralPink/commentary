@@ -1,4 +1,3 @@
-import { bootCodeBlock } from './codeblock.ts';
 import { isNativeLink } from './link.ts';
 import { disposeAll, initExtensions } from './initialize.ts';
 import { startupSearch } from './searcher.ts';
@@ -178,7 +177,6 @@ const clickHandler = (ev: MouseEvent): void => {
       bootThemeColor();
       bootSidebar();
       bootTableOfContents();
-      bootCodeBlock();
 
       startupSearch();
 

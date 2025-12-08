@@ -37,6 +37,8 @@ export default defineConfig([
   makeConfig('./navigation.ts'),
   makeConfig('./serviceworker.ts'),
 
+  makeConfig('./extensions/codeblock.ts'),
+  makeConfig('./extensions/footnote.ts'),
   makeConfig('./extensions/media.ts'),
 //  makeConfig('./extensions/replace-dom.ts'),
   makeConfig('./extensions/slider.ts'),

@@ -1,3 +1,5 @@
+import { type Disposer } from './types.ts';
+
 const POTISION_GAP = 10;
 
 const calcTop = (target: HTMLElement, pop: HTMLElement): number => {
@@ -108,11 +110,13 @@ const handleFootnoteClick = (target: EventTarget | null): void => {
   });
 };
 
-export const initFootnote = (html: HTMLElement): void => {
+export const initialize = (html: HTMLElement): Disposer => {
   for (const x of Array.from(html.querySelectorAll('sup.ft-reference'))) {
     x.addEventListener('click', ev => handleFootnoteClick(ev.target), {
       once: false,
       passive: true,
     });
   }
+
+  return () => {}; // no-op dispose
 };

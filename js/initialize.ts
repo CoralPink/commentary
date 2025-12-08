@@ -1,6 +1,4 @@
-import { initCodeBlock } from './codeblock.ts';
 import { ROOT_PATH } from './constants.ts';
-import { initFootnote } from './footnote.ts';
 import { initLinks } from './link.ts';
 import { initMark } from './mark.ts';
 import { initTableOfContents } from './table-of-contents.ts';
@@ -10,22 +8,13 @@ import * as ex from './extensions/types.ts';
 import { initPulse, scheduleJob } from './utils/pulse.ts';
 
 type HtmlJob = (html: HTMLElement) => void | Promise<void>;
-/*
-type Disposer = () => void;
-type ExtensionInitializeFn = (html: HTMLElement) => () => void;
 
-type InitializableExtension = {
-  initialize?: ExtensionInitializeFn;
-};
-
-type ExtensionEntry = {
-  importPromise: Promise<void>;
-  initialize: ExtensionInitializeFn | undefined;
-};
-*/
 const MODULE_REQUIREMENTS: { selector: string; module: string }[] = [
-  { selector: '.slider', module: 'slider.js' },
-  { selector: 'video', module: 'media.js' },
+  { selector: '.slider', module: 'slider' },
+  { selector: 'video', module: 'media' },
+  { selector: 'pre code:not(.language-txt)', module: 'codeblock' },
+  { selector: 'sup', module: 'footnote' },
+
   // TODO: We will suspend use until a reliable method is found.
   // { selector: '.replace-element', module: 'replace-dom.js' },
 ];
@@ -81,7 +70,7 @@ const ensureExtensionLoaded = (html: HTMLElement, url: string): Promise<void> =>
 const loadExternalExtensions = async (html: HTMLElement): Promise<void> => {
   await Promise.all(
     MODULE_REQUIREMENTS.filter(req => html.querySelector(req.selector)).map(req =>
-      ensureExtensionLoaded(html, `${ROOT_PATH}${req.module}`),
+      ensureExtensionLoaded(html, `${ROOT_PATH}${req.module}.js`),
     ),
   );
 };
@@ -91,9 +80,7 @@ const JOBS_INITIALIZE: HtmlJob[] = [
 
   initMark,
   initLinks,
-  initFootnote,
 
-  regProcHtml(initCodeBlock),
   loadExternalExtensions,
 ];
 
