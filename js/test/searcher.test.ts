@@ -1,6 +1,39 @@
 import { afterEach, beforeEach, describe, expect, it, type MockedFunction, vi } from 'vitest';
 import { startupSearch, TARGET_SEARCH } from '../searcher.ts';
-//import { debounce } from '../utils/timing.ts';
+
+// Mock modules before imports
+vi.mock('../utils/css-loader.ts', () => ({
+  loadStyleSheet: vi.fn().mockResolvedValue(undefined),
+}));
+
+vi.mock('../utils/fetch.ts', () => ({
+  fetchRequest: vi.fn(),
+}));
+
+vi.mock('../mark.ts', () => ({
+  doMarkFromUrl: vi.fn(),
+  unmarking: vi.fn(),
+}));
+
+vi.mock('../navigation.ts', () => ({
+  navigateTo: vi.fn(),
+}));
+
+vi.mock('../wasm_book.js', () => {
+  class MockFinder {
+    search = vi.fn().mockReturnValue({
+      header: 'Test Results',
+      html: '<li><a href="/test">Test Result</a></li>',
+    });
+  }
+
+  const initWasm = vi.fn().mockResolvedValue(undefined);
+
+  return {
+    default: initWasm,
+    Finder: MockFinder,
+  };
+});
 
 Object.defineProperty(window, 'location', {
   value: {
@@ -13,7 +46,20 @@ Object.defineProperty(window, 'location', {
 
 globalThis.fetch = vi.fn() as MockedFunction<typeof fetch>;
 globalThis.alert = vi.fn() as typeof alert;
-globalThis.DecompressionStream = vi.fn() as typeof DecompressionStream;
+
+// Proper DecompressionStream mock as a class
+class MockDecompressionStream {
+  readable: ReadableStream;
+  writable: WritableStream;
+
+  constructor(_format: CompressionFormat) {
+    const transformStream = new TransformStream();
+    this.readable = transformStream.readable;
+    this.writable = transformStream.writable;
+  }
+}
+
+globalThis.DecompressionStream = MockDecompressionStream as any;
 
 describe('Searcher Module', () => {
   beforeEach(() => {
@@ -22,12 +68,19 @@ describe('Searcher Module', () => {
         <div class="icon-search fa-icon"></div>
       </button>
 
-      <div id="search-pop">
+      <div id="search-pop" popover>
         <input id="searchbar" type="text" />
         <div id="results-header"></div>
         <div id="searchresults"></div>
       </div>
     `;
+
+    // Mock popover API
+    const searchPop = document.getElementById('search-pop') as HTMLElement;
+    searchPop.showPopover = vi.fn();
+    searchPop.hidePopover = vi.fn();
+    searchPop.togglePopover = vi.fn();
+    searchPop.checkVisibility = vi.fn().mockReturnValue(false);
 
     HTMLInputElement.prototype.select = vi.fn();
     vi.clearAllMocks();
@@ -39,9 +92,8 @@ describe('Searcher Module', () => {
   });
 
   describe('startupSearch', () => {
-    it('should initialize search with correct root path', () => {
+    it('should initialize search with correct event listeners on search button', () => {
       const searchButton = document.querySelector<HTMLButtonElement>(`[data-target="${TARGET_SEARCH}"]`)!;
-
       const mockAddEventListener = vi.fn();
       searchButton.addEventListener = mockAddEventListener;
 
@@ -73,46 +125,132 @@ describe('Searcher Module', () => {
     beforeEach(() => {
       vi.useFakeTimers();
     });
+
     afterEach(() => {
       vi.useRealTimers();
     });
 
-    it('should handle successful fetch requests', () => {
-      expect(globalThis.fetch).toHaveBeenCalledTimes(0);
-    });
-    /*
-    // TODO: AssertionError: expected "spy" to be called at least once
-    it('should handle fetch timeout correctly', async () => {
-      const mockAbort = vi.fn();
-      (globalThis as any).AbortController = vi.fn(() => ({
-        abort: mockAbort,
-        signal: { aborted: false },
-      }));
+    it('should initialize search and fetch required resources on button click', async () => {
+      const { fetchRequest } = await import('../utils/fetch.ts');
+      const mockFetch = fetchRequest as MockedFunction<typeof fetchRequest>;
 
-      (globalThis as any).fetch = vi.fn(() => new Promise(res => setTimeout(res, 15000)));
+      // Mock compressed search data
+      const mockSearchData = {
+        doc_urls: ['test.html'],
+        index: {
+          documentStore: {
+            docs: { '0': { title: 'Test' } },
+          },
+        },
+      };
+
+      const encoder = new TextEncoder();
+      const encodedData = encoder.encode(JSON.stringify(mockSearchData));
+
+      // Create a proper ReadableStream with the data
+      const mockStream = new ReadableStream({
+        start(controller) {
+          controller.enqueue(encodedData);
+          controller.close();
+        },
+      });
+
+      const mockResponse = {
+        body: mockStream,
+      } as Response;
+
+      mockFetch.mockResolvedValue(mockResponse);
+
+      startupSearch();
+
+      const searchButton = document.querySelector<HTMLButtonElement>(`[data-target="${TARGET_SEARCH}"]`)!;
+      searchButton.click();
 
       await vi.runAllTimersAsync();
 
-      expect(mockAbort).toHaveBeenCalled();
-      expect((globalThis as any).alert).toHaveBeenCalledWith('The request has timed out.');
+      // Verify fetchRequest was called for search index
+      expect(mockFetch).toHaveBeenCalled();
+    });
+
+    /*
+    it('should handle fetch timeout by showing alert', async () => {
+      const { fetchRequest } = await import('../utils/fetch.ts');
+      const mockFetch = fetchRequest as MockedFunction<typeof fetchRequest>;
+
+      const abortError = new Error('AbortError');
+      abortError.name = 'AbortError';
+      mockFetch.mockRejectedValue(abortError);
+
+      startupSearch();
+
+      const searchButton = document.querySelector<HTMLButtonElement>(`[data-target="${TARGET_SEARCH}"]`)!;
+      searchButton.click();
+
+      await vi.runAllTimersAsync();
+
+      // Verify alert was called on abort error
+      expect(globalThis.alert).toHaveBeenCalledWith('Search is currently unavailable.');
     });
     */
   });
-
   /*
-  // TODO: AssertionError: expected 'false' to be 'true' // Object.is equality
+  // TODO: AssertionError: expected "vi.fn()" to be called at least once
   describe('DOM Manipulation and Events', () => {
-    it('should toggle search popover', () => {
+    beforeEach(() => {
+      vi.useFakeTimers();
+    });
+
+    afterEach(() => {
+      vi.useRealTimers();
+    });
+
+    it('should update aria-expanded when initializing search via keypress', async () => {
+      const { fetchRequest } = await import('../utils/fetch.ts');
+      const mockFetch = fetchRequest as MockedFunction<typeof fetchRequest>;
+
+      const mockSearchData = {
+        doc_urls: ['test.html'],
+        index: {
+          documentStore: {
+            docs: { '0': { title: 'Test' } },
+          },
+        },
+      };
+
+      const encoder = new TextEncoder();
+      const encodedData = encoder.encode(JSON.stringify(mockSearchData));
+
+      const mockStream = new ReadableStream({
+        start(controller) {
+          controller.enqueue(encodedData);
+          controller.close();
+        },
+      });
+
+      const mockResponse = {
+        body: mockStream,
+      } as Response;
+
+      mockFetch.mockResolvedValue(mockResponse);
+
       startupSearch();
+
       const toggle = document.querySelector(`[data-target="${TARGET_SEARCH}"]`)!;
+      const searchPop = document.getElementById('search-pop') as HTMLElement;
+
+      // Mock the popover to report as visible after being shown
+      searchPop.checkVisibility = vi.fn().mockReturnValue(false);
 
       expect(toggle.getAttribute('aria-expanded')).toBe('false');
 
-      toggle.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+      // Trigger search via '/' key
+      document.dispatchEvent(new KeyboardEvent('keyup', { key: '/' }));
+
+      await vi.runAllTimersAsync();
+
+      // After initialization, the popover should be shown and aria-expanded updated
+      expect(searchPop.showPopover).toHaveBeenCalled();
       expect(toggle.getAttribute('aria-expanded')).toBe('true');
-
-      toggle.dispatchEvent(new MouseEvent('click', { bubbles: true }));
-      expect(toggle.getAttribute('aria-expanded')).toBe('false');
     });
   });
   */
@@ -124,14 +262,74 @@ describe('Searcher Module', () => {
       expect(searchBar.value.trim()).toBe('test query');
     });
     /*
-    // TODO: AssertionError: expected "spy" to be called at least once
-    it('should debounce search input events', () => {
-      startupSearch();
-      const searchBar = document.getElementById('searchbar') as HTMLInputElement;
+    // TODO: TypeError: MockFinder.mockImplementation is not a function
+    it('should debounce search input events', async () => {
+      vi.useFakeTimers();
 
+      const { fetchRequest } = await import('../utils/fetch.ts');
+      const mockFetch = fetchRequest as MockedFunction<typeof fetchRequest>;
+      const MockFinder = Finder as unknown as MockedFunction<typeof Finder>;
+
+      const mockSearchFn = vi.fn().mockReturnValue({
+        header: 'Results',
+        html: '<li>Test</li>',
+      });
+
+      MockFinder.mockImplementation(
+        class {
+          search = mockSearchFn;
+        } as any,
+      );
+
+      const mockSearchData = {
+        doc_urls: ['test.html'],
+        index: {
+          documentStore: {
+            docs: { '0': { title: 'Test' } },
+          },
+        },
+      };
+
+      const encoder = new TextEncoder();
+      const encodedData = encoder.encode(JSON.stringify(mockSearchData));
+
+      const mockStream = new ReadableStream({
+        start(controller) {
+          controller.enqueue(encodedData);
+          controller.close();
+        },
+      });
+
+      const mockResponse = {
+        body: mockStream,
+      } as Response;
+
+      mockFetch.mockResolvedValue(mockResponse);
+
+      startupSearch();
+
+      // Trigger initialization
+      document.dispatchEvent(new KeyboardEvent('keyup', { key: '/' }));
+      await vi.runAllTimersAsync();
+
+      const searchBar = document.getElementById('searchbar') as HTMLInputElement;
+      searchBar.value = 'test';
+
+      // Dispatch multiple input events rapidly
+      searchBar.dispatchEvent(new Event('input'));
+      searchBar.dispatchEvent(new Event('input'));
       searchBar.dispatchEvent(new Event('input'));
 
-      expect(debounce).toHaveBeenCalled();
+      // Search should not be called immediately (debounced)
+      expect(mockSearchFn).not.toHaveBeenCalled();
+
+      // Advance time past debounce delay (80ms)
+      await vi.advanceTimersByTimeAsync(100);
+
+      // Search should only be called once due to debouncing
+      expect(mockSearchFn).toHaveBeenCalledTimes(1);
+
+      vi.useRealTimers();
     });
     */
   });
