@@ -1,3 +1,5 @@
+import { type Disposer } from './types.ts';
+
 const CLASS_ARROW = 'arrow';
 const CLASS_CONTROLS = 'controls';
 
@@ -177,18 +179,29 @@ class Slider {
     return arrow;
   }
 
+  private toNext = (): void => {
+    this.scrollTo(this.index + 1);
+  };
+
   private setupVideo(video: HTMLVideoElement): void {
     // so it is copied from the data poster attributes. (...It's not pretty, but.)
     video.poster = video.dataset['poster' as keyof DOMStringMap] || video.poster || '';
 
-    video.addEventListener('ended', (): void => {
-      this.scrollTo(this.index + 1);
-    });
+    video.addEventListener('ended', this.toNext);
   }
+
+  private unsetVideo(video: HTMLVideoElement): void {
+    video.removeEventListener('ended', this.toNext);
+  };
 
   public dispose(): void {
     this.observer.disconnect();
 
+    for (const x of this.medias) {
+      if (x instanceof HTMLVideoElement) {
+        this.unsetVideo(x);
+      }
+    }
     for (const x of this.indicatorSpans) {
       x.replaceWith(x.cloneNode(true));
     }
@@ -209,10 +222,10 @@ const setupSlider = (entries: IntersectionObserverEntry[], obs: IntersectionObse
   }
 };
 
-export const initialize = (): (() => void) => {
+export const initialize = (html: HTMLElement): Disposer => {
   const obs = new IntersectionObserver(setupSlider, { rootMargin: '5%' });
 
-  for (const elm of Array.from(document.querySelectorAll<HTMLDivElement>('.slider'))) {
+  for (const elm of Array.from(html.querySelectorAll<HTMLDivElement>('.slider'))) {
     obs.observe(elm);
   }
 

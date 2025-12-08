@@ -2,9 +2,10 @@ import hljs from './highlight.js';
 import { containsNerdFontIcon, extractLanguage } from './hl-language.ts';
 
 import type { Payload, WorkerResponse } from './hl-types.ts';
+import type { UUID } from '../utils/random.ts';
 
 type HighlightRequest = {
-  id: number;
+  id: UUID;
   text: string;
   lang: string;
 };
