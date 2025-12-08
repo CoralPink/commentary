@@ -17,7 +17,7 @@ const onVideoEnded = (ev: Event): void => {
   (ev.currentTarget as HTMLVideoElement).currentTime = VIDEO_RESTART_OFFSET;
 };
 
-const removeEndedEvent= (video: HTMLVideoElement): void => {
+const removeEndedEvent = (video: HTMLVideoElement): void => {
   video.removeEventListener('ended', onVideoEnded);
 };
 

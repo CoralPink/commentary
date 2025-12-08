@@ -1,6 +1,7 @@
 type PulseCallback = (deadline: IdleDeadline) => void;
 type Pulse = (cb: PulseCallback) => number;
 
+// Polyfill idle slice duration: 8ms balances responsiveness with batch efficiency
 const REMAINING_RS = 8;
 
 const queue: (() => void)[] = [];
