@@ -111,12 +111,18 @@ const handleFootnoteClick = (target: EventTarget | null): void => {
 };
 
 export const initialize = (html: HTMLElement): Disposer => {
-  for (const x of Array.from(html.querySelectorAll('sup.ft-reference'))) {
+  const footnote = Array.from(html.querySelectorAll('sup.ft-reference'));
+
+  for (const x of footnote) {
     x.addEventListener('click', ev => handleFootnoteClick(ev.target), {
       once: false,
       passive: true,
     });
   }
 
-  return () => {}; // no-op dispose
+  return () => {
+    for (const x of footnote) {
+      x.removeEventListener('click', ev => handleFootnoteClick(ev.target));
+    }
+  };
 };

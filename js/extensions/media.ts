@@ -17,7 +17,7 @@ const onVideoEnded = (ev: Event): void => {
   (ev.currentTarget as HTMLVideoElement).currentTime = VIDEO_RESTART_OFFSET;
 };
 
-const unsetPlyr = (video: HTMLVideoElement): void => {
+const removeEndedEvent= (video: HTMLVideoElement): void => {
   video.removeEventListener('ended', onVideoEnded);
 };
 
@@ -65,7 +65,7 @@ export const initialize = (html: HTMLElement): Disposer => {
     obs.disconnect();
 
     for (const x of videos) {
-      unsetPlyr(x);
+      removeEndedEvent(x);
     }
     for (const x of plyrInstances) {
       x.destroy();

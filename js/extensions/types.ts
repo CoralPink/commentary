@@ -1,5 +1,5 @@
 export type Disposer = () => void;
-export type ExtensionInitializeFn = (html: HTMLElement) => () => void;
+export type ExtensionInitializeFn = (html: HTMLElement) => Disposer;
 
 export type InitializableExtension = {
   initialize?: ExtensionInitializeFn;
