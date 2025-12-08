@@ -48,7 +48,9 @@ const insertFootnote = (pop: HTMLElement, footnote: HTMLElement): void => {
   sup.setAttribute('href', oldHref.replace(/^#to-ft-/, '#ft-'));
 };
 
-const handleFootnoteClick = (target: EventTarget | null): void => {
+const handleFootnoteClick = (ev: Event): void => {
+  const target = ev.target;
+
   if (!(target instanceof HTMLElement)) {
     return;
   }
@@ -114,7 +116,7 @@ export const initialize = (html: HTMLElement): Disposer => {
   const footnote = Array.from(html.querySelectorAll('sup.ft-reference'));
 
   for (const x of footnote) {
-    x.addEventListener('click', ev => handleFootnoteClick(ev.target), {
+    x.addEventListener('click', handleFootnoteClick, {
       once: false,
       passive: true,
     });
@@ -122,7 +124,7 @@ export const initialize = (html: HTMLElement): Disposer => {
 
   return () => {
     for (const x of footnote) {
-      x.removeEventListener('click', ev => handleFootnoteClick(ev.target));
+      x.removeEventListener('click', handleFootnoteClick);
     }
   };
 };
