@@ -1,54 +1,67 @@
 import { beforeEach, describe, expect, it } from 'vitest';
-import { enhanceLinks } from '../link.ts';
+import { initLinks } from '../link.ts';
 
-describe('enhanceLinks', () => {
+describe('initLinks', () => {
+  let article: HTMLElement;
+
   beforeEach(() => {
-    // Clear document.body for each test
     document.body.innerHTML = '';
+    article = document.createElement('article');
+    document.body.appendChild(article);
   });
 
-/* TODO: I don't know how to use it, so I'll put it on hold for now...
-  it('adds _blank to external links', () => {
-    const TEST_URLS = [
-      'http://example.com',
-      'https://example.com',
-      'https://example.com/abc.html',
-      'example.html',
-      '../example.html',
-      '#1',
-      'http.html',
-      'http/example.html',
-      '#http',
-    ];
+  it('sets target/rel for external http(s) links', () => {
+    const EXTERNAL = ['http://example.com', 'https://example.com', 'https://example.com/abc.html'];
 
-    const article = document.createElement('article');
-    article.id = 'article';
-    document.body.appendChild(article);
-
-    for (const href of TEST_URLS) {
+    for (const href of EXTERNAL) {
       const a = document.createElement('a');
       a.href = href;
       article.appendChild(a);
     }
 
-    enhanceLinks();
+    initLinks(article);
 
-    for (const link of Array.from(article.querySelectorAll('a'))) {
-      const href = link.getAttribute('href');
-      expect(href).not.toBeNull();
-
-      if (href!.startsWith('http://') || href!.startsWith('https://')) {
-        expect(link.getAttribute('target')).toBe('_blank');
-        expect(link.getAttribute('rel')).toBe('noopener');
-      } else {
-        expect(link.getAttribute('target')).toBeNull();
-      }
+    for (const link of article.querySelectorAll('a')) {
+      expect(link.getAttribute('target')).toBe('_blank');
+      expect(link.getAttribute('rel')).toBe('noopener');
     }
   });
-*/
 
-  it('does nothing if article element is not found', () => {
-    document.getElementById('article')?.remove();
-    expect(() => enhanceLinks()).not.toThrow();
+  it('normalizes internal links using ROOT_PATH', () => {
+    const html = document.createElement('article');
+    html.innerHTML = `
+    <a href="foo.html"></a>
+    <a href="../bar.html"></a>
+  `;
+
+    initLinks(html);
+
+    for (const link of html.querySelectorAll('a')) {
+      expect(link.href).toMatch(/^https?:\/\//);
+    }
+  });
+
+  it('keeps native links untouched (#hash or custom scheme)', () => {
+    const NATIVE = ['#1', '#section1', '#http', 'mailto:test@example.com', 'tel:090-1111-2222', 'javascript:void(0)'];
+
+    for (const href of NATIVE) {
+      const a = document.createElement('a');
+      a.setAttribute('href', href);
+      article.appendChild(a);
+    }
+
+    initLinks(article);
+
+    const links = article.querySelectorAll('a');
+    expect(links.length).toBe(NATIVE.length);
+
+    links.forEach((link, i) => {
+      expect(link.getAttribute('href')).toBe(NATIVE[i]);
+    });
+  });
+
+  it('does nothing safely even if html has no <a>', () => {
+    const emptyDiv = document.createElement('div');
+    expect(() => initLinks(emptyDiv)).not.toThrow();
   });
 });

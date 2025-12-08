@@ -1,4 +1,4 @@
-export const ROOT_PATH = `${self.origin}/commentary/`;
+export const ROOT_PATH = `${globalThis.location.origin}/commentary/`;
 
 // Set the same value as the `breakpoint-ui-wide` used in CSS.
 //

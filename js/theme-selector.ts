@@ -1,10 +1,10 @@
 import { ROOT_PATH } from './constants.ts';
-import { getRootVariable, loadStyleSheet, unloadStyleSheet } from './css-loader.ts';
-import { readLocalStorage, writeLocalStorage } from './storage.ts';
 
-const STYLE_THEMELIST = 'css/theme-list.css';
+import { getRootVariable, loadStyleSheet, unloadStyleSheet } from './utils/css-loader.ts';
+import { readLocalStorage, writeLocalStorage } from './utils/storage.ts';
 
 const THEME_DIRECTORY = 'css/catppuccin/';
+const STYLE_THEMELIST = 'css/theme-list.css';
 
 type ThemeColor = {
   readonly id: string;
@@ -174,7 +174,7 @@ const changeEvent = (ev: MediaQueryListEvent): void => {
   setTheme(theme as ThemeColorId);
 };
 
-export const initThemeColor = (): void => {
+export const bootThemeColor = (): void => {
   const appearance = isDarkThemeRequired() ? KEY_DARK : KEY_LIGHT;
 
   // If the user has already specified a theme, that theme will be applied;
