@@ -1,11 +1,36 @@
 type PulseCallback = (deadline: IdleDeadline) => void;
 type Pulse = (cb: PulseCallback) => number;
 
-// Polyfill idle slice duration: 8ms balances responsiveness with batch efficiency
-const REMAINING_RS = 8;
+// Do not exceed the Idle Deadline specification limit of 50ms.
+const REMAINING_RS = 49.9;
 
 const queue: (() => void)[] = [];
 let loopScheduled = false;
+
+/**
+ * Safari does not support `requestIdleCallback`!
+ * We'll have to emulate similar behavior instead.
+ *
+ * refs: https://developer.mozilla.org/ja/docs/Web/API/Window/requestIdleCallback
+ */
+const emulateIdleCallback = (cb: PulseCallback): number => {
+  const start = performance.now();
+  const idleUntil = start + REMAINING_RS;
+
+  setTimeout(() => {
+    cb({
+      didTimeout: false,
+      timeRemaining: () => Math.max(0, idleUntil - performance.now()),
+    } as IdleDeadline);
+  }, 1);
+
+  return 0;
+};
+
+const idlePulse: Pulse =
+  typeof globalThis.requestIdleCallback === 'function'
+    ? globalThis.requestIdleCallback.bind(globalThis)
+    : cb => emulateIdleCallback(cb);
 
 const firstFramePulse: Pulse = cb => {
   // Use requestAnimationFrame only for the first frame
@@ -23,20 +48,6 @@ const firstFramePulse: Pulse = cb => {
 };
 
 let pulse: Pulse = firstFramePulse;
-
-const idlePulse: Pulse =
-  typeof requestIdleCallback === 'function'
-    ? cb => requestIdleCallback(cb)
-    : cb => {
-        setTimeout(() => {
-          cb({
-            didTimeout: false,
-            timeRemaining: () => REMAINING_RS,
-          } as IdleDeadline);
-        });
-
-        return 0;
-      };
 
 const runLoop = (deadline: IdleDeadline): void => {
   let time = deadline.timeRemaining();
@@ -72,9 +83,10 @@ export const scheduleJob = (job: () => void): void => {
 
 export const processChunked = <T>(items: T[], each: (x: T) => void): void => {
   let i = 0;
+  const snapshot = items.length;
 
   const tick = (deadline: IdleDeadline) => {
-    while (deadline.timeRemaining() > 0 && i < items.length) {
+    while (deadline.timeRemaining() > 0 && i < snapshot) {
       try {
         each(items[i++]!);
       } catch (err) {
@@ -82,7 +94,7 @@ export const processChunked = <T>(items: T[], each: (x: T) => void): void => {
       }
     }
 
-    if (i < items.length) {
+    if (i < snapshot) {
       pulse(tick);
     }
   };
@@ -92,7 +104,8 @@ export const processChunked = <T>(items: T[], each: (x: T) => void): void => {
 
 /**
  * Resets the pulse mechanism to its initial state.
- * ⚠️  MUST only be called at page navigation or initialization boundaries,
+ *
+ * MUST only be called at page navigation or initialization boundaries,
  * never during active job processing.
  */
 export const initPulse = (): void => {
