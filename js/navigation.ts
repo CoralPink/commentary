@@ -96,7 +96,17 @@ const applyNavigation = (ctx: NavigationContext) => {
 
   initExtensions(article);
 
-  article.scrollIntoView({ behavior: 'auto' });
+  const scrollInto = () => {
+    if (!ctx.next.hash) {
+      article.scrollIntoView({ behavior: 'auto' });
+      return;
+    }
+
+    const header = document.querySelector(ctx.next.hash);
+    header?.scrollIntoView({ behavior: 'auto' });
+  };
+
+  requestAnimationFrame(scrollInto);
 };
 
 const runTransition = (fn: () => void) => ('startViewTransition' in document ? document.startViewTransition(fn) : fn());
