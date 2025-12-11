@@ -7,8 +7,8 @@
     "@deno/rolldown-plugin": "jsr:@deno/rolldown-plugin@0.0.10",
     "@rollup/plugin-terser": "npm:@rollup/plugin-terser@0.4.4",
 
-    "vitest": "npm:vitest@4.0.8",
-    "@vitest/coverage-v8": "npm:@vitest/coverage-v8@4.0.8",
+    "vitest": "npm:vitest@4.0.15",
+    "@vitest/coverage-v8": "npm:@vitest/coverage-v8@4.0.15",
     "happy-dom": "npm:happy-dom@^20.0.11"
   }
 }
