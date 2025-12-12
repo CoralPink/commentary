@@ -8,6 +8,7 @@ text-direction = "ltr"
 
 [build]
 create-missing = false
+use-default-preprocessors = false
 
 [output.html]
 git-repository-url = "https://github.com/CoralPink/commentary"
@@ -27,7 +28,6 @@ copy-js = true           # (apparently, searchindex.json will not be created unl
 [preprocessor.admonish]
 command = "mdbook-admonish"
 assets_version = "3.1.0" # do not edit: managed by `mdbook-admonish install`
-after = ["links"]
 
 [preprocessor.footnote]
 
