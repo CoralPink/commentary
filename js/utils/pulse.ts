@@ -1,8 +1,7 @@
 type PulseCallback = (deadline: IdleDeadline) => void;
 type Pulse = (cb: PulseCallback) => number;
 
-// Do not exceed the Idle Deadline specification limit of 50ms.
-const REMAINING_MS = 49.9;
+const LAYOUT_TIME = 1.0;
 
 const queue: (() => void)[] = [];
 let loopScheduled = false;
@@ -13,19 +12,46 @@ let loopScheduled = false;
  *
  * refs: https://developer.mozilla.org/ja/docs/Web/API/Window/requestIdleCallback
  */
-const emulateIdleCallback = (cb: PulseCallback): number => {
-  const start = performance.now();
-  const idleUntil = start + REMAINING_MS;
+const emulateIdleCallback: (cb: IdleRequestCallback) => number = (() => {
+  let id = 0;
 
-  const timeoutId = setTimeout(() => {
-    cb({
-      didTimeout: false,
-      timeRemaining: () => Math.max(0, idleUntil - performance.now()),
-    } as IdleDeadline);
-  }, 1);
+  const channel = new MessageChannel();
+  const queue = new Map<number, IdleRequestCallback>();
 
-  return timeoutId;
-};
+  let rafScheduled = false;
+
+  channel.port1.onmessage = () => {
+    const now = performance.now();
+    const start = now + LAYOUT_TIME;
+
+    queue.forEach((cb, handle) => {
+      const deadline: IdleDeadline = {
+        didTimeout: false,
+        timeRemaining: () => Math.max(0, 5 - (performance.now() - start)),
+      };
+
+      cb(deadline);
+      queue.delete(handle);
+    });
+
+    rafScheduled = false;
+  };
+
+  return (callback: IdleRequestCallback): number => {
+    const handle = ++id;
+    queue.set(handle, callback);
+
+    if (!rafScheduled) {
+      rafScheduled = true;
+
+      requestAnimationFrame(() => {
+        channel.port2.postMessage(0);
+      });
+    }
+
+    return handle;
+  };
+})();
 
 const idlePulse: Pulse =
   typeof globalThis.requestIdleCallback === 'function'
