@@ -1,22 +1,20 @@
 import { ROOT_PATH } from './constants.ts';
-import { unmarking, updateMark } from './mark.ts';
+import { initMark, unmarking } from './mark.ts';
 import { navigateTo } from './navigation.ts';
 
 import { loadStyleSheet } from './utils/css-loader.ts';
-import { fetchRequest } from './utils/fetch.ts';
+import { fetchAndDecompress } from './utils/fetch.ts';
 import { debounce } from './utils/timing.ts';
 
 // deno-lint-ignore no-sloppy-imports
 import initWasm, { Finder } from './wasm_book.js';
-
 type SearchResult = {
   header: string;
   html: string | undefined;
 };
 
-type CompressionFormat = 'gzip' | 'deflate' | 'deflate-raw' | 'brotli';
-
-const STYLE_SEARCH = 'css/search.css';
+const FILE_STYLE_SEARCH = 'css/search.css';
+const FILE_INDEX = 'searchindex.json';
 
 export const TARGET_SEARCH = 'search';
 
@@ -45,6 +43,16 @@ const showResults = (): void => {
 const checkURL = (url: URL): boolean =>
   url.origin + url.pathname === globalThis.location.origin + globalThis.location.pathname;
 
+const updateMark = (): void => {
+  const element = document.getElementById('article');
+
+  if (!element) {
+    console.error(`updateMark: article element not found`);
+    return;
+  }
+  initMark(element);
+};
+
 const jumpUrl = (): void => {
   const aElement = focusedLi?.querySelector('a') as HTMLAnchorElement;
 
@@ -56,7 +64,7 @@ const jumpUrl = (): void => {
 
   if (checkURL(url)) {
     unmarking();
-    updateMark('article');
+    updateMark();
   }
 
   navigateTo(url);
@@ -110,6 +118,8 @@ const closedPopover = (ev: Event): void => {
 const debounceSearchInput = debounce((_: Event) => showResults(), DEBOUNCE_DELAY_MS);
 
 const hiddenSearch = (): void => {
+  elmPop.hidePopover();
+
   for (const x of Array.from(document.querySelectorAll(`[data-target="${TARGET_SEARCH}"]`))) {
     x.setAttribute('aria-expanded', 'false');
   }
@@ -119,14 +129,15 @@ const hiddenSearch = (): void => {
 
   elmPop.removeEventListener('click', searchMouseupHandler);
   elmPop.removeEventListener('toggle', closedPopover);
-
-  elmPop.hidePopover();
 };
 
 const showSearch = (): void => {
   for (const x of Array.from(document.querySelectorAll(`[data-target="${TARGET_SEARCH}"]`))) {
     x.setAttribute('aria-expanded', 'true');
   }
+  elmPop.showPopover();
+  elmSearchBar.select();
+
   elmSearchBar.addEventListener('input', debounceSearchInput, {
     once: false,
     passive: true,
@@ -144,58 +155,12 @@ const showSearch = (): void => {
     once: false,
     passive: true,
   });
-
-  elmPop.showPopover();
-
-  elmSearchBar.select();
-};
-
-/*
- * TODO:
- * Currently, Brotli can only be used with Safari 18.4 or later.
- *
- * It is possible that other browsers may support Brotli in the future,
- * in which case it should be rewritten to be more versatile!!
- */
-const isUseBrotli = (): boolean => {
-  const ua = navigator.userAgent;
-  const isSafari = /^((?!chrome|android).)*safari/i.test(ua);
-
-  if (!isSafari) {
-    return false;
-  }
-
-  const match = ua.match(/Version\/(\d+)\.(\d+)/);
-
-  if (!match) {
-    return false;
-  }
-
-  const [major = 0, minor = 0] = match.slice(1, 3).map(Number);
-
-  return major > 18 || (major === 18 && minor >= 4);
-};
-
-const fetchAndDecompress = async (url: string) => {
-  const isBrotli = isUseBrotli();
-  const response = await fetchRequest(`${url}${isBrotli ? '.br' : '.gz'}`);
-
-  if (!response.body) {
-    throw new Error('Response body is null');
-  }
-
-  const format: CompressionFormat = isBrotli ? 'brotli' : 'gzip';
-
-  // biome-ignore lint: lint/suspicious/noTsIgnore
-  // @ts-ignore: `brotli` is valid in Safari
-  const stream = response.body.pipeThrough(new DecompressionStream(format));
-
-  const decompressed = await new Response(stream).arrayBuffer();
-
-  return JSON.parse(new TextDecoder().decode(decompressed));
 };
 
 const initSearch = async (): Promise<void> => {
+  const cssPromise = loadStyleSheet(`${ROOT_PATH}${FILE_STYLE_SEARCH}`);
+
+  const jsonPromise = fetchAndDecompress(`${ROOT_PATH}${FILE_INDEX}`);
   const wasmPromise = initWasm();
 
   document.removeEventListener('keyup', startSearchFromKey);
@@ -204,29 +169,6 @@ const initSearch = async (): Promise<void> => {
 
   for (const x of target) {
     x.removeEventListener('click', initSearch);
-  }
-
-  try {
-    await loadStyleSheet(`${ROOT_PATH}${STYLE_SEARCH}`);
-
-    const config = await fetchAndDecompress(`${ROOT_PATH}searchindex.json`);
-
-    if (!config.doc_urls || !config.index.documentStore.docs) {
-      throw new Error('Missing required search configuration fields');
-    }
-
-    await wasmPromise;
-    finder = new Finder(ROOT_PATH, config.doc_urls, config.index.documentStore.docs);
-  } catch (e) {
-    console.error(`Error during initialization: ${e}`);
-    console.info('The search function is disabled.');
-
-    for (const x of target) {
-      x.style.display = 'none';
-    }
-
-    alert('Search is currently unavailable.');
-    return;
   }
 
   const elements = {
@@ -248,8 +190,6 @@ const initSearch = async (): Promise<void> => {
   elmSearchBar = elements.searchBar;
   elmHeader = elements.header;
   elmResults = elements.results;
-
-  showSearch();
 
   for (const x of target) {
     x.addEventListener(
@@ -282,6 +222,29 @@ const initSearch = async (): Promise<void> => {
     },
     { once: false, passive: true },
   );
+
+  try {
+    const config = await jsonPromise;
+
+    if (!config.doc_urls || !config.index.documentStore.docs) {
+      throw new Error('Missing required search configuration fields');
+    }
+
+    await wasmPromise;
+    finder = new Finder(ROOT_PATH, config.doc_urls, config.index.documentStore.docs);
+
+    await cssPromise;
+    showSearch();
+  } catch (e) {
+    console.error(`Error during initialization: ${e}`);
+    console.info('The search function is disabled.');
+
+    for (const x of target) {
+      x.style.display = 'none';
+    }
+
+    alert('Search is currently unavailable.');
+  }
 };
 
 const startSearchFromKey = (ev: KeyboardEvent): void => {
