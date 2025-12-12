@@ -1,5 +1,7 @@
 const FETCH_TIMEOUT = 10000;
 
+type CompressionFormat = 'gzip' | 'deflate' | 'deflate-raw' | 'brotli';
+
 export const fetchRequest = async (url: string): Promise<Response> => {
   const controller = new AbortController();
 
@@ -39,4 +41,47 @@ export const fetchText = async (url: string): Promise<string> => {
     throw new Error(`Failed to fetch ${url}: HTTP ${response.status}`);
   }
   return await response.text();
+};
+
+/*
+ * TODO:
+ * Currently, Brotli can only be used with Safari 18.4 or later.
+ *
+ * It is possible that other browsers may support Brotli in the future,
+ * in which case it should be rewritten to be more versatile!!
+ */
+const isUseBrotli = (): boolean => {
+  const ua = navigator.userAgent;
+  const isSafari = /^((?!chrome|android).)*safari/i.test(ua);
+
+  if (!isSafari) {
+    return false;
+  }
+
+  const match = ua.match(/Version\/(\d+)\.(\d+)/);
+
+  if (!match) {
+    return false;
+  }
+
+  const [major = 0, minor = 0] = match.slice(1, 3).map(Number);
+
+  return major > 18 || (major === 18 && minor >= 4);
+};
+
+export const fetchAndDecompress = async (url: string) => {
+  const isBrotli = isUseBrotli();
+  const response = await fetchRequest(`${url}${isBrotli ? '.br' : '.gz'}`);
+
+  if (!response.body) {
+    throw new Error('Response body is null');
+  }
+
+  const format: CompressionFormat = isBrotli ? 'brotli' : 'gzip';
+
+  // @ts-ignore: `brotli` is valid in Safari
+  const stream = response.body.pipeThrough(new DecompressionStream(format));
+  const decompressed = await new Response(stream).arrayBuffer();
+
+  return JSON.parse(new TextDecoder().decode(decompressed));
 };
