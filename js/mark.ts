@@ -117,14 +117,3 @@ export const initMark = (element: HTMLElement): void => {
 
   marking(element, splitParams(params));
 };
-
-export const updateMark = (id: string): void => {
-  const elm = document.getElementById(id);
-
-  if (!elm) {
-    console.error(`updateMark: ${id} element not found`);
-    return;
-  }
-
-  initMark(elm);
-};
