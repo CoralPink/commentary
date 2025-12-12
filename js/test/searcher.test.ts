@@ -5,10 +5,11 @@ import { startupSearch, TARGET_SEARCH } from '../searcher.ts';
 vi.mock('../utils/css-loader.ts', () => ({
   loadStyleSheet: vi.fn().mockResolvedValue(undefined),
 }));
-
-vi.mock('../utils/fetch.ts', () => ({
-  fetchRequest: vi.fn(),
-}));
+vi.mock('../utils/fetch.ts', () => {
+  return {
+    fetchAndDecompress: vi.fn(() => new ArrayBuffer(0)),
+  };
+});
 
 vi.mock('../mark.ts', () => ({
   doMarkFromUrl: vi.fn(),
@@ -59,7 +60,7 @@ class MockDecompressionStream {
   }
 }
 
-globalThis.DecompressionStream = MockDecompressionStream as any;
+globalThis.DecompressionStream = MockDecompressionStream;
 
 describe('Searcher Module', () => {
   beforeEach(() => {
@@ -130,35 +131,13 @@ describe('Searcher Module', () => {
     });
 
     it('should initialize search and fetch required resources on button click', async () => {
-      const { fetchRequest } = await import('../utils/fetch.ts');
-      const mockFetch = fetchRequest as MockedFunction<typeof fetchRequest>;
+      const { fetchAndDecompress } = await import('../utils/fetch.ts');
 
-      // Mock compressed search data
-      const mockSearchData = {
-        doc_urls: ['test.html'],
-        index: {
-          documentStore: {
-            docs: { '0': { title: 'Test' } },
-          },
-        },
-      };
+      const mockFetch = fetchAndDecompress as MockedFunction<typeof fetchAndDecompress>;
+      const mockData = { doc_urls: [], index: { documentStore: { docs: [] } } };
+      const mockBuffer = new TextEncoder().encode(JSON.stringify(mockData)).buffer;
 
-      const encoder = new TextEncoder();
-      const encodedData = encoder.encode(JSON.stringify(mockSearchData));
-
-      // Create a proper ReadableStream with the data
-      const mockStream = new ReadableStream({
-        start(controller) {
-          controller.enqueue(encodedData);
-          controller.close();
-        },
-      });
-
-      const mockResponse = {
-        body: mockStream,
-      } as Response;
-
-      mockFetch.mockResolvedValue(mockResponse);
+      mockFetch.mockResolvedValue(mockBuffer);
 
       startupSearch();
 
