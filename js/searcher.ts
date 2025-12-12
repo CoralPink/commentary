@@ -224,14 +224,15 @@ const initSearch = async (): Promise<void> => {
   );
 
   try {
-    const config = await jsonPromise;
+    const buf = await jsonPromise;
+    const data = JSON.parse(new TextDecoder().decode(buf));
 
-    if (!config.doc_urls || !config.index.documentStore.docs) {
-      throw new Error('Missing required search configuration fields');
+    if (!data.doc_urls || !data.index.documentStore.docs) {
+      throw new Error('Missing required search data fields');
     }
 
     await wasmPromise;
-    finder = new Finder(ROOT_PATH, config.doc_urls, config.index.documentStore.docs);
+    finder = new Finder(ROOT_PATH, data.doc_urls, data.index.documentStore.docs);
 
     await cssPromise;
     showSearch();

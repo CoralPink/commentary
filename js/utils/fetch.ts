@@ -44,32 +44,23 @@ export const fetchText = async (url: string): Promise<string> => {
 };
 
 /*
- * TODO:
- * Currently, Brotli can only be used with Safari 18.4 or later.
+ * Brotli is available in Safari 18.4 and Firefox 147 or later.
  *
- * It is possible that other browsers may support Brotli in the future,
- * in which case it should be rewritten to be more versatile!!
+ * refs: https://developer.mozilla.org/ja/docs/Web/API/DecompressionStream
  */
-const isUseBrotli = (): boolean => {
-  const ua = navigator.userAgent;
-  const isSafari = /^((?!chrome|android).)*safari/i.test(ua);
+export const fetchAndDecompress = async (url: string): Promise<ArrayBuffer> => {
+  const isUseBrotli = (): boolean => {
+    // While relying on try/catch is a bit “rough,”
+    // it's currently the most reliable method for handling browser differences.
+    try {
+      // @ts-expect-error: Test whether Brotli can be used
+      new DecompressionStream('brotli');
+      return true;
+    } catch {
+      return false;
+    }
+  };
 
-  if (!isSafari) {
-    return false;
-  }
-
-  const match = ua.match(/Version\/(\d+)\.(\d+)/);
-
-  if (!match) {
-    return false;
-  }
-
-  const [major = 0, minor = 0] = match.slice(1, 3).map(Number);
-
-  return major > 18 || (major === 18 && minor >= 4);
-};
-
-export const fetchAndDecompress = async (url: string) => {
   const isBrotli = isUseBrotli();
   const response = await fetchRequest(`${url}${isBrotli ? '.br' : '.gz'}`);
 
@@ -79,9 +70,7 @@ export const fetchAndDecompress = async (url: string) => {
 
   const format: CompressionFormat = isBrotli ? 'brotli' : 'gzip';
 
-  // @ts-ignore: `brotli` is valid in Safari
+  // @ts-expect-error: Brotli is available in some browsers
   const stream = response.body.pipeThrough(new DecompressionStream(format));
-  const decompressed = await new Response(stream).arrayBuffer();
-
-  return JSON.parse(new TextDecoder().decode(decompressed));
+  return await new Response(stream).arrayBuffer();
 };
