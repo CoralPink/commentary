@@ -2,6 +2,7 @@ type PulseCallback = (deadline: IdleDeadline) => void;
 type Pulse = (cb: PulseCallback) => number;
 
 const LAYOUT_TIME = 1.0;
+const FRAME_BUDGET = 5;
 
 const queue: (() => void)[] = [];
 let loopScheduled = false;
@@ -21,16 +22,14 @@ const emulateIdleCallback: (cb: IdleRequestCallback) => number = (() => {
   let rafScheduled = false;
 
   channel.port1.onmessage = () => {
-    const now = performance.now();
-    const start = now + LAYOUT_TIME;
+    const start = performance.now() + LAYOUT_TIME;
 
     queue.forEach((cb, handle) => {
-      const deadline: IdleDeadline = {
+      cb({
         didTimeout: false,
-        timeRemaining: () => Math.max(0, 5 - (performance.now() - start)),
-      };
+        timeRemaining: () => Math.max(0, FRAME_BUDGET - (performance.now() - start)),
+      });
 
-      cb(deadline);
       queue.delete(handle);
     });
 
@@ -67,7 +66,7 @@ const firstFramePulse: Pulse = cb => {
     cb({
       didTimeout: false,
       timeRemaining: () => Infinity,
-    } as IdleDeadline);
+    });
   });
 
   return 0;
