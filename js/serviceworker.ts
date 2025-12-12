@@ -1,14 +1,14 @@
 declare const self: ServiceWorkerGlobalScope;
 
-const CACHE_VERSION = 'v9.2.3';
+const CACHE_VERSION = 'v9.2.4';
 
 const CACHE_URL = '/commentary/';
-const FALLBACK_IMAGE = 'chrome-96x96.png';
+const FALLBACK_IMAGE = 'favicon.png';
 
 const installList = [
-  'book.js',
   'favicon.png',
   'favicon.svg',
+  'navigation.js',
 
   'css/general.css',
   'css/style.css',
@@ -18,8 +18,6 @@ const installList = [
   'woff2/OpenSans-BoldItalic.woff2',
   'woff2/OpenSans-Italic.woff2',
   'woff2/FiraCode-VF.woff2',
-
-  FALLBACK_IMAGE,
 ] as const satisfies readonly string[];
 
 const skipDestination = new Set(['document', 'image', 'video', 'audio']);

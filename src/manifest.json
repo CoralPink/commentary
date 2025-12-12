@@ -8,7 +8,7 @@
 			"sizes": "512x512"
 		},
 		{
-			"src": "chrome-192x192.png",
+			"src": "favicon.png",
 			"type": "image/png",
 			"sizes": "192x192",
 			"purpose": "maskable"
