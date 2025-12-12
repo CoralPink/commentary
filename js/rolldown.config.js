@@ -22,6 +22,7 @@ const makeConfig = input => ({
       },
     }),
   ],
+  checks: { pluginTimings: false },
   onLog: (level, log, _defaultHandler) => {
     console.log(log.message);
 
