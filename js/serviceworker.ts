@@ -1,11 +1,11 @@
 declare const self: ServiceWorkerGlobalScope;
 
-const CACHE_VERSION = 'v9.2.4';
+const CACHE_VERSION = 'v9.2.5';
 
 const CACHE_URL = '/commentary/';
 const FALLBACK_IMAGE = 'favicon.png';
 
-const installList = [
+const installList: readonly string[] = [
   'favicon.png',
   'favicon.svg',
   'navigation.js',
@@ -18,58 +18,62 @@ const installList = [
   'woff2/OpenSans-BoldItalic.woff2',
   'woff2/OpenSans-Italic.woff2',
   'woff2/FiraCode-VF.woff2',
-] as const satisfies readonly string[];
+];
 
-const skipDestination = new Set(['document', 'image', 'video', 'audio']);
+const faviconFiles = new Set(['favicon.png', 'favicon.svg']);
+const skipDestination = new Set<RequestDestination>(['document', 'image', 'video', 'audio', '']);
 
-// Only chrome-based browsers can use `preloadResponse` (as of May 2025).
-// However, it seems that `navigationPreload` can be configured to enable pseudo(?) in all browsers.
-// (So I've already decided to judge by `userAgent`...)
-const ua = navigator.userAgent;
-const isUsePreload = /Chrome|Chromium|Edg|OPR/.test(ua) && !/Firefox/.test(ua) && !/\bVersion\/[\d.]+.*Safari/.test(ua);
+const extractVersionParts = (cacheName: string): { major: number; minor: number } | null => {
+  const m = cacheName.match(/^v(\d+)\.(\d+)/);
 
-const extractVersionParts = (cacheName: string): { major: number; minor: number } => {
-  const versionString = cacheName.substring(1);
-  const [major = 0, minor = 0] = versionString.split('.').map(Number);
-
-  return { major, minor };
+  if (!m) {
+    return null;
+  }
+  return { major: Number(m[1]), minor: Number(m[2]) };
 };
 
 const shouldSkipWaiting = (cacheList: string[]): boolean => {
   const target = extractVersionParts(CACHE_VERSION);
 
+  if (!target) {
+    return false;
+  }
+
   return cacheList.some(cacheName => {
     const current = extractVersionParts(cacheName);
 
+    if (!current) {
+      return false;
+    }
     return current.major < target.major || (current.major === target.major && current.minor < target.minor);
   });
 };
 
 self.addEventListener('install', (event: ExtendableEvent): void => {
   event.waitUntil(
-    (async () => {
+    (async (): Promise<void> => {
       if (shouldSkipWaiting(await caches.keys())) {
         self.skipWaiting();
       }
       const cache = await caches.open(CACHE_VERSION);
 
-      await cache.addAll(installList.map(x => CACHE_URL + x));
+      await Promise.allSettled(
+        installList.map(path => cache.add(CACHE_URL + path).catch(e => console.warn('Precache failed:', path, e))),
+      );
     })(),
   );
 });
 
-const deleteCache = (key: string): Promise<boolean> => caches.delete(key);
-
 const deleteOldCaches = async (): Promise<void> => {
   const keyList = await caches.keys();
-  const cachesToDelete = keyList.filter(key => ![CACHE_VERSION].includes(key));
+  const cachesToDelete = keyList.filter(key => key.startsWith('v') && key !== CACHE_VERSION);
 
-  await Promise.all(cachesToDelete.map(deleteCache));
+  await Promise.all(cachesToDelete.map(key => caches.delete(key)));
 };
 
 const enablePreload = async (): Promise<void> => {
-  if (isUsePreload) {
-    await self.registration.navigationPreload?.enable();
+  if ('navigationPreload' in self.registration) {
+    await self.registration.navigationPreload.enable();
   }
 };
 
@@ -103,12 +107,10 @@ const cacheFirst = async (request: Request, preloadResponse: Promise<Response | 
   }
 
   // 2. use the preloaded response, if it's there
-  if (isUsePreload) {
-    const preload = await usePreload(request, preloadResponse, true);
+  const preload = await usePreload(request, preloadResponse, true);
 
-    if (preload) {
-      return preload;
-    }
+  if (preload) {
+    return preload;
   }
 
   // 3. get the resource from the network
@@ -142,21 +144,32 @@ const preloadProc = async (
   preloadResponse: Promise<Response | undefined> | undefined,
 ): Promise<Response> => (await usePreload(request, preloadResponse)) ?? fetch(request);
 
+const requestProc = (request: Request, url: URL): Request => {
+  const fileName = url.pathname.split('/').pop();
+
+  // Rewrite requests for favicons to always use the top-level directory.
+  if (fileName && faviconFiles.has(fileName)) {
+    return new Request(self.location.origin + CACHE_URL + fileName);
+  }
+
+  return request;
+};
+
 self.addEventListener('fetch', (event: FetchEvent): void => {
-  const request = event.request;
+  const url = new URL(event.request.url);
 
   // Cross origins are not processed
-  if (new URL(request.url).origin !== self.origin) {
+  if (url.origin !== self.location.origin) {
     return;
   }
 
-  if (!skipDestination.has(request.destination)) {
-    event.respondWith(cacheFirst(request, event.preloadResponse));
-    return;
-  }
+  const request = requestProc(event.request, url);
+  const response = skipDestination.has(request.destination) ? preloadProc : cacheFirst;
 
-  // When using `preload`, an error is output to the browser console if it is not processed internally.
-  if (isUsePreload) {
-    event.respondWith(preloadProc(request, event.preloadResponse));
-  }
+  event.respondWith(
+    response(
+      request,
+      event.preloadResponse?.catch(() => undefined),
+    ),
+  );
 });
