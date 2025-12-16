@@ -55,6 +55,7 @@ popd
 
 #pushd commentary
 #rm ayu-highlight.css
+#rm book.js
 #rm clipboard.min.js
 #rm elasticlunr.min.js
 #rm fonts.css
