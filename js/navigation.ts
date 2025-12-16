@@ -1,9 +1,6 @@
 import { isNativeLink } from './link.ts';
 import { disposeAll, initExtensions } from './initialize.ts';
-import { startupSearch } from './searcher.ts';
-import { bootSidebar, updateActive } from './sidebar.ts';
-import { bootTableOfContents } from './table-of-contents.ts';
-import { bootThemeColor } from './theme-selector.ts';
+import { updateActive } from './sidebar.ts';
 
 import { fetchText } from './utils/fetch.ts';
 import { getUUID, type UUID } from './utils/random.ts';
@@ -15,6 +12,9 @@ type NavigationContext = {
   title: HTMLTitleElement;
 };
 
+const runTransition =
+  'startViewTransition' in document ? (fn: () => void) => document.startViewTransition(fn) : (fn: () => void) => fn();
+
 let onNavigate: ((url: URL) => void) | null = null;
 
 export const setOnNavigate = (cb: (url: URL) => void): void => {
@@ -23,7 +23,7 @@ export const setOnNavigate = (cb: (url: URL) => void): void => {
 
 const dataLayer = ((globalThis as { dataLayer?: DataLayerEvent[] }).dataLayer ??= []);
 
-export const pushPageViewEvent = (path: string, title: string): void => {
+const pushPageViewEvent = (path: string, title: string): void => {
   dataLayer.push({
     event: 'page_view',
     page_path: path,
@@ -78,7 +78,7 @@ const prepareNavigation = async (next: URL): Promise<NavigationContext | null> =
   return { id, next, article, title };
 };
 
-const applyNavigation = (ctx: NavigationContext) => {
+const applyNavigation = (ctx: NavigationContext): void => {
   if (isStaleNavigation(ctx.id)) {
     return;
   }
@@ -96,7 +96,7 @@ const applyNavigation = (ctx: NavigationContext) => {
 
   initExtensions(article);
 
-  const scrollInto = () => {
+  requestAnimationFrame((): void => {
     if (!ctx.next.hash) {
       article.scrollIntoView({ behavior: 'auto' });
       return;
@@ -104,21 +104,17 @@ const applyNavigation = (ctx: NavigationContext) => {
 
     const header = document.querySelector(ctx.next.hash);
     header?.scrollIntoView({ behavior: 'auto' });
-  };
-
-  requestAnimationFrame(scrollInto);
+  });
 };
 
-const runTransition = (fn: () => void) => ('startViewTransition' in document ? document.startViewTransition(fn) : fn());
-
-const finalizeNavigation = (ctx: NavigationContext) => {
+const finalizeNavigation = (ctx: NavigationContext): void => {
   if (isStaleNavigation(ctx.id)) {
     return;
   }
   onNavigate?.(ctx.next);
 };
 
-const pushHistoryState = (next: URL, elmTitle: HTMLTitleElement) => {
+const pushHistoryState = (next: URL, elmTitle: HTMLTitleElement): void => {
   const path = next.pathname;
   const title = elmTitle.textContent ?? PAGE_NO_TITLE;
 
@@ -143,8 +139,9 @@ export const navigateTo = async (next: URL, pushHistory = true): Promise<void> =
   currentUrl = next;
 };
 
-const popStateHandler = (ev: PopStateEvent) => {
+const popStateHandler = (ev: PopStateEvent): void => {
   const path = ev.state?.path ?? location.pathname;
+
   navigateTo(new URL(path, location.origin), false);
 };
 
@@ -174,32 +171,12 @@ const clickHandler = (ev: MouseEvent): void => {
 };
 
 (() => {
+  setOnNavigate(updateActive);
+
   globalThis.addEventListener('popstate', popStateHandler, {
     once: false,
     passive: true,
   });
-
-  setOnNavigate(updateActive);
-
-  document.addEventListener(
-    'DOMContentLoaded',
-    () => {
-      bootThemeColor();
-      bootSidebar();
-      bootTableOfContents();
-
-      startupSearch();
-
-      const article = document.getElementById('article');
-
-      if (article === null) {
-        console.error('Article element not found');
-        return;
-      }
-      initExtensions(article);
-    },
-    { once: true, passive: true },
-  );
 
   document.addEventListener('click', clickHandler, {
     once: false,
