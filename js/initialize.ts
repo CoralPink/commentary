@@ -1,7 +1,10 @@
 import { ROOT_PATH } from './constants.ts';
 import { initLinks } from './link.ts';
 import { initMark } from './mark.ts';
-import { initTableOfContents } from './table-of-contents.ts';
+import { startupSearch } from './searcher.ts';
+import { bootSidebar } from './sidebar.ts';
+import { bootTableOfContents, initTableOfContents } from './table-of-contents.ts';
+import { bootThemeColor } from './theme-selector.ts';
 
 import * as ex from './extensions/types.ts';
 
@@ -9,7 +12,7 @@ import { initPulse, scheduleJob } from './utils/pulse.ts';
 
 type HtmlJob = (html: HTMLElement) => void | Promise<void>;
 
-const MODULE_REQUIREMENTS: { selector: string; module: string }[] = [
+const MODULE_REQUIREMENTS = [
   { selector: '.slider', module: 'slider' },
   { selector: 'video', module: 'media' },
   { selector: 'pre code:not(.language-txt)', module: 'codeblock' },
@@ -17,7 +20,7 @@ const MODULE_REQUIREMENTS: { selector: string; module: string }[] = [
 
   // TODO: We will suspend use until a reliable method is found.
   // { selector: '.replace-element', module: 'replace-dom.js' },
-];
+] as const;
 
 const loadedExtensions = new Map<string, ex.ExtensionEntry>();
 const activeDisposers = new Set<() => void>();
@@ -75,7 +78,7 @@ const loadExternalExtensions = async (html: HTMLElement): Promise<void> => {
   );
 };
 
-const JOBS_INITIALIZE: HtmlJob[] = [
+const JOBS_INITIALIZE: readonly HtmlJob[] = [
   regProcHtml(initTableOfContents),
 
   initMark,
@@ -91,3 +94,26 @@ export const initExtensions = (html: HTMLElement): void => {
     scheduleJob(() => job(html));
   }
 };
+
+(() => {
+  const JOBS_BOOT: readonly HtmlJob[] = [bootThemeColor, bootSidebar, bootTableOfContents, startupSearch];
+
+  document.addEventListener(
+    'DOMContentLoaded',
+    () => {
+      const article = document.getElementById('article');
+
+      if (article === null) {
+        console.error('Article element not found');
+        return;
+      }
+
+      const jobs = JOBS_BOOT.concat(JOBS_INITIALIZE);
+
+      for (const job of jobs) {
+        scheduleJob(() => job(article));
+      }
+    },
+    { once: true, passive: true },
+  );
+})();
