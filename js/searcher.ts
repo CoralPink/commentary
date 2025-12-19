@@ -20,6 +20,8 @@ export const TARGET_SEARCH = 'search';
 
 const DEBOUNCE_DELAY_MS = 80;
 
+let elmSearch: HTMLElement[];
+
 let elmPop: HTMLElement;
 let elmSearchBar: HTMLInputElement;
 let elmHeader: HTMLElement;
@@ -27,7 +29,7 @@ let elmResults: HTMLElement;
 
 let finder: Finder;
 
-let focusedLi: Element;
+let focusedLi: Element | null;
 
 const showResults = (): void => {
   const result = finder.search(elmSearchBar.value.trim()) as SearchResult;
@@ -120,7 +122,7 @@ const debounceSearchInput = debounce((_: Event) => showResults(), DEBOUNCE_DELAY
 const hiddenSearch = (): void => {
   elmPop.hidePopover();
 
-  for (const x of Array.from(document.querySelectorAll(`[data-target="${TARGET_SEARCH}"]`))) {
+  for (const x of elmSearch) {
     x.setAttribute('aria-expanded', 'false');
   }
 
@@ -132,9 +134,14 @@ const hiddenSearch = (): void => {
 };
 
 const showSearch = (): void => {
-  for (const x of Array.from(document.querySelectorAll(`[data-target="${TARGET_SEARCH}"]`))) {
+  if (elmPop.checkVisibility()) {
+    return;
+  }
+
+  for (const x of elmSearch) {
     x.setAttribute('aria-expanded', 'true');
   }
+
   elmPop.showPopover();
   elmSearchBar.select();
 
@@ -142,6 +149,7 @@ const showSearch = (): void => {
     once: false,
     passive: true,
   });
+
   elmResults.addEventListener('keyup', popupFocus, {
     once: false,
     passive: true,
@@ -157,19 +165,27 @@ const showSearch = (): void => {
   });
 };
 
-const initSearch = async (): Promise<void> => {
-  const cssPromise = loadStyleSheet(`${ROOT_PATH}${FILE_STYLE_SEARCH}`);
+const startSearchfromKey = (ev: KeyboardEvent): void => {
+  switch (ev.key) {
+    case '/':
+    case 's':
+    case 'S':
+      showSearch();
+      break;
 
+    case 'Escape':
+      hiddenSearch();
+      break;
+  }
+};
+
+const bootSearch = async (): Promise<void> => {
+  const cssPromise = loadStyleSheet(`${ROOT_PATH}${FILE_STYLE_SEARCH}`);
   const jsonPromise = fetchAndDecompress(`${ROOT_PATH}${FILE_INDEX}`);
+
   const wasmPromise = initWasm();
 
-  document.removeEventListener('keyup', startSearchFromKey);
-
-  const target = Array.from(document.querySelectorAll<HTMLElement>(`[data-target="${TARGET_SEARCH}"]`));
-
-  for (const x of target) {
-    x.removeEventListener('click', initSearch);
-  }
+  document.removeEventListener('keyup', bootSearchFromKey);
 
   const elements = {
     pop: document.getElementById('search-pop'),
@@ -191,37 +207,15 @@ const initSearch = async (): Promise<void> => {
   elmHeader = elements.header;
   elmResults = elements.results;
 
-  for (const x of target) {
-    x.addEventListener(
-      'click',
-      () => {
-        if (!elmPop.checkVisibility()) {
-          showSearch();
-        }
-      },
-      { once: false, passive: true },
-    );
+  for (const x of elmSearch) {
+    x.removeEventListener('click', bootSearch);
+    x.addEventListener('click', showSearch, { once: false, passive: true });
   }
 
-  document.addEventListener(
-    'keyup',
-    e => {
-      switch (e.key) {
-        case '/':
-        case 's':
-        case 'S':
-          if (!elmPop.checkVisibility()) {
-            showSearch();
-          }
-          break;
-
-        case 'Escape':
-          hiddenSearch();
-          break;
-      }
-    },
-    { once: false, passive: true },
-  );
+  document.addEventListener('keyup', startSearchfromKey, {
+    once: false,
+    passive: true,
+  });
 
   try {
     const buf = await jsonPromise;
@@ -236,11 +230,11 @@ const initSearch = async (): Promise<void> => {
 
     await cssPromise;
     showSearch();
-  } catch (e) {
+  } catch (e: unknown) {
     console.error(`Error during initialization: ${e}`);
     console.info('The search function is disabled.');
 
-    for (const x of target) {
+    for (const x of elmSearch) {
       x.style.display = 'none';
     }
 
@@ -248,22 +242,24 @@ const initSearch = async (): Promise<void> => {
   }
 };
 
-const startSearchFromKey = (ev: KeyboardEvent): void => {
+const bootSearchFromKey = (ev: KeyboardEvent): void => {
   switch (ev.key) {
     case '/':
     case 's':
     case 'S':
-      initSearch();
+      bootSearch();
       break;
   }
 };
 
 export const startupSearch = (): void => {
-  for (const x of Array.from(document.querySelectorAll(`[data-target="${TARGET_SEARCH}"]`))) {
-    x.addEventListener('click', initSearch, { once: true, passive: true });
+  elmSearch = Array.from(document.querySelectorAll(`[data-target="${TARGET_SEARCH}"]`));
+
+  for (const x of elmSearch) {
+    x.addEventListener('click', bootSearch, { once: true, passive: true });
   }
 
-  document.addEventListener('keyup', startSearchFromKey, {
+  document.addEventListener('keyup', bootSearchFromKey, {
     once: false,
     passive: true,
   });

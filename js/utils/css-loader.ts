@@ -1,3 +1,5 @@
+import type { AbortableOptions } from './type.ts';
+
 export const getRootVariable = (name: string): string => {
   try {
     return globalThis.getComputedStyle(document.documentElement).getPropertyValue(name).trim();
@@ -42,19 +44,18 @@ const removeStyleSheet = (fileName: string): boolean => {
   return false;
 };
 
-export const loadStyleSheet = (fileName: string, options: { signal?: AbortSignal } = {}): Promise<void> => {
-  return new Promise((resolve, reject) => {
-    if (options.signal?.aborted) {
-      reject(new Error('Stylesheet loading was aborted'));
-      return;
-    }
+export const loadStyleSheet = (fileName: string, options: AbortableOptions = {}): Promise<void> => {
+  if (options.signal?.aborted) {
+    throw new Error('Stylesheet loading was aborted');
+  }
 
+  return new Promise((resolve, reject) => {
     const link = document.createElement('link');
     link.rel = 'stylesheet';
     link.href = new URL(fileName, globalThis.location.href).href;
 
     const abortHandler = () => {
-      if (removeStyleSheet(fileName)) {
+      if (link.parentElement?.removeChild(link)) {
         reject(new Error('Stylesheet loading was aborted'));
       }
     };
