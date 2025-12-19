@@ -70,7 +70,10 @@ const jumpUrl = (): void => {
   }
 
   navigateTo(url);
-  hiddenSearch();
+
+  requestAnimationFrame(() => {
+    hiddenSearch();
+  });
 };
 
 const updateFocus = (target: HTMLElement): void => {
