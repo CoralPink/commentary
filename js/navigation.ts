@@ -1,19 +1,16 @@
+import { type NavigationContext, prepareNavigation } from './context.ts';
 import { isNativeLink } from './link.ts';
-import { disposeAll, initExtensions } from './initialize.ts';
+import { initExtensions } from './initialize.ts';
 import { updateActive } from './sidebar.ts';
 
-import { fetchText } from './utils/fetch.ts';
-import { getUUID, type UUID } from './utils/random.ts';
+const PAGE_NO_TITLE = '(No Title) - Commentary of Dotfiles';
 
-type NavigationContext = {
-  id: UUID;
-  next: URL;
-  article: HTMLElement;
-  title: HTMLTitleElement;
-};
+const dataLayer = ((globalThis as { dataLayer?: DataLayerEvent[] }).dataLayer ??= []);
 
 const runTransition =
   'startViewTransition' in document ? (fn: () => void) => document.startViewTransition(fn) : (fn: () => void) => fn();
+
+let currentUrl = new URL(globalThis.location.href);
 
 let onNavigate: ((url: URL) => void) | null = null;
 
@@ -21,7 +18,10 @@ export const setOnNavigate = (cb: (url: URL) => void): void => {
   onNavigate = cb;
 };
 
-const dataLayer = ((globalThis as { dataLayer?: DataLayerEvent[] }).dataLayer ??= []);
+const forceReload = (url: URL, msg: string = 'forceReload'): void => {
+  location.href = url.href;
+  console.warn(msg);
+};
 
 const pushPageViewEvent = (path: string, title: string): void => {
   dataLayer.push({
@@ -31,58 +31,10 @@ const pushPageViewEvent = (path: string, title: string): void => {
   });
 };
 
-const PAGE_NO_TITLE = '(No Title) - Commentary of Dotfiles';
-
-let currentUrl = new URL(globalThis.location.href);
-let currentNavigation: UUID;
-
-// If not the latest navigate, abort
-const isStaleNavigation = (id: UUID): boolean => currentNavigation !== id;
-
-const forceReload = (url: URL, msg: string = 'forceReload'): void => {
-  console.warn(msg);
-  location.href = url.href;
-};
-
-const prepareNavigation = async (next: URL): Promise<NavigationContext | null> => {
-  if (next.pathname === currentUrl.pathname) {
-    return null;
-  }
-
-  const id = getUUID();
-  currentNavigation = id;
-
-  let htmlText: string;
-
-  try {
-    htmlText = await fetchText(next.pathname);
-  } catch (err) {
-    forceReload(next, err instanceof Error ? err.message : String(err));
-    return null;
-  }
-
-  if (isStaleNavigation(id)) {
-    return null;
-  }
-
-  const parsed = new DOMParser().parseFromString(htmlText, 'text/html');
-
-  const article = parsed.getElementById('article');
-  const title = parsed.querySelector('title');
-
-  if (!article || !title) {
-    forceReload(next, 'navigateTo: required elements not found.');
-    return null;
-  }
-
-  return { id, next, article, title };
-};
-
 const applyNavigation = (ctx: NavigationContext): void => {
-  if (isStaleNavigation(ctx.id)) {
+  if (ctx.generation.aborted) {
     return;
   }
-  disposeAll();
 
   const article = document.getElementById('article');
 
@@ -108,21 +60,25 @@ const applyNavigation = (ctx: NavigationContext): void => {
 };
 
 const finalizeNavigation = (ctx: NavigationContext): void => {
-  if (isStaleNavigation(ctx.id)) {
+  if (ctx.generation.aborted) {
     return;
   }
   onNavigate?.(ctx.next);
 };
 
-const pushHistoryState = (next: URL, elmTitle: HTMLTitleElement): void => {
-  const path = next.pathname;
-  const title = elmTitle.textContent ?? PAGE_NO_TITLE;
+const pushHistoryState = (ctx: NavigationContext): void => {
+  const path = ctx.next.pathname;
+  const title = ctx.title.textContent ?? PAGE_NO_TITLE;
 
-  history.pushState({ path, title }, '', next.href);
+  history.pushState({ path, title }, '', ctx.next.href);
   pushPageViewEvent(path, title);
 };
 
 export const navigateTo = async (next: URL, pushHistory = true): Promise<void> => {
+  if (next.pathname === currentUrl.pathname) {
+    return;
+  }
+
   const ctx = await prepareNavigation(next);
 
   if (ctx === null) {
@@ -133,7 +89,7 @@ export const navigateTo = async (next: URL, pushHistory = true): Promise<void> =
   finalizeNavigation(ctx);
 
   if (pushHistory) {
-    pushHistoryState(next, ctx.title);
+    pushHistoryState(ctx);
   }
 
   currentUrl = next;
