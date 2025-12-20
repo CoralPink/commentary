@@ -7,7 +7,7 @@ target
 
 js/coverage
 js/dist
-js/highlight
+js/highlight.js
 js/wasm_book.js
 js/wasm_book.d.ts
 
