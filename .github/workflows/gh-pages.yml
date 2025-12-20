@@ -232,6 +232,11 @@ jobs:
           cp pkg/wasm_book.js js
           cp pkg/wasm_book.d.ts js
 
+      - name: Create Highlight
+        working-directory: js
+        run: |
+          ./create-highlight.sh
+
       - name: Setup Deno
         uses: denoland/setup-deno@v2
         with:

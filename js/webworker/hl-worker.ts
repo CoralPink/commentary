@@ -1,7 +1,7 @@
-import hljs from './highlight.js';
 import { containsNerdFontIcon, extractLanguage } from './hl-language.ts';
-
 import type { Payload } from './hl-types.ts';
+
+import hljs from '../highlight.js';
 
 type HighlightRequest = [text: string, lang: string];
 
