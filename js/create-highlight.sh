@@ -6,4 +6,8 @@ pushd highlight || exit 1
 npm install
 node tools/build.js -n bash diff json lua vim
 
+cp build/highlight.js ..
+
 popd || exit 1
+
+rm -rf highlight

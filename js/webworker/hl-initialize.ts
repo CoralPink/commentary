@@ -5,10 +5,12 @@
  * See: https://developer.mozilla.org/en-US/docs/Web/API/SharedWorker
  */
 import { isErrorPayload, type Payload, type SendToWorker, type WorkerResponse } from './hl-types.ts';
+
+import { ROOT_PATH } from '../constants.ts';
 import { getUUID, type UUID } from '../utils/random.ts';
 
-const SHAREDWORKER_PATH = '/commentary/hl-sharedworker.js';
-const WORKER_PATH = '/commentary/hl-worker.js';
+const SHAREDWORKER_PATH = 'hl-sharedworker.js';
+const WORKER_PATH = 'hl-worker.js';
 
 type WorkerCallback = (data: Payload) => void;
 
@@ -21,7 +23,7 @@ type WorkerCallback = (data: Payload) => void;
 const useSharedWorker = (): SendToWorker => {
   const callbacks = new Map<UUID, WorkerCallback>();
 
-  const sharedWorker = new SharedWorker(SHAREDWORKER_PATH);
+  const sharedWorker = new SharedWorker(`${ROOT_PATH}${SHAREDWORKER_PATH}`);
 
   sharedWorker.onerror = (err: ErrorEvent) => {
     console.error(err);
@@ -67,7 +69,7 @@ const useSharedWorker = (): SendToWorker => {
  * Suitable for environments where SharedWorker is unsupported, such as Chrome on Android.
  */
 const useSimpleWorker = (): SendToWorker => (text: string, lang: string, callback: (payload: Payload) => void) => {
-  const worker = new Worker(WORKER_PATH);
+  const worker = new Worker(`${ROOT_PATH}${WORKER_PATH}`);
 
   worker.onmessage = (ev: MessageEvent<Payload>) => {
     callback(ev.data);

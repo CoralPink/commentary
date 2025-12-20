@@ -1,7 +1,7 @@
-import hljs from './highlight.js';
 import { containsNerdFontIcon, extractLanguage } from './hl-language.ts';
-
 import type { Payload, WorkerResponse } from './hl-types.ts';
+
+import hljs from '../highlight.js';
 import type { UUID } from '../utils/random.ts';
 
 type HighlightRequest = {
