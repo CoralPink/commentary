@@ -1,5 +1,5 @@
 import { type NavigationContext, prepareNavigation } from './context.ts';
-import { isNativeLink } from './link.ts';
+import { externalLinkProc, isInternalLink } from './link.ts';
 import { initExtensions } from './initialize.ts';
 import { updateActive } from './sidebar.ts';
 
@@ -31,7 +31,7 @@ const pushPageViewEvent = (path: string, title: string): void => {
   });
 };
 
-const applyNavigation = (ctx: NavigationContext): void => {
+const applyNavigation = (ctx: NavigationContext, fromPopstate: boolean): void => {
   if (ctx.generation.aborted) {
     return;
   }
@@ -48,13 +48,18 @@ const applyNavigation = (ctx: NavigationContext): void => {
 
   initExtensions(article);
 
+  // If the transition originates from `popstate`, leave the scroll position to the browser
+  if (fromPopstate) {
+    return;
+  }
+
   requestAnimationFrame((): void => {
     if (!ctx.next.hash) {
       article.scrollIntoView({ behavior: 'auto' });
       return;
     }
 
-    const header = document.querySelector(ctx.next.hash);
+    const header = article.querySelector(ctx.next.hash);
     header?.scrollIntoView({ behavior: 'auto' });
   });
 };
@@ -74,7 +79,7 @@ const pushHistoryState = (ctx: NavigationContext): void => {
   pushPageViewEvent(path, title);
 };
 
-export const navigateTo = async (next: URL, pushHistory = true): Promise<void> => {
+export const navigateTo = async (next: URL, fromPopstate = false): Promise<void> => {
   if (next.pathname === currentUrl.pathname) {
     return;
   }
@@ -85,10 +90,10 @@ export const navigateTo = async (next: URL, pushHistory = true): Promise<void> =
     return;
   }
 
-  runTransition(() => applyNavigation(ctx));
+  runTransition(() => applyNavigation(ctx, fromPopstate));
   finalizeNavigation(ctx);
 
-  if (pushHistory) {
+  if (!fromPopstate) {
     pushHistoryState(ctx);
   }
 
@@ -98,7 +103,7 @@ export const navigateTo = async (next: URL, pushHistory = true): Promise<void> =
 const popStateHandler = (ev: PopStateEvent): void => {
   const path = ev.state?.path ?? location.pathname;
 
-  navigateTo(new URL(path, location.origin), false);
+  navigateTo(new URL(path, location.origin), true);
 };
 
 const clickHandler = (ev: MouseEvent): void => {
@@ -118,7 +123,11 @@ const clickHandler = (ev: MouseEvent): void => {
     return;
   }
 
-  if (isNativeLink(anchor)) {
+  if (externalLinkProc(anchor)) {
+    return;
+  }
+
+  if (!isInternalLink(anchor)) {
     return;
   }
 
