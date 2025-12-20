@@ -1,5 +1,4 @@
 import { ROOT_PATH } from './constants.ts';
-import { initLinks } from './link.ts';
 import { initMark } from './mark.ts';
 import { startupSearch } from './searcher.ts';
 import { bootSidebar } from './sidebar.ts';
@@ -70,8 +69,6 @@ const JOBS_INITIALIZE: readonly HtmlJob[] = [
   regProcHtml(initTableOfContents),
 
   initMark,
-  initLinks,
-
   loadExternalExtensions,
 ];
 

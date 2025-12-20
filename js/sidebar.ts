@@ -9,7 +9,7 @@ const SHOW_SIDEBAR_WIDTH = 1200;
 
 const ID_PAGE = 'page';
 
-export const ID_SIDEBAR = 'sidebar';
+const ID_SIDEBAR = 'sidebar';
 const ID_SCROLLBOX = 'sidebar-scrollbox';
 
 const TARGET_TOGGLE = 'sidebar';
