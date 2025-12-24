@@ -55,7 +55,7 @@ Your terminal emulator must be configured to use that font, usually "Hack Nerd F
 
 `nvim-tree.lua`のインストールより先にやっておきたいことがあって、それが`netrw`の無効化です。
 
-![atago-cat](img/atago-cat.webp)
+![skytree-totoro](img/skytree-totoro.webp)
 
 ### netrw
 
@@ -600,6 +600,8 @@ on_attachが関数でない場合、nvim-tree-mappings-default が呼び出さ�
 わたしがこのページを書き出したタイミングと、なんかいい感じに重なったので、こっちの新しい方法で紹介します😉
 
 ...ただ、なんか長くなってきちゃったので、例によってここで一旦区切ります。
+
+![atago-cat](img/atago-cat.webp)
 
 ## Have You Never Been Mellow
 
