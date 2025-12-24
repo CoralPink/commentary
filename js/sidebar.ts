@@ -20,91 +20,6 @@ const SAVE_STATUS_HIDDEN = 'hidden';
 
 let currentSelect: HTMLAnchorElement | undefined;
 
-export const updateActive = (url: URL) => {
-  const sidebarScrollbox = document.getElementById(ID_SCROLLBOX);
-
-  if (!sidebarScrollbox) {
-    console.error(`sidebar: not found ${ID_SCROLLBOX}`);
-    return;
-  }
-
-  const target = Array.from(sidebarScrollbox.querySelectorAll<HTMLAnchorElement>('a[href]')).find(
-    x => x.pathname === url.pathname,
-  );
-
-  if (!target) {
-    return;
-  }
-
-  target.classList.add('active');
-  target.setAttribute('aria-current', 'page');
-
-  if (currentSelect) {
-    currentSelect.classList.remove('active');
-    currentSelect.removeAttribute('aria-current');
-  }
-  currentSelect = target;
-};
-
-const initLink = (): void => {
-  const sidebarScrollbox = document.getElementById(ID_SCROLLBOX);
-
-  if (!sidebarScrollbox) {
-    console.error(`sidebar: not found ${ID_SCROLLBOX}`);
-    return;
-  }
-
-  for (const x of Array.from(sidebarScrollbox.querySelectorAll<HTMLAnchorElement>('a[href]'))) {
-    const href = x.getAttribute('href');
-
-    if (!href) {
-      console.error('No href attribute found for link:', x);
-      continue;
-    }
-
-    const linkUrl = new URL(href, ROOT_PATH);
-    x.href = linkUrl.href;
-  }
-};
-
-const getCurrentUrl = (): URL => {
-  const s = document.location.href.toString();
-  return new URL(s.endsWith('/') ? `${s}index.html` : s);
-};
-
-const initContent = async (): Promise<void> => {
-  const sidebar = document.getElementById(ID_SIDEBAR);
-
-  if (!sidebar) {
-    console.error(`sidebar: not found ${ID_SIDEBAR}`);
-    return;
-  }
-  sidebar.setAttribute('aria-busy', 'true');
-
-  try {
-    sidebar.insertAdjacentHTML('afterbegin', await fetchText(PAGE_LIST));
-  } catch (err: unknown) {
-    if (err instanceof Error) {
-      console.error(`Failed to load pagelist - ${err.message}`);
-    } else {
-      console.error('An unknown error occurred');
-    }
-    sidebar.insertAdjacentHTML('afterbegin', '<p>Error loading sidebar content.</p>');
-    return;
-  } finally {
-    sidebar.setAttribute('aria-busy', 'false');
-  }
-
-  initLink();
-  updateActive(getCurrentUrl());
-
-  requestAnimationFrame(() => {
-    if (currentSelect !== undefined) {
-      currentSelect.scrollIntoView({ block: 'center' });
-    }
-  });
-};
-
 const hideSidebar = (write = true): void => {
   document.getElementById(ID_PAGE)?.classList.remove('show-sidebar');
 
@@ -178,7 +93,64 @@ const toggleHandler = (key: string): void => {
   }
 };
 
+const getCurrentUrl = (): URL => {
+  const s = document.location.href.toString();
+  return new URL(s.endsWith('/') ? `${s}index.html` : s);
+};
+
+export const updateActive = (url: URL) => {
+  const sidebarScrollbox = document.getElementById(ID_SCROLLBOX);
+
+  if (!sidebarScrollbox) {
+    console.error(`sidebar: not found ${ID_SCROLLBOX}`);
+    return;
+  }
+
+  const target = Array.from(sidebarScrollbox.querySelectorAll<HTMLAnchorElement>('a[href]')).find(
+    x => x.pathname === url.pathname,
+  );
+
+  if (!target) {
+    return;
+  }
+
+  target.classList.add('active');
+  target.setAttribute('aria-current', 'page');
+
+  if (currentSelect) {
+    currentSelect.classList.remove('active');
+    currentSelect.removeAttribute('aria-current');
+  }
+  currentSelect = target;
+};
+
+const initContent = async (): Promise<void> => {
+  const sidebar = document.getElementById(ID_SIDEBAR);
+
+  if (!sidebar) {
+    console.error(`sidebar: not found ${ID_SIDEBAR}`);
+    return;
+  }
+  sidebar.setAttribute('aria-busy', 'true');
+
+  try {
+    sidebar.insertAdjacentHTML('afterbegin', await fetchText(PAGE_LIST));
+  } catch (err: unknown) {
+    if (err instanceof Error) {
+      console.error(`Failed to load pagelist - ${err.message}`);
+    } else {
+      console.error('An unknown error occurred');
+    }
+    sidebar.insertAdjacentHTML('afterbegin', '<p>Error loading sidebar content.</p>');
+    return;
+  } finally {
+    sidebar.setAttribute('aria-busy', 'false');
+  }
+};
+
 export const bootSidebar = (): void => {
+  const promiseInit = initContent();
+
   try {
     if (globalThis.innerWidth < BREAKPOINT_UI_WIDE) {
       hideSidebar();
@@ -190,19 +162,10 @@ export const bootSidebar = (): void => {
     hideSidebar();
   }
 
-  initContent();
-
   document.addEventListener('keyup', ev => toggleHandler(ev.key), {
     once: false,
     passive: true,
   });
-
-  for (const x of document.querySelectorAll(`[data-target="${TARGET_TOGGLE}"]`)) {
-    x.addEventListener('click', () => toggleSidebar(), {
-      once: false,
-      passive: true,
-    });
-  }
 
   globalThis.matchMedia(`(min-width: ${SHOW_SIDEBAR_WIDTH}px)`).addEventListener(
     'change',
@@ -213,4 +176,21 @@ export const bootSidebar = (): void => {
     },
     { once: false, passive: true },
   );
+
+  for (const x of document.querySelectorAll(`[data-target="${TARGET_TOGGLE}"]`)) {
+    x.addEventListener('click', () => toggleSidebar(), {
+      once: false,
+      passive: true,
+    });
+  }
+
+  requestAnimationFrame(async (): Promise<void> => {
+    await promiseInit;
+
+    updateActive(getCurrentUrl());
+
+    if (currentSelect !== undefined) {
+      currentSelect.scrollIntoView({ block: 'center' });
+    }
+  });
 };
