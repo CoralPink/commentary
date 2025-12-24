@@ -44,9 +44,13 @@ const getFallbackColor = (): string => (isDarkThemeRequired() ? DARK_FALLBACK_CO
 
 const loadStyle = async (style: string): Promise<void> => {
   try {
-    await loadStyleSheet(`${ROOT_PATH}${THEME_DIRECTORY}${style}.css`);
+    const metaThemeColor = (document.querySelector('meta[name="theme-color"]') as HTMLMetaElement) || null;
 
-    const metaThemeColor = document.querySelector('meta[name="theme-color"]') as HTMLMetaElement;
+    if (metaThemeColor === null) {
+      return;
+    }
+
+    await loadStyleSheet(`${ROOT_PATH}${THEME_DIRECTORY}${style}.css`);
 
     // Apply the same color as the background color ('--bg') to the title bar. (Effective in Safari only)
     // ...If you fail to get '--bg', fool it well!
@@ -72,7 +76,7 @@ const setTheme = async (next: ThemeColorId): Promise<void> => {
   }
 
   // Preload new stylesheet; finalize swap after it’s ready
-  await loadStyle(next);
+  const loadStylePromise = loadStyle(next);
 
   if (current) {
     html.classList.replace(current, next);
@@ -85,10 +89,6 @@ const setTheme = async (next: ThemeColorId): Promise<void> => {
 
   if (meta) {
     meta.content = getRootVariable('--bg') || getFallbackColor();
-  }
-
-  if (current) {
-    unloadStyleSheet(`${ROOT_PATH}${THEME_DIRECTORY}${current}.css`);
   }
 
   // Skip UI updates if menu not initialized
@@ -116,6 +116,12 @@ const setTheme = async (next: ThemeColorId): Promise<void> => {
 
   const appearance = isDarkThemeRequired() ? KEY_DARK : KEY_LIGHT;
   writeLocalStorage(`${KEY_SAVE_STORAGE}${appearance}`, next);
+
+  if (current) {
+    unloadStyleSheet(`${ROOT_PATH}${THEME_DIRECTORY}${current}.css`);
+  }
+
+  await loadStylePromise;
 };
 
 const initThemeSelector = async (): Promise<void> => {
@@ -174,7 +180,7 @@ const changeEvent = (ev: MediaQueryListEvent): void => {
   setTheme(theme as ThemeColorId);
 };
 
-export const bootThemeColor = (): void => {
+export const bootThemeColor = (): Promise<void> => {
   const appearance = isDarkThemeRequired() ? KEY_DARK : KEY_LIGHT;
 
   // If the user has already specified a theme, that theme will be applied;
@@ -183,8 +189,9 @@ export const bootThemeColor = (): void => {
     readLocalStorage(`${KEY_SAVE_STORAGE}${appearance}`) ??
     (isDarkThemeRequired() ? PREFERRED_DARK_THEME : DEFAULT_THEME);
 
+  const loadStylePromise = loadStyle(theme);
+
   document.querySelector('html')?.classList.add(theme);
-  loadStyle(theme);
 
   prefersColor.addEventListener('change', changeEvent, {
     once: false,
@@ -197,4 +204,6 @@ export const bootThemeColor = (): void => {
       passive: true,
     });
   }
+
+  return loadStylePromise;
 };

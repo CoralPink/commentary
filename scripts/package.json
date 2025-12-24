@@ -3,5 +3,9 @@
   "dependencies": {
     "cheerio": "1.1.2",
     "js-beautify": "1.15.4"
+  },
+  "scripts": {
+    "build": "node generate-pagelist.js",
+    "build:debug": "node generate-pagelist.js --debug"
   }
 }

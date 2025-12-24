@@ -41,7 +41,9 @@ fi
 cp -r dist/ ../src/css/
 popd
 
+SECONDS=0
 mdbook build --dest-dir commentary
+echo "\n\x1b[1;32m✔\x1b[0m \x1b[1;35mmdbook\x1b[0m Finished in \x1b[32m$SECONDS s\x1b[0m"
 
 if [ ! -e scripts/node_modules ]; then
   pushd scripts
@@ -50,7 +52,7 @@ if [ ! -e scripts/node_modules ]; then
 fi
 
 pushd commentary
-node ../scripts/generate-pagelist.js
+node ../scripts/generate-pagelist.js --debug
 node ../scripts/extract-json.js
 brotli searchindex.json
 gzip --best --keep --no-name searchindex.json

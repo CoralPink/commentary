@@ -65,12 +65,12 @@ const loadExternalExtensions = async (html: HTMLElement): Promise<void> => {
   );
 };
 
-const JOBS_INITIALIZE: readonly HtmlJob[] = [
-  regProcHtml(initTableOfContents),
-
-  initMark,
+const jobsInitialize = [
   loadExternalExtensions,
-];
+
+  regProcHtml(initTableOfContents),
+  initMark,
+] as const;
 
 const disposeAll = () => {
   const snapshot: Array<Disposer> = Array.from(activeDisposers);
@@ -85,13 +85,14 @@ export const initExtensions = (html: HTMLElement): void => {
   initPulse();
   disposeAll();
 
-  for (const job of JOBS_INITIALIZE) {
+  for (const job of jobsInitialize) {
     scheduleJob(() => job(html));
   }
 };
 
 (() => {
-  const JOBS_BOOT: readonly HtmlJob[] = [bootThemeColor, bootSidebar, bootTableOfContents, startupSearch];
+  // The `theme color` startup process returns a promise, but you don't need to wait for it to complete.
+  bootThemeColor();
 
   document.addEventListener(
     'DOMContentLoaded',
@@ -103,9 +104,9 @@ export const initExtensions = (html: HTMLElement): void => {
         return;
       }
 
-      const jobs = JOBS_BOOT.concat(JOBS_INITIALIZE);
+      const jobsBoot: readonly HtmlJob[] = [bootSidebar, bootTableOfContents, startupSearch];
 
-      for (const job of jobs) {
+      for (const job of jobsBoot.concat(jobsInitialize)) {
         scheduleJob(() => job(article));
       }
     },
