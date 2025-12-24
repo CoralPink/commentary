@@ -1,5 +1,5 @@
 import { type NavigationContext, prepareNavigation } from './context.ts';
-import { externalLinkProc, isInternalLink } from './link.ts';
+import { externalLinkProc, isExternalLink, isInternalLink } from './link.ts';
 import { initExtensions } from './initialize.ts';
 import { updateActive } from './sidebar.ts';
 
@@ -123,7 +123,8 @@ const clickHandler = (ev: MouseEvent): void => {
     return;
   }
 
-  if (externalLinkProc(anchor)) {
+  if (isExternalLink(anchor)) {
+    externalLinkProc(anchor);
     return;
   }
 

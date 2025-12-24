@@ -1,11 +1,11 @@
 declare const self: ServiceWorkerGlobalScope;
 
-const CACHE_VERSION = 'v9.2.7';
+const CACHE_VERSION = 'v9.2.8';
 
 const CACHE_URL = '/commentary/';
 const FALLBACK_IMAGE = 'favicon.png';
 
-const installList: readonly string[] = [
+const installList = [
   'favicon.png',
   'favicon.svg',
   'navigation.js',
@@ -18,7 +18,7 @@ const installList: readonly string[] = [
   'woff2/OpenSans-BoldItalic.woff2',
   'woff2/OpenSans-Italic.woff2',
   'woff2/FiraCode-VF.woff2',
-];
+] as const;
 
 const faviconFiles = new Set(['favicon.png', 'favicon.svg']);
 const skipDestination = new Set<RequestDestination>(['document', 'image', 'video', 'audio', '']);

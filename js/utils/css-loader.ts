@@ -1,3 +1,5 @@
+import { ROOT_PATH } from '../constants.ts';
+
 import type { AbortableOptions } from './type.ts';
 
 export const getRootVariable = (name: string): string => {
@@ -21,7 +23,7 @@ export const getRootVariableNum = (name: string): number => {
 };
 
 const removeStyleSheet = (fileName: string): boolean => {
-  const resolvedHref = new URL(fileName, globalThis.location.href).href;
+  const resolvedHref = new URL(fileName, ROOT_PATH).href;
 
   const isStylesheetLink = (element: Element): element is HTMLLinkElement =>
     element instanceof HTMLLinkElement && element.rel === 'stylesheet';
@@ -52,7 +54,7 @@ export const loadStyleSheet = (fileName: string, options: AbortableOptions = {})
   return new Promise((resolve, reject) => {
     const link = document.createElement('link');
     link.rel = 'stylesheet';
-    link.href = new URL(fileName, globalThis.location.href).href;
+    link.href = new URL(fileName, ROOT_PATH).href;
 
     const abortHandler = () => {
       if (link.parentElement?.removeChild(link)) {
