@@ -1,5 +1,3 @@
-import { ROOT_PATH } from './constants.ts';
-
 const LinkKind = {
   External: 'external',
   Native: 'native',
@@ -9,25 +7,34 @@ const LinkKind = {
 
 type LinkKind = (typeof LinkKind)[keyof typeof LinkKind];
 
-const hasScheme = (s: string): boolean => /^[a-zA-Z][a-zA-Z0-9+.-]*:/.test(s);
-const isHttpScheme = (s: string) => s.startsWith('http://') || s.startsWith('https://');
-
 const getLinkKind = (elm: HTMLAnchorElement): LinkKind => {
-  const href = elm.getAttribute('href');
+  const rawHref = elm.getAttribute('href');
 
-  if (!href) {
+  if (!rawHref) {
     console.error('link: not found href');
     return LinkKind.Undefined;
   }
 
-  if (isHttpScheme(href)) {
-    return href.startsWith(ROOT_PATH) ? LinkKind.Internal : LinkKind.External;
-  }
-
-  if (href.startsWith('#') || hasScheme(href)) {
+  if (rawHref.startsWith('#')) {
     return LinkKind.Native;
   }
 
+  let url: URL;
+
+  try {
+    url = new URL(rawHref, globalThis.location.href);
+  } catch {
+    // mailto:, tel:, invalid url
+    return LinkKind.Native;
+  }
+
+  if (url.protocol !== 'http:' && url.protocol !== 'https:') {
+    return LinkKind.Native;
+  }
+
+  if (url.origin === globalThis.location.origin) {
+    return url.pathname.endsWith('.html') ? LinkKind.Internal : LinkKind.External;
+  }
   return LinkKind.External;
 };
 
