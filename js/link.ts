@@ -1,4 +1,4 @@
-const LinkKind = {
+export const LinkKind = {
   External: 'external',
   Native: 'native',
   Internal: 'internal',
@@ -7,7 +7,18 @@ const LinkKind = {
 
 type LinkKind = (typeof LinkKind)[keyof typeof LinkKind];
 
-const getLinkKind = (elm: HTMLAnchorElement): LinkKind => {
+const isHttpProtocol = (s: URL): boolean => s.protocol === 'http:' || s.protocol === 'https:';
+
+const hrefToURL = (href: string): URL | null => {
+  try {
+    return new URL(href, globalThis.location.href);
+  } catch {
+    // mailto:, tel:, invalid url
+    return null;
+  }
+};
+
+export const getLinkKind = (elm: HTMLAnchorElement): LinkKind => {
   const rawHref = elm.getAttribute('href');
 
   if (!rawHref) {
@@ -19,16 +30,9 @@ const getLinkKind = (elm: HTMLAnchorElement): LinkKind => {
     return LinkKind.Native;
   }
 
-  let url: URL;
+  const url = hrefToURL(rawHref);
 
-  try {
-    url = new URL(rawHref, globalThis.location.href);
-  } catch {
-    // mailto:, tel:, invalid url
-    return LinkKind.Native;
-  }
-
-  if (url.protocol !== 'http:' && url.protocol !== 'https:') {
+  if (url === null || !isHttpProtocol(url)) {
     return LinkKind.Native;
   }
 
