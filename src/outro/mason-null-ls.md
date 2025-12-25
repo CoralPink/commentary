@@ -178,10 +178,11 @@ Sources found installed in `mason` will automatically be setup for null-ls.
 
 ```admonish success title=""
 And so happy Christmas (War is over){{footnote:
-Happy Xmas (War Is Over): (by [John & Yoko / Plastic Ono Band](https://en.wikipedia.org/wiki/Plastic_Ono_Band)
-with the [Harlem](https://en.wikipedia.org/wiki/Harlem) Community Choir)
-1971年に Plastic Ono Band と Harlem Community Choir によるシングルとしてリリースされたクリスマスソングであり、
+Happy Xmas (War Is Over) (by [John & Yoko / Plastic Ono Band](https://en.wikipedia.org/wiki/Plastic_Ono_Band)
+with the [Harlem](https://en.wikipedia.org/wiki/Harlem) Community Choir):
+1971年にシングルとしてリリースされたクリスマスソングであり、
 The Beatles 以外の活動において John Lennon が発表した 7枚目のシングル。
+[ベトナム戦争](https://en.wikipedia.org/wiki/Vietnam_War)へのアメリカ関与に抗議する歌として生まれた。
 [Wikipedia](https://en.wikipedia.org/wiki/Happy_Xmas_(War_Is_Over))より
 }}
 ```
@@ -366,13 +367,18 @@ Now
 
 たった今
 ```
-<div style="color: #999999; margin-left: 6rem">
-<div style="margin-top: 6rem">
+
+<div style="margin-top: 3rem"></div>
+
+## When Christmas Time is Over
+
+<div style="color: #999999; font-size: 90%; margin-left: 2rem">
+<div style="margin-top: 3rem">
 When Christmas time{{footnote:
 Christmas Time (Is Here Again) (by [The Beatles](https://en.wikipedia.org/wiki/The_Beatles)):
-The Beatles の 5枚目のファンクラブ向けクリスマスレコード
-[Christmas Time Is Here Again!](https://en.wikipedia.org/wiki/The_Beatles%27_Christmas_records#1967:_Christmas_Time_Is_Here_Again!)(1967)
-のために録音されたものである。Beatles の 4人全員がクレジットされている数少ない楽曲のひとつで、
+1967年、The Beatles の 5枚目のファンクラブ向けクリスマスレコード
+[Christmas Time Is Here Again!](https://en.wikipedia.org/wiki/The_Beatles%27_Christmas_records#1967:_Christmas_Time_Is_Here_Again!)
+のために録音された。Beatles の 4人全員がクレジットされている数少ない楽曲のひとつで、
 Blues をベースにしたバックトラックと、バンドメンバー、[George Martin](https://en.wikipedia.org/wiki/George_Martin)、
 [Victor Spinetti](https://en.wikipedia.org/wiki/Victor_Spinetti)によるダブルトラックのヴォーカルで構成されている。
 
@@ -391,7 +397,7 @@ Blues をベースにしたバックトラックと、バンドメンバー、[G
 <div style="margin-top: 4rem">
 And your bonnie clay is through,
 
-君の愛しい手立てが尽きたとき…
+君の愛しい手立てが終わったとき…
 </div>
 
 <div style="margin-top: 4rem">
@@ -403,19 +409,19 @@ I'll be bristling to you people,
 <div style="margin-top: 6rem">
 All the best from me to you.
 
-幸運を。僕からあなたへ
+幸運を。 僕からあなたへ
 </div>
 
 <div style="margin-top: 6rem">
 When the beastie brags o' mutton
 
-小さな獣が羊肉を自慢しながら…
+小さな獣が羊肉のご馳走にほくそ笑み…
 </div>
 
 <div style="margin-top: 4rem">
 To the heather in the glen,
 
-谷間の荒野へ向かう頃...
+谷間の杢藪へ向かう頃...
 </div>
 
 <div style="margin-top: 4rem">
@@ -427,7 +433,7 @@ I'll be strutting out my tether
 <div style="margin-top: 6rem">
 To your arms once back again.
 
-もう一度、君の腕へ戻るんだ
+もう一度 君の腕の中へ戻るんだ
 </div>
 
 <div style="margin-top: 6rem">
@@ -441,11 +447,11 @@ Beatles のメンバー全員と George Martin がファンに季節の挨拶を
 "When Christmas Time is Over" と題した詩を朗読することで締めくくられる。
 }}
 {{footnote:
-わたしの手元には Free as a Bird のCDシングル版があるが、
-この部分はライナーを見ても一部不明となっていて、今日までなんとなくしかわかっていなかった...。が❗
+わたしの手元には Free as a Bird の CD シングル版があるが、
+この部分の詩はライナーを見ても一部不明となっているし、世間的にも John が書いた意味のない詩だと思われていた...。が❗
 [reddit](https://www.reddit.com/r/beatles/comments/1hlnf5d/when_christmas_time_is_oer_by_john_lennon)
-にこの詩が書き起こされていたので、2025年の今日になって初めて納得のいく解釈が得られた...❗
-まじサンタクロース🎅 Thanks ❗❗
+に書き起こされているこの詩は、間違いなく Auld Lang Syne の世界観に近いものがある。
+2025年の暮れ、遂に納得のいく解釈を得ることができた...❗まじサンタクロース🎅 Thanks ❗❗
 }}
 </div>
 
