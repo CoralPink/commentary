@@ -117,11 +117,11 @@ const setTheme = async (next: ThemeColorId): Promise<void> => {
   const appearance = isDarkThemeRequired() ? KEY_DARK : KEY_LIGHT;
   writeLocalStorage(`${KEY_SAVE_STORAGE}${appearance}`, next);
 
+  await loadStylePromise;
+
   if (current) {
     unloadStyleSheet(`${ROOT_PATH}${THEME_DIRECTORY}${current}.css`);
   }
-
-  await loadStylePromise;
 };
 
 const initThemeSelector = async (): Promise<void> => {
