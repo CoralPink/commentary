@@ -92,7 +92,7 @@ const initExtensions = (html: HTMLElement): void => {
   document.addEventListener(
     CONTENT_READY,
     (ev: Event) => {
-      const article = ev.target as HTMLElement;
+      const article = ev.target instanceof HTMLElement ? ev.target : null;
 
       if (!article) {
         return;

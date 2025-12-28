@@ -8,6 +8,8 @@ const FALLBACK_IMAGE = 'favicon.png';
 const installList = [
   'favicon.png',
   'favicon.svg',
+
+  'initialize.js',
   'navigation.js',
 
   'css/general.css',

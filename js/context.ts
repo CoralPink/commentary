@@ -52,6 +52,7 @@ export const prepareNavigation = async (next: URL): Promise<NavigationContext | 
   const title = parsed.querySelector('title');
 
   if (!article || !title) {
+    console.warn('prepareNavigation: parsed HTML missing article or title');
     return null;
   }
 
