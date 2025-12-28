@@ -35,6 +35,7 @@ const makeConfig = input => ({
 });
 
 export default defineConfig([
+  makeConfig('./initialize.ts'),
   makeConfig('./navigation.ts'),
   makeConfig('./serviceworker.ts'),
 

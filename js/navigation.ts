@@ -1,8 +1,8 @@
-import { USE_LEGACY_NAVIGATION } from './constants.ts';
+import { CONTENT_READY, USE_LEGACY_NAVIGATION } from './constants.ts';
 import { type NavigationContext, prepareNavigation } from './context.ts';
 
-import { initExtensions } from './initialize.ts';
 import { updateActive } from './sidebar.ts';
+import { bootThemeColor } from './theme-selector.ts';
 
 const PAGE_NO_TITLE = '(No Title) - Commentary of Dotfiles';
 
@@ -34,7 +34,7 @@ const applyNavigation = (ctx: NavigationContext, navigationType: string): void =
   document.title = ctx.title.textContent ?? PAGE_NO_TITLE;
   article.innerHTML = ctx.article.innerHTML;
 
-  initExtensions(article);
+  article.dispatchEvent(new Event(CONTENT_READY, { bubbles: true }));
 
   // If the transition originates from `popstate`, leave the scroll position to the browser
   if (navigationType === 'traverse') {
@@ -42,8 +42,6 @@ const applyNavigation = (ctx: NavigationContext, navigationType: string): void =
   }
 
   pushPageViewEvent(ctx);
-
-  article.dispatchEvent(new Event('contentready', { bubbles: true }));
 
   requestAnimationFrame((): void => {
     if (!ctx.next.hash) {
@@ -88,6 +86,9 @@ const navigateProc = (ev: NavigationNavigateEvent): void => {
 };
 
 (() => {
+  // The `theme color` startup process returns a promise, but you don't need to wait for it to complete.
+  bootThemeColor();
+
   if (USE_LEGACY_NAVIGATION) {
     return;
   }

@@ -1,4 +1,5 @@
 export const ROOT_PATH = `${globalThis.location.origin}/commentary/`;
+export const CONTENT_READY = 'content-ready';
 
 // Set the same value as the `breakpoint-ui-wide` used in CSS.
 //
