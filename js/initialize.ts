@@ -1,4 +1,4 @@
-import { ROOT_PATH } from './constants.ts';
+import { ROOT_PATH, USE_LEGACY_NAVIGATION } from './constants.ts';
 import { initMark } from './mark.ts';
 import { startupSearch } from './searcher.ts';
 import { bootSidebar } from './sidebar.ts';
@@ -102,6 +102,12 @@ export const initExtensions = (html: HTMLElement): void => {
       if (article === null) {
         console.error('Article element not found');
         return;
+      }
+
+      // TODO: After Firefox 147 is released, delete it at an appropriate time!!
+      if (USE_LEGACY_NAVIGATION) {
+        console.info('This browser will become unsupported shortly after the release of Firefox 147');
+        ensureExtensionLoaded(article, `${ROOT_PATH}legacy-navigation.js`);
       }
 
       const jobsBoot: readonly HtmlJob[] = [bootSidebar, bootTableOfContents, startupSearch];

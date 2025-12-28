@@ -4,6 +4,8 @@ export type NavigationContext = {
   next: URL;
   article: HTMLElement;
   title: HTMLTitleElement;
+
+  // TODO: If you are using the Navigation API, this is unnecessary.
   generation: AbortSignal;
 };
 
@@ -50,7 +52,6 @@ export const prepareNavigation = async (next: URL): Promise<NavigationContext | 
   const title = parsed.querySelector('title');
 
   if (!article || !title) {
-    console.error('prepareNavigation: required elements not found.');
     return null;
   }
 

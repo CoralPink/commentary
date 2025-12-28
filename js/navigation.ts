@@ -1,5 +1,6 @@
+import { USE_LEGACY_NAVIGATION } from './constants.ts';
 import { type NavigationContext, prepareNavigation } from './context.ts';
-import { externalLinkProc, isExternalLink, isInternalLink } from './link.ts';
+
 import { initExtensions } from './initialize.ts';
 import { updateActive } from './sidebar.ts';
 
@@ -7,35 +8,22 @@ const PAGE_NO_TITLE = '(No Title) - Commentary of Dotfiles';
 
 const dataLayer = ((globalThis as { dataLayer?: DataLayerEvent[] }).dataLayer ??= []);
 
-const runTransition =
-  'startViewTransition' in document ? (fn: () => void) => document.startViewTransition(fn) : (fn: () => void) => fn();
+const pushPageViewEvent = (ctx: NavigationContext): void => {
+  dataLayer.push({
+    event: 'page_view',
+    page_path: ctx.next.pathname,
+    page_title: ctx.title.textContent ?? PAGE_NO_TITLE,
+  });
+};
 
 let currentUrl = new URL(globalThis.location.href);
-
-let onNavigate: ((url: URL) => void) | null = null;
-
-export const setOnNavigate = (cb: (url: URL) => void): void => {
-  onNavigate = cb;
-};
 
 const forceReload = (url: URL, msg: string = 'forceReload'): void => {
   location.href = url.href;
   console.warn(msg);
 };
 
-const pushPageViewEvent = (path: string, title: string): void => {
-  dataLayer.push({
-    event: 'page_view',
-    page_path: path,
-    page_title: title,
-  });
-};
-
-const applyNavigation = (ctx: NavigationContext, fromPopstate: boolean): void => {
-  if (ctx.generation.aborted) {
-    return;
-  }
-
+const applyNavigation = (ctx: NavigationContext, navigationType: string): void => {
   const article = document.getElementById('article');
 
   if (!article) {
@@ -49,9 +37,13 @@ const applyNavigation = (ctx: NavigationContext, fromPopstate: boolean): void =>
   initExtensions(article);
 
   // If the transition originates from `popstate`, leave the scroll position to the browser
-  if (fromPopstate) {
+  if (navigationType === 'traverse') {
     return;
   }
+
+  pushPageViewEvent(ctx);
+
+  article.dispatchEvent(new Event('contentready', { bubbles: true }));
 
   requestAnimationFrame((): void => {
     if (!ctx.next.hash) {
@@ -64,96 +56,45 @@ const applyNavigation = (ctx: NavigationContext, fromPopstate: boolean): void =>
   });
 };
 
-const finalizeNavigation = (ctx: NavigationContext): void => {
-  if (ctx.generation.aborted) {
-    return;
-  }
-  onNavigate?.(ctx.next);
-};
-
-const pushHistoryState = (ctx: NavigationContext): void => {
-  const path = ctx.next.pathname;
-  const title = ctx.title.textContent ?? PAGE_NO_TITLE;
-
-  history.pushState({ path, title }, '', ctx.next.href);
-  pushPageViewEvent(path, title);
-};
-
-export const navigateTo = async (next: URL, fromPopstate = false): Promise<void> => {
-  if (next.pathname === currentUrl.pathname) {
+// @ts-expect-error: deno-ts does not yet recognize the Navigation API.
+const navigateProc = (ev: NavigationNavigateEvent): void => {
+  if (!ev.canIntercept || ev.downloadRequest !== null) {
     return;
   }
 
-  const ctx = await prepareNavigation(next);
+  const url = new URL(ev.destination.url);
 
-  if (ctx === null) {
+  if (url.pathname === currentUrl.pathname) {
     return;
   }
 
-  runTransition(() => applyNavigation(ctx, fromPopstate));
-  finalizeNavigation(ctx);
+  ev.intercept({
+    async handler(): Promise<void> {
+      const ctx = await prepareNavigation(url);
 
-  if (!fromPopstate) {
-    pushHistoryState(ctx);
-  }
+      if (!ctx) {
+        forceReload(url, 'prepareNavigation: The necessary elements are missing.');
+        return;
+      }
 
-  currentUrl = next;
-};
+      document.startViewTransition(() => {
+        applyNavigation(ctx, ev.navigationType);
+        updateActive(url);
+      });
 
-const popStateHandler = (ev: PopStateEvent): void => {
-  const path = ev.state?.path ?? location.pathname;
-
-  navigateTo(new URL(path, location.origin), true);
-};
-
-const clickHandler = (ev: MouseEvent): void => {
-  if (ev.button !== 0 || ev.metaKey || ev.ctrlKey || ev.shiftKey || ev.altKey) {
-    return;
-  }
-
-  const target = ev.target as Element;
-
-  if (!target) {
-    return;
-  }
-
-  const anchor = target.closest<HTMLAnchorElement>('a[href]');
-
-  if (!anchor) {
-    return;
-  }
-
-  if (isExternalLink(anchor)) {
-    externalLinkProc(anchor);
-    return;
-  }
-
-  if (!isInternalLink(anchor)) {
-    return;
-  }
-
-  ev.preventDefault();
-  navigateTo(new URL(anchor.href));
+      currentUrl = url;
+    },
+  });
 };
 
 (() => {
-  setOnNavigate(updateActive);
+  if (USE_LEGACY_NAVIGATION) {
+    return;
+  }
 
-  globalThis.addEventListener('popstate', popStateHandler, {
-    once: false,
-    passive: true,
-  });
-
-  document.addEventListener('click', clickHandler, {
+  // @ts-expect-error: deno-ts does not yet recognize the Navigation API.
+  navigation.addEventListener('navigate', navigateProc, {
     once: false,
     passive: false,
   });
-
-  // capture hover event in iOS
-  if (globalThis.ontouchstart !== undefined) {
-    document.addEventListener('touchstart', () => {}, {
-      once: false,
-      passive: true,
-    });
-  }
 })();

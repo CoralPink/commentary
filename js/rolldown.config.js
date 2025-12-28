@@ -46,4 +46,7 @@ export default defineConfig([
 
   makeConfig('./webworker/hl-worker.ts'),
   makeConfig('./webworker/hl-sharedworker.ts'),
+
+  // TODO: After Firefox 147 is released, delete it at an appropriate time!!
+  makeConfig('./extensions/legacy-navigation.ts'),
 ]);

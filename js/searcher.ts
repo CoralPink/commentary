@@ -1,6 +1,5 @@
 import { ROOT_PATH } from './constants.ts';
 import { initMark, unmarking } from './mark.ts';
-import { navigateTo } from './navigation.ts';
 
 import { loadStyleSheet } from './utils/css-loader.ts';
 import { fetchAndDecompress } from './utils/fetch.ts';
@@ -69,7 +68,8 @@ const jumpUrl = (): void => {
     updateMark();
   }
 
-  navigateTo(url);
+  // @ts-expect-error: deno-ts does not yet recognize the Navigation API.
+  navigation.navigate(url);
 
   requestAnimationFrame(() => {
     hiddenSearch();
