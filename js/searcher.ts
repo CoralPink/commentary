@@ -1,4 +1,4 @@
-import { ROOT_PATH } from './constants.ts';
+import { ROOT_PATH, USE_LEGACY_NAVIGATION } from './constants.ts';
 import { initMark, unmarking } from './mark.ts';
 
 import { loadStyleSheet } from './utils/css-loader.ts';
@@ -68,8 +68,12 @@ const jumpUrl = (): void => {
     updateMark();
   }
 
-  // @ts-expect-error: deno-ts does not yet recognize the Navigation API.
-  navigation.navigate(url);
+  if (!USE_LEGACY_NAVIGATION) {
+    // @ts-expect-error: deno-ts does not yet recognize the Navigation API.
+    navigation.navigate(url);
+  } else {
+    document.dispatchEvent(new CustomEvent('jump_internal', { bubbles: true, detail: { url } }));
+  }
 
   requestAnimationFrame(() => {
     hiddenSearch();

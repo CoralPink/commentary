@@ -15,7 +15,7 @@ let currentUrl = new URL(globalThis.location.href);
 
 let onNavigate: ((url: URL) => void) | null = null;
 
-export const setOnNavigate = (cb: (url: URL) => void): void => {
+const setOnNavigate = (cb: (url: URL) => void): void => {
   onNavigate = cb;
 };
 
@@ -80,7 +80,7 @@ const pushHistoryState = (ctx: NavigationContext): void => {
   pushPageViewEvent(path, title);
 };
 
-export const navigateTo = async (next: URL, fromPopstate = false): Promise<void> => {
+const navigateTo = async (next: URL, fromPopstate = false): Promise<void> => {
   if (next.pathname === currentUrl.pathname) {
     return;
   }
@@ -150,6 +150,19 @@ export const initialize = (_html: HTMLElement): Disposer => {
     passive: false,
   });
 
+  document.addEventListener(
+    'jump_internal',
+    (ev: Event): void => {
+      const datail = (ev as CustomEvent<{ url: URL }>).detail;
+      navigateTo(datail.url);
+    },
+    {
+      once: false,
+      passive: true,
+    },
+  );
+
+  // Although we have prepared a release process, it should not be used under normal circumstances.
   return () => {
     globalThis.removeEventListener('popstate', popStateHandler);
     document.removeEventListener('click', clickHandler);
