@@ -18,6 +18,9 @@ const SAVE_STORAGE_KEY = 'mdbook-sidebar';
 const SAVE_STATUS_VISIBLE = 'visible';
 const SAVE_STATUS_HIDDEN = 'hidden';
 
+let isInitScroll = true;
+let target: HTMLAnchorElement | null = null;
+
 const hideSidebar = (write = true): void => {
   document.getElementById(ID_PAGE)?.classList.remove('show-sidebar');
 
@@ -71,6 +74,14 @@ const showSidebar = (write = true): void => {
   setTimeout(() => {
     document.getElementById('main')?.addEventListener('pointerdown', clickHide, { once: false, passive: true });
   });
+
+  if (isInitScroll) {
+    requestAnimationFrame(() => {
+      target?.scrollIntoView({ block: 'center' });
+    });
+
+    isInitScroll = false;
+  }
 };
 
 const toggleSidebar = (): void =>
@@ -96,7 +107,7 @@ const getCurrentUrl = (): URL => {
   return new URL(s.endsWith('/') ? `${s}index.html` : s);
 };
 
-export const updateActive = (url: URL, scroll = false): void => {
+export const updateActive = (url: URL): void => {
   const scrollbox = document.getElementById(ID_SCROLLBOX);
 
   if (!scrollbox) {
@@ -104,7 +115,8 @@ export const updateActive = (url: URL, scroll = false): void => {
     return;
   }
 
-  let target: HTMLAnchorElement | null = null;
+  isInitScroll= true;
+  target = null;
 
   for (const x of scrollbox.querySelectorAll<HTMLAnchorElement>('a[href]')) {
     if (x.classList.contains('active')) {
@@ -123,10 +135,6 @@ export const updateActive = (url: URL, scroll = false): void => {
 
   target.classList.add('active');
   target.setAttribute('aria-current', 'page');
-
-  if (scroll) {
-    target.scrollIntoView({ block: 'center' });
-  }
 };
 
 const initContent = async (): Promise<void> => {
@@ -192,6 +200,6 @@ export const bootSidebar = (): void => {
   requestAnimationFrame(async (): Promise<void> => {
     await promiseInit;
 
-    updateActive(getCurrentUrl(), true);
+    updateActive(getCurrentUrl());
   });
 };
