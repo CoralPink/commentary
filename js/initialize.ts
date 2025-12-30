@@ -70,7 +70,7 @@ const jobsInitialize = [
   initMark,
 ] as const;
 
-const disposeAll = () => {
+const disposeAll = (): void => {
   const snapshot: Array<Disposer> = Array.from(activeDisposers);
   activeDisposers.clear();
 
@@ -91,7 +91,7 @@ const initExtensions = (html: HTMLElement): void => {
 (() => {
   document.addEventListener(
     CONTENT_READY,
-    (ev: Event) => {
+    (ev: Event): void => {
       const article = ev.target instanceof HTMLElement ? ev.target : null;
 
       if (!article) {

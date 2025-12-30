@@ -36,7 +36,7 @@ const applyNavigation = (ctx: NavigationContext, navigationType: string): void =
 
   article.dispatchEvent(new Event(CONTENT_READY, { bubbles: true }));
 
-  // If the transition originates from `popstate`, leave the scroll position to the browser
+  // If it is a transition from a history entry, leave the scroll position to the browser
   if (navigationType === 'traverse') {
     return;
   }
