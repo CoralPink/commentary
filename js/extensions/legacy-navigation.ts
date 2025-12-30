@@ -137,6 +137,11 @@ const clickHandler = (ev: MouseEvent): void => {
   navigateTo(new URL(anchor.href));
 };
 
+const jumpInternalHandler = (ev: Event): void => {
+  const detail = (ev as CustomEvent<{ url: URL }>).detail;
+  navigateTo(detail.url);
+};
+
 export const initialize = (_html: HTMLElement): Disposer => {
   setOnNavigate(updateActive);
 
@@ -150,21 +155,15 @@ export const initialize = (_html: HTMLElement): Disposer => {
     passive: false,
   });
 
-  document.addEventListener(
-    'jump_internal',
-    (ev: Event): void => {
-      const detail = (ev as CustomEvent<{ url: URL }>).detail;
-      navigateTo(detail.url);
-    },
-    {
-      once: false,
-      passive: true,
-    },
-  );
+  document.addEventListener('jump_internal', jumpInternalHandler, {
+    once: false,
+    passive: true,
+  });
 
   // Although we have prepared a release process, it should not be used under normal circumstances.
   return () => {
     globalThis.removeEventListener('popstate', popStateHandler);
     document.removeEventListener('click', clickHandler);
+    document.removeEventListener('jump_internal', jumpInternalHandler);
   };
 };
