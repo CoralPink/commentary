@@ -18,7 +18,8 @@ const SAVE_STORAGE_KEY = 'mdbook-sidebar';
 const SAVE_STATUS_VISIBLE = 'visible';
 const SAVE_STATUS_HIDDEN = 'hidden';
 
-let currentSelect: HTMLAnchorElement | undefined;
+let isInitScroll = true;
+let target: HTMLAnchorElement | null = null;
 
 const hideSidebar = (write = true): void => {
   document.getElementById(ID_PAGE)?.classList.remove('show-sidebar');
@@ -73,6 +74,14 @@ const showSidebar = (write = true): void => {
   setTimeout(() => {
     document.getElementById('main')?.addEventListener('pointerdown', clickHide, { once: false, passive: true });
   });
+
+  if (isInitScroll) {
+    requestAnimationFrame(() => {
+      target?.scrollIntoView({ block: 'center' });
+    });
+
+    isInitScroll = false;
+  }
 };
 
 const toggleSidebar = (): void =>
@@ -98,30 +107,34 @@ const getCurrentUrl = (): URL => {
   return new URL(s.endsWith('/') ? `${s}index.html` : s);
 };
 
-export const updateActive = (url: URL) => {
-  const sidebarScrollbox = document.getElementById(ID_SCROLLBOX);
+export const updateActive = (url: URL): void => {
+  const scrollbox = document.getElementById(ID_SCROLLBOX);
 
-  if (!sidebarScrollbox) {
+  if (!scrollbox) {
     console.error(`sidebar: not found ${ID_SCROLLBOX}`);
     return;
   }
 
-  const target = Array.from(sidebarScrollbox.querySelectorAll<HTMLAnchorElement>('a[href]')).find(
-    x => x.pathname === url.pathname,
-  );
+  isInitScroll= true;
+  target = null;
 
-  if (!target) {
+  for (const x of scrollbox.querySelectorAll<HTMLAnchorElement>('a[href]')) {
+    if (x.classList.contains('active')) {
+      x.classList.remove('active');
+      x.removeAttribute('aria-current');
+    }
+
+    if (x.pathname === url.pathname) {
+      target = x;
+    }
+  }
+
+  if (target === null) {
     return;
   }
 
   target.classList.add('active');
   target.setAttribute('aria-current', 'page');
-
-  if (currentSelect) {
-    currentSelect.classList.remove('active');
-    currentSelect.removeAttribute('aria-current');
-  }
-  currentSelect = target;
 };
 
 const initContent = async (): Promise<void> => {
@@ -188,9 +201,5 @@ export const bootSidebar = (): void => {
     await promiseInit;
 
     updateActive(getCurrentUrl());
-
-    if (currentSelect !== undefined) {
-      currentSelect.scrollIntoView({ block: 'center' });
-    }
   });
 };

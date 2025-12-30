@@ -4,6 +4,8 @@ export type NavigationContext = {
   next: URL;
   article: HTMLElement;
   title: HTMLTitleElement;
+
+  // TODO: If you are using the Navigation API, this is unnecessary.
   generation: AbortSignal;
 };
 

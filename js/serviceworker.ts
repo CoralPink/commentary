@@ -1,6 +1,6 @@
 declare const self: ServiceWorkerGlobalScope;
 
-const CACHE_VERSION = 'v9.2.9';
+const CACHE_VERSION = 'v10.0.0';
 
 const CACHE_URL = '/commentary/';
 const FALLBACK_IMAGE = 'favicon.png';
@@ -8,6 +8,8 @@ const FALLBACK_IMAGE = 'favicon.png';
 const installList = [
   'favicon.png',
   'favicon.svg',
+
+  'initialize.js',
   'navigation.js',
 
   'css/general.css',

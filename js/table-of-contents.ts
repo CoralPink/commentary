@@ -18,7 +18,6 @@ const SAVE_STATUS_HIDDEN = 'hidden';
 
 const tocMap: Map<HTMLElement, HTMLAnchorElement> = new Map();
 
-let elmNavigation: HTMLDivElement;
 let elmToggle: HTMLButtonElement;
 let elmToc: HTMLDivElement;
 
@@ -124,7 +123,8 @@ export const initTableOfContents = (html: HTMLElement): (() => void) => {
     { threshold: 1.0 },
   );
 
-  elmNavigation.innerHTML = '';
+  elmToc = document.getElementById('table-of-contents') as HTMLDivElement;
+  elmToggle = document.getElementById('toc-toggle') as HTMLButtonElement;
 
   const fragment = document.createDocumentFragment();
 
@@ -147,11 +147,16 @@ export const initTableOfContents = (html: HTMLElement): (() => void) => {
 
   tocReset();
 
+  const elmNavigation = document.getElementById('pagetoc') as HTMLDivElement;
+  elmNavigation.innerHTML = '';
   elmNavigation.appendChild(fragment);
 
   return (): void => {
     tocMap.clear();
     observer.disconnect();
+
+    // TODO: Ideally, this should be cleared here, but the legacy-navigation side can't handle it properly...
+    //elmNavigation.innerHTML = '';
 
     onlyActive = null;
     currentInlineCenter = null;
@@ -179,11 +184,10 @@ const tocHide = (): void => {
 };
 
 export const bootTableOfContents = (): void => {
-  elmNavigation = document.getElementById('pagetoc') as HTMLDivElement;
   elmToc = document.getElementById('table-of-contents') as HTMLDivElement;
   elmToggle = document.getElementById('toc-toggle') as HTMLButtonElement;
 
-  if (!elmNavigation || !elmToc || !elmToggle) {
+  if (!elmToc || !elmToggle) {
     console.error('Table of contents not found');
     return;
   }
