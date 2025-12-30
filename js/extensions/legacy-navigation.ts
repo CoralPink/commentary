@@ -153,8 +153,8 @@ export const initialize = (_html: HTMLElement): Disposer => {
   document.addEventListener(
     'jump_internal',
     (ev: Event): void => {
-      const datail = (ev as CustomEvent<{ url: URL }>).detail;
-      navigateTo(datail.url);
+      const detail = (ev as CustomEvent<{ url: URL }>).detail;
+      navigateTo(detail.url);
     },
     {
       once: false,
