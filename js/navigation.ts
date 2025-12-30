@@ -60,27 +60,27 @@ const navigateProc = (ev: NavigationNavigateEvent): void => {
     return;
   }
 
-  const url = new URL(ev.destination.url);
+  const next = new URL(ev.destination.url);
 
-  if (url.pathname === currentUrl.pathname) {
+  if (next.pathname === currentUrl.pathname) {
     return;
   }
 
   ev.intercept({
     async handler(): Promise<void> {
-      const ctx = await prepareNavigation(url);
+      const ctx = await prepareNavigation(next);
 
       if (!ctx) {
-        forceReload(url, 'prepareNavigation: The necessary elements are missing.');
+        forceReload(next, 'prepareNavigation: The necessary elements are missing.');
         return;
       }
 
       document.startViewTransition(() => {
         applyNavigation(ctx, ev.navigationType);
-        updateActive(url);
+        updateActive(next);
       });
 
-      currentUrl = url;
+      currentUrl = next;
     },
   });
 };
