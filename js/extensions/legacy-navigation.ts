@@ -1,5 +1,6 @@
 import { type Disposer } from './types.ts';
 
+import { CONTENT_READY } from '../constants.ts';
 import { type NavigationContext, prepareNavigation } from '../context.ts';
 import { externalLinkProc, isExternalLink, isInternalLink } from '../link.ts';
 import { updateActive } from '../sidebar.ts';
@@ -47,7 +48,7 @@ const applyNavigation = (ctx: NavigationContext, fromPopstate: boolean): void =>
   document.title = ctx.title.textContent ?? PAGE_NO_TITLE;
   article.innerHTML = ctx.article.innerHTML;
 
-  article.dispatchEvent(new Event('content-ready', { bubbles: true }));
+  article.dispatchEvent(new Event(CONTENT_READY, { bubbles: true }));
 
   // If the transition originates from `popstate`, leave the scroll position to the browser
   if (fromPopstate) {
