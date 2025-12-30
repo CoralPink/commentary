@@ -106,6 +106,14 @@ const bootstrap = (): void => {
   sendToWorker = initWorker();
   createClipButton();
 
+  // capture hover event in iOS
+  if (globalThis.ontouchstart !== undefined) {
+    document.addEventListener('touchstart', () => {}, {
+      once: false,
+      passive: true,
+    });
+  }
+
   isBootstrap = true;
 };
 

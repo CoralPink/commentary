@@ -1,9 +1,8 @@
-import { ROOT_PATH } from './constants.ts';
+import { CONTENT_READY, ROOT_PATH, USE_LEGACY_NAVIGATION } from './constants.ts';
 import { initMark } from './mark.ts';
 import { startupSearch } from './searcher.ts';
 import { bootSidebar } from './sidebar.ts';
 import { bootTableOfContents, initTableOfContents } from './table-of-contents.ts';
-import { bootThemeColor } from './theme-selector.ts';
 
 import type { Disposer, ExtensionEntry, InitializableExtension } from './extensions/types.ts';
 
@@ -16,7 +15,6 @@ const MODULE_REQUIREMENTS = [
   { selector: 'video', module: 'media' },
   { selector: 'pre code:not(.language-txt)', module: 'codeblock' },
   { selector: 'sup', module: 'footnote' },
-
   // TODO: We will suspend use until a reliable method is found.
   // { selector: '.replace-element', module: 'replace-dom.js' },
 ] as const;
@@ -72,7 +70,7 @@ const jobsInitialize = [
   initMark,
 ] as const;
 
-const disposeAll = () => {
+const disposeAll = (): void => {
   const snapshot: Array<Disposer> = Array.from(activeDisposers);
   activeDisposers.clear();
 
@@ -81,7 +79,7 @@ const disposeAll = () => {
   }
 };
 
-export const initExtensions = (html: HTMLElement): void => {
+const initExtensions = (html: HTMLElement): void => {
   initPulse();
   disposeAll();
 
@@ -91,8 +89,18 @@ export const initExtensions = (html: HTMLElement): void => {
 };
 
 (() => {
-  // The `theme color` startup process returns a promise, but you don't need to wait for it to complete.
-  bootThemeColor();
+  document.addEventListener(
+    CONTENT_READY,
+    (ev: Event): void => {
+      const article = ev.target instanceof HTMLElement ? ev.target : null;
+
+      if (!article) {
+        return;
+      }
+      initExtensions(article);
+    },
+    { once: false, passive: true },
+  );
 
   document.addEventListener(
     'DOMContentLoaded',
@@ -102,6 +110,12 @@ export const initExtensions = (html: HTMLElement): void => {
       if (article === null) {
         console.error('Article element not found');
         return;
+      }
+
+      // TODO: After Firefox 147 is released, delete it at an appropriate time!!
+      if (USE_LEGACY_NAVIGATION) {
+        console.info('This browser will become unsupported shortly after the release of Firefox 147');
+        ensureExtensionLoaded(article, `${ROOT_PATH}legacy-navigation.js`);
       }
 
       const jobsBoot: readonly HtmlJob[] = [bootSidebar, bootTableOfContents, startupSearch];

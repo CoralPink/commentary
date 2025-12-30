@@ -117,6 +117,7 @@
       <ul id="searchresults" role="listbox" aria-multiselectable="false" aria-orientation="vertical"></ul>
     </div>
 
+    <script type="module" src="{{ resource "initialize.js"}}"></script>
     <script>
       (async()=>{if("serviceWorker"in navigator)
       try{await navigator.serviceWorker.register("{{resource "serviceworker.js"}}",{scope:"/commentary/"})}
