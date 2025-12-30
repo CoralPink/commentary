@@ -81,7 +81,10 @@ const pushHistoryState = (ctx: NavigationContext): void => {
 };
 
 const navigateTo = async (next: URL, fromPopstate = false): Promise<void> => {
-  if (next.pathname === currentUrl.pathname) {
+  const isSamePath = next.pathname === currentUrl.pathname;
+  const isSameHash = next.hash === currentUrl.hash;
+
+  if (isSamePath && isSameHash) {
     return;
   }
 
