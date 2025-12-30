@@ -18,8 +18,6 @@ const SAVE_STORAGE_KEY = 'mdbook-sidebar';
 const SAVE_STATUS_VISIBLE = 'visible';
 const SAVE_STATUS_HIDDEN = 'hidden';
 
-let currentSelect: HTMLAnchorElement | null = null;
-
 const hideSidebar = (write = true): void => {
   document.getElementById(ID_PAGE)?.classList.remove('show-sidebar');
 
@@ -98,7 +96,7 @@ const getCurrentUrl = (): URL => {
   return new URL(s.endsWith('/') ? `${s}index.html` : s);
 };
 
-export const updateActive = (url: URL) => {
+export const updateActive = (url: URL, scroll = false): void => {
   const scrollbox = document.getElementById(ID_SCROLLBOX);
 
   if (!scrollbox) {
@@ -106,22 +104,29 @@ export const updateActive = (url: URL) => {
     return;
   }
 
-  const target = Array.from(scrollbox.querySelectorAll<HTMLAnchorElement>('a[href]')).find(
-    x => x.pathname === url.pathname,
-  );
+  let target: HTMLAnchorElement | null = null;
 
-  if (!target) {
+  for (const x of scrollbox.querySelectorAll<HTMLAnchorElement>('a[href]')) {
+    if (x.classList.contains('active')) {
+      x.classList.remove('active');
+      x.removeAttribute('aria-current');
+    }
+
+    if (x.pathname === url.pathname) {
+      target = x;
+    }
+  }
+
+  if (target === null) {
     return;
   }
 
   target.classList.add('active');
   target.setAttribute('aria-current', 'page');
 
-  if (currentSelect !== null) {
-    currentSelect.classList.remove('active');
-    currentSelect.removeAttribute('aria-current');
+  if (scroll) {
+    target.scrollIntoView({ block: 'center' });
   }
-  currentSelect = target;
 };
 
 const initContent = async (): Promise<void> => {
@@ -187,10 +192,6 @@ export const bootSidebar = (): void => {
   requestAnimationFrame(async (): Promise<void> => {
     await promiseInit;
 
-    updateActive(getCurrentUrl());
-
-    if (currentSelect !== null) {
-      currentSelect.scrollIntoView({ block: 'center' });
-    }
+    updateActive(getCurrentUrl(), true);
   });
 };
