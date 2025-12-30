@@ -160,10 +160,7 @@ export const initialize = (_html: HTMLElement): Disposer => {
     passive: true,
   });
 
-  // Although we have prepared a release process, it should not be used under normal circumstances.
   return () => {
-    globalThis.removeEventListener('popstate', popStateHandler);
-    document.removeEventListener('click', clickHandler);
-    document.removeEventListener('jump_internal', jumpInternalHandler);
+    // Do not remove the event listeners registered during this initialization process!!
   };
 };
