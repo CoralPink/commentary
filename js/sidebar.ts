@@ -1,27 +1,21 @@
 import { BREAKPOINT_UI_WIDE, CONTENT_READY, ROOT_PATH } from './constants.ts';
 
 import { fetchText } from './utils/fetch.ts';
-import { readLocalStorage, writeLocalStorage } from './utils/storage.ts';
 
 const PAGE_LIST = `${ROOT_PATH}pagelist.html`;
 
 const SHOW_SIDEBAR_WIDTH = 1200;
 
 const ID_PAGE = 'page';
-
 const ID_SIDEBAR = 'sidebar';
 const ID_SCROLLBOX = 'sidebar-scrollbox';
 
 const TARGET_TOGGLE = 'sidebar';
 
-const SAVE_STORAGE_KEY = 'mdbook-sidebar';
-const SAVE_STATUS_VISIBLE = 'visible';
-const SAVE_STATUS_HIDDEN = 'hidden';
-
 let doneFirstScroll = false;
 let currentPage: HTMLAnchorElement | undefined = undefined;
 
-const hideSidebar = (write = true): void => {
+const hideSidebar = (): void => {
   document.getElementById(ID_PAGE)?.classList.remove('show-sidebar');
 
   const sidebar = document.getElementById(ID_SIDEBAR);
@@ -37,9 +31,6 @@ const hideSidebar = (write = true): void => {
     x.setAttribute('aria-expanded', 'false');
   }
 
-  if (write) {
-    writeLocalStorage(SAVE_STORAGE_KEY, SAVE_STATUS_HIDDEN);
-  }
   document.getElementById('main')?.removeEventListener('pointerdown', clickHide);
 };
 
@@ -51,7 +42,7 @@ const clickHide = (ev: PointerEvent): void => {
   hideSidebar();
 };
 
-const showSidebar = (write = true): void => {
+const showSidebar = (): void => {
   document.getElementById(ID_PAGE)?.classList.add('show-sidebar');
 
   const sidebar = document.getElementById(ID_SIDEBAR);
@@ -65,10 +56,6 @@ const showSidebar = (write = true): void => {
 
   for (const x of document.querySelectorAll(`[data-target="${TARGET_TOGGLE}"]`)) {
     x.setAttribute('aria-expanded', 'true');
-  }
-
-  if (write) {
-    writeLocalStorage(SAVE_STORAGE_KEY, SAVE_STATUS_VISIBLE);
   }
 
   setTimeout(() => {
@@ -104,24 +91,26 @@ const toggleHandler = (key: string): void => {
   }
 };
 
-const initContent = async (): Promise<void> => {
+const loadPageList = async (): Promise<void> => {
   const sidebar = document.getElementById(ID_SIDEBAR);
 
   if (!sidebar) {
     console.error(`sidebar: not found ${ID_SIDEBAR}`);
     return;
   }
+
   sidebar.setAttribute('aria-busy', 'true');
 
   try {
     sidebar.insertAdjacentHTML('afterbegin', await fetchText(PAGE_LIST));
   } catch (err: unknown) {
+    sidebar.insertAdjacentHTML('afterbegin', '<p>Error loading sidebar content.</p>');
+
     if (err instanceof Error) {
       console.error(`Failed to load pagelist - ${err.message}`);
     } else {
       console.error('An unknown error occurred');
     }
-    sidebar.insertAdjacentHTML('afterbegin', '<p>Error loading sidebar content.</p>');
   } finally {
     sidebar.setAttribute('aria-busy', 'false');
   }
@@ -130,16 +119,6 @@ const initContent = async (): Promise<void> => {
 const getCurrentUrl = (): URL => {
   const s = document.location.href;
   return new URL(s.endsWith('/') ? `${s}index.html` : s);
-};
-
-export const removeActive = (): void => {
-  if (currentPage === undefined) {
-    return;
-  }
-  currentPage.classList.remove('active');
-  currentPage.removeAttribute('aria-current');
-
-  currentPage = undefined;
 };
 
 const updateActive = (): void => {
@@ -164,19 +143,20 @@ const updateActive = (): void => {
   currentPage.setAttribute('aria-current', 'page');
 };
 
-export const bootSidebar = async (): Promise<void> => {
-  const promiseInit = initContent();
-
-  try {
-    if (globalThis.innerWidth < BREAKPOINT_UI_WIDE) {
-      hideSidebar();
-    } else {
-      readLocalStorage(SAVE_STORAGE_KEY) === SAVE_STATUS_HIDDEN ? hideSidebar(false) : showSidebar(false);
-    }
-  } catch (err: unknown) {
-    console.error(`Sidebar initialization error: ${err}`);
-    hideSidebar();
+export const removeActive = (): void => {
+  if (currentPage === undefined) {
+    return;
   }
+  currentPage.classList.remove('active');
+  currentPage.removeAttribute('aria-current');
+
+  currentPage = undefined;
+};
+
+export const bootSidebar = async (): Promise<void> => {
+  const promiseInit = loadPageList();
+
+  globalThis.innerWidth < BREAKPOINT_UI_WIDE ? hideSidebar() : showSidebar();
 
   document.addEventListener('keyup', ev => toggleHandler(ev.key), {
     once: false,
@@ -207,5 +187,5 @@ export const bootSidebar = async (): Promise<void> => {
 
   await promiseInit;
 
-  document.dispatchEvent(new Event(CONTENT_READY, { bubbles: true }));
+  updateActive();
 };
