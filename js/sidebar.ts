@@ -1,4 +1,4 @@
-import { BREAKPOINT_UI_WIDE, ROOT_PATH } from './constants.ts';
+import { BREAKPOINT_UI_WIDE, CONTENT_READY, ROOT_PATH } from './constants.ts';
 
 import { fetchText } from './utils/fetch.ts';
 import { readLocalStorage, writeLocalStorage } from './utils/storage.ts';
@@ -18,8 +18,8 @@ const SAVE_STORAGE_KEY = 'mdbook-sidebar';
 const SAVE_STATUS_VISIBLE = 'visible';
 const SAVE_STATUS_HIDDEN = 'hidden';
 
-let isInitScroll = true;
-let target: HTMLAnchorElement | null = null;
+let doneFirstScroll = false;
+let currentPage: HTMLAnchorElement | undefined = undefined;
 
 const hideSidebar = (write = true): void => {
   document.getElementById(ID_PAGE)?.classList.remove('show-sidebar');
@@ -75,13 +75,15 @@ const showSidebar = (write = true): void => {
     document.getElementById('main')?.addEventListener('pointerdown', clickHide, { once: false, passive: true });
   });
 
-  if (isInitScroll) {
-    requestAnimationFrame(() => {
-      target?.scrollIntoView({ block: 'center' });
-    });
-
-    isInitScroll = false;
+  if (doneFirstScroll) {
+    return;
   }
+
+  requestAnimationFrame(() => {
+    currentPage?.scrollIntoView({ block: 'center' });
+  });
+
+  doneFirstScroll = true;
 };
 
 const toggleSidebar = (): void =>
@@ -102,41 +104,6 @@ const toggleHandler = (key: string): void => {
   }
 };
 
-const getCurrentUrl = (): URL => {
-  const s = document.location.href.toString();
-  return new URL(s.endsWith('/') ? `${s}index.html` : s);
-};
-
-export const updateActive = (url: URL): void => {
-  const scrollbox = document.getElementById(ID_SCROLLBOX);
-
-  if (!scrollbox) {
-    console.error(`sidebar: not found ${ID_SCROLLBOX}`);
-    return;
-  }
-
-  isInitScroll= true;
-  target = null;
-
-  for (const x of scrollbox.querySelectorAll<HTMLAnchorElement>('a[href]')) {
-    if (x.classList.contains('active')) {
-      x.classList.remove('active');
-      x.removeAttribute('aria-current');
-    }
-
-    if (x.pathname === url.pathname) {
-      target = x;
-    }
-  }
-
-  if (target === null) {
-    return;
-  }
-
-  target.classList.add('active');
-  target.setAttribute('aria-current', 'page');
-};
-
 const initContent = async (): Promise<void> => {
   const sidebar = document.getElementById(ID_SIDEBAR);
 
@@ -155,13 +122,49 @@ const initContent = async (): Promise<void> => {
       console.error('An unknown error occurred');
     }
     sidebar.insertAdjacentHTML('afterbegin', '<p>Error loading sidebar content.</p>');
-    return;
   } finally {
     sidebar.setAttribute('aria-busy', 'false');
   }
 };
 
-export const bootSidebar = (): void => {
+const getCurrentUrl = (): URL => {
+  const s = document.location.href;
+  return new URL(s.endsWith('/') ? `${s}index.html` : s);
+};
+
+export const removeActive = (): void => {
+  if (currentPage === undefined) {
+    return;
+  }
+  currentPage.classList.remove('active');
+  currentPage.removeAttribute('aria-current');
+
+  currentPage = undefined;
+};
+
+const updateActive = (): void => {
+  const scrollbox = document.getElementById(ID_SCROLLBOX);
+
+  if (!scrollbox) {
+    console.error(`sidebar: not found ${ID_SCROLLBOX}`);
+    return;
+  }
+  doneFirstScroll = false;
+
+  const targetPath = getCurrentUrl().pathname;
+
+  currentPage = Array.from(scrollbox.querySelectorAll<HTMLAnchorElement>('a[href]')).find(
+    x => x.pathname === targetPath,
+  );
+
+  if (currentPage === undefined) {
+    return;
+  }
+  currentPage.classList.add('active');
+  currentPage.setAttribute('aria-current', 'page');
+};
+
+export const bootSidebar = async (): Promise<void> => {
   const promiseInit = initContent();
 
   try {
@@ -197,9 +200,12 @@ export const bootSidebar = (): void => {
     });
   }
 
-  requestAnimationFrame(async (): Promise<void> => {
-    await promiseInit;
-
-    updateActive(getCurrentUrl());
+  document.addEventListener(CONTENT_READY, updateActive, {
+    once: false,
+    passive: true,
   });
+
+  await promiseInit;
+
+  document.dispatchEvent(new Event(CONTENT_READY, { bubbles: true }));
 };

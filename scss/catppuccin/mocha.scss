@@ -37,6 +37,11 @@ $popup-colors: (
   --warning-border: #fab387;
   --color-scheme: dark;
 
+  --toc-bg: #4b2900;
+  --toc-fg: #f8e3a1;
+  --search-score: #00c853;
+  --blockquote-color: #9e9e9e;
+
   @include utils.convert-hsl($popup-colors, -16%);
 }
 

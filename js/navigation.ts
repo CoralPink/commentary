@@ -1,7 +1,6 @@
 import { CONTENT_READY, USE_LEGACY_NAVIGATION } from './constants.ts';
 import { type NavigationContext, prepareNavigation } from './context.ts';
 
-import { updateActive } from './sidebar.ts';
 import { bootThemeColor } from './theme-selector.ts';
 
 const PAGE_NO_TITLE = '(No Title) - Commentary of Dotfiles';
@@ -49,7 +48,7 @@ const applyNavigation = (ctx: NavigationContext, navigationType: string): void =
       return;
     }
 
-    const header = article.querySelector(ctx.next.hash);
+    const header = article.querySelector(decodeURIComponent(ctx.next.hash));
     header?.scrollIntoView({ behavior: 'auto' });
   });
 };
@@ -75,11 +74,7 @@ const navigateProc = (ev: NavigationNavigateEvent): void => {
         return;
       }
 
-      document.startViewTransition(() => {
-        applyNavigation(ctx, ev.navigationType);
-        updateActive(next);
-      });
-
+      applyNavigation(ctx, ev.navigationType);
       currentUrl = next;
     },
   });
@@ -96,6 +91,6 @@ const navigateProc = (ev: NavigationNavigateEvent): void => {
   // @ts-expect-error: deno-ts does not yet recognize the Navigation API.
   navigation.addEventListener('navigate', navigateProc, {
     once: false,
-    passive: false,
+    passive: true,
   });
 })();

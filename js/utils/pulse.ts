@@ -57,10 +57,28 @@ const idlePulse: Pulse =
     ? globalThis.requestIdleCallback.bind(globalThis)
     : cb => emulateIdleCallback(cb);
 
+/**
+ * Executes the very first pulse on the next animation frame.
+ *
+ * The purpose of this rAF is to establish a clear lifecycle boundary:
+ * - separate the previous cycle from the next one
+ * - ensure all scheduled work starts strictly *after* the current frame is rendered
+ *
+ * After this first invocation:
+ * - the pulse mechanism is immediately switched to `idlePulse`
+ * - subsequent jobs run via `requestIdleCallback` (or its emulation)
+ *
+ * Even if the initial jobs are extremely lightweight (e.g. disposal / cleanup),
+ * running the first pulse inside rAF provides:
+ * - phase separation from layout / paint work
+ * - a stable anchor point for Safari's idle callback emulation
+ * - a deterministic "start of cycle" marker for dispose / init jobs
+ *
+ * In other words, this function prepares the pulse scheduler
+ * for the next lifecycle rather than merely scheduling work.
+ */
 const firstFramePulse: Pulse = cb => {
-  // Use requestAnimationFrame only for the first frame
   requestAnimationFrame(() => {
-    // After executing once, immediately replace it with idlePulse.
     pulse = idlePulse;
 
     cb({
@@ -128,12 +146,10 @@ export const processChunked = <T>(items: ReadonlyArray<T>, each: (x: T) => void)
 };
 
 /**
- * Resets the pulse mechanism to its initial state.
- *
- * MUST only be called at page navigation or initialization boundaries,
- * never during active job processing.
+ * Prepares the pulse scheduler for the next lifecycle.
+ * Must be called BEFORE scheduling any dispose / init jobs.
  */
-export const initPulse = (): void => {
+export const prepareForNextCycle = (): void => {
   pulse = firstFramePulse;
 
   queue.length = 0;
