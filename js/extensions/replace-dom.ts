@@ -32,9 +32,8 @@
  * refs: https://bugs.webkit.org/show_bug.cgi?id=219102
  */
 
-import { type Disposer } from './types.ts';
+import type { Disposer } from './types.ts';
 
-import { getRootVariable } from '../utils/css-loader.ts';
 import { debounce } from '../utils/timing.ts';
 
 const INTERVAL_MS = 50;
@@ -63,7 +62,9 @@ const waitForStyle = (property: string): Promise<string> => {
 
   return new Promise((resolve, reject) => {
     const checkStyle = (): void => {
-      const value = getRootVariable(property);
+      // TODO: This function has been deprecated, so switch to another method!
+      // const value = getRootVariable(property);
+      const value = '';
 
       if (value !== '') {
         resolve(value);

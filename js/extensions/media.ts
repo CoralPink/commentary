@@ -1,6 +1,6 @@
 import Plyr from 'plyr';
 
-import { type Disposer } from './types.ts';
+import type { Disposer } from './types.ts';
 
 import { ROOT_PATH } from '../constants.ts';
 import { loadStyleSheet } from '../utils/css-loader.ts';
