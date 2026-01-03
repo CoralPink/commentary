@@ -1,7 +1,6 @@
 import { BREAKPOINT_UI_WIDE } from './constants.ts';
 
 import { reverseItr } from './utils/generators.ts';
-import { readLocalStorage, writeLocalStorage } from './utils/storage.ts';
 
 const Environment = {
   WIDE: 0,
@@ -11,10 +10,6 @@ const Environment = {
 type Environment = (typeof Environment)[keyof typeof Environment];
 
 const tocClass = ['righttoc', 'bottomtoc'] as const;
-
-const SAVE_STORAGE_KEY = 'compact-menu';
-const SAVE_STATUS_VISIBLE = 'visible';
-const SAVE_STATUS_HIDDEN = 'hidden';
 
 const tocMap: Map<HTMLElement, HTMLAnchorElement> = new Map();
 
@@ -80,34 +75,40 @@ const removeActive = (entry: IntersectionObserverEntry): void => {
   target.removeAttribute('aria-current');
 };
 
-const jumpHeader = (ev: MouseEvent, el: HTMLAnchorElement): void => {
-  ev.preventDefault();
-
-  const target = document.getElementById(decodeURIComponent(el.hash.slice(1)));
-
-  if (!target) {
+const jumpHeader = (ev: PointerEvent): void => {
+  if (!(ev.target instanceof HTMLAnchorElement)) {
     return;
   }
-  history.replaceState(null, '', `#${target.id}`);
+
+  const id = ev.target.hash.slice(1);
+
+  if (!id) {
+    return;
+  }
+
+  const header = document.getElementById(decodeURIComponent(id));
+
+  if (!header) {
+    return;
+  }
+
+  ev.preventDefault();
+  history.replaceState(null, '', `#${header.id}`);
 
   requestAnimationFrame(() => {
-    target.scrollIntoView({ behavior: 'smooth' });
+    header.scrollIntoView({ behavior: 'smooth' });
   });
 };
 
 const tocReset = (): void => {
-  environment = globalThis.innerWidth >= BREAKPOINT_UI_WIDE ? Environment.WIDE : Environment.COMPACT;
+  elmToc.classList.remove(tocClass[environment]);
 
-  elmToc.classList.remove(...tocClass);
+  environment = globalThis.innerWidth >= BREAKPOINT_UI_WIDE ? Environment.WIDE : Environment.COMPACT;
   elmToc.classList.add(tocClass[environment]);
 
   if (environment === Environment.WIDE) {
     tocVisible();
-    return;
   }
-
-  const status = readLocalStorage(SAVE_STORAGE_KEY);
-  status !== null && status === SAVE_STATUS_VISIBLE ? tocVisible() : tocHide();
 };
 
 const getHeaders = (h: HTMLElement): Array<HTMLAnchorElement> => Array.from(h.querySelectorAll('a.header'));
@@ -136,27 +137,26 @@ export const initTableOfContents = (html: HTMLElement): (() => void) => {
     link.href = el.hash;
     link.classList.add(el.parentElement?.tagName ?? '');
 
-    link.addEventListener('click', (ev: MouseEvent) => jumpHeader(ev, el), {
-      once: false,
-      passive: false,
-    });
-
     tocMap.set(el, link);
     fragment.appendChild(link);
   }
 
-  tocReset();
+  const pageToc = document.getElementById('pagetoc') as HTMLDivElement;
+  pageToc.appendChild(fragment);
 
-  const elmNavigation = document.getElementById('pagetoc') as HTMLDivElement;
-  elmNavigation.innerHTML = '';
-  elmNavigation.appendChild(fragment);
+  pageToc.addEventListener('click', jumpHeader, {
+    once: false,
+    passive: false,
+  });
 
   return (): void => {
+    tocReset();
+
     tocMap.clear();
     observer.disconnect();
 
-    // TODO: Ideally, this should be cleared here, but the legacy-navigation side can't handle it properly...
-    //elmNavigation.innerHTML = '';
+    pageToc.removeEventListener('click', jumpHeader);
+    pageToc.innerHTML = '';
 
     onlyActive = null;
     currentInlineCenter = null;
@@ -170,8 +170,6 @@ const tocVisible = (): void => {
   elmToggle.setAttribute('aria-expanded', 'true');
 
   scrollCenter();
-
-  writeLocalStorage(SAVE_STORAGE_KEY, SAVE_STATUS_VISIBLE);
 };
 
 const tocHide = (): void => {
@@ -179,8 +177,6 @@ const tocHide = (): void => {
 
   elmToc.setAttribute('aria-hidden', 'true');
   elmToggle.setAttribute('aria-expanded', 'false');
-
-  writeLocalStorage(SAVE_STORAGE_KEY, SAVE_STATUS_HIDDEN);
 };
 
 export const bootTableOfContents = (): void => {
@@ -191,6 +187,8 @@ export const bootTableOfContents = (): void => {
     console.error('Table of contents not found');
     return;
   }
+
+  tocReset();
 
   elmToggle.addEventListener(
     'click',
