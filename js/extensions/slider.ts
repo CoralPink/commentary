@@ -1,4 +1,4 @@
-import { type Disposer } from './types.ts';
+import type { Disposer } from './types.ts';
 
 const CLASS_ARROW = 'arrow';
 const CLASS_CONTROLS = 'controls';

@@ -1,4 +1,4 @@
-import { type Disposer } from './types.ts';
+import type { Disposer } from './types.ts';
 
 const POTISION_GAP = 10;
 
@@ -94,7 +94,7 @@ const handleFootnoteClick = (ev: Event): void => {
 
   document.body.appendChild(pop);
 
-  const onClickOutside = (ev: MouseEvent): void => {
+  const onClickOutside = (ev: PointerEvent): void => {
     if (!(ev.target instanceof Node)) {
       return;
     }
