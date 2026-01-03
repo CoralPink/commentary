@@ -1,4 +1,4 @@
-import { type Disposer } from './types.ts';
+import type { Disposer } from './types.ts';
 
 import { initWorker } from '../webworker/hl-initialize.ts';
 import { isErrorPayload, type Payload, type SendToWorker } from '../webworker/hl-types.ts';
@@ -10,35 +10,38 @@ let clipButton: HTMLButtonElement;
 
 let isBootstrap = false;
 
-const showTooltip = (target: HTMLElement, msg: string): void => {
-  const tip = document.createElement('div');
-  tip.classList.add('tooltiptext');
-  tip.insertAdjacentText('afterbegin', msg);
-
-  const button = target.closest('button');
-
-  if (button === null) {
-    return;
-  }
-  button.appendChild(tip);
-
-  setTimeout(() => button.removeChild(tip), TOOLTIP_FADEOUT_MS);
-};
-
-const copyCode = (target: EventTarget | null): void => {
-  if (!(target instanceof HTMLElement)) {
+const copyCode = (ev: PointerEvent): void => {
+  if (!(ev.target instanceof HTMLElement)) {
     return;
   }
 
-  const code = target.closest('pre')?.querySelector('code');
+  const button = ev.target.closest('button.copy-button');
+
+  if (!button) {
+    return;
+  }
+
+  const code = button.closest('pre')?.querySelector('code');
 
   if (!code) {
     return;
   }
 
+  const showTooltip = (msg: string): void => {
+    const tip = document.createElement('div');
+    tip.classList.add('tooltiptext');
+    tip.insertAdjacentText('afterbegin', msg);
+
+    button.appendChild(tip);
+
+    setTimeout(() => {
+      button.removeChild(tip);
+    }, TOOLTIP_FADEOUT_MS);
+  };
+
   navigator.clipboard.writeText(code.innerText).then(
-    () => showTooltip(target, 'Copied!'),
-    () => showTooltip(target, 'Failed...'),
+    () => showTooltip('Copied!'),
+    () => showTooltip('Failed...'),
   );
 };
 
@@ -66,13 +69,7 @@ const highlight = (code: HTMLElement): void => {
       code.style.fontFamily = `${globalThis.getComputedStyle(code).fontFamily}, 'Symbols Nerd Font Mono'`;
     }
 
-    const cb = document.importNode(clipButton, true);
-    cb.addEventListener('click', ev => copyCode(ev.target), {
-      once: false,
-      passive: true,
-    });
-
-    parent.insertBefore(cb, parent.firstChild);
+    parent.insertBefore(document.importNode(clipButton, true), parent.firstChild);
   });
 };
 
@@ -132,7 +129,10 @@ export const initialize = (html: HTMLElement): Disposer => {
     obs.observe(x);
   }
 
+  html.addEventListener('click', copyCode, { once: false, passive: false });
+
   return () => {
     obs.disconnect();
+    html.removeEventListener('click', copyCode);
   };
 };

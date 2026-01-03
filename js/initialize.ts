@@ -1,12 +1,12 @@
 import { CONTENT_READY, ROOT_PATH, USE_LEGACY_NAVIGATION } from './constants.ts';
 import { initMark } from './mark.ts';
 import { startupSearch } from './searcher.ts';
-import { bootSidebar } from './sidebar.ts';
+import { bootSidebar, removeActive } from './sidebar.ts';
 import { bootTableOfContents, initTableOfContents } from './table-of-contents.ts';
 
 import type { Disposer, ExtensionEntry, InitializableExtension } from './extensions/types.ts';
 
-import { initPulse, scheduleJob } from './utils/pulse.ts';
+import { prepareForNextCycle, scheduleJob } from './utils/pulse.ts';
 
 type HtmlJob = (html: HTMLElement) => void | Promise<void>;
 
@@ -80,9 +80,6 @@ const disposeAll = (): void => {
 };
 
 const initExtensions = (html: HTMLElement): void => {
-  initPulse();
-  disposeAll();
-
   for (const job of jobsInitialize) {
     scheduleJob(() => job(html));
   }
@@ -97,6 +94,11 @@ const initExtensions = (html: HTMLElement): void => {
       if (!article) {
         return;
       }
+      prepareForNextCycle();
+      disposeAll();
+
+      removeActive();
+
       initExtensions(article);
     },
     { once: false, passive: true },

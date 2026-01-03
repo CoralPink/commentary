@@ -1,9 +1,8 @@
-import { type Disposer } from './types.ts';
+import type { Disposer } from './types.ts';
 
 import { CONTENT_READY } from '../constants.ts';
 import { type NavigationContext, prepareNavigation } from '../context.ts';
 import { externalLinkProc, isExternalLink, isInternalLink } from '../link.ts';
-import { updateActive } from '../sidebar.ts';
 
 const PAGE_NO_TITLE = '(No Title) - Commentary of Dotfiles';
 
@@ -13,12 +12,6 @@ const runTransition =
   'startViewTransition' in document ? (fn: () => void) => document.startViewTransition(fn) : (fn: () => void) => fn();
 
 let currentUrl = new URL(globalThis.location.href);
-
-let onNavigate: ((url: URL) => void) | null = null;
-
-const setOnNavigate = (cb: (url: URL) => void): void => {
-  onNavigate = cb;
-};
 
 const forceReload = (url: URL, msg: string = 'forceReload'): void => {
   location.href = url.href;
@@ -66,13 +59,6 @@ const applyNavigation = (ctx: NavigationContext, fromPopstate: boolean): void =>
   });
 };
 
-const finalizeNavigation = (ctx: NavigationContext): void => {
-  if (ctx.generation.aborted) {
-    return;
-  }
-  onNavigate?.(ctx.next);
-};
-
 const pushHistoryState = (ctx: NavigationContext): void => {
   const path = ctx.next.pathname;
   const title = ctx.title.textContent ?? PAGE_NO_TITLE;
@@ -96,7 +82,6 @@ const navigateTo = async (next: URL, fromPopstate = false): Promise<void> => {
   }
 
   runTransition(() => applyNavigation(ctx, fromPopstate));
-  finalizeNavigation(ctx);
 
   if (!fromPopstate) {
     pushHistoryState(ctx);
@@ -147,8 +132,6 @@ const jumpInternalHandler = (ev: Event): void => {
 };
 
 export const initialize = (_html: HTMLElement): Disposer => {
-  setOnNavigate(updateActive);
-
   globalThis.addEventListener('popstate', popStateHandler, {
     once: false,
     passive: true,

@@ -7,6 +7,9 @@ import { debounce } from './utils/timing.ts';
 
 // deno-lint-ignore no-sloppy-imports
 import initWasm, { Finder } from './wasm_book.js';
+
+export const TARGET_SEARCH = 'search';
+
 type SearchResult = {
   header: string;
   html: string | undefined;
@@ -15,12 +18,9 @@ type SearchResult = {
 const FILE_STYLE_SEARCH = 'css/search.css';
 const FILE_INDEX = 'searchindex.json';
 
-export const TARGET_SEARCH = 'search';
-
 const DEBOUNCE_DELAY_MS = 80;
 
 let elmSearch: HTMLElement[];
-
 let elmPop: HTMLElement;
 let elmSearchBar: HTMLInputElement;
 let elmHeader: HTMLElement;
@@ -29,6 +29,21 @@ let elmResults: HTMLElement;
 let finder: Finder;
 
 let focusedLi: Element | null;
+
+// TODO: After Firefox 147 is released, delete it at an appropriate time!!
+const navigateInternal: (url: URL) => void = USE_LEGACY_NAVIGATION
+  ? (url: URL): void => {
+      document.dispatchEvent(
+        new CustomEvent('jump_internal', {
+          bubbles: true,
+          detail: { url },
+        }),
+      );
+    }
+  : (url: URL): void => {
+      // @ts-expect-error: deno-ts does not yet recognize the Navigation API.
+      navigation.navigate(url);
+    };
 
 const showResults = (): void => {
   const result = finder.search(elmSearchBar.value.trim()) as SearchResult;
@@ -68,12 +83,7 @@ const jumpUrl = (): void => {
     updateMark();
   }
 
-  if (!USE_LEGACY_NAVIGATION) {
-    // @ts-expect-error: deno-ts does not yet recognize the Navigation API.
-    navigation.navigate(url);
-  } else {
-    document.dispatchEvent(new CustomEvent('jump_internal', { bubbles: true, detail: { url } }));
-  }
+  navigateInternal(url);
 
   requestAnimationFrame(() => {
     hiddenSearch();
@@ -104,7 +114,7 @@ const popupFocus = (ev: KeyboardEvent): void => {
   jumpUrl();
 };
 
-const searchMouseupHandler = (ev: MouseEvent): void => {
+const searchMouseupHandler = (ev: PointerEvent): void => {
   const prevFocused = focusedLi;
 
   updateFocus(ev.target as HTMLElement);
