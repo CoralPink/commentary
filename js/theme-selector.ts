@@ -40,21 +40,18 @@ let currentSelect: ThemeColorId = themeColors[1].id;
 const prefersColor = matchMedia('(prefers-color-scheme: dark)');
 const isDarkThemeRequired = (): boolean => prefersColor.matches;
 
-const loadStyle = async (style: string): Promise<void> => {
-  try {
-    await loadStyleSheet(`${ROOT_PATH}${THEME_DIRECTORY}${style}.css`);
-  } catch (err) {
+const loadStyle = (style: ThemeColorId): Promise<void> =>
+  loadStyleSheet(`${ROOT_PATH}${THEME_DIRECTORY}${style}.css`).catch(async err => {
     console.error(`Failed to load theme style '${style}':`, err);
-  }
-};
+
+    const fallback = isDarkThemeRequired() ? PREFERRED_DARK_THEME : DEFAULT_THEME;
+    await loadStyleSheet(`${ROOT_PATH}${THEME_DIRECTORY}${fallback}.css`);
+  });
 
 const setTheme = async (next: ThemeColorId): Promise<void> => {
   if (currentSelect === next) {
     return;
   }
-
-  // Preload new stylesheet; finalize swap after it’s ready
-  const loadStylePromise = loadStyle(next);
 
   // Skip UI updates if menu not initialized
   if (!document.getElementById(ID_THEME_LIST)) {
@@ -73,6 +70,11 @@ const setTheme = async (next: ThemeColorId): Promise<void> => {
     return;
   }
 
+  const loadStylePromise = loadStyle(next).then(() => {
+    unloadStyleSheet(`${ROOT_PATH}${THEME_DIRECTORY}${currentSelect}.css`);
+    currentSelect = next;
+  });
+
   currentButton.classList.remove(THEME_SELECTED);
   currentButton.removeAttribute('aria-current');
 
@@ -83,9 +85,6 @@ const setTheme = async (next: ThemeColorId): Promise<void> => {
   writeLocalStorage(`${KEY_SAVE_STORAGE}${appearance}`, next);
 
   await loadStylePromise;
-  unloadStyleSheet(`${ROOT_PATH}${THEME_DIRECTORY}${currentSelect}.css`);
-
-  currentSelect = next;
 };
 
 const initThemeSelector = async (): Promise<void> => {
@@ -151,9 +150,9 @@ export const bootThemeColor = (): Promise<void> => {
     readLocalStorage(`${KEY_SAVE_STORAGE}${appearance}`) ??
     (isDarkThemeRequired() ? PREFERRED_DARK_THEME : DEFAULT_THEME);
 
-  const loadStylePromise = loadStyle(theme);
-
-  currentSelect = theme as ThemeColorId;
+  const loadStylePromise = loadStyle(theme as ThemeColorId).then(() => {
+    currentSelect = theme as ThemeColorId;
+  });
 
   prefersColor.addEventListener('change', changeEvent, {
     once: false,
