@@ -114,7 +114,7 @@ const popupFocus = (ev: KeyboardEvent): void => {
   jumpUrl();
 };
 
-const searchMouseupHandler = (ev: PointerEvent): void => {
+const searchMouseupHandler = (ev: MouseEvent): void => {
   const prevFocused = focusedLi;
 
   updateFocus(ev.target as HTMLElement);
