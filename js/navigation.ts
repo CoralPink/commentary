@@ -74,9 +74,13 @@ const navigateProc = (ev: NavigationNavigateEvent): void => {
         return;
       }
 
-      applyNavigation(ctx, ev.navigationType);
+      document.startViewTransition(() => {
+        applyNavigation(ctx, ev.navigationType);
+      });
+
       currentUrl = next;
     },
+    scroll: ev.navigationType === 'traverse' ? 'after-transition' : 'manual',
   });
 };
 
