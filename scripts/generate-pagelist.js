@@ -12,11 +12,20 @@ const CLR_G = '\x1b[32m';
 const HTML_INPUT = 'toc.html';
 const HTML_OUTPUT = 'pagelist.html';
 
-const isDebug = process.argv.slice(2).includes('--debug');
+const URL_PRODUCTION = 'https://coralpink.github.io/commentary/';
+const URL_LOCALHOST = 'http://localhost:8000/commentary/';
 
-const ROOT_PATH = isDebug
-  ? 'http://localhost:8000/commentary/'
-  : 'https://coralpink.github.io/commentary/';
+const args = process.argv.slice(2);
+
+const getArgValue = name => {
+  const index = args.indexOf(name);
+  return index >= 0 ? args[index + 1] : undefined;
+};
+
+const rootFromArg = getArgValue('--root');
+const isDebug = args.includes('--debug');
+
+const rootPath = rootFromArg ?? (isDebug ? URL_LOCALHOST : URL_PRODUCTION);
 
 const read = (path, options) => {
   try {
@@ -77,7 +86,7 @@ const minify = html =>
     if (!href) return;
 
     try {
-      const linkUrl = new URL(href, ROOT_PATH);
+      const linkUrl = new URL(href, rootPath);
       $a.attr('href', linkUrl.href);
     } catch {
       // Items that cannot be interpreted as URLs will be ignored.
@@ -87,7 +96,7 @@ const minify = html =>
   write(HTML_OUTPUT, minify($.html()));
 
   const time = Math.floor(performance.now() - start) / 1000;
-  console.info(`\n${CLR_BG}✔ ${CLR_BC}generate-pagelist${CLR_RESET} Finished in ${CLR_BG}${time} s${CLR_RESET}`);
+  console.info(`\n${CLR_BG}√ ${CLR_BC}generate-pagelist${CLR_RESET} Finished in ${CLR_BG}${time} s${CLR_RESET}`);
   console.info(` ${CLR_G}INFO${CLR_RESET} Build mode: ${isDebug ? 'debug' : 'production'}`);
-  console.info(` ${CLR_G}INFO${CLR_RESET} ROOT_PATH = ${ROOT_PATH}`);
+  console.info(` ${CLR_G}INFO${CLR_RESET} rootPath = ${rootPath}`);
 })();

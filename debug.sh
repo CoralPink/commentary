@@ -53,6 +53,7 @@ fi
 
 pushd commentary
 node ../scripts/generate-pagelist.js --debug
+#node ../scripts/generate-pagelist.js --root http://192.168.0.94:8000/commentary/
 node ../scripts/extract-json.js
 brotli searchindex.json
 gzip --best --keep --no-name searchindex.json
