@@ -1,6 +1,6 @@
 {
   "imports": {
-    "plyr": "npm:plyr@3.8.3",
+    "plyr": "npm:plyr@3.8.4",
     "rolldown": "npm:rolldown@1.0.0-beta.58",
     "terser": "npm:terser@5.44.1",
 
