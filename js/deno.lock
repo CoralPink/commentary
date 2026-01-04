@@ -8,7 +8,7 @@
     "npm:@rollup/plugin-terser@0.4.4": "0.4.4",
     "npm:@vitest/coverage-v8@4.0.16": "4.0.16_vitest@4.0.16__happy-dom@20.0.11__vite@7.3.0___terser@5.44.1___picomatch@4.0.3__terser@5.44.1_happy-dom@20.0.11_terser@5.44.1",
     "npm:happy-dom@^20.0.11": "20.0.11",
-    "npm:plyr@3.8.3": "3.8.3",
+    "npm:plyr@3.8.4": "3.8.4",
     "npm:rolldown@1.0.0-beta.58": "1.0.0-beta.58",
     "npm:terser@5.44.1": "5.44.1",
     "npm:vitest@4.0.16": "4.0.16_happy-dom@20.0.11_vite@7.3.0__terser@5.44.1__picomatch@4.0.3_terser@5.44.1"
@@ -716,8 +716,8 @@
     "picomatch@4.0.3": {
       "integrity": "sha512-5gTmgEY/sqK6gFXLIsQNH19lWb4ebPDLA4SdLP7dsWkIXHWlG66oPuVvXSGFPppYZz8ZDZq0dYYrbHfBCVUb1Q=="
     },
-    "plyr@3.8.3": {
-      "integrity": "sha512-0+iI5uw0WRvtKBpgPCkmQQv7ucHVQKTEo6UFJjgJ8cy/JZhy0dQqshHQVitHXV6l2O3MzhgnuvQ95VSkWcWeSw==",
+    "plyr@3.8.4": {
+      "integrity": "sha512-DrzLbK9Wol3zeiuZCleD9aUOl0KAaBHR9H6WVVVYPZ4Ya+LYxUFTgSF1jooHcMQCv96Ws96wCaZzIoP3bES8pQ==",
       "dependencies": [
         "core-js",
         "custom-event-polyfill",
@@ -944,7 +944,7 @@
       "npm:@rollup/plugin-terser@0.4.4",
       "npm:@vitest/coverage-v8@4.0.16",
       "npm:happy-dom@^20.0.11",
-      "npm:plyr@3.8.3",
+      "npm:plyr@3.8.4",
       "npm:rolldown@1.0.0-beta.58",
       "npm:terser@5.44.1",
       "npm:vitest@4.0.16"
