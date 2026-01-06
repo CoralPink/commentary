@@ -239,3 +239,126 @@ FUNCTION WILL RETURN
 ファンクションは帰ってくる
 </div>
 ```
+
+### It's A Small World
+
+<video preload="none" width="1280" height="720" data-poster="img/electorical_parade_dreamlights_part2-thumbnail.webp">
+  <source src="img/electorical_parade_dreamlights_part2.webm" type="video/webm">
+  Your browser does not support the video/webm.
+</video>
+
+<div style="color: #999999; font-size: 90%; text-align: center;">
+<div style="margin-top: 8em">
+it’s a world of laughter, a world of tears
+
+それは笑いに満ちた世界、そして涙の世界
+</div>
+
+<div style="margin-top: 4em">
+it’a world of hopes and a world of fears
+
+希望の世界だし 恐怖の世界でもある
+</div>
+
+<div style="margin-top: 4em">
+There’ s so much that we share that it’s time we’re aware
+
+分かち合えるものが こんなにもある そろそろ気づく時だ
+</div>
+
+<div style="margin-top: 4em">
+it’s a small world{{footnote:
+"I need one song that can be easily translated into many languages and be played as a round.
+(多くの言語に簡単に翻訳できて、輪唱として演奏できる、たった一曲が必要なんだ)"
+
+この Walt の言葉を受けた[Sherman Brothers](https://en.wikipedia.org/wiki/Sherman_Brothers)は 1962年、
+[キューバ危機](https://en.wikipedia.org/wiki/Cuban_Missile_Crisis)を背景に、
+平和と兄弟愛をテーマとした "It’s a Small World (After All)" を書き上げた。
+最初に Walt に披露したときは、ゆったりとしたバラード調だったが、
+Walt は "もっと明るい感じにしてほしい" と要望し、テンポを上げ、対位法 (カウンターポイント) で歌う形に変更された。
+完成形を聴いた Walt はこれをとても気に入っていた。
+
+この曲と、この曲の同名アトラクションのテーマ・コンセプトは 60年以上の時を経た今もなお、世代を超えて通じる力を持っている。
+[Wikipedia](https://en.wikipedia.org/wiki/It%27s_a_Small_World#Song)より
+}}
+after all
+
+それは 小さな世界なんだって
+</div>
+
+
+<div style="margin-top: 8em">
+it’s a small world after all
+
+世界は狭い
+</div>
+
+<div style="margin-top: 4em">
+it’s a small world after all
+
+世界は小さいんだ
+</div>
+
+<div style="margin-top: 4em">
+it’s a small world after all
+
+だって世界はひとつなんだから
+</div>
+
+<div style="margin-top: 4em">
+it’s a small, small world
+
+小さな、小さな世界
+</div>
+
+<div style="margin-top: 8em">
+There is just one moon and one golden sun
+
+そこにある ただひとつの月と ひとつの黄金の太陽
+</div>
+
+<div style="margin-top: 4em">
+And a smile means friendship to everyone
+
+そして 笑顔は誰にとっても友情を意味する
+</div>
+
+<div style="margin-top: 4em">
+Though the mountains divide and the ocneans are wide
+
+山が隔たり 海は遠くても それでも
+</div>
+
+<div style="margin-top: 4em">
+it’s a small world after all
+
+結局 小さな世界なんだから
+</div>
+
+
+<div style="margin-top: 8em">
+it’s a small world after all
+
+世界は狭い
+</div>
+
+<div style="margin-top: 4em">
+it’s a small world after all
+
+世界は小さいんだ
+</div>
+
+<div style="margin-top: 4em">
+it’s a small world after all
+
+だって世界はひとつなんだから
+</div>
+
+<div style="margin-top: 4em">
+it’s a small, small world
+
+小さな、小さな世界
+</div>
+
+<div style="margin-top: 8em"></div>
+</div>
