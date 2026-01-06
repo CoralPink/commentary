@@ -4,7 +4,7 @@
     "jsr:@std/fs@1.0.21": "1.0.21",
     "jsr:@std/internal@^1.0.12": "1.0.12",
     "jsr:@std/path@^1.1.4": "1.1.4",
-    "npm:sass@1.97.1": "1.97.1"
+    "npm:sass@1.97.2": "1.97.2"
   },
   "jsr": {
     "@std/fs@1.0.21": {
@@ -168,8 +168,8 @@
     "readdirp@4.1.2": {
       "integrity": "sha512-GDhwkLfywWL2s6vEjyhri+eXmfH6j1L7JE27WhqLeYzoh/A3DBaYGEj2H/HFZCn/kMfim73FXxEJTw06WtxQwg=="
     },
-    "sass@1.97.1": {
-      "integrity": "sha512-uf6HoO8fy6ClsrShvMgaKUn14f2EHQLQRtpsZZLeU/Mv0Q1K5P0+x2uvH6Cub39TVVbWNSrraUhDAoFph6vh0A==",
+    "sass@1.97.2": {
+      "integrity": "sha512-y5LWb0IlbO4e97Zr7c3mlpabcbBtS+ieiZ9iwDooShpFKWXf62zz5pEPdwrLYm+Bxn1fnbwFGzHuCLSA9tBmrw==",
       "dependencies": [
         "chokidar",
         "immutable",
@@ -193,7 +193,7 @@
   "workspace": {
     "dependencies": [
       "jsr:@std/fs@1.0.21",
-      "npm:sass@1.97.1"
+      "npm:sass@1.97.2"
     ]
   }
 }
