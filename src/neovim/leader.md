@@ -2,6 +2,18 @@
 
 前章でキーマップをやったので、この章では`Leader`キーを設定しておきましょう。
 
+```admonish tip title=""
+Who’s the leader of the club
+
+That’s made for you and me?
+
+君と僕のためにつくられた
+
+このクラブの真ん中にいるのはだあれ？
+```
+
+![Harmony in Color Part1 (Comming soon...)](img/harmony_in_color_part1-thumbnail.webp)
+
 ## nvim_set_var
 
 突然ですが、ここでニューヒーローをお迎えします❗その名も`nvim_set_var`❗😆
@@ -32,7 +44,7 @@ Captain Marvel は Marvel Comics が発行するアメリカン・コミック�
 現在のキャラクターは Carol Danvers である。
 体内に取り込んだ “ライトスピード・エンジン” のコアエネルギーによるスーパーパワーを得た直後、
 Kree の記憶改竄を受けて彼らに利用されるも、記憶を取り戻して反旗を翻し、銀河の各地で戦うヒーローとなる。
-[Captain_Marvel_(Marvel_Comics)](https://en.wikipedia.org/wiki/Captain_Marvel_(Marvel_Comics))
+[Wikipedia](https://en.wikipedia.org/wiki/Captain_Marvel_(Marvel_Comics))より
 }}みたいですね❗
 
 ~~~admonish tip
@@ -61,7 +73,7 @@ Shazam や the Captain としても知られる Captain Marvel は、アメリ�
 Shazam は Billy Batson の分身であり、魔法の言葉 "SHAZAM!"
 (6人の "不滅の長老 "の頭文字 `S`olomon, `H`ercules, `A`tlas, `Z`eus, `A`chilles, `M`ercury) を口にすることで、
 超人的な力、スピード、飛行能力などを持つコスチュームを着た大人に変身する。
-[Captain Marvel (DC Comics)](https://en.wikipedia.org/wiki/Captain_Marvel_(DC_Comics))
+[Wikipedia](https://en.wikipedia.org/wiki/Shazam_(DC_Comics))より
 }}のことらしいよ😉
 
 > ※ このサイトは Brie Larson のイメージだけで進んでます。
@@ -107,12 +119,17 @@ vim.api.nvim_set_var('mapleader', '\\')
 
 ### Example
 
-`WezTerm`の時にも挙げましたが、メジャーなのは以下に示すこの辺でしょうか😌
-
 配列は勿論、形状とかも含めて、使用するキーボードに依るので一概には言えないんですが、
 「変えた方がいいよー」って人もいるし、「別に変えてないよー」って人もいます。
 
+<video preload="none" width="1280" height="720" data-poster="img/electorical_parade_dreamlights_part1-thumbnail.webp">
+  <source src="img/electorical_parade_dreamlights_part1.webm" type="video/webm">
+  Your browser does not support the video/webm.
+</video>
+
 つまり自由ってことです❗
+
+`WezTerm`の時にも挙げましたが、メジャーなのは以下に示すこの辺でしょうか😌
 
 #### Space
 
@@ -187,6 +204,16 @@ global プラグインでは <Leader> を、filetype プラグインでは <Loca
 ```
 ~~~
 
+```admonish tip title=""
+Forever let us hold our banner high
+
+いつまでも僕らの旗を高く掲げよう
+```
+
+```admonish tip title=""
+H I G H❗ H I G H❗ H I G H❗
+```
+
 ### Example
 
 こっちはなんか<kbd>_</kbd>がメジャーらしい...🤔
@@ -216,19 +243,12 @@ vim.api.nvim_set_var('maplocalleader', '_')
 
 ## Wrap Up
 
-```admonish success
 リーダーキーはこんなもんかな☺️
 
 あともうひとつだけ章を挟んだら、いよいよプラグインが登場します。
 これもやっぱり「もう嫌❗🙀」ってなるぐらい`Leader`キーに触れられます。
 
 ドキドキ...❗
-```
-
-<video preload="none" width="1280" height="720" data-poster="img/kyobashi2025-kanda2024-mix-thumbnail.webp">
-  <source src="img/kyobashi2025-kanda2024-mix.webm" type="video/webm">
-  Your browser does not support the video/webm.
-</video>
 
 ```admonish success title=""
 <div style="text-align: center">
@@ -237,4 +257,63 @@ vim.api.nvim_set_var('maplocalleader', '_')
 
   リーダーキーとキャプテン・マーベルは帰ってくる
 </div>
+```
+
+```admonish tip title=""
+Come along and sing the song
+
+And join the jamboree
+
+さあ一緒に歌おう
+
+お祭りの輪に加わるんだ
+```
+
+<video preload="none" width="1280" height="720" data-poster="img/kyobashi2025-kanda2024-mix-thumbnail.webp">
+  <source src="img/kyobashi2025-kanda2024-mix.webm" type="video/webm">
+  Your browser does not support the video/webm.
+</video>
+
+```admonish tip title=""
+We’ll have fun, we’ll meet new faces
+
+We’ll do things and we’ll go places
+
+楽しいことをして、新しい顔に出会う
+
+いろんなことをして、いろんな場所へ行く
+```
+
+```admonish tip title=""
+All around the world we’re marching
+
+世界を巡る 僕らの行進だ
+```
+
+![Harmony in Color Part2 (Comming soon...)](img/harmony_in_color_part2-thumbnail.webp)
+
+```admonish tip title=""
+M - I - C - K - E - Y
+
+M - O - U - S - E ❗{{footnote: Mickey Mouse March は、
+1955年10月から 1959年までアメリカ[ABC](https://en.wikipedia.org/wiki/American_Broadcasting_Company)
+により放送されたテレビ番組[The Mickey Mouse Club](https://en.wikipedia.org/wiki/The_Mickey_Mouse_Club)のオープニングテーマである。
+各エピソードのラストでは、テンポを落とした "it’s time to say goodbye (さよならの時間だよ)" というヴァースを伴って再演されていた。
+番組のオープニングでは、この曲の一部が[Jiminy Cricket](https://en.wikipedia.org/wiki/Jiminy_Cricket)によって歌われている。
+
+またエンディングでは、
+[Donald Duck](https://en.wikipedia.org/wiki/Donald_Duck)が Mickey Mouse Club と書かれたゴングを叩こうとするが、
+雷に打たれてしまったり、ゴングだと思ったものが実はパイだったり、
+あるいは三角鉄を叩いて終わるなど、コミカルなオチがつくのがお約束だった。
+
+この曲はその後、[Mickey Mouse](https://en.wikipedia.org/wiki/Mickey_Mouse)というキャラクター、
+そしてその[フランチャイズ](https://en.wikipedia.org/wiki/Mickey_Mouse_universe)全体を象徴するテーマソングとして定着していった。
+
+この曲は、The Mickey Mouse Club の司会者でもあった[Jimmie Dodd](https://en.wikipedia.org/wiki/Jimmie_Dodd)によって作詞・作曲され、
+1955年7月1日に[Hal Leonard Corporation](https://en.wikipedia.org/wiki/Hal_Leonard)から出版された。
+
+ギタリストであり音楽家でもあった Dodd は、[Walt Disney](https://en.wikipedia.org/wiki/Walt_Disney)にソングライターとして雇われ、
+番組の中で使われた他の多くの楽曲 ――例えば番組内で歌われた "theme day" なども手がけている。
+[Wikipedia](https://en.wikipedia.org/wiki/Mickey_Mouse_March)より
+}}
 ```
