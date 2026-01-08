@@ -116,7 +116,6 @@ const initExtensions = (html: HTMLElement): void => {
 
       // TODO: After Firefox 147 is released, delete it at an appropriate time!!
       if (USE_LEGACY_NAVIGATION) {
-        console.info('This browser will become unsupported shortly after the release of Firefox 147');
         ensureExtensionLoaded(article, `${ROOT_PATH}legacy-navigation.js`);
       }
 
