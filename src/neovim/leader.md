@@ -304,7 +304,7 @@ M - O - U - S - E ❗{{footnote: Mickey Mouse March は、
 またエンディングでは、
 [Donald Duck](https://en.wikipedia.org/wiki/Donald_Duck)が Mickey Mouse Club と書かれたゴングを叩こうとするが、
 雷に打たれてしまったり、ゴングだと思ったものが実はパイだったり、
-あるいは三角鉄を叩いて終わるなど、コミカルなオチがつくのがお約束だった。
+あるいはトライアングルを叩いて終わるなど、コミカルなオチがつくのがお約束だった。
 
 この曲はその後、[Mickey Mouse](https://en.wikipedia.org/wiki/Mickey_Mouse)というキャラクター、
 そしてその[フランチャイズ](https://en.wikipedia.org/wiki/Mickey_Mouse_universe)全体を象徴するテーマソングとして定着していった。
