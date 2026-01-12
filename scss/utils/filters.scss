@@ -3,14 +3,14 @@
 
 @mixin glass($blur: 3px, $saturate: 1.8, $brightness: 1.04, $overlay-alpha: 0.08, $base-alpha: 0.5, $radius: 1.6rem) {
   overflow: hidden;
-  border: 1px solid hsl(var(--theme-popup-border-h) var(--theme-popup-border-s) var(--theme-popup-border-l) / 0.8);
+  border: 1px solid var(--popup-border);
   border-radius: $radius;
 
   &::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(ellipse at top left, hsl(var(--theme-popup-bg-h), var(--theme-popup-bg-s), var(--theme-popup-bg-l), $overlay-alpha), transparent);
+    background: radial-gradient(ellipse at top left, hsl(var(--popup-bg-h), var(--popup-bg-s), var(--popup-bg-l), $overlay-alpha), transparent);
     z-index: 10;
     pointer-events: none;
   }
@@ -20,7 +20,7 @@
     position: absolute;
     inset: 0;
     backdrop-filter: blur($blur) saturate($saturate) brightness($brightness);
-    background: hsl(var(--theme-popup-bg-h), var(--theme-popup-bg-s), var(--theme-popup-bg-l), $base-alpha);
+    background: hsl(var(--popup-bg-h), var(--popup-bg-s), var(--popup-bg-l), $base-alpha);
     z-index: 1;
   }
 
