@@ -292,27 +292,32 @@ vim.keymap.set('n', 's', '"_s')
 ...って、ちょっと紹介したい欲が出てしまった🙀
 ~~~
 
-```admonish warning
-念のために明示しておくんですが、このページに挙げた例もWebなどでわたしが見たアイデアをマネしてます。
+```admonish danger
+念のために明示しておくんですが、このページに挙げた例も Web などで見たアイデアをマネしてます。
 
 実際に誰をマネしているのかがもう分からなくなっているので、ちゃんと参照元を示せない点は、ごめんなさい🥹
 
-「これはわたしが発案してます😆」みたいに見えちゃうのは絶対に望んでないです。
+"これはわたしが発案してまぁす😆" みたいに見えちゃうのは絶対に望んでないです。
 ```
+
+ってことで、この章では雰囲気だけ掴めれば、充分です😉
+
+もう少し進むと「もう嫌❗🙀」ってなるぐらい実用的なキーカスタマイズに触れて行くことになります。
+
+<video preload="none" width="1280" height="720" data-poster="img/bycycle_piano-thumbnail.webp">
+  <source src="img/bycycle_piano.webm" type="video/webm">
+  Your browser does not support the video/webm.
+</video>
+
+でもだいじょうぶ、心配しないで🤗
+
+Ha-ha❗
 
 ```admonish success
-ほんとしつこいようなんですけど、キーマップのカスタマイズは個人の感覚に依るので、根拠らしい根拠も出てこないですよね😅
-
-この章では雰囲気だけ掴めれば、充分です😉
-
-ただ、もう少し進むと「もう嫌❗🙀」ってなるぐらい実用的なキーカスタマイズに触れて行くことになります。
-```
-
-```admonish success title=""
 <div style="text-align: center">
 
-  KEYMAP WILL RETURN
+LEADER IS COMING
 
-  キーマップは帰ってくる
+リーダーがやって来る
 </div>
 ```

@@ -12,7 +12,10 @@ That’s made for you and me?
 このクラブの真ん中にいるのはだあれ？
 ```
 
-![Harmony in Color Part1 (Comming soon...)](img/harmony_in_color_part1-thumbnail.webp)
+<video preload="none" width="1280" height="720" data-poster="img/harmony_in_color_part1-thumbnail.webp">
+  <source src="img/harmony_in_color_part1.webm" type="video/webm">
+  Your browser does not support the video/webm.
+</video>
 
 ## nvim_set_var
 
@@ -287,10 +290,13 @@ We’ll do things and we’ll go places
 ```admonish tip title=""
 All around the world we’re marching
 
-世界を巡る 僕らの行進だ
+世界を巡る 僕らのマーチだ
 ```
 
-![Harmony in Color Part2 (Comming soon...)](img/harmony_in_color_part2-thumbnail.webp)
+<video preload="none" width="1280" height="720" data-poster="img/harmony_in_color_part2-thumbnail.webp">
+  <source src="img/harmony_in_color_part2.webm" type="video/webm">
+  Your browser does not support the video/webm.
+</video>
 
 ```admonish tip title=""
 M - I - C - K - E - Y
