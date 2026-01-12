@@ -24,7 +24,6 @@
     gap: 1rem;
 
     .arrow {
-      background: hsl(var(--theme-popup-border-h), var(--theme-popup-border-s), var(--theme-popup-border-l), 0.4);
       color: var(--fg);
       border-radius: 0.8rem;
       padding: 0.4rem;
@@ -51,7 +50,7 @@
         user-select: none;
 
         &.active {
-          outline: 2px solid var(--sidebar-active);
+          outline: 2px solid var(--hover-fg);
         }
 
         &:hover {

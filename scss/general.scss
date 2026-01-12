@@ -120,6 +120,7 @@ body {
 }
 
 #sidebar {
+  color: var(--fg);
   scrollbar-color: var(--scrollbar) var(--bg);
 
   ::-webkit-scrollbar {
@@ -132,6 +133,7 @@ body {
   }
 
   @media (max-width: var.$breakpoint-ui-wide) {
+    color: var(--sidebar-fg);
     position: fixed;
     top: calc(var.$menu-bar-height + env(safe-area-inset-top));
     height: calc(99dvh - (var.$menu-bar-height + env(safe-area-inset-top)));
@@ -173,22 +175,24 @@ body {
 
         &>a {
           display: block;
-          color: var(--sidebar-fg);
+          color: inherit;
           text-decoration: none;
 
           &:hover {
-            color: var(--sidebar-active);
-            background: linear-gradient(to right, var(--sidebar-bg) 64%, var(--bg));
+            color: var(--links);
+            background: linear-gradient(to right, rgb(var(--hover-fg-r), var(--hover-fg-g), var(--hover-fg-b)), 40%, transparent);
+            background-size: 100% 0.16rem;
+            background-position: bottom;
+            background-repeat: no-repeat;
           }
 
           &.active {
-            color: var(--toc-fg);
-            background: linear-gradient(to right, var(--toc-bg) 64%, var(--bg));
+            color: var(--active-fg);
+            background: linear-gradient(to right, rgb(var(--active-bg-r), var(--active-bg-g), var(--active-bg-b)) 64%, transparent);
           }
         }
 
         &.part-title {
-          color: var(--sidebar-fg);
           margin: 1.2rem auto 0.2rem;
           font-weight: bold;
           background: linear-gradient(to right, var.$color_pink, var(--sidebar-bg));

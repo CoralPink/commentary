@@ -1,12 +1,12 @@
 @use "sass:color" as c;
 
-@mixin rgb($color, $prefix) {
+@mixin rgb($color-map) {
   @each $name, $color in $color-map {
     --#{$name}: #{$color};
 
-    --#{$prefix}-rgb: #{c.channel($color, "red")},
-    #{c.channel($color, "green")},
-    #{c.channel($color, "blue")};
+    --#{$name}-r: #{c.channel($color, "red")};
+    --#{$name}-g: #{c.channel($color, "green")};
+    --#{$name}-b: #{c.channel($color, "blue")};
   }
 }
 
