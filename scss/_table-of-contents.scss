@@ -3,18 +3,21 @@
 
 $toc-inline-offset: 5rem !default;
 
-@mixin anchor-gradient($angle) {
-  color: var(--fg);
+@mixin anchor-gradient($color, $angle) {
+  color: $color;
   text-decoration: none;
 
   &:hover {
-    color: var(--sidebar-active);
-    background: linear-gradient($angle, var(--sidebar-bg) 64%, var(--bg));
+    color: var(--links);
+    background: linear-gradient($angle, rgb(var(--hover-fg-r), var(--hover-fg-g), var(--hover-fg-b)), 40%, transparent);
+    background-size: 100% 0.16rem;
+    background-position: bottom;
+    background-repeat: no-repeat;
   }
 
   &.active {
-    color: var(--toc-fg);
-    background: linear-gradient($angle, var(--toc-bg) 64%, var(--bg));
+    color: var(--active-fg);
+    background: linear-gradient($angle, rgb(var(--active-bg-r), var(--active-bg-g), var(--active-bg-b)) 64%, transparent);
   }
 }
 
@@ -53,7 +56,7 @@ $toc-inline-offset: 5rem !default;
     border-left: 1px solid var.$color-pink;
 
     a {
-      @include anchor-gradient(to right);
+      @include anchor-gradient(var(--sidebar-fg), to right);
 
       padding-bottom: 0.5em;
       padding-top: 0.5em;
@@ -117,7 +120,7 @@ $toc-inline-offset: 5rem !default;
       align-items: center;
       white-space: nowrap;
 
-      @include anchor-gradient(to top);
+      @include anchor-gradient(var(--fg), to top);
     }
   }
 }

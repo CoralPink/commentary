@@ -2,9 +2,17 @@
 
 /* https://highlightjs.readthedocs.io/en/latest/css-classes-reference.html */
 
-$popup-colors: (
-  "theme-popup-bg": #e6e9ef,
-  "theme-popup-border": #9ca0b0
+$active: (
+  active-bg: #fff8c5,
+  active-fg: #1f2328,
+);
+
+$hover: (
+  hover-fg: #1e66f5,
+);
+
+$popup: (
+  popup-bg: #e6e9ef,
 );
 
 :root {
@@ -13,7 +21,6 @@ $popup-colors: (
   --sidebar-bg: #e6e9ef;
   --sidebar-fg: #24273a;
   --sidebar-non-existant: #9ca0b0;
-  --sidebar-active: #1e66f5;
   --sidebar-spacer: #9ca0b0;
   --scrollbar: #9ca0b0;
   --icons: #9ca0b0;
@@ -37,12 +44,16 @@ $popup-colors: (
   --warning-border: #fe640b;
   --color-scheme: light;
 
+  --popup-border: #9ca0b0;
   --toc-bg: #fff8c5;
   --toc-fg: #1f2328;
   --search-score: #40a02b;
   --blockquote-color: #9e9e9e;
 
-  @include utils.convert-hsl($popup-colors, 10%);
+  @include utils.convert-rgb($hover);
+  @include utils.convert-rgb($active);
+
+  @include utils.convert-hsl($popup, 10%);
 }
 
 .hljs-keyword {

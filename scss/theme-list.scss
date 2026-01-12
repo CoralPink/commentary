@@ -24,7 +24,7 @@ kbd,
     text-align: left;
     cursor: pointer;
     color: var(--fg);
-    background-color: var(--theme-popup-bg);
+    background-color: var(--popup-bg);
 
     &:hover {
       background-color: var(--theme-hover);
