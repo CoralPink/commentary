@@ -1,5 +1,6 @@
 import type { Disposer } from './types.ts';
 
+import { setHTML } from '../utils/html-sanitizer.ts';
 import { initWorker } from '../webworker/hl-initialize.ts';
 import { isErrorPayload, type Payload, type SendToWorker } from '../webworker/hl-types.ts';
 
@@ -63,7 +64,7 @@ const highlight = (code: HTMLElement): void => {
       return;
     }
     code.setAttribute('translate', 'no');
-    code.innerHTML = res.highlightCode;
+    setHTML(code, res.highlightCode);
 
     if (res.needNerdFonts) {
       code.style.fontFamily = `${globalThis.getComputedStyle(code).fontFamily}, 'Symbols Nerd Font Mono'`;
