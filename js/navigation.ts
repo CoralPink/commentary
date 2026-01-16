@@ -3,6 +3,8 @@ import { type NavigationContext, prepareNavigation } from './context.ts';
 import { externalLinkProc, isExternalLink } from './link.ts';
 import { bootThemeColor } from './theme-selector.ts';
 
+import { setHTML } from './utils/html-sanitizer.ts';
+
 const PAGE_NO_TITLE = '(No Title) - Commentary of Dotfiles';
 
 const dataLayer = ((globalThis as { dataLayer?: DataLayerEvent[] }).dataLayer ??= []);
@@ -18,7 +20,7 @@ const pushPageViewEvent = (ctx: NavigationContext): void => {
 let currentUrl = new URL(globalThis.location.href);
 
 const forceReload = (url: URL, msg: string = 'forceReload'): void => {
-  location.href = url.href;
+  location.assign(url.href);
   console.warn(msg);
 };
 
@@ -31,7 +33,7 @@ const applyNavigation = (ctx: NavigationContext, navigationType: string): void =
   }
 
   document.title = ctx.title.textContent ?? PAGE_NO_TITLE;
-  article.innerHTML = ctx.article.innerHTML;
+  setHTML(article, ctx.article.innerHTML);
 
   article.dispatchEvent(new Event(CONTENT_READY, { bubbles: true }));
 

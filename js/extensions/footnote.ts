@@ -1,5 +1,7 @@
 import type { Disposer } from './types.ts';
 
+import { setHTML } from '../utils/html-sanitizer.ts';
+
 const POTISION_GAP = 10;
 
 const calcTop = (target: HTMLElement, pop: HTMLElement): number => {
@@ -31,8 +33,7 @@ const closeFootnotePop = (target: HTMLElement, elm: HTMLElement): void => {
   elm.addEventListener('transitionend', handleTransitionEnd);
 };
 
-const insertFootnote = (pop: HTMLElement, footnote: HTMLElement): void => {
-  pop.insertAdjacentHTML('afterbegin', footnote.innerHTML);
+const insertFootnote = (pop: HTMLElement): void => {
   const sup = pop.querySelector('p > sup a[href^="#to-ft-"]');
 
   if (!sup) {
@@ -86,7 +87,8 @@ const handleFootnoteClick = (ev: Event): void => {
   pop.setAttribute('role', 'tooltip');
   pop.setAttribute('id', popIdStr);
 
-  insertFootnote(pop, footnote);
+  setHTML(pop, footnote.innerHTML);
+  insertFootnote(pop);
 
   requestAnimationFrame(() => {
     pop.classList.add('show');

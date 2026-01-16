@@ -42,7 +42,6 @@ export default defineConfig([
   makeConfig('./extensions/codeblock.ts'),
   makeConfig('./extensions/footnote.ts'),
   makeConfig('./extensions/media.ts'),
-//  makeConfig('./extensions/replace-dom.ts'),
   makeConfig('./extensions/slider.ts'),
 
   makeConfig('./webworker/hl-worker.ts'),

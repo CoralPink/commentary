@@ -3,6 +3,7 @@ import { initMark, unmarking } from './mark.ts';
 
 import { loadStyleSheet } from './utils/css-loader.ts';
 import { fetchAndDecompress } from './utils/fetch.ts';
+import { setHTML } from './utils/html-sanitizer.ts';
 import { debounce } from './utils/timing.ts';
 
 // deno-lint-ignore no-sloppy-imports
@@ -49,11 +50,13 @@ const showResults = (): void => {
   const result = finder.search(elmSearchBar.value.trim()) as SearchResult;
 
   elmHeader.textContent = result.header;
-  elmResults.textContent = '';
 
-  if (result.html !== undefined) {
-    elmResults.insertAdjacentHTML('beforeend', result.html);
+  if (result.html === undefined) {
+    elmResults.textContent = '';
+    return;
   }
+
+  setHTML(elmResults, result.html);
 };
 
 const checkURL = (url: URL): boolean =>
