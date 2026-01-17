@@ -2,17 +2,17 @@ import type { Disposer } from './types.ts';
 
 import { setHTML } from '../utils/html-sanitizer.ts';
 
-const POTISION_GAP = 10;
+const POSITION_GAP = 10;
 
 const calcTop = (target: HTMLElement, pop: HTMLElement): number => {
   const rect = target.getBoundingClientRect();
   const popHeight = pop.offsetHeight;
 
-  const top = rect.bottom + POTISION_GAP;
+  const top = rect.bottom + POSITION_GAP;
 
   // Flip above if overflowing viewport bottom
-  if (top + popHeight > globalThis.innerHeight - POTISION_GAP) {
-    return rect.top - popHeight - POTISION_GAP;
+  if (top + popHeight > globalThis.innerHeight - POSITION_GAP) {
+    return rect.top - popHeight - POSITION_GAP;
   }
   return top;
 };

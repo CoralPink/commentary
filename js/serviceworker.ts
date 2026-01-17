@@ -60,7 +60,11 @@ self.addEventListener('install', (event: ExtendableEvent): void => {
       const cache = await caches.open(CACHE_VERSION);
 
       await Promise.allSettled(
-        installList.map(path => cache.add(CACHE_URL + path).catch(e => console.warn('Precache failed:', path, e))),
+        installList.map(path =>
+          cache.add(CACHE_URL + path).catch(e => {
+            console.warn('Precache failed:', path, e);
+          }),
+        ),
       );
     })(),
   );
