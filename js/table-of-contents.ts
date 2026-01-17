@@ -150,8 +150,6 @@ export const initTableOfContents = (html: HTMLElement): (() => void) => {
   });
 
   return (): void => {
-    tocReset();
-
     tocMap.clear();
     observer.disconnect();
 
