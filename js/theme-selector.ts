@@ -2,9 +2,11 @@ import { ROOT_PATH } from './constants.ts';
 
 import { loadStyleSheet, unloadStyleSheet } from './utils/css-loader.ts';
 import { readLocalStorage, writeLocalStorage } from './utils/storage.ts';
+import { toast } from './utils/toast.ts';
+import type { AbortableOptions } from './utils/type.ts';
 
-const THEME_DIRECTORY = 'css/catppuccin/';
-const STYLE_THEMELIST = 'css/theme-list.css';
+const THEME_DIRECTORY = `${ROOT_PATH}css/catppuccin/`;
+const THEME_STYLE = `${ROOT_PATH}css/theme-list.css`;
 
 type ThemeColor = {
   readonly id: string;
@@ -36,22 +38,38 @@ const ID_THEME_LIST = 'theme-list';
 const CLASS_THEME = 'theme';
 
 let currentSelect: ThemeColorId = themeColors[1].id;
+let styleAbortController: AbortController | null = null;
 
 const prefersColor = matchMedia('(prefers-color-scheme: dark)');
 const isDarkThemeRequired = (): boolean => prefersColor.matches;
 
-const loadStyle = (style: ThemeColorId): Promise<void> =>
-  loadStyleSheet(`${ROOT_PATH}${THEME_DIRECTORY}${style}.css`).catch(async err => {
-    console.error(`Failed to load theme style '${style}':`, err);
+const abortable = (signal?: AbortSignal): AbortableOptions => (signal ? { signal } : {});
+
+const loadStyle = async (style: ThemeColorId, signal?: AbortSignal): Promise<void> => {
+  const abortableOptions = abortable(signal);
+
+  try {
+    await loadStyleSheet(`${THEME_DIRECTORY}${style}.css`, abortableOptions);
+  } catch (err) {
+    if (signal?.aborted) {
+      return;
+    }
+
+    console.error(`Failed to load ${style} theme`, err);
+    toast.warning(`Failed to load "${style}" theme. Fallback applied.`);
 
     const fallback = isDarkThemeRequired() ? PREFERRED_DARK_THEME : DEFAULT_THEME;
-    await loadStyleSheet(`${ROOT_PATH}${THEME_DIRECTORY}${fallback}.css`);
-  });
+    await loadStyleSheet(`${THEME_DIRECTORY}${fallback}.css`, abortableOptions);
+  }
+};
 
 const setTheme = async (next: ThemeColorId): Promise<void> => {
   if (currentSelect === next) {
     return;
   }
+
+  styleAbortController?.abort();
+  styleAbortController = new AbortController();
 
   // Skip UI updates if menu not initialized
   if (!document.getElementById(ID_THEME_LIST)) {
@@ -59,19 +77,25 @@ const setTheme = async (next: ThemeColorId): Promise<void> => {
   }
 
   const currentButton = document.getElementById(currentSelect);
-  const nextButton = document.getElementById(next);
 
   if (!currentButton) {
-    console.error(`Current theme button id not found: ${currentSelect}`);
-    return;
-  }
-  if (!nextButton) {
-    console.error(`Next theme button id not found: ${next}`);
+    console.error(`Current theme id not found: ${currentSelect}`);
     return;
   }
 
-  const loadStylePromise = loadStyle(next).then(() => {
-    unloadStyleSheet(`${ROOT_PATH}${THEME_DIRECTORY}${currentSelect}.css`);
+  const nextButton = document.getElementById(next);
+
+  if (!nextButton) {
+    console.error(`Next theme id not found: ${next}`);
+    return;
+  }
+
+  const loadStylePromise = loadStyle(next, styleAbortController.signal).then(() => {
+    unloadStyleSheet(`${THEME_DIRECTORY}${currentSelect}.css`);
+
+    const appearance = isDarkThemeRequired() ? KEY_DARK : KEY_LIGHT;
+    writeLocalStorage(`${KEY_SAVE_STORAGE}${appearance}`, next);
+
     currentSelect = next;
   });
 
@@ -81,14 +105,18 @@ const setTheme = async (next: ThemeColorId): Promise<void> => {
   nextButton.classList.add(THEME_SELECTED);
   nextButton.setAttribute('aria-current', 'true');
 
-  const appearance = isDarkThemeRequired() ? KEY_DARK : KEY_LIGHT;
-  writeLocalStorage(`${KEY_SAVE_STORAGE}${appearance}`, next);
-
   await loadStylePromise;
 };
 
 const initThemeSelector = async (): Promise<void> => {
-  await loadStyleSheet(`${ROOT_PATH}${STYLE_THEMELIST}`);
+  const promiseStyle = loadStyleSheet(THEME_STYLE);
+
+  const append = document.getElementById(LIST_APPEND_ID);
+
+  if (!append) {
+    console.error(`not found: ${LIST_APPEND_ID}`);
+    return;
+  }
 
   const themeList = document.createElement('ul');
 
@@ -129,7 +157,9 @@ const initThemeSelector = async (): Promise<void> => {
     { once: false, passive: true },
   );
 
-  document.getElementById(LIST_APPEND_ID)?.appendChild(themeList);
+  append.appendChild(themeList);
+
+  await promiseStyle;
   themeList.showPopover();
 };
 
