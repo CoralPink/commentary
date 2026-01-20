@@ -222,9 +222,14 @@ export const bootThemeColor = (): Promise<void> => {
       toast.warning(`Failed to load ${loadTheme} color theme!`);
       toast.warning('(Attempting to apply the default theme...)');
 
-      // If this fails, I'll just give up...!!
-      const fallback = await applyTheme(isDarkTheme ? DEFAULT_DARK : DEFAULT_LIGHT);
-      currentSelect = fallback;
+      try {
+        const fallback = await applyTheme(isDarkTheme ? DEFAULT_DARK : DEFAULT_LIGHT);
+        currentSelect = fallback;
+      } catch (fallbackErr: unknown) {
+        // If this fails, I'll just give up...!!
+        console.error('Fallback theme also failed:', fallbackErr);
+        toast.warning('Unable to load any theme.');
+      }
     });
 
   prefersColor.addEventListener('change', changeEvent, {
