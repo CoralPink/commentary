@@ -53,7 +53,7 @@ const applyTheme = async (next: ThemeColorId, signal?: AbortSignal): Promise<App
     if (signal?.aborted) {
       return null;
     }
-    toast.warning(`Failed to load "${next}" theme. Fallback applied.`);
+    toast.warning(`Failed to load "${next}" theme...`);
     throw err;
   }
 
@@ -119,14 +119,16 @@ const selectItem = (ev: MouseEvent): void => {
   styleAbortController?.abort();
   styleAbortController = new AbortController();
 
-  applyTheme(item.id as ThemeColorId, styleAbortController.signal).then((result: ApplyThemeResult) => {
-    if (!result) {
-      return;
-    }
-    update(result);
-  }).catch((err: unknown) => {
-    console.error('Theme selection failed:', err);
-  });
+  applyTheme(item.id as ThemeColorId, styleAbortController.signal)
+    .then((result: ApplyThemeResult) => {
+      if (!result) {
+        return;
+      }
+      update(result);
+    })
+    .catch((err: unknown) => {
+      console.error('Theme selection failed:', err);
+    });
 };
 
 const initThemeSelector = async (): Promise<void> => {
@@ -180,12 +182,16 @@ const changeEvent = (ev: MediaQueryListEvent): void => {
   styleAbortController?.abort();
   styleAbortController = new AbortController();
 
-  applyTheme(theme as ThemeColorId, styleAbortController.signal).then((result: ApplyThemeResult) => {
-    if (result === null) {
-      return;
-    }
-    update(result);
-  });
+  applyTheme(theme as ThemeColorId, styleAbortController.signal)
+    .then((result: ApplyThemeResult) => {
+      if (result === null) {
+        return;
+      }
+      update(result);
+    })
+    .catch((err: unknown) => {
+      console.error('Theme change event failed:', err);
+    });
 };
 
 export const bootThemeColor = (): Promise<void> => {
