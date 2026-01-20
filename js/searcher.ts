@@ -5,6 +5,7 @@ import { loadStyleSheet } from './utils/css-loader.ts';
 import { fetchAndDecompress } from './utils/fetch.ts';
 import { setHTML } from './utils/html-sanitizer.ts';
 import { debounce } from './utils/timing.ts';
+import { toast } from './utils/toast.ts';
 
 // deno-lint-ignore no-sloppy-imports
 import initWasm, { Finder } from './wasm_book.js';
@@ -252,13 +253,12 @@ const bootSearch = async (): Promise<void> => {
     showSearch();
   } catch (e: unknown) {
     console.error(`Error during initialization: ${e}`);
-    console.info('The search function is disabled.');
 
     for (const x of elmSearch) {
       x.style.display = 'none';
     }
 
-    alert('Search is currently unavailable.');
+    toast.warning('Search is currently unavailable.');
   }
 };
 
