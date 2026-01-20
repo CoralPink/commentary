@@ -175,8 +175,8 @@ const initThemeSelector = async (): Promise<void> => {
 };
 
 const changeEvent = (ev: MediaQueryListEvent): void => {
-  const appearance = ev.matches ? KEY_DARK : KEY_LIGHT;
-  const theme = readLocalStorage(`${KEY_SAVE_STORAGE}${appearance}`) ?? (ev.matches ? DEFAULT_DARK : DEFAULT_LIGHT);
+  const storedTheme = readLocalStorage(`${KEY_SAVE_STORAGE}${ev.matches ? KEY_DARK : KEY_LIGHT}`);
+  const theme = storedTheme ?? (ev.matches ? DEFAULT_DARK : DEFAULT_LIGHT);
 
   styleAbortController?.abort();
   styleAbortController = new AbortController();
@@ -186,7 +186,12 @@ const changeEvent = (ev: MediaQueryListEvent): void => {
       if (result === null) {
         return;
       }
-      update(result);
+      syncThemeUI(result);
+
+      if (storedTheme !== null) {
+        saveStorage(result);
+      }
+      currentSelect = result;
     })
     .catch((err: unknown) => {
       console.error('Theme change event failed:', err);
