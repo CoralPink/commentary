@@ -124,6 +124,8 @@ const selectItem = (ev: MouseEvent): void => {
       return;
     }
     update(result);
+  }).catch((err: unknown) => {
+    console.error('Theme selection failed:', err);
   });
 };
 
