@@ -22,9 +22,10 @@ const themeColors = [
 ] as const satisfies readonly ThemeColor[];
 
 type ThemeColorId = (typeof themeColors)[number]['id'];
+type ApplyThemeResult = ThemeColorId | null;
 
-const DEFAULT_THEME: ThemeColorId = themeColors[1].id;
-const PREFERRED_DARK_THEME: ThemeColorId = themeColors[3].id;
+const DEFAULT_LIGHT: ThemeColorId = themeColors[1].id;
+const DEFAULT_DARK: ThemeColorId = themeColors[3].id;
 
 const KEY_SAVE_STORAGE = 'mdbook-theme';
 const KEY_DARK = ':dark';
@@ -32,12 +33,12 @@ const KEY_LIGHT = ':light';
 
 const THEME_SELECTED = 'theme-selected';
 const TARGET_THEME_SELECTOR = 'theme-selector';
-const LIST_APPEND_ID = 'page';
 
+const ID_PAGE = 'page';
 const ID_THEME_LIST = 'theme-list';
 const CLASS_THEME = 'theme';
 
-let currentSelect: ThemeColorId = themeColors[1].id;
+let currentSelect: ThemeColorId | null = null;
 let styleAbortController: AbortController | null = null;
 
 const prefersColor = matchMedia('(prefers-color-scheme: dark)');
@@ -45,76 +46,94 @@ const isDarkThemeRequired = (): boolean => prefersColor.matches;
 
 const abortable = (signal?: AbortSignal): AbortableOptions => (signal ? { signal } : {});
 
-const loadStyle = async (style: ThemeColorId, signal?: AbortSignal): Promise<void> => {
-  const abortableOptions = abortable(signal);
-
+const applyTheme = async (next: ThemeColorId, signal?: AbortSignal): Promise<ApplyThemeResult> => {
   try {
-    await loadStyleSheet(`${THEME_DIRECTORY}${style}.css`, abortableOptions);
-  } catch (err) {
+    await loadStyleSheet(`${THEME_DIRECTORY}${next}.css`, abortable(signal));
+  } catch (err: unknown) {
     if (signal?.aborted) {
-      return;
+      return null;
     }
-
-    console.error(`Failed to load ${style} theme`, err);
-    toast.warning(`Failed to load "${style}" theme. Fallback applied.`);
-
-    const fallback = isDarkThemeRequired() ? PREFERRED_DARK_THEME : DEFAULT_THEME;
-    await loadStyleSheet(`${THEME_DIRECTORY}${fallback}.css`, abortableOptions);
+    toast.warning(`Failed to load "${next}" theme. Fallback applied.`);
+    throw err;
   }
+
+  if (currentSelect !== null) {
+    unloadStyleSheet(`${THEME_DIRECTORY}${currentSelect}.css`);
+  }
+
+  return next;
 };
 
-const setTheme = async (next: ThemeColorId): Promise<void> => {
-  if (currentSelect === next) {
+const syncThemeUI = (next: ThemeColorId): void => {
+  if (document.getElementById(ID_THEME_LIST) === null) {
     return;
   }
-
-  styleAbortController?.abort();
-  styleAbortController = new AbortController();
-
-  // Skip UI updates if menu not initialized
-  if (!document.getElementById(ID_THEME_LIST)) {
+  if (currentSelect === null) {
     return;
   }
 
   const currentButton = document.getElementById(currentSelect);
 
-  if (!currentButton) {
+  if (currentButton === null) {
     console.error(`Current theme id not found: ${currentSelect}`);
     return;
   }
 
   const nextButton = document.getElementById(next);
 
-  if (!nextButton) {
+  if (nextButton === null) {
     console.error(`Next theme id not found: ${next}`);
     return;
   }
-
-  const loadStylePromise = loadStyle(next, styleAbortController.signal).then(() => {
-    unloadStyleSheet(`${THEME_DIRECTORY}${currentSelect}.css`);
-
-    const appearance = isDarkThemeRequired() ? KEY_DARK : KEY_LIGHT;
-    writeLocalStorage(`${KEY_SAVE_STORAGE}${appearance}`, next);
-
-    currentSelect = next;
-  });
 
   currentButton.classList.remove(THEME_SELECTED);
   currentButton.removeAttribute('aria-current');
 
   nextButton.classList.add(THEME_SELECTED);
   nextButton.setAttribute('aria-current', 'true');
+};
 
-  await loadStylePromise;
+const saveStorage = (applied: ThemeColorId): void => {
+  const appearance = isDarkThemeRequired() ? KEY_DARK : KEY_LIGHT;
+  writeLocalStorage(`${KEY_SAVE_STORAGE}${appearance}`, applied);
+};
+
+const update = (next: ThemeColorId): void => {
+  syncThemeUI(next);
+  saveStorage(next);
+
+  currentSelect = next;
+};
+
+const selectItem = (ev: MouseEvent): void => {
+  if (!(ev.target instanceof Element)) {
+    return;
+  }
+
+  const item = ev.target.closest(`li.${CLASS_THEME}`);
+
+  if (item == null || currentSelect === item.id) {
+    return;
+  }
+
+  styleAbortController?.abort();
+  styleAbortController = new AbortController();
+
+  applyTheme(item.id as ThemeColorId, styleAbortController.signal).then((result: ApplyThemeResult) => {
+    if (!result) {
+      return;
+    }
+    update(result);
+  });
 };
 
 const initThemeSelector = async (): Promise<void> => {
   const promiseStyle = loadStyleSheet(THEME_STYLE);
 
-  const append = document.getElementById(LIST_APPEND_ID);
+  const page = document.getElementById(ID_PAGE);
 
-  if (!append) {
-    console.error(`not found: ${LIST_APPEND_ID}`);
+  if (page === null) {
+    console.error(`not found: ${ID_PAGE}`);
     return;
   }
 
@@ -141,23 +160,12 @@ const initThemeSelector = async (): Promise<void> => {
     themeList.appendChild(li);
   }
 
-  themeList.addEventListener(
-    'click',
-    ev => {
-      if (!(ev.target instanceof Element)) {
-        return;
-      }
-      const item = ev.target.closest(`li.${CLASS_THEME}`);
+  themeList.addEventListener('click', selectItem, {
+    once: false,
+    passive: true,
+  });
 
-      if (!item) {
-        return;
-      }
-      setTheme(item.id as ThemeColorId);
-    },
-    { once: false, passive: true },
-  );
-
-  append.appendChild(themeList);
+  page.appendChild(themeList);
 
   await promiseStyle;
   themeList.showPopover();
@@ -165,24 +173,38 @@ const initThemeSelector = async (): Promise<void> => {
 
 const changeEvent = (ev: MediaQueryListEvent): void => {
   const appearance = ev.matches ? KEY_DARK : KEY_LIGHT;
-  const theme =
-    readLocalStorage(`${KEY_SAVE_STORAGE}${appearance}`) ?? (ev.matches ? PREFERRED_DARK_THEME : DEFAULT_THEME);
+  const theme = readLocalStorage(`${KEY_SAVE_STORAGE}${appearance}`) ?? (ev.matches ? DEFAULT_DARK : DEFAULT_LIGHT);
 
-  setTheme(theme as ThemeColorId);
+  styleAbortController?.abort();
+  styleAbortController = new AbortController();
+
+  applyTheme(theme as ThemeColorId, styleAbortController.signal).then((result: ApplyThemeResult) => {
+    if (result === null) {
+      return;
+    }
+    update(result);
+  });
 };
 
 export const bootThemeColor = (): Promise<void> => {
-  const appearance = isDarkThemeRequired() ? KEY_DARK : KEY_LIGHT;
+  const isDarkTheme = isDarkThemeRequired();
+  const appearance = isDarkTheme ? KEY_DARK : KEY_LIGHT;
 
   // If the user has already specified a theme, that theme will be applied;
   // if not, it will be applied based on system requirements.
-  const theme =
-    readLocalStorage(`${KEY_SAVE_STORAGE}${appearance}`) ??
-    (isDarkThemeRequired() ? PREFERRED_DARK_THEME : DEFAULT_THEME);
+  const loadTheme =
+    readLocalStorage(`${KEY_SAVE_STORAGE}${appearance}`) ?? (isDarkTheme ? DEFAULT_DARK : DEFAULT_LIGHT);
 
-  const loadStylePromise = loadStyle(theme as ThemeColorId).then(() => {
-    currentSelect = theme as ThemeColorId;
-  });
+  const loadStylePromise = applyTheme(loadTheme as ThemeColorId)
+    .then((result: ApplyThemeResult) => {
+      currentSelect = result;
+    })
+    .catch(async (err: unknown) => {
+      console.error(`Failed to load ${loadTheme}`, err);
+
+      // If this fails, I'll just give up...!!
+      await loadStyleSheet(`${THEME_DIRECTORY}${isDarkTheme ? DEFAULT_DARK : DEFAULT_LIGHT}.css`);
+    });
 
   prefersColor.addEventListener('change', changeEvent, {
     once: false,
