@@ -210,8 +210,12 @@ export const bootThemeColor = (): Promise<void> => {
     .catch(async (err: unknown) => {
       console.error(`Failed to load ${loadTheme}`, err);
 
+      toast.warning(`Failed to load ${loadTheme} color theme!`);
+      toast.warning('(Attempting to apply the default theme...)');
+
       // If this fails, I'll just give up...!!
-      await loadStyleSheet(`${THEME_DIRECTORY}${isDarkTheme ? DEFAULT_DARK : DEFAULT_LIGHT}.css`);
+      const fallback = await applyTheme(isDarkTheme ? DEFAULT_DARK : DEFAULT_LIGHT);
+      currentSelect = fallback;
     });
 
   prefersColor.addEventListener('change', changeEvent, {
