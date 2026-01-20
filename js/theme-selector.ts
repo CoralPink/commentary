@@ -170,7 +170,12 @@ const initThemeSelector = async (): Promise<void> => {
 
   page.appendChild(themeList);
 
-  await promiseStyle;
+  try {
+    await promiseStyle;
+  } catch (err: unknown) {
+    console.error('Failed to load theme selector styles:', err);
+    toast.warning('Theme selector styles failed to load.');
+  }
   themeList.showPopover();
 };
 
