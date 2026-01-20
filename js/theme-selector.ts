@@ -68,15 +68,17 @@ const syncThemeUI = (next: ThemeColorId): void => {
   if (document.getElementById(ID_THEME_LIST) === null) {
     return;
   }
-  if (currentSelect === null) {
-    return;
-  }
 
-  const currentButton = document.getElementById(currentSelect);
+  if (currentSelect !== null) {
+    const currentButton = document.getElementById(currentSelect);
 
-  if (currentButton === null) {
-    console.error(`Current theme id not found: ${currentSelect}`);
-    return;
+    if (currentButton !== null) {
+      currentButton.classList.remove(THEME_SELECTED);
+      currentButton.removeAttribute('aria-current');
+    } else {
+      // Processing will continue.
+      console.error(`Current theme id not found: ${currentSelect}`);
+    }
   }
 
   const nextButton = document.getElementById(next);
@@ -85,9 +87,6 @@ const syncThemeUI = (next: ThemeColorId): void => {
     console.error(`Next theme id not found: ${next}`);
     return;
   }
-
-  currentButton.classList.remove(THEME_SELECTED);
-  currentButton.removeAttribute('aria-current');
 
   nextButton.classList.add(THEME_SELECTED);
   nextButton.setAttribute('aria-current', 'true');
