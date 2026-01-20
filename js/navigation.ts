@@ -114,7 +114,6 @@ const prepareExternalLink = (ev: MouseEvent): void => {
   bootThemeColor();
 
   if (USE_LEGACY_NAVIGATION) {
-    console.info('Shortly after the release of Firefox 147, this browser will no longer be supported on this site.');
     return;
   }
 

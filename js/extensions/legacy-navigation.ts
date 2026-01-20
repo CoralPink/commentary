@@ -4,6 +4,8 @@ import { CONTENT_READY } from '../constants.ts';
 import { type NavigationContext, prepareNavigation } from '../context.ts';
 import { externalLinkProc, isExternalLink, isInternalLink } from '../link.ts';
 
+import { toast } from '../utils/toast.ts';
+
 const PAGE_NO_TITLE = '(No Title) - Commentary of Dotfiles';
 
 const dataLayer = ((globalThis as { dataLayer?: DataLayerEvent[] }).dataLayer ??= []);
@@ -146,6 +148,8 @@ export const initialize = (_html: HTMLElement): Disposer => {
     once: false,
     passive: true,
   });
+
+  toast.info('This browser will soon no longer be supported on this site.');
 
   return () => {
     // Do not remove the event listeners registered during this initialization process!!
