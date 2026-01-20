@@ -131,14 +131,14 @@ const selectItem = (ev: MouseEvent): void => {
 };
 
 const initThemeSelector = async (): Promise<void> => {
-  const promiseStyle = loadStyleSheet(THEME_STYLE);
-
   const page = document.getElementById(ID_PAGE);
 
   if (page === null) {
     console.error(`not found: ${ID_PAGE}`);
     return;
   }
+
+  const promiseStyle = loadStyleSheet(THEME_STYLE);
 
   const themeList = document.createElement('ul');
 
