@@ -2,7 +2,7 @@ import { ROOT_PATH } from './constants.ts';
 
 import { loadStyleSheet, unloadStyleSheet } from './utils/css-loader.ts';
 import { readLocalStorage, writeLocalStorage } from './utils/storage.ts';
-import { toast } from './utils/toast.ts';
+import toast from './utils/toast.ts';
 import type { AbortableOptions } from './utils/type.ts';
 
 const THEME_DIRECTORY = `${ROOT_PATH}css/catppuccin/`;
@@ -53,7 +53,7 @@ const applyTheme = async (next: ThemeColorId, signal?: AbortSignal): Promise<App
     if (signal?.aborted) {
       return null;
     }
-    toast.warning(`Failed to load "${next}" theme...`);
+    toast.warn(`Failed to load "${next}" theme...`);
     throw err;
   }
 
@@ -151,7 +151,7 @@ const initThemeSelector = async (): Promise<void> => {
     const li = document.createElement('li');
 
     li.setAttribute('role', 'menuitem');
-    li.className = CLASS_THEME;
+    li.classList.add(CLASS_THEME);
     li.id = theme.id;
     li.textContent = theme.label;
 
@@ -174,7 +174,7 @@ const initThemeSelector = async (): Promise<void> => {
     await promiseStyle;
   } catch (err: unknown) {
     console.error('Failed to load theme selector styles:', err);
-    toast.warning('Theme selector styles failed to load.');
+    toast.error('Theme selector styles failed to load.');
   }
   themeList.showPopover();
 };
@@ -219,8 +219,8 @@ export const bootThemeColor = (): Promise<void> => {
     .catch(async (err: unknown) => {
       console.error(`Failed to load ${loadTheme}`, err);
 
-      toast.warning(`Failed to load ${loadTheme} color theme!`);
-      toast.warning('(Attempting to apply the default theme...)');
+      toast.error(`Failed to load ${loadTheme} color theme!`);
+      toast.info('Attempting to apply the default theme...');
 
       try {
         const fallback = await applyTheme(isDarkTheme ? DEFAULT_DARK : DEFAULT_LIGHT);
@@ -228,7 +228,7 @@ export const bootThemeColor = (): Promise<void> => {
       } catch (fallbackErr: unknown) {
         // If this fails, I'll just give up...!!
         console.error('Fallback theme also failed:', fallbackErr);
-        toast.warning('Unable to load any theme.');
+        toast.error('Unable to load any theme...');
       }
     });
 

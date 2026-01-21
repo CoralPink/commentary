@@ -4,7 +4,7 @@ import { CONTENT_READY } from '../constants.ts';
 import { type NavigationContext, prepareNavigation } from '../context.ts';
 import { externalLinkProc, isExternalLink, isInternalLink } from '../link.ts';
 
-import { toast } from '../utils/toast.ts';
+import toast from '../utils/toast.ts';
 
 const PAGE_NO_TITLE = '(No Title) - Commentary of Dotfiles';
 
