@@ -5,7 +5,7 @@ import { loadStyleSheet } from './utils/css-loader.ts';
 import { fetchAndDecompress } from './utils/fetch.ts';
 import { setHTML } from './utils/html-sanitizer.ts';
 import { debounce } from './utils/timing.ts';
-import { toast } from './utils/toast.ts';
+import toast from './utils/toast.ts';
 
 // deno-lint-ignore no-sloppy-imports
 import initWasm, { Finder } from './wasm_book.js';
@@ -258,7 +258,7 @@ const bootSearch = async (): Promise<void> => {
       x.style.display = 'none';
     }
 
-    toast.warning('Search is currently unavailable.');
+    toast.error('Search is currently unavailable.');
   }
 };
 

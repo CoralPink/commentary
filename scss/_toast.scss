@@ -1,9 +1,16 @@
 @use "utils" as utils;
 
+$header: (
+  log: "📝",
+  info: "ℹ️",
+  warn: "⚠️",
+  error: "❌"
+);
+
 .toast-container {
   position: fixed;
   right: 1rem;
-  bottom: 4rem;
+  top: 2.4rem;
   @include utils.filter-glass($radius: 0.6rem);
   z-index: 99;
 }
@@ -18,6 +25,9 @@
   }
 }
 
-.toast-warning {
-  color: var(--inline-code-color);
+@each $variant, $icon in $header {
+  .toast-#{$variant}::before {
+    content: $icon;
+    margin-right: 0.64rem;
+  }
 }
