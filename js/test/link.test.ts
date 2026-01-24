@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it } from 'vitest';
-import { externalLinkProc, getLinkKind, isExternalLink, isInternalLink, LinkKind } from '../link.ts';
+import { getLinkKind, isExternalLink, isInternalLink, LinkKind } from '../link.ts';
 
 const createAnchor = (href?: string): HTMLAnchorElement => {
   const a = document.createElement('a');
@@ -88,15 +88,5 @@ describe('helper functions', () => {
     const a = createAnchor('https://ja.wikipedia.org/wiki/ウィキペディア');
     expect(isExternalLink(a)).toBe(true);
     expect(isInternalLink(a)).toBe(false);
-  });
-});
-
-describe('externalLinkProc', () => {
-  it('Set the target and rel attributes', () => {
-    const a = createAnchor('https://example.com/');
-    externalLinkProc(a);
-
-    expect(a.getAttribute('target')).toBe('_blank');
-    expect(a.getAttribute('rel')).toBe('noopener');
   });
 });

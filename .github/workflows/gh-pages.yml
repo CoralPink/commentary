@@ -441,20 +441,16 @@ jobs:
         run: |
           mdbook build
 
-      - name: Setup Scripts
-        working-directory: scripts
-        run: |
-          npm install
+      - name: Setup Deno
+        uses: denoland/setup-deno@v2
+        with:
+          deno-version-file: .tool-versions
+          cache: true
 
-      - name: Generate Page List
+      - name: Run Scripts
         working-directory: book
         run: |
-          node ../scripts/generate-pagelist.js
-
-      - name: Generate Search Index
-        working-directory: book
-        run: |
-          node ../scripts/extract-json.js
+          deno task --config ../scripts/deno.jsonc regenerate
 
       - name: Compress Search Index
         working-directory: book
