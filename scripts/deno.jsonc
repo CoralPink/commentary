@@ -1,0 +1,14 @@
+{
+  "importMap": "./import_map.json",
+  "tasks": {
+    "link": "deno run --allow-env --allow-read --allow-write link.ts $DEBUG",
+    "pagelist": "deno run --allow-read --allow-write pagelist.ts $DEBUG",
+    "json": "deno run --allow-read --allow-write json.ts",
+
+    "regenerate": "deno task link && deno task pagelist && deno task json"
+  },
+  "compilerOptions": {
+    "lib": ["deno.ns", "dom"]
+  },
+  "nodeModulesDir": "none"
+}

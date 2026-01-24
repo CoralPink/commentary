@@ -32,6 +32,5 @@
   "lint": {
     "exclude": ["dist/"]
   },
-  "files": ["src/**/*.ts", "test/**/*.ts"],
   "nodeModulesDir": "auto" // You will likely need it when using Vitest.
 }
