@@ -1,6 +1,5 @@
 import { CONTENT_READY, USE_LEGACY_NAVIGATION } from './constants.ts';
 import { type NavigationContext, prepareNavigation } from './context.ts';
-import { externalLinkProc, isExternalLink } from './link.ts';
 import { bootThemeColor } from './theme-selector.ts';
 
 import { setHTML } from './utils/html-sanitizer.ts';
@@ -86,29 +85,6 @@ const navigateProc = (ev: NavigationNavigateEvent): void => {
   });
 };
 
-const prepareExternalLink = (ev: MouseEvent): void => {
-  if (ev.button !== 0 || ev.metaKey || ev.ctrlKey || ev.shiftKey || ev.altKey) {
-    return;
-  }
-
-  const target = ev.target as Element;
-
-  if (!target) {
-    return;
-  }
-
-  const anchor = target.closest<HTMLAnchorElement>('a[href]');
-
-  if (!anchor) {
-    return;
-  }
-
-  if (!isExternalLink(anchor)) {
-    return;
-  }
-  externalLinkProc(anchor);
-};
-
 (() => {
   // The `theme color` startup process returns a promise, but you don't need to wait for it to complete.
   bootThemeColor();
@@ -119,11 +95,6 @@ const prepareExternalLink = (ev: MouseEvent): void => {
 
   // @ts-expect-error: deno-ts does not yet recognize the Navigation API.
   navigation.addEventListener('navigate', navigateProc, {
-    once: false,
-    passive: true,
-  });
-
-  document.addEventListener('click', prepareExternalLink, {
     once: false,
     passive: true,
   });

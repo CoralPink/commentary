@@ -2,7 +2,7 @@ import type { Disposer } from './types.ts';
 
 import { CONTENT_READY } from '../constants.ts';
 import { type NavigationContext, prepareNavigation } from '../context.ts';
-import { externalLinkProc, isExternalLink, isInternalLink } from '../link.ts';
+import { isExternalLink, isInternalLink } from '../link.ts';
 
 import toast from '../utils/toast.ts';
 
@@ -104,23 +104,13 @@ const clickHandler = (ev: MouseEvent): void => {
   }
 
   const target = ev.target as Element;
-
-  if (!target) {
-    return;
-  }
-
-  const anchor = target.closest<HTMLAnchorElement>('a[href]');
+  const anchor = target?.closest<HTMLAnchorElement>('a[href]');
 
   if (!anchor) {
     return;
   }
 
-  if (isExternalLink(anchor)) {
-    externalLinkProc(anchor);
-    return;
-  }
-
-  if (!isInternalLink(anchor)) {
+  if (!isInternalLink(anchor) || isExternalLink(anchor)) {
     return;
   }
 

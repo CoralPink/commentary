@@ -42,10 +42,5 @@ export const getLinkKind = (elm: HTMLAnchorElement): LinkKind => {
   return LinkKind.External;
 };
 
-export const externalLinkProc = (elm: HTMLAnchorElement): void => {
-  elm.setAttribute('target', '_blank');
-  elm.setAttribute('rel', 'noopener');
-};
-
 export const isExternalLink = (elm: HTMLAnchorElement): boolean => getLinkKind(elm) === LinkKind.External;
 export const isInternalLink = (elm: HTMLAnchorElement): boolean => getLinkKind(elm) === LinkKind.Internal;

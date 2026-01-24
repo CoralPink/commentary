@@ -45,16 +45,8 @@ SECONDS=0
 mdbook build --dest-dir commentary
 echo "\n\x1b[1;32m✔\x1b[0m \x1b[1;35mmdbook\x1b[0m Finished in \x1b[32m$SECONDS s\x1b[0m"
 
-if [ ! -e scripts/node_modules ]; then
-  pushd scripts
-  npm install
-  popd
-fi
-
 pushd commentary
-node ../scripts/generate-pagelist.js --debug
-#node ../scripts/generate-pagelist.js --root http://192.168.0.94:8000/commentary/
-node ../scripts/extract-json.js
+DEBUG=--debug deno task --config ../scripts/deno.jsonc regenerate
 brotli searchindex.json
 gzip --best --keep --no-name searchindex.json
 popd
