@@ -39,5 +39,5 @@ const build = async (input, output) => {
   );
 
   const time = Math.floor(performance.now() - start) / 1000;
-  console.info(`\n${CLR_BG}✔ ${CLR_BC}sass${CLR_RESET} Finished in ${CLR_BG}${time} s${CLR_RESET}`);
+  console.info(`${CLR_BG}✔ ${CLR_BC}sass${CLR_RESET} Finished in ${CLR_BG}${time} s${CLR_RESET}\n`);
 })();

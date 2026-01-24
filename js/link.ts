@@ -35,16 +35,10 @@ export const getLinkKind = (elm: HTMLAnchorElement): LinkKind => {
   if (url === null || !isHttpProtocol(url)) {
     return LinkKind.Native;
   }
-
   if (url.origin === globalThis.location.origin) {
     return url.pathname.endsWith('.html') ? LinkKind.Internal : LinkKind.External;
   }
   return LinkKind.External;
-};
-
-export const externalLinkProc = (elm: HTMLAnchorElement): void => {
-  elm.setAttribute('target', '_blank');
-  elm.setAttribute('rel', 'noopener');
 };
 
 export const isExternalLink = (elm: HTMLAnchorElement): boolean => getLinkKind(elm) === LinkKind.External;
