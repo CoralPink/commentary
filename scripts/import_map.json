@@ -4,6 +4,6 @@
     "cheerio/utils": "npm:cheerio@1.2.0/utils",
     "jsdom": "npm:jsdom@27.4.0",
     "js-beautify": "npm:js-beautify@1.15.4",
-    "path": "jsr:@std/path@0.224.0"
+    "path": "jsr:@std/path@1.1.4"
   }
 }
