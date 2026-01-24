@@ -103,8 +103,13 @@ const clickHandler = (ev: MouseEvent): void => {
     return;
   }
 
-  const target = ev.target as Element;
-  const anchor = target?.closest<HTMLAnchorElement>('a[href]');
+  const target = ev.target;
+
+  if (!(target instanceof Element)) {
+    return;
+  }
+
+  const anchor = target.closest<HTMLAnchorElement>('a[href]');
 
   if (!anchor) {
     return;
