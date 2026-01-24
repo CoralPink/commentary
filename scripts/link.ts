@@ -13,32 +13,27 @@ const LinkKind = {
 type LinkKind = (typeof LinkKind)[keyof typeof LinkKind];
 
 const isHttpProtocol = (s: URL): boolean => s.protocol === 'http:' || s.protocol === 'https:';
-
-const hrefToURL = (href: string): URL => {
-  try {
-    return new URL(href, g.rootPath);
-  } catch (error: unknown) {
-    console.error(`Error reading ${href}: ${error}`);
-    Deno.exit(1);
-  }
-};
-
 const isEndsWithHtml = (s: string): boolean => s.endsWith('.html');
 
 const getLinkKind = (elm: HTMLAnchorElement): LinkKind => {
   const rawHref = elm.getAttribute('href');
 
-  if (!rawHref) return LinkKind.Undefined;
-  if (rawHref.startsWith('#')) return LinkKind.Native;
-
-  const url = hrefToURL(rawHref);
-  if (!isHttpProtocol(url)) return LinkKind.Native;
-
-  if (url.origin === g.rootPath) {
-    return isEndsWithHtml(url.pathname) ? LinkKind.Internal : LinkKind.External;
+  if (!rawHref) {
+    return LinkKind.Undefined;
+  }
+  if (rawHref.startsWith('#')) {
+    return LinkKind.Native;
+  }
+  if (rawHref.startsWith('.') || rawHref.startsWith('/')) {
+    return LinkKind.Internal;
   }
 
-  return LinkKind.External;
+  try {
+    const url = new URL(rawHref);
+    return isHttpProtocol(url) ? LinkKind.External : LinkKind.Native;
+  } catch {
+    return LinkKind.Undefined;
+  }
 };
 
 const isExternalLink = (elm: HTMLAnchorElement): boolean => getLinkKind(elm) === LinkKind.External;
@@ -60,14 +55,18 @@ const processDir = async (currentDir: string): Promise<void> => {
       const html = await Deno.readTextFile(fullPath);
       const dom = new JSDOM(html);
 
+      let modified = false;
+
       for (const elm of dom.window.document.querySelectorAll('a[href]')) {
         if (isExternalLink(elm as HTMLAnchorElement)) {
           externalLinkProc(elm as HTMLAnchorElement);
+          modified = true;
         }
       }
 
-      await Deno.writeTextFile(fullPath, dom.serialize());
-
+      if (modified) {
+        await Deno.writeTextFile(fullPath, dom.serialize());
+      }
       continue;
     }
 
