@@ -2,7 +2,7 @@ import type { Disposer } from './types.ts';
 
 import { CONTENT_READY } from '../constants.ts';
 import { type NavigationContext, prepareNavigation } from '../context.ts';
-import { isExternalLink, isInternalLink } from '../link.ts';
+import { isInternalLink } from '../link.ts';
 
 import toast from '../utils/toast.ts';
 
@@ -115,7 +115,7 @@ const clickHandler = (ev: MouseEvent): void => {
     return;
   }
 
-  if (!isInternalLink(anchor) || isExternalLink(anchor)) {
+  if (!isInternalLink(anchor)) {
     return;
   }
 
