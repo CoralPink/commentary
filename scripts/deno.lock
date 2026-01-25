@@ -6,7 +6,8 @@
     "jsr:@std/path@1.1.4": "1.1.4",
     "npm:cheerio@1.2.0": "1.2.0",
     "npm:js-beautify@1.15.4": "1.15.4",
-    "npm:jsdom@27.4.0": "27.4.0"
+    "npm:jsdom@27.4.0": "27.4.0",
+    "npm:p-limit@7.2.0": "7.2.0"
   },
   "jsr": {
     "@std/internal@1.0.12": {
@@ -449,6 +450,12 @@
         "boolbase"
       ]
     },
+    "p-limit@7.2.0": {
+      "integrity": "sha512-ATHLtwoTNDloHRFFxFJdHnG6n2WUeFjaR8XQMFdKIv0xkXjrER8/iG9iu265jOM95zXHAfv9oTkqhrfbIzosrQ==",
+      "dependencies": [
+        "yocto-queue"
+      ]
+    },
     "package-json-from-dist@1.0.1": {
       "integrity": "sha512-UEZIS3/by4OC8vL3P2dTXRETpebLI2NiI5vIrjaD/5UtrkFX/tNbwjTSRAGC/+7CAo2pIcBaRgWmcBBHcsaCIw=="
     },
@@ -640,6 +647,9 @@
     },
     "xmlchars@2.2.0": {
       "integrity": "sha512-JZnDKK8B0RCDw84FNdDAIpZK+JuJw+s7Lz8nksI7SIuU3UXJJslUthsi+uWBUYOwPFwW7W7PRLRfUKpxjtjFCw=="
+    },
+    "yocto-queue@1.2.2": {
+      "integrity": "sha512-4LCcse/U2MHZ63HAJVE+v71o7yOdIe4cZ70Wpf8D/IyjDKYQLV5GD46B+hSTjJsvV5PztjvHoU580EftxjDZFQ=="
     }
   },
   "redirects": {
@@ -731,7 +741,8 @@
       "jsr:@std/path@1.1.4",
       "npm:cheerio@1.2.0",
       "npm:js-beautify@1.15.4",
-      "npm:jsdom@27.4.0"
+      "npm:jsdom@27.4.0",
+      "npm:p-limit@7.2.0"
     ]
   }
 }

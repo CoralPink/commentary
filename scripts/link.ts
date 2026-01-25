@@ -1,7 +1,10 @@
 import * as g from './global.ts';
 
-import { join } from 'path';
 import { JSDOM } from 'jsdom';
+import { join } from 'path';
+import pLimit from 'p-limit';
+
+const LIMIT_CONCURRENT = 8;
 
 const LinkKind = {
   External: 'external',
@@ -12,6 +15,7 @@ const LinkKind = {
 
 type LinkKind = (typeof LinkKind)[keyof typeof LinkKind];
 
+const isRelativePath = (s: string): boolean => s.startsWith('.') || s.startsWith('/');
 const isHttpProtocol = (s: URL): boolean => s.protocol === 'http:' || s.protocol === 'https:';
 const isEndsWithHtml = (s: string): boolean => s.endsWith('.html');
 
@@ -24,7 +28,7 @@ const getLinkKind = (elm: HTMLAnchorElement): LinkKind => {
   if (rawHref.startsWith('#')) {
     return LinkKind.Native;
   }
-  if (rawHref.startsWith('.') || rawHref.startsWith('/')) {
+  if (isRelativePath(rawHref)) {
     return LinkKind.Internal;
   }
 
@@ -43,37 +47,57 @@ const externalLinkProc = (elm: HTMLAnchorElement): void => {
   elm.setAttribute('rel', 'noopener');
 };
 
-const processDir = async (currentDir: string): Promise<void> => {
-  for await (const entry of Deno.readDir(currentDir)) {
-    const fullPath = join(currentDir, entry.name);
+const fileProc = async (fullPath: string): Promise<string | null> => {
+  const html = await Deno.readTextFile(fullPath);
+  const dom = new JSDOM(html);
 
-    if (entry.isFile) {
-      if (!isEndsWithHtml(entry.name) || entry.name === g.HTML_TOC) {
-        continue;
-      }
+  let modified = false;
 
-      const html = await Deno.readTextFile(fullPath);
-      const dom = new JSDOM(html);
-
-      let modified = false;
-
-      for (const elm of dom.window.document.querySelectorAll('a[href]')) {
-        if (isExternalLink(elm as HTMLAnchorElement)) {
-          externalLinkProc(elm as HTMLAnchorElement);
-          modified = true;
-        }
-      }
-
-      if (modified) {
-        await Deno.writeTextFile(fullPath, dom.serialize());
-      }
+  for (const elm of dom.window.document.querySelectorAll('a[href]')) {
+    if (!isExternalLink(elm)) {
       continue;
     }
 
-    if (entry.isDirectory) {
-      await processDir(fullPath);
-    }
+    externalLinkProc(elm);
+    modified = true;
   }
+
+  // Return null if there are no changes
+  return modified ? dom.serialize() : null;
+};
+
+const processDir = async (currentDir: string): Promise<void> => {
+  const tasks: Promise<void>[] = [];
+  const limit = pLimit(LIMIT_CONCURRENT);
+
+  for await (const entry of Deno.readDir(currentDir)) {
+    const fullPath = join(currentDir, entry.name);
+
+    if (entry.isDirectory) {
+      tasks.push(processDir(fullPath));
+      continue;
+    }
+
+    if (!entry.isFile) {
+      continue;
+    }
+    if (!isEndsWithHtml(entry.name) || entry.name === g.HTML_TOC) {
+      continue;
+    }
+
+    tasks.push(
+      limit(async () => {
+        const serialized = await fileProc(fullPath);
+
+        if (serialized === null) {
+          return;
+        }
+        await Deno.writeTextFile(fullPath, serialized);
+      }),
+    );
+  }
+
+  await Promise.all(tasks);
 };
 
 (async () => {

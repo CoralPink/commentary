@@ -439,7 +439,7 @@ jobs:
 
       - name: Build Book
         run: |
-          mdbook build
+          mdbook build --dest-dir commentary
 
       - name: Setup Deno
         uses: denoland/setup-deno@v2
@@ -448,18 +448,18 @@ jobs:
           cache: true
 
       - name: Run Scripts
-        working-directory: book
+        working-directory: commentary
         run: |
           deno task --config ../scripts/deno.jsonc regenerate
 
       - name: Compress Search Index
-        working-directory: book
+        working-directory: commentary
         run: |
           brotli searchindex.json
           gzip --best --keep --no-name searchindex.json
 
       - name: Remove Unneeded Files
-        working-directory: book
+        working-directory: commentary
         run: |
           rm ayu-highlight.css
           rm book.js
@@ -484,7 +484,7 @@ jobs:
         id: deployment
         uses: actions/upload-pages-artifact@7b1f4a764d45c48632c6b24a0339c27f5614fb0b # v4
         with:
-          path: book
+          path: commentary
 
   deploy:
     name: Deploy
