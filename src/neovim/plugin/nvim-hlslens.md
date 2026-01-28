@@ -208,36 +208,54 @@ Vim では、quickfix コマンドはより一般的に、ファイル内の位�
 
 すごい今さらだし、無理やりなんですが...。
 
-~~~admonish info title=":h iccf"
-```txt
+~~~admonish info title=":h Kuwasha"
 Vim is Charityware.
-You can use and copy it as much as you like,
-but you are encouraged to make a donation for needy children in Uganda.
+
+You can use and copy it as much as you like, but you are encouraged to make a donation for needy children in Uganda.
+
+Please see |kcc| below or visit the Kuwasha web site, available at the following URL:
 
 Vim はチャリティーウェアです。
-好きなだけ使ったりコピーしたりできますが、
-ウガンダの貧しい子供たちのために寄付をすることが推奨されています。
 
-Please see |kcc| below or visit the ICCF web site, available at these URLs:
+自由に使用・複製できますが、ウガンダの恵まれない子供たちへの寄付を行うよう推奨されています。
+{{footnote: [Bram Moolenaar](https://en.wikipedia.org/wiki/Bram_Moolenaar)氏の慈善団体である
+[ICCF オランダ](https://en.wikipedia.org/wiki/ICCF_Holland)は、
+Kibaale 児童センターを通じて長年ウガンダの子供たちの教育を支援してきました。
+2023 年に Bram 氏が逝去した後、ICCF オランダは全ての活動をカナダの姉妹慈善団体[Kuwasha](https://www.kuwasha.net)に移管し、
+2025 年末に解散しました。
 
-下記の |kcc| をご覧いただくか、以下の URL から ICCF のウェブサイトをご覧ください。
+Vim ユーザーからの寄付は引き続き歓迎され、直接ウガンダへ送られます。
+この活動を継続的に支援するには、寄付を Kuwasha へお送りください。 :help iccf より
+}}
+詳細は下記 |kcc| を参照するか、以下の URL で Kuwasha ウェブサイトをご覧ください:
 
-  https://iccf-holland.org/
-  https://www.vim.org/iccf/
-  https://www.iccf.nl/
+[https://www.kuwasha.net](https://www.kuwasha.net)
 
-You can also sponsor the development of Vim.
-Vim sponsors can vote for features.  See |sponsor|.
-The money goes to Uganda anyway.
+You can also sponsor the development of Vim. Vim sponsors can vote for features.
+See |sponsor|. The money goes to Uganda anyway.
 
-また、Vim の開発を支援することもできます。
-Vim のスポンサーは機能に対して投票することができます。|sponsor| を参照してください。
-このお金はとにかくウガンダに行きます。
-```
+Vim の開発を支援することも可能です。Vim スポンサーは機能の投票権を得られます。
+詳細は |sponsor| を参照してください。いずれにせよ、お金はウガンダに送られます。
 ~~~
 
-```admonish success title="Assemble"
-Black Panther and Uganda Forever!!
+> :h bram
+>
+> Nvim is a fork of the Vim ("Vi IMproved") text editor, which was originally developed by Bram Moolenaar.
+> Searching his name within the source code of Nvim will reveal just how much of his work still remains in Nvim.
+>
+> On August 3, 2023, he passed away at the age of 62.
+> If Vim or Nvim have been of use to you in your life, please read |Uganda| and consider honoring his memory however you may see fit.
+>
+> Nvim は、Bram Moolenaar によって開発されたテキストエディタ Vim ("Vi IMproved") のフォークです。
+> Nvim のソースコード内で彼の名前を検索すると、彼の仕事がどれほど Nvim に残っているかがわかります。
+>
+> 2023年8月3日、彼は 62歳で逝去しました。Vim や Nvim があなたの人生に役立ったなら、
+> |Uganda| をお読みいただき、ご自身にふさわしい方法で彼の記憶を偲んでください。
+>
+> Obituary Articles: [https://github.com/vim/vim/discussions/12742](https://github.com/vim/vim/discussions/12742)
+>
+> Say Farewell: [https://github.com/vim/vim/discussions/12737](https://github.com/vim/vim/discussions/12737)
 
-ブラックパンサーも ウガンダも 永遠に!!
+```admonish success title="Assemble"
+Bram and Uganda Forever!!
 ```
