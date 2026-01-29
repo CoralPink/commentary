@@ -37,7 +37,7 @@ jobs:
 
       - name: Restore Media Cache (allow partial match)
         id: cache-source
-        uses: actions/cache/restore@8b402f58fbc84540c8b491a91e594a4576fec3d7 # v5
+        uses: actions/cache/restore@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5
         with:
           path: tmp-media
           key: ${{ steps.set-cache-key.outputs.cache-key }}
@@ -72,7 +72,7 @@ jobs:
 
       - name: Save Media Cache (new primary key)
         if: steps.check-cache.outputs.exact != 'true'
-        uses: actions/cache/save@8b402f58fbc84540c8b491a91e594a4576fec3d7 # v5
+        uses: actions/cache/save@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5
         with:
           path: tmp-media
           key: ${{ steps.set-cache-key.outputs.cache-key }}
@@ -89,7 +89,7 @@ jobs:
 
       - name: Cache Cargo
         id: cache-cargo
-        uses: actions/cache@8b402f58fbc84540c8b491a91e594a4576fec3d7 # v5
+        uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5
         with:
           path: |
             ~/.cargo/bin/
@@ -123,7 +123,7 @@ jobs:
 
       - name: Cache Cargo
         id: cache-cargo
-        uses: actions/cache@8b402f58fbc84540c8b491a91e594a4576fec3d7 # v5
+        uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5
         with:
           path: |
             ~/.cargo/bin/
@@ -303,7 +303,7 @@ jobs:
 
       - name: Cache Woff2 output
         id: cache-woff2
-        uses: actions/cache@8b402f58fbc84540c8b491a91e594a4576fec3d7 # v5
+        uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5
         with:
           path: fonts/woff2
           key: python-${{ runner.os }}-fonts-${{ hashFiles('fonts/**') }}
@@ -343,7 +343,7 @@ jobs:
             rs/mdbook-footnote
 
       - name: Cache Cargo
-        uses: actions/cache@8b402f58fbc84540c8b491a91e594a4576fec3d7 # v5
+        uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5
         with:
           path: |
             ~/.cargo/bin/
@@ -379,7 +379,7 @@ jobs:
 
       - name: Restore Media Cache
         id: cache-media
-        uses: actions/cache@8b402f58fbc84540c8b491a91e594a4576fec3d7 # v5
+        uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5
         with:
           path: tmp-media
           key: ${{ needs.cache-media-files.outputs.media-cache-key }}
@@ -407,7 +407,7 @@ jobs:
 
       - name: Cache Cargo
         id: cache-cargo
-        uses: actions/cache@8b402f58fbc84540c8b491a91e594a4576fec3d7 # v5
+        uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5
         with:
           path: |
             ~/.cargo/bin/
