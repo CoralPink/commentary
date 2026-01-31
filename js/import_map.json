@@ -1,7 +1,7 @@
 {
   "imports": {
     "plyr": "npm:plyr@3.8.4",
-    "rolldown": "npm:rolldown@1.0.0-rc.1",
+    "rolldown": "npm:rolldown@1.0.0-rc.2",
     "terser": "npm:terser@5.46.0",
 
     "@deno/rolldown-plugin": "jsr:@deno/rolldown-plugin@0.0.10",
@@ -9,6 +9,6 @@
 
     "vitest": "npm:vitest@4.0.18",
     "@vitest/coverage-v8": "npm:@vitest/coverage-v8@4.0.18",
-    "happy-dom": "npm:happy-dom@^20.3.7"
+    "happy-dom": "npm:happy-dom@^20.4.0"
   }
 }
