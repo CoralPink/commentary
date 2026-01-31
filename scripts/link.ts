@@ -4,8 +4,6 @@ import { JSDOM } from 'jsdom';
 import { join } from 'path';
 import pLimit from 'p-limit';
 
-const LIMIT_CONCURRENT = 8;
-
 const LinkKind = {
   External: 'external',
   Native: 'native',
@@ -14,6 +12,11 @@ const LinkKind = {
 } as const;
 
 type LinkKind = (typeof LinkKind)[keyof typeof LinkKind];
+
+const LIMIT_CONCURRENT = 8;
+const limit = pLimit(LIMIT_CONCURRENT);
+
+const tasks: Promise<void>[] = [];
 
 const isRelativePath = (s: string): boolean => s.startsWith('.') || s.startsWith('/');
 const isHttpProtocol = (s: URL): boolean => s.protocol === 'http:' || s.protocol === 'https:';
@@ -67,9 +70,6 @@ const fileProc = async (fullPath: string): Promise<string | null> => {
 };
 
 const processDir = async (currentDir: string): Promise<void> => {
-  const tasks: Promise<void>[] = [];
-  const limit = pLimit(LIMIT_CONCURRENT);
-
   for await (const entry of Deno.readDir(currentDir)) {
     const fullPath = join(currentDir, entry.name);
 
@@ -96,14 +96,13 @@ const processDir = async (currentDir: string): Promise<void> => {
       }),
     );
   }
-
-  await Promise.all(tasks);
 };
 
 (async () => {
   const start = performance.now();
 
   await processDir(g.PATH_DIRECTORY);
+  await Promise.all(tasks);
 
   const time = Math.floor(performance.now() - start) / 1000;
 
