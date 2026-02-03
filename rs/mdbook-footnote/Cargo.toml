@@ -7,7 +7,7 @@ rust-version = "1.88"
 license = "Apache-2.0"
 
 [dependencies]
-clap = "=4.5.56"
+clap = "=4.5.57"
 mdbook-preprocessor = "=0.5.2"
 regex = "=1.12.2"
 semver = "=1.0.27"
