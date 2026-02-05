@@ -312,7 +312,7 @@ jobs:
         if: steps.cache-woff2.outputs.cache-hit != 'true'
         uses: astral-sh/setup-uv@803947b9bd8e9f986429fa0c5a41c367cd732b41 # v7.2.1
         with:
-          version: "0.9.x"
+          version: "0.10.x"
 
       - name: Convert and Copy Woff2
         if: steps.cache-woff2.outputs.cache-hit != 'true'
