@@ -156,10 +156,13 @@ jobs:
         working-directory: rs/wasm
         run: |
           wasm-opt ./pkg/wasm_book_bg.wasm \
-            -o ./pkg/wasm_book_bg.wasm \
             -O \
             --enable-nontrapping-float-to-int \
-            --enable-bulk-memory
+            --enable-bulk-memory \
+            --strip-debug \
+            --strip-producers \
+            --strip-dwarf \
+            -o ./pkg/wasm_book_bg.wasm
 
       - name: Upload wasm_pkg
         uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
