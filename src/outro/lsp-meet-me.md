@@ -375,10 +375,18 @@ Rust の優れた IDE サポートを作成するための、より大きな rls
 vim.lsp.config('rust_analyzer', {
   settings = {
     ['rust-analyzer'] = {
-      diagnostic = { enable = false },
-      assist = { importGranularity = 'module', importPrefix = 'self' },
-      cargo = { allFeatures = true, loadOutDirsFromCheck = true },
-      procMacro = { enable = true },
+      diagnostics = { enable = false },
+      assist = {
+        importGranularity = 'module',
+        importPrefix = 'self',
+      },
+      cargo = {
+        allFeatures = true,
+        loadOutDirsFromCheck = true,
+      },
+      procMacro = {
+        enable = true,
+      },
     },
   },
 })
@@ -420,12 +428,21 @@ Lints はカテゴリに分かれており、
 vim.lsp.config('rust_analyzer', {
   settings = {
     ['rust-analyzer'] = {
-      diagnostic = { enable = false },
-      assist = { importGranularity = 'module', importPrefix = 'self' },
-      cargo = { allFeatures = true, loadOutDirsFromCheck = true },
-      procMacro = { enable = true },
-+     checkOnSave = { enable = true },
-+     command = { 'clippy' },
+      diagnostics = { enable = false },
+      assist = {
+        importGranularity = 'module',
+        importPrefix = 'self',
+      },
+      cargo = {
+        allFeatures = true,
+        loadOutDirsFromCheck = true,
+      },
+      procMacro = {
+        enable = true,
+      },
++     check = {
++       command = "clippy",
++     },
     },
   },
 })
@@ -690,7 +707,7 @@ So, let's get the party started!
 MVP とは、俺のことだ！！
 
 17.7話 「フィナーレいさみあし{{footnote:
-実際は`nvim_get_option_value`の おはなしで、このサイトの最終回まではあと 3回...か、4回
+実際は`nvim_get_option_value`の おはなしで、このサイトの最終回まではあと 3回...か、4回❗
 }}」という おはなし。
 ```
 
