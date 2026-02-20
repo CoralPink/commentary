@@ -201,105 +201,103 @@ Love is all you need
 
 <div style="margin-top: 30em"></div>
 
-<div style="margin-top: 5em">
+<div style="margin-top: 6em">
 I know it’s true
 
 気づいたんだ
 </div>
 
-<div style="margin-top: 3em">
+<div style="margin-top: 4em">
 it’s all because of you
 
 君がいたからなんだ
 </div>
 
-<div style="margin-top: 3em">
+<div style="margin-top: 4em">
 And if I make it through
 
 だからもし 僕がこれをやり遂げられたのなら
 </div>
 
-<div style="margin-top: 3em">
+<div style="margin-top: 4em">
 it’s all because of you
 
 君がいてくれたからなんだよ
 </div>
 
-<div style="margin-top: 5em">
+<div style="margin-top: 6em">
 And now and then
 
 だから 今も あの頃も
 </div>
 
-<div style="margin-top: 3em">
+<div style="margin-top: 4em">
 if we must start again
 
 もし また最初からやり直すとしても
 </div>
 
-<div style="margin-top: 3em">
+<div style="margin-top: 4em">
 Well, we will know for sure
 
 結局、僕らが辿り着くのは
 </div>
 
-<div style="margin-top: 3em">
+<div style="margin-top: 4em">
 That I love you
 
 I love you に決まってるんだよ
 </div>
 
-<div style="margin-top: 5em">
-Now and then{{footnote:
-[Now and Then](https://en.wikipedia.org/wiki/Now_and_Then_(Beatles_song))
-}}
+<div style="margin-top: 6em">
+Now and then
 
 ときどき
 </div>
 
-<div style="margin-top: 3em">
+<div style="margin-top: 4em">
 I miss you
 
 君のことを想うんだ
 </div>
 
-<div style="margin-top: 3em">
+<div style="margin-top: 4em">
 Oh now and then
 
 今だって あの頃だって
 </div>
 
-<div style="margin-top: 3em">
+<div style="margin-top: 4em">
 I want you to be there for me
 
 僕は 君に そばにいてほしいんだ
 </div>
 
-<div style="margin-top: 3em">
+<div style="margin-top: 4em">
 Always to return to me
 
 いつだって 僕のそばに帰ってきてほしい
 </div>
 
-<div style="margin-top: 5em">
+<div style="margin-top: 6em">
 I know it’s true
 
 本当だよ
 </div>
 
-<div style="margin-top: 3em">
+<div style="margin-top: 4em">
 It’s all because of you
 
 君とやってきたんだから
 </div>
 
-<div style="margin-top: 3em">
+<div style="margin-top: 4em">
 And if you go away
 
 だからもし 君が去ってしまったのなら...
 </div>
 
-<div style="margin-top: 3em">
+<div style="margin-top: 4em">
 I know you’ll never stay
 
 わかってる 君はもう決して留まれないんだ
@@ -315,19 +313,19 @@ Now and then
 ときどき
 </div>
 
-<div style="margin-top: 3em">
+<div style="margin-top: 4em">
 I miss you
 
 君を想うんだ
 </div>
 
-<div style="margin-top: 3em">
+<div style="margin-top: 4em">
 Oh now and then
 
 今だって あの頃だって
 </div>
 
-<div style="margin-top: 3em">
+<div style="margin-top: 4em">
 I want you to be there for me
 
 僕は 君に そばにいてほしいんだ
@@ -341,31 +339,43 @@ I want you to be there for me
 気づいたんだ
 </div>
 
-<div style="margin-top: 3em">
+<div style="margin-top: 4em">
 あなたたちが いてくれたんだね
 </div>
 
-<div style="margin-top: 3em">
+<div style="margin-top: 4em">
 だから わたしがこれをやり遂げた時も
 </div>
 
-<div style="margin-top: 3em">
+<div style="margin-top: 4em">
 きっと 見ていてくれたよね
 </div>
 
 <div style="margin-top: 20em"></div>
 
-<div style="margin-top: 5em; font-size: 70%">
+<div style="font-size: 70%">
 ( Good one )
 
 ( なかなかいいね )
 </div>
 </div>
 
+<div style="text-align: center; margin-top: 4em; margin-bottom: 4em;">
 父と母へ捧ぐ
-{{footnote:
-[風の電話](https://bell-gardia.jp/guide/kaze-no-denwa/)
-}}
-{{footnote:
-[風の電話 (映画)](https://ja.wikipedia.org/wiki/風の電話_(映画))
-}}
+</div>
+
+<aside class="ft-definition">
+<p>
+<a href="https://en.wikipedia.org/wiki/Now_and_Then_(Beatles_song)" target="_blank" rel="noopener">Now and Then</a>
+</p>
+</aside>
+<aside class="ft-definition">
+<p>
+<a href="https://bell-gardia.jp/guide/kaze-no-denwa/" target="_blank" rel="noopener">風の電話</a>
+</p>
+</aside>
+<aside class="ft-definition">
+<p>
+<a href="https://ja.wikipedia.org/wiki/風の電話_(映画)" target="_blank" rel="noopener">風の電話 (映画)</a>
+</p>
+</aside>
