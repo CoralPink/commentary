@@ -1,5 +1,5 @@
 import { ROOT_PATH, USE_LEGACY_NAVIGATION } from './constants.ts';
-import { initMark, unmarking } from './mark.ts';
+import { marking } from './mark.ts';
 
 import { loadStyleSheet } from './utils/css-loader.ts';
 import { fetchAndDecompress } from './utils/fetch.ts';
@@ -12,15 +12,25 @@ import initWasm, { Finder } from './wasm_book.js';
 
 export const TARGET_SEARCH = 'search';
 
-type SearchResult = {
-  header: string;
-  html: string | undefined;
+type SearchResponse = {
+  id: number;
+  page: string;
+  head: string;
+  breadcrumbs: string;
+  score: number;
+  excerpt: string;
 };
 
 const FILE_STYLE_SEARCH = 'css/search.css';
 const FILE_INDEX = 'searchindex.json';
 
 const DEBOUNCE_DELAY_MS = 80;
+
+const SCORE_CHARACTER = '▰';
+const SCORE_RATE = 16;
+const SCORE_MAX_BAR = 640;
+
+const INITIAL_HEADER = '2文字 (もしくは全角1文字) 以上を入力してください...';
 
 let elmSearch: HTMLElement[];
 let elmPop: HTMLElement;
@@ -47,30 +57,105 @@ const navigateInternal: (url: URL) => void = USE_LEGACY_NAVIGATION
       navigation.navigate(url);
     };
 
-const showResults = (): void => {
-  const result = finder.search(elmSearchBar.value.trim()) as SearchResult;
+const isSingleAsciiChar = (term: string): boolean => term.length === 1 && term.charCodeAt(0) <= 0x7f;
 
-  elmHeader.textContent = result.header;
+const createLinkElement = (item: SearchResponse, query: string): HTMLAnchorElement => {
+  const a = document.createElement('a');
 
-  if (result.html === undefined) {
-    elmResults.textContent = '';
-    return;
-  }
+  a.href = `${ROOT_PATH}${item.page}?mark=${query}#${item.head}`;
+  a.tabIndex = -1;
 
-  setHTML(elmResults, result.html);
+  setHTML(a, item.breadcrumbs);
+
+  return a;
 };
 
-const checkURL = (url: URL): boolean =>
-  url.origin + url.pathname === globalThis.location.origin + globalThis.location.pathname;
+const createSpanElement = (item: SearchResponse): HTMLSpanElement => {
+  const span = document.createElement('span');
 
-const updateMark = (): void => {
-  const element = document.getElementById('article');
+  span.setAttribute('aria-hidden', 'true');
 
-  if (!element) {
-    console.error(`updateMark: article element not found`);
+  setHTML(span, item.excerpt);
+
+  return span;
+};
+
+const scoringNotation = (score: number): string => {
+  const bar = SCORE_CHARACTER.repeat(Math.floor(Math.min(score, SCORE_MAX_BAR) / SCORE_RATE));
+  return `${bar} (${score}pt)`;
+};
+
+const createScoreElement = (item: SearchResponse): HTMLDivElement => {
+  const score = document.createElement('div');
+
+  score.id = 'score';
+  score.setAttribute('role', 'meter');
+  score.setAttribute('aria-label', `score:${item.score}pt`);
+
+  setHTML(score, scoringNotation(item.score));
+
+  return score;
+};
+
+const createList = (term: string, results: SearchResponse[]): DocumentFragment => {
+  const fragment = document.createDocumentFragment();
+  const queryMark = encodeURIComponent(term);
+
+  for (const item of results) {
+    const li = document.createElement('li');
+
+    li.id = `s${item.id}`;
+    li.tabIndex = 0;
+    li.setAttribute('role', 'option');
+    li.setAttribute('aria-label', `${item.page} ${item.score}pt`);
+
+    li.appendChild(createLinkElement(item, queryMark));
+    li.appendChild(createSpanElement(item));
+    li.appendChild(createScoreElement(item));
+
+    fragment.appendChild(li);
+  }
+
+  return fragment;
+};
+
+const showResults = (): void => {
+  const term = elmSearchBar.value;
+
+  if (isSingleAsciiChar(term)) {
+    setHTML(elmHeader, INITIAL_HEADER);
+    elmResults.replaceChildren();
     return;
   }
-  initMark(element);
+
+  const results = finder.search(term);
+
+  if (results === null) {
+    setHTML(elmHeader, `No search result for : ${term}`);
+    elmResults.replaceChildren();
+    return;
+  }
+
+  setHTML(elmHeader, `${results.length} search results for : ${term}`);
+
+  elmResults.replaceChildren(createList(term, results));
+  marking(elmResults, term, false);
+};
+
+const debounceSearchInput = debounce((_: Event) => showResults(), DEBOUNCE_DELAY_MS);
+
+const hiddenSearch = (): void => {
+  elmPop.hidePopover();
+
+  for (const x of elmSearch) {
+    x.setAttribute('aria-expanded', 'false');
+  }
+
+  elmSearchBar.removeEventListener('input', debounceSearchInput);
+  elmResults.removeEventListener('keyup', popupFocus);
+
+  elmPop.removeEventListener('click', searchMouseupHandler);
+  elmPop.removeEventListener('toggle', closedPopover);
 };
 
 const jumpUrl = (): void => {
@@ -80,14 +165,7 @@ const jumpUrl = (): void => {
     return;
   }
 
-  const url = new URL(aElement.href);
-
-  if (checkURL(url)) {
-    unmarking();
-    updateMark();
-  }
-
-  navigateInternal(url);
+  navigateInternal(new URL(aElement.href));
 
   requestAnimationFrame(() => {
     hiddenSearch();
@@ -136,22 +214,6 @@ const closedPopover = (ev: Event): void => {
   if (customEvent.detail?.newState === 'closed') {
     hiddenSearch();
   }
-};
-
-const debounceSearchInput = debounce((_: Event) => showResults(), DEBOUNCE_DELAY_MS);
-
-const hiddenSearch = (): void => {
-  elmPop.hidePopover();
-
-  for (const x of elmSearch) {
-    x.setAttribute('aria-expanded', 'false');
-  }
-
-  elmSearchBar.removeEventListener('input', debounceSearchInput);
-  elmResults.removeEventListener('keyup', popupFocus);
-
-  elmPop.removeEventListener('click', searchMouseupHandler);
-  elmPop.removeEventListener('toggle', closedPopover);
 };
 
 const showSearch = (): void => {
@@ -247,7 +309,7 @@ const bootSearch = async (): Promise<void> => {
     }
 
     await wasmPromise;
-    finder = new Finder(ROOT_PATH, data.doc_urls, data.index.documentStore.docs);
+    finder = new Finder(data.doc_urls, data.index.documentStore.docs);
 
     await cssPromise;
     showSearch();

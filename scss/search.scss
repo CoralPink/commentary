@@ -5,13 +5,14 @@
   width: 84dvw;
   max-height: 88dvh;
   margin: 0 auto;
+  overflow-x: hidden;
   overflow-y: scroll;
 
   font-size: var.$base-font-size;
   font-feature-settings: "palt";
 
-  padding: 0.8em;
-  border-radius: 1.6rem;
+  padding: 1rem;
+  border-radius: 0.8rem;
 
   &>#searchbar {
     @include utils.responsive-input(1rem, 0.75rem);
@@ -21,7 +22,7 @@
     color: var(--searchbar-fg);
 
     border: 0.1em solid var(--searchbar-border-color);
-    border-radius: 1.2rem;
+    border-radius: 1rem;
     background-color: var(--searchbar-bg);
   }
 

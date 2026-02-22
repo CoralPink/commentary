@@ -1,9 +1,7 @@
 use crate::searcher::algo::score;
-use crate::searcher::finder::DocObject;
+use crate::searcher::doc::DocObject;
 
-use arrayvec::ArrayVec;
 use getset::Getters;
-use macros::error;
 use std::ops::{Deref, DerefMut};
 
 /// Maximum number of search results
@@ -61,13 +59,8 @@ pub struct Hit<'a> {
 
 /// A collection of search hits with a fixed maximum capacity.
 /// Provides methods for scoring, merging, and ranking search results.
-pub struct HitList<'a>(ArrayVec<Hit<'a>, LIMIT_RESULTS>);
-
-impl Default for HitList<'_> {
-    fn default() -> Self {
-        HitList(ArrayVec::new())
-    }
-}
+#[derive(Default)]
+pub struct HitList<'a>(Vec<Hit<'a>>);
 
 impl HitList<'_> {
     pub fn new() -> Self {
@@ -76,14 +69,14 @@ impl HitList<'_> {
 }
 
 impl<'a> Deref for HitList<'a> {
-    type Target = ArrayVec<Hit<'a>, LIMIT_RESULTS>;
+    type Target = Vec<Hit<'a>>;
 
     fn deref(&self) -> &Self::Target {
         &self.0
     }
 }
 
-impl<'a> From<HitList<'a>> for ArrayVec<Hit<'a>, LIMIT_RESULTS> {
+impl<'a> From<HitList<'a>> for Vec<Hit<'a>> {
     fn from(m: HitList<'a>) -> Self {
         m.0
     }
@@ -97,7 +90,7 @@ impl DerefMut for HitList<'_> {
 
 impl<'a> IntoIterator for HitList<'a> {
     type Item = Hit<'a>;
-    type IntoIter = <ArrayVec<Hit<'a>, LIMIT_RESULTS> as IntoIterator>::IntoIter;
+    type IntoIter = <Vec<Hit<'a>> as IntoIterator>::IntoIter;
 
     fn into_iter(self) -> Self::IntoIter {
         self.0.into_iter()
@@ -138,7 +131,8 @@ impl<'a> HitList<'a> {
                 match doc.id().parse::<usize>() {
                     Ok(id) => Some(Hit { doc, score, id }),
                     Err(_) => {
-                        macros::console_error!("Failed to parse document ID: {}", doc.id());
+                        //#[cfg(feature = "debug")]
+                        //macros::console_error!("Failed to parse document ID: {}", doc.id());
                         None
                     }
                 }

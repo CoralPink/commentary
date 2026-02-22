@@ -11,6 +11,10 @@ $hover: (
   hover-fg: #1e66f5,
 );
 
+$mark: (
+  search-mark-bg: #fe640b,
+);
+
 $popup: (
   popup-bg: #e6e9ef,
 );
@@ -40,7 +44,6 @@ $popup: (
   --searchresults-header-fg: #4c4f69;
   --searchresults-border-color: #dce0e8;
   --searchresults-li-bg: #eff1f5;
-  --search-mark-bg: #fe640b;
   --color-scheme: light;
 
   --popup-border: #9ca0b0;
@@ -51,6 +54,7 @@ $popup: (
 
   @include utils.convert-rgb($hover);
   @include utils.convert-rgb($active);
+  @include utils.convert-rgb($mark);
 
   @include utils.convert-hsl($popup, 10%);
 }

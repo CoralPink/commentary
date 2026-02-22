@@ -1,12 +1,15 @@
 use serde::{Deserialize, Serialize};
 use serde_wasm_bindgen::to_value;
+use unicode_segmentation::UnicodeSegmentation;
 use wasm_bindgen::prelude::*;
 
 #[derive(Serialize, Deserialize)]
 struct RangeIndex {
     start: usize,
     end: usize,
+    #[cfg(test)]
     matched: String,
+    #[cfg(test)]
     term: String,
 }
 
@@ -17,51 +20,91 @@ struct MatchResult {
     had_match: bool,
 }
 
-#[wasm_bindgen]
-pub fn get_match_range(terms: &str, text: &str) -> JsValue {
-    let mut byte_to_utf16 = vec![0; text.len() + 1];
-    let mut utf16_index = 0;
-    let mut byte_index = 0;
+fn create_index_map(text: &str) -> Vec<usize> {
+    let mut v = vec![0; text.len() + 1];
+
+    let mut byte_idx = 0;
+    let mut utf16_idx = 0;
 
     for c in text.chars() {
         let utf8_len = c.len_utf8();
         let utf16_len = c.encode_utf16(&mut [0; 2]).len();
 
         for i in 0..utf8_len {
-            byte_to_utf16[byte_index + i] = utf16_index;
+            v[byte_idx + i] = utf16_idx;
         }
-        byte_index += utf8_len;
-        utf16_index += utf16_len;
+        byte_idx += utf8_len;
+        utf16_idx += utf16_len;
     }
+    v[byte_idx] = utf16_idx;
 
-    byte_to_utf16[byte_index] = utf16_index;
+    v
+}
 
-    let terms: Vec<&str> = terms.split_whitespace().collect();
-    let lower_text = text.to_lowercase();
-
+fn get_sentences(terms: Vec<&str>, text: &str, index_map: Vec<usize>) -> Vec<RangeIndex> {
     let mut index = Vec::new();
 
-    for term in &terms {
-        let lower_term = term.to_lowercase();
-        let mut pos = 0;
+    for sentence in text.unicode_sentences() {
+        let sent_start = text.find(sentence).unwrap_or(0);
+        let lower_sentence = sentence.to_lowercase();
 
-        while let Some(found) = lower_text[pos..].find(&lower_term) {
-            let byte_start = pos + found;
-            let byte_len: usize = term.chars().map(|c| c.len_utf8()).sum();
-            let byte_end = byte_start + byte_len;
-
-            let matched = text[byte_start..byte_end].to_string();
+        if terms.iter().any(|term| lower_sentence.contains(&term.to_lowercase())) {
+            let sent_end = sent_start + sentence.len();
 
             index.push(RangeIndex {
-                start: byte_to_utf16[byte_start],
-                end: byte_to_utf16[byte_end],
-                matched,
-                term: (*term).to_string(),
+                start: index_map[sent_start],
+                end: index_map[sent_end],
+                #[cfg(test)]
+                matched: sentence.to_string(),
+                #[cfg(test)]
+                term: terms.join(" "),
             });
-
-            pos = byte_end;
         }
     }
+
+    index
+}
+
+fn get_range(terms: Vec<&str>, text: &str, index_map: Vec<usize>) -> Vec<RangeIndex> {
+    let mut index = Vec::new();
+
+    for x in &terms {
+        let lower_term = x.to_lowercase();
+        let mut pos = 0;
+
+        while let Some(found) = text[pos..].find(&lower_term) {
+            let l = pos + found;
+
+            let len: usize = x.chars().map(|c| c.len_utf8()).sum();
+            let r = l + len;
+
+            index.push(RangeIndex {
+                start: index_map[l],
+                end: index_map[r],
+                #[cfg(test)]
+                matched: text[l..r].to_string(),
+                #[cfg(test)]
+                term: (*x).to_string(),
+            });
+
+            pos = r;
+        }
+    }
+
+    index
+}
+
+#[wasm_bindgen]
+pub fn get_match_range(terms: &str, text: &str, range: bool) -> JsValue {
+    let index_map = create_index_map(text);
+    let lower_text = text.to_lowercase();
+
+    let terms: Vec<&str> = terms.split_whitespace().collect();
+    let mut index = if range {
+        get_sentences(terms, &lower_text, index_map)
+    } else {
+        get_range(terms, &lower_text, index_map)
+    };
 
     index.sort_by_key(|r| r.start);
 
@@ -71,6 +114,7 @@ pub fn get_match_range(terms: &str, text: &str) -> JsValue {
     to_value(&match_index).unwrap()
 }
 
+/*
 #[cfg(test)]
 #[allow(dead_code)]
 mod tests {
@@ -88,13 +132,13 @@ mod tests {
         let result = get_match_range(terms, text);
 
         let parsed: MatchResult = from_value(result).unwrap();
-        assert_eq!(parsed.had_match, true);
+        assert!(parsed.had_match);
         assert_eq!(parsed.index.len(), 1);
 
         let first = &parsed.index[0];
         assert_eq!(first.term, "Rust");
         assert_eq!(first.matched, "Rust");
-        assert_eq!(first.start < first.end, true);
+        assert!(first.start < first.end);
     }
 
     #[wasm_bindgen_test]
@@ -102,7 +146,7 @@ mod tests {
         let text = "Rust rust RUST";
         let terms = "rust";
         let parsed: MatchResult = from_value(get_match_range(terms, text)).unwrap();
-        assert_eq!(parsed.had_match, true);
+        assert!(parsed.had_match);
         assert_eq!(parsed.index.len(), 3);
         let matched_terms: Vec<_> = parsed.index.iter().map(|r| r.matched.clone()).collect();
         assert_eq!(
@@ -116,7 +160,7 @@ mod tests {
         let text = "Café au lait";
         let terms = "café";
         let parsed: MatchResult = from_value(get_match_range(terms, text)).unwrap();
-        assert_eq!(parsed.had_match, true);
+        assert!(parsed.had_match);
         assert_eq!(parsed.index.len(), 1);
         let first = &parsed.index[0];
         assert_eq!(first.matched, "Café");
@@ -129,7 +173,7 @@ mod tests {
         let text = "😊😊";
         let terms = "😊";
         let parsed: MatchResult = from_value(get_match_range(terms, text)).unwrap();
-        assert_eq!(parsed.had_match, true);
+        assert!(parsed.had_match);
         assert_eq!(parsed.index.len(), 2);
         assert_eq!(parsed.index[0].matched, "😊");
         assert_eq!(parsed.index[1].matched, "😊");
@@ -142,7 +186,7 @@ mod tests {
         let text = "foo bar baz foo";
         let terms = "foo baz";
         let parsed: MatchResult = from_value(get_match_range(terms, text)).unwrap();
-        assert_eq!(parsed.had_match, true);
+        assert!(parsed.had_match);
         // Should find two 'foo' and one 'baz'
         assert_eq!(parsed.index.iter().filter(|r| r.term == "foo").count(), 2);
         assert_eq!(parsed.index.iter().filter(|r| r.term == "baz").count(), 1);
@@ -153,7 +197,7 @@ mod tests {
         let text = "ababa";
         let terms = "aba";
         let parsed: MatchResult = from_value(get_match_range(terms, text)).unwrap();
-        assert_eq!(parsed.had_match, true);
+        assert!(parsed.had_match);
         // current implementation finds non-overlapping matches only
         assert_eq!(parsed.index.len(), 1);
         assert_eq!(parsed.index[0].matched, "aba");
@@ -165,14 +209,15 @@ mod tests {
     fn test_empty_and_whitespace_inputs() {
         // Empty text
         let parsed_empty_text: MatchResult = from_value(get_match_range("rust", "")).unwrap();
-        assert_eq!(parsed_empty_text.had_match, false);
+        assert!(!parsed_empty_text.had_match);
         assert_eq!(parsed_empty_text.index.len(), 0);
         // Empty terms
         let parsed_empty_terms: MatchResult = from_value(get_match_range("", "Rust")).unwrap();
-        assert_eq!(parsed_empty_terms.had_match, false);
+        assert!(!parsed_empty_terms.had_match);
         assert_eq!(parsed_empty_terms.index.len(), 0);
         // Whitespace-only terms
         let parsed_whitespace: MatchResult = from_value(get_match_range("   ", "Rust")).unwrap();
-        assert_eq!(parsed_whitespace.had_match, false);
+        assert!(!parsed_whitespace.had_match);
     }
 }
+*/

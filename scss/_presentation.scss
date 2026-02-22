@@ -56,16 +56,9 @@ pre {
   }
 }
 
-mark {
-  color: inherit;
-  background: linear-gradient(rgba(0, 0, 0, 0) 64%, var(--search-mark-bg));
-
-  cursor: pointer;
-
-  &:focus {
-    outline: 2px solid var(--links);
-    outline-offset: 2px;
-  }
+::highlight(marking) {
+  background-color: rgba(var(--search-mark-bg-r), var(--search-mark-bg-g), var(--search-mark-bg-b), 0.16);
+  text-decoration: underline var(--search-mark-bg);
 }
 
 :popover-open {

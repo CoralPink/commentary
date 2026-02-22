@@ -1,13 +1,15 @@
 // deno-lint-ignore no-sloppy-imports
 import initWasm, { get_match_range } from './wasm_book.js';
 
-const TAG_MARK = 'mark';
+type NodeOffset = {
+  node: Text;
+  start: number;
+  end: number;
+};
 
 type RangeIndex = {
   start: number;
   end: number;
-  matched: string;
-  term: string;
 };
 
 type MatchResult = {
@@ -15,105 +17,83 @@ type MatchResult = {
   hadMatch: boolean;
 };
 
-const getTextNodes = (element: HTMLElement): Text[] => {
-  const textNodes: Text[] = [];
+type Highlight = {
+  nodeOffsets: NodeOffset[];
+  result: MatchResult;
+};
 
+const calcHighlight = (element: HTMLElement, term: string, range: boolean): Highlight => {
   const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT);
 
-  while (walker.nextNode()) {
-    textNodes.push(walker.currentNode as Text);
+  let currentNode = walker.nextNode();
+  let fullText = '';
+
+  const nodeOffsets: NodeOffset[] = [];
+
+  while (currentNode) {
+    const node = currentNode as Text;
+
+    const start = fullText.length;
+    fullText += node.textContent ?? '';
+
+    const end = fullText.length;
+
+    nodeOffsets.push({ node, start, end });
+
+    currentNode = walker.nextNode();
   }
 
-  return textNodes;
+  const result = get_match_range(term, fullText, range);
+
+  return { nodeOffsets, result };
 };
 
 export const unmarking = (): void => {
-  const article = document.getElementById('article');
+  CSS.highlights.clear();
+};
 
-  if (article === null) {
-    console.error('unmarking: Article element not found');
+export const marking = (element: HTMLElement, term: string, range = true): void => {
+  unmarking();
+
+  const highlight = calcHighlight(element, term, range);
+
+  if (!highlight.result.hadMatch) {
     return;
   }
 
-  for (const x of Array.from(article.querySelectorAll(TAG_MARK))) {
-    x.removeEventListener('click', unmarking);
+  const ranges: Range[] = highlight.result.index.flatMap(r =>
+    highlight.nodeOffsets
+      .filter(({ start, end }) => r.end > start && r.start < end)
+      .map(({ node, start, end }) => {
+        const range = new Range();
 
-    const parent = x.parentNode;
+        range.setStart(node, Math.max(0, r.start - start));
+        range.setEnd(node, Math.min(end - start, r.end - start));
 
-    if (!parent) {
-      continue;
-    }
+        return range;
+      }),
+  );
 
-    while (x.firstChild) {
-      parent.insertBefore(x.firstChild, x);
-    }
-    parent.removeChild(x);
+  if (ranges.length === 0) {
+    return;
   }
+
+  CSS.highlights.set('marking', new Highlight(...ranges));
 };
 
-const marking = async (element: HTMLElement, terms: string[]): Promise<void> => {
-  if (terms.length === 0) {
+export const initMark = async (element: HTMLElement): Promise<void> => {
+  const param = new URLSearchParams(globalThis.location.search).get('mark');
+
+  if (!param) {
     return;
   }
 
   try {
     await initWasm();
-  } catch (error) {
-    console.error('marking: ', error);
+  } catch (err) {
+    console.error('initMark: ', err);
     return;
   }
 
-  for (const node of getTextNodes(element)) {
-    const textContent = node.textContent;
-
-    if (!node.parentNode || !textContent) {
-      continue;
-    }
-
-    const result: MatchResult = get_match_range(terms.join(' '), textContent);
-
-    if (!result.hadMatch) {
-      continue;
-    }
-
-    const fragment = document.createDocumentFragment();
-
-    let currentPos = 0;
-
-    for (const x of result.index) {
-      if (x.start > currentPos) {
-        fragment.appendChild(document.createTextNode(textContent.slice(currentPos, x.start)));
-      }
-
-      const mark = document.createElement(TAG_MARK);
-      mark.textContent = x.matched;
-      mark.addEventListener('click', unmarking, { once: true, passive: true });
-
-      fragment.appendChild(mark);
-
-      currentPos = x.end;
-    }
-
-    if (currentPos < textContent.length) {
-      fragment.appendChild(document.createTextNode(textContent.slice(currentPos)));
-    }
-
-    node.parentNode.replaceChild(fragment, node);
-  }
-};
-
-const splitParams = (s: string): string[] =>
-  s
-    .trim()
-    .split(/\s+/)
-    .filter(term => term.length > 0);
-
-export const initMark = (element: HTMLElement): void => {
-  const params = new URLSearchParams(globalThis.location.search).get('mark');
-
-  if (!params) {
-    return;
-  }
-
-  marking(element, splitParams(params));
+  marking(element, param);
 };
