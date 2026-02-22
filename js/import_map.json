@@ -9,6 +9,6 @@
 
     "vitest": "npm:vitest@4.0.18",
     "@vitest/coverage-v8": "npm:@vitest/coverage-v8@4.0.18",
-    "happy-dom": "npm:happy-dom@^20.6.3"
+    "happy-dom": "npm:happy-dom@20.7.0"
   }
 }
