@@ -144,7 +144,7 @@ export const initialize = (_html: HTMLElement): Disposer => {
     passive: true,
   });
 
-  toast.info('This browser will soon no longer be supported on this site.');
+  toast.warn('This browser will soon no longer be supported on this site.');
 
   return () => {
     // Do not remove the event listeners registered during this initialization process!!
