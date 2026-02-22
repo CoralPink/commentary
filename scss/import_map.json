@@ -1,6 +1,6 @@
 {
   "imports": {
-    "@std/fs": "jsr:@std/fs@1.0.22",
+    "@std/fs": "jsr:@std/fs@1.0.23",
     "sass": "npm:sass@1.97.3"
   }
 }

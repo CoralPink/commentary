@@ -1,14 +1,14 @@
 {
   "version": "5",
   "specifiers": {
-    "jsr:@std/fs@1.0.22": "1.0.22",
+    "jsr:@std/fs@1.0.23": "1.0.23",
     "jsr:@std/internal@^1.0.12": "1.0.12",
     "jsr:@std/path@^1.1.4": "1.1.4",
     "npm:sass@1.97.3": "1.97.3"
   },
   "jsr": {
-    "@std/fs@1.0.22": {
-      "integrity": "de0f277a58a867147a8a01bc1b181d0dfa80bfddba8c9cf2bacd6747bcec9308",
+    "@std/fs@1.0.23": {
+      "integrity": "3ecbae4ce4fee03b180fa710caff36bb5adb66631c46a6460aaad49515565a37",
       "dependencies": [
         "jsr:@std/internal",
         "jsr:@std/path"
@@ -163,7 +163,7 @@
   },
   "workspace": {
     "dependencies": [
-      "jsr:@std/fs@1.0.22",
+      "jsr:@std/fs@1.0.23",
       "npm:sass@1.97.3"
     ]
   }
