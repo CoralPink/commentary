@@ -30,7 +30,10 @@ const closeFootnotePop = (target: HTMLElement, elm: HTMLElement): void => {
     }
   };
 
-  elm.addEventListener('transitionend', handleTransitionEnd);
+  elm.addEventListener('transitionend', handleTransitionEnd, {
+    once: true,
+    passive: true,
+  });
 };
 
 const insertFootnote = (pop: HTMLElement): void => {
