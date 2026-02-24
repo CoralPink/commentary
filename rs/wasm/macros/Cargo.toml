@@ -4,10 +4,10 @@ version = "0.2.4"
 edition = "2024"
 
 [dependencies]
-wasm-bindgen = "=0.2.111"
+wasm-bindgen = "=0.2.112"
 
 [dependencies.web-sys]
-version = "=0.3.88"
+version = "=0.3.89"
 features = [
   "console",
 ]
