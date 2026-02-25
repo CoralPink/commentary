@@ -26,7 +26,7 @@
 <div style="color: #999999; font-size: 90%;">
 
 ```admonish quote title=""
-Jeder wollt' sie zur Frau
+Jeder wollt sie zur Frau
 
 Doch ihr Herz war nicht mehr frei
 
@@ -42,7 +42,7 @@ Denn sie hat nur einen geliebt
 ```admonish quote title=""
 Doch der zog in den Krieg
 
-Und er kehrte nicht mehr heim
+Und er kehrte nicht mehr Heim
 
 Es gab nichts mehr was ihr noch blieb
 
@@ -66,7 +66,7 @@ Wo der Rhein am tiefsten war
 ```admonish quote title=""
 Und dort sang sie ihr Lied
 
-Und wer hörte wie sie sang
+Und wer hörte, wie sie sang
 
 Der vergaß dabei die Gefahr
 
@@ -77,20 +77,18 @@ Der vergaß dabei die Gefahr
 目の前の危険でさえ 忘れてしまう
 ```
 
-<div style="font-size: 90%; text-align: center;">
+<div style="text-align: center">
 <div style="margin-top: 4em">
 Loreley{{footnote: Loreley (by [Dschinghis Khan](https://de.wikipedia.org/wiki/Dschinghis_Khan)):
 Dshinghis Khan が発表した3枚目のアルバム[Wir sitzen alle im selben Boot](https://en.wikipedia.org/wiki/Wir_sitzen_alle_im_selben_Boot)
 ("我々は皆同じ船に乗っている") に収録された楽曲。
-}} ley ley...
+}} ley ley
 
 Unter dir da fließt der Rhein
 </div>
 
 <div style="margin-top: 2em">
-Loreley の眼下には
-
-ライン川が流れる
+Loreley の眼下には ライン川が流れる
 </div>
 
 <div style="margin-top: 4em">
@@ -106,7 +104,7 @@ Durch das weite schöne Land
 </div>
 
 <div style="margin-top: 4em">
-Loreley ley ley...
+Loreley ley ley
 
 Du sitzt dort im Sonnenschein
 
@@ -120,25 +118,31 @@ Loreley は陽だまりの中で
 </div>
 
 <div style="margin-top: 4em">
-Loreley ley ley...
+Loreley ley ley
 
-Schiffe ziehn an dir vorbei
+Schiffe zieh'n an dir vorbei
+</div>
 
+<div style="margin-top: 2em">
+舟は傍を通り過ぎる
+</div>
+
+<div style="margin-top: 4em">
 Und wer dich dort sieht
 
 Wird verzaubert durch dein Lied
 </div>
 
 <div style="margin-top: 2em">
-舟は傍を通り過ぎるが
+Loreley を見た者は
 
-Loreley を見た者は 皆その歌に魅せられる
+皆その歌に魅せられる
 </div>
 
 <div style="margin-top: 4em">
-Loreley ley ley...
+Loreley ley ley
 
-Viele kehrten nicht mehr heim
+Viele kehrten nicht mehr Heim
 
 Aber lang lang lang ist's her
 </div>
@@ -148,14 +152,12 @@ Aber lang lang lang ist's her
 
 だがそれは 遙か遙かの昔話
 </div>
-
-<div style="margin-top: 4em"></div>
 </div>
 
-```admonish quote title=""
-Und ihr Lied klang so süß
+<div style="margin-top: 4em"></div>
 
-Wie ein längst vergeßner Traum
+```admonish quote title=""
+Und ihr Lied klang so süß wie ein längst vergess'ner Traum
 
 Schon von weitem hörte man sie
 
@@ -167,11 +169,9 @@ Schon von weitem hörte man sie
 ```
 
 ```admonish quote title=""
-Und die Fischer im Boot
+Und die fischer im Boot fuhr'n vorbei
 
-Fuhrn vorbei im Morgengraun
-
-Und ihr Bild vergaßen sie nie
+Im Morgengraun und ihr Bild vergaßen sie nie
 
 漁師たちは 夜明け前に舟で通り過ぎた
 
@@ -181,7 +181,7 @@ Und ihr Bild vergaßen sie nie
 ```admonish note title=""
 Und so manches Boot zerbrach am schroffen Stein
 
-Weil die Männer sie nur sahn
+Weil die Männer sie nur sah'n
 
 多くの舟が 険しい岩に砕け散る
 
@@ -189,51 +189,76 @@ Weil die Männer sie nur sahn
 ```
 
 ```admonish quote title=""
-Doch sie schaute bloß weg
+Doch sie schaute bloß weg, wenn der Strudel sie verschlang
 
-Wenn der Strudel sie verschlang -
-
-彼女は 誰を哀れむこともなく
-
-ただ目を逸らすだけだった
+渦が漁師を飲み込もうとも、彼女はただ目を逸らすだけだった
 ```
 
 ```admonish danger title=""
 Ihr hat keiner leid getan
 
-そこで 渦が漁師を飲み込もうとも
+もう 誰を哀れむこともない
 ```
 
-<div style="margin-top: 16em"></div>
+<div style="text-align: center">
+<div style="margin-top: 4em">
+Loreley ley ley
+
+Unter dir da fließt der Rhein
+</div>
+
+<div style="margin-top: 4em">
+Wie ein blaues Band
+
+Durch das weite schöne Land
+</div>
+
+<div style="margin-top: 4em">
+Loreley ley ley
+
+Du sitzt dort im Sonnenschein
+
+Und du kämmst dein goldenes Haar
+</div>
+
+<div style="margin-top: 4em">
+Loreley ley ley
+
+Schiffe zieh'n an dir vorbei
+
+</div>
+
+<div style="margin-top: 4em">
+Und wer dich dort sieht
+
+Wird verzaubert durch dein Lied
+</div>
+
+<div style="margin-top: 4em">
+Loreley ley ley
+
+Viele kehrten nicht mehr Heim
+
+Aber lang lang lang ist's her
+</div>
+</div>
+
+<div style="margin-top: 4em"></div>
 
 ```admonish quote title=""
-Und ein Prinz hörte auch
+Und ein Prinz hörte auch von der schönen Loreley
 
-Von der schönen Loreley
+Und er schwor sich, sie wird bald mein
 
-ある王子もまた
+ある王子もまた 美しき Loreley の噂を耳にした
 
-美しき Loreley の噂を耳にした
+そして誓った、すぐに彼女を自分のものにして見せる
 ```
 
 ```admonish quote title=""
-Und er schwor sich
+Und so fuhren sie los auf dem alten vater Rhein
 
-Sie wird bald mein
-
-そして誓った
-
-すぐに彼女を僕のものにする
-```
-
-```admonish quote title=""
-Und so fuhren sie los
-
-Auf dem alten Vater Rhein
-
-王子達は 船出した
-
-古き父なる ライン川を下って
+王子達は 古き父なるライン川へと船出した
 ```
 
 ```admonish danger title=""
@@ -242,9 +267,9 @@ Doch sie tranken viel zu viel Wein!
 だが 彼らは吞みすぎたんだ!
 ```
 
-<div style="font-size: 90%; text-align: center;">
+<div style="text-align: center">
 <div style="margin-top: 4em">
-Wein Wein Wein Wein
+Wein, wein, wein, wein
 
 Auf die Loreley
 </div>
@@ -264,9 +289,9 @@ Wer glaubt an Zauberei
 </div>
 
 <div style="margin-top: 4em">
-Wein Wein Wein Wein
+Wein, wein, wein, wein
 
-schenkt noch mal ein
+Schenkt noch mal ein
 </div>
 
 <div style="margin-top: 2em">
@@ -276,7 +301,7 @@ schenkt noch mal ein
 </div>
 
 <div style="margin-top: 4em">
-Gott möge uns verzeihn
+Gott möge uns verzeih'n
 </div>
 
 <div style="margin-top: 2em">
@@ -287,9 +312,7 @@ Gott möge uns verzeihn
 </div>
 
 ```admonish quote title=""
-Und sie sang noch ihr Lied
-
-Und sie kämmte noch ihr Haar
+Und sie sang noch ihr Lied, und sie kämmte noch ihr Haar
 
 Als das Boot schon versunken war
 
@@ -298,6 +321,76 @@ Als das Boot schon versunken war
 金色の髪を梳きながら
 ```
 
-<div style="margin-top: 4em"></div>
+<div style="text-align: center">
+<div style="margin-top: 4em">
+Loreley ley ley
+
+Unter dir da fließt der Rhein
+</div>
+
+<div style="margin-top: 4em">
+Wie ein blaues Band
+
+Durch das weite schöne Land
+</div>
+
+<div style="margin-top: 4em">
+Loreley ley ley
+
+Dort du sitzt im Sonnenschein
+
+Kämmst du dein goldenes Haar
+</div>
+
+<div style="margin-top: 4em">
+Loreley ley ley
+
+Schiffe zieh'n an dir vorbei
+</div>
 
 </div>
+</div>
+
+<div style="text-align: center; font-size: 90%">
+<div style="margin-top: 4em">
+Und man hört noch heut
+
+Den Gesang aus alter Zeit
+</div>
+
+<div style="margin-top: 2em">
+そして今もなお 人々は耳にする
+
+遙か昔の歌声を
+</div>
+
+<div style="margin-top: 4em">
+Loreley ley ley
+
+Doch man sieht dich heut nicht mehr
+
+Auf den steilen Felsen
+</div>
+
+<div style="margin-top: 2em">
+しかし今はもう その険しい岩の上に
+
+Loreley の姿はない
+</div>
+
+<div style="margin-top: 4em">
+Loreley ley ley...
+</div>
+</div>
+
+<div style="font-size: 84%">
+
+> Unter dir da fließt der Rhein
+>
+> Wie ein blaues Band
+>
+> Durch das weite schöne Land
+
+</div>
+
+<div style="margin-top: 4em"></div>
