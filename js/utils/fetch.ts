@@ -46,19 +46,18 @@ export const fetchText = async (url: string, options: AbortableOptions = {}): Pr
  *
  * refs: https://developer.mozilla.org/ja/docs/Web/API/DecompressionStream
  */
-export const fetchAndDecompress = async (url: string, options: AbortableOptions = {}): Promise<ArrayBuffer> => {
-  const isUseBrotli = (): boolean => {
-    // While relying on try/catch is a bit “rough,”
-    // it's currently the most reliable method for handling browser differences.
-    try {
-      // @ts-expect-error: Test whether Brotli can be used
-      new DecompressionStream('brotli');
-      return true;
-    } catch {
-      return false;
-    }
-  };
+const isUseBrotli = (): boolean => {
+  // While relying on try/catch is a bit “rough,”
+  // it's currently the most reliable method for handling browser differences.
+  try {
+    new DecompressionStream('brotli');
+    return true;
+  } catch {
+    return false;
+  }
+};
 
+export const fetchAndDecompress = async (url: string, options: AbortableOptions = {}): Promise<ArrayBuffer> => {
   const isBrotli = isUseBrotli();
   const response = await fetchWithTimeout(`${url}${isBrotli ? '.br' : '.gz'}`, options);
 
@@ -68,7 +67,6 @@ export const fetchAndDecompress = async (url: string, options: AbortableOptions 
 
   const format: CompressionFormat = isBrotli ? 'brotli' : 'gzip';
 
-  // @ts-expect-error: Brotli is available in some browsers
   const stream = response.body.pipeThrough(new DecompressionStream(format));
   return await new Response(stream).arrayBuffer();
 };
