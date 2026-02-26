@@ -1,6 +1,6 @@
 declare const self: ServiceWorkerGlobalScope;
 
-const CACHE_VERSION = 'v10.3.1';
+const CACHE_VERSION = 'v10.3.2';
 
 const CACHE_URL = '/commentary/';
 const FALLBACK_IMAGE = 'favicon.png';
@@ -23,7 +23,8 @@ const installList = [
 ] as const;
 
 const faviconFiles = new Set(['favicon.png', 'favicon.svg']);
-const skipDestination = new Set<RequestDestination>(['document', 'image', 'video', 'audio', '']);
+const skipDestination = new Set<RequestDestination>(['document', 'image', 'video', 'audio']);
+const cacheableExtensions = new Set(['wasm', 'br', 'gz']);
 
 const extractVersionParts = (cacheName: string): { major: number; minor: number } | null => {
   const m = cacheName.match(/^v(\d+)\.(\d+)/);
@@ -161,6 +162,23 @@ const requestProc = (request: Request, url: URL): Request => {
   return request;
 };
 
+const shouldCache = (request: Request): boolean => {
+  if (skipDestination.has(request.destination)) {
+    return false;
+  }
+
+  // .wasm, .br, and .gz files are not skipped
+  // (In practice, it cannot correctly identify files without extensions (e.g., abcwasm))
+  const ext = request.url.split('.').pop()?.toLowerCase() ?? '';
+
+  if (cacheableExtensions.has(ext)) {
+    return true;
+  }
+
+  // Do not cache empty
+  return request.destination !== '';
+};
+
 self.addEventListener('fetch', (event: FetchEvent): void => {
   const url = new URL(event.request.url);
 
@@ -170,7 +188,7 @@ self.addEventListener('fetch', (event: FetchEvent): void => {
   }
 
   const request = requestProc(event.request, url);
-  const response = skipDestination.has(request.destination) ? preloadProc : cacheFirst;
+  const response = shouldCache(request) ? cacheFirst : preloadProc;
 
   event.respondWith(
     response(
