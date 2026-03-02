@@ -83,29 +83,25 @@ impl Finder {
         })
     }
 
-    fn aggregate_results<'a>(&'a self, terms: &'a str) -> HitList<'a> {
+    /// Returns documents that match the given terms, either as full string match or token-wise match.
+    fn filter_docs_by_terms<'a>(&'a self, terms: &str) -> Vec<&'a DocObject> {
         let trimmed = terms.trim();
         let tokens: Vec<&str> = split_limited::<MAX_TOKENS>(trimmed);
+        let lower = trimmed.to_lowercase();
+        let token_lowers = tokens.iter().map(|t| t.to_lowercase()).collect::<Vec<String>>();
 
-        let hit_docs = {
-            let lower = trimmed.to_lowercase();
-            let token_lowers = tokens.iter().map(|t| t.to_lowercase()).collect::<Vec<String>>();
+        self.store_doc
+            .iter()
+            .filter(|doc| {
+                if doc.body_lower().contains(&lower) || doc.breadcrumbs_lower().contains(&lower) {
+                    return true;
+                }
 
-            self.store_doc
-                .iter()
-                .filter(|doc| {
-                    if doc.body_lower().contains(&lower) || doc.breadcrumbs_lower().contains(&lower) {
-                        return true;
-                    }
-
-                    token_lowers.iter().all(|tok_lower| {
-                        doc.body_lower().contains(tok_lower) || doc.breadcrumbs_lower().contains(tok_lower)
-                    })
+                token_lowers.iter().all(|tok_lower| {
+                    doc.body_lower().contains(tok_lower) || doc.breadcrumbs_lower().contains(tok_lower)
                 })
-                .collect::<Vec<&DocObject>>()
-        };
-
-        HitList::from_token_set(tokens, hit_docs)
+            })
+            .collect()
     }
 
     fn build_search_result(&self, results: HitList, terms: &str, html_buffer: &mut String) -> usize {
@@ -149,7 +145,10 @@ impl Finder {
             return to_value(&result).unwrap();
         }
 
-        let results = self.aggregate_results(terms);
+        let results = HitList::from_token_set(
+            split_limited::<MAX_TOKENS>(terms.trim()),
+            self.filter_docs_by_terms(terms),
+        );
 
         let mut html_buffer = String::with_capacity(results.len() * BUFFER_HTML_MAGNIFICATION);
         let hit = self.build_search_result(results, terms, &mut html_buffer);
