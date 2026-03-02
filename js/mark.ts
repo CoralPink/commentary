@@ -52,7 +52,7 @@ const calcHighlight = (element: HTMLElement, term: string): Highlight => {
 };
 
 export const unmarking = (): void => {
-  CSS.highlights.clear();
+  CSS.highlights.delete('marking');
 };
 
 export const marking = (element: HTMLElement, term: string): void => {
