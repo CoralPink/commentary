@@ -40,9 +40,15 @@ fn create_index_map(text: &str) -> Vec<usize> {
 
 fn get_sentences(terms: &[String], text: &str, index_map: &[usize]) -> Vec<RangeIndex> {
     let mut range = Vec::new();
+    let mut cursor = 0;
 
     for sentence in text.unicode_sentences() {
-        let p = text.find(sentence).unwrap_or(0);
+        let Some(rel) = text[cursor..].find(sentence) else {
+            continue;
+        };
+
+        let p = cursor + rel;
+        cursor = p + sentence.len();
 
         if terms.iter().any(|x| sentence.to_lowercase().contains(x)) {
             range.push(RangeIndex {
