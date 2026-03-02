@@ -123,7 +123,7 @@ impl Finder {
                     let score_bar = scoring_notation(*el.score());
 
                     write!(html_buffer,
-                        r#"<li tabindex="0" role="option" id="s{}" aria-label="{} {}pt"><a href="{}{}?mark={}#{}" tabindex="-1">{}</a><span aria-hidden="true">{}</span><div id="score" role="meter" aria-label="score:{}pt">{}</div></li>"#,
+                        r#"<li tabindex="0" role="option" id="s{}" aria-label="{} {}pt"><a href="{}{}?mark={}#{}" tabindex="-1">{}</a><span aria-hidden="true">{}</span><div class="score" role="meter" aria-label="score:{}pt">{}</div></li>"#,
                         el.id(), page, el.score(), &self.root_path, page, mark, head, el.doc().breadcrumbs(), excerpt, el.score(), score_bar
                     ).unwrap();
                 }
