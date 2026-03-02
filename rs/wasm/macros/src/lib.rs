@@ -18,7 +18,7 @@ unsafe extern "C" {
 macro_rules! console_log {
     ($($t:tt)*) => {{
         #[cfg(feature = "use-browser-console")]
-        log(&format_args!($($t)*).to_string())
+        $crate::log(&format_args!($($t)*).to_string())
     }};
 }
 
@@ -26,7 +26,7 @@ macro_rules! console_log {
 macro_rules! console_error {
     ($($t:tt)*) => {{
         #[cfg(feature = "use-browser-console")]
-        error(&format_args!($($t)*).to_string())
+        $crate::error(&format_args!($($t)*).to_string())
     }};
 }
 
@@ -34,7 +34,7 @@ macro_rules! console_error {
 macro_rules! console_info {
     ($($t:tt)*) => {{
         #[cfg(feature = "use-browser-console")]
-        info(&format_args!($($t)*).to_string())
+        $crate::info(&format_args!($($t)*).to_string())
     }};
 }
 
@@ -42,6 +42,6 @@ macro_rules! console_info {
 macro_rules! console_warn {
     ($($t:tt)*) => {{
         #[cfg(feature = "use-browser-console")]
-        warn(&format_args!($($t)*).to_string())
+        $crate::warn(&format_args!($($t)*).to_string())
     }};
 }
