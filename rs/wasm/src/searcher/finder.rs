@@ -138,7 +138,9 @@ impl Finder {
         rendered
     }
 
-    pub fn search(&self, terms: &str) -> JsValue {
+    pub fn search(&self, value: &str) -> JsValue {
+        let terms = value.trim();
+
         if terms.len() <= 1 {
             let result = SearchResult {
                 header: INITIAL_HEADER.to_string(),

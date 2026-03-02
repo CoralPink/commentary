@@ -48,7 +48,7 @@ const navigateInternal: (url: URL) => void = USE_LEGACY_NAVIGATION
     };
 
 const showResults = (): void => {
-  const result = finder.search(elmSearchBar.value.trim()) as SearchResult;
+  const result = finder.search(elmSearchBar.value) as SearchResult;
 
   elmHeader.textContent = result.header;
 
