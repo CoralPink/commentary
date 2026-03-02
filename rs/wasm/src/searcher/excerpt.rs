@@ -150,7 +150,6 @@ fn get_hitranges(body: &str, normalized_terms: &[String]) -> Vec<HitRange> {
             offset = end;
         }
     }
-    }
 
     vec.sort_by_key(|r| (r.start, r.end));
 
