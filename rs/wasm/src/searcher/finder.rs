@@ -108,13 +108,15 @@ impl Finder {
         HitList::from_token_set(tokens, hit_docs)
     }
 
-    fn build_search_result(&self, results: HitList, terms: &str, html_buffer: &mut String) {
+    fn build_search_result(&self, results: HitList, terms: &str, html_buffer: &mut String) -> usize {
         let normalized_terms = terms
             .split_whitespace()
             .map(|t| t.to_lowercase())
             .collect::<Vec<String>>();
 
         let mark = encode(terms).into_owned();
+
+        let mut rendered = 0;
 
         results.into_iter().for_each(|el| {
                 if let Some(url) = self.url_table.get(*el.id()) {
@@ -126,10 +128,14 @@ impl Finder {
                         r#"<li tabindex="0" role="option" id="s{}" aria-label="{} {}pt"><a href="{}{}?mark={}#{}" tabindex="-1">{}</a><span aria-hidden="true">{}</span><div class="score" role="meter" aria-label="score:{}pt">{}</div></li>"#,
                         el.id(), page, el.score(), &self.root_path, page, mark, head, el.doc().breadcrumbs(), excerpt, el.score(), score_bar
                     ).unwrap();
+
+                    rendered += 1;
                 }
                 // TODO: Ideally, we could include the code only during debugging, but it's not working out well at the moment...
                 // else { macros::console_error!("Missing URL for document ID: {}", *el.id()); }
             });
+
+        rendered
     }
 
     pub fn search(&self, terms: &str) -> JsValue {
@@ -142,7 +148,9 @@ impl Finder {
         }
 
         let results = self.aggregate_results(terms);
-        let hit = results.len();
+
+        let mut html_buffer = String::with_capacity(results.len() * BUFFER_HTML_MAGNIFICATION);
+        let hit = self.build_search_result(results, terms, &mut html_buffer);
 
         if hit == 0 {
             let result = SearchResult {
@@ -152,13 +160,8 @@ impl Finder {
             return to_value(&result).unwrap();
         }
 
-        let header = format!("{} search results for : {terms}", hit);
-
-        let mut html_buffer = String::with_capacity(hit * BUFFER_HTML_MAGNIFICATION);
-        self.build_search_result(results, terms, &mut html_buffer);
-
         to_value(&SearchResult {
-            header,
+            header: format!("{} search results for : {terms}", hit),
             html: Some(html_buffer),
         })
         .unwrap()
