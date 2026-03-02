@@ -137,6 +137,9 @@ fn get_hitranges(body: &str, normalized_terms: &[String]) -> Vec<HitRange> {
     let mut vec = Vec::new();
 
     for term in normalized_terms {
+        if term.is_empty() {
+            continue;
+        }
         let mut offset = 0;
 
         while let Some(pos) = body[offset..].find(term) {
@@ -146,6 +149,7 @@ fn get_hitranges(body: &str, normalized_terms: &[String]) -> Vec<HitRange> {
             vec.push(HitRange { start, end });
             offset = end;
         }
+    }
     }
 
     vec.sort_by_key(|r| (r.start, r.end));
