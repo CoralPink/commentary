@@ -167,16 +167,15 @@ const shouldCache = (request: Request): boolean => {
     return false;
   }
 
+  if (request.destination !== '') {
+    return true;
+  }
+
   // .wasm, .br, and .gz files are not skipped
   // (In practice, it cannot correctly identify files without extensions (e.g., abcwasm))
   const ext = request.url.split('.').pop()?.toLowerCase() ?? '';
 
-  if (cacheableExtensions.has(ext)) {
-    return true;
-  }
-
-  // Do not cache empty
-  return request.destination !== '';
+  return cacheableExtensions.has(ext);
 };
 
 self.addEventListener('fetch', (event: FetchEvent): void => {
