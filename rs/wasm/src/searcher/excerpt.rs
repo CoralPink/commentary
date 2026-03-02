@@ -142,7 +142,21 @@ fn get_hitranges(body: &str, normalized_terms: &[String]) -> Vec<HitRange> {
         }
     }
 
-    vec
+    vec.sort_by_key(|r| (r.start, r.end));
+
+    let mut merged: Vec<HitRange> = Vec::with_capacity(vec.len());
+
+    for r in vec {
+        if let Some(last) = merged.last_mut()
+            && r.start <= last.end
+        {
+            last.end = last.end.max(r.end);
+            continue;
+        }
+        merged.push(r);
+    }
+
+    merged
 }
 
 /// Generate a highlighted HTML snippet for the given `body`.
