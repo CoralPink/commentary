@@ -33,18 +33,24 @@ struct HitRange {
     end: usize,
 }
 
+/// Represents the index range to be extracted.
+struct WindowSpec {
+    start: usize,
+    size: usize,
+}
+
 /// Calculate the optimal window of tokens to highlight based on their importance.
 ///
-/// Returns the starting index and window size as a `HitRange`.
-fn calc_range_position(tokens: &[HighlightedToken]) -> HitRange {
-    let end = TEASER_WORD_COUNT.min(tokens.len());
+/// Returns the starting index and window size as a `WindowSpec`.
+fn calc_range_position(tokens: &[HighlightedToken]) -> WindowSpec {
+    let size = TEASER_WORD_COUNT.min(tokens.len());
     let mut start = 0;
 
-    let mut potential: u16 = tokens.iter().take(end).map(|t| t.importance).sum();
+    let mut potential: u16 = tokens.iter().take(size).map(|t| t.importance).sum();
     let mut p = potential;
 
-    for i in 1..=tokens.len() - end {
-        p = p - tokens[i - 1].importance + tokens[i + end - 1].importance;
+    for i in 1..=tokens.len() - size {
+        p = p - tokens[i - 1].importance + tokens[i + size - 1].importance;
 
         if p > potential {
             potential = p;
@@ -52,14 +58,14 @@ fn calc_range_position(tokens: &[HighlightedToken]) -> HitRange {
         }
     }
 
-    HitRange { start, end }
+    WindowSpec { start, size }
 }
 
 /// Extend the highlight window to include consecutive matched tokens.
 ///
 /// This ensures the highlight continues to the end of any matching terms.
-fn calc_end_index(range: &HitRange, tokens: &[HighlightedToken]) -> usize {
-    let mut end_index = range.start + range.end;
+fn calc_end_index(range: &WindowSpec, tokens: &[HighlightedToken]) -> usize {
+    let mut end_index = range.start + range.size;
 
     // If matches are consecutive, extend them to the end
     while end_index < tokens.len() && tokens[end_index].importance == IMPORTANCE_MATCH {

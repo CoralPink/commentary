@@ -89,6 +89,7 @@ impl Finder {
 
         let hit_docs = {
             let lower = trimmed.to_lowercase();
+            let token_lowers = tokens.iter().map(|t| t.to_lowercase()).collect::<Vec<String>>();
 
             self.store_doc
                 .iter()
@@ -97,9 +98,8 @@ impl Finder {
                         return true;
                     }
 
-                    tokens.iter().all(|&tok| {
-                        let tok_lower = tok.to_lowercase();
-                        doc.body_lower().contains(&tok_lower) || doc.breadcrumbs_lower().contains(&tok_lower)
+                    token_lowers.iter().all(|tok_lower| {
+                        doc.body_lower().contains(tok_lower) || doc.breadcrumbs_lower().contains(tok_lower)
                     })
                 })
                 .collect::<Vec<&DocObject>>()
