@@ -1,5 +1,5 @@
 import { ROOT_PATH, USE_LEGACY_NAVIGATION } from './constants.ts';
-import { initMark, unmarking } from './mark.ts';
+import { initMark } from './mark.ts';
 
 import { loadStyleSheet } from './utils/css-loader.ts';
 import { fetchAndDecompress } from './utils/fetch.ts';
@@ -83,7 +83,6 @@ const jumpUrl = (): void => {
   const url = new URL(aElement.href);
 
   if (checkURL(url)) {
-    unmarking();
     updateMark();
   }
 

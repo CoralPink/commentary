@@ -56,8 +56,6 @@ export const unmarking = (): void => {
 };
 
 export const marking = (element: HTMLElement, term: string): void => {
-  unmarking();
-
   const highlight = calcHighlight(element, term);
 
   if (!highlight.result.hadMatch) {
@@ -94,5 +92,6 @@ export const initMark = async (element: HTMLElement): Promise<void> => {
     return;
   }
 
+  unmarking();
   marking(element, param);
 };
