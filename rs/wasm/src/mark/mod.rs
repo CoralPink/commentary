@@ -1,13 +1,14 @@
 use serde::{Deserialize, Serialize};
 use serde_wasm_bindgen::to_value;
+use unicode_segmentation::UnicodeSegmentation;
 use wasm_bindgen::prelude::*;
 
 #[derive(Serialize, Deserialize)]
 struct RangeIndex {
     start: usize,
     end: usize,
+    #[cfg(test)]
     matched: String,
-    term: String,
 }
 
 #[derive(Serialize, Deserialize)]
@@ -17,58 +18,93 @@ struct MatchResult {
     had_match: bool,
 }
 
-#[wasm_bindgen]
-pub fn get_match_range(terms: &str, text: &str) -> JsValue {
-    let mut byte_to_utf16 = vec![0; text.len() + 1];
-    let mut utf16_index = 0;
-    let mut byte_index = 0;
+fn create_index_map(text: &str) -> Vec<usize> {
+    let mut v = vec![0; text.len() + 1];
+    let mut byte_idx = 0;
+    let mut utf16_idx = 0;
 
     for c in text.chars() {
         let utf8_len = c.len_utf8();
         let utf16_len = c.encode_utf16(&mut [0; 2]).len();
 
         for i in 0..utf8_len {
-            byte_to_utf16[byte_index + i] = utf16_index;
+            v[byte_idx + i] = utf16_idx;
         }
-        byte_index += utf8_len;
-        utf16_index += utf16_len;
+        byte_idx += utf8_len;
+        utf16_idx += utf16_len;
+    }
+    v[byte_idx] = utf16_idx;
+
+    v
+}
+
+fn get_sentences(terms: &[String], text: &str, index_map: &[usize]) -> Vec<RangeIndex> {
+    let mut range = Vec::new();
+
+    for sentence in text.unicode_sentences() {
+        let p = text.find(sentence).unwrap_or(0);
+
+        if terms.iter().any(|x| sentence.to_lowercase().contains(x)) {
+            range.push(RangeIndex {
+                start: index_map[p],
+                end: index_map[p + sentence.len()],
+                #[cfg(test)]
+                matched: sentence.to_string(),
+            });
+        }
     }
 
-    byte_to_utf16[byte_index] = utf16_index;
+    range
+}
 
-    let terms: Vec<&str> = terms.split_whitespace().collect();
+fn get_range(terms: &[String], text: &str, index_map: &[usize]) -> Vec<RangeIndex> {
     let lower_text = text.to_lowercase();
+    let mut range = Vec::new();
 
-    let mut index = Vec::new();
-
-    for term in &terms {
-        let lower_term = term.to_lowercase();
+    for x in terms {
         let mut pos = 0;
 
-        while let Some(found) = lower_text[pos..].find(&lower_term) {
+        while let Some(found) = lower_text[pos..].find(x) {
             let byte_start = pos + found;
-            let byte_len: usize = term.chars().map(|c| c.len_utf8()).sum();
-            let byte_end = byte_start + byte_len;
+            let byte_end = byte_start + x.len();
 
-            let matched = text[byte_start..byte_end].to_string();
-
-            index.push(RangeIndex {
-                start: byte_to_utf16[byte_start],
-                end: byte_to_utf16[byte_end],
-                matched,
-                term: (*term).to_string(),
+            range.push(RangeIndex {
+                start: index_map[byte_start],
+                end: index_map[byte_end],
+                #[cfg(test)]
+                matched: text[byte_start..byte_end].to_string(),
             });
 
             pos = byte_end;
         }
     }
 
-    index.sort_by_key(|r| r.start);
+    range
+}
 
+fn build_match_result<F>(term: &str, text: &str, matcher: F) -> Result<JsValue, JsValue>
+where
+    F: Fn(&[String], &str, &[usize]) -> Vec<RangeIndex>,
+{
+    let terms: Vec<String> = term.split_whitespace().map(|t| t.to_lowercase()).collect();
+
+    let index = matcher(&terms, text, &create_index_map(text));
     let had_match = !index.is_empty();
-    let match_index = MatchResult { index, had_match };
 
-    to_value(&match_index).unwrap()
+    let match_result = MatchResult { index, had_match };
+
+    to_value(&match_result).map_err(|e| JsValue::from_str(&e.to_string()))
+}
+
+// NOTE: Not currently in use
+//#[wasm_bindgen]
+pub fn get_match_range(term: &str, text: &str) -> Result<JsValue, JsValue> {
+    build_match_result(term, text, get_range)
+}
+
+#[wasm_bindgen]
+pub fn get_match_sentences(term: &str, text: &str) -> Result<JsValue, JsValue> {
+    build_match_result(term, text, get_sentences)
 }
 
 #[cfg(test)]
@@ -83,30 +119,29 @@ mod tests {
     #[wasm_bindgen_test]
     fn test_get_match_range_basic() {
         let text = "Hello Rust World!";
-        let terms = "Rust";
+        let term = "Rust";
 
-        let result = get_match_range(terms, text);
+        let result = get_match_range(term, text).unwrap();
 
         let parsed: MatchResult = from_value(result).unwrap();
-        assert_eq!(parsed.had_match, true);
+        assert!(parsed.had_match);
         assert_eq!(parsed.index.len(), 1);
 
         let first = &parsed.index[0];
-        assert_eq!(first.term, "Rust");
         assert_eq!(first.matched, "Rust");
-        assert_eq!(first.start < first.end, true);
+        assert_eq!(&text[first.start..first.end], first.matched);
     }
 
     #[wasm_bindgen_test]
     fn test_case_insensitive_matching() {
         let text = "Rust rust RUST";
-        let terms = "rust";
-        let parsed: MatchResult = from_value(get_match_range(terms, text)).unwrap();
-        assert_eq!(parsed.had_match, true);
+        let term = "rust";
+        let parsed: MatchResult = from_value(get_match_range(term, text).unwrap()).unwrap();
+        assert!(parsed.had_match);
         assert_eq!(parsed.index.len(), 3);
-        let matched_terms: Vec<_> = parsed.index.iter().map(|r| r.matched.clone()).collect();
+        let matched_term: Vec<_> = parsed.index.iter().map(|r| r.matched.clone()).collect();
         assert_eq!(
-            matched_terms,
+            matched_term,
             vec!["Rust".to_string(), "rust".to_string(), "RUST".to_string()]
         );
     }
@@ -114,9 +149,9 @@ mod tests {
     #[wasm_bindgen_test]
     fn test_unicode_accented_characters() {
         let text = "Café au lait";
-        let terms = "café";
-        let parsed: MatchResult = from_value(get_match_range(terms, text)).unwrap();
-        assert_eq!(parsed.had_match, true);
+        let term = "café";
+        let parsed: MatchResult = from_value(get_match_range(term, text).unwrap()).unwrap();
+        assert!(parsed.had_match);
         assert_eq!(parsed.index.len(), 1);
         let first = &parsed.index[0];
         assert_eq!(first.matched, "Café");
@@ -127,9 +162,9 @@ mod tests {
     #[wasm_bindgen_test]
     fn test_unicode_emoji_surrogate_pairs() {
         let text = "😊😊";
-        let terms = "😊";
-        let parsed: MatchResult = from_value(get_match_range(terms, text)).unwrap();
-        assert_eq!(parsed.had_match, true);
+        let term = "😊";
+        let parsed: MatchResult = from_value(get_match_range(term, text).unwrap()).unwrap();
+        assert!(parsed.had_match);
         assert_eq!(parsed.index.len(), 2);
         assert_eq!(parsed.index[0].matched, "😊");
         assert_eq!(parsed.index[1].matched, "😊");
@@ -138,22 +173,23 @@ mod tests {
     }
 
     #[wasm_bindgen_test]
-    fn test_multiple_search_terms() {
+    fn test_multiple_search_term() {
         let text = "foo bar baz foo";
-        let terms = "foo baz";
-        let parsed: MatchResult = from_value(get_match_range(terms, text)).unwrap();
-        assert_eq!(parsed.had_match, true);
+        let term = "foo baz";
+        let parsed: MatchResult = from_value(get_match_range(term, text).unwrap()).unwrap();
+        assert!(parsed.had_match);
         // Should find two 'foo' and one 'baz'
-        assert_eq!(parsed.index.iter().filter(|r| r.term == "foo").count(), 2);
-        assert_eq!(parsed.index.iter().filter(|r| r.term == "baz").count(), 1);
+        let mut matched: Vec<_> = parsed.index.iter().map(|r| r.matched.clone()).collect();
+        matched.sort();
+        assert_eq!(matched, vec!["baz", "foo", "foo"]);
     }
 
     #[wasm_bindgen_test]
     fn test_overlapping_matches() {
         let text = "ababa";
-        let terms = "aba";
-        let parsed: MatchResult = from_value(get_match_range(terms, text)).unwrap();
-        assert_eq!(parsed.had_match, true);
+        let term = "aba";
+        let parsed: MatchResult = from_value(get_match_range(term, text).unwrap()).unwrap();
+        assert!(parsed.had_match);
         // current implementation finds non-overlapping matches only
         assert_eq!(parsed.index.len(), 1);
         assert_eq!(parsed.index[0].matched, "aba");
@@ -164,15 +200,15 @@ mod tests {
     #[wasm_bindgen_test]
     fn test_empty_and_whitespace_inputs() {
         // Empty text
-        let parsed_empty_text: MatchResult = from_value(get_match_range("rust", "")).unwrap();
-        assert_eq!(parsed_empty_text.had_match, false);
+        let parsed_empty_text: MatchResult = from_value(get_match_range("rust", "").unwrap()).unwrap();
+        assert!(!parsed_empty_text.had_match);
         assert_eq!(parsed_empty_text.index.len(), 0);
-        // Empty terms
-        let parsed_empty_terms: MatchResult = from_value(get_match_range("", "Rust")).unwrap();
-        assert_eq!(parsed_empty_terms.had_match, false);
-        assert_eq!(parsed_empty_terms.index.len(), 0);
-        // Whitespace-only terms
-        let parsed_whitespace: MatchResult = from_value(get_match_range("   ", "Rust")).unwrap();
-        assert_eq!(parsed_whitespace.had_match, false);
+        // Empty term
+        let parsed_empty_term: MatchResult = from_value(get_match_range("", "Rust").unwrap()).unwrap();
+        assert!(!parsed_empty_term.had_match);
+        assert_eq!(parsed_empty_term.index.len(), 0);
+        // Whitespace-only term
+        let parsed_whitespace: MatchResult = from_value(get_match_range("   ", "Rust").unwrap()).unwrap();
+        assert!(!parsed_whitespace.had_match);
     }
 }
