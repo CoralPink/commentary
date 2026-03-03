@@ -72,6 +72,8 @@ export const unmarking = (): void => {
     const icon = x.querySelector('.icon-marker') as HTMLDivElement;
     icon.style.backgroundColor = 'var(--icons)';
 
+    x.setAttribute('aria-pressed', 'false');
+
     x.removeEventListener('click', unmarking);
     x.addEventListener('click', updateMark, { once: true, passive: true });
   }
@@ -102,6 +104,8 @@ export const marking = (element: HTMLElement, term: string): void => {
   for (const x of elmMarking) {
     const icon = x.querySelector('.icon-marker') as HTMLDivElement;
     icon.style.backgroundColor = 'var(--search-mark-bg)';
+
+    x.setAttribute('aria-pressed', 'true');
 
     x.classList.remove('hidden');
     x.addEventListener('click', unmarking, { once: true, passive: true });
