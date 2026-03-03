@@ -83,6 +83,7 @@ export const marking = (element: HTMLElement, term: string): void => {
   const highlight = calcHighlight(element, term);
 
   if (!highlight.result.hadMatch) {
+    unmarking();
     return;
   }
 
