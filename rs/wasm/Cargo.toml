@@ -1,9 +1,9 @@
 [package]
 name = "wasm-book"
-version = "1.1.4"
+version = "1.2.0"
 authors = ["CoralPink <teqt6ytqt@mozmail.com>"]
 edition = "2024"
-rust-version = "1.85"
+rust-version = "1.88"
 description = "This is the WebAssembly code used on this site."
 homepage = "https://github.com/CoralPink"
 repository = "https://github.com/CoralPink/commentary"
@@ -17,22 +17,27 @@ members = ["macros"]
 
 [profile.release]
 lto = "fat"
-opt-level = "s"
+opt-level = "z"
 strip = "symbols"
+codegen-units = 1
+panic = "abort"
 
 [dependencies]
-arrayvec = "=0.7.6"
 getset = "=0.1.6"
 html-escape = "=0.2.13"
 js-sys = "=0.3.91"
 macros = { path = "macros" }
 serde = { version = "=1.0.228", features = ["derive"] }
 serde-wasm-bindgen = "=0.6.5"
+unicode-segmentation = "=1.12.0"
 urlencoding = "=2.1.3"
 wasm-bindgen = "=0.2.114"
 
 [dev-dependencies]
 wasm-bindgen-test = "=0.3.64"
+
+[features]
+debug = ["macros/use-browser-console"]
 
 [package.metadata.wasm-pack.profile.release]
 wasm-opt = false
