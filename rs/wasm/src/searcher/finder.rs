@@ -117,7 +117,7 @@ impl Finder {
         results.into_iter().for_each(|el| {
                 if let Some(url) = self.url_table.get(*el.id()) {
                     let (page, head) = parse_uri(url);
-                    let excerpt = generate(el.doc().body_lower(), &normalized_terms);
+                    let excerpt = generate(el.doc().body(), &normalized_terms);
                     let score_bar = scoring_notation(*el.score());
 
                     write!(html_buffer,
