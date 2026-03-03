@@ -328,3 +328,7 @@ article {
     @include utils.filter-glass($radius: 1.6rem);
   }
 }
+
+.hidden {
+    display: none;
+}

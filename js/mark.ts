@@ -1,13 +1,15 @@
 // deno-lint-ignore no-sloppy-imports
-import initWasm, { get_match_range } from './wasm_book.js';
+import initWasm, { get_match_sentences } from './wasm_book.js';
 
-const TAG_MARK = 'mark';
+type NodeOffset = {
+  node: Text;
+  start: number;
+  end: number;
+};
 
 type RangeIndex = {
   start: number;
   end: number;
-  matched: string;
-  term: string;
 };
 
 type MatchResult = {
@@ -15,105 +17,130 @@ type MatchResult = {
   hadMatch: boolean;
 };
 
-const getTextNodes = (element: HTMLElement): Text[] => {
-  const textNodes: Text[] = [];
-
-  const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT);
-
-  while (walker.nextNode()) {
-    textNodes.push(walker.currentNode as Text);
-  }
-
-  return textNodes;
+type Highlight = {
+  nodeOffsets: NodeOffset[];
+  result: MatchResult;
 };
 
-export const unmarking = (): void => {
-  const article = document.getElementById('article');
+const TARGET_MARKING = 'marking';
 
-  if (article === null) {
-    console.error('unmarking: Article element not found');
+let elmMarking: HTMLElement[];
+
+const calcHighlight = (element: HTMLElement, term: string): Highlight => {
+  const nodeOffsets: NodeOffset[] = [];
+  let fullText = '';
+
+  const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT);
+  let currentNode = walker.nextNode();
+
+  while (currentNode) {
+    const node = currentNode as Text;
+
+    const start = fullText.length;
+    fullText += node.textContent ?? '';
+
+    const end = fullText.length;
+
+    nodeOffsets.push({ node, start, end });
+
+    currentNode = walker.nextNode();
+  }
+
+  try {
+    const result = get_match_sentences(term, fullText);
+    return { nodeOffsets, result };
+  } catch (err: unknown) {
+    console.error('calcHighlight: ', err);
+    return { nodeOffsets: [], result: { index: [], hadMatch: false } };
+  }
+};
+
+export const updateMark = (): void => {
+  const element = document.getElementById('article');
+
+  if (!element) {
+    console.error(`updateMark: article element not found`);
     return;
   }
 
-  for (const x of Array.from(article.querySelectorAll(TAG_MARK))) {
+  initMark(element).catch(err => console.error('updateMark:', err));
+};
+
+export const unmarking = (): void => {
+  CSS.highlights.clear();
+
+  for (const x of elmMarking) {
+    const icon = x.querySelector('.icon-marker') as HTMLDivElement;
+    icon.style.backgroundColor = 'var(--icons)';
+
+    x.setAttribute('aria-pressed', 'false');
+
     x.removeEventListener('click', unmarking);
-
-    const parent = x.parentNode;
-
-    if (!parent) {
-      continue;
-    }
-
-    while (x.firstChild) {
-      parent.insertBefore(x.firstChild, x);
-    }
-    parent.removeChild(x);
+    x.addEventListener('click', updateMark, { once: true, passive: true });
   }
 };
 
-const marking = async (element: HTMLElement, terms: string[]): Promise<void> => {
-  if (terms.length === 0) {
+export const marking = (element: HTMLElement, term: string): void => {
+  const highlight = calcHighlight(element, term);
+
+  if (!highlight.result.hadMatch) {
+    unmarking();
+    return;
+  }
+
+  const ranges = highlight.result.index.flatMap(r =>
+    highlight.nodeOffsets
+      .filter(({ start, end }) => r.end > start && r.start < end)
+      .map(({ node, start, end }) => {
+        const range = new Range();
+
+        range.setStart(node, Math.max(0, r.start - start));
+        range.setEnd(node, Math.min(end - start, r.end - start));
+
+        return range;
+      }),
+  );
+
+  CSS.highlights.set(TARGET_MARKING, new Highlight(...ranges));
+
+  for (const x of elmMarking) {
+    const icon = x.querySelector('.icon-marker') as HTMLDivElement;
+    icon.style.backgroundColor = 'var(--search-mark-bg)';
+
+    x.setAttribute('aria-pressed', 'true');
+
+    x.classList.remove('hidden');
+    x.addEventListener('click', unmarking, { once: true, passive: true });
+  }
+};
+
+const hideButton = () => {
+  for (const x of elmMarking) {
+    x.classList.add('hidden');
+
+    x.removeEventListener('click', unmarking);
+    x.removeEventListener('click', updateMark);
+  }
+};
+
+export const initMark = async (element: HTMLElement): Promise<void> => {
+  elmMarking = Array.from(document.querySelectorAll(`[data-target="${TARGET_MARKING}"]`));
+
+  const param = new URLSearchParams(globalThis.location.search).get('mark');
+
+  if (!param) {
+    unmarking();
+    hideButton();
+
     return;
   }
 
   try {
     await initWasm();
-  } catch (error) {
-    console.error('marking: ', error);
+  } catch (err) {
+    console.error('initMark: ', err);
     return;
   }
 
-  for (const node of getTextNodes(element)) {
-    const textContent = node.textContent;
-
-    if (!node.parentNode || !textContent) {
-      continue;
-    }
-
-    const result: MatchResult = get_match_range(terms.join(' '), textContent);
-
-    if (!result.hadMatch) {
-      continue;
-    }
-
-    const fragment = document.createDocumentFragment();
-
-    let currentPos = 0;
-
-    for (const x of result.index) {
-      if (x.start > currentPos) {
-        fragment.appendChild(document.createTextNode(textContent.slice(currentPos, x.start)));
-      }
-
-      const mark = document.createElement(TAG_MARK);
-      mark.textContent = x.matched;
-      mark.addEventListener('click', unmarking, { once: true, passive: true });
-
-      fragment.appendChild(mark);
-
-      currentPos = x.end;
-    }
-
-    if (currentPos < textContent.length) {
-      fragment.appendChild(document.createTextNode(textContent.slice(currentPos)));
-    }
-
-    node.parentNode.replaceChild(fragment, node);
-  }
-};
-
-const splitParams = (s: string): string[] =>
-  s
-    .trim()
-    .split(/\s+/)
-    .filter(term => term.length > 0);
-
-export const initMark = (element: HTMLElement): void => {
-  const params = new URLSearchParams(globalThis.location.search).get('mark');
-
-  if (!params) {
-    return;
-  }
-
-  marking(element, splitParams(params));
+  marking(element, param);
 };
