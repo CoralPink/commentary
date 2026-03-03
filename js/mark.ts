@@ -100,7 +100,7 @@ export const marking = (element: HTMLElement, term: string): void => {
       }),
   );
 
-  CSS.highlights.set('marking', new Highlight(...ranges));
+  CSS.highlights.set(TARGET_MARKING, new Highlight(...ranges));
 
   for (const x of elmMarking) {
     const icon = x.querySelector('.icon-marker') as HTMLDivElement;

@@ -33,7 +33,7 @@ struct SearchResult {
 }
 
 fn split_limited<const N: usize>(input: &str) -> Vec<&str> {
-    let mut vec = Vec::new();
+    let mut vec = Vec::with_capacity(N);
 
     for x in input.split_whitespace() {
         if vec.len() >= N {
@@ -146,7 +146,7 @@ impl Finder {
         }
 
         let results = HitList::from_token_set(
-            split_limited::<MAX_TOKENS>(terms.trim()),
+            split_limited::<MAX_TOKENS>(terms),
             self.filter_docs_by_terms(terms),
         );
 
