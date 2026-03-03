@@ -62,7 +62,8 @@ export const updateMark = (): void => {
     console.error(`updateMark: article element not found`);
     return;
   }
-  initMark(element);
+
+  initMark(element).catch(err => console.error('updateMark:', err));
 };
 
 export const unmarking = (): void => {
