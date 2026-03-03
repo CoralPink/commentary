@@ -6,12 +6,12 @@
     "jsr:@std/internal@^1.0.12": "1.0.12",
     "jsr:@std/path@^1.1.1": "1.1.4",
     "npm:@rollup/plugin-terser@0.4.4": "0.4.4",
-    "npm:@vitest/coverage-v8@4.0.18": "4.0.18_vitest@4.0.18__happy-dom@20.7.0__vite@7.3.1___terser@5.46.0___picomatch@4.0.3__terser@5.46.0_happy-dom@20.7.0_terser@5.46.0",
-    "npm:happy-dom@20.7.0": "20.7.0",
+    "npm:@vitest/coverage-v8@4.0.18": "4.0.18_vitest@4.0.18__happy-dom@20.7.0__vite@7.3.1___terser@5.46.0___picomatch@4.0.3__terser@5.46.0_happy-dom@20.7.0_terser@5.46.0_happy-dom@20.8.3",
+    "npm:happy-dom@20.8.3": "20.8.3",
     "npm:plyr@3.8.4": "3.8.4",
     "npm:rolldown@1.0.0-rc.6": "1.0.0-rc.6",
     "npm:terser@5.46.0": "5.46.0",
-    "npm:vitest@4.0.18": "4.0.18_happy-dom@20.7.0_vite@7.3.1__terser@5.46.0__picomatch@4.0.3_terser@5.46.0"
+    "npm:vitest@4.0.18": "4.0.18_happy-dom@20.7.0_vite@7.3.1__terser@5.46.0__picomatch@4.0.3_terser@5.46.0_happy-dom@20.8.3"
   },
   "jsr": {
     "@deno/loader@0.3.10": {
@@ -485,7 +485,7 @@
         "@types/node"
       ]
     },
-    "@vitest/coverage-v8@4.0.18_vitest@4.0.18__happy-dom@20.7.0__vite@7.3.1___terser@5.46.0___picomatch@4.0.3__terser@5.46.0_happy-dom@20.7.0_terser@5.46.0": {
+    "@vitest/coverage-v8@4.0.18_vitest@4.0.18__happy-dom@20.7.0__vite@7.3.1___terser@5.46.0___picomatch@4.0.3__terser@5.46.0_happy-dom@20.7.0_terser@5.46.0_happy-dom@20.8.3": {
       "integrity": "sha512-7i+N2i0+ME+2JFZhfuz7Tg/FqKtilHjGyGvoHYQ6iLV0zahbsJ9sljC9OcFcPDbhYKCet+sG8SsVqlyGvPflZg==",
       "dependencies": [
         "@bcoe/v8-coverage",
@@ -648,8 +648,8 @@
       "os": ["darwin"],
       "scripts": true
     },
-    "happy-dom@20.7.0": {
-      "integrity": "sha512-hR/uLYQdngTyEfxnOoa+e6KTcfBFyc1hgFj/Cc144A5JJUuHFYqIEBDcD4FeGqUeKLRZqJ9eN9u7/GDjYEgS1g==",
+    "happy-dom@20.8.3": {
+      "integrity": "sha512-lMHQRRwIPyJ70HV0kkFT7jH/gXzSI7yDkQFe07E2flwmNDFoWUTRMKpW2sglsnpeA7b6S2TJPp98EbQxai8eaQ==",
       "dependencies": [
         "@types/node",
         "@types/whatwg-mimetype",
@@ -908,7 +908,7 @@
       ],
       "bin": true
     },
-    "vitest@4.0.18_happy-dom@20.7.0_vite@7.3.1__terser@5.46.0__picomatch@4.0.3_terser@5.46.0": {
+    "vitest@4.0.18_happy-dom@20.7.0_vite@7.3.1__terser@5.46.0__picomatch@4.0.3_terser@5.46.0_happy-dom@20.8.3": {
       "integrity": "sha512-hOQuK7h0FGKgBAas7v0mSAsnvrIgAvWmRFjmzpJ7SwFHH3g1k2u37JtYwOwmEKhK6ZO3v9ggDBBm0La1LCK4uQ==",
       "dependencies": [
         "@vitest/expect",
@@ -958,7 +958,7 @@
       "jsr:@deno/rolldown-plugin@0.0.10",
       "npm:@rollup/plugin-terser@0.4.4",
       "npm:@vitest/coverage-v8@4.0.18",
-      "npm:happy-dom@20.7.0",
+      "npm:happy-dom@20.8.3",
       "npm:plyr@3.8.4",
       "npm:rolldown@1.0.0-rc.6",
       "npm:terser@5.46.0",
