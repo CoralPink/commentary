@@ -1,5 +1,5 @@
 import { ROOT_PATH, USE_LEGACY_NAVIGATION } from './constants.ts';
-import { initMark } from './mark.ts';
+import { updateMark } from './mark.ts';
 
 import { loadStyleSheet } from './utils/css-loader.ts';
 import { fetchAndDecompress } from './utils/fetch.ts';
@@ -62,16 +62,6 @@ const showResults = (): void => {
 
 const checkURL = (url: URL): boolean =>
   url.origin + url.pathname === globalThis.location.origin + globalThis.location.pathname;
-
-const updateMark = (): void => {
-  const element = document.getElementById('article');
-
-  if (!element) {
-    console.error(`updateMark: article element not found`);
-    return;
-  }
-  initMark(element);
-};
 
 const jumpUrl = (): void => {
   const aElement = focusedLi?.querySelector('a') as HTMLAnchorElement;

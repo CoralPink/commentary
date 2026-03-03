@@ -22,6 +22,10 @@ type Highlight = {
   result: MatchResult;
 };
 
+const TARGET_MARKING = 'marking';
+
+let elmMarking: HTMLElement[];
+
 const calcHighlight = (element: HTMLElement, term: string): Highlight => {
   const nodeOffsets: NodeOffset[] = [];
   let fullText = '';
@@ -51,8 +55,26 @@ const calcHighlight = (element: HTMLElement, term: string): Highlight => {
   }
 };
 
+export const updateMark = (): void => {
+  const element = document.getElementById('article');
+
+  if (!element) {
+    console.error(`updateMark: article element not found`);
+    return;
+  }
+  initMark(element);
+};
+
 export const unmarking = (): void => {
-  CSS.highlights.delete('marking');
+  CSS.highlights.clear();
+
+  for (const x of elmMarking) {
+    const icon = x.querySelector('.icon-marker') as HTMLDivElement;
+    icon.style.backgroundColor = 'var(--icons)';
+
+    x.removeEventListener('click', unmarking);
+    x.addEventListener('click', updateMark, { once: true, passive: true });
+  }
 };
 
 export const marking = (element: HTMLElement, term: string): void => {
@@ -76,12 +98,34 @@ export const marking = (element: HTMLElement, term: string): void => {
   );
 
   CSS.highlights.set('marking', new Highlight(...ranges));
+
+  for (const x of elmMarking) {
+    const icon = x.querySelector('.icon-marker') as HTMLDivElement;
+    icon.style.backgroundColor = 'var(--search-mark-bg)';
+
+    x.classList.remove('hidden');
+    x.addEventListener('click', unmarking, { once: true, passive: true });
+  }
+};
+
+const hideButton = () => {
+  for (const x of elmMarking) {
+    x.classList.add('hidden');
+
+    x.removeEventListener('click', unmarking);
+    x.removeEventListener('click', updateMark);
+  }
 };
 
 export const initMark = async (element: HTMLElement): Promise<void> => {
+  elmMarking = Array.from(document.querySelectorAll(`[data-target="${TARGET_MARKING}"]`));
+
   const param = new URLSearchParams(globalThis.location.search).get('mark');
 
   if (!param) {
+    unmarking();
+    hideButton();
+
     return;
   }
 
@@ -92,6 +136,5 @@ export const initMark = async (element: HTMLElement): Promise<void> => {
     return;
   }
 
-  unmarking();
   marking(element, param);
 };
