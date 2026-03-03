@@ -17,8 +17,10 @@ members = ["macros"]
 
 [profile.release]
 lto = "fat"
-opt-level = "s"
+opt-level = "z"
 strip = "symbols"
+codegen-units = 1
+panic = "abort"
 
 [dependencies]
 getset = "=0.1.6"
