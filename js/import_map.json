@@ -1,11 +1,11 @@
 {
   "imports": {
     "plyr": "npm:plyr@3.8.4",
-    "rolldown": "npm:rolldown@1.0.0-rc.6",
+    "rolldown": "npm:rolldown@1.0.0-rc.7",
     "terser": "npm:terser@5.46.0",
 
     "@deno/rolldown-plugin": "jsr:@deno/rolldown-plugin@0.0.10",
-    "@rollup/plugin-terser": "npm:@rollup/plugin-terser@0.4.4",
+    "@rollup/plugin-terser": "npm:@rollup/plugin-terser@1.0.0",
 
     "vitest": "npm:vitest@4.0.18",
     "@vitest/coverage-v8": "npm:@vitest/coverage-v8@4.0.18",
