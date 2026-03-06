@@ -4,34 +4,34 @@
 //! Sincere thanks to junegunn!
 //!
 pub mod score {
-    // Base score for a matching character
+    /// Base score for a matching character
     const SCORE_MATCH: isize = 16;
-    // Penalty for starting a gap between matches
+    /// Penalty for starting a gap between matches
     const SCORE_GAP_START: isize = -3;
-    // Penalty for each character in a gap
+    /// Penalty for each character in a gap
     const SCORE_GAP_EXTENSION: isize = -1;
 
-    // Maximum distance between matching characters before gap penalty stops increasing
-    const SCORE_GAP_MAX_DISTANCE: usize = 640;
+    /// Maximum distance between matching characters before gap penalty stops increasing
+    const SCORE_GAP_MAX_DISTANCE: usize = 240;
 
-    // Bonus for matches at word boundaries
+    /// Bonus for matches at word boundaries
     const BONUS_BOUNDARY: isize = SCORE_MATCH / 2;
-    // Bonus for matches after non-alphanumeric characters
+    /// Bonus for matches after non-alphanumeric characters
     const BONUS_NON_WORD: isize = SCORE_MATCH / 2;
-    // Bonus for matches in camelCase or snake_case transitions
+    /// Bonus for matches in camelCase or snake_case transitions
     const BONUS_CAMEL123: isize = BONUS_BOUNDARY + SCORE_GAP_EXTENSION;
-    // Bonus for consecutive matches
+    /// Bonus for consecutive matches
     const BONUS_CONSECUTIVE: isize = -(SCORE_GAP_START + SCORE_GAP_EXTENSION);
-    // Multiplier for the first matching character
+    /// Multiplier for the first matching character
     const BONUS_FIRST_CHAR_MULTIPLIER: isize = 2;
 
-    // Bonus for matches after whitespace
+    /// Bonus for matches after whitespace
     const BONUS_WHITESPACE: isize = BONUS_BOUNDARY + 2;
-    // Bonus for matches after delimiters like '/' or ':'
+    /// Bonus for matches after delimiters like '/' or ':'
     const BONUS_DELIMITER: isize = BONUS_BOUNDARY + 1;
 
-    // Bonus matrix for transitions between different character classes
-    // Higher values indicate more significant word boundaries
+    /// Bonus matrix for transitions between different character classes
+    /// Higher values indicate more significant word boundaries
     const BONUS_MATRIX: [[isize; 6]; 6] = [
         // Prev: Whitespace, Delimiter, Lowercase, Uppercase, Digit, Other
         /* Curr: */
@@ -43,11 +43,8 @@ pub mod score {
         [5, 3, 0, 0, 0, 0],  // Other (small bonus after space/delimiter)
     ];
 
-    // Define a common set of delimiters used throughout the module
-    const DELIMITERS: [char; 4] = ['/', ':', ';', ','];
-
     fn is_delimiter(c: char) -> bool {
-        DELIMITERS.contains(&c)
+        matches!(c, '/' | ':' | ';' | ',')
     }
 
     #[derive(PartialEq, Eq)]
@@ -63,7 +60,7 @@ pub mod score {
     fn classify_char(c: char) -> CharClass {
         if c.is_whitespace() {
             CharClass::Whitespace
-        } else if matches!(c, '/' | ':' | ';' | ',') {
+        } else if is_delimiter(c) {
             CharClass::Delimiter
         } else if c.is_ascii_lowercase() {
             CharClass::Lowercase
