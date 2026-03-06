@@ -8,7 +8,7 @@ use std::ops::{Deref, DerefMut};
 pub const LIMIT_RESULTS: usize = 100;
 
 // Minimum required search score
-const SCORE_LOWER_LIMIT: usize = 32;
+const SCORE_LOWER_LIMIT: usize = 40;
 
 /// Base multiplier for header match scores
 const SCORE_HEADER_BOOST_BASE: f32 = 8.0;
@@ -102,7 +102,8 @@ impl<'a> HitList<'a> {
         // If both lists are at or near capacity, ensure we keep highest-scoring hits
         if self.len() + ml.len() > LIMIT_RESULTS {
             let mut all_hits: Vec<Hit<'a>> = self.into_iter().chain(ml).collect();
-            all_hits.sort_by(|a, b| b.score.cmp(&a.score).then_with(|| a.id.cmp(&b.id)));
+            all_hits.sort_unstable_by(|a, b| b.score.cmp(&a.score).then_with(|| a.id.cmp(&b.id)));
+
             return Self(all_hits.into_iter().take(LIMIT_RESULTS).collect());
         }
 
@@ -128,17 +129,15 @@ impl<'a> HitList<'a> {
                 if score == 0 {
                     return None;
                 }
-                match doc.id().parse::<usize>() {
-                    Ok(id) => Some(Hit { doc, score, id }),
-                    Err(_) => {
-                        //macros::console_error!("Failed to parse document ID: {}", doc.id());
-                        None
-                    }
-                }
+                doc.id().parse::<usize>().ok().map(|id| Hit { doc, score, id })
             })
             .collect();
 
-        results.sort_by(|a, b| b.score.cmp(&a.score).then_with(|| a.id.cmp(&b.id)));
+        results.retain(|x| x.score >= SCORE_LOWER_LIMIT);
+
+        results.sort_unstable_by(|a, b| b.score.cmp(&a.score).then_with(|| a.id.cmp(&b.id)));
+        results.truncate(LIMIT_RESULTS);
+
         Self(results.into_iter().take(LIMIT_RESULTS).collect())
     }
 
@@ -148,17 +147,12 @@ impl<'a> HitList<'a> {
         D: IntoIterator<Item = &'a DocObject>,
     {
         let docs: Vec<&DocObject> = docs.into_iter().collect();
+        let mut result = HitList::default();
 
-        let mut combined = tokens
-            .into_iter()
-            .map(|token| Self::from_matches(token, docs.iter().copied()))
-            .reduce(Self::merge)
-            .unwrap_or_default();
+        for token in tokens {
+            result = result.merge(Self::from_matches(token, docs.iter().copied()));
+        }
 
-        combined.retain(|x| x.score >= SCORE_LOWER_LIMIT);
-        combined.sort_by(|a, b| b.score.cmp(&a.score));
-        combined.truncate(LIMIT_RESULTS);
-
-        combined
+        result
     }
 }

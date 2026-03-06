@@ -151,7 +151,7 @@ fn get_hitranges(body: &str, normalized_terms: &[String]) -> Vec<HitRange> {
         }
     }
 
-    vec.sort_by_key(|r| (r.start, r.end));
+    vec.sort_unstable_by_key(|r| (r.start, r.end));
 
     let mut merged: Vec<HitRange> = Vec::with_capacity(vec.len());
 
