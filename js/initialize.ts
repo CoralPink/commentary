@@ -91,7 +91,7 @@ const initExtensions = (html: HTMLElement): void => {
     (ev: Event): void => {
       const article = ev.target instanceof HTMLElement ? ev.target : null;
 
-      if (!article) {
+      if (article === null) {
         return;
       }
       prepareForNextCycle();
