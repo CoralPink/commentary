@@ -26,7 +26,7 @@ const forceReload = (url: URL, msg: string = 'forceReload'): void => {
 const applyNavigation = (ctx: NavigationContext, navigationType: string): void => {
   const article = document.getElementById('article');
 
-  if (!article) {
+  if (article === null) {
     forceReload(ctx.next, 'applyContent: not found article');
     return;
   }

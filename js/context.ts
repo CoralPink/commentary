@@ -51,7 +51,7 @@ export const prepareNavigation = async (next: URL): Promise<NavigationContext | 
   const article = parsed.getElementById('article');
   const title = parsed.querySelector('title');
 
-  if (!article || !title) {
+  if (article === null || title === null) {
     console.error('prepareNavigation: required elements not found.');
     return null;
   }
