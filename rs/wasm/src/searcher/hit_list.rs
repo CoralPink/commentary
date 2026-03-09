@@ -98,61 +98,35 @@ impl<'a> IntoIterator for HitList<'a> {
 }
 
 impl<'a> HitList<'a> {
-    fn merge(mut self, ml: HitList<'a>) -> Self {
-        // If both lists are at or near capacity, ensure we keep highest-scoring hits
-        if self.len() + ml.len() > LIMIT_RESULTS {
-            let mut all_hits: Vec<Hit<'a>> = self.into_iter().chain(ml).collect();
-            all_hits.sort_unstable_by(|a, b| b.score.cmp(&a.score).then_with(|| a.id.cmp(&b.id)));
-
-            return Self(all_hits.into_iter().take(LIMIT_RESULTS).collect());
-        }
-
-        // Fast path for the common case when we're not at capacity
-        for x in ml {
-            if let Some(existing) = self.iter_mut().find(|y| y.id == x.id) {
-                existing.score += x.score;
-                continue;
-            }
-            if self.len() < LIMIT_RESULTS {
-                self.push(x);
-            }
-        }
-        self
-    }
-
-    fn from_matches(term: &str, docs: impl IntoIterator<Item = &'a DocObject>) -> Self {
-        let mut results: Vec<Hit<'a>> = docs
-            .into_iter()
-            .filter_map(|doc| {
-                let score = get_header_score(term, doc.breadcrumbs()) + get_body_score(term, doc.body());
-
-                if score == 0 {
-                    return None;
-                }
-                doc.id().parse::<usize>().ok().map(|id| Hit { doc, score, id })
-            })
-            .collect();
-
-        results.retain(|x| x.score >= SCORE_LOWER_LIMIT);
-
-        results.sort_unstable_by(|a, b| b.score.cmp(&a.score).then_with(|| a.id.cmp(&b.id)));
-        results.truncate(LIMIT_RESULTS);
-
-        Self(results.into_iter().take(LIMIT_RESULTS).collect())
-    }
-
-    pub fn from_token_set<T, D>(tokens: T, docs: D) -> Self
+    pub fn from_token_set<T>(tokens: T, docs: impl IntoIterator<Item = &'a DocObject>) -> Self
     where
         T: IntoIterator<Item = &'a str>,
-        D: IntoIterator<Item = &'a DocObject>,
     {
-        let docs: Vec<&DocObject> = docs.into_iter().collect();
-        let mut result = HitList::default();
+        let tokens: Vec<&str> = tokens.into_iter().collect();
+        let mut results = Vec::new();
 
-        for token in tokens {
-            result = result.merge(Self::from_matches(token, docs.iter().copied()));
+        for doc in docs {
+            let mut score = 0;
+
+            for token in &tokens {
+                score += get_header_score(token, doc.breadcrumbs());
+                score += get_body_score(token, doc.body());
+            }
+
+            if score == 0 {
+                continue;
+            }
+
+            if let Ok(id) = doc.id().parse::<usize>() {
+                results.push(Hit { doc, score, id });
+            }
         }
 
-        result
+        results.retain(|x| x.score >= SCORE_LOWER_LIMIT);
+        results.sort_unstable_by(|a, b| b.score.cmp(&a.score).then_with(|| a.id.cmp(&b.id)));
+
+        results.truncate(LIMIT_RESULTS);
+
+        Self(results)
     }
 }

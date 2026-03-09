@@ -17,7 +17,7 @@ use wasm_bindgen::prelude::*;
 
 const INITIAL_HEADER: &str = "2文字 (もしくは全角1文字) 以上を入力してください...";
 
-const BUFFER_HTML_MAGNIFICATION: usize = 1000;
+const BUFFER_HTML_MAGNIFICATION: usize = 1024;
 
 /// Maximum number of search words (entering more words than this will simply be ignored).
 const MAX_TOKENS: usize = 8;
@@ -84,7 +84,7 @@ impl Finder {
     }
 
     /// Returns documents that match the given terms, either as full string match or token-wise match.
-    fn filter_docs_by_terms<'a>(&'a self, terms: &str) -> Vec<&'a DocObject> {
+    fn filter_docs_by_terms<'a>(&'a self, terms: &str) -> impl Iterator<Item = &'a DocObject> {
         let token_lowers: Vec<String> = split_limited::<MAX_TOKENS>(terms.trim())
             .iter()
             .map(|t| t.to_ascii_lowercase())
@@ -92,21 +92,18 @@ impl Finder {
 
         let first_chars: Vec<char> = token_lowers.iter().filter_map(|t| t.chars().next()).collect();
 
-        self.store_doc
-            .iter()
-            .filter(|doc| {
-                let body = doc.body_lower();
-                let crumbs = doc.breadcrumbs_lower();
+        self.store_doc.iter().filter(move |doc| {
+            let body = doc.body_lower();
+            let crumbs = doc.breadcrumbs_lower();
 
-                if !first_chars.iter().all(|c| body.contains(*c) || crumbs.contains(*c)) {
-                    return false;
-                }
+            if !first_chars.iter().all(|c| body.contains(*c) || crumbs.contains(*c)) {
+                return false;
+            }
 
-                token_lowers
-                    .iter()
-                    .all(|tok| body.contains(tok) || crumbs.contains(tok))
-            })
-            .collect()
+            token_lowers
+                .iter()
+                .all(|tok| body.contains(tok) || crumbs.contains(tok))
+        })
     }
 
     fn build_search_result(&self, results: HitList, terms: &str, html_buffer: &mut String) -> usize {

@@ -2,7 +2,7 @@
 import initWasm, { get_match_sentences } from './wasm_book.js';
 
 type NodeOffset = {
-  node: Text;
+  text: Text;
   start: number;
   end: number;
 };
@@ -22,56 +22,29 @@ type Highlight = {
   result: MatchResult;
 };
 
+const QUERY_MARKER = '.icon-marker';
 const TARGET_MARKING = 'marking';
 
-let elmMarking: HTMLElement[];
-
-const calcHighlight = (element: HTMLElement, term: string): Highlight => {
-  const nodeOffsets: NodeOffset[] = [];
-  let fullText = '';
-
-  const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT);
-  let currentNode = walker.nextNode();
-
-  while (currentNode) {
-    const node = currentNode as Text;
-
-    const start = fullText.length;
-    fullText += node.textContent ?? '';
-
-    const end = fullText.length;
-
-    nodeOffsets.push({ node, start, end });
-
-    currentNode = walker.nextNode();
-  }
-
-  try {
-    const result = get_match_sentences(term, fullText);
-    return { nodeOffsets, result };
-  } catch (err: unknown) {
-    console.error('calcHighlight: ', err);
-    return { nodeOffsets: [], result: { index: [], hadMatch: false } };
-  }
-};
+const ICONS_COLOR = 'var(--icons)';
+const ICONS_COLOR_ACTIVE = 'var(--search-mark-bg)';
 
 export const updateMark = (): void => {
-  const element = document.getElementById('article');
+  const article = document.getElementById('article');
 
-  if (!element) {
+  if (article === null) {
     console.error(`updateMark: article element not found`);
     return;
   }
 
-  initMark(element).catch(err => console.error('updateMark:', err));
+  initMark(article);
 };
 
 export const unmarking = (): void => {
   CSS.highlights.clear();
 
-  for (const x of elmMarking) {
-    const icon = x.querySelector('.icon-marker') as HTMLDivElement;
-    icon.style.backgroundColor = 'var(--icons)';
+  for (const x of Array.from(document.querySelectorAll(`[data-target="${TARGET_MARKING}"]`))) {
+    const icon = x.querySelector(QUERY_MARKER) as HTMLDivElement;
+    icon.style.backgroundColor = ICONS_COLOR;
 
     x.setAttribute('aria-pressed', 'false');
 
@@ -80,32 +53,21 @@ export const unmarking = (): void => {
   }
 };
 
-export const marking = (element: HTMLElement, term: string): void => {
-  const highlight = calcHighlight(element, term);
+const hideButton = (): void => {
+  CSS.highlights.clear();
 
-  if (!highlight.result.hadMatch) {
-    unmarking();
-    return;
+  for (const x of Array.from(document.querySelectorAll(`[data-target="${TARGET_MARKING}"]`))) {
+    x.classList.add('hidden');
+
+    x.removeEventListener('click', unmarking);
+    x.removeEventListener('click', updateMark);
   }
+};
 
-  const ranges = highlight.result.index.flatMap(r =>
-    highlight.nodeOffsets
-      .filter(({ start, end }) => r.end > start && r.start < end)
-      .map(({ node, start, end }) => {
-        const range = new Range();
-
-        range.setStart(node, Math.max(0, r.start - start));
-        range.setEnd(node, Math.min(end - start, r.end - start));
-
-        return range;
-      }),
-  );
-
-  CSS.highlights.set(TARGET_MARKING, new Highlight(...ranges));
-
-  for (const x of elmMarking) {
-    const icon = x.querySelector('.icon-marker') as HTMLDivElement;
-    icon.style.backgroundColor = 'var(--search-mark-bg)';
+const visibleButton = (): void => {
+  for (const x of Array.from(document.querySelectorAll(`[data-target="${TARGET_MARKING}"]`))) {
+    const icon = x.querySelector(QUERY_MARKER) as HTMLDivElement;
+    icon.style.backgroundColor = ICONS_COLOR_ACTIVE;
 
     x.setAttribute('aria-pressed', 'true');
 
@@ -114,31 +76,73 @@ export const marking = (element: HTMLElement, term: string): void => {
   }
 };
 
-const hideButton = () => {
-  for (const x of elmMarking) {
-    x.classList.add('hidden');
+const generateNodeOffset = (element: HTMLElement): NodeOffset[] => {
+  const nodeOffsets: NodeOffset[] = [];
 
-    x.removeEventListener('click', unmarking);
-    x.removeEventListener('click', updateMark);
+  const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT);
+  let node: Node | null;
+
+  let end = 0;
+
+  while ((node = walker.nextNode())) {
+    const start = end;
+    const text = node.textContent ?? '';
+
+    end += text.length;
+
+    nodeOffsets.push({ text: node as Text, start, end });
+  }
+
+  return nodeOffsets;
+};
+
+const calcHighlight = async (element: HTMLElement, term: string): Promise<Highlight> => {
+  const promiseInit = initWasm();
+  const nodeOffsets = generateNodeOffset(element);
+
+  try {
+    await promiseInit;
+
+    const result = get_match_sentences(term, element.textContent);
+
+    return { nodeOffsets, result };
+  } catch (err: unknown) {
+    console.error('calcHighlight: ', err);
+    return { nodeOffsets: [], result: { index: [], hadMatch: false } };
   }
 };
 
-export const initMark = async (element: HTMLElement): Promise<void> => {
-  elmMarking = Array.from(document.querySelectorAll(`[data-target="${TARGET_MARKING}"]`));
+const marking = async (element: HTMLElement, term: string): Promise<void> => {
+  const highlight = await calcHighlight(element, term);
 
-  const param = new URLSearchParams(globalThis.location.search).get('mark');
-
-  if (!param) {
-    unmarking();
+  if (!highlight.result.hadMatch) {
     hideButton();
-
     return;
   }
 
-  try {
-    await initWasm();
-  } catch (err) {
-    console.error('initMark: ', err);
+  const ranges = highlight.result.index.flatMap(r =>
+    highlight.nodeOffsets
+      .filter(({ start, end }) => r.end > start && r.start < end)
+      .map(({ text, start, end }) => {
+        const range = new Range();
+
+        range.setStart(text, Math.max(0, r.start - start));
+        range.setEnd(text, Math.min(end - start, r.end - start));
+
+        return range;
+      }),
+  );
+
+  CSS.highlights.set(TARGET_MARKING, new Highlight(...ranges));
+
+  visibleButton();
+};
+
+export const initMark = (element: HTMLElement): void => {
+  const param = new URLSearchParams(globalThis.location.search).get('mark');
+
+  if (!param) {
+    hideButton();
     return;
   }
 
