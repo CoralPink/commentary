@@ -8,10 +8,6 @@
   navigation: auto;
 }
 
-:root {
-  --breakpoint-ui-wide: #{var.$breakpoint-ui-wide};
-}
-
 html {
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
