@@ -1,8 +1,9 @@
 import { CONTENT_READY, USE_LEGACY_NAVIGATION } from './constants.ts';
 import { type NavigationContext, prepareNavigation } from './context.ts';
+import { setHTML } from './utils/html-sanitizer.ts';
 import { bootThemeColor } from './theme-selector.ts';
 
-import { setHTML } from './utils/html-sanitizer.ts';
+import toast from './utils/toast.ts';
 
 const PAGE_NO_TITLE = '(No Title) - Commentary of Dotfiles';
 
@@ -18,16 +19,16 @@ const pushPageViewEvent = (ctx: NavigationContext): void => {
 
 let currentUrl = new URL(globalThis.location.href);
 
-const forceReload = (url: URL, msg: string = 'forceReload'): void => {
-  location.assign(url.href);
-  console.warn(msg);
+const loadError = (url: URL, msg: string = 'load error'): void => {
+  toast.error(`failed: ${url.href}`);
+  console.error(msg);
 };
 
 const applyNavigation = (ctx: NavigationContext, navigationType: string): void => {
   const article = document.getElementById('article');
 
   if (article === null) {
-    forceReload(ctx.next, 'applyContent: not found article');
+    loadError(ctx.next, 'applyContent: not found article');
     return;
   }
 
@@ -71,7 +72,7 @@ const navigateProc = (ev: NavigationNavigateEvent): void => {
       const ctx = await prepareNavigation(next);
 
       if (!ctx) {
-        forceReload(next, 'prepareNavigation: The necessary elements are missing.');
+        loadError(next, 'prepareNavigation: The necessary elements are missing.');
         return;
       }
 
