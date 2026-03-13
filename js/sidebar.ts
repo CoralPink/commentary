@@ -20,7 +20,7 @@ const hideSidebar = (): void => {
 
   const sidebar = document.getElementById(ID_SIDEBAR);
 
-  if (!sidebar) {
+  if (sidebar === null) {
     console.error(`sidebar: not found ${ID_SIDEBAR}`);
     return;
   }
@@ -47,7 +47,7 @@ const showSidebar = (): void => {
 
   const sidebar = document.getElementById(ID_SIDEBAR);
 
-  if (!sidebar) {
+  if (sidebar === null) {
     console.error(`sidebar: not found ${ID_SIDEBAR}`);
     return;
   }
@@ -94,7 +94,7 @@ const toggleHandler = (key: string): void => {
 const loadPageList = async (): Promise<void> => {
   const sidebar = document.getElementById(ID_SIDEBAR);
 
-  if (!sidebar) {
+  if (sidebar === null) {
     console.error(`sidebar: not found ${ID_SIDEBAR}`);
     return;
   }
@@ -124,7 +124,7 @@ const getCurrentUrl = (): URL => {
 const updateActive = (): void => {
   const scrollbox = document.getElementById(ID_SCROLLBOX);
 
-  if (!scrollbox) {
+  if (scrollbox === null) {
     console.error(`sidebar: not found ${ID_SCROLLBOX}`);
     return;
   }

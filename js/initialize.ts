@@ -15,8 +15,6 @@ const MODULE_REQUIREMENTS = [
   { selector: 'video', module: 'media' },
   { selector: 'pre code:not(.language-txt)', module: 'codeblock' },
   { selector: 'sup', module: 'footnote' },
-  // TODO: We will suspend use until a reliable method is found.
-  // { selector: '.replace-element', module: 'replace-dom.js' },
 ] as const;
 
 const loadedExtensions = new Map<string, ExtensionEntry>();
