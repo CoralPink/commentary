@@ -84,13 +84,8 @@ impl Finder {
     }
 
     /// Returns documents that match the given terms, either as full string match or token-wise match.
-    fn filter_docs_by_terms<'a>(&'a self, terms: &str) -> impl Iterator<Item = &'a DocObject> {
-        let token_lowers: Vec<String> = split_limited::<MAX_TOKENS>(terms.trim())
-            .iter()
-            .map(|t| t.to_ascii_lowercase())
-            .collect();
-
-        let first_chars: Vec<char> = token_lowers.iter().filter_map(|t| t.chars().next()).collect();
+    fn filter_docs_by_terms<'a>(&'a self, normalized_terms: &[String]) -> impl Iterator<Item = &'a DocObject> {
+        let first_chars: Vec<char> = normalized_terms.iter().filter_map(|t| t.chars().next()).collect();
 
         self.store_doc.iter().filter(move |doc| {
             let body = doc.body_lower();
@@ -100,38 +95,30 @@ impl Finder {
                 return false;
             }
 
-            token_lowers
+            normalized_terms
                 .iter()
                 .all(|tok| body.contains(tok) || crumbs.contains(tok))
         })
     }
 
-    fn build_search_result(&self, results: HitList, terms: &str, html_buffer: &mut String) -> usize {
-        let normalized_terms = terms
-            .split_whitespace()
-            .map(|t| t.to_lowercase())
-            .collect::<Vec<String>>();
-
-        let mark = encode(terms).into_owned();
-
+    fn build_search_result(&self, results: HitList, normalized_terms: &[String], html_buffer: &mut String) -> usize {
+        let mark = encode(&normalized_terms.join(" ")).into_owned();
         let mut rendered = 0;
 
         results.into_iter().for_each(|el| {
-                if let Some(url) = self.url_table.get(*el.id()) {
-                    let (page, head) = parse_uri(url);
-                    let excerpt = generate(el.doc().body(), &normalized_terms);
-                    let score_bar = scoring_notation(*el.score());
+            if let Some(url) = self.url_table.get(*el.id()) {
+                let (page, head) = parse_uri(url);
+                let excerpt = generate(el.doc().body(), normalized_terms);
+                let score_bar = scoring_notation(*el.score());
 
-                    write!(html_buffer,
-                        r#"<li tabindex="0" role="option" id="s{}" aria-label="{} {}pt"><a href="{}{}?mark={}#{}" tabindex="-1">{}</a><span aria-hidden="true">{}</span><div class="score" role="meter" aria-label="score:{}pt">{}</div></li>"#,
-                        el.id(), page, el.score(), &self.root_path, page, mark, head, el.doc().breadcrumbs(), excerpt, el.score(), score_bar
-                    ).unwrap();
+                write!(html_buffer,
+                    r#"<li tabindex="0" role="option" id="s{}" aria-label="{} {}pt"><a href="{}{}?mark={}#{}" tabindex="-1">{}</a><span aria-hidden="true">{}</span><div class="score" role="meter" aria-label="score:{}pt">{}</div></li>"#,
+                    el.id(), page, el.score(), &self.root_path, page, mark, head, el.doc().breadcrumbs(), excerpt, el.score(), score_bar
+                ).unwrap();
 
-                    rendered += 1;
-                }
-                // TODO: Ideally, we could include the code only during debugging, but it's not working out well at the moment...
-                // else { macros::console_error!("Missing URL for document ID: {}", *el.id()); }
-            });
+                rendered += 1;
+            }
+        });
 
         rendered
     }
@@ -140,24 +127,31 @@ impl Finder {
         let terms = value.trim();
 
         if terms.len() <= 1 {
-            let result = SearchResult {
+            return to_value(&SearchResult {
                 header: INITIAL_HEADER.to_string(),
                 html: None,
-            };
-            return to_value(&result).unwrap();
+            })
+            .unwrap();
         }
 
-        let results = HitList::from_token_set(split_limited::<MAX_TOKENS>(terms), self.filter_docs_by_terms(terms));
+        let normalized_terms: Vec<String> = split_limited::<MAX_TOKENS>(terms)
+            .iter()
+            .map(|t| t.to_ascii_lowercase())
+            .collect();
+
+        let matching_docs: Vec<&DocObject> = self.filter_docs_by_terms(&normalized_terms).collect();
+
+        let results = HitList::from_token_set(&normalized_terms, &matching_docs);
 
         let mut html_buffer = String::with_capacity(results.len() * BUFFER_HTML_MAGNIFICATION);
-        let hit = self.build_search_result(results, terms, &mut html_buffer);
+        let hit = self.build_search_result(results, &normalized_terms, &mut html_buffer);
 
         if hit == 0 {
-            let result = SearchResult {
+            return to_value(&SearchResult {
                 header: format!("No search result for : {terms}"),
                 html: None,
-            };
-            return to_value(&result).unwrap();
+            })
+            .unwrap();
         }
 
         to_value(&SearchResult {

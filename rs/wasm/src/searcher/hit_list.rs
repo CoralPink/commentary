@@ -98,22 +98,18 @@ impl<'a> IntoIterator for HitList<'a> {
 }
 
 impl<'a> HitList<'a> {
-    pub fn from_token_set<T>(tokens: T, docs: impl IntoIterator<Item = &'a DocObject>) -> Self
-    where
-        T: IntoIterator<Item = &'a str>,
-    {
-        let tokens: Vec<&str> = tokens.into_iter().collect();
+    pub fn from_token_set(normalized_terms: &'a [String], docs: &'a [&'a DocObject]) -> Self {
         let mut results = Vec::new();
 
         for doc in docs {
             let mut score = 0;
 
-            for token in &tokens {
+            for token in normalized_terms.iter().map(|s| s.as_str()) {
                 score += get_header_score(token, doc.breadcrumbs());
                 score += get_body_score(token, doc.body());
             }
 
-            if score == 0 {
+            if score < SCORE_LOWER_LIMIT {
                 continue;
             }
 
@@ -122,9 +118,7 @@ impl<'a> HitList<'a> {
             }
         }
 
-        results.retain(|x| x.score >= SCORE_LOWER_LIMIT);
         results.sort_unstable_by(|a, b| b.score.cmp(&a.score).then_with(|| a.id.cmp(&b.id)));
-
         results.truncate(LIMIT_RESULTS);
 
         Self(results)
