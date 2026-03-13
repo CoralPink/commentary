@@ -34,8 +34,8 @@ const hideSidebar = (): void => {
   document.getElementById('main')?.removeEventListener('pointerdown', clickHide);
 };
 
-const clickHide = (ev: PointerEvent): void => {
-  if (globalThis.innerWidth >= BREAKPOINT_UI_WIDE && ev.pointerType !== 'touch') {
+const clickHide = (): void => {
+  if (globalThis.innerWidth >= BREAKPOINT_UI_WIDE) {
     return;
   }
 
