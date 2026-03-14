@@ -38,6 +38,22 @@ fn create_index_map(text: &str) -> Vec<usize> {
     v
 }
 
+fn merge_ranges(range: Vec<RangeIndex>) -> Vec<RangeIndex> {
+    let mut merged: Vec<RangeIndex> = Vec::with_capacity(range.len());
+
+    for r in range {
+        if let Some(last) = merged.last_mut()
+            && r.start <= last.end
+        {
+            last.end = last.end.max(r.end);
+            continue;
+        }
+        merged.push(r);
+    }
+
+    merged
+}
+
 fn get_sentences(terms: &[String], text: &str, index_map: &[usize]) -> Vec<RangeIndex> {
     let mut range = Vec::new();
     let mut cursor = 0;
@@ -60,7 +76,7 @@ fn get_sentences(terms: &[String], text: &str, index_map: &[usize]) -> Vec<Range
         }
     }
 
-    range
+    merge_ranges(range)
 }
 
 fn get_range(terms: &[String], text: &str, index_map: &[usize]) -> Vec<RangeIndex> {
@@ -85,6 +101,8 @@ fn get_range(terms: &[String], text: &str, index_map: &[usize]) -> Vec<RangeInde
         }
     }
 
+    range.sort_unstable_by_key(|r| r.start);
+
     range
 }
 
@@ -97,9 +115,7 @@ where
     let index = matcher(&terms, text, &create_index_map(text));
     let had_match = !index.is_empty();
 
-    let match_result = MatchResult { index, had_match };
-
-    to_value(&match_result).map_err(|e| JsValue::from_str(&e.to_string()))
+    to_value(&MatchResult { index, had_match }).map_err(|e| JsValue::from_str(&e.to_string()))
 }
 
 // NOTE: Not currently in use
