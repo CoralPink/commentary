@@ -204,7 +204,7 @@ const bootSearch = async (): Promise<void> => {
     results: document.getElementById('searchresults'),
   };
 
-  if (!elements.pop || !elements.searchBar || !elements.header || !elements.results) {
+  if (elements.pop === null || elements.searchBar === null || elements.header === null || elements.results === null) {
     throw new Error('Required DOM elements not found');
   }
 

@@ -88,7 +88,7 @@ const jumpHeader = (ev: PointerEvent): void => {
 
   const header = document.getElementById(decodeURIComponent(id));
 
-  if (!header) {
+  if (header === null) {
     return;
   }
 
@@ -181,7 +181,7 @@ export const bootTableOfContents = (): void => {
   elmToc = document.getElementById('table-of-contents') as HTMLDivElement;
   elmToggle = document.getElementById('toc-toggle') as HTMLButtonElement;
 
-  if (!elmToc || !elmToggle) {
+  if (elmToc === null || elmToggle === null) {
     console.error('Table of contents not found');
     return;
   }

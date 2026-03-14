@@ -75,7 +75,7 @@ const handleFootnoteClick = (ev: Event): void => {
 
   const footnote = document.getElementById(ftId);
 
-  if (!footnote) {
+  if (footnote === null) {
     console.error(`footnote for ${ftId} does not exist.`);
     return;
   }
