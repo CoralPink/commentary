@@ -1,8 +1,8 @@
 import { CONTENT_READY, USE_LEGACY_NAVIGATION } from './constants.ts';
 import { type NavigationContext, prepareNavigation } from './context.ts';
-import { setHTML } from './utils/html-sanitizer.ts';
 import { bootThemeColor } from './theme-selector.ts';
 
+import { setHTML } from './utils/html-sanitizer.ts';
 import toast from './utils/toast.ts';
 
 const PAGE_NO_TITLE = '(No Title) - Commentary of Dotfiles';
