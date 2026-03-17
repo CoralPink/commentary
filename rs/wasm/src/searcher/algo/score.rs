@@ -130,7 +130,7 @@ pub fn compute(query: &str, text: &str) -> usize {
     let mut p = query_iter.next();
 
     for (idx, curr) in text.char_indices() {
-        let cur = classify_char(curr);
+        let cur = CharClass::classify_char(curr);
 
         if let Some(qc) = p {
             if qc != curr {
@@ -139,7 +139,7 @@ pub fn compute(query: &str, text: &str) -> usize {
             }
 
             score += SCORE_MATCH;
-            score += bonus_query_match(&classify_char(qc), &cur);
+            score += bonus_query_match(&CharClass::classify_char(qc), &cur);
 
             score += bonus_boundary(&cur, &prev);
             score += bonus_matrix(&cur, &prev);
@@ -167,21 +167,6 @@ mod tests {
     use wasm_bindgen_test::*;
 
     wasm_bindgen_test_configure!(run_in_browser);
-
-    #[wasm_bindgen_test]
-    fn test_classify_char_basic() {
-        assert_eq!(classify_char(' '), CharClass::Whitespace);
-        assert_eq!(classify_char('\n'), CharClass::Whitespace);
-        assert_eq!(classify_char('/'), CharClass::Delimiter);
-        assert_eq!(classify_char('a'), CharClass::Lowercase);
-        assert_eq!(classify_char('Z'), CharClass::Uppercase);
-        assert_eq!(classify_char('0'), CharClass::Digit);
-        assert_eq!(classify_char('あ'), CharClass::Hiragana);
-        assert_eq!(classify_char('ア'), CharClass::Katakana);
-        assert_eq!(classify_char('漢'), CharClass::Kanji);
-        assert_eq!(classify_char('가'), CharClass::Hangul);
-        assert_eq!(classify_char('%'), CharClass::Other);
-    }
 
     #[wasm_bindgen_test]
     fn test_bonus_boundary() {
