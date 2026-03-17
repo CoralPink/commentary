@@ -1,3 +1,7 @@
+fn is_delimiter(c: char) -> bool {
+    matches!(c, '/' | ':' | ';' | ',')
+}
+
 #[derive(Debug, PartialEq, Eq, Clone, Copy)]
 pub enum CharClass {
     Whitespace,
@@ -15,36 +19,55 @@ pub enum CharClass {
 impl CharClass {
     pub fn as_index(&self) -> usize {
         match self {
-            CharClass::Whitespace => 0,
-            CharClass::Delimiter => 1,
-            CharClass::Lowercase => 2,
-            CharClass::Uppercase => 3,
-            CharClass::Digit => 4,
-            CharClass::Hiragana => 5,
-            CharClass::Katakana => 6,
-            CharClass::Kanji => 7,
-            CharClass::Hangul => 8,
-            CharClass::Other => 9,
+            Self::Whitespace => 0,
+            Self::Delimiter => 1,
+            Self::Lowercase => 2,
+            Self::Uppercase => 3,
+            Self::Digit => 4,
+            Self::Hiragana => 5,
+            Self::Katakana => 6,
+            Self::Kanji => 7,
+            Self::Hangul => 8,
+            Self::Other => 9,
+        }
+    }
+
+    pub fn classify_char(c: char) -> Self {
+        match c {
+            _ if c.is_whitespace() => Self::Whitespace,
+            _ if is_delimiter(c) => Self::Delimiter,
+            _ if c.is_ascii_lowercase() => Self::Lowercase,
+            _ if c.is_ascii_uppercase() => Self::Uppercase,
+            _ if c.is_ascii_digit() => Self::Digit,
+            '\u{3040}'..='\u{309F}' => Self::Hiragana,
+            '\u{30A0}'..='\u{30FF}' => Self::Katakana,
+            '\u{4E00}'..='\u{9FFF}' => Self::Kanji,
+            '\u{3400}'..='\u{4DBF}' => Self::Kanji,
+            '\u{AC00}'..='\u{D7AF}' => Self::Hangul,
+            _ => Self::Other,
         }
     }
 }
 
-fn is_delimiter(c: char) -> bool {
-    matches!(c, '/' | ':' | ';' | ',')
-}
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use wasm_bindgen_test::*;
 
-pub fn classify_char(c: char) -> CharClass {
-    match c {
-        _ if c.is_whitespace() => CharClass::Whitespace,
-        _ if is_delimiter(c) => CharClass::Delimiter,
-        _ if c.is_ascii_lowercase() => CharClass::Lowercase,
-        _ if c.is_ascii_uppercase() => CharClass::Uppercase,
-        '\u{3040}'..='\u{309F}' => CharClass::Hiragana,
-        '\u{30A0}'..='\u{30FF}' => CharClass::Katakana,
-        '\u{4E00}'..='\u{9FFF}' => CharClass::Kanji,
-        '\u{3400}'..='\u{4DBF}' => CharClass::Kanji,
-        '\u{AC00}'..='\u{D7AF}' => CharClass::Hangul,
-        _ if c.is_ascii_digit() => CharClass::Digit,
-        _ => CharClass::Other,
+    wasm_bindgen_test_configure!(run_in_browser);
+
+    #[wasm_bindgen_test]
+    fn test_classify_char_basic() {
+        assert_eq!(CharClass::classify_char(' '), CharClass::Whitespace);
+        assert_eq!(CharClass::classify_char('\n'), CharClass::Whitespace);
+        assert_eq!(CharClass::classify_char('/'), CharClass::Delimiter);
+        assert_eq!(CharClass::classify_char('a'), CharClass::Lowercase);
+        assert_eq!(CharClass::classify_char('Z'), CharClass::Uppercase);
+        assert_eq!(CharClass::classify_char('0'), CharClass::Digit);
+        assert_eq!(CharClass::classify_char('あ'), CharClass::Hiragana);
+        assert_eq!(CharClass::classify_char('ア'), CharClass::Katakana);
+        assert_eq!(CharClass::classify_char('漢'), CharClass::Kanji);
+        assert_eq!(CharClass::classify_char('가'), CharClass::Hangul);
+        assert_eq!(CharClass::classify_char('%'), CharClass::Other);
     }
 }
