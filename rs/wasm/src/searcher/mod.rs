@@ -1,6 +1,6 @@
 mod algo;
-mod excerpt;
 mod doc;
+mod excerpt;
 mod finder;
 mod hit_list;
 mod js_util;

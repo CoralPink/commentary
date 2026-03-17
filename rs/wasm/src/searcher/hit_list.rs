@@ -8,7 +8,7 @@ use std::ops::{Deref, DerefMut};
 pub const LIMIT_RESULTS: usize = 100;
 
 // Minimum required search score
-const SCORE_LOWER_LIMIT: usize = 40;
+const SCORE_LOWER_LIMIT: usize = 64;
 
 /// Base multiplier for header match scores
 const SCORE_HEADER_BOOST_BASE: f32 = 8.0;
