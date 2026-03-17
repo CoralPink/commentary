@@ -1,6 +1,6 @@
 declare const self: ServiceWorkerGlobalScope;
 
-const CACHE_VERSION = 'v10.5.0';
+const CACHE_VERSION = 'v10.5.1';
 
 const CACHE_URL = '/commentary/';
 const FALLBACK_IMAGE = 'favicon.png';
@@ -24,8 +24,11 @@ const installList = [
   'woff2/FiraCode-VF.woff2',
 ] as const;
 
-const faviconFiles = new Set(['favicon.png', 'favicon.svg']);
+// Do not cache the specified destination
 const skipDestination = new Set<RequestDestination>(['document', 'image', 'video', 'audio']);
+// Cache regardless of the destination
+const useCacheFiles = new Set(['favicon.png', 'favicon.svg', 'pagelist.html']);
+// Cache this extension even if the destination is ''.
 const cacheableExtensions = new Set(['wasm', 'br', 'gz']);
 
 const extractVersionParts = (cacheName: string): { major: number; minor: number } | null => {
@@ -156,15 +159,25 @@ const preloadProc = async (
 const requestProc = (request: Request, url: URL): Request => {
   const fileName = url.pathname.split('/').pop();
 
-  // Rewrite requests for favicons to always use the top-level directory.
-  if (fileName && faviconFiles.has(fileName)) {
+  // Rewrite the code to always use the top-level directory.
+  if (fileName && useCacheFiles.has(fileName)) {
     return new Request(self.location.origin + CACHE_URL + fileName);
   }
 
   return request;
 };
 
-const shouldCache = (request: Request): boolean => {
+const shouldCache = (request: Request, url: URL): boolean => {
+  const fileName = url.pathname.split('/').pop();
+
+  if (fileName == undefined) {
+    return false;
+  }
+
+  if (useCacheFiles.has(fileName)) {
+    return true;
+  }
+
   if (skipDestination.has(request.destination)) {
     return false;
   }
@@ -173,11 +186,7 @@ const shouldCache = (request: Request): boolean => {
     return true;
   }
 
-  // .wasm, .br, and .gz files are not skipped
-  // (In practice, it cannot correctly identify files without extensions (e.g., abcwasm))
-  const ext = request.url.split('.').pop()?.toLowerCase() ?? '';
-
-  return cacheableExtensions.has(ext);
+  return cacheableExtensions.has(fileName);
 };
 
 self.addEventListener('fetch', (event: FetchEvent): void => {
@@ -189,7 +198,7 @@ self.addEventListener('fetch', (event: FetchEvent): void => {
   }
 
   const request = requestProc(event.request, url);
-  const response = shouldCache(request) ? cacheFirst : preloadProc;
+  const response = shouldCache(request, url) ? cacheFirst : preloadProc;
 
   event.respondWith(
     response(
