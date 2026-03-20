@@ -32,7 +32,7 @@ impl CharClass {
         }
     }
 
-    pub fn classify_char(c: char) -> Self {
+    pub fn classify(c: char) -> Self {
         match c {
             _ if c.is_whitespace() => Self::Whitespace,
             _ if is_delimiter(c) => Self::Delimiter,
@@ -57,17 +57,17 @@ mod tests {
     wasm_bindgen_test_configure!(run_in_browser);
 
     #[wasm_bindgen_test]
-    fn test_classify_char_basic() {
-        assert_eq!(CharClass::classify_char(' '), CharClass::Whitespace);
-        assert_eq!(CharClass::classify_char('\n'), CharClass::Whitespace);
-        assert_eq!(CharClass::classify_char('/'), CharClass::Delimiter);
-        assert_eq!(CharClass::classify_char('a'), CharClass::Lowercase);
-        assert_eq!(CharClass::classify_char('Z'), CharClass::Uppercase);
-        assert_eq!(CharClass::classify_char('0'), CharClass::Digit);
-        assert_eq!(CharClass::classify_char('あ'), CharClass::Hiragana);
-        assert_eq!(CharClass::classify_char('ア'), CharClass::Katakana);
-        assert_eq!(CharClass::classify_char('漢'), CharClass::Kanji);
-        assert_eq!(CharClass::classify_char('가'), CharClass::Hangul);
-        assert_eq!(CharClass::classify_char('%'), CharClass::Other);
+    fn test_classify_basic() {
+        assert_eq!(CharClass::classify(' '), CharClass::Whitespace);
+        assert_eq!(CharClass::classify('\n'), CharClass::Whitespace);
+        assert_eq!(CharClass::classify('/'), CharClass::Delimiter);
+        assert_eq!(CharClass::classify('a'), CharClass::Lowercase);
+        assert_eq!(CharClass::classify('Z'), CharClass::Uppercase);
+        assert_eq!(CharClass::classify('0'), CharClass::Digit);
+        assert_eq!(CharClass::classify('あ'), CharClass::Hiragana);
+        assert_eq!(CharClass::classify('ア'), CharClass::Katakana);
+        assert_eq!(CharClass::classify('漢'), CharClass::Kanji);
+        assert_eq!(CharClass::classify('가'), CharClass::Hangul);
+        assert_eq!(CharClass::classify('%'), CharClass::Other);
     }
 }
