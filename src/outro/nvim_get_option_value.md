@@ -257,6 +257,8 @@ Happy to be that way
 
 ...理由になってねぇな🙄
 
+<div style="margin-top: 4em"></div>
+
 ```admonish warning title=""
 Now that you've found another key
 
@@ -273,19 +275,360 @@ What are you going to play?
 
 ![chatgpt-answer](img/chatgpt-answer.webp)
 
-到底、わたしに真意は分からないけど、"mutual", "fair" の方向に進むのならぜんぜん応援できる。
-...全然関係無いけど、ミドルネームが John なの今日初めて知って、なんかおでれぇたぞう 🐘
-
 ![sun-king3](img/sun-king3.webp)
 
-...これで終わると流石にひどいと思うので、
-「13 が怖がられるのは、"世界の外" に一歩踏み出す力を持っているから。
-でもそれは同時に "次の秩序を開く鍵" でもある」とも言われたよ、と追記しておく。
-(ただ、個人的には America First 強すぎなんじゃない？とも思っている。)
+"13 が怖がられるのは、"世界の外" に一歩踏み出す力を持っているから。
+でもそれは同時に "次の秩序を開く鍵" でもある" とも言われていたが、2026年の現状は訳が分からない❗
 }}
 ```
 
-### 🦸‍♀️ WILL RETURN
+<div style="margin-top: 8em"></div>
+
+## 🌵 Hotel California
+
+```admonish warning title=""
+On a dark desert highway, cool wind in my hair
+
+Warm smell of colitas, rising up through the air
+
+夜の砂漠のハイウェイ 髪をなでる冷たい風
+
+コリタスの温かい香り 空気に漂い立ち上る
+```
+
+```admonish warning title=""
+Up ahead in the distance, I saw a shimmering light
+
+遠く先に かすかにきらめく光が見えた
+```
+
+```admonish warning title=""
+My head grew heavy and my sight grew dim
+
+I had to stop for the night
+
+頭は重く 視界がぼやけてきた
+
+どうやら ここで一夜を過ごすしかない
+```
+
+```admonish warning title=""
+There she stood in the doorway
+
+I heard the mission bell
+
+その扉口には女性が立っている
+
+教会の鐘の音が鳴り響く
+```
+
+```admonish warning title=""
+And I was thinkin' to myself
+
+心の中で自分に問いかけた
+```
+
+<div style="text-align: center">
+<div style="margin-top: 4em">
+"This could be Heaven or this could be Hell"
+
+"ここは天国か あるいは地獄か"
+</div>
+<div style="margin-top: 4em"></div>
+</div>
+
+```admonish warning title=""
+Then she lit up a candle and she showed me the way
+
+彼女は蝋燭を灯し 中へ案内してくれた
+```
+
+```admonish warning title=""
+There were voices down the corridor
+
+I thought I heard them say
+
+廊下の奥からこだまする声
+
+それはまるで こう聞こえた
+```
+
+<div style="color: #999999; text-align: center;">
+<div style="margin-top: 4em">
+Welcome to the Hotel California{{footnote: Hotel California (by [Eagles](https://en.wikipedia.org/wiki/Eagles_(band))):
+1977年2月22日、1976年にリリースされた同名アルバムの2枚目のシングルとして発表された。
+この曲は作曲[Don Felder](https://en.wikipedia.org/wiki/Don_Felder)、
+作詞[Glenn Frey](https://en.wikipedia.org/wiki/Glenn_Frey)/[Don Henley](https://en.wikipedia.org/wiki/Don_Henley)によって書かれ、
+リードヴォーカルは Henley が担当している。
+曲の終盤には、Felder と[Joe Walsh](https://en.wikipedia.org/wiki/Joe_Walsh)による 2分12秒にわたるエレキギターのソロが披露され、
+二人は交互にリードを弾き、フェードアウトに向けてハーモニーを奏でながら[アルペジオ](https://en.wikipedia.org/wiki/Arpeggio)を共に演奏する。
+
+この曲はバンドの最も有名な楽曲の一つであり、
+1978年には[Grammy Award for Record of the Year](https://en.wikipedia.org/wiki/Grammy_Award_for_Record_of_the_Year)を受賞し、
+1998年にはその長いギター・コーダが[Guitarist](https://en.wikipedia.org/wiki/Guitarist_(magazine))誌の読者投票で
+"史上最高のギター・ソロ" に選ばれた。
+歌詞の意味については、リリース以来、ファンや批評家の間で議論が続いている。
+Eagles 自身は、この曲を "Los Angeles での華やかな生活に対する自分たちの解釈" と表現している。
+2013年のドキュメンタリー[History of the Eagles](https://en.wikipedia.org/wiki/History_of_the_Eagles)の中で、
+ヘンリーはこの曲について、"無垢から経験への旅...それだけのことだ" と語っている。
+}}
+</div>
+
+<div style="margin-top: 4em">
+Such a lovely place
+
+なんて素敵な場所
+</div>
+
+<div style="margin-top: 4em">
+Such a lovely face
+
+なんて煌びやかな方々
+</div>
+
+<div style="margin-top: 4em">
+Plenty of room at the Hotel California
+
+当ホテルは 客室も多数揃えてございます
+</div>
+
+<div style="margin-top: 4em">
+Any time of year
+
+You can find it here
+
+一年中いつでも
+
+こちらで見つけることができますよ
+</div>
+<div style="margin-top: 4em"></div>
+</div>
+
+```admonish warning title=""
+Her mind is Tiffany-twisted, she got the Mercedes Benz,
+
+She got a lot of pretty, pretty boys she calls friends
+
+彼女の心は Tiffany に狂ってる, そして手に入れた Mercedes Benz,
+
+たくさんの かわいい、かわいいぼうやたちを 彼女はトモダチと呼んでいる
+```
+
+```admonish warning title=""
+How they dance in the courtyard, sweet summer sweat
+
+Some dance to remember, some dance to forget
+
+中庭で踊るトモダチの姿, 甘い夏の汗
+
+ある者は想い出に舞い, ある者は忘れたいが如く舞う
+```
+
+```admonish warning title=""
+So I called up the Captain
+
+ふとキャプテンに声を掛けた
+```
+
+<div style="text-align: center">
+<div style="margin-top: 4em">
+"Please bring me my wine"
+
+"ワインを持ってきてくれないか"
+</div>
+<div style="margin-top: 4em"></div>
+</div>
+
+```admonish warning title=""
+He said,
+
+彼は言った
+```
+
+<div style="text-align: center">
+<div style="margin-top: 4em">
+"We haven't had that spirit{{footnote:
+Don Henley は 2007年の Jon Soeder とのインタビューでの
+"(歌詞にある)[ワイン](https://en.wikipedia.org/wiki/Wine)は
+スピリット([蒸留酒](https://ja.wikipedia.org/wiki/蒸留酒))ではないのでは?" との指摘に対し、
+自分はワインと蒸留酒の製法と分類の仕方を正しく知ってる程度には十分酒をたしなんでいると皮肉を言うとともに
+"貴方が最初でも無いが、完全に歌詞の解釈を間違って比喩を見落としている。...歌詞のその部分は酒とは全く関係ない。
+社会政治的なメッセージである。"と述べている。
+}} here since nineteen sixty nine."
+
+"1969年以来 我々にはもう あのスピリットは無いのです."
+
+{{footnote:
+[Ticket to Ride](https://coralpink.github.io/commentary/neovim/options/inccommand.html?mark=1969#ft-1)
+}}
+{{footnote:
+[rooftop concert](https://coralpink.github.io/commentary/neovim/plugin/lualine.html?mark=1969#ft-2)
+}}
+{{footnote:
+[My Way](https://coralpink.github.io/commentary/neovim/lsp/nvim-lspconfig.html?mark=1969#ft-2)
+}}
+{{footnote:
+[Abbey Road](https://coralpink.github.io/commentary/neovim/lsp/nvim-cmp.html?mark=1969#ft-1)
+}}
+{{footnote:
+[WAR IS OVER!](https://coralpink.github.io/commentary/outro/mason-null-ls.html?mark=1969#ft-2)
+}}
+{{footnote:
+[Give Peace a Chance](https://coralpink.github.io/commentary/outro/linter.html?mark=1969#ft-5)
+}}
+</div>
+<div style="margin-top: 4em"></div>
+</div>
+
+```admonish warning title=""
+And still those voices are callin from far away
+
+それでもあの声は遠い彼方からこだまする
+```
+
+```admonish warning title=""
+Wake you up in the middle of the night
+
+Just to hear them say
+
+真夜中に俺の目を覚ましに来るんだ
+
+ただそれを呼びかけるだけのために
+```
+
+<div style="color: #999999; text-align: center;">
+<div style="margin-top: 4em">
+Welcome to the Hotel California
+</div>
+
+<div style="margin-top: 4em">
+Such a lovely place
+
+なんて素敵な場所
+</div>
+
+<div style="margin-top: 4em">
+Such a lovely face
+
+なんて煌びやかな方々
+</div>
+
+<div style="margin-top: 4em">
+They livin' it up at the Hotel California
+
+皆様が 当ホテルで羽を伸ばしておられます
+</div>
+
+<div style="margin-top: 4em">
+What a nice surprise
+
+なんて素敵なサプライズ
+</div>
+
+<div style="margin-top: 4em">
+Bring your alibis
+
+アリバイは忘れず 繕ってお持ちください
+</div>
+<div style="margin-top: 4em"></div>
+</div>
+
+```admonish warning title=""
+Mirrors on the ceiling
+
+The pink champagne on ice
+
+天井には 鏡が掛かり
+
+氷で冷やされた ピンクシャンパン
+```
+
+```admonish warning title=""
+and she said
+
+彼女は言った
+```
+
+<div style="text-align: center">
+<div style="margin-top: 4em">
+"We are all just prisoners here, of our own device"
+
+"ここにいる私たちは、みんな自ら招いた運命に捕らわれた囚人なのよ"
+</div>
+<div style="margin-top: 4em"></div>
+</div>
+
+```admonish warning title=""
+And in the master's chambers
+
+They gathered for the feast
+
+そして主の間では
+
+彼らが 宴のために集まっていた
+```
+
+```admonish warning title=""
+They stab it with their steely knives
+
+But they just can't kill the beast
+
+彼らは 鉄鋼ナイフで ソレを突き刺すが
+
+到底 野獣を殺すなど敵わない
+```
+
+```admonish warning title=""
+Last thing I remember
+
+I was running for the door
+
+最後の記憶では
+
+俺は ドアに向かって走っていた
+```
+
+```admonish warning title=""
+I had to find the passage back to the place I was before
+
+かつて在った場所へ 帰る道を見つけなければならない
+```
+
+<div style="text-align: center">
+<div style="margin-top: 4em">
+"Relax,"
+
+"落ち着いて,"
+</div>
+<div style="margin-top: 4em"></div>
+</div>
+
+```admonish warning title=""
+said the night man
+
+夜勤のフロントマンは言った
+```
+
+<div style="text-align: center">
+<div style="margin-top: 4em">
+"We are programmed to receive
+
+"我々は受け入れるようにプログラムされている
+</div>
+
+<div style="margin-top: 4em">
+You can check out any time you like
+
+But you can never leave!"
+
+チェックアウトはいつでも好きにしていい
+
+だが 永遠にここを脱け出すことなど叶わない！"
+</div>
+<div style="margin-top: 8em"></div>
+</div>
+
+## 🦸‍♀️ WILL RETURN
 
 ```admonish note title=""
 What the hell is this?
