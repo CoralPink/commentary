@@ -130,7 +130,7 @@ pub fn compute(query: &str, text: &str) -> usize {
     let mut p = query_iter.next();
 
     for (idx, curr) in text.char_indices() {
-        let cur = CharClass::classify_char(curr);
+        let cur = CharClass::classify(curr);
 
         if let Some(qc) = p {
             if qc != curr {
@@ -139,7 +139,7 @@ pub fn compute(query: &str, text: &str) -> usize {
             }
 
             score += SCORE_MATCH;
-            score += bonus_query_match(&CharClass::classify_char(qc), &cur);
+            score += bonus_query_match(&CharClass::classify(qc), &cur);
 
             score += bonus_boundary(&cur, &prev);
             score += bonus_matrix(&cur, &prev);

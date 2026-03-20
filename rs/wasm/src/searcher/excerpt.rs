@@ -6,7 +6,7 @@ const TEASER_WORD_COUNT: usize = 256;
 const RESULT_CAPACITY: usize = 128;
 
 /// Estimated maximum number of tokens for a single document.
-const MAX_TOKENS: usize = 100;
+const MAX_TOKENS: usize = 24;
 
 /// Default importance for normal words.
 const IMPORTANCE_DEFAULT: u16 = 8;
@@ -204,6 +204,7 @@ pub fn generate(body: &str, normalized_terms: &[String]) -> String {
 
     apply_markup(&tokens, body)
 }
+
 #[cfg(test)]
 mod tests {
     use super::*;

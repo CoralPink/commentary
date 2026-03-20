@@ -5,26 +5,18 @@
 /// perfrom a search, and return the serch results as an HTML string.
 ///
 use crate::searcher::doc::DocObject;
-use crate::searcher::excerpt::generate;
 use crate::searcher::hit_list::HitList;
+use crate::searcher::html_builder::HtmlBuilder;
 use crate::searcher::js_util::*;
 
 use serde::Serialize;
 use serde_wasm_bindgen::{from_value, to_value};
-use std::fmt::Write;
-use urlencoding::encode;
 use wasm_bindgen::prelude::*;
 
 const INITIAL_HEADER: &str = "2文字 (もしくは全角1文字) 以上を入力してください...";
 
-const BUFFER_HTML_MAGNIFICATION: usize = 1024;
-
 /// Maximum number of search words (entering more words than this will simply be ignored).
 const MAX_TOKENS: usize = 8;
-
-const SCORE_CHARACTER: &str = "▰";
-const SCORE_RATE: usize = 8;
-const SCORE_MAX_BAR: usize = 256;
 
 #[derive(Serialize)]
 struct SearchResult {
@@ -43,15 +35,6 @@ fn split_limited<const N: usize>(input: &str) -> Vec<&str> {
     }
 
     vec
-}
-
-fn parse_uri(link_uri: &str) -> (&str, &str) {
-    link_uri.split_once('#').unwrap_or((link_uri, ""))
-}
-
-fn scoring_notation(score: usize) -> String {
-    let s = SCORE_CHARACTER.repeat(std::cmp::min(score, SCORE_MAX_BAR) / SCORE_RATE);
-    format!("{s} ({score}pt)")
 }
 
 #[wasm_bindgen]
@@ -101,28 +84,6 @@ impl Finder {
         })
     }
 
-    fn build_search_result(&self, results: HitList, normalized_terms: &[String], html_buffer: &mut String) -> usize {
-        let mark = encode(&normalized_terms.join(" ")).into_owned();
-        let mut rendered = 0;
-
-        results.into_iter().for_each(|el| {
-            if let Some(url) = self.url_table.get(*el.id()) {
-                let (page, head) = parse_uri(url);
-                let excerpt = generate(el.doc().body(), normalized_terms);
-                let score_bar = scoring_notation(*el.score());
-
-                write!(html_buffer,
-                    r#"<li tabindex="0" role="option" id="s{}" aria-label="{} {}pt"><a href="{}{}?mark={}#{}" tabindex="-1">{}</a><span aria-hidden="true">{}</span><div class="score" role="meter" aria-label="score:{}pt">{}</div></li>"#,
-                    el.id(), page, el.score(), &self.root_path, page, mark, head, el.doc().breadcrumbs(), excerpt, el.score(), score_bar
-                ).unwrap();
-
-                rendered += 1;
-            }
-        });
-
-        rendered
-    }
-
     pub fn search(&self, value: &str) -> JsValue {
         let terms = value.trim();
 
@@ -143,8 +104,8 @@ impl Finder {
 
         let results = HitList::from_token_set(&normalized_terms, &matching_docs);
 
-        let mut html_buffer = String::with_capacity(results.len() * BUFFER_HTML_MAGNIFICATION);
-        let hit = self.build_search_result(results, &normalized_terms, &mut html_buffer);
+        let mut html_builder = HtmlBuilder::new_for_results(results.len());
+        let hit = html_builder.build_search_result(&self.root_path, &self.url_table, results, &normalized_terms);
 
         if hit == 0 {
             return to_value(&SearchResult {
@@ -156,7 +117,7 @@ impl Finder {
 
         to_value(&SearchResult {
             header: format!("{} search results for : {terms}", hit),
-            html: Some(html_buffer),
+            html: Some(html_builder.into_string()),
         })
         .unwrap()
     }
