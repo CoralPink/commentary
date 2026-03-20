@@ -1,6 +1,6 @@
 declare const self: ServiceWorkerGlobalScope;
 
-const CACHE_VERSION = 'v10.6.0';
+const CACHE_VERSION = 'v10.6.1';
 
 const CACHE_URL = '/commentary/';
 const FALLBACK_IMAGE = 'favicon.png';
@@ -186,7 +186,7 @@ const shouldCache = (request: Request, url: URL): boolean => {
     return true;
   }
 
-  return cacheableExtensions.has(fileName);
+  return cacheableExtensions.has(fileName.split('.').pop() ?? '');
 };
 
 self.addEventListener('fetch', (event: FetchEvent): void => {
