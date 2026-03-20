@@ -6,7 +6,7 @@
     "jsr:@std/path@1.1.4": "1.1.4",
     "npm:cheerio@1.2.0": "1.2.0",
     "npm:js-beautify@1.15.4": "1.15.4",
-    "npm:jsdom@29.0.0": "29.0.0",
+    "npm:jsdom@29.0.1": "29.0.1",
     "npm:p-limit@7.3.0": "7.3.0"
   },
   "jsr": {
@@ -364,8 +364,8 @@
     "js-cookie@3.0.5": {
       "integrity": "sha512-cEiJEAEoIbWfCZYKWhVwFuvPX1gETRYPw6LlaTKoxD3s2AkXzkCjnp6h0V77ozyqj0jakteJ4YqDJT830+lVGw=="
     },
-    "jsdom@29.0.0": {
-      "integrity": "sha512-9FshNB6OepopZ08unmmGpsF7/qCjxGPbo3NbgfJAnPeHXnsODE9WWffXZtRFRFe0ntzaAOcSKNJFz8wiyvF1jQ==",
+    "jsdom@29.0.1": {
+      "integrity": "sha512-z6JOK5gRO7aMybVq/y/MlIpKh8JIi68FBKMUtKkK2KH/wMSRlCxQ682d08LB9fYXplyY/UXG8P4XXTScmdjApg==",
       "dependencies": [
         "@asamuzakjp/css-color",
         "@asamuzakjp/dom-selector",
@@ -561,8 +561,8 @@
         "punycode"
       ]
     },
-    "undici@7.24.4": {
-      "integrity": "sha512-BM/JzwwaRXxrLdElV2Uo6cTLEjhSb3WXboncJamZ15NgUURmvlXvxa6xkwIOILIjPNo9i8ku136ZvWV0Uly8+w=="
+    "undici@7.24.5": {
+      "integrity": "sha512-3IWdCpjgxp15CbJnsi/Y9TCDE7HWVN19j1hmzVhoAkY/+CJx449tVxT5wZc1Gwg8J+P0LWvzlBzxYRnHJ+1i7Q=="
     },
     "w3c-xmlserializer@5.0.0": {
       "integrity": "sha512-o8qghlI8NZHU1lLPrpi2+Uq7abh4GGPpYANlalzWxyWteJOCsr/P+oPBA49TOLu5FTZO4d3F9MnWJfiMo4BkmA==",
@@ -716,7 +716,7 @@
       "jsr:@std/path@1.1.4",
       "npm:cheerio@1.2.0",
       "npm:js-beautify@1.15.4",
-      "npm:jsdom@29.0.0",
+      "npm:jsdom@29.0.1",
       "npm:p-limit@7.3.0"
     ]
   }
