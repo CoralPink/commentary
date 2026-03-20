@@ -2,7 +2,7 @@
   "imports": {
     "cheerio": "npm:cheerio@1.2.0",
     "cheerio/utils": "npm:cheerio@1.2.0/utils",
-    "jsdom": "npm:jsdom@29.0.0",
+    "jsdom": "npm:jsdom@29.0.1",
     "js-beautify": "npm:js-beautify@1.15.4",
     "path": "jsr:@std/path@1.1.4",
     "p-limit": "npm:p-limit@7.3.0"
