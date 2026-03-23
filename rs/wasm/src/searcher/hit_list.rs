@@ -1,19 +1,10 @@
 use crate::searcher::algo::score;
+use crate::searcher::constants::*;
 use crate::searcher::doc::DocObject;
 
 use getset::Getters;
 use std::ops::{Deref, DerefMut};
 
-/// Maximum number of search results
-pub const LIMIT_RESULTS: usize = 100;
-
-// Minimum required search score
-const SCORE_LOWER_LIMIT: usize = 64;
-
-/// Base multiplier for header match scores
-const SCORE_HEADER_BOOST_BASE: f32 = 8.0;
-/// Controls how quickly the header boost decays as header length increases
-const SCORE_HEADER_LENGTH_DECAY_EXPONENT: f32 = 0.4;
 /// Character used to split header breadcrumbs
 const SCORE_HEADER_PARSE: char = '»';
 

@@ -1,12 +1,6 @@
+use crate::searcher::constants::*;
+
 use unicode_segmentation::UnicodeSegmentation;
-
-/// Number of words considered for teaser/highlight calculation.
-const TEASER_WORD_COUNT: usize = 256;
-/// Extra buffer size when generating the highlighted string.
-const RESULT_CAPACITY: usize = 128;
-
-/// Estimated maximum number of tokens for a single document.
-const MAX_TOKENS: usize = 24;
 
 /// Default importance for normal words.
 const IMPORTANCE_DEFAULT: u16 = 8;
@@ -19,6 +13,9 @@ const IMPORTANCE_MATCH: u16 = 160;
 const MARK_TAG: &str = "<mark>";
 /// HTML closing tag for highlighted words.
 const MARK_TAG_END: &str = "</mark>";
+
+/// Extra buffer size when generating the highlighted string.
+const RESULT_CAPACITY: usize = MARK_TAG.len() + MARK_TAG_END.len();
 
 /// A tokenized word in the text, with its byte position and importance.
 struct HighlightedToken<'a> {
@@ -87,44 +84,45 @@ fn apply_markup(tokens: &[HighlightedToken], body: &str) -> String {
     let range = calc_range_position(tokens);
     let end_index = calc_end_index(&range, tokens);
 
-    let mut pos = tokens[range.start].position;
     let mut result = String::with_capacity(body.len() + RESULT_CAPACITY);
+    let mut idx = range.start;
 
-    let mut marking = false;
+    let mut p = tokens[range.start].position;
 
-    for token in tokens.iter().take(end_index).skip(range.start) {
-        // There are characters that have not yet been output between
-        // the end of the previous token and the start of the current token.
-        if pos < token.position {
-            // Since the gap is not a highlight target, close the <mark> tag
-            if marking {
-                result.push_str(MARK_TAG_END);
-                marking = false;
-            }
-            result.push_str(&body[pos..token.position]);
-        }
-        // current token is being searched
-        if token.importance == IMPORTANCE_MATCH {
-            if !marking {
-                result.push_str(MARK_TAG);
-                marking = true;
-            }
-            result.push_str(token.text);
-        // current token does not match the search results
-        } else {
-            if marking {
-                result.push_str(MARK_TAG_END);
-                marking = false;
-            }
-            result.push_str(token.text);
+    while idx < end_index {
+        let token = &tokens[idx];
+        let start = token.position;
+
+        idx += 1;
+
+        if p < token.position {
+            result.push_str(&body[p..start]);
         }
 
-        pos = token.position + token.text.len();
-    }
+        let mut end = start + token.text.len();
 
-    // If the last token matches, close the <mark> tag here
-    if marking {
+        if token.importance != IMPORTANCE_MATCH {
+            result.push_str(&body[start..end]);
+            p = end;
+
+            continue;
+        }
+
+        while idx < end_index {
+            let t = &tokens[idx];
+
+            if t.importance != IMPORTANCE_MATCH {
+                break;
+            }
+            end = t.position + t.text.len();
+            idx += 1;
+        }
+
+        result.push_str(MARK_TAG);
+        result.push_str(&body[start..end]);
         result.push_str(MARK_TAG_END);
+
+        p = end;
     }
 
     result
@@ -179,7 +177,7 @@ fn get_hitranges(body: &str, normalized_terms: &[String]) -> Vec<HitRange> {
 pub fn generate(body: &str, normalized_terms: &[String]) -> String {
     let hit_range = get_hitranges(body, normalized_terms);
 
-    let mut tokens = Vec::with_capacity(MAX_TOKENS);
+    let mut tokens = Vec::with_capacity(EXCERPT_TOKENS_MAX);
 
     for (position, text) in body.unicode_word_indices() {
         let mut importance = if position == 0 {
