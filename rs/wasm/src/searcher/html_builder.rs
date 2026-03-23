@@ -148,7 +148,6 @@ impl HtmlBuilder {
         self.safe_text(hit.marking);
         self.buf.push(b'#');
         self.safe_text(hit.head);
-        self.buf.push(b'"');
         self.buf.extend_from_slice(b"\">");
         self.safe_text(hit.breadcrumbs);
         self.end("a");
