@@ -6,7 +6,7 @@ pub const SEARCH_TERM_MAX: usize = 8;
 /// Message displayed when the requirements for starting a search have not been met
 pub const INITIAL_MESSAGE: &str = "2文字 (or 全角1文字) 以上を入力してください...";
 
-// Minimum required search match score
+/// Minimum required search match score
 pub const SCORE_LOWER_LIMIT: usize = 64;
 /// Base multiplier for header match scores
 pub const SCORE_HEADER_BOOST_BASE: f32 = 8.0;
