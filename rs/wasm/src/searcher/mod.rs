@@ -1,4 +1,5 @@
 mod algo;
+mod constants;
 mod doc;
 mod excerpt;
 mod finder;
