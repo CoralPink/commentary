@@ -108,6 +108,7 @@ impl HtmlBuilder {
     }
 
     fn attr_num(&mut self, name: &str, value: usize) {
+        self.buf.push(b' ');
         self.buf.extend_from_slice(name.as_bytes());
         self.buf.extend_from_slice(b"=\"");
         self.buf.extend_from_slice(self.itoa.format(value).as_bytes());
