@@ -277,8 +277,9 @@ What are you going to play?
 
 ![sun-king3](img/sun-king3.webp)
 
-"13 が怖がられるのは、"世界の外" に一歩踏み出す力を持っているから。
-でもそれは同時に "次の秩序を開く鍵" でもある" とも言われていたが、2026年の現状は訳が分からない❗
+13 が怖がられるのは、"世界の外" に一歩踏み出す力を持っているから。
+でもそれは同時に "次の秩序を開く鍵"でもある。...とも言われていたが、2026年の現状は訳が分からない❗
+「この年の会談は実に見事な猿芝居でしたね🐒」と、皮肉を言ったところで気は晴れない。
 }}
 ```
 
@@ -356,21 +357,17 @@ I thought I heard them say
 <div style="color: #999999; text-align: center;">
 <div style="margin-top: 4em">
 Welcome to the Hotel California{{footnote: Hotel California (by [Eagles](https://en.wikipedia.org/wiki/Eagles_(band))):
-1977年2月22日、1976年にリリースされた同名アルバムの2枚目のシングルとして発表された。
+1977年2月22日、1976年にリリースされた[同名アルバム](https://en.wikipedia.org/wiki/Hotel_California_(album))の
+2枚目のシングルとして発表された。
+
 この曲は作曲[Don Felder](https://en.wikipedia.org/wiki/Don_Felder)、
 作詞[Glenn Frey](https://en.wikipedia.org/wiki/Glenn_Frey)/[Don Henley](https://en.wikipedia.org/wiki/Don_Henley)によって書かれ、
 リードヴォーカルは Henley が担当している。
-曲の終盤には、Felder と[Joe Walsh](https://en.wikipedia.org/wiki/Joe_Walsh)による 2分12秒にわたるエレキギターのソロが披露され、
-二人は交互にリードを弾き、フェードアウトに向けてハーモニーを奏でながら[アルペジオ](https://en.wikipedia.org/wiki/Arpeggio)を共に演奏する。
 
-この曲はバンドの最も有名な楽曲の一つであり、
-1978年には[Grammy Award for Record of the Year](https://en.wikipedia.org/wiki/Grammy_Award_for_Record_of_the_Year)を受賞し、
-1998年にはその長いギター・コーダが[Guitarist](https://en.wikipedia.org/wiki/Guitarist_(magazine))誌の読者投票で
-"史上最高のギター・ソロ" に選ばれた。
-歌詞の意味については、リリース以来、ファンや批評家の間で議論が続いている。
-Eagles 自身は、この曲を "Los Angeles での華やかな生活に対する自分たちの解釈" と表現している。
-2013年のドキュメンタリー[History of the Eagles](https://en.wikipedia.org/wiki/History_of_the_Eagles)の中で、
-ヘンリーはこの曲について、"無垢から経験への旅...それだけのことだ" と語っている。
+歌詞の意味については、リリース以来ファンや批評家の間で議論が続いているが、
+Eagles 自身は、この曲を "Los Angeles での華やかな生活に対する自分たちの解釈" と表現し、
+2013年のドキュメンタリー[History of the Eagles](https://en.wikipedia.org/wiki/History_of_the_Eagles)の中で
+Henley はこの曲について、"無垢から経験への旅...それだけのことだ" と語っている。
 }}
 </div>
 
@@ -409,9 +406,9 @@ Her mind is Tiffany-twisted, she got the Mercedes Benz,
 
 She got a lot of pretty, pretty boys she calls friends
 
-彼女の心は Tiffany に狂ってる, そして手に入れた Mercedes Benz,
+Tiffany に酔狂し, Mercedes Benz も所有する彼女には
 
-たくさんの かわいい、かわいいぼうやたちを 彼女はトモダチと呼んでいる
+トモダチと呼称する たくさんのかわいい、かわいいぼうやたちがいる
 ```
 
 ```admonish warning title=""
@@ -540,7 +537,7 @@ The pink champagne on ice
 
 天井には 鏡が掛かり
 
-氷で冷やされた ピンクシャンパン
+氷で冷やされた ピンクシャンパーニュ
 ```
 
 ```admonish warning title=""
@@ -575,7 +572,7 @@ But they just can't kill the beast
 
 彼らは 鉄鋼ナイフで ソレを突き刺すが
 
-到底 野獣を殺すなど敵わない
+到底 野獣を殺すことなど敵わない
 ```
 
 ```admonish warning title=""
@@ -619,7 +616,16 @@ said the night man
 <div style="margin-top: 4em">
 You can check out any time you like
 
-But you can never leave!"
+But you can never leave!"{{footnote:
+曲の終盤には、Felder と[Joe Walsh](https://en.wikipedia.org/wiki/Joe_Walsh)による 2分12秒にわたるエレキギターのソロが披露され、
+二人は交互にリードを弾き、フェードアウトに向けてハーモニーを奏でながら[アルペジオ](https://en.wikipedia.org/wiki/Arpeggio)を共に演奏する。
+
+この曲はバンドの最も有名な楽曲の一つであり、
+1978年には[Grammy Award for Record of the Year](https://en.wikipedia.org/wiki/Grammy_Award_for_Record_of_the_Year)を受賞し、
+1998年にはその長いギター・コーダが[Guitarist](https://en.wikipedia.org/wiki/Guitarist_(magazine))誌の読者投票で
+"史上最高のギター・ソロ" に選ばれた。
+[Wikipedia](https://en.wikipedia.org/wiki/Hotel_California)より
+}}
 
 チェックアウトはいつでも好きにしていい
 
