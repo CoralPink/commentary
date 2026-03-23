@@ -1,11 +1,10 @@
+use crate::searcher::constants::*;
 use crate::searcher::excerpt::generate;
 use crate::searcher::hit_list::HitList;
 
-const BUFFER_HTML_MAGNIFICATION: usize = 1024;
+use memchr::{memchr2, memchr3};
 
-const SCORE_CHARACTER: &str = "▰";
-const SCORE_RATE: usize = 8;
-const SCORE_MAX_BAR: usize = 256;
+const BUFFER_HTML_MAGNIFICATION: usize = 1024;
 
 fn parse_uri(link_uri: &str) -> (&str, &str) {
     link_uri.split_once('#').unwrap_or((link_uri, ""))
@@ -35,8 +34,58 @@ impl HtmlBuilder {
         }
     }
 
-    pub fn into_string(self) -> String {
-        String::from_utf8(self.buf).unwrap()
+    pub fn finish(&mut self) -> String {
+        let mut result_buf = Vec::with_capacity(self.buf.capacity());
+        std::mem::swap(&mut self.buf, &mut result_buf);
+        String::from_utf8(result_buf).unwrap()
+    }
+
+    pub fn clear(&mut self) {
+        self.buf.clear();
+    }
+
+    /// Escapes HTML special characters: & < > " '
+    fn safe_text(&mut self, text: &str) {
+        // Fully pre-allocates buffer to avoid repeated reallocations.
+        self.buf.reserve(text.len() / 4);
+
+        let bytes = text.as_bytes();
+        let mut p = 0;
+
+        while p < bytes.len() {
+            let next = memchr3(b'&', b'<', b'>', &bytes[p..])
+                .or_else(|| memchr2(b'"', b'\'', &bytes[p..]))
+                .map(|i| p + i);
+
+            match next {
+                Some(i) => {
+                    if p < i {
+                        self.buf.extend_from_slice(&bytes[p..i]);
+                    }
+
+                    match bytes[i] {
+                        b'&' => self.buf.extend_from_slice(b"&amp;"),
+                        b'<' => self.buf.extend_from_slice(b"&lt;"),
+                        b'>' => self.buf.extend_from_slice(b"&gt;"),
+                        b'"' => self.buf.extend_from_slice(b"&quot;"),
+                        b'\'' => self.buf.extend_from_slice(b"&#39;"),
+                        _ => unreachable!(),
+                    }
+
+                    p = i + 1;
+                }
+                None => {
+                    if p < bytes.len() {
+                        self.buf.extend_from_slice(&bytes[p..]);
+                    }
+                    break;
+                }
+            }
+        }
+    }
+
+    fn raw_html(&mut self, html: &str) {
+        self.buf.extend_from_slice(html.as_bytes());
     }
 
     fn open(&mut self, tag: &str) {
@@ -53,16 +102,14 @@ impl HtmlBuilder {
     }
 
     fn attr_num(&mut self, name: &str, value: usize) {
-        let s = self.itoa.format(value);
         self.buf.extend_from_slice(name.as_bytes());
         self.buf.extend_from_slice(b"=\"");
-        self.buf.extend_from_slice(s.as_bytes());
+        self.buf.extend_from_slice(self.itoa.format(value).as_bytes());
         self.buf.push(b'"');
     }
 
     pub fn num(&mut self, value: usize) {
-        let s = self.itoa.format(value);
-        self.buf.extend_from_slice(s.as_bytes());
+        self.buf.extend_from_slice(self.itoa.format(value).as_bytes());
     }
 
     fn close_open(&mut self) {
@@ -73,23 +120,6 @@ impl HtmlBuilder {
         self.buf.extend_from_slice(b"</");
         self.buf.extend_from_slice(tag.as_bytes());
         self.buf.push(b'>');
-    }
-
-    fn safe_text(&mut self, text: &str) {
-        for b in text.as_bytes() {
-            match *b {
-                b'&' => self.buf.extend_from_slice(b"&amp;"),
-                b'<' => self.buf.extend_from_slice(b"&lt;"),
-                b'>' => self.buf.extend_from_slice(b"&gt;"),
-                b'"' => self.buf.extend_from_slice(b"&quot;"),
-                b'\'' => self.buf.extend_from_slice(b"&#39;"),
-                _ => self.buf.push(*b),
-            }
-        }
-    }
-
-    fn raw_html(&mut self, html: &str) {
-        self.buf.extend_from_slice(html.as_bytes());
     }
 
     fn li_search_result(&mut self, hit: &SearchHit) {
@@ -132,8 +162,8 @@ impl HtmlBuilder {
         self.num(hit.score);
         self.buf.extend_from_slice(b"pt\">");
 
-        for _ in 0..std::cmp::min(hit.score, SCORE_MAX_BAR) / SCORE_RATE {
-            self.buf.extend_from_slice(SCORE_CHARACTER.as_bytes());
+        for _ in 0..std::cmp::min(hit.score, SCORE_BAR_MAX) / SCORE_BAR_RATE {
+            self.buf.extend_from_slice(SCORE_BAR_CHARACTER.as_bytes());
         }
 
         self.buf.extend_from_slice(b" (");
