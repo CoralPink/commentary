@@ -46,16 +46,22 @@ impl HtmlBuilder {
 
     /// Escapes HTML special characters: & < > " '
     fn safe_text(&mut self, text: &str) {
-        // Fully pre-allocates buffer to avoid repeated reallocations.
-        self.buf.reserve(text.len() / 4);
+        self.buf.reserve(text.len());
 
         let bytes = text.as_bytes();
         let mut p = 0;
 
         while p < bytes.len() {
-            let next = memchr3(b'&', b'<', b'>', &bytes[p..])
-                .or_else(|| memchr2(b'"', b'\'', &bytes[p..]))
-                .map(|i| p + i);
+            // Find the earliest occurrence of any special character
+            let pos1 = memchr3(b'&', b'<', b'>', &bytes[p..]);
+            let pos2 = memchr2(b'"', b'\'', &bytes[p..]);
+
+            let next = match (pos1, pos2) {
+                (Some(a), Some(b)) => Some(p + a.min(b)),
+                (Some(a), None) => Some(p + a),
+                (None, Some(b)) => Some(p + b),
+                (None, None) => None,
+            };
 
             match next {
                 Some(i) => {
