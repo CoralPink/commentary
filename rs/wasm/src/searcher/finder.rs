@@ -4,6 +4,7 @@
 /// It includes methods for initializing the searcher, executing searches,
 /// perfrom a search, and return the serch results as an HTML string.
 ///
+use crate::searcher::constants::*;
 use crate::searcher::doc::DocObject;
 use crate::searcher::hit_list::HitList;
 use crate::searcher::html_builder::HtmlBuilder;
@@ -11,12 +12,8 @@ use crate::searcher::js_util::*;
 
 use serde::Serialize;
 use serde_wasm_bindgen::{from_value, to_value};
+use std::cell::RefCell;
 use wasm_bindgen::prelude::*;
-
-const INITIAL_HEADER: &str = "2文字 (もしくは全角1文字) 以上を入力してください...";
-
-/// Maximum number of search words (entering more words than this will simply be ignored).
-const MAX_TOKENS: usize = 8;
 
 #[derive(Serialize)]
 struct SearchResult {
@@ -42,13 +39,14 @@ pub struct Finder {
     root_path: String,
     url_table: Vec<String>,
     store_doc: Vec<DocObject>,
+    html_builder: RefCell<HtmlBuilder>,
 }
 
 #[wasm_bindgen]
 impl Finder {
     #[wasm_bindgen(constructor)]
     pub fn new(root_path: &str, doc_urls: JsValue, docs: JsValue) -> Result<Finder, JsValue> {
-        let url_table: Vec<String> = from_value(doc_urls).map_err(|_| "Failed to convert doc_urls to Vec<String>")?;
+        let url_table: Vec<String> = from_value(doc_urls).map_err(|_| "Failed to convert doc_urls")?;
 
         let store_doc: Vec<DocObject> = convert_js_map_to_vec(docs)?
             .into_iter()
@@ -63,6 +61,7 @@ impl Finder {
             root_path: root_path.to_string(),
             url_table,
             store_doc,
+            html_builder: RefCell::new(HtmlBuilder::new_for_results(LIMIT_RESULTS)),
         })
     }
 
@@ -89,13 +88,13 @@ impl Finder {
 
         if terms.len() <= 1 {
             return to_value(&SearchResult {
-                header: INITIAL_HEADER.to_string(),
+                header: INITIAL_MESSAGE.to_string(),
                 html: None,
             })
             .unwrap();
         }
 
-        let normalized_terms: Vec<String> = split_limited::<MAX_TOKENS>(terms)
+        let normalized_terms: Vec<String> = split_limited::<SEARCH_TERM_MAX>(terms)
             .iter()
             .map(|t| t.to_ascii_lowercase())
             .collect();
@@ -104,8 +103,10 @@ impl Finder {
 
         let results = HitList::from_token_set(&normalized_terms, &matching_docs);
 
-        let mut html_builder = HtmlBuilder::new_for_results(results.len());
-        let hit = html_builder.build_search_result(&self.root_path, &self.url_table, results, &normalized_terms);
+        let mut builder = self.html_builder.borrow_mut();
+        builder.clear();
+
+        let hit = builder.build_search_result(&self.root_path, &self.url_table, results, &normalized_terms);
 
         if hit == 0 {
             return to_value(&SearchResult {
@@ -117,7 +118,7 @@ impl Finder {
 
         to_value(&SearchResult {
             header: format!("{} search results for : {terms}", hit),
-            html: Some(html_builder.into_string()),
+            html: Some(builder.finish()),
         })
         .unwrap()
     }
