@@ -4,8 +4,17 @@ use crate::searcher::hit_list::{Hit, HitList};
 
 use memchr::{memchr2, memchr3};
 
+/// Type used in the result field
+type ResultFieldType = u32;
+/// Size of `ResultFieldType`
+const LENGTH_FIELD_SIZE: usize = std::mem::size_of::<ResultFieldType>();
+/// Start position of the result data
+const RESULT_DATA_OFFSET: usize = LENGTH_FIELD_SIZE * 2;
+
+/// Buffer size multiplier for 1 search result
 const BUFFER_HTML_MAGNIFICATION: usize = 1024;
 
+/// Convert the text for the score bar defined in `constants.rs` to the u8 type and store it
 const WRITE_SCORE_BAR_CHARACTER: &[u8] = SCORE_BAR_CHARACTER.as_bytes();
 
 /// HTML tag used to mark highlighted words.
@@ -47,12 +56,12 @@ impl HtmlBuilder {
         let header = msg.as_bytes();
         let html = &self.buf;
 
-        let mut result_buf = Vec::with_capacity(8 + header.len() + html.len());
+        let mut result_buf = Vec::with_capacity(RESULT_DATA_OFFSET + header.len() + html.len());
 
         // 4byte : header length
-        result_buf.extend(&(header.len() as u32).to_le_bytes());
+        result_buf.extend(&(header.len() as ResultFieldType).to_le_bytes());
         // 4byte : html length
-        result_buf.extend(&(html.len() as u32).to_le_bytes());
+        result_buf.extend(&(html.len() as ResultFieldType).to_le_bytes());
 
         // data
         result_buf.extend(header);

@@ -17,6 +17,12 @@ const FILE_INDEX = 'searchindex.json';
 
 const DEBOUNCE_DELAY_MS = 80;
 
+const LENGTH_FIELD_SIZE = 4; // 4byte: Uint32
+
+const RESULT_HEADER_LEN_POSITION = 0;
+const RESULT_HTML_LEN_POSITION = LENGTH_FIELD_SIZE * 1;
+const RESULT_DATA_START = LENGTH_FIELD_SIZE * 2;
+
 let elmSearch: HTMLElement[];
 let elmPop: HTMLElement;
 let elmSearchBar: HTMLInputElement;
@@ -31,17 +37,20 @@ const showResults = (): void => {
   const bytes = finder.search(elmSearchBar.value);
   const dv = new DataView(bytes.buffer);
 
-  const headerLen = dv.getUint32(0, true);
-  const htmlLen = dv.getUint32(4, true);
+  const headerLen = dv.getUint32(RESULT_HEADER_LEN_POSITION, true);
+  const htmlLen = dv.getUint32(RESULT_HTML_LEN_POSITION, true);
 
-  elmHeader.textContent = new TextDecoder().decode(bytes.subarray(8, 8 + headerLen));
+  elmHeader.textContent = new TextDecoder().decode(bytes.subarray(RESULT_DATA_START, RESULT_DATA_START + headerLen));
 
   if (htmlLen === 0) {
     elmResults.textContent = '';
     return;
   }
 
-  setHTML(elmResults, new TextDecoder().decode(bytes.subarray(8 + headerLen, 8 + headerLen + htmlLen)));
+  const htmlStart = RESULT_DATA_START + headerLen;
+  const htmlEnd = htmlStart + htmlLen;
+
+  setHTML(elmResults, new TextDecoder().decode(bytes.subarray(htmlStart, htmlEnd)));
 };
 
 const checkURL = (url: URL): boolean =>

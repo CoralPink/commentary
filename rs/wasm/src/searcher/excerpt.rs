@@ -10,6 +10,9 @@ const IMPORTANCE_FIRST_WORD: u16 = 32;
 /// Importance for matched search terms.
 const IMPORTANCE_MATCH: u16 = 160;
 
+/// rough guide to the number of ranges
+const RANGES_ROUGH_GUIDE: usize = 8;
+
 /// A tokenized word in the text, with its byte position and importance.
 struct HighlightedToken<'a> {
     position: usize,
@@ -86,7 +89,7 @@ fn extract_window(tokens: &[HighlightedToken]) -> (usize, usize) {
 ///
 /// Returns a vector of `HitRange` with start/end byte positions.
 pub fn get_hitranges(body: &str, normalized_terms: &[String]) -> Vec<HitRange> {
-    let mut vec = Vec::new();
+    let mut vec = Vec::with_capacity(normalized_terms.len() * RANGES_ROUGH_GUIDE);
 
     for term in normalized_terms {
         if term.is_empty() {
