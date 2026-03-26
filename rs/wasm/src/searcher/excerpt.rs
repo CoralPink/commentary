@@ -84,7 +84,7 @@ fn apply_markup(tokens: &[HighlightedToken], body: &str) -> String {
     let range = calc_range_position(tokens);
     let end_index = calc_end_index(&range, tokens);
 
-    let mut result = String::with_capacity(body.len() + RESULT_CAPACITY);
+    let mut result = String::with_capacity(body.len() + tokens.len() * RESULT_CAPACITY);
     let mut idx = range.start;
 
     let mut p = tokens[range.start].position;

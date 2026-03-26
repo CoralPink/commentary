@@ -1,24 +1,24 @@
 use crate::searcher::constants::*;
 use crate::searcher::excerpt::generate;
-use crate::searcher::hit_list::HitList;
+use crate::searcher::hit_list::{Hit, HitList};
 
 use memchr::{memchr2, memchr3};
 
 const BUFFER_HTML_MAGNIFICATION: usize = 1024;
+
+const WRITE_SCORE_BAR_CHARACTER: &[u8] = SCORE_BAR_CHARACTER.as_bytes();
 
 fn parse_uri(link_uri: &str) -> (&str, &str) {
     link_uri.split_once('#').unwrap_or((link_uri, ""))
 }
 
 struct SearchHit<'a> {
-    id: usize,
     root_path: &'a str,
     page: &'a str,
     head: &'a str,
-    breadcrumbs: &'a str,
     excerpt: &'a str,
-    score: usize,
     marking: &'a str,
+    el: Hit<'a>,
 }
 
 pub struct HtmlBuilder {
@@ -34,10 +34,22 @@ impl HtmlBuilder {
         }
     }
 
-    pub fn finish(&mut self) -> String {
-        let mut result_buf = Vec::with_capacity(self.buf.capacity());
-        std::mem::swap(&mut self.buf, &mut result_buf);
-        String::from_utf8(result_buf).unwrap()
+    pub fn finish(&mut self, msg: &str) -> Box<[u8]> {
+        let header = msg.as_bytes();
+        let html = &self.buf;
+
+        let mut result_buf = Vec::with_capacity(8 + header.len() + html.len());
+
+        // 4byte : header length
+        result_buf.extend(&header.len().to_le_bytes());
+        // 4byte : html length
+        result_buf.extend(&html.len().to_le_bytes());
+
+        // data
+        result_buf.extend(header);
+        result_buf.extend(html);
+
+        result_buf.into_boxed_slice()
     }
 
     pub fn clear(&mut self) {
@@ -90,10 +102,6 @@ impl HtmlBuilder {
         }
     }
 
-    fn raw_html(&mut self, html: &str) {
-        self.buf.extend_from_slice(html.as_bytes());
-    }
-
     fn open(&mut self, tag: &str) {
         self.buf.extend_from_slice(b"<");
         self.buf.extend_from_slice(tag.as_bytes());
@@ -129,15 +137,24 @@ impl HtmlBuilder {
         self.buf.push(b'>');
     }
 
+    fn score_bar(&mut self, score: usize) {
+        for _ in 0..std::cmp::min(score, SCORE_BAR_MAX) / SCORE_BAR_RATE {
+            self.buf.extend_from_slice(WRITE_SCORE_BAR_CHARACTER);
+        }
+    }
+
     fn li_search_result(&mut self, hit: &SearchHit) {
+        let doc = hit.el.doc();
+        let score = hit.el.score();
+
         self.open("li");
         self.attr("tabindex", "0");
         self.attr("role", "option");
-        self.attr_num("id", hit.id);
+        self.attr_num("id", *hit.el.id());
         self.buf.extend_from_slice(b" aria-label=\"");
         self.safe_text(hit.page);
         self.buf.push(b' ');
-        self.num(hit.score);
+        self.num(*score);
         self.buf.extend_from_slice(b"pt\">");
 
         // link
@@ -146,18 +163,18 @@ impl HtmlBuilder {
         self.safe_text(hit.root_path);
         self.safe_text(hit.page);
         self.buf.extend_from_slice(b"?mark=");
-        self.safe_text(hit.marking);
+        self.buf.extend_from_slice(hit.marking.as_bytes());
         self.buf.push(b'#');
         self.safe_text(hit.head);
         self.buf.extend_from_slice(b"\">");
-        self.safe_text(hit.breadcrumbs);
+        self.safe_text(doc.breadcrumbs());
         self.end("a");
 
         // excerpt
         self.open("span");
         self.attr("aria-hidden", "true");
         self.close_open();
-        self.raw_html(hit.excerpt);
+        self.buf.extend_from_slice(hit.excerpt.as_bytes());
         self.end("span");
 
         // score
@@ -165,15 +182,11 @@ impl HtmlBuilder {
         self.attr("class", "score");
         self.attr("role", "meter");
         self.buf.extend_from_slice(b" aria-label=\"score:");
-        self.num(hit.score);
+        self.num(*score);
         self.buf.extend_from_slice(b"pt\">");
-
-        for _ in 0..std::cmp::min(hit.score, SCORE_BAR_MAX) / SCORE_BAR_RATE {
-            self.buf.extend_from_slice(SCORE_BAR_CHARACTER.as_bytes());
-        }
-
+        self.score_bar(*score);
         self.buf.extend_from_slice(b" (");
-        self.num(hit.score);
+        self.num(*score);
         self.buf.extend_from_slice(b"pt)");
         self.end("div");
 
@@ -191,21 +204,17 @@ impl HtmlBuilder {
         let mut rendered = 0;
 
         results.into_iter().for_each(|el| {
-            let id = *el.id();
-
-            if let Some(url) = url_table.get(id) {
+            if let Some(url) = url_table.get(*el.id()) {
                 let (page, head) = parse_uri(url);
-                let doc = el.doc();
+                let excerpt = &generate(el.doc().body(), normalized_terms);
 
                 self.li_search_result(&SearchHit {
-                    id,
                     root_path,
                     page,
                     head,
-                    breadcrumbs: doc.breadcrumbs(),
-                    excerpt: &generate(doc.body(), normalized_terms),
-                    score: *el.score(),
+                    excerpt,
                     marking,
+                    el,
                 });
 
                 rendered += 1;

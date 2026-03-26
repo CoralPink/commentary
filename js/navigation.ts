@@ -1,4 +1,4 @@
-import { CONTENT_READY, USE_LEGACY_NAVIGATION } from './constants.ts';
+import { CONTENT_READY } from './constants.ts';
 import { type NavigationContext, prepareNavigation } from './context.ts';
 import { bootThemeColor } from './theme-selector.ts';
 
@@ -89,10 +89,6 @@ const navigateProc = (ev: NavigationNavigateEvent): void => {
 (() => {
   // The `theme color` startup process returns a promise, but you don't need to wait for it to complete.
   bootThemeColor();
-
-  if (USE_LEGACY_NAVIGATION) {
-    return;
-  }
 
   // @ts-expect-error: deno-ts does not yet recognize the Navigation API.
   navigation.addEventListener('navigate', navigateProc, {
