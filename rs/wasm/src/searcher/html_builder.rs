@@ -41,9 +41,9 @@ impl HtmlBuilder {
         let mut result_buf = Vec::with_capacity(8 + header.len() + html.len());
 
         // 4byte : header length
-        result_buf.extend(&header.len().to_le_bytes());
+        result_buf.extend(&(header.len() as u32).to_le_bytes());
         // 4byte : html length
-        result_buf.extend(&html.len().to_le_bytes());
+        result_buf.extend(&(html.len() as u32).to_le_bytes());
 
         // data
         result_buf.extend(header);
