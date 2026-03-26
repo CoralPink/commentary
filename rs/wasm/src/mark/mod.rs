@@ -1,7 +1,11 @@
 use serde::{Deserialize, Serialize};
 use serde_wasm_bindgen::to_value;
+use std::mem::MaybeUninit;
 use unicode_segmentation::UnicodeSegmentation;
 use wasm_bindgen::prelude::*;
+
+/// rough guide to the number of RangeIndex
+const RANGE_INDEX_ROUGH_GUIDE: usize = 8;
 
 #[derive(Serialize, Deserialize)]
 struct RangeIndex {
@@ -19,21 +23,34 @@ struct MatchResult {
 }
 
 fn create_index_map(text: &str) -> Vec<usize> {
-    let mut v = vec![0; text.len() + 1];
-    let mut byte_idx = 0;
+    let v_size = text.len() + 1;
+
+    let mut v: Vec<usize> = Vec::with_capacity(v_size);
+    let spare: &mut [MaybeUninit<usize>] = v.spare_capacity_mut();
+
     let mut utf16_idx = 0;
+    let mut byte_idx = 0;
 
     for c in text.chars() {
         let utf8_len = c.len_utf8();
-        let utf16_len = c.encode_utf16(&mut [0; 2]).len();
 
         for i in 0..utf8_len {
-            v[byte_idx + i] = utf16_idx;
+            spare[byte_idx + i].write(utf16_idx);
         }
+
         byte_idx += utf8_len;
-        utf16_idx += utf16_len;
+        utf16_idx += c.encode_utf16(&mut [0; 2]).len();
     }
-    v[byte_idx] = utf16_idx;
+
+    spare[byte_idx].write(utf16_idx);
+
+    // SAFETY: All positions 0..v_size are initialized:
+    // - The inner loop writes spare[byte_idx + i] for each byte of every character
+    // - After the loop, byte_idx == text.len() and spare[byte_idx] is written explicitly
+    // - Thus all v_size (= text.len() + 1) elements are initialized before set_len
+    unsafe {
+        v.set_len(v_size);
+    }
 
     v
 }
@@ -55,7 +72,7 @@ fn merge_ranges(range: Vec<RangeIndex>) -> Vec<RangeIndex> {
 }
 
 fn get_sentences(terms: &[String], text: &str, index_map: &[usize]) -> Vec<RangeIndex> {
-    let mut range = Vec::new();
+    let mut range = Vec::with_capacity(index_map.len() / RANGE_INDEX_ROUGH_GUIDE);
     let mut cursor = 0;
 
     for sentence in text.unicode_sentences() {
@@ -81,7 +98,7 @@ fn get_sentences(terms: &[String], text: &str, index_map: &[usize]) -> Vec<Range
 
 fn get_range(terms: &[String], text: &str, index_map: &[usize]) -> Vec<RangeIndex> {
     let lower_text = text.to_lowercase();
-    let mut range = Vec::new();
+    let mut range = Vec::with_capacity(index_map.len() / RANGE_INDEX_ROUGH_GUIDE);
 
     for x in terms {
         let mut pos = 0;

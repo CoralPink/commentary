@@ -10,16 +10,9 @@ use crate::searcher::hit_list::HitList;
 use crate::searcher::html_builder::HtmlBuilder;
 use crate::searcher::js_util::*;
 
-use serde::Serialize;
-use serde_wasm_bindgen::{from_value, to_value};
+use serde_wasm_bindgen::from_value;
 use std::cell::RefCell;
 use wasm_bindgen::prelude::*;
-
-#[derive(Serialize)]
-struct SearchResult {
-    header: String,
-    html: Option<String>,
-}
 
 fn split_limited<const N: usize>(input: &str) -> Vec<&str> {
     let mut vec = Vec::with_capacity(N);
@@ -83,15 +76,14 @@ impl Finder {
         })
     }
 
-    pub fn search(&self, value: &str) -> JsValue {
+    pub fn search(&self, value: &str) -> Box<[u8]> {
         let terms = value.trim();
+        let mut builder = self.html_builder.borrow_mut();
+
+        builder.clear();
 
         if terms.len() <= 1 {
-            return to_value(&SearchResult {
-                header: INITIAL_MESSAGE.to_string(),
-                html: None,
-            })
-            .unwrap();
+            return builder.finish(MESSAGE_INITIAL);
         }
 
         let normalized_terms: Vec<String> = split_limited::<SEARCH_TERM_MAX>(terms)
@@ -100,26 +92,14 @@ impl Finder {
             .collect();
 
         let matching_docs: Vec<&DocObject> = self.filter_docs_by_terms(&normalized_terms).collect();
-
         let results = HitList::from_token_set(&normalized_terms, &matching_docs);
-
-        let mut builder = self.html_builder.borrow_mut();
-        builder.clear();
 
         let hit = builder.build_search_result(&self.root_path, &self.url_table, results, &normalized_terms);
 
-        if hit == 0 {
-            return to_value(&SearchResult {
-                header: format!("No search result for : {terms}"),
-                html: None,
-            })
-            .unwrap();
-        }
+        let header = MESSAGE_RESULT
+            .replace("{1}", &hit.to_string())
+            .replace("{2}", terms);
 
-        to_value(&SearchResult {
-            header: format!("{} search results for : {terms}", hit),
-            html: Some(builder.finish()),
-        })
-        .unwrap()
+        builder.finish(&header)
     }
 }

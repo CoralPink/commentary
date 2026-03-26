@@ -4,9 +4,6 @@ export type NavigationContext = {
   next: URL;
   article: HTMLElement;
   title: HTMLTitleElement;
-
-  // TODO: If you are using the Navigation API, this is unnecessary.
-  generation: AbortSignal;
 };
 
 let generationScope: AbortController | null = null;
@@ -15,8 +12,8 @@ const beginGenerationScope = (): AbortSignal => {
   if (generationScope) {
     generationScope.abort();
   }
-
   generationScope = new AbortController();
+
   return generationScope.signal;
 };
 
@@ -56,5 +53,5 @@ export const prepareNavigation = async (next: URL): Promise<NavigationContext | 
     return null;
   }
 
-  return { next, article, title, generation };
+  return { next, article, title };
 };
