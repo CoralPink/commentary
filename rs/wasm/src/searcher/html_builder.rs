@@ -393,4 +393,15 @@ mod tests {
         assert_eq!(html, text);
         assert_eq!(hit_ranges.len(), 0);
     }
+
+    #[wasm_bindgen_test]
+    fn test_window_basic() {
+        let text = "A B C 桃太郎 D E F";
+        let terms = vec!["桃太郎".to_string()];
+
+        let ranges = get_hitranges(text, &terms);
+        let (start, end) = compute_window_from_ranges(text, &ranges);
+
+        assert!(text[start..end].contains("桃太郎"));
+    }
 }
