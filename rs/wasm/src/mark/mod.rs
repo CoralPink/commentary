@@ -72,7 +72,7 @@ fn merge_ranges(range: Vec<RangeIndex>) -> Vec<RangeIndex> {
 }
 
 fn get_sentences(terms: &[String], text: &str, index_map: &[usize]) -> Vec<RangeIndex> {
-    let mut range = Vec::with_capacity(index_map.len() / RANGE_INDEX_ROUGH_GUIDE);
+    let mut range = Vec::with_capacity((index_map.len() / RANGE_INDEX_ROUGH_GUIDE).max(1));
     let mut cursor = 0;
 
     for sentence in text.unicode_sentences() {
@@ -98,7 +98,7 @@ fn get_sentences(terms: &[String], text: &str, index_map: &[usize]) -> Vec<Range
 
 fn get_range(terms: &[String], text: &str, index_map: &[usize]) -> Vec<RangeIndex> {
     let lower_text = text.to_lowercase();
-    let mut range = Vec::with_capacity(index_map.len() / RANGE_INDEX_ROUGH_GUIDE);
+    let mut range = Vec::with_capacity((index_map.len() / RANGE_INDEX_ROUGH_GUIDE).max(1));
 
     for x in terms {
         let mut pos = 0;
