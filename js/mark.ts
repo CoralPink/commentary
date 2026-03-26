@@ -100,13 +100,13 @@ const visibleButton = (): void => {
 
     x.classList.remove('hidden');
     x.addEventListener('click', unmarking, { once: true, passive: true });
-
-    document.removeEventListener('keyup', keyVisible);
-    document.addEventListener('keyup', keyClear, {
-      once: false,
-      passive: true,
-    });
   }
+
+  document.removeEventListener('keyup', keyVisible);
+  document.addEventListener('keyup', keyClear, {
+    once: false,
+    passive: true,
+  });
 };
 
 const generateNodeOffset = (element: HTMLElement): NodeOffset[] => {
