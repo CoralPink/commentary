@@ -4,10 +4,13 @@ pub const LIMIT_RESULTS: usize = 100;
 pub const SEARCH_TERM_MAX: usize = 8;
 
 /// Message displayed when the requirements for starting a search have not been met
-pub const INITIAL_MESSAGE: &str = "2文字 (or 全角1文字) 以上を入力してください...";
+pub const MESSAGE_INITIAL: &str = "2文字 (or 全角1文字) 以上を入力してください...";
+/// Message displayed when a search result is found
+pub const MESSAGE_RESULT: &str = "{1} search results for : {2}";
 
 /// Minimum required search match score
-pub const SCORE_LOWER_LIMIT: usize = 64;
+pub const SCORE_LOWER_LIMIT: usize = 40;
+
 /// Base multiplier for header match scores
 pub const SCORE_HEADER_BOOST_BASE: f32 = 8.0;
 /// Controls how quickly the header boost decays as header length increases

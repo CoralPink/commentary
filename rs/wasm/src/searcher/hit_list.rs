@@ -90,7 +90,7 @@ impl<'a> IntoIterator for HitList<'a> {
 
 impl<'a> HitList<'a> {
     pub fn from_token_set(normalized_terms: &'a [String], docs: &'a [&'a DocObject]) -> Self {
-        let mut results = Vec::new();
+        let mut results = Vec::with_capacity(LIMIT_RESULTS / normalized_terms.len().max(1));
 
         for doc in docs {
             let mut score = 0;

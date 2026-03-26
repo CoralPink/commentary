@@ -14,7 +14,7 @@ const SCORE_GAP_START: isize = -3;
 const SCORE_GAP_EXTENSION: isize = -2;
 
 /// Maximum distance between matching characters before gap penalty stops increasing
-const SCORE_GAP_MAX_DISTANCE: usize = 360;
+const SCORE_GAP_MAX_DISTANCE: usize = 128;
 
 /// Bonus for matches at word boundaries
 const BONUS_BOUNDARY: isize = SCORE_MATCH / 2;
@@ -48,7 +48,7 @@ const BONUS_MATRIX: [[isize; 10]; 10] = [
     [2, 2, 0, 1, 4, 2, 4, 0, 0, 0], // Delimiter
     [8, 4, 0, 0, 0, 1, 0, 0, 0, 0], // Lowercase
     [9, 5, 1, 0, 0, 1, 0, 0, 0, 0], // Uppercase
-    [8, 4, 0, 0, 0, 1, 0, 0, 0, 0], // Digit
+    [8, 4, 0, 0, 8, 0, 0, 0, 0, 0], // Digit
     [0, 0, 0, 1, 0, 0, 1, 4, 0, 0], // ひらがな
     [0, 0, 0, 1, 0, 1, 2, 2, 0, 0], // カタカナ
     [0, 0, 0, 1, 0, 1, 1, 2, 0, 0], // 漢字
