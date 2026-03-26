@@ -41,6 +41,10 @@ fn create_index_map(text: &str) -> Vec<usize> {
 
     spare[byte_idx].write(utf16_idx);
 
+    // SAFETY: All positions 0..v_size are initialized:
+    // - The inner loop writes spare[byte_idx + i] for each byte of every character
+    // - After the loop, byte_idx == text.len() and spare[byte_idx] is written explicitly
+    // - Thus all v_size (= text.len() + 1) elements are initialized before set_len
     unsafe {
         v.set_len(v_size);
     }
