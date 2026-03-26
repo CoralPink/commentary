@@ -1,14 +1,14 @@
 {
   "imports": {
     "plyr": "npm:plyr@3.8.4",
-    "rolldown": "npm:rolldown@1.0.0-rc.10",
+    "rolldown": "npm:rolldown@1.0.0-rc.12",
     "terser": "npm:terser@5.46.1",
 
     "@deno/rolldown-plugin": "jsr:@deno/rolldown-plugin@0.0.10",
     "@rollup/plugin-terser": "npm:@rollup/plugin-terser@1.0.0",
 
-    "vitest": "npm:vitest@4.1.0",
-    "@vitest/coverage-v8": "npm:@vitest/coverage-v8@4.1.0",
-    "happy-dom": "npm:happy-dom@20.8.4"
+    "vitest": "npm:vitest@4.1.1",
+    "@vitest/coverage-v8": "npm:@vitest/coverage-v8@4.1.1",
+    "happy-dom": "npm:happy-dom@20.8.8"
   }
 }
