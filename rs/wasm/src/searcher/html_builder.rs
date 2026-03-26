@@ -1,5 +1,5 @@
 use crate::searcher::constants::*;
-use crate::searcher::excerpt::generate;
+use crate::searcher::excerpt::*;
 use crate::searcher::hit_list::{Hit, HitList};
 
 use memchr::{memchr2, memchr3};
@@ -7,6 +7,15 @@ use memchr::{memchr2, memchr3};
 const BUFFER_HTML_MAGNIFICATION: usize = 1024;
 
 const WRITE_SCORE_BAR_CHARACTER: &[u8] = SCORE_BAR_CHARACTER.as_bytes();
+
+/// HTML tag used to mark highlighted words.
+const MARK_TAG: &[u8] = "<mark>".as_bytes();
+/// HTML closing tag for highlighted words.
+const MARK_TAG_END: &[u8] = "</mark>".as_bytes();
+
+fn likely_safe(bytes: &[u8]) -> bool {
+    memchr3(b'&', b'<', b'>', bytes).is_none() && memchr2(b'"', b'\'', bytes).is_none()
+}
 
 fn parse_uri(link_uri: &str) -> (&str, &str) {
     link_uri.split_once('#').unwrap_or((link_uri, ""))
@@ -16,7 +25,7 @@ struct SearchHit<'a> {
     root_path: &'a str,
     page: &'a str,
     head: &'a str,
-    excerpt: &'a str,
+    normalized_terms: &'a [String],
     marking: &'a str,
     el: Hit<'a>,
 }
@@ -58,9 +67,15 @@ impl HtmlBuilder {
 
     /// Escapes HTML special characters: & < > " '
     fn safe_text(&mut self, text: &str) {
+        let bytes = text.as_bytes();
+
+        if likely_safe(bytes) {
+            self.buf.extend_from_slice(bytes);
+            return;
+        }
+
         self.buf.reserve(text.len());
 
-        let bytes = text.as_bytes();
         let mut p = 0;
 
         while p < bytes.len() {
@@ -99,6 +114,50 @@ impl HtmlBuilder {
                     break;
                 }
             }
+        }
+    }
+
+    pub fn write_highlighted_excerpt(&mut self, body: &str, normalized_terms: &[String]) {
+        let hit_ranges = get_hitranges(body, normalized_terms);
+
+        if hit_ranges.is_empty() {
+            self.safe_text(body);
+            return;
+        }
+
+        let (start, end) = &compute_window_from_ranges(body, &hit_ranges);
+
+        let mut pos = start;
+
+        for range in &hit_ranges {
+            if range.end() <= start || range.start() >= end {
+                continue;
+            }
+
+            let s = range.start().max(start);
+            let e = range.end().min(end);
+
+            if pos < s {
+                self.safe_text(&body[*pos..*s]);
+            }
+
+            self.buf.extend_from_slice(MARK_TAG);
+
+            let slice = &body[*s..*e];
+
+            if likely_safe(slice.as_bytes()) {
+                self.buf.extend_from_slice(slice.as_bytes());
+            } else {
+                self.safe_text(slice);
+            }
+
+            self.buf.extend_from_slice(MARK_TAG_END);
+
+            pos = e;
+        }
+
+        if pos < end {
+            self.safe_text(&body[*pos..*end]);
         }
     }
 
@@ -174,7 +233,7 @@ impl HtmlBuilder {
         self.open("span");
         self.attr("aria-hidden", "true");
         self.close_open();
-        self.buf.extend_from_slice(hit.excerpt.as_bytes());
+        self.write_highlighted_excerpt(doc.body(), hit.normalized_terms);
         self.end("span");
 
         // score
@@ -206,13 +265,12 @@ impl HtmlBuilder {
         results.into_iter().for_each(|el| {
             if let Some(url) = url_table.get(*el.id()) {
                 let (page, head) = parse_uri(url);
-                let excerpt = &generate(el.doc().body(), normalized_terms);
 
                 self.li_search_result(&SearchHit {
                     root_path,
                     page,
                     head,
-                    excerpt,
+                    normalized_terms,
                     marking,
                     el,
                 });
@@ -222,5 +280,117 @@ impl HtmlBuilder {
         });
 
         rendered
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use wasm_bindgen_test::*;
+
+    wasm_bindgen_test_configure!(run_in_browser);
+
+    fn render(body: &str, terms: &[String]) -> String {
+        let mut builder = HtmlBuilder::new_for_results(terms.len());
+        builder.write_highlighted_excerpt(body, terms);
+
+        String::from_utf8_lossy(&builder.buf).to_string()
+    }
+
+    #[wasm_bindgen_test]
+    fn test_basic_cjk() {
+        let text = "桃太郎が鬼ヶ島へ行った";
+        let terms = vec!["桃太郎".to_string()];
+
+        let html = render(text, &terms);
+        let hit_ranges = get_hitranges(text, &terms);
+
+        assert!(html.contains("<mark>桃太郎</mark>"));
+        assert_eq!(hit_ranges.len(), 1);
+    }
+
+    #[wasm_bindgen_test]
+    fn test_multiple_cjk() {
+        let text = "桃太郎と浦島太郎と金太郎が出てきた";
+        let terms = vec!["桃太郎".to_string(), "浦島太郎".to_string(), "金太郎".to_string()];
+
+        let html = render(text, &terms);
+        let hit_ranges = get_hitranges(text, &terms);
+
+        assert!(html.contains("<mark>桃太郎</mark>"));
+        assert!(html.contains("<mark>浦島太郎</mark>"));
+        assert!(html.contains("<mark>金太郎</mark>"));
+        assert_eq!(hit_ranges.len(), 3);
+    }
+
+    #[wasm_bindgen_test]
+    fn test_cjk_at_end() {
+        let text = "鬼ヶ島へ行ったのは桃太郎";
+        let terms = vec!["桃太郎".to_string()];
+
+        let html = render(text, &terms);
+
+        assert!(html.contains("<mark>桃太郎</mark>"));
+    }
+
+    #[wasm_bindgen_test]
+    fn test_overlapping_terms() {
+        let text = "桃太郎と桃太郎太郎";
+        let terms = vec!["桃太郎".to_string(), "太郎".to_string()];
+
+        let html = render(text, &terms);
+
+        assert!(html.contains("<mark>桃太郎</mark>"));
+        assert!(html.matches("<mark>").count() >= 2);
+    }
+
+    #[wasm_bindgen_test]
+    fn test_mixed_cjk_ascii() {
+        let text = "桃太郎 is a famous character in Japan";
+        let terms = vec!["桃太郎".to_string(), "Japan".to_string()];
+
+        let html = render(text, &terms);
+        let hit_ranges = get_hitranges(text, &terms);
+
+        assert!(html.contains("<mark>桃太郎</mark>"));
+        assert!(html.contains("<mark>Japan</mark>"));
+        assert_eq!(hit_ranges.len(), 2);
+    }
+
+    #[wasm_bindgen_test]
+    fn test_multiple_occurrences() {
+        let text = "桃太郎と桃太郎と桃太郎";
+        let terms = vec!["桃太郎".to_string()];
+
+        let html = render(text, &terms);
+        let hit_ranges = get_hitranges(text, &terms);
+
+        assert_eq!(html.matches("<mark>").count(), 3);
+        assert_eq!(hit_ranges.len(), 3);
+    }
+
+    #[wasm_bindgen_test]
+    fn test_partial_overlap_cjk() {
+        let text = "漫画とマンガ";
+        let terms = vec!["漫画".to_string(), "マンガ".to_string()];
+
+        let html = render(text, &terms);
+        let hit_ranges = get_hitranges(text, &terms);
+
+        assert!(html.contains("<mark>漫画</mark>"));
+        assert!(html.contains("<mark>マンガ</mark>"));
+        assert_eq!(hit_ranges.len(), 2);
+    }
+
+    #[wasm_bindgen_test]
+    fn test_no_hits() {
+        let text = "これはテスト文章です";
+        let terms: Vec<String> = vec![];
+
+        let html = render(text, &terms);
+        let hit_ranges = get_hitranges(text, &terms);
+
+        assert_eq!(html, text);
+        assert_eq!(hit_ranges.len(), 0);
     }
 }
