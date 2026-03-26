@@ -142,3 +142,22 @@ pub fn compute_window_from_ranges(body: &str, hit_ranges: &[HitRange]) -> (usize
 
     extract_window(&tokens)
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use wasm_bindgen_test::*;
+
+    wasm_bindgen_test_configure!(run_in_browser);
+
+    #[wasm_bindgen_test]
+    fn test_window_basic() {
+        let text = "A B C 桃太郎 D E F";
+        let terms = vec!["桃太郎".to_string()];
+
+        let ranges = get_hitranges(text, &terms);
+        let (start, end) = compute_window_from_ranges(text, &ranges);
+
+        assert!(text[start..end].contains("桃太郎"));
+    }
+}
