@@ -39,6 +39,24 @@ export const updateMark = (): void => {
   initMark(article);
 };
 
+const keyVisible = (ev: KeyboardEvent): void => {
+  switch (ev.key) {
+    case 'm':
+    case 'M':
+      updateMark();
+      break;
+  }
+};
+
+const keyClear = (ev: KeyboardEvent): void => {
+  switch (ev.key) {
+    case 'm':
+    case 'M':
+      unmarking();
+      break;
+  }
+};
+
 export const unmarking = (): void => {
   CSS.highlights.clear();
 
@@ -51,6 +69,12 @@ export const unmarking = (): void => {
     x.removeEventListener('click', unmarking);
     x.addEventListener('click', updateMark, { once: true, passive: true });
   }
+
+  document.removeEventListener('keyup', keyClear);
+  document.addEventListener('keyup', keyVisible, {
+    once: false,
+    passive: true,
+  });
 };
 
 const hideButton = (): void => {
@@ -62,6 +86,9 @@ const hideButton = (): void => {
     x.removeEventListener('click', unmarking);
     x.removeEventListener('click', updateMark);
   }
+
+  document.removeEventListener('keyup', keyVisible);
+  document.removeEventListener('keyup', keyClear);
 };
 
 const visibleButton = (): void => {
@@ -74,6 +101,12 @@ const visibleButton = (): void => {
     x.classList.remove('hidden');
     x.addEventListener('click', unmarking, { once: true, passive: true });
   }
+
+  document.removeEventListener('keyup', keyVisible);
+  document.addEventListener('keyup', keyClear, {
+    once: false,
+    passive: true,
+  });
 };
 
 const generateNodeOffset = (element: HTMLElement): NodeOffset[] => {

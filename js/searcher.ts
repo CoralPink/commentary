@@ -1,4 +1,4 @@
-import { ROOT_PATH, USE_LEGACY_NAVIGATION } from './constants.ts';
+import { ROOT_PATH } from './constants.ts';
 import { updateMark } from './mark.ts';
 
 import { loadStyleSheet } from './utils/css-loader.ts';
@@ -12,15 +12,16 @@ import initWasm, { Finder } from './wasm_book.js';
 
 export const TARGET_SEARCH = 'search';
 
-type SearchResult = {
-  header: string;
-  html: string | undefined;
-};
-
 const FILE_STYLE_SEARCH = 'css/search.css';
 const FILE_INDEX = 'searchindex.json';
 
 const DEBOUNCE_DELAY_MS = 80;
+
+const LENGTH_FIELD_SIZE = 4; // 4byte: Uint32
+
+const RESULT_HEADER_LEN_POSITION = 0;
+const RESULT_HTML_LEN_POSITION = LENGTH_FIELD_SIZE * 1;
+const RESULT_DATA_START = LENGTH_FIELD_SIZE * 2;
 
 let elmSearch: HTMLElement[];
 let elmPop: HTMLElement;
@@ -32,32 +33,24 @@ let finder: Finder;
 
 let focusedLi: Element | null;
 
-// TODO: After Firefox 147 is released, delete it at an appropriate time!!
-const navigateInternal: (url: URL) => void = USE_LEGACY_NAVIGATION
-  ? (url: URL): void => {
-      document.dispatchEvent(
-        new CustomEvent('jump_internal', {
-          bubbles: true,
-          detail: { url },
-        }),
-      );
-    }
-  : (url: URL): void => {
-      // @ts-expect-error: deno-ts does not yet recognize the Navigation API.
-      navigation.navigate(url);
-    };
-
 const showResults = (): void => {
-  const result = finder.search(elmSearchBar.value) as SearchResult;
+  const bytes = finder.search(elmSearchBar.value);
+  const dv = new DataView(bytes.buffer);
 
-  elmHeader.textContent = result.header;
+  const headerLen = dv.getUint32(RESULT_HEADER_LEN_POSITION, true);
+  const htmlLen = dv.getUint32(RESULT_HTML_LEN_POSITION, true);
 
-  if (result.html === undefined) {
+  elmHeader.textContent = new TextDecoder().decode(bytes.subarray(RESULT_DATA_START, RESULT_DATA_START + headerLen));
+
+  if (htmlLen === 0) {
     elmResults.textContent = '';
     return;
   }
 
-  setHTML(elmResults, result.html);
+  const htmlStart = RESULT_DATA_START + headerLen;
+  const htmlEnd = htmlStart + htmlLen;
+
+  setHTML(elmResults, new TextDecoder().decode(bytes.subarray(htmlStart, htmlEnd)));
 };
 
 const checkURL = (url: URL): boolean =>
@@ -76,7 +69,8 @@ const jumpUrl = (): void => {
     updateMark();
   }
 
-  navigateInternal(url);
+  // @ts-expect-error: deno-ts does not yet recognize the Navigation API.
+  navigation.navigate(url);
 
   requestAnimationFrame(() => {
     hiddenSearch();

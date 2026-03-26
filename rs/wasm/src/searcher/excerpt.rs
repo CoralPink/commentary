@@ -1,5 +1,6 @@
 use crate::searcher::constants::*;
 
+use getset::Getters;
 use unicode_segmentation::UnicodeSegmentation;
 
 /// Default importance for normal words.
@@ -9,13 +10,8 @@ const IMPORTANCE_FIRST_WORD: u16 = 32;
 /// Importance for matched search terms.
 const IMPORTANCE_MATCH: u16 = 160;
 
-/// HTML tag used to mark highlighted words.
-const MARK_TAG: &str = "<mark>";
-/// HTML closing tag for highlighted words.
-const MARK_TAG_END: &str = "</mark>";
-
-/// Extra buffer size when generating the highlighted string.
-const RESULT_CAPACITY: usize = MARK_TAG.len() + MARK_TAG_END.len();
+/// rough guide to the number of ranges
+const RANGES_ROUGH_GUIDE: usize = 8;
 
 /// A tokenized word in the text, with its byte position and importance.
 struct HighlightedToken<'a> {
@@ -25,8 +21,11 @@ struct HighlightedToken<'a> {
 }
 
 /// Represents a byte range in the text that matched a search term.
-struct HitRange {
+#[derive(Getters)]
+pub struct HitRange {
+    #[get = "pub"]
     start: usize,
+    #[get = "pub"]
     end: usize,
 }
 
@@ -72,67 +71,25 @@ fn calc_end_index(range: &WindowSpec, tokens: &[HighlightedToken]) -> usize {
     end_index
 }
 
-/// Apply `<mark>` HTML tags to the tokens in the optimal window.
-///
-/// Tokens with `importance == IMPORTANCE_MATCH` are wrapped with `<mark>`.
-/// Returns the final HTML string with highlighted matches.
-fn apply_markup(tokens: &[HighlightedToken], body: &str) -> String {
+fn extract_window(tokens: &[HighlightedToken]) -> (usize, usize) {
     if tokens.is_empty() {
-        return body.to_string();
+        return (0, 0);
     }
 
     let range = calc_range_position(tokens);
     let end_index = calc_end_index(&range, tokens);
 
-    let mut result = String::with_capacity(body.len() + RESULT_CAPACITY);
-    let mut idx = range.start;
+    let start = tokens[range.start].position;
+    let end = tokens[end_index - 1].position + tokens[end_index - 1].text.len();
 
-    let mut p = tokens[range.start].position;
-
-    while idx < end_index {
-        let token = &tokens[idx];
-        let start = token.position;
-
-        idx += 1;
-
-        if p < token.position {
-            result.push_str(&body[p..start]);
-        }
-
-        let mut end = start + token.text.len();
-
-        if token.importance != IMPORTANCE_MATCH {
-            result.push_str(&body[start..end]);
-            p = end;
-
-            continue;
-        }
-
-        while idx < end_index {
-            let t = &tokens[idx];
-
-            if t.importance != IMPORTANCE_MATCH {
-                break;
-            }
-            end = t.position + t.text.len();
-            idx += 1;
-        }
-
-        result.push_str(MARK_TAG);
-        result.push_str(&body[start..end]);
-        result.push_str(MARK_TAG_END);
-
-        p = end;
-    }
-
-    result
+    (start, end)
 }
 
 /// Find all hit ranges in `body` corresponding to normalized search terms.
 ///
 /// Returns a vector of `HitRange` with start/end byte positions.
-fn get_hitranges(body: &str, normalized_terms: &[String]) -> Vec<HitRange> {
-    let mut vec = Vec::new();
+pub fn get_hitranges(body: &str, normalized_terms: &[String]) -> Vec<HitRange> {
+    let mut vec = Vec::with_capacity(normalized_terms.len() * RANGES_ROUGH_GUIDE);
 
     for term in normalized_terms {
         if term.is_empty() {
@@ -166,17 +123,7 @@ fn get_hitranges(body: &str, normalized_terms: &[String]) -> Vec<HitRange> {
     merged
 }
 
-/// Generate a highlighted HTML snippet for the given `body`.
-///
-/// # Arguments
-/// * `body` - The text to highlight.
-/// * `normalized_terms` - Lowercased search terms to match in the text.
-///
-/// # Returns
-/// A `String` containing the text with `<mark>` tags around matched terms.
-pub fn generate(body: &str, normalized_terms: &[String]) -> String {
-    let hit_range = get_hitranges(body, normalized_terms);
-
+pub fn compute_window_from_ranges(body: &str, hit_ranges: &[HitRange]) -> (usize, usize) {
     let mut tokens = Vec::with_capacity(EXCERPT_TOKENS_MAX);
 
     for (position, text) in body.unicode_word_indices() {
@@ -186,7 +133,7 @@ pub fn generate(body: &str, normalized_terms: &[String]) -> String {
             IMPORTANCE_DEFAULT
         };
 
-        for range in &hit_range {
+        for range in hit_ranges {
             if position < range.end && position + text.len() > range.start {
                 importance = IMPORTANCE_MATCH;
                 break;
@@ -200,7 +147,7 @@ pub fn generate(body: &str, normalized_terms: &[String]) -> String {
         });
     }
 
-    apply_markup(&tokens, body)
+    extract_window(&tokens)
 }
 
 #[cfg(test)]
@@ -211,114 +158,13 @@ mod tests {
     wasm_bindgen_test_configure!(run_in_browser);
 
     #[wasm_bindgen_test]
-    fn test_generate_basic_cjk() {
-        let text = "桃太郎が鬼ヶ島へ行った";
+    fn test_window_basic() {
+        let text = "A B C 桃太郎 D E F";
         let terms = vec!["桃太郎".to_string()];
 
-        let highlighted = generate(text, &terms);
-        let hit_ranges = get_hitranges(text, &terms);
+        let ranges = get_hitranges(text, &terms);
+        let (start, end) = compute_window_from_ranges(text, &ranges);
 
-        assert!(highlighted.contains("<mark>桃太郎</mark>"));
-        assert_eq!(hit_ranges.len(), 1);
-        assert_eq!(&text[hit_ranges[0].start..hit_ranges[0].end], "桃太郎");
-    }
-
-    #[wasm_bindgen_test]
-    fn test_generate_multiple_cjk_terms() {
-        let text = "桃太郎と浦島太郎と金太郎が出てきた";
-        let terms = vec!["桃太郎".to_string(), "浦島太郎".to_string(), "金太郎".to_string()];
-
-        let highlighted = generate(text, &terms);
-        let hit_ranges = get_hitranges(text, &terms);
-
-        assert!(highlighted.contains("<mark>桃太郎</mark>"));
-        assert!(highlighted.contains("<mark>浦島太郎</mark>"));
-        assert!(highlighted.contains("<mark>金太郎</mark>"));
-        assert_eq!(hit_ranges.len(), 3);
-        assert_eq!(&text[hit_ranges[0].start..hit_ranges[0].end], "桃太郎");
-        assert_eq!(&text[hit_ranges[1].start..hit_ranges[1].end], "浦島太郎");
-        assert_eq!(&text[hit_ranges[2].start..hit_ranges[2].end], "金太郎");
-    }
-
-    #[wasm_bindgen_test]
-    fn test_generate_cjk_at_end() {
-        let text = "鬼ヶ島へ行ったのは桃太郎";
-        let terms = vec!["桃太郎".to_string()];
-
-        let highlighted = generate(text, &terms);
-        let hit_ranges = get_hitranges(text, &terms);
-
-        assert!(highlighted.contains("<mark>桃太郎</mark>"));
-        assert!(highlighted.starts_with("鬼ヶ島へ行ったのは"));
-        assert_eq!(hit_ranges.len(), 1);
-    }
-
-    #[wasm_bindgen_test]
-    fn test_generate_overlapping_terms() {
-        let text = "桃太郎と桃太郎太郎";
-        let terms = vec!["桃太郎".to_string(), "太郎".to_string()];
-
-        let highlighted = generate(text, &terms);
-
-        assert!(highlighted.contains("<mark>桃太郎</mark>"));
-        assert!(highlighted.matches("<mark>").count() >= 2);
-
-        // NOTE:
-        // Only three hits should occur, but in reality duplicate hits and nested hits are also counted.
-        //let hit_ranges = get_hitranges(text, &terms);
-        //assert_eq!(hit_ranges.len(), 3); // 桃太郎 x2, 太郎 x1
-    }
-
-    #[wasm_bindgen_test]
-    fn test_generate_mixed_cjk_ascii() {
-        let text = "桃太郎 is a famous character in Japan";
-        let terms = vec!["桃太郎".to_string(), "Japan".to_string()];
-
-        let highlighted = generate(text, &terms);
-        let hit_ranges = get_hitranges(text, &terms);
-
-        assert!(highlighted.contains("<mark>桃太郎</mark>"));
-        assert!(highlighted.contains("<mark>Japan</mark>"));
-        assert_eq!(hit_ranges.len(), 2);
-        assert_eq!(&text[hit_ranges[0].start..hit_ranges[0].end], "桃太郎");
-        assert_eq!(&text[hit_ranges[1].start..hit_ranges[1].end], "Japan");
-    }
-
-    #[wasm_bindgen_test]
-    fn test_generate_multiple_occurrences() {
-        let text = "桃太郎と桃太郎と桃太郎";
-        let terms = vec!["桃太郎".to_string()];
-
-        let highlighted = generate(text, &terms);
-        let hit_ranges = get_hitranges(text, &terms);
-
-        let count = highlighted.matches("<mark>").count();
-        assert_eq!(count, 3);
-        assert_eq!(hit_ranges.len(), 3);
-    }
-
-    #[wasm_bindgen_test]
-    fn test_generate_partial_overlap_cjk() {
-        let text = "漫画とマンガ";
-        let terms = vec!["漫画".to_string(), "マンガ".to_string()];
-
-        let highlighted = generate(text, &terms);
-        let hit_ranges = get_hitranges(text, &terms);
-
-        assert!(highlighted.contains("<mark>漫画</mark>"));
-        assert!(highlighted.contains("<mark>マンガ</mark>"));
-        assert_eq!(hit_ranges.len(), 2);
-    }
-
-    #[wasm_bindgen_test]
-    fn test_generate_no_hits() {
-        let text = "これはテスト文章です";
-        let terms: Vec<String> = vec![];
-
-        let highlighted = generate(text, &terms);
-        let hit_ranges = get_hitranges(text, &terms);
-
-        assert_eq!(highlighted, text);
-        assert_eq!(hit_ranges.len(), 0);
+        assert!(text[start..end].contains("桃太郎"));
     }
 }
