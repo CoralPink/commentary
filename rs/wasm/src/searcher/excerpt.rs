@@ -69,6 +69,10 @@ fn calc_end_index(range: &WindowSpec, tokens: &[HighlightedToken]) -> usize {
 }
 
 fn extract_window(tokens: &[HighlightedToken]) -> (usize, usize) {
+    if tokens.is_empty() {
+        return (0, 0);
+    }
+
     let range = calc_range_position(tokens);
     let end_index = calc_end_index(&range, tokens);
 
