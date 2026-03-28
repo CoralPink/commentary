@@ -123,10 +123,22 @@ fn get_range(terms: &[String], text: &str, index_map: &[usize]) -> Vec<RangeInde
     range
 }
 
+fn validate_input(term: &str, text: &str) -> Result<(), JsValue> {
+    if term.trim().is_empty() {
+        return Err(JsValue::from_str("mark: term must not be empty"));
+    }
+    if text.is_empty() {
+        return Err(JsValue::from_str("mark: text must not be empty"));
+    }
+    Ok(())
+}
+
 fn build_match_result<F>(term: &str, text: &str, matcher: F) -> Result<JsValue, JsValue>
 where
     F: Fn(&[String], &str, &[usize]) -> Vec<RangeIndex>,
 {
+    validate_input(term, text)?;
+
     let terms: Vec<String> = term.split_whitespace().map(|t| t.to_lowercase()).collect();
 
     let index = matcher(&terms, text, &create_index_map(text));
@@ -239,15 +251,16 @@ mod tests {
     #[wasm_bindgen_test]
     fn test_empty_and_whitespace_inputs() {
         // Empty text
-        let parsed_empty_text: MatchResult = from_value(get_match_range("rust", "").unwrap()).unwrap();
-        assert!(!parsed_empty_text.had_match);
-        assert_eq!(parsed_empty_text.index.len(), 0);
+        let err = get_match_range("rust", "").unwrap_err();
+        let msg = err.as_string().unwrap();
+        assert!(msg.contains("text must not be empty"));
         // Empty term
-        let parsed_empty_term: MatchResult = from_value(get_match_range("", "Rust").unwrap()).unwrap();
-        assert!(!parsed_empty_term.had_match);
-        assert_eq!(parsed_empty_term.index.len(), 0);
+        let err = get_match_range("", "Rust").unwrap_err();
+        let msg = err.as_string().unwrap();
+        assert!(msg.contains("term must not be empty"));
         // Whitespace-only term
-        let parsed_whitespace: MatchResult = from_value(get_match_range("   ", "Rust").unwrap()).unwrap();
-        assert!(!parsed_whitespace.had_match);
+        let err = get_match_range("   ", "Rust").unwrap_err();
+        let msg = err.as_string().unwrap();
+        assert!(msg.contains("term must not be empty"));
     }
 }
