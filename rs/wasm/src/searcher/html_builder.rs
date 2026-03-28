@@ -1,5 +1,5 @@
 use crate::searcher::constants::*;
-use crate::searcher::excerpt::*;
+use crate::searcher::excerpt::{compute_window_from_ranges, get_hitranges};
 use crate::searcher::hit_list::{Hit, HitList};
 
 use memchr::{memchr2, memchr3};
@@ -129,30 +129,26 @@ impl HtmlBuilder {
     pub fn write_highlighted_excerpt(&mut self, body: &str, normalized_terms: &[String]) {
         let hit_ranges = get_hitranges(body, normalized_terms);
 
-        if hit_ranges.is_empty() {
-            self.safe_text(body);
-            return;
-        }
+        let window = compute_window_from_ranges(body, &hit_ranges);
+        let (ws, we) = (window.start(), window.end());
 
-        let (start, end) = &compute_window_from_ranges(body, &hit_ranges);
-
-        let mut pos = start;
+        let mut pos = ws;
 
         for range in &hit_ranges {
-            if range.end() <= start || range.start() >= end {
+            if range.end() <= ws || range.start() >= we {
                 continue;
             }
 
-            let s = range.start().max(start);
-            let e = range.end().min(end);
+            let start = range.start().max(ws);
+            let end = range.end().min(we);
 
-            if pos < s {
-                self.safe_text(&body[*pos..*s]);
+            if pos < start {
+                self.safe_text(&body[*pos..*start]);
             }
 
             self.buf.extend_from_slice(MARK_TAG);
 
-            let slice = &body[*s..*e];
+            let slice = &body[*start..*end];
 
             if likely_safe(slice.as_bytes()) {
                 self.buf.extend_from_slice(slice.as_bytes());
@@ -162,11 +158,11 @@ impl HtmlBuilder {
 
             self.buf.extend_from_slice(MARK_TAG_END);
 
-            pos = e;
+            pos = end;
         }
 
-        if pos < end {
-            self.safe_text(&body[*pos..*end]);
+        if pos < we {
+            self.safe_text(&body[*pos..*we]);
         }
     }
 
@@ -295,13 +291,15 @@ impl HtmlBuilder {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use crate::searcher::doc::DocObject;
     use wasm_bindgen_test::*;
 
     wasm_bindgen_test_configure!(run_in_browser);
 
     fn render(body: &str, terms: &[String]) -> String {
+        let doc = DocObject::dummy("999", "dammy", body, "dam » my");
         let mut builder = HtmlBuilder::new_for_results(terms.len());
-        builder.write_highlighted_excerpt(body, terms);
+        builder.write_highlighted_excerpt(doc.body(), terms);
 
         String::from_utf8_lossy(&builder.buf).to_string()
     }

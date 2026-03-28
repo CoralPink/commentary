@@ -22,25 +22,19 @@ struct HighlightedToken<'a> {
 
 /// Represents a byte range in the text that matched a search term.
 #[derive(Getters)]
-pub struct HitRange {
+pub struct Range {
     #[get = "pub"]
     start: usize,
     #[get = "pub"]
     end: usize,
 }
 
-/// Represents the index range to be extracted.
-struct WindowSpec {
-    start: usize,
-    size: usize,
-}
-
 /// Calculate the optimal window of tokens to highlight based on their importance.
 ///
-/// Returns the starting index and window size as a `WindowSpec`.
-fn calc_range_position(tokens: &[HighlightedToken]) -> WindowSpec {
+/// Returns the starting index and window size.
+fn calc_range_position(tokens: &[HighlightedToken]) -> (usize, usize) {
     let size = TEASER_WORD_COUNT.min(tokens.len());
-    let mut start = 0;
+    let mut idx = 0;
 
     let mut potential: u16 = tokens.iter().take(size).map(|t| t.importance).sum();
     let mut p = potential;
@@ -50,18 +44,18 @@ fn calc_range_position(tokens: &[HighlightedToken]) -> WindowSpec {
 
         if p > potential {
             potential = p;
-            start = i;
+            idx = i;
         }
     }
 
-    WindowSpec { start, size }
+    (idx, size)
 }
 
 /// Extend the highlight window to include consecutive matched tokens.
 ///
 /// This ensures the highlight continues to the end of any matching terms.
-fn calc_end_index(range: &WindowSpec, tokens: &[HighlightedToken]) -> usize {
-    let mut end_index = range.start + range.size;
+fn calc_end_index(start: usize, size: usize, tokens: &[HighlightedToken]) -> usize {
+    let mut end_index = start + size;
 
     // If matches are consecutive, extend them to the end
     while end_index < tokens.len() && tokens[end_index].importance == IMPORTANCE_MATCH {
@@ -71,59 +65,21 @@ fn calc_end_index(range: &WindowSpec, tokens: &[HighlightedToken]) -> usize {
     end_index
 }
 
-fn extract_window(tokens: &[HighlightedToken]) -> (usize, usize) {
+fn extract_window(tokens: &[HighlightedToken]) -> Range {
     if tokens.is_empty() {
-        return (0, 0);
+        return Range { start: 0, end: 0 };
     }
 
-    let range = calc_range_position(tokens);
-    let end_index = calc_end_index(&range, tokens);
+    let (p_start, size) = calc_range_position(tokens);
+    let p_end = calc_end_index(p_start, size, tokens) - 1;
 
-    let start = tokens[range.start].position;
-    let end = tokens[end_index - 1].position + tokens[end_index - 1].text.len();
-
-    (start, end)
+    Range {
+        start: tokens[p_start].position,
+        end: tokens[p_end].position + tokens[p_end].text.len(),
+    }
 }
 
-/// Find all hit ranges in `body` corresponding to normalized search terms.
-///
-/// Returns a vector of `HitRange` with start/end byte positions.
-pub fn get_hitranges(body: &str, normalized_terms: &[String]) -> Vec<HitRange> {
-    let mut vec = Vec::with_capacity(normalized_terms.len() * RANGES_ROUGH_GUIDE);
-
-    for term in normalized_terms {
-        if term.is_empty() {
-            continue;
-        }
-        let mut offset = 0;
-
-        while let Some(pos) = body[offset..].find(term) {
-            let start = offset + pos;
-            let end = start + term.len();
-
-            vec.push(HitRange { start, end });
-            offset = end;
-        }
-    }
-
-    vec.sort_unstable_by_key(|r| (r.start, r.end));
-
-    let mut merged: Vec<HitRange> = Vec::with_capacity(vec.len());
-
-    for r in vec {
-        if let Some(last) = merged.last_mut()
-            && r.start <= last.end
-        {
-            last.end = last.end.max(r.end);
-            continue;
-        }
-        merged.push(r);
-    }
-
-    merged
-}
-
-pub fn compute_window_from_ranges(body: &str, hit_ranges: &[HitRange]) -> (usize, usize) {
+pub fn compute_window_from_ranges(body: &str, hit_ranges: &[Range]) -> Range {
     let mut tokens = Vec::with_capacity(EXCERPT_TOKENS_MAX);
 
     for (position, text) in body.unicode_word_indices() {
@@ -150,6 +106,44 @@ pub fn compute_window_from_ranges(body: &str, hit_ranges: &[HitRange]) -> (usize
     extract_window(&tokens)
 }
 
+/// Find all hit ranges in `body` corresponding to normalized search terms.
+///
+/// Returns a vector of `HitRange` with start/end byte positions.
+pub fn get_hitranges(body: &str, normalized_terms: &[String]) -> Vec<Range> {
+    let mut vec = Vec::with_capacity(normalized_terms.len() * RANGES_ROUGH_GUIDE);
+
+    for term in normalized_terms {
+        if term.is_empty() {
+            continue;
+        }
+        let mut offset = 0;
+
+        while let Some(pos) = body[offset..].find(term) {
+            let start = offset + pos;
+            let end = start + term.len();
+
+            vec.push(Range { start, end });
+            offset = end;
+        }
+    }
+
+    vec.sort_unstable_by_key(|r| (r.start, r.end));
+
+    let mut merged: Vec<Range> = Vec::with_capacity(vec.len());
+
+    for r in vec {
+        if let Some(last) = merged.last_mut()
+            && r.start <= last.end
+        {
+            last.end = last.end.max(r.end);
+            continue;
+        }
+        merged.push(r);
+    }
+
+    merged
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -163,8 +157,8 @@ mod tests {
         let terms = vec!["桃太郎".to_string()];
 
         let ranges = get_hitranges(text, &terms);
-        let (start, end) = compute_window_from_ranges(text, &ranges);
+        let window = compute_window_from_ranges(text, &ranges);
 
-        assert!(text[start..end].contains("桃太郎"));
+        assert!(text[window.start..window.end].contains("桃太郎"));
     }
 }
