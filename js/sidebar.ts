@@ -1,4 +1,5 @@
 import { BREAKPOINT_UI_WIDE, CONTENT_READY, ROOT_PATH } from './constants.ts';
+import { isSearchPopVisibility } from './searcher.ts';
 
 import { fetchText } from './utils/fetch.ts';
 import { setHTML } from './utils/html-sanitizer.ts';
@@ -113,10 +114,7 @@ const toggleSidebar = (): void =>
   document.getElementById(ID_SIDEBAR)?.checkVisibility() ? hideSidebar() : showSidebar();
 
 const toggleHandler = (key: string): void => {
-  // TODO: While the search popup is displayed, suppress sidebar processing. but it looks a bit tacky...
-  const searchPop = document.getElementById('search-pop');
-
-  if (searchPop && searchPop.checkVisibility()) {
+  if (isSearchPopVisibility()) {
     return;
   }
 
