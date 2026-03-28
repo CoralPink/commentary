@@ -8,7 +8,6 @@ use crate::searcher::constants::*;
 use crate::searcher::doc::DocObject;
 use crate::searcher::hit_list::HitList;
 use crate::searcher::html_builder::HtmlBuilder;
-use crate::searcher::js_util::*;
 
 use serde_wasm_bindgen::from_value;
 use std::cell::RefCell;
@@ -39,21 +38,10 @@ pub struct Finder {
 impl Finder {
     #[wasm_bindgen(constructor)]
     pub fn new(root_path: &str, doc_urls: JsValue, docs: JsValue) -> Result<Finder, JsValue> {
-        let url_table: Vec<String> = from_value(doc_urls).map_err(|_| "Failed to convert doc_urls")?;
-
-        let store_doc: Vec<DocObject> = convert_js_map_to_vec(docs)?
-            .into_iter()
-            .map(|jsv| {
-                from_value::<DocObject>(jsv)
-                    .map(|doc| doc.sanitize())
-                    .map_err(JsValue::from)
-            })
-            .collect::<Result<_, JsValue>>()?;
-
         Ok(Self {
             root_path: root_path.to_string(),
-            url_table,
-            store_doc,
+            url_table: from_value(doc_urls).map_err(|_| "Failed to convert doc_urls")?,
+            store_doc: DocObject::vec_from_js(docs)?,
             html_builder: RefCell::new(HtmlBuilder::new_for_results(LIMIT_RESULTS)),
         })
     }
@@ -96,9 +84,7 @@ impl Finder {
 
         let hit = builder.build_search_result(&self.root_path, &self.url_table, results, &normalized_terms);
 
-        let header = MESSAGE_RESULT
-            .replace("{1}", &hit.to_string())
-            .replace("{2}", terms);
+        let header = MESSAGE_RESULT.replace("{1}", &hit.to_string()).replace("{2}", terms);
 
         builder.finish(&header)
     }
