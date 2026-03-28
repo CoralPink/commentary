@@ -1,3 +1,4 @@
+import { isSearchPopVisibility } from './searcher.ts';
 // deno-lint-ignore no-sloppy-imports
 import initWasm, { get_match_sentences } from './wasm_book.js';
 
@@ -40,6 +41,10 @@ export const updateMark = (): void => {
 };
 
 const keyVisible = (ev: KeyboardEvent): void => {
+  if (isSearchPopVisibility()) {
+    return;
+  }
+
   switch (ev.key) {
     case 'm':
     case 'M':
@@ -49,6 +54,10 @@ const keyVisible = (ev: KeyboardEvent): void => {
 };
 
 const keyClear = (ev: KeyboardEvent): void => {
+  if (isSearchPopVisibility()) {
+    return;
+  }
+
   switch (ev.key) {
     case 'm':
     case 'M':
