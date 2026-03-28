@@ -154,6 +154,13 @@ vim.opt.tabstop = 2
 (...公開後に思いっきり書き直してますけどね😅 ここほんと怖い...。)
 ~~~
 
+## Wrap Up
+
+<video preload="none" width="1280" height="720" data-poster="img/pokemon2023-thumbnail.webp">
+  <source src="img/pokemon2023.webm" type="video/webm">
+  Your browser does not support the video/webm.
+</video>
+
 ```admonish success
 つよい　トレーナーに　なったな❗
 ```
