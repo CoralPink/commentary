@@ -33,7 +33,7 @@ let finder: Finder;
 
 let focusedLi: Element | null;
 
-export const isSearchPopVisibility = (): boolean => elmPop.checkVisibility() ?? false;
+export const isSearchPopVisibility = (): boolean => elmPop?.checkVisibility() ?? false;
 
 const showResults = (): void => {
   const bytes = finder.search(elmSearchBar.value);
