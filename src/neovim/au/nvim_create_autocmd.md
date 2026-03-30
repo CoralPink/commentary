@@ -218,7 +218,12 @@ vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWinEnter' }, {
 
 ...、あ、えっと、"とりあえず" と言っているのには理由があって...。
 
-でも、なんだか長くなってきたので、もう一回だけ続く...❗🙀
+<video preload="none" width="1280" height="720" data-poster="img/pokemon-card-thumbnail.webp">
+  <source src="img/pokemon-card.webm" type="video/webm">
+  Your browser does not support the video/webm.
+</video>
+
+なんだか長くなってきたので、もう一回だけ続く...❗🙀
 
 ```admonish success
 疲れたらちゃんと休憩とってね ☕
