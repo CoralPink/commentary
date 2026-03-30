@@ -24,7 +24,7 @@ For details on these and how to help improving them, see [CONTRIBUTING.md](https
 ```
 
 このページの初掲は **Dec 4, 2022** ですが、
-巡り巡って **Jun 5, 2025** 時点の状況に合わせて内容を書き換えています。
+巡り巡って **Mar 30, 2026** 時点の状況に合わせて内容を書き換えています。
 
 ところどころ、スクリーンショットが古いままになってたりはしますが、気にしないでください❗
 
@@ -63,24 +63,25 @@ We all wanna change the world
 一個ずつ確認していきましょう。
 
 ```admonish info title="[Requirements](https://github.com/nvim-treesitter/nvim-treesitter#requirements)"
-- Neovim 0.11.0 or later (nightly)
+- Neovim 0.12.0 or later (nightly)
 - `tar` and `curl` in your path
-- [`tree-sitter`](https://github.com/tree-sitter/tree-sitter) CLI (0.25.0 or later)
+- [`tree-sitter-cli`](https://github.com/tree-sitter/tree-sitter/blob/master/crates/cli/README.md) (0.26.1 or later, installed via your package manager, **not npm**)
 - a C compiler in your path (see <https://docs.rs/cc/latest/cc/#compile-time-requirements>)
-- `Node` (23.0.0 or later) for some parsers (see the [list of supported languages](https://github.com/nvim-treesitter/nvim-treesitter/blob/main/SUPPORTED_LANGUAGES.md))
 ```
 
 ```admonish abstract title="IMPORTANT"
-The **support policy** for Neovim is
+The current **support policy** for Neovim is
 
-1. the _latest_ [stable release](https://github.com/neovim/neovim/releases/tag/stable);
-2. the _latest_ [nightly prerelease](https://github.com/neovim/neovim/releases/tag/nightly).
-
+* the _latest_ [nightly prerelease](https://github.com/neovim/neovim/releases/tag/nightly).
 Other versions may work but are neither tested nor considered for fixes.
-In general, compatibility with Nvim 0.X is removed after the release of Nvim 0.(X+1).1.
+Once this plugin is [considered stable](https://github.com/nvim-treesitter/nvim-treesitter/issues/4767),
+support will be added for the latest release.
 
-他のバージョンでも動作する可能性はありますが、テストも修正も考慮されていません。
-一般的に、Nvim 0.X との互換性は Nvim 0.(X+1).1 のリリース後に削除されます。
+_最新_の[nightly prerelease](https://github.com/neovim/neovim/releases/tag/nightly)。
+他のバージョンでも動作する可能性はありますが、テストは行われておらず、修正の対象にもなりません。
+
+このプラグインが[安定版](https://github.com/nvim-treesitter/nvim-treesitter/issues/4767)とみなされた時点で、
+最新リリース版への対応が追加されます。
 ```
 
 ```admonish danger title=""
@@ -97,9 +98,9 @@ We all wanna change the world
 みんな世界を変えたいんだ
 ```
 
-### Neovim 0.11.0 or later (nightly)
+### Neovim 0.12.0 or later (nightly)
 
-まずは`Neovim 0.11.0` 以降が必須とされていることに注意が必要です。
+まずは`Neovim 0.12.0` 以降が必須とされていることに注意が必要です。
 
 ```admonish warning title="CAUTION"
 This is a full, incompatible, rewrite.
@@ -108,7 +109,7 @@ If you can't or don't want to update, check out the
 (which is locked but will remain available for backward compatibility).
 
 これは互換性のない完全な書き換えです。
-アップデートができない、またはしたくない場合は、masterブランチをチェックしてください
+アップデートができない、またはしたくない場合は、master ブランチをチェックしてください
 (ロックされていますが、後方互換性のために引き続き利用可能です)。
 ```
 
@@ -124,6 +125,11 @@ Don't you know that you can count me out?{{footnote:
 
 僕のことは数に入れないでくれないか？
 ```
+
+<video preload="none" width="1280" height="720" data-poster="img/godzilla-thumbnail.webp">
+  <source src="img/godzilla.webm" type="video/webm">
+  Your browser does not support the video/webm.
+</video>
 
 ```admonish danger title=""
 Don't you know it's gonna be
@@ -282,7 +288,6 @@ require('packer').startup { function()
   -- 前節で入れたpackerと同列に並べる
   use {
     'nvim-treesitter/nvim-treesitter',
-    branch = 'main',
     run = ':TSUpdate',
   }
 
@@ -290,15 +295,6 @@ end,
 
 -- (以下略)
 
-```
-~~~
-
-~~~admonish warning
-もし Neovim 0.11.0 より古いバージョンで使用するのであれば、branch を'master' に変えておいてね❗
-
-```diff
--    branch = 'main',
-+    branch = 'master',
 ```
 ~~~
 
