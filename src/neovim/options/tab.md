@@ -12,7 +12,7 @@
   Number of spaces that a <Tab> in the file counts for.  Also see
   the |:retab| command, and the 'softtabstop' option.
 
-  ファイル中の<Tab>がカウントするスペースの数。
+  ファイル中の <Tab> がカウントするスペースの数。
   |:retab| コマンドと 'softtabstop' オプションも参照のこと。
 
   Note: Setting 'tabstop' to any other value than 8 can make your file
@@ -20,15 +20,15 @@
   The value must be more than 0 and less than 10000.
 
   注意: 'tabstop' を 8 以外の値に設定すると、ファイルを印刷するときなど、多くの場所で間違って表示されることがある。
-  値は0以上10000以下でなければならない。
+  値は 0 以上 10000 以下でなければならない。
 
   There are four main ways to use tabs in Vim:
 
-  Vimでタブを使うには、主に4つの方法がある。
+  Vim でタブを使うには、主に4つの方法がある。
 ```
 ~~~
 
-`tabstop`は俗に言う "タブ幅" です。デフォルトのまま`8`ってなってると、古いファイルのような印象を持っちゃうんですが、実際のところはどうなのかな...🤔
+`tabstop`は俗に言う "タブサイズ" です。デフォルトのまま`8`ってなってると、古いファイルのような印象を持っちゃうんですが、実際のところはどうなのかな...🤔
 
 単純にタブ幅だけを設定して終わりなら話は簡単なのですが、`Neovim`の場合、この先に出てくるオプションとやや複雑に絡み合っています😓
 
@@ -43,13 +43,22 @@
 formatting will never be messed up when 'tabstop' is changed.
 
 'tabstop' と 'shiftwidth' を好きなように設定し、'expandtab'を使用する。
-これで、常にスペースを挿入することができる。'tabstop'を変更しても、書式が乱れることはない。
+これで常にスペースを挿入することができる。
+'tabstop'を変更しても書式が乱れることはない。
 ```
 ~~~
 
 「`expandtab`を使用すれば、`tabstop`と`shiftwidth`は好きにしちゃっていいよー。」...と読めますね。
 
 一つずつ確認していきましょう😉
+
+
+<div class="slider">
+  <div class="media">
+    ![ニャース](img/nya-su1.webp)
+    ![ガラルニャース](img/nya-su2.webp)
+  </div>
+</div>
 
 ## shiftwidth
 
@@ -63,22 +72,24 @@ formatting will never be messed up when 'tabstop' is changed.
   When zero the 'ts' value will be used.  Use the |shiftwidth()|
   function to get the effective shiftwidth value.
 
-  オートインデントの各ステップに使用するスペースの数。 |cindent’|、 |>>、 |<< などに使用される。
-  ゼロの場合、'ts'の値が使用されます。 有効な shiftwidth の値を得るには |shiftwidth()| 関数を使用する。
+  オートインデントの各ステップに使用するスペースの数。
+  |cindent’|、 |>>、 |<< などに使用される。
+  ゼロの場合、'ts'の値が使用されます。
+  有効な shiftwidth の値を得るには |shiftwidth()| 関数を使用する。
 ```
 ~~~
 
 `shiftwidth`を "zero" にすれば、`tabstop`と同じ値を使ってくれるそうです。
 
 ```admonish note
-当たり前だー❗と思われるかもしれませんが、ヘルプで "zero" と言っているのは、`number`型の`0`です。
+当たり前だー❗と思われるかもしれませんが、ヘルプで "zero" と言っているのは、`number` 型の`0`です。
 ```
 
-## タブ幅を決める
+## Tab size
 
 この2つを別の値に設定して活用するシチュエーション、ちょっとわたしでは想像が及ばないので、もう`0`にしちゃいます😅
 
-`tabstop`の方は、"好きなように設定し"というお言葉に甘えて、お好みの数値を入れましょう😆
+`tabstop`の方は、"好きなように設定し" というお言葉に甘えて、お好みの数値を入れましょう😆
 
 ~~~admonish example title="options.lua"
 ```lua
@@ -93,7 +104,7 @@ vim.api.nvim_buf_set_option(0, 'shiftwidth', 0)
 
 ## expandtab
 
-その上で、"`expandtab`を使用する"んでしたね。
+その上で、"`expandtab`を使用する" んでしたね。
 
 ~~~admonish example title="options.lua"
 ```lua
@@ -111,8 +122,8 @@ vim.api.nvim_buf_set_option(0, 'expandtab', true)
 	when 'autoindent' is on.  To insert a real tab when 'expandtab' is
 	on, use CTRL-V<Tab>.  See also |:retab| and |ins-expandtab|.
 
-  挿入モードの場合: <Tab>を挿入する際に、適切な数のスペースを使用します。
-  スペースは '>' と '<' コマンドによるインデントと 'autoindent' がオンのときに使用されます。
+  挿入モードの場合: <Tab>を挿入する際に、適切な数のスペースを使用する。
+  スペースは '>' と '<' コマンドによるインデントと 'autoindent' がオンのときに使用される。
   expandtab' がオンの時に本当のタブを挿入するには、CTRL-V<Tab> を使用する。
   |:retab| と |ins-expandtab| も参照のこと。
 ```
@@ -141,7 +152,9 @@ vim.api.nvim_buf_set_option(0, 'expandtab', true)
 
 よーし、これで全ての設定が終わったぞ❗やったね❗❗
 
-## フィナーレ...❓
+![キテルグマ](img/kiteruguma.webp)
+
+## To Be Continued...
 
 ...って思うじゃないですか😮
 
@@ -163,9 +176,7 @@ vim.api.nvim_buf_set_option(0, 'expandtab', true)
 おわり　でーす❗
 ```
 
-```admonish question
 入り口のおじさん、メガホンで知らせるって言ってなかった❓メガホン...なのかぁ❓
-```
 
 ```admonish success
 `10. Options`章は...❗ なんと...❗
