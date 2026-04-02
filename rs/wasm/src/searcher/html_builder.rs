@@ -3,6 +3,7 @@ use crate::searcher::excerpt::{compute_window_from_ranges, get_hitranges};
 use crate::searcher::hit_list::{Hit, HitList};
 
 use memchr::{memchr2, memchr3};
+use percent_encoding::{AsciiSet, NON_ALPHANUMERIC, utf8_percent_encode};
 
 /// Type used in the result field
 type ResultFieldType = u32;
@@ -22,6 +23,15 @@ const MARK_TAG: &[u8] = "<mark>".as_bytes();
 /// HTML closing tag for highlighted words.
 const MARK_TAG_END: &[u8] = "</mark>".as_bytes();
 
+/// Percent-encoding set for URL query strings (RFC 3986-based).
+/// Uses relaxed "unreserved" rules for interoperability:
+/// `- . _ ~` are left unencoded.
+/// Not compatible with `application/x-www-form-urlencoded`.
+///
+/// See also:
+/// https://datatracker.ietf.org/doc/html/rfc3986
+const QUERY_SET: &AsciiSet = &NON_ALPHANUMERIC.remove(b'-').remove(b'.').remove(b'_').remove(b'~');
+
 fn likely_safe(bytes: &[u8]) -> bool {
     memchr3(b'&', b'<', b'>', bytes).is_none() && memchr2(b'"', b'\'', bytes).is_none()
 }
@@ -30,12 +40,17 @@ fn parse_uri(link_uri: &str) -> (&str, &str) {
     link_uri.split_once('#').unwrap_or((link_uri, ""))
 }
 
+fn write_encoded(buf: &mut Vec<u8>, input: &str) {
+    for encoded in utf8_percent_encode(input, QUERY_SET) {
+        buf.extend_from_slice(encoded.as_bytes());
+    }
+}
+
 struct SearchHit<'a> {
     root_path: &'a str,
     page: &'a str,
     head: &'a str,
     normalized_terms: &'a [String],
-    marking: &'a str,
     el: Hit<'a>,
 }
 
@@ -201,6 +216,21 @@ impl HtmlBuilder {
         self.buf.push(b'>');
     }
 
+    fn write_mark(&mut self, normalized_terms: &[String]) {
+        self.buf.extend_from_slice(b"?mark=");
+
+        let mut first = true;
+
+        for term in normalized_terms {
+            if !first {
+                self.buf.extend_from_slice(b"%20");
+            }
+            first = false;
+
+            write_encoded(&mut self.buf, term);
+        }
+    }
+
     fn score_bar(&mut self, score: usize) {
         for _ in 0..std::cmp::min(score, SCORE_BAR_MAX) / SCORE_BAR_RATE {
             self.buf.extend_from_slice(WRITE_SCORE_BAR_CHARACTER);
@@ -223,11 +253,11 @@ impl HtmlBuilder {
 
         // link
         self.open("a");
+        self.attr("tabindex", "-1");
         self.buf.extend_from_slice(b" href=\"");
         self.safe_text(hit.root_path);
         self.safe_text(hit.page);
-        self.buf.extend_from_slice(b"?mark=");
-        self.buf.extend_from_slice(hit.marking.as_bytes());
+        self.write_mark(hit.normalized_terms);
         self.buf.push(b'#');
         self.safe_text(hit.head);
         self.buf.extend_from_slice(b"\">");
@@ -264,7 +294,6 @@ impl HtmlBuilder {
         results: HitList,
         normalized_terms: &[String],
     ) -> usize {
-        let marking = &urlencoding::encode(&normalized_terms.join(" ")).into_owned();
         let mut rendered = 0;
 
         results.into_iter().for_each(|el| {
@@ -276,7 +305,6 @@ impl HtmlBuilder {
                     page,
                     head,
                     normalized_terms,
-                    marking,
                     el,
                 });
 
