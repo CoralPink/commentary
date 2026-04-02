@@ -43,6 +43,8 @@ This is useful for removing or executing a group of autocommands.
 ```
 ~~~
 
+![ramen-shiumai](img/ramen-shiumai.webp)
+
 ## augroup
 
 オートコマンドは以下で確認できます。まずは現状を確認します😌
@@ -63,7 +65,7 @@ This is useful for removing or executing a group of autocommands.
 
 こんな感じですね😌
 
-## グループID
+### Group ID
 
 それでは話を進めるんですが、さっきのヘルプ中に、コードが例示されていましたね。
 
@@ -113,7 +115,7 @@ local id = vim.api.nvim_create_augroup("buffer_set_options", {})
 
 `nvim_create_augroup`が返してくれる`ID`をそのまま渡せば良さそうですね。
 
-## 実践
+## Try!
 
 じゃあ、こんな感じでどうかな😆
 

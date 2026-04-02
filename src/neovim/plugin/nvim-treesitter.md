@@ -195,7 +195,7 @@ which tree-sitter
 ```admonish warning
 installed via your package manager, not npm
 
-npmではなく、パッケージマネージャー経由でインストールしてください。
+npm ではなく、パッケージマネージャー経由でインストールしてください。
 ```
 
 ```admonish danger title=""

@@ -4,6 +4,13 @@
 bufferリ　ゾーンに　ようこそ❗
 ```
 
+<div class="slider">
+  <div class="media">
+    ![suzumi1](img/suzumi1.webp)
+    ![suzumi2](img/suzumi2.webp)
+  </div>
+</div>
+
 ```admonish quote title=""
 この　ひろい　bufferリで
 

@@ -134,7 +134,7 @@ They can also be used with the ":map" command.
 ![keymap-before](img/keymap-before.webp)
 ~~~
 
-### 割り当て
+### Assignment
 
 ~~~admonish example title="keybinds.lua"
 ```lua
@@ -173,7 +173,7 @@ vim.keymap.set('n', '<Down>', '<C-e>')
 この先、いくつか例示はしますが、ご自身の環境に組み入れるかどうかは任意で❗
 ```
 
-### 入れ替え
+### Switching
 
 「相互に操作を入れ替える」みたいなパターンも、たったこれだけ😸
 
@@ -186,7 +186,7 @@ vim.keymap.set('n', ':', ';')
 
 <kbd>:</kbd>は説明が長くなるので省略してしまうんですが、<kbd>;</kbd>でコマンドモードに入れるようになります。
 
-### 無効化
+### Disable
 
 無効化するパターンもあります。
 
@@ -210,7 +210,7 @@ vim.keymap.set('n', 'ZQ', '<NOP>')
 
 いや、なんか...、ノーマルモードから終了なんて、急すぎて怖くないですか...😱
 
-### モード
+### Mode
 
 ここまでは全てノーマルモードでの例でしたが、もちろん他のモードでのカスタマイズもできます。
 

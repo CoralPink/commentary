@@ -31,6 +31,8 @@ nvim_create_autocmd({event}, {*opts}) nvim_create_autocmd()
 
 ヘルプではもっと色々なサンプル付きで説明されていますが、今回はここで切り上げます😅
 
+![コダック](img/koduck.webp)
+
 ## autocmd
 
 現時点で`autocmd`がどのように登録されているのかは、以下のコマンドを実行してみると確認できます。
@@ -56,17 +58,17 @@ nvim_create_autocmd({event}, {*opts}) nvim_create_autocmd()
 ```
 
 ここに、自分で作った`autocmd`を追加して「全てのバッファに対して`tab`関連の設定をするぞ❗」というのが
-この節の趣旨であり、これこそが10.3.1節の問題を解決する方法です。
+この節の趣旨であり、これこそが[10.3.1](../options/tab.md)項の問題を解決する方法です。
 
-準備はよろしいでしょうか？
+準備はよろしいでしょうか❓
+
+![ピカチュウ](img/pikachu.webp)
 
 ...OK❓
 
-OKね...❗
-
 それでは、例によって一つずつ確認していきます。
 
-## event
+### event
 
 まずは`event`なんですが、`autocmd-events`がこれでしょう🤔
 
@@ -123,7 +125,7 @@ current buffer, since it reloads that buffer.
 ```
 ~~~
 
-## pattern
+### pattern
 
 次は`pattern`です。これは`file-pattern`として説明されています😌
 
@@ -152,7 +154,7 @@ The pattern is interpreted like mostly used in file names:
 ```
 ~~~
 
-## callback
+### callback
 
 最後に`callback`ですが、これは`nvim_create_autocmd`の中に記述が見つかります。
 
@@ -166,7 +168,7 @@ Cannot be used with {command}.
 ```
 ~~~
 
-## 実践
+## Try!
 
 これらを踏まえて、改めて今回やりたいことを明確にすると、
 
