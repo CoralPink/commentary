@@ -1,3 +1,4 @@
 *.mp3 filter=lfs diff=lfs merge=lfs -text
 *.webm filter=lfs diff=lfs merge=lfs -text
 *.webp filter=lfs diff=lfs merge=lfs -text
+temp/*.webp -filter -diff -merge text
