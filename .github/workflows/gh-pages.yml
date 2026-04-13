@@ -408,6 +408,7 @@ jobs:
           cp artifacts/build-js/* src
           cp -r artifacts/woff2 src
           cp -r artifacts/css src
+          cp -r tmp src
 
       - name: Cache Cargo
         id: cache-cargo

@@ -26,6 +26,8 @@ src/css
 src/*.LICENSE.txt
 src/woff2
 
+src/tmp
+
 theme/book.js
 theme/css
 
