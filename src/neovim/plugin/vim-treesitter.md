@@ -229,7 +229,7 @@ Nvim looks for queries as `*.scm` files in a `queries` directory under `runtimep
 
 そしたら、多分こんな感じの診断が出てくるでしょう❓
 
-![health-treesitter](../../../tmp/health-treesitter.webp)
+![health-treesitter](../../tmp/health-treesitter.webp)
 
 `nvim`が同梱している`parsers`,`queries`と混じって、今回手動で追加した`rust`が確認できていれば成功です❗
 
@@ -240,7 +240,7 @@ Nvim looks for queries as `*.scm` files in a `queries` directory under `runtimep
 
 (エラーメッセージでは`grammar.json`が無いって言われますが、詳しくは知らない😅)
 
-![tree-sitter-typescript](../../../tmp/tree-sitter-typescript.webp)
+![tree-sitter-typescript](../../tmp/tree-sitter-typescript.webp)
 
 例えば`Typescript`([tree-sitter-typescript](https://github.com/tree-sitter/tree-sitter-typescript))なんかだと、
 トップに`grammar.js`は存在しなくて、`typescript`と`tsx`っていうディレクトリの中にそれぞれ`grammar.js`が存在しているので、
