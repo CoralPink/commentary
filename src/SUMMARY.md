@@ -75,6 +75,7 @@
 - [Plugin](neovim/plugin/plugin.md)
   - [packer.nvim](neovim/plugin/packer.md)
   - [nvim-treesitter](neovim/plugin/nvim-treesitter.md)
+    - [vim.treesitter](neovim/plugin/vim-treesitter.md)
   - [onenord.nvim](neovim/plugin/onenord.md)
   - [lualine.nvim](neovim/plugin/lualine.md)
   - [nvim-hlslens](neovim/plugin/nvim-hlslens.md)
