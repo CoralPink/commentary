@@ -89,7 +89,10 @@ impl<'a> IntoIterator for HitList<'a> {
 }
 
 impl<'a> HitList<'a> {
-    pub fn from_token_set(normalized_terms: &'a [String], docs: &'a [&'a DocObject]) -> Self {
+    pub fn from_token_set<I>(normalized_terms: &[String], docs: I) -> HitList<'a>
+    where
+        I: IntoIterator<Item = &'a DocObject>,
+    {
         let mut results = Vec::with_capacity(LIMIT_RESULTS / normalized_terms.len().max(1));
 
         for doc in docs {

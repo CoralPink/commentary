@@ -1,5 +1,7 @@
 use crate::searcher::constants::*;
 
+use bumpalo::Bump;
+use bumpalo::collections::Vec as BumpVec;
 use getset::Getters;
 use unicode_segmentation::UnicodeSegmentation;
 
@@ -80,7 +82,8 @@ fn extract_window(tokens: &[HighlightedToken]) -> Range {
 }
 
 pub fn compute_window_from_ranges(body: &str, hit_ranges: &[Range]) -> Range {
-    let mut tokens = Vec::with_capacity(EXCERPT_TOKENS_MAX);
+    let bump = Bump::new();
+    let mut tokens = BumpVec::with_capacity_in(EXCERPT_TOKENS_MAX, &bump);
 
     for (position, text) in body.unicode_word_indices() {
         let mut importance = if position == 0 {
@@ -110,7 +113,8 @@ pub fn compute_window_from_ranges(body: &str, hit_ranges: &[Range]) -> Range {
 ///
 /// Returns a vector of `HitRange` with start/end byte positions.
 pub fn get_hitranges(body: &str, normalized_terms: &[String]) -> Vec<Range> {
-    let mut vec = Vec::with_capacity(normalized_terms.len() * RANGES_ROUGH_GUIDE);
+    let bump = Bump::new();
+    let mut vec = BumpVec::with_capacity_in(normalized_terms.len() * RANGES_ROUGH_GUIDE, &bump);
 
     for term in normalized_terms {
         if term.is_empty() {

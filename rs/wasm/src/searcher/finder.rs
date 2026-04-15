@@ -13,19 +13,6 @@ use serde_wasm_bindgen::from_value;
 use std::cell::RefCell;
 use wasm_bindgen::prelude::*;
 
-fn split_limited<const N: usize>(input: &str) -> Vec<&str> {
-    let mut vec = Vec::with_capacity(N);
-
-    for x in input.split_whitespace() {
-        if vec.len() >= N {
-            break;
-        }
-        vec.push(x);
-    }
-
-    vec
-}
-
 #[wasm_bindgen]
 pub struct Finder {
     root_path: String,
@@ -74,18 +61,19 @@ impl Finder {
             return builder.finish(MESSAGE_INITIAL);
         }
 
-        let normalized_terms: Vec<String> = split_limited::<SEARCH_TERM_MAX>(terms)
-            .iter()
+        let normalized_terms: Vec<String> = value
+            .split_whitespace()
+            .take(SEARCH_TERM_MAX)
             .map(|t| t.to_ascii_lowercase())
             .collect();
 
-        let matching_docs: Vec<&DocObject> = self.filter_docs_by_terms(&normalized_terms).collect();
-        let results = HitList::from_token_set(&normalized_terms, &matching_docs);
+        let hit = builder.build_search_result(
+            &self.root_path,
+            &self.url_table,
+            HitList::from_token_set(&normalized_terms, self.filter_docs_by_terms(&normalized_terms)),
+            &normalized_terms,
+        );
 
-        let hit = builder.build_search_result(&self.root_path, &self.url_table, results, &normalized_terms);
-
-        let header = MESSAGE_RESULT.replace("{1}", &hit.to_string()).replace("{2}", terms);
-
-        builder.finish(&header)
+        builder.finish(&MESSAGE_RESULT.replace("{1}", &hit.to_string()).replace("{2}", terms))
     }
 }
