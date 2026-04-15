@@ -1,11 +1,11 @@
 # vim.treesitter
 
 ```admonish danger
-`nvim-treesitter`が使えているのであれば、こんな手順は必要ないのでスキップしてしまって構いません❗
+`nvim-treesitter`が使えているのであれば、このページにある手順は必要ないのでスキップしてしまって構いません❗
 ```
 
 もしも`nvim-treesitter`が使用できなくなった場合...、
-つまり以下の説明で言うところの`plugins`が失われてしまった世界のおはなしです😢
+つまりこの先の説明で言うところの`plugins`が失われてしまった世界のおはなしです😢
 
 ~~~admonish info title=":h treesitter"
 ```txt
@@ -25,12 +25,12 @@ changes. This documentation may also not fully reflect the latest changes.
 ```
 ~~~
 
-前のページで "destory" をイジってしまった{{footnote:
+前のページで "destruction" などとイジってしまった{{footnote:
 2026年時点で実在する
 [真珠湾攻撃](https://ja.wikipedia.org/wiki/真珠湾攻撃)みたいな選挙を仕掛ける "れぇわ の武器商人" や、
 [Attack on Pearl Harbor](https://en.wikipedia.org/wiki/Attack_on_Pearl_Harbor)みたいな戦争を仕掛ける "ぱわぁ による ぴぃす推進者"
 の方を向いて言ってたつもりなんだけど...、ごめんなさい。
-}}わたしがこれをやるのも狂っているのだけれど...😓
+}}わたしがこれをやるのも、なかなかに狂っているのだけれど...😓
 
 ```admonish warning
 このページの内容は`macOS`上の`Neovim 0.12.1`で動作を確認しています。
@@ -57,9 +57,11 @@ If multiple parsers for the same language are found, the first one is used.
 この説明にあるように、`parser/{lang}.*`形式でファイルを配置していくために、
 まずは`.config/nvim`配下に`parsers`ディレクトリを作成しておきましょう。
 
+~~~admonish quote title="mkdir"
 ```sh
 mkdir parsers
 ```
+~~~
 
 ## Queries
 
@@ -122,9 +124,11 @@ Nvim looks for queries as `*.scm` files in a `queries` directory under `runtimep
 
 ...ってことなので、これもまた`.config/nvim`配下に`queries`ディレクトリを作成しておきましょう。
 
+~~~admonish quote title="mkdir"
 ```sh
 mkdir queries
 ```
+~~~
 
 ## treesitter-cli
 
@@ -134,37 +138,39 @@ mkdir queries
 
 `MacOS`であれば毎度お馴染み`Homebrew`を使えば簡単ですね。
 
+~~~admonish quote title="install"
 ```sh
 brew install tree-sitter-cli
 ```
 
-```admonish note
-これは`treesitter`とはまた別のパッケージです。
-```
+> これは`treesitter`とはまた別のパッケージです。
+~~~
 
 ## tree-sitter-rust
 
-ここでは、`Rust`を例に進めてみます。
+ここでは、`Rust`を例に進めます。
 
 ```admonish note
-`lua`でもいいんだけど、これは既に`Neovim`に同梱されているので 🌛
+`lua`を例にとっても全然いいんだけど、これは既に`Neovim`に同梱されているので 🌛
 ```
 
-なんかもう`nvim-treesitter`に依存しちゃってることを隠せませんが、
+なんかもう`nvim-treesitter`に依存しちゃってることを隠す気もありませんが、
 [SUPPORTED_LANGUAGES](https://github.com/nvim-treesitter/nvim-treesitter/blob/4916d6592ede8c07973490d9322f187e07dfefac/SUPPORTED_LANGUAGES.md)
-から`Rust`を探すと、[tree-sitter-rust](https://github.com/tree-sitter/tree-sitter-rust)の URL が示されていますね。
+から`Rust`を探してみると、[tree-sitter-rust](https://github.com/tree-sitter/tree-sitter-rust)の URL が示されていますね。
 
-これを`git`で取得しましょう。(適当な場所で良いです。)
+これを`git`で取得しましょう。(一時的な作業をするだけなので適当な場所で良いです。)
 
+~~~admonish quote title="Git Clone"
 ```sh
 git clone depth --1 https://github.com/tree-sitter/tree-sitter-rust
 ```
 
-中に入って...
+そしたら中に入って...
 
 ```sh
 cd tree-sitter-rust
 ```
+~~~
 
 ここからやることは 2つです😉
 
@@ -172,9 +178,11 @@ cd tree-sitter-rust
 
 前項でインストールした`tree-sitter-cli`を使ってビルドします。
 
+~~~admonish quote title="Build"
 ```sh
 tree-sitter build
 ```
+~~~
 
 うまくいけば`rust.dylib`が出来上がるはずです。
 
@@ -188,14 +196,14 @@ Parsers are searched for as `parser/{lang}.*` in any 'runtimepath' directory.
 
 ### scm
 
-`tree-sitter-rust`には`queries`ディレクトリが元から存在しているはずなので、
+`tree-sitter-rust`には`queries`ディレクトリが存在しているので、
 この中にある`highlights.scm`,`injections.scm`,`tags.scm`を`.config/nvim/queries`に`rust`ディレクトリを作ってコピーしましょう。
 
 ```txt
 Nvim looks for queries as `*.scm` files in a `queries` directory under `runtimepath`
 ```
 
-これもその通りになりますね🐱
+こっちもヘルプの通りになりましたね🐱
 
 ## Confirm
 
@@ -208,14 +216,14 @@ Nvim looks for queries as `*.scm` files in a `queries` directory under `runtimep
  ├── lua
  │   ├── ...
  │   ...
- │
 +├── parser
-+│   ├── rust.dylib
++│   └── rust.dylib
 +├── queries
 +│   ├── rust
 +│   │   ├── highlights.scm
 +│   │   ├── injections.scm
 +│   │   └── tags.scm
+ ... ...
 ```
 ~~~
 
@@ -223,9 +231,11 @@ Nvim looks for queries as `*.scm` files in a `queries` directory under `runtimep
 
 それでは`nvim`を起動して`checkhealth`を動かしてみましょう。
 
+~~~admonish quote title="Check Health"
 ```vim
 :che treesitter
 ```
+~~~
 
 そしたら、多分こんな感じの診断が出てくるでしょう❓
 
@@ -238,18 +248,19 @@ Nvim looks for queries as `*.scm` files in a `queries` directory under `runtimep
 今回例として挙げた`rust`では、とっても素直に出来るんですが、
 `build`をするには`grammar.js`なのか、`parser.c`なのか、はたまた`grammar.json`なのかを必要とするらしいんですね。
 
-(エラーメッセージでは`grammar.json`が無いって言われますが、詳しくは知らない😅)
+(エラーメッセージでは "`grammar.json`が無い❗" って言われますが、詳しいことは知らない😅)
 
 ![tree-sitter-typescript](../../tmp/tree-sitter-typescript.webp)
 
 例えば`Typescript`([tree-sitter-typescript](https://github.com/tree-sitter/tree-sitter-typescript))なんかだと、
-トップに`grammar.js`は存在しなくて、`typescript`と`tsx`っていうディレクトリの中にそれぞれ`grammar.js`が存在しているので、
-その中に移動してビルドするとうまくいきます。
+トップに`grammar.js`は存在しなくて、`typescript`と`tsx`っていうディレクトリの中にそれぞれの`grammar.js`が存在しているので、
+そこに移動して`build`するとうまくいきます。
 
-仕様と言うのか、もしくはフォーマットと言うのか、結構ゆる〜い雰囲気っぽいので、この小さな差異がだいぶめんどくさいです🥺
+仕様と言うのか、もしくは規格と言うのか、はたまたお作法なのか、
+雰囲気は実におおらかなものらしいので、なんかたまに小さな差異があって面倒くさいです🥺
 
 ```admonish success
-`nvim-treesitter`が使えない場合、こんな面倒な作業を自分で全部やらないといけないってことですね❗
+`nvim-treesitter`が使えないと、こんなにも面倒な作業を自分で全部やらないといけないってことですね❗
 ```
 
 ## 𝒬𝓊𝑒𝑒𝓃𝒾𝑒 𝓔𝔂𝑒 🖊️
@@ -276,7 +287,7 @@ All the stories that you sold me
 <div style="margin-top: 4em">
 Didn't help me understand
 
-何ひとつ理解へは導かなかった
+何ひとつ 僕を理解へは導かなかった
 </div>
 
 <div style="margin-top: 6em">
@@ -312,13 +323,13 @@ Life's a game of rag to riches
 <div style="margin-top: 4em">
 Dogs and bitches hunt for fame
 
-名声に群がる 野良犬やビッチたち
+名声に群がる 野良犬やビッチども
 </div>
 
 <div style="margin-top: 4em">
 Different goods, you know which way to turn
 
-選べる品なんて山ほどある, もう分かってるだろ
+選べる品なんて腐るほどある, もう分かってるだろ
 </div>
 
 <div style="margin-top: 6em">
@@ -366,7 +377,7 @@ Queenie eye, queenie eye, ボールを持ってるのはだあれ？
 <div style="margin-top: 4em">
 I haven't got it, it isn't in my pocket
 
-ぼくじゃないよ, ポケットにも入ってないだろ
+ぼくじゃないよ, ポケットにも入ってない
 </div>
 
 <div style="margin-top: 4em">
@@ -414,7 +425,7 @@ Play the game, taking chances
 <div style="margin-top: 4em">
 Every dance is much the same
 
-どんなダンスも大体同じ
+どんなダンスも 大体同じ
 </div>
 
 <div style="margin-top: 4em">
@@ -438,7 +449,7 @@ With romances seldom came
 <div style="margin-top: 4em">
 Never pick a fight you're gonna lose
 
-負けることがわかっている喧嘩は絶対にするな
+負けることがわかっている喧嘩は 絶対にするな
 </div>
 
 <div style="margin-top: 24em"></div>
@@ -452,7 +463,7 @@ It'a long way to the finish
 <div style="margin-top: 4em">
 When you've never been before
 
-まだ行ったことがないなら尚更だ
+行ったことがないなら尚更だ
 </div>
 
 <div style="margin-top: 4em">
