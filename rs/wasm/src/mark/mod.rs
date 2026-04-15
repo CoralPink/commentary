@@ -1,3 +1,5 @@
+use bumpalo::Bump;
+use bumpalo::collections::Vec as BumpVec;
 use serde::{Deserialize, Serialize};
 use serde_wasm_bindgen::to_value;
 use std::mem::MaybeUninit;
@@ -55,7 +57,7 @@ fn create_index_map(text: &str) -> Vec<usize> {
     v
 }
 
-fn merge_ranges(range: Vec<RangeIndex>) -> Vec<RangeIndex> {
+fn merge_ranges(range: BumpVec<RangeIndex>) -> Vec<RangeIndex> {
     let mut merged: Vec<RangeIndex> = Vec::with_capacity(range.len());
 
     for r in range {
@@ -72,7 +74,9 @@ fn merge_ranges(range: Vec<RangeIndex>) -> Vec<RangeIndex> {
 }
 
 fn get_sentences(terms: &[String], text: &str, index_map: &[usize]) -> Vec<RangeIndex> {
-    let mut range = Vec::with_capacity((index_map.len() / RANGE_INDEX_ROUGH_GUIDE).max(1));
+    let bump = Bump::new();
+    let mut range = BumpVec::with_capacity_in((index_map.len() / RANGE_INDEX_ROUGH_GUIDE).max(1), &bump);
+
     let mut cursor = 0;
 
     for sentence in text.unicode_sentences() {

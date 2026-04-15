@@ -430,8 +430,9 @@ checksum = "23cda5ecc67248c48d3e705d3e03e00af905769b78b9d2a1678b663b8b9d4472"
 
 [[package]]
 name = "wasm-book"
-version = "1.5.0"
+version = "1.5.1"
 dependencies = [
+ "bumpalo",
  "getset",
  "itoa",
  "js-sys",
