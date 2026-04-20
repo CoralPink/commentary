@@ -1,8 +1,8 @@
 type PulseCallback = (deadline: IdleDeadline) => void;
 type Pulse = (cb: PulseCallback) => number;
 
-const LAYOUT_TIME = 1.0;
-const FRAME_BUDGET = 5;
+const LAYOUT_TIME = 0;
+const FRAME_BUDGET = 8;
 
 const queue: (() => void)[] = [];
 let loopScheduled = false;
@@ -17,31 +17,41 @@ const emulateIdleCallback: (cb: IdleRequestCallback) => number = (() => {
   let id = 0;
 
   const channel = new MessageChannel();
-  const queue = new Map<number, IdleRequestCallback>();
+  const queue: Array<[number, IdleRequestCallback]> = [];
 
-  let rafScheduled = false;
+  let scheduled = false;
 
   channel.port1.onmessage = () => {
     const start = performance.now() + LAYOUT_TIME;
 
-    queue.forEach((cb, handle) => {
+    while (queue.length > 0) {
+      const [_handle, cb] = queue.shift()!;
+
       cb({
         didTimeout: false,
         timeRemaining: () => Math.max(0, FRAME_BUDGET - (performance.now() - start)),
       });
 
-      queue.delete(handle);
-    });
+      if (performance.now() - start >= FRAME_BUDGET) {
+        break;
+      }
+    }
 
-    rafScheduled = false;
+    if (queue.length > 0) {
+      requestAnimationFrame(() => {
+        channel.port2.postMessage(0);
+      });
+    } else {
+      scheduled = false;
+    }
   };
 
   return (callback: IdleRequestCallback): number => {
     const handle = ++id;
-    queue.set(handle, callback);
+    queue.push([handle, callback]);
 
-    if (!rafScheduled) {
-      rafScheduled = true;
+    if (!scheduled) {
+      scheduled = true;
 
       requestAnimationFrame(() => {
         channel.port2.postMessage(0);
