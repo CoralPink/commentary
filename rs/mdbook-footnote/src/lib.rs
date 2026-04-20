@@ -1,3 +1,5 @@
+use bumpalo::Bump;
+use bumpalo::collections::Vec as BumpVec;
 use mdbook_preprocessor::{book::Book, errors::Error};
 use regex::Regex;
 use std::sync::LazyLock;
@@ -9,27 +11,51 @@ static FOOTNOTE_RE: LazyLock<Regex> =
     LazyLock::new(|| Regex::new(r"(?s)\{\{footnote:\s*(?P<content>.*?)\}\}").expect("Invalid regex for FOOTNOTE_RE"));
 
 pub fn replacing(mut book: Book) -> Result<Book, Error> {
+    let bump = Bump::new();
+    let mut itoa = itoa::Buffer::new();
+
     book.for_each_mut(|item| {
         if let mdbook_preprocessor::book::BookItem::Chapter(chap) = item {
-            let mut footnotes = vec![];
+            let mut footnotes = BumpVec::new_in(&bump);
 
             chap.content = FOOTNOTE_RE
                 .replace_all(&chap.content, |caps: &regex::Captures| {
                     let content = caps.name("content").unwrap().as_str().to_owned();
                     footnotes.push(content);
 
-                    let idx = footnotes.len();
-                    format!("<sup class=\"{FT_REF}\"><button id=\"to-ft-{idx}\" data-href=\"#ft-{idx}\">{idx}</button></sup>")
+                    let mut s = String::new();
+                    let idx = itoa.format(footnotes.len());
+
+                    s.push_str("<sup class=\"");
+                    s.push_str(FT_REF);
+                    s.push_str("\"><button id=\"to-ft-");
+                    s.push_str(idx);
+                    s.push_str("\" data-href=\"#ft-");
+                    s.push_str(idx);
+                    s.push_str("\">");
+                    s.push_str(idx);
+                    s.push_str("</button></sup>");
+
+                    s
                 })
                 .to_string();
 
             if !footnotes.is_empty() {
                 for (num, content) in footnotes.into_iter().enumerate() {
-                    let idx = num + 1;
+                    let idx = itoa.format(num + 1);
 
-                    chap.content += &format!(
-                        "\n<aside class=\"{FT_DEF}\" role=\"doc-footnote\" id=\"ft-{idx}\">\n\n<sup><a href=\"#to-ft-{idx}\">{idx}:</a></sup>{content}</aside>"
-                    );
+                    chap.content.push('\n');
+                    chap.content.push_str("<aside class=\"");
+                    chap.content.push_str(FT_DEF);
+                    chap.content.push_str("\" role=\"doc-footnote\" id=\"ft-");
+                    chap.content.push_str(idx);
+                    chap.content.push_str("\">\n\n<sup><a href=\"#to-ft-");
+                    chap.content.push_str(idx);
+                    chap.content.push_str("\">");
+                    chap.content.push_str(idx);
+                    chap.content.push_str(":</a></sup>");
+                    chap.content.push_str(&content);
+                    chap.content.push_str("</aside>");
                 }
             }
         }
@@ -43,7 +69,7 @@ mod tests {
     use crate::replacing;
     use mdbook_preprocessor::book::{Book, BookItem, Chapter};
     use pretty_assertions::assert_eq;
-    use std::{fs, fs::File, io::Write};
+    use std::{fs, fs::File, io::Write, path::Path};
 
     const CLR_RESET: &str = "\x1b[0m";
     const CLR_R: &str = "\x1b[31m";
@@ -69,7 +95,7 @@ mod tests {
         book.push_item(BookItem::Chapter(Chapter::new(
             "Test Chapter",
             fs::read_to_string(String::from(TEST_DIR) + TEST_MD).unwrap(),
-            std::path::Path::new(TEST_MD),
+            Path::new(TEST_MD),
             vec![],
         )));
 

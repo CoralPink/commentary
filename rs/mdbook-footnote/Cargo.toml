@@ -1,13 +1,15 @@
 [package]
 name = "mdbook-footnote"
-version = "2.0.0"
+version = "2.1.0"
 authors = ["David Drysdale <dmd@lurklurk.org>", "CoralPink"]
 edition = "2024"
 rust-version = "1.88"
 license = "Apache-2.0"
 
 [dependencies]
+bumpalo = { version = "=3.20.2", features = ["collections"] }
 clap = "=4.6.1"
+itoa = "=1.0.18"
 mdbook-preprocessor = "=0.5.2"
 regex = "=1.12.3"
 semver = "=1.0.28"
