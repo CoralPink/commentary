@@ -89,7 +89,7 @@ impl<'a> IntoIterator for HitList<'a> {
 }
 
 impl<'a> HitList<'a> {
-    pub fn from_token_set<I>(normalized_terms: &[String], docs: I) -> HitList<'a>
+    pub fn from_token_set<I>(normalized_terms: &[String], docs: I) -> Self
     where
         I: IntoIterator<Item = &'a DocObject>,
     {
