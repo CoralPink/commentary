@@ -68,6 +68,7 @@ body {
 
     z-index: 30;
     opacity: 0.92;
+    contain: paint;
 
     @media (min-width: var.$breakpoint-ui-wide) {
       position: fixed;
@@ -146,7 +147,7 @@ body {
     overscroll-behavior: contain;
     -webkit-overflow-scrolling: touch;
 
-    contain: layout style paint;
+    contain: paint;
 
     @media (min-width: var.$breakpoint-ui-wide) {
       position: fixed;
@@ -204,6 +205,7 @@ body {
 main {
   min-width: 0;
   margin: 0 0.8rem;
+  contain: paint;
 
   @media (max-width: var.$breakpoint-ui-wide) {
     margin: 1.6rem 0.8rem;
@@ -219,6 +221,9 @@ article {
   overflow-x: clip;
 
   scroll-margin-top: var.$menu-bar-height;
+
+  content-visibility: auto;
+  contain-intrinsic-size: 960px;
 
   code {
     &:not(pre code) {
@@ -248,7 +253,7 @@ article {
   }
 
   img {
-    display: flex;
+    display: block;
     margin: 1rem auto;
     border-radius: 0.4rem;
     max-width: 100%;
@@ -263,7 +268,6 @@ article {
   video {
     max-width: 100%;
     height: auto;
-    contain: paint;
   }
 
   audio {
@@ -308,6 +312,7 @@ article {
 
 .compact-container {
   display: none;
+  contain: paint;
 
   @media (max-width: var.$breakpoint-ui-wide) {
     position: fixed;
@@ -326,5 +331,5 @@ article {
 }
 
 .hidden {
-    display: none;
+  display: none;
 }

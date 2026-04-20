@@ -25,8 +25,9 @@ $toc-inline-offset: 5rem !default;
   display: flex;
   right: 0;
   position: fixed;
-
   z-index: 30;
+
+  contain: paint;
 
   @media (max-width: var.$breakpoint-ui-wide) {
     right: .6rem;
