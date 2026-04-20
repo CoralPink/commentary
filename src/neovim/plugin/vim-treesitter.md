@@ -490,9 +490,9 @@ Jack の父[Captain Teague](https://en.wikipedia.org/wiki/List_of_Pirates_of_the
 </div>
 
 <div style="margin-top: 16em">
-That's out
+Let's shout
 
-ほらアウト
+さあ 声を上げろ
 </div>
 
 <div style="margin-top: 8em">
