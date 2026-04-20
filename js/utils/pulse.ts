@@ -1,10 +1,17 @@
 type PulseCallback = (deadline: IdleDeadline) => void;
 type Pulse = (cb: PulseCallback) => number;
 
-const LAYOUT_TIME = 0;
+type IdleTask = {
+  handle: number;
+  callback: IdleRequestCallback;
+};
+
+type IdleQueue = IdleTask[];
+
 const FRAME_BUDGET = 8;
 
-const queue: (() => void)[] = [];
+const jobQueue: (() => void)[] = [];
+
 let loopScheduled = false;
 
 /**
@@ -17,27 +24,32 @@ const emulateIdleCallback: (cb: IdleRequestCallback) => number = (() => {
   let id = 0;
 
   const channel = new MessageChannel();
-  const queue: Array<[number, IdleRequestCallback]> = [];
+  const idleQueue: IdleQueue = [];
 
   let scheduled = false;
 
   channel.port1.onmessage = () => {
-    const start = performance.now() + LAYOUT_TIME;
+    const start = performance.now();
+    const deadline = {
+      didTimeout: false,
+      timeRemaining: () => Math.max(0, FRAME_BUDGET - (performance.now() - start)),
+    };
 
-    while (queue.length > 0) {
-      const [_handle, cb] = queue.shift()!;
+    let index = 0;
 
-      cb({
-        didTimeout: false,
-        timeRemaining: () => Math.max(0, FRAME_BUDGET - (performance.now() - start)),
-      });
+    while (index < idleQueue.length && deadline.timeRemaining() > 0) {
+      const task = idleQueue[index++]!;
 
-      if (performance.now() - start >= FRAME_BUDGET) {
-        break;
+      try {
+        task.callback(deadline);
+      } catch (err: unknown) {
+        console.error('idleCallback: task threw an error', err);
       }
     }
 
-    if (queue.length > 0) {
+    idleQueue.splice(0, index);
+
+    if (idleQueue.length > 0) {
       requestAnimationFrame(() => {
         channel.port2.postMessage(0);
       });
@@ -48,7 +60,7 @@ const emulateIdleCallback: (cb: IdleRequestCallback) => number = (() => {
 
   return (callback: IdleRequestCallback): number => {
     const handle = ++id;
-    queue.push([handle, callback]);
+    idleQueue.push({ handle, callback });
 
     if (!scheduled) {
       scheduled = true;
@@ -103,10 +115,10 @@ const firstFramePulse: Pulse = cb => {
 let pulse: Pulse = firstFramePulse;
 
 const runLoop = (deadline: IdleDeadline): void => {
-  let time = deadline.timeRemaining();
+  let index = 0;
 
-  while (time > 0 && queue.length > 0) {
-    const job = queue.shift()!;
+  while (index < jobQueue.length && deadline.timeRemaining() > 0) {
+    const job = jobQueue[index++]!;
 
     try {
       job();
@@ -114,10 +126,11 @@ const runLoop = (deadline: IdleDeadline): void => {
       // Keep the scheduler alive even if one job misbehaves.
       console.error('pulse: job threw an error', err);
     }
-    time = deadline.timeRemaining();
   }
 
-  if (queue.length === 0) {
+  jobQueue.splice(0, index);
+
+  if (jobQueue.length === 0) {
     loopScheduled = false;
     return;
   }
@@ -125,7 +138,7 @@ const runLoop = (deadline: IdleDeadline): void => {
 };
 
 export const scheduleJob = (job: () => void): void => {
-  queue.push(job);
+  jobQueue.push(job);
 
   if (loopScheduled) {
     return;
@@ -162,6 +175,6 @@ export const processChunked = <T>(items: ReadonlyArray<T>, each: (x: T) => void)
 export const prepareForNextCycle = (): void => {
   pulse = firstFramePulse;
 
-  queue.length = 0;
+  jobQueue.length = 0;
   loopScheduled = false;
 };
