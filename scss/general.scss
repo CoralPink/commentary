@@ -205,7 +205,6 @@ body {
 main {
   min-width: 0;
   margin: 0 0.8rem;
-  contain: paint;
 
   @media (max-width: var.$breakpoint-ui-wide) {
     margin: 1.6rem 0.8rem;
@@ -221,9 +220,6 @@ article {
   overflow-x: clip;
 
   scroll-margin-top: var.$menu-bar-height;
-
-  content-visibility: auto;
-  contain-intrinsic-size: 960px;
 
   code {
     &:not(pre code) {
