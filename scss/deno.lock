@@ -1,28 +1,7 @@
 {
   "version": "5",
   "specifiers": {
-    "jsr:@std/fs@1.0.23": "1.0.23",
-    "jsr:@std/internal@^1.0.12": "1.0.12",
-    "jsr:@std/path@^1.1.4": "1.1.4",
     "npm:sass@1.99.0": "1.99.0"
-  },
-  "jsr": {
-    "@std/fs@1.0.23": {
-      "integrity": "3ecbae4ce4fee03b180fa710caff36bb5adb66631c46a6460aaad49515565a37",
-      "dependencies": [
-        "jsr:@std/internal",
-        "jsr:@std/path"
-      ]
-    },
-    "@std/internal@1.0.12": {
-      "integrity": "972a634fd5bc34b242024402972cd5143eac68d8dffaca5eaa4dba30ce17b027"
-    },
-    "@std/path@1.1.4": {
-      "integrity": "1d2d43f39efb1b42f0b1882a25486647cb851481862dc7313390b2bb044314b5",
-      "dependencies": [
-        "jsr:@std/internal"
-      ]
-    }
   },
   "npm": {
     "@parcel/watcher-android-arm64@2.5.6": {
