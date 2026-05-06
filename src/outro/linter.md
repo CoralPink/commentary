@@ -271,6 +271,22 @@ Pink, brown, yellow, orange and blue
 I love you!
 ```
 
+<video preload="none" width="1280" height="720" data-poster="img/L-O-V-E-thumbnail.webp">
+  <source src="img/L-O-V-E.webm" type="video/webm">
+  Your browser does not support the video/webm.
+</video>
+
+All Together Now とは別の楽曲{{footnote:
+L-O-V-E (by [Nat King Cole](https://en.wikipedia.org/wiki/Nat_King_Cole)):
+[Bert Kaempfert](https://en.wikipedia.org/wiki/Bert_Kaempfert)と
+[Milt Gabler](https://en.wikipedia.org/wiki/Milt_Gabler)によって作曲され、
+Nat King Cole が 1965年のスタジオ・アルバム "L-O-V-E" のために録音した楽曲である。
+
+"L-O-V-E" アルバムの海外版向けに、Nat King Coleは "L-O-V-E" をはじめとする楽曲の日本語版 (英語歌詞とのミックス)、
+イタリア語版、ドイツ語版、スペイン語版、フランス語版も録音した。
+フランス語版では、曲名は "Je Ne Repartirai Pas" と改題され、Jean Delleme によって翻訳された。
+}}だけど、イイもんはイイで良いじゃない🍑
+
 ## All Together Now
 
 ということで、`Linter`のおはなしでした😆
