@@ -76,22 +76,52 @@ Harrison は [Cream](https://en.wikipedia.org/wiki/Cream_(band)) のレコーデ
 
 ```admonish note
 駅北口のバスロータリーの真ん中に "象の銅像" がありますが、
-あの[はな子](https://ja.wikipedia.org/wiki/はな子)🐘 がいたのもここです😇
+あの はな子🐘{{footnote:
+はな子は、東京都台東区の[上野動物園](https://ja.wikipedia.org/wiki/恩賜上野動物園)と
+東京都武蔵野市の[井の頭自然文化園](https://ja.wikipedia.org/wiki/井の頭自然文化園)で飼育されていたメスの[アジアゾウ](https://ja.wikipedia.org/wiki/アジアゾウ)である。
+
+[第二次大戦](https://en.wikipedia.org/wiki/World_War_II)後に初めて日本にやって来たゾウであり、
+2013年1月に 66歳でアジアゾウの国内最高齢記録を更新し、日本で飼育された中で最も長寿のゾウとなった。
+
+1947年春頃に[タイ王国](https://ja.wikipedia.org/wiki/タイ王国)にて生まれた。
+タイでの名前は คชา (カチャー）。日本にやって来る前はバンコクの農園で暮らしていた。
+
+元タイ国軍事顧問で実業家の[สมหวัง สารสาส](https://th.wikipedia.org/wiki/สมหวัง_สารสาส)(ソムアン・サラサス)が、
+"戦争で傷ついた子どもたちの心をいやそう" と私財を投じて発起人となり、日本に贈られることとなった。
+
+はな子の死後、[武蔵野市](https://ja.wikipedia.org/wiki/武蔵野市)が銅像設置のための募金を募り、
+同市出身の美術家・笛田亜希により9カ月かけて制作。
+
+2017年5月5日、[吉祥寺駅](https://ja.wikipedia.org/wiki/吉祥寺駅)前北口広場に銅像が完成し、除幕式が行われた。
+以後、はな子の銅像は吉祥寺駅前の待ち合わせ場所として親しまれている。
+[Wikipedia](https://ja.wikipedia.org/wiki/はな子)より
+}}がいたのもここです😇
+
+![hanako](img/hanako.webp)
 ```
 
-![inokashira-bird](img/inokashira-bird.webp)
+<div class="slider">
+  <div class="media">
+    <video preload="none" width="1280" height="720" data-poster="img/the-shes-gone-thumbnail.webp">
+      <source src="img/the-shes-gone.webm" type="video/webm">
+      Your browser does not support the video/webm.
+    </video>
+    <video preload="none" width="1280" height="720" data-poster="img/musashino-gakudan-thumbnail.webp">
+      <source src="img/musashino-gakudan.webm" type="video/webm">
+      Your browser does not support the video/webm.
+    </video>
+    <div>
+      ![band-sounds](img/band-sounds.webp)
+      <audio controls preload="none">
+        <source src="audio/band-sounds.mp3">
+      </audio>
+    </div>
+  </div>
+</div>
 
-鳥さんも羽休めに来るぐらいだし🐦‍⬛
+鳥さんも羽休め🐦‍⬛ に来るんだし、こんなにも HAPPY✨ な演奏にも巡り会えるし🎻
 
-こんなに HAPPY✨ な演奏にも巡り会えるし🎻
-
-![band-sounds](img/band-sounds.webp)
-
-<audio controls preload="none">
-  <source src="audio/band-sounds.mp3">
-</audio>
-
-ほらね、吉祥寺に「ないものは無い」のです🥰
+ほらね、吉祥寺に "ないものは無い" のです🥰
 
 わたしも大好きなばしょです😄
 
@@ -244,6 +274,8 @@ font = require("wezterm").font("Firge35Nerd Console"),
 「ダウンロードしたフォントはインストールしないと使えないぞ❗❗」
 ```
 
+![asagaya-shinmeiguu](img/asagaya-shinmeiguu.webp)
+
 ##### 🪺 nerd-fonts
 
 `nerd-fonts`は`WezTerm`に含まれているので特に設定はいらないんだけど、
@@ -252,7 +284,6 @@ font = require("wezterm").font("Firge35Nerd Console"),
 2024/04/17 時点では`FirgeNerd`・`WezTerm`のどちらよりも、
 本家の`nerd-fonts`のバージョンはだいぶ進んでいて、
 新しいアイコンも続々と増えているので、定期的に確認してみるのも楽しいと思います😆
-
 
 ```admonish note
 2025/02/10 に`WezTerm`本体に含まれる`nerd-fonts`が`v3.3.0`にアップデートされたそうです❗
@@ -296,6 +327,14 @@ Fira Code: プログラミング合字のフリー等幅フォント
 これだけだと "漢字・ひらがな・カタカナ" がイマイチに戻っちゃうので、日本語に対応したフォントも用意しましょう。
 
 わたしは`macOS`に標準で入っている`ヒラギノ角ゴシック`を使っているので、ここでは特に示せる手順がありません😅
+
+<div class="slider">
+  <div class="media">
+    ![kanda-myoujin1](img/kanda-myoujin1.webp)
+    ![kanda-myoujin2](img/kanda-myoujin2.webp)
+    ![akari-chan](img/akari-chan.webp)
+  </div>
+</div>
 
 #### 🐣 font_with_fall_back
 
@@ -558,10 +597,7 @@ No one alerted you
 ### 🎸 Still, my guitar gently weeps
 
 ```admonish success title=""
-見るに見兼ねてなのか、なんかもう自分が「耐えられまへん」なのかもしれないんだけど、
-縁あって再登場だ。{{footnote:
-2024/08 追記。
-}}
+見るに見兼ねてなのか、なんかもう自分が「耐えられまへん」なのかもしれないんだけど、縁あって再登場だ。(2024/08 追記)
 
 > When you’re through with life
 >
@@ -776,7 +812,11 @@ Always made me feel so free
 いつだって 僕を 自由な気持ちにさせてくれていたのに
 </div>
 
-<div style="margin-top: 12em">
+<div style="margin-top: 4em"></div>
+
+![inokashira-bird](img/inokashira-bird.webp)
+
+<div style="margin-top: 4em">
 Free as a bird
 </div>
 
