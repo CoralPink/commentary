@@ -1,10 +1,23 @@
 {
   "version": "5",
   "specifiers": {
+    "jsr:@std/internal@^1.0.12": "1.0.13",
+    "jsr:@std/path@1.1.4": "1.1.4",
     "npm:cheerio@1.2.0": "1.2.0",
     "npm:js-beautify@1.15.4": "1.15.4",
-    "npm:jsdom@29.0.2": "29.0.2",
+    "npm:jsdom@29.1.1": "29.1.1",
     "npm:p-limit@7.3.0": "7.3.0"
+  },
+  "jsr": {
+    "@std/internal@1.0.13": {
+      "integrity": "2f9546691d4ac2d32859c82dff284aaeac980ddeca38430d07941e7e288725c0"
+    },
+    "@std/path@1.1.4": {
+      "integrity": "1d2d43f39efb1b42f0b1882a25486647cb851481862dc7313390b2bb044314b5",
+      "dependencies": [
+        "jsr:@std/internal"
+      ]
+    }
   },
   "npm": {
     "@asamuzakjp/css-color@5.1.11": {
@@ -356,8 +369,8 @@
     "js-cookie@3.0.5": {
       "integrity": "sha512-cEiJEAEoIbWfCZYKWhVwFuvPX1gETRYPw6LlaTKoxD3s2AkXzkCjnp6h0V77ozyqj0jakteJ4YqDJT830+lVGw=="
     },
-    "jsdom@29.0.2": {
-      "integrity": "sha512-9VnGEBosc/ZpwyOsJBCQ/3I5p7Q5ngOY14a9bf5btenAORmZfDse1ZEheMiWcJ3h81+Fv7HmJFdS0szo/waF2w==",
+    "jsdom@29.1.1": {
+      "integrity": "sha512-ECi4Fi2f7BdJtUKTflYRTiaMxIB0O6zfR1fX0GXpUrf6flp8QIYn1UT20YQqdSOfk2dfkCwS8LAFoJDEppNK5Q==",
       "dependencies": [
         "@asamuzakjp/css-color",
         "@asamuzakjp/dom-selector",
@@ -525,11 +538,11 @@
     "symbol-tree@3.2.4": {
       "integrity": "sha512-9QNk5KwDF+Bvz+PyObkmSYjI5ksVUYtjW7AU22r2NKcfLJcXp96hkDWU3+XndOsUb+AQ9QhfzfCT2O+CNWT5Tw=="
     },
-    "tldts-core@7.0.30": {
-      "integrity": "sha512-uiHN8PIB1VmWyS98eZYja4xzlYqeFZVjb4OuYlJQnZAuJhMw4PbKQOKgHKhBdJR3FE/t5mUQ1Kd80++B+qhD1Q=="
+    "tldts-core@7.0.29": {
+      "integrity": "sha512-W99NuU7b1DcG3uJ3v9k9VztCH3WialNbBkBft5wCs8V8mexu0XQqaZEYb9l9RNNzK8+3EJ9PKWB0/RUtTQ/o+Q=="
     },
-    "tldts@7.0.30": {
-      "integrity": "sha512-ELrFxuqsDdHUwoh0XxDbxuLD3Wnz49Z57IFvTtvWy1hJdcMZjXLIuonjilCiWHlT2GbE4Wlv1wKVTzDFnXH1aw==",
+    "tldts@7.0.29": {
+      "integrity": "sha512-JIXCerhudr/N6OWLwLF1HVsTTUo7ry6qHa5eWZEkiMuxsIiAACL55tGLfqfHfoH7QaMQUW8fngD7u7TxWexYQg==",
       "dependencies": [
         "tldts-core"
       ],
@@ -618,7 +631,7 @@
       "jsr:@std/path@1.1.4",
       "npm:cheerio@1.2.0",
       "npm:js-beautify@1.15.4",
-      "npm:jsdom@29.0.2",
+      "npm:jsdom@29.1.1",
       "npm:p-limit@7.3.0"
     ]
   }
