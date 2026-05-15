@@ -7,10 +7,25 @@
 個人でやってる趣味 (暇つぶしとも言う😅) にしては、なかなか身に余る光栄です。
 
 ```admonish danger title=""
-やあ やあ やあ！
+やあ やあ やあ！{{footnote: the shes gone は、
+東京の[吉祥寺](https://ja.wikipedia.org/wiki/吉祥寺)にて2016年5月に結成した日本のロックバンド。
+「僕らの歌があなたの日常に寄り添えますように」をテーマに、聴く人の街の景色、日常を思わせるような歌詞を、
+兼丸の歌とメンバーの演奏で表現。略称はシズゴ。[Wikipedia](https://ja.wikipedia.org/wiki/The_shes_gone)より
+}}
 
-祭りだ 祭りだ！
+祭りだ 祭りだ！{{footnote: 吉祥寺音楽祭は、
+東京都武蔵野市吉祥寺で毎年[ゴールデンウィーク](https://ja.wikipedia.org/wiki/ゴールデンウィーク)に開催される音楽イベント。
+
+"今を生きよう。古きを忘れるな。新しいものを生み出せ" というキャッチコピーのもと、
+音楽を通して、過去と今を繋ぎ、未来へのメッセージを発信する、創造と文化のお祭りです。
+[Wikipedia](https://ja.wikipedia.org/wiki/吉祥寺音楽祭)より
+}}
 ```
+
+<video preload="none" width="1280" height="720" data-poster="img/amai-kioku-thumbnail.webp">
+  <source src="img/amai-kioku.webm" type="video/webm">
+  Your browser does not support the video/webm.
+</video>
 
 舟を出せ❗いざ鬼退治❗❗
 
@@ -556,7 +571,6 @@ vim.lsp.enable(manual_lsp)
 これすなわち "This event was shot on iPhone and edited on Mac." というオチ。おあとがよろしいようで 🙇‍♀️
 }}は続きます🐦‍🔥
 
-
 <div class="slider">
   <div class="media">
     <video preload="none" width="1280" height="720" data-poster="img/fukuro-festival-thumbnail.webp">
@@ -737,7 +751,7 @@ vim.filetype.add({
 
 ...違うの⁉️
 
-```admonish success
+```admonish success title=""
 So, let's get the party started!
 ```
 
@@ -790,3 +804,7 @@ MVP とは、俺のことだ！！
     </video>
   </div>
 </div>
+
+```admonish success
+目指すは めでたしドーンとハッピーエンド！
+```

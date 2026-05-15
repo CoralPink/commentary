@@ -78,16 +78,17 @@ Harrison は [Cream](https://en.wikipedia.org/wiki/Cream_(band)) のレコーデ
 駅北口のバスロータリーの真ん中に "象の銅像" がありますが、
 あの はな子🐘{{footnote:
 はな子は、東京都台東区の[上野動物園](https://ja.wikipedia.org/wiki/恩賜上野動物園)と
-東京都武蔵野市の[井の頭自然文化園](https://ja.wikipedia.org/wiki/井の頭自然文化園)で飼育されていたメスの[アジアゾウ](https://ja.wikipedia.org/wiki/アジアゾウ)である。
+東京都武蔵野市の[井の頭自然文化園](https://ja.wikipedia.org/wiki/井の頭自然文化園)で飼育されていた
+メスの[アジアゾウ](https://ja.wikipedia.org/wiki/アジアゾウ)である。
+
+1947年春頃に[タイ王国](https://ja.wikipedia.org/wiki/タイ王国)にて生まれた。
+タイでの名前は คชา (カチャー)。日本にやって来る前はバンコクの農園で暮らしていた。
+
+元タイ国軍事顧問で実業家の[สมหวัง สารสาส](https://th.wikipedia.org/wiki/สมหวัง_สารสาส)(ソムアン・サラサス)が、
+"戦争で傷ついた子どもたちの心を癒そう" と私財を投じて発起人となり、日本に贈られることとなった。
 
 [第二次大戦](https://en.wikipedia.org/wiki/World_War_II)後に初めて日本にやって来たゾウであり、
 2013年1月に 66歳でアジアゾウの国内最高齢記録を更新し、日本で飼育された中で最も長寿のゾウとなった。
-
-1947年春頃に[タイ王国](https://ja.wikipedia.org/wiki/タイ王国)にて生まれた。
-タイでの名前は คชา (カチャー）。日本にやって来る前はバンコクの農園で暮らしていた。
-
-元タイ国軍事顧問で実業家の[สมหวัง สารสาส](https://th.wikipedia.org/wiki/สมหวัง_สารสาส)(ソムアン・サラサス)が、
-"戦争で傷ついた子どもたちの心をいやそう" と私財を投じて発起人となり、日本に贈られることとなった。
 
 はな子の死後、[武蔵野市](https://ja.wikipedia.org/wiki/武蔵野市)が銅像設置のための募金を募り、
 同市出身の美術家・笛田亜希により9カ月かけて制作。
@@ -102,8 +103,8 @@ Harrison は [Cream](https://en.wikipedia.org/wiki/Cream_(band)) のレコーデ
 
 <div class="slider">
   <div class="media">
-    <video preload="none" width="1280" height="720" data-poster="img/the-shes-gone-thumbnail.webp">
-      <source src="img/the-shes-gone.webm" type="video/webm">
+    <video preload="none" width="1280" height="720" data-poster="img/lavender-thumbnail.webp">
+      <source src="img/lavender.webm" type="video/webm">
       Your browser does not support the video/webm.
     </video>
     <video preload="none" width="1280" height="720" data-poster="img/musashino-gakudan-thumbnail.webp">
