@@ -31,6 +31,10 @@ class Slider {
   private index = 0;
 
   private handleIntersect = (entries: IntersectionObserverEntry[]) => {
+    if (document.fullscreenElement) {
+      return;
+    }
+
     for (const entry of entries) {
       if (entry.isIntersecting) {
         this.goTo(this.medias.indexOf(entry.target as CompatibleMedia));
@@ -149,6 +153,10 @@ class Slider {
   }
 
   private scrollTo(next: number): void {
+    if (document.fullscreenElement) {
+      return;
+    }
+
     const len = this.medias.length;
     const idx = ((next % len) + len) % len; // Index values are looped.
 
@@ -156,6 +164,7 @@ class Slider {
       console.error(`scrollTo: The index ${idx} is invalid`);
       return;
     }
+
     this.medias[idx].scrollIntoView(SCROLL_INTO_VIEW_OPTIONS);
   }
 
@@ -185,7 +194,10 @@ class Slider {
     // so it is copied from the data poster attributes. (...It's not pretty, but.)
     video.poster = video.dataset['poster' as keyof DOMStringMap] || video.poster || '';
 
-    video.addEventListener('ended', this.toNext);
+    video.addEventListener('ended', this.toNext, {
+      once: false,
+      passive: true,
+    });
   }
 
   private unsetVideo(video: HTMLVideoElement): void {
