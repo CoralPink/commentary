@@ -295,6 +295,8 @@ use {
 今後の動向を気にかけておく必要はあるかも。
 ```
 
+![yurakucho-mullion](img/yurakucho-mullion.webp)
+
 ## CheckHealth
 
 ```admonish info title="[chechkhealth](https://github.com/nvim-telescope/telescope.nvim#checkhealth)"
@@ -332,6 +334,8 @@ Telescope の使用方法と設定方法を理解することができます。
 ![telescope-che](img/telescope-che-ok.webp)
 
 ほら❗オールグリーン✨
+
+![This is the way.](img/this_is_the_way.webp)
 
 ```admonish tip
 `fzf`を知っている人に向けて書くと、少なくともここに出てくる`fzf`は`telescope-fzf-native.nvim`の事なので、
@@ -372,3 +376,5 @@ Telescope の使用方法と設定方法を理解することができます。
 
 偶然もチャンスに換える 生き方が好きよ
 ```
+
+![nebuta](img/nebuta.webp)

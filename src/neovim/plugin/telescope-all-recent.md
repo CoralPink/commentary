@@ -136,7 +136,7 @@ sudo dnf install sqlite libsqlite3x-devel
 ~~~
 
 ちょっと怖いけど😣{{footnote:
-([前ページから続く](telescope-config.html#to-ft-1))
+([前ページから続く](telescope-config.html#ft-1))
 もう一方は[Sith](https://en.wikipedia.org/wiki/Sith)。
 怒り・恐怖・攻撃性を糧に "Dark side (暗黒面)" を操る者たちである。
 Jedi が多数存在するのに対し、Sith は常に "師匠と弟子の二人" に限定されるのが原則とされる。
