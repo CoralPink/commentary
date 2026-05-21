@@ -1,6 +1,6 @@
 declare const self: ServiceWorkerGlobalScope;
 
-const CACHE_VERSION = 'v11.1.3';
+const CACHE_VERSION = 'v11.1.4';
 
 const CACHE_URL = '/commentary/';
 const FALLBACK_IMAGE = 'favicon.png';
@@ -65,7 +65,7 @@ self.addEventListener('install', (event: ExtendableEvent): void => {
       }
       const cache = await caches.open(CACHE_VERSION);
 
-      await Promise.allSettled(
+      await Promise.all(
         installList.map(path =>
           cache.add(CACHE_URL + path).catch(e => {
             console.warn('Precache failed:', path, e);
