@@ -23,7 +23,7 @@ codegen-units = 1
 panic = "abort"
 
 [dependencies]
-bumpalo = { version = "=3.20.2", features = ["collections"] }
+bumpalo = { version = "=3.20.3", features = ["collections"] }
 getset = "=0.1.6"
 itoa = "=1.0.18"
 js-sys = "=0.3.98"
