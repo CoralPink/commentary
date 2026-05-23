@@ -4,46 +4,28 @@ import { JSDOM } from 'jsdom';
 import { join } from 'path';
 import pLimit from 'p-limit';
 
-const LinkKind = {
-  External: 'external',
-  Native: 'native',
-  Internal: 'internal',
-  Undefined: 'undefined',
-} as const;
-
-type LinkKind = (typeof LinkKind)[keyof typeof LinkKind];
-
 const LIMIT_CONCURRENT = 8;
 const limit = pLimit(LIMIT_CONCURRENT);
 
 const tasks: Promise<void>[] = [];
 
-const isRelativePath = (s: string): boolean => s.startsWith('.') || s.startsWith('/');
-const isHttpProtocol = (s: URL): boolean => s.protocol === 'http:' || s.protocol === 'https:';
 const isEndsWithHtml = (s: string): boolean => s.endsWith('.html');
 
-const getLinkKind = (elm: HTMLAnchorElement): LinkKind => {
+const isExternalLink = (elm: HTMLAnchorElement): boolean => {
   const rawHref = elm.getAttribute('href');
 
   if (!rawHref) {
-    return LinkKind.Undefined;
-  }
-  if (rawHref.startsWith('#')) {
-    return LinkKind.Native;
-  }
-  if (isRelativePath(rawHref)) {
-    return LinkKind.Internal;
+    return false;
   }
 
   try {
-    const url = new URL(rawHref);
-    return isHttpProtocol(url) ? LinkKind.External : LinkKind.Native;
+    const url = new URL(rawHref, g.rootPath);
+
+    return url.origin !== new URL(g.rootPath).origin;
   } catch {
-    return LinkKind.Undefined;
+    return false;
   }
 };
-
-const isExternalLink = (elm: HTMLAnchorElement): boolean => getLinkKind(elm) === LinkKind.External;
 
 const externalLinkProc = (elm: HTMLAnchorElement): void => {
   elm.setAttribute('target', '_blank');
@@ -108,5 +90,5 @@ const processDir = async (currentDir: string): Promise<void> => {
 
   console.info(`${g.CLR_BG}✔ ${g.CLR_BC}link${g.CLR_RESET} Finished in ${g.CLR_BG}${time} s${g.CLR_RESET}`);
   console.info(` ${g.CLR_G}INFO${g.CLR_RESET} Build mode: ${g.isDebug ? 'debug' : 'production'}`);
-  console.info(` ${g.CLR_G}INFO${g.CLR_RESET} rootPath = ${g.rootPath}\n`);
+  console.info(` ${g.CLR_G}INFO${g.CLR_RESET} rootPath = ${g.rootPath}`);
 })();
