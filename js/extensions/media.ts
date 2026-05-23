@@ -7,89 +7,20 @@ import { loadStyleSheet } from '../utils/css-loader.ts';
 
 const STYLE_PLYR = 'css/plyr.css';
 
-const VIDEO_REQUIRED_BUFFER = 1.0;
 const VIDEO_RESTART_OFFSET = 0.2;
 
 let loadStyleSheetPromise: ReturnType<typeof loadStyleSheet> | undefined;
 
 const plyrInstances: Plyr[] = [];
 
-const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-
 const onVideoEnded = (ev: Event): void => {
   (ev.currentTarget as HTMLVideoElement).currentTime = VIDEO_RESTART_OFFSET;
-};
-
-const getBufferedGap = (video: HTMLVideoElement): number => {
-  const buffered = video.buffered;
-  const t = video.currentTime;
-
-  for (let i = 0; i < buffered.length; i++) {
-    if (t >= buffered.start(i) && t <= buffered.end(i)) {
-      return buffered.end(i) - t;
-    }
-  }
-
-  return 0;
-};
-
-const isSafeToPlay = (video: HTMLVideoElement): boolean =>
-  video.readyState >= HTMLMediaElement.HAVE_FUTURE_DATA && getBufferedGap(video) >= VIDEO_REQUIRED_BUFFER;
-
-const waitForSafePlay = (video: HTMLVideoElement): Promise<void> => {
-  const ac = new AbortController();
-
-  return new Promise(resolve => {
-    const check = () => {
-      if (!isSafeToPlay(video)) {
-        return;
-      }
-      ac.abort();
-      resolve();
-    };
-
-    video.addEventListener('timeupdate', check, {
-      once: false,
-      passive: true,
-      signal: ac.signal,
-    });
-
-    video.addEventListener('progress', check, {
-      once: false,
-      passive: true,
-      signal: ac.signal,
-    });
-  });
 };
 
 const setPlyr = async (video: HTMLVideoElement): Promise<void> => {
   await loadStyleSheetPromise;
 
-  const plyr = new Plyr(video);
-
-  // TODO: Efforts to Stabilize Video Playback in Safari.
-  if (isSafari) {
-    // If `preload=none` is set, pressing the `Picture-in-Picture` button before video playback begins will cause an error,
-    // so we dynamically rewrite the setting.
-    if (video.preload === 'none') {
-      video.preload = 'metadata';
-    }
-
-    // Set the playback start criteria for the first playback more flexibly, without using the `canplay` event.
-    plyr.once('play', async () => {
-      if (isSafeToPlay(video)) {
-        return;
-      }
-
-      // Stopping temporarily due to insufficient buffer space
-      video.pause();
-
-      await waitForSafePlay(video);
-      video.play();
-    });
-  }
-
-  plyrInstances.push(plyr);
+  plyrInstances.push(new Plyr(video));
 
   // Most of the videos on this site start with a fade-in,
   // so unless you intentionally shift the starting position, they are all black...!
