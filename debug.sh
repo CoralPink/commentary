@@ -46,7 +46,7 @@ popd
 
 SECONDS=0
 mdbook build --dest-dir commentary
-echo "\n\x1b[1;32m✔\x1b[0m \x1b[1;35mmdbook\x1b[0m Finished in \x1b[32m$SECONDS s\x1b[0m"
+echo "\x1b[1;32m✔\x1b[0m \x1b[1;35mmdbook\x1b[0m Finished in \x1b[32m$SECONDS s\x1b[0m\n"
 
 pushd commentary
 DEBUG=--debug deno task --config ../scripts/deno.jsonc regenerate
