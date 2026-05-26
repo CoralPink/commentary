@@ -24,6 +24,10 @@ Let me take you down
 
 ぼくも Strawberry Fields に行くところなんだ
 ```
+<video preload="none" width="1280" height="720" data-poster="img/grogu-thumbnail.webp">
+  <source src="img/grogu.webm" type="video/webm">
+  Your browser does not support the video/webm.
+</video>
 
 リポジトリは`nvimtools/none-ls`に移りましたが、パッケージ名は`null-ls`のままで進むそうです🤗
 
