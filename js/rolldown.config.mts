@@ -16,19 +16,20 @@ const ENTRIES = [
 
 const OUT_DIR = './dist';
 
+const fatalLevels = new Set(['warn', 'error']);
+
 const makeConfig = (input: string): RolldownOptions => ({
   input,
   output: {
     dir: OUT_DIR,
     minify: true,
   },
-  checks: { pluginTimings: false },
   onLog: (level: LogLevel, log: RollupLog, _defaultHandler: LogOrStringHandler): void => {
     console.log(log.message);
 
     // If you don't set it, the build seems to proceed without interruption even if warnings exist,
     // but I don't know the correct way to stop it...
-    if (level !== 'info' && level !== 'debug') {
+    if (fatalLevels.has(level)) {
       throw new Error(log.message);
     }
   },
