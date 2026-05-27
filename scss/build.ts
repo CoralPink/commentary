@@ -1,7 +1,7 @@
 import { ensureDir } from '@std/fs';
 
 import browserslist from 'browserslist';
-import { browserslistToTargets, transform } from 'lightningcss';
+import { browserslistToTargets, transform, type TransformResult } from 'lightningcss';
 import { compile } from 'sass';
 
 const CLR_RESET = '\x1b[0m';
@@ -16,15 +16,23 @@ const FILES = ['general', 'search', 'style', 'theme-list'];
 const THEME_DIR = 'catppuccin/';
 const THEME_FILES = ['au-lait', 'frappe', 'latte', 'macchiato', 'mocha'];
 
-const TARGET_VERSION = 'last 3 chrome version, last 3 firefox version, last 3 safari version';
+// biome-ignore format: keep browserslist readable
+const TARGET_VERSION = [
+  "last 3 chrome version",
+  "last 3 firefox version",
+  "last 3 safari version",
+].join(", ");
 
-const scss_to_css = input => {
+const encoder = new TextEncoder();
+const decoder = new TextDecoder();
+
+const compileScss = (input: string): Uint8Array<ArrayBuffer> => {
   const result = compile(input, { style: 'expanded' });
 
-  return new TextEncoder().encode(result.css);
+  return encoder.encode(result.css);
 };
 
-const optimize = (filename, code) =>
+const optimize = (filename: string, code: Uint8Array): TransformResult =>
   transform({
     filename,
     code,
@@ -32,22 +40,17 @@ const optimize = (filename, code) =>
     targets: browserslistToTargets(browserslist(TARGET_VERSION)),
   });
 
-const build = async(input, output) => {
-  // SCSS → CSS
-  const css = scss_to_css(input);
-
-  // CSS → optimized CSS
+const build = async (input: string, output: string): Promise<void> => {
+  const css = compileScss(input);
   const optimized = optimize(input, css);
 
-  await Deno.writeTextFile(`${OUT_DIR}${output}`, new TextDecoder().decode(optimized.code));
+  await Deno.writeTextFile(`${OUT_DIR}${output}`, decoder.decode(optimized.code));
 
   const fileName = output.padEnd(32, ' ');
-  const size = new TextEncoder().encode(optimized.code).length;
-
-  console.info(`[INFO]: ${CLR_BC}sass ${CLR_C}${fileName}${CLR_RESET} 🎁 ${size} bytes`);
+  console.info(`[INFO]: ${CLR_BC}sass ${CLR_C}${fileName}${CLR_RESET} 🎁 ${optimized.code.length} bytes`);
 };
 
-(async () => {
+(async (): Promise<void> => {
   const start = performance.now();
 
   await Promise.all([ensureDir(OUT_DIR), ensureDir(`${OUT_DIR}${THEME_DIR}`)]);
@@ -60,5 +63,5 @@ const build = async(input, output) => {
   await Promise.all(list.flatMap(x => x.files.map(file => build(`${x.dir}${file}.scss`, `${x.dir}${file}.css`))));
 
   const time = Math.floor(performance.now() - start) / 1000;
-  console.info(`${CLR_BG}✔ ${CLR_BC}sass${CLR_RESET} Finished in ${CLR_BG}${time} s${CLR_RESET}\n`);
+  console.info(`${CLR_BG}√ ${CLR_BC}sass${CLR_RESET} Finished in ${CLR_BG}${time} s${CLR_RESET}\n`);
 })();
