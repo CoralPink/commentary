@@ -1,6 +1,6 @@
 {
   "imports": {
-    "@std/fs": "jsr:@std/fs@1.0.23",
+    "@std/fs": "jsr:@std/fs@1.0.24",
     "browserslist": "npm:browserslist@4.28.2",
     "lightningcss": "npm:lightningcss@1.32.0",
     "sass": "npm:sass@1.100.0"
