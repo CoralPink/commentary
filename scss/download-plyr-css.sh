@@ -1,7 +1,8 @@
 #!/bin/bash
 set -euo pipefail
 
-PLYR_VERSION=$(jq -r '.imports.plyr' ../js/import_map.json | sed -E 's/^.*@([0-9]+\.[0-9]+\.[0-9]+)$/\1/')
+# TODO: Ideally, we should retrieve the version actually in use, but for now, we'll use a fixed value.
+PLYR_VERSION="3.8.4"
 
 echo "Fetching Plyr v${PLYR_VERSION} CSS..."
 
