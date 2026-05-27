@@ -1,6 +1,11 @@
 {
-  "importMap": "./import_map.json",
+  "imports": {
+    "@std/fs": "jsr:@std/fs@1.0.23",
+    "browserslist": "npm:browserslist@4.28.2",
+    "lightningcss": "npm:lightningcss@1.32.0",
+    "sass": "npm:sass@1.100.0"
+  },
   "tasks": {
-    "build": "deno run --allow-read --allow-write --allow-env --allow-ffi build.js"
+    "build": "deno run --allow-read --allow-write --allow-env --allow-ffi build.ts"
   }
 }
