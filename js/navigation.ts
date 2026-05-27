@@ -55,8 +55,7 @@ const applyNavigation = (ctx: NavigationContext, navigationType: string): void =
   });
 };
 
-// @ts-expect-error: deno-ts does not yet recognize the Navigation API.
-const navigateProc = (ev: NavigationNavigateEvent): void => {
+const navigateProc = (ev: NavigateEvent): void => {
   if (!ev.canIntercept || ev.downloadRequest !== null) {
     return;
   }
@@ -90,7 +89,6 @@ const navigateProc = (ev: NavigationNavigateEvent): void => {
   // The `theme color` startup process returns a promise, but you don't need to wait for it to complete.
   bootThemeColor();
 
-  // @ts-expect-error: deno-ts does not yet recognize the Navigation API.
   navigation.addEventListener('navigate', navigateProc, {
     once: false,
     passive: true,

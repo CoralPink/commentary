@@ -71,7 +71,6 @@ const jumpUrl = (): void => {
     updateMark();
   }
 
-  // @ts-expect-error: deno-ts does not yet recognize the Navigation API.
   navigation.navigate(url);
 
   requestAnimationFrame(() => {
