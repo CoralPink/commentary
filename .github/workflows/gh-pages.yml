@@ -119,7 +119,7 @@ jobs:
 
       - uses: taiki-e/install-action@13608cbb45b01feb47ef444ab1a42dc41ad56f1a #v2
         with:
-          tool: wasm-bindgen-cli
+          tool: wasm-bindgen-cli@0.2.122
 
       - name: Build Wasm
         working-directory: rs/wasm
@@ -134,8 +134,10 @@ jobs:
 
       - name: Install Binaryen
         run: |
-          curl -L https://github.com/WebAssembly/binaryen/releases/latest/download/binaryen-version_129-x86_64-linux.tar.gz \
-            | tar xz
+          curl -L https://github.com/WebAssembly/binaryen/releases/download/version_129/binaryen-version_129-x86_64-linux.tar.gz -o binaryen.tar.gz
+          curl -L https://github.com/WebAssembly/binaryen/releases/download/version_129/binaryen-version_129-x86_64-linux.tar.gz.sha256 -o binaryen.sha256
+          echo "$(cut -d' ' -f1 binaryen.sha256)  binaryen.tar.gz" | sha256sum -c -
+
           echo "$PWD/binaryen-version_129/bin" >> $GITHUB_PATH
 
       - name: Optimization Wasm
