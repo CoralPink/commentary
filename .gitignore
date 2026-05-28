@@ -9,7 +9,6 @@ js/coverage
 js/dist
 js/highlight.js
 js/wasm_book.js
-js/wasm_book.d.ts
 
 rs/mdbook-footnote/test/result.md
 
@@ -20,6 +19,7 @@ scss/dist
 
 *.tmp
 *.wasm
+*.d.ts
 
 src/*.js
 src/css
