@@ -87,7 +87,7 @@ jobs:
           sparse-checkout: |
             rs/wasm
 
-      - uses: actions-rust-lang/setup-rust-toolchain@v1
+      - uses: actions-rust-lang/setup-rust-toolchain@46268bd060767258de96ed93c1251119784f2ab6 #v1
         with:
           toolchain: stable
           target: wasm32-unknown-unknown
@@ -119,7 +119,7 @@ jobs:
 
       - uses: taiki-e/install-action@13608cbb45b01feb47ef444ab1a42dc41ad56f1a #v2
         with:
-          tool: wasm-bindgen-cli,binaryen
+          tool: wasm-bindgen-cli
 
       - name: Build Wasm
         working-directory: rs/wasm
@@ -131,6 +131,12 @@ jobs:
             ./target/wasm32-unknown-unknown/release/wasm_book.wasm \
             --target web \
             --out-dir pkg
+
+      - name: Install Binaryen
+        run: |
+          curl -L https://github.com/WebAssembly/binaryen/releases/latest/download/binaryen-version_129-x86_64-linux.tar.gz \
+            | tar xz
+          echo "$PWD/binaryen-version_129/bin" >> $GITHUB_PATH
 
       - name: Optimization Wasm
         working-directory: rs/wasm
