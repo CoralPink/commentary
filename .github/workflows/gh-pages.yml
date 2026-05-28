@@ -133,6 +133,10 @@ jobs:
             target/
           key: wasm-${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
 
+      - name: Add wasm target
+        run: |
+          rustup target add wasm32-unknown-unknown
+
       - name: Install Cargo
         if: steps.cache-cargo.outputs.cache-hit != 'true'
         run: |
