@@ -5,7 +5,8 @@ pushd rs/wasm
 RUSTFLAGS="-C target-feature=+simd128" \
   cargo build --release --target wasm32-unknown-unknown
 
-wasm-bindgen ./target/wasm32-unknown-unknown/release/wasm_book.wasm \
+wasm-bindgen \
+  ./target/wasm32-unknown-unknown/release/wasm_book.wasm \
   --target web \
   --out-dir pkg
 
@@ -17,6 +18,9 @@ wasm-opt ./pkg/wasm_book_bg.wasm \
   --strip-debug \
   --strip-producers \
   --strip-dwarf \
+  -o ./pkg/wasm_book_bg.opt.wasm
+
+mv ./pkg/wasm_book_bg.opt.wasm ./pkg/wasm_book_bg.wasm
 
 cp pkg/wasm_book.js ../../js
 cp pkg/wasm_book.d.ts ../../js

@@ -137,12 +137,17 @@ jobs:
         if: steps.cache-cargo.outputs.cache-hit != 'true'
         run: |
           cargo install wasm-bindgen-cli
-          cargo install wasm-pack
 
       - name: Build Wasm
         working-directory: rs/wasm
         run: |
-          wasm-pack build --target web
+          RUSTFLAGS="-C target-feature=+simd128" \
+            cargo build --release --target wasm32-unknown-unknown
+
+          wasm-bindgen \
+            ./target/wasm32-unknown-unknown/release/wasm_book.wasm \
+            --target web \
+            --out-dir pkg
 
       - name: Enable Homebrew
         run: |
@@ -155,13 +160,6 @@ jobs:
       - name: Optimization Wasm
         working-directory: rs/wasm
         run: |
-          RUSTFLAGS="-C target-feature=+simd128" \
-            cargo build --release --target wasm32-unknown-unknown
-
-          wasm-bindgen target/wasm32-unknown-unknown/release/wasm_book.wasm \
-            --target web \
-            --out-dir pkg
-
           wasm-opt ./pkg/wasm_book_bg.wasm \
             -O \
             --enable-simd \
@@ -170,6 +168,9 @@ jobs:
             --strip-debug \
             --strip-producers \
             --strip-dwarf \
+            -o ./pkg/wasm_book_bg.opt.wasm
+
+            mv ./pkg/wasm_book_bg.opt.wasm ./pkg/wasm_book_bg.wasm
 
       - name: Upload wasm_pkg
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
