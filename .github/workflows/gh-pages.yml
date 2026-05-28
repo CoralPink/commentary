@@ -87,23 +87,14 @@ jobs:
           sparse-checkout: |
             rs/wasm
 
-      - name: Cache Cargo
-        id: cache-cargo
-        uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5
+      - uses: actions-rust-lang/setup-rust-toolchain@v1
         with:
-          path: |
-            ~/.cargo/bin/
-            ~/.cargo/registry/index/
-            ~/.cargo/registry/cache/
-            ~/.cargo/git/db/
-            target/
-          key: wasm-${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+          toolchain: stable
+          target: wasm32-unknown-unknown
 
-      - name: Install Cargo
-        if: steps.cache-cargo.outputs.cache-hit != 'true'
-        run: |
-          cargo install wasm-bindgen-cli
-          cargo install wasm-pack
+      - uses: taiki-e/install-action@13608cbb45b01feb47ef444ab1a42dc41ad56f1a #v2
+        with:
+          tool: wasm-pack
 
       - name: Test Wasm
         working-directory: rs/wasm
@@ -121,26 +112,14 @@ jobs:
           sparse-checkout: |
             rs/wasm
 
-      - name: Cache Cargo
-        id: cache-cargo
-        uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5
+      - uses: actions-rust-lang/setup-rust-toolchain@46268bd060767258de96ed93c1251119784f2ab6 #v1
         with:
-          path: |
-            ~/.cargo/bin/
-            ~/.cargo/registry/index/
-            ~/.cargo/registry/cache/
-            ~/.cargo/git/db/
-            target/
-          key: wasm-${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+          toolchain: stable
+          target: wasm32-unknown-unknown
 
-      - name: Add wasm target
-        run: |
-          rustup target add wasm32-unknown-unknown
-
-      - name: Install Cargo
-        if: steps.cache-cargo.outputs.cache-hit != 'true'
-        run: |
-          cargo install wasm-bindgen-cli
+      - uses: taiki-e/install-action@13608cbb45b01feb47ef444ab1a42dc41ad56f1a #v2
+        with:
+          tool: wasm-bindgen-cli,binaryen
 
       - name: Build Wasm
         working-directory: rs/wasm
@@ -152,14 +131,6 @@ jobs:
             ./target/wasm32-unknown-unknown/release/wasm_book.wasm \
             --target web \
             --out-dir pkg
-
-      - name: Enable Homebrew
-        run: |
-          echo "PATH=/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:$PATH" >> $GITHUB_ENV
-
-      - name: Install binaryen
-        run: |
-          brew install binaryen
 
       - name: Optimization Wasm
         working-directory: rs/wasm
