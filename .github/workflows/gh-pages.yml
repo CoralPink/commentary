@@ -57,6 +57,7 @@ jobs:
         if: steps.check-cache.outputs.exact != 'true'
         run: |
           git lfs pull --include="src/**/*.webp,src/**/*.webm,src/**/*.mp3"
+
       - name: Synchronize Media Files
         if: steps.check-cache.outputs.exact != 'true'
         run: |
@@ -87,12 +88,14 @@ jobs:
           sparse-checkout: |
             rs/wasm
 
-      - uses: actions-rust-lang/setup-rust-toolchain@46268bd060767258de96ed93c1251119784f2ab6 #v1
+      - name: Setup Rust
+        uses: actions-rust-lang/setup-rust-toolchain@46268bd060767258de96ed93c1251119784f2ab6 #v1
         with:
           toolchain: stable
           target: wasm32-unknown-unknown
 
-      - uses: taiki-e/install-action@13608cbb45b01feb47ef444ab1a42dc41ad56f1a #v2
+      - name: Install Wasm Pack
+        uses: taiki-e/install-action@13608cbb45b01feb47ef444ab1a42dc41ad56f1a #v2
         with:
           tool: wasm-pack
 
@@ -112,12 +115,14 @@ jobs:
           sparse-checkout: |
             rs/wasm
 
-      - uses: actions-rust-lang/setup-rust-toolchain@46268bd060767258de96ed93c1251119784f2ab6 #v1
+      - name: Setup Rust
+        uses: actions-rust-lang/setup-rust-toolchain@46268bd060767258de96ed93c1251119784f2ab6 #v1
         with:
           toolchain: stable
           target: wasm32-unknown-unknown
 
-      - uses: taiki-e/install-action@13608cbb45b01feb47ef444ab1a42dc41ad56f1a #v2
+      - name: Install Wasm Bindgen
+        uses: taiki-e/install-action@13608cbb45b01feb47ef444ab1a42dc41ad56f1a #v2
         with:
           tool: wasm-bindgen-cli@0.2.122
 
