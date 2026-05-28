@@ -57,6 +57,7 @@ jobs:
         if: steps.check-cache.outputs.exact != 'true'
         run: |
           git lfs pull --include="src/**/*.webp,src/**/*.webm,src/**/*.mp3"
+
       - name: Synchronize Media Files
         if: steps.check-cache.outputs.exact != 'true'
         run: |
@@ -87,23 +88,16 @@ jobs:
           sparse-checkout: |
             rs/wasm
 
-      - name: Cache Cargo
-        id: cache-cargo
-        uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5
+      - name: Setup Rust
+        uses: actions-rust-lang/setup-rust-toolchain@46268bd060767258de96ed93c1251119784f2ab6 #v1
         with:
-          path: |
-            ~/.cargo/bin/
-            ~/.cargo/registry/index/
-            ~/.cargo/registry/cache/
-            ~/.cargo/git/db/
-            target/
-          key: wasm-${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+          toolchain: stable
+          target: wasm32-unknown-unknown
 
-      - name: Install Cargo
-        if: steps.cache-cargo.outputs.cache-hit != 'true'
-        run: |
-          cargo install wasm-bindgen-cli
-          cargo install wasm-pack
+      - name: Install Wasm Pack
+        uses: taiki-e/install-action@13608cbb45b01feb47ef444ab1a42dc41ad56f1a #v2
+        with:
+          tool: wasm-pack
 
       - name: Test Wasm
         working-directory: rs/wasm
@@ -121,26 +115,16 @@ jobs:
           sparse-checkout: |
             rs/wasm
 
-      - name: Cache Cargo
-        id: cache-cargo
-        uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5
+      - name: Setup Rust
+        uses: actions-rust-lang/setup-rust-toolchain@46268bd060767258de96ed93c1251119784f2ab6 #v1
         with:
-          path: |
-            ~/.cargo/bin/
-            ~/.cargo/registry/index/
-            ~/.cargo/registry/cache/
-            ~/.cargo/git/db/
-            target/
-          key: wasm-${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+          toolchain: stable
+          target: wasm32-unknown-unknown
 
-      - name: Add wasm target
-        run: |
-          rustup target add wasm32-unknown-unknown
-
-      - name: Install Cargo
-        if: steps.cache-cargo.outputs.cache-hit != 'true'
-        run: |
-          cargo install wasm-bindgen-cli
+      - name: Install Wasm Bindgen
+        uses: taiki-e/install-action@13608cbb45b01feb47ef444ab1a42dc41ad56f1a #v2
+        with:
+          tool: wasm-bindgen-cli@0.2.122
 
       - name: Build Wasm
         working-directory: rs/wasm
@@ -153,13 +137,14 @@ jobs:
             --target web \
             --out-dir pkg
 
-      - name: Enable Homebrew
+      - name: Install Binaryen
         run: |
-          echo "PATH=/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:$PATH" >> $GITHUB_ENV
+          curl -L https://github.com/WebAssembly/binaryen/releases/download/version_129/binaryen-version_129-x86_64-linux.tar.gz -o binaryen.tar.gz
+          curl -L https://github.com/WebAssembly/binaryen/releases/download/version_129/binaryen-version_129-x86_64-linux.tar.gz.sha256 -o binaryen.sha256
+          echo "$(cut -d' ' -f1 binaryen.sha256)  binaryen.tar.gz" | sha256sum -c -
 
-      - name: Install binaryen
-        run: |
-          brew install binaryen
+          tar xzf binaryen.tar.gz
+          echo "$PWD/binaryen-version_129/bin" >> $GITHUB_PATH
 
       - name: Optimization Wasm
         working-directory: rs/wasm
