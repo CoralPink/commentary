@@ -138,6 +138,7 @@ jobs:
           curl -L https://github.com/WebAssembly/binaryen/releases/download/version_129/binaryen-version_129-x86_64-linux.tar.gz.sha256 -o binaryen.sha256
           echo "$(cut -d' ' -f1 binaryen.sha256)  binaryen.tar.gz" | sha256sum -c -
 
+          tar xzf binaryen.tar.gz
           echo "$PWD/binaryen-version_129/bin" >> $GITHUB_PATH
 
       - name: Optimization Wasm
