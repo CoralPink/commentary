@@ -386,7 +386,7 @@ jobs:
     if: |
       github.event_name == 'push' &&
       github.ref == 'refs/heads/main' &&
-      needs.changes.outputs.source == 'true'
+      needs.changes.outputs.changes == 'true'
     runs-on: ubuntu-latest
     needs:
       - changes
