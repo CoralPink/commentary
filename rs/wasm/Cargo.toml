@@ -1,6 +1,6 @@
 [package]
 name = "wasm-book"
-version = "1.5.1"
+version = "1.5.2"
 authors = ["CoralPink <teqt6ytqt@mozmail.com>"]
 edition = "2024"
 rust-version = "1.88"
@@ -40,6 +40,3 @@ wasm-bindgen-test = "=0.3.72"
 
 [features]
 debug = ["macros/use-browser-console"]
-
-[package.metadata.wasm-pack.profile.release]
-wasm-opt = false
