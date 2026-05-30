@@ -2,8 +2,7 @@ set -eu
 
 pushd rs/wasm
 
-RUSTFLAGS="-C target-feature=+simd128" \
-  cargo build --release --target wasm32-unknown-unknown
+cargo build --release --target wasm32-unknown-unknown
 
 wasm-bindgen \
   ./target/wasm32-unknown-unknown/release/wasm_book.wasm \
