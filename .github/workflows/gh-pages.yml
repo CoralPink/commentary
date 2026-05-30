@@ -112,6 +112,7 @@ jobs:
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
         with:
           persist-credentials: false
+          fetch-depth: 1
           sparse-checkout: |
             rs/wasm
 
@@ -140,6 +141,7 @@ jobs:
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
         with:
           persist-credentials: false
+          fetch-depth: 1
           sparse-checkout: |
             rs/wasm
 
@@ -205,6 +207,7 @@ jobs:
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
         with:
           persist-credentials: false
+          fetch-depth: 1
           sparse-checkout: |
             js
 
@@ -247,6 +250,7 @@ jobs:
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
         with:
           persist-credentials: false
+          fetch-depth: 1
           sparse-checkout: |
             js
 
@@ -293,6 +297,7 @@ jobs:
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
         with:
           persist-credentials: false
+          fetch-depth: 1
           sparse-checkout: |
             js/package.json
             scss
@@ -329,6 +334,7 @@ jobs:
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
         with:
           persist-credentials: false
+          fetch-depth: 1
           sparse-checkout: |
             fonts
 
@@ -371,6 +377,7 @@ jobs:
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
         with:
           persist-credentials: false
+          fetch-depth: 1
           sparse-checkout: |
             rs/mdbook-footnote
 
@@ -412,8 +419,8 @@ jobs:
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
         with:
           persist-credentials: false
-          lfs: false # Make it clear (just in case) that lfs is not used in this step.
           fetch-depth: 1
+          lfs: false # Make it clear (just in case) that lfs is not used in this step.
           sparse-checkout: |
             book.toml
             rs/mdbook-footnote
