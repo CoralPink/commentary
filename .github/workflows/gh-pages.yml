@@ -21,6 +21,8 @@ jobs:
     steps:
       - name: Checkout the repo
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+        with:
+          persist-credentials: false
 
       - name: Check Sources
         uses: dorny/paths-filter@fbd0ab8f3e69293af611ebaee6363fc25e6d187d # v4
@@ -48,6 +50,7 @@ jobs:
       - name: Checkout the repo
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
         with:
+          persist-credentials: false
           lfs: false
           fetch-depth: 1
           sparse-checkout: |
@@ -108,6 +111,7 @@ jobs:
       - name: Checkout the repo
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
         with:
+          persist-credentials: false
           sparse-checkout: |
             rs/wasm
 
@@ -135,6 +139,7 @@ jobs:
       - name: Checkout the repo
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
         with:
+          persist-credentials: false
           sparse-checkout: |
             rs/wasm
 
@@ -200,6 +205,7 @@ jobs:
       - name: Checkout the repo
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
         with:
+          persist-credentials: false
           sparse-checkout: |
             js
 
@@ -241,6 +247,7 @@ jobs:
       - name: Checkout the repo
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
         with:
+          persist-credentials: false
           sparse-checkout: |
             js
 
@@ -286,6 +293,7 @@ jobs:
       - name: Checkout the repo
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
         with:
+          persist-credentials: false
           sparse-checkout: |
             js/package.json
             scss
@@ -321,6 +329,7 @@ jobs:
       - name: Checkout the repo
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
         with:
+          persist-credentials: false
           sparse-checkout: |
             fonts
 
@@ -362,6 +371,7 @@ jobs:
       - name: Checkout the repo
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
         with:
+          persist-credentials: false
           sparse-checkout: |
             rs/mdbook-footnote
 
@@ -402,6 +412,7 @@ jobs:
       - name: Checkout the repo
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
         with:
+          persist-credentials: false
           lfs: false # Make it clear (just in case) that lfs is not used in this step.
           fetch-depth: 1
           sparse-checkout: |
