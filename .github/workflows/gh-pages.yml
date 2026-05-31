@@ -14,7 +14,8 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  changes:
+  check-diff:
+    name: Check Differences
     runs-on: ubuntu-latest
     outputs:
       changes: ${{ steps.filter.outputs.source }}
@@ -299,7 +300,6 @@ jobs:
           persist-credentials: false
           fetch-depth: 1
           sparse-checkout: |
-            js/package.json
             scss
 
       - name: Setup Deno
@@ -402,14 +402,14 @@ jobs:
     if: |
       github.event_name == 'push' &&
       github.ref == 'refs/heads/main' &&
-      needs.changes.outputs.changes == 'true'
+      needs.check-diff.outputs.changes == 'true'
     runs-on: ubuntu-latest
     needs:
-      - changes
       - build-wasm
       - build-js
       - build-scss
       - cache-media-files
+      - check-diff
       - convert-woff2
       - test-mdbook-backend
     env:
@@ -541,10 +541,10 @@ jobs:
     if: |
       github.event_name == 'push' &&
       github.ref == 'refs/heads/main' &&
-      needs.changes.outputs.changes == 'true'
+      needs.check-diff.outputs.changes == 'true'
     runs-on: ubuntu-latest
     needs:
-      - changes
+      - check-diff
       - publish
     permissions:
       pages: write      # to deploy to Pages
