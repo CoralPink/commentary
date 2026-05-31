@@ -79,7 +79,7 @@ require('lualine').setup {
 
 で、これを反映させると、画面の上部に`Tabline`が表示されます。
 
-![lualine-tabline](img/lualine-tabline.webp)
+![lualine-tabline](img/lualine-tabline.avif)
 
 カスタマイズの内容は、前回の`sections`と全く同じフォーマットなので、イメージできますよね😉
 それぞれのセクションで使用するコンポーネントの指定と、あとはアイコン・カラーなんかを変えてます。
@@ -89,7 +89,7 @@ require('lualine').setup {
 ```admonish note
 これらはカスタマイズ前のデフォルトでも使われていました。
 
-![lualine-default](img/show-mode-false.webp)
+![lualine-default](img/show-mode-false.avif)
 
 ...が❗前回しれっと外してました😅 ここで晴れての復活です❗
 ```
@@ -169,7 +169,7 @@ If you have other plugins installed that keep track of branch info. lualine can 
 「わざわざ自分で計算しなくても、`gitsigns.nvim`に教えてもらえばいいよねー❗」っていうのが、
 `lualine.nvim`の [wiki](https://github.com/nvim-lualine/lualine.nvim/wiki) にある tips でした😆
 
-![lualine Part3](img/lualine-part3-complete.webp)
+![lualine Part3](img/lualine-part3-complete.avif)
 
 内部の処理的にも、きっと綺麗になっているはずです☺️
 
@@ -217,7 +217,7 @@ No one’s has. Your future is whatever you make it.
 ```
 
 ```admonish quote title=""
-<video preload="none" width="1280" height="720" data-poster="img/starry-starry-christmas-party-thumbnail.webp">
+<video preload="none" width="1280" height="720" data-poster="img/starry-starry-christmas-party-thumbnail.avif">
   <source src="img/starry-starry-christmas-party.webm" type="video/webm">
   Your browser does not support the video/webm.
 </video>
@@ -245,5 +245,5 @@ So make it a good one!!
 ```
 
 ```admonish quote title=""
-![banquet](img/banquet.webp)
+![banquet](img/banquet.avif)
 ```

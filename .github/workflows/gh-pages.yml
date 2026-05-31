@@ -60,7 +60,7 @@ jobs:
       - name: Set Cache Key
         id: set-cache-key
         run: |
-          echo "cache-key=media-${{ hashFiles('src/**/*.webp', 'src/**/*.webm', 'src/**/*.mp3') }}" >> $GITHUB_OUTPUT
+          echo "cache-key=media-${{ hashFiles('src/**/*.avif', 'src/**/*.webp', 'src/**/*.webm', 'src/**/*.mp3') }}" >> $GITHUB_OUTPUT
 
       - name: Restore Media Cache (allow partial match)
         id: cache-source
@@ -83,7 +83,7 @@ jobs:
       - name: Pull missing LFS files (on partial or miss)
         if: steps.check-cache.outputs.exact != 'true'
         run: |
-          git lfs pull --include="src/**/*.webp,src/**/*.webm,src/**/*.mp3"
+          git lfs pull --include="src/**/*.avif,src/**/*.webp,src/**/*.webm,src/**/*.mp3"
 
       - name: Synchronize Media Files
         if: steps.check-cache.outputs.exact != 'true'
@@ -92,6 +92,7 @@ jobs:
           mkdir -p tmp-media
           rsync -a --delete \
             --include='*/' \
+            --include='*.avif' \
             --include='*.webp' \
             --include='*.webm' \
             --include='*.mp3' \
@@ -438,7 +439,7 @@ jobs:
           fail-on-cache-miss: true
 
       - name: Remove LFS Pointer
-        run: find src -type f \( -name '*.webp' -o -name '*.webm' -o -name '*.mp3' \) -delete
+        run: find src -type f \( -name '*.avif' -o -name '*.webp' -o -name '*.webm' -o -name '*.mp3' \) -delete
 
       - name: Copy Cached Media Back
         run: |

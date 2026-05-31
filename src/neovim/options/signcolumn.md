@@ -63,11 +63,11 @@ vim.api.nvim_win_set_option(0, 'signcolumn', 'yes:1')
 ```
 ~~~
 
-![sign-yes](img/sign-yes.webp)
+![sign-yes](img/sign-yes.avif)
 
 `number`はこんな感じになります。
 
-![sign-number](img/sign-number.webp)
+![sign-number](img/sign-number.avif)
 
 上のスクリーンショットでは、`gitsigns.nvim`{{footnote:
 [https://github.com/lewis6991/gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)
@@ -82,7 +82,7 @@ vim.api.nvim_win_set_option(0, 'signcolumn', 'yes:1')
 まあこれくらいなら、なんか見た目的に面白いなーと思うんですが、
 `Untracked file`とか開くと行番号が全部隠れちゃうので、やっぱクセつよですよね...。
 
-![sign-number-untracked](img/sign-number-untracked.webp)
+![sign-number-untracked](img/sign-number-untracked.avif)
 
 ```admonish success
 次は、上のスクリーンショットで一足早く登場してしまった`wrap`を片付けちゃいます😌

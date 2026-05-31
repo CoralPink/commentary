@@ -140,7 +140,7 @@ I only send you my invitations
 ```
 ~~~
 
-![packer-not-loaded](img/packer-not-loaded.webp)
+![packer-not-loaded](img/packer-not-loaded.avif)
 
 少し見えにくいかもしれませんが、`(not loaded)`と表示されていますね😉
 
@@ -154,7 +154,7 @@ I only send you my invitations
 
 ってしてからもう一回確認してみましょう。
 
-![packer-loaded](img/packer-loaded.webp)
+![packer-loaded](img/packer-loaded.avif)
 
 `(not loaded)`の表示が消えました😆
 
@@ -337,7 +337,7 @@ cmp.setup {
 してからね❗
 ~~~
 
-![copilot-cmp](img/copilot-cmp.webp)
+![copilot-cmp](img/copilot-cmp.avif)
 
 中身が的確かどうかは別として、ちゃんと`Copilot`からの提案が挙げられています😉
 
@@ -367,24 +367,24 @@ I break down
 
 ってやっただけで...、
 
-![copilot-cmp1](img/copilot-cmp1.webp)
+![copilot-cmp1](img/copilot-cmp1.avif)
 
 エレガント❗
 
-![copilot-cmp2](img/copilot-cmp2.webp)
+![copilot-cmp2](img/copilot-cmp2.avif)
 
 ベリーエレガント❗❗
 
-![copilot-cmp3](img/copilot-cmp3.webp)
+![copilot-cmp3](img/copilot-cmp3.avif)
 
 エルルルルェ ガンンンンンンンヌャスッ❗❗❗💨
 
-![copilot-cmp4](img/copilot-cmp4.webp)
-![copilot-cmp5](img/copilot-cmp5.webp)
+![copilot-cmp4](img/copilot-cmp4.avif)
+![copilot-cmp5](img/copilot-cmp5.avif)
 
 なんかもうエレガントっていうか、怖いこの人たち...。
 
-![copilot-cmp6](img/copilot-cmp6.webp)
+![copilot-cmp6](img/copilot-cmp6.avif)
 
 ```admonish info title=""
 “It's kind of scary but exciting, because it's the future”
@@ -399,7 +399,7 @@ I break down
 
 ...だからね、こうしてみたらどうかな😆
 
-![copilot-cmp7](img/copilot-cmp7.webp)
+![copilot-cmp7](img/copilot-cmp7.avif)
 
 合計が`0`っていうケースも忘れないで😉
 

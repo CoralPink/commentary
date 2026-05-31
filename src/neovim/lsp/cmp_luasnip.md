@@ -161,7 +161,7 @@ mkdir snippets
 ```admonish note
 ここまでで、ファイル配置はこんな感じになります。
 
-![snip-dir](img/snip-dir.webp)
+![snip-dir](img/snip-dir.avif)
 ```
 
 ### paths
@@ -217,8 +217,8 @@ require('luasnip.loaders.from_vscode').lazy_load {
 
 |||
 |:---:|:---:|
-|**Step1.**|![snip-example1](img/snip-example1.webp)|
-|**Step2.**|![snip-example2](img/snip-example2.webp)|
+|**Step1.**|![snip-example1](img/snip-example1.avif)|
+|**Step2.**|![snip-example2](img/snip-example2.avif)|
 
 「これが`snippet`かぁ〜。」っていうのが伝わるといいな🥹 ...伝わったかな❓
 
@@ -263,15 +263,15 @@ Gonna come out now Ha-ha-ha
 
 <div class="slider">
   <div class="media">
-    <video preload="none" width="1280" height="720" data-poster="img/nya-shougi-ondo-thumbnail.webp">
+    <video preload="none" width="1280" height="720" data-poster="img/nya-shougi-ondo-thumbnail.avif">
       <source src="img/nya-shougi-ondo.webm" type="video/webm">
       Your browser does not support the video/webm.
     </video>
-    <video preload="none" width="1280" height="720" data-poster="img/tokyo-yakei-1a-thumbnail.webp">
+    <video preload="none" width="1280" height="720" data-poster="img/tokyo-yakei-1a-thumbnail.avif">
       <source src="img/tokyo-yakei-1a.webm" type="video/webm">
       Your browser does not support the video/webm.
     </video>
-    <video preload="none" width="1280" height="720" data-poster="img/tokyo-yakei-1b-thumbnail.webp">
+    <video preload="none" width="1280" height="720" data-poster="img/tokyo-yakei-1b-thumbnail.avif">
       <source src="img/tokyo-yakei-1b.webm" type="video/webm">
       Your browser does not support the video/webm.
     </video>
@@ -284,15 +284,15 @@ Wow look out! it's-
 
 <div class="slider">
   <div class="media">
-    <video preload="none" width="1280" height="720" data-poster="img/saitama-tokyo-thumbnail.webp">
+    <video preload="none" width="1280" height="720" data-poster="img/saitama-tokyo-thumbnail.avif">
       <source src="img/saitama-tokyo.webm" type="video/webm">
       Your browser does not support the video/webm.
     </video>
-    <video preload="none" width="1280" height="720" data-poster="img/tokyo-yakei-2a-thumbnail.webp">
+    <video preload="none" width="1280" height="720" data-poster="img/tokyo-yakei-2a-thumbnail.avif">
       <source src="img/tokyo-yakei-2a.webm" type="video/webm">
       Your browser does not support the video/webm.
     </video>
-    <video preload="none" width="1280" height="720" data-poster="img/tokyo-yakei-2b-thumbnail.webp">
+    <video preload="none" width="1280" height="720" data-poster="img/tokyo-yakei-2b-thumbnail.avif">
       <source src="img/tokyo-yakei-2b.webm" type="video/webm">
       Your browser does not support the video/webm.
     </video>

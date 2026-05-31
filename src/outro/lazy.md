@@ -151,7 +151,7 @@ require('extensions')
 rm -rf plugin
 ```
 
-![rm-packer_compiled](img/rm-packer_compiled.webp)
+![rm-packer_compiled](img/rm-packer_compiled.avif)
 ~~~
 
 ~~~admonish warning
@@ -184,7 +184,7 @@ cd ~/.local/share/nvim
 ```admonish warning
 もし`flatpak`使ってたりするとこんな path になるので❗
 
-![stdpath](img/stdpath.webp)
+![stdpath](img/stdpath.avif)
 ```
 
 で、このディレクトリを覗いてみると`site/pack/packer`ディレクトリが存在するはずなので、
@@ -196,7 +196,7 @@ cd ~/.local/share/nvim
 
 慎重を期すのであれば、ディレクトリ名を変えるだけでも良いです。
 
-![packer-temp](img/packer-temp.webp)
+![packer-temp](img/packer-temp.avif)
 ```
 
 まあ、こんなとこでしょう。
@@ -262,7 +262,7 @@ require("lazy").setup()
 
 これだけでもう、コマンドから`Lazy`を呼び出せるはずです❗
 
-![lazy-openn](img/lazy-open.webp)
+![lazy-openn](img/lazy-open.avif)
 
 ~~~admonish quote
 ```vim
@@ -278,7 +278,7 @@ Everybody seems to think I’m lazy
 みんな僕のことを怠け者だと思ってる
 ```
 
-![lazy-first](img/lazy-first.webp)
+![lazy-first](img/lazy-first.avif)
 
 初心に帰れる、やさしい毒🤤
 
@@ -303,7 +303,7 @@ I don’t mind, I think they’re crazy
 ```
 ~~~
 
-![lazy-checkhealth](img/lazy-checkhealth.webp)
+![lazy-checkhealth](img/lazy-checkhealth.avif)
 
 はい、オールグリーン😉
 

@@ -6,7 +6,7 @@
 
 (そして、終わったら消しておいてください...😅)
 
-![musicforest-foutain](img/musicforest-foutain.webp)
+![musicforest-foutain](img/musicforest-foutain.avif)
 
 ```admonish info title=""
 A dream is a wish your heart makes{{footnote:
@@ -48,7 +48,7 @@ end
 vim.keymap.set('n', '<Leader>3', testfunc)
 ```
 
-![call-function3](img/call-function3.webp)
+![call-function3](img/call-function3.avif)
 
 いい感じ〜❗
 
@@ -67,7 +67,7 @@ In dreams, you will lose your heartaches
 そこはもう夢の中、心の痛みなんてもうなくって
 ```
 
-![musicforest-doll](img/musicforest-doll.webp)
+![musicforest-doll](img/musicforest-doll.avif)
 
 ## Parameter
 
@@ -102,7 +102,7 @@ Whatever you wish for, you keep
 ```
 
 ```admonish warning title=""
-<video preload="none" width="1280" height="720" data-poster="img/musicforest-opera-thumbnail.webp">
+<video preload="none" width="1280" height="720" data-poster="img/musicforest-opera-thumbnail.avif">
   <source src="img/musicforest-opera.webm" type="video/webm">
   Your browser does not support the video/webm.
 </video>
@@ -135,7 +135,7 @@ vim.keymap.set('n', '<Leader>5', print(testret()))
 vim.keymap.set('n', '<Leader>5', function() print(testret()) end)
 ```
 
-![musicforest](img/musicforest.webp)
+![musicforest](img/musicforest.avif)
 
 ```admonish info title=""
 Have faith in your dreams and someday
@@ -169,7 +169,7 @@ vim.keymap.set('n', '<Leader>6', testfunc())
 ```
 ~~~
 
-![call-function4](img/call-function4.webp)
+![call-function4](img/call-function4.avif)
 
 `rhs: expected string|function, got nil`って言われちゃいます😩
 
@@ -221,7 +221,7 @@ If you keep on believing
 実際、わたしは割と感覚で書いています...😅
 
 ```admonish info title=""
-<video preload="none" width="1280" height="720" data-poster="img/musicforest-sandart-thumbnail.webp">
+<video preload="none" width="1280" height="720" data-poster="img/musicforest-sandart-thumbnail.avif">
   <source src="img/musicforest-sandart.webm" type="video/webm">
   Your browser does not support the video/webm.
 </video>
@@ -242,7 +242,7 @@ FUNCTION WILL RETURN
 
 ### It's A Small World
 
-<video preload="none" width="1280" height="720" data-poster="img/electorical_parade_dreamlights_part2-thumbnail.webp">
+<video preload="none" width="1280" height="720" data-poster="img/electorical_parade_dreamlights_part2-thumbnail.avif">
   <source src="img/electorical_parade_dreamlights_part2.webm" type="video/webm">
   Your browser does not support the video/webm.
 </video>

@@ -51,16 +51,16 @@ Richard が`vi`とかで歌詞置換してたらウケる〜🤣 とか思って
 
 画面下にプレビューウィンドウが出るようになりました。
 
-![replace1](img/replace1.webp)
+![replace1](img/replace1.avif)
 
 ちょっとこれだとあんまり威力を感じられないんですが、画面に収まってない部分もプレビューできるのが強みです。
 
-![replace2](img/replace2.webp)
+![replace2](img/replace2.avif)
 
 ~~~admonish tip
 下のようになってたとして、(だいぶ強引ですが) 大文字を含まない "she"でやった場合にあれれー❓ってなるの気付きます？
 
-![replace3](img/replace3.webp)
+![replace3](img/replace3.avif)
 
 そうです。3行目に "she"は2つあるのに、1つ取りこぼししちゃってます😱
 
@@ -74,7 +74,7 @@ Richard が`vi`とかで歌詞置換してたらウケる〜🤣 とか思って
 
 ...と、`g`オプションを追加してあげると期待通りの結果が得られます。
 
-![replace4](img/replace4.webp)
+![replace4](img/replace4.avif)
 
 割とあるシチュエーションだと思うので、覚えておくと役に立ちます😉
 ~~~

@@ -61,7 +61,7 @@ return M
 
 この状態で`NvimTree`を開いてみて、エラーが出ないことを確認したら、次へ進みましょう❗
 
-![nvim-tree-no-error](img/nvim-tree-no-error.webp)
+![nvim-tree-no-error](img/nvim-tree-no-error.avif)
 
 ```admonish quote title=""
 Just like me, they long to be
@@ -313,7 +313,7 @@ This function runs when the nvim-tree buffer is created.
 
 `Filter`を動かしてみましょう。`NvimTree`にフォーカスしている状態で <kbd>f</kbd> をぽちっと😆
 
-![nvim-tree-filter](img/nvim-tree-filter.webp)
+![nvim-tree-filter](img/nvim-tree-filter.avif)
 
 "FILTER" の入力欄が現れましたね。ちゃんと動いてます😉
 
@@ -379,7 +379,7 @@ local function actionsMenu(nd)
 
 こんなん出ました❗
 
-![nvim-tree-menu-action](img/nvim-tree-menu-action.webp)
+![nvim-tree-menu-action](img/nvim-tree-menu-action.avif)
 
 もう`telescope`の操作説明は不要ですね。項目を選べばちゃんと登録された内容が実行されます☺️
 
@@ -466,7 +466,7 @@ Close to you
 あなたのすぐそばにいたいんだもの
 ```
 
-<video preload="none" width="1280" height="720" data-poster="img/ueno-park-thumbnail.webp">
+<video preload="none" width="1280" height="720" data-poster="img/ueno-park-thumbnail.avif">
   <source src="img/ueno-park.webm" type="video/webm">
   Your browser does not support the video/webm.
 </video>

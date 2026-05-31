@@ -53,7 +53,7 @@ Can I bring my friend to tea?
 追加のインストールが手間だったり、そもそもその言語使ってないってことも当然あると思うので、
 これらを実際にインストールするかどうかはおまかせします😺
 
-![paul](img/paul.webp)
+![paul](img/paul.avif)
 
 ```admonish success title=""
 E, F, G, H, I, J
@@ -81,7 +81,7 @@ Luacheck自身はLuaで書かれており、前述のすべてのLuaバージョ
 
 いつも通り`Lua`で進めるために`Luacheck`という`linter`を試してみたいんですが...。
 
-![Luacheck](img/luacheck.webp)
+![Luacheck](img/luacheck.avif)
 
 ```txt
 lualocks is not executable
@@ -104,11 +104,11 @@ LuaRocks は Lua モジュールのパッケージマネージャです。
 インストールは[Download](https://github.com/luarocks/luarocks/wiki/Download)の案内に従ってもいいし、
 もっとお手軽に`brew`とか`apt`なんかを利用することでも可能です。
 
-![luarocks](img/luarocks.webp)
+![luarocks](img/luarocks.avif)
 
 あらかじめこれを行った上で再度`mason.nvim`から`Luacheck`をインストールすれば進めるはずです😌
 
-![Luacheck](img/luacheck-install.webp)
+![Luacheck](img/luacheck-install.avif)
 
 できました😆
 
@@ -116,7 +116,7 @@ LuaRocks は Lua モジュールのパッケージマネージャです。
 
 `Luacheck`が対応している言語はもちろん`Lua`です☺️
 
-![deprecated](img/deprecated.webp)
+![deprecated](img/deprecated.avif)
 
 ちゃんと正しいコードなんだけど、`vim`が全部怒られるので「えぇ...😨」ってなります。
 (いまいち自信がありませんが、この対応は次項で行います。)
@@ -189,7 +189,7 @@ CSSは次の重点言語であり、順調に進んでいます。HTMLとMarkdow
 
 いつも通り`mason.nvim`からインストールしてみましょう。
 
-![biome](img/biome.webp)
+![biome](img/biome.avif)
 
 これで準備完了かと思いきや、もう一手間必要です😦
 
@@ -239,7 +239,7 @@ The linter.enabled: true enables the linter and rules.recommended: true enables 
 
 ようやく準備完了です。`js`ファイルを開いてみましょう❗
 
-![biome-hazard](img/biome-hazard.webp)
+![biome-hazard](img/biome-hazard.avif)
 
 実際はこれでもちゃんと動くコードなんだけど、`Error`として報告してきます。
 
@@ -271,7 +271,7 @@ Pink, brown, yellow, orange and blue
 I love you!
 ```
 
-<video preload="none" width="1280" height="720" data-poster="img/L-O-V-E-thumbnail.webp">
+<video preload="none" width="1280" height="720" data-poster="img/L-O-V-E-thumbnail.avif">
   <source src="img/L-O-V-E.webm" type="video/webm">
   Your browser does not support the video/webm.
 </video>
@@ -370,7 +370,7 @@ Nu allemaal samen
 
 <div style="margin-top: 4rem"></div>
 
-![all-together-now4](img/all-together-now1.webp)
+![all-together-now4](img/all-together-now1.avif)
 
 <div style="margin-top: 4rem"></div>
 
@@ -378,7 +378,7 @@ Todos juntos ahora
 
 <div style="margin-top: 4rem"></div>
 
-![all-together-now4](img/all-together-now2.webp)
+![all-together-now4](img/all-together-now2.avif)
 
 <div style="margin-top: 4rem"></div>
 
@@ -386,7 +386,7 @@ Kwa pamoja sasa
 
 <div style="margin-top: 4rem"></div>
 
-![all-together-now4](img/all-together-now3.webp)
+![all-together-now4](img/all-together-now3.avif)
 
 <div style="margin-top: 4rem"></div>
 
@@ -394,7 +394,7 @@ Tous en choeur maintenant
 
 <div style="margin-top: 4rem"></div>
 
-![all-together-now4](img/all-together-now4.webp)
+![all-together-now4](img/all-together-now4.avif)
 
 <div style="margin-top: 4rem"></div>
 

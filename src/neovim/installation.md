@@ -27,8 +27,8 @@ You can install Neovim from download, package, or source in just a few seconds.
 なんて思ってましたが環境によっては結構ラグあるんですね...😿 (Oct 15 時点)
 |||
 |:---:|:---:|
-|**v0.8.0**|![brew-info](img/brew-info.webp)|
-|**v0.7.2-3.el9**|![rocky](img/rocky.webp)|
+|**v0.8.0**|![brew-info](img/brew-info.avif)|
+|**v0.7.2-3.el9**|![rocky](img/rocky.avif)|
 ~~~
 
 ```admonish success

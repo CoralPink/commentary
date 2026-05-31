@@ -27,9 +27,9 @@ JR高円寺駅前から東京メトロ新高円寺駅にかけての商店街お
 
 <div class="slider">
   <div class="media">
-    ![koenji-2023-1](img/awa-koenji-2023-1.webp)
-    ![koenji-2023-2](img/awa-koenji-2023-2.webp)
-    ![koenji-2023-3](img/awa-koenji-2023-3.webp)
+    ![koenji-2023-1](img/awa-koenji-2023-1.avif)
+    ![koenji-2023-2](img/awa-koenji-2023-2.avif)
+    ![koenji-2023-3](img/awa-koenji-2023-3.avif)
   </div>
 </div>
 
@@ -161,15 +161,15 @@ The following table shows the default options for this plugin:
 
 <div class="slider">
   <div class="media">
-    <video preload="none" width="1280" height="720" data-poster="img/awa-nihonbashi-thumbnail.webp">
+    <video preload="none" width="1280" height="720" data-poster="img/awa-nihonbashi-thumbnail.avif">
       <source src="img/awa-nihonbashi.webm" type="video/webm">
       Your browser does not support the video/webm.
     </video>
-    <video preload="none" width="1280" height="720" data-poster="img/awa-ogikubo-thumbnail.webp">
+    <video preload="none" width="1280" height="720" data-poster="img/awa-ogikubo-thumbnail.avif">
       <source src="img/awa-ogikubo.webm" type="video/webm">
       Your browser does not support the video/webm.
     </video>
-    <video preload="none" width="1280" height="720" data-poster="img/awa-kichijoji-thumbnail.webp">
+    <video preload="none" width="1280" height="720" data-poster="img/awa-kichijoji-thumbnail.avif">
       <source src="img/awa-kichijoji.webm" type="video/webm">
       Your browser does not support the video/webm.
     </video>
@@ -193,7 +193,7 @@ See <lua/fidget/spinners.lua> of this plugin's source code to see how each anima
 わたしは`meter`がお気に入りです☺️
 
 ```admonish warning title=""
-![starry-starry-awaodorry](img/starry-starry-awaodorry.webp)
+![starry-starry-awaodorry](img/starry-starry-awaodorry.avif)
 
 もはや避けて通る方が難しい⭐
 ```
@@ -216,21 +216,21 @@ See <lua/fidget/spinners.lua> of this plugin's source code to see how each anima
 
 例えば`typescript-language-server`が動く環境で`js`ファイルを開けば...、
 
-![fidget1](img/fidget1.webp)
+![fidget1](img/fidget1.avif)
 
 ここにパワーが溜まってきただろう❗❗
 
-![fidget2](img/fidget2.webp)
+![fidget2](img/fidget2.avif)
 
 ## 八 : やっぱり踊りは止められぬ
 
 <div class="slider">
   <div class="media">
-    <video preload="none" width="1280" height="720" data-poster="img/awa-tenguren-thumbnail.webp">
+    <video preload="none" width="1280" height="720" data-poster="img/awa-tenguren-thumbnail.avif">
       <source src="img/awa-tenguren.webm" type="video/webm">
       Your browser does not support the video/webm.
     </video>
-    <video preload="none" width="1280" height="720" data-poster="img/awa-tenshouren-thumbnail.webp">
+    <video preload="none" width="1280" height="720" data-poster="img/awa-tenshouren-thumbnail.avif">
       <source src="img/awa-tenshouren.webm" type="video/webm">
       Your browser does not support the video/webm.
     </video>

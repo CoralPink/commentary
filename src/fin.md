@@ -305,7 +305,7 @@ I know you’ll never stay
 
 <div style="margin-top: 8em"></div>
 
-![風の電話1](img/denwa1.webp)
+![風の電話1](img/denwa1.avif)
 
 <div style="margin-top: 8em">
 Now and then
@@ -333,7 +333,7 @@ I want you to be there for me
 
 <div style="margin-top: 8em"></div>
 
-![風の電話2](img/denwa2.webp)
+![風の電話2](img/denwa2.avif)
 
 <div style="margin-top: 8em">
 気づいたんだ

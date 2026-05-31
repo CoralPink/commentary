@@ -50,8 +50,8 @@ end
 
 |||
 |:---:|:---:|
-|**before**|![window-title-before](img/window-title-before.webp)
-|**after**|![window-title-after](img/window-title-after.webp)
+|**before**|![window-title-before](img/window-title-before.avif)
+|**after**|![window-title-after](img/window-title-after.avif)
 
 すみません、これ (↑) タイトルバーです...。
 
