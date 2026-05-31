@@ -55,8 +55,8 @@ formatting will never be messed up when 'tabstop' is changed.
 
 <div class="slider">
   <div class="media">
-    ![ニャース](img/nya-su1.webp)
-    ![ガラルニャース](img/nya-su2.webp)
+    ![ニャース](img/nya-su1.avif)
+    ![ガラルニャース](img/nya-su2.avif)
   </div>
 </div>
 
@@ -152,7 +152,7 @@ vim.api.nvim_buf_set_option(0, 'expandtab', true)
 
 よーし、これで全ての設定が終わったぞ❗やったね❗❗
 
-![キテルグマ](img/kiteruguma.webp)
+![キテルグマ](img/kiteruguma.avif)
 
 ## To Be Continued...
 

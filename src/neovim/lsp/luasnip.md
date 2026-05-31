@@ -122,7 +122,7 @@ Fabrice Bellard 氏の [QuickJS](https://bellard.org/quickjs/) にある`librege
 ...ですが、このサイトで使用している`Fedora`系の環境では`jsregexp`のインストールがうまくいきませんでした...😫
 (ちょっと頑張ってはみたんですが😅)
 
-![luasnip-error](img/luasnip-error.webp)
+![luasnip-error](img/luasnip-error.avif)
 
 ただ幸いにも、これは`optional`という位置付けなので必須ではありません。
 

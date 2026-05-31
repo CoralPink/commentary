@@ -132,7 +132,7 @@ Ensure you have sqlite3 installed locally.
 sudo dnf install sqlite libsqlite3x-devel
 ```
 
-![install-sqlite3](img/sqlite3.webp)
+![install-sqlite3](img/sqlite3.avif)
 ~~~
 
 ちょっと怖いけど😣{{footnote:
@@ -154,7 +154,7 @@ SFとファンタジーを融合した世界観によって、さまざまなジ
 [Wikipedia](https://en.wikipedia.org/wiki/Star_Wars)より
 }}
 
-![galactic_empire](img/galactic_empire.webp)
+![galactic_empire](img/galactic_empire.avif)
 
 ## Installation
 
@@ -198,14 +198,14 @@ lua 関数で telescope のキーバインドを作成する場合は、
 
 じゃあ、これでインストールしてみましょう。
 
-![install-sqlite3](img/sqlite-nvim-ok.webp)
+![install-sqlite3](img/sqlite-nvim-ok.avif)
 
 ちゃんといけましたね❗
 
 ```admonish note
 以下のようなエラーが出る場合は`sqlite`をもう一度確認してみてください。
 
-![install-sqlite3](img/sqlite-nvim-ng.webp)
+![install-sqlite3](img/sqlite-nvim-ng.avif)
 
 当たり前のことを言うんですけど、たった一回`Error`を出しただけで、これを一般的に「失敗」とは言いません
 {{footnote:
@@ -248,7 +248,7 @@ after = string or list,      -- Specifies plugins to load before this plugin.
 
 これを使うことで、上にあった「必ず`telescope`の後にロードしてください。」を`packer`のコード上で表現できます。
 
-![stormtrooper](img/stormtrooper.webp)
+![stormtrooper](img/stormtrooper.avif)
 
 ## Check It Out
 
@@ -257,7 +257,7 @@ after = string or list,      -- Specifies plugins to load before this plugin.
 
 適当に項目をいくつか開いてみてください。
 
-![telescope-recent](img/telescope-recent.webp)
+![telescope-recent](img/telescope-recent.avif)
 
 このスクリーンショットで伝わるのか少し不安ですが、間違いなく最近開いた項目が上に来てます❗
 
@@ -265,10 +265,10 @@ after = string or list,      -- Specifies plugins to load before this plugin.
 
 <div class="slider">
   <div class="media">
-    ![STAR WARS](img/starwars.webp)
-    ![PEACE!](img/peace.webp)
-    ![George Lucas](img/lucas.webp)
-    ![May the 4th be with you](img/may_the_4th_be_with_you.webp)
+    ![STAR WARS](img/starwars.avif)
+    ![PEACE!](img/peace.avif)
+    ![George Lucas](img/lucas.avif)
+    ![May the 4th be with you](img/may_the_4th_be_with_you.avif)
   </div>
 </div>
 
@@ -288,8 +288,8 @@ Gaze deeply into unknown regions using the power of the moon.
 
 <div class="slider">
   <div class="media">
-    ![mount-day](img/mount-day.webp)
-    ![mount-night](img/mount-night.webp)
+    ![mount-day](img/mount-day.avif)
+    ![mount-night](img/mount-night.avif)
   </div>
 </div>
 
@@ -322,7 +322,7 @@ Gaze deeply into unknown regions using the power of the moon.
 
 <div style="margin-top: 4rem"></div>
 
-![darth_vader](img/darth_vader.webp)
+![darth_vader](img/darth_vader.avif)
 
 <div style="color: #999999; font-size: 90%; text-align: center;" >
 <div style="margin-top: 4rem; margin-bottom: 4rem">

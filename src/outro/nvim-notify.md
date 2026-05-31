@@ -168,15 +168,15 @@ vim.notify = notify
 
 前回の使い回しだけど、こんなのとか❗
 
-![lazy-checker](img/lazy-checker.webp)
+![lazy-checker](img/lazy-checker.avif)
 
 通知で遊んでみたりとか❗
 
-![nvim-notify](img/nvim-notify.webp)
+![nvim-notify](img/nvim-notify.avif)
 
 しれっと[こんなの](../neovim/lsp/copilot.html#cleared-for-takeoff-good-day)も仕込まれていたりとか😮
 
-![takeoff](img/takeoff.webp)
+![takeoff](img/takeoff.avif)
 
 これだけ動いていれば、確認はもう充分すぎるでしょう☺️
 
@@ -206,7 +206,7 @@ end)
 
 あ、もちろん`<leader>fn`は好きに変えてもらえばおっけーです😸
 
-![nvim-notify-history](img/nvim-notify-history.webp)
+![nvim-notify-history](img/nvim-notify-history.avif)
 
 ほらねー。
 

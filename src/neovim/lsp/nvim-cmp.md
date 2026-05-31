@@ -189,7 +189,7 @@ nvim-cmp の機能を直接呼び出したい場合は、代わりに cmp-functi
 
 おかげでらくらく〜😽
 
-![nvim-cmp](img/nvim-cmp.webp)
+![nvim-cmp](img/nvim-cmp.avif)
 
 ## Install
 

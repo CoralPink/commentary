@@ -126,7 +126,7 @@ Don't you know that you can count me out?{{footnote:
 僕のことは数に入れないでくれないか？
 ```
 
-<video preload="none" width="1280" height="720" data-poster="img/godzilla-thumbnail.webp">
+<video preload="none" width="1280" height="720" data-poster="img/godzilla-thumbnail.avif">
   <source src="img/godzilla.webm" type="video/webm">
   Your browser does not support the video/webm.
 </video>
@@ -161,7 +161,7 @@ which curl
 私の環境で言えば、`tar` は最初から入っていたし、
 `curl` は `brew install` で簡単にインストールできました。
 
-![which-tar-curl](img/which-tar-curl.webp)
+![which-tar-curl](img/which-tar-curl.avif)
 
 ```admonish danger title=""
 You say you got a real solution
@@ -190,7 +190,7 @@ which tree-sitter
 
 `Homebrew`で`neovim`をインストールしている場合は、`Required`として既にインストールされているはずです。
 
-![which-tar-curl](img/which-tree-sitter.webp)
+![which-tar-curl](img/which-tree-sitter.avif)
 
 ```admonish warning
 installed via your package manager, not npm
@@ -232,8 +232,8 @@ We're all doin' what we can
 
 |||
 |:---:|:---:|
-|**gcc-c++**|![gcc_cpp](img/gcc-cpp.webp)|
-|**clang**|![gcc_cpp](img/clang.webp)|
+|**gcc-c++**|![gcc_cpp](img/gcc-cpp.avif)|
+|**clang**|![gcc_cpp](img/clang.avif)|
 
 ```admonish note
 Readmeにも明記されているように`libstdc++`も必要になるはずなので、`gcc`だとうまくいきませんでした😮
@@ -275,7 +275,7 @@ end,
 
 そしたら `:PackerSync` を実行しましょう❗
 
-![installed](img/installed.webp)
+![installed](img/installed.avif)
 
 簡単ですね😉 **すっごい古いスクリーンショットだから** 見にくいけど❗
 
@@ -333,8 +333,8 @@ setup({opts})                                          *nvim-treesitter.setup()*
 
 |||
 |:---:|:---:|
-|**default**|![color1](img/color1.webp)|
-|**nvim-treesitter**|![color2](img/color2.webp)|
+|**default**|![color1](img/color1.avif)|
+|**nvim-treesitter**|![color2](img/color2.avif)|
 ```
 
 ```admonish danger title=""
@@ -559,7 +559,7 @@ Plugin authors are encouraged to write new healthchecks. |health-dev|
 :checkhealth
 ```
 
-![checkhealth](img/checkhealth.webp)
+![checkhealth](img/checkhealth.avif)
 
 結果が表示されましたね☺️ これは **すっごい古いスクリーンショット** だけど❗
 
@@ -604,7 +604,7 @@ Lennon は監督の [Michael Lindsay-Hogg](https://en.wikipedia.org/wiki/Michael
 
 さて、ここまで来たら次にやることはもう決まってますね😉 カラーテーマです❗
 
-<video preload="none" width="1280" height="720" data-poster="img/miracle-gift-parade-part1.webp">
+<video preload="none" width="1280" height="720" data-poster="img/miracle-gift-parade-part1.avif">
   <source src="img/miracle-gift-parade-part1.webm" type="video/webm">
   Your browser does not support the video/webm.
 </video>
@@ -656,5 +656,5 @@ Alright...
 OH! LIE!!
 </div>
 
-![OH-LIE](img/oh-lie.webp)
+![OH-LIE](img/oh-lie.avif)
 ```

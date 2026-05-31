@@ -20,7 +20,7 @@ Come va l’eco della pia campana
 
 さて❗突然ですが、この章のロードマップです❗❗
 
-![roadmap-2](img/roadmap-2.webp)
+![roadmap-2](img/roadmap-2.avif)
 
 ```admonish quote title=""
 Là, fra la neve bianca
@@ -28,7 +28,7 @@ Là, fra la neve bianca
 そこには白い雪
 ```
 
-![roadmap-3](img/roadmap-3.webp)
+![roadmap-3](img/roadmap-3.avif)
 
 ```admonish quote title=""
 Là, fra le nubi d’or
@@ -36,7 +36,7 @@ Là, fra le nubi d’or
 そこには黄金の雲
 ```
 
-![roadmap-4](img/roadmap-4.webp)
+![roadmap-4](img/roadmap-4.avif)
 
 ```admonish quote title=""
 Là, dov’è la speranza, la speranza
@@ -46,7 +46,7 @@ Là, dov’è la speranza, la speranza
 そう、輝いている
 ```
 
-![roadmap-5](img/roadmap-5.webp)
+![roadmap-5](img/roadmap-5.avif)
 
 ```admonish quote title=""
 Il rimpianto, il rimpianto, e il dolor!
@@ -77,7 +77,7 @@ A Question of Honour (by [Sarah Brightman](https://en.wikipedia.org/wiki/Sarah_B
 貴方が勝つか負けるか、それは名誉が問われる瞬間
 ```
 
-<video preload="none" width="1280" height="720" data-poster="img/yomiuri-land-thunbmail.webp">
+<video preload="none" width="1280" height="720" data-poster="img/yomiuri-land-thunbmail.avif">
   <source src="img/yomiuri-land.webm" type="video/webm">
   Your browser does not support the video/webm.
 </video>

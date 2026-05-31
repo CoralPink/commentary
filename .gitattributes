@@ -1,4 +1,6 @@
+*.avif filter=lfs diff=lfs merge=lfs -text
 *.mp3 filter=lfs diff=lfs merge=lfs -text
 *.webm filter=lfs diff=lfs merge=lfs -text
 *.webp filter=lfs diff=lfs merge=lfs -text
-tmp/*.webp -filter -diff -merge -text
+
+tmp/*.avif -filter -diff -merge -text

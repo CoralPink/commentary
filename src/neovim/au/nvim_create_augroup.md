@@ -43,7 +43,7 @@ This is useful for removing or executing a group of autocommands.
 ```
 ~~~
 
-![ramen-shiumai](img/ramen-shiumai.webp)
+![ramen-shiumai](img/ramen-shiumai.avif)
 
 ## augroup
 
@@ -61,7 +61,7 @@ This is useful for removing or executing a group of autocommands.
 ```
 ~~~
 
-![augroup-before](img/augroup-before.webp)
+![augroup-before](img/augroup-before.avif)
 
 こんな感じですね😌
 
@@ -137,7 +137,7 @@ vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWinEnter' }, {
 ```
 ~~~
 
-![augroup-after](img/augroup-after.webp)
+![augroup-after](img/augroup-after.avif)
 
 `buffer_set_options`の姿を確認できましたね❗これでもう完璧です😆
 
@@ -158,7 +158,7 @@ vim.opt.tabstop = 2
 
 ## Wrap Up
 
-<video preload="none" width="1280" height="720" data-poster="img/pokemon2023-thumbnail.webp">
+<video preload="none" width="1280" height="720" data-poster="img/pokemon2023-thumbnail.avif">
   <source src="img/pokemon2023.webm" type="video/webm">
   Your browser does not support the video/webm.
 </video>

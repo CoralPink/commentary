@@ -35,7 +35,7 @@ wezterm show-keys
 ```
 ~~~
 
-![key-now](img/key-now.webp)
+![key-now](img/key-now.avif)
 
 そう、これが現在のキーバインドですね。
 
@@ -51,7 +51,7 @@ wezterm show-keys --lua
 ```
 ~~~
 
-![key-now-lua](img/key-now-lua.webp)
+![key-now-lua](img/key-now-lua.avif)
 
 さすがですね☺️ もはやレールは存在していました。これを自分の設定に持っていけば良いだけです。
 

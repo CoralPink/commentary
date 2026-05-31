@@ -31,7 +31,7 @@ nvim_create_autocmd({event}, {*opts}) nvim_create_autocmd()
 
 ヘルプではもっと色々なサンプル付きで説明されていますが、今回はここで切り上げます😅
 
-![コダック](img/koduck.webp)
+![コダック](img/koduck.avif)
 
 ## autocmd
 
@@ -49,7 +49,7 @@ nvim_create_autocmd({event}, {*opts}) nvim_create_autocmd()
 ```
 ~~~
 
-![aucmd-before](img/aucmd-before.webp)
+![aucmd-before](img/aucmd-before.avif)
 
 こんな感じに出てきたでしょうか。
 
@@ -62,7 +62,7 @@ nvim_create_autocmd({event}, {*opts}) nvim_create_autocmd()
 
 準備はよろしいでしょうか❓
 
-![ピカチュウ](img/pikachu.webp)
+![ピカチュウ](img/pikachu.avif)
 
 ...OK❓
 
@@ -206,7 +206,7 @@ vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWinEnter' }, {
 
 それでは、`nvim`を再起動して、もう一度`:au`を実行してみましょう...。
 
-![aucmd-after](img/aucmd-after.webp)
+![aucmd-after](img/aucmd-after.avif)
 
 `options.lua`に書いたイベントが登録されていることが確認できましたね❗
 
@@ -220,7 +220,7 @@ vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWinEnter' }, {
 
 ...、あ、えっと、"とりあえず" と言っているのには理由があって...。
 
-<video preload="none" width="1280" height="720" data-poster="img/pokemon-card-thumbnail.webp">
+<video preload="none" width="1280" height="720" data-poster="img/pokemon-card-thumbnail.avif">
   <source src="img/pokemon-card.webm" type="video/webm">
   Your browser does not support the video/webm.
 </video>

@@ -288,7 +288,7 @@ copilot_node_command = vim.fn.expand("$HOME") .. "/.config/nvm/versions/node/v16
 
 一応`node -v`もやってみて、16.x 以降だな〜ってなってればOKです❗...の、はずです。
 
-![node_version](img/node_version.webp)
+![node_version](img/node_version.avif)
 
 ```admonish tip
 バージョン`16.x以降`とは言うものの、2023-09-11 でもう`End-of-life`なので、`18.x`の方が良いはずです。
@@ -312,13 +312,13 @@ copilot_node_command = vim.fn.expand("$HOME") .. "/.config/nvm/versions/node/v16
 
 一応、16.x なんですけどね🥹
 
-![node_error](img/node_error.webp)
+![node_error](img/node_error.avif)
 
 なので困ってたんですけど...。
 
 試しに`nvm`を使って`v20.3.0`を入れて、そんで`copilot_node_command`で指定してみたら上手く飛んだんです😮
 
-![node_nvm_path](img/node_nvm_path.webp)
+![node_nvm_path](img/node_nvm_path.avif)
 
 なんででしょ😅
 ```
