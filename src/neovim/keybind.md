@@ -131,7 +131,7 @@ They can also be used with the ":map" command.
 :map
 ```
 
-![keymap-before](img/keymap-before.webp)
+![keymap-before](img/keymap-before.avif)
 ~~~
 
 ### Assignment
@@ -271,7 +271,7 @@ vim.keymap.set({ 'n', 'v' }, 'p', 'p`]')
 
 改めて`:map`で確認してみると、こんな感じで設定した内容が反映されていることが確認できます。
 
-![keymap-after](img/keymap-after.webp)
+![keymap-after](img/keymap-after.avif)
 
 ```admonish question
 insert モードの内容が表示されないのは...なんで❓😮
@@ -305,7 +305,7 @@ vim.keymap.set('n', 's', '"_s')
 
 もう少し進むと「もう嫌❗🙀」ってなるぐらい実用的なキーカスタマイズに触れて行くことになります。
 
-<video preload="none" width="1280" height="720" data-poster="img/bycycle_piano-thumbnail.webp">
+<video preload="none" width="1280" height="720" data-poster="img/bycycle_piano-thumbnail.avif">
   <source src="img/bycycle_piano.webm" type="video/webm">
   Your browser does not support the video/webm.
 </video>

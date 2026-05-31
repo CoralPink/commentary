@@ -127,7 +127,7 @@ require("lazy").setup()
 ```
 ~~~
 
-![lazy-init](img/lazy-init.webp)
+![lazy-init](img/lazy-init.avif)
 
 ### 🥁 Evacuate the packer.nvim
 
@@ -166,7 +166,7 @@ require("lazy").setup()
 :s/}/},
 ```
 
-![char-replace](img/char-replace.webp)
+![char-replace](img/char-replace.avif)
 
 > `'<,'>`とかいう呪文は`:`を入力すれば勝手に詠唱されているはずです❗
 
@@ -386,7 +386,7 @@ Colorscheme プラグインは`lazy=true`で設定できます。
 ここまでの間に、もう`lazy`が起動時に自発的にインストールを始めてくれていたかもしれないんですが、
 これでようやく全てのプラグインが元通りに動くようになったはずです❗
 
-![lazy-install](img/lazy-install.webp)
+![lazy-install](img/lazy-install.avif)
 
 ```admonish info title="[🚀 Usage](https://github.com/folke/lazy.nvim#-usage)"
 Plugins are managed with the `:Lazy` command. Open the help with `<?>` to see all the key mappings.
@@ -459,7 +459,7 @@ require("lualine").setup {
 ```admonish note
 わたしは`tabline`に入れてますが、その場合はこんな感じで出てきます😄
 
-![lazy-checker](img/lazy-checker.webp)
+![lazy-checker](img/lazy-checker.avif)
 
 このスクリーンショットではうっかり [nvim-notify](https://github.com/rcarriga/nvim-notify) を使ってるんですが、
 改めて見たらこれ、なんかすっごい綺麗じゃない...❓
@@ -514,7 +514,7 @@ to update all your plugins to the version from the lockfile.
 
 これは`nvim`ディレクトリに置かれるみたいですね🤔
 
-![lazy-lock](img/lazy-lock.webp)
+![lazy-lock](img/lazy-lock.avif)
 
 ## ⚡ Performance
 
@@ -544,7 +544,7 @@ The profiling view shows you why and how long it took to load your plugins.
 プロファイリングビューはプラグインのロードにかかった時間とその理由を表示します。
 ```
 
-![lazy-profile](img/lazy-profile.webp)
+![lazy-profile](img/lazy-profile.avif)
 
 ~~~admonish quote
 ```vim

@@ -38,7 +38,7 @@ require 'options'
 ```
 ~~~
 
-![help](img/help.webp)
+![help](img/help.avif)
 
 `help`のヘルプが開きましたね🤣
 

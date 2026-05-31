@@ -2,7 +2,7 @@
 
 このサイトを見たな❗これでお前とも縁ができた❗
 
-![search-console](img/search-console.webp)
+![search-console](img/search-console.avif)
 
 個人でやってる趣味 (暇つぶしとも言う😅) にしては、なかなか身に余る光栄です。
 
@@ -22,7 +22,7 @@
 }}
 ```
 
-<video preload="none" width="1280" height="720" data-poster="img/amai-kioku-thumbnail.webp">
+<video preload="none" width="1280" height="720" data-poster="img/amai-kioku-thumbnail.avif">
   <source src="img/amai-kioku.webm" type="video/webm">
   Your browser does not support the video/webm.
 </video>
@@ -70,14 +70,14 @@ require('mason').setup {
 
 <div class="slider">
   <div class="media">
-    ![外宮](img/geku.webp)
-    ![豊受大神宮](img/toyouke-daijingu.webp)
-    ![内宮1](img/naiku1.webp)
-    ![内宮2](img/naiku2.webp)
-    ![内宮3](img/naiku3.webp)
-    ![荒祭宮](img/aramaturi-no-miya.webp)
-    ![おかげ横丁1](img/okage-yokocho1.webp)
-    ![おかげ横丁2](img/okage-yokocho2.webp)
+    ![外宮](img/geku.avif)
+    ![豊受大神宮](img/toyouke-daijingu.avif)
+    ![内宮1](img/naiku1.avif)
+    ![内宮2](img/naiku2.avif)
+    ![内宮3](img/naiku3.avif)
+    ![荒祭宮](img/aramaturi-no-miya.avif)
+    ![おかげ横丁1](img/okage-yokocho1.avif)
+    ![おかげ横丁2](img/okage-yokocho2.avif)
   </div>
 </div>
 
@@ -354,11 +354,11 @@ return {}
 
 こうすると`Neovim`固有のAPIが`lua_ls`を通して補完候補に現れます😉
 
-![nvim-cmp-lua-ls](img/nvim-cmp-lua-ls.webp)
+![nvim-cmp-lua-ls](img/nvim-cmp-lua-ls.avif)
 
 [fidget.nvim](../neovim/lsp/fidget.html#七--try)を使用しているのであれば、ここでもパワーが溜まってきただろう❗❗
 
-![fidget-lua-ls](img/fidget-lua-ls.webp)
+![fidget-lua-ls](img/fidget-lua-ls.avif)
 
 `Neovim`を使う場合はこれを置いておくと楽しいです🤗
 
@@ -477,7 +477,7 @@ vim.lsp.config('rust_analyzer', {
 ```
 ~~~
 
-![angry-clippy](img/angry-clippy.webp)
+![angry-clippy](img/angry-clippy.avif)
 
 こんな感じで、`rustc`に混じって`clippy`も怒るようになります😱
 
@@ -573,11 +573,11 @@ vim.lsp.enable(manual_lsp)
 
 <div class="slider">
   <div class="media">
-    <video preload="none" width="1280" height="720" data-poster="img/fukuro-festival-thumbnail.webp">
+    <video preload="none" width="1280" height="720" data-poster="img/fukuro-festival-thumbnail.avif">
       <source src="img/fukuro-festival.webm" type="video/webm">
       Your browser does not support the video/webm.
     </video>
-    <video preload="none" width="1280" height="720" data-poster="img/kurayami-festival-thumbnail.webp">
+    <video preload="none" width="1280" height="720" data-poster="img/kurayami-festival-thumbnail.avif">
       <source src="img/kuarayami-festival.webm" type="video/webm">
       Your browser does not support the video/webm.
     </video>
@@ -627,7 +627,7 @@ vim.lsp.enable(manual_lsp)
 ```
 ~~~
 
-![sourcekit-lsp](img/sourcekit-lsp.webp)
+![sourcekit-lsp](img/sourcekit-lsp.avif)
 
 だいぶ古いスクリーンショットだからなんか妙に余裕ないけど許して (その一) 😅
 
@@ -676,7 +676,7 @@ return {}
 ```
 ~~~
 
-![ccls](img/ccls.webp)
+![ccls](img/ccls.avif)
 
 だいぶ古いスクリーンショットだからなんか妙に余裕ないけど許して (その二) 😅
 
@@ -730,12 +730,12 @@ vim.filetype.add({
 
 毎度のことながら、なんかじょーずにいかないなーと思ったら`LspInfo`を確認してみましょう。
 
-![root-directory](img/root-not-found.webp)
+![root-directory](img/root-not-found.avif)
 
 ...もし`root directory`が`Not found.`(認識されていない状態) だと、
 それは "履 い て な い" らしいんです、PAAAANTS!! 🤷‍♀️
 
-![root-directory](img/root-directory.webp)
+![root-directory](img/root-directory.avif)
 
 だいぶ古いスクリーンショットだからなんか妙に余裕ないけど許して(その三) 😅
 
@@ -794,11 +794,11 @@ MVP とは、俺のことだ！！
 
 <div class="slider">
   <div class="media">
-    <video preload="none" width="1280" height="720" data-poster="img/tokyo-yosakoi-enya-thumbnail.webp">
+    <video preload="none" width="1280" height="720" data-poster="img/tokyo-yosakoi-enya-thumbnail.avif">
       <source src="img/tokyo-yosakoi-enya.webm" type="video/webm">
       Your browser does not support the video/webm.
     </video>
-    <video preload="none" width="1280" height="720" data-poster="img/fuchu-ohayashi-thumbnail.webp">
+    <video preload="none" width="1280" height="720" data-poster="img/fuchu-ohayashi-thumbnail.avif">
       <source src="img/fuchu-ohayashi.webm" type="video/webm">
       Your browser does not support the video/webm.
     </video>

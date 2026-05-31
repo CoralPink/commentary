@@ -26,7 +26,7 @@ WARNING: Using autocommands is very powerful, and may lead to unexpected side ef
 ヒトカゲをかわいがってあげてね❗
 }}
 
-![ヒトカゲ](img/hitokage.webp)
+![ヒトカゲ](img/hitokage.avif)
 
 ```admonish success
 おーっす❗

@@ -146,7 +146,7 @@ use {
 
 ってことで、もうすっかりお馴染みの`:PackerSync`😆
 
-![gitsigns-install](img/gitsigns-install.webp)
+![gitsigns-install](img/gitsigns-install.avif)
 
 ```admonish note
 フライングで登場していた[signcolumn](../options/signcolumn.html)
@@ -283,7 +283,7 @@ an optional {callback} argument.
 
 `preview_hunk`とかちょっとした時に便利😉
 
-![preview_hunk](img/preview_hunk.webp)
+![preview_hunk](img/preview_hunk.avif)
 
 ## 🥌 Customize
 
@@ -324,8 +324,8 @@ signs_staged = {
 
 |||
 |:---:|:---:|
-|**before**|![signs-default](img/signs-before.webp)|
-|**after**|![signs-costom](img/signs-after.webp)|
+|**before**|![signs-default](img/signs-before.avif)|
+|**after**|![signs-costom](img/signs-after.avif)|
 
 ### 🏂 word_diff
 
@@ -363,7 +363,7 @@ word_diff                                          gitsigns-config-word_diff
 
 `word_diff`を有効にすると、単語単位で差分が検出されます。
 
-![custom_highlights_before_before](img/custom_highlights_before.webp)
+![custom_highlights_before_before](img/custom_highlights_before.avif)
 
 ...ちょっと派手すぎません❗❓
 
@@ -396,7 +396,7 @@ custom_highlights = {
 ```
 ~~~
 
-![custom_highlights_before_after](img/custom_highlights_after.webp)
+![custom_highlights_before_after](img/custom_highlights_after.avif)
 
 ありがとう...❗onenord...❗
 
@@ -481,8 +481,8 @@ map('n', '<leader>tb', gs.toggle_current_line_blame)
 
 |||
 |:---:|:---:|
-|**before**|![current_line_blame_before](img/current_line_blame_before.webp)|
-|**after**|![current_line_blame_after](img/current_line_blame_after.webp)|
+|**before**|![current_line_blame_before](img/current_line_blame_before.avif)|
+|**after**|![current_line_blame_after](img/current_line_blame_after.avif)|
 
 `summary`が表示されました😆
 

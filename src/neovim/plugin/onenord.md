@@ -93,8 +93,8 @@ Split window borders
 
 |||
 |:---:|:---:|
-|**true**|![enable](img/borders-true.webp)|
-|**false**|![disable](img/borders-false.webp)|
+|**true**|![enable](img/borders-true.avif)|
+|**false**|![disable](img/borders-false.avif)|
 
 ### fade_nc
 
@@ -106,8 +106,8 @@ Fade non-current windows, making them more distinguishable
 
 |||
 |:---:|:---:|
-|**true**|![enable](img/fade_nc-true.webp)|
-|**false**|![disable](img/fade_nc-false.webp)|
+|**true**|![enable](img/fade_nc-true.avif)|
+|**false**|![disable](img/fade_nc-false.avif)|
 
 ### styles
 
@@ -131,12 +131,12 @@ styles = {
 
 |||
 |:---:|:---:|
-|**bold**|![bold](img/style-bold.webp)|
-|**NONE**|![none](img/style-none.webp)|
+|**bold**|![bold](img/style-bold.avif)|
+|**NONE**|![none](img/style-none.avif)|
 
 ```admonish note
 例えば、`comments`を`italic`にするのもオシャレなんですが、カーソルがそのままなので個人的には使いにくいかなー、なんて😅
-![italic](img/italic.webp)
+![italic](img/italic.avif)
 ```
 
 ### disable
@@ -155,8 +155,8 @@ Disable setting the background color
 
 |||
 |:---:|:---:|
-|**true**|![enable](img/background-true.webp)|
-|**false**|![disable](img/background-false.webp)|
+|**true**|![enable](img/background-true.avif)|
+|**false**|![disable](img/background-false.avif)|
 
 #### cursorline
 
@@ -194,8 +194,8 @@ Overwrite default highlight groups
 
 |||
 |:---:|:---:|
-|**customize**|![Customize](img/custom_highlight.webp)|
-|**none**|![Non customized](img/custom_highlight-none.webp)|
+|**customize**|![Customize](img/custom_highlight.avif)|
+|**none**|![Non customized](img/custom_highlight-none.avif)|
 
 ちょっと見えにくいかな...。上の例では`}`です。
 
@@ -213,7 +213,7 @@ Overwrite default colors
 
 そんなこんなでやってきましたが、ここまでやっただけでも...
 
-![onenord](img/onenord.webp)
+![onenord](img/onenord.avif)
 
 見違えるような変身っぷり❗
 
@@ -228,7 +228,7 @@ Overwrite default colors
 [fix!: highlight groups for neovim 0.8 #50](https://github.com/rmehri01/onenord.nvim/commit/98c64654375bc087e96bca08fd194066d778717c)
 ```
 
-<video preload="none" width="1280" height="720" data-poster="img/miracle-gift-parade-part2.webp">
+<video preload="none" width="1280" height="720" data-poster="img/miracle-gift-parade-part2.avif">
   <source src="img/miracle-gift-parade-part2.webm" type="video/webm">
   Your browser does not support the video/webm.
 </video>
@@ -419,7 +419,7 @@ Imagine は発表以来、常に広く賞賛されてきたが、
 
 <div style="margin-top: 4em"></div>
 
-![letter](img/letter2.webp)
+![letter](img/letter2.avif)
 
 <div style="color: #999999; font-size: 90%; text-align: center;">
 <div style="margin-top: 8em">

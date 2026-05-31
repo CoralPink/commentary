@@ -12,7 +12,7 @@ That’s made for you and me?
 このクラブの真ん中にいるのはだあれ？
 ```
 
-<video preload="none" width="1280" height="720" data-poster="img/harmony_in_color_part1-thumbnail.webp">
+<video preload="none" width="1280" height="720" data-poster="img/harmony_in_color_part1-thumbnail.avif">
   <source src="img/harmony_in_color_part1.webm" type="video/webm">
   Your browser does not support the video/webm.
 </video>
@@ -125,7 +125,7 @@ vim.api.nvim_set_var('mapleader', '\\')
 配列は勿論、形状とかも含めて、使用するキーボードに依るので一概には言えないんですが、
 「変えた方がいいよー」って人もいるし、「別に変えてないよー」って人もいます。
 
-<video preload="none" width="1280" height="720" data-poster="img/electorical_parade_dreamlights_part1-thumbnail.webp">
+<video preload="none" width="1280" height="720" data-poster="img/electorical_parade_dreamlights_part1-thumbnail.avif">
   <source src="img/electorical_parade_dreamlights_part1.webm" type="video/webm">
   Your browser does not support the video/webm.
 </video>
@@ -173,7 +173,7 @@ vim.api.nvim_set_var('mapleader', 'map')
 :echo mapleader
 ```
 
-![leader](img/leader.webp)
+![leader](img/leader.avif)
 
 設定前に実行するとエラーが出てしまいますが、特に害はありません。
 
@@ -272,7 +272,7 @@ And join the jamboree
 お祭りの輪に加わるんだ
 ```
 
-<video preload="none" width="1280" height="720" data-poster="img/kyobashi2025-kanda2024-mix-thumbnail.webp">
+<video preload="none" width="1280" height="720" data-poster="img/kyobashi2025-kanda2024-mix-thumbnail.avif">
   <source src="img/kyobashi2025-kanda2024-mix.webm" type="video/webm">
   Your browser does not support the video/webm.
 </video>
@@ -293,7 +293,7 @@ All around the world we’re marching
 世界を巡る 僕らのマーチだ
 ```
 
-<video preload="none" width="1280" height="720" data-poster="img/harmony_in_color_part2-thumbnail.webp">
+<video preload="none" width="1280" height="720" data-poster="img/harmony_in_color_part2-thumbnail.avif">
   <source src="img/harmony_in_color_part2.webm" type="video/webm">
   Your browser does not support the video/webm.
 </video>

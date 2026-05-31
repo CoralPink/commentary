@@ -87,7 +87,7 @@ OSからのフルスクリーン操作、もしくは
 `WezTerm`の[ToggleFullScreen](https://wezfurlong.org/wezterm/config/lua/keyassignment/ToggleFullScreen.html)
 に反応します。
 
-![fullscreen](img/fullscreen.webp)
+![fullscreen](img/fullscreen.avif)
 
 (以前、`ToggleFullScreen`だと反応しないと書いていましたが、今見たらちゃんと動いてました☺️)
 ```
@@ -148,10 +148,10 @@ end)
 
 さて、これでこんな感じになったはずなんですがどうでしょう❓(例によってユーザー名は雑に隠してます。)
 
-![right-status](img/right-status.webp)
+![right-status](img/right-status.avif)
 
 フルスクリーン時にはバッテリー表示がされていることも確認できます。
-![right-status](img/right-status-full.webp)
+![right-status](img/right-status-full.avif)
 
 
 ```admonish success

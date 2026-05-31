@@ -6,8 +6,8 @@ bufferリ　ゾーンに　ようこそ❗
 
 <div class="slider">
   <div class="media">
-    ![suzumi1](img/suzumi1.webp)
-    ![suzumi2](img/suzumi2.webp)
+    ![suzumi1](img/suzumi1.avif)
+    ![suzumi2](img/suzumi2.avif)
   </div>
 </div>
 

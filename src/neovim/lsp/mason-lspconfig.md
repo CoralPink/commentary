@@ -170,7 +170,7 @@ For Tommy and Gina{{footnote:
 
 としてみましょう。
 
-![lspinfo](img/lspinfo.webp)
+![lspinfo](img/lspinfo.avif)
 
 うわっ❗めっちゃお話ししてくれそう🥰
 
@@ -186,7 +186,7 @@ For Tommy and Gina{{footnote:
 `nvim-lspconfig.lua`にキーマッピングを設定しましたね😌 もしデフォルトから変更している場合は読み替えてください。
 ```
 
-![Signature Help](img/signature_help.webp)
+![Signature Help](img/signature_help.avif)
 
 めっちゃ教えてくれる😆
 
@@ -194,7 +194,7 @@ For Tommy and Gina{{footnote:
 
 なんか嬉しくなってきたので、次はコードにイタズラをしてみましょう。
 
-![Work LS](img/work-ls.webp)
+![Work LS](img/work-ls.avif)
 
 やーい怒られたぁ🤣
 
@@ -225,7 +225,7 @@ sections = {
 
 ってやってから、またちょっかい出してみると...❓
 
-![lualine-diagnostics](img/lualine-diagnostics.webp)
+![lualine-diagnostics](img/lualine-diagnostics.avif)
 
 `lualine`上に`Error`や`Warning`の数が表示されるようになりましたね❗
 

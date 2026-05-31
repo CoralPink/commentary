@@ -86,7 +86,7 @@ eval "$(starship init zsh)"
 
 `WezTerm`を一旦終了して再度起動しましょう。
 
-![starship](img/starship.webp)
+![starship](img/starship.avif)
 
 `3.1 Window`で設定したカラースキームが適用されているのを確認できましたね。
 

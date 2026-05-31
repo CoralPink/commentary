@@ -7,7 +7,7 @@
 もしこれが、見てくれた人のヒントになったり、何かの役に立ったりしたら嬉しいです😌
 
 ```admonish success title=""
-![goal](goal.webp)
+![goal](goal.avif)
 
 <div style="text-align: right;font-style: italic;" >
     Screenshot of wezterm on macOS, running Neovim and etc...

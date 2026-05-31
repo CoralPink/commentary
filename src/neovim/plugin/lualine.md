@@ -140,7 +140,7 @@ https://github.com/nvim-tree/nvim-web-devicons
 
 ってことで、いつも通り`:PackerSync`しちゃいましょう😉
 
-![lualine-install](img/lualine-install.webp)
+![lualine-install](img/lualine-install.avif)
 
 `lualine.nvim`と一緒に`nvim-web-devicons`もインストールされましたね❗
 
@@ -180,13 +180,13 @@ ensure_dependencies = true, -- Should packer install plugin dependencies?
 
 (最高のカスタマイズとは、カスタマイズできるパワーを持ちつつも、必要とされないものです。)
 
-![lualine-default](img/lualine-default.webp)
+![lualine-default](img/lualine-default.avif)
 
 「カスタマイズは必要ない」と言う言葉の通り、もうこれで完成としてもいいんですが...、例えばこれ、左下。
 
 二重に表示されてて絶対気になるやつ...😣
 
-![showmode](img/showmode.webp)
+![showmode](img/showmode.avif)
 
 ...でも、これだけじゃない。
 
@@ -295,7 +295,7 @@ Emmy Awards では同賞創設以来過去最多となる合計18冠を獲得。
 
 君の視界にいるよ。
 
-<video preload="none" width="1280" height="720" data-poster="img/nihonbashi-parade-thumbnail.webp">
+<video preload="none" width="1280" height="720" data-poster="img/nihonbashi-parade-thumbnail.avif">
   <source src="img/nihonbashi-parade.webm" type="video/webm">
   Your browser does not support the video/webm.
 </video>
@@ -331,7 +331,7 @@ vim.api.nvim_set_option('showmode', false)
 ```
 ~~~
 
-![show-mode-false](img/show-mode-false.webp)
+![show-mode-false](img/show-mode-false.avif)
 
 `lualine.nvim`のカスタマイズについては、仲間をふやして次の街で❗😉
 

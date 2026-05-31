@@ -2,7 +2,7 @@
 
 まずはウォーミングアップです😉 少しずついきます。
 
-![chureito](img/chureito.webp)
+![chureito](img/chureito.avif)
 
 ## keymap
 
@@ -48,11 +48,11 @@ vim.keymap.set('n', 'lhs', function() print("real lua function") end)
 
 例えば、これまだ上のコードを入れてない状態なんですけど、一回`:map`を見てみます。
 
-![source1](img/source1.webp)
+![source1](img/source1.avif)
 
 で、コード追加してセーブするじゃないですか。
 
-![source2](img/source2.webp)
+![source2](img/source2.avif)
 
 で、
 
@@ -68,11 +68,11 @@ vim.keymap.set('n', 'lhs', function() print("real lua function") end)
 ```
 ~~~
 
-![source3](img/source3.webp)
+![source3](img/source3.avif)
 
 そしたらもう一回`:map`を見てみます。
 
-![source4](img/source4.webp)
+![source4](img/source4.avif)
 
 あ、`lhs`いる😮
 
@@ -90,7 +90,7 @@ vim.keymap.set('n', 'lhs', function() print("real lua function") end)
 ```
 
 ```admonish danger title=""
-![raccoon-kills](img/raccoon-kills.webp)
+![raccoon-kills](img/raccoon-kills.avif)
 
 ...いや、ばばあ腰抜けてもうてるやないか👵
 ```
@@ -99,7 +99,7 @@ vim.keymap.set('n', 'lhs', function() print("real lua function") end)
 
 本題に戻って、ノーマルモードで<kbd>l</kbd><kbd>h</kbd><kbd>s</kbd>と入力してみましょう。
 
-![call-function1](img/call-function1.webp)
+![call-function1](img/call-function1.avif)
 
 ...動きましたね❗
 
@@ -114,7 +114,7 @@ vim.keymap.set('n', 'lhs', function() print("real lua function") end)
 ```admonish danger title=""
 ここはかちかち山だから、かちかち鳥が鳴いている 🐦
 
-![kachikachi](img/kachikachi.webp)
+![kachikachi](img/kachikachi.avif)
 ```
 
 ## Wrap Up
@@ -125,14 +125,14 @@ vim.keymap.set('n', 'lhs', function() print("real lua function") end)
 vim.keymap.set('n', '<Leader>l', function() print('Leader key worked too.') end)
 ```
 
-![call-function2](img/call-function2.webp)
+![call-function2](img/call-function2.avif)
 
 これなら安心ですね❗
 
 ```admonish danger title=""
 よくもばば...おばあさんを汁にしてじじ...おじいさんに食わせてくれたな❗
 
-![rabbit-vengeance](img/rabbit-vengeance.webp)
+![rabbit-vengeance](img/rabbit-vengeance.avif)
 
 トウガラシ入りの味噌を喰らえ❗❗{{footnote:
 タヌキのやけどが治ると、最後にウサギはタヌキの食い意地を利用して漁に誘い出した。ウサギは木の船と一回り大きな泥の船を用意し、思っていた通り欲張りなタヌキが「たくさん魚が乗せられる」と泥の船を選ぶと、自身は木の船に乗った。沖へ出たところでウサギは「木の船すいすい、泥船ぶくぶく」と船端を叩きながら歌い、「この歌を歌えば魚がたくさん寄ってくる」とタヌキを騙す。タヌキが教わったとおりに歌いながら船端を思いっきり叩いた途端、泥の船はくずれて沈みだし、タヌキはウサギに助けを求めるが、逆にウサギに「婆様の仇だ、思い知れ!!」と艪で沈められ、海に溺れてタヌキは死に、ウサギは見事に媼の仇を討ったのだった。

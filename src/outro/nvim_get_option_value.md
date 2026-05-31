@@ -103,7 +103,7 @@ end, {})
 
 ...ってしたら、なんか実在する適当なオプションを入力してあげてください😉
 
-![nvim_get_option_value](img/nvim_get_option_value.webp)
+![nvim_get_option_value](img/nvim_get_option_value.avif)
 
 はい、いけました😆
 
@@ -122,7 +122,7 @@ Often enough to know
 
 知れるには十分な頻度でね
 ```
-<video preload="none" width="1280" height="720" data-poster="img/tama-zoo-thumbnail.webp">
+<video preload="none" width="1280" height="720" data-poster="img/tama-zoo-thumbnail.avif">
   <source src="img/tama-zoo.webm" type="video/webm">
   Your browser does not support the video/webm.
 </video>
@@ -138,7 +138,7 @@ Nothing that doesn't show
 
 見えないものなんて ないんだよ
 
-![money](img/money.webp)
+![money](img/money.avif)
 ```
 
 ```admonish note title=""
@@ -201,7 +201,7 @@ Baby, you're a rich man
 ベイビー! よお リッチマン!!
 ```
 
-![zeong](img/zeong.webp)
+![zeong](img/zeong.avif)
 
 ```admonish success title=""
 Baby, you're a rich man too{{footnote:
@@ -219,7 +219,7 @@ You keep all your money in a big brown bag inside a zoo
 君は全てのカネを 動物園のデカい茶封筒に詰め込んでるんだ!
 ```
 
-![gundam](img/gundam.webp)
+![gundam](img/gundam.avif)
 
 ```admonish success title=""
 What a thing to do
@@ -253,7 +253,7 @@ Happy to be that way
 
 このサイトも、ようやく Endgame なんで❗
 
-![avengers](img/avengers.webp)
+![avengers](img/avengers.avif)
 
 ...理由になってねぇな🙄
 
@@ -273,9 +273,9 @@ What are you going to play?
 (正確性は定かではないが)"They charge us, we charge them, it’s the same thing." と発言した。
 個人的にはポジティブなメッセージに見えるが、市場ではネガティブに受け取られている (ように見える)。
 
-![chatgpt-answer](img/chatgpt-answer.webp)
+![chatgpt-answer](img/chatgpt-answer.avif)
 
-![sun-king3](img/sun-king3.webp)
+![sun-king3](img/sun-king3.avif)
 
 13 が怖がられるのは、"世界の外" に一歩踏み出す力を持っているから。
 でもそれは同時に "次の秩序を開く鍵"でもある。...とも言われていたが、2026年の現状は訳が分からない❗

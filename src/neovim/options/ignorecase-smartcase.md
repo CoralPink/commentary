@@ -64,7 +64,7 @@ She's got a ticket to ride, but she don’t care.
 /she
 ```
 
-![search-she1](img/search-she1.webp)
+![search-she1](img/search-she1.avif)
 
 `She`と`she`の2つに反応しましたね。
 
@@ -74,7 +74,7 @@ She's got a ticket to ride, but she don’t care.
 /She
 ```
 
-![search-she1](img/search-she2.webp)
+![search-she1](img/search-she2.avif)
 
 `She`だけに反応しましたね。
 

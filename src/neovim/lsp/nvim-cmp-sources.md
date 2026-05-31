@@ -81,8 +81,8 @@ use {
 
 |||
 |:---:|:---:|
-|**before**|![cmp-buffer-before](img/cmp-buffer-before.webp)|
-|**after**|![cmp-buffer-after](img/cmp-buffer-after.webp)|
+|**before**|![cmp-buffer-before](img/cmp-buffer-before.avif)|
+|**after**|![cmp-buffer-after](img/cmp-buffer-after.avif)|
 
 ~~~admonish example title="extensions/nvim-cmp.lua"
 ```diff
@@ -122,8 +122,8 @@ Luaの`[[ ]]`文字列リテラルは、正規表現の記述に使用される�
 
 |||
 |:---:|:---:|
-|**before**|![cmp-buffer-find-before](img/cmp-buffer-find-before.webp)|
-|**after**|![cmp-buffer-find-after](img/cmp-buffer-find-after.webp)|
+|**before**|![cmp-buffer-find-before](img/cmp-buffer-find-before.avif)|
+|**after**|![cmp-buffer-find-after](img/cmp-buffer-find-after.avif)|
 
 ### cmp-cmdline
 
@@ -173,8 +173,8 @@ cmp.setup.cmdline({ '/', '?' }, {
 
 |||
 |:---:|:---:|
-|**before**|![cmp-cmdline-before](img/cmp-cmdline-before.webp)|
-|**after**|![cmp-cmdline-after](img/cmp-cmdline-after.webp)|
+|**before**|![cmp-cmdline-before](img/cmp-cmdline-before.avif)|
+|**after**|![cmp-cmdline-after](img/cmp-cmdline-after.avif)|
 
 ### cmp-path
 
@@ -225,7 +225,7 @@ cmp.setup.cmdline(':', {
 ```
 ~~~
 
-![cmp-path](img/cmp-path.webp)
+![cmp-path](img/cmp-path.avif)
 
 ## lspkind.nvim
 
@@ -297,15 +297,15 @@ cmp.setup {
 
 |||
 |:---:|:---:|
-|**before**|![lspkind-before](img/lspkind-before.webp)|
-|**after**|![lspkind-after](img/lspkind-after.webp)|
+|**before**|![lspkind-before](img/lspkind-before.avif)|
+|**after**|![lspkind-after](img/lspkind-after.avif)|
 
 ```admonish note title="(Plus: cmp-path)"
-![lspkind-path-after](img/lspkind-path-after.webp)
+![lspkind-path-after](img/lspkind-path-after.avif)
 ```
 
 ```admonish note title="(Plus: cmp-cmdline)"
-![lspkind-cmdline-after](img/lspkind-cmdline-after.webp)
+![lspkind-cmdline-after](img/lspkind-cmdline-after.avif)
 ```
 
 ## The End

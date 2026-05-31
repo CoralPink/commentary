@@ -104,11 +104,11 @@ Is everything it seems
 
 |gitsigns|
 |:---:|
-|![scrollbar-gitsign](img/scrollbar-gitsigns.webp)|
+|![scrollbar-gitsign](img/scrollbar-gitsigns.avif)|
 
 |nvim-hlslens|
 |:---:|
-|![scrollbar-hlslens](img/scrollbar-hlslens.webp)|
+|![scrollbar-hlslens](img/scrollbar-hlslens.avif)|
 
 スクリーンショットでは少しわかりにくいかも知れませんが、検索文字列の行もスクロールバー上で表示がされてます😆
 
@@ -128,7 +128,7 @@ It's only in my dreams
 なんか急に気まぐれで 2年後のムービーを差し込んじゃいます。
 
 ```admonish success title=""
-<video preload="none" width="1280" height="720" data-poster="img/tokyo-midtown-thumbnail.webp">
+<video preload="none" width="1280" height="720" data-poster="img/tokyo-midtown-thumbnail.avif">
   <source src="img/tokyo-midtown.webm" type="video/webm">
   Your browser does not support the video/webm.
 </video>

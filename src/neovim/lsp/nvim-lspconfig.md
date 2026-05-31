@@ -190,7 +190,7 @@ I traveled each and every highway
 私はあらゆる道を旅してきた
 ```
 
-![nagashima3](img/nagashima3.webp)
+![nagashima3](img/nagashima3.avif)
 
 ```admonish success title=""
 And more, much more than this
@@ -274,7 +274,7 @@ I find it all so amusing
 
 ここはこれだけです。もう簡単でしょう❓
 
-![lspconfig](img/lspconfig.webp)
+![lspconfig](img/lspconfig.avif)
 
 繰り返しになりますが、これだけではまだ何もできません。
 
@@ -309,11 +309,11 @@ Yes, it was my way{{footnote:
 
 <div class="slider">
   <div class="media">
-    <video preload="none" width="1280" height="720" data-poster="img/mm-bon-odori-thumbnail.webp">
+    <video preload="none" width="1280" height="720" data-poster="img/mm-bon-odori-thumbnail.avif">
       <source src="img/mm-bon-odori.webm" type="video/webm">
       Your browser does not support the video/webm.
     </video>
-    <video preload="none" width="1280" height="720" data-poster="img/anpanman-thumbnail.webp">
+    <video preload="none" width="1280" height="720" data-poster="img/anpanman-thumbnail.avif">
       <source src="img/anpanman.webm" type="video/webm">
       Your browser does not support the video/webm.
     </video>
