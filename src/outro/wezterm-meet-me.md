@@ -158,6 +158,10 @@ return config
       <source src="img/ochanomizu.webm" type="video/webm">
       Your browser does not support the video/webm.
     </video>
+    <video preload="none" width="1280" height="720" data-poster="img/hydration_breaks-thumbnail.avif">
+      <source src="img/hydration_breaks.webm" type="video/webm">
+      Your browser does not support the video/webm.
+    </video>
   </div>
 </div>
 
