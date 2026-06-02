@@ -4,7 +4,7 @@ This site introduces `WezTerm` and `Neovim` `dotfiles` that I usually use😉
 
 But Japanese only for now. I want to make an English site too❗
 
-![goal](src/goal.webp)
+![goal](src/goal.avif)
 
 https://coralpink.github.io/commentary
 
