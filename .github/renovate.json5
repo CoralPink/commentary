@@ -23,4 +23,13 @@
   "labels": [
     "dependencies"
   ],
+  "packageRules": [
+    {
+      "matchPackageNames": ["taiki-e/install-action"],
+      "matchUpdateTypes": ["digest"],
+      "automergeSchedule": [
+        "before 4am on monday"
+      ]
+    }
+  ],
 }
