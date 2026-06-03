@@ -227,7 +227,7 @@ jobs:
           cp pkg/wasm_book.d.ts js
 
       - name: Setup Deno
-        uses: denoland/setup-deno@667a34cdef165d8d2b2e98dde39547c9daac7282 # v2
+        uses: denoland/setup-deno@v2
         with:
           deno-version-file: .tool-versions
           cache: true
@@ -275,7 +275,7 @@ jobs:
           ./create-highlight.sh
 
       - name: Setup Deno
-        uses: denoland/setup-deno@667a34cdef165d8d2b2e98dde39547c9daac7282 # v2
+        uses: denoland/setup-deno@v2
         with:
           deno-version-file: .tool-versions
           cache: true
@@ -306,7 +306,7 @@ jobs:
             scss
 
       - name: Setup Deno
-        uses: denoland/setup-deno@667a34cdef165d8d2b2e98dde39547c9daac7282 # v2
+        uses: denoland/setup-deno@v2
         with:
           deno-version-file: .tool-versions
           cache: true
@@ -495,7 +495,7 @@ jobs:
           mdbook build --dest-dir commentary
 
       - name: Setup Deno
-        uses: denoland/setup-deno@667a34cdef165d8d2b2e98dde39547c9daac7282 # v2
+        uses: denoland/setup-deno@v2
         with:
           deno-version-file: .tool-versions
           cache: true
