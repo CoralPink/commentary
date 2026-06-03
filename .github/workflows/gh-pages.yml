@@ -119,7 +119,7 @@ jobs:
             rs/wasm
 
       - name: Setup Rust
-        uses: actions-rust-lang/setup-rust-toolchain@46268bd060767258de96ed93c1251119784f2ab6 #v1
+        uses: actions-rust-lang/setup-rust-toolchain@46268bd060767258de96ed93c1251119784f2ab6 # v1
         with:
           toolchain: stable
           target: wasm32-unknown-unknown
@@ -139,7 +139,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: test-wasm
     env:
-      BINARYEN_VERSION: 130
+      BINARYEN_VERSION: "130"
     steps:
       - name: Checkout the repo
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
@@ -150,7 +150,7 @@ jobs:
             rs/wasm
 
       - name: Setup Rust
-        uses: actions-rust-lang/setup-rust-toolchain@46268bd060767258de96ed93c1251119784f2ab6 #v1
+        uses: actions-rust-lang/setup-rust-toolchain@46268bd060767258de96ed93c1251119784f2ab6 # v1
         with:
           toolchain: stable
           target: wasm32-unknown-unknown
@@ -227,7 +227,7 @@ jobs:
           cp pkg/wasm_book.d.ts js
 
       - name: Setup Deno
-        uses: denoland/setup-deno@v2
+        uses: denoland/setup-deno@667a34cdef165d8d2b2e98dde39547c9daac7282 # v2
         with:
           deno-version-file: .tool-versions
           cache: true
@@ -275,7 +275,7 @@ jobs:
           ./create-highlight.sh
 
       - name: Setup Deno
-        uses: denoland/setup-deno@v2
+        uses: denoland/setup-deno@667a34cdef165d8d2b2e98dde39547c9daac7282 # v2
         with:
           deno-version-file: .tool-versions
           cache: true
@@ -306,7 +306,7 @@ jobs:
             scss
 
       - name: Setup Deno
-        uses: denoland/setup-deno@v2
+        uses: denoland/setup-deno@667a34cdef165d8d2b2e98dde39547c9daac7282 # v2
         with:
           deno-version-file: .tool-versions
           cache: true
@@ -416,7 +416,7 @@ jobs:
       - convert-woff2
       - test-mdbook-backend
     env:
-      MDBOOK_VERSION: 0.5.3
+      MDBOOK_VERSION: "0.5.3"
     steps:
       - name: Checkout the repo
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
@@ -495,7 +495,7 @@ jobs:
           mdbook build --dest-dir commentary
 
       - name: Setup Deno
-        uses: denoland/setup-deno@v2
+        uses: denoland/setup-deno@667a34cdef165d8d2b2e98dde39547c9daac7282 # v2
         with:
           deno-version-file: .tool-versions
           cache: true
