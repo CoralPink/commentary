@@ -50,14 +50,14 @@
 	"description": "This site introduces WezTerm and Neovim dotfiles.",
 	"screenshots": [
 		{
-			"src": "goal.webp",
-			"type": "image/webp",
+			"src": "goal.avif",
+			"type": "image/avif",
 			"sizes": "662x540",
 			"form_factor": "narrow"
 		},
 		{
-			"src": "goal.webp",
-			"type": "image/webp",
+			"src": "goal.avif",
+			"type": "image/avif",
 			"sizes": "662x540",
 			"form_factor": "wide"
 		}
