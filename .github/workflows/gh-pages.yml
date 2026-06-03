@@ -16,7 +16,7 @@ concurrency:
 jobs:
   check-diff:
     name: Check Differences
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-slim
     outputs:
       changes: ${{ steps.filter.outputs.source }}
     steps:
@@ -42,7 +42,7 @@ jobs:
 
   cache-media-files:
     name: Cache Media Files
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-slim
     if: ${{ github.ref == 'refs/heads/main' }}
     outputs:
       media-cache-key: ${{ steps.set-cache-key.outputs.cache-key }}
@@ -204,7 +204,7 @@ jobs:
 
   test-js:
     name: Test JS
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-slim
     needs: build-wasm
     steps:
       - name: Checkout the repo
@@ -247,7 +247,7 @@ jobs:
 
   build-js:
     name: Build JS
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-slim
     needs: [test-js, build-wasm]
     steps:
       - name: Checkout the repo
@@ -295,7 +295,7 @@ jobs:
 
   build-scss:
     name: Build SCSS
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-slim
     steps:
       - name: Checkout the repo
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
@@ -331,7 +331,7 @@ jobs:
 
   convert-woff2:
     name: Convert WOFF2
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-slim
     steps:
       - name: Checkout the repo
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
@@ -383,6 +383,11 @@ jobs:
           fetch-depth: 1
           sparse-checkout: |
             rs/mdbook-footnote
+
+      - name: Setup Rust
+        uses: actions-rust-lang/setup-rust-toolchain@46268bd060767258de96ed93c1251119784f2ab6 # v1
+        with:
+          toolchain: stable
 
       - name: Cache Cargo
         uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5
@@ -460,6 +465,11 @@ jobs:
           cp -r artifacts/woff2 src
           cp -r artifacts/css src
           cp -r tmp src
+
+      - name: Setup Rust
+        uses: actions-rust-lang/setup-rust-toolchain@46268bd060767258de96ed93c1251119784f2ab6 # v1
+        with:
+          toolchain: stable
 
       - name: Cache Cargo
         id: cache-cargo
@@ -545,7 +555,7 @@ jobs:
       github.event_name == 'push' &&
       github.ref == 'refs/heads/main' &&
       needs.check-diff.outputs.changes == 'true'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-slim
     needs:
       - check-diff
       - publish
