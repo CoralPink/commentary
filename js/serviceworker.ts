@@ -1,6 +1,6 @@
 declare const self: ServiceWorkerGlobalScope;
 
-const CACHE_VERSION = 'v11.2.0';
+const CACHE_VERSION = 'v11.2.1';
 
 const CACHE_URL = '/commentary/';
 const FALLBACK_IMAGE = 'favicon.png';
@@ -30,6 +30,9 @@ const skipDestination = new Set<RequestDestination>(['document', 'image', 'video
 const useCacheFiles = new Set(['favicon.png', 'favicon.svg', 'pagelist.html']);
 // Cache this extension even if the destination is ''.
 const cacheableExtensions = new Set(['wasm', 'br', 'gz']);
+
+type PreloadResponsePromise = Promise<Response | undefined>;
+type NetworkStrategyResult = Promise<Response>;
 
 const extractVersionParts = (cacheName: string): { major: number; minor: number } | null => {
   const m = cacheName.match(/^v(\d+)\.(\d+)/);
@@ -96,9 +99,31 @@ self.addEventListener('activate', (event: ExtendableEvent): void => {
 const putInCache = (request: Request, response: Response): Promise<void> =>
   caches.open(CACHE_VERSION).then(cache => cache.put(request, response));
 
+const normalizeUrl = (request: Request, url: URL): Request => {
+  const fileName = url.pathname.split('/').pop();
+
+  // Rewrite the code to always use the top-level directory.
+  if (fileName && useCacheFiles.has(fileName)) {
+    return new Request(self.location.origin + CACHE_URL + fileName);
+  }
+
+  return request;
+};
+
+const isBypassRequest = (request: Request): boolean => {
+  if (request.destination === 'video' || request.destination === 'audio') {
+    return true;
+  }
+
+  if (request.headers.has('range')) {
+    return true;
+  }
+  return false;
+};
+
 const usePreload = async (
   request: Request,
-  preloadResponse: Promise<Response | undefined> | undefined,
+  preloadResponse: PreloadResponsePromise | undefined,
   saveToCache = false,
 ): Promise<Response | undefined> => {
   const preload = await preloadResponse;
@@ -110,7 +135,34 @@ const usePreload = async (
   return preload;
 };
 
-const cacheFirst = async (request: Request, preloadResponse: Promise<Response | undefined>): Promise<Response> => {
+const handleNavigation = async (
+  request: Request,
+  preloadResponse: Promise<Response | undefined> | undefined,
+): Promise<Response> => (await usePreload(request, preloadResponse)) ?? fetch(request);
+
+const shouldCache = (request: Request, url: URL): boolean => {
+  const fileName = url.pathname.split('/').pop();
+
+  if (fileName == undefined) {
+    return false;
+  }
+
+  if (useCacheFiles.has(fileName)) {
+    return true;
+  }
+
+  if (skipDestination.has(request.destination)) {
+    return false;
+  }
+
+  if (request.destination !== '') {
+    return true;
+  }
+
+  return cacheableExtensions.has(fileName.split('.').pop() ?? '');
+};
+
+const cacheHandler = async (request: Request, preloadResponse: PreloadResponsePromise): NetworkStrategyResult => {
   // 1. get the resource from the cache
   const responseFromCache = await caches.match(request);
 
@@ -151,44 +203,6 @@ const cacheFirst = async (request: Request, preloadResponse: Promise<Response | 
   }
 };
 
-const preloadProc = async (
-  request: Request,
-  preloadResponse: Promise<Response | undefined> | undefined,
-): Promise<Response> => (await usePreload(request, preloadResponse)) ?? fetch(request);
-
-const requestProc = (request: Request, url: URL): Request => {
-  const fileName = url.pathname.split('/').pop();
-
-  // Rewrite the code to always use the top-level directory.
-  if (fileName && useCacheFiles.has(fileName)) {
-    return new Request(self.location.origin + CACHE_URL + fileName);
-  }
-
-  return request;
-};
-
-const shouldCache = (request: Request, url: URL): boolean => {
-  const fileName = url.pathname.split('/').pop();
-
-  if (fileName == undefined) {
-    return false;
-  }
-
-  if (useCacheFiles.has(fileName)) {
-    return true;
-  }
-
-  if (skipDestination.has(request.destination)) {
-    return false;
-  }
-
-  if (request.destination !== '') {
-    return true;
-  }
-
-  return cacheableExtensions.has(fileName.split('.').pop() ?? '');
-};
-
 self.addEventListener('fetch', (event: FetchEvent): void => {
   const url = new URL(event.request.url);
 
@@ -197,8 +211,13 @@ self.addEventListener('fetch', (event: FetchEvent): void => {
     return;
   }
 
-  const request = requestProc(event.request, url);
-  const response = shouldCache(request, url) ? cacheFirst : preloadProc;
+  const request = normalizeUrl(event.request, url);
+
+  if (isBypassRequest(request)) {
+    return;
+  }
+
+  const response = shouldCache(request, url) ? cacheHandler : handleNavigation;
 
   event.respondWith(
     response(
