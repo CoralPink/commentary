@@ -393,12 +393,11 @@ jobs:
         uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5
         with:
           path: |
-            ~/.cargo/bin/
             ~/.cargo/registry/index/
             ~/.cargo/registry/cache/
             ~/.cargo/git/db/
             target/
-          key: test-backend-${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+          key: test-backend-${{ runner.os }}-${{ runner.arch }}-cargo-${{ hashFiles('**/Cargo.lock') }}
 
       - name: Test Cargo (mdbook-footnote)
         working-directory: rs/mdbook-footnote
@@ -476,12 +475,11 @@ jobs:
         uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5
         with:
           path: |
-            ~/.cargo/bin/
             ~/.cargo/registry/index/
             ~/.cargo/registry/cache/
             ~/.cargo/git/db/
             target/
-          key: backend-${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+          key: test-backend-${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
 
       - name: Install mdbook
         if: steps.cache-cargo.outputs.cache-hit != 'true'
