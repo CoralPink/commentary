@@ -108,7 +108,7 @@ jobs:
 
   test-wasm:
     name: Test Wasm
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04-arm
     steps:
       - name: Checkout the repo
         uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6
@@ -132,11 +132,11 @@ jobs:
       - name: Test Wasm
         working-directory: rs/wasm
         run: |
-          wasm-pack test --headless --chrome
+          wasm-pack test --headless --firefox
 
   build-wasm:
     name: Build Wasm
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04-arm
     needs: test-wasm
     env:
       BINARYEN_VERSION: "130"
@@ -172,8 +172,8 @@ jobs:
 
       - name: Install Binaryen
         run: |
-          curl -L https://github.com/WebAssembly/binaryen/releases/download/version_${BINARYEN_VERSION}/binaryen-version_${BINARYEN_VERSION}-x86_64-linux.tar.gz -o binaryen.tar.gz
-          curl -L https://github.com/WebAssembly/binaryen/releases/download/version_${BINARYEN_VERSION}/binaryen-version_${BINARYEN_VERSION}-x86_64-linux.tar.gz.sha256 -o binaryen.sha256
+          curl -L https://github.com/WebAssembly/binaryen/releases/download/version_${BINARYEN_VERSION}/binaryen-version_${BINARYEN_VERSION}-aarch64-linux.tar.gz -o binaryen.tar.gz
+          curl -L https://github.com/WebAssembly/binaryen/releases/download/version_${BINARYEN_VERSION}/binaryen-version_${BINARYEN_VERSION}-aarch64-linux.tar.gz.sha256 -o binaryen.sha256
           echo "$(cut -d' ' -f1 binaryen.sha256)  binaryen.tar.gz" | sha256sum -c -
 
           tar xzf binaryen.tar.gz
@@ -374,7 +374,7 @@ jobs:
 
   test-mdbook-backend:
     name: Test mdBook Backend
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04-arm
     steps:
       - name: Checkout the repo
         uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6
@@ -393,12 +393,11 @@ jobs:
         uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5
         with:
           path: |
-            ~/.cargo/bin/
             ~/.cargo/registry/index/
             ~/.cargo/registry/cache/
             ~/.cargo/git/db/
             target/
-          key: test-backend-${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+          key: test-backend-${{ runner.os }}-${{ runner.arch }}-cargo-${{ hashFiles('**/Cargo.lock') }}
 
       - name: Test Cargo (mdbook-footnote)
         working-directory: rs/mdbook-footnote
@@ -411,7 +410,7 @@ jobs:
       github.event_name == 'push' &&
       github.ref == 'refs/heads/main' &&
       needs.check-diff.outputs.changes == 'true'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04-arm
     needs:
       - build-wasm
       - build-js
@@ -476,17 +475,15 @@ jobs:
         uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5
         with:
           path: |
-            ~/.cargo/bin/
             ~/.cargo/registry/index/
             ~/.cargo/registry/cache/
             ~/.cargo/git/db/
             target/
-          key: backend-${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+          key: publish-${{ runner.os }}-${{ runner.arch }}-cargo-${{ hashFiles('**/Cargo.lock') }}
 
       - name: Install mdbook
-        if: steps.cache-cargo.outputs.cache-hit != 'true'
         run: |
-          cargo install --version ${MDBOOK_VERSION} mdbook
+          cargo install mdbook --version ${MDBOOK_VERSION}
 
           #cargo install mdbook-admonish
           git clone https://github.com/CoralPink/mdbook-admonish.git -b mdbook-v0.5.x --depth 1 || exit 1
