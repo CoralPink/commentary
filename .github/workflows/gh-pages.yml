@@ -108,7 +108,7 @@ jobs:
 
   test-wasm:
     name: Test Wasm
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04-arm
     steps:
       - name: Checkout the repo
         uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6
@@ -132,11 +132,11 @@ jobs:
       - name: Test Wasm
         working-directory: rs/wasm
         run: |
-          wasm-pack test --headless --chrome
+          wasm-pack test --headless --firefox
 
   build-wasm:
     name: Build Wasm
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04-arm
     needs: test-wasm
     env:
       BINARYEN_VERSION: "130"
@@ -374,7 +374,7 @@ jobs:
 
   test-mdbook-backend:
     name: Test mdBook Backend
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04-arm
     steps:
       - name: Checkout the repo
         uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6
@@ -411,7 +411,7 @@ jobs:
       github.event_name == 'push' &&
       github.ref == 'refs/heads/main' &&
       needs.check-diff.outputs.changes == 'true'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04-arm
     needs:
       - build-wasm
       - build-js
