@@ -1,11 +1,11 @@
 {
   "imports": {
     "plyr": "npm:plyr@3.8.4",
-    "rolldown": "npm:rolldown@1.0.3",
+    "rolldown": "npm:rolldown@1.1.0",
 
     "vitest": "npm:vitest@4.1.8",
     "@vitest/coverage-v8": "npm:@vitest/coverage-v8@4.1.8",
-    "happy-dom": "npm:happy-dom@20.9.0"
+    "happy-dom": "npm:happy-dom@20.10.2"
   },
   "tasks": {
     "bundle": "rolldown -c",
