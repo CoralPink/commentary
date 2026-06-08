@@ -44,6 +44,6 @@ const main = async (): Promise<void> => {
 
   await main();
 
-  const time = Math.floor(performance.now() - start) / 1000;
-  console.info(`${g.CLR_BG}✔ ${g.CLR_BC}json${g.CLR_RESET} Finished in ${g.CLR_BG}${time} s${g.CLR_RESET}`);
+  const time = Math.floor(performance.now() - start);
+  console.info(`${g.CLR_BG}✔ ${g.CLR_BC}json${g.CLR_RESET} Finished in ${g.CLR_BG}${time} ms${g.CLR_RESET}`);
 })();
