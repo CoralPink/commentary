@@ -125,7 +125,7 @@ jobs:
           target: wasm32-unknown-unknown
 
       - name: Install Wasm Pack
-        uses: taiki-e/install-action@e49978b799e49ff429d162b7a30601a569ab6538 # v2
+        uses: taiki-e/install-action@0631aa6515c7d545823c67cfae7ef4fc7f490154 # v2
         with:
           tool: wasm-pack
 
@@ -156,7 +156,7 @@ jobs:
           target: wasm32-unknown-unknown
 
       - name: Install Wasm Bindgen
-        uses: taiki-e/install-action@e49978b799e49ff429d162b7a30601a569ab6538 # v2
+        uses: taiki-e/install-action@0631aa6515c7d545823c67cfae7ef4fc7f490154 # v2
         with:
           tool: wasm-bindgen-cli@0.2.122
 
