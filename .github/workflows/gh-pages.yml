@@ -20,7 +20,7 @@ jobs:
     outputs:
       changes: ${{ steps.filter.outputs.source }}
     steps:
-      - name: Checkout the repo
+      - name: Checkout Repository
         uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6
         with:
           persist-credentials: false
@@ -45,10 +45,10 @@ jobs:
     runs-on: ubuntu-slim
     if: ${{ github.ref == 'refs/heads/main' }}
     outputs:
-      media-cache-key: ${{ steps.set-cache-key.outputs.cache-key }}
-      cache-hit-exact: ${{ steps.check-cache.outputs.exact }}
+      cache-key: ${{ steps.set-cache-key.outputs.cache-key }}
+      cache-match: ${{ steps.check-match.outputs.match }}
     steps:
-      - name: Checkout the repo
+      - name: Checkout Repository
         uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6
         with:
           persist-credentials: false
@@ -70,23 +70,23 @@ jobs:
           key: ${{ steps.set-cache-key.outputs.cache-key }}
           restore-keys: media-
 
-      - name: Check if cache is exact match
-        id: check-cache
+      - name: Verify Exact Cache Match
+        id: check-match
         run: |
           if [ "${{ steps.cache-source.outputs.cache-hit }}" = "true" ] && \
              [ "${{ steps.cache-source.outputs.cache-matched-key }}" = "${{ steps.set-cache-key.outputs.cache-key }}" ]; then
-            echo "exact=true" >> $GITHUB_OUTPUT
+            echo "match=true" >> $GITHUB_OUTPUT
           else
-            echo "exact=false" >> $GITHUB_OUTPUT
+            echo "match=false" >> $GITHUB_OUTPUT
           fi
 
-      - name: Pull missing LFS files (on partial or miss)
-        if: steps.check-cache.outputs.exact != 'true'
+      - name: Pull Missing LFS Files (on partial or miss)
+        if: steps.check-match.outputs.match != 'true'
         run: |
           git lfs pull --include="src/**/*.avif,src/**/*.webp,src/**/*.webm,src/**/*.mp3"
 
       - name: Synchronize Media Files
-        if: steps.check-cache.outputs.exact != 'true'
+        if: steps.check-match.outputs.match != 'true'
         run: |
           rm -rf tmp-media
           mkdir -p tmp-media
@@ -100,7 +100,7 @@ jobs:
             src/ tmp-media
 
       - name: Save Media Cache (new primary key)
-        if: steps.check-cache.outputs.exact != 'true'
+        if: steps.check-match.outputs.match != 'true'
         uses: actions/cache/save@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5
         with:
           path: tmp-media
@@ -110,7 +110,7 @@ jobs:
     name: Test Wasm
     runs-on: ubuntu-24.04-arm
     steps:
-      - name: Checkout the repo
+      - name: Checkout Repository
         uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6
         with:
           persist-credentials: false
@@ -141,7 +141,7 @@ jobs:
     env:
       BINARYEN_VERSION: "130"
     steps:
-      - name: Checkout the repo
+      - name: Checkout Repository
         uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6
         with:
           persist-credentials: false
@@ -179,7 +179,7 @@ jobs:
           tar xzf binaryen.tar.gz
           echo "$PWD/binaryen-version_${BINARYEN_VERSION}/bin" >> $GITHUB_PATH
 
-      - name: Optimization Wasm
+      - name: Optimize Wasm
         working-directory: rs/wasm
         run: |
           wasm-opt ./pkg/wasm_book_bg.wasm \
@@ -194,7 +194,7 @@ jobs:
 
             mv ./pkg/wasm_book_bg.opt.wasm ./pkg/wasm_book_bg.wasm
 
-      - name: Upload wasm_pkg
+      - name: Upload Wasm Artifact
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
         with:
           name: wasm-book
@@ -207,7 +207,7 @@ jobs:
     runs-on: ubuntu-slim
     needs: build-wasm
     steps:
-      - name: Checkout the repo
+      - name: Checkout Repository
         uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6
         with:
           persist-credentials: false
@@ -215,13 +215,13 @@ jobs:
           sparse-checkout: |
             js
 
-      - name: Download wasm_pkg
+      - name: Download Wasm Package
         uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8
         with:
           name: wasm-book
           path: pkg
 
-      - name: Copy wasm_js
+      - name: Copy Wasm Bindings
         run: |
           cp pkg/wasm_book.js js
           cp pkg/wasm_book.d.ts js
@@ -237,7 +237,7 @@ jobs:
         run: |
           deno task test:ci
 
-      - name: Upload coverage
+      - name: Upload Vitest Report
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
         with:
           name: vitest-report
@@ -250,7 +250,7 @@ jobs:
     runs-on: ubuntu-slim
     needs: [test-js, build-wasm]
     steps:
-      - name: Checkout the repo
+      - name: Checkout Repository
         uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6
         with:
           persist-credentials: false
@@ -258,18 +258,18 @@ jobs:
           sparse-checkout: |
             js
 
-      - name: Download wasm_pkg
+      - name: Download Wasm Package
         uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8
         with:
           name: wasm-book
           path: pkg
 
-      - name: Copy wasm_js
+      - name: Copy Wasm Bindings
         run: |
           cp pkg/wasm_book.js js
           cp pkg/wasm_book.d.ts js
 
-      - name: Create Highlight
+      - name: Create Highlight Js
         working-directory: js
         run: |
           ./create-highlight.sh
@@ -285,7 +285,7 @@ jobs:
         run: |
           deno task bundle
 
-      - name: Upload JS
+      - name: Upload JS Artifact
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
         with:
           name: build-js
@@ -297,7 +297,7 @@ jobs:
     name: Build SCSS
     runs-on: ubuntu-slim
     steps:
-      - name: Checkout the repo
+      - name: Checkout Repository
         uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6
         with:
           persist-credentials: false
@@ -321,7 +321,7 @@ jobs:
         run: |
           ./download-plyr-css.sh
 
-      - name: Upload CSS
+      - name: Upload CSS Artifact
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
         with:
           name: css
@@ -333,7 +333,7 @@ jobs:
     name: Convert WOFF2
     runs-on: ubuntu-slim
     steps:
-      - name: Checkout the repo
+      - name: Checkout Repository
         uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6
         with:
           persist-credentials: false
@@ -341,7 +341,7 @@ jobs:
           sparse-checkout: |
             fonts
 
-      - name: Cache Woff2 output
+      - name: Cache Woff2
         id: cache-woff2
         uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5
         with:
@@ -364,7 +364,7 @@ jobs:
           uv run convert.py Open_Sans/static/OpenSans-Italic.ttf woff2
           cp "Fira Code/FiraCode-VF.woff2" woff2
 
-      - name: Upload font artifacts
+      - name: Upload Font Artifact
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
         with:
           name: woff2
@@ -376,7 +376,7 @@ jobs:
     name: Test mdBook Backend
     runs-on: ubuntu-24.04-arm
     steps:
-      - name: Checkout the repo
+      - name: Checkout Repository
         uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6
         with:
           persist-credentials: false
@@ -399,7 +399,7 @@ jobs:
             target/
           key: test-backend-${{ runner.os }}-${{ runner.arch }}-cargo-${{ hashFiles('**/Cargo.lock') }}
 
-      - name: Test Cargo (mdbook-footnote)
+      - name: Test Cargo (mdbook footnote)
         working-directory: rs/mdbook-footnote
         run: |
           cargo test --verbose
@@ -422,7 +422,7 @@ jobs:
     env:
       MDBOOK_VERSION: "0.5.3"
     steps:
-      - name: Checkout the repo
+      - name: Checkout Repository
         uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6
         with:
           persist-credentials: false
@@ -441,13 +441,13 @@ jobs:
         uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5
         with:
           path: tmp-media
-          key: ${{ needs.cache-media-files.outputs.media-cache-key }}
+          key: ${{ needs.cache-media-files.outputs.cache-key }}
           fail-on-cache-miss: true
 
       - name: Remove LFS Pointer
         run: find src -type f \( -name '*.avif' -o -name '*.webp' -o -name '*.webm' -o -name '*.mp3' \) -delete
 
-      - name: Copy Cached Media Back
+      - name: Populate Media Files
         run: |
           rsync -a tmp-media/ src/
           rm -rf tmp-media
@@ -481,7 +481,7 @@ jobs:
             target/
           key: publish-${{ runner.os }}-${{ runner.arch }}-cargo-${{ hashFiles('**/Cargo.lock') }}
 
-      - name: Install mdbook
+      - name: Install Mdbook
         run: |
           cargo install mdbook --version ${MDBOOK_VERSION}
 
@@ -507,7 +507,7 @@ jobs:
           deno-version-file: .tool-versions
           cache: true
 
-      - name: Run Scripts
+      - name: Run Regenerate
         working-directory: commentary
         run: |
           deno task --config ../scripts/deno.jsonc regenerate
