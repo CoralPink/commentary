@@ -13,6 +13,9 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
+env:
+  WASM_SHARED_KEY: wasm-rs-v1
+
 jobs:
   check-diff:
     name: Check Differences
@@ -124,6 +127,7 @@ jobs:
           toolchain: stable
           target: wasm32-unknown-unknown
           cache-workspaces: rs/wasm
+          cache-shared-key: ${{ env.WASM_SHARED_KEY }}
 
       - name: Install Wasm Pack
         uses: taiki-e/install-action@0631aa6515c7d545823c67cfae7ef4fc7f490154 # v2
@@ -156,6 +160,7 @@ jobs:
           toolchain: stable
           target: wasm32-unknown-unknown
           cache-workspaces: rs/wasm
+          cache-shared-key: ${{ env.WASM_SHARED_KEY }}
 
       - name: Install Wasm Bindgen
         uses: taiki-e/install-action@0631aa6515c7d545823c67cfae7ef4fc7f490154 # v2
