@@ -86,9 +86,9 @@ const processDir = async (currentDir: string): Promise<void> => {
   await processDir(g.PATH_DIRECTORY);
   await Promise.all(tasks);
 
-  const time = Math.floor(performance.now() - start) / 1000;
+  const time = Math.floor(performance.now() - start);
 
-  console.info(`${g.CLR_BG}✔ ${g.CLR_BC}link${g.CLR_RESET} Finished in ${g.CLR_BG}${time} s${g.CLR_RESET}`);
+  console.info(`${g.CLR_BG}✔ ${g.CLR_BC}link${g.CLR_RESET} Finished in ${g.CLR_BG}${time} ms${g.CLR_RESET}`);
   console.info(`${g.CLR_G}INFO${g.CLR_RESET} mode: ${g.isDebug ? 'debug' : 'production'}`);
   console.info(`${g.CLR_G}INFO${g.CLR_RESET} rootPath: ${g.rootPath}`);
 })();
