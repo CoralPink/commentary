@@ -13,6 +13,9 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
+env:
+  WASM_SHARED_KEY: wasm-rs-v1
+
 jobs:
   check-diff:
     name: Check Differences
@@ -123,6 +126,8 @@ jobs:
         with:
           toolchain: stable
           target: wasm32-unknown-unknown
+          cache-workspaces: rs/wasm
+          cache-shared-key: ${{ env.WASM_SHARED_KEY }}
 
       - name: Install Wasm Pack
         uses: taiki-e/install-action@0631aa6515c7d545823c67cfae7ef4fc7f490154 # v2
@@ -154,6 +159,8 @@ jobs:
         with:
           toolchain: stable
           target: wasm32-unknown-unknown
+          cache-workspaces: rs/wasm
+          cache-shared-key: ${{ env.WASM_SHARED_KEY }}
 
       - name: Install Wasm Bindgen
         uses: taiki-e/install-action@0631aa6515c7d545823c67cfae7ef4fc7f490154 # v2
@@ -388,16 +395,7 @@ jobs:
         uses: actions-rust-lang/setup-rust-toolchain@46268bd060767258de96ed93c1251119784f2ab6 # v1
         with:
           toolchain: stable
-
-      - name: Cache Cargo
-        uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5
-        with:
-          path: |
-            ~/.cargo/registry/index/
-            ~/.cargo/registry/cache/
-            ~/.cargo/git/db/
-            target/
-          key: test-backend-${{ runner.os }}-${{ runner.arch }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+          cache-workspaces: rs/mdbook-footnote
 
       - name: Test Cargo (mdbook footnote)
         working-directory: rs/mdbook-footnote
@@ -470,27 +468,15 @@ jobs:
         with:
           toolchain: stable
 
-      - name: Cache Cargo
-        id: cache-cargo
-        uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5
-        with:
-          path: |
-            ~/.cargo/registry/index/
-            ~/.cargo/registry/cache/
-            ~/.cargo/git/db/
-            target/
-          key: publish-${{ runner.os }}-${{ runner.arch }}-cargo-${{ hashFiles('**/Cargo.lock') }}
-
       - name: Install Mdbook
         run: |
-          cargo install mdbook --version ${MDBOOK_VERSION}
+          cargo +stable install mdbook --version ${MDBOOK_VERSION}
 
-          #cargo install mdbook-admonish
-          git clone https://github.com/CoralPink/mdbook-admonish.git -b mdbook-v0.5.x --depth 1 || exit 1
-          cargo install --path ./mdbook-admonish
+          #cargo +stable install mdbook-admonish
+          cargo +stable install --git https://github.com/CoralPink/mdbook-admonish.git --branch mdbook-v0.5.x
 
-          cargo install mdbook-tailor
-          cargo install --path ./rs/mdbook-footnote
+          cargo +stable install mdbook-tailor
+          cargo +stable install --path ./rs/mdbook-footnote
 
       - name: Setup Pages
         if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
