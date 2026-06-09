@@ -165,7 +165,7 @@ jobs:
       - name: Install Wasm Bindgen
         uses: taiki-e/install-action@0631aa6515c7d545823c67cfae7ef4fc7f490154 # v2
         with:
-          tool: wasm-bindgen-cli@0.2.122
+          tool: wasm-bindgen-cli@0.2.123
 
       - name: Build Wasm
         working-directory: rs/wasm
@@ -199,7 +199,7 @@ jobs:
             --strip-dwarf \
             -o ./pkg/wasm_book_bg.opt.wasm
 
-            mv ./pkg/wasm_book_bg.opt.wasm ./pkg/wasm_book_bg.wasm
+          mv ./pkg/wasm_book_bg.opt.wasm ./pkg/wasm_book_bg.wasm
 
       - name: Upload Wasm Artifact
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
