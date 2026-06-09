@@ -26,17 +26,17 @@ panic = "abort"
 bumpalo = { version = "=3.20.3", features = ["collections"] }
 getset = "=0.1.6"
 itoa = "=1.0.18"
-js-sys = "=0.3.99"
+js-sys = "=0.3.100"
 macros = { path = "macros" }
 memchr = { version = "=2.8.1", default-features = false }
 percent-encoding = "=2.3.2"
 serde = { version = "=1.0.228", features = ["derive"] }
 serde-wasm-bindgen = "=0.6.5"
 unicode-segmentation = "=1.13.3"
-wasm-bindgen = "=0.2.122"
+wasm-bindgen = "=0.2.123"
 
 [dev-dependencies]
-wasm-bindgen-test = "=0.3.72"
+wasm-bindgen-test = "=0.3.73"
 
 [features]
 debug = ["macros/use-browser-console"]
