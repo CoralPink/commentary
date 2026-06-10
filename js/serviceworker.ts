@@ -1,6 +1,6 @@
 declare const self: ServiceWorkerGlobalScope;
 
-const CACHE_VERSION = 'v11.2.2';
+const CACHE_VERSION = 'v11.2.3';
 
 const CACHE_URL = '/commentary/';
 const FALLBACK_IMAGE = 'favicon.png';
@@ -22,6 +22,8 @@ const installList = [
   'woff2/OpenSans-BoldItalic.woff2',
   'woff2/OpenSans-Italic.woff2',
   'woff2/FiraCode-VF.woff2',
+
+  'wasm_book_bg.wasm',
 ] as const;
 
 // Do not cache the specified destination
