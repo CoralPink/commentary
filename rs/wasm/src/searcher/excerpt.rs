@@ -2,7 +2,7 @@ use crate::searcher::constants::*;
 
 use bumpalo::Bump;
 use bumpalo::collections::Vec as BumpVec;
-use getset::Getters;
+use core::ops::Range;
 use unicode_segmentation::UnicodeSegmentation;
 
 /// Default importance for normal words.
@@ -22,18 +22,27 @@ struct HighlightedToken<'a> {
     importance: u16,
 }
 
-/// Represents a byte range in the text that matched a search term.
-#[derive(Getters)]
-pub struct Range {
-    #[get = "pub"]
-    start: usize,
-    #[get = "pub"]
-    end: usize,
-}
-
-/// Calculate the optimal window of tokens to highlight based on their importance.
+/// Finds the best scoring window of tokens using a sliding window approach.
 ///
-/// Returns the starting index and window size.
+/// This function scans over the token sequence and selects a contiguous window
+/// of fixed size (`TEASER_WORD_COUNT`) that maximizes the sum of importance scores.
+///
+/// It uses a sliding window optimization:
+/// - Computes the initial window score
+/// - Updates incrementally by subtracting the outgoing token and adding the incoming token
+/// - Tracks the maximum scoring position
+///
+/// # Returns
+/// A tuple `(start_index, window_size)` where:
+/// - `start_index` is the beginning of the optimal window
+/// - `window_size` is the effective window size (clamped by input length)
+///
+/// # Complexity
+/// O(n), where n is the number of tokens
+///
+/// # Notes
+/// This is the core heuristic used to decide which part of the document
+/// should be shown in the search preview excerpt.
 fn calc_range_position(tokens: &[HighlightedToken]) -> (usize, usize) {
     let size = TEASER_WORD_COUNT.min(tokens.len());
     let mut idx = 0;
@@ -53,9 +62,24 @@ fn calc_range_position(tokens: &[HighlightedToken]) -> (usize, usize) {
     (idx, size)
 }
 
-/// Extend the highlight window to include consecutive matched tokens.
+/// Extends the selected token window to include consecutive matched tokens.
 ///
-/// This ensures the highlight continues to the end of any matching terms.
+/// After selecting the optimal window, this function expands the range
+/// forward if there are adjacent tokens marked as matches (`IMPORTANCE_MATCH`).
+///
+/// This ensures that search result highlights do not cut off multi-token
+/// matches in the middle.
+///
+/// # Behavior
+/// - Starts from `start + size`
+/// - Extends forward while tokens are marked as `IMPORTANCE_MATCH`
+/// - Stops at first non-matching token or end of list
+///
+/// # Returns
+/// The exclusive end index of the expanded window
+///
+/// # Note
+/// This step improves visual continuity in search result excerpts.
 fn calc_end_index(start: usize, size: usize, tokens: &[HighlightedToken]) -> usize {
     let mut end_index = start + size;
 
@@ -67,21 +91,62 @@ fn calc_end_index(start: usize, size: usize, tokens: &[HighlightedToken]) -> usi
     end_index
 }
 
-fn extract_window(tokens: &[HighlightedToken]) -> Range {
+/// Extracts the most relevant window of tokens based on importance scoring.
+///
+/// This function selects a contiguous window of tokens from the input slice
+/// that maximizes the total importance score. Tokens that overlap with any
+/// of the provided `hit_ranges` are given higher importance, which biases
+/// the selection toward regions containing search matches.
+///
+/// If the input is empty, an empty range (`0..0`) is returned.
+///
+/// # Behavior
+/// - Tokens overlapping with `hit_ranges` are assigned higher importance
+/// - A sliding window of fixed size (`TEASER_WORD_COUNT`) is evaluated
+/// - The window with the highest cumulative importance is selected
+/// - Consecutive matched tokens may extend the final range beyond the window
+///
+/// # Returns
+/// A byte range (`start..end`) representing the best excerpt window
+/// within the original text.
+///
+/// # Note
+/// This operates on pre-tokenized input and uses byte positions derived
+/// from Unicode word segmentation.
+fn extract_window(tokens: &[HighlightedToken]) -> Range<usize> {
     if tokens.is_empty() {
-        return Range { start: 0, end: 0 };
+        return 0..0;
     }
 
     let (p_start, size) = calc_range_position(tokens);
     let p_end = calc_end_index(p_start, size, tokens) - 1;
 
-    Range {
-        start: tokens[p_start].position,
-        end: tokens[p_end].position + tokens[p_end].text.len(),
-    }
+    tokens[p_start].position..tokens[p_end].position + tokens[p_end].text.len()
 }
 
-pub fn compute_window_from_ranges(body: &str, hit_ranges: &[Range]) -> Range {
+/// Computes an optimal excerpt window from the document body based on search hit ranges.
+///
+/// The function tokenizes the input `body` into Unicode word segments and assigns
+/// each token an importance score. Tokens overlapping with `hit_ranges` are marked
+/// as highly important, which influences the selection of the final excerpt window.
+///
+/// The resulting window is chosen to maximize relevance while preserving local context
+/// around matched terms.
+///
+/// # Arguments
+/// - `body` - The full document text to analyze
+/// - `hit_ranges` - Byte ranges representing matched search terms
+///
+/// # Returns
+/// A byte range (`start..end`) representing the most relevant excerpt window
+/// in the original text.
+///
+/// # Performance
+/// Uses a bump allocator (`bumpalo`) for temporary token storage to reduce allocations.
+///
+/// # Note
+/// This function bridges raw search matches and UI-level excerpt selection.
+pub fn compute_window_from_ranges(body: &str, hit_ranges: &[Range<usize>]) -> Range<usize> {
     let bump = Bump::new();
     let mut tokens = BumpVec::with_capacity_in(EXCERPT_TOKENS_MAX, &bump);
 
@@ -109,10 +174,30 @@ pub fn compute_window_from_ranges(body: &str, hit_ranges: &[Range]) -> Range {
     extract_window(&tokens)
 }
 
-/// Find all hit ranges in `body` corresponding to normalized search terms.
+/// Computes and merges byte ranges for all search term matches in the document body.
 ///
-/// Returns a vector of `HitRange` with start/end byte positions.
-pub fn get_hitranges(body: &str, normalized_terms: &[String]) -> Vec<Range> {
+/// This function performs substring search for each normalized term and converts
+/// matches into byte ranges. It then merges overlapping or adjacent ranges
+/// into a single continuous set of ranges.
+///
+/// # Algorithm
+/// 1. Iterate over each search term
+/// 2. Find all occurrences in the document body
+/// 3. Convert each match into a byte range
+/// 4. Sort ranges by start position
+/// 5. Merge overlapping or contiguous ranges
+///
+/// # Returns
+/// A vector of merged, non-overlapping byte ranges representing all matches.
+///
+/// # Complexity
+/// - Worst case: O(n * m) for search (n = text length, m = number of terms)
+/// - Merge step: O(k log k), where k is number of matches
+///
+/// # Notes
+/// This function is used as the foundation for highlight detection
+/// before token-level scoring and window extraction.
+pub fn get_hitranges(body: &str, normalized_terms: &[String]) -> Vec<Range<usize>> {
     let bump = Bump::new();
     let mut vec = BumpVec::with_capacity_in(normalized_terms.len() * RANGES_ROUGH_GUIDE, &bump);
 
@@ -120,20 +205,21 @@ pub fn get_hitranges(body: &str, normalized_terms: &[String]) -> Vec<Range> {
         if term.is_empty() {
             continue;
         }
+
         let mut offset = 0;
 
         while let Some(pos) = body[offset..].find(term) {
             let start = offset + pos;
             let end = start + term.len();
 
-            vec.push(Range { start, end });
+            vec.push(start..end);
             offset = end;
         }
     }
 
     vec.sort_unstable_by_key(|r| (r.start, r.end));
 
-    let mut merged: Vec<Range> = Vec::with_capacity(vec.len());
+    let mut merged: Vec<Range<usize>> = Vec::with_capacity(vec.len());
 
     for r in vec {
         if let Some(last) = merged.last_mut()
@@ -163,6 +249,6 @@ mod tests {
         let ranges = get_hitranges(text, &terms);
         let window = compute_window_from_ranges(text, &ranges);
 
-        assert!(text[window.start..window.end].contains("桃太郎"));
+        assert!(text[window.clone()].contains("桃太郎"));
     }
 }

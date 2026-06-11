@@ -145,25 +145,25 @@ impl HtmlBuilder {
         let hit_ranges = get_hitranges(body, normalized_terms);
 
         let window = compute_window_from_ranges(body, &hit_ranges);
-        let (ws, we) = (window.start(), window.end());
+        let (ws, we) = (window.start, window.end);
 
         let mut pos = ws;
 
         for range in &hit_ranges {
-            if range.end() <= ws || range.start() >= we {
+            if range.end <= ws || range.start >= we {
                 continue;
             }
 
-            let start = range.start().max(ws);
-            let end = range.end().min(we);
+            let start = range.start.max(ws);
+            let end = range.end.min(we);
 
             if pos < start {
-                self.safe_text(&body[*pos..*start]);
+                self.safe_text(&body[pos..start]);
             }
 
             self.buf.extend_from_slice(MARK_TAG);
 
-            let slice = &body[*start..*end];
+            let slice = &body[start..end];
 
             if likely_safe(slice.as_bytes()) {
                 self.buf.extend_from_slice(slice.as_bytes());
@@ -177,7 +177,7 @@ impl HtmlBuilder {
         }
 
         if pos < we {
-            self.safe_text(&body[*pos..*we]);
+            self.safe_text(&body[pos..we]);
         }
     }
 
@@ -239,16 +239,16 @@ impl HtmlBuilder {
 
     fn li_search_result(&mut self, hit: &SearchHit) {
         let doc = hit.el.doc();
-        let score = hit.el.score();
+        let score = hit.el.score;
 
         self.open("li");
         self.attr("tabindex", "0");
         self.attr("role", "option");
-        self.attr_num("id", *hit.el.id());
+        self.attr_num("id", hit.el.id);
         self.buf.extend_from_slice(b" aria-label=\"");
         self.safe_text(hit.page);
         self.buf.push(b' ');
-        self.num(*score);
+        self.num(score);
         self.buf.extend_from_slice(b"pt\">");
 
         // link
@@ -276,11 +276,11 @@ impl HtmlBuilder {
         self.attr("class", "score");
         self.attr("role", "meter");
         self.buf.extend_from_slice(b" aria-label=\"score:");
-        self.num(*score);
+        self.num(score);
         self.buf.extend_from_slice(b"pt\">");
-        self.score_bar(*score);
+        self.score_bar(score);
         self.buf.extend_from_slice(b" (");
-        self.num(*score);
+        self.num(score);
         self.buf.extend_from_slice(b"pt)");
         self.end("div");
 
@@ -297,7 +297,7 @@ impl HtmlBuilder {
         let mut rendered = 0;
 
         results.into_iter().for_each(|el| {
-            if let Some(url) = url_table.get(*el.id()) {
+            if let Some(url) = url_table.get(el.id) {
                 let (page, head) = parse_uri(url);
 
                 self.li_search_result(&SearchHit {
@@ -325,7 +325,7 @@ mod tests {
     wasm_bindgen_test_configure!(run_in_browser);
 
     fn render(body: &str, terms: &[String]) -> String {
-        let doc = DocObject::dummy("999", "dammy", body, "dam » my");
+        let doc = DocObject::dummy("999", body, "dam » my");
         let mut builder = HtmlBuilder::new_for_results(terms.len());
         builder.write_highlighted_excerpt(doc.body(), terms);
 

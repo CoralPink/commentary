@@ -8,13 +8,13 @@ type NodeOffset = {
   end: number;
 };
 
-type RangeIndex = {
+type Utf16Range = {
   start: number;
   end: number;
 };
 
 type MatchResult = {
-  index: RangeIndex[];
+  index: Utf16Range[];
   hadMatch: boolean;
 };
 

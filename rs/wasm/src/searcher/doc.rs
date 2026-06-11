@@ -10,8 +10,6 @@ pub struct DocObject {
     #[get = "pub"]
     id: String,
     #[get = "pub"]
-    title: String,
-    #[get = "pub"]
     body: String,
     #[get = "pub"]
     breadcrumbs: String,
@@ -41,10 +39,9 @@ impl DocObject {
     }
 
     #[cfg(test)]
-    pub fn dummy(id: &str, title: &str, body: &str, breadcrumbs: &str) -> Self {
+    pub fn dummy(id: &str, body: &str, breadcrumbs: &str) -> Self {
         let s = Self {
             id: id.into(),
-            title: title.into(),
             body: body.to_string(),
             breadcrumbs: breadcrumbs.into(),
             body_lower: String::new(),
