@@ -406,7 +406,7 @@ checksum = "ae0f005eb61f765eff31a79ef71df7e21819731268a868df41192c1e41d6d3e5"
 
 [[package]]
 name = "wasm-book"
-version = "1.5.2"
+version = "1.5.3"
 dependencies = [
  "bumpalo",
  "getset",
