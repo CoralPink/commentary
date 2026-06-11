@@ -6,7 +6,7 @@
 ///
 use crate::searcher::constants::*;
 use crate::searcher::doc::DocObject;
-use crate::searcher::hit_list::HitList;
+use crate::searcher::hit_list::HitScorer;
 use crate::searcher::html_builder::HtmlBuilder;
 
 use serde_wasm_bindgen::from_value;
@@ -33,24 +33,6 @@ impl Finder {
         })
     }
 
-    /// Returns documents that match the given terms, either as full string match or token-wise match.
-    fn filter_docs_by_terms<'a>(&'a self, normalized_terms: &[String]) -> impl Iterator<Item = &'a DocObject> {
-        let first_chars: Vec<char> = normalized_terms.iter().filter_map(|t| t.chars().next()).collect();
-
-        self.store_doc.iter().filter(move |doc| {
-            let body = doc.body_lower();
-            let crumbs = doc.breadcrumbs_lower();
-
-            if !first_chars.iter().all(|c| body.contains(*c) || crumbs.contains(*c)) {
-                return false;
-            }
-
-            normalized_terms
-                .iter()
-                .all(|tok| body.contains(tok) || crumbs.contains(tok))
-        })
-    }
-
     pub fn search(&self, value: &str) -> Box<[u8]> {
         let terms = value.trim();
         let mut builder = self.html_builder.borrow_mut();
@@ -70,7 +52,7 @@ impl Finder {
         let hit = builder.build_search_result(
             &self.root_path,
             &self.url_table,
-            HitList::from_token_set(&normalized_terms, self.filter_docs_by_terms(&normalized_terms)),
+            HitScorer::new(&normalized_terms).compute(self.store_doc.iter()),
             &normalized_terms,
         );
 

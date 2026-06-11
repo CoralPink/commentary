@@ -3,7 +3,6 @@ use crate::searcher::constants::*;
 use crate::searcher::doc::DocObject;
 
 use getset::Getters;
-use std::ops::{Deref, DerefMut};
 
 /// Character used to split header breadcrumbs
 const SCORE_HEADER_PARSE: char = '»';
@@ -40,44 +39,15 @@ fn get_body_score(term: &str, body: &str) -> usize {
 /// Contains a reference to the matched document and its parsed ID.
 #[derive(Getters)]
 pub struct Hit<'a> {
+    pub score: usize,
+    pub id: usize,
+
     #[get = "pub"]
     doc: &'a DocObject,
-    #[get = "pub"]
-    score: usize,
-    #[get = "pub"]
-    id: usize,
 }
 
-/// A collection of search hits with a fixed maximum capacity.
-/// Provides methods for scoring, merging, and ranking search results.
 #[derive(Default)]
 pub struct HitList<'a>(Vec<Hit<'a>>);
-
-impl HitList<'_> {
-    pub fn new() -> Self {
-        Self::default()
-    }
-}
-
-impl<'a> Deref for HitList<'a> {
-    type Target = Vec<Hit<'a>>;
-
-    fn deref(&self) -> &Self::Target {
-        &self.0
-    }
-}
-
-impl<'a> From<HitList<'a>> for Vec<Hit<'a>> {
-    fn from(m: HitList<'a>) -> Self {
-        m.0
-    }
-}
-
-impl DerefMut for HitList<'_> {
-    fn deref_mut(&mut self) -> &mut Self::Target {
-        &mut self.0
-    }
-}
 
 impl<'a> IntoIterator for HitList<'a> {
     type Item = Hit<'a>;
@@ -88,21 +58,48 @@ impl<'a> IntoIterator for HitList<'a> {
     }
 }
 
-impl<'a> HitList<'a> {
-    pub fn from_token_set<I>(normalized_terms: &[String], docs: I) -> Self
+pub struct HitScorer<'a> {
+    terms: &'a [String],
+    first_chars: Vec<char>,
+}
+
+impl<'a> HitScorer<'a> {
+    pub fn new(terms: &'a [String]) -> Self {
+        let first_chars = terms.iter().filter_map(|t| t.chars().next()).collect();
+
+        Self { terms, first_chars }
+    }
+
+    fn calc(&self, doc: &DocObject) -> usize {
+        let mut score = 0;
+
+        for token in self.terms.iter().map(|s| s.as_str()) {
+            score += get_header_score(token, doc.breadcrumbs());
+            score += get_body_score(token, doc.body());
+        }
+
+        score
+    }
+
+    pub fn compute<'b, I>(&self, docs: I) -> HitList<'b>
     where
-        I: IntoIterator<Item = &'a DocObject>,
+        I: IntoIterator<Item = &'b DocObject>,
     {
-        let mut results = Vec::with_capacity(LIMIT_RESULTS / normalized_terms.len().max(1));
+        let mut results = Vec::with_capacity(LIMIT_RESULTS / self.terms.len().max(1));
 
         for doc in docs {
-            let mut score = 0;
+            let body = doc.body_lower();
+            let crumbs = doc.breadcrumbs_lower();
 
-            for token in normalized_terms.iter().map(|s| s.as_str()) {
-                score += get_header_score(token, doc.breadcrumbs());
-                score += get_body_score(token, doc.body());
+            if !self
+                .first_chars
+                .iter()
+                .all(|c| body.contains(*c) || crumbs.contains(*c))
+            {
+                continue;
             }
 
+            let score = self.calc(doc);
             if score < SCORE_LOWER_LIMIT {
                 continue;
             }
@@ -113,8 +110,9 @@ impl<'a> HitList<'a> {
         }
 
         results.sort_unstable_by(|a, b| b.score.cmp(&a.score).then_with(|| a.id.cmp(&b.id)));
+
         results.truncate(LIMIT_RESULTS);
 
-        Self(results)
+        HitList(results)
     }
 }

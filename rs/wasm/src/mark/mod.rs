@@ -6,11 +6,11 @@ use std::mem::MaybeUninit;
 use unicode_segmentation::UnicodeSegmentation;
 use wasm_bindgen::prelude::*;
 
-/// rough guide to the number of RangeIndex
+/// rough guide to the number of Utf16Range
 const RANGE_INDEX_ROUGH_GUIDE: usize = 8;
 
 #[derive(Serialize, Deserialize)]
-struct RangeIndex {
+struct Utf16Range {
     start: usize,
     end: usize,
     #[cfg(test)]
@@ -20,7 +20,7 @@ struct RangeIndex {
 #[derive(Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 struct MatchResult {
-    index: Vec<RangeIndex>,
+    index: Vec<Utf16Range>,
     had_match: bool,
 }
 
@@ -57,8 +57,8 @@ fn create_index_map(text: &str) -> Vec<usize> {
     v
 }
 
-fn merge_ranges(range: BumpVec<RangeIndex>) -> Vec<RangeIndex> {
-    let mut merged: Vec<RangeIndex> = Vec::with_capacity(range.len());
+fn merge_ranges(range: BumpVec<Utf16Range>) -> Vec<Utf16Range> {
+    let mut merged: Vec<Utf16Range> = Vec::with_capacity(range.len());
 
     for r in range {
         if let Some(last) = merged.last_mut()
@@ -73,7 +73,7 @@ fn merge_ranges(range: BumpVec<RangeIndex>) -> Vec<RangeIndex> {
     merged
 }
 
-fn get_sentences(terms: &[String], text: &str, index_map: &[usize]) -> Vec<RangeIndex> {
+fn get_sentences(terms: &[String], text: &str, index_map: &[usize]) -> Vec<Utf16Range> {
     let bump = Bump::new();
     let mut range = BumpVec::with_capacity_in((index_map.len() / RANGE_INDEX_ROUGH_GUIDE).max(1), &bump);
 
@@ -88,7 +88,7 @@ fn get_sentences(terms: &[String], text: &str, index_map: &[usize]) -> Vec<Range
         cursor = p + sentence.len();
 
         if terms.iter().any(|x| sentence.to_lowercase().contains(x)) {
-            range.push(RangeIndex {
+            range.push(Utf16Range {
                 start: index_map[p],
                 end: index_map[p + sentence.len()],
                 #[cfg(test)]
@@ -100,7 +100,7 @@ fn get_sentences(terms: &[String], text: &str, index_map: &[usize]) -> Vec<Range
     merge_ranges(range)
 }
 
-fn get_range(terms: &[String], text: &str, index_map: &[usize]) -> Vec<RangeIndex> {
+fn get_range(terms: &[String], text: &str, index_map: &[usize]) -> Vec<Utf16Range> {
     let lower_text = text.to_lowercase();
     let mut range = Vec::with_capacity((index_map.len() / RANGE_INDEX_ROUGH_GUIDE).max(1));
 
@@ -111,7 +111,7 @@ fn get_range(terms: &[String], text: &str, index_map: &[usize]) -> Vec<RangeInde
             let byte_start = pos + found;
             let byte_end = byte_start + x.len();
 
-            range.push(RangeIndex {
+            range.push(Utf16Range {
                 start: index_map[byte_start],
                 end: index_map[byte_end],
                 #[cfg(test)]
@@ -139,7 +139,7 @@ fn validate_input(term: &str, text: &str) -> Result<(), JsValue> {
 
 fn build_match_result<F>(term: &str, text: &str, matcher: F) -> Result<JsValue, JsValue>
 where
-    F: Fn(&[String], &str, &[usize]) -> Vec<RangeIndex>,
+    F: Fn(&[String], &str, &[usize]) -> Vec<Utf16Range>,
 {
     validate_input(term, text)?;
 
