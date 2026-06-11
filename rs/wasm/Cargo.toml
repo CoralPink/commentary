@@ -24,7 +24,7 @@ panic = "abort"
 
 [dependencies]
 bumpalo = { version = "=3.20.3", features = ["collections"] }
-getset = "=0.1.6"
+getset = "=0.1.7"
 itoa = "=1.0.18"
 js-sys = "=0.3.100"
 macros = { path = "macros" }
