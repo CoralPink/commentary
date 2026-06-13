@@ -165,7 +165,7 @@ jobs:
       - name: Install Wasm Bindgen
         uses: taiki-e/install-action@fd2f5e3d644b484055ebf4268f474c565f148f25 # v2
         with:
-          tool: wasm-bindgen-cli@0.2.123
+          tool: wasm-bindgen-cli@0.2.125
 
       - name: Build Wasm
         working-directory: rs/wasm
