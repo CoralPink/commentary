@@ -171,6 +171,7 @@ jobs:
         run: |
           ls -R .
           cat .cargo/config.toml || echo "NO CONFIG"
+          cat rs/wasm/.cargo/config.toml || echo "NO CONFIG"
 
       - name: Build Wasm
         working-directory: rs/wasm
