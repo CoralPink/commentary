@@ -167,6 +167,11 @@ jobs:
         with:
           tool: wasm-bindgen-cli@0.2.125
 
+      - name: debug cargo config
+        run: |
+          ls -R .
+          cat .cargo/config.toml || echo "NO CONFIG"
+
       - name: Build Wasm
         working-directory: rs/wasm
         run: |
