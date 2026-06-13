@@ -36,7 +36,7 @@ unicode-segmentation = "=1.13.3"
 wasm-bindgen = "=0.2.125"
 
 [dev-dependencies]
-wasm-bindgen-test = "=0.3.73"
+wasm-bindgen-test = "=0.3.75"
 
 [features]
 debug = ["macros/use-browser-console"]
