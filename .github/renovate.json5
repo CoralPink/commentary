@@ -27,9 +27,10 @@
     {
       "matchPackageNames": ["taiki-e/install-action"],
       "matchUpdateTypes": ["digest"],
-      "automergeSchedule": [
+      "schedule": [
         "before 4am on monday"
       ]
     }
   ],
+  "timezone": "Asia/Tokyo",
 }
