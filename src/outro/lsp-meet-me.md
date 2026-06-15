@@ -22,10 +22,18 @@
 }}
 ```
 
-<video preload="none" width="1280" height="720" data-poster="img/amai-kioku-thumbnail.avif">
-  <source src="img/amai-kioku.webm" type="video/webm">
-  Your browser does not support the video/webm.
-</video>
+<div class="slider">
+  <div class="media">
+    <video preload="none" width="1280" height="720" data-poster="img/amai-kioku-thumbnail.avif">
+      <source src="img/amai-kioku.webm" type="video/webm">
+      Your browser does not support the video/webm.
+    </video>
+    <video preload="none" width="1280" height="720" data-poster="img/kirameku-kimochi-thumbnail.avif">
+      <source src="img/kirameku-kimochi.webm" type="video/webm">
+      Your browser does not support the video/webm.
+    </video>
+  </div>
+</div>
 
 舟を出せ❗いざ鬼退治❗❗
 
