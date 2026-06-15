@@ -3,9 +3,9 @@
     "plyr": "npm:plyr@3.8.4",
     "rolldown": "npm:rolldown@1.1.1",
 
-    "vitest": "npm:vitest@4.1.8",
-    "@vitest/coverage-v8": "npm:@vitest/coverage-v8@4.1.8",
-    "happy-dom": "npm:happy-dom@20.10.2"
+    "vitest": "npm:vitest@4.1.9",
+    "@vitest/coverage-v8": "npm:@vitest/coverage-v8@4.1.9",
+    "happy-dom": "npm:happy-dom@20.10.3"
   },
   "tasks": {
     "bundle": "rolldown -c",
