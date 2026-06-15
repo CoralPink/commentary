@@ -162,6 +162,7 @@ return config
       <source src="img/hydration_breaks.webm" type="video/webm">
       Your browser does not support the video/webm.
     </video>
+    ![uco-chan](img/uco-chan.avif)
   </div>
 </div>
 

@@ -541,7 +541,7 @@ Okay, beautiful, yes
 最高だ！
 </div>
 
-![teru-teru-bozu](img/teruteru-bozu.avif)
+![teruteru-bozu](img/teruteru-bozu.avif)
 
 <div style="color: #999999; margin: 2rem">
 We've made it!
