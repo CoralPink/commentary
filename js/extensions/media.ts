@@ -17,7 +17,7 @@ const onVideoEnded = (ev: Event): void => {
   (ev.currentTarget as HTMLVideoElement).currentTime = VIDEO_RESTART_OFFSET;
 };
 
-const setPlyr = async (video: HTMLVideoElement): Promise<void> => {
+const setPlyr = async (video: HTMLVideoElement, signal: AbortSignal): Promise<void> => {
   await loadStyleSheetPromise;
 
   plyrInstances.push(new Plyr(video));
@@ -27,21 +27,24 @@ const setPlyr = async (video: HTMLVideoElement): Promise<void> => {
   video.addEventListener('ended', onVideoEnded, {
     once: false,
     passive: true,
+    signal,
   });
 };
 
-const setupMedia = (entries: IntersectionObserverEntry[], obs: IntersectionObserver): void => {
-  for (const entry of entries) {
-    if (!entry.isIntersecting) {
-      continue;
+const setupMedia =
+  (signal: AbortSignal) =>
+  (entries: IntersectionObserverEntry[], obs: IntersectionObserver): void => {
+    for (const entry of entries) {
+      if (!entry.isIntersecting) {
+        continue;
+      }
+
+      const video = entry.target as HTMLVideoElement;
+      setPlyr(video, signal);
+
+      obs.unobserve(video);
     }
-
-    const video = entry.target as HTMLVideoElement;
-    setPlyr(video);
-
-    obs.unobserve(video);
-  }
-};
+  };
 
 export const initialize = (html: HTMLElement): Disposer => {
   if (!loadStyleSheetPromise) {
@@ -49,12 +52,15 @@ export const initialize = (html: HTMLElement): Disposer => {
   }
 
   const videos = Array.from(html.querySelectorAll<HTMLVideoElement>('video'));
+  const ac = new AbortController();
 
   if (videos.length === 0) {
     return () => {}; // no-op dispose
   }
 
-  const obs = new IntersectionObserver(setupMedia, { rootMargin: '3%' });
+  const obs = new IntersectionObserver(setupMedia(ac.signal), {
+    rootMargin: '3%',
+  });
 
   for (const x of videos) {
     obs.observe(x);
@@ -62,13 +68,12 @@ export const initialize = (html: HTMLElement): Disposer => {
 
   return (): void => {
     obs.disconnect();
+    ac.abort();
 
-    for (const x of videos) {
-      x.removeEventListener('ended', onVideoEnded);
-    }
     for (const x of plyrInstances) {
       x.destroy();
     }
+
     plyrInstances.length = 0;
   };
 };

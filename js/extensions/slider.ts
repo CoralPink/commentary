@@ -28,6 +28,8 @@ class Slider {
   private medias: CompatibleMedia[] = [];
   private indicatorSpans: HTMLSpanElement[] = [];
 
+  private abortListener = new AbortController();
+
   private index = 0;
 
   private handleIntersect = (entries: IntersectionObserverEntry[]) => {
@@ -132,7 +134,7 @@ class Slider {
         (): void => {
           media.scrollIntoView(SCROLL_INTO_VIEW_OPTIONS);
         },
-        { once: false, passive: true },
+        { once: false, passive: true, signal: this.abortListener.signal },
       );
 
       fragment.appendChild(button);
@@ -180,7 +182,7 @@ class Slider {
       (): void => {
         this.scrollTo(this.index + (dir === ID_PREV ? -1 : 1));
       },
-      { once: false, passive: true },
+      { once: false, passive: true, signal: this.abortListener.signal },
     );
 
     return arrow;
@@ -197,21 +199,14 @@ class Slider {
     video.addEventListener('ended', this.toNext, {
       once: false,
       passive: true,
+      signal: this.abortListener.signal,
     });
-  }
-
-  private unsetVideo(video: HTMLVideoElement): void {
-    video.removeEventListener('ended', this.toNext);
   }
 
   public dispose(): void {
     this.observer.disconnect();
+    this.abortListener.abort();
 
-    for (const x of this.medias) {
-      if (x instanceof HTMLVideoElement) {
-        this.unsetVideo(x);
-      }
-    }
     for (const x of this.indicatorSpans) {
       x.replaceWith(x.cloneNode(true));
     }
