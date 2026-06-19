@@ -8,12 +8,12 @@
     "p-limit": "npm:p-limit@7.3.0"
   },
   "tasks": {
-    "link": "deno run --allow-read --allow-write link.ts $DEBUG",
+    "content": "deno run --allow-read --allow-write content.ts $DEBUG",
     "pagelist": "deno run --allow-read --allow-write pagelist.ts $DEBUG",
     "json": "deno run --allow-read --allow-write json.ts",
 
     "regenerate": {
-      "dependencies": ["link", "pagelist", "json"]
+      "dependencies": ["content", "pagelist", "json"]
     }
   },
   "compilerOptions": {

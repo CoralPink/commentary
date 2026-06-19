@@ -9,32 +9,6 @@ const onVideoEnded = (ev: Event): void => {
   (ev.currentTarget as HTMLVideoElement).currentTime = VIDEO_RESTART_OFFSET;
 };
 
-const setupMedia = (video: HTMLVideoElement, signal: AbortSignal): void => {
-  if (video.closest('video-player')) {
-    return;
-  }
-
-  const parent = video.parentNode;
-
-  if (!parent) {
-    return;
-  }
-
-  const player = document.createElement('video-player');
-  const skin = document.createElement('video-minimal-skin');
-
-  parent.insertBefore(player, video);
-
-  player.appendChild(skin);
-  skin.appendChild(video);
-
-  video.addEventListener('ended', onVideoEnded, {
-    once: false,
-    passive: true,
-    signal,
-  });
-};
-
 export const initialize = (html: HTMLElement): Disposer => {
   const videos = Array.from(html.querySelectorAll<HTMLVideoElement>('video'));
 
@@ -45,7 +19,11 @@ export const initialize = (html: HTMLElement): Disposer => {
   const ac = new AbortController();
 
   for (const x of videos) {
-    setupMedia(x, ac.signal);
+    x.addEventListener('ended', onVideoEnded, {
+      once: false,
+      passive: true,
+      signal: ac.signal,
+    });
   }
 
   return (): void => {

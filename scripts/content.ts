@@ -27,28 +27,56 @@ const isExternalLink = (elm: HTMLAnchorElement): boolean => {
   }
 };
 
-const externalLinkProc = (elm: HTMLAnchorElement): void => {
-  elm.setAttribute('target', '_blank');
-  elm.setAttribute('rel', 'noopener');
+const rewriteLinks = (document: Document): boolean => {
+  let modified = false;
+
+  for (const elm of document.querySelectorAll<HTMLAnchorElement>('a[href]')) {
+    if (!isExternalLink(elm)) {
+      continue;
+    }
+
+    elm.setAttribute('target', '_blank');
+    elm.setAttribute('rel', 'noopener');
+
+    modified = true;
+  }
+
+  return modified;
+};
+
+const rewriteVideos = (document: Document): boolean => {
+  let modified = false;
+
+  for (const video of document.querySelectorAll<HTMLVideoElement>('video')) {
+    const parent = video.parentNode;
+
+    if (!parent) {
+      continue;
+    }
+
+    const player = document.createElement('video-player');
+    const skin = document.createElement('video-minimal-skin');
+
+    parent.insertBefore(player, video);
+
+    player.appendChild(skin);
+    skin.appendChild(video);
+
+    modified = true;
+  }
+
+  return modified;
 };
 
 const fileProc = async (fullPath: string): Promise<string | null> => {
   const html = await Deno.readTextFile(fullPath);
   const dom = new JSDOM(html);
 
-  let modified = false;
-
-  for (const elm of dom.window.document.querySelectorAll('a[href]')) {
-    if (!isExternalLink(elm)) {
-      continue;
-    }
-
-    externalLinkProc(elm);
-    modified = true;
-  }
+  const linksModified = rewriteLinks(dom.window.document);
+  const videosModified = rewriteVideos(dom.window.document);
 
   // Return null if there are no changes
-  return modified ? dom.serialize() : null;
+  return linksModified || videosModified ? dom.serialize() : null;
 };
 
 const processDir = async (currentDir: string): Promise<void> => {
@@ -88,7 +116,7 @@ const processDir = async (currentDir: string): Promise<void> => {
 
   const time = Math.floor(performance.now() - start);
 
-  console.info(`${g.CLR_BG}✔ ${g.CLR_BC}link${g.CLR_RESET} Finished in ${g.CLR_BG}${time} ms${g.CLR_RESET}`);
+  console.info(`${g.CLR_BG}✔ ${g.CLR_BC}content${g.CLR_RESET} Finished in ${g.CLR_BG}${time} ms${g.CLR_RESET}`);
   console.info(`${g.CLR_G}INFO${g.CLR_RESET} mode: ${g.isDebug ? 'debug' : 'production'}`);
   console.info(`${g.CLR_G}INFO${g.CLR_RESET} rootPath: ${g.rootPath}`);
 })();
