@@ -5,7 +5,7 @@
 
     "vitest": "npm:vitest@4.1.9",
     "@vitest/coverage-v8": "npm:@vitest/coverage-v8@4.1.9",
-    "happy-dom": "npm:happy-dom@20.10.3"
+    "happy-dom": "npm:happy-dom@20.10.4"
   },
   "tasks": {
     "bundle": "rolldown -c",
