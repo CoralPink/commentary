@@ -456,22 +456,22 @@ Don Henley は 2007年の Jon Soeder とのインタビューでの
 "1969年以来 我々にはもう あのスピリットは無いのです."
 
 {{footnote:
-[Ticket to Ride](https://coralpink.github.io/commentary/neovim/options/inccommand.html?mark=1969#ft-1)
+[Ticket to Ride](../neovim/options/inccommand.html?mark=1969#ft-1)
 }}
 {{footnote:
-[rooftop concert](https://coralpink.github.io/commentary/neovim/plugin/lualine.html?mark=1969#ft-2)
+[rooftop concert](../neovim/plugin/lualine.html?mark=1969#ft-2)
 }}
 {{footnote:
-[My Way](https://coralpink.github.io/commentary/neovim/lsp/nvim-lspconfig.html?mark=1969#ft-2)
+[My Way](../neovim/lsp/nvim-lspconfig.html?mark=1969#ft-2)
 }}
 {{footnote:
-[Abbey Road](https://coralpink.github.io/commentary/neovim/lsp/nvim-cmp.html?mark=1969#ft-1)
+[Abbey Road](../neovim/lsp/nvim-cmp.html?mark=1969#ft-1)
 }}
 {{footnote:
-[WAR IS OVER!](https://coralpink.github.io/commentary/outro/mason-null-ls.html?mark=1969#ft-2)
+[WAR IS OVER!](mason-null-ls.html?mark=1969#ft-2)
 }}
 {{footnote:
-[Give Peace a Chance](https://coralpink.github.io/commentary/outro/linter.html?mark=1969#ft-5)
+[Give Peace a Chance](linter.html?mark=1969#ft-5)
 }}
 </div>
 <div style="margin-top: 4em"></div>

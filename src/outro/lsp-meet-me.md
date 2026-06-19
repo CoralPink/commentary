@@ -706,7 +706,7 @@ vim.filetype.add({
 ```
 ~~~
 
-~~~admonish note
+~~~admonish note title="脳人"
 ChatGPT に教えてもらったやり方だけど、ちょい賢い判定を入れることもできるらしい...
 
 ```lua
