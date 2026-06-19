@@ -6,9 +6,8 @@
 
 乗り越えていってください❗
 
-<video preload="none" width="1280" height="720" data-poster="img/kawaguchiko-hanabi-thumbnail.avif">
+<video preload="metadata" width="1280" height="720" poster="img/kawaguchiko-hanabi-thumbnail.avif">
   <source src="img/kawaguchiko-hanabi.webm" type="video/webm">
-  Your browser does not support the video/webm.
 </video>
 
 ...内容とは全然関係ないんだけど、花火打ち上がってたんで載っけときます🎆

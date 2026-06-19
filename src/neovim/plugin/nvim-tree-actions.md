@@ -466,9 +466,8 @@ Close to you
 あなたのすぐそばにいたいんだもの
 ```
 
-<video preload="none" width="1280" height="720" data-poster="img/ueno-park-thumbnail.avif">
+<video preload="metadata" width="1280" height="720" poster="img/ueno-park-thumbnail.avif">
   <source src="img/ueno-park.webm" type="video/webm">
-  Your browser does not support the video/webm.
 </video>
 
 ```admonish success title="Assemble"

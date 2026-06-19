@@ -9,12 +9,14 @@
     overflow-x: auto;
     scroll-snap-type: x mandatory;
 
+    min-width: 100%;
     align-items: center;
 
     &>* {
+      display: block;
+
       flex: 0 0 100%;
       scroll-snap-align: start;
-      min-width: 0;
     }
   }
 

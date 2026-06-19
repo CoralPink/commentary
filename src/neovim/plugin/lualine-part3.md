@@ -217,9 +217,8 @@ No one’s has. Your future is whatever you make it.
 ```
 
 ```admonish quote title=""
-<video preload="none" width="1280" height="720" data-poster="img/starry-starry-christmas-party-thumbnail.avif">
+<video preload="metadata" width="1280" height="720" poster="img/starry-starry-christmas-party-thumbnail.avif">
   <source src="img/starry-starry-christmas-party.webm" type="video/webm">
-  Your browser does not support the video/webm.
 </video>
 
 [サンリオピューロランド](https://en.wikipedia.org/wiki/Sanrio_Puroland)より
