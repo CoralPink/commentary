@@ -1,7 +1,7 @@
 {
   "version": "5",
   "specifiers": {
-    "npm:@videojs/html@^10.0.0-beta.24": "10.0.0-beta.24_@svta+cml-cta@1.0.6__@svta+cml-structured-field-values@1.1.3___@svta+cml-utils@1.5.0__@svta+cml-utils@1.5.0_@svta+cml-structured-field-values@1.1.3__@svta+cml-utils@1.5.0_@svta+cml-utils@1.5.0",
+    "npm:@videojs/html@10.0.0-beta.24": "10.0.0-beta.24_@svta+cml-cta@1.0.6__@svta+cml-structured-field-values@1.1.3___@svta+cml-utils@1.5.0__@svta+cml-utils@1.5.0_@svta+cml-structured-field-values@1.1.3__@svta+cml-utils@1.5.0_@svta+cml-utils@1.5.0",
     "npm:@vitest/coverage-v8@4.1.9": "4.1.9_vitest@4.1.9_happy-dom@20.10.6",
     "npm:happy-dom@20.10.6": "20.10.6",
     "npm:rolldown@1.1.2": "1.1.2",
@@ -932,7 +932,7 @@
   },
   "workspace": {
     "dependencies": [
-      "npm:@videojs/html@^10.0.0-beta.24",
+      "npm:@videojs/html@10.0.0-beta.24",
       "npm:@vitest/coverage-v8@4.1.9",
       "npm:happy-dom@20.10.6",
       "npm:rolldown@1.1.2",

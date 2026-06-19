@@ -1,6 +1,6 @@
 {
   "imports": {
-    "@videojs/html": "npm:@videojs/html@^10.0.0-beta.24",
+    "@videojs/html": "npm:@videojs/html@10.0.0-beta.24",
     "rolldown": "npm:rolldown@1.1.2",
 
     "vitest": "npm:vitest@4.1.9",
