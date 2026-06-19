@@ -10,6 +10,10 @@ const onVideoEnded = (ev: Event): void => {
 };
 
 const setupMedia = (video: HTMLVideoElement, signal: AbortSignal): void => {
+  if (video.closest('video-player')) {
+    return;
+  }
+
   const parent = video.parentNode;
 
   if (!parent) {
