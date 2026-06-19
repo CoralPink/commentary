@@ -24,10 +24,10 @@
 
 <div class="slider">
   <div class="media">
-    <video preload="metadata" width="1280" height="720" poster="img/amai-kioku-thumbnail.avif">
+    <video preload="none" width="1280" height="720" poster="img/amai-kioku-thumbnail.avif" loading="lazy">
       <source src="img/amai-kioku.webm" type="video/webm">
     </video>
-    <video preload="metadata" width="1280" height="720" poster="img/kirameku-kimochi-thumbnail.avif">
+    <video preload="none" width="1280" height="720" poster="img/kirameku-kimochi-thumbnail.avif" loading="lazy">
       <source src="img/kirameku-kimochi.webm" type="video/webm">
     </video>
   </div>
@@ -579,10 +579,10 @@ vim.lsp.enable(manual_lsp)
 
 <div class="slider">
   <div class="media">
-    <video preload="metadata" width="1280" height="720" poster="img/fukuro-festival-thumbnail.avif">
+    <video preload="none" width="1280" height="720" poster="img/fukuro-festival-thumbnail.avif" loading="lazy">
       <source src="img/fukuro-festival.webm" type="video/webm">
     </video>
-    <video preload="metadata" width="1280" height="720" poster="img/kurayami-festival-thumbnail.avif">
+    <video preload="none" width="1280" height="720" poster="img/kurayami-festival-thumbnail.avif" loading="lazy">
       <source src="img/kuarayami-festival.webm" type="video/webm">
     </video>
   </div>
@@ -798,10 +798,10 @@ MVP とは、俺のことだ！！
 
 <div class="slider">
   <div class="media">
-    <video preload="metadata" width="1280" height="720" poster="img/tokyo-yosakoi-enya-thumbnail.avif">
+    <video preload="none" width="1280" height="720" poster="img/tokyo-yosakoi-enya-thumbnail.avif" loading="lazy">
       <source src="img/tokyo-yosakoi-enya.webm" type="video/webm">
     </video>
-    <video preload="metadata" width="1280" height="720" poster="img/fuchu-ohayashi-thumbnail.avif">
+    <video preload="none" width="1280" height="720" poster="img/fuchu-ohayashi-thumbnail.avif" loading="lazy">
       <source src="img/fuchu-ohayashi.webm" type="video/webm">
     </video>
   </div>

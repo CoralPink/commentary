@@ -126,7 +126,7 @@ Don't you know that you can count me out?{{footnote:
 僕のことは数に入れないでくれないか？
 ```
 
-<video preload="metadata" width="1280" height="720" poster="img/godzilla-thumbnail.avif">
+<video preload="none" width="1280" height="720" poster="img/godzilla-thumbnail.avif" loading="lazy">
   <source src="img/godzilla.webm" type="video/webm">
 </video>
 
@@ -603,7 +603,7 @@ Lennon は監督の [Michael Lindsay-Hogg](https://en.wikipedia.org/wiki/Michael
 
 さて、ここまで来たら次にやることはもう決まってますね😉 カラーテーマです❗
 
-<video preload="metadata" width="1280" height="720" poster="img/miracle-gift-parade-part1.avif">
+<video preload="none" width="1280" height="720" poster="img/miracle-gift-parade-part1.avif" loading="lazy">
   <source src="img/miracle-gift-parade-part1.webm" type="video/webm">
 </video>
 

@@ -102,7 +102,7 @@ Whatever you wish for, you keep
 ```
 
 ```admonish warning title=""
-<video preload="metadata" width="1280" height="720" poster="img/musicforest-opera-thumbnail.avif">
+<video preload="none" width="1280" height="720" poster="img/musicforest-opera-thumbnail.avif" loading="lazy">
   <source src="img/musicforest-opera.webm" type="video/webm">
 </video>
 ```
@@ -220,7 +220,7 @@ If you keep on believing
 実際、わたしは割と感覚で書いています...😅
 
 ```admonish info title=""
-<video preload="metadata" width="1280" height="720" poster="img/musicforest-sandart-thumbnail.avif">
+<video preload="none" width="1280" height="720" poster="img/musicforest-sandart-thumbnail.avif" loading="lazy">
   <source src="img/musicforest-sandart.webm" type="video/webm">
 </video>
 
@@ -240,7 +240,7 @@ FUNCTION WILL RETURN
 
 ### It's A Small World
 
-<video preload="metadata" width="1280" height="720" poster="img/electorical_parade_dreamlights_part2-thumbnail.avif">
+<video preload="none" width="1280" height="720" poster="img/electorical_parade_dreamlights_part2-thumbnail.avif" loading="lazy">
   <source src="img/electorical_parade_dreamlights_part2.webm" type="video/webm">
 </video>
 
