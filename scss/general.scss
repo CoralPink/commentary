@@ -256,17 +256,8 @@ article {
     height: auto;
   }
 
-  .plyr {
-    border-radius: 0.4rem;
-  }
-
-  video {
-    max-width: 100%;
-    height: auto;
-  }
-
   audio {
-    display: flex;
+    display: block;
     margin: 1rem auto;
     width: 70%;
   }

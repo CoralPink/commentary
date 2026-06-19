@@ -120,11 +120,7 @@ class Slider {
 
     for (const media of this.medias) {
       const button = document.createElement('button');
-
-      const thumbnail =
-        media instanceof HTMLVideoElement
-          ? media.dataset['poster' as keyof DOMStringMap] || media.poster || ''
-          : (media as HTMLImageElement).src;
+      const thumbnail = media instanceof HTMLVideoElement ? media.poster || '' : (media as HTMLImageElement).src;
 
       button.style.backgroundImage = `url('${thumbnail}')`;
       button.setAttribute('aria-label', `Slide: ${extractName(thumbnail)}`);
@@ -188,19 +184,18 @@ class Slider {
     return arrow;
   }
 
-  private toNext = (): void => {
-    this.scrollTo(this.index + 1);
-  };
-
   private setupVideo(video: HTMLVideoElement): void {
-    // so it is copied from the data poster attributes. (...It's not pretty, but.)
-    video.poster = video.dataset['poster' as keyof DOMStringMap] || video.poster || '';
-
-    video.addEventListener('ended', this.toNext, {
-      once: false,
-      passive: true,
-      signal: this.abortListener.signal,
-    });
+    video.addEventListener(
+      'ended',
+      () => {
+        this.scrollTo(this.index + 1);
+      },
+      {
+        once: false,
+        passive: true,
+        signal: this.abortListener.signal,
+      },
+    );
   }
 
   public dispose(): void {
@@ -230,7 +225,7 @@ export const initialize = (html: HTMLElement): Disposer => {
     }
   };
 
-  const obs = new IntersectionObserver(setupSlider, { rootMargin: '5%' });
+  const obs = new IntersectionObserver(setupSlider, { rootMargin: '8%' });
 
   for (const elm of Array.from(html.querySelectorAll<HTMLDivElement>('.slider'))) {
     obs.observe(elm);

@@ -103,17 +103,15 @@ Harrison は [Cream](https://en.wikipedia.org/wiki/Cream_(band)) のレコーデ
 
 <div class="slider">
   <div class="media">
-    <video preload="none" width="1280" height="720" data-poster="img/lavender-thumbnail.avif">
+    <video preload="metadata" width="1280" height="720" poster="img/lavender-thumbnail.avif">
       <source src="img/lavender.webm" type="video/webm">
-      Your browser does not support the video/webm.
     </video>
-    <video preload="none" width="1280" height="720" data-poster="img/musashino-gakudan-thumbnail.avif">
+    <video preload="metadata" width="1280" height="720" poster="img/musashino-gakudan-thumbnail.avif">
       <source src="img/musashino-gakudan.webm" type="video/webm">
-      Your browser does not support the video/webm.
     </video>
     <div>
       ![band-sounds](img/band-sounds.avif)
-      <audio controls preload="none">
+      <audio controls preload="metadata">
         <source src="audio/band-sounds.mp3">
       </audio>
     </div>
@@ -154,13 +152,11 @@ return config
 <div class="slider">
   <div class="media">
     ![sotobori-bird](img/sotobori-bird.avif)
-    <video preload="none" width="1280" height="720" data-poster="img/ochanomizu-thumbnail.avif">
+    <video preload="metadata" width="1280" height="720" poster="img/ochanomizu-thumbnail.avif">
       <source src="img/ochanomizu.webm" type="video/webm">
-      Your browser does not support the video/webm.
     </video>
-    <video preload="none" width="1280" height="720" data-poster="img/hydration_breaks-thumbnail.avif">
+    <video preload="metadata" width="1280" height="720" poster="img/hydration_breaks-thumbnail.avif">
       <source src="img/hydration_breaks.webm" type="video/webm">
-      Your browser does not support the video/webm.
     </video>
     ![uco-chan](img/uco-chan.avif)
   </div>
@@ -251,9 +247,8 @@ How to unfold your love
 <div class="slider">
   <div class="media">
     ![tokyo-daijingu](img/tokyo-daijingu.avif)
-    <video preload="none" width="1280" height="720" data-poster="img/shin-mituke.avif">
+    <video preload="metadata" width="1280" height="720" poster="img/shin-mituke.avif">
       <source src="img/iidabashi-tokyo.webm" type="video/webm">
-      Your browser does not support the video/webm.
     </video>
     ![sotobori](img/sotobori.avif)
   </div>
@@ -627,17 +622,14 @@ No one alerted you
 
 <div class="slider">
   <div class="media">
-    <video preload="none" width="1280" height="720" data-poster="img/itabashi-hanabi-thumbnail.avif">
+    <video preload="metadata" width="1280" height="720" poster="img/itabashi-hanabi-thumbnail.avif">
       <source src="img/itabashi-hanabi.webm" type="video/webm">
-      Your browser does not support the video/webm.
     </video>
-    <video preload="none" width="1280" height="720" data-poster="img/the_final_countdown-thumbnail.avif">
+    <video preload="metadata" width="1280" height="720" poster="img/the_final_countdown-thumbnail.avif">
       <source src="img/the_final_countdown.webm" type="video/webm">
-      Your browser does not support the video/webm.
     </video>
-    <video preload="none" width="1280" height="720" data-poster="img/pomp_and_circumstance_march_no1-thumbnail.avif">
+    <video preload="metadata" width="1280" height="720" poster="img/pomp_and_circumstance_march_no1-thumbnail.avif">
       <source src="img/pomp_and_circumstance_march_no1.webm" type="video/webm">
-      Your browser does not support the video/webm.
     </video>
   </div>
 </div>
