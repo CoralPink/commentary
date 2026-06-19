@@ -217,7 +217,7 @@ No one’s has. Your future is whatever you make it.
 ```
 
 ```admonish quote title=""
-<video preload="metadata" width="1280" height="720" poster="img/starry-starry-christmas-party-thumbnail.avif">
+<video preload="none" width="1280" height="720" poster="img/starry-starry-christmas-party-thumbnail.avif" loading="lazy">
   <source src="img/starry-starry-christmas-party.webm" type="video/webm">
 </video>
 

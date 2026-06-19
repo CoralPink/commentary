@@ -24,7 +24,7 @@ Let me take you down
 
 ぼくも Strawberry Fields に行くところなんだ
 ```
-<video preload="metadata" width="1280" height="720" poster="img/grogu-thumbnail.avif">
+<video preload="none" width="1280" height="720" poster="img/grogu-thumbnail.avif" loading="lazy">
   <source src="img/grogu.webm" type="video/webm">
 </video>
 

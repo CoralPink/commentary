@@ -122,7 +122,7 @@ Often enough to know
 
 知れるには十分な頻度でね
 ```
-<video preload="metadata" width="1280" height="720" poster="img/tama-zoo-thumbnail.avif">
+<video preload="none" width="1280" height="720" poster="img/tama-zoo-thumbnail.avif" loading="lazy">
   <source src="img/tama-zoo.webm" type="video/webm">
 </video>
 

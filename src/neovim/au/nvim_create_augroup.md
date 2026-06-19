@@ -158,7 +158,7 @@ vim.opt.tabstop = 2
 
 ## Wrap Up
 
-<video preload="metadata" width="1280" height="720" poster="img/pokemon2023-thumbnail.avif">
+<video preload="none" width="1280" height="720" poster="img/pokemon2023-thumbnail.avif" loading="lazy">
   <source src="img/pokemon2023.webm" type="video/webm">
 </video>
 

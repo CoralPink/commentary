@@ -6,7 +6,7 @@
 
 乗り越えていってください❗
 
-<video preload="metadata" width="1280" height="720" poster="img/kawaguchiko-hanabi-thumbnail.avif">
+<video preload="none" width="1280" height="720" poster="img/kawaguchiko-hanabi-thumbnail.avif" loading="lazy">
   <source src="img/kawaguchiko-hanabi.webm" type="video/webm">
 </video>
 
