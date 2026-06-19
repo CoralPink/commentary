@@ -128,9 +128,8 @@ It's only in my dreams
 なんか急に気まぐれで 2年後のムービーを差し込んじゃいます。
 
 ```admonish success title=""
-<video preload="none" width="1280" height="720" data-poster="img/tokyo-midtown-thumbnail.avif">
+<video preload="metadata" width="1280" height="720" poster="img/tokyo-midtown-thumbnail.avif">
   <source src="img/tokyo-midtown.webm" type="video/webm">
-  Your browser does not support the video/webm.
 </video>
 ```
 

@@ -220,9 +220,8 @@ vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWinEnter' }, {
 
 ...、あ、えっと、"とりあえず" と言っているのには理由があって...。
 
-<video preload="none" width="1280" height="720" data-poster="img/pokemon-card-thumbnail.avif">
+<video preload="metadata" width="1280" height="720" poster="img/pokemon-card-thumbnail.avif">
   <source src="img/pokemon-card.webm" type="video/webm">
-  Your browser does not support the video/webm.
 </video>
 
 なんだか長くなってきたので、もう一回だけ続く...❗🙀

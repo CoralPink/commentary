@@ -24,13 +24,11 @@
 
 <div class="slider">
   <div class="media">
-    <video preload="none" width="1280" height="720" data-poster="img/amai-kioku-thumbnail.avif">
+    <video preload="metadata" width="1280" height="720" poster="img/amai-kioku-thumbnail.avif">
       <source src="img/amai-kioku.webm" type="video/webm">
-      Your browser does not support the video/webm.
     </video>
-    <video preload="none" width="1280" height="720" data-poster="img/kirameku-kimochi-thumbnail.avif">
+    <video preload="metadata" width="1280" height="720" poster="img/kirameku-kimochi-thumbnail.avif">
       <source src="img/kirameku-kimochi.webm" type="video/webm">
-      Your browser does not support the video/webm.
     </video>
   </div>
 </div>
@@ -581,13 +579,11 @@ vim.lsp.enable(manual_lsp)
 
 <div class="slider">
   <div class="media">
-    <video preload="none" width="1280" height="720" data-poster="img/fukuro-festival-thumbnail.avif">
+    <video preload="metadata" width="1280" height="720" poster="img/fukuro-festival-thumbnail.avif">
       <source src="img/fukuro-festival.webm" type="video/webm">
-      Your browser does not support the video/webm.
     </video>
-    <video preload="none" width="1280" height="720" data-poster="img/kurayami-festival-thumbnail.avif">
+    <video preload="metadata" width="1280" height="720" poster="img/kurayami-festival-thumbnail.avif">
       <source src="img/kuarayami-festival.webm" type="video/webm">
-      Your browser does not support the video/webm.
     </video>
   </div>
 </div>
@@ -802,13 +798,11 @@ MVP とは、俺のことだ！！
 
 <div class="slider">
   <div class="media">
-    <video preload="none" width="1280" height="720" data-poster="img/tokyo-yosakoi-enya-thumbnail.avif">
+    <video preload="metadata" width="1280" height="720" poster="img/tokyo-yosakoi-enya-thumbnail.avif">
       <source src="img/tokyo-yosakoi-enya.webm" type="video/webm">
-      Your browser does not support the video/webm.
     </video>
-    <video preload="none" width="1280" height="720" data-poster="img/fuchu-ohayashi-thumbnail.avif">
+    <video preload="metadata" width="1280" height="720" poster="img/fuchu-ohayashi-thumbnail.avif">
       <source src="img/fuchu-ohayashi.webm" type="video/webm">
-      Your browser does not support the video/webm.
     </video>
   </div>
 </div>

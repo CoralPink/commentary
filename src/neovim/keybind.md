@@ -305,9 +305,8 @@ vim.keymap.set('n', 's', '"_s')
 
 もう少し進むと「もう嫌❗🙀」ってなるぐらい実用的なキーカスタマイズに触れて行くことになります。
 
-<video preload="none" width="1280" height="720" data-poster="img/bycycle_piano-thumbnail.avif">
+<video preload="metadata" width="1280" height="720" poster="img/bycycle_piano-thumbnail.avif">
   <source src="img/bycycle_piano.webm" type="video/webm">
-  Your browser does not support the video/webm.
 </video>
 
 でもだいじょうぶ、心配しないで🤗
