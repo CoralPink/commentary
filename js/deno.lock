@@ -1,11 +1,11 @@
 {
   "version": "5",
   "specifiers": {
-    "npm:@vitest/coverage-v8@4.1.9": "4.1.9_vitest@4.1.9_happy-dom@20.10.3_vite@8.0.16",
-    "npm:happy-dom@20.10.3": "20.10.3",
+    "npm:@vitest/coverage-v8@4.1.9": "4.1.9_vitest@4.1.9_happy-dom@20.10.4",
+    "npm:happy-dom@20.10.4": "20.10.4",
     "npm:plyr@3.8.4": "3.8.4",
     "npm:rolldown@1.1.1": "1.1.1",
-    "npm:vitest@4.1.9": "4.1.9_@vitest+coverage-v8@4.1.9_happy-dom@20.10.3_vite@8.0.16"
+    "npm:vitest@4.1.9": "4.1.9_@vitest+coverage-v8@4.1.9_happy-dom@20.10.4"
   },
   "npm": {
     "@babel/helper-string-parser@7.29.7": {
@@ -302,7 +302,7 @@
         "@types/node"
       ]
     },
-    "@vitest/coverage-v8@4.1.9_vitest@4.1.9_happy-dom@20.10.3_vite@8.0.16": {
+    "@vitest/coverage-v8@4.1.9_vitest@4.1.9_happy-dom@20.10.4": {
       "integrity": "sha512-G9/lgqibheLVBDRuya45EbsEXTYcWoSG+TLg7i2axuzx0Eq62eXn+aWXyaVdV5vKvFSWd6ywcX8hA7la9Pvu8g==",
       "dependencies": [
         "@bcoe/v8-coverage",
@@ -436,8 +436,8 @@
       "os": ["darwin"],
       "scripts": true
     },
-    "happy-dom@20.10.3": {
-      "integrity": "sha512-Hjdiy8RziuCcn5z04QI/rlsNuQoG8P0xxjgvsSMpi89cvIXIOcucQtiHS1yHSShxoBcSCeYqAskINmTiy/mlfw==",
+    "happy-dom@20.10.4": {
+      "integrity": "sha512-bKrsQnFNpcjZG0UPsH7UMN7Oyp3AB42LXk2GuiQmu7l4QFxH7lsw5T1eWEtE2+vbIFrTC45sbNSB2pkB8MTfKA==",
       "dependencies": [
         "@types/node",
         "@types/whatwg-mimetype",
@@ -720,7 +720,7 @@
       ],
       "bin": true
     },
-    "vitest@4.1.9_@vitest+coverage-v8@4.1.9_happy-dom@20.10.3_vite@8.0.16": {
+    "vitest@4.1.9_@vitest+coverage-v8@4.1.9_happy-dom@20.10.4": {
       "integrity": "sha512-nE3/LEyc0z87uHYLZebqCUOaJr2hdtuPp7BQ4BosVFnfltxgAvMG08NyrSGlPpOUWvR27c5flSmYFTNr78L9GQ==",
       "dependencies": [
         "@vitest/coverage-v8",
@@ -770,7 +770,7 @@
   "workspace": {
     "dependencies": [
       "npm:@vitest/coverage-v8@4.1.9",
-      "npm:happy-dom@20.10.3",
+      "npm:happy-dom@20.10.4",
       "npm:plyr@3.8.4",
       "npm:rolldown@1.1.1",
       "npm:vitest@4.1.9"
