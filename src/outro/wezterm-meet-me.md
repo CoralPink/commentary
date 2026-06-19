@@ -103,15 +103,15 @@ Harrison は [Cream](https://en.wikipedia.org/wiki/Cream_(band)) のレコーデ
 
 <div class="slider">
   <div class="media">
-    <video preload="metadata" width="1280" height="720" poster="img/lavender-thumbnail.avif">
+    <video preload="none" width="1280" height="720" poster="img/lavender-thumbnail.avif" loading="lazy">
       <source src="img/lavender.webm" type="video/webm">
     </video>
-    <video preload="metadata" width="1280" height="720" poster="img/musashino-gakudan-thumbnail.avif">
+    <video preload="none" width="1280" height="720" poster="img/musashino-gakudan-thumbnail.avif" loading="lazy">
       <source src="img/musashino-gakudan.webm" type="video/webm">
     </video>
     <div>
       ![band-sounds](img/band-sounds.avif)
-      <audio controls preload="metadata">
+      <audio controls preload="none">
         <source src="audio/band-sounds.mp3">
       </audio>
     </div>
@@ -152,10 +152,10 @@ return config
 <div class="slider">
   <div class="media">
     ![sotobori-bird](img/sotobori-bird.avif)
-    <video preload="metadata" width="1280" height="720" poster="img/ochanomizu-thumbnail.avif">
+    <video preload="none" width="1280" height="720" poster="img/ochanomizu-thumbnail.avif" loading="lazy">
       <source src="img/ochanomizu.webm" type="video/webm">
     </video>
-    <video preload="metadata" width="1280" height="720" poster="img/hydration_breaks-thumbnail.avif">
+    <video preload="none" width="1280" height="720" poster="img/hydration_breaks-thumbnail.avif" loading="lazy">
       <source src="img/hydration_breaks.webm" type="video/webm">
     </video>
     ![uco-chan](img/uco-chan.avif)
@@ -247,7 +247,7 @@ How to unfold your love
 <div class="slider">
   <div class="media">
     ![tokyo-daijingu](img/tokyo-daijingu.avif)
-    <video preload="metadata" width="1280" height="720" poster="img/shin-mituke.avif">
+    <video preload="none" width="1280" height="720" poster="img/shin-mituke.avif" loading="lazy">
       <source src="img/iidabashi-tokyo.webm" type="video/webm">
     </video>
     ![sotobori](img/sotobori.avif)
@@ -622,13 +622,13 @@ No one alerted you
 
 <div class="slider">
   <div class="media">
-    <video preload="metadata" width="1280" height="720" poster="img/itabashi-hanabi-thumbnail.avif">
+    <video preload="none" width="1280" height="720" poster="img/itabashi-hanabi-thumbnail.avif" loading="lazy">
       <source src="img/itabashi-hanabi.webm" type="video/webm">
     </video>
-    <video preload="metadata" width="1280" height="720" poster="img/the_final_countdown-thumbnail.avif">
+    <video preload="none" width="1280" height="720" poster="img/the_final_countdown-thumbnail.avif" loading="lazy">
       <source src="img/the_final_countdown.webm" type="video/webm">
     </video>
-    <video preload="metadata" width="1280" height="720" poster="img/pomp_and_circumstance_march_no1-thumbnail.avif">
+    <video preload="none" width="1280" height="720" poster="img/pomp_and_circumstance_march_no1-thumbnail.avif" loading="lazy">
       <source src="img/pomp_and_circumstance_march_no1.webm" type="video/webm">
     </video>
   </div>

@@ -98,7 +98,7 @@ This action causes the equivalent of wezterm.emit(name, window, pane) to be call
 ```admonish success
 切り替えられましたね🤗
 
-<video preload="metadata" width="1280" height="720" poster="img/kujira-no-senaka-thumbnail.avif">
+<video preload="none" width="1280" height="720" poster="img/kujira-no-senaka-thumbnail.avif" loading="lazy">
   <source src="img/kujira-no-senaka.webm" type="video/webm">
 </video>
 

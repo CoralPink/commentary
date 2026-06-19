@@ -220,7 +220,7 @@ vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWinEnter' }, {
 
 ...、あ、えっと、"とりあえず" と言っているのには理由があって...。
 
-<video preload="metadata" width="1280" height="720" poster="img/pokemon-card-thumbnail.avif">
+<video preload="none" width="1280" height="720" poster="img/pokemon-card-thumbnail.avif" loading="lazy">
   <source src="img/pokemon-card.webm" type="video/webm">
 </video>
 
