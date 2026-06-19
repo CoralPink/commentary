@@ -50,9 +50,6 @@ fi
 
 pushd scss
 deno task build
-if [ ! -e dist/plyr.css ]; then
-  ./download-plyr-css.sh
-fi
 cp -r dist/ ../src/css/
 popd
 

@@ -309,13 +309,11 @@ Yes, it was my way{{footnote:
 
 <div class="slider">
   <div class="media">
-    <video preload="none" width="1280" height="720" data-poster="img/mm-bon-odori-thumbnail.avif">
+    <video preload="metadata" width="1280" height="720" poster="img/mm-bon-odori-thumbnail.avif">
       <source src="img/mm-bon-odori.webm" type="video/webm">
-      Your browser does not support the video/webm.
     </video>
-    <video preload="none" width="1280" height="720" data-poster="img/anpanman-thumbnail.avif">
+    <video preload="metadata" width="1280" height="720" poster="img/anpanman-thumbnail.avif">
       <source src="img/anpanman.webm" type="video/webm">
-      Your browser does not support the video/webm.
     </video>
   </div>
 </div>

@@ -271,9 +271,8 @@ Pink, brown, yellow, orange and blue
 I love you!
 ```
 
-<video preload="none" width="1280" height="720" data-poster="img/L-O-V-E-thumbnail.avif">
+<video preload="metadata" width="1280" height="720" poster="img/L-O-V-E-thumbnail.avif">
   <source src="img/L-O-V-E.webm" type="video/webm">
-  Your browser does not support the video/webm.
 </video>
 
 All Together Now とは別の楽曲{{footnote:
