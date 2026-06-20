@@ -641,7 +641,7 @@ To find a comfort from inside you?
 安らぎを感じたことがあるでしょう？
 ```
 
-<video preload="none" width="1280" height="720" poster="img/hama-rikyu-thumbnail.avif" loading="lazy">
+<video width="1280" height="720" data-poster="img/hama-rikyu-thumbnail.avif">
   <source src="img/hama-rikyu.webm" type="video/webm">
 </video>
 

@@ -271,7 +271,7 @@ Pink, brown, yellow, orange and blue
 I love you!
 ```
 
-<video preload="none" width="1280" height="720" poster="img/L-O-V-E-thumbnail.avif" loading="lazy">
+<video width="1280" height="720" data-poster="img/L-O-V-E-thumbnail.avif">
   <source src="img/L-O-V-E.webm" type="video/webm">
 </video>
 

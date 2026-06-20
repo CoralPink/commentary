@@ -263,13 +263,13 @@ Gonna come out now Ha-ha-ha
 
 <div class="slider">
   <div class="media">
-    <video preload="none" width="1280" height="720" poster="img/nya-shougi-ondo-thumbnail.avif" loading="lazy">
+    <video width="1280" height="720" data-poster="img/nya-shougi-ondo-thumbnail.avif">
       <source src="img/nya-shougi-ondo.webm" type="video/webm">
     </video>
-    <video preload="none" width="1280" height="720" poster="img/tokyo-yakei-1a-thumbnail.avif" loading="lazy">
+    <video width="1280" height="720" data-poster="img/tokyo-yakei-1a-thumbnail.avif">
       <source src="img/tokyo-yakei-1a.webm" type="video/webm">
     </video>
-    <video preload="none" width="1280" height="720" poster="img/tokyo-yakei-1b-thumbnail.avif" loading="lazy">
+    <video width="1280" height="720" data-poster="img/tokyo-yakei-1b-thumbnail.avif">
       <source src="img/tokyo-yakei-1b.webm" type="video/webm">
     </video>
   </div>
@@ -281,13 +281,13 @@ Wow look out! it's-
 
 <div class="slider">
   <div class="media">
-    <video preload="none" width="1280" height="720" poster="img/saitama-tokyo-thumbnail.avif" loading="lazy">
+    <video width="1280" height="720" data-poster="img/saitama-tokyo-thumbnail.avif">
       <source src="img/saitama-tokyo.webm" type="video/webm">
     </video>
-    <video preload="none" width="1280" height="720" poster="img/tokyo-yakei-2a-thumbnail.avif" loading="lazy">
+    <video width="1280" height="720" data-poster="img/tokyo-yakei-2a-thumbnail.avif">
       <source src="img/tokyo-yakei-2a.webm" type="video/webm">
     </video>
-    <video preload="none" width="1280" height="720" poster="img/tokyo-yakei-2b-thumbnail.avif" loading="lazy">
+    <video width="1280" height="720" data-poster="img/tokyo-yakei-2b-thumbnail.avif">
       <source src="img/tokyo-yakei-2b.webm" type="video/webm">
     </video>
   </div>

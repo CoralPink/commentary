@@ -574,7 +574,7 @@ All the children sing
 
 そして さよなら
 
-<audio controls preload="none">
+<audio controls>
   <source src="audio/children-sing.mp3">
 </audio>
 ```

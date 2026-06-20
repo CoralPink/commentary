@@ -166,7 +166,7 @@ Waiting, it might take a while and this popup will auto close once done
 
 ## Wrap Up
 
-<video preload="none" width="1280" height="720" poster="img/zankyosanka-thumbnail.avif" loading="lazy">
+<video width="1280" height="720" data-poster="img/zankyosanka-thumbnail.avif">
   <source src="img/zankyosanka.webm" type="video/webm">
 </video>
 
