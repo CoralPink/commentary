@@ -228,7 +228,7 @@ Overwrite default colors
 [fix!: highlight groups for neovim 0.8 #50](https://github.com/rmehri01/onenord.nvim/commit/98c64654375bc087e96bca08fd194066d778717c)
 ```
 
-<video preload="none" width="1280" height="720" poster="img/miracle-gift-parade-part2.avif" loading="lazy">
+<video width="1280" height="720" data-poster="img/miracle-gift-parade-part2.avif">
   <source src="img/miracle-gift-parade-part2.webm" type="video/webm">
 </video>
 

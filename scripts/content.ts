@@ -54,6 +54,10 @@ const rewriteVideos = (document: Document): boolean => {
       continue;
     }
 
+    // Set `preload=“none”` for all items at once.
+    video.setAttribute('preload', 'none');
+
+    // Build a format compliant with video.js v10
     const player = document.createElement('video-player');
     const skin = document.createElement('video-minimal-skin');
 
@@ -68,9 +72,8 @@ const rewriteVideos = (document: Document): boolean => {
   return modified;
 };
 
-const fileProc = async (fullPath: string): Promise<string | null> => {
-  const html = await Deno.readTextFile(fullPath);
-  const dom = new JSDOM(html);
+const fileProc = (fullPath: string): string | null => {
+  const dom = new JSDOM(Deno.readTextFileSync(fullPath));
 
   const linksModified = rewriteLinks(dom.window.document);
   const videosModified = rewriteVideos(dom.window.document);
@@ -97,7 +100,7 @@ const processDir = async (currentDir: string): Promise<void> => {
 
     tasks.push(
       limit(async () => {
-        const serialized = await fileProc(fullPath);
+        const serialized = fileProc(fullPath);
 
         if (serialized === null) {
           return;
