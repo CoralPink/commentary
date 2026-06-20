@@ -466,7 +466,7 @@ Close to you
 あなたのすぐそばにいたいんだもの
 ```
 
-<video preload="none" width="1280" height="720" poster="img/ueno-park-thumbnail.avif" loading="lazy">
+<video width="1280" height="720" data-poster="img/ueno-park-thumbnail.avif">
   <source src="img/ueno-park.webm" type="video/webm">
 </video>
 
