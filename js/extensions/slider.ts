@@ -115,12 +115,20 @@ class Slider {
     this.index = next;
   }
 
+  private getThumbnail(media: CompatibleMedia): string {
+    if (media instanceof HTMLImageElement) {
+      return media.src;
+    }
+
+    return media.dataset['poster' as keyof DOMStringMap] || media.poster || '';
+  }
+
   private createIndicators(): HTMLElement {
     const fragment = document.createDocumentFragment();
 
     for (const media of this.medias) {
       const button = document.createElement('button');
-      const thumbnail = media instanceof HTMLVideoElement ? media.poster || '' : (media as HTMLImageElement).src;
+      const thumbnail = this.getThumbnail(media);
 
       button.style.backgroundImage = `url('${thumbnail}')`;
       button.setAttribute('aria-label', `Slide: ${extractName(thumbnail)}`);
