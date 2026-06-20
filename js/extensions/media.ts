@@ -35,12 +35,12 @@ const setupMedia =
 
 export const initialize = (html: HTMLElement): Disposer => {
   const videos = Array.from(html.querySelectorAll<HTMLVideoElement>('video'));
-  const ac = new AbortController();
 
   if (videos.length === 0) {
     return () => {}; // no-op dispose
   }
 
+  const ac = new AbortController();
   const obs = new IntersectionObserver(setupMedia(ac.signal), {
     rootMargin: '3%',
   });
