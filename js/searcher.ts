@@ -33,6 +33,8 @@ let finder: Finder;
 
 let focusedLi: Element | null;
 
+let searchAbort: AbortController;
+
 export const isSearchPopVisibility = (): boolean => elmPop?.checkVisibility() ?? false;
 
 const showResults = (): void => {
@@ -130,12 +132,7 @@ const hiddenSearch = (): void => {
   for (const x of elmSearch) {
     x.setAttribute('aria-expanded', 'false');
   }
-
-  elmSearchBar.removeEventListener('input', debounceSearchInput);
-  elmResults.removeEventListener('keyup', popupFocus);
-
-  elmPop.removeEventListener('click', searchMouseupHandler);
-  elmPop.removeEventListener('toggle', closedPopover);
+  searchAbort.abort();
 };
 
 const showSearch = (): void => {
@@ -150,23 +147,25 @@ const showSearch = (): void => {
   elmPop.showPopover();
   elmSearchBar.select();
 
+  searchAbort = new AbortController();
+
   elmSearchBar.addEventListener('input', debounceSearchInput, {
-    once: false,
     passive: true,
+    signal: searchAbort.signal,
   });
 
   elmResults.addEventListener('keyup', popupFocus, {
-    once: false,
     passive: true,
+    signal: searchAbort.signal,
   });
 
   elmPop.addEventListener('click', searchMouseupHandler, {
-    once: false,
     passive: true,
+    signal: searchAbort.signal,
   });
   elmPop.addEventListener('toggle', closedPopover, {
-    once: false,
     passive: true,
+    signal: searchAbort.signal,
   });
 };
 
@@ -214,11 +213,10 @@ const bootSearch = async (): Promise<void> => {
 
   for (const x of elmSearch) {
     x.removeEventListener('click', bootSearch);
-    x.addEventListener('click', showSearch, { once: false, passive: true });
+    x.addEventListener('click', showSearch, { passive: true });
   }
 
   document.addEventListener('keyup', startSearchfromKey, {
-    once: false,
     passive: true,
   });
 
@@ -264,7 +262,6 @@ export const startupSearch = (): void => {
   }
 
   document.addEventListener('keyup', bootSearchFromKey, {
-    once: false,
     passive: true,
   });
 };

@@ -64,19 +64,14 @@ class Slider {
       return;
     }
 
-    const indicators = this.createIndicators();
-
     const fragment = document.createDocumentFragment();
     const controls = document.createElement('div');
 
     controls.classList.add(CLASS_CONTROLS);
+    controls.append(this.createArrow(ID_PREV), this.createIndicators(), this.createArrow(ID_NEXT));
 
-    controls.appendChild(this.createArrow(ID_PREV));
-    controls.appendChild(indicators);
-    controls.appendChild(this.createArrow(ID_NEXT));
-
-    fragment.appendChild(controls);
-    slider.appendChild(fragment);
+    fragment.append(controls);
+    slider.append(fragment);
 
     for (const x of Array.from(this.medias)) {
       if (x instanceof HTMLVideoElement) {
@@ -138,7 +133,7 @@ class Slider {
         (): void => {
           media.scrollIntoView(SCROLL_INTO_VIEW_OPTIONS);
         },
-        { once: false, passive: true, signal: this.abortListener.signal },
+        { passive: true, signal: this.abortListener.signal },
       );
 
       fragment.appendChild(button);
@@ -153,7 +148,7 @@ class Slider {
     const indicators = document.createElement('div');
 
     indicators.setAttribute('id', ID_INDICATORS);
-    indicators.appendChild(fragment);
+    indicators.append(fragment);
 
     return indicators;
   }
@@ -186,7 +181,7 @@ class Slider {
       (): void => {
         this.scrollTo(this.index + (dir === ID_PREV ? -1 : 1));
       },
-      { once: false, passive: true, signal: this.abortListener.signal },
+      { passive: true, signal: this.abortListener.signal },
     );
 
     return arrow;
@@ -199,7 +194,6 @@ class Slider {
         this.scrollTo(this.index + 1);
       },
       {
-        once: false,
         passive: true,
         signal: this.abortListener.signal,
       },
@@ -233,7 +227,7 @@ export const initialize = (html: HTMLElement): Disposer => {
     }
   };
 
-  const obs = new IntersectionObserver(setupSlider, { rootMargin: '8%' });
+  const obs = new IntersectionObserver(setupSlider, { rootMargin: '15% 0%' });
 
   for (const elm of Array.from(html.querySelectorAll<HTMLDivElement>('.slider'))) {
     obs.observe(elm);

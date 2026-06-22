@@ -4,32 +4,13 @@ const FETCH_TIMEOUT = 9000;
 
 type CompressionFormat = 'gzip' | 'deflate' | 'deflate-raw' | 'brotli';
 
-export const fetchWithTimeout = async (url: string, options: AbortableOptions = {}): Promise<Response> => {
-  const controller = new AbortController();
-  const onAbort = () => controller.abort();
+const mergeSignals = (...signals: Array<AbortSignal | undefined>) =>
+  AbortSignal.any(signals.filter(Boolean) as AbortSignal[]);
 
-  const parentSignal = options.signal;
+export const fetchWithTimeout = (url: string, options: AbortableOptions = {}): Promise<Response> => {
+  const signal = mergeSignals(options.signal, AbortSignal.timeout(FETCH_TIMEOUT));
 
-  if (parentSignal) {
-    parentSignal.addEventListener('abort', onAbort, {
-      once: true,
-      passive: true,
-    });
-  }
-
-  const timeoutId = setTimeout(() => {
-    controller.abort();
-  }, FETCH_TIMEOUT);
-
-  try {
-    return await fetch(url, { signal: controller.signal });
-  } finally {
-    clearTimeout(timeoutId);
-
-    if (parentSignal) {
-      parentSignal.removeEventListener('abort', onAbort);
-    }
-  }
+  return fetch(url, { signal });
 };
 
 export const fetchText = async (url: string, options: AbortableOptions = {}): Promise<string> => {

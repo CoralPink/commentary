@@ -160,15 +160,14 @@ const initThemeSelector = async (): Promise<void> => {
       li.setAttribute('aria-current', 'true');
     }
 
-    themeList.appendChild(li);
+    themeList.append(li);
   }
 
   themeList.addEventListener('click', selectItem, {
-    once: false,
     passive: true,
   });
 
-  page.appendChild(themeList);
+  page.append(themeList);
 
   try {
     await promiseStyle;
@@ -233,7 +232,6 @@ export const bootThemeColor = (): Promise<void> => {
     });
 
   prefersColor.addEventListener('change', changeEvent, {
-    once: false,
     passive: true,
   });
 

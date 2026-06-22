@@ -99,7 +99,7 @@ const initExtensions = (html: HTMLElement): void => {
 
       initExtensions(article);
     },
-    { once: false, passive: true },
+    { passive: true },
   );
 
   document.addEventListener(

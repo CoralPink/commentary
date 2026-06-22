@@ -90,7 +90,6 @@ const navigateProc = (ev: NavigateEvent): void => {
   bootThemeColor();
 
   navigation.addEventListener('navigate', navigateProc, {
-    once: false,
     passive: true,
   });
 })();

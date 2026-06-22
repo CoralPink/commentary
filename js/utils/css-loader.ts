@@ -5,12 +5,7 @@ import type { AbortableOptions } from './type.ts';
 const removeStyleSheet = (fileName: string): boolean => {
   const resolvedHref = new URL(fileName, ROOT_PATH).href;
 
-  const isStylesheetLink = (element: Element): element is HTMLLinkElement =>
-    element instanceof HTMLLinkElement && element.rel === 'stylesheet';
-
-  const stylesheetLinks = Array.from(document.querySelectorAll('link')).filter(isStylesheetLink);
-
-  for (const link of stylesheetLinks) {
+  for (const link of document.querySelectorAll<HTMLLinkElement>('link[rel="stylesheet"]')) {
     if (link.href !== resolvedHref) {
       continue;
     }
@@ -18,7 +13,7 @@ const removeStyleSheet = (fileName: string): boolean => {
     link.onload = null;
     link.onerror = null;
 
-    link.parentNode?.removeChild(link);
+    link.remove();
 
     return true;
   }
@@ -33,22 +28,30 @@ export const loadStyleSheet = (fileName: string, options: AbortableOptions = {})
 
   return new Promise((resolve, reject) => {
     const link = document.createElement('link');
+
     link.rel = 'stylesheet';
     link.href = new URL(fileName, ROOT_PATH).href;
 
-    const abortHandler = () => {
-      if (link.parentElement?.removeChild(link)) {
+    const ac = new AbortController();
+
+    options.signal?.addEventListener(
+      'abort',
+      () => {
+        link.remove();
         reject(new Error('Stylesheet loading was aborted'));
-      }
-    };
+      },
+      {
+        passive: true,
+        signal: ac.signal,
+      },
+    );
 
     const cleanup = () => {
       link.onload = null;
       link.onerror = null;
-      options.signal?.removeEventListener('abort', abortHandler);
-    };
 
-    options.signal?.addEventListener('abort', abortHandler);
+      ac.abort();
+    };
 
     link.onload = () => {
       cleanup();
@@ -59,7 +62,7 @@ export const loadStyleSheet = (fileName: string, options: AbortableOptions = {})
       reject(new Error(`Failed to load stylesheet: ${fileName}`));
     };
 
-    document.head.appendChild(link);
+    document.head.append(link);
   });
 };
 

@@ -18,6 +18,7 @@ let isPageListLoadSuccess = false;
 let doneFirstScroll = false;
 
 let currentPage: HTMLAnchorElement | undefined = undefined;
+let abortController: AbortController;
 
 const hideSidebar = (): void => {
   document.getElementById(ID_PAGE)?.classList.remove('show-sidebar');
@@ -35,15 +36,7 @@ const hideSidebar = (): void => {
     x.setAttribute('aria-expanded', 'false');
   }
 
-  document.getElementById('main')?.removeEventListener('pointerdown', clickHide);
-};
-
-const clickHide = (): void => {
-  if (globalThis.innerWidth >= BREAKPOINT_UI_WIDE) {
-    return;
-  }
-
-  hideSidebar();
+  abortController.abort();
 };
 
 const getCurrentUrl = (): URL => {
@@ -92,8 +85,19 @@ const showSidebar = (): void => {
     x.setAttribute('aria-expanded', 'true');
   }
 
+  abortController = new AbortController();
+
   setTimeout(() => {
-    document.getElementById('main')?.addEventListener('pointerdown', clickHide, { once: false, passive: true });
+    document.getElementById('main')?.addEventListener(
+      'pointerdown',
+      () => {
+        if (globalThis.innerWidth >= BREAKPOINT_UI_WIDE) {
+          return;
+        }
+        hideSidebar();
+      },
+      { passive: true, signal: abortController.signal },
+    );
   });
 
   if (doneFirstScroll) {
@@ -157,7 +161,6 @@ export const bootSidebar = (): void => {
   globalThis.innerWidth < BREAKPOINT_UI_WIDE ? hideSidebar() : showSidebar();
 
   document.addEventListener('keyup', ev => toggleHandler(ev.key), {
-    once: false,
     passive: true,
   });
 
@@ -168,18 +171,16 @@ export const bootSidebar = (): void => {
         showSidebar();
       }
     },
-    { once: false, passive: true },
+    { passive: true },
   );
 
   for (const x of document.querySelectorAll(`[data-target="${TARGET_TOGGLE}"]`)) {
     x.addEventListener('click', () => toggleSidebar(), {
-      once: false,
       passive: true,
     });
   }
 
   document.addEventListener(CONTENT_READY, updateActive, {
-    once: false,
     passive: true,
   });
 };

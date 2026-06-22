@@ -138,22 +138,24 @@ export const initTableOfContents = (html: HTMLElement): (() => void) => {
     link.classList.add(el.parentElement?.tagName ?? '');
 
     tocMap.set(el, link);
-    fragment.appendChild(link);
+    fragment.append(link);
   }
 
   const pageToc = document.getElementById('pagetoc') as HTMLDivElement;
-  pageToc.appendChild(fragment);
+  const ac = new AbortController();
+
+  pageToc.append(fragment);
 
   pageToc.addEventListener('click', jumpHeader, {
-    once: false,
     passive: false,
+    signal: ac.signal,
   });
 
   return (): void => {
-    tocMap.clear();
     observer.disconnect();
+    tocMap.clear();
+    ac.abort();
 
-    pageToc.removeEventListener('click', jumpHeader);
     pageToc.innerHTML = '';
 
     onlyActive = null;
@@ -193,10 +195,8 @@ export const bootTableOfContents = (): void => {
     () => {
       elmToc.checkVisibility() ? tocHide() : tocVisible();
     },
-    { once: false, passive: true },
+    { passive: true },
   );
 
-  globalThis
-    .matchMedia(`(min-width: ${BREAKPOINT_UI_WIDE}px)`)
-    .addEventListener('change', tocReset, { once: false, passive: true });
+  globalThis.matchMedia(`(min-width: ${BREAKPOINT_UI_WIDE}px)`).addEventListener('change', tocReset, { passive: true });
 };
