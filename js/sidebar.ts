@@ -18,7 +18,7 @@ let isPageListLoadSuccess = false;
 let doneFirstScroll = false;
 
 let currentPage: HTMLAnchorElement | undefined = undefined;
-let abortController: AbortController;
+let abortController: AbortController | undefined;
 
 const hideSidebar = (): void => {
   document.getElementById(ID_PAGE)?.classList.remove('show-sidebar');
@@ -36,7 +36,7 @@ const hideSidebar = (): void => {
     x.setAttribute('aria-expanded', 'false');
   }
 
-  abortController.abort();
+  abortController?.abort();
 };
 
 const getCurrentUrl = (): URL => {
@@ -85,7 +85,8 @@ const showSidebar = (): void => {
     x.setAttribute('aria-expanded', 'true');
   }
 
-  abortController = new AbortController();
+  const controller = new AbortController();
+  abortController = controller;
 
   setTimeout(() => {
     document.getElementById('main')?.addEventListener(
@@ -96,7 +97,7 @@ const showSidebar = (): void => {
         }
         hideSidebar();
       },
-      { passive: true, signal: abortController.signal },
+      { passive: true, signal: controller.signal },
     );
   });
 
