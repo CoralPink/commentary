@@ -63,8 +63,8 @@
         "@csstools/css-tokenizer"
       ]
     },
-    "@csstools/css-color-parser@4.1.1_@csstools+css-parser-algorithms@4.0.0__@csstools+css-tokenizer@4.0.0_@csstools+css-tokenizer@4.0.0": {
-      "integrity": "sha512-eZ5XOtyhK+mggRafYUWzA0tvaYOFgdY8AkgQiCJF9qNAePnUo/zmsqqYubBBb3sQ8uNUaSKTY9s9klfRaAXL0g==",
+    "@csstools/css-color-parser@4.1.8_@csstools+css-parser-algorithms@4.0.0__@csstools+css-tokenizer@4.0.0_@csstools+css-tokenizer@4.0.0": {
+      "integrity": "sha512-3chWb7PRLijpJpPIKkDxdu6IBeO5MrFACND57On0j8OPpc0wZibcGc3xAHrSEbOx/KDRyMHoIxGn0w1PhXMYHw==",
       "dependencies": [
         "@csstools/color-helpers",
         "@csstools/css-calc",
@@ -78,8 +78,8 @@
         "@csstools/css-tokenizer"
       ]
     },
-    "@csstools/css-syntax-patches-for-csstree@1.1.4_css-tree@3.2.1": {
-      "integrity": "sha512-wgsqt92b7C7tQhIdPNxj0n9zuUbQlvAuI1exyzeNrOKOi62SD7ren8zqszmpVREjAOqg8cD2FqYhQfAuKjk4sw==",
+    "@csstools/css-syntax-patches-for-csstree@1.1.5_css-tree@3.2.1": {
+      "integrity": "sha512-oNjBvzLq2GPZtJphCjLqXow/cHySHSgtxvKZb7OqSZ/xHgw6NWNhfad+6AB9cLeVm6eA9d/qMll3JdEHjy6M+A==",
       "dependencies": [
         "css-tree"
       ],
@@ -366,8 +366,8 @@
       ],
       "bin": true
     },
-    "js-cookie@3.0.7": {
-      "integrity": "sha512-z/wZZgDrkNV1eA0ULjM/F9/50Ya8fbzgKneSpoPsXSGd0KnpdtHfOZWK+GcwLk+EZbS4F9RBhU+K2RgzuDaItw=="
+    "js-cookie@3.0.8": {
+      "integrity": "sha512-yeJd4aNAdYZQjaon2bpD/Gb0B/omw7HQOsynXXcOiWVCacbBcPlgn8S/d1X6blFSaHao7ozqtW7NZW19xpCtIw=="
     },
     "jsdom@29.1.1": {
       "integrity": "sha512-ECi4Fi2f7BdJtUKTflYRTiaMxIB0O6zfR1fX0GXpUrf6flp8QIYn1UT20YQqdSOfk2dfkCwS8LAFoJDEppNK5Q==",
@@ -382,7 +382,7 @@
         "decimal.js",
         "html-encoding-sniffer",
         "is-potential-custom-element-name",
-        "lru-cache@11.5.0",
+        "lru-cache@11.5.1",
         "parse5@8.0.1",
         "saxes",
         "symbol-tree",
@@ -398,8 +398,8 @@
     "lru-cache@10.4.3": {
       "integrity": "sha512-JNAzZcXrCt42VGLuYz0zfAzDfAvJWW6AfYlDBQyDV5DClI2m5sAmK+OIO7s59XfsRsWHp02jAJrRadPRGTt6SQ=="
     },
-    "lru-cache@11.5.0": {
-      "integrity": "sha512-5YgH9UJd7wVb9hIouI2adWpgqrrICkt070Dnj8EUY1+B4B2P9eRLPAkAAo6NICA7CEhOIeBHl46u9zSNpNu7zA=="
+    "lru-cache@11.5.1": {
+      "integrity": "sha512-RPimw/7aMdv2oqRrxKwvZXcPfwBrn/JZ2xYcY9Hus/6LaS3VOAKVWKWgNLCFSiOm1ESXinjsDlidVU7JlnCN2A=="
     },
     "mdn-data@2.27.1": {
       "integrity": "sha512-9Yubnt3e8A0OKwxYSXyhLymGW4sCufcLG6VdiDdUGVkPhpqLxlvP5vl1983gQjJl3tqbrM731mjaZaP68AgosQ=="
@@ -488,8 +488,8 @@
         "xmlchars"
       ]
     },
-    "semver@7.8.1": {
-      "integrity": "sha512-rkVq3IXh+4FDGch+KwzX3aV9W3kO54GyEgpvBzSyctDA6Xtd7RJQV1xmXbeQp5v7+VzLOfVqiutSE6GICgPFvg==",
+    "semver@7.8.5": {
+      "integrity": "sha512-Y7/KDsb8LjooZpwaqGyulO6DQlksgCncchHGk+sZIY4SBvUocMBEFH5Ur1fI4dV+Jvl0w6cjvucaIi40puRioA==",
       "bin": true
     },
     "shebang-command@2.0.0": {
@@ -538,11 +538,11 @@
     "symbol-tree@3.2.4": {
       "integrity": "sha512-9QNk5KwDF+Bvz+PyObkmSYjI5ksVUYtjW7AU22r2NKcfLJcXp96hkDWU3+XndOsUb+AQ9QhfzfCT2O+CNWT5Tw=="
     },
-    "tldts-core@7.4.0": {
-      "integrity": "sha512-/mb9kRld+x1sIMXxWNOAp5m6C+D4GrAORWlJkOJ5dElvxdN1eutz/o7qHLp9gFvDF4Y3/L2xeScoxz6AbEo8rQ=="
+    "tldts-core@7.4.3": {
+      "integrity": "sha512-27ep5H9PzdBrNd5OFM/j3WCU8F3kPwM9D0BOaOf7uYfxMJfyr0K5Tjj69Gri+sZlh2WXd5buIm47NuPF29CDiw=="
     },
-    "tldts@7.4.0": {
-      "integrity": "sha512-yHBe+zVfzNZ3QfTPW/Z6KK1G2t340gFjMHqI/4KKSt/abzYydzuCnpqdaF5gCCABby+9Yfbj59oR5F2Fd5CBzg==",
+    "tldts@7.4.3": {
+      "integrity": "sha512-A3BDQBeeukYPzB4QdQ1DtdlUmp4x2OCH8n5UVhEWbyANxNep8GavottKzd1xYKFJKjUgMyPT7EzOfnBO55s8Sg==",
       "dependencies": [
         "tldts-core"
       ],
@@ -560,8 +560,8 @@
         "punycode"
       ]
     },
-    "undici@7.26.0": {
-      "integrity": "sha512-3O9Tf67pGhgOv9jM35AbhkXAKi13f3oy3aE4CSgr+TckGeY+/iu97ZXN+J7DpHPzLbVApFd1IFhcnBjREYXYcg=="
+    "undici@7.28.0": {
+      "integrity": "sha512-cRZYrTDwWznlnRiPjggAGxZXanty6M8RV1ff8Wm4LWXBp7/IG8v5DnOm74DtUBp9OONpK75YlPnIjQqX0dBDtA=="
     },
     "w3c-xmlserializer@5.0.0": {
       "integrity": "sha512-o8qghlI8NZHU1lLPrpi2+Uq7abh4GGPpYANlalzWxyWteJOCsr/P+oPBA49TOLu5FTZO4d3F9MnWJfiMo4BkmA==",
