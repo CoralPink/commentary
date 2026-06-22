@@ -88,18 +88,16 @@ const showSidebar = (): void => {
   const controller = new AbortController();
   abortController = controller;
 
-  setTimeout(() => {
-    document.getElementById('main')?.addEventListener(
-      'pointerdown',
-      () => {
-        if (globalThis.innerWidth >= BREAKPOINT_UI_WIDE) {
-          return;
-        }
-        hideSidebar();
-      },
-      { passive: true, signal: controller.signal },
-    );
-  });
+  document.getElementById('main')?.addEventListener(
+    'pointerdown',
+    () => {
+      if (globalThis.innerWidth >= BREAKPOINT_UI_WIDE) {
+        return;
+      }
+      hideSidebar();
+    },
+    { passive: true, signal: controller.signal },
+  );
 
   if (doneFirstScroll) {
     return;
