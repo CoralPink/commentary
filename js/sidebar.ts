@@ -146,7 +146,7 @@ const loadPageList = async (elm: HTMLElement): Promise<void> => {
   }
 };
 
-export const removeActive = (): void => {
+const clearActive = (): void => {
   if (currentPage === undefined) {
     return;
   }
@@ -178,6 +178,10 @@ export const bootSidebar = (): void => {
       passive: true,
     });
   }
+
+  document.addEventListener(CONTENT_READY, clearActive, {
+    passive: true,
+  });
 
   document.addEventListener(CONTENT_READY, updateActive, {
     passive: true,
