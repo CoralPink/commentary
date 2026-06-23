@@ -30,13 +30,14 @@ const copyCode = (ev: PointerEvent): void => {
 
   const showTooltip = (msg: string): void => {
     const tip = document.createElement('div');
+
     tip.classList.add('tooltiptext');
     tip.insertAdjacentText('afterbegin', msg);
 
-    button.appendChild(tip);
+    button.append(tip);
 
     setTimeout(() => {
-      button.removeChild(tip);
+      tip.remove();
     }, TOOLTIP_FADEOUT_MS);
   };
 
@@ -47,7 +48,7 @@ const copyCode = (ev: PointerEvent): void => {
 };
 
 const highlight = (code: HTMLElement): void => {
-  const parent = code.parentNode;
+  const parent = code.parentElement;
 
   if (parent === null || code.textContent === null) {
     return;
@@ -70,7 +71,7 @@ const highlight = (code: HTMLElement): void => {
       code.style.fontFamily = `${globalThis.getComputedStyle(code).fontFamily}, 'Symbols Nerd Font Mono'`;
     }
 
-    parent.insertBefore(document.importNode(clipButton, true), parent.firstChild);
+    parent.prepend(clipButton.cloneNode(true));
   });
 };
 
@@ -94,7 +95,7 @@ const createClipButton = (): void => {
   const icon = document.createElement('div');
   icon.classList.add('icon-copy', 'fa-icon');
 
-  clipButton.appendChild(icon);
+  clipButton.append(icon);
 };
 
 const bootstrap = (): void => {
@@ -107,7 +108,6 @@ const bootstrap = (): void => {
   // capture hover event in iOS
   if (globalThis.ontouchstart !== undefined) {
     document.addEventListener('touchstart', () => {}, {
-      once: false,
       passive: true,
     });
   }
@@ -130,10 +130,15 @@ export const initialize = (html: HTMLElement): Disposer => {
     obs.observe(x);
   }
 
-  html.addEventListener('click', copyCode, { once: false, passive: false });
+  const ac = new AbortController();
+
+  html.addEventListener('click', copyCode, {
+    passive: false,
+    signal: ac.signal,
+  });
 
   return () => {
     obs.disconnect();
-    html.removeEventListener('click', copyCode);
+    ac.abort();
   };
 };

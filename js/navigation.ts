@@ -1,11 +1,17 @@
 import { CONTENT_READY } from './constants.ts';
 import { type NavigationContext, prepareNavigation } from './context.ts';
+import navigationState from './navigationState.ts';
 import { bootThemeColor } from './theme-selector.ts';
 
 import { setHTML } from './utils/html-sanitizer.ts';
 import toast from './utils/toast.ts';
 
 const PAGE_NO_TITLE = '(No Title) - Commentary of Dotfiles';
+
+const resolveTitle = (title: string | null): string => {
+  const trimmed = title?.trim();
+  return trimmed ? trimmed : PAGE_NO_TITLE;
+};
 
 const dataLayer = ((globalThis as { dataLayer?: DataLayerEvent[] }).dataLayer ??= []);
 
@@ -17,24 +23,57 @@ const pushPageViewEvent = (ctx: NavigationContext): void => {
   });
 };
 
-let currentUrl = new URL(globalThis.location.href);
-
 const loadError = (url: URL, msg: string = 'load error'): void => {
   toast.error(`failed: ${url.href}`);
   console.error(msg);
 };
 
-const applyNavigation = (ctx: NavigationContext, navigationType: string): void => {
+const applyContent = (ctx: NavigationContext): HTMLElement => {
   const article = document.getElementById('article');
 
   if (article === null) {
     loadError(ctx.next, 'applyContent: not found article');
-    return;
+    throw new Error('article not found');
   }
 
-  document.title = ctx.title.textContent ?? PAGE_NO_TITLE;
+  document.title = resolveTitle(ctx.title.textContent);
   setHTML(article, ctx.article.innerHTML);
 
+  return article;
+};
+
+const scheduleScroll = (ctx: NavigationContext): void => {
+  requestAnimationFrame((): void => {
+    const article = document.getElementById('article');
+
+    if (article === null) {
+      return;
+    }
+
+    if (!ctx.next.hash) {
+      article.scrollIntoView({ behavior: 'auto' });
+      return;
+    }
+
+    const getHeaderFromHash = (hash: string): Element | null => {
+      try {
+        return article.querySelector(decodeURIComponent(hash));
+      } catch {
+        throw new Error('Invalid hash value');
+      }
+    };
+
+    const header = getHeaderFromHash(ctx.next.hash);
+
+    if (header === null) {
+      return;
+    }
+    header.scrollIntoView({ behavior: 'auto' });
+  });
+};
+
+const applyNavigation = (ctx: NavigationContext, navigationType: string): void => {
+  const article = applyContent(ctx);
   article.dispatchEvent(new Event(CONTENT_READY, { bubbles: true }));
 
   // If it is a transition from a history entry, leave the scroll position to the browser
@@ -43,16 +82,7 @@ const applyNavigation = (ctx: NavigationContext, navigationType: string): void =
   }
 
   pushPageViewEvent(ctx);
-
-  requestAnimationFrame((): void => {
-    if (!ctx.next.hash) {
-      article.scrollIntoView({ behavior: 'auto' });
-      return;
-    }
-
-    const header = article.querySelector(decodeURIComponent(ctx.next.hash));
-    header?.scrollIntoView({ behavior: 'auto' });
-  });
+  scheduleScroll(ctx);
 };
 
 const navigateProc = (ev: NavigateEvent): void => {
@@ -62,7 +92,7 @@ const navigateProc = (ev: NavigateEvent): void => {
 
   const next = new URL(ev.destination.url);
 
-  if (next.pathname === currentUrl.pathname) {
+  if (navigationState.isSame(next)) {
     return;
   }
 
@@ -75,11 +105,16 @@ const navigateProc = (ev: NavigateEvent): void => {
         return;
       }
 
-      document.startViewTransition(() => {
+      const transition = document.startViewTransition(() => {
         applyNavigation(ctx, ev.navigationType);
       });
 
-      currentUrl = next;
+      try {
+        await transition.updateCallbackDone;
+        navigationState.commit(next);
+      } catch (err) {
+        loadError(next, `applyNavigation failed: ${String(err)}`);
+      }
     },
     scroll: ev.navigationType === 'traverse' ? 'after-transition' : 'manual',
   });
@@ -90,7 +125,6 @@ const navigateProc = (ev: NavigateEvent): void => {
   bootThemeColor();
 
   navigation.addEventListener('navigate', navigateProc, {
-    once: false,
     passive: true,
   });
 })();

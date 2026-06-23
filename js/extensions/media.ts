@@ -24,7 +24,6 @@ const setupMedia =
       // Most of the videos on this site start with a fade-in,
       // so unless you intentionally shift the starting position, they are all black...!
       video.addEventListener('ended', onVideoEnded, {
-        once: false,
         passive: true,
         signal,
       });
@@ -42,7 +41,7 @@ export const initialize = (html: HTMLElement): Disposer => {
 
   const ac = new AbortController();
   const obs = new IntersectionObserver(setupMedia(ac.signal), {
-    rootMargin: '3%',
+    rootMargin: '30% 0%',
   });
 
   for (const x of videos) {
