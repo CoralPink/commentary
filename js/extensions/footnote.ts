@@ -18,12 +18,8 @@ const calcTop = (target: HTMLElement, pop: HTMLElement): number => {
 };
 
 const closeFootnotePop = (target: HTMLElement, elm: HTMLElement): void => {
-  elm.classList.remove('show');
-
   target.removeAttribute('aria-expanded');
   target.removeAttribute('aria-controls');
-
-  const ac = new AbortController();
 
   elm.addEventListener(
     'transitionend',
@@ -32,12 +28,10 @@ const closeFootnotePop = (target: HTMLElement, elm: HTMLElement): void => {
         elm.remove();
       }
     },
-    {
-      once: true,
-      passive: true,
-      signal: ac.signal,
-    },
+    { once: true, passive: true },
   );
+
+  elm.classList.remove('show');
 };
 
 const insertFootnote = (pop: HTMLElement): void => {
