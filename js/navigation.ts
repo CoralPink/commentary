@@ -7,7 +7,10 @@ import { setHTML } from './utils/html-sanitizer.ts';
 import toast from './utils/toast.ts';
 
 const PAGE_NO_TITLE = '(No Title) - Commentary of Dotfiles';
-const resolveTitle = (title: string | null): string => title ?? PAGE_NO_TITLE;
+const resolveTitle = (title: string | null): string => {
+  const trimmed = title?.trim();
+  return trimmed ? trimmed : PAGE_NO_TITLE;
+};
 
 const dataLayer = ((globalThis as { dataLayer?: DataLayerEvent[] }).dataLayer ??= []);
 
