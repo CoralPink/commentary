@@ -222,9 +222,6 @@ article {
 
   scroll-margin-top: var.$menu-bar-height;
 
-  content-visibility: auto;
-  contain-intrinsic-size: 960px;
-
   code {
     &:not(pre code) {
       font-size: 0.82em;
