@@ -96,11 +96,16 @@ const navigateProc = (ev: NavigateEvent): void => {
         return;
       }
 
-      document.startViewTransition(() => {
+      const transition = document.startViewTransition(() => {
         applyNavigation(ctx, ev.navigationType);
       });
 
-      navigationState.commit(next);
+      try {
+        await transition.updateCallbackDone;
+        navigationState.commit(next);
+      } catch (err) {
+        loadError(next, `applyNavigation failed: ${String(err)}`);
+      }
     },
     scroll: ev.navigationType === 'traverse' ? 'after-transition' : 'manual',
   });
