@@ -54,7 +54,15 @@ const scheduleScroll = (ctx: NavigationContext): void => {
       return;
     }
 
-    const header = article.querySelector(decodeURIComponent(ctx.next.hash));
+    const getHeaderFromHash = (hash: string): Element | null => {
+      try {
+        return article.querySelector(decodeURIComponent(hash));
+      } catch {
+        throw new Error('Invalid hash value');
+      }
+    };
+
+    const header = getHeaderFromHash(ctx.next.hash);
 
     if (header === null) {
       return;
