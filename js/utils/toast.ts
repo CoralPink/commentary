@@ -28,7 +28,7 @@ export default ((): ToastAPI => {
       div.setAttribute('role', 'status');
       div.setAttribute('aria-atomic', 'true');
 
-      document.body.appendChild(div);
+      document.body.append(div);
       this.container = div;
     },
 
@@ -42,7 +42,7 @@ export default ((): ToastAPI => {
 
       console.log(message);
 
-      this.container!.appendChild(el);
+      this.container!.append(el);
 
       requestAnimationFrame((): void => {
         el.classList.add('bake');
