@@ -1,4 +1,4 @@
-export const navigationState = (() => {
+export default (() => {
   let url = new URL(location.href);
 
   return {

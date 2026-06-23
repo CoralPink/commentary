@@ -1,12 +1,13 @@
 import { CONTENT_READY } from './constants.ts';
 import { type NavigationContext, prepareNavigation } from './context.ts';
-import { navigationState } from './navigationState.ts';
+import navigationState from './navigationState.ts';
 import { bootThemeColor } from './theme-selector.ts';
 
 import { setHTML } from './utils/html-sanitizer.ts';
 import toast from './utils/toast.ts';
 
 const PAGE_NO_TITLE = '(No Title) - Commentary of Dotfiles';
+
 const resolveTitle = (title: string | null): string => {
   const trimmed = title?.trim();
   return trimmed ? trimmed : PAGE_NO_TITLE;
@@ -45,7 +46,7 @@ const scheduleScroll = (ctx: NavigationContext): void => {
   requestAnimationFrame((): void => {
     const article = document.getElementById('article');
 
-    if (!article) {
+    if (article === null) {
       return;
     }
 
