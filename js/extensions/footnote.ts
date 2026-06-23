@@ -18,22 +18,20 @@ const calcTop = (target: HTMLElement, pop: HTMLElement): number => {
 };
 
 const closeFootnotePop = (target: HTMLElement, elm: HTMLElement): void => {
-  elm.classList.remove('show');
-
   target.removeAttribute('aria-expanded');
   target.removeAttribute('aria-controls');
 
-  const handleTransitionEnd = (ev: TransitionEvent) => {
-    if (ev.propertyName === 'opacity') {
-      elm.removeEventListener('transitionend', handleTransitionEnd);
-      elm.remove();
-    }
-  };
+  elm.addEventListener(
+    'transitionend',
+    (ev: TransitionEvent) => {
+      if (ev.propertyName === 'opacity') {
+        elm.remove();
+      }
+    },
+    { once: true, passive: true },
+  );
 
-  elm.addEventListener('transitionend', handleTransitionEnd, {
-    once: true,
-    passive: true,
-  });
+  elm.classList.remove('show');
 };
 
 const insertFootnote = (pop: HTMLElement): void => {
@@ -97,39 +95,42 @@ const handleFootnoteClick = (ev: Event): void => {
     pop.classList.add('show');
   });
 
-  document.body.appendChild(pop);
+  document.body.append(pop);
 
-  const onClickOutside = (ev: PointerEvent): void => {
-    if (!(ev.target instanceof Node)) {
-      return;
-    }
-    if (pop.contains(ev.target) || target === ev.target) {
-      return;
-    }
+  const ac = new AbortController();
 
-    closeFootnotePop(target, pop);
-    document.removeEventListener('click', onClickOutside);
-  };
+  document.addEventListener(
+    'click',
+    (ev: PointerEvent) => {
+      if (!(ev.target instanceof Node)) {
+        return;
+      }
+      if (pop.contains(ev.target) || target === ev.target) {
+        return;
+      }
 
-  document.addEventListener('click', onClickOutside, {
-    once: false,
-    passive: true,
-  });
+      closeFootnotePop(target, pop);
+      ac.abort();
+    },
+    {
+      passive: true,
+      signal: ac.signal,
+    },
+  );
 };
 
 export const initialize = (html: HTMLElement): Disposer => {
   const footnote = Array.from(html.querySelectorAll('sup.ft-reference'));
+  const ac = new AbortController();
 
   for (const x of footnote) {
     x.addEventListener('click', handleFootnoteClick, {
-      once: false,
       passive: true,
+      signal: ac.signal,
     });
   }
 
   return () => {
-    for (const x of footnote) {
-      x.removeEventListener('click', handleFootnoteClick);
-    }
+    ac.abort();
   };
 };

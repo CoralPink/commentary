@@ -81,7 +81,6 @@ export const unmarking = (): void => {
 
   document.removeEventListener('keyup', keyClear);
   document.addEventListener('keyup', keyVisible, {
-    once: false,
     passive: true,
   });
 };
@@ -113,7 +112,6 @@ const visibleButton = (): void => {
 
   document.removeEventListener('keyup', keyVisible);
   document.addEventListener('keyup', keyClear, {
-    once: false,
     passive: true,
   });
 };

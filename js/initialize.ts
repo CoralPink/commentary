@@ -1,7 +1,7 @@
 import { CONTENT_READY, ROOT_PATH } from './constants.ts';
 import { initMark } from './mark.ts';
 import { startupSearch } from './searcher.ts';
-import { bootSidebar, removeActive } from './sidebar.ts';
+import { bootSidebar } from './sidebar.ts';
 import { bootTableOfContents, initTableOfContents } from './table-of-contents.ts';
 
 import type { Disposer, ExtensionEntry, InitializableExtension } from './extensions/types.ts';
@@ -93,13 +93,11 @@ const initExtensions = (html: HTMLElement): void => {
         return;
       }
       prepareForNextCycle();
+
       disposeAll();
-
-      removeActive();
-
       initExtensions(article);
     },
-    { once: false, passive: true },
+    { passive: true },
   );
 
   document.addEventListener(

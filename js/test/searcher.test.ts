@@ -108,7 +108,6 @@ describe('Searcher Module', () => {
       startupSearch();
 
       expect(spy).toHaveBeenCalledWith('keyup', expect.any(Function), {
-        once: false,
         passive: true,
       });
     });
