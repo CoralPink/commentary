@@ -4,13 +4,13 @@ version = "0.3.1"
 edition = "2024"
 
 [dependencies]
-wasm-bindgen = { version = "=0.2.125", optional = true }
+wasm-bindgen = { version = "=0.2.126", optional = true }
 
 [features]
 use-browser-console = ["wasm-bindgen"]
 
 [dependencies.web-sys]
-version = "=0.3.102"
+version = "=0.3.103"
 features = [
   "console",
 ]
