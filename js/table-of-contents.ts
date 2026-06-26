@@ -27,7 +27,7 @@ const scrollCenter = (): void => {
   }
 
   requestAnimationFrame(() => {
-    currentInlineCenter?.scrollIntoView({ inline: 'center' });
+    currentInlineCenter?.scrollIntoView({ behavior: 'smooth', inline: 'center' });
   });
 };
 
@@ -94,10 +94,6 @@ const jumpHeader = (ev: PointerEvent): void => {
 
   ev.preventDefault();
   history.replaceState(null, '', `#${header.id}`);
-
-  requestAnimationFrame(() => {
-    header.scrollIntoView({ behavior: 'smooth' });
-  });
 };
 
 const tocReset = (): void => {
@@ -121,7 +117,7 @@ export const initTableOfContents = (html: HTMLElement): (() => void) => {
       }
       scrollCenter();
     },
-    { threshold: 1.0 },
+    { threshold: 0.8 },
   );
 
   elmToc = document.getElementById('table-of-contents') as HTMLDivElement;
