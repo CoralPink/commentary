@@ -144,6 +144,9 @@ jobs:
     runs-on: ubuntu-26.04-arm
     needs: test-wasm
     env:
+      # renovate: datasource=cargo depName=wasm-bindgen
+      WASM_BINDGEN_VERSION: "0.2.126"
+      # renovate: datasource=github-releases depName=WebAssembly/binaryen
       BINARYEN_VERSION: "130"
     steps:
       - name: Checkout Repository
@@ -165,7 +168,7 @@ jobs:
       - name: Install Wasm Bindgen
         uses: taiki-e/install-action@9e1e5806d4a4822de933115878265be9aaa786d9 # v2
         with:
-          tool: wasm-bindgen-cli@0.2.125
+          tool: wasm-bindgen-cli@${{ env.WASM_BINDGEN_VERSION }}
 
       - name: Build Wasm
         working-directory: rs/wasm
@@ -414,6 +417,7 @@ jobs:
       - convert-woff2
       - test-mdbook-backend
     env:
+      # renovate: datasource=cargo depName=mdbook
       MDBOOK_VERSION: "0.5.3"
     steps:
       - name: Checkout Repository
