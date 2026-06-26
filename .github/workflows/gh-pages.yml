@@ -67,7 +67,7 @@ jobs:
 
       - name: Restore Media Cache (allow partial match)
         id: cache-source
-        uses: actions/cache/restore@2c8a9bd7457de244a408f35966fab2fb45fda9c8 # v6
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6
         with:
           path: tmp-media
           key: ${{ steps.set-cache-key.outputs.cache-key }}
@@ -104,7 +104,7 @@ jobs:
 
       - name: Save Media Cache (new primary key)
         if: steps.check-match.outputs.match != 'true'
-        uses: actions/cache/save@2c8a9bd7457de244a408f35966fab2fb45fda9c8 # v6
+        uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6
         with:
           path: tmp-media
           key: ${{ steps.set-cache-key.outputs.cache-key }}
@@ -349,7 +349,7 @@ jobs:
 
       - name: Cache Woff2
         id: cache-woff2
-        uses: actions/cache@2c8a9bd7457de244a408f35966fab2fb45fda9c8 # v6
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6
         with:
           path: fonts/woff2
           key: python-${{ runner.os }}-fonts-${{ hashFiles('fonts/**') }}
@@ -436,7 +436,7 @@ jobs:
 
       - name: Restore Media Cache
         id: cache-media
-        uses: actions/cache@2c8a9bd7457de244a408f35966fab2fb45fda9c8 # v6
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6
         with:
           path: tmp-media
           key: ${{ needs.cache-media-files.outputs.cache-key }}
