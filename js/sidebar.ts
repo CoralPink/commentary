@@ -1,10 +1,6 @@
-import { BREAKPOINT_UI_WIDE, CONTENT_READY, ROOT_PATH } from './constants.ts';
+import { BREAKPOINT_UI_WIDE, CONTENT_READY} from './constants.ts';
+import pagelist from './pagelist.ts';
 import { isSearchPopVisibility } from './searcher.ts';
-
-import { fetchText } from './utils/fetch.ts';
-import { setHTML } from './utils/html-sanitizer.ts';
-
-const PAGE_LIST = `${ROOT_PATH}pagelist.html`;
 
 const SHOW_SIDEBAR_WIDTH = 1200;
 
@@ -14,11 +10,10 @@ const ID_SCROLLBOX = 'sidebar-scrollbox';
 
 const TARGET_TOGGLE = 'sidebar';
 
-let isPageListLoadSuccess = false;
 let doneFirstScroll = false;
 
 let currentPage: HTMLAnchorElement | undefined = undefined;
-let abortController: AbortController | undefined;
+let abortController: AbortController | undefined = undefined;
 
 const hideSidebar = (): void => {
   document.getElementById(ID_PAGE)?.classList.remove('show-sidebar');
@@ -66,7 +61,7 @@ const updateActive = (): void => {
   currentPage.setAttribute('aria-current', 'page');
 };
 
-const showSidebar = (): void => {
+const showSidebar = async (): Promise<void> => {
   const sidebar = document.getElementById(ID_SIDEBAR);
 
   if (sidebar === null) {
@@ -74,7 +69,7 @@ const showSidebar = (): void => {
     return;
   }
 
-  const promiseInit = loadPageList(sidebar);
+  const promiseLoad = pagelist.load(sidebar);
 
   document.getElementById(ID_PAGE)?.classList.add('show-sidebar');
 
@@ -102,19 +97,17 @@ const showSidebar = (): void => {
   if (doneFirstScroll) {
     return;
   }
-
-  requestAnimationFrame(async (): Promise<void> => {
-    await promiseInit;
-
-    updateActive();
-    currentPage?.scrollIntoView({ block: 'center' });
-  });
-
   doneFirstScroll = true;
+
+  await promiseLoad;
+
+  updateActive();
+  currentPage?.scrollIntoView({ block: 'center' });
 };
 
-const toggleSidebar = (): void =>
+const toggleSidebar = (): void => {
   document.getElementById(ID_SIDEBAR)?.checkVisibility() ? hideSidebar() : showSidebar();
+};
 
 const toggleHandler = (key: string): void => {
   if (isSearchPopVisibility()) {
@@ -125,24 +118,6 @@ const toggleHandler = (key: string): void => {
     toggleSidebar();
   } else if (key === 'Escape') {
     hideSidebar();
-  }
-};
-
-const loadPageList = async (elm: HTMLElement): Promise<void> => {
-  if (isPageListLoadSuccess) {
-    return;
-  }
-
-  elm.setAttribute('aria-busy', 'true');
-
-  try {
-    setHTML(elm, await fetchText(PAGE_LIST));
-    isPageListLoadSuccess = true;
-  } catch (err: unknown) {
-    setHTML(elm, '<p>Error loading sidebar content.</p>');
-    console.error(`Failed to load pagelist - ${err}`);
-  } finally {
-    elm.setAttribute('aria-busy', 'false');
   }
 };
 
@@ -174,7 +149,7 @@ export const bootSidebar = (): void => {
   );
 
   for (const x of document.querySelectorAll(`[data-target="${TARGET_TOGGLE}"]`)) {
-    x.addEventListener('click', () => toggleSidebar(), {
+    x.addEventListener('click', toggleSidebar, {
       passive: true,
     });
   }
