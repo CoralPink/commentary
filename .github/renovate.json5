@@ -27,10 +27,10 @@
     {
       "customType": "regex",
       "managerFilePatterns": [
-        "^\\.github/workflows/.*\\.ya?ml$"
+        "/\\.github/workflows/.*\\.ya?ml$/"
       ],
       "matchStrings": [
-        "# renovate: datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)\\s+\\w+:\\s*\"(?<currentValue>[^\"]+)\""
+        "(?<key>[A-Z0-9_]+)\\s*:\\s*[\"']?(?<currentValue>[^\"'\\n]+)[\"']?\\s*#\\s*renovate:\\s*datasource=(?<datasource>\\S+)\\s+depName=(?<depName>\\S+)"
       ]
     }
   ],

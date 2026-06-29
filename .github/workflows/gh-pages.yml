@@ -144,10 +144,8 @@ jobs:
     runs-on: ubuntu-26.04-arm
     needs: test-wasm
     env:
-      # renovate: datasource=cargo depName=wasm-bindgen
-      WASM_BINDGEN_VERSION: "0.2.126"
-      # renovate: datasource=github-releases depName=WebAssembly/binaryen
-      BINARYEN_VERSION: "130"
+      WASM_BINDGEN_VERSION: "0.2.126" # renovate: datasource=cargo depName=wasm-bindgen
+      BINARYEN_VERSION: "130" # renovate: datasource=github-releases depName=WebAssembly/binaryen
     steps:
       - name: Checkout Repository
         uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
@@ -417,8 +415,7 @@ jobs:
       - convert-woff2
       - test-mdbook-backend
     env:
-      # renovate: datasource=cargo depName=mdbook
-      MDBOOK_VERSION: "0.5.3"
+      MDBOOK_VERSION: "0.5.3" # renovate: datasource=cargo depName=mdbook
     steps:
       - name: Checkout Repository
         uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
