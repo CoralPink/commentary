@@ -36,7 +36,6 @@
   ],
   "packageRules": [
     {
-      "matchPackageNames": ["taiki-e/install-action"],
       "matchUpdateTypes": ["digest"],
       "schedule": [
         "before 4am on monday"
