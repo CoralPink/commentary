@@ -115,6 +115,7 @@ $toc-inline-offset: 5rem !default;
     padding: 1em;
     gap: 1em;
 
+    scroll-behavior: smooth;
     scrollbar-width: thin;
 
     a {
