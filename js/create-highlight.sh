@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
-git clone https://github.com/highlightjs/highlight.js.git -b 11.11.2 --depth 1 highlight || exit 1
+git clone --depth 1 --branch 11.11.2 \
+  https://github.com/highlightjs/highlight.js.git highlight
+
 pushd highlight || exit 1
 
 npm install
