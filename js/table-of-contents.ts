@@ -26,9 +26,7 @@ const scrollCenter = (): void => {
     return;
   }
 
-  requestAnimationFrame(() => {
-    currentInlineCenter?.scrollIntoView({ behavior: 'smooth', inline: 'center' });
-  });
+  currentInlineCenter?.scrollIntoView({ inline: 'center' });
 };
 
 const addActive = (entry: IntersectionObserverEntry): void => {
