@@ -4,7 +4,7 @@
     "cheerio/utils": "npm:cheerio@1.2.0/utils",
     "jsdom": "npm:jsdom@29.1.1",
     "js-beautify": "npm:js-beautify@1.15.4",
-    "path": "jsr:@std/path@1.1.5",
+    "path": "jsr:@std/path@1.1.6",
     "p-limit": "npm:p-limit@7.3.0"
   },
   "tasks": {
