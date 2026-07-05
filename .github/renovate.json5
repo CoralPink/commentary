@@ -19,28 +19,52 @@
 
     // Preserve (but continue to upgrade) any existing SemVer ranges.
     ":preserveSemverRanges",
+
+    // Custom Manager Presets
+    "customManagers:githubActionsVersions",
+    "customManagers:biomeVersions",
   ],
-  "labels": [
-    "dependencies"
-  ],
-  "customManagers": [
-    {
-      "customType": "regex",
-      "managerFilePatterns": [
-        "/\\.github/workflows/.*\\.ya?ml$/"
-      ],
-      "matchStrings": [
-        "(?<key>[A-Z0-9_]+)\\s*:\\s*[\"']?(?<currentValue>[^\"'\\n]+)[\"']?\\s*#\\s*renovate:\\s*datasource=(?<datasource>\\S+)\\s+depName=(?<depName>\\S+)"
-      ]
-    }
-  ],
+  "labels": ["dependencies"],
   "packageRules": [
     {
+      "matchManagers": ["cargo"],
+      "matchFileNames": ["rs/mdbook-footnote/**"],
+      "groupName": "cargo(backend)",
+    },
+    {
+      "matchManagers": ["cargo"],
+      "matchFileNames": ["rs/wasm/**"],
+      "groupName": "cargo(wasm)",
+    },
+    {
+      "matchManagers": ["deno"],
+      "matchFileNames": ["js/**"],
+      "groupName": "deno(frontend)",
+    },
+    {
+      "matchManagers": ["deno"],
+      "matchFileNames": ["scripts/**"],
+      "groupName": "deno(backend)",
+    },
+    {
+      "matchManagers": ["deno"],
+      "matchFileNames": ["scss/**"],
+      "groupName": "deno(scss)",
+    },
+    {
+      "matchManagers": ["github-actions"],
+      "groupName": "github-actions",
+    },
+    {
+      "matchManagers": ["github-actions"],
       "matchUpdateTypes": ["digest"],
-      "schedule": [
-        "before 4am on monday"
-      ]
-    }
+      "schedule": ["before 4am on monday"],
+    },
+    {
+      "matchManagers": ["pep621"],
+      "matchFileNames": ["fonts/**"],
+      "groupName": "uv(fonts)",
+    },
   ],
   "timezone": "Asia/Tokyo",
 }
