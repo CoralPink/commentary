@@ -323,6 +323,13 @@ Fira Code: プログラミング合字のフリー等幅フォント
 
 これも素直に[Releases](https://github.com/tonsky/FiraCode/releases)から感謝しながらダウンロードするのが簡単でしょう😊
 
+<div class="slider">
+  <div class="media">
+    ![shi-chan](img/shi-chan.avif)
+    ![hebikubo](img/hebikubo.avif)
+  </div>
+</div>
+
 ##### 🎏 ヒラギノ角ゴシック
 
 これだけだと "漢字・ひらがな・カタカナ" がイマイチに戻っちゃうので、日本語に対応したフォントも用意しましょう。
