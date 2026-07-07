@@ -10,7 +10,7 @@ license = "Apache-2.0"
 bumpalo = { version = "=3.20.3", features = ["collections"] }
 clap = "=4.6.1"
 itoa = "=1.0.18"
-mdbook-preprocessor = "=0.5.3"
+mdbook-preprocessor = "=0.5.4"
 regex = "=1.12.4"
 semver = "=1.0.28"
 serde_json = "=1.0.150"
