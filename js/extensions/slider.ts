@@ -82,6 +82,19 @@ class Slider {
 
     updateSlideWidth(mediaContainer, this.medias);
 
+    // Take into account cases where the image has not finished loading
+    for (const media of this.medias) {
+      if (!(media instanceof HTMLImageElement) || media.complete) {
+        continue;
+      }
+
+      media.addEventListener('load', () => updateSlideWidth(mediaContainer, this.medias), {
+        once: true,
+        passive: true,
+        signal: this.abortListener.signal,
+      });
+    }
+
     const fragment = document.createDocumentFragment();
     const controls = document.createElement('div');
 
