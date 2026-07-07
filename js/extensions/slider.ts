@@ -24,12 +24,32 @@ type CompatibleMedia = HTMLVideoElement | HTMLImageElement;
 
 const extractName = (s: string): string => s.match(/\/([^/?#]+?)(\.[^/.#?]+)?(?:[?#]|$)/)?.[1] ?? '';
 
+const getMediaWidth = (media: CompatibleMedia): number =>
+  media instanceof HTMLImageElement ? media.naturalWidth : media.width;
+
+const updateSlideWidth = (container: HTMLDivElement, medias: CompatibleMedia[]) => {
+  const width = Math.max(...medias.map(getMediaWidth), 0);
+  container.style.setProperty('--slide-width', `${width}px`);
+
+  // Ensure the slider starts from the first item.
+  container.scrollLeft = 0;
+};
+
+const getThumbnail = (media: CompatibleMedia): string => {
+  if (media instanceof HTMLImageElement) {
+    return media.src;
+  }
+
+  return media.dataset['poster' as keyof DOMStringMap] || media.poster || '';
+};
+
 class Slider {
   private medias: CompatibleMedia[] = [];
   private indicatorSpans: HTMLSpanElement[] = [];
 
   private abortListener = new AbortController();
 
+  private observer?: IntersectionObserver;
   private index = 0;
 
   private handleIntersect = (entries: IntersectionObserverEntry[]) => {
@@ -44,10 +64,6 @@ class Slider {
       }
     }
   };
-
-  private observer = new IntersectionObserver(this.handleIntersect, {
-    threshold: 0.8,
-  });
 
   constructor(slider: HTMLDivElement) {
     const mediaContainer = slider.querySelector<HTMLDivElement>('.media');
@@ -64,6 +80,8 @@ class Slider {
       return;
     }
 
+    updateSlideWidth(mediaContainer, this.medias);
+
     const fragment = document.createDocumentFragment();
     const controls = document.createElement('div');
 
@@ -72,6 +90,11 @@ class Slider {
 
     fragment.append(controls);
     slider.append(fragment);
+
+    this.observer = new IntersectionObserver(this.handleIntersect, {
+      root: mediaContainer,
+      threshold: 0.8,
+    });
 
     for (const x of Array.from(this.medias)) {
       if (x instanceof HTMLVideoElement) {
@@ -110,20 +133,12 @@ class Slider {
     this.index = next;
   }
 
-  private getThumbnail(media: CompatibleMedia): string {
-    if (media instanceof HTMLImageElement) {
-      return media.src;
-    }
-
-    return media.dataset['poster' as keyof DOMStringMap] || media.poster || '';
-  }
-
   private createIndicators(): HTMLElement {
     const fragment = document.createDocumentFragment();
 
     for (const media of this.medias) {
       const button = document.createElement('button');
-      const thumbnail = this.getThumbnail(media);
+      const thumbnail = getThumbnail(media);
 
       button.style.backgroundImage = `url('${thumbnail}')`;
       button.setAttribute('aria-label', `Slide: ${extractName(thumbnail)}`);
@@ -201,7 +216,7 @@ class Slider {
   }
 
   public dispose(): void {
-    this.observer.disconnect();
+    this.observer?.disconnect();
     this.abortListener.abort();
 
     for (const x of this.indicatorSpans) {

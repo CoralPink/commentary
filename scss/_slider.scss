@@ -6,10 +6,12 @@
 
   .media {
     display: flex;
+    flex-direction: row;
+
     overflow-x: auto;
     scroll-snap-type: x mandatory;
 
-    min-width: 100%;
+    inline-size: min(var(--slide-width), 100%);
     align-items: center;
 
     &>* {
