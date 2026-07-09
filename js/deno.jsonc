@@ -7,6 +7,12 @@
     "@vitest/coverage-v8": "npm:@vitest/coverage-v8@4.1.10",
     "happy-dom": "npm:happy-dom@20.10.6"
   },
+  "minimumDependencyAge": {
+    "age": "PT12H",
+    "exclude": [
+      "npm:rolldown"
+    ]
+  },
   "tasks": {
     "bundle": "rolldown -c",
     "serve": "deno run --allow-net --allow-read --allow-sys=networkInterfaces jsr:@std/http/file-server ../",
