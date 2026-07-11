@@ -60,6 +60,15 @@ const showResults = (): void => {
 const checkURL = (url: URL): boolean =>
   url.origin + url.pathname === globalThis.location.origin + globalThis.location.pathname;
 
+const hiddenSearch = (): void => {
+  elmPop.hidePopover();
+
+  for (const x of elmSearch) {
+    x.setAttribute('aria-expanded', 'false');
+  }
+  searchAbort.abort();
+};
+
 const jumpUrl = (): void => {
   const aElement = focusedLi?.querySelector('a') as HTMLAnchorElement;
 
@@ -126,15 +135,6 @@ const closedPopover = (ev: Event): void => {
 
 const debounceSearchInput = debounce((_: Event) => showResults(), DEBOUNCE_DELAY_MS);
 
-const hiddenSearch = (): void => {
-  elmPop.hidePopover();
-
-  for (const x of elmSearch) {
-    x.setAttribute('aria-expanded', 'false');
-  }
-  searchAbort.abort();
-};
-
 const showSearch = (): void => {
   if (isSearchPopVisibility()) {
     return;
@@ -148,24 +148,25 @@ const showSearch = (): void => {
   elmSearchBar.select();
 
   searchAbort = new AbortController();
+  const signal = searchAbort.signal;
 
   elmSearchBar.addEventListener('input', debounceSearchInput, {
     passive: true,
-    signal: searchAbort.signal,
+    signal,
   });
 
   elmResults.addEventListener('keyup', popupFocus, {
     passive: true,
-    signal: searchAbort.signal,
+    signal,
   });
 
   elmPop.addEventListener('click', searchMouseupHandler, {
     passive: true,
-    signal: searchAbort.signal,
+    signal,
   });
   elmPop.addEventListener('toggle', closedPopover, {
     passive: true,
-    signal: searchAbort.signal,
+    signal,
   });
 };
 

@@ -162,15 +162,7 @@ impl HtmlBuilder {
             }
 
             self.buf.extend_from_slice(MARK_TAG);
-
-            let slice = &body[start..end];
-
-            if likely_safe(slice.as_bytes()) {
-                self.buf.extend_from_slice(slice.as_bytes());
-            } else {
-                self.safe_text(slice);
-            }
-
+            self.safe_text(&body[start..end]);
             self.buf.extend_from_slice(MARK_TAG_END);
 
             pos = end;
@@ -296,7 +288,7 @@ impl HtmlBuilder {
     ) -> usize {
         let mut rendered = 0;
 
-        results.into_iter().for_each(|el| {
+        for el in results {
             if let Some(url) = url_table.get(el.id) {
                 let (page, head) = parse_uri(url);
 
@@ -310,7 +302,7 @@ impl HtmlBuilder {
 
                 rendered += 1;
             }
-        });
+        }
 
         rendered
     }
