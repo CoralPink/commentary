@@ -1,14 +1,10 @@
 use bumpalo::Bump;
 use bumpalo::collections::Vec as BumpVec;
 use mdbook_preprocessor::{book::Book, errors::Error};
-use regex::Regex;
-use std::sync::LazyLock;
+use regex::regex;
 
 const FT_REF: &str = "ft-reference";
 const FT_DEF: &str = "ft-definition";
-
-static FOOTNOTE_RE: LazyLock<Regex> =
-    LazyLock::new(|| Regex::new(r"(?s)\{\{footnote:\s*(?P<content>.*?)\}\}").expect("Invalid regex for FOOTNOTE_RE"));
 
 pub fn replacing(mut book: Book) -> Result<Book, Error> {
     let bump = Bump::new();
@@ -18,7 +14,7 @@ pub fn replacing(mut book: Book) -> Result<Book, Error> {
         if let mdbook_preprocessor::book::BookItem::Chapter(chap) = item {
             let mut footnotes = BumpVec::new_in(&bump);
 
-            chap.content = FOOTNOTE_RE
+            chap.content = regex!(r"(?s)\{\{footnote:\s*(?P<content>.*?)\}\}")
                 .replace_all(&chap.content, |caps: &regex::Captures| {
                     let content = caps.name("content").unwrap().as_str().to_owned();
                     footnotes.push(content);
