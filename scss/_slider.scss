@@ -11,7 +11,7 @@
     overflow-x: auto;
     scroll-snap-type: x mandatory;
 
-    inline-size: min(var(--slide-width), 100%);
+    inline-size: min(var(--slide-width, 100%), 100%);
     align-items: center;
 
     &>* {
