@@ -2,7 +2,6 @@ use bumpalo::Bump;
 use bumpalo::collections::Vec as BumpVec;
 use serde::{Deserialize, Serialize};
 use serde_wasm_bindgen::to_value;
-use std::mem::MaybeUninit;
 use unicode_segmentation::UnicodeSegmentation;
 use wasm_bindgen::prelude::*;
 
@@ -28,7 +27,7 @@ fn create_index_map(text: &str) -> Vec<usize> {
     let v_size = text.len() + 1;
 
     let mut v: Vec<usize> = Vec::with_capacity(v_size);
-    let spare: &mut [MaybeUninit<usize>] = v.spare_capacity_mut();
+    let spare = v.spare_capacity_mut();
 
     let mut utf16_idx = 0;
     let mut byte_idx = 0;
@@ -41,7 +40,9 @@ fn create_index_map(text: &str) -> Vec<usize> {
         }
 
         byte_idx += utf8_len;
-        utf16_idx += c.encode_utf16(&mut [0; 2]).len();
+
+        // In UTF-16, characters with codes U+10000 and higher are represented as surrogate pairs
+        utf16_idx += if c as u32 >= 0x10000 { 2 } else { 1 };
     }
 
     spare[byte_idx].write(utf16_idx);
