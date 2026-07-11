@@ -19,6 +19,8 @@ const SCROLL_INTO_VIEW_OPTIONS: ScrollIntoViewOptions = {
   inline: 'start',
 };
 
+const VARIABLES_SLIDE_WIDTH = '--slide-width';
+
 type Direction = typeof ID_PREV | typeof ID_NEXT;
 type CompatibleMedia = HTMLVideoElement | HTMLImageElement;
 
@@ -26,14 +28,6 @@ const extractName = (s: string): string => s.match(/\/([^/?#]+?)(\.[^/.#?]+)?(?:
 
 const getMediaWidth = (media: CompatibleMedia): number =>
   media instanceof HTMLImageElement ? media.naturalWidth : media.width;
-
-const updateSlideWidth = (container: HTMLDivElement, medias: CompatibleMedia[]) => {
-  const width = Math.max(...medias.map(getMediaWidth), 0);
-  container.style.setProperty('--slide-width', `${width}px`);
-
-  // Ensure the slider starts from the first item.
-  container.scrollLeft = 0;
-};
 
 const getThumbnail = (media: CompatibleMedia): string => {
   if (media instanceof HTMLImageElement) {
@@ -52,23 +46,12 @@ class Slider {
   private observer?: IntersectionObserver;
   private index = 0;
 
-  private handleIntersect = (entries: IntersectionObserverEntry[]) => {
-    if (document.fullscreenElement) {
-      return;
-    }
-
-    for (const entry of entries) {
-      if (entry.isIntersecting) {
-        this.goTo(this.medias.indexOf(entry.target as CompatibleMedia));
-        return;
-      }
-    }
-  };
+  private mediaMaxWidth = 0;
 
   constructor(slider: HTMLDivElement) {
     const mediaContainer = slider.querySelector<HTMLDivElement>('.media');
 
-    if (!mediaContainer) {
+    if (mediaContainer === null) {
       console.warn('The media container corresponding to slider class is not found.');
       return;
     }
@@ -80,20 +63,7 @@ class Slider {
       return;
     }
 
-    updateSlideWidth(mediaContainer, this.medias);
-
-    // Take into account cases where the image has not finished loading
-    for (const media of this.medias) {
-      if (!(media instanceof HTMLImageElement) || media.complete) {
-        continue;
-      }
-
-      media.addEventListener('load', () => updateSlideWidth(mediaContainer, this.medias), {
-        once: true,
-        passive: true,
-        signal: this.abortListener.signal,
-      });
-    }
+    this.initializeSlideLayout(mediaContainer);
 
     const fragment = document.createDocumentFragment();
     const controls = document.createElement('div');
@@ -115,6 +85,37 @@ class Slider {
       }
 
       this.observer.observe(x);
+    }
+
+    // Ensure the slider starts from the first item.
+    mediaContainer.scrollLeft = 0;
+  }
+
+  private updateSlideWidth(container: HTMLDivElement): void {
+    const width = Math.max(...this.medias.map(getMediaWidth), 0);
+
+    if (width === this.mediaMaxWidth) {
+      return;
+    }
+
+    container.style.setProperty(VARIABLES_SLIDE_WIDTH, `${width}px`);
+    this.mediaMaxWidth = width;
+  }
+
+  private initializeSlideLayout(container: HTMLDivElement): void {
+    this.updateSlideWidth(container);
+
+    // Take into account cases where the image has not finished loading
+    for (const x of this.medias) {
+      if (!(x instanceof HTMLImageElement) || x.complete) {
+        continue;
+      }
+
+      x.addEventListener('load', () => this.updateSlideWidth(container), {
+        once: true,
+        passive: true,
+        signal: this.abortListener.signal,
+      });
     }
   }
 
@@ -146,12 +147,25 @@ class Slider {
     this.index = next;
   }
 
+  private handleIntersect = (entries: IntersectionObserverEntry[]) => {
+    if (document.fullscreenElement) {
+      return;
+    }
+
+    for (const x of entries) {
+      if (x.isIntersecting) {
+        this.goTo(this.medias.indexOf(x.target as CompatibleMedia));
+        return;
+      }
+    }
+  };
+
   private createIndicators(): HTMLElement {
     const fragment = document.createDocumentFragment();
 
-    for (const media of this.medias) {
+    for (const x of this.medias) {
       const button = document.createElement('button');
-      const thumbnail = getThumbnail(media);
+      const thumbnail = getThumbnail(x);
 
       button.style.backgroundImage = `url('${thumbnail}')`;
       button.setAttribute('aria-label', `Slide: ${extractName(thumbnail)}`);
@@ -159,7 +173,7 @@ class Slider {
       button.addEventListener(
         'click',
         (): void => {
-          media.scrollIntoView(SCROLL_INTO_VIEW_OPTIONS);
+          x.scrollIntoView(SCROLL_INTO_VIEW_OPTIONS);
         },
         { passive: true, signal: this.abortListener.signal },
       );
