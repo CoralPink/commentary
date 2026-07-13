@@ -4,6 +4,7 @@
     "jsr:@std/internal@^1.0.14": "1.0.14",
     "jsr:@std/path@1.1.6": "1.1.6",
     "npm:cheerio@1.2.0": "1.2.0",
+    "npm:highlight.js@11.11.1": "11.11.1",
     "npm:js-beautify@2.0.3": "2.0.3",
     "npm:jsdom@29.1.1": "29.1.1",
     "npm:p-limit@7.3.0": "7.3.0"
@@ -246,6 +247,9 @@
         "path-scurry"
       ]
     },
+    "highlight.js@11.11.1": {
+      "integrity": "sha512-Xwwo44whKBVCYoliBQwaPvtd/2tYFkRQtXDWj1nackaV2JPXx3L0+Jvd8/qCJ2p+ML0/XVkJ2q+Mr+UVdpJK5w=="
+    },
     "html-encoding-sniffer@6.0.0": {
       "integrity": "sha512-CV9TW3Y3f8/wT0BRFc1/KAVQ3TUHiXmaAb6VW9vtiMFf7SLoMd1PdAc4W3KFOFETBJUb90KatHqlsZMWV+R9Gg==",
       "dependencies": [
@@ -476,6 +480,7 @@
     "dependencies": [
       "jsr:@std/path@1.1.6",
       "npm:cheerio@1.2.0",
+      "npm:highlight.js@11.11.1",
       "npm:js-beautify@2.0.3",
       "npm:jsdom@29.1.1",
       "npm:p-limit@7.3.0"
