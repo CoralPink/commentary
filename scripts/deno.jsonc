@@ -2,6 +2,14 @@
   "imports": {
     "cheerio": "npm:cheerio@1.2.0",
     "cheerio/utils": "npm:cheerio@1.2.0/utils",
+
+    "highlight.js/lib/core": "npm:highlight.js@11.11.1/lib/core",
+    "highlight.js/lib/languages/bash": "npm:highlight.js@11.11.1/lib/languages/bash",
+    "highlight.js/lib/languages/diff": "npm:highlight.js@11.11.1/lib/languages/diff",
+    "highlight.js/lib/languages/json": "npm:highlight.js@11.11.1/lib/languages/json",
+    "highlight.js/lib/languages/lua": "npm:highlight.js@11.11.1/lib/languages/lua",
+    "highlight.js/lib/languages/vim": "npm:highlight.js@11.11.1/lib/languages/vim",
+
     "jsdom": "npm:jsdom@29.1.1",
     "js-beautify": "npm:js-beautify@2.0.3",
     "path": "jsr:@std/path@1.1.6",
