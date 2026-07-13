@@ -12,6 +12,10 @@ pre {
     padding: 1em;
 
     border: .1em solid var(--quote-border);
+
+    &.needs-nerd-font {
+      font-family: var.$mono-font, "Symbols Nerd Font Mono";
+    }
   }
 
   &:hover .copy-button {
@@ -56,7 +60,8 @@ pre {
   }
 }
 
-::highlight(marking), mark {
+::highlight(marking),
+mark {
   color: inherit;
   background-color: rgba(var(--search-mark-bg-r), var(--search-mark-bg-g), var(--search-mark-bg-b), 0.16);
 

@@ -28,9 +28,6 @@ cp pkg/wasm_book_bg.wasm ../../src
 popd
 
 pushd js
-if [ ! -e highlight.js ]; then
-  ./create-highlight.sh
-fi
 deno task bundle
 cp -r dist/. ../src/
 popd

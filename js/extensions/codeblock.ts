@@ -1,13 +1,6 @@
 import type { Disposer } from './types.ts';
 
-import { setHTML } from '../utils/html-sanitizer.ts';
-import { initWorker } from '../webworker/hl-initialize.ts';
-import { isErrorPayload, type Payload, type SendToWorker } from '../webworker/hl-types.ts';
-
 const TOOLTIP_FADEOUT_MS = 1200;
-
-let sendToWorker: SendToWorker;
-let clipButton: HTMLButtonElement;
 
 let isBootstrap = false;
 
@@ -47,63 +40,10 @@ const copyCode = (ev: PointerEvent): void => {
   );
 };
 
-const highlight = (code: HTMLElement): void => {
-  const parent = code.parentElement;
-
-  if (parent === null || code.textContent === null) {
-    return;
-  }
-
-  const lang = code.classList[0];
-
-  if (lang === undefined) {
-    return;
-  }
-
-  sendToWorker(code.textContent, lang, (res: Payload): void => {
-    if (isErrorPayload(res)) {
-      return;
-    }
-    code.setAttribute('translate', 'no');
-    setHTML(code, res.highlightCode);
-
-    if (res.needNerdFonts) {
-      code.style.fontFamily = `${globalThis.getComputedStyle(code).fontFamily}, 'Symbols Nerd Font Mono'`;
-    }
-
-    parent.prepend(clipButton.cloneNode(true));
-  });
-};
-
-const setupHighlight = (entries: IntersectionObserverEntry[], obs: IntersectionObserver): void => {
-  for (const x of entries) {
-    if (!x.isIntersecting) {
-      continue;
-    }
-
-    highlight(x.target as HTMLElement);
-    obs.unobserve(x.target);
-  }
-};
-
-const createClipButton = (): void => {
-  clipButton = document.createElement('button');
-
-  clipButton.classList.add('copy-button');
-  clipButton.setAttribute('aria-label', 'Copy to Clipboard');
-
-  const icon = document.createElement('div');
-  icon.classList.add('icon-copy', 'fa-icon');
-
-  clipButton.append(icon);
-};
-
 const bootstrap = (): void => {
   if (isBootstrap) {
     return;
   }
-  sendToWorker = initWorker();
-  createClipButton();
 
   // capture hover event in iOS
   if (globalThis.ontouchstart !== undefined) {
@@ -118,18 +58,6 @@ const bootstrap = (): void => {
 export const initialize = (html: HTMLElement): Disposer => {
   bootstrap();
 
-  const codeBlocks = Array.from(html.querySelectorAll('pre code:not(.language-txt)'));
-
-  if (codeBlocks.length === 0) {
-    return () => {}; // no-op dispose
-  }
-
-  const obs = new IntersectionObserver(setupHighlight, { threshold: 0 });
-
-  for (const x of codeBlocks) {
-    obs.observe(x);
-  }
-
   const ac = new AbortController();
 
   html.addEventListener('click', copyCode, {
@@ -138,7 +66,6 @@ export const initialize = (html: HTMLElement): Disposer => {
   });
 
   return () => {
-    obs.disconnect();
     ac.abort();
   };
 };
