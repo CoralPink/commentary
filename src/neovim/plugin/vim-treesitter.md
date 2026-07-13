@@ -162,7 +162,7 @@ brew install tree-sitter-cli
 
 ~~~admonish quote title="Git Clone"
 ```sh
-git clone depth --1 https://github.com/tree-sitter/tree-sitter-rust
+git clone --depth 1 https://github.com/tree-sitter/tree-sitter-rust
 ```
 
 そしたら中に入って...
