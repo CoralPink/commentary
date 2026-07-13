@@ -24,6 +24,13 @@ const limit = pLimit(LIMIT_CONCURRENT);
 
 const tasks: Promise<void>[] = [];
 
+// highlight.js register
+hljs.registerLanguage('bash', bash);
+hljs.registerLanguage('diff', diff);
+hljs.registerLanguage('json', json);
+hljs.registerLanguage('lua', lua);
+hljs.registerLanguage('vim', vim);
+
 const createCopyButton = (document: Document): HTMLButtonElement => {
   const button = document.createElement('button');
 
@@ -58,12 +65,6 @@ const highlighting = (code: HTMLPreElement): string | null => {
 
 const rewriteHighlight = (document: Document): boolean => {
   let modified = false;
-
-  hljs.registerLanguage('bash', bash);
-  hljs.registerLanguage('diff', diff);
-  hljs.registerLanguage('json', json);
-  hljs.registerLanguage('lua', lua);
-  hljs.registerLanguage('vim', vim);
 
   const clipButton = createCopyButton(document);
 
