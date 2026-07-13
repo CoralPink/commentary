@@ -45,7 +45,7 @@ const highlighting = (code: HTMLPreElement): string | null => {
     return null;
   }
 
-  const lang = langClass.slice('language-'.length);
+  const lang = langClass.slice(LANGUAGE_PREFIX.length);
 
   try {
     return hljs.highlight(code.textContent, {
