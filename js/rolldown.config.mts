@@ -9,9 +9,6 @@ const ENTRIES = [
   './extensions/footnote.ts',
   './extensions/media.ts',
   './extensions/slider.ts',
-
-  './webworker/hl-worker.ts',
-  './webworker/hl-sharedworker.ts',
 ];
 
 const OUT_DIR = './dist';
