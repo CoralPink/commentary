@@ -16,7 +16,7 @@
     "p-limit": "npm:p-limit@7.3.0"
   },
   "tasks": {
-    "content": "deno run --allow-read --allow-write content.ts $DEBUG",
+    "content": "deno run --allow-read --allow-write content/main.ts $DEBUG",
     "pagelist": "deno run --allow-read --allow-write pagelist.ts $DEBUG",
     "json": "deno run --allow-read --allow-write json.ts",
 
@@ -25,7 +25,13 @@
     }
   },
   "compilerOptions": {
-    "lib": ["deno.ns", "dom"]
+    "lib": ["deno.ns", "dom"],
+
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
+    "verbatimModuleSyntax": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "erasableSyntaxOnly": true
   },
   "nodeModulesDir": "none"
 }
