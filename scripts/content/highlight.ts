@@ -15,9 +15,9 @@ const containsNerdFontIcon = (text: string): boolean => NERD_FONT_UNICODE_RANGE.
 
 const createCopyButton = (document: Document): HTMLButtonElement => {
   const button = document.createElement('button');
-
+  button.type = 'button';
   button.className = 'copy-button';
-  button.setAttribute('aria-label', 'Copy to Clipboard');
+  button.ariaLabel = 'Copy to Clipboard';
 
   const icon = document.createElement('div');
   icon.className = 'icon-copy fa-icon';
