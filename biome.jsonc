@@ -10,15 +10,10 @@
     "useIgnoreFile": false
   },
   "formatter": {
-    "formatWithErrors": true,
     "indentStyle": "space",
-    "lineEnding": "auto",
     "lineWidth": 120
   },
   "javascript": {
-    "parser": {
-      "unsafeParameterDecoratorsEnabled": true
-    },
     "formatter": {
       "quoteStyle": "single",
       "jsxQuoteStyle": "single",
@@ -27,16 +22,7 @@
   },
   "css": {
     "formatter": {
-      "enabled": true,
       "quoteStyle": "single"
     }
   },
-  "assist": {
-    "enabled": true,
-    "actions": {
-      "source": {
-        "organizeImports": "on"
-      }
-    }
-  }
 }
