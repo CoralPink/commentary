@@ -34,8 +34,12 @@ const main = async (): Promise<void> => {
 
   const $ = cheerio.load(html);
 
+  // Normalize HTML attributes
+  $('html').attr('lang') ?? $('html').attr('lang', 'ja');
+
   $('.chapter-item.expanded').removeClass('chapter-item expanded');
   $('a[target="_parent"]').removeAttr('target');
+  $('nav[role="navigation"]').removeAttr('role');
 
   // In Mdbook v0.5, <span> tags are inserted, but this site removes them.
   $('span').each((_, span) => {

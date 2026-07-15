@@ -24,7 +24,7 @@ pub fn replacing(mut book: Book) -> Result<Book, Error> {
 
                     s.push_str("<sup class=\"");
                     s.push_str(FT_REF);
-                    s.push_str("\"><button id=\"to-ft-");
+                    s.push_str("\"><button type=\"button\" id=\"to-ft-");
                     s.push_str(idx);
                     s.push_str("\" data-href=\"#ft-");
                     s.push_str(idx);
