@@ -1,9 +1,8 @@
 import * as g from './global.ts';
+import { compressHtml } from './beautify.ts';
 
 import * as cheerio from 'cheerio';
 import { isHtml } from 'cheerio/utils';
-
-import beautify from 'js-beautify';
 
 const HTML_OUTPUT = `${g.PATH_DIRECTORY}pagelist.html`;
 
@@ -24,13 +23,6 @@ const write = async (file: string, data: string): Promise<void> => {
     Deno.exit(1);
   }
 };
-
-const minify = (html: string): string =>
-  beautify.html(html, {
-    indent_size: 0,
-    max_preserve_newlines: 0,
-    wrap_line_length: 0,
-  });
 
 const main = async (): Promise<void> => {
   const html = await read(`${g.PATH_DIRECTORY}${g.HTML_TOC}`);
@@ -82,7 +74,7 @@ const main = async (): Promise<void> => {
     }
   });
 
-  await write(HTML_OUTPUT, minify($.html()));
+  await write(HTML_OUTPUT, compressHtml($.html()));
 };
 
 (async () => {
