@@ -4,7 +4,7 @@
     "jsr:@std/fs@1.0.24": "1.0.24",
     "jsr:@std/internal@^1.0.14": "1.0.14",
     "jsr:@std/path@^1.1.5": "1.1.5",
-    "npm:browserslist@4.28.5": "4.28.5",
+    "npm:browserslist@4.28.6": "4.28.6",
     "npm:lightningcss@1.32.0": "1.32.0",
     "npm:sass@1.101.0": "1.101.0"
   },
@@ -117,12 +117,12 @@
       ],
       "scripts": true
     },
-    "baseline-browser-mapping@2.10.42": {
-      "integrity": "sha512-c/jurFrDLyui7o1J86yLkRu4LMsTYcBohveus7/I2Hzdn9KIP2bdJPTue/lR1KH46enoPbD77GKeSYNdyPoD3Q==",
+    "baseline-browser-mapping@2.10.43": {
+      "integrity": "sha512-AjYpR78kDWAY3Efj+cDTFH9t9SCoL7OoTp1BOb0mQV7S+6CiLwnWM3FyxhJtdPufDFKzmCSFoUncKjWgJEZTCQ==",
       "bin": true
     },
-    "browserslist@4.28.5": {
-      "integrity": "sha512-Cu2E6QejHWzuDMTkuwgpABFgDfZrXLQq5V13YOACZx4mFAG4IwGTbTfHPMr4WtxlHoXSM8FIuRwYYCz5XiabaQ==",
+    "browserslist@4.28.6": {
+      "integrity": "sha512-FQBYNK15VMslhLHpA7+n+n1GOlF1kId2xcCg7/j95f24AOF6VDYMNH4mFxF7KuaTdv627faazpOAjFzMrfJOUw==",
       "dependencies": [
         "baseline-browser-mapping",
         "caniuse-lite",
@@ -132,8 +132,8 @@
       ],
       "bin": true
     },
-    "caniuse-lite@1.0.30001803": {
-      "integrity": "sha512-g/uHREV2ZpK9qMalCsWaxmA6ol+DX8GYhuf3T40RKoP+oL7vhRJh8LNt73PCjpnR6l14FzfPrB5Yux4PKm2meg=="
+    "caniuse-lite@1.0.30001805": {
+      "integrity": "sha512-52noaS3DubycKSXaU30TwPGIp+POyQSUVa5jBEq3vkRkY0kjyb3LQgvhU6WGyCcyXqVLWO0Cw0Q6BSdD0kUfVA=="
     },
     "chokidar@5.0.0": {
       "integrity": "sha512-TQMmc3w+5AxjpL8iIiwebF73dRDF4fBIieAqGn9RGCWaEVwQ6Fb2cGe31Yns0RRIzii5goJ1Y7xbMwo1TxMplw==",
@@ -239,8 +239,8 @@
     "node-addon-api@7.1.1": {
       "integrity": "sha512-5m3bsyrjFWE1xf7nz7YXdN4udnVtXK6/Yfgn5qnahL6bCkf2yKt4k3nuTKAtT4r3IG8JNR2ncsIMdZuAzJjHQQ=="
     },
-    "node-releases@2.0.50": {
-      "integrity": "sha512-J6l92tKHX6w8Jy5nO1Vuc01NoIiRGi/d6qBKVxh+IQ8Cr3b6HbVNfKiF8ZpFKufTwpwxMmce2W3iQZ861ZRyTg=="
+    "node-releases@2.0.51": {
+      "integrity": "sha512-wRNIrw4DmVLKQlbgOMdkMx27Wrpzes2hh5Jtbi2bjPd+4wJstWIqP5A+lscnqbm0xxmT5Bpg8Lec5ItEBwx6BQ=="
     },
     "picocolors@1.1.1": {
       "integrity": "sha512-xceH2snhtb5M9liqDsmEw56le376mTZkEX/jEb/RxNFyegNul7eNslCXP9FDj/Lcu0X8KEyMceP2ntpaHrDEVA=="
@@ -266,7 +266,7 @@
     "source-map-js@1.2.1": {
       "integrity": "sha512-UXWMKhLOwVKb728IUtQPXxfYU+usdybtUrK/8uGE8CQMvrhOpwvzDBwj0QhSL7MQc7vIsISBG8VQ8+IDQxpfQA=="
     },
-    "update-browserslist-db@1.2.3_browserslist@4.28.5": {
+    "update-browserslist-db@1.2.3_browserslist@4.28.6": {
       "integrity": "sha512-Js0m9cx+qOgDxo0eMiFGEueWztz+d4+M3rGlmKPT+T4IS/jP4ylw3Nwpu6cpTTP8R1MAC1kF4VbdLt3ARf209w==",
       "dependencies": [
         "browserslist",
@@ -279,7 +279,7 @@
   "workspace": {
     "dependencies": [
       "jsr:@std/fs@1.0.24",
-      "npm:browserslist@4.28.5",
+      "npm:browserslist@4.28.6",
       "npm:lightningcss@1.32.0",
       "npm:sass@1.101.0"
     ]
