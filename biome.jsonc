@@ -25,4 +25,10 @@
       "quoteStyle": "single"
     }
   },
+  // experimental - https://biomejs.dev/reference/configuration/#html
+  "html": {
+    "formatter": {
+      "enabled": true
+    }
+  }
 }
