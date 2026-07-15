@@ -167,8 +167,9 @@ class Slider {
       const button = document.createElement('button');
       const thumbnail = getThumbnail(x);
 
+      button.type = 'button';
+      button.ariaLabel = `Slide: ${extractName(thumbnail)}`;
       button.style.backgroundImage = `url('${thumbnail}')`;
-      button.setAttribute('aria-label', `Slide: ${extractName(thumbnail)}`);
 
       button.addEventListener(
         'click',
