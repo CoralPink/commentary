@@ -1,5 +1,5 @@
 {
-  "$schema": "https://biomejs.dev/schemas/2.5.3/schema.json",
+  "$schema": "https://biomejs.dev/schemas/2.5.4/schema.json",
   "files": {
     "ignoreUnknown": false,
     "includes": ["**", "!!**/dist"]
@@ -10,15 +10,10 @@
     "useIgnoreFile": false
   },
   "formatter": {
-    "formatWithErrors": true,
     "indentStyle": "space",
-    "lineEnding": "auto",
     "lineWidth": 120
   },
   "javascript": {
-    "parser": {
-      "unsafeParameterDecoratorsEnabled": true
-    },
     "formatter": {
       "quoteStyle": "single",
       "jsxQuoteStyle": "single",
@@ -27,16 +22,13 @@
   },
   "css": {
     "formatter": {
-      "enabled": true,
       "quoteStyle": "single"
     }
   },
-  "assist": {
-    "enabled": true,
-    "actions": {
-      "source": {
-        "organizeImports": "on"
-      }
+  // experimental - https://biomejs.dev/reference/configuration/#html
+  "html": {
+    "formatter": {
+      "enabled": true
     }
   }
 }
