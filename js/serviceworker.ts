@@ -1,6 +1,6 @@
 declare const self: ServiceWorkerGlobalScope;
 
-const CACHE_VERSION = 'v11.6.0';
+const CACHE_VERSION = 'v11.6.1';
 
 const CACHE_URL = '/commentary/';
 const FALLBACK_IMAGE = 'favicon.png';
@@ -29,7 +29,7 @@ const installList = [
 // Do not cache the specified destination
 const skipDestination = new Set<RequestDestination>(['document', 'image', 'video', 'audio']);
 // Cache regardless of the destination
-const useCacheFiles = new Set(['favicon.png', 'favicon.svg', 'pagelist.html']);
+const useCacheFiles = new Set(['favicon.png', 'favicon.svg', 'manifest.json', 'pagelist.html']);
 // Cache this extension even if the destination is ''.
 const cacheableExtensions = new Set(['wasm', 'br', 'gz']);
 
