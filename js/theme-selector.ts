@@ -9,36 +9,37 @@ const THEME_DIRECTORY = `${ROOT_PATH}css/catppuccin/`;
 const THEME_STYLE = `${ROOT_PATH}css/theme-list.css`;
 
 type ThemeColor = {
-  readonly id: string;
+  readonly value: string;
   readonly label: string;
 };
 
 const themeColors = [
-  { id: 'au-lait', label: 'Au Lait' },
-  { id: 'latte', label: 'Latte' },
-  { id: 'frappe', label: 'Frappé' },
-  { id: 'macchiato', label: 'Macchiato' },
-  { id: 'mocha', label: 'Mocha' },
+  { value: 'au-lait', label: 'Au Lait' },
+  { value: 'latte', label: 'Latte' },
+  { value: 'frappe', label: 'Frappé' },
+  { value: 'macchiato', label: 'Macchiato' },
+  { value: 'mocha', label: 'Mocha' },
 ] as const satisfies readonly ThemeColor[];
 
-type ThemeColorId = (typeof themeColors)[number]['id'];
-type ApplyThemeResult = ThemeColorId | null;
+type ThemeName = (typeof themeColors)[number]['value'];
+type ApplyThemeResult = ThemeName | null;
 
-const DEFAULT_LIGHT: ThemeColorId = themeColors[1].id;
-const DEFAULT_DARK: ThemeColorId = themeColors[3].id;
+const DEFAULT_LIGHT: ThemeName = 'latte';
+const DEFAULT_DARK: ThemeName = 'macchiato';
 
 const KEY_SAVE_STORAGE = 'mdbook-theme';
 const KEY_DARK = ':dark';
 const KEY_LIGHT = ':light';
 
-const THEME_SELECTED = 'theme-selected';
 const TARGET_THEME_SELECTOR = 'theme-selector';
 
 const ID_PAGE = 'page';
 const ID_THEME_LIST = 'theme-list';
 const CLASS_THEME = 'theme';
 
-let currentSelect: ThemeColorId | null = null;
+const abortInitTheme = new AbortController();
+
+let currentSelect: ThemeName | null = null;
 let styleAbortController: AbortController | null = null;
 
 const prefersColor = matchMedia('(prefers-color-scheme: dark)');
@@ -46,7 +47,7 @@ const isDarkThemeRequired = (): boolean => prefersColor.matches;
 
 const abortable = (signal?: AbortSignal): AbortableOptions => (signal ? { signal } : {});
 
-const applyTheme = async (next: ThemeColorId, signal?: AbortSignal): Promise<ApplyThemeResult> => {
+const applyTheme = async (next: ThemeName, signal?: AbortSignal): Promise<ApplyThemeResult> => {
   try {
     await loadStyleSheet(`${THEME_DIRECTORY}${next}.css`, abortable(signal));
   } catch (err: unknown) {
@@ -64,61 +65,32 @@ const applyTheme = async (next: ThemeColorId, signal?: AbortSignal): Promise<App
   return next;
 };
 
-const syncThemeUI = (next: ThemeColorId): void => {
-  if (document.getElementById(ID_THEME_LIST) === null) {
-    return;
-  }
-
-  if (currentSelect !== null) {
-    const currentButton = document.getElementById(currentSelect);
-
-    if (currentButton !== null) {
-      currentButton.classList.remove(THEME_SELECTED);
-      currentButton.removeAttribute('aria-current');
-    } else {
-      // Processing will continue.
-      console.error(`Current theme id not found: ${currentSelect}`);
-    }
-  }
-
-  const nextButton = document.getElementById(next);
-
-  if (nextButton === null) {
-    console.error(`Next theme id not found: ${next}`);
-    return;
-  }
-
-  nextButton.classList.add(THEME_SELECTED);
-  nextButton.setAttribute('aria-current', 'true');
-};
-
-const saveStorage = (applied: ThemeColorId): void => {
+const saveStorage = (applied: ThemeName): void => {
   const appearance = isDarkThemeRequired() ? KEY_DARK : KEY_LIGHT;
   writeLocalStorage(`${KEY_SAVE_STORAGE}${appearance}`, applied);
 };
 
-const update = (next: ThemeColorId): void => {
-  syncThemeUI(next);
+const update = (next: ThemeName): void => {
   saveStorage(next);
 
   currentSelect = next;
 };
 
-const selectItem = (ev: MouseEvent): void => {
-  if (!(ev.target instanceof Element)) {
+const selectItem = (ev: Event): void => {
+  const item = ev.target;
+
+  if (!(item instanceof HTMLInputElement)) {
     return;
   }
 
-  const item = ev.target.closest(`li.${CLASS_THEME}`);
-
-  if (item == null || currentSelect === item.id) {
+  if (currentSelect === item.value) {
     return;
   }
 
   styleAbortController?.abort();
   styleAbortController = new AbortController();
 
-  applyTheme(item.id as ThemeColorId, styleAbortController.signal)
+  applyTheme(item.value as ThemeName, styleAbortController.signal)
     .then((result: ApplyThemeResult) => {
       if (!result) {
         return;
@@ -139,31 +111,32 @@ const initThemeSelector = async (): Promise<void> => {
   }
 
   const promiseStyle = loadStyleSheet(THEME_STYLE);
-
-  const themeList = document.createElement('ul');
+  const themeList = document.createElement('fieldset');
 
   themeList.id = ID_THEME_LIST;
-  themeList.setAttribute('aria-label', 'Theme selection menu');
-  themeList.setAttribute('role', 'list');
-  themeList.setAttribute('popover', '');
+  themeList.popover = 'auto';
+
+  const legend = document.createElement('legend');
+  legend.textContent = 'Theme selection';
+
+  themeList.append(legend);
 
   for (const theme of themeColors) {
-    const li = document.createElement('li');
+    const label = document.createElement('label');
+    const input = document.createElement('input');
 
-    li.setAttribute('role', 'menuitem');
-    li.classList.add(CLASS_THEME);
-    li.id = theme.id;
-    li.textContent = theme.label;
+    input.type = 'radio';
+    input.name = 'theme';
+    input.value = theme.value;
+    input.checked = theme.value === currentSelect;
 
-    if (li.id === currentSelect) {
-      li.classList.add(THEME_SELECTED);
-      li.setAttribute('aria-current', 'true');
-    }
+    label.className = CLASS_THEME;
+    label.append(input, theme.label);
 
-    themeList.append(li);
+    themeList.append(label);
   }
 
-  themeList.addEventListener('click', selectItem, {
+  themeList.addEventListener('change', selectItem, {
     passive: true,
   });
 
@@ -174,8 +147,42 @@ const initThemeSelector = async (): Promise<void> => {
   } catch (err: unknown) {
     console.error('Failed to load theme selector styles:', err);
     toast.error('Theme selector styles failed to load.');
+    return;
   }
+
+  abortInitTheme.abort();
+
+  const focusItem = (): void => {
+    if (!themeList.matches(':popover-open')) {
+      return;
+    }
+
+    const radio =
+      themeList.querySelector<HTMLInputElement>('input[type="radio"]:checked') ??
+      themeList.querySelector<HTMLInputElement>('input[type="radio"]');
+
+    radio?.focus();
+  };
+
+  themeList.addEventListener('toggle', focusItem, { passive: true });
+
+  document.addEventListener(
+    'keyup',
+    (ev: KeyboardEvent) => {
+      switch (ev.key) {
+        case 'c':
+        case 'C':
+          themeList.togglePopover();
+          break;
+      }
+    },
+    {
+      passive: true,
+    },
+  );
+
   themeList.showPopover();
+  requestAnimationFrame(focusItem);
 };
 
 const changeEvent = (ev: MediaQueryListEvent): void => {
@@ -185,12 +192,11 @@ const changeEvent = (ev: MediaQueryListEvent): void => {
   styleAbortController?.abort();
   styleAbortController = new AbortController();
 
-  applyTheme(theme as ThemeColorId, styleAbortController.signal)
+  applyTheme(theme as ThemeName, styleAbortController.signal)
     .then((result: ApplyThemeResult) => {
       if (result === null) {
         return;
       }
-      syncThemeUI(result);
 
       if (storedTheme !== null) {
         saveStorage(result);
@@ -211,7 +217,7 @@ export const bootThemeColor = (): Promise<void> => {
   const loadTheme =
     readLocalStorage(`${KEY_SAVE_STORAGE}${appearance}`) ?? (isDarkTheme ? DEFAULT_DARK : DEFAULT_LIGHT);
 
-  const loadStylePromise = applyTheme(loadTheme as ThemeColorId)
+  const loadStylePromise = applyTheme(loadTheme as ThemeName)
     .then((result: ApplyThemeResult) => {
       currentSelect = result;
     })
@@ -237,10 +243,26 @@ export const bootThemeColor = (): Promise<void> => {
 
   for (const x of document.querySelectorAll(`[data-target="${TARGET_THEME_SELECTOR}"]`)) {
     x.addEventListener('click', initThemeSelector, {
-      once: true,
       passive: true,
+      signal: abortInitTheme.signal,
     });
   }
+
+  document.addEventListener(
+    'keyup',
+    (ev: KeyboardEvent) => {
+      switch (ev.key) {
+        case 'c':
+        case 'C':
+          initThemeSelector();
+          break;
+      }
+    },
+    {
+      passive: true,
+      signal: abortInitTheme.signal,
+    },
+  );
 
   return loadStylePromise;
 };
