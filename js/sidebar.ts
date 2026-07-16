@@ -1,4 +1,4 @@
-import { BREAKPOINT_UI_WIDE, CONTENT_READY} from './constants.ts';
+import { BREAKPOINT_UI_WIDE, CONTENT_READY } from './constants.ts';
 import pagelist from './pagelist.ts';
 import { isSearchPopVisibility } from './searcher.ts';
 
@@ -25,10 +25,10 @@ const hideSidebar = (): void => {
     return;
   }
   sidebar.style.display = 'none';
-  sidebar.setAttribute('aria-hidden', 'true');
+  sidebar.ariaHidden = 'true';
 
   for (const x of document.querySelectorAll(`[data-target="${TARGET_TOGGLE}"]`)) {
-    x.setAttribute('aria-expanded', 'false');
+    x.ariaExpanded = 'false';
   }
 
   abortController?.abort();
@@ -58,7 +58,7 @@ const updateActive = (): void => {
     return;
   }
   currentPage.classList.add('active');
-  currentPage.setAttribute('aria-current', 'page');
+  currentPage.ariaCurrent = 'page';
 };
 
 const showSidebar = async (): Promise<void> => {
@@ -74,10 +74,10 @@ const showSidebar = async (): Promise<void> => {
   document.getElementById(ID_PAGE)?.classList.add('show-sidebar');
 
   sidebar.style.display = 'block';
-  sidebar.removeAttribute('aria-hidden');
+  sidebar.ariaHidden = null;
 
   for (const x of document.querySelectorAll(`[data-target="${TARGET_TOGGLE}"]`)) {
-    x.setAttribute('aria-expanded', 'true');
+    x.ariaExpanded = 'true';
   }
 
   const controller = new AbortController();
@@ -126,7 +126,7 @@ const clearActive = (): void => {
     return;
   }
   currentPage.classList.remove('active');
-  currentPage.removeAttribute('aria-current');
+  currentPage.ariaCurrent = null;
 
   currentPage = undefined;
 };

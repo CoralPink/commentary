@@ -18,8 +18,8 @@ const calcTop = (target: HTMLElement, pop: HTMLElement): number => {
 };
 
 const closeFootnotePop = (target: HTMLElement, elm: HTMLElement): void => {
-  target.removeAttribute('aria-expanded');
-  target.removeAttribute('aria-controls');
+  target.ariaExpanded = null;
+  target.ariaControlsElements = null;
 
   elm.addEventListener(
     'transitionend',
@@ -35,7 +35,7 @@ const closeFootnotePop = (target: HTMLElement, elm: HTMLElement): void => {
 };
 
 const insertFootnote = (pop: HTMLElement): void => {
-  const sup = pop.querySelector('p > sup a[href^="#to-ft-"]');
+  const sup = pop.querySelector<HTMLAnchorElement>('p > sup a[href^="#to-ft-"]');
 
   if (!sup) {
     return;
@@ -47,7 +47,7 @@ const insertFootnote = (pop: HTMLElement): void => {
     return;
   }
 
-  sup.setAttribute('href', oldHref.replace(/^#to-ft-/, '#ft-'));
+  sup.href = oldHref.replace(/^#to-ft-/, '#ft-');
 };
 
 const handleFootnoteClick = (ev: Event): void => {
@@ -71,22 +71,27 @@ const handleFootnoteClick = (ev: Event): void => {
     return;
   }
 
+  target.ariaExpanded = 'true';
+
+  const popover = document.getElementById(popIdStr);
+
+  if (popover !== null) {
+    target.ariaControlsElements = [popover];
+  }
+
+  const pop = document.createElement('aside');
+
+  pop.classList.add('ft-pop');
+  pop.style.top = `${calcTop(target, pop) + globalThis.scrollY}px`;
+  pop.role = 'tooltip';
+  pop.id = popIdStr;
+
   const footnote = document.getElementById(ftId);
 
   if (footnote === null) {
     console.error(`footnote for ${ftId} does not exist.`);
     return;
   }
-
-  target.setAttribute('aria-expanded', 'true');
-  target.setAttribute('aria-controls', popIdStr);
-
-  const pop = document.createElement('aside');
-
-  pop.classList.add('ft-pop');
-  pop.style.top = `${calcTop(target, pop) + globalThis.scrollY}px`;
-  pop.setAttribute('role', 'tooltip');
-  pop.setAttribute('id', popIdStr);
 
   setHTML(pop, footnote.innerHTML);
   insertFootnote(pop);

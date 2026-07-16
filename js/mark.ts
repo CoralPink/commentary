@@ -73,7 +73,7 @@ export const unmarking = (): void => {
     const icon = x.querySelector(QUERY_MARKER) as HTMLDivElement;
     icon.style.backgroundColor = ICONS_COLOR;
 
-    x.setAttribute('aria-pressed', 'false');
+    x.ariaPressed = 'false';
 
     x.removeEventListener('click', unmarking);
     x.addEventListener('click', updateMark, { once: true, passive: true });
@@ -104,7 +104,7 @@ const visibleButton = (): void => {
     const icon = x.querySelector(QUERY_MARKER) as HTMLDivElement;
     icon.style.backgroundColor = ICONS_COLOR_ACTIVE;
 
-    x.setAttribute('aria-pressed', 'true');
+    x.ariaPressed = 'true';
 
     x.classList.remove('hidden');
     x.addEventListener('click', unmarking, { once: true, passive: true });

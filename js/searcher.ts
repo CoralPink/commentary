@@ -64,7 +64,7 @@ const hiddenSearch = (): void => {
   elmPop.hidePopover();
 
   for (const x of elmSearch) {
-    x.setAttribute('aria-expanded', 'false');
+    x.ariaExpanded = 'false';
   }
   searchAbort.abort();
 };
@@ -95,11 +95,14 @@ const updateFocus = (target: HTMLElement): void => {
   if (!li || focusedLi === li) {
     return;
   }
-  focusedLi?.removeAttribute('aria-selected');
-  li.setAttribute('aria-selected', 'true');
 
-  if (target.id) {
-    elmPop.setAttribute('aria-activedescendant', target.id);
+  if (focusedLi) {
+    focusedLi.ariaSelected = null;
+  }
+  li.ariaSelected = 'true';
+
+  if (target) {
+    elmPop.ariaActiveDescendantElement = target;
   }
   focusedLi = li;
 };
@@ -141,7 +144,7 @@ const showSearch = (): void => {
   }
 
   for (const x of elmSearch) {
-    x.setAttribute('aria-expanded', 'true');
+    x.ariaExpanded = 'true';
   }
 
   elmPop.showPopover();
