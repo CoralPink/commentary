@@ -190,7 +190,7 @@ class Slider {
 
     const indicators = document.createElement('div');
 
-    indicators.setAttribute('id', ID_INDICATORS);
+    indicators.id = ID_INDICATORS;
     indicators.append(fragment);
 
     return indicators;

@@ -5,7 +5,7 @@ const createAnchor = (href?: string): HTMLAnchorElement => {
   const a = document.createElement('a');
 
   if (href !== undefined) {
-    a.setAttribute('href', href);
+    a.href = href;
   }
   return a;
 };
