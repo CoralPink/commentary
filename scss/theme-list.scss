@@ -7,36 +7,51 @@ kbd,
 }
 
 #theme-list {
-  min-width: 6rem;
-  max-width: 100%;
-
   margin: 0 2.4rem;
   padding: 0.4rem;
   font-size: 0.7rem;
 
   border-radius: 0.4rem;
 
+  &:popover-open {
+    display: flex;
+    flex-direction: column;
+  }
+
+  legend {
+    // Visually Hidden
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
   .theme {
-    border: 0;
+    position: relative;
     padding: 0.2rem 1.25rem;
     line-height: 1.5rem;
-    white-space: nowrap;
-    text-align: left;
-    cursor: pointer;
+
     color: var(--fg);
     background-color: var(--popup-bg);
 
-    &:hover {
+    cursor: pointer;
+
+    input {
+      position: absolute;
+      opacity: 0;
+    }
+
+    &:is(:hover, :has(input:focus)) {
       background-color: var(--theme-hover);
     }
-  }
 
-  .theme-selected::before {
-    $theme-width: 1rem;
+    &:has(input:checked)::before {
+      position: absolute;
+      left: 0.2rem;
 
-    display: inline-block;
-    content: '✓';
-    margin-left: 0 - $theme-width;
-    width: $theme-width;
+      content: '✓';
+    }
   }
 }
