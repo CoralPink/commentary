@@ -42,7 +42,7 @@ const addActive = (entry: IntersectionObserverEntry): void => {
     return;
   }
   target.classList.add('active');
-  target.setAttribute('aria-current', 'true');
+  target.ariaCurrent = 'true';
 
   currentInlineCenter = target;
 };
@@ -70,7 +70,7 @@ const removeActive = (entry: IntersectionObserverEntry): void => {
     return;
   }
   target.classList.remove('active');
-  target.removeAttribute('aria-current');
+  target.ariaCurrent = null;
 };
 
 const jumpHeader = (ev: PointerEvent): void => {
@@ -160,8 +160,8 @@ export const initTableOfContents = (html: HTMLElement): (() => void) => {
 const tocVisible = (): void => {
   elmToc.style.display = 'flex';
 
-  elmToc.removeAttribute('aria-hidden');
-  elmToggle.setAttribute('aria-expanded', 'true');
+  elmToc.ariaHidden = null;
+  elmToggle.ariaExpanded = 'true';
 
   scrollCenter();
 };
@@ -169,8 +169,8 @@ const tocVisible = (): void => {
 const tocHide = (): void => {
   elmToc.style.display = 'none';
 
-  elmToc.setAttribute('aria-hidden', 'true');
-  elmToggle.setAttribute('aria-expanded', 'false');
+  elmToc.ariaHidden = 'true';
+  elmToggle.ariaExpanded = 'false';
 };
 
 export const bootTableOfContents = (): void => {

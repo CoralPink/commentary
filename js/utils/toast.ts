@@ -24,9 +24,9 @@ export default ((): ToastAPI => {
       }
       const div = document.createElement('div');
       div.classList.add('toast-container');
-      div.setAttribute('aria-live', 'polite');
-      div.setAttribute('role', 'status');
-      div.setAttribute('aria-atomic', 'true');
+      div.ariaLive = 'polite';
+      div.role = 'status';
+      div.ariaAtomic = 'true';
 
       document.body.append(div);
       this.container = div;

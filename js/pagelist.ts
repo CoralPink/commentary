@@ -15,7 +15,7 @@ export default (() => {
         return;
       }
 
-      elm.setAttribute('aria-busy', 'true');
+      elm.ariaBusy = 'true';
 
       try {
         setHTML(elm, await fetchText(PAGE_LIST));
@@ -24,7 +24,7 @@ export default (() => {
         setHTML(elm, 'Sorry!!');
         toast.error(`Failed to load pagelist - ${err}`);
       } finally {
-        elm.setAttribute('aria-busy', 'false');
+        elm.ariaBusy = 'false';
       }
     },
   };
