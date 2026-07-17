@@ -1,4 +1,4 @@
-import { isSearchPopVisibility } from './searcher.ts';
+import { isSearchPopoverOpen } from './searcher.ts';
 // deno-lint-ignore no-sloppy-imports
 import initWasm, { get_match_sentences } from './wasm_book.js';
 
@@ -41,27 +41,23 @@ export const updateMark = (): void => {
 };
 
 const keyVisible = (ev: KeyboardEvent): void => {
-  if (isSearchPopVisibility()) {
-    return;
-  }
-
   switch (ev.key) {
     case 'm':
     case 'M':
-      updateMark();
+      if (!isSearchPopoverOpen()) {
+        updateMark();
+      }
       break;
   }
 };
 
 const keyClear = (ev: KeyboardEvent): void => {
-  if (isSearchPopVisibility()) {
-    return;
-  }
-
   switch (ev.key) {
     case 'm':
     case 'M':
-      unmarking();
+      if (!isSearchPopoverOpen()) {
+        unmarking();
+      }
       break;
   }
 };
