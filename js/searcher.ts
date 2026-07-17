@@ -23,8 +23,13 @@ const RESULT_HEADER_LEN_POSITION = 0;
 const RESULT_HTML_LEN_POSITION = LENGTH_FIELD_SIZE * 1;
 const RESULT_DATA_START = LENGTH_FIELD_SIZE * 2;
 
+// Fail Fast
+const elmPop = document.querySelector<HTMLElement>('#search-pop');
+if (elmPop === null) {
+  throw new Error('Missing search popover');
+}
+
 let elmSearch: HTMLElement[];
-let elmPop: HTMLElement;
 let elmSearchBar: HTMLInputElement;
 let elmHeader: HTMLElement;
 let elmResults: HTMLElement;
@@ -35,7 +40,7 @@ let focusedLi: Element | null;
 
 let searchAbort: AbortController;
 
-export const isSearchPopVisibility = (): boolean => elmPop?.checkVisibility() ?? false;
+export const isSearchPopoverOpen = (): boolean => elmPop.matches(':popover-open');
 
 const showResults = (): void => {
   const bytes = finder.search(elmSearchBar.value);
@@ -139,7 +144,7 @@ const closedPopover = (ev: Event): void => {
 const debounceSearchInput = debounce((_: Event) => showResults(), DEBOUNCE_DELAY_MS);
 
 const showSearch = (): void => {
-  if (isSearchPopVisibility()) {
+  if (isSearchPopoverOpen()) {
     return;
   }
 
@@ -196,13 +201,12 @@ const bootSearch = async (): Promise<void> => {
   document.removeEventListener('keyup', bootSearchFromKey);
 
   const elements = {
-    pop: document.getElementById('search-pop'),
     searchBar: document.getElementById('searchbar'),
     header: document.getElementById('results-header'),
     results: document.getElementById('searchresults'),
   };
 
-  if (elements.pop === null || elements.searchBar === null || elements.header === null || elements.results === null) {
+  if (elements.searchBar === null || elements.header === null || elements.results === null) {
     throw new Error('Required DOM elements not found');
   }
 
@@ -210,7 +214,6 @@ const bootSearch = async (): Promise<void> => {
     throw new Error('searchbar element is not an input element');
   }
 
-  elmPop = elements.pop;
   elmSearchBar = elements.searchBar;
   elmHeader = elements.header;
   elmResults = elements.results;
@@ -259,6 +262,11 @@ const bootSearchFromKey = (ev: KeyboardEvent): void => {
 };
 
 export const startupSearch = (): void => {
+  if (!elmPop) {
+    toast.error('Search is currently unavailable.');
+    return;
+  }
+
   elmSearch = Array.from(document.querySelectorAll(`[data-target="${TARGET_SEARCH}"]`));
 
   for (const x of elmSearch) {
