@@ -1,5 +1,7 @@
 import { ROOT_PATH } from './constants.ts';
 
+import { isSearchPopoverOpen } from './searcher.ts';
+
 import { loadStyleSheet, unloadStyleSheet } from './utils/css-loader.ts';
 import { readLocalStorage, writeLocalStorage } from './utils/storage.ts';
 import toast from './utils/toast.ts';
@@ -172,7 +174,9 @@ const initThemeSelector = async (): Promise<void> => {
       switch (ev.key) {
         case 'c':
         case 'C':
-          themeList.togglePopover();
+          if (!isSearchPopoverOpen()) {
+            themeList.togglePopover();
+          }
           break;
       }
     },
@@ -254,7 +258,9 @@ export const bootThemeColor = (): Promise<void> => {
       switch (ev.key) {
         case 'c':
         case 'C':
-          initThemeSelector();
+          if (!isSearchPopoverOpen()) {
+            initThemeSelector();
+          }
           break;
       }
     },

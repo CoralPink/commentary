@@ -1,6 +1,6 @@
 import { BREAKPOINT_UI_WIDE, CONTENT_READY } from './constants.ts';
 import pagelist from './pagelist.ts';
-import { isSearchPopVisibility } from './searcher.ts';
+import { isSearchPopoverOpen } from './searcher.ts';
 
 const SHOW_SIDEBAR_WIDTH = 1200;
 
@@ -110,7 +110,7 @@ const toggleSidebar = (): void => {
 };
 
 const toggleHandler = (key: string): void => {
-  if (isSearchPopVisibility()) {
+  if (isSearchPopoverOpen()) {
     return;
   }
 
