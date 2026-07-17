@@ -1,3 +1,5 @@
+$pop-anchor: --theme-list;
+
 body,
 code,
 kbd,
@@ -6,12 +8,23 @@ kbd,
   transition: color 0.5s, border-color 0.4s, background-color 0.3s;
 }
 
-#theme-list {
-  margin: 0 2.4rem;
-  padding: 0.4rem;
-  font-size: 0.7rem;
+// NOTE: If this class is used in two or more places, ensure that only one instance is displayed
+// (the others should be `display: none`).
+.theme-pop {
+  anchor-name: $pop-anchor;
+}
 
+#theme-list {
+  position-anchor: $pop-anchor;
+  position-area: center y-end;
+
+  margin-block-start: 0.8rem;
+  margin-inline-start: 2rem;
+
+  padding: 0.4rem;
   border-radius: 0.4rem;
+
+  font-size: 0.8rem;
 
   &:popover-open {
     display: flex;

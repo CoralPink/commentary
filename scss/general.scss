@@ -8,6 +8,13 @@
   navigation: auto;
 }
 
+[popover] {
+  color: var(--fg);
+  background-color: var(--popup-bg);
+
+  border: 0.1rem solid var(--popup-border);
+}
+
 html {
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
