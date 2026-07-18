@@ -65,7 +65,7 @@ globalThis.DecompressionStream = MockDecompressionStream;
 describe('Searcher Module', () => {
   beforeEach(() => {
     document.body.innerHTML = `
-      <button data-target=${TARGET_SEARCH} class="icon-button" title="Toggle Search Box (Shortkey: / )" aria-label="Toggle Search Box" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+      <button type="button" data-target="search" id="search-btn" class="icon-button" title="Toggle Search Box (Shortkey: / )" aria-label="Toggle Search Box" aria-keyshortcuts="/" aria-controls="search-pop">
         <div class="icon-search fa-icon"></div>
       </button>
 

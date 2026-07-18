@@ -23,13 +23,10 @@ const RESULT_HEADER_LEN_POSITION = 0;
 const RESULT_HTML_LEN_POSITION = LENGTH_FIELD_SIZE * 1;
 const RESULT_DATA_START = LENGTH_FIELD_SIZE * 2;
 
-// Fail Fast
-const elmPop = document.getElementById('search-pop');
-if (elmPop === null) {
-  throw new Error('Missing search popover');
-}
+const POP_ID = 'search-pop';
 
 let elmSearch: HTMLElement;
+let elmPop: HTMLElement;
 let elmSearchBar: HTMLInputElement;
 let elmHeader: HTMLElement;
 let elmResults: HTMLElement;
@@ -40,7 +37,8 @@ let focusedLi: Element | null;
 
 let searchAbort: AbortController;
 
-export const isSearchPopoverOpen = (): boolean => elmPop.matches(':popover-open');
+// NOTE: I'd rather not, but I have to use `getElementById` every time.
+export const isSearchPopoverOpen = (): boolean => document.getElementById(POP_ID)?.matches(':popover-open') ?? false;
 
 const showResults = (): void => {
   const bytes = finder.search(elmSearchBar.value);
@@ -197,12 +195,13 @@ const bootSearch = async (): Promise<void> => {
   document.removeEventListener('keyup', bootSearchFromKey);
 
   const elements = {
+    pop: document.getElementById(POP_ID),
     searchBar: document.getElementById('searchbar'),
     header: document.getElementById('results-header'),
     results: document.getElementById('searchresults'),
   };
 
-  if (elements.searchBar === null || elements.header === null || elements.results === null) {
+  if (elements.pop === null || elements.searchBar === null || elements.header === null || elements.results === null) {
     throw new Error('Required DOM elements not found');
   }
 
@@ -210,6 +209,7 @@ const bootSearch = async (): Promise<void> => {
     throw new Error('searchbar element is not an input element');
   }
 
+  elmPop = elements.pop;
   elmSearchBar = elements.searchBar;
   elmHeader = elements.header;
   elmResults = elements.results;
@@ -253,11 +253,6 @@ const bootSearchFromKey = (ev: KeyboardEvent): void => {
 };
 
 export const startupSearch = (): void => {
-  if (!elmPop) {
-    toast.error('Search is currently unavailable.');
-    return;
-  }
-
   const button = document.getElementById(TARGET_SEARCH_BUTTON);
 
   if (!(button instanceof HTMLButtonElement)) {
