@@ -52,12 +52,6 @@ const markEventScope = (() => {
   };
 })();
 
-// Fail Fast
-const markButton = document.getElementById(TARGET_MARK_BUTTON);
-if (markButton === null) {
-  throw new Error('Missing Mark Button');
-}
-
 export const updateMark = (): void => {
   const article = document.getElementById('article');
 
@@ -91,20 +85,27 @@ const keyClear = (ev: KeyboardEvent): void => {
   }
 };
 
-const setIconColor = (color: string): void => {
-  const icon = markButton.querySelector(QUERY_MARKER) as HTMLDivElement;
+const setIconColor = (button: HTMLButtonElement, color: string): void => {
+  const icon = button.querySelector(QUERY_MARKER) as HTMLDivElement;
   icon.style.backgroundColor = color;
 };
 
 export const unmarking = (): void => {
   CSS.highlights.clear();
-  setIconColor(ICONS_COLOR);
 
-  markButton.ariaPressed = 'false';
+  const button = document.getElementById(TARGET_MARK_BUTTON);
+
+  if (!(button instanceof HTMLButtonElement)) {
+    return;
+  }
+
+  setIconColor(button, ICONS_COLOR);
+
+  button.ariaPressed = 'false';
 
   const signal = markEventScope.begin();
 
-  markButton.addEventListener('click', updateMark, {
+  button.addEventListener('click', updateMark, {
     passive: true,
     signal,
   });
@@ -119,17 +120,29 @@ const hideButton = (): void => {
   markEventScope.dispose();
   CSS.highlights.clear();
 
-  markButton.classList.add('hidden');
+  const button = document.getElementById(TARGET_MARK_BUTTON);
+
+  if (!(button instanceof HTMLButtonElement)) {
+    return;
+  }
+
+  button.classList.add('hidden');
 };
 
 const visibleButton = (): void => {
+  const button = document.getElementById(TARGET_MARK_BUTTON);
+
+  if (!(button instanceof HTMLButtonElement)) {
+    return;
+  }
+
   const signal = markEventScope.begin();
-  setIconColor(ICONS_COLOR_ACTIVE);
+  setIconColor(button, ICONS_COLOR_ACTIVE);
 
-  markButton.ariaPressed = 'true';
-  markButton.classList.remove('hidden');
+  button.ariaPressed = 'true';
+  button.classList.remove('hidden');
 
-  markButton.addEventListener('click', unmarking, {
+  button.addEventListener('click', unmarking, {
     passive: true,
     signal,
   });
