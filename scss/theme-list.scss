@@ -16,7 +16,8 @@ kbd,
   position-anchor: $pop-anchor;
   position-area: center y-end;
 
-  margin-block-start: 0.8rem;
+  inset-block: .8rem auto;
+
   margin-inline-start: 2rem;
 
   padding: 0.4rem;
