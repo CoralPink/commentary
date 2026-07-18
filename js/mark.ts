@@ -31,6 +31,27 @@ const ICONS_COLOR_ACTIVE = 'var(--search-mark-bg)';
 
 const TARGET_MARK_BUTTON = 'mark-btn';
 
+const markEventScope = (() => {
+  let controller: AbortController | null = null;
+
+  const dispose = (): void => {
+    controller?.abort();
+    controller = null;
+  };
+
+  const begin = (): AbortSignal => {
+    dispose();
+
+    controller = new AbortController();
+    return controller.signal;
+  };
+
+  return {
+    begin,
+    dispose,
+  };
+})();
+
 // Fail Fast
 const markButton = document.getElementById(TARGET_MARK_BUTTON);
 if (markButton === null) {
@@ -81,44 +102,41 @@ export const unmarking = (): void => {
 
   markButton.ariaPressed = 'false';
 
-  markButton.removeEventListener('click', unmarking);
+  const signal = markEventScope.begin();
+
   markButton.addEventListener('click', updateMark, {
-    once: true,
     passive: true,
+    signal,
   });
 
-  document.removeEventListener('keyup', keyClear);
   document.addEventListener('keyup', keyVisible, {
     passive: true,
+    signal,
   });
 };
 
 const hideButton = (): void => {
+  markEventScope.dispose();
   CSS.highlights.clear();
 
   markButton.classList.add('hidden');
-
-  markButton.removeEventListener('click', unmarking);
-  markButton.removeEventListener('click', updateMark);
-
-  document.removeEventListener('keyup', keyVisible);
-  document.removeEventListener('keyup', keyClear);
 };
 
 const visibleButton = (): void => {
+  const signal = markEventScope.begin();
   setIconColor(ICONS_COLOR_ACTIVE);
 
   markButton.ariaPressed = 'true';
-
   markButton.classList.remove('hidden');
+
   markButton.addEventListener('click', unmarking, {
-    once: true,
     passive: true,
+    signal,
   });
 
-  document.removeEventListener('keyup', keyVisible);
   document.addEventListener('keyup', keyClear, {
     passive: true,
+    signal,
   });
 };
 
