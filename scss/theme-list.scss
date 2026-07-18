@@ -8,9 +8,7 @@ kbd,
   transition: color 0.5s, border-color 0.4s, background-color 0.3s;
 }
 
-// NOTE: If this class is used in two or more places, ensure that only one instance is displayed
-// (the others should be `display: none`).
-.theme-pop {
+#theme-btn {
   anchor-name: $pop-anchor;
 }
 

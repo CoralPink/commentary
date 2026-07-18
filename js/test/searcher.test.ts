@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, type MockedFunction, vi } from 'vitest';
-import { startupSearch, TARGET_SEARCH } from '../searcher.ts';
+import { startupSearch, TARGET_SEARCH_BUTTON } from '../searcher.ts';
 
 // Mock modules before imports
 vi.mock('../utils/css-loader.ts', () => ({
@@ -93,9 +93,9 @@ describe('Searcher Module', () => {
 
   describe('startupSearch', () => {
     it('should initialize search with correct event listeners on search button', () => {
-      const searchButton = document.querySelector<HTMLButtonElement>(`[data-target="${TARGET_SEARCH}"]`)!;
+      const searchButton = document.getElementById(TARGET_SEARCH_BUTTON);
       const mockAddEventListener = vi.fn();
-      searchButton.addEventListener = mockAddEventListener;
+      searchButton!.addEventListener = mockAddEventListener;
 
       startupSearch();
 
@@ -113,7 +113,7 @@ describe('Searcher Module', () => {
     });
 
     it('should handle missing search toggle element gracefully', () => {
-      const searchButton = document.querySelector(`[data-target="${TARGET_SEARCH}"]`);
+      const searchButton = document.getElementById(TARGET_SEARCH_BUTTON);
       searchButton?.remove();
 
       expect(() => startupSearch()).not.toThrow();
@@ -140,8 +140,8 @@ describe('Searcher Module', () => {
 
       startupSearch();
 
-      const searchButton = document.querySelector<HTMLButtonElement>(`[data-target="${TARGET_SEARCH}"]`)!;
-      searchButton.click();
+      const searchButton = document.getElementById(TARGET_SEARCH_BUTTON);
+      searchButton?.click();
 
       await vi.runAllTimersAsync();
 
@@ -160,8 +160,8 @@ describe('Searcher Module', () => {
 
       startupSearch();
 
-      const searchButton = document.querySelector<HTMLButtonElement>(`[data-target="${TARGET_SEARCH}"]`)!;
-      searchButton.click();
+      const searchButton = document.getElementById(TARGET_SEARCH_BUTTON);
+      searchButton?.click();
 
       await vi.runAllTimersAsync();
 
@@ -212,7 +212,7 @@ describe('Searcher Module', () => {
 
       startupSearch();
 
-      const toggle = document.querySelector(`[data-target="${TARGET_SEARCH}"]`)!;
+      const toggle = document.getElementById(TARGET_SEARCH_BUTTON);
       const searchPop = document.getElementById('search-pop') as HTMLElement;
 
       // Mock the popover to report as visible after being shown

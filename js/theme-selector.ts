@@ -33,7 +33,7 @@ const KEY_SAVE_STORAGE = 'mdbook-theme';
 const KEY_DARK = ':dark';
 const KEY_LIGHT = ':light';
 
-const TARGET_THEME_SELECTOR = 'theme-selector';
+const TARGET_THEME_BUTTON = 'theme-btn';
 
 const ID_PAGE = 'page';
 const ID_THEME_LIST = 'theme-list';
@@ -241,16 +241,21 @@ export const bootThemeColor = (): Promise<void> => {
       }
     });
 
+  const button = document.getElementById(TARGET_THEME_BUTTON);
+
+  if (button === null) {
+    toast.error('Theme selection is currently unavailable.');
+    return loadStylePromise;
+  }
+
   prefersColor.addEventListener('change', changeEvent, {
     passive: true,
   });
 
-  for (const x of document.querySelectorAll(`[data-target="${TARGET_THEME_SELECTOR}"]`)) {
-    x.addEventListener('click', initThemeSelector, {
-      passive: true,
-      signal: abortInitTheme.signal,
-    });
-  }
+  button.addEventListener('click', initThemeSelector, {
+    passive: true,
+    signal: abortInitTheme.signal,
+  });
 
   document.addEventListener(
     'keyup',
