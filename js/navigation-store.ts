@@ -2,7 +2,7 @@ export default (() => {
   let url = new URL(location.href);
 
   return {
-    get url() {
+    get current() {
       return url;
     },
 
