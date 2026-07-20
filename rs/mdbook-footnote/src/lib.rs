@@ -28,7 +28,7 @@ pub fn replacing(mut book: Book) -> Result<Book, Error> {
                     s.push_str(idx);
                     s.push_str("\" data-href=\"#ft-");
                     s.push_str(idx);
-                    s.push_str("\" aria-expand=\"false\">");
+                    s.push_str("\" aria-expanded=\"false\">");
                     s.push_str(idx);
                     s.push_str("</button></sup>");
 
