@@ -2,126 +2,88 @@ import type { Disposer } from './types.ts';
 
 import { setHTML } from '../utils/html-sanitizer.ts';
 
-const POSITION_GAP = 10;
+const getAnchorName = (id: string): string => `--footnote-anchor-${id}`;
 
-const calcTop = (target: HTMLElement, pop: HTMLElement): number => {
-  const rect = target.getBoundingClientRect();
-  const popHeight = pop.offsetHeight;
+const getFootnoteId = (button: HTMLButtonElement): string | null => {
+  const href = button.dataset['href'];
 
-  const top = rect.bottom + POSITION_GAP;
-
-  // Flip above if overflowing viewport bottom
-  if (top + popHeight > globalThis.innerHeight - POSITION_GAP) {
-    return rect.top - popHeight - POSITION_GAP;
+  if (href === undefined) {
+    return null;
   }
-  return top;
-};
 
-const closeFootnotePop = (target: HTMLElement, elm: HTMLElement): void => {
-  target.ariaExpanded = null;
-  target.ariaControlsElements = null;
-
-  elm.addEventListener(
-    'transitionend',
-    (ev: TransitionEvent) => {
-      if (ev.propertyName === 'opacity') {
-        elm.remove();
-      }
-    },
-    { once: true, passive: true },
-  );
-
-  elm.classList.remove('show');
+  return href.slice(1);
 };
 
 const insertFootnote = (pop: HTMLElement): void => {
-  const sup = pop.querySelector<HTMLAnchorElement>('p > sup a[href^="#to-ft-"]');
+  const link = pop.querySelector<HTMLAnchorElement>('a[href^="#to-ft-"]');
 
-  if (!sup) {
+  if (link === null) {
     return;
   }
 
-  const oldHref = sup.getAttribute('href');
+  link.hash = link.hash.replace(/^#to-ft-/, '#ft-');
+};
 
-  if (!oldHref) {
-    return;
+const createPopoverElement = (id: string): HTMLElement => {
+  const el = document.createElement('aside');
+
+  el.popover = 'auto';
+  el.className = 'ft-pop';
+  el.role = 'dialog';
+  el.style.positionAnchor = getAnchorName(id);
+
+  const footnote = document.getElementById(id);
+
+  if (footnote === null) {
+    throw new Error(`footnote for ${id} does not exist.`);
   }
 
-  sup.href = oldHref.replace(/^#to-ft-/, '#ft-');
+  setHTML(el, footnote.innerHTML);
+  insertFootnote(el);
+
+  return el;
+};
+
+const createPopover = (button: HTMLButtonElement): void => {
+  const id = getFootnoteId(button);
+
+  if (id === null) {
+    throw new Error('missing footnote ID.');
+  }
+
+  const pop = createPopoverElement(id);
+
+  button.ariaExpanded = 'true';
+  button.style.anchorName = getAnchorName(id);
+  button.ariaControlsElements = [pop];
+
+  pop.addEventListener(
+    'toggle',
+    (ev: ToggleEvent) => {
+      if (ev.newState !== 'closed') {
+        return;
+      }
+
+      button.ariaExpanded = 'false';
+      button.ariaControlsElements = null;
+
+      pop.remove();
+    },
+    { passive: true },
+  );
+
+  document.body.append(pop);
+  pop.showPopover();
 };
 
 const handleFootnoteClick = (ev: Event): void => {
-  const target = ev.target;
+  const button = ev.target;
 
-  if (!(target instanceof HTMLElement)) {
+  if (!(button instanceof HTMLButtonElement)) {
     return;
   }
 
-  const href = target.getAttribute('data-href');
-
-  if (!href) {
-    return;
-  }
-
-  const ftId = href.slice(1);
-  const popIdStr = `popover-${ftId}`;
-
-  // If this pop is already open, do nothing
-  if (document.getElementById(popIdStr)) {
-    return;
-  }
-
-  target.ariaExpanded = 'true';
-
-  const popover = document.getElementById(popIdStr);
-
-  if (popover !== null) {
-    target.ariaControlsElements = [popover];
-  }
-
-  const pop = document.createElement('aside');
-
-  pop.classList.add('ft-pop');
-  pop.style.top = `${calcTop(target, pop) + globalThis.scrollY}px`;
-  pop.role = 'tooltip';
-  pop.id = popIdStr;
-
-  const footnote = document.getElementById(ftId);
-
-  if (footnote === null) {
-    console.error(`footnote for ${ftId} does not exist.`);
-    return;
-  }
-
-  setHTML(pop, footnote.innerHTML);
-  insertFootnote(pop);
-
-  requestAnimationFrame(() => {
-    pop.classList.add('show');
-  });
-
-  document.body.append(pop);
-
-  const ac = new AbortController();
-
-  document.addEventListener(
-    'click',
-    (ev: PointerEvent) => {
-      if (!(ev.target instanceof Node)) {
-        return;
-      }
-      if (pop.contains(ev.target) || target === ev.target) {
-        return;
-      }
-
-      closeFootnotePop(target, pop);
-      ac.abort();
-    },
-    {
-      passive: true,
-      signal: ac.signal,
-    },
-  );
+  createPopover(button);
 };
 
 export const initialize = (html: HTMLElement): Disposer => {
