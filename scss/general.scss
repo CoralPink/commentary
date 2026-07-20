@@ -116,9 +116,6 @@ body {
     @include utils.filter-glass($radius: 1.6rem);
 
     #menu {
-      #left-buttons {
-        gap: 0.4rem;
-      }
 
       #book-title,
       #right-buttons {
