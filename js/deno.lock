@@ -2,10 +2,10 @@
   "version": "5",
   "specifiers": {
     "npm:@videojs/html@10.0.0-beta.25": "10.0.0-beta.25_@svta+cml-cta@1.0.6__@svta+cml-structured-field-values@1.1.3___@svta+cml-utils@1.5.0__@svta+cml-utils@1.5.0_@svta+cml-structured-field-values@1.1.3__@svta+cml-utils@1.5.0_@svta+cml-utils@1.5.0",
-    "npm:@vitest/coverage-v8@4.1.10": "4.1.10_vitest@4.1.10_happy-dom@20.10.6_vite@8.1.5",
-    "npm:happy-dom@20.10.6": "20.10.6",
+    "npm:@vitest/coverage-v8@4.1.10": "4.1.10_vitest@4.1.10_happy-dom@20.11.0",
+    "npm:happy-dom@20.11.0": "20.11.0",
     "npm:rolldown@1.2.0": "1.2.0",
-    "npm:vitest@4.1.10": "4.1.10_@vitest+coverage-v8@4.1.10_happy-dom@20.10.6_vite@8.1.5"
+    "npm:vitest@4.1.10": "4.1.10_@vitest+coverage-v8@4.1.10_happy-dom@20.11.0"
   },
   "npm": {
     "@babel/helper-string-parser@7.29.7": {
@@ -426,7 +426,7 @@
         "weakmap-polyfill"
       ]
     },
-    "@vitest/coverage-v8@4.1.10_vitest@4.1.10_happy-dom@20.10.6_vite@8.1.5": {
+    "@vitest/coverage-v8@4.1.10_vitest@4.1.10_happy-dom@20.11.0": {
       "integrity": "sha512-IM49HmthevbgAO4anp1hwtoT9wYe59w0LR00gr+eagHE+ZJ5lK4sLPeO0ubgoJcwLk6dehU3R24N+FbEEKDc8g==",
       "dependencies": [
         "@bcoe/v8-coverage",
@@ -581,8 +581,8 @@
       "os": ["darwin"],
       "scripts": true
     },
-    "happy-dom@20.10.6": {
-      "integrity": "sha512-6QD0ilzDDt93tX44y8tbmZdAcdTRYDhUP+Asgi6pC8Pp5IA3cvaZGyoVN/EGtlq9ziT65iPuBBn3ASLr6hCgVw==",
+    "happy-dom@20.11.0": {
+      "integrity": "sha512-XogN4asPd1a56di9prVG6bZxteNcXsZxxKmAvcEfc5Px5Ca2hMyMgk8wvqK2K1V8zXg40j9VANXsDaJYh9DeNA==",
       "dependencies": [
         "@types/node",
         "@types/whatwg-mimetype",
@@ -888,7 +888,7 @@
       ],
       "bin": true
     },
-    "vitest@4.1.10_@vitest+coverage-v8@4.1.10_happy-dom@20.10.6_vite@8.1.5": {
+    "vitest@4.1.10_@vitest+coverage-v8@4.1.10_happy-dom@20.11.0": {
       "integrity": "sha512-R9jUTe5S4Qb0HCd4TNqpC7oGcrMssMRGXLW80ubjWsW9VH5GF8y1Y0SFLY9AbqSk6nt0PnOx4H4WNJYZ13GUPw==",
       "dependencies": [
         "@vitest/coverage-v8",
@@ -942,7 +942,7 @@
     "dependencies": [
       "npm:@videojs/html@10.0.0-beta.25",
       "npm:@vitest/coverage-v8@4.1.10",
-      "npm:happy-dom@20.10.6",
+      "npm:happy-dom@20.11.0",
       "npm:rolldown@1.2.0",
       "npm:vitest@4.1.10"
     ]
