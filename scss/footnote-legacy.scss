@@ -29,9 +29,12 @@
 }
 
 .ft-pop {
-  position-area: bottom;
-  position-try-fallbacks: top;
-  inset-inline: 8rem;
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 84dvw;
+  margin-left: auto;
+  margin-right: auto;
 
   color: var(--fg);
   background-color: var(--popup-bg);
@@ -42,7 +45,17 @@
   border-radius: .8rem;
   font-size: .64rem;
   text-align: left;
-  overflow-y: auto;
+  overflow-y: scroll;
+
+  transform: scale(0.95);
+  opacity: 0;
+  transition: opacity 150ms ease, transform 150ms ease;
+
+  &.show {
+    opacity: 1;
+    transform: scale(1);
+    z-index: 100;
+  }
 
   a {
     text-decoration: none;

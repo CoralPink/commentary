@@ -1,6 +1,10 @@
+import { ROOT_PATH } from '../constants.ts';
 import type { Disposer } from './types.ts';
 
+import { loadStyleSheet } from '../utils/css-loader.ts';
 import { setHTML } from '../utils/html-sanitizer.ts';
+
+const FILE_STYLE_FOOTNOTE = 'css/footnote.css';
 
 const getAnchorName = (id: string): string => `--footnote-anchor-${id}`;
 
@@ -86,11 +90,19 @@ const handleFootnoteClick = (ev: Event): void => {
   createPopover(button);
 };
 
+const loadStyle = async (): Promise<void> => await loadStyleSheet(`${ROOT_PATH}${FILE_STYLE_FOOTNOTE}`);
+
 export const initialize = (html: HTMLElement): Disposer => {
-  const footnote = Array.from(html.querySelectorAll('sup.ft-reference'));
+  try {
+    loadStyle();
+  } catch (err: unknown) {
+    console.error('Failed to load Footnote Style...');
+    throw err;
+  }
+
   const ac = new AbortController();
 
-  for (const x of footnote) {
+  for (const x of Array.from(html.querySelectorAll('sup.ft-reference'))) {
     x.addEventListener('click', handleFootnoteClick, {
       passive: true,
       signal: ac.signal,
