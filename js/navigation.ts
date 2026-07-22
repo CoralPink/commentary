@@ -1,6 +1,6 @@
 import { CONTENT_READY } from './constants.ts';
 import { type NavigationContext, prepareNavigation } from './context.ts';
-import navigationState from './navigationState.ts';
+import navigationState from './navigation-store.ts';
 import { bootThemeColor } from './theme-selector.ts';
 
 import { setHTML } from './utils/html-sanitizer.ts';

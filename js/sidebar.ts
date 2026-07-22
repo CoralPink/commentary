@@ -2,13 +2,17 @@ import { BREAKPOINT_UI_WIDE, CONTENT_READY } from './constants.ts';
 import pagelist from './pagelist.ts';
 import { isSearchPopoverOpen } from './searcher.ts';
 
+import toast from './utils/toast.ts';
+
 const SHOW_SIDEBAR_WIDTH = 1200;
 
 const ID_PAGE = 'page';
 const ID_SIDEBAR = 'sidebar';
 const ID_SCROLLBOX = 'sidebar-scrollbox';
 
-const TARGET_TOGGLE = 'sidebar';
+const TARGET_SIDEBAR_BUTTON = 'sidebar-btn';
+
+let sidebarButton: HTMLButtonElement;
 
 let doneFirstScroll = false;
 
@@ -27,9 +31,7 @@ const hideSidebar = (): void => {
   sidebar.style.display = 'none';
   sidebar.ariaHidden = 'true';
 
-  for (const x of document.querySelectorAll(`[data-target="${TARGET_TOGGLE}"]`)) {
-    x.ariaExpanded = 'false';
-  }
+  sidebarButton.ariaExpanded = 'false';
 
   abortController?.abort();
 };
@@ -76,9 +78,7 @@ const showSidebar = async (): Promise<void> => {
   sidebar.style.display = 'block';
   sidebar.ariaHidden = null;
 
-  for (const x of document.querySelectorAll(`[data-target="${TARGET_TOGGLE}"]`)) {
-    x.ariaExpanded = 'true';
-  }
+  sidebarButton.ariaExpanded = 'true';
 
   const controller = new AbortController();
   abortController = controller;
@@ -132,6 +132,14 @@ const clearActive = (): void => {
 };
 
 export const bootSidebar = (): void => {
+  const button = document.getElementById(TARGET_SIDEBAR_BUTTON);
+
+  if (!(button instanceof HTMLButtonElement)) {
+    toast.error('Sidebar is currently unavailable.');
+    return;
+  }
+  sidebarButton = button;
+
   globalThis.innerWidth < BREAKPOINT_UI_WIDE ? hideSidebar() : showSidebar();
 
   document.addEventListener('keyup', ev => toggleHandler(ev.key), {
@@ -148,11 +156,9 @@ export const bootSidebar = (): void => {
     { passive: true },
   );
 
-  for (const x of document.querySelectorAll(`[data-target="${TARGET_TOGGLE}"]`)) {
-    x.addEventListener('click', toggleSidebar, {
-      passive: true,
-    });
-  }
+  sidebarButton.addEventListener('click', toggleSidebar, {
+    passive: true,
+  });
 
   document.addEventListener(CONTENT_READY, clearActive, {
     passive: true,

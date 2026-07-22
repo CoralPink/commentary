@@ -2,9 +2,11 @@
 @use "utils" as utils;
 
 #search-pop {
+  inset-block: 2.8rem auto;
+
   width: 84dvw;
   max-height: 88dvh;
-  margin: 0 auto;
+
   overflow-x: hidden;
   overflow-y: scroll;
 

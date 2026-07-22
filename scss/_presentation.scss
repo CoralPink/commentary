@@ -68,14 +68,6 @@ mark {
   text-decoration: underline var(--search-mark-bg);
 }
 
-:popover-open {
-  top: var.$menu-bar-height;
-
-  color: var(--fg);
-  background-color: var(--popup-bg);
-  border: 0.1rem solid var(--popup-border);
-}
-
 .table-wrapper {
   overflow-x: auto; // make wide tables scroll if they overflow
 
