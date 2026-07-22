@@ -1,6 +1,7 @@
 import { isSearchPopoverOpen } from './searcher.ts';
 // deno-lint-ignore no-sloppy-imports
 import initWasm, { get_match_sentences } from './wasm_book.js';
+import { createAbortScope } from './utils/abort-scope.ts';
 
 type NodeOffset = {
   text: Text;
@@ -28,6 +29,10 @@ const TARGET_MARKING = 'marking';
 
 const ICONS_COLOR = 'var(--icons)';
 const ICONS_COLOR_ACTIVE = 'var(--search-mark-bg)';
+
+const TARGET_MARK_BUTTON = 'mark-btn';
+
+const markEventScope = createAbortScope();
 
 export const updateMark = (): void => {
   const article = document.getElementById('article');
@@ -62,53 +67,71 @@ const keyClear = (ev: KeyboardEvent): void => {
   }
 };
 
+const setIconColor = (button: HTMLButtonElement, color: string): void => {
+  const icon = button.querySelector(QUERY_MARKER) as HTMLDivElement;
+  icon.style.backgroundColor = color;
+};
+
 export const unmarking = (): void => {
   CSS.highlights.clear();
 
-  for (const x of Array.from(document.querySelectorAll(`[data-target="${TARGET_MARKING}"]`))) {
-    const icon = x.querySelector(QUERY_MARKER) as HTMLDivElement;
-    icon.style.backgroundColor = ICONS_COLOR;
+  const button = document.getElementById(TARGET_MARK_BUTTON);
 
-    x.ariaPressed = 'false';
-
-    x.removeEventListener('click', unmarking);
-    x.addEventListener('click', updateMark, { once: true, passive: true });
+  if (!(button instanceof HTMLButtonElement)) {
+    return;
   }
 
-  document.removeEventListener('keyup', keyClear);
+  setIconColor(button, ICONS_COLOR);
+
+  button.ariaPressed = 'false';
+
+  const signal = markEventScope.begin();
+
+  button.addEventListener('click', updateMark, {
+    passive: true,
+    signal,
+  });
+
   document.addEventListener('keyup', keyVisible, {
     passive: true,
+    signal,
   });
 };
 
 const hideButton = (): void => {
+  markEventScope.dispose();
   CSS.highlights.clear();
 
-  for (const x of Array.from(document.querySelectorAll(`[data-target="${TARGET_MARKING}"]`))) {
-    x.classList.add('hidden');
+  const button = document.getElementById(TARGET_MARK_BUTTON);
 
-    x.removeEventListener('click', unmarking);
-    x.removeEventListener('click', updateMark);
+  if (!(button instanceof HTMLButtonElement)) {
+    return;
   }
 
-  document.removeEventListener('keyup', keyVisible);
-  document.removeEventListener('keyup', keyClear);
+  button.classList.add('hidden');
 };
 
 const visibleButton = (): void => {
-  for (const x of Array.from(document.querySelectorAll(`[data-target="${TARGET_MARKING}"]`))) {
-    const icon = x.querySelector(QUERY_MARKER) as HTMLDivElement;
-    icon.style.backgroundColor = ICONS_COLOR_ACTIVE;
+  const button = document.getElementById(TARGET_MARK_BUTTON);
 
-    x.ariaPressed = 'true';
-
-    x.classList.remove('hidden');
-    x.addEventListener('click', unmarking, { once: true, passive: true });
+  if (!(button instanceof HTMLButtonElement)) {
+    return;
   }
 
-  document.removeEventListener('keyup', keyVisible);
+  const signal = markEventScope.begin();
+  setIconColor(button, ICONS_COLOR_ACTIVE);
+
+  button.ariaPressed = 'true';
+  button.classList.remove('hidden');
+
+  button.addEventListener('click', unmarking, {
+    passive: true,
+    signal,
+  });
+
   document.addEventListener('keyup', keyClear, {
     passive: true,
+    signal,
   });
 };
 
