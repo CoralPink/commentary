@@ -2,14 +2,16 @@ import { ROOT_PATH } from '../constants.ts';
 import type { Disposer } from './types.ts';
 
 import { loadStyleSheet } from '../utils/css-loader.ts';
-import { createEventScope } from '../utils/event-scope.ts';
+import { createAbortScope } from '../utils/abort-scope.ts';
 import { setHTML } from '../utils/html-sanitizer.ts';
 
 const FILE_STYLE_FOOTNOTE = 'css/footnote-legacy.css';
 
 const POSITION_GAP = 10;
 
-const footnoteEventScope = createEventScope();
+let activeFootnoteClose: (() => void) | null = null;
+
+const footnoteEventScope = createAbortScope();
 
 const calcTop = (target: HTMLElement, pop: HTMLElement): number => {
   const rect = target.getBoundingClientRect();
@@ -86,14 +88,28 @@ const handleFootnoteClick = (ev: Event): void => {
 
   document.body.append(pop);
 
+  activeFootnoteClose?.();
+
+  const close = () => {
+    footnoteEventScope.dispose();
+    closeFootnotePop(target, pop);
+
+    if (activeFootnoteClose === close) {
+      activeFootnoteClose = null;
+    }
+  };
+
+  activeFootnoteClose = close;
+
   requestAnimationFrame(() => {
+    if (!pop.isConnected) {
+      return;
+    }
     pop.style.top = `${calcTop(target, pop) + globalThis.scrollY}px`;
 
     target.ariaExpanded = 'true';
     target.ariaControlsElements = [pop];
   });
-
-  const signal = footnoteEventScope.begin();
 
   document.addEventListener(
     'click',
@@ -104,13 +120,11 @@ const handleFootnoteClick = (ev: Event): void => {
       if (pop.contains(ev.target) || target === ev.target) {
         return;
       }
-
-      closeFootnotePop(target, pop);
-      footnoteEventScope.dispose();
+      close();
     },
     {
       passive: true,
-      signal,
+      signal: footnoteEventScope.begin(),
     },
   );
 };
@@ -131,6 +145,6 @@ export const initialize = (html: HTMLElement): Disposer => {
 
   return () => {
     ac.abort();
-    footnoteEventScope.dispose();
+    activeFootnoteClose?.();
   };
 };
