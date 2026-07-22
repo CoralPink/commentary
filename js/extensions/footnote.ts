@@ -90,15 +90,10 @@ const handleFootnoteClick = (ev: Event): void => {
   createPopover(button);
 };
 
-const loadStyle = async (): Promise<void> => await loadStyleSheet(`${ROOT_PATH}${FILE_STYLE_FOOTNOTE}`);
-
 export const initialize = (html: HTMLElement): Disposer => {
-  try {
-    loadStyle();
-  } catch (err: unknown) {
-    console.error('Failed to load Footnote Style...');
-    throw err;
-  }
+  void loadStyleSheet(`${ROOT_PATH}${FILE_STYLE_FOOTNOTE}`).catch((err: unknown) => {
+    console.error('Failed to load Footnote Style...', err);
+  });
 
   const ac = new AbortController();
 
