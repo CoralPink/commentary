@@ -3,7 +3,7 @@
     "@std/fs": "jsr:@std/fs@1.0.24",
     "browserslist": "npm:browserslist@4.28.6",
     "lightningcss": "npm:lightningcss@1.33.0",
-    "sass": "npm:sass@1.101.0"
+    "sass": "npm:sass@1.101.3"
   },
   "tasks": {
     "build": "deno run --allow-read --allow-write --allow-env --allow-ffi build.ts"
