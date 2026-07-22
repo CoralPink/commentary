@@ -2,11 +2,14 @@ import { ROOT_PATH } from '../constants.ts';
 import type { Disposer } from './types.ts';
 
 import { loadStyleSheet } from '../utils/css-loader.ts';
+import { createEventScope } from '../utils/event-scope.ts';
 import { setHTML } from '../utils/html-sanitizer.ts';
 
 const FILE_STYLE_FOOTNOTE = 'css/footnote-legacy.css';
 
 const POSITION_GAP = 10;
+
+const footnoteEventScope = createEventScope();
 
 const calcTop = (target: HTMLElement, pop: HTMLElement): number => {
   const rect = target.getBoundingClientRect();
@@ -25,17 +28,7 @@ const closeFootnotePop = (target: HTMLElement, elm: HTMLElement): void => {
   target.ariaExpanded = null;
   target.ariaControlsElements = null;
 
-  elm.addEventListener(
-    'transitionend',
-    (ev: TransitionEvent) => {
-      if (ev.propertyName === 'opacity') {
-        elm.remove();
-      }
-    },
-    { once: true, passive: true },
-  );
-
-  elm.classList.remove('show');
+  elm.remove();
 };
 
 const insertFootnote = (pop: HTMLElement): void => {
@@ -75,18 +68,9 @@ const handleFootnoteClick = (ev: Event): void => {
     return;
   }
 
-  target.ariaExpanded = 'true';
-
-  const popover = document.getElementById(popIdStr);
-
-  if (popover !== null) {
-    target.ariaControlsElements = [popover];
-  }
-
   const pop = document.createElement('aside');
 
   pop.classList.add('ft-pop');
-  pop.style.top = `${calcTop(target, pop) + globalThis.scrollY}px`;
   pop.role = 'tooltip';
   pop.id = popIdStr;
 
@@ -100,13 +84,16 @@ const handleFootnoteClick = (ev: Event): void => {
   setHTML(pop, footnote.innerHTML);
   insertFootnote(pop);
 
-  requestAnimationFrame(() => {
-    pop.classList.add('show');
-  });
-
   document.body.append(pop);
 
-  const ac = new AbortController();
+  requestAnimationFrame(() => {
+    pop.style.top = `${calcTop(target, pop) + globalThis.scrollY}px`;
+
+    target.ariaExpanded = 'true';
+    target.ariaControlsElements = [pop];
+  });
+
+  const signal = footnoteEventScope.begin();
 
   document.addEventListener(
     'click',
@@ -119,11 +106,11 @@ const handleFootnoteClick = (ev: Event): void => {
       }
 
       closeFootnotePop(target, pop);
-      ac.abort();
+      footnoteEventScope.dispose();
     },
     {
       passive: true,
-      signal: ac.signal,
+      signal,
     },
   );
 };
@@ -144,5 +131,6 @@ export const initialize = (html: HTMLElement): Disposer => {
 
   return () => {
     ac.abort();
+    footnoteEventScope.dispose();
   };
 };

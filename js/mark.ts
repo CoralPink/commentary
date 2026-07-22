@@ -1,6 +1,7 @@
 import { isSearchPopoverOpen } from './searcher.ts';
 // deno-lint-ignore no-sloppy-imports
 import initWasm, { get_match_sentences } from './wasm_book.js';
+import { createEventScope } from './utils/event-scope.ts';
 
 type NodeOffset = {
   text: Text;
@@ -31,26 +32,7 @@ const ICONS_COLOR_ACTIVE = 'var(--search-mark-bg)';
 
 const TARGET_MARK_BUTTON = 'mark-btn';
 
-const markEventScope = (() => {
-  let controller: AbortController | null = null;
-
-  const dispose = (): void => {
-    controller?.abort();
-    controller = null;
-  };
-
-  const begin = (): AbortSignal => {
-    dispose();
-
-    controller = new AbortController();
-    return controller.signal;
-  };
-
-  return {
-    begin,
-    dispose,
-  };
-})();
+const markEventScope = createEventScope();
 
 export const updateMark = (): void => {
   const article = document.getElementById('article');
