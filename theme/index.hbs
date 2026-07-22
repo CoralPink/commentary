@@ -36,16 +36,16 @@
     <header id="top-bar">
       <div id="menu" role="toolbar" aria-label="Action menu">
         <div id="left-buttons">
-          <button type="button" data-target="sidebar" class="icon-button" title="Toggle Page List (Shortkey: T )" aria-label="Toggle Page List" aria-keyshortcuts="T" aria-controls="sidebar">
+          <button type="button" data-target="sidebar" id="sidebar-btn" class="icon-button" title="Toggle Page List (Shortkey: T )" aria-label="Toggle Page List" aria-keyshortcuts="T" aria-controls="sidebar">
             <div class="icon-sidebar fa-icon"></div>
           </button>
-          <button type="button" popovertarget="theme-list" data-target="theme-selector" class="icon-button" title="Theme selection (Shortkey: C )" aria-label="Theme selection" aria-haspopup="true" aria-controls="theme-list">
+          <button type="button" popovertarget="theme-list" data-target="theme-selector" id="theme-btn" class="icon-button" title="Theme selection (Shortkey: C )" aria-label="Theme selection" aria-haspopup="true" aria-controls="theme-list">
             <div class="icon-theme fa-icon"></div>
           </button>
-          <button type="button" data-target="search" class="icon-button" title="Toggle Search Box (Shortkey: / )" aria-label="Toggle Search Box" aria-keyshortcuts="/" aria-controls="search-pop">
+          <button type="button" data-target="search" id="search-btn" class="icon-button" title="Toggle Search Box (Shortkey: / )" aria-label="Toggle Search Box" aria-keyshortcuts="/" aria-controls="search-pop">
             <div class="icon-search fa-icon"></div>
           </button>
-          <button type="button" data-target="marking" class="icon-button hidden" title="Toggle Marker (Shortkey: M )" aria-label="Toggle Marker" aria-keyshortcuts="M">
+          <button type="button" data-target="marking" id="mark-btn" class="icon-button hidden" title="Toggle Marker (Shortkey: M )" aria-label="Toggle Marker" aria-keyshortcuts="M">
             <div class="icon-marker fa-icon"></div>
           </button>
         </div>
@@ -87,21 +87,6 @@
         </article>
       </main>
 
-      <aside class="compact-container" aria-label="Action menu">
-        <button type="button" data-target="sidebar" class="icon-button" title="Toggle Page List (Shortkey: T )" aria-label="Toggle Page List" aria-keyshortcuts="T" aria-controls="sidebar">
-          <div class="icon-sidebar fa-icon"></div>
-        </button>
-        <button type="button" popovertarget="theme-list" data-target="theme-selector" class="icon-button" title="Theme selection (Shortkey: C )" aria-label="Theme selection" aria-haspopup="true" aria-controls="theme-list">
-          <div class="icon-theme fa-icon"></div>
-        </button>
-        <button type="button" data-target="search" class="icon-button" title="Toggle Search Box (Shortkey: / )" aria-label="Toggle Search Box" aria-keyshortcuts="/" aria-controls="search-pop">
-          <div class="icon-search fa-icon"></div>
-        </button>
-        <button type="button" data-target="marking" class="icon-button hidden" title="Toggle Marker (Shortkey: M )" aria-label="Toggle Marker" aria-keyshortcuts="M">
-          <div class="icon-marker fa-icon"></div>
-        </button>
-      </aside>
-
       <aside class="toc-container" aria-label="Table of contents">
         <div id="table-of-contents">
           <nav id="pagetoc" aria-label="Table of Contents"></nav>
@@ -111,10 +96,9 @@
           <div class="icon-menu fa-icon"></div>
         </button>
       </aside>
-
     </div>
 
-    <div id="search-pop" tabindex="-1" popover role="dialog" aria-label="Search">
+    <div popover id="search-pop" role="dialog" aria-label="Search">
       <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults" aria-describedby="results-header">
 
       <div id="results-header" aria-live="polite"></div>

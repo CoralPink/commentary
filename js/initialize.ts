@@ -8,14 +8,41 @@ import type { Disposer, ExtensionEntry, InitializableExtension } from './extensi
 
 import { prepareForNextCycle, scheduleJob } from './utils/pulse.ts';
 
+type ModuleName = 'codeblock' | 'footnote' | 'footnote-legacy' | 'media' | 'slider';
+type ModuleFactory = () => ModuleName;
+
+type ModuleRequirement = {
+  selector: string;
+  module: ModuleName;
+};
+
 type HtmlJob = (html: HTMLElement) => void | Promise<void>;
 
+const selectorModule = (selector: string, module: ModuleName | ModuleFactory): ModuleRequirement => ({
+  selector,
+  module: typeof module === 'function' ? module() : module,
+});
+
+const shouldUseLegacyFootnote = (): boolean => {
+  const ua = navigator.userAgent;
+
+  const isIOS = /iPhone|iPad/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  const isSafariBrowser = ua.includes('Safari') && !ua.includes('Chrome');
+
+  // iOS browsers, including Firefox and Chrome, use WebKit and require the legacy implementation.
+  return isIOS || isSafariBrowser;
+};
+
+const useLegacyFootnote = shouldUseLegacyFootnote();
+const footnoteModule = (): ModuleName => (useLegacyFootnote ? 'footnote-legacy' : 'footnote');
+
 const MODULE_REQUIREMENTS = [
-  { selector: '.slider', module: 'slider' },
-  { selector: 'video', module: 'media' },
-  { selector: 'pre code:not(.language-txt)', module: 'codeblock' },
-  { selector: 'sup', module: 'footnote' },
-] as const;
+  selectorModule('.slider', 'slider'),
+  selectorModule('video', 'media'),
+  selectorModule('pre code:not(.language-txt)', 'codeblock'),
+
+  selectorModule('sup', footnoteModule),
+] satisfies readonly ModuleRequirement[];
 
 const loadedExtensions = new Map<string, ExtensionEntry>();
 const activeDisposers = new Set<Disposer>();
