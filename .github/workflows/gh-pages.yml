@@ -147,7 +147,7 @@ jobs:
       # renovate: datasource=github-releases depName=wasm-bindgen/wasm-bindgen
       WASM_BINDGEN_VERSION: "0.2.126"
       # renovate: datasource=github-releases depName=WebAssembly/binaryen extractVersion=^version_(?<version>\d+)$
-      BINARYEN_VERSION: "130"
+      BINARYEN_VERSION: "131"
     steps:
       - name: Checkout Repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
