@@ -1,6 +1,7 @@
 # yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json
 language: "en-US"
 early_access: true
+
 reviews:
   profile: "chill"
   request_changes_workflow: false
@@ -8,9 +9,34 @@ reviews:
   poem: true
   review_status: false
   collapse_walkthrough: false
+
+  path_instructions:
+    - path: "**/*.{ts,scss}"
+      instructions: |
+        Browser compatibility target is the latest 3 versions of Chrome, Firefox, and Safari.
+        Do not suggest fallbacks or workarounds for environments outside this target range.
+
+    - path: "**/*.rs"
+      instructions: |
+        Prefer code improvement suggestions that increase performance and efficiency.
+        Consider runtime performance, memory usage, and unnecessary allocations.
+        Avoid suggesting optimizations that significantly reduce readability without a clear expected benefit.
+
+    - path: "**/wasm/**/*.rs"
+      instructions: |
+        Pay special attention to WebAssembly-specific concerns.
+        When applicable, suggest opportunities to leverage WebAssembly SIMD (simd128)
+        for data-parallel operations and performance-critical code paths.
+        Consider WASM binary size and wasm-bindgen overhead.
+
+  tools:
+    stylelint:
+      enabled: false
+
   auto_review:
     enabled: true
     drafts: false
     ignore_title_keywords: ["fix(deps):"]
+
 chat:
   auto_reply: true
