@@ -71,5 +71,5 @@ const build = async (input: string, output: string): Promise<void> => {
   await Promise.all(list.flatMap(x => x.files.map(file => build(`${x.dir}${file}.scss`, `${x.dir}${file}.css`))));
 
   const time = Math.floor(performance.now() - start);
-  console.info(`${CLR_BG}√ ${CLR_BC}sass${CLR_RESET} Finished in ${CLR_BG}${time} ms${CLR_RESET}\n`);
+  console.info(`${CLR_BG}✔ ${CLR_BC}sass${CLR_RESET} Finished in ${CLR_BG}${time} ms${CLR_RESET}\n`);
 })();

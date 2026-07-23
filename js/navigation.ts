@@ -121,8 +121,7 @@ const navigateProc = (ev: NavigateEvent): void => {
 };
 
 (() => {
-  // The `theme color` startup process returns a promise, but you don't need to wait for it to complete.
-  bootThemeColor();
+  void bootThemeColor();
 
   navigation.addEventListener('navigate', navigateProc, {
     passive: true,
