@@ -34,7 +34,7 @@ const getThumbnail = (media: CompatibleMedia): string => {
     return media.src;
   }
 
-  return media.dataset['poster' as keyof DOMStringMap] || media.poster || '';
+  return media.dataset['poster'] || media.poster || '';
 };
 
 class Slider {
