@@ -38,6 +38,9 @@ nvim_win_set_option({window}, {name}, {value})          *nvim_win_set_option()*
 
 ...なんで "かいパンやろう" を避けるのかって❓いや、それは...🙊
 
+
+![コダック](img/koduck-sleep.avif)
+
 ```admonish success
 やったー❗
 

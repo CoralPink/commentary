@@ -71,17 +71,21 @@ runtimepath内にある特定のフォルダからLuaファイルを自動的に
 
 ~~~admonish info title="[モジュール](https://github.com/willelz/nvim-lua-guide-ja/blob/master/README.ja.md#モジュール)"
 次のLuaコードはmyluamodule.luaをロードします。:
+
 ```lua
 require('myluamodule')
 ```
+
 .lua拡張子がないことに注意してください。
 
 同様に、other_modules/anothermodule.lua のロードは次のように行います。:
+
 ```lua
 require('other_modules.anothermodule')
 -- or
 require('other_modules/anothermodule')
 ```
+
 パスの区切りはドット.またはスラッシュ/で示されます。
 
 フォルダにinit.luaが含まれている場合、ファイル名を指定せずにロードできます。
@@ -89,9 +93,11 @@ require('other_modules/anothermodule')
 
 ~~~admonish tip
 最後の一文は、
+
 ```lua
-require('example') 
+require('example')
 ```
+
 とした場合に`example/init.lua`をロードできるよ❗ってことですね。これは`Neovim`に限ったものではなく、`Lua`の仕様みたいです。
 
 全く関係ないところでやってみてもこの説明で通用するものになりました。
@@ -103,9 +109,9 @@ require('example')
 ここから先、特に明記しない限りは`~/.config/nvim/lua`または`~/AppData/Local/nvim/lua`ディレクトリを前提としていきます😌
 ```
 
-```admonish success
-どう？この流れ🐮
+![ピカチュウ](img/pikachu-kabigon.avif)
 
+```admonish success
 能書きとしてはこんな感じじゃないでしょうか。
 
 これだけ分かれば、あとはもうカスタマイズを書き加えていくだけですね😄

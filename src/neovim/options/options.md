@@ -94,6 +94,8 @@ require 'options'
 
 ヘルプの使い方さえわかってしまえば、もうこっちのもんですね🤗
 
+![カビゴン](img/kabigon.avif)
+
 ```admonish success
 おいっ❗
 ```

@@ -382,6 +382,8 @@ lazy.nvim のデフォルトは以下の通りです：
 
 やあん🥱
 
+![やあん](img/yadon.avif)
+
 ```admonish success title=""
 Keeping an eye on the world going by my window
 {{footnote: 2つ目のブリッジの前のブレイクでは、あくびの音が聞こえ、その前に Lennon が McCartney に "Yawn, Paul." と言った。

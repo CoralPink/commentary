@@ -4,7 +4,7 @@
 
 ```admonish info title="[Load user config](https://neovim.io/doc/user/starting.html#config)"
 A file containing initialization commands is generically called a "vimrc" or config file.
-It can be either Vim script ("init.vim") or Lua ("init.lua"), but not both. 
+It can be either Vim script ("init.vim") or Lua ("init.lua"), but not both.
 
 初期化コマンドを含むファイルは一般に "vimrc" または config ファイルと呼ばれます。
 Vim script ("init.vim")またはLua ("init.lua")のどちらかになりますが、両方は使えません。
@@ -85,6 +85,8 @@ nvim init.lua
 
 中身はまっさらですが、これから作っていきましょう😉
 ```
+
+![カントー](img/kanto.avif)
 
 ```admonish success title=""
 マサラは　まっしろ　はじまりのいろ

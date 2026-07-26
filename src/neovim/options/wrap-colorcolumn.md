@@ -122,6 +122,8 @@ vim.api.nvim_win_set_option(0, 'colorcolumn', '100')
 ぶっちゃけ自信が無いところなんですが...、まあ、その辺りも含めて、また次回😉
 ```
 
+![カビゴン](img/oyasumi.avif)
+
 ```admonish success title=""
 いけ❗　いけるかぎり　どこまでも
 

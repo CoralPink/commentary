@@ -32,6 +32,8 @@ require 'options'
 
 まあ、のんびりいこーよ☺️
 
+![コダック](img/koduck.avif)
+
 ## keymap.set()
 
 ~~~admonish info title = ":h keymap.set"
@@ -106,6 +108,10 @@ Parameters:
 
 ...と、言うわけで`vim.keymap.set()`を使って行くことにします😉
 ```
+
+<video width="1280" height="720" data-poster="img/aloha-thumbnail.avif">
+  <source src="img/aloha.webm" type="video/webm">
+</video>
 
 ## Customize
 
@@ -185,6 +191,10 @@ vim.keymap.set('n', ':', ';')
 ~~~
 
 <kbd>:</kbd>は説明が長くなるので省略してしまうんですが、<kbd>;</kbd>でコマンドモードに入れるようになります。
+
+<video width="1280" height="720" data-poster="img/kyobashi2025-kanda2024-mix-thumbnail.avif">
+  <source src="img/kyobashi2025-kanda2024-mix.webm" type="video/webm">
+</video>
 
 ### Disable
 
