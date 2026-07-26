@@ -260,6 +260,8 @@ vim.api.nvim_set_var('maplocalleader', '_')
 </div>
 ```
 
+<div style="margin-top: 12em"></div>
+
 ```admonish tip title=""
 Come along and sing the song
 
@@ -269,10 +271,6 @@ And join the jamboree
 
 お祭りの輪に加わるんだ
 ```
-
-<video width="1280" height="720" data-poster="img/kyobashi2025-kanda2024-mix-thumbnail.avif">
-  <source src="img/kyobashi2025-kanda2024-mix.webm" type="video/webm">
-</video>
 
 ```admonish tip title=""
 We’ll have fun, we’ll meet new faces
