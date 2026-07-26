@@ -31,8 +31,6 @@ nvim_create_autocmd({event}, {*opts}) nvim_create_autocmd()
 
 ヘルプではもっと色々なサンプル付きで説明されていますが、今回はここで切り上げます😅
 
-![コダック](img/koduck.avif)
-
 ## autocmd
 
 現時点で`autocmd`がどのように登録されているのかは、以下のコマンドを実行してみると確認できます。
