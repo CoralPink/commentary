@@ -2,10 +2,10 @@
   "version": "5",
   "specifiers": {
     "npm:@videojs/html@10.0.0-beta.25": "10.0.0-beta.25_@svta+cml-cta@1.0.6__@svta+cml-structured-field-values@1.1.3___@svta+cml-utils@1.5.0__@svta+cml-utils@1.5.0_@svta+cml-structured-field-values@1.1.3__@svta+cml-utils@1.5.0_@svta+cml-utils@1.5.0",
-    "npm:@vitest/coverage-v8@4.1.10": "4.1.10_vitest@4.1.10_happy-dom@20.11.1",
+    "npm:@vitest/coverage-v8@4.1.10": "4.1.10_vitest@4.1.10_happy-dom@20.11.1_vite@8.1.5",
     "npm:happy-dom@20.11.1": "20.11.1",
     "npm:rolldown@1.2.0": "1.2.0",
-    "npm:vitest@4.1.10": "4.1.10_@vitest+coverage-v8@4.1.10_happy-dom@20.11.1"
+    "npm:vitest@4.1.10": "4.1.10_@vitest+coverage-v8@4.1.10_happy-dom@20.11.1_vite@8.1.5"
   },
   "npm": {
     "@babel/helper-string-parser@7.29.7": {
@@ -426,7 +426,7 @@
         "weakmap-polyfill"
       ]
     },
-    "@vitest/coverage-v8@4.1.10_vitest@4.1.10_happy-dom@20.11.1": {
+    "@vitest/coverage-v8@4.1.10_vitest@4.1.10_happy-dom@20.11.1_vite@8.1.5": {
       "integrity": "sha512-IM49HmthevbgAO4anp1hwtoT9wYe59w0LR00gr+eagHE+ZJ5lK4sLPeO0ubgoJcwLk6dehU3R24N+FbEEKDc8g==",
       "dependencies": [
         "@bcoe/v8-coverage",
@@ -766,8 +766,8 @@
     "picomatch@4.0.5": {
       "integrity": "sha512-RvwwcruNjI1ncT5xRakeyS9Lf8lcItv34KD+aif+VH9kduAyfYBipGh12274xtenIPZ119/R9BdTBa8gAwSh0A=="
     },
-    "postcss@8.5.21": {
-      "integrity": "sha512-v4sDNP3fdNiWMfabO7OwOQdOX8TiQSztKyT1Wj0w+j7LDallJThJRBBBmzVGyYj0crMh7jlV4zepPkiNu9UwDQ==",
+    "postcss@8.5.23": {
+      "integrity": "sha512-g50586zr4bZmwFiTlflMu8E0bDTb5I5gertgwAKmsdUlTQIhZtunzUlD1WSzwcVWPoAVpsrA6vlfCD7oXvRwgg==",
       "dependencies": [
         "nanoid",
         "picocolors",
@@ -888,7 +888,7 @@
       ],
       "bin": true
     },
-    "vitest@4.1.10_@vitest+coverage-v8@4.1.10_happy-dom@20.11.1": {
+    "vitest@4.1.10_@vitest+coverage-v8@4.1.10_happy-dom@20.11.1_vite@8.1.5": {
       "integrity": "sha512-R9jUTe5S4Qb0HCd4TNqpC7oGcrMssMRGXLW80ubjWsW9VH5GF8y1Y0SFLY9AbqSk6nt0PnOx4H4WNJYZ13GUPw==",
       "dependencies": [
         "@vitest/coverage-v8",
