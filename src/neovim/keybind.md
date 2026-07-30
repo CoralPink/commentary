@@ -277,6 +277,10 @@ vim.keymap.set({ 'n', 'v' }, 'p', 'p`]')
 上の表を参照するとわかる通り、正確にはさらにセレクトモードにも適用されることになります。
 ```
 
+<video width="1280" height="720" data-poster="img/Ko-hiông-thumbnail.avif">
+  <source src="img/Ko-hiông.webm" type="video/webm">
+</video>
+
 ## Wrap Up
 
 改めて`:map`で確認してみると、こんな感じで設定した内容が反映されていることが確認できます。
