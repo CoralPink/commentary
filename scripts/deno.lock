@@ -6,7 +6,7 @@
     "npm:cheerio@1.2.0": "1.2.0",
     "npm:highlight.js@11.11.1": "11.11.1",
     "npm:js-beautify@2.0.3": "2.0.3",
-    "npm:jsdom@29.1.1": "29.1.1",
+    "npm:jsdom@30.0.1": "30.0.1",
     "npm:p-limit@7.3.1": "7.3.1"
   },
   "jsr": {
@@ -21,31 +21,24 @@
     }
   },
   "npm": {
-    "@asamuzakjp/css-color@5.1.11": {
-      "integrity": "sha512-KVw6qIiCTUQhByfTd78h2yD1/00waTmm9uy/R7Ck/ctUyAPj+AEDLkQIdJW0T8+qGgj3j5bpNKK7Q3G+LedJWg==",
+    "@asamuzakjp/css-color@6.0.5": {
+      "integrity": "sha512-mbhpPMmnw/kwW19aRNmSUl1QzLbdGo1SCuE49BT98MNwqF6zaHb3o2owssFc/PEO/4t2UjqtCNwocuDtJornzA==",
       "dependencies": [
-        "@asamuzakjp/generational-cache",
         "@csstools/css-calc",
         "@csstools/css-color-parser",
         "@csstools/css-parser-algorithms",
-        "@csstools/css-tokenizer"
+        "@csstools/css-tokenizer",
+        "lru-cache"
       ]
     },
-    "@asamuzakjp/dom-selector@7.1.1": {
-      "integrity": "sha512-67RZDnYRc8H/8MLDgQCDE//zoqVFwajkepHZgmXrbwybzXOEwOWGPYGmALYl9J2DOLfFPPs6kKCqmbzV895hTQ==",
+    "@asamuzakjp/dom-selector@8.3.0": {
+      "integrity": "sha512-UJLfKXBhrc8i1vH2eJXuYQMwlsLKWFw3O+CPqXSuVEiikeAim3UgrfWX0k4tA/X8cRFM8iZ7OaqBokFGbYusdg==",
       "dependencies": [
-        "@asamuzakjp/generational-cache",
-        "@asamuzakjp/nwsapi",
         "bidi-js",
         "css-tree",
-        "is-potential-custom-element-name"
+        "is-potential-custom-element-name",
+        "lru-cache"
       ]
-    },
-    "@asamuzakjp/generational-cache@1.0.1": {
-      "integrity": "sha512-wajfB8KqzMCN2KGNFdLkReeHncd0AslUSrvHVvvYWuU8ghncRJoA50kT3zP9MVL0+9g4/67H+cdvBskj9THPzg=="
-    },
-    "@asamuzakjp/nwsapi@2.3.9": {
-      "integrity": "sha512-n8GuYSrI9bF7FFZ/SjhwevlHc8xaVlb/7HmHelnc/PZXBD2ZR49NnN9sMMuDdEGPeeRQ5d0hqlSlEpgCX3Wl0Q=="
     },
     "@bramus/specificity@2.4.2": {
       "integrity": "sha512-ctxtJ/eA+t+6q2++vj5j7FYX3nRu311q1wfYH3xjlLOsczhlhxAg2FWNUXhpGvAw3BWo1xBcvOV6/YLc2r5FJw==",
@@ -141,7 +134,7 @@
         "parse5@7.3.0",
         "parse5-htmlparser2-tree-adapter",
         "parse5-parser-stream",
-        "undici",
+        "undici@7.29.0",
         "whatwg-mimetype@4.0.0"
       ]
     },
@@ -179,7 +172,7 @@
       "integrity": "sha512-23XHcCF+coGYevirZceTVD7NdJOqVn+49IHyxgszm+JIiHLoB2TkmPtsYkNWT1pvRSGkc35L6NHs0yHkN2SumA==",
       "dependencies": [
         "whatwg-mimetype@5.0.0",
-        "whatwg-url"
+        "whatwg-url@16.0.1"
       ]
     },
     "decimal.js@10.6.0": {
@@ -291,8 +284,8 @@
     "js-cookie@3.0.8": {
       "integrity": "sha512-yeJd4aNAdYZQjaon2bpD/Gb0B/omw7HQOsynXXcOiWVCacbBcPlgn8S/d1X6blFSaHao7ozqtW7NZW19xpCtIw=="
     },
-    "jsdom@29.1.1": {
-      "integrity": "sha512-ECi4Fi2f7BdJtUKTflYRTiaMxIB0O6zfR1fX0GXpUrf6flp8QIYn1UT20YQqdSOfk2dfkCwS8LAFoJDEppNK5Q==",
+    "jsdom@30.0.1": {
+      "integrity": "sha512-52v7mUVUfNQVYYqE1lcdaymWL0njO7lTLUog6ZvW2U5KsbiLk/GnZlVJ+qx0xfNJZ6Gn+KSpPNE52vurbxZwrA==",
       "dependencies": [
         "@asamuzakjp/css-color",
         "@asamuzakjp/dom-selector",
@@ -309,11 +302,11 @@
         "saxes",
         "symbol-tree",
         "tough-cookie",
-        "undici",
+        "undici@8.9.0",
         "w3c-xmlserializer",
         "webidl-conversions",
         "whatwg-mimetype@5.0.0",
-        "whatwg-url",
+        "whatwg-url@17.1.0",
         "xml-name-validator"
       ]
     },
@@ -436,6 +429,9 @@
     "undici@7.29.0": {
       "integrity": "sha512-IDxfleLmmbSskfWSUATiN1nfn2rDuvnMOqb5CWR92iIfojA0Ud+ulOAAEQ57LPr9rWmsreUyf5lwyao+7GNNVw=="
     },
+    "undici@8.9.0": {
+      "integrity": "sha512-aWZpUj7XoGonMClx4gdDRfgBjqeA+F473aDmROQQbM9n6PRfK/u1q/a0X4wMTgcHfT8H6fpbt98PFuDUwFg2YA=="
+    },
     "w3c-xmlserializer@5.0.0": {
       "integrity": "sha512-o8qghlI8NZHU1lLPrpi2+Uq7abh4GGPpYANlalzWxyWteJOCsr/P+oPBA49TOLu5FTZO4d3F9MnWJfiMo4BkmA==",
       "dependencies": [
@@ -466,6 +462,14 @@
         "webidl-conversions"
       ]
     },
+    "whatwg-url@17.1.0": {
+      "integrity": "sha512-3GeworPmc2ZfEEHP7lEbUfBX/L75wdEsi0rLNhXcXxnoN5jyq0SL5gCy06SGW2cyTIZdTvWIDQNQoza++vKeaw==",
+      "dependencies": [
+        "@exodus/bytes",
+        "tr46",
+        "webidl-conversions"
+      ]
+    },
     "xml-name-validator@5.0.0": {
       "integrity": "sha512-EvGK8EJ3DhaHfbRlETOWAS5pO9MZITeauHKJyb8wyajUfQUenkIg2MvLDTZ4T/TgIcm3HU0TFBgWWboAZ30UHg=="
     },
@@ -482,7 +486,7 @@
       "npm:cheerio@1.2.0",
       "npm:highlight.js@11.11.1",
       "npm:js-beautify@2.0.3",
-      "npm:jsdom@29.1.1",
+      "npm:jsdom@30.0.1",
       "npm:p-limit@7.3.1"
     ]
   }

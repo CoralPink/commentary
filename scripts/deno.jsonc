@@ -10,7 +10,7 @@
     "highlight.js/lib/languages/lua": "npm:highlight.js@11.11.1/lib/languages/lua",
     "highlight.js/lib/languages/vim": "npm:highlight.js@11.11.1/lib/languages/vim",
 
-    "jsdom": "npm:jsdom@29.1.1",
+    "jsdom": "npm:jsdom@30.0.1",
     "js-beautify": "npm:js-beautify@2.0.3",
     "path": "jsr:@std/path@1.1.6",
     "p-limit": "npm:p-limit@7.3.1"
