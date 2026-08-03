@@ -382,7 +382,10 @@ lazy.nvim のデフォルトは以下の通りです：
 
 やあん🥱
 
-![やあん](img/yadon.avif)
+<picture>
+  <source srcset="img/yadon.jxl" type="image/jxl">
+  <img src="img/yadon.avif" width="960" height="640" alt="やあん" />
+</picture>
 
 ```admonish success title=""
 Keeping an eye on the world going by my window
