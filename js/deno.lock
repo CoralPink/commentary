@@ -1,7 +1,7 @@
 {
   "version": "5",
   "specifiers": {
-    "npm:@videojs/html@10.0.0-beta.25": "10.0.0-beta.25_@svta+cml-cta@1.0.6__@svta+cml-structured-field-values@1.1.3___@svta+cml-utils@1.5.0__@svta+cml-utils@1.5.0_@svta+cml-structured-field-values@1.1.3__@svta+cml-utils@1.5.0_@svta+cml-utils@1.5.0",
+    "npm:@videojs/html@10.0.0-beta.26": "10.0.0-beta.26_@svta+cml-cta@1.0.6__@svta+cml-structured-field-values@1.1.3___@svta+cml-utils@1.5.0__@svta+cml-utils@1.5.0_@svta+cml-structured-field-values@1.1.3__@svta+cml-utils@1.5.0_@svta+cml-utils@1.5.0",
     "npm:@vitest/coverage-v8@4.1.10": "4.1.10_vitest@4.1.10_happy-dom@20.11.1_vite@8.2.0",
     "npm:happy-dom@20.11.1": "20.11.1",
     "npm:rolldown@1.2.1": "1.2.1",
@@ -267,11 +267,35 @@
         "@types/node"
       ]
     },
-    "@videojs/core@10.0.0-beta.25_@svta+cml-cta@1.0.6__@svta+cml-structured-field-values@1.1.3___@svta+cml-utils@1.5.0__@svta+cml-utils@1.5.0_@svta+cml-structured-field-values@1.1.3__@svta+cml-utils@1.5.0_@svta+cml-utils@1.5.0_@videojs+element@10.0.0-beta.25": {
-      "integrity": "sha512-Yxd6c+u7LrYl6aKzZRyR5PjDqUt1lUbgFwIhg6pMzI8bJszIGjLS7TDzXdALpEFJpM1Z08dbqCEzCGaMj7Eu6A==",
+    "@videojs/core@10.0.0-beta.26_@svta+cml-cta@1.0.6__@svta+cml-structured-field-values@1.1.3___@svta+cml-utils@1.5.0__@svta+cml-utils@1.5.0_@svta+cml-structured-field-values@1.1.3__@svta+cml-utils@1.5.0_@svta+cml-utils@1.5.0_@videojs+element@10.0.0-beta.26": {
+      "integrity": "sha512-qS6/CGERcktdy0AS7y/mXhd2TIHhjJuN2TH+xGaBq5umtn6W3wYjziw0gy3mS2MUfJMZvUPcNjxOgxZXD44KFA==",
       "dependencies": [
+        "@videojs/media",
+        "@videojs/store",
+        "@videojs/utils"
+      ]
+    },
+    "@videojs/element@10.0.0-beta.26": {
+      "integrity": "sha512-iq1RbQEw0JaC7UczildK5IVpP55/ZCaN2MvrDBuKF3kZfgNn+rCCzmGcj4uzipGn7zqA3kPHRWzX1zrEWP1CMg==",
+      "dependencies": [
+        "@lit/context"
+      ]
+    },
+    "@videojs/html@10.0.0-beta.26_@svta+cml-cta@1.0.6__@svta+cml-structured-field-values@1.1.3___@svta+cml-utils@1.5.0__@svta+cml-utils@1.5.0_@svta+cml-structured-field-values@1.1.3__@svta+cml-utils@1.5.0_@svta+cml-utils@1.5.0": {
+      "integrity": "sha512-BM7U4UwmB2Xqnpo9Bwwgq7HJnFK6EmJlN+cxOfsm/LcDo3TMXxXcuZqXXzzMJ3H5tAcnzysJZKX7ppgIbxBa/w==",
+      "dependencies": [
+        "@videojs/core",
+        "@videojs/element",
+        "@videojs/media",
         "@videojs/spf",
         "@videojs/store",
+        "@videojs/utils"
+      ]
+    },
+    "@videojs/media@10.0.0-beta.26_@svta+cml-cta@1.0.6__@svta+cml-structured-field-values@1.1.3___@svta+cml-utils@1.5.0__@svta+cml-utils@1.5.0_@svta+cml-structured-field-values@1.1.3__@svta+cml-utils@1.5.0_@svta+cml-utils@1.5.0": {
+      "integrity": "sha512-H6mdYfsDJ0Kei599TdDG/gJ2vgx46dUHnuH8jhW4cDAdjzvL9qFKp/0XaKAgsfMfKAFot/r2MqYDsUhCIBUq4g==",
+      "dependencies": [
+        "@videojs/spf",
         "@videojs/utils",
         "@vimeo/player",
         "dashjs",
@@ -279,31 +303,15 @@
         "mux-embed"
       ]
     },
-    "@videojs/element@10.0.0-beta.25": {
-      "integrity": "sha512-TAa0+89mDj+4JEv2F87EG3hEqDqZJMWP/treRzQaC1lR0eeGremaVUfdxNNnyLe/e797dXSWtiu5Q5A1Yka5Qw==",
-      "dependencies": [
-        "@lit/context"
-      ]
-    },
-    "@videojs/html@10.0.0-beta.25_@svta+cml-cta@1.0.6__@svta+cml-structured-field-values@1.1.3___@svta+cml-utils@1.5.0__@svta+cml-utils@1.5.0_@svta+cml-structured-field-values@1.1.3__@svta+cml-utils@1.5.0_@svta+cml-utils@1.5.0": {
-      "integrity": "sha512-7qYMJf9Wbu3AF1ZxuEWUw0NBY9pX9yKtaokPhLfBJQc4BO+1xSQu27cqnLjZbuZqnaRpwN0P3+TZ5qYWytfmpQ==",
-      "dependencies": [
-        "@videojs/core",
-        "@videojs/element",
-        "@videojs/spf",
-        "@videojs/store",
-        "@videojs/utils"
-      ]
-    },
-    "@videojs/spf@10.0.0-beta.25": {
-      "integrity": "sha512-SETOzCPbSxuzCoX+bF2u7/Z80AA/Xwpqpy5ki//yslIyPxWkMT0GFydXdoZ/bJpNsBqGmDbDxEBDo1uMjnM4mQ==",
+    "@videojs/spf@10.0.0-beta.26": {
+      "integrity": "sha512-/yrmy3fulSJd2owJ+RSiYWVGROu0uRcElGsqmTTXi050cWEI7Wk7vC+ve1zlCFyAB+9on9XDUvwy/G6QO8k9ww==",
       "dependencies": [
         "@videojs/utils",
         "signal-polyfill"
       ]
     },
-    "@videojs/store@10.0.0-beta.25_@videojs+element@10.0.0-beta.25": {
-      "integrity": "sha512-XvPC0+MQ6AZ/oKGpSzmjOM56aYESMpPsTg5zddBDXhcqeAOUxpEsXDqhU1rsm751tU4ZavGxHENx70lBOa5dUA==",
+    "@videojs/store@10.0.0-beta.26_@videojs+element@10.0.0-beta.26": {
+      "integrity": "sha512-TaeP+dMCiVWDoBxOSp/t93v06Wy3J1tDBb2noZIAijStEbSIiSKYo+K7qEnArqTpsEA/bRphN4fEQBXmWYwpWw==",
       "dependencies": [
         "@videojs/element",
         "@videojs/utils"
@@ -312,8 +320,8 @@
         "@videojs/element"
       ]
     },
-    "@videojs/utils@10.0.0-beta.25": {
-      "integrity": "sha512-tq/848qmzgTncopeYE5iiYs1Pfzj4OEdSe7zE2H6xoOB0PUMlnPOThA3aybHJ8Lh9bmw+wTb6QJ0NZanIzt2Zg=="
+    "@videojs/utils@10.0.0-beta.26": {
+      "integrity": "sha512-XnbgF7O4ejOdKCKhakAHTGWUHTajzoxQlTM7kIGjfcCeoa8gmEb7V8cNue35FwCvBunw6JwM+4hqJQIPzOmUNQ=="
     },
     "@vimeo/player@2.30.4": {
       "integrity": "sha512-M8m1UAhJSb+KCWuXDLWHViwj+3YY/0ogwFquRfMHs9e9LYjXT9iB7n+sOCKwUusbiXuU2HKmXx+FEGHtYZfUSg==",
@@ -811,7 +819,7 @@
   },
   "workspace": {
     "dependencies": [
-      "npm:@videojs/html@10.0.0-beta.25",
+      "npm:@videojs/html@10.0.0-beta.26",
       "npm:@vitest/coverage-v8@4.1.10",
       "npm:happy-dom@20.11.1",
       "npm:rolldown@1.2.1",
