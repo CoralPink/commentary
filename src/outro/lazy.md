@@ -384,7 +384,7 @@ lazy.nvim のデフォルトは以下の通りです：
 
 <picture>
   <source srcset="img/yadon.jxl" type="image/jxl">
-  <img src="img/yadon.avif" width="960" height="640" alt="やあん" />
+  <img src="img/yadon.avif" width="960" height="640" alt="やあん" loading="lazy">
 </picture>
 
 ```admonish success title=""
