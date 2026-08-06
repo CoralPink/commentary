@@ -1,7 +1,7 @@
 {
   "imports": {
     "@videojs/html": "npm:@videojs/html@10.0.0-beta.26",
-    "rolldown": "npm:rolldown@1.2.1",
+    "rolldown": "npm:rolldown@1.2.3",
 
     "vitest": "npm:vitest@4.1.10",
     "@vitest/coverage-v8": "npm:@vitest/coverage-v8@4.1.10",
