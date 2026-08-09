@@ -155,9 +155,9 @@ vim.keymap.set('n', '<Down>', '<C-e>')
 上のコードが何をしているかと言うと、
 
 ```admonish quote title=""
-ノーマルモードの時に, <kbd>↑</kbd>キーが入力されたら, <kbd>Ctrl-y</kbd>キーの操作として受け付けるぞぉ❗
+ノーマルモードの時に, <kbd>↑</kbd>キーが入力されたら, <kbd>Ctrl-y</kbd>キーの操作として受け付けるぞ〜ぉ❗
 
-ノーマルモードの時に, <kbd>↓</kbd>キーが入力されたら, <kbd>Ctrl-e</kbd>キーの操作として受け付けるぞぉ❗
+ノーマルモードの時に, <kbd>↓</kbd>キーが入力されたら, <kbd>Ctrl-e</kbd>キーの操作として受け付けるぞ〜ぉ❗
 ```
 
 ってことですね。
@@ -165,19 +165,44 @@ vim.keymap.set('n', '<Down>', '<C-e>')
 「`キー操作に機能`を割り当てる」と言うよりは、「`キー操作にリンク先のキー`を割り当てる 」というニュアンスかもしれません。
 
 ```admonish note
-ヘルプの中で、 "右辺には`lua`関数でも可。" の部分に当たる "`キー操作に機能`を割り当てる" については
-[14章](function/function.html)で😉
+ヘルプの中で、
+
+> 右辺には`lua`関数でも可。
+
+と言っている部分である
+
+>`キー操作に機能`を割り当てる
+
+については[14章](function/function.html)で😉
 ```
 
 ここでは一度、実際に動くことを確認してもらいたかったので`keybinds.lua`のサンプルとして提示しましたが、
+「こんな感じね〜」を掴めたら削除してしまって構いません。
 
-「こんな感じね〜」を掴めたら削除してもらって構いません。
+<div class="slider">
+  <div class="media">
+    <video width="1280" height="720" data-poster="img/kecak-part1-thumbnail.avif">
+      <source src="img/kecak-part1.webm" type="video/webm">
+    </video>
+    <video width="1280" height="720" data-poster="img/kecak-part2-thumbnail.avif">
+      <source src="img/kecak-part2.webm" type="video/webm">
+    </video>
+    <video width="1280" height="720" data-poster="img/kecak-part3-thumbnail.avif">
+      <source src="img/kecak-part3.webm" type="video/webm">
+    </video>
+    <video width="1280" height="720" data-poster="img/kecak-part4-thumbnail.avif">
+      <source src="img/kecak-part4.webm" type="video/webm">
+    </video>
+    <div class="ft-definition">
+      ![ramayana](img/ramayana.avif)
+      このケチャは、रामायणम्(Ramayana) 3・5・6・6 巻から抽出されたダイジェスト版であり、結末までを語っていない。
+      この叙事詩は、ラーマ王子が誘拐された妻シータを奪還すべく大軍を率いてラークシャサの王ラーヴァナに挑む姿を描いている。
+      Ramayana の意味は "ラーマ王行状記"。<a href="https://ja.wikipedia.org/wiki/ラーマーヤナ" target="_blank" rel="noopener">Wikipedia</a>より
+    </div>
+  </div>
+</div>
 
-この後は雰囲気だけ味わってもらえればいいかな〜、ぐらいで流します。軽〜く眺めてください😌
-
-```admonish note
-この先、いくつか例示はしますが、ご自身の環境に組み入れるかどうかは任意で❗
-```
+この先でいくつか提示はしますが、"信じるも〜ぉ、信じ〜ぃないも〜ぉ、そりゃ〜ぁ皆の勝手というものだが〜ぁ" で流します💃
 
 ### Switching
 
@@ -277,9 +302,16 @@ vim.keymap.set({ 'n', 'v' }, 'p', 'p`]')
 上の表を参照するとわかる通り、正確にはさらにセレクトモードにも適用されることになります。
 ```
 
-<video width="1280" height="720" data-poster="img/Ko-hiông-thumbnail.avif">
-  <source src="img/Ko-hiông.webm" type="video/webm">
-</video>
+<div class="slider">
+  <div class="media">
+    <video width="1280" height="720" data-poster="img/Ko-hiông-thumbnail.avif">
+      <source src="img/Ko-hiông.webm" type="video/webm">
+    </video>
+    <video width="1280" height="720" data-poster="img/Ko-hiông2026-thumbnail.avif">
+      <source src="img/Ko-hiông2026.webm" type="video/webm">
+    </video>
+  </div>
+</div>
 
 ## Wrap Up
 
