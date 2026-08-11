@@ -64,7 +64,7 @@ jobs:
         run: |
           echo "cache-key=${{ hashFiles('src/**/*.avif', 'src/**/*.jxl', 'src/**/*.mp3', 'src/**/*.webm', 'src/**/*.webp') }}" >> "$GITHUB_OUTPUT"
 
-      - name: Restore Media Cache
+      - name: Restore Media Cache (allow partial match)
         id: cache-media
         uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6
         with:
@@ -441,7 +441,7 @@ jobs:
         uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6
         with:
           path: tmp-media
-          key: ${{ needs.cache-media-files.outputs.cache-key }}
+          key: media-${{ needs.cache-media-files.outputs.cache-key }}
           fail-on-cache-miss: true
 
       - name: Remove LFS Pointer
