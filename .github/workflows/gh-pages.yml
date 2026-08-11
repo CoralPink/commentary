@@ -62,7 +62,17 @@ jobs:
       - name: Set Cache Key
         id: set-cache-key
         run: |
-          echo "cache-key=${{ hashFiles('src/**/*.avif', 'src/**/*.jxl', 'src/**/*.mp3', 'src/**/*.webm', 'src/**/*.webp') }}" >> "$GITHUB_OUTPUT"
+          digest=$(
+            git ls-files -s -z -- \
+              'src/*.avif' 'src/**/*.avif' \
+              'src/*.jxl' 'src/**/*.jxl' \
+              'src/*.mp3' 'src/**/*.mp3' \
+              'src/*.webm' 'src/**/*.webm' \
+              'src/*.webp' 'src/**/*.webp' |
+            sha256sum |
+            cut -d' ' -f1
+          )
+          echo "cache-key=$digest" >> "$GITHUB_OUTPUT"
 
       - name: Restore Media Cache (allow partial match)
         id: cache-media
