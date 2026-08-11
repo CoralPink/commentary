@@ -443,7 +443,7 @@ jobs:
           fail-on-cache-miss: true
 
       - name: Remove LFS Pointer
-        run: find src -type f \( -name '*.avif' -o -name '*.webp' -o -name '*.webm' -o -name '*.mp3' \) -delete
+        run: find src -type f \( -name '*.avif' -o -name '*.jxl' -o -name '*.mp3' -o -name '*.webp' -o -name '*.webm' \) -delete
 
       - name: Populate Media Files
         run: |
