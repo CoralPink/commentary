@@ -49,7 +49,6 @@ jobs:
     if: ${{ github.ref == 'refs/heads/main' }}
     outputs:
       cache-key: ${{ steps.set-cache-key.outputs.cache-key }}
-      cache-match: ${{ steps.check-match.outputs.match }}
     steps:
       - name: Checkout Repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
@@ -63,48 +62,54 @@ jobs:
       - name: Set Cache Key
         id: set-cache-key
         run: |
-          echo "cache-key=media-${{ hashFiles('src/**/*.avif', 'src/**/*.webp', 'src/**/*.webm', 'src/**/*.mp3') }}" >> $GITHUB_OUTPUT
+          echo "cache-key=media-${{ hashFiles('src/**/*.avif', 'src/**/*.jxl', 'src/**/*.mp3', 'src/**/*.webm', 'src/**/*.webp') }}" >> "$GITHUB_OUTPUT"
 
-      - name: Restore Media Cache (allow partial match)
-        id: cache-source
+      - name: Restore Git LFS Cache
+        id: cache-lfs
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6
+        with:
+          path: .git/lfs
+          key: lfs-${{ github.sha }}
+          restore-keys: |
+            lfs-
+
+      - name: Pull LFS Files
+        run: |
+          git lfs pull --include="src/**/*.avif,src/**/*.jxl,src/**/*.mp3,src/**/*.webm,src/**/*.webp"
+
+      - name: Save Git LFS Cache
+        uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6
+        with:
+          path: .git/lfs
+          key: lfs-${{ github.sha }}
+
+      - name: Restore Media Cache
+        id: cache-media
         uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6
         with:
           path: tmp-media
           key: ${{ steps.set-cache-key.outputs.cache-key }}
-          restore-keys: media-
-
-      - name: Verify Exact Cache Match
-        id: check-match
-        run: |
-          if [ "${{ steps.cache-source.outputs.cache-hit }}" = "true" ] && \
-             [ "${{ steps.cache-source.outputs.cache-matched-key }}" = "${{ steps.set-cache-key.outputs.cache-key }}" ]; then
-            echo "match=true" >> $GITHUB_OUTPUT
-          else
-            echo "match=false" >> $GITHUB_OUTPUT
-          fi
-
-      - name: Pull Missing LFS Files (on partial or miss)
-        if: steps.check-match.outputs.match != 'true'
-        run: |
-          git lfs pull --include="src/**/*.avif,src/**/*.webp,src/**/*.webm,src/**/*.mp3"
+          restore-keys: |
+            media-
 
       - name: Synchronize Media Files
-        if: steps.check-match.outputs.match != 'true'
+        if: steps.cache-media.outputs.cache-hit != 'true'
         run: |
           rm -rf tmp-media
           mkdir -p tmp-media
           rsync -a --delete \
             --include='*/' \
             --include='*.avif' \
-            --include='*.webp' \
-            --include='*.webm' \
+            --include='*.jxl' \
             --include='*.mp3' \
+            --include='*.webm' \
+            --include='*.webp' \
             --exclude='*' \
             src/ tmp-media
 
-      - name: Save Media Cache (new primary key)
-        if: steps.check-match.outputs.match != 'true'
-        uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6
+      - name: Save Media Cache
+        if: steps.cache-media.outputs.cache-hit != 'true'
+        uses: actions/cache/save@55cc8346c3cc7cc4c66a329aec7e433d2d1c52a9 # v6
         with:
           path: tmp-media
           key: ${{ steps.set-cache-key.outputs.cache-key }}
