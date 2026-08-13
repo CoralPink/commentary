@@ -83,25 +83,10 @@ jobs:
           restore-keys: |
             media-
 
-      - name: Restore Git LFS Cache
-        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6
-        with:
-          path: .git/lfs
-          key: lfs-${{ steps.set-cache-key.outputs.cache-key }}
-          restore-keys: |
-            lfs-
-
       - name: Pull LFS Files
         if: steps.cache-media.outputs.cache-hit != 'true'
         run: |
           git lfs pull --include="src/**/*.avif,src/**/*.jxl,src/**/*.mp3,src/**/*.webm,src/**/*.webp"
-
-      - name: Save Git LFS Cache
-        if: steps.cache-media.outputs.cache-hit != 'true'
-        uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6
-        with:
-          path: .git/lfs
-          key: lfs-${{ steps.set-cache-key.outputs.cache-key }}
 
       - name: Synchronize Media Files
         if: steps.cache-media.outputs.cache-hit != 'true'
