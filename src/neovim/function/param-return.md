@@ -362,7 +362,11 @@ it’s a small, small world
 
 ```admonish info title=""
 <div class="youtube-video">
-  <iframe src="https://www.youtube.com/embed/baS8jOO5hDY" allowfullscreen></iframe>
+  <iframe
+    src="https://www.youtube.com/embed/baS8jOO5hDY"
+    allow="fullscreen"
+    loading="lazy"
+  ></iframe>
 </div>
 
 完全にこっちの都合なんだけど、YouTube を試してみる...🤔
