@@ -8,7 +8,7 @@ import type { Disposer, ExtensionEntry, InitializableExtension } from './extensi
 
 import { prepareForNextCycle, scheduleJob } from './utils/pulse.ts';
 
-type ModuleName = 'codeblock' | 'footnote' | 'footnote-legacy' | 'media' | 'slider';
+type ModuleName = 'codeblock' | 'footnote' | 'footnote-legacy' | 'media' | 'slider' | 'youtube';
 type ModuleFactory = () => ModuleName;
 
 type ModuleRequirement = {
@@ -39,6 +39,7 @@ const footnoteModule = (): ModuleName => (useLegacyFootnote ? 'footnote-legacy' 
 const MODULE_REQUIREMENTS = [
   selectorModule('.slider', 'slider'),
   selectorModule('video', 'media'),
+  selectorModule('.youtube-video', 'youtube'),
   selectorModule('pre code:not(.language-txt)', 'codeblock'),
 
   selectorModule('sup', footnoteModule),
