@@ -10,6 +10,7 @@ const ENTRIES = [
   './extensions/footnote-legacy.ts',
   './extensions/media.ts',
   './extensions/slider.ts',
+  './extensions/youtube.ts',
 ];
 
 const OUT_DIR = './dist';
