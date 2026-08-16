@@ -12,9 +12,7 @@ That’s made for you and me?
 このクラブの真ん中にいるのはだあれ？
 ```
 
-<video width="1280" height="720" data-poster="img/harmony_in_color_part1-thumbnail.avif">
-  <source src="img/harmony_in_color_part1.webm" type="video/webm">
-</video>
+![Harmony in Color](img/harmony_in_color_part1-thumbnail.avif)
 
 ## nvim_set_var
 
@@ -124,9 +122,7 @@ vim.api.nvim_set_var('mapleader', '\\')
 配列は勿論、形状とかも含めて、使用するキーボードに依るので一概には言えないんですが、
 「変えた方がいいよー」って人もいるし、「別に変えてないよー」って人もいます。
 
-<video width="1280" height="720" data-poster="img/electorical_parade_dreamlights_part1-thumbnail.avif">
-  <source src="img/electorical_parade_dreamlights_part1.webm" type="video/webm">
-</video>
+![Electorical Parade Dreamlights](img/electorical_parade_dreamlights_part1-thumbnail.avif)
 
 つまり自由ってことです❗
 
@@ -288,9 +284,7 @@ All around the world we’re marching
 世界を巡る 僕らのマーチだ
 ```
 
-<video width="1280" height="720" data-poster="img/harmony_in_color_part2-thumbnail.avif">
-  <source src="img/harmony_in_color_part2.webm" type="video/webm">
-</video>
+<div class="youtube-video" data-id="tHyPpcEEb90"></div>
 
 ```admonish tip title=""
 M - I - C - K - E - Y
