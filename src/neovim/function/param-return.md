@@ -101,11 +101,9 @@ Whatever you wish for, you keep
 その願いはそっと膨らんでいるんだよ
 ```
 
-```admonish warning title=""
 <video width="1280" height="720" data-poster="img/musicforest-opera-thumbnail.avif">
   <source src="img/musicforest-opera.webm" type="video/webm">
 </video>
-```
 
 ## Return Value
 
@@ -219,11 +217,11 @@ If you keep on believing
 
 実際、わたしは割と感覚で書いています...😅
 
-```admonish info title=""
 <video width="1280" height="720" data-poster="img/musicforest-sandart-thumbnail.avif">
   <source src="img/musicforest-sandart.webm" type="video/webm">
 </video>
 
+```admonish info title=""
 The dream that you wish will come true
 
 あなたの願った夢は きっと叶う
@@ -240,9 +238,7 @@ FUNCTION WILL RETURN
 
 ### It's A Small World
 
-<video width="1280" height="720" data-poster="img/electorical_parade_dreamlights_part2-thumbnail.avif">
-  <source src="img/electorical_parade_dreamlights_part2.webm" type="video/webm">
-</video>
+<div class="youtube-video" data-id="ITGBRBbytfU"></div>
 
 <div style="color: #999999; font-size: 90%; text-align: center;">
 <div style="margin-top: 8em">
@@ -359,9 +355,3 @@ it’s a small, small world
 
 <div style="margin-top: 8em"></div>
 </div>
-
-```admonish info title=""
-<div class="youtube-video" data-id="baS8jOO5hDY"></div>
-
-完全にこっちの都合なんだけど、YouTube を試してみる...🤔
-```
