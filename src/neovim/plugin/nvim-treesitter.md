@@ -597,19 +597,17 @@ Lennon は監督の [Michael Lindsay-Hogg](https://en.wikipedia.org/wiki/Michael
 どうせ誰とも上手くいかないんだから
 ```
 
-## Revolution / Miracle Gift Parade 💝
+## Revolution
 
 というわけで `nvim-treesitter `でした。
 
 さて、ここまで来たら次にやることはもう決まってますね😉 カラーテーマです❗
 
-<video width="1280" height="720" data-poster="img/miracle-gift-parade-part1.avif">
-  <source src="img/miracle-gift-parade-part1.webm" type="video/webm">
-</video>
-
 ```admonish success
 次回でついに瞳に優しく、そう❗生まれ変わるのです😆
 ```
+
+<div style="margin-top: 12em"></div>
 
 ```admonish danger title=""
 Don't you know it's gonna be

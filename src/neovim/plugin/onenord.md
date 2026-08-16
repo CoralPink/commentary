@@ -209,7 +209,7 @@ Overwrite default colors
 
 説明にはありませんが、実はオリジナルの色を新しく定義することもできちゃいます😆
 
-## Miracle Gift Parade (Part2) 💝
+## 💝 Miracle Gift Parade
 
 そんなこんなでやってきましたが、ここまでやっただけでも...
 
@@ -228,15 +228,13 @@ Overwrite default colors
 [fix!: highlight groups for neovim 0.8 #50](https://github.com/rmehri01/onenord.nvim/commit/98c64654375bc087e96bca08fd194066d778717c)
 ```
 
-<video width="1280" height="720" data-poster="img/miracle-gift-parade-part2.avif">
-  <source src="img/miracle-gift-parade-part2.webm" type="video/webm">
-</video>
+<div class="youtube-video" data-id="JAbPsVOebNI"></div>
 
 ```admonish success
 ようやくひと段落って感じですね。とっても綺麗な景色☺️
 ```
 
-## Imagine 🕊️
+## 🕊 Imagine
 
 <div style="color: #999999; font-size: 90%; text-align: center;">
 <div style="margin-top: 4em">
