@@ -216,10 +216,7 @@ No one’s has. Your future is whatever you make it.
 他の誰でもない。きみの未来はきみが描くんだ。
 ```
 
-```admonish quote title=""
-<video width="1280" height="720" data-poster="img/starry-starry-christmas-party-thumbnail.avif">
-  <source src="img/starry-starry-christmas-party.webm" type="video/webm">
-</video>
+<div class="youtube-video" data-id="Klcwxqggx4A"></div>
 
 [サンリオピューロランド](https://en.wikipedia.org/wiki/Sanrio_Puroland)より
 {{footnote:
@@ -235,7 +232,6 @@ PO 実施の発表があった際は、一気に 700円もの ゴロピカドン
 ホルダーはみんな「オリエンタルランドを倒すなんてダメよ❗」とハートで知っており (多摩テックは勝手に倒れたんだよ🤫)、
 口を揃えて言う。「やさしいキティといっしょなら つられてやさしくなっちゃうの🩷」
 }}
-```
 
 ```admonish success title="THE END"
 So make it a good one!!
