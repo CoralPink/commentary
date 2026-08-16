@@ -1,18 +1,20 @@
 import type { Disposer } from './types.ts';
 
+const SRC_URL = 'https://www.youtube.com/embed/';
+
 const setupMedia = (entries: IntersectionObserverEntry[], obs: IntersectionObserver): void => {
   for (const entry of entries) {
     if (!entry.isIntersecting) {
       continue;
     }
 
-    const video = entry.target;
+    const div = entry.target;
 
-    if (!(video instanceof HTMLDivElement)) {
+    if (!(div instanceof HTMLDivElement)) {
       continue;
     }
 
-    const id = video.dataset['id'];
+    const id = div.dataset['id'];
 
     if (id === undefined) {
       continue;
@@ -20,11 +22,11 @@ const setupMedia = (entries: IntersectionObserverEntry[], obs: IntersectionObser
 
     const iframe = document.createElement('iframe');
 
-    iframe.src = `https://www.youtube.com/embed/${id}`;
+    iframe.src = `${SRC_URL}${id}`;
     iframe.allow = 'fullscreen';
 
-    video.replaceChildren(iframe);
-    obs.unobserve(video);
+    div.replaceChildren(iframe);
+    obs.unobserve(div);
   }
 };
 
