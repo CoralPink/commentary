@@ -1,10 +1,10 @@
 {
   "version": "5",
   "specifiers": {
-    "npm:@vitest/coverage-v8@4.1.10": "4.1.10_vitest@4.1.10_happy-dom@20.11.2",
+    "npm:@vitest/coverage-v8@4.1.10": "4.1.10_vitest@4.1.10_happy-dom@20.11.2_vite@8.2.1",
     "npm:happy-dom@20.11.2": "20.11.2",
     "npm:rolldown@1.2.4": "1.2.4",
-    "npm:vitest@4.1.10": "4.1.10_@vitest+coverage-v8@4.1.10_happy-dom@20.11.2"
+    "npm:vitest@4.1.10": "4.1.10_@vitest+coverage-v8@4.1.10_happy-dom@20.11.2_vite@8.2.1"
   },
   "npm": {
     "@babel/helper-string-parser@7.29.7": {
@@ -150,7 +150,7 @@
         "@types/node"
       ]
     },
-    "@vitest/coverage-v8@4.1.10_vitest@4.1.10_happy-dom@20.11.2": {
+    "@vitest/coverage-v8@4.1.10_vitest@4.1.10_happy-dom@20.11.2_vite@8.2.1": {
       "integrity": "sha512-IM49HmthevbgAO4anp1hwtoT9wYe59w0LR00gr+eagHE+ZJ5lK4sLPeO0ubgoJcwLk6dehU3R24N+FbEEKDc8g==",
       "dependencies": [
         "@bcoe/v8-coverage",
@@ -505,6 +505,7 @@
         "lightningcss",
         "picomatch",
         "postcss",
+        "rolldown",
         "tinyglobby"
       ],
       "optionalDependencies": [
@@ -512,7 +513,7 @@
       ],
       "bin": true
     },
-    "vitest@4.1.10_@vitest+coverage-v8@4.1.10_happy-dom@20.11.2": {
+    "vitest@4.1.10_@vitest+coverage-v8@4.1.10_happy-dom@20.11.2_vite@8.2.1": {
       "integrity": "sha512-R9jUTe5S4Qb0HCd4TNqpC7oGcrMssMRGXLW80ubjWsW9VH5GF8y1Y0SFLY9AbqSk6nt0PnOx4H4WNJYZ13GUPw==",
       "dependencies": [
         "@vitest/coverage-v8",
