@@ -158,9 +158,7 @@ vim.opt.tabstop = 2
 
 ## Wrap Up
 
-<video width="1280" height="720" data-poster="img/pokemon2023-thumbnail.avif">
-  <source src="img/pokemon2023.webm" type="video/webm">
-</video>
+<div class="youtube-video" data-id="QQ8kE7IS468"></div>
 
 ```admonish success
 つよい　トレーナーに　なったな❗
