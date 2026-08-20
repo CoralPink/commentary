@@ -4,39 +4,45 @@ const TOOLTIP_FADEOUT_MS = 1200;
 
 let isBootstrap = false;
 
-const copyCode = (ev: PointerEvent): void => {
-  if (!(ev.target instanceof HTMLElement)) {
+const showResult = (button: HTMLButtonElement, msg: string): void => {
+  const result = button.querySelector('.copy-result');
+
+  if (!(result instanceof HTMLElement)) {
     return;
   }
 
-  const button = ev.target.closest('button.copy-button');
+  result.textContent = msg;
+  button.classList.add('show-result');
 
-  if (!button) {
+  setTimeout(() => {
+    button.classList.remove('show-result');
+  }, TOOLTIP_FADEOUT_MS);
+};
+
+const copyCode = (ev: CommandEvent): void => {
+  if (ev.command !== '--copy') {
     return;
   }
 
-  const code = button.closest('pre')?.querySelector('code');
-
-  if (!code) {
+  if (!(ev.currentTarget instanceof HTMLDivElement)) {
     return;
   }
 
-  const showTooltip = (msg: string): void => {
-    const tip = document.createElement('div');
+  const code = ev.currentTarget.querySelector('code');
 
-    tip.classList.add('tooltiptext');
-    tip.insertAdjacentText('afterbegin', msg);
+  if (code === null) {
+    return;
+  }
 
-    button.append(tip);
+  const button = ev.source;
 
-    setTimeout(() => {
-      tip.remove();
-    }, TOOLTIP_FADEOUT_MS);
-  };
+  if (!(button instanceof HTMLButtonElement)) {
+    return;
+  }
 
   navigator.clipboard.writeText(code.innerText).then(
-    () => showTooltip('Copied!'),
-    () => showTooltip('Failed...'),
+    () => showResult(button, 'Copied!'),
+    () => showResult(button, 'Failed...'),
   );
 };
 
@@ -60,10 +66,18 @@ export const initialize = (html: HTMLElement): Disposer => {
 
   const ac = new AbortController();
 
-  html.addEventListener('click', copyCode, {
-    passive: false,
-    signal: ac.signal,
-  });
+  for (const x of html.querySelectorAll<HTMLDivElement>('.code-block')) {
+    x.addEventListener(
+      'command',
+      ev => {
+        copyCode(ev as CommandEvent);
+      },
+      {
+        passive: true,
+        signal: ac.signal,
+      },
+    );
+  }
 
   return () => {
     ac.abort();
