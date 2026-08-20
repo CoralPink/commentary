@@ -36,7 +36,7 @@ const createCopyButton = (document: Document, targetId: string): HTMLButtonEleme
 
   const result = document.createElement('span');
   result.className = 'copy-result';
-  result.ariaHidden = 'true';
+  result.setAttribute('role', 'status');
 
   button.append(result);
 
