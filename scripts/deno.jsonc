@@ -8,6 +8,7 @@
     "highlight.js/lib/languages/diff": "npm:highlight.js@11.12.0/lib/languages/diff",
     "highlight.js/lib/languages/json": "npm:highlight.js@11.12.0/lib/languages/json",
     "highlight.js/lib/languages/lua": "npm:highlight.js@11.12.0/lib/languages/lua",
+    "highlight.js/lib/languages/plaintext": "npm:highlight.js@11.12.0/lib/languages/plaintext",
     "highlight.js/lib/languages/vim": "npm:highlight.js@11.12.0/lib/languages/vim",
 
     "jsdom": "npm:jsdom@30.0.1",

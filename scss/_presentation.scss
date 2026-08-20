@@ -1,8 +1,16 @@
 @use 'variables' as var;
 
-pre {
+.code-block {
   position: relative;
 
+  &:hover .copy-button,
+  &:focus-within .copy-button {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+pre {
   &>code {
     display: block;
     overflow-x: auto;
@@ -17,45 +25,49 @@ pre {
       font-family: var.$mono-font, "Symbols Nerd Font Mono";
     }
   }
+}
 
-  &:hover .copy-button {
-    visibility: visible;
-    opacity: 1;
+.copy-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  margin: 0.4rem;
+  padding: 0.24rem;
+
+  color: var(--icons-hover);
+  background-color: var(--popup-bg);
+
+  border: 0.1rem solid var(--icons);
+  border-radius: 0.4rem;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 0;
+
+  opacity: 0;
+  transition: opacity 320ms;
+
+  cursor: pointer;
+
+  .copy-result {
+    overflow: hidden;
+
+    max-width: 0;
+    opacity: 0;
+
+    transition: max-width 240ms, opacity 240ms;
+    white-space: nowrap;
   }
 
-  .copy-button {
-    position: absolute;
-    top: 0.3rem;
-    right: 0;
-    margin: 0 0.4rem;
-    padding: 0.4rem;
+  &.show-result {
+    gap: 0.4rem;
 
-    color: var(--hover-fg);
-    background-color: var(--popup-bg);
-
-    border: 0.1rem solid var(--icons);
-    border-radius: 0.4rem;
-
-    opacity: 0;
-    transition: opacity 300ms, color 300ms, border-color 300ms, background-color 300ms;
-
-    cursor: pointer;
-
-    &:hover {
-      color: var(--hover-fg);
-      border-color: var(--icons-hover);
-      background-color: var(--theme-hover);
-    }
-
-    .tooltiptext {
-      position: absolute;
-      top: -2.7em;
-      left: 50%;
-      transform: translateX(-50%);
-
-      border-radius: 0.8rem;
-      padding: 0.5em 1.2em;
-      white-space: nowrap;
+    .copy-result {
+      max-width: 5rem;
+      opacity: 1;
     }
   }
 }
