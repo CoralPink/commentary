@@ -35,6 +35,11 @@ pre {
   margin: 0.4rem;
   padding: 0.24rem;
 
+  background-color: var(--popup-bg);
+
+  border: 0.1rem solid var(--icons);
+  border-radius: 0.4rem;
+
   display: inline-flex;
   align-items: center;
   justify-content: center;
