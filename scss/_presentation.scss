@@ -3,7 +3,8 @@
 .code-block {
   position: relative;
 
-  &:hover .copy-button {
+  &:hover .copy-button,
+  &:focus-within .copy-button {
     visibility: visible;
     opacity: 1;
   }
