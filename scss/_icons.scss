@@ -60,6 +60,8 @@ $url-next: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2
 }
 
 .fa-icon {
+  display: inline-block;
+
   width: 1rem;
   height: 1rem;
   background-color: var(--icons);
