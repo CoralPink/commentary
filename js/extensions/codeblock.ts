@@ -4,6 +4,8 @@ const TOOLTIP_FADEOUT_MS = 1200;
 
 let isBootstrap = false;
 
+const resultTimers = new WeakMap<HTMLButtonElement, ReturnType<typeof setTimeout>>();
+
 const showResult = (button: HTMLButtonElement, msg: string): void => {
   const result = button.querySelector('.copy-result');
 
@@ -11,12 +13,21 @@ const showResult = (button: HTMLButtonElement, msg: string): void => {
     return;
   }
 
+  const previousTimer = resultTimers.get(button);
+
+  if (previousTimer !== undefined) {
+    clearTimeout(previousTimer);
+  }
+
   result.textContent = msg;
   button.classList.add('show-result');
 
-  setTimeout(() => {
+  const timer = setTimeout(() => {
     button.classList.remove('show-result');
+    resultTimers.delete(button);
   }, TOOLTIP_FADEOUT_MS);
+
+  resultTimers.set(button, timer);
 };
 
 const copyCode = (ev: CommandEvent): void => {
