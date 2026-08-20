@@ -35,6 +35,7 @@ pre {
   margin: 0.4rem;
   padding: 0.24rem;
 
+  color: var(--icons-hover);
   background-color: var(--popup-bg);
 
   border: 0.1rem solid var(--icons);
@@ -57,7 +58,7 @@ pre {
     max-width: 0;
     opacity: 0;
 
-    transition: max-width 240ms;
+    transition: max-width 240ms, opacity 240ms;
     white-space: nowrap;
   }
 
