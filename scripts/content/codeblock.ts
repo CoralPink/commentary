@@ -72,6 +72,12 @@ const getLanguage = (code: HTMLElement): string => {
 
 export const HighlightProc = (document: Document): void => {
   for (const code of document.querySelectorAll<HTMLElement>('pre code')) {
+    const pre = code.parentElement;
+
+    if (pre?.localName !== 'pre') {
+      throw new Error('Code element must be a direct child of pre');
+    }
+
     const language = getLanguage(code);
 
     code.setAttribute('translate', 'no');
@@ -81,7 +87,7 @@ export const HighlightProc = (document: Document): void => {
     }
     code.innerHTML = hljs.highlight(code.textContent, { language }).value;
 
-    createCodeBlock(document, code.parentElement! as HTMLPreElement, language !== 'txt');
+    createCodeBlock(document, pre as HTMLPreElement, language !== 'txt');
   }
 };
 
