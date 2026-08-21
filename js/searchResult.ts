@@ -126,12 +126,7 @@ export class SearchResult extends HTMLElement {
         ev.preventDefault();
         this.moveFocus(this.nextElementSibling);
         break;
-      /*
-      case "ArrowUp":
-        ev.preventDefault();
-        this.moveFocus(this.previousElementSibling);
-        break;
-      */
+
       case 'ArrowUp': {
         ev.preventDefault();
 
