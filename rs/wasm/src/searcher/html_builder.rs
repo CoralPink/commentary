@@ -1,6 +1,7 @@
 use crate::searcher::excerpt::{compute_window_from_ranges, get_hitranges};
 use crate::searcher::hit_list::{Hit, HitList};
 
+use core::fmt::NumBuffer;
 use memchr::{memchr2, memchr3};
 use percent_encoding::{AsciiSet, NON_ALPHANUMERIC, utf8_percent_encode};
 
@@ -52,14 +53,14 @@ struct SearchHit<'a> {
 
 pub struct HtmlBuilder {
     buf: Vec<u8>,
-    itoa: itoa::Buffer,
+    num_buf: NumBuffer<usize>,
 }
 
 impl HtmlBuilder {
     pub fn new_for_results(count: usize) -> Self {
         Self {
             buf: Vec::with_capacity(count * BUFFER_HTML_MAGNIFICATION),
-            itoa: itoa::Buffer::new(),
+            num_buf: NumBuffer::new(),
         }
     }
 
@@ -178,7 +179,7 @@ impl HtmlBuilder {
         self.buf.push(b' ');
         self.buf.extend_from_slice(name.as_bytes());
         self.buf.extend_from_slice(b"=\"");
-        self.buf.extend_from_slice(self.itoa.format(value).as_bytes());
+        self.buf.extend_from_slice(value.format_into(&mut self.num_buf).as_bytes());
         self.buf.push(b'"');
     }
 
