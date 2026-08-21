@@ -19,12 +19,5 @@ pub const SCORE_HEADER_LENGTH_DECAY_EXPONENT: f32 = 0.4;
 /// Number of words considered for teaser/highlight calculation.
 pub const TEASER_WORD_COUNT: usize = 256;
 
-/// Fonts used in the score bar
-pub const SCORE_BAR_CHARACTER: &str = "▰";
-/// Rate used to calculate the length of the scorebar
-pub const SCORE_BAR_RATE: usize = 8;
-/// Maximum value displayed on the score bar (does not affect the actual score)
-pub const SCORE_BAR_MAX: usize = 256;
-
 /// Estimated maximum number of tokens for a single document.
 pub const EXCERPT_TOKENS_MAX: usize = 24;
