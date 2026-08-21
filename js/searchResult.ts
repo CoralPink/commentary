@@ -18,6 +18,9 @@ const createScoreElement = (score: number): HTMLDivElement => {
   element.className = 'score';
   element.role = 'meter';
   element.ariaLabel = `score:${score}pt`;
+  element.ariaValueNow = String(score);
+  element.ariaValueMin = '0';
+  element.ariaValueMax = String(SCORE_BAR_MAX);
 
   element.textContent = `${SCORE_BAR_CHARACTER.repeat(
     Math.floor(Math.min(score, SCORE_BAR_MAX) / SCORE_BAR_RATE),
