@@ -78,7 +78,7 @@ export class SearchResult extends HTMLElement {
       return;
     }
 
-    const url = new URL(href);
+    const url = new URL(href, document.baseURI);
 
     if (checkURL(url)) {
       updateMark();
