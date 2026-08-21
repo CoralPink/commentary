@@ -3,13 +3,12 @@ name = "mdbook-footnote"
 version = "2.1.1"
 authors = ["David Drysdale <dmd@lurklurk.org>", "CoralPink"]
 edition = "2024"
-rust-version = "1.88"
+rust-version = "1.98"
 license = "Apache-2.0"
 
 [dependencies]
 bumpalo = { version = "=3.20.3", features = ["collections"] }
 clap = "=4.6.6"
-itoa = "=1.0.18"
 mdbook-preprocessor = "=0.5.4"
 regex = "=1.13.1"
 semver = "=1.0.28"
