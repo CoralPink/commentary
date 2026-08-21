@@ -3,7 +3,7 @@ import { focusSearchBar, getSearchPopElement, hiddenSearch } from './searcher.ts
 
 import { setHTML } from './utils/html-sanitizer.ts';
 
-let currentForcus: SearchResult | null = null;
+let currentFocus: SearchResult | null = null;
 
 // Fonts used in the score bar
 const SCORE_BAR_CHARACTER = '▰';
@@ -92,12 +92,12 @@ export class SearchResult extends HTMLElement {
   }
 
   private updateFocus(): boolean {
-    if (currentForcus === this) {
+    if (currentFocus === this) {
       return false;
     }
 
-    if (currentForcus !== null) {
-      currentForcus.ariaSelected = null;
+    if (currentFocus !== null) {
+      currentFocus.ariaSelected = null;
     }
     this.ariaSelected = 'true';
 
@@ -107,7 +107,7 @@ export class SearchResult extends HTMLElement {
       pop.ariaActiveDescendantElement = this;
     }
 
-    currentForcus = this;
+    currentFocus = this;
     return true;
   }
 
