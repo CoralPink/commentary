@@ -1,9 +1,9 @@
 [package]
 name = "wasm-book"
-version = "1.5.4"
+version = "2.0.0"
 authors = ["CoralPink <teqt6ytqt@mozmail.com>"]
 edition = "2024"
-rust-version = "1.88"
+rust-version = "1.98"
 description = "This is the WebAssembly code used on this site."
 homepage = "https://github.com/CoralPink"
 repository = "https://github.com/CoralPink/commentary"
@@ -25,7 +25,6 @@ panic = "abort"
 [dependencies]
 bumpalo = { version = "=3.20.3", features = ["collections"] }
 getset = "=0.1.7"
-itoa = "=1.0.18"
 js-sys = "=0.3.104"
 macros = { path = "macros" }
 memchr = { version = "=2.8.3", default-features = false }
