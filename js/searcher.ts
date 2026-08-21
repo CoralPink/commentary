@@ -1,5 +1,5 @@
 import { ROOT_PATH } from './constants.ts';
-import { updateMark } from './mark.ts';
+import { SearchResult } from './searchResult.ts';
 
 import { loadStyleSheet } from './utils/css-loader.ts';
 import { fetchAndDecompress } from './utils/fetch.ts';
@@ -32,13 +32,16 @@ let elmHeader: HTMLElement;
 let elmResults: HTMLElement;
 
 let finder: Finder;
+let searchAbort: AbortController | null;
 
-let focusedLi: Element | null;
-
-let searchAbort: AbortController;
+export const getSearchPopElement = (): HTMLElement | null => document.getElementById(POP_ID);
 
 // NOTE: I'd rather not, but I have to use `getElementById` every time.
-export const isSearchPopoverOpen = (): boolean => document.getElementById(POP_ID)?.matches(':popover-open') ?? false;
+export const isSearchPopoverOpen = (): boolean => getSearchPopElement()?.matches(':popover-open') ?? false;
+
+export const focusSearchBar = (): void => {
+  elmSearchBar.focus();
+};
 
 const showResults = (): void => {
   const bytes = finder.search(elmSearchBar.value);
@@ -60,73 +63,12 @@ const showResults = (): void => {
   setHTML(elmResults, new TextDecoder().decode(bytes.subarray(htmlStart, htmlEnd)));
 };
 
-const checkURL = (url: URL): boolean =>
-  url.origin + url.pathname === globalThis.location.origin + globalThis.location.pathname;
-
-const hiddenSearch = (): void => {
+export const hiddenSearch = (): void => {
   elmPop.hidePopover();
   elmSearch.ariaExpanded = 'false';
 
-  searchAbort.abort();
-};
-
-const jumpUrl = (): void => {
-  const aElement = focusedLi?.querySelector('a') as HTMLAnchorElement;
-
-  if (!aElement) {
-    return;
-  }
-
-  const url = new URL(aElement.href);
-
-  if (checkURL(url)) {
-    updateMark();
-  }
-
-  navigation.navigate(url);
-
-  requestAnimationFrame(() => {
-    hiddenSearch();
-  });
-};
-
-const updateFocus = (target: HTMLElement): void => {
-  const li = target.closest('li');
-
-  if (!li || focusedLi === li) {
-    return;
-  }
-
-  if (focusedLi) {
-    focusedLi.ariaSelected = null;
-  }
-  li.ariaSelected = 'true';
-
-  if (target) {
-    elmPop.ariaActiveDescendantElement = target;
-  }
-  focusedLi = li;
-};
-
-const popupFocus = (ev: KeyboardEvent): void => {
-  if (ev.key !== 'Enter') {
-    updateFocus(ev.target as HTMLElement);
-    return;
-  }
-
-  jumpUrl();
-};
-
-const searchMouseupHandler = (ev: MouseEvent): void => {
-  const prevFocused = focusedLi;
-
-  updateFocus(ev.target as HTMLElement);
-
-  if (prevFocused !== focusedLi) {
-    return;
-  }
-
-  jumpUrl();
+  searchAbort?.abort();
+  searchAbort = null;
 };
 
 const closedPopover = (ev: Event): void => {
@@ -138,6 +80,21 @@ const closedPopover = (ev: Event): void => {
 };
 
 const debounceSearchInput = debounce((_: Event) => showResults(), DEBOUNCE_DELAY_MS);
+
+const searchbarKeydown = (ev: KeyboardEvent): void => {
+  if (ev.key !== 'ArrowDown') {
+    return;
+  }
+
+  const result = elmResults.querySelector('search-result');
+
+  if (!(result instanceof SearchResult)) {
+    return;
+  }
+
+  ev.preventDefault();
+  result.focusAndSelect();
+};
 
 const showSearch = (): void => {
   if (isSearchPopoverOpen()) {
@@ -157,15 +114,11 @@ const showSearch = (): void => {
     signal,
   });
 
-  elmResults.addEventListener('keyup', popupFocus, {
-    passive: true,
+  elmSearchBar.addEventListener('keydown', searchbarKeydown, {
+    passive: false,
     signal,
   });
 
-  elmPop.addEventListener('click', searchMouseupHandler, {
-    passive: true,
-    signal,
-  });
   elmPop.addEventListener('toggle', closedPopover, {
     passive: true,
     signal,
@@ -229,6 +182,8 @@ const bootSearch = async (): Promise<void> => {
       throw new Error('Missing required search data fields');
     }
 
+    customElements.define('search-result', SearchResult);
+
     await wasmPromise;
     finder = new Finder(ROOT_PATH, data.doc_urls, data.index.documentStore.docs);
 
@@ -261,7 +216,10 @@ export const startupSearch = (): void => {
   }
   elmSearch = button;
 
-  elmSearch.addEventListener('click', bootSearch, { once: true, passive: true });
+  elmSearch.addEventListener('click', bootSearch, {
+    once: true,
+    passive: true,
+  });
 
   document.addEventListener('keyup', bootSearchFromKey, {
     passive: true,

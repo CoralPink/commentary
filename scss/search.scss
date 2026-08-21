@@ -37,7 +37,7 @@
   ul {
     padding-left: 0.4rem;
 
-    li {
+    search-result {
       display: flex;
       flex-direction: column;
       gap: 0.4em;
@@ -54,17 +54,14 @@
         border-radius: 0.64rem
       }
 
-      a {
-        pointer-events: none;
-
+      .label{
         font-family: var.$italic-font;
         font-style: italic;
 
         color: var(--links);
-        text-decoration: none;
       }
 
-      span {
+      .excerpt {
         padding-left: 1em;
       }
 

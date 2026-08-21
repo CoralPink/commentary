@@ -1,7 +1,7 @@
-use crate::searcher::constants::*;
 use crate::searcher::excerpt::{compute_window_from_ranges, get_hitranges};
 use crate::searcher::hit_list::{Hit, HitList};
 
+use core::fmt::NumBuffer;
 use memchr::{memchr2, memchr3};
 use percent_encoding::{AsciiSet, NON_ALPHANUMERIC, utf8_percent_encode};
 
@@ -14,9 +14,6 @@ const RESULT_DATA_OFFSET: usize = LENGTH_FIELD_SIZE * 2;
 
 /// Buffer size multiplier for 1 search result
 const BUFFER_HTML_MAGNIFICATION: usize = 1024;
-
-/// Convert the text for the score bar defined in `constants.rs` to the u8 type and store it
-const WRITE_SCORE_BAR_CHARACTER: &[u8] = SCORE_BAR_CHARACTER.as_bytes();
 
 /// HTML tag used to mark highlighted words.
 const MARK_TAG: &[u8] = "<mark>".as_bytes();
@@ -56,14 +53,14 @@ struct SearchHit<'a> {
 
 pub struct HtmlBuilder {
     buf: Vec<u8>,
-    itoa: itoa::Buffer,
+    num_buf: NumBuffer<usize>,
 }
 
 impl HtmlBuilder {
     pub fn new_for_results(count: usize) -> Self {
         Self {
             buf: Vec::with_capacity(count * BUFFER_HTML_MAGNIFICATION),
-            itoa: itoa::Buffer::new(),
+            num_buf: NumBuffer::new(),
         }
     }
 
@@ -178,24 +175,12 @@ impl HtmlBuilder {
         self.buf.extend_from_slice(tag.as_bytes());
     }
 
-    fn attr(&mut self, key: &str, value: &str) {
-        self.buf.push(b' ');
-        self.buf.extend_from_slice(key.as_bytes());
-        self.buf.extend_from_slice(b"=\"");
-        self.safe_text(value);
-        self.buf.push(b'"');
-    }
-
     fn attr_num(&mut self, name: &str, value: usize) {
         self.buf.push(b' ');
         self.buf.extend_from_slice(name.as_bytes());
         self.buf.extend_from_slice(b"=\"");
-        self.buf.extend_from_slice(self.itoa.format(value).as_bytes());
+        self.buf.extend_from_slice(value.format_into(&mut self.num_buf).as_bytes());
         self.buf.push(b'"');
-    }
-
-    pub fn num(&mut self, value: usize) {
-        self.buf.extend_from_slice(self.itoa.format(value).as_bytes());
     }
 
     fn close_open(&mut self) {
@@ -223,60 +208,34 @@ impl HtmlBuilder {
         }
     }
 
-    fn score_bar(&mut self, score: usize) {
-        for _ in 0..std::cmp::min(score, SCORE_BAR_MAX) / SCORE_BAR_RATE {
-            self.buf.extend_from_slice(WRITE_SCORE_BAR_CHARACTER);
-        }
-    }
-
-    fn li_search_result(&mut self, hit: &SearchHit) {
+    fn search_result(&mut self, hit: &SearchHit) {
         let doc = hit.el.doc();
-        let score = hit.el.score;
 
-        self.open("li");
-        self.attr("tabindex", "0");
-        self.attr("role", "option");
-        self.attr_num("id", hit.el.id);
-        self.buf.extend_from_slice(b" aria-label=\"");
-        self.safe_text(hit.page);
-        self.buf.push(b' ');
-        self.num(score);
-        self.buf.extend_from_slice(b"pt\">");
+        self.open("search-result");
 
-        // link
-        self.open("a");
-        self.attr("tabindex", "-1");
-        self.buf.extend_from_slice(b" href=\"");
+        self.buf.extend_from_slice(b" data-href=\"");
         self.safe_text(hit.root_path);
         self.safe_text(hit.page);
         self.write_mark(hit.normalized_terms);
         self.buf.push(b'#');
         self.safe_text(hit.head);
-        self.buf.extend_from_slice(b"\">");
+        self.buf.push(b'"');
+
+        self.buf.extend_from_slice(b" data-page=\"");
+        self.safe_text(hit.page);
+        self.buf.push(b'"');
+
+        self.buf.extend_from_slice(b" data-label=\"");
         self.safe_text(doc.breadcrumbs());
-        self.end("a");
+        self.buf.push(b'"');
 
-        // excerpt
-        self.open("span");
-        self.attr("aria-hidden", "true");
+        self.attr_num("data-score", hit.el.score);
+
         self.close_open();
+
         self.write_highlighted_excerpt(doc.body(), hit.normalized_terms);
-        self.end("span");
 
-        // score
-        self.open("div");
-        self.attr("class", "score");
-        self.attr("role", "meter");
-        self.buf.extend_from_slice(b" aria-label=\"score:");
-        self.num(score);
-        self.buf.extend_from_slice(b"pt\">");
-        self.score_bar(score);
-        self.buf.extend_from_slice(b" (");
-        self.num(score);
-        self.buf.extend_from_slice(b"pt)");
-        self.end("div");
-
-        self.end("li");
+        self.end("search-result");
     }
 
     pub fn build_search_result(
@@ -292,7 +251,7 @@ impl HtmlBuilder {
             if let Some(url) = url_table.get(el.id) {
                 let (page, head) = parse_uri(url);
 
-                self.li_search_result(&SearchHit {
+                self.search_result(&SearchHit {
                     root_path,
                     page,
                     head,
