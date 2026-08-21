@@ -32,7 +32,7 @@ let elmHeader: HTMLElement;
 let elmResults: HTMLElement;
 
 let finder: Finder;
-let searchAbort: AbortController;
+let searchAbort: AbortController | null;
 
 export const getSearchPopElement = (): HTMLElement | null => document.getElementById(POP_ID);
 
