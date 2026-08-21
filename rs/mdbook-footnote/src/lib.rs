@@ -1,5 +1,6 @@
 use bumpalo::Bump;
 use bumpalo::collections::Vec as BumpVec;
+use core::fmt::NumBuffer;
 use mdbook_preprocessor::{book::Book, errors::Error};
 use regex::regex;
 
@@ -8,7 +9,7 @@ const FT_DEF: &str = "ft-definition";
 
 pub fn replacing(mut book: Book) -> Result<Book, Error> {
     let bump = Bump::new();
-    let mut itoa = itoa::Buffer::new();
+    let mut buf = NumBuffer::new();
 
     book.for_each_mut(|item| {
         if let mdbook_preprocessor::book::BookItem::Chapter(chap) = item {
@@ -20,7 +21,7 @@ pub fn replacing(mut book: Book) -> Result<Book, Error> {
                     footnotes.push(content);
 
                     let mut s = String::new();
-                    let idx = itoa.format(footnotes.len());
+                    let idx = footnotes.len().format_into(&mut buf);
 
                     s.push_str("<sup class=\"");
                     s.push_str(FT_REF);
@@ -38,7 +39,7 @@ pub fn replacing(mut book: Book) -> Result<Book, Error> {
 
             if !footnotes.is_empty() {
                 for (num, content) in footnotes.into_iter().enumerate() {
-                    let idx = itoa.format(num + 1);
+                    let idx = (num + 1).format_into(&mut buf);
 
                     chap.content.push('\n');
                     chap.content.push_str("<aside class=\"");
