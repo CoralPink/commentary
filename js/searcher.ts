@@ -67,7 +67,8 @@ export const hiddenSearch = (): void => {
   elmPop.hidePopover();
   elmSearch.ariaExpanded = 'false';
 
-  searchAbort.abort();
+  searchAbort?.abort();
+  searchAbort = null;
 };
 
 const closedPopover = (ev: Event): void => {
