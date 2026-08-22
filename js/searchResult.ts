@@ -3,30 +3,33 @@ import { focusSearchBar, getSearchPopElement, hiddenSearch } from './searcher.ts
 
 import { setHTML } from './utils/html-sanitizer.ts';
 
+const SCORE_BAR_MIN = 1;
+const SCORE_BAR_MAX = 512;
+const SCORE_BAR_LOW = 80;
+const SCORE_BAR_HIGH = 192;
+const SCORE_BAR_OPTIMUM = 240;
+
 let currentFocus: SearchResult | null = null;
 
-// Fonts used in the score bar
-const SCORE_BAR_CHARACTER = '▰';
-// Rate used to calculate the length of the scorebar
-const SCORE_BAR_RATE = 8;
-// Maximum value displayed on the score bar (does not affect the actual score)
-const SCORE_BAR_MAX = 256;
+const createScoreElement = (score: string): HTMLDivElement => {
+  const container = document.createElement('div');
+  container.className = 'score';
 
-const createScoreElement = (score: number): HTMLDivElement => {
-  const element = document.createElement('div');
+  const meter = document.createElement('meter');
+  meter.min = SCORE_BAR_MIN;
+  meter.max = SCORE_BAR_MAX;
+  meter.low = SCORE_BAR_LOW;
+  meter.high = SCORE_BAR_HIGH;
+  meter.optimum = SCORE_BAR_OPTIMUM;
 
-  element.className = 'score';
-  element.role = 'meter';
-  element.ariaLabel = `score:${score}pt`;
-  element.ariaValueNow = String(score);
-  element.ariaValueMin = '0';
-  element.ariaValueMax = String(SCORE_BAR_MAX);
+  meter.value = Math.min(Number(score), SCORE_BAR_MAX);
 
-  element.textContent = `${SCORE_BAR_CHARACTER.repeat(
-    Math.floor(Math.min(score, SCORE_BAR_MAX) / SCORE_BAR_RATE),
-  )} (${score}pt)`;
+  const text = document.createElement('span');
+  text.textContent = `${score}pt`;
 
-  return element;
+  container.append(meter, text);
+
+  return container;
 };
 
 const checkURL = (url: URL): boolean =>
@@ -66,8 +69,7 @@ export class SearchResult extends HTMLElement {
     pageElement.className = 'label';
     pageElement.textContent = label;
 
-    this.replaceChildren(pageElement, excerpt, createScoreElement(Number(score)));
-
+    this.replaceChildren(pageElement, excerpt, createScoreElement(score));
     this.ariaLabel = `${page} ${score}pt`;
   }
 

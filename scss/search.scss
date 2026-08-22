@@ -54,7 +54,30 @@
         border-radius: 0.64rem
       }
 
-      .label{
+      .score {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 0.4rem;
+
+        meter {
+          width: 64%;
+          height: 0.24rem;
+
+          direction: rtl;
+          appearance: none;
+        }
+
+        span {
+          color: var(--fg);
+
+          font-family: var.$italic-font;
+          font-style: italic;
+          font-size: 0.6875rem;
+        }
+      }
+
+      .label {
         font-family: var.$italic-font;
         font-style: italic;
 
@@ -63,17 +86,6 @@
 
       .excerpt {
         padding-left: 1em;
-      }
-
-      .score {
-        display: flex;
-        justify-content: flex-end;
-
-        color: var(--search-score);
-
-        font-family: var.$italic-font;
-        font-style: italic;
-        font-size: 0.6875rem;
       }
     }
   }
