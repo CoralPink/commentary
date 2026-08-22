@@ -162,7 +162,7 @@ dependencies = [
 
 [[package]]
 name = "mdbook-footnote"
-version = "2.1.1"
+version = "2.2.0"
 dependencies = [
  "bumpalo",
  "clap",
