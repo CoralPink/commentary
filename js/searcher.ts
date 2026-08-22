@@ -1,4 +1,5 @@
 import { ROOT_PATH } from './constants.ts';
+import { getSearchButton, getSearchPop, isSearchPopoverOpen } from './searchHelper.ts';
 import { SearchResult } from './searchResult.ts';
 
 import { loadStyleSheet } from './utils/css-loader.ts';
@@ -9,8 +10,6 @@ import toast from './utils/toast.ts';
 
 // deno-lint-ignore no-sloppy-imports
 import initWasm, { Finder } from './wasm_book.js';
-
-export const TARGET_SEARCH_BUTTON = 'search-btn';
 
 const FILE_STYLE_SEARCH = 'css/search.css';
 const FILE_INDEX = 'searchindex.json';
@@ -23,25 +22,12 @@ const RESULT_HEADER_LEN_POSITION = 0;
 const RESULT_HTML_LEN_POSITION = LENGTH_FIELD_SIZE * 1;
 const RESULT_DATA_START = LENGTH_FIELD_SIZE * 2;
 
-const POP_ID = 'search-pop';
-
-let elmSearch: HTMLElement;
-let elmPop: HTMLElement;
 let elmSearchBar: HTMLInputElement;
 let elmHeader: HTMLElement;
 let elmResults: HTMLElement;
 
 let finder: Finder;
-let searchAbort: AbortController | null;
-
-export const getSearchPopElement = (): HTMLElement | null => document.getElementById(POP_ID);
-
-// NOTE: I'd rather not, but I have to use `getElementById` every time.
-export const isSearchPopoverOpen = (): boolean => getSearchPopElement()?.matches(':popover-open') ?? false;
-
-export const focusSearchBar = (): void => {
-  elmSearchBar.focus();
-};
+let searchAbort: AbortController | null = null;
 
 const showResults = (): void => {
   const bytes = finder.search(elmSearchBar.value);
@@ -64,10 +50,13 @@ const showResults = (): void => {
 };
 
 export const hiddenSearch = (): void => {
-  elmPop.hidePopover();
-  elmSearch.ariaExpanded = 'false';
+  getSearchPop()?.hidePopover();
+  getSearchButton()!.ariaExpanded = 'false';
 
-  searchAbort?.abort();
+  if (searchAbort === null) {
+    return;
+  }
+  searchAbort.abort();
   searchAbort = null;
 };
 
@@ -101,8 +90,14 @@ const showSearch = (): void => {
     return;
   }
 
-  elmSearch.ariaExpanded = 'true';
+  getSearchButton()!.ariaExpanded = 'true';
 
+  const elmPop = getSearchPop();
+
+  if (elmPop === null) {
+    console.error('searcher: popup element not found');
+    return;
+  }
   elmPop.showPopover();
   elmSearchBar.select();
 
@@ -148,13 +143,18 @@ const bootSearch = async (): Promise<void> => {
   document.removeEventListener('keyup', bootSearchFromKey);
 
   const elements = {
-    pop: document.getElementById(POP_ID),
     searchBar: document.getElementById('searchbar'),
     header: document.getElementById('results-header'),
     results: document.getElementById('searchresults'),
+    button: getSearchButton(),
   };
 
-  if (elements.pop === null || elements.searchBar === null || elements.header === null || elements.results === null) {
+  if (
+    elements.searchBar === null ||
+    elements.header === null ||
+    elements.results === null ||
+    elements.button === null
+  ) {
     throw new Error('Required DOM elements not found');
   }
 
@@ -162,13 +162,14 @@ const bootSearch = async (): Promise<void> => {
     throw new Error('searchbar element is not an input element');
   }
 
-  elmPop = elements.pop;
   elmSearchBar = elements.searchBar;
   elmHeader = elements.header;
   elmResults = elements.results;
 
-  elmSearch.removeEventListener('click', bootSearch);
-  elmSearch.addEventListener('click', showSearch, { passive: true });
+  elements.button.removeEventListener('click', bootSearch);
+  elements.button.addEventListener('click', showSearch, {
+    passive: true,
+  });
 
   document.addEventListener('keyup', startSearchfromKey, {
     passive: true,
@@ -190,7 +191,7 @@ const bootSearch = async (): Promise<void> => {
     await cssPromise;
     showSearch();
   } catch (e: unknown) {
-    elmSearch.style.display = 'none';
+    elements.button.style.display = 'none';
 
     console.error(`Error during initialization: ${e}`);
     toast.error('Search is currently unavailable.');
@@ -208,15 +209,14 @@ const bootSearchFromKey = (ev: KeyboardEvent): void => {
 };
 
 export const startupSearch = (): void => {
-  const button = document.getElementById(TARGET_SEARCH_BUTTON);
+  const button = getSearchButton();
 
-  if (!(button instanceof HTMLButtonElement)) {
+  if (button === null) {
     toast.error('Search is currently unavailable.');
     return;
   }
-  elmSearch = button;
 
-  elmSearch.addEventListener('click', bootSearch, {
+  button.addEventListener('click', bootSearch, {
     once: true,
     passive: true,
   });
