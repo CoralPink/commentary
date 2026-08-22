@@ -1,5 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, type MockedFunction, vi } from 'vitest';
-import { startupSearch, TARGET_SEARCH_BUTTON } from '../searcher.ts';
+import { startupSearch } from '../searcher.ts';
+import { getSearchButton} from '../searchHelper.ts';
 
 // Mock modules before imports
 vi.mock('../utils/css-loader.ts', () => ({
@@ -93,7 +94,7 @@ describe('Searcher Module', () => {
 
   describe('startupSearch', () => {
     it('should initialize search with correct event listeners on search button', () => {
-      const searchButton = document.getElementById(TARGET_SEARCH_BUTTON);
+      const searchButton = getSearchButton();
       const mockAddEventListener = vi.fn();
       searchButton!.addEventListener = mockAddEventListener;
 
@@ -113,7 +114,7 @@ describe('Searcher Module', () => {
     });
 
     it('should handle missing search toggle element gracefully', () => {
-      const searchButton = document.getElementById(TARGET_SEARCH_BUTTON);
+      const searchButton = getSearchButton();
       searchButton?.remove();
 
       expect(() => startupSearch()).not.toThrow();
@@ -140,7 +141,7 @@ describe('Searcher Module', () => {
 
       startupSearch();
 
-      const searchButton = document.getElementById(TARGET_SEARCH_BUTTON);
+      const searchButton = getSearchButton();
       searchButton?.click();
 
       await vi.runAllTimersAsync();

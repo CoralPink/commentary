@@ -1,4 +1,4 @@
-import { isSearchPopoverOpen } from './searcher.ts';
+import { isSearchPopoverOpen } from './searchHelper.ts';
 // deno-lint-ignore no-sloppy-imports
 import initWasm, { get_match_sentences } from './wasm_book.js';
 import { createAbortScope } from './utils/abort-scope.ts';
