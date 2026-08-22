@@ -16,6 +16,10 @@
   padding: 1rem;
   border-radius: 0.72rem;
 
+  &::backdrop {
+    backdrop-filter: blur(4px);
+  }
+
   &>#searchbar {
     @include utils.responsive-input(1rem, 0.75rem);
 
