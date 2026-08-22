@@ -1,6 +1,6 @@
 import { ROOT_PATH } from './constants.ts';
 
-import { isSearchPopoverOpen } from './searcher.ts';
+import { isSearchPopoverOpen } from './searchHelper.ts';
 
 import { loadStyleSheet, unloadStyleSheet } from './utils/css-loader.ts';
 import { readLocalStorage, writeLocalStorage } from './utils/storage.ts';

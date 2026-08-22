@@ -1,6 +1,6 @@
 import { CONTENT_READY, ROOT_PATH } from './constants.ts';
 import { initMark } from './mark.ts';
-import { startupSearch } from './searcher.ts';
+import { hiddenSearch, startupSearch } from './searcher.ts';
 import { bootSidebar } from './sidebar.ts';
 import { bootTableOfContents, initTableOfContents } from './table-of-contents.ts';
 
@@ -124,6 +124,8 @@ const initExtensions = (html: HTMLElement): void => {
 
       disposeAll();
       initExtensions(article);
+
+      hiddenSearch();
     },
     { passive: true },
   );

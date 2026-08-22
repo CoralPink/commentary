@@ -1,6 +1,6 @@
 import { BREAKPOINT_UI_WIDE, CONTENT_READY } from './constants.ts';
 import pagelist from './pagelist.ts';
-import { isSearchPopoverOpen } from './searcher.ts';
+import { isSearchPopoverOpen } from './searchHelper.ts';
 
 import toast from './utils/toast.ts';
 
