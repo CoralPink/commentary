@@ -131,7 +131,7 @@ jobs:
           cache-shared-key: ${{ env.WASM_SHARED_KEY }}
 
       - name: Install Wasm Pack
-        uses: taiki-e/install-action@288e746965032cfcc232e09af2daf5f23c14d780 # v2
+        uses: taiki-e/install-action@6cd13508893c0e7eab5f273c2575d3859bd7229a # v2
         with:
           tool: wasm-pack
 
@@ -167,7 +167,7 @@ jobs:
           cache-shared-key: ${{ env.WASM_SHARED_KEY }}
 
       - name: Install Wasm Bindgen
-        uses: taiki-e/install-action@288e746965032cfcc232e09af2daf5f23c14d780 # v2
+        uses: taiki-e/install-action@6cd13508893c0e7eab5f273c2575d3859bd7229a # v2
         with:
           tool: wasm-bindgen-cli@${{ env.WASM_BINDGEN_VERSION }}
 
