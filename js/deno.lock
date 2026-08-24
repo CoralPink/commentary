@@ -1,10 +1,10 @@
 {
   "version": "5",
   "specifiers": {
-    "npm:@vitest/coverage-v8@4.1.11": "4.1.11_vitest@4.1.11_happy-dom@20.11.6",
+    "npm:@vitest/coverage-v8@4.1.11": "4.1.11_vitest@4.1.11_happy-dom@20.11.6_vite@8.2.2",
     "npm:happy-dom@20.11.6": "20.11.6",
     "npm:rolldown@1.2.5": "1.2.5",
-    "npm:vitest@4.1.11": "4.1.11_@vitest+coverage-v8@4.1.11_happy-dom@20.11.6"
+    "npm:vitest@4.1.11": "4.1.11_@vitest+coverage-v8@4.1.11_happy-dom@20.11.6_vite@8.2.2"
   },
   "npm": {
     "@babel/helper-string-parser@7.29.7": {
@@ -155,7 +155,7 @@
         "@types/node"
       ]
     },
-    "@vitest/coverage-v8@4.1.11_vitest@4.1.11_happy-dom@20.11.6": {
+    "@vitest/coverage-v8@4.1.11_vitest@4.1.11_happy-dom@20.11.6_vite@8.2.2": {
       "integrity": "sha512-8MVGEFnJIcdGjcbfKmeq8z0pZHH0JlVtoVZH9Q/qwUp6wyFnEJUBMrw9DCaj+ra3vShGmhavjalMIhPNxZAUcw==",
       "dependencies": [
         "@bcoe/v8-coverage",
@@ -182,7 +182,7 @@
         "tinyrainbow"
       ]
     },
-    "@vitest/mocker@4.1.11_vite@8.2.1": {
+    "@vitest/mocker@4.1.11_vite@8.2.2": {
       "integrity": "sha512-2XJVD55d1o5AZous5CCGKS74g/riOj9odEt2bQpCVZeblHyHdnMeFl4jl0XjU21stf4mbjUkew2eXQZt65g5CQ==",
       "dependencies": [
         "@vitest/spy",
@@ -505,12 +505,13 @@
     "undici-types@8.3.0": {
       "integrity": "sha512-j375ScV60dom+YkPFIfTLcOiPxkN/buHz5GobjLhixFuANaNs3C9l4GmrWqejgXWJ7BbJcFYpTEUkS1Ge8bpZQ=="
     },
-    "vite@8.2.1": {
-      "integrity": "sha512-EU/eS7BH3XROHh2YnBefjM6DBKA6ZeMZEYQbj7NLWg5wHYlhB8B/Mayd5XsgWq+NFYccDOTemRpdETWR6Ka/lw==",
+    "vite@8.2.2": {
+      "integrity": "sha512-cFKLV/PRgAUlIRm5WjMjJ86jrftzpqcgH+Us+DS8mI3CDNiH30Whrz8uHL3+MOLPAgqbMBAqWdAHAphOAM+z/Q==",
       "dependencies": [
         "lightningcss",
         "picomatch",
         "postcss",
+        "rolldown",
         "tinyglobby"
       ],
       "optionalDependencies": [
@@ -518,7 +519,7 @@
       ],
       "bin": true
     },
-    "vitest@4.1.11_@vitest+coverage-v8@4.1.11_happy-dom@20.11.6": {
+    "vitest@4.1.11_@vitest+coverage-v8@4.1.11_happy-dom@20.11.6_vite@8.2.2": {
       "integrity": "sha512-fhACrNXUidIbGSBr5FlbuBkO7VWC1ZyLl0DO4CU2DrQoAPxX84Ysxs+HeGQpii5lZWV1Q4gBZTTu49mF+A6Edw==",
       "dependencies": [
         "@vitest/coverage-v8",
