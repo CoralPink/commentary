@@ -632,12 +632,7 @@ No one alerted you
     <video width="1280" height="720" data-poster="img/itabashi-hanabi-thumbnail.avif">
       <source src="img/itabashi-hanabi.webm" type="video/webm">
     </video>
-    <video width="1280" height="720" data-poster="img/the_final_countdown-thumbnail.avif">
-      <source src="img/the_final_countdown.webm" type="video/webm">
-    </video>
-    <video width="1280" height="720" data-poster="img/pomp_and_circumstance_march_no1-thumbnail.avif">
-      <source src="img/pomp_and_circumstance_march_no1.webm" type="video/webm">
-    </video>
+    <div class="youtube-video" data-id="08yn4r9KetQ"></div>
   </div>
 </div>
 

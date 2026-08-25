@@ -181,18 +181,7 @@ vim.keymap.set('n', '<Down>', '<C-e>')
 
 <div class="slider">
   <div class="media">
-    <video width="1280" height="720" data-poster="img/kecak-part1-thumbnail.avif">
-      <source src="img/kecak-part1.webm" type="video/webm">
-    </video>
-    <video width="1280" height="720" data-poster="img/kecak-part2-thumbnail.avif">
-      <source src="img/kecak-part2.webm" type="video/webm">
-    </video>
-    <video width="1280" height="720" data-poster="img/kecak-part3-thumbnail.avif">
-      <source src="img/kecak-part3.webm" type="video/webm">
-    </video>
-    <video width="1280" height="720" data-poster="img/kecak-part4-thumbnail.avif">
-      <source src="img/kecak-part4.webm" type="video/webm">
-    </video>
+    <div class="youtube-video" data-id="8QQ5zd9BLck"></div>
     <div class="ft-definition">
       ![ramayana](img/ramayana.avif)
       このケチャは、रामायणम्(Ramayana) 3・5・6・6 巻から抽出されたダイジェスト版であり、結末までを語っていない。
@@ -217,9 +206,7 @@ vim.keymap.set('n', ':', ';')
 
 <kbd>:</kbd>は説明が長くなるので省略してしまうんですが、<kbd>;</kbd>でコマンドモードに入れるようになります。
 
-<video width="1280" height="720" data-poster="img/kyobashi2025-kanda2024-mix-thumbnail.avif">
-  <source src="img/kyobashi2025-kanda2024-mix.webm" type="video/webm">
-</video>
+<div class="youtube-video" data-id="xuU_PqXaiqg"></div>
 
 ### Disable
 
@@ -304,11 +291,9 @@ vim.keymap.set({ 'n', 'v' }, 'p', 'p`]')
 
 <div class="slider">
   <div class="media">
+    <div class="youtube-video" data-id="gMAbARgRTes"></div>
     <video width="1280" height="720" data-poster="img/Ko-hiông-thumbnail.avif">
       <source src="img/Ko-hiông.webm" type="video/webm">
-    </video>
-    <video width="1280" height="720" data-poster="img/Ko-hiông2026-thumbnail.avif">
-      <source src="img/Ko-hiông2026.webm" type="video/webm">
     </video>
   </div>
 </div>
