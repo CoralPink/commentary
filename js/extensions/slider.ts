@@ -22,19 +22,24 @@ const SCROLL_INTO_VIEW_OPTIONS: ScrollIntoViewOptions = {
 const VARIABLES_SLIDE_WIDTH = '--slide-width';
 
 type Direction = typeof ID_PREV | typeof ID_NEXT;
-type CompatibleMedia = HTMLVideoElement | HTMLImageElement;
+type CompatibleMedia = HTMLDivElement | HTMLImageElement | HTMLVideoElement;
 
 const extractName = (s: string): string => s.match(/\/([^/?#]+?)(\.[^/.#?]+)?(?:[?#]|$)/)?.[1] ?? '';
 
 const getMediaWidth = (media: CompatibleMedia): number =>
-  media instanceof HTMLImageElement ? media.naturalWidth : media.width;
+  media instanceof HTMLImageElement ? media.naturalWidth : 1920;
 
 const getThumbnail = (media: CompatibleMedia): string => {
   if (media instanceof HTMLImageElement) {
     return media.src;
   }
 
-  return media.dataset['poster'] || media.poster || '';
+  if (media.matches('.youtube-video')) {
+    const id = media.dataset['id'];
+    return id ? `https://img.youtube.com/vi/${id}/maxresdefault.jpg` : '';
+  }
+
+  return media instanceof HTMLVideoElement ? media.dataset['poster'] || media.poster : '';
 };
 
 class Slider {
@@ -56,7 +61,7 @@ class Slider {
       return;
     }
 
-    this.medias = Array.from(mediaContainer.querySelectorAll<CompatibleMedia>('video, img'));
+    this.medias = Array.from(mediaContainer.querySelectorAll<CompatibleMedia>('video, img, .youtube-video'));
 
     if (this.medias.length === 0) {
       console.warn('No video or image elements found inside the media container.');
