@@ -798,9 +798,7 @@ MVP とは、俺のことだ！！
 
 <div class="slider">
   <div class="media">
-    <video width="1280" height="720" data-poster="img/tokyo-yosakoi-enya-thumbnail.avif">
-      <source src="img/tokyo-yosakoi-enya.webm" type="video/webm">
-    </video>
+    <div class="youtube-video" data-id="voDlrN2-gGI"></div>
     <video width="1280" height="720" data-poster="img/fuchu-ohayashi-thumbnail.avif">
       <source src="img/fuchu-ohayashi.webm" type="video/webm">
     </video>
