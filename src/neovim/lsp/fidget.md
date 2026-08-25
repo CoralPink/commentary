@@ -167,9 +167,7 @@ The following table shows the default options for this plugin:
     <video width="1280" height="720" data-poster="img/awa-ogikubo-thumbnail.avif">
       <source src="img/awa-ogikubo.webm" type="video/webm">
     </video>
-    <video width="1280" height="720" data-poster="img/awa-kichijoji-thumbnail.avif">
-      <source src="img/awa-kichijoji.webm" type="video/webm">
-    </video>
+    <div class="youtube-video" data-id="X5whQeE28gs"></div>
     <video width="1280" height="720" data-poster="img/awa-kagurazaka-thumbnail.avif">
       <source src="img/awa-kagurazaka.webm" type="video/webm">
     </video>

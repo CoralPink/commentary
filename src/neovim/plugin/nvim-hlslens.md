@@ -193,12 +193,8 @@ Vim では、quickfix コマンドはより一般的に、ファイル内の位�
 
 <div class="slider">
   <div class="media">
-    <video width="1280" height="720" data-poster="img/jimori-samba-ongakutai-2024-thumbnail.avif">
-      <source src="img/jimori-samba-ongakutai-2024.webm" type="video/webm">
-    </video>
-    <video width="1280" height="720" data-poster="img/gres-barbaros-2025-thumbnail.avif">
-      <source src="img/gres-barbaros-2025.webm" type="video/webm">
-    </video>
+    <div class="youtube-video" data-id="Yeo1KETlf3A"></div>
+    <div class="youtube-video" data-id="2Ud7YbaXZIA"></div>
   </div>
 </div>
 
