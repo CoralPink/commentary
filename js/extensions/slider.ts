@@ -2,13 +2,14 @@ import type { Disposer } from './types.ts';
 
 const CLASS_ARROW = 'arrow';
 const CLASS_CONTROLS = 'controls';
-
 const CLASS_ACTIVE = 'active';
 
 const ID_INDICATORS = 'indicators';
-
 const ID_PREV = 'prev';
 const ID_NEXT = 'next';
+
+const SELECTOR_YOUTUBE_VIDEO = '.youtube-video';
+const SELECTOR_MEDIA = `video, img, ${SELECTOR_YOUTUBE_VIDEO}`;
 
 const BUTTON_TEXT_PREV = '◀';
 const BUTTON_TEXT_NEXT = '▶';
@@ -20,21 +21,34 @@ const SCROLL_INTO_VIEW_OPTIONS: ScrollIntoViewOptions = {
 };
 
 const VARIABLES_SLIDE_WIDTH = '--slide-width';
+const DEFAULT_MEDIA_WIDTH = 1920;
 
 type Direction = typeof ID_PREV | typeof ID_NEXT;
 type CompatibleMedia = HTMLDivElement | HTMLImageElement | HTMLVideoElement;
 
 const extractName = (s: string): string => s.match(/\/([^/?#]+?)(\.[^/.#?]+)?(?:[?#]|$)/)?.[1] ?? '';
 
-const getMediaWidth = (media: CompatibleMedia): number =>
-  media instanceof HTMLImageElement ? media.naturalWidth : 1920;
+const getMediaWidth = (media: CompatibleMedia): number => {
+  if (media instanceof HTMLImageElement) {
+    return media.naturalWidth;
+  }
+
+  if (media instanceof HTMLVideoElement) {
+    return media.width;
+  }
+
+  if (media.matches(SELECTOR_YOUTUBE_VIDEO)) {
+    return DEFAULT_MEDIA_WIDTH;
+  }
+  return 0;
+};
 
 const getThumbnail = (media: CompatibleMedia): string => {
   if (media instanceof HTMLImageElement) {
     return media.src;
   }
 
-  if (media.matches('.youtube-video')) {
+  if (media.matches(SELECTOR_YOUTUBE_VIDEO)) {
     const id = media.dataset['id'];
     return id ? `https://img.youtube.com/vi/${id}/maxresdefault.jpg` : '';
   }
@@ -61,7 +75,7 @@ class Slider {
       return;
     }
 
-    this.medias = Array.from(mediaContainer.querySelectorAll<CompatibleMedia>('video, img, .youtube-video'));
+    this.medias = Array.from(mediaContainer.querySelectorAll<CompatibleMedia>(SELECTOR_MEDIA));
 
     if (this.medias.length === 0) {
       console.warn('No video or image elements found inside the media container.');
