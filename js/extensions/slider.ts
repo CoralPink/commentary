@@ -22,6 +22,7 @@ const SCROLL_INTO_VIEW_OPTIONS: ScrollIntoViewOptions = {
 
 const VARIABLES_SLIDE_WIDTH = '--slide-width';
 const DEFAULT_MEDIA_WIDTH = 1920;
+const YOUTUBE_THUMBNAIL = 'mqdefault.jpg';
 
 type Direction = typeof ID_PREV | typeof ID_NEXT;
 type CompatibleMedia = HTMLDivElement | HTMLImageElement | HTMLVideoElement;
@@ -50,7 +51,7 @@ const getThumbnail = (media: CompatibleMedia): string => {
 
   if (media.matches(SELECTOR_YOUTUBE_VIDEO)) {
     const id = media.dataset['id'];
-    return id ? `https://img.youtube.com/vi/${id}/maxresdefault.jpg` : '';
+    return id ? `https://img.youtube.com/vi/${id}/${YOUTUBE_THUMBNAIL}` : '';
   }
 
   return media instanceof HTMLVideoElement ? media.dataset['poster'] || media.poster : '';
