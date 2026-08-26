@@ -73,7 +73,7 @@ const searchbarKeydown = (ev: KeyboardEvent): void => {
     return;
   }
 
-  const result = helper.getResultsHeader().querySelector('search-result');
+  const result = helper.getResultsBody().querySelector('search-result');
 
   if (!(result instanceof SearchResult)) {
     return;
