@@ -1,5 +1,5 @@
 import { updateMark } from './mark.ts';
-import { focusSearchBar, getSearchPop } from './searchHelper.ts';
+import { getSearchBar } from './searchHelper.ts';
 
 import { setHTML } from './utils/html-sanitizer.ts';
 
@@ -100,11 +100,7 @@ export class SearchResult extends HTMLElement {
     this.ariaSelected = 'true';
     currentFocus = this;
 
-    const pop = getSearchPop();
-
-    if (pop !== null) {
-      pop.ariaActiveDescendantElement = this;
-    }
+    getSearchBar().ariaActiveDescendantElement = this;
 
     return true;
   }
@@ -133,9 +129,8 @@ export class SearchResult extends HTMLElement {
         if (previous !== null) {
           this.moveFocus(previous);
         } else {
-          focusSearchBar();
+          getSearchBar().focus();
         }
-
         break;
       }
 
