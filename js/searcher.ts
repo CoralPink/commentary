@@ -1,5 +1,5 @@
 import { ROOT_PATH } from './constants.ts';
-import { getSearchButton, getSearchPop, isSearchPopoverOpen } from './searchHelper.ts';
+import * as helper from './searchHelper.ts';
 import { SearchResult } from './searchResult.ts';
 
 import { loadStyleSheet } from './utils/css-loader.ts';
@@ -22,36 +22,34 @@ const RESULT_HEADER_LEN_POSITION = 0;
 const RESULT_HTML_LEN_POSITION = LENGTH_FIELD_SIZE * 1;
 const RESULT_DATA_START = LENGTH_FIELD_SIZE * 2;
 
-let elmSearchBar: HTMLInputElement;
-let elmHeader: HTMLElement;
-let elmResults: HTMLElement;
-
 let finder: Finder;
 let searchAbort: AbortController | null = null;
 
 const showResults = (): void => {
-  const bytes = finder.search(elmSearchBar.value);
+  const bytes = finder.search(helper.getSearchBar().value);
   const dv = new DataView(bytes.buffer);
 
   const headerLen = dv.getUint32(RESULT_HEADER_LEN_POSITION, true);
   const htmlLen = dv.getUint32(RESULT_HTML_LEN_POSITION, true);
 
-  elmHeader.textContent = new TextDecoder().decode(bytes.subarray(RESULT_DATA_START, RESULT_DATA_START + headerLen));
+  helper.getResultsHeader().textContent = new TextDecoder().decode(
+    bytes.subarray(RESULT_DATA_START, RESULT_DATA_START + headerLen),
+  );
 
   if (htmlLen === 0) {
-    elmResults.textContent = '';
+    helper.getResultsBody().textContent = '';
     return;
   }
 
   const htmlStart = RESULT_DATA_START + headerLen;
   const htmlEnd = htmlStart + htmlLen;
 
-  setHTML(elmResults, new TextDecoder().decode(bytes.subarray(htmlStart, htmlEnd)));
+  setHTML(helper.getResultsBody(), new TextDecoder().decode(bytes.subarray(htmlStart, htmlEnd)));
 };
 
 export const hiddenSearch = (): void => {
-  getSearchPop()?.hidePopover();
-  getSearchButton()!.ariaExpanded = 'false';
+  helper.getSearchPop().hidePopover();
+  helper.getSearchButton().ariaExpanded = 'false';
 
   if (searchAbort === null) {
     return;
@@ -71,11 +69,11 @@ const closedPopover = (ev: Event): void => {
 const debounceSearchInput = debounce((_: Event) => showResults(), DEBOUNCE_DELAY_MS);
 
 const searchbarKeydown = (ev: KeyboardEvent): void => {
-  if (ev.key !== 'ArrowDown') {
+  if (!(ev.key === 'ArrowDown' || ev.key === 'Enter')) {
     return;
   }
 
-  const result = elmResults.querySelector('search-result');
+  const result = helper.getResultsBody().querySelector('search-result');
 
   if (!(result instanceof SearchResult)) {
     return;
@@ -86,19 +84,16 @@ const searchbarKeydown = (ev: KeyboardEvent): void => {
 };
 
 const showSearch = (): void => {
-  if (isSearchPopoverOpen()) {
+  if (helper.isSearchPopoverOpen()) {
     return;
   }
 
-  getSearchButton()!.ariaExpanded = 'true';
+  helper.getSearchButton()!.ariaExpanded = 'true';
 
-  const elmPop = getSearchPop();
-
-  if (elmPop === null) {
-    console.error('searcher: popup element not found');
-    return;
-  }
+  const elmPop = helper.getSearchPop();
   elmPop.showPopover();
+
+  const elmSearchBar = helper.getSearchBar();
   elmSearchBar.select();
 
   searchAbort = new AbortController();
@@ -142,32 +137,10 @@ const bootSearch = async (): Promise<void> => {
 
   document.removeEventListener('keyup', bootSearchFromKey);
 
-  const elements = {
-    searchBar: document.getElementById('searchbar'),
-    header: document.getElementById('results-header'),
-    results: document.getElementById('searchresults'),
-    button: getSearchButton(),
-  };
+  const button = helper.getSearchButton();
 
-  if (
-    elements.searchBar === null ||
-    elements.header === null ||
-    elements.results === null ||
-    elements.button === null
-  ) {
-    throw new Error('Required DOM elements not found');
-  }
-
-  if (!(elements.searchBar instanceof HTMLInputElement)) {
-    throw new Error('searchbar element is not an input element');
-  }
-
-  elmSearchBar = elements.searchBar;
-  elmHeader = elements.header;
-  elmResults = elements.results;
-
-  elements.button.removeEventListener('click', bootSearch);
-  elements.button.addEventListener('click', showSearch, {
+  button.removeEventListener('click', bootSearch);
+  button.addEventListener('click', showSearch, {
     passive: true,
   });
 
@@ -191,7 +164,7 @@ const bootSearch = async (): Promise<void> => {
     await cssPromise;
     showSearch();
   } catch (e: unknown) {
-    elements.button.style.display = 'none';
+    button.style.display = 'none';
 
     console.error(`Error during initialization: ${e}`);
     toast.error('Search is currently unavailable.');
@@ -209,14 +182,7 @@ const bootSearchFromKey = (ev: KeyboardEvent): void => {
 };
 
 export const startupSearch = (): void => {
-  const button = getSearchButton();
-
-  if (button === null) {
-    toast.error('Search is currently unavailable.');
-    return;
-  }
-
-  button.addEventListener('click', bootSearch, {
+  helper.getSearchButton().addEventListener('click', bootSearch, {
     once: true,
     passive: true,
   });
