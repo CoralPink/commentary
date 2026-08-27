@@ -6,6 +6,10 @@
     "sass": "npm:sass@1.103.1"
   },
   "tasks": {
-    "build": "deno run --allow-read --allow-write --allow-env --allow-ffi build.ts"
+    "build": {
+      "command": "deno run --allow-read --allow-write --allow-env --allow-ffi build.ts",
+      "files": ["src/**/*.scss", "build.ts", "deno.jsonc", "deno.lock", "rolldown.config.mts"],
+      "output": ["dist/"]
+    }
   }
 }
