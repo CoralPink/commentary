@@ -8,7 +8,7 @@
   "tasks": {
     "build": {
       "command": "deno run --allow-read --allow-write --allow-env --allow-ffi build.ts",
-      "files": ["src/**/*.scss", "build.ts", "deno.jsonc", "deno.lock", "rolldown.config.mts"],
+      "files": ["**/*.scss", "build.ts", "deno.jsonc", "deno.lock"],
       "output": ["dist/"]
     }
   }
