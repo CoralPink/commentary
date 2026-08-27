@@ -13,7 +13,23 @@
     ]
   },
   "tasks": {
-    "bundle": "rolldown -c",
+    "bundle": {
+      "command": "rolldown -c",
+      "files": [
+        "*.js",
+        "*.ts",
+        "*.d.ts",
+        "extensions/**/*.ts",
+        "types/**/*.ts",
+        "types/**/*.d.ts",
+        "utils/**/*.ts",
+        "webworker/**/*.ts",
+        "deno.jsonc",
+        "deno.lock",
+        "rolldown.config.mts"
+      ],
+      "output": ["dist/"]
+    },
     "serve": "deno run --allow-net --allow-read --allow-sys=networkInterfaces jsr:@std/http/file-server ../",
 
     "test": "vitest",
