@@ -14,7 +14,7 @@
     "jsdom": "npm:jsdom@30.0.1",
     "js-beautify": "npm:js-beautify@2.0.3",
     "path": "jsr:@std/path@1.1.6",
-    "p-limit": "npm:p-limit@7.3.1"
+    "p-limit": "npm:p-limit@7.3.2"
   },
   "tasks": {
     "content": "deno run --allow-read --allow-write content/main.ts $DEBUG",
