@@ -22,12 +22,7 @@
 }}
 ```
 
-<div class="slider">
-  <div class="media">
-    <div class="youtube-video" data-id="iIDpZYMdhOE"></div>
-    <div class="youtube-video" data-id="2JF6Cdtoseg"></div>
-  </div>
-</div>
+<div class="youtube-video" data-id="iIDpZYMdhOE"></div>
 
 舟を出せ❗いざ鬼退治❗❗
 
