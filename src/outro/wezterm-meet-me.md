@@ -526,7 +526,7 @@ They bought and sold you
 
 |||
 |:---:|:---:|
-|**before**|![decorations](../wezterm/img/decorations.avif)
+|**before**|![decorations](../wezterm/img/decorations.webp)
 |**after**|![integrated_buttons](img/integrated_buttons.avif)|
 
 このサイトでも、もう散々この状態でスクリーンショットを載せてるんですけどね❗

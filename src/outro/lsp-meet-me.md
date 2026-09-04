@@ -24,12 +24,8 @@
 
 <div class="slider">
   <div class="media">
-    <video width="1280" height="720" data-poster="img/amai-kioku-thumbnail.avif">
-      <source src="img/amai-kioku.webm" type="video/webm">
-    </video>
-    <video width="1280" height="720" data-poster="img/kirameku-kimochi-thumbnail.avif">
-      <source src="img/kirameku-kimochi.webm" type="video/webm">
-    </video>
+    <div class="youtube-video" data-id="iIDpZYMdhOE"></div>
+    <div class="youtube-video" data-id="2JF6Cdtoseg"></div>
   </div>
 </div>
 

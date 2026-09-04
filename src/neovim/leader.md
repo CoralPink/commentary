@@ -12,7 +12,7 @@ That’s made for you and me?
 このクラブの真ん中にいるのはだあれ？
 ```
 
-![Harmony in Color](img/harmony_in_color_part1-thumbnail.avif)
+![Tinker Bell](img/tinker-bell.avif)
 
 ## nvim_set_var
 
@@ -122,7 +122,7 @@ vim.api.nvim_set_var('mapleader', '\\')
 配列は勿論、形状とかも含めて、使用するキーボードに依るので一概には言えないんですが、
 「変えた方がいいよー」って人もいるし、「別に変えてないよー」って人もいます。
 
-![Electorical Parade Dreamlights](img/electorical_parade_dreamlights_part1-thumbnail.avif)
+![Blue Fairy](img/blue-fairy.avif)
 
 つまり自由ってことです❗
 
