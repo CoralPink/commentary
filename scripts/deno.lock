@@ -7,7 +7,7 @@
     "npm:highlight.js@11.12.0": "11.12.0",
     "npm:js-beautify@2.0.3": "2.0.3",
     "npm:jsdom@30.0.1": "30.0.1",
-    "npm:p-limit@7.3.1": "7.3.1"
+    "npm:p-limit@7.3.2": "7.3.2"
   },
   "jsr": {
     "@std/internal@1.0.14": {
@@ -338,8 +338,8 @@
         "boolbase"
       ]
     },
-    "p-limit@7.3.1": {
-      "integrity": "sha512-0trZaiG7Y7kN/Egy9a8j47t9osC0Tch4PaIWd9yGF6bvmlk7muExRvGNYb8sXBwEKMoNKsbNN9P8EefuQekE4Q==",
+    "p-limit@7.3.2": {
+      "integrity": "sha512-Ll0w3fU24vYpXoZmjjZIee6bJQDgG0oAyo1PdmFYI8UDwJJddaHAypxIH9avUu+t+lSsAwKVsb1jDCMIIChliw==",
       "dependencies": [
         "yocto-queue"
       ]
@@ -487,7 +487,7 @@
       "npm:highlight.js@11.12.0",
       "npm:js-beautify@2.0.3",
       "npm:jsdom@30.0.1",
-      "npm:p-limit@7.3.1"
+      "npm:p-limit@7.3.2"
     ]
   }
 }
