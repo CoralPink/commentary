@@ -10,9 +10,9 @@
 
 だからなんだって言われるとキツイんですが、一番わかりやすいところでフォントサイズの問題があって、画面のスケールが違いすぎて大きすぎたり小さすぎたりしてしまう...😢
 
-![img-4k](img/img-4k.avif)
+![img-4k](img/img-4k.webp)
 
-![img-mbp](img/img-mbp.avif)
+![img-mbp](img/img-mbp.webp)
 
 ```admonish note
 意図伝わりますでしょうか...😅
@@ -89,7 +89,7 @@ This action causes the equivalent of wezterm.emit(name, window, pane) to be call
 
 |素の状態|切り替えた状態|
 |:---:|:---:|
-|![font-big](img/font-big.avif)|![font-small](img/font-small.avif)|
+|![font-big](img/font-big.webp)|![font-small](img/font-small.webp)|
 
 ```admonish note
 さらにフォントサイズを大きくして説明用に誇張しています。が、まだなんか中途半端でしたね...😿
@@ -98,7 +98,7 @@ This action causes the equivalent of wezterm.emit(name, window, pane) to be call
 ```admonish success
 切り替えられましたね🤗
 
-<video width="1280" height="720" data-poster="img/kujira-no-senaka-thumbnail.avif">
+<video width="1280" height="720" data-poster="img/kujira-no-senaka-thumbnail.webp">
   <source src="img/kujira-no-senaka.webm" type="video/webm">
 </video>
 
