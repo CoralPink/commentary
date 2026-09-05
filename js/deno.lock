@@ -1,10 +1,10 @@
 {
   "version": "5",
   "specifiers": {
-    "npm:@vitest/coverage-v8@5.0.0": "5.0.0_vitest@5.0.0_happy-dom@20.12.0_vite@8.2.2",
-    "npm:happy-dom@20.12.0": "20.12.0",
+    "npm:@vitest/coverage-v8@5.0.0": "5.0.0_vitest@5.0.0_happy-dom@20.12.2",
+    "npm:happy-dom@20.12.2": "20.12.2",
     "npm:rolldown@1.2.7": "1.2.7",
-    "npm:vitest@5.0.0": "5.0.0_@vitest+coverage-v8@5.0.0_happy-dom@20.12.0_vite@8.2.2"
+    "npm:vitest@5.0.0": "5.0.0_@vitest+coverage-v8@5.0.0_happy-dom@20.12.2"
   },
   "npm": {
     "@babel/helper-string-parser@7.29.7": {
@@ -152,7 +152,7 @@
         "@types/node"
       ]
     },
-    "@vitest/coverage-v8@5.0.0_vitest@5.0.0_happy-dom@20.12.0_vite@8.2.2": {
+    "@vitest/coverage-v8@5.0.0_vitest@5.0.0_happy-dom@20.12.2": {
       "integrity": "sha512-toMg6PZGCIa/lQNCDoASrfb1ly4hsUKXFtFYC9kD4t78o5Y6LyNJU7AENt8eHPr3quYdxaxK7hj2mnbFfUk9NA==",
       "dependencies": [
         "@bcoe/v8-coverage",
@@ -243,8 +243,8 @@
       "os": ["darwin"],
       "scripts": true
     },
-    "happy-dom@20.12.0": {
-      "integrity": "sha512-7uMYJu2SEwwL8vVcKp0C0lnt6d2LSGGe+T+oY79PiCJNNSgFpbxW8n5KuzpDQvrU4mt+fYiK1+Jy7Z2v39YR6g==",
+    "happy-dom@20.12.2": {
+      "integrity": "sha512-vCIoyoKQ7vxLb9zRiTc7uKryHDG3YY6tXK96D6MuugFnV9xTbmiPGM/GYFn1q+fWoIBv53q4rBEgydDkQwnDZw==",
       "dependencies": [
         "@types/node",
         "@types/whatwg-mimetype",
@@ -436,7 +436,7 @@
       ],
       "bin": true
     },
-    "vitest@5.0.0_@vitest+coverage-v8@5.0.0_happy-dom@20.12.0_vite@8.2.2": {
+    "vitest@5.0.0_@vitest+coverage-v8@5.0.0_happy-dom@20.12.2": {
       "integrity": "sha512-gpsMNoRhMjMktVxPtstOH4/PJuPyovVaMDr4oDilXaGH1EcqM2OE96SoHT2VIQ6fTGtTjqmHDrEu2X9RQiXf8Q==",
       "dependencies": [
         "@types/chai",
@@ -480,7 +480,7 @@
   "workspace": {
     "dependencies": [
       "npm:@vitest/coverage-v8@5.0.0",
-      "npm:happy-dom@20.12.0",
+      "npm:happy-dom@20.12.2",
       "npm:rolldown@1.2.7",
       "npm:vitest@5.0.0"
     ]
