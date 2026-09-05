@@ -3,7 +3,7 @@
     "@std/fs": "jsr:@std/fs@1.0.24",
     "browserslist": "npm:browserslist@4.28.8",
     "lightningcss": "npm:lightningcss@1.33.0",
-    "sass": "npm:sass@1.103.1"
+    "sass": "npm:sass@1.104.0"
   },
   "tasks": {
     "build": {
