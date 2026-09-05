@@ -4,7 +4,7 @@
 
     "vitest": "npm:vitest@5.0.0",
     "@vitest/coverage-v8": "npm:@vitest/coverage-v8@5.0.0",
-    "happy-dom": "npm:happy-dom@20.12.2"
+    "happy-dom": "npm:happy-dom@20.13.2"
   },
   "minimumDependencyAge": {
     "age": "PT12H",
