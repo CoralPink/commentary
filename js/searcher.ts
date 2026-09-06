@@ -74,7 +74,7 @@ const closedPopover = (ev: Event): void => {
 const debounceSearchInput = debounce((_: Event) => showResults(), DEBOUNCE_DELAY_MS);
 
 const searchbarKeydown = (ev: KeyboardEvent): void => {
-  if (!(ev.key === 'ArrowDown' || ev.key === 'Enter')) {
+  if (ev.key !== 'ArrowDown') {
     return;
   }
 
