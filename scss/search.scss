@@ -20,7 +20,7 @@
     backdrop-filter: blur(4px);
   }
 
-  &>#searchbar {
+  #searchbar {
     @include utils.responsive-input(1rem, 0.75rem);
 
     padding: 0.7em 1.4em;
@@ -32,65 +32,65 @@
     background-color: var(--searchbar-bg);
   }
 
-  &>#results-header {
+  #results-header {
     font-weight: bold;
     padding: 1rem 0 0 0.3rem;
     color: var(--searchresults-header-fg);
   }
+}
 
-  ul {
-    padding-left: 0.4rem;
+results-list {
+  padding-left: 0.4rem;
 
-    search-result {
+  .result {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4em;
+
+    font-size: .94em;
+    padding: .5rem;
+
+    cursor: pointer;
+
+    &:focus {
+      outline: 2px solid var(--links);
+
+      background-color: var(--searchresults-li-bg);
+      border-radius: 0.64rem
+    }
+
+    .score {
       display: flex;
-      flex-direction: column;
-      gap: 0.4em;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 0.4rem;
 
-      font-size: .94em;
-      padding: .5rem;
+      meter {
+        width: 64%;
+        height: 0.24rem;
 
-      cursor: pointer;
-
-      &:focus {
-        outline: 2px solid var(--links);
-
-        background-color: var(--searchresults-li-bg);
-        border-radius: 0.64rem
+        direction: rtl;
+        appearance: none;
       }
 
-      .score {
-        display: flex;
-        align-items: center;
-        justify-content: flex-end;
-        gap: 0.4rem;
+      span {
+        color: var(--fg);
 
-        meter {
-          width: 64%;
-          height: 0.24rem;
-
-          direction: rtl;
-          appearance: none;
-        }
-
-        span {
-          color: var(--fg);
-
-          font-family: var.$italic-font;
-          font-style: italic;
-          font-size: 0.6875rem;
-        }
-      }
-
-      .label {
         font-family: var.$italic-font;
         font-style: italic;
-
-        color: var(--links);
+        font-size: 0.6875rem;
       }
+    }
 
-      .excerpt {
-        padding-left: 1em;
-      }
+    .label {
+      font-family: var.$italic-font;
+      font-style: italic;
+
+      color: var(--links);
+    }
+
+    .excerpt {
+      padding-left: 1em;
     }
   }
 }
