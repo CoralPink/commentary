@@ -211,7 +211,7 @@ impl HtmlBuilder {
     fn search_result(&mut self, hit: &SearchHit) {
         let doc = hit.el.doc();
 
-        self.open("search-result");
+        self.open("div role=\"option\"");
 
         self.buf.extend_from_slice(b" data-href=\"");
         self.safe_text(hit.root_path);
@@ -235,7 +235,7 @@ impl HtmlBuilder {
 
         self.write_highlighted_excerpt(doc.body(), hit.normalized_terms);
 
-        self.end("search-result");
+        self.end("div");
     }
 
     pub fn build_search_result(

@@ -9,8 +9,6 @@ const SCORE_BAR_LOW = 80;
 const SCORE_BAR_HIGH = 192;
 const SCORE_BAR_OPTIMUM = 240;
 
-let currentFocus: SearchResult | null = null;
-
 const createScoreElement = (score: string): HTMLDivElement => {
   const container = document.createElement('div');
   container.className = 'score';
@@ -21,7 +19,6 @@ const createScoreElement = (score: string): HTMLDivElement => {
   meter.low = SCORE_BAR_LOW;
   meter.high = SCORE_BAR_HIGH;
   meter.optimum = SCORE_BAR_OPTIMUM;
-
   meter.value = Math.min(Number(score), SCORE_BAR_MAX);
 
   const text = document.createElement('span');
@@ -35,46 +32,76 @@ const createScoreElement = (score: string): HTMLDivElement => {
 const checkURL = (url: URL): boolean =>
   url.origin + url.pathname === globalThis.location.origin + globalThis.location.pathname;
 
-export class SearchResult extends HTMLElement {
-  connectedCallback(): void {
-    this.tabIndex = 0;
-    this.role = 'option';
+export class SearchResults extends HTMLElement {
+  private currentFocus: HTMLElement | null = null;
+  private controller: AbortController | null = null;
 
-    this.render();
+  connectedCallback(): void {
+    if (this.controller !== null) {
+      return;
+    }
+
+    this.controller = new AbortController();
 
     this.addEventListener('keydown', this.handleKeydown, {
       passive: false,
+      signal: this.controller.signal,
     });
 
     this.addEventListener('click', this.handleClick, {
       passive: true,
+      signal: this.controller.signal,
     });
   }
 
-  private render(): void {
-    const page = this.dataset['page'];
-    const label = this.dataset['label'];
-    const score = this.dataset['score'];
+  disconnectedCallback(): void {
+    this.controller?.abort();
+    this.controller = null;
 
-    if (page === undefined || score === undefined || label === undefined) {
-      console.warn('SearchResult#render: invalid data');
-      return;
-    }
-
-    const excerpt = document.createElement('span');
-    excerpt.className = 'excerpt';
-    setHTML(excerpt, this.innerHTML);
-
-    const pageElement = document.createElement('span');
-    pageElement.className = 'label';
-    pageElement.textContent = label;
-
-    this.replaceChildren(pageElement, excerpt, createScoreElement(score));
-    this.ariaLabel = `${page} ${score}pt`;
+    this.currentFocus = null;
   }
 
-  private open(): void {
-    const href = this.dataset['href'];
+  public update(html: string): void {
+    const container = document.createElement('div');
+    setHTML(container, html);
+
+    const fragment = document.createDocumentFragment();
+
+    for (const result of container.children) {
+      if (!(result instanceof HTMLElement)) {
+        continue;
+      }
+
+      const page = result.dataset['page'];
+      const label = result.dataset['label'];
+      const score = result.dataset['score'];
+
+      if (page === undefined || label === undefined || score === undefined) {
+        console.warn('SearchResults#update: invalid data');
+        continue;
+      }
+
+      result.className = 'result';
+      result.tabIndex = 0;
+      result.role = 'option';
+      result.ariaLabel = `${page} ${score}pt`;
+
+      const excerpt = document.createElement('span');
+      excerpt.className = 'excerpt';
+      setHTML(excerpt, result.innerHTML);
+
+      const pageElement = document.createElement('span');
+      pageElement.className = 'label';
+      pageElement.textContent = label;
+
+      result.replaceChildren(pageElement, excerpt, createScoreElement(score));
+      fragment.append(result);
+    }
+    this.replaceChildren(fragment);
+  }
+
+  private open(result: HTMLElement): void {
+    const href = result.dataset['href'];
 
     if (href === undefined) {
       return;
@@ -89,42 +116,68 @@ export class SearchResult extends HTMLElement {
     navigation.navigate(url);
   }
 
-  private updateFocus(): boolean {
-    if (currentFocus === this) {
+  private updateFocus(result: HTMLElement): boolean {
+    if (this.currentFocus === result) {
       return false;
     }
 
-    if (currentFocus !== null) {
-      currentFocus.ariaSelected = null;
+    if (this.currentFocus !== null) {
+      this.currentFocus.ariaSelected = null;
     }
-    this.ariaSelected = 'true';
-    currentFocus = this;
 
-    getSearchBar().ariaActiveDescendantElement = this;
+    result.ariaSelected = 'true';
+    this.currentFocus = result;
+
+    getSearchBar().ariaActiveDescendantElement = result;
 
     return true;
   }
 
-  private moveFocus(elm: Element | null): void {
-    if (!(elm instanceof SearchResult)) {
+  public focusFirstResult(): void {
+    const result = this.querySelector('.result');
+
+    if (!(result instanceof HTMLElement)) {
       return;
     }
 
-    elm.focus();
-    elm.updateFocus();
+    result.focus();
+    this.updateFocus(result);
   }
 
-  private handleKeydown(ev: KeyboardEvent): void {
+  private moveFocus(result: Element | null): void {
+    if (!(result instanceof HTMLElement)) {
+      return;
+    }
+
+    if (!result.matches('[role="option"]')) {
+      return;
+    }
+
+    result.focus();
+    this.updateFocus(result);
+  }
+
+  private handleKeydown = (ev: KeyboardEvent): void => {
+    const result = ev.target;
+
+    if (!(result instanceof HTMLElement)) {
+      return;
+    }
+
+    if (!result.matches('[role="option"]')) {
+      return;
+    }
+
     switch (ev.key) {
       case 'ArrowDown':
         ev.preventDefault();
-        this.moveFocus(this.nextElementSibling);
+        this.moveFocus(result.nextElementSibling);
         break;
 
       case 'ArrowUp': {
         ev.preventDefault();
 
-        const previous = this.previousElementSibling;
+        const previous = result.previousElementSibling;
 
         if (previous !== null) {
           this.moveFocus(previous);
@@ -135,21 +188,43 @@ export class SearchResult extends HTMLElement {
       }
 
       case 'Enter':
-        this.open();
+        this.open(result);
         break;
     }
-  }
+  };
 
-  private handleClick(): void {
-    if (this.updateFocus()) {
+  private handleClick = (ev: MouseEvent): void => {
+    const target = ev.target;
+
+    if (!(target instanceof HTMLElement)) {
       return;
     }
 
-    this.open();
-  }
+    const result = target.closest('[role="option"]');
+
+    if (!(result instanceof HTMLElement) || !this.contains(result)) {
+      return;
+    }
+
+    if (this.updateFocus(result)) {
+      return;
+    }
+
+    this.open(result);
+  };
 
   public focusAndSelect(): void {
-    this.focus();
-    this.updateFocus();
+    const first = this.querySelector('[role="option"]');
+
+    if (!(first instanceof HTMLElement)) {
+      return;
+    }
+
+    first.focus();
+    this.updateFocus(first);
+  }
+
+  public clear(): void {
+    this.replaceChildren();
   }
 }
