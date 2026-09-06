@@ -67,7 +67,7 @@ export class SearchResults extends HTMLElement {
 
     const fragment = document.createDocumentFragment();
 
-    for (const result of container.children) {
+    for (const result of Array.from(container.children)) {
       if (!(result instanceof HTMLElement)) {
         continue;
       }
