@@ -1,6 +1,6 @@
 import { ROOT_PATH } from './constants.ts';
 import * as helper from './searchHelper.ts';
-import { SearchResults } from './searchResult.ts';
+import { SearchResults } from './searchResults.ts';
 
 import { loadStyleSheet } from './utils/css-loader.ts';
 import { fetchAndDecompress } from './utils/fetch.ts';
