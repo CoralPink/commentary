@@ -1,10 +1,9 @@
 import { ROOT_PATH } from './constants.ts';
 import * as helper from './searchHelper.ts';
-import { SearchResult } from './searchResult.ts';
+import { SearchResults } from './searchResults.ts';
 
 import { loadStyleSheet } from './utils/css-loader.ts';
 import { fetchAndDecompress } from './utils/fetch.ts';
-import { setHTML } from './utils/html-sanitizer.ts';
 import { debounce } from './utils/timing.ts';
 import toast from './utils/toast.ts';
 
@@ -22,6 +21,12 @@ const RESULT_HEADER_LEN_POSITION = 0;
 const RESULT_HTML_LEN_POSITION = LENGTH_FIELD_SIZE * 1;
 const RESULT_DATA_START = LENGTH_FIELD_SIZE * 2;
 
+const TARGET_RESULTS_HEADER = 'results-header';
+const TARGET_RESULTS_BODY = 'results-body';
+
+let searchButton: HTMLButtonElement;
+let resultsHeader: HTMLDivElement;
+let resultsList: SearchResults;
 let finder: Finder;
 let searchAbort: AbortController | null = null;
 
@@ -32,24 +37,24 @@ const showResults = (): void => {
   const headerLen = dv.getUint32(RESULT_HEADER_LEN_POSITION, true);
   const htmlLen = dv.getUint32(RESULT_HTML_LEN_POSITION, true);
 
-  helper.getResultsHeader().textContent = new TextDecoder().decode(
+  resultsHeader.textContent = new TextDecoder().decode(
     bytes.subarray(RESULT_DATA_START, RESULT_DATA_START + headerLen),
   );
 
   if (htmlLen === 0) {
-    helper.getResultsBody().textContent = '';
+    resultsList.clear();
     return;
   }
 
   const htmlStart = RESULT_DATA_START + headerLen;
   const htmlEnd = htmlStart + htmlLen;
 
-  setHTML(helper.getResultsBody(), new TextDecoder().decode(bytes.subarray(htmlStart, htmlEnd)));
+  resultsList.update(new TextDecoder().decode(bytes.subarray(htmlStart, htmlEnd)));
 };
 
 export const hiddenSearch = (): void => {
   helper.getSearchPop().hidePopover();
-  helper.getSearchButton().ariaExpanded = 'false';
+  searchButton.ariaExpanded = 'false';
 
   if (searchAbort === null) {
     return;
@@ -73,14 +78,8 @@ const searchbarKeydown = (ev: KeyboardEvent): void => {
     return;
   }
 
-  const result = helper.getResultsBody().querySelector('search-result');
-
-  if (!(result instanceof SearchResult)) {
-    return;
-  }
-
   ev.preventDefault();
-  result.focusAndSelect();
+  resultsList.focusFirstResult();
 };
 
 const showSearch = (): void => {
@@ -88,7 +87,7 @@ const showSearch = (): void => {
     return;
   }
 
-  helper.getSearchButton()!.ariaExpanded = 'true';
+  searchButton.ariaExpanded = 'true';
 
   const elmPop = helper.getSearchPop();
   elmPop.showPopover();
@@ -137,10 +136,8 @@ const bootSearch = async (): Promise<void> => {
 
   document.removeEventListener('keyup', bootSearchFromKey);
 
-  const button = helper.getSearchButton();
-
-  button.removeEventListener('click', bootSearch);
-  button.addEventListener('click', showSearch, {
+  searchButton.removeEventListener('click', bootSearch);
+  searchButton.addEventListener('click', showSearch, {
     passive: true,
   });
 
@@ -156,7 +153,10 @@ const bootSearch = async (): Promise<void> => {
       throw new Error('Missing required search data fields');
     }
 
-    customElements.define('search-result', SearchResult);
+    customElements.define('results-list', SearchResults);
+
+    resultsHeader = helper.requireElement<HTMLDivElement>(TARGET_RESULTS_HEADER);
+    resultsList = helper.requireElement<SearchResults>(TARGET_RESULTS_BODY);
 
     await wasmPromise;
     finder = new Finder(ROOT_PATH, data.doc_urls, data.index.documentStore.docs);
@@ -164,7 +164,7 @@ const bootSearch = async (): Promise<void> => {
     await cssPromise;
     showSearch();
   } catch (e: unknown) {
-    button.style.display = 'none';
+    searchButton.style.display = 'none';
 
     console.error(`Error during initialization: ${e}`);
     toast.error('Search is currently unavailable.');
@@ -182,7 +182,9 @@ const bootSearchFromKey = (ev: KeyboardEvent): void => {
 };
 
 export const startupSearch = (): void => {
-  helper.getSearchButton().addEventListener('click', bootSearch, {
+  searchButton = helper.getSearchButton();
+
+  searchButton.addEventListener('click', bootSearch, {
     once: true,
     passive: true,
   });
