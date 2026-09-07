@@ -4,7 +4,7 @@ import { SearchResults } from './searchResults.ts';
 
 import { loadStyleSheet } from './utils/css-loader.ts';
 import { fetchAndDecompress } from './utils/fetch.ts';
-import { debounce } from './utils/timing.ts';
+import { listenToInputEvents } from './utils/input.ts';
 import toast from './utils/toast.ts';
 
 // deno-lint-ignore no-sloppy-imports
@@ -12,8 +12,6 @@ import initWasm, { Finder } from './wasm_book.js';
 
 const FILE_STYLE_SEARCH = 'css/search.css';
 const FILE_INDEX = 'searchindex.json';
-
-const DEBOUNCE_DELAY_MS = 80;
 
 const LENGTH_FIELD_SIZE = 4; // 4byte: Uint32
 
@@ -71,10 +69,8 @@ const closedPopover = (ev: Event): void => {
   }
 };
 
-const debounceSearchInput = debounce((_: Event) => showResults(), DEBOUNCE_DELAY_MS);
-
-const searchbarKeydown = (ev: KeyboardEvent): void => {
-  if (ev.key !== 'ArrowDown') {
+const searchbarOnKeydown = (ev: KeyboardEvent): void => {
+  if (!(ev.key === 'ArrowDown' || ev.key === 'Enter')) {
     return;
   }
 
@@ -96,21 +92,12 @@ const showSearch = (): void => {
   elmSearchBar.select();
 
   searchAbort = new AbortController();
-  const signal = searchAbort.signal;
 
-  elmSearchBar.addEventListener('input', debounceSearchInput, {
-    passive: true,
-    signal,
-  });
-
-  elmSearchBar.addEventListener('keydown', searchbarKeydown, {
-    passive: false,
-    signal,
-  });
+  listenToInputEvents(elmSearchBar, searchAbort.signal, showResults, searchbarOnKeydown);
 
   elmPop.addEventListener('toggle', closedPopover, {
     passive: true,
-    signal,
+    signal: searchAbort.signal,
   });
 };
 
