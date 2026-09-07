@@ -82,17 +82,7 @@ export const listenToInputEvents = (
   element.addEventListener(
     "keydown",
     (ev: KeyboardEvent) => {
-      if (ev.isComposing) {
-        return;
-      }
-
-      if (skipComposedEnter && ev.key === "Enter") {
-        skipComposedEnter = false;
-        return;
-      }
-
-      skipComposedEnter = false;
-      onKeydown(ev);
+      if (ev.isComposing || skipComposedEnter) {
         skipComposedEnter = false;
         return;
       }
