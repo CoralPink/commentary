@@ -1,4 +1,4 @@
-import { debounce } from "./timing.ts";
+import { debounce } from './timing.ts';
 
 const DEFAULT_DEBOUNCE_DELAY_MS = 80;
 
@@ -11,8 +11,7 @@ const DEFAULT_DEBOUNCE_DELAY_MS = 80;
  */
 const isSafariBrowser = (): boolean => {
   const ua = navigator.userAgent;
-  return /Version\/\d.*Safari\/\d/.test(ua) &&
-    !/Chrome|CriOS|Firefox|Brave/.test(ua);
+  return /Version\/\d.*Safari\/\d/.test(ua) && !/Chrome|CriOS|Firefox|Brave/.test(ua);
 };
 
 /**
@@ -37,7 +36,7 @@ const setupSafariImeWorkaround = (
     return;
   }
 
-  element.addEventListener("compositionend", onCompositionEnd, {
+  element.addEventListener('compositionend', onCompositionEnd, {
     passive: true,
     signal,
   });
@@ -69,18 +68,15 @@ export const listenToInputEvents = (
 ): void => {
   let skipComposedEnter = false;
 
-  const debounceInput = debounce(
-    (_: InputEvent) => onInput(),
-    debounceDelayMs,
-  );
+  const debounceInput = debounce((_: InputEvent) => onInput(), debounceDelayMs);
 
-  element.addEventListener("input", debounceInput, {
+  element.addEventListener('input', debounceInput, {
     passive: true,
     signal,
   });
 
   element.addEventListener(
-    "keydown",
+    'keydown',
     (ev: KeyboardEvent) => {
       if (ev.isComposing || skipComposedEnter) {
         skipComposedEnter = false;
