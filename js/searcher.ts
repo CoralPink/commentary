@@ -75,6 +75,8 @@ const searchbarOnKeydown = (ev: KeyboardEvent): void => {
   }
 
   ev.preventDefault();
+
+  showResults();
   resultsList.focusFirstResult();
 };
 
