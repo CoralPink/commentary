@@ -211,7 +211,7 @@ impl HtmlBuilder {
     fn search_result(&mut self, hit: &SearchHit) {
         let doc = hit.el.doc();
 
-        self.open("div role=\"option\"");
+        self.open("div");
 
         self.buf.extend_from_slice(b" data-href=\"");
         self.safe_text(hit.root_path);
