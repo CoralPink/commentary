@@ -22,12 +22,14 @@ export const fetchText = async (url: string, options: AbortableOptions = {}): Pr
   return response.text();
 };
 
-/*
- * Brotli is available in Safari 18.4 and Firefox 147 or later.
+/**
+ * Determine whether the browser supports Brotli decompression.
+ *
+ * Feature detection is used because browser support varies by browser and version.
  *
  * refs: https://developer.mozilla.org/ja/docs/Web/API/DecompressionStream
  */
-const isUseBrotli = (): boolean => {
+const isBrotliSupported = (): boolean => {
   // While relying on try/catch is a bit “rough,”
   // it's currently the most reliable method for handling browser differences.
   try {
@@ -39,14 +41,14 @@ const isUseBrotli = (): boolean => {
 };
 
 export const fetchAndDecompress = async (url: string, options: AbortableOptions = {}): Promise<ArrayBuffer> => {
-  const isBrotli = isUseBrotli();
-  const response = await fetchWithTimeout(`${url}${isBrotli ? '.br' : '.gz'}`, options);
+  const brotliSupported = isBrotliSupported();
+  const response = await fetchWithTimeout(`${url}${brotliSupported ? '.br' : '.gz'}`, options);
 
   if (!response.body) {
     throw new Error('Response body is null');
   }
 
-  const format: CompressionFormat = isBrotli ? 'brotli' : 'gzip';
+  const format: CompressionFormat = brotliSupported ? 'brotli' : 'gzip';
 
   const stream = response.body.pipeThrough(new DecompressionStream(format));
   return await new Response(stream).arrayBuffer();
