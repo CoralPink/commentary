@@ -213,13 +213,11 @@ McCartney の "I've Got a Feeling" と Lennon の "Everybody Had a Hard Year" �
 
 ちょっともう...、本当に...、気が遠くなってしまって...。
 
+<div style="margin-top: 4em"></div>
+
 ~~~admonish quote title=""
 CoralPink{{footnote:
 このサイトを書いてる ふしぎないきもの。(はじめまして☺️ )
-なんかもう、[Marvel](https://en.wikipedia.org/wiki/Marvel_Comics) なのか
-[ポケットモンスター](https://ja.wikipedia.org/wiki/ポケットモンスター)なのか
-[Shōgun](https://en.wikipedia.org/wiki/Shōgun_(2024_TV_series)) なのか、
-日本橋なのか横須賀なのか、諸国往来な世界に飛び込んでしまった。
 }} のてには
 
 たたかえる　ちからが　ない❗
@@ -235,13 +233,27 @@ CoralPink は
 めのまえが　まっくらに　なっ・・・
 ~~~
 
+<div style="margin-top: 4em"></div>
+
 ...❓
+
+<div style="margin-top: 4em"></div>
 
 ~~~admonish question title=""
 Hey, CaP..., you read me...?
 
 キャップ...、聞こえるか...?
 ~~~
+
+<div style="margin-top: 4em"></div>
+
+```admonish warning title=""
+Everybody had a wet dream
+
+みんな熱い夢を見た
+```
+
+<div style="margin-top: 4em"></div>
 
 ~~~admonish question title=""
 ...It's nvim Trainer. Can you hear me...?
@@ -256,7 +268,10 @@ Hey, CaP..., you read me...?
 だ。聞こえるか...?
 ~~~
 
+<div style="margin-top: 4em"></div>
 ...❗
+
+<div style="margin-top: 4em"></div>
 
 ```admonish warning title=""
 Everybody had a good time
@@ -264,47 +279,15 @@ Everybody had a good time
 みんな嬉しい瞬間があった
 ```
 
+<div style="margin-top: 4em"></div>
+
 ~~~admonish question title=""
-On your radar.{{footnote:
-アメリカメディアや業界関係者の間では、
-SHOGUN は派手なハリウッド・キャンペーンも展開していなかったため、「レーダー外」の存在だったと言われている。
+On your left.
 
-2024年9月15日に Los Angeles で授賞式が行われた[76th Primetime Emmy Awards](https://en.wikipedia.org/wiki/76th_Primetime_Emmy_Awards)では
-作品賞や主演男優賞など、25の部門にノミネートされ業界を驚かせた。
-作品賞に非英語圏のシリーズがノミネートされたのは 2022年の[오징어 게임](https://ko.wikipedia.org/wiki/오징어_게임)に次いで2作目である。
-
-Emmy Awards では過去最多11人の日本人がノミネートされ、
-本作品に出演した[真田広之](https://ja.wikipedia.org/wiki/真田広之)や
-[浅野忠信](https://ja.wikipedia.org/wiki/浅野忠信)などもノミネートされた。
-日本人が俳優部門にノミネートされるのは
-59th Primetime Emmy Awards(2007年) の[マシ・オカ](https://ja.wikipedia.org/wiki/マシ・オカ)以来、17年ぶりとなった。
-
-2024年9月8日、Emmy Awards の授賞式に先駆けて、技術系や美術系などの一部部門が発表され、撮影賞や視覚効果賞などで受賞。
-この時点でこれまでテレビ番組の単一シーズンとしては最多の受賞記録となっていた
-[Game of Thrones](https://en.wikipedia.org/wiki/Game_of_Thrones) の12冠を上回る14冠を獲得した。
-
-2024年9月15日、Emmy Awards の授賞式が行われ、
-[Frederick E. O. Toye](https://en.wikipedia.org/wiki/Frederick_E._O._Toye)が監督賞、
-[アンナ・サワイ](https://ja.wikipedia.org/wiki/アンナ・サワイ)が主演女優賞、真田が主演男優賞、本作品が作品賞をそれぞれ受賞した。
-日本人が俳優賞の主要部門で、非英語作品が作品賞で受賞したのは初めてである。
-Emmy Awards では同賞創設以来過去最多となる合計18冠を獲得。
-真田は "これまで時代劇を継承して支えてきてくださった全ての方々、そして監督や、諸先生方に心より御礼申し上げます。
-あなた方から受け継いだ情熱と夢は海を渡り、国境を越えました。Thank you so much!!" と日本語でスピーチした。
-[Wikipedia](https://ja.wikipedia.org/wiki/SHOGUN_将軍)より
-}}
-
-君の視界にいるよ。
-
-<video width="1280" height="720" data-poster="img/nihonbashi-parade-thumbnail.avif">
-  <source src="img/nihonbashi-parade.webm" type="video/webm">
-</video>
+左から失礼。
 ~~~
 
-```admonish warning title=""
-Everybody had a wet dream
-
-みんな熱い夢を見た
-```
+<div style="margin-top: 4em"></div>
 
 ~~~admonish info title=":h showmode"
 ```txt
@@ -332,6 +315,8 @@ vim.api.nvim_set_option('showmode', false)
 
 ![show-mode-false](img/show-mode-false.avif)
 
+<div style="margin-top: 4em"></div>
+
 `lualine.nvim`のカスタマイズについては、仲間をふやして次の街で❗😉
 
 ```admonish warning title=""
@@ -339,6 +324,8 @@ Everybody saw the sunshine
 
 みんな陽の光を浴びた
 ```
+
+<div style="margin-top: 4em"></div>
 
 ```admonish success title="Assemble"
 <div style="text-align: center">

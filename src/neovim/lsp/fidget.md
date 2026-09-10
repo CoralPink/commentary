@@ -161,9 +161,6 @@ The following table shows the default options for this plugin:
 
 <div class="slider">
   <div class="media">
-    <video width="1280" height="720" data-poster="img/awa-nihonbashi-thumbnail.avif">
-      <source src="img/awa-nihonbashi.webm" type="video/webm">
-    </video>
     <video width="1280" height="720" data-poster="img/awa-ogikubo-thumbnail.avif">
       <source src="img/awa-ogikubo.webm" type="video/webm">
     </video>
