@@ -6,6 +6,7 @@ import { bootTableOfContents, initTableOfContents } from './table-of-contents.ts
 
 import type { Disposer, ExtensionEntry, InitializableExtension } from './extensions/types.ts';
 
+import { isWebkitBased } from './utils/platform.ts';
 import { prepareForNextCycle, scheduleJob } from './utils/pulse.ts';
 
 type ModuleName = 'codeblock' | 'footnote' | 'footnote-legacy' | 'media' | 'slider' | 'youtube';
@@ -23,18 +24,7 @@ const selectorModule = (selector: string, module: ModuleName | ModuleFactory): M
   module: typeof module === 'function' ? module() : module,
 });
 
-const shouldUseLegacyFootnote = (): boolean => {
-  const ua = navigator.userAgent;
-
-  const isIOS = /iPhone|iPad/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-  const isSafariBrowser = ua.includes('Safari') && !ua.includes('Chrome');
-
-  // iOS browsers, including Firefox and Chrome, use WebKit and require the legacy implementation.
-  return isIOS || isSafariBrowser;
-};
-
-const useLegacyFootnote = shouldUseLegacyFootnote();
-const footnoteModule = (): ModuleName => (useLegacyFootnote ? 'footnote-legacy' : 'footnote');
+const useLegacyFootnote = isWebkitBased() ? 'footnote-legacy' : 'footnote';
 
 const MODULE_REQUIREMENTS = [
   selectorModule('.slider', 'slider'),
@@ -42,7 +32,7 @@ const MODULE_REQUIREMENTS = [
   selectorModule('.youtube-video', 'youtube'),
   selectorModule('pre code:not(.language-txt)', 'codeblock'),
 
-  selectorModule('sup', footnoteModule),
+  selectorModule('sup', useLegacyFootnote),
 ] satisfies readonly ModuleRequirement[];
 
 const loadedExtensions = new Map<string, ExtensionEntry>();
