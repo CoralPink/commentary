@@ -1,18 +1,7 @@
+import { isSafariBrowser } from './platform.ts';
 import { debounce } from './timing.ts';
 
 const DEFAULT_DEBOUNCE_DELAY_MS = 80;
-
-/**
- * Determine whether the current browser is Safari.
- *
- * This is intentionally a user-agent-based heuristic rather than feature
- * detection. It is used only for a Safari-specific IME workaround, where
- * Safari's composition and keyboard event ordering differs from other tested browsers.
- */
-const isSafariBrowser = (): boolean => {
-  const ua = navigator.userAgent;
-  return /Version\/\d.*Safari\/\d/.test(ua) && !/Chrome|CriOS|Firefox|Brave/.test(ua);
-};
 
 /**
  * Set up the Safari-specific IME workaround for an input element.
