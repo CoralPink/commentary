@@ -377,12 +377,12 @@ Microsoftが開発したものがオープンスタンダードになってい�
 その辺は<a href="https://en.wikipedia.org/wiki/Language_Server_Protocol" target="_blank" rel="noopener">wikipedia</a>で❗</p>
 </aside>
 
-<nav id="nav-wrapper" aria-label="Page navigation">
-  <a rel="prev" href="neovim/plugin/nvim-scrollbar.html" class="chapters" id="prev" aria-label="Previous chapter: nvim-scrollbar">
+<nav class="nav-wrapper" aria-label="Page navigation">
+  <a rel="prev" href="nvim-scrollbar.html" class="chapters prev" aria-label="Previous chapter: nvim-scrollbar">
     <div class="icon-prev fa-icon"></div>
     nvim-scrollbar
   </a>
-  <a rel="next" href="neovim/plugin/lualine-part3.html" class="chapters" id="next" aria-label="Next chapter: lualine.nvim Part Ⅲ">
+  <a rel="next" href="lualine-part3.html" class="chapters next" aria-label="Next chapter: lualine.nvim Part Ⅲ">
     lualine.nvim Part Ⅲ
     <div class="icon-next fa-icon"></div>
   </a>
