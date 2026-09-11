@@ -228,7 +228,7 @@ Overwrite default colors
 [fix!: highlight groups for neovim 0.8 #50](https://github.com/rmehri01/onenord.nvim/commit/98c64654375bc087e96bca08fd194066d778717c)
 ```
 
-<div class="youtube-video" data-id="JAbPsVOebNI"></div>
+<youtube-video data-id="JAbPsVOebNI"></youtube-video>
 
 ```admonish success
 ようやくひと段落って感じですね。とっても綺麗な景色☺️

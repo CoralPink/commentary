@@ -158,7 +158,7 @@ vim.opt.tabstop = 2
 
 ## Wrap Up
 
-<div class="youtube-video" data-id="QQ8kE7IS468"></div>
+<youtube-video data-id="QQ8kE7IS468"></youtube-video>
 
 ```admonish success
 つよい　トレーナーに　なったな❗

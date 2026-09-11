@@ -1,3 +1,4 @@
+
 import { CONTENT_READY, ROOT_PATH } from './constants.ts';
 import { initMark } from './mark.ts';
 import { hiddenSearch, startupSearch } from './searcher.ts';
@@ -29,7 +30,7 @@ const footnoteModule = isWebkitBased() ? 'footnote-legacy' : 'footnote';
 const MODULE_REQUIREMENTS = [
   selectorModule('.slider', 'slider'),
   selectorModule('video', 'media'),
-  selectorModule('.youtube-video', 'youtube'),
+  selectorModule('youtube-video', 'youtube'),
   selectorModule('pre code:not(.language-txt)', 'codeblock'),
 
   selectorModule('sup', footnoteModule),
