@@ -8,7 +8,7 @@ const ID_INDICATORS = 'indicators';
 const ID_PREV = 'prev';
 const ID_NEXT = 'next';
 
-const SELECTOR_YOUTUBE_VIDEO = '.youtube-video';
+const SELECTOR_YOUTUBE_VIDEO = 'youtube-video';
 const SELECTOR_MEDIA = `video, img, ${SELECTOR_YOUTUBE_VIDEO}`;
 
 const BUTTON_TEXT_PREV = '◀';

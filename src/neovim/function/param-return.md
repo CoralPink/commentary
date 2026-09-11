@@ -238,7 +238,7 @@ FUNCTION WILL RETURN
 
 ### It's A Small World
 
-<div class="youtube-video" data-id="ITGBRBbytfU"></div>
+<youtube-video data-id="ITGBRBbytfU"></youtube-video>
 
 <div style="color: #999999; font-size: 90%; text-align: center;">
 <div style="margin-top: 8em">

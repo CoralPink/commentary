@@ -216,7 +216,7 @@ No one’s has. Your future is whatever you make it.
 他の誰でもない。きみの未来はきみが描くんだ。
 ```
 
-<div class="youtube-video" data-id="Klcwxqggx4A"></div>
+<youtube-video data-id="Klcwxqggx4A"></youtube-video>
 
 [サンリオピューロランド](https://en.wikipedia.org/wiki/Sanrio_Puroland)より
 {{footnote:

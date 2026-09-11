@@ -1,23 +1,16 @@
 import type { Disposer } from './types.ts';
 
+const ELEMENT_NAME = 'youtube-video';
+
 const SRC_URL = 'https://www.youtube.com/embed/';
 
-const setupMedia = (entries: IntersectionObserverEntry[], obs: IntersectionObserver): void => {
-  for (const entry of entries) {
-    if (!entry.isIntersecting) {
-      continue;
-    }
-
-    const div = entry.target;
-
-    if (!(div instanceof HTMLDivElement)) {
-      continue;
-    }
-
-    const id = div.dataset['id'];
+class YouTubeVideo extends HTMLElement {
+  connectedCallback(): void {
+    const id = this.dataset['id'];
 
     if (id === undefined) {
-      continue;
+      console.warn(`youtube id missing: ${id}`);
+      return;
     }
 
     const iframe = document.createElement('iframe');
@@ -25,27 +18,19 @@ const setupMedia = (entries: IntersectionObserverEntry[], obs: IntersectionObser
     iframe.src = `${SRC_URL}${id}`;
     iframe.allow = 'fullscreen';
 
-    div.replaceChildren(iframe);
-    obs.unobserve(div);
+    this.replaceChildren(iframe);
   }
+}
+
+const registry = (name: string): void => {
+  if (customElements.get(name) !== undefined) {
+    return;
+  }
+  customElements.define(name, YouTubeVideo);
 };
 
-export const initialize = (html: HTMLElement): Disposer => {
-  const div = Array.from(html.querySelectorAll<HTMLDivElement>('.youtube-video'));
+export const initialize = (_html: HTMLElement): Disposer => {
+  registry(ELEMENT_NAME);
 
-  if (div.length === 0) {
-    return () => {}; // no-op dispose
-  }
-
-  const obs = new IntersectionObserver(setupMedia, {
-    rootMargin: '30% 0%',
-  });
-
-  for (const x of div) {
-    obs.observe(x);
-  }
-
-  return (): void => {
-    obs.disconnect();
-  };
+  return () => {}; // no-op dispose
 };

@@ -284,7 +284,7 @@ All around the world we’re marching
 世界を巡る 僕らのマーチだ
 ```
 
-<div class="youtube-video" data-id="tHyPpcEEb90"></div>
+<youtube-video data-id="tHyPpcEEb90"></youtube-video>
 
 ```admonish tip title=""
 M - I - C - K - E - Y

@@ -193,9 +193,9 @@ Vim では、quickfix コマンドはより一般的に、ファイル内の位�
 
 <div class="slider">
   <div class="media">
-    <div class="youtube-video" data-id="Yeo1KETlf3A"></div>
-    <div class="youtube-video" data-id="2Ud7YbaXZIA"></div>
-    <div class="youtube-video" data-id="MHqjp3aVSwc"></div>
+    <youtube-video data-id="Yeo1KETlf3A"></youtube-video>
+    <youtube-video data-id="2Ud7YbaXZIA"></youtube-video>
+    <youtube-video data-id="MHqjp3aVSwc"></youtube-video>
   </div>
 </div>
 

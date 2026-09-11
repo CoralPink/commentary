@@ -22,7 +22,7 @@
 }}
 ```
 
-<div class="youtube-video" data-id="iIDpZYMdhOE"></div>
+<youtube-video data-id="iIDpZYMdhOE"></youtube-video>
 
 舟を出せ❗いざ鬼退治❗❗
 
@@ -789,7 +789,7 @@ MVP とは、俺のことだ！！
 
 <div class="slider">
   <div class="media">
-    <div class="youtube-video" data-id="voDlrN2-gGI"></div>
+    <youtube-video data-id="voDlrN2-gGI"></youtube-video>
     <video width="1280" height="720" data-poster="img/fuchu-ohayashi-thumbnail.avif">
       <source src="img/fuchu-ohayashi.webm" type="video/webm">
     </video>

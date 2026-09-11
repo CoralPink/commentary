@@ -284,9 +284,12 @@ article {
     width: 70%;
   }
 
-  .youtube-video {
-    margin: 1rem auto;
+  youtube-video {
+    display: block;
     aspect-ratio: 16 / 9;
+
+    margin: 1rem auto;
+    max-width: 1920px;
 
     iframe {
       width: 100%;
