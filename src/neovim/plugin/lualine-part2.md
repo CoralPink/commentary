@@ -79,9 +79,9 @@ I'm back. ...I'm back from the future!!
 ```
 
 ~~~admonish question title=""
-On your radar.
+On your left.
 
-君の視界にいるよ。
+左から失礼。
 ~~~
 
 ## options
