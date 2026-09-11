@@ -70,15 +70,15 @@
         <article id="article">
           {{{ content }}}
 
-          <nav id="nav-wrapper" aria-label="Page navigation">
+          <nav class="nav-wrapper" aria-label="Page navigation">
             {{#if previous}}
-            <a rel="prev" href="{{ path_to_root }}{{previous.link}}" class="chapters" id="prev" aria-label="Previous chapter: {{previous.title}}">
+            <a rel="prev" href="{{ path_to_root }}{{previous.link}}" class="chapters prev" aria-label="Previous chapter: {{previous.title}}">
               <div class="icon-prev fa-icon"></div>
               {{previous.title}}
             </a>
             {{/if}}
             {{#if next}}
-            <a rel="next" href="{{ path_to_root }}{{next.link}}" class="chapters" id="next" aria-label="Next chapter: {{next.title}}">
+            <a rel="next" href="{{ path_to_root }}{{next.link}}" class="chapters next" aria-label="Next chapter: {{next.title}}">
               {{next.title}}
               <div class="icon-next fa-icon"></div>
             </a>
