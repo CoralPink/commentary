@@ -59,26 +59,23 @@ export const listenToInputEvents = (
 
   const debounceInput = debounce((_: InputEvent) => onInput(), debounceDelayMs);
 
+  const keyDownProc = (ev: KeyboardEvent) => {
+    if (ev.isComposing || skipComposedEnter) {
+      skipComposedEnter = false;
+      return;
+    }
+    onKeydown(ev);
+  };
+
   element.addEventListener('input', debounceInput, {
     passive: true,
     signal,
   });
 
-  element.addEventListener(
-    'keydown',
-    (ev: KeyboardEvent) => {
-      if (ev.isComposing || skipComposedEnter) {
-        skipComposedEnter = false;
-        return;
-      }
-
-      onKeydown(ev);
-    },
-    {
-      passive: false,
-      signal,
-    },
-  );
+  element.addEventListener('keydown', keyDownProc, {
+    passive: false,
+    signal,
+  });
 
   setupSafariImeWorkaround(element, signal, () => {
     skipComposedEnter = true;

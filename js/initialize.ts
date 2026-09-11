@@ -24,7 +24,7 @@ const selectorModule = (selector: string, module: ModuleName | ModuleFactory): M
   module: typeof module === 'function' ? module() : module,
 });
 
-const useLegacyFootnote = isWebkitBased() ? 'footnote-legacy' : 'footnote';
+const footnoteModule = isWebkitBased() ? 'footnote-legacy' : 'footnote';
 
 const MODULE_REQUIREMENTS = [
   selectorModule('.slider', 'slider'),
@@ -32,7 +32,7 @@ const MODULE_REQUIREMENTS = [
   selectorModule('.youtube-video', 'youtube'),
   selectorModule('pre code:not(.language-txt)', 'codeblock'),
 
-  selectorModule('sup', useLegacyFootnote),
+  selectorModule('sup', footnoteModule),
 ] satisfies readonly ModuleRequirement[];
 
 const loadedExtensions = new Map<string, ExtensionEntry>();
