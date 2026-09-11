@@ -181,7 +181,7 @@ vim.keymap.set('n', '<Down>', '<C-e>')
 
 <div class="slider">
   <div class="media">
-    <div class="youtube-video" data-id="8QQ5zd9BLck"></div>
+    <youtube-video data-id="8QQ5zd9BLck"></youtube-video>
     <div class="ft-definition">
       ![ramayana](img/ramayana.avif)
       このケチャは、रामायणम्(Ramayana) 3・5・6・6 巻から抽出されたダイジェスト版であり、結末までを語っていない。
@@ -206,7 +206,7 @@ vim.keymap.set('n', ':', ';')
 
 <kbd>:</kbd>は説明が長くなるので省略してしまうんですが、<kbd>;</kbd>でコマンドモードに入れるようになります。
 
-<div class="youtube-video" data-id="xuU_PqXaiqg"></div>
+<youtube-video data-id="xuU_PqXaiqg"></youtube-video>
 
 ### Disable
 
@@ -291,7 +291,7 @@ vim.keymap.set({ 'n', 'v' }, 'p', 'p`]')
 
 <div class="slider">
   <div class="media">
-    <div class="youtube-video" data-id="gMAbARgRTes"></div>
+    <youtube-video data-id="gMAbARgRTes"></youtube-video>
     <video width="1280" height="720" data-poster="img/Ko-hiông-thumbnail.avif">
       <source src="img/Ko-hiông.webm" type="video/webm">
     </video>
