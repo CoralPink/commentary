@@ -1,6 +1,6 @@
 import type { Disposer } from './types.ts';
 
-const ELEMENT_NAME = 'youtube-video';
+import { ELEMENT_YOUTUBE } from '../constants.ts';
 
 const SRC_URL = 'https://www.youtube.com/embed/';
 
@@ -9,7 +9,7 @@ class YouTubeVideo extends HTMLElement {
     const id = this.dataset['id'];
 
     if (id === undefined) {
-      console.warn(`youtube id missing: ${id}`);
+      console.warn('youtube id missing');
       return;
     }
 
@@ -30,7 +30,7 @@ const registry = (name: string): void => {
 };
 
 export const initialize = (_html: HTMLElement): Disposer => {
-  registry(ELEMENT_NAME);
+  registry(ELEMENT_YOUTUBE);
 
   return () => {}; // no-op dispose
 };

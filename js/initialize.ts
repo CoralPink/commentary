@@ -1,5 +1,4 @@
-
-import { CONTENT_READY, ROOT_PATH } from './constants.ts';
+import { CONTENT_READY, ROOT_PATH, ELEMENT_YOUTUBE } from './constants.ts';
 import { initMark } from './mark.ts';
 import { hiddenSearch, startupSearch } from './searcher.ts';
 import { bootSidebar } from './sidebar.ts';
@@ -30,7 +29,7 @@ const footnoteModule = isWebkitBased() ? 'footnote-legacy' : 'footnote';
 const MODULE_REQUIREMENTS = [
   selectorModule('.slider', 'slider'),
   selectorModule('video', 'media'),
-  selectorModule('youtube-video', 'youtube'),
+  selectorModule(ELEMENT_YOUTUBE, 'youtube'),
   selectorModule('pre code:not(.language-txt)', 'codeblock'),
 
   selectorModule('sup', footnoteModule),
