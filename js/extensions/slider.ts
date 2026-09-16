@@ -1,5 +1,7 @@
 import type { Disposer } from './types.ts';
 
+import { ELEMENT_YOUTUBE } from '../constants.ts';
+
 const CLASS_ARROW = 'arrow';
 const CLASS_CONTROLS = 'controls';
 const CLASS_ACTIVE = 'active';
@@ -8,8 +10,7 @@ const ID_INDICATORS = 'indicators';
 const ID_PREV = 'prev';
 const ID_NEXT = 'next';
 
-const SELECTOR_YOUTUBE_VIDEO = 'youtube-video';
-const SELECTOR_MEDIA = `video, img, ${SELECTOR_YOUTUBE_VIDEO}`;
+const SELECTOR_MEDIA = `video, img, ${ELEMENT_YOUTUBE}`;
 
 const BUTTON_TEXT_PREV = '◀';
 const BUTTON_TEXT_NEXT = '▶';
@@ -38,7 +39,7 @@ const getMediaWidth = (media: CompatibleMedia): number => {
     return media.width;
   }
 
-  if (media.matches(SELECTOR_YOUTUBE_VIDEO)) {
+  if (media.matches(ELEMENT_YOUTUBE)) {
     return DEFAULT_MEDIA_WIDTH;
   }
   return 0;
@@ -49,7 +50,7 @@ const getThumbnail = (media: CompatibleMedia): string => {
     return media.src;
   }
 
-  if (media.matches(SELECTOR_YOUTUBE_VIDEO)) {
+  if (media.matches(ELEMENT_YOUTUBE)) {
     const id = media.dataset['id'];
     return id ? `https://img.youtube.com/vi/${id}/${YOUTUBE_THUMBNAIL}` : '';
   }
