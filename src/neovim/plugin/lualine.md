@@ -49,7 +49,7 @@ vim-devicons の lua フォークです。このプラグインは、同じア�
 
 `nvim-web-devicons`のインストール自体は`packer`に任せちゃえばいいので、またあとで❗
 
-#### A patched font(NerdFonts)
+#### A patched font (NerdFonts)
 
 本来なら「なんかめんどくさそうだな〜」となるところですが...、
 
@@ -215,17 +215,17 @@ McCartney の "I've Got a Feeling" と Lennon の "Everybody Had a Hard Year" �
 
 <div style="margin-top: 4em"></div>
 
-~~~admonish quote title=""
+```admonish quote title=""
 CoralPink{{footnote:
 このサイトを書いてる ふしぎないきもの。(はじめまして☺️ )
 }} のてには
 
 たたかえる　ちからが　ない❗
-~~~
+```
 
-~~~admonish quote title=""
+```admonish quote title=""
 ...　...　...　...
-~~~
+```
 
 <div style="color: #999999; font-size: 80%; text-align: center;">
 
@@ -236,9 +236,9 @@ Scandal (by [Queen](https://en.wikipedia.org/wiki/Queen_(band))):
 アメリカでもシングルとして発売されたが、チャート入りは果たさなかった。
 
 "Scandal" は[Brian May](https://en.wikipedia.org/wiki/Brian_May)が作曲した楽曲だが、アルバム収録曲のクレジット方針により Queen 名義となっている。
-この曲は 1980年代後半に May と[Freddie Mercury](https://en.wikipedia.org/wiki/Freddie_Mercury)がマスコミから受けた、望まない過剰な注目について歌っている。
+この曲は 1980年代後半に May と[Freddie Mercury](https://en.wikipedia.org/wiki/Freddie_Mercury)がマスメディアから受けた、望まない過剰な注目について歌っている。
 そこには、May の最初の妻 Chrissie Mullen との離婚、女優[Anita Dobson](https://en.wikipedia.org/wiki/Anita_Dobson)との交際、
-そして Mercury の健康状態をめぐって高まっていたマスコミの憶測など
+そして Mercury の健康状態をめぐって高まっていたマスメディアの憶測など
 (体重の減少や、やつれたような外見の変化は、彼が深刻な病気を患っているのではないかという憶測を煽る一因となった。) が含まれていた。
 }}
 </div>
@@ -246,13 +246,13 @@ Scandal (by [Queen](https://en.wikipedia.org/wiki/Queen_(band))):
 <div style="margin-top: 4em">
 Now you've left me
 
-All the world's gonna know
+All the world's gonna know{{footnote:
+Mercury は 1987年4月に[AIDS](https://en.wikipedia.org/wiki/HIV/AIDS)と診断されていたが、自身の病状を公表したのは 1991年11月に亡くなる前日だった。
+}}
 
 君は 僕を置いて行った
 
-これで 世界中が知ることになるだろう{{footnote:
-Mercury は 1987年4月に[AIDS](https://en.wikipedia.org/wiki/HIV/AIDS)と診断されていたが、自身の病状を公表したのは 1991年11月に亡くなる前日だった。
-}}
+これで 世界中が知ることになるだろう
 </div>
 
 <div style="margin-top: 4em">
@@ -282,7 +282,7 @@ They'll see the love break
 <div style="margin-top: 4em">
 They'll hear me pleading
 
-すがる声を聞きたいんだろう
+縋る声を聞きたいんだろう
 </div>
 
 <div style="margin-top: 4em">
@@ -323,7 +323,9 @@ There's no healing the wounds
 
 <div style="margin-top: 4em">
 Hey, scandal
+</div>
 
+<div style="margin-top: 4em">
 And all the world
 
 Can make us out to be fools
@@ -344,7 +346,7 @@ Open the flood gates
 </div>
 
 <div style="margin-top: 4em">
-They'll leave us bleeding,
+They'll leave us bleeding
 
 奴らは 僕らを血まみれにしたまま 置き去りにしていく
 </div>
@@ -387,7 +389,7 @@ It's just a private affair
 <div style="margin-top: 4em">
 They'll have us hung in the air
 
-奴らは僕らを 晒し上げて嘲笑う
+それでも 奴らは晒し上げて 嘲笑う
 </div>
 
 <div style="margin-top: 4em">
@@ -419,7 +421,7 @@ They'll see our love break, yeah
 <div style="margin-top: 4em">
 They'll hear me pleading
 
-すがる声を聞きたいんだろう
+縋る声を聞きたいんだろう
 </div>
 
 <div style="margin-top: 4em">
@@ -447,7 +449,7 @@ Mercury の "turbo-whine" は絶好調であり、バンドの演奏も "オー�
 
 [Smash Hits](https://en.wikipedia.org/wiki/Smash_Hits)の William Shaw は、この曲を"素晴らしい作品"と評し、
 "ドンドンと響くシンセ" と "Brian May らしい軽快なギターフレーズ" が特徴の "素晴らしい曲" と称賛した。
-一方で彼は、歌詞については、マスコミが下世話なネタを求めるあまり嘘をでっち上げる傾向を "正当に痛烈に批判している" と認めつつも、
+一方で彼は、歌詞については、マスメディアが下世話なネタを求めるあまり嘘をでっち上げる傾向を "正当に痛烈に批判している" と認めつつも、
 テーマがあまりにも "ごもっとも" であるために、優れた Queen のシングルを傑作たらしめる、あの "いつもの過剰さ" が欠けている、と付け加えた。
 }}
 
@@ -459,7 +461,7 @@ Mercury の "turbo-whine" は絶好調であり、バンドの演奏も "オー�
 <div style="margin-top: 8em">
 Yes, you're breaking my heart again
 
-また、私の心を傷つけているのよね
+また、私の心を傷つけているのよ
 </div>
 
 <div style="margin-top: 4em">
@@ -475,7 +477,7 @@ Tomorrow, hard times
 
 今日のヘッドライン
 
-明日は厳しい状況
+明日は厳しい
 </div>
 
 <div style="margin-top: 4em">
@@ -518,19 +520,19 @@ Deeper and deeper and deeper inside!
 
 <div style="margin-top: 8em"></div>
 
-~~~admonish quote title=""
+```admonish quote title=""
 CoralPink は
 
 めのまえが　まっくらに　なった
-~~~
+```
 
 <div style="margin-top: 8em"></div>
 
-~~~admonish question title=""
+```admonish question title=""
 Hey, CaP..., you read me...?
 
 キャップ...、聞こえるか...?
-~~~
+```
 
 <div style="margin-top: 4em"></div>
 
@@ -542,7 +544,7 @@ Everybody had a wet dream
 
 <div style="margin-top: 4em"></div>
 
-~~~admonish question title=""
+```admonish question title=""
 ...It's nvim Trainer. Can you hear me...?
 
 ...nvimトレーナー
@@ -553,7 +555,7 @@ Everybody had a wet dream
 みらいのチャンピオン。
 }}
 だ。聞こえるか...?
-~~~
+```
 
 <div style="margin-top: 4em"></div>
 
@@ -565,11 +567,11 @@ Everybody had a good time
 
 <div style="margin-top: 4em"></div>
 
-~~~admonish question title=""
+```admonish question title=""
 On your left.
 
 左から失礼。
-~~~
+```
 
 <div style="margin-top: 4em"></div>
 
