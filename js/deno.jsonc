@@ -2,8 +2,8 @@
   "imports": {
     "rolldown": "npm:rolldown@1.2.8",
 
-    "vitest": "npm:vitest@5.0.0",
-    "@vitest/coverage-v8": "npm:@vitest/coverage-v8@5.0.0",
+    "vitest": "npm:vitest@5.0.1",
+    "@vitest/coverage-v8": "npm:@vitest/coverage-v8@5.0.1",
     "happy-dom": "npm:happy-dom@~20.14.0"
   },
   "minimumDependencyAge": {
