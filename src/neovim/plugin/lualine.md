@@ -227,17 +227,304 @@ CoralPink{{footnote:
 ...　...　...　...
 ~~~
 
+<div style="color: #999999; font-size: 80%; text-align: center;">
+
+<div style="margin-top: 8em">
+Scandal{{footnote:
+Scandal (by [Queen](https://en.wikipedia.org/wiki/Queen_(band))):
+1989年のアルバム[The Miracle](https://en.wikipedia.org/wiki/The_Miracle_(album))から4枚目のシングルとしてリリースされ、イギリスのシングルチャートでは最高25位を記録した。
+アメリカでもシングルとして発売されたが、チャート入りは果たさなかった。
+
+"Scandal" は[Brian May](https://en.wikipedia.org/wiki/Brian_May)が作曲した楽曲だが、アルバム収録曲のクレジット方針により Queen 名義となっている。
+この曲は 1980年代後半に May と[Freddie Mercury](https://en.wikipedia.org/wiki/Freddie_Mercury)がマスコミから受けた、望まない過剰な注目について歌っている。
+そこには、May の最初の妻 Chrissie Mullen との離婚、女優[Anita Dobson](https://en.wikipedia.org/wiki/Anita_Dobson)との交際、
+そして Mercury の健康状態をめぐって高まっていたマスコミの憶測など
+(体重の減少や、やつれたような外見の変化は、彼が深刻な病気を患っているのではないかという憶測を煽る一因となった。) が含まれていた。
+}}
+</div>
+
+<div style="margin-top: 4em">
+Now you've left me
+
+All the world's gonna know
+
+君は 僕を置いて行った
+
+これで 世界中が知ることになるだろう{{footnote:
+Mercury は 1987年4月に[AIDS](https://en.wikipedia.org/wiki/HIV/AIDS)と診断されていたが、自身の病状を公表したのは 1991年11月に亡くなる前日だった。
+}}
+</div>
+
+<div style="margin-top: 4em">
+Hey, scandal
+</div>
+
+<div style="margin-top: 4em">
+They're gonna turn our lives
+
+Into a freak show
+
+このスキャンダルで
+
+僕らの人生は 奴らに見世物にされてしまう
+</div>
+
+<div style="margin-top: 4em">
+They'll see the heartache
+
+They'll see the love break
+
+奴らは 苦痛を目にしたいんだろう
+
+砕ける愛を目にしたいんだろう
+</div>
+
+<div style="margin-top: 4em">
+They'll hear me pleading
+
+すがる声を聞きたいんだろう
+</div>
+
+<div style="margin-top: 4em">
+We'll say
+
+僕らは言ってる
+</div>
+</div>
+
+<div style="margin-top: 4em"></div>
+
+<div style="font-size: 90%; text-align: center;">
+for God sakes
+
+いい加減にしろ
+</div>
+
+<div style="color: #999999; font-size: 80%; text-align: center;">
+<div style="margin-top: 4em">
+Over and over and over again
+
+何度も！何度も！何度も！
+</div>
+
+<div style="margin-top: 8em">
+Scandal
+</div>
+
+<div style="margin-top: 4em">
+Now you've left me
+
+There's no healing the wounds
+
+君は 僕を置いて行ってしまった
+
+その傷は決して癒えない
+</div>
+
+<div style="margin-top: 4em">
+Hey, scandal
+
+And all the world
+
+Can make us out to be fools
+
+このスキャンダルで
+
+世間は僕らを 愚か者扱いするのだろう
+</div>
+
+<div style="margin-top: 4em">
+Here come the bad news
+
+Open the flood gates
+
+さあ 悪い知らせが押し寄せてくる
+
+堰を切ったように 有る事無い事流される
+</div>
+
+<div style="margin-top: 4em">
+They'll leave us bleeding,
+
+奴らは 僕らを血まみれにしたまま 置き去りにしていく
+</div>
+
+<div style="margin-top: 4em">
+we say,
+
+僕らは叫ぶ
+</div>
+</div>
+
+<div style="margin-top: 4em"></div>
+
+<div style="font-size: 90%; text-align: center;">
+“You cheapskates!”
+
+"さもしい{{footnote:
+さもしい: 品性がない / 卑しい / 欲深い / 目先の利益に執着する、など。
+}}
+奴らめ！"
+</div>
+
+<div style="color: #999999; font-size: 80%; text-align: center;">
+<div style="margin-top: 4em">
+Over and over and over again
+
+何度でも！何度でも！何度でも！
+</div>
+
+<div style="margin-top: 8em">
+So let them know when they stare
+
+It's just a private affair
+
+ギトギト見てくる連中に 言っておく
+
+これは 僕らのプライベートだ
+</div>
+
+<div style="margin-top: 4em">
+They'll have us hung in the air
+
+奴らは僕らを 晒し上げて嘲笑う
+</div>
+
+<div style="margin-top: 4em">
+And tell me what do they care
+
+僕らのことを気にかけているとでも？ 答えろよ
+</div>
+
+<div style="margin-top: 8em">
+It's only a life to be
+
+Twisted and broken
+
+もうちっぽけな灯火だ
+
+好き勝手に 捻じ曲げ 打ち砕かれる
+</div>
+
+<div style="margin-top: 8em">
+They'll see the heartache
+
+They'll see our love break, yeah
+
+奴らは 苦痛を目にしたいんだろう
+
+愛が砕けるのを目にしたいんだろう、なあ
+</div>
+
+<div style="margin-top: 4em">
+They'll hear me pleading
+
+すがる声を聞きたいんだろう
+</div>
+
+<div style="margin-top: 4em">
+I’ll say
+
+僕は言うんだ
+</div>
+</div>
+
+<div style="margin-top: 4em"></div>
+<div style="font-size: 90%; text-align: center;">
+for God sakes
+
+もうウンザリだ
+</div>
+
+<div style="color: #999999; font-size: 80%; text-align: center;">
+<div style="margin-top: 4em">
+Over and over and over and over again, yeah{{footnote:
+発売当時、ヨーロッパ全域で発行されていた音楽誌[Music & Media](https://en.wikipedia.org/wiki/Music_&_Media)は、
+Scandal を "キャッチーなビートとドラマチックな盛り上がりを持つミディアムテンポの楽曲" と評した。
+
+[Music Week](https://en.wikipedia.org/wiki/Music_Week)の Selina Webb は、"ここに驚きはない" としながらも、
+Mercury の "turbo-whine" は絶好調であり、バンドの演奏も "オーケストラのような迫力を少しも失っていない" と評した。
+
+[Smash Hits](https://en.wikipedia.org/wiki/Smash_Hits)の William Shaw は、この曲を"素晴らしい作品"と評し、
+"ドンドンと響くシンセ" と "Brian May らしい軽快なギターフレーズ" が特徴の "素晴らしい曲" と称賛した。
+一方で彼は、歌詞については、マスコミが下世話なネタを求めるあまり嘘をでっち上げる傾向を "正当に痛烈に批判している" と認めつつも、
+テーマがあまりにも "ごもっとも" であるために、優れた Queen のシングルを傑作たらしめる、あの "いつもの過剰さ" が欠けている、と付け加えた。
+}}
+
+何時も！ 何時も！ 何時も何時も！
+</div>
+</div>
+
+<div style="color: #999999; font-size: 80%; text-align: center;">
+<div style="margin-top: 8em">
+Yes, you're breaking my heart again
+
+また、私の心を傷つけているのよね
+</div>
+
+<div style="margin-top: 4em">
+Yes, you're breaking my heart again
+
+そう、また僕の心を傷つけている
+</div>
+
+<div style="margin-top: 8em">
+Today: the headlines
+
+Tomorrow, hard times
+
+今日のヘッドライン
+
+明日は厳しい状況
+</div>
+
+<div style="margin-top: 4em">
+And no-one ever really knows
+
+The truth from the lies
+
+誰一人として
+
+虚実の中から 真実を見極められるわけがない
+</div>
+
+<div style="margin-top: 4em">
+And in the end, the story
+
+Deeper must hide{{footnote:
+[Number One](https://en.wikipedia.org/wiki/Number_One_(magazine))誌で
+ゲストレビュアーを務めた[Double Trouble](https://en.wikipedia.org/wiki/Double_Trouble_(dance_music_producers))の
+[Rebel MC](https://en.wikipedia.org/wiki/Rebel_MC)と Michael Menson は、この曲をシングル向きというより "アルバム曲" だと感じ、
+おそらくシングルとして出すためにアルバムから "急いで引っ張り出された" 曲なのではないかと評した。
+彼らはチャートでの成績についても、"[Titanic](https://en.wikipedia.org/wiki/Titanic)のように浮上したかと思えば、そのまま沈んでいくだろう" と結論づけた。
+
+[Kerrang!](https://en.wikipedia.org/wiki/Kerrang!)の Phil Wilding はさらに辛辣で、この曲を "前代未聞のクソ曲で、これ以上語る価値すらない" と評した。
+[Record Mirror](https://en.wikipedia.org/wiki/Record_Mirror) の Muff Fitzgerald も否定的で、"酷い" と評した。
+
+[Wikipedia](https://en.wikipedia.org/wiki/Scandal_(song))より
+}}
+
+そんな状況では、
+
+事実なんて 闇の中に沈められてしまう
+</div>
+
+<div style="margin-top: 4em">
+Deeper and deeper and deeper inside!
+
+深い、深い、深い暗闇へ！
+</div>
+</div>
+
+<div style="margin-top: 8em"></div>
+
 ~~~admonish quote title=""
 CoralPink は
 
-めのまえが　まっくらに　なっ・・・
+めのまえが　まっくらに　なった
 ~~~
 
-<div style="margin-top: 4em"></div>
-
-...❓
-
-<div style="margin-top: 4em"></div>
+<div style="margin-top: 8em"></div>
 
 ~~~admonish question title=""
 Hey, CaP..., you read me...?
@@ -267,9 +554,6 @@ Everybody had a wet dream
 }}
 だ。聞こえるか...?
 ~~~
-
-<div style="margin-top: 4em"></div>
-...❗
 
 <div style="margin-top: 4em"></div>
 
