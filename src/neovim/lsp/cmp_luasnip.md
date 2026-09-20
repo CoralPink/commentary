@@ -261,35 +261,31 @@ Gonna come out now Ha-ha-ha
 
 今に出てくるよ ははは
 
-<div class="slider">
-  <div class="media">
-    <video width="1280" height="720" data-poster="img/nya-shougi-ondo-thumbnail.avif">
-      <source src="img/nya-shougi-ondo.webm" type="video/webm">
-    </video>
-    <video width="1280" height="720" data-poster="img/tokyo-yakei-1a-thumbnail.avif">
-      <source src="img/tokyo-yakei-1a.webm" type="video/webm">
-    </video>
-    <video width="1280" height="720" data-poster="img/tokyo-yakei-1b-thumbnail.avif">
-      <source src="img/tokyo-yakei-1b.webm" type="video/webm">
-    </video>
-  </div>
-</div>
+<media-slider>
+  <video width="1280" height="720" data-poster="img/nya-shougi-ondo-thumbnail.avif">
+    <source src="img/nya-shougi-ondo.webm" type="video/webm">
+  </video>
+  <video width="1280" height="720" data-poster="img/tokyo-yakei-1a-thumbnail.avif">
+    <source src="img/tokyo-yakei-1a.webm" type="video/webm">
+  </video>
+  <video width="1280" height="720" data-poster="img/tokyo-yakei-1b-thumbnail.avif">
+    <source src="img/tokyo-yakei-1b.webm" type="video/webm">
+  </video>
+</media-slider>
 
 Wow look out! it's-
 
 おい見ろ！あれは-
 
-<div class="slider">
-  <div class="media">
-    <video width="1280" height="720" data-poster="img/saitama-tokyo-thumbnail.avif">
-      <source src="img/saitama-tokyo.webm" type="video/webm">
-    </video>
-    <video width="1280" height="720" data-poster="img/tokyo-yakei-2a-thumbnail.avif">
-      <source src="img/tokyo-yakei-2a.webm" type="video/webm">
-    </video>
-    <video width="1280" height="720" data-poster="img/tokyo-yakei-2b-thumbnail.avif">
-      <source src="img/tokyo-yakei-2b.webm" type="video/webm">
-    </video>
-  </div>
-</div>
+<media-slider>
+  <video width="1280" height="720" data-poster="img/saitama-tokyo-thumbnail.avif">
+    <source src="img/saitama-tokyo.webm" type="video/webm">
+  </video>
+  <video width="1280" height="720" data-poster="img/tokyo-yakei-2a-thumbnail.avif">
+    <source src="img/tokyo-yakei-2a.webm" type="video/webm">
+  </video>
+  <video width="1280" height="720" data-poster="img/tokyo-yakei-2b-thumbnail.avif">
+    <source src="img/tokyo-yakei-2b.webm" type="video/webm">
+  </video>
+</media-slider>
 ```

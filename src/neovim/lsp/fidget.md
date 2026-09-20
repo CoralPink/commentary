@@ -25,13 +25,11 @@ JR高円寺駅前から東京メトロ新高円寺駅にかけての商店街お
 [Wikipedia](https://ja.wikipedia.org/wiki/東京高円寺阿波おどり)より
 }}
 
-<div class="slider">
-  <div class="media">
-    ![koenji-2023-1](img/awa-koenji-2023-1.avif)
-    ![koenji-2023-2](img/awa-koenji-2023-2.avif)
-    ![koenji-2023-3](img/awa-koenji-2023-3.avif)
-  </div>
-</div>
+<media-slider>
+  ![koenji-2023-1](img/awa-koenji-2023-1.avif)
+  ![koenji-2023-2](img/awa-koenji-2023-2.avif)
+  ![koenji-2023-3](img/awa-koenji-2023-3.avif)
+</media-slider>
 
 ```admonish success title=""
 一かけ 二かけ 三かけて
@@ -159,17 +157,15 @@ The following table shows the default options for this plugin:
 
 やっとさー💃 やっとやっとー🕺
 
-<div class="slider">
-  <div class="media">
-    <video width="1280" height="720" data-poster="img/awa-ogikubo-thumbnail.avif">
-      <source src="img/awa-ogikubo.webm" type="video/webm">
-    </video>
-    <youtube-video data-id="X5whQeE28gs"></youtube-video>
-    <video width="1280" height="720" data-poster="img/awa-kagurazaka-thumbnail.avif">
-      <source src="img/awa-kagurazaka.webm" type="video/webm">
-    </video>
-  </div>
-</div>
+<media-slider>
+  <video width="1280" height="720" data-poster="img/awa-ogikubo-thumbnail.avif">
+    <source src="img/awa-ogikubo.webm" type="video/webm">
+  </video>
+  <youtube-video data-id="X5whQeE28gs"></youtube-video>
+  <video width="1280" height="720" data-poster="img/awa-kagurazaka-thumbnail.avif">
+    <source src="img/awa-kagurazaka.webm" type="video/webm">
+  </video>
+</media-slider>
 
 ようけやっとるでないで❗
 
@@ -219,16 +215,14 @@ See <lua/fidget/spinners.lua> of this plugin's source code to see how each anima
 
 ## 八 : やっぱり踊りは止められぬ
 
-<div class="slider">
-  <div class="media">
+<media-slider>
     <video width="1280" height="720" data-poster="img/awa-tenguren-thumbnail.avif">
       <source src="img/awa-tenguren.webm" type="video/webm">
     </video>
     <video width="1280" height="720" data-poster="img/awa-tenshouren-thumbnail.avif">
       <source src="img/awa-tenshouren.webm" type="video/webm">
     </video>
-  </div>
-</div>
+</media-slider>
 
 ```admonish success
 五かけ 六かけ 七かけて

@@ -8,3 +8,4 @@ export const CONTENT_READY = 'content-ready';
 export const BREAKPOINT_UI_WIDE = 1025;
 
 export const ELEMENT_YOUTUBE = 'youtube-video';
+export const ELEMENT_MEDIA_SLIDER = 'media-slider';
