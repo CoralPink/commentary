@@ -28,8 +28,11 @@ class YouTubeVideo extends HTMLElement {
     iframe.src = `${SRC_URL}${id}`;
     iframe.allow = 'fullscreen';
 
-    this.shadowRoot!.querySelectorAll('iframe').forEach((element) => element.remove());
     this.shadowRoot!.append(iframe);
+  }
+
+  disconnectedCallback(): void {
+    this.shadowRoot!.querySelector('iframe')?.remove();
   }
 }
 
