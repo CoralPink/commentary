@@ -8,8 +8,8 @@ const ENTRIES = [
   './extensions/codeblock.ts',
   './extensions/footnote.ts',
   './extensions/footnote-legacy.ts',
-  './extensions/media.ts',
-  './extensions/slider.ts',
+  './extensions/media-slider.ts',
+  './extensions/video.ts',
   './extensions/youtube.ts',
 ];
 

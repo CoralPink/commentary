@@ -351,14 +351,12 @@ We have some built in themes but are looking for more cool options.
 
 これはもうイメージで見たほうが早いと思うので、`help_tags`をそれぞれの`themes`で呼んでみます。
 
-<div class="slider">
-  <div class="media">
-    ![telescope-theme-none](img/telescope-theme-none.avif)
-    ![telescope-theme-dropdown](img/telescope-theme-dropdown.avif)
-    ![telescope-theme-cursor](img/telescope-theme-cursor.avif)
-    ![telescope-theme-ivy](img/telescope-help_tags.avif)
-  </div>
-</div>
+<media-slider>
+  ![telescope-theme-none](img/telescope-theme-none.avif)
+  ![telescope-theme-dropdown](img/telescope-theme-dropdown.avif)
+  ![telescope-theme-cursor](img/telescope-theme-cursor.avif)
+  ![telescope-theme-ivy](img/telescope-help_tags.avif)
+</media-slider>
 
 |1|2|3|4|
 |:---:|:---:|:---:|:---:|

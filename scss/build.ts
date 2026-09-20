@@ -13,12 +13,14 @@ const OUT_DIR = 'dist/';
 
 // biome-ignore format: keep SCSS filelist readable
 const SCSS_FILE_LIST = [
-  "footnote",
-  "footnote-legacy",
-  "general",
-  "search",
-  "style",
-  "theme-list",
+  'footnote',
+  'footnote-legacy',
+  'general',
+  'media-slider',
+  'search',
+  'style',
+  'theme-list',
+  'youtube',
 ];
 
 const THEME_DIR = 'catppuccin/';
@@ -26,10 +28,10 @@ const THEME_FILES = ['au-lait', 'frappe', 'latte', 'macchiato', 'mocha'];
 
 // biome-ignore format: keep browserslist readable
 const TARGET_VERSION = [
-  "last 3 chrome version",
-  "last 3 firefox version",
-  "last 3 safari version",
-].join(", ");
+  'last 3 chrome version',
+  'last 3 firefox version',
+  'last 3 safari version',
+].join(', ');
 
 const encoder = new TextEncoder();
 const decoder = new TextDecoder();

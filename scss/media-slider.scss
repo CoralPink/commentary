@@ -1,0 +1,62 @@
+:host {
+  display: grid;
+  justify-items: center;
+  gap: 0.8em;
+  overflow: hidden;
+}
+
+::slotted(*) {
+  display: block;
+  flex: 0 0 100%;
+  inline-size: 100%;
+  scroll-snap-align: start;
+}
+
+.media {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  inline-size: min(var(--slide-width, 100%), 100%);
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  .arrow {
+    color: var(--fg);
+    border-radius: 0.8rem;
+    padding: 0.4rem;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .indicators {
+    display: flex;
+    gap: 0.7rem;
+    overflow-y: visible;
+
+    button {
+      width: 2.4em;
+      height: 2.4em;
+      background-size: cover;
+      background-position: center;
+      border: none;
+      border-radius: 0.8em;
+      cursor: pointer;
+      user-select: none;
+
+      &.active {
+        outline: 2px solid var(--hover-fg);
+      }
+
+      &:hover {
+        transform: scale(1.1);
+        transition: transform 0.2s;
+      }
+    }
+  }
+}

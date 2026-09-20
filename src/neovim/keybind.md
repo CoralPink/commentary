@@ -179,17 +179,15 @@ vim.keymap.set('n', '<Down>', '<C-e>')
 ここでは一度、実際に動くことを確認してもらいたかったので`keybinds.lua`のサンプルとして提示しましたが、
 「こんな感じね〜」を掴めたら削除してしまって構いません。
 
-<div class="slider">
-  <div class="media">
-    <youtube-video data-id="8QQ5zd9BLck"></youtube-video>
-    <div class="ft-definition">
-      ![ramayana](img/ramayana.avif)
-      このケチャは、रामायणम्(Ramayana) 3・5・6・6 巻から抽出されたダイジェスト版であり、結末までを語っていない。
-      この叙事詩は、ラーマ王子が誘拐された妻シータを奪還すべく大軍を率いてラークシャサの王ラーヴァナに挑む姿を描いている。
-      Ramayana の意味は "ラーマ王行状記"。<a href="https://ja.wikipedia.org/wiki/ラーマーヤナ" target="_blank" rel="noopener">Wikipedia</a>より
-    </div>
+<media-slider>
+  <youtube-video data-id="8QQ5zd9BLck"></youtube-video>
+  <div class="ft-definition">
+    ![ramayana](img/ramayana.avif)
+    このケチャは、रामायणम्(Ramayana) 3・5・6・6 巻から抽出されたダイジェスト版であり、結末までを語っていない。
+    この叙事詩は、ラーマ王子が誘拐された妻シータを奪還すべく大軍を率いてラークシャサの王ラーヴァナに挑む姿を描いている。
+    Ramayana の意味は "ラーマ王行状記"。<a href="https://ja.wikipedia.org/wiki/ラーマーヤナ" target="_blank" rel="noopener">Wikipedia</a>より
   </div>
-</div>
+</media-slider>
 
 この先でいくつか提示はしますが、"信じるも〜ぉ、信じ〜ぃないも〜ぉ、そりゃ〜ぁ皆の勝手というものだが〜ぁ" で流します💃
 
@@ -288,15 +286,12 @@ vim.keymap.set({ 'n', 'v' }, 'p', 'p`]')
 ```admonish note
 上の表を参照するとわかる通り、正確にはさらにセレクトモードにも適用されることになります。
 ```
-
-<div class="slider">
-  <div class="media">
-    <youtube-video data-id="gMAbARgRTes"></youtube-video>
-    <video width="1280" height="720" data-poster="img/Ko-hiông-thumbnail.avif">
-      <source src="img/Ko-hiông.webm" type="video/webm">
-    </video>
-  </div>
-</div>
+<media-slider>
+  <youtube-video data-id="gMAbARgRTes"></youtube-video>
+  <video width="1280" height="720" data-poster="img/Ko-hiông-thumbnail.avif">
+    <source src="img/Ko-hiông.webm" type="video/webm">
+  </video>
+</media-slider>
 
 ## Wrap Up
 
