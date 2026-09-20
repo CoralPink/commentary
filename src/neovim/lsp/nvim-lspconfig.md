@@ -307,16 +307,14 @@ Yes, it was my way{{footnote:
 
 こうなったらお祝いだー❗❗🥳
 
-<div class="slider">
-  <div class="media">
-    <video width="1280" height="720" data-poster="img/mm-bon-odori-thumbnail.avif">
-      <source src="img/mm-bon-odori.webm" type="video/webm">
-    </video>
-    <video width="1280" height="720" data-poster="img/anpanman-thumbnail.avif">
-      <source src="img/anpanman.webm" type="video/webm">
-    </video>
-  </div>
-</div>
+<media-slider>
+  <video width="1280" height="720" data-poster="img/mm-bon-odori-thumbnail.avif">
+    <source src="img/mm-bon-odori.webm" type="video/webm">
+  </video>
+  <video width="1280" height="720" data-poster="img/anpanman-thumbnail.avif">
+    <source src="img/anpanman.webm" type="video/webm">
+  </video>
+</media-slider>
 
 宴もたけなわではございますが、
 

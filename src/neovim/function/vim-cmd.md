@@ -62,12 +62,10 @@ vim.cmd.colorscheme('blue')
 ```
 ~~~
 
-<div class="slider">
-  <div class="media">
-    ![kawaguchiko-mt-fuji-day](img/kawaguchiko-mt-fuji-day.avif)
-    ![kawaguchiko-mt-fuji-night](img/kawaguchiko-mt-fuji-night.avif)
-  </div>
-</div>
+<media-slider>
+  ![kawaguchiko-mt-fuji-day](img/kawaguchiko-mt-fuji-day.avif)
+  ![kawaguchiko-mt-fuji-night](img/kawaguchiko-mt-fuji-night.avif)
+</media-slider>
 
 ## Try
 
@@ -128,14 +126,12 @@ vim.keymap.set('n', '<Leader>9', function() vim.cmd('colorscheme blue') end)
 `color scheme` (もしくは`color theme`) はプラグインとして提供されているものも数多くあるので、このサイトでも取り上げます☺️
 ```
 
-<div class="slider">
-  <div class="media">
-    ![iyashinosatonenba1](img/iyashinosatonenba1.avif)
-    ![iyashinosatonenba2](img/iyashinosatonenba2.avif)
-    ![iyashinosatonenba3](img/iyashinosatonenba3.avif)
-    ![iyashinosatonenba4](img/iyashinosatonenba4.avif)
-  </div>
-</div>
+<media-slider>
+  ![iyashinosatonenba1](img/iyashinosatonenba1.avif)
+  ![iyashinosatonenba2](img/iyashinosatonenba2.avif)
+  ![iyashinosatonenba3](img/iyashinosatonenba3.avif)
+  ![iyashinosatonenba4](img/iyashinosatonenba4.avif)
+</media-slider>
 
 ## Lua Function
 

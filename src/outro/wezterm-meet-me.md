@@ -101,20 +101,18 @@ Harrison は [Cream](https://en.wikipedia.org/wiki/Cream_(band)) のレコーデ
 ![hanako](img/hanako.avif)
 ```
 
-<div class="slider">
-  <div class="media">
-    <youtube-video data-id="2JF6Cdtoseg"></youtube-video>
-    <video width="1280" height="720" data-poster="img/musashino-gakudan-thumbnail.avif">
-      <source src="img/musashino-gakudan.webm" type="video/webm">
-    </video>
-    <div>
-      ![band-sounds](img/band-sounds.avif)
-      <audio controls>
-        <source src="audio/band-sounds.mp3">
-      </audio>
-    </div>
+<media-slider>
+  <youtube-video data-id="2JF6Cdtoseg"></youtube-video>
+  <video width="1280" height="720" data-poster="img/musashino-gakudan-thumbnail.avif">
+    <source src="img/musashino-gakudan.webm" type="video/webm">
+  </video>
+  <div>
+    ![band-sounds](img/band-sounds.avif)
+    <audio controls>
+      <source src="audio/band-sounds.mp3">
+    </audio>
   </div>
-</div>
+</media-slider>
 
 鳥さんも羽休め🐦‍⬛ に来るんだし、こんなにも HAPPY✨ な演奏にも巡り会えるし🎻
 
@@ -147,18 +145,16 @@ return config
 ```
 ~~~
 
-<div class="slider">
-  <div class="media">
-    ![sotobori-bird](img/sotobori-bird.avif)
-    <video width="1280" height="720" data-poster="img/ochanomizu-thumbnail.avif">
-      <source src="img/ochanomizu.webm" type="video/webm">
-    </video>
-    <video width="1280" height="720" data-poster="img/hydration_breaks-thumbnail.avif">
-      <source src="img/hydration_breaks.webm" type="video/webm">
-    </video>
-    ![uco-chan](img/uco-chan.avif)
-  </div>
-</div>
+<media-slider>
+  ![sotobori-bird](img/sotobori-bird.avif)
+  <video width="1280" height="720" data-poster="img/ochanomizu-thumbnail.avif">
+    <source src="img/ochanomizu.webm" type="video/webm">
+  </video>
+  <video width="1280" height="720" data-poster="img/hydration_breaks-thumbnail.avif">
+    <source src="img/hydration_breaks.webm" type="video/webm">
+  </video>
+  ![uco-chan](img/uco-chan.avif)
+</media-slider>
 
 ```admonish success title=""
 I look at the floor and I see it needs sweeping
@@ -242,15 +238,13 @@ How to unfold your love
 
 [東京大神宮](https://tokyodaijingu.or.jp)もちょいちょい参拝させてもらってます⛩️
 
-<div class="slider">
-  <div class="media">
-    ![tokyo-daijingu](img/tokyo-daijingu.avif)
-    <video width="1280" height="720" data-poster="img/shin-mituke.avif">
-      <source src="img/iidabashi-tokyo.webm" type="video/webm">
-    </video>
-    ![sotobori](img/sotobori.avif)
-  </div>
-</div>
+<media-slider>
+  ![tokyo-daijingu](img/tokyo-daijingu.avif)
+  <video width="1280" height="720" data-poster="img/shin-mituke.avif">
+    <source src="img/iidabashi-tokyo.webm" type="video/webm">
+  </video>
+  ![sotobori](img/sotobori.avif)
+</media-slider>
 
 ### 🧚‍♀️ Font
 
@@ -321,12 +315,10 @@ Fira Code: プログラミング合字のフリー等幅フォント
 
 これも素直に[Releases](https://github.com/tonsky/FiraCode/releases)から感謝しながらダウンロードするのが簡単でしょう😊
 
-<div class="slider">
-  <div class="media">
-    ![shi-chan](img/shi-chan.avif)
-    ![hebikubo](img/hebikubo.avif)
-  </div>
-</div>
+<media-slider>
+  ![shi-chan](img/shi-chan.avif)
+  ![hebikubo](img/hebikubo.avif)
+</media-slider>
 
 ##### 🎏 ヒラギノ角ゴシック
 
@@ -334,13 +326,11 @@ Fira Code: プログラミング合字のフリー等幅フォント
 
 わたしは`macOS`に標準で入っている`ヒラギノ角ゴシック`を使っているので、ここでは特に示せる手順がありません😅
 
-<div class="slider">
-  <div class="media">
-    ![kanda-myoujin1](img/kanda-myoujin1.avif)
-    ![kanda-myoujin2](img/kanda-myoujin2.avif)
-    ![akari-chan](img/akari-chan.avif)
-  </div>
-</div>
+<media-slider>
+  ![kanda-myoujin1](img/kanda-myoujin1.avif)
+  ![kanda-myoujin2](img/kanda-myoujin2.avif)
+  ![akari-chan](img/akari-chan.avif)
+</media-slider>
 
 #### 🐣 font_with_fall_back
 
@@ -570,12 +560,10 @@ You were perverted, too
 
 な〜んて言いながら、もう一回だけ話飛ぶんですけど、オランダに行ってきたんですよ〜😋
 
-<div class="slider">
-  <div class="media">
-    ![ukima1](img/ukima1.avif)
-    ![ukima2](img/ukima2.avif)
-  </div>
-</div>
+<media-slider>
+  ![ukima1](img/ukima1.avif)
+  ![ukima2](img/ukima2.avif)
+</media-slider>
 
 間違えました、[いたばしのオランダ](https://www.city.itabashi.tokyo.jp/bousai/toshikeiakku/kotsu/1044242/1044694.html)でした🦧
 
@@ -625,14 +613,12 @@ No one alerted you
 
 でも、"ドンドンぶち上がる" 花火を見てる方がよっぽど健全だと気づいたんだ❗
 
-<div class="slider">
-  <div class="media">
-    <video width="1280" height="720" data-poster="img/itabashi-hanabi-thumbnail.avif">
-      <source src="img/itabashi-hanabi.webm" type="video/webm">
-    </video>
-    <youtube-video data-id="08yn4r9KetQ"></youtube-video>
-  </div>
-</div>
+<media-slider>
+  <video width="1280" height="720" data-poster="img/itabashi-hanabi-thumbnail.avif">
+    <source src="img/itabashi-hanabi.webm" type="video/webm">
+  </video>
+  <youtube-video data-id="08yn4r9KetQ"></youtube-video>
+</media-slider>
 
 > There is still a light that shines on me
 >

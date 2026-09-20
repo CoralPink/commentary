@@ -1,10 +1,21 @@
 import type { Disposer } from './types.ts';
 
-import { ELEMENT_YOUTUBE } from '../constants.ts';
+import { ELEMENT_YOUTUBE, ROOT_PATH } from '../constants.ts';
 
 const SRC_URL = 'https://www.youtube.com/embed/';
 
 class YouTubeVideo extends HTMLElement {
+  constructor() {
+    super();
+
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = new URL('youtube.css', `${ROOT_PATH}css/`).href;
+
+    const shadow = this.attachShadow({ mode: 'open' });
+    shadow.append(link);
+  }
+
   connectedCallback(): void {
     const id = this.dataset['id'];
 
@@ -14,11 +25,10 @@ class YouTubeVideo extends HTMLElement {
     }
 
     const iframe = document.createElement('iframe');
-
     iframe.src = `${SRC_URL}${id}`;
     iframe.allow = 'fullscreen';
 
-    this.replaceChildren(iframe);
+    this.shadowRoot!.append(iframe);
   }
 }
 

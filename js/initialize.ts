@@ -1,4 +1,4 @@
-import { CONTENT_READY, ROOT_PATH, ELEMENT_YOUTUBE } from './constants.ts';
+import { CONTENT_READY, ELEMENT_MEDIA_SLIDER, ELEMENT_YOUTUBE, ROOT_PATH } from './constants.ts';
 import { initMark } from './mark.ts';
 import { hiddenSearch, startupSearch } from './searcher.ts';
 import { bootSidebar } from './sidebar.ts';
@@ -9,7 +9,7 @@ import type { Disposer, ExtensionEntry, InitializableExtension } from './extensi
 import { isWebkitBased } from './utils/platform.ts';
 import { prepareForNextCycle, scheduleJob } from './utils/pulse.ts';
 
-type ModuleName = 'codeblock' | 'footnote' | 'footnote-legacy' | 'media' | 'slider' | 'youtube';
+type ModuleName = 'codeblock' | 'footnote' | 'footnote-legacy' | 'media-slider' | 'video' | 'youtube';
 type ModuleFactory = () => ModuleName;
 
 type ModuleRequirement = {
@@ -27,11 +27,10 @@ const selectorModule = (selector: string, module: ModuleName | ModuleFactory): M
 const footnoteModule = isWebkitBased() ? 'footnote-legacy' : 'footnote';
 
 const MODULE_REQUIREMENTS = [
-  selectorModule('.slider', 'slider'),
-  selectorModule('video', 'media'),
+  selectorModule(ELEMENT_MEDIA_SLIDER, 'media-slider'),
   selectorModule(ELEMENT_YOUTUBE, 'youtube'),
   selectorModule('pre code:not(.language-txt)', 'codeblock'),
-
+  selectorModule('video', 'video'),
   selectorModule('sup', footnoteModule),
 ] satisfies readonly ModuleRequirement[];
 
