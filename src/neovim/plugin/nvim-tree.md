@@ -368,16 +368,14 @@ Window / buffer setup.
 ウィンドウ / バッファの設定。
 ```
 
-<div class="slider">
-  <div class="media">
-    ![ジジ](img/jiji.avif)
-    ![グーチョキパン屋](img/gutiokipan.avif)
-    ![パズー](img/pazu.avif)
-    ![哲学研究会](img/philosophy.avif)
-    ![神隠し](img/kamikakushi.avif)
-    ![清太](img/seita.avif)
-  </div>
-</div>
+<media-slider>
+  ![ジジ](img/jiji.avif)
+  ![グーチョキパン屋](img/gutiokipan.avif)
+  ![パズー](img/pazu.avif)
+  ![哲学研究会](img/philosophy.avif)
+  ![神隠し](img/kamikakushi.avif)
+  ![清太](img/seita.avif)
+</media-slider>
 
 #### width
 
@@ -655,15 +653,13 @@ Just to hear your song?
 それだけで幸せになれたでしょう？
 ```
 
-<div class="slider">
-  <div class="media">
-    ![まもり神](img/mitaka-guardian-deity.avif)
-    ![トトロ(ジブリパーク)](img/totoro-ghibli-park.avif)
-    ![ねこバス](img/neko-bus.avif)
-    ![乙事主](img/okkoto-nushi.avif)
-    ![湯婆婆](img/yubaba.avif)
-  </div>
-</div>
+<media-slider>
+  ![まもり神](img/mitaka-guardian-deity.avif)
+  ![トトロ(ジブリパーク)](img/totoro-ghibli-park.avif)
+  ![ねこバス](img/neko-bus.avif)
+  ![乙事主](img/okkoto-nushi.avif)
+  ![湯婆婆](img/yubaba.avif)
+</media-slider>
 
 ```admonish quote title=""
 Have you never let someone else be strong?

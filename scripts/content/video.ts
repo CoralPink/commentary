@@ -6,16 +6,8 @@ export const VideoProc = (document: Document): void => {
       continue;
     }
 
-    // Set `preload=“none”` for all items at once.
+    // Set Up in Bulk
     video.setAttribute('preload', 'none');
-
-    // Build a format compliant with video.js v10
-    const player = document.createElement('video-player');
-    const skin = document.createElement('video-minimal-skin');
-
-    parent.insertBefore(player, video);
-
-    player.appendChild(skin);
-    skin.appendChild(video);
+    video.setAttribute('controls', '');
   }
 };

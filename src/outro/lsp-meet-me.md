@@ -65,18 +65,16 @@ require('mason').setup {
 袖振り合うも他生の縁！
 ```
 
-<div class="slider">
-  <div class="media">
-    ![外宮](img/geku.avif)
-    ![豊受大神宮](img/toyouke-daijingu.avif)
-    ![内宮1](img/naiku1.avif)
-    ![内宮2](img/naiku2.avif)
-    ![内宮3](img/naiku3.avif)
-    ![荒祭宮](img/aramaturi-no-miya.avif)
-    ![おかげ横丁1](img/okage-yokocho1.avif)
-    ![おかげ横丁2](img/okage-yokocho2.avif)
-  </div>
-</div>
+<media-slider>
+  ![外宮](img/geku.avif)
+  ![豊受大神宮](img/toyouke-daijingu.avif)
+  ![内宮1](img/naiku1.avif)
+  ![内宮2](img/naiku2.avif)
+  ![内宮3](img/naiku3.avif)
+  ![荒祭宮](img/aramaturi-no-miya.avif)
+  ![おかげ横丁1](img/okage-yokocho1.avif)
+  ![おかげ横丁2](img/okage-yokocho2.avif)
+</media-slider>
 
 ## 🧠 Additional Setup
 
@@ -568,16 +566,14 @@ vim.lsp.enable(manual_lsp)
 これすなわち "This event was shot on iPhone and edited on Mac." というオチ。おあとがよろしいようで 🙇‍♀️
 }}は続きます🐦‍🔥
 
-<div class="slider">
-  <div class="media">
-    <video width="1280" height="720" data-poster="img/fukuro-festival-thumbnail.avif">
-      <source src="img/fukuro-festival.webm" type="video/webm">
-    </video>
-    <video width="1280" height="720" data-poster="img/kurayami-festival-thumbnail.avif">
-      <source src="img/kuarayami-festival.webm" type="video/webm">
-    </video>
-  </div>
-</div>
+<media-slider>
+  <video width="1280" height="720" data-poster="img/fukuro-festival-thumbnail.avif">
+    <source src="img/fukuro-festival.webm" type="video/webm">
+  </video>
+  <video width="1280" height="720" data-poster="img/kurayami-festival-thumbnail.avif">
+    <source src="img/kuarayami-festival.webm" type="video/webm">
+  </video>
+</media-slider>
 
 ### 🐲 SourceKit-LSP (Swift)
 
@@ -787,14 +783,12 @@ MVP とは、俺のことだ！！
 }}」という おはなし。
 ```
 
-<div class="slider">
-  <div class="media">
-    <youtube-video data-id="voDlrN2-gGI"></youtube-video>
-    <video width="1280" height="720" data-poster="img/fuchu-ohayashi-thumbnail.avif">
-      <source src="img/fuchu-ohayashi.webm" type="video/webm">
-    </video>
-  </div>
-</div>
+<media-slider>
+  <youtube-video data-id="voDlrN2-gGI"></youtube-video>
+  <video width="1280" height="720" data-poster="img/fuchu-ohayashi-thumbnail.avif">
+    <source src="img/fuchu-ohayashi.webm" type="video/webm">
+  </video>
+</media-slider>
 
 ```admonish success
 目指すは めでたしドーンとハッピーエンド！

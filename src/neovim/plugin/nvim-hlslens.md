@@ -22,16 +22,14 @@ nvim-ufo (optional)
 
 そもそもわたし自身が普段`fold`使ってないので、このサイトでは使用しないで進みます😅
 
-<div class="slider">
-  <div class="media">
-    ![asakusa-samba-carnival-2024-1](img/asakusa-samba-carnival-2024-1.avif)
-    ![asakusa-samba-carnival-2024-2](img/asakusa-samba-carnival-2024-2.avif)
-    ![asakusa-samba-carnival-2024-3](img/asakusa-samba-carnival-2024-3.avif)
-    ![asakusa-samba-carnival-2024-4](img/asakusa-samba-carnival-2024-4.avif)
-    ![asakusa-samba-carnival-2024-5](img/asakusa-samba-carnival-2024-5.avif)
-    ![asakusa-samba-carnival-2024-6](img/asakusa-samba-carnival-2024-6.avif)
-  </div>
-</div>
+<media-slider>
+  ![asakusa-samba-carnival-2024-1](img/asakusa-samba-carnival-2024-1.avif)
+  ![asakusa-samba-carnival-2024-2](img/asakusa-samba-carnival-2024-2.avif)
+  ![asakusa-samba-carnival-2024-3](img/asakusa-samba-carnival-2024-3.avif)
+  ![asakusa-samba-carnival-2024-4](img/asakusa-samba-carnival-2024-4.avif)
+  ![asakusa-samba-carnival-2024-5](img/asakusa-samba-carnival-2024-5.avif)
+  ![asakusa-samba-carnival-2024-6](img/asakusa-samba-carnival-2024-6.avif)
+</media-slider>
 
 踊りながらいきましょう❗{{footnote:
 浅草サンバ・カーニバル・コンテストは、東京都台東区浅草で行われるサンバ・パレードのコンテスト。
@@ -191,13 +189,11 @@ Vim では、quickfix コマンドはより一般的に、ファイル内の位�
 
 そこまで絞るには眠れない夜もあったろう...❗ありがとう、ブラックパンツァー...❗❗
 
-<div class="slider">
-  <div class="media">
-    <youtube-video data-id="Yeo1KETlf3A"></youtube-video>
-    <youtube-video data-id="2Ud7YbaXZIA"></youtube-video>
-    <youtube-video data-id="MHqjp3aVSwc"></youtube-video>
-  </div>
-</div>
+<media-slider>
+  <youtube-video data-id="Yeo1KETlf3A"></youtube-video>
+  <youtube-video data-id="2Ud7YbaXZIA"></youtube-video>
+  <youtube-video data-id="MHqjp3aVSwc"></youtube-video>
+</media-slider>
 
 ## Help poor children in Uganda!
 
