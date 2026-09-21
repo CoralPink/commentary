@@ -13,7 +13,7 @@ reviews:
   path_instructions:
     - path: "**/*.{ts,scss}"
       instructions: |
-        Browser compatibility target is the latest 3 versions of Chrome, Firefox, and Safari.
+        Browser compatibility target is the latest 2 versions of Chrome, Firefox, and Safari.
         Do not suggest fallbacks or workarounds for environments outside this target range.
 
     - path: "**/*.rs"
