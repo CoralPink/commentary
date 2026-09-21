@@ -11,7 +11,6 @@ const CLR_C = '\x1b[36m';
 
 const OUT_DIR = 'dist/';
 
-// biome-ignore format: keep SCSS filelist readable
 const SCSS_FILE_LIST = [
   'footnote',
   'footnote-legacy',
@@ -28,10 +27,10 @@ const THEME_FILES = ['au-lait', 'frappe', 'latte', 'macchiato', 'mocha'];
 
 // biome-ignore format: keep browserslist readable
 const TARGET_VERSION = [
-  'last 3 chrome version',
-  'last 3 firefox version',
-  'last 3 safari version',
-].join(', ');
+  'last 2 chrome version',
+  'last 2 firefox version',
+  'last 2 safari version',
+];
 
 const encoder = new TextEncoder();
 const decoder = new TextDecoder();
