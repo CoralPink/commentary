@@ -1,9 +1,10 @@
-import { CONTENT_READY, ELEMENT_MEDIA_SLIDER, ELEMENT_YOUTUBE, ROOT_PATH } from './constants.ts';
+import { CONTENT_READY, ROOT_PATH } from './constants.ts';
 import { initMark } from './mark.ts';
 import { hiddenSearch, startupSearch } from './searcher.ts';
 import { bootSidebar } from './sidebar.ts';
 import { bootTableOfContents, initTableOfContents } from './table-of-contents.ts';
 
+import { ELEMENT_MEDIA_SLIDER, ELEMENT_YOUTUBE } from './extensions/element.ts';
 import type { Disposer, ExtensionEntry, InitializableExtension } from './extensions/types.ts';
 
 import { isWebkitBased } from './utils/platform.ts';

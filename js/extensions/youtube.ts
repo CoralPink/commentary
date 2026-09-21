@@ -1,6 +1,7 @@
+import { ELEMENT_YOUTUBE } from './element.ts';
 import type { Disposer } from './types.ts';
 
-import { ELEMENT_YOUTUBE, ROOT_PATH } from '../constants.ts';
+import { ROOT_PATH } from '../constants.ts';
 
 const SRC_URL = 'https://www.youtube.com/embed/';
 

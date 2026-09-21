@@ -6,6 +6,3 @@ export const CONTENT_READY = 'content-ready';
 // TODO: Even when defined separately in JS and CSS, I believe the best approach is to create a flow detectable by testing,
 //       but at this point, the method isn't clear...
 export const BREAKPOINT_UI_WIDE = 1025;
-
-export const ELEMENT_YOUTUBE = 'youtube-video';
-export const ELEMENT_MEDIA_SLIDER = 'media-slider';

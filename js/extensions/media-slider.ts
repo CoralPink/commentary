@@ -1,6 +1,7 @@
+import { ELEMENT_MEDIA_SLIDER, ELEMENT_YOUTUBE } from './element.ts';
 import type { Disposer } from './types.ts';
 
-import { ELEMENT_MEDIA_SLIDER, ELEMENT_YOUTUBE, ROOT_PATH } from '../constants.ts';
+import { ROOT_PATH } from '../constants.ts';
 
 const SELECTOR_MEDIA = `img, video, ${ELEMENT_YOUTUBE}`;
 
@@ -15,6 +16,9 @@ const CLASS_ACTIVE = 'active';
 const BUTTON_TEXT_PREV = '◀';
 const BUTTON_TEXT_NEXT = '▶';
 
+const DIRECTION_PREV = 'prev';
+const DIRECTION_NEXT = 'next';
+
 const SCROLL_INTO_VIEW_OPTIONS: ScrollIntoViewOptions = {
   behavior: 'smooth',
   block: 'nearest',
@@ -24,7 +28,7 @@ const SCROLL_INTO_VIEW_OPTIONS: ScrollIntoViewOptions = {
 const DEFAULT_MEDIA_WIDTH = 1920;
 const YOUTUBE_THUMBNAIL = 'mqdefault.jpg';
 
-type Direction = 'prev' | 'next';
+type Direction = typeof DIRECTION_PREV | typeof DIRECTION_NEXT;
 type CompatibleMedia = HTMLImageElement | HTMLVideoElement | HTMLElement;
 
 const extractName = (s: string): string => s.match(/\/([^/?#]+?)(\.[^/.#?]+)?(?:[?#]|$)/)?.[1] ?? '';
@@ -107,12 +111,12 @@ class MediaSlider extends HTMLElement {
     const arrow = document.createElement('div');
 
     arrow.classList.add(CLASS_ARROW);
-    arrow.textContent = direction === 'prev' ? BUTTON_TEXT_PREV : BUTTON_TEXT_NEXT;
+    arrow.textContent = direction === DIRECTION_PREV ? BUTTON_TEXT_PREV : BUTTON_TEXT_NEXT;
 
     arrow.addEventListener(
       'click',
       (): void => {
-        this.scrollToSlide(this.index + (direction === 'prev' ? -1 : 1));
+        this.scrollToSlide(this.index + (direction === DIRECTION_PREV ? -1 : 1));
       },
       {
         passive: true,
@@ -151,7 +155,7 @@ class MediaSlider extends HTMLElement {
     const controls = document.createElement('div');
 
     controls.classList.add(CLASS_CONTROLS);
-    controls.append(this.createArrow('prev'), this.createIndicators(), this.createArrow('next'));
+    controls.append(this.createArrow(DIRECTION_PREV), this.createIndicators(), this.createArrow(DIRECTION_NEXT));
 
     this.controls = controls;
     this.shadowRoot?.append(controls);
@@ -169,6 +173,7 @@ class MediaSlider extends HTMLElement {
       this.observer.observe(x);
     }
 
+    // Ensure the slider starts from the first item.
     this.mediaContainer.scrollLeft = 0;
   }
 
@@ -205,6 +210,7 @@ class MediaSlider extends HTMLElement {
   private initializeSlideLayout(): void {
     this.updateSlideWidth();
 
+    // Take into account cases where the image has not finished loading
     for (const x of this.medias) {
       if (!(x instanceof HTMLImageElement) || x.complete) {
         continue;
@@ -315,5 +321,5 @@ const registry = (name: string): void => {
 export const initialize = (_html: HTMLElement): Disposer => {
   registry(ELEMENT_MEDIA_SLIDER);
 
-  return () => {};
+  return () => {}; // no-op dispose
 };
