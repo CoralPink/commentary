@@ -230,6 +230,8 @@ vim.keymap.set('n', 'ZQ', '<NOP>')
 
 いや、なんか...、ノーマルモードから終了なんて、急すぎて怖くないですか...😱
 
+<youtube-video data-id="OCEn7751BLw"></youtube-video>
+
 ### Mode
 
 ここまでは全てノーマルモードでの例でしたが、もちろん他のモードでのカスタマイズもできます。
