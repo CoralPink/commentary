@@ -1,6 +1,6 @@
 {
   "imports": {
-    "rolldown": "npm:rolldown@1.2.9",
+    "rolldown": "npm:rolldown@1.2.11",
 
     "vitest": "npm:vitest@5.0.1",
     "@vitest/coverage-v8": "npm:@vitest/coverage-v8@5.0.1",
