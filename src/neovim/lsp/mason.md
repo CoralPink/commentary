@@ -1,5 +1,13 @@
 # mason.nvim
 
+<div style="margin-top: 2em"></div>
+
+> Once upon a time, not so long ago
+>
+> むかしむかし、と言ってもそう遠くない
+
+<div style="margin-top: 2em"></div>
+
 さて、前回は`nvim-lspconfig`のセットアップを行いました。
 `Protocol`は既に扱えるようになっているのですが、まだこの言葉で会話のできる相手がいません...😱
 
@@ -28,21 +36,21 @@ LSPサーバー、DAPサーバー、リンター、フォーマッターを簡�
 ```admonish note title=""
 Tommy used to work on the docks
 
-Union's been on strike
+Union’s been on strike, he’s down on his luck
 
-トミーは 港で働いていた
+トミーは埠頭で働いていた
 
-ユニオンはストライキをしていた
+労働組合のストライキで、彼はツキに見放された
 ```
 
 ```admonish note title=""
-He's down on his luck
+It's tough
 
-It's tough, so tough
+So tough
 
-彼は運に見放されていた
+辛かった
 
-辛かった とても辛かった
+とても辛かった
 ```
 
 ## Introduction
@@ -110,21 +118,21 @@ Mason Package Index
 ```admonish fail title=""
 Gina works the diner all day
 
-Woking for her man
+Workin' for her man, she brings home her pay
 
-ジーナは一日中食堂で働く
+ジーナは一日中食堂で働いてる
 
-彼のために
+彼のために働いて、稼いだ給料を家に持ち帰る
 ```
 
 ```admonish fail title=""
-She brings home her pay for love
-
 For love
 
-彼女は稼いだ金を持って家に帰る 愛のために
+Mm, for love
 
-そう 愛のために
+愛のために
+
+そう、愛のために
 ```
 
 ## Requirements
@@ -220,19 +228,25 @@ spawn: npm failed with exit code - and signal -. npm is not executable
 ~~~
 
 ```admonish fail title=""
-We've got to hold on to what we've got
+She says, “We’ve gotta hold on to what we’ve got”
 
-私達は 今あるものに しがみつくしかないの
+彼女は言う "私達は今あるものに しがみつくしかないの"
 ```
 
 ```admonish fail title=""
-It doesn't make a dirrerence
+It doesn’t make a difference if we make it or not
 
-If we make it or not
+上手くいっても いかなくても 違いなんてそんなにないよ
+```
 
-上手くいっても いかなくても
+```admonish fail title=""
+We’ve got each other and that’s a lot for love
 
-違いなんてそんなにないよ
+We’ll give it a shot
+
+二人一緒なんだもの、それだけで十分じゃない
+
+とにかくやってみましょう
 ```
 
 ## Setup
@@ -286,13 +300,19 @@ use {
 ~~~
 
 ```admonish fail title=""
-We've got each other and that's lot for love
+Woah, we’re halfway there
 
-We'll gibe it a shot
+Woah-oh, livin’ on a prayer{{footnote:
+Jon Bon Jovi はこの曲のオリジナル・レコーディングを気に入っていなかった。
+(これは[100,000,000 Bon Jovi Fans Can't Be Wrong](https://en.wikipedia.org/wiki/100,000,000_Bon_Jovi_Fans_Can't_Be_Wrong) のシークレットトラックとして見つけることができる。)
+しかし Sambora は、この曲が良いものであるとメンバーを説得し、新しいベースライン、異なるドラムフィル、トークボックスを使用してこの曲を作り直し、
+[Slippery When Wet](https://en.wikipedia.org/wiki/Slippery_When_Wet)に収録した。
+[Wikipedia](https://en.wikipedia.org/wiki/Livin%27_on_a_Prayer)より
+}}
 
-とにかくやってみましょう
+私達はまだ道半ば
 
-二人一緒だもん なんとかなるでしょ
+縋ってでも 生きていくの
 ```
 
 ## Mason Window
@@ -382,47 +402,154 @@ keymaps = {
 
 ![install-4](img/install-ls4.avif)
 
-```admonish success title=""
-We're half way there
-
-Livin' on a prayer
-{{footnote:
-Livin' on a Prayer (by [Bon Jovi](https://en.wikipedia.org/wiki/Bon_Jovi)):
-Jon Bon Jovi はこの曲のオリジナル・レコーディングを気に入っていなかった。
-これは 100,000,000 Bon Jovi Fans Can't Be Wrong のシークレットトラックとして見つけることができる。
-しかし、リード・ギタリストの Richie Sambora は、この曲が良いものであるとメンバーを説得し、
-新しいベースライン、異なるドラムフィル、トークボックスを使用してこの曲を作り直し、Slippery When Wet に収録した。
-
-2001年9月11日の同時多発テロ事件では、World Trade Center で働く人々や緊急対応要員に何百人もの死傷者が出た。
-彼らの出身地である New Jersey は New York に次いで大きな被害を受けたが、
-バンドは New York のためにこの曲をアコースティックに演奏し歌った。
-[Wikipedia](https://en.wikipedia.org/wiki/Livin%27_on_a_Prayer)より
-}}
-
-私達はまだ道半ば
-
-粘り強く生きていくの
-```
-
 ## Livin' on a Prayer
 
 これでようやく会話のできるお友達をゲットだぜ❗😆
+
 ...と思いきや、まだ何も話してくれません。
 
 ちょっと捕まえ方が強引だったかな...🫨 それとも照れ屋さんなのかな❓😮
 
+```admonish success
 どうやら心を開いてもらって会話をするためには、もう1ステップ必要みたいですね。
 
 ってことで、次回に続く... 🦖
+```
 
-```admonish success
-Take my hand and we'll make it I swear
+```admonish fail title=""
+Take my hand, we’ll make it, I swear
 
-Livin' on a prayer
+Woah-oh, livin’ on a prayer{{footnote:
+Livin' on a Prayer (by [Bon Jovi](https://en.wikipedia.org/wiki/Bon_Jovi)):
+Bon Jovi が 3枚目のスタジオ・アルバム[Slippery When Wet](https://en.wikipedia.org/wiki/Slippery_When_Wet)に収録した楽曲。
 
-私の手を握ってよ 絶対にできる 誓ってもいいよ
+[Jon Bon Jovi](https://en.wikipedia.org/wiki/Jon_Bon_Jovi),
+[Richie Sambora](https://en.wikipedia.org/wiki/Richie_Sambora),
+[Desmond Child](https://en.wikipedia.org/wiki/Desmond_Child)
+によって作曲されたこのシングルは、1986年後半にリリースされ、ロックおよびポップのラジオ局で高い人気を博し、そのミュージックビデオは[MTV](https://en.wikipedia.org/wiki/MTV)で頻繁にオンエアされた。
+これにより、バンドにとって Billboard [Mainstream Rock](https://en.wikipedia.org/wiki/Mainstream_Rock_(chart))チャートで初の1位を獲得した楽曲となり、
+[Billboard Hot 100](https://en.wikipedia.org/wiki/Billboard_Hot_100)では2曲連続の1位ヒットを記録した。
 
-祈りながら生きていくの
+Bon Jovi は、1994年のベストアルバム[Cross Road](https://en.wikipedia.org/wiki/Cross_Road_(album))で、別バージョンである "Prayer 94" をリリースした。
+
+Bon Jovi の代表曲と見なされている Livin' on a Prayer は、リリースから数十年経った今でも、
+ファン投票によるランキングで首位を獲得し、世界中で再チャートインを果たしている。
+
+2013年、この曲は300万回以上のデジタルダウンロードを記録し、トリプル・プラチナ認定を受けた。
+それ以来、世界中で1,300万枚以上を売り上げ、史上最も売れたシングルの一つとなっている。
+}}
+
+私の手を握ってよ 絶対にできる 約束するよ
+
+祈りに縋ってでも 生きていくの
 ```
 
 <youtube-video data-id="_b4fzT3ut2w"></youtube-video>
+
+<div style="color: #999999; font-size: 90%; text-align: center;">
+<div style="margin-top: 8em">
+Tommy's got his six-string in hock
+
+now he's holdin' in, when he used to make it talk
+
+トミーは 6弦ギターを質に入れてしまった
+
+それは彼にとって掛け替えのないものだったのに...
+</div>
+
+<div style="margin-top: 4em">
+So tough
+
+Ooh, it's tough
+
+辛かった
+
+とても辛かった
+</div>
+
+<div style="margin-top: 8em">
+Gina dreams of runnin' away
+
+わたしはこんな現実から逃げ出したくなってしまう
+</div>
+
+<div style="margin-top: 4em">
+When she cries in the night, Tommy whispers
+
+夜、泣いていたら 彼は優しく寄り添った
+</div>
+
+<div style="margin-top: 8em">
+"Baby, it's okay
+
+"ジーナ、俺は平気だ
+</div>
+
+<div style="margin-top: 4em">
+Someday"
+
+いつの日か..."
+</div>
+
+<div style="margin-top: 8em">
+We've gotta hold on to what we've got
+
+俺達は 今あるものに しがみつくしかない
+</div>
+
+<div style="margin-top: 4em">
+It doesn't make a difference if we make it or not
+
+上手くいっても いかなくても そんなことはどうでもいいんだ
+</div>
+
+<div style="margin-top: 4em">
+We've got each other and that's a lot for love
+
+We'll give it a shot
+
+二人一緒なんだから それで十分さ
+
+とにかくやってみよう
+</div>
+
+<div style="margin-top: 8em">
+Woah, we’re halfway there
+
+Woah-oh, livin’ on a prayer
+
+俺達はもう半ばまで来れたんだ
+
+縋ってでも 生き続けよう
+</div>
+
+<div style="margin-top: 8em">
+Take my hand, we’ll make it, I swear
+
+Woah-oh, livin’ on a prayer
+
+手を握ってほしい 絶対に乗り越えられる 誓ってやるさ
+
+祈りに縋ってでも 生き続けよう
+</div>
+
+<div style="margin-top: 12em">
+livin’ on a prayer{{footnote:
+2001年9月11日の同時多発テロ事件では、[World Trade Center](https://en.wikipedia.org/wiki/World_Trade_Center_(1973–2001))で働く人々や緊急対応要員に何百人もの死傷者が出た。
+彼らの出身地である[New Jersey](https://en.wikipedia.org/wiki/New_Jersey)は[New York](https://en.wikipedia.org/wiki/New_York_City)に次いで大きな被害を受けたが、
+バンドは New York のためにこの曲をアコースティックに演奏し歌った。
+}}
+</div>
+
+<div style="margin-top: 12em">
+Ooh, we gotta hold on, ready or not
+
+You live for the fight when that's all that you've got
+
+しがみつくんだ、なんの準備もしていなくても
+
+それしか残っていないのなら 信じて立ち向かうんだ
+</div>
+</div>
+
+<div style="margin-top: 8em"></div>
