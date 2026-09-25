@@ -11,7 +11,7 @@
     "highlight.js/lib/languages/plaintext": "npm:highlight.js@11.12.0/lib/languages/plaintext",
     "highlight.js/lib/languages/vim": "npm:highlight.js@11.12.0/lib/languages/vim",
 
-    "jsdom": "npm:jsdom@30.1.0",
+    "jsdom": "npm:jsdom@30.1.1",
     "js-beautify": "npm:js-beautify@2.0.3",
     "path": "jsr:@std/path@1.1.6",
     "p-limit": "npm:p-limit@7.3.3"
