@@ -6,7 +6,7 @@
     "jsr:@std/path@^1.1.5": "1.1.6",
     "npm:browserslist@4.29.0": "4.29.0",
     "npm:lightningcss@1.33.0": "1.33.0",
-    "npm:sass@1.104.1": "1.104.1"
+    "npm:sass@1.105.0": "1.105.0"
   },
   "jsr": {
     "@std/fs@1.0.24": {
@@ -245,8 +245,8 @@
     "readdirp@5.1.1": {
       "integrity": "sha512-Kko+Y5XQ6fM+Ce3dq3m9YGxnacYZYl9cA1wZjaF3Vbry2L3i1qVg8+CAgNPsXRArPMUMCaOR7oa9Nqntc43JKA=="
     },
-    "sass@1.104.1": {
-      "integrity": "sha512-yDA+1aIG3EHgN4V/BvuhCvu61FF6hEd4e+9DxikUm9U0CAGuvdIZ/UYy7qbOxjhbbWQraoyLlMuzdRGOSV5Bmw==",
+    "sass@1.105.0": {
+      "integrity": "sha512-4EjSuRTyG8M4yRXXY1PT9OUV5zz23xBxJkbIAprohKHqf6HOU4MCpE3U3vAC+iO1gxobBjESNbcj8rYAQZWnyA==",
       "dependencies": [
         "chokidar",
         "immutable",
@@ -275,7 +275,7 @@
       "jsr:@std/fs@1.0.24",
       "npm:browserslist@4.29.0",
       "npm:lightningcss@1.33.0",
-      "npm:sass@1.104.1"
+      "npm:sass@1.105.0"
     ]
   }
 }
