@@ -146,7 +146,7 @@ jobs:
     needs: test-wasm
     env:
       # renovate: datasource=github-releases depName=wasm-bindgen/wasm-bindgen
-      WASM_BINDGEN_VERSION: "0.2.128"
+      WASM_BINDGEN_VERSION: "0.2.129"
       # renovate: datasource=github-releases depName=WebAssembly/binaryen extractVersion=^version_(?<version>\d+)$
       BINARYEN_VERSION: "133"
     steps:
