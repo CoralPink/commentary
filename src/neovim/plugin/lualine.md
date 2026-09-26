@@ -512,7 +512,18 @@ Deeper must hide{{footnote:
 </div>
 
 <div style="margin-top: 4em">
-Deeper and deeper and deeper inside!
+Deeper and deeper and deeper inside!{{footnote:
+Queen -- まったく、なんともセンセーショナルな連中だ --
+[Pinewood Studios](https://en.wikipedia.org/wiki/Pinewood_Studios) で
+Scandal の[Official Video](https://www.youtube.com/watch?v=VMO3YNoNyTY)を撮影した後、
+[Batman](https://en.wikipedia.org/wiki/Batman_(1989_film))のセットを見に行くことにした。
+ところが Freddie とその一味、そこが[Penguin](https://en.wikipedia.org/wiki/Penguin_(character))の手下どもに厳重警備されているとは知らなかった。
+案の定、唸り声を上げる[Rottweiler](https://en.wikipedia.org/wiki/Rottweiler)に追いかけられ、革パンの尻までクンクン嗅がれる羽目に。
+[Record Mirror(1989-10-28)](https://worldradiohistory.com/UK/Record-Mirror/80s/89/Record-Mirror-1989-10-28-OCR.pdf) より。
+
+Scandal の撮影は 1989年の9月27日に行われ、Penguin は (実写映画としては) 次回作[Batman Returns](https://en.wikipedia.org/wiki/Batman_Returns) に登場する。
+2026年にこんなことをクンクン嗅ぎ回って喜んでいるサイト -- まったく、なんとも下世話な連中だ --
+}}
 
 深い、深い、深い暗闇へ！
 </div>
