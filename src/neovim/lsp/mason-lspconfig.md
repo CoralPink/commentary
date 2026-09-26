@@ -184,10 +184,10 @@ I just wanna live while I’m alive
 
 ```admonish success title=""
 Like Frankie{{footnote:
-同じ New Jersey 出身の[Frank Sinatra](https://en.wikipedia.org/wiki/Frank_Sinatra)に言及した詩が特徴の一つであり、
+同じ[New Jersey](https://en.wikipedia.org/wiki/New_Jersey)出身の[Frank Sinatra](https://en.wikipedia.org/wiki/Frank_Sinatra)に言及した詩が特徴の一つであり、
 "My heart is like an open highway / Like Frankie said, I did it '[My Way](https://en.wikipedia.org/wiki/My_Way)'"というセリフでも知られている。
 
-Jon Bon Jovi と Sambora は、このセリフを巡って意見が対立したようで、Bon Jobi は次のように回想している。
+Jon Bon Jovi と Sambora は、このセリフを巡って意見が対立したようで、Bon Jovi は次のように回想している。
 
 俺は[U-571](https://en.wikipedia.org/wiki/U-571_(film))の製作から帰ってきたばかりで、こう言ったんだ。
 "Sinatra は16本の映画を作り、80歳までツアーをした。これは俺のロールモデルだ。"
@@ -212,12 +212,6 @@ Jon Bon Jovi と Sambora は、このセリフを巡って意見が対立した�
 ![Signature Help](img/signature_help.avif)
 
 めっちゃ教えてくれる😆
-
-```admonish success title=""
-Luck ain’t even lucky, gotta make your own breaks
-
-運なんてものは 幸不幸ではなく、自分で拓かなきゃいけないことなんだ
-```
 
 ### Diagnostics
 
@@ -354,7 +348,7 @@ I just wanna live while I’m alive
 'Cause it's my life{{footnote:
 "It's My Life という曲がこれほど話題になるとは、誰も予想していなかった" と、Jon Bon Jovi は2007年に語った。
 "俺たちを除いてね。俺たちはこれがヒット曲になると分かっていたんだ"。この曲は、多くのファンの心を掴むアンセムとなった。
-Bon Jovi 後に次のように述べている:
+Bon Jovi は、後に次のように述べている:
 当時は、自分の人生やその時点での自分の置かれた状況について、かなり自己陶酔的に書いているだけだと思っていた。
 "It's My Life" というフレーズが、10代の若者から年配の男性、整備士に至るまで、あらゆる人にとっての歌として受け止められるとは気づかなかった。
 "これが俺の人生だ、そして俺はそれを自分の手で切り拓いていく" -- 誰もが時折、そんな気持ちになるものだ。
