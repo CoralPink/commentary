@@ -120,7 +120,7 @@ Gina works the diner all day
 
 Workin' for her man, she brings home her pay
 
-ジーナは一日中食堂で働いてる
+ジーナは一日中食堂で働いている
 
 彼のために働いて、稼いだ給料を家に持ち帰る
 ```
@@ -307,7 +307,6 @@ Jon Bon Jovi はこの曲のオリジナル・レコーディングを気に入�
 (これは[100,000,000 Bon Jovi Fans Can't Be Wrong](https://en.wikipedia.org/wiki/100,000,000_Bon_Jovi_Fans_Can't_Be_Wrong) のシークレットトラックとして見つけることができる。)
 しかし Sambora は、この曲が良いものであるとメンバーを説得し、新しいベースライン、異なるドラムフィル、トークボックスを使用してこの曲を作り直し、
 [Slippery When Wet](https://en.wikipedia.org/wiki/Slippery_When_Wet)に収録した。
-[Wikipedia](https://en.wikipedia.org/wiki/Livin%27_on_a_Prayer)より
 }}
 
 私達はまだ道半ば
@@ -437,6 +436,7 @@ Bon Jovi の代表曲と見なされている Livin' on a Prayer は、リリー
 
 2013年、この曲は300万回以上のデジタルダウンロードを記録し、トリプル・プラチナ認定を受けた。
 それ以来、世界中で1,300万枚以上を売り上げ、史上最も売れたシングルの一つとなっている。
+[Wikipedia](https://en.wikipedia.org/wiki/Livin%27_on_a_Prayer)より
 }}
 
 私の手を握ってよ 絶対にできる 約束するよ
