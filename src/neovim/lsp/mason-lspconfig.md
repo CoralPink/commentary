@@ -1,5 +1,15 @@
 # mason-lspconfig.nvim
 
+<div style="margin-top: 2em"></div>
+
+```admonish success title=""
+This ain’t a song for the broken-hearted
+
+心に傷を負った者のために これを歌うわけじゃない
+```
+
+<div style="margin-top: 2em"></div>
+
 わかる人には既に色々見透かされているとは思ってますが、そんなものは気にせず、ど真ん中をぶっちぎります❗
 
 `mason-lspconfig.nvim`のお通りだー❗
@@ -17,9 +27,9 @@
 なんだかとってもややこしいですね😑
 
 ```admonish success title=""
-This ain't song for the broken-hearted
+No silent prayer for faith-departed
 
-心に傷を負った者のために これを歌うわけじゃない
+信じるものを失った者への 静かな祈りでもない
 ```
 
 ## Requirements
@@ -58,6 +68,16 @@ use {
 
 `nvim-lspconfig`も呼び出す必要があるので、これもプラスで❗
 
+```admonish success title=""
+And I ain’t gonna be just a face in the crowd
+
+You’re gonna hear my voice when I shout it out loud
+
+そして 俺はただ群衆の中の ほんのひとつ なんてものにはならない
+
+俺が声を上げれば お前はその声を聞くことになる
+```
+
 ## Config
 
 で、これに関するコンフィグも`mason.lua`にまとめちゃいます。
@@ -75,21 +95,27 @@ use {
 ```
 ~~~
 
-これだけです❗マジです。地味ながらとっても重要なやつです。
+これだけです❗マジです。
 
-ドッジボールで言ったらキルア{{footnote:
-HUNTER X HUNTER です
-}}です❗
+地味ながらとっても重要なやつです。
+
+ドッジボールで言ったら[キルア](https://ja.wikipedia.org/wiki/ゾルディック家#キルア＝ゾルディック)です❗
 
 ```admonish success title=""
-It's my life!
-{{footnote: It's My Life (by [Bon Jovi](https://en.wikipedia.org/wiki/Bon_Jovi)):
-2000年5月23日、7枚目のアルバム Crush からのリード・シングル。
-Jon Bon Jovi, Richie Sambora, Max Martin が作曲し、Luke Ebbin が共同プロデュースした。
-この曲は、Bon Jovi の 1980年代以降のヒット・シングルの中で最もよく知られ、若いファン層を新たに獲得することとなった。
+It’s my life!{{footnote: It's My Life (by [Bon Jovi](https://en.wikipedia.org/wiki/Bon_Jovi)):
+2000年5月8日、7枚目のスタジオ・アルバム[Crush](https://en.wikipedia.org/wiki/Crush_(Bon_Jovi_album))のリードシングルとしてリリースされた。
+作詞・作曲は[Jon Bon Jovi](https://en.wikipedia.org/wiki/Jon_Bon_Jovi),[Richie Sambora](https://en.wikipedia.org/wiki/Richie_Sambora),
+[Max Martin](https://en.wikipedia.org/wiki/Max_Martin)が担当し、[Luke Ebbin](https://en.wikipedia.org/wiki/Luke_Ebbin)が共同プロデュースを務めた。
+この曲は、オーストリア、[フランダース](https://en.wikipedia.org/wiki/Flanders)、イタリア、オランダ、ポルトガル、ルーマニア、スペイン、スイスで1位を記録し、
+その他多くの国でもトップ10入りを果たしたほか、アメリカの[Billboard Hot 100](https://en.wikipedia.org/wiki/Billboard_Hot_100)では33位を記録した。
+It's My Life は、Bon Jovi にとって 2000年代で最も成功したシングルであり、1980年代以来の最大のヒット曲である。
 }}
 
-これが俺の人生だ！
+it’s now or never
+
+これは 俺の人生だ！
+
+今やるしかない
 ```
 
 ただこれ...、かけるオーラの比率をほんの少しでも間違えると途端にアウトなので、
@@ -119,27 +145,13 @@ setup({config})
 これを理解した上で使用する分にはいいんじゃないかな〜って思うことにします❗そうします😆
 
 ```admonish success title=""
-My heart is like an open highway
+But I ain’t gonna live forever
 
-Like Frankie{{footnote:
-同じ New Jersey 出身の[Frank Sinatra](https://en.wikipedia.org/wiki/Frank_Sinatra)に言及した詩が特徴の一つであり、
-"My heart is like an open highway / Like Frankie said / I did it 'My Way'"というセリフでも知られている。
+I just wanna live while I’m alive
 
-Jon Bon Jovi と Sambora は、このセリフを巡って意見が対立したようで、Bon Jobi は次のように回想している。
+俺だって 永遠に生きるわけじゃない
 
-俺は[U-571](https://en.wikipedia.org/wiki/U-571_(film))の製作から帰ってきたばかりで、こう言ったんだ。
-"Sinatra は16本の映画を作り、80歳までツアーをした。これは俺のロールモデルだ。"
-すると Sambora は "そんな詞は書くなよ。君以外、誰も Frank Sinatra のことなんて気にしていないんだから。"
-それでもとにかく書いてみたんだ。
-}}said
-
-I did it my way
-
-俺の心は まるで見通しの良いハイウェイだ
-
-フランキーが歌ったように
-
-俺は 俺の道を行くんだ
+命のある限り 生きたいだけだ
 ```
 
 ## For the ones who stood their ground
@@ -147,17 +159,9 @@ I did it my way
 ここまで来れば、ついに`LSP`でお話ができます❗がんばったね🤗
 
 ```admonish success title=""
-This is for the ones who stood their ground
+(It’s my life) My heart is like an open highway
 
-For Tommy and Gina{{footnote:
-2番の歌詞にある「決して一歩も引かなかった トミーとジーナのために」というセリフは、
-1986年に Bon Jovi と Sambora が書いた "Livin' on a Prayer" で登場した労働者階級のカップルを指している。
-[Wikipedia](https://en.wikipedia.org/wiki/It%27s_My_Life_(Bon_Jovi_song))より
-}} who never backed down
-
-この歌は 信じて立ち向かった者達に捧げる
-
-決して一歩も引かなかった トミーとジーナのために
+俺の心は どこまでも見通しの良いハイウェイのようだ
 ```
 
 ### LspInfo
@@ -178,6 +182,25 @@ For Tommy and Gina{{footnote:
 `:LspInfo`は`nvim-lspconfig`の機能です😉
 ```
 
+```admonish success title=""
+Like Frankie{{footnote:
+同じ New Jersey 出身の[Frank Sinatra](https://en.wikipedia.org/wiki/Frank_Sinatra)に言及した詩が特徴の一つであり、
+"My heart is like an open highway / Like Frankie said, I did it '[My Way](https://en.wikipedia.org/wiki/My_Way)'"というセリフでも知られている。
+
+Jon Bon Jovi と Sambora は、このセリフを巡って意見が対立したようで、Bon Jobi は次のように回想している。
+
+俺は[U-571](https://en.wikipedia.org/wiki/U-571_(film))の製作から帰ってきたばかりで、こう言ったんだ。
+"Sinatra は16本の映画を作り、80歳までツアーをした。これは俺のロールモデルだ。"
+すると Sambora は "そんな詞は書くなよ。君以外、誰も Sinatra のことを気にかけてはいないんだから。"
+...それでもとにかくやってみたんだ。
+
+2005年、[Paul Anka](https://en.wikipedia.org/wiki/Paul_Anka)がアルバム[Rock Swings](https://en.wikipedia.org/wiki/Rock_Swings)でこの曲をカバーした際、
+2行目を "Frankie said he did it my way" と歌っている。これは、Anka 自身が My Way の英語歌詞を書いたためである。
+}}said, I did it my way
+
+フランキーが歌ったように 俺は俺の道を歩いて来た
+```
+
 ### Signature Help
 
 じゃあ、試しに`lua`ファイルに記述されている`require`にカーソルを持っていって、<kbd>Ctrl-k</kbd>としてみましょう。
@@ -190,6 +213,12 @@ For Tommy and Gina{{footnote:
 
 めっちゃ教えてくれる😆
 
+```admonish success title=""
+Luck ain’t even lucky, gotta make your own breaks
+
+運なんてものは 幸不幸ではなく、自分で拓かなきゃいけないことなんだ
+```
+
 ### Diagnostics
 
 なんか嬉しくなってきたので、次はコードにイタズラをしてみましょう。
@@ -197,6 +226,12 @@ For Tommy and Gina{{footnote:
 ![Work LS](img/work-ls.avif)
 
 やーい怒られたぁ🤣
+
+```admonish success title=""
+I just wanna live while I’m alive
+
+命のある限りは ただ生き抜きたいんだ
+```
 
 #### lualine
 
@@ -238,24 +273,111 @@ sections = {
 結構な達成感じゃないでしょうか☺️
 
 しかし、この章の冒頭にある[ロードマップ](language-server-protocol.html#start)でも示されていましたが、
-これはまだ序章にすぎません❗
+これはまだ 道半ば にすぎません❗
 
 ```admonish success
-Better stand tall when they're calling you out
+It’s my life
 
-Don't bend, don't break, baby, don't back down
-
-呼ばれたら立ち向かえ
-
-自分を曲げるな、挫けるな、それから、一歩も引くなよ
+これが 俺の人生だ
 ```
 
-```admonish success title=""
-I just wanna live while I'm alive
+<div style="color: #999999; font-size: 90%; text-align: center;">
+<div style="margin-top: 12em">
+This is for the ones who stood their ground
 
-It's my life!
+この歌は 信じて立ち向かった者達に捧げる
+</div>
 
-今 この瞬間を生きていたい
+<div style="margin-top: 8em">
+For Tommy and Gina{{footnote:
+歌詞にある "For Tommy and Gina who never backed down" というセリフは、
+1986年に Bon Jovi と Sambora が書いた[Livin' on a Prayer](https://en.wikipedia.org/wiki/Livin%27_on_a_Prayer)で登場した
+[労働者階級](https://en.wikipedia.org/wiki/Working_class)のカップルを指している。
+}} who never backed down
 
-これが俺の人生だ！
-```
+決して一歩も引かなかった トミーとジーナのために
+</div>
+
+<div style="margin-top: 8em">
+Tomorrow’s gettin’ harder, make no mistake
+
+明日はもっと厳しくなる、間違いない
+</div>
+
+<div style="margin-top: 4em">
+Luck ain’t even lucky, gotta make your own breaks
+
+運なんてものは 幸不幸ではなく、自分で拓かなきゃいけないことなんだ
+</div>
+
+<div style="margin-top: 8em">
+It’s my life!
+
+And it’s now or never
+
+これは 俺の人生だ
+
+今やるしかない
+</div>
+
+<div style="margin-top: 8em">
+But I ain’t gonna live forever
+
+俺だって 永遠に生きるわけじゃない
+</div>
+
+<div style="margin-top: 4em">
+I just wanna live while I’m alive
+
+命のある限り 生きたいだけだ
+</div>
+
+<div style="margin-top: 8em">
+(It’s my life) My heart is like an open highway
+
+俺の心は どこまでも見通しの良いハイウェイのようだ
+</div>
+
+<div style="margin-top: 4em">
+Like Frankie said, I did it my way
+
+フランキーが歌ったように 俺は俺の道を歩いて来た
+</div>
+
+<div style="margin-top: 8em">
+I just wanna live while I’m alive
+
+命のある限りは ただ生き抜きたい
+</div>
+
+<div style="margin-top: 8em">
+'Cause it's my life{{footnote:
+"It's My Life という曲がこれほど話題になるとは、誰も予想していなかった" と、Jon Bon Jovi は2007年に語った。
+"俺たちを除いてね。俺たちはこれがヒット曲になると分かっていたんだ"。この曲は、多くのファンの心を掴むアンセムとなった。
+Bon Jovi 後に次のように述べている:
+当時は、自分の人生やその時点での自分の置かれた状況について、かなり自己陶酔的に書いているだけだと思っていた。
+"It's My Life" というフレーズが、10代の若者から年配の男性、整備士に至るまで、あらゆる人にとっての歌として受け止められるとは気づかなかった。
+"これが俺の人生だ、そして俺はそれを自分の手で切り拓いていく" -- 誰もが時折、そんな気持ちになるものだ。
+
+ベテラン評論家の[Robert Christgau](https://en.wikipedia.org/wiki/Robert_Christgau)は後に、
+It's My Life を "安っぽいロックの傑作" であり、"凡人アンセム" であると称賛し、その歌詞は "善意に満ちた、凡人としての民主党員、Jon Bon Jovi そのもの" であると評した。
+[Wikipedia](https://en.wikipedia.org/wiki/It%27s_My_Life_(Bon_Jovi_song))より
+}}
+
+これが 俺の人生だからだ
+</div>
+
+<div style="margin-top: 12em">
+Better stand tall when they’re callin’ you out
+
+挑まれたのなら 正面から立ち向かえ
+</div>
+
+<div style="margin-top: 4em">
+Don’t bend, don’t break, baby, don’t back down
+
+屈するな、自分を曲げるな、それから、一歩も引くなよ
+</div>
+</div>
+
+<div style="margin-top: 8em"></div>
