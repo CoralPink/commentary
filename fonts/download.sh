@@ -6,6 +6,9 @@ FONT_DIR="$ROOT_DIR/fonts"
 TMP_DIR="$FONT_DIR/tmp"
 OUTPUT_DIR="$FONT_DIR/woff2"
 
+rm -rf "$TMP_DIR"
+trap 'rm -rf "$TMP_DIR"' EXIT
+
 NERD_FONTS_VERSION='3.5.1'
 NERD_FONTS_SHA256='01172f37db8543edb102e5cb5c64101c9f4686630804d49b419aa07b23a69996'
 OPEN_SANS_VERSION='3.003'
@@ -89,5 +92,3 @@ uv run "$FONT_DIR/convert.py" \
 cp \
   "$TMP_DIR/fira-code/woff2/FiraCode-VF.woff2" \
   "$OUTPUT_DIR/"
-
-rm -rf "$TMP_DIR"
