@@ -18,6 +18,8 @@ And so I face the final curtain
 そして私は 最後の幕に臨む
 ```
 
+<youtube-video data-id="LWIh3nG0SdE"></youtube-video>
+
 ## LSP
 
 ~~~admonish info title=":h lsp"
