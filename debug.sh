@@ -32,7 +32,10 @@ deno task bundle
 cp -r dist/. ../src/
 popd
 
-if [ ! -e ./fonts/woff2 ]; then
+if [ ! -s ./fonts/woff2/SymbolsNerdFontMono-Regular.woff2 ] ||
+   [ ! -s ./fonts/woff2/OpenSans-BoldItalic.woff2 ] ||
+   [ ! -s ./fonts/woff2/OpenSans-Italic.woff2 ] ||
+   [ ! -s ./fonts/woff2/FiraCode-VF.woff2 ]; then
   ./fonts/download.sh
 fi
 
