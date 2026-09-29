@@ -32,17 +32,8 @@ deno task bundle
 cp -r dist/. ../src/
 popd
 
-if [ ! -e ./src/woff2 ]; then
-  pushd fonts
-  mkdir -p ../src/woff2
-  for font in \
-    "NerdFontsSymbolsOnly/SymbolsNerdFontMono-Regular.ttf" \
-    "Open_Sans/static/OpenSans-BoldItalic.ttf" \
-    "Open_Sans/static/OpenSans-Italic.ttf"; do
-    uv run convert.py "$font" ../src/woff2
-  done
-  cp "Fira Code/FiraCode-VF.woff2" ../src/woff2
-  popd
+if [ ! -e ./fonts/woff2 ]; then
+  ./fonts/download.sh
 fi
 
 pushd scss
@@ -53,6 +44,8 @@ popd
 SECONDS=0
 mdbook build --dest-dir commentary
 echo "\x1b[1;32m✔\x1b[0m \x1b[1;35mmdbook\x1b[0m Finished in \x1b[32m$SECONDS s\x1b[0m\n"
+
+cp -r ./fonts/woff2 commentary
 
 pushd commentary
 DEBUG=--debug deno task --config ../scripts/deno.jsonc regenerate

@@ -21,12 +21,11 @@ scss/dist
 *.wasm
 *.d.ts
 
+fonts/tmp
+fonts/woff2
+
 src/*.js
 src/css
-src/*.LICENSE.txt
-src/woff2
-
-src/tmp
 
 theme/book.js
 theme/css
