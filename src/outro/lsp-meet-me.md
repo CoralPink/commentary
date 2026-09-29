@@ -269,6 +269,8 @@ mkdir -p after/lsp
      ├── ...
 ```
 
+<youtube-video data-id="41NlQhqBNmI"></youtube-video>
+
 当然ながら、これらを実際にインストールするかどうかはおまかせします😆
 
 ```admonish danger title=""
@@ -570,9 +572,7 @@ vim.lsp.enable(manual_lsp)
   <video width="1280" height="720" data-poster="img/fukuro-festival-thumbnail.avif">
     <source src="img/fukuro-festival.webm" type="video/webm">
   </video>
-  <video width="1280" height="720" data-poster="img/kurayami-festival-thumbnail.avif">
-    <source src="img/kuarayami-festival.webm" type="video/webm">
-  </video>
+  <youtube-video data-id="WArfNXjU0x8"></youtube-video>
 </media-slider>
 
 ### 🐲 SourceKit-LSP (Swift)
@@ -785,9 +785,7 @@ MVP とは、俺のことだ！！
 
 <media-slider>
   <youtube-video data-id="voDlrN2-gGI"></youtube-video>
-  <video width="1280" height="720" data-poster="img/fuchu-ohayashi-thumbnail.avif">
-    <source src="img/fuchu-ohayashi.webm" type="video/webm">
-  </video>
+  <youtube-video data-id="t_uNA39dusI"></youtube-video>
 </media-slider>
 
 ```admonish success
