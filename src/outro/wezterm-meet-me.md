@@ -267,7 +267,10 @@ font = require("wezterm").font("Firge35Nerd Console"),
 「ダウンロードしたフォントはインストールしないと使えないぞ❗❗」
 ```
 
-![asagaya-shinmeiguu](img/asagaya-shinmeiguu.avif)
+<media-slider>
+  <youtube-video data-id="7VAP6Cdm3Kc"></youtube-video>
+  ![asagaya-shinmeiguu](img/asagaya-shinmeiguu.avif)
+</media-slider>
 
 ##### 🪺 nerd-fonts
 
