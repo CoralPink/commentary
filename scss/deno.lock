@@ -4,7 +4,7 @@
     "jsr:@std/fs@1.0.24": "1.0.24",
     "jsr:@std/internal@^1.0.14": "1.0.14",
     "jsr:@std/path@^1.1.5": "1.1.6",
-    "npm:browserslist@4.29.2": "4.29.2",
+    "npm:browserslist@4.29.3": "4.29.3",
     "npm:lightningcss@1.33.0": "1.33.0",
     "npm:sass@1.105.0": "1.105.0"
   },
@@ -115,8 +115,8 @@
       "integrity": "sha512-GLQdD3y6UF8iVuMJl5fHgE4jdn/ua7n+toKfLgNlg3BqQtOZjpy68T8Tup8/wGWZCDlm7KMg7tPb4MPn7oN0TQ==",
       "bin": true
     },
-    "browserslist@4.29.2": {
-      "integrity": "sha512-/u9r8k8ue4ZhHCw9ovDtltpWdXeXzjhdxCGj6vm1RGLPXb8lu33EMdoCHF5Sx8oYBS+Q/FYYNmAqlHncxR3RmA==",
+    "browserslist@4.29.3": {
+      "integrity": "sha512-1R4kiYKXGViqEN0CnoDrXc1StD9niAwu+j2dukWzrD4bJgsD4lDmEp0CRbc6E/vYJIfTHwPmwyaKtVSudICdPA==",
       "dependencies": [
         "baseline-browser-mapping",
         "caniuse-lite",
@@ -260,7 +260,7 @@
     "source-map-js@1.2.1": {
       "integrity": "sha512-UXWMKhLOwVKb728IUtQPXxfYU+usdybtUrK/8uGE8CQMvrhOpwvzDBwj0QhSL7MQc7vIsISBG8VQ8+IDQxpfQA=="
     },
-    "update-browserslist-db@1.3.3_browserslist@4.29.2": {
+    "update-browserslist-db@1.3.3_browserslist@4.29.3": {
       "integrity": "sha512-pJ2sYawQS0R/WI928Gj5GlPhTGzbMelq0+4INtSYNDV9ErKJcX6xjGWkoG/VnB3dpUm00zALaqkrUD77pO5TDQ==",
       "dependencies": [
         "browserslist",
@@ -273,7 +273,7 @@
   "workspace": {
     "dependencies": [
       "jsr:@std/fs@1.0.24",
-      "npm:browserslist@4.29.2",
+      "npm:browserslist@4.29.3",
       "npm:lightningcss@1.33.0",
       "npm:sass@1.105.0"
     ]
