@@ -26,6 +26,7 @@ class YouTubeVideo extends HTMLElement {
     }
 
     const iframe = document.createElement('iframe');
+    iframe.loading = 'lazy';
     iframe.src = `${SRC_URL}${id}`;
     iframe.allow = 'fullscreen';
 
