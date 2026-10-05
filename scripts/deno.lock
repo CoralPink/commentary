@@ -21,8 +21,8 @@
     }
   },
   "npm": {
-    "@asamuzakjp/css-color@7.1.1": {
-      "integrity": "sha512-XiECZfC7glpDldWNCSp4UG2D0JxYKxYGSy+SDzIWfcuLs+NrM91z7rFz67s3e5unJdrY9wh1Wal8mBTW7ivD6A==",
+    "@asamuzakjp/css-color@7.1.3": {
+      "integrity": "sha512-1t1U8Cm3RBl9vh3RAZhjkPaduzLSvQJRToRrxpGR/eDRW99mOREleuu+mWfiFa795bUzjwht7NgphCKTs2ianQ==",
       "dependencies": [
         "@csstools/css-calc",
         "@csstools/css-color-parser",
@@ -31,8 +31,8 @@
         "lru-cache"
       ]
     },
-    "@asamuzakjp/dom-selector@9.2.2": {
-      "integrity": "sha512-lSWTBMjAcmu2xn5yEDU7jh6QDV+C8GEKtdJ4pIQhXh26RkKQ7S3FuQlt+zZkUbTdJ4d3XyV1kPI/G0zWXxqaqw==",
+    "@asamuzakjp/dom-selector@9.2.4": {
+      "integrity": "sha512-YnVzxDxLaqL0t7Q4wfcgHZjg55Wm6y5EaO7Bhu3q9J7wq/8iw3PhsnWiOQhYekx4VexnbkgWpTT6n+QIV7kczw==",
       "dependencies": [
         "bidi-js",
         "css-tree",
@@ -50,15 +50,15 @@
     "@csstools/color-helpers@6.1.2": {
       "integrity": "sha512-grhRy3OKmniaAEKXMjua5z/EODX0MSqBGjunw8+j/3HQjOnahs2AGhvEOIYVUWcU6ScApbhLhVrQTX8XqrMrow=="
     },
-    "@csstools/css-calc@3.4.1_@csstools+css-parser-algorithms@4.0.1_@csstools+css-tokenizer@4.0.2": {
-      "integrity": "sha512-EtC7SoN1j6J4E4DCwg5QgbO5TGxgxIA1RXqe+W+qUM+BUcezx9wT+/tiQ/WO2yCX4i5X+Cuf9ciJ22aP4UEwWw==",
+    "@csstools/css-calc@3.4.3_@csstools+css-parser-algorithms@4.0.2_@csstools+css-tokenizer@4.0.2": {
+      "integrity": "sha512-iex20d8CHVkyvg6B7UKV7uHnI2Bqo9g+EFfT9E0y+GvTvhZ/DwONJ+9aKb1dlqm0ZiGsL5RXjp0fCoJYnkeDjA==",
       "dependencies": [
         "@csstools/css-parser-algorithms",
         "@csstools/css-tokenizer"
       ]
     },
-    "@csstools/css-color-parser@4.2.4_@csstools+css-parser-algorithms@4.0.1_@csstools+css-tokenizer@4.0.2": {
-      "integrity": "sha512-DyefytAZ735mX4Dq/WcDAXFtXhaEFvme0ZS9tVEBAc2whxUthXr0R0L2rmEPm59SrMBkGrFzQviBXMs/UtnABQ==",
+    "@csstools/css-color-parser@4.2.6_@csstools+css-parser-algorithms@4.0.2_@csstools+css-tokenizer@4.0.2": {
+      "integrity": "sha512-iiPQ3iRWwnJkeEn6RIu6SJPr7hYrLz6XZ9s/QZl+2/LI5KQVjpl2fdmDSZKuD4xP6GMmMPgHFFXg6k1Wkz0Trg==",
       "dependencies": [
         "@csstools/color-helpers",
         "@csstools/css-calc",
@@ -66,14 +66,14 @@
         "@csstools/css-tokenizer"
       ]
     },
-    "@csstools/css-parser-algorithms@4.0.1_@csstools+css-tokenizer@4.0.2": {
-      "integrity": "sha512-ShL8BqPfbKJrJiKFH0xBbN0i7Nrh9HXYRuF+pzyj93R/BL2YAsUxJeqANErzqM+0JGl7vjHp+3OIgd/DL69YIA==",
+    "@csstools/css-parser-algorithms@4.0.2_@csstools+css-tokenizer@4.0.2": {
+      "integrity": "sha512-40cSKyMvK+tq4qz6Awrlye2WGuOKt3FwPgtGg6KTfbHOWNw+Rk1rzbAtZnZ6IBhsY491HLRnDXwoyBAijmmILA==",
       "dependencies": [
         "@csstools/css-tokenizer"
       ]
     },
-    "@csstools/css-syntax-patches-for-csstree@1.1.14_css-tree@3.2.1": {
-      "integrity": "sha512-HpbVXyrofRXpHpgkNIjU/3EWR4WJvOkO3emNK/L6X/mTJU7bGUI3AkkpoTNXznQLp0KRjLHELTGeKI5dIkI9JQ==",
+    "@csstools/css-syntax-patches-for-csstree@1.1.15_css-tree@3.2.1": {
+      "integrity": "sha512-J0u7HkVl2nzSlhsiTOp4AmwcUQ3D+mGEEKfBy/7To5/y7F2OHwyLrXfrhR0SMgr4p5Lo+eaMVSeai24zUcBIxA==",
       "dependencies": [
         "css-tree"
       ],
@@ -397,14 +397,14 @@
       "integrity": "sha512-Y7/KDsb8LjooZpwaqGyulO6DQlksgCncchHGk+sZIY4SBvUocMBEFH5Ur1fI4dV+Jvl0w6cjvucaIi40puRioA==",
       "bin": true
     },
-    "source-map-js@1.2.1": {
-      "integrity": "sha512-UXWMKhLOwVKb728IUtQPXxfYU+usdybtUrK/8uGE8CQMvrhOpwvzDBwj0QhSL7MQc7vIsISBG8VQ8+IDQxpfQA=="
+    "source-map-js@1.2.2": {
+      "integrity": "sha512-KGj/8Y43x35aZVDtt+J4mK1hoLGHULMYfSkODJNQjNDC3oW1PqPoxMwo0pLUsWM/UEGzON/NxeHywEfNXNP3Vw=="
     },
-    "tldts-core@7.4.15": {
-      "integrity": "sha512-ERuv0p98XgSzmlSLJr8vDNxX+uATGInlN97V3R+JpYWaSqn5IG3ewWgCwczk4bkOpgth/o8Nt5FOi4B4w0n/1A=="
+    "tldts-core@7.4.16": {
+      "integrity": "sha512-MDolfaSJtlSK5Y0A1xl3277ekubZwobpBjugknDizI9O5Rm60a1m8k4ICK+MRsCDzPygT81mp3BBf5RKDlFRfA=="
     },
-    "tldts@7.4.15": {
-      "integrity": "sha512-SJVBeHOxDbNoq14CvpAoA2mLEWdbldGK8nR+yumpjY5nrlZxOflcA7p1Qj1gbTGmbu9DY9qLj/bENSWhBzjxRQ==",
+    "tldts@7.4.16": {
+      "integrity": "sha512-QwBER5KMR86IIjpIiO7H/Z3IMJPsZ1A6RKPAqzTTgOyUQUSt9FdnKcqhTaJmkY6HVrgouZHZR0ncK5QxvmnQeg==",
       "dependencies": [
         "tldts-core"
       ],
