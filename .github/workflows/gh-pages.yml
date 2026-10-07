@@ -207,7 +207,7 @@ jobs:
           mv ./pkg/wasm_book_bg.opt.wasm ./pkg/wasm_book_bg.wasm
 
       - name: Upload Wasm Artifact
-        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
         with:
           name: wasm-book
           path: rs/wasm/pkg
@@ -250,7 +250,7 @@ jobs:
           deno task test:ci
 
       - name: Upload Vitest Report
-        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
         with:
           name: vitest-report
           path: js/coverage
@@ -293,7 +293,7 @@ jobs:
           deno task bundle
 
       - name: Upload JS Artifact
-        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
         with:
           name: build-js
           path: js/dist
@@ -324,7 +324,7 @@ jobs:
           deno task build
 
       - name: Upload CSS Artifact
-        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
         with:
           name: css
           path: scss/dist
@@ -361,7 +361,7 @@ jobs:
         run: ./fonts/download.sh
 
       - name: Upload Font Artifact
-        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
         with:
           name: woff2
           path: fonts/woff2
