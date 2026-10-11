@@ -12,7 +12,7 @@ clap = "=4.6.7"
 mdbook-preprocessor = "=0.5.4"
 regex = "=1.13.1"
 semver = "=1.0.28"
-serde_json = "=1.0.151"
+serde_json = "=1.0.152"
 
 [dev-dependencies]
 pretty_assertions = "=1.4.1"
