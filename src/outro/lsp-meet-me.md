@@ -269,7 +269,11 @@ mkdir -p after/lsp
      ├── ...
 ```
 
-<youtube-video data-id="41NlQhqBNmI"></youtube-video>
+
+<media-slider>
+  <youtube-video data-id="41NlQhqBNmI"></youtube-video>
+  <youtube-video data-id="t_uNA39dusI"></youtube-video>
+</media-slider>
 
 当然ながら、これらを実際にインストールするかどうかはおまかせします😆
 
@@ -785,7 +789,9 @@ MVP とは、俺のことだ！！
 
 <media-slider>
   <youtube-video data-id="voDlrN2-gGI"></youtube-video>
-  <youtube-video data-id="t_uNA39dusI"></youtube-video>
+  <youtube-video data-id="ju2LkSu1kug"></youtube-video>
+  <youtube-video data-id="mJFJYeUBUB8"></youtube-video>
+  <youtube-video data-id="OFYGgYCs_h4"></youtube-video>
 </media-slider>
 
 ```admonish success
