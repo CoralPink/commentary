@@ -7,14 +7,16 @@ export const PATH_DIRECTORY = '../commentary/';
 export const HTML_TOC = 'toc.html';
 
 const URL_PRODUCTION = 'https://coralpink.github.io/commentary/';
-const URL_LOCALHOST = 'http://localhost:8000/commentary/';
+const URL_LOCALHOST = 'http://localhost:8080/commentary/';
+
+const args = process.argv.slice(2);
 
 const getArgValue = (name: string): string | undefined => {
-  const index = Deno.args.indexOf(name);
-  return index >= 0 ? Deno.args[index + 1] : undefined;
+  const index = args.indexOf(name);
+  return index >= 0 ? args[index + 1] : undefined;
 };
 
 const rootFromArg = getArgValue('--root');
 
-export const isDebug = Deno.args.includes('--debug');
+export const isDebug = args.includes('--debug');
 export const rootPath = rootFromArg ?? (isDebug ? URL_LOCALHOST : URL_PRODUCTION);
