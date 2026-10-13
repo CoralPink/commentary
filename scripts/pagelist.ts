@@ -3,33 +3,21 @@ import { compressHtml } from './beautify.ts';
 
 import * as cheerio from 'cheerio';
 import { isHtml } from 'cheerio/utils';
+import { readFile, writeFile } from 'node:fs/promises';
 
 const HTML_OUTPUT = `${g.PATH_DIRECTORY}pagelist.html`;
 
-const read = async (path: string): Promise<string> => {
-  try {
-    return await Deno.readTextFile(path);
-  } catch (error: unknown) {
-    console.error(`Error reading ${path}: ${error}`);
-    Deno.exit(1);
-  }
-};
+const read = (path: string): Promise<string> => readFile(path, 'utf8');
 
 const write = async (file: string, data: string): Promise<void> => {
-  try {
-    await Deno.writeTextFile(file, data);
-  } catch (error: unknown) {
-    console.error(`Error writing ${file}: ${error}`);
-    Deno.exit(1);
-  }
+  await writeFile(file, data, 'utf8');
 };
 
 const main = async (): Promise<void> => {
   const html = await read(`${g.PATH_DIRECTORY}${g.HTML_TOC}`);
 
   if (!isHtml(html)) {
-    console.error(`${g.HTML_TOC} is not HTML!!`);
-    Deno.exit(1);
+    throw new Error(`${g.HTML_TOC} is not HTML!!`);
   }
 
   const $ = cheerio.load(html);
@@ -73,22 +61,26 @@ const main = async (): Promise<void> => {
       const linkUrl = new URL(href, g.rootPath);
       $a.attr('href', linkUrl.href);
     } catch (error: unknown) {
-      console.error(`Error href ${href}: ${error}`);
-      Deno.exit(1);
+      throw new Error(`Error href ${href}`, { cause: error });
     }
   });
 
   await write(HTML_OUTPUT, compressHtml($.html()));
 };
 
-(async () => {
+(async (): Promise<void> => {
   const start = performance.now();
 
-  await main();
+  try {
+    await main();
 
-  const time = Math.floor(performance.now() - start);
+    const time = Math.floor(performance.now() - start);
 
-  console.info(`${g.CLR_BG}✔ ${g.CLR_BC}pagelist${g.CLR_RESET} Finished in ${g.CLR_BG}${time} ms${g.CLR_RESET}`);
-  console.info(`${g.CLR_G}INFO${g.CLR_RESET} mode: ${g.isDebug ? 'debug' : 'production'}`);
-  console.info(`${g.CLR_G}INFO${g.CLR_RESET} rootPath: ${g.rootPath}`);
+    console.info(`${g.CLR_BG}✔ ${g.CLR_BC}pagelist${g.CLR_RESET} Finished in ${g.CLR_BG}${time} ms${g.CLR_RESET}`);
+    console.info(`${g.CLR_G}INFO${g.CLR_RESET} mode: ${g.isDebug ? 'debug' : 'production'}`);
+    console.info(`${g.CLR_G}INFO${g.CLR_RESET} rootPath: ${g.rootPath}`);
+  } catch (error: unknown) {
+    console.error(error);
+    process.exitCode = 1;
+  }
 })();

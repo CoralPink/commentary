@@ -1,15 +1,17 @@
 import * as g from './global.ts';
 
+import { readFile, writeFile } from 'node:fs/promises';
+
 const FILE_INDEX = `${g.PATH_DIRECTORY}searchindex`;
 
 const extract = async (): Promise<string> => {
   const input = `${FILE_INDEX}.js`;
 
   try {
-    return await Deno.readTextFile(input);
+    return await readFile(input, 'utf8');
   } catch (error: unknown) {
     console.error(`Error reading ${input}: ${error}`);
-    Deno.exit(1);
+    throw error;
   }
 };
 
@@ -32,10 +34,10 @@ const main = async (): Promise<void> => {
   const output = `${FILE_INDEX}.json`;
 
   try {
-    await Deno.writeTextFile(output, JSON.stringify(sandbox.result));
+    await writeFile(output, JSON.stringify(sandbox.result));
   } catch (error: unknown) {
     console.error(`Error writing ${output}: ${error}`);
-    Deno.exit(1);
+    process.exitCode = 1;
   }
 };
 

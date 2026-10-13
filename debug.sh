@@ -28,7 +28,7 @@ cp pkg/wasm_book_bg.wasm ../../src
 popd
 
 pushd js
-deno task bundle
+npm run bundle
 cp -r dist/. ../src/
 popd
 
@@ -40,7 +40,7 @@ if [ ! -s ./fonts/woff2/SymbolsNerdFontMono-Regular.woff2 ] ||
 fi
 
 pushd scss
-deno task build
+npm run build
 cp -r dist/ ../src/css/
 popd
 
@@ -51,7 +51,7 @@ echo "\x1b[1;32m✔\x1b[0m \x1b[1;35mmdbook\x1b[0m Finished in \x1b[32m$SECONDS 
 cp -r ./fonts/woff2 commentary
 
 pushd commentary
-DEBUG=--debug deno task --config ../scripts/deno.jsonc regenerate
+DEBUG=--debug npm --prefix ../scripts run regenerate
 brotli searchindex.json
 gzip --best --keep --no-name searchindex.json
 popd
