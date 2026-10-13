@@ -1,4 +1,4 @@
-import { ensureDir } from '@std/fs';
+import { mkdir, writeFile } from 'fs/promises';
 
 import browserslist from 'browserslist';
 import { browserslistToTargets, transform, type TransformResult } from 'lightningcss';
@@ -53,7 +53,7 @@ const build = async (input: string, output: string): Promise<void> => {
   const css = compileScss(input);
   const optimized = optimize(input, css);
 
-  await Deno.writeTextFile(`${OUT_DIR}${output}`, decoder.decode(optimized.code));
+  await writeFile(`${OUT_DIR}${output}`, decoder.decode(optimized.code));
 
   const fileName = output.padEnd(32, ' ');
   console.info(`[INFO]: ${CLR_BC}sass ${CLR_C}${fileName}${CLR_RESET} 🎁 ${optimized.code.length} bytes`);
@@ -62,7 +62,7 @@ const build = async (input: string, output: string): Promise<void> => {
 (async (): Promise<void> => {
   const start = performance.now();
 
-  await Promise.all([ensureDir(OUT_DIR), ensureDir(`${OUT_DIR}${THEME_DIR}`)]);
+  await Promise.all([mkdir(OUT_DIR, { recursive: true }), mkdir(`${OUT_DIR}${THEME_DIR}`, { recursive: true })]);
 
   const list = [
     { dir: '', files: SCSS_FILE_LIST },

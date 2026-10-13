@@ -7,7 +7,6 @@ import { fetchAndDecompress } from './utils/fetch.ts';
 import { listenToInputEvents } from './utils/input.ts';
 import toast from './utils/toast.ts';
 
-// deno-lint-ignore no-sloppy-imports
 import initWasm, { Finder } from './wasm_book.js';
 
 const FILE_STYLE_SEARCH = 'css/search.css';

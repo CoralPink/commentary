@@ -4,6 +4,8 @@ import * as g from '../global.ts';
 import { compressHtml } from '../beautify.ts';
 
 import { JSDOM } from 'jsdom';
+import { readFileSync } from 'node:fs';
+import { readdir, writeFile } from 'node:fs/promises';
 import { join } from 'path';
 import pLimit from 'p-limit';
 
@@ -15,7 +17,7 @@ const tasks: Promise<void>[] = [];
 const isEndsWithHtml = (s: string): boolean => s.endsWith('.html');
 
 const fileProc = (fullPath: string): string | null => {
-  const dom = new JSDOM(Deno.readTextFileSync(fullPath));
+  const dom = new JSDOM(readFileSync(fullPath));
 
   HighlightProc(dom.window.document);
   LinkProc(dom.window.document);
@@ -25,15 +27,15 @@ const fileProc = (fullPath: string): string | null => {
 };
 
 const processDir = async (currentDir: string): Promise<void> => {
-  for await (const entry of Deno.readDir(currentDir)) {
+  for (const entry of await readdir(currentDir, { withFileTypes: true })) {
     const fullPath = join(currentDir, entry.name);
 
-    if (entry.isDirectory) {
+    if (entry.isDirectory()) {
       tasks.push(processDir(fullPath));
       continue;
     }
 
-    if (!entry.isFile) {
+    if (!entry.isFile()) {
       continue;
     }
     if (!isEndsWithHtml(entry.name) || entry.name === g.HTML_TOC) {
@@ -47,7 +49,7 @@ const processDir = async (currentDir: string): Promise<void> => {
         if (serialized === null) {
           return;
         }
-        await Deno.writeTextFile(fullPath, serialized);
+        await writeFile(fullPath, serialized);
       }),
     );
   }
