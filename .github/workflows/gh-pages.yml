@@ -499,7 +499,7 @@ jobs:
       - name: Install Dependencies
         working-directory: scripts
         run: |
-          npm ci --prefix scripts
+          npm ci
 
       - name: Run Regenerate
         working-directory: commentary
