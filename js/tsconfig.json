@@ -1,0 +1,45 @@
+{
+  "compilerOptions": {
+    "lib": [
+      "esnext",
+      "dom",
+      "dom.iterable",
+      "webworker"
+    ],
+    "module": "esnext",
+    "moduleResolution": "bundler",
+
+    "strict": true,
+    "noFallthroughCasesInSwitch": true,
+
+    // Stricter Typechecking Options
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
+
+    // Code cleanliness
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noPropertyAccessFromIndexSignature": true,
+
+    // Improved predictability
+    "erasableSyntaxOnly": true,
+    "verbatimModuleSyntax": true,
+
+    "noEmit": true,
+
+    "allowImportingTsExtensions": true
+  },
+  "include": [
+    "*.ts",
+    "*.d.ts",
+    "extensions/**/*.ts",
+    "types/**/*.ts",
+    "types/**/*.d.ts",
+    "utils/**/*.ts",
+    "webworker/**/*.ts"
+  ],
+  "exclude": [
+    "dist/",
+    "node_modules/"
+  ]
+}
