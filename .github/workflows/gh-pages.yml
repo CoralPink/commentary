@@ -245,6 +245,7 @@ jobs:
           package-manager-cache: false
 
       - name: Install Dependencies
+        working-directory: js
         run: |
           npm ci
 
@@ -292,6 +293,7 @@ jobs:
           package-manager-cache: false
 
       - name: Install Dependencies
+        working-directory: js
         run: |
           npm ci
 
@@ -327,6 +329,7 @@ jobs:
           package-manager-cache: false
 
       - name: Install Dependencies
+        working-directory: scss
         run: |
           npm ci
 
@@ -494,6 +497,7 @@ jobs:
           package-manager-cache: false
 
       - name: Install Dependencies
+        working-directory: scripts
         run: |
           npm ci --prefix scripts
 
