@@ -1,4 +1,4 @@
-# (Extra) GitHub Copilot
+# GitHub Copilot
 
 浮かれていて完全に忘れていましたが、
 `copilot.lua`を使用するためには`GitHub Copilot`への登録が必要です✈️
