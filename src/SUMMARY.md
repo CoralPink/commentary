@@ -94,7 +94,7 @@
   - [nvim-lspconfig](neovim/lsp/nvim-lspconfig.md)
   - [mason.nvim](neovim/lsp/mason.md)
   - [mason-lspconfig.nvim](neovim/lsp/mason-lspconfig.md)
-    - [(Extra) Intermission](neovim/lsp/intermission.md)
+    - [(Extra) First Intermission](neovim/lsp/intermission.md)
   - [nvim-navic](neovim/lsp/nvim-navic.md)
   - [nvim-navbuddy](neovim/lsp/nvim-navbuddy.md)
   - [nvim-cmp](neovim/lsp/nvim-cmp.md)
@@ -103,11 +103,12 @@
     - [cmp_luasnip](neovim/lsp/cmp_luasnip.md)
     - [Friendly Snippets](neovim/lsp/friendly_snippets.md)
   - [copilot.lua](neovim/lsp/copilot.md)
-    - [(Extra) GitHub Copilot](neovim/lsp/github-copilot.md)
+    - [GitHub Copilot](neovim/lsp/github-copilot.md)
     - [copilot-cmp](neovim/lsp/copilot-cmp.md)
   - [nvim-cmp-source(s)](neovim/lsp/nvim-cmp-sources.md)
   - [fidget.nvim](neovim/lsp/fidget.md)
   - [Trouble](neovim/lsp/trouble.md)
+    - [(Extra) Second Intermission](neovim/lsp/intermission-second.md)
 
 # ... To Be Continued.
 
@@ -118,7 +119,7 @@
   - [nvim_set_option_value](outro/nvim_set_option_value.md)
   - [none-ls.nvim](outro/none-ls.md)
   - [mason-null-ls.nvim](outro/mason-null-ls.md)
-    - [(Extra) Year 2024](outro/year2024.md)
+    - [(Extra) Third Intermission](outro/year2024.md)
     - [Linter](outro/linter.md)
   - [LSP (Meet Me)](outro/lsp-meet-me.md)
   - [nvim_get_option_value](outro/nvim_get_option_value.md)

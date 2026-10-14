@@ -1,4 +1,4 @@
-# (Extra) Intermission
+# (Extra) First Intermission
 
 <div style="color: #999999; font-size: 90%; text-align: center;">
 <div style="margin-top: 8em">
@@ -48,9 +48,6 @@ Some are dead and some are living
 <div style="margin-top: 4em">
 In my life{{footnote: In My Life (by [The Beatles](https://en.wikipedia.org/wiki/The_Beatles)):
 1965年にリリースされたアルバム[Rubber Soul](https://en.wikipedia.org/wiki/Rubber_Soul)に収録されている。
-
-Lennon によれば、In My Life は彼にとって "初めての本格的な大作" であり、歌詞は Rubber Soul 以前の Beatles の楽曲に典型的な単純な恋愛歌とは一線を画し、
-代わりに彼の思春期における人間関係について自伝的な考察を綴ったものとなっている。
 
 2000年、雑誌[Mojo](https://en.wikipedia.org/wiki/Mojo_magazine)は In My Life を史上最高の曲に選出した。
 [Rolling Stone](https://en.wikipedia.org/wiki/Rolling_Stone)誌は、
@@ -136,9 +133,8 @@ In my life I love you more{{footnote:
 歌詞は[John Lennon](https://en.wikipedia.org/wiki/John_Lennon)が書いたが、
 メロディの作者については、後に彼と[Paul McCartney](https://en.wikipedia.org/wiki/Paul_McCartney)の間で回想は異なっている。
 
-Lennon は、McCartney の "メロディ面での貢献は、ハーモニーとミドルエイトだった" と述べている。
-1976年、McCartney は次のようにコメントしている。
-"In My Life は好きだった。あれは John が書いた歌詞で、僕はそれに曲をつけたんだ。あれは素晴らしい曲だったよ。"
+Lennon は、"McCartney のメロディ面での貢献は、ハーモニーとミドルエイトだった" と述べている。
+1976年、McCartney は次のようにコメントしている。"In My Life は好きだった。あれは John が書いた歌詞で、僕はそれに曲をつけたんだ。あれは素晴らしい曲だったよ。"
 1977年、彼は雑誌[Hit Parader](https://en.wikipedia.org/wiki/Hit_Parader)のために Lennon が作曲に関わったと主張する曲のリストを見せられた際、この曲にのみ異議を唱え、
 “[Smokey Robinson & the Miracles](https://en.wikipedia.org/wiki/The_Miracles)の曲からインスピレーションを得て、Lennon の歌詞に最初から最後まで曲をつけた” と語っている。
 [Wikipedia](https://en.wikipedia.org/wiki/In_My_Life)より

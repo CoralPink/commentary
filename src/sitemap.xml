@@ -82,7 +82,7 @@
 </url>
 <url>
 <loc>https://coralpink.github.io/commentary/outro/year2024.html</loc>
-<lastmod>2024-01-31</lastmod>
+<lastmod>2026-10-14</lastmod>
 </url>
 <url>
 <loc>https://coralpink.github.io/commentary/wezterm/configuration.html</loc>
@@ -198,7 +198,7 @@
 </url>
 <url>
 <loc>https://coralpink.github.io/commentary/neovim/lsp/copilot-cmp.html</loc>
-<lastmod>2024-01-31</lastmod>
+<lastmod>2026-10-14</lastmod>
 </url>
 <url>
 <loc>https://coralpink.github.io/commentary/neovim/lsp/copilot.html</loc>
@@ -218,7 +218,7 @@
 </url>
 <url>
 <loc>https://coralpink.github.io/commentary/neovim/lsp/intermission.html</loc>
-<lastmod>2026-10-04</lastmod>
+<lastmod>2026-10-14</lastmod>
 </url>
 <url>
 <loc>https://coralpink.github.io/commentary/neovim/lsp/language-server-protocol.html</loc>
@@ -259,6 +259,10 @@
 <url>
 <loc>https://coralpink.github.io/commentary/neovim/lsp/trouble.html</loc>
 <lastmod>2024-01-31</lastmod>
+</url>
+<url>
+<loc>https://coralpink.github.io/commentary/neovim/lsp/intermission-second</loc>
+<lastmod>2026-10-14</lastmod>
 </url>
 <url>
 <loc>https://coralpink.github.io/commentary/neovim/options/clipboard.html</loc>

@@ -364,7 +364,7 @@ I faced it all, and I stood tall
 <div style="margin-top: 4em">
 And did it my way{{footnote:
 Anka は午前5時に曲を書き終えた。
-"ネバダにいる Frank に電話したんだ。彼は[Caesars Palace](https://en.wikipedia.org/wiki/Caesars_Palace)にいた。
+"[Nevada](https://en.wikipedia.org/wiki/Nevada)にいる Frank に電話したんだ。彼は[Caesars Palace](https://en.wikipedia.org/wiki/Caesars_Palace)にいた。
 それで、'君のために、本当に特別なものができた' と言った。" Anka はさらにこう語っている。
 "俺のレコード会社がこの曲のことを知ったとき、俺が自分のために取っておかなかったことに本気で腹を立てていた。俺は言ったよ。
 '俺は書くことはできる。でも、俺はこれを歌う人間じゃない。これは Frank のための曲だ。他の誰でもない'って。"
