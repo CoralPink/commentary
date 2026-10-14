@@ -1,3 +1,7 @@
+// NOTE:
+// Make this file a module so that the `self` declaration below does not conflict with the global `self`.
+export {};
+
 declare const self: ServiceWorkerGlobalScope;
 
 const CACHE_VERSION = 'v11.15.2';
