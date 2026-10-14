@@ -106,10 +106,5 @@
     </div>
 
     <script type="module" src="{{ resource "initialize.js"}}"></script>
-    <script>
-      (async()=>{if("serviceWorker"in navigator)
-      try{await navigator.serviceWorker.register("{{resource "serviceworker.js"}}",{scope:"/commentary/"})}
-      catch(r){console.error(`Registration failed with ${r}`)}})();
-    </script>
   </body>
 </html>
