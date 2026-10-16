@@ -14,6 +14,9 @@ concurrency:
   cancel-in-progress: true
 
 env:
+  # renovate: datasource=npm depName=npm
+  NPM_VERSION: "12.2.0"
+
   WASM_SHARED_KEY: wasm-rs-v1
 
 jobs:
@@ -218,6 +221,9 @@ jobs:
     name: Test JS
     runs-on: ubuntu-slim
     needs: build-wasm
+    env:
+      # renovate: datasource=npm depName=typescript
+      TYPESCRIPT_VERSION: "7.0.2"
     steps:
       - name: Checkout Repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
@@ -244,10 +250,19 @@ jobs:
           node-version-file: .tool-versions
           package-manager-cache: false
 
+      - name: Update npm
+        run: |
+          npm install --g npm@${{ env.NPM_VERSION }}
+
       - name: Install Dependencies
         working-directory: js
         run: |
           npm ci
+
+      - name: Type check
+        working-directory: js
+        run: |
+          npx --yes --package typescript@${TYPESCRIPT_VERSION} tsc --noEmit
 
       - name: Run Vitest
         working-directory: js
@@ -292,6 +307,10 @@ jobs:
           node-version-file: .tool-versions
           package-manager-cache: false
 
+      - name: Update npm
+        run: |
+          npm install --g npm@${{ env.NPM_VERSION }}
+
       - name: Install Dependencies
         working-directory: js
         run: |
@@ -327,6 +346,10 @@ jobs:
         with:
           node-version-file: .tool-versions
           package-manager-cache: false
+
+      - name: Update npm
+        run: |
+          npm install --g npm@${{ env.NPM_VERSION }}
 
       - name: Install Dependencies
         working-directory: scss
@@ -495,6 +518,10 @@ jobs:
         with:
           node-version-file: .tool-versions
           package-manager-cache: false
+
+      - name: Update npm
+        run: |
+          npm install --g npm@${{ env.NPM_VERSION }}
 
       - name: Install Dependencies
         working-directory: scripts
