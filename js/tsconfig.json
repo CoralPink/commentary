@@ -27,7 +27,8 @@
 
     "noEmit": true,
 
-    "allowImportingTsExtensions": true
+    "allowImportingTsExtensions": true,
+    "skipLibCheck": true
   },
   "include": [
     "*.ts",
@@ -35,8 +36,10 @@
     "extensions/**/*.ts",
     "types/**/*.ts",
     "types/**/*.d.ts",
-    "utils/**/*.ts",
-    "webworker/**/*.ts"
+    "utils/**/*.ts"
+
+    // Not currently in use
+    // "webworker/**/*.ts"
   ],
   "exclude": [
     "dist/",
