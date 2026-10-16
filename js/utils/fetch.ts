@@ -2,7 +2,8 @@ import type { AbortableOptions } from './type.ts';
 
 const FETCH_TIMEOUT = 9000;
 
-type CompressionFormat = 'gzip' | 'deflate' | 'deflate-raw' | 'brotli';
+type NativeCompressionFormat = ConstructorParameters<typeof DecompressionStream>[0];
+type SupportedCompressionFormat = NativeCompressionFormat | 'brotli';
 
 const mergeSignals = (...signals: Array<AbortSignal | undefined>) =>
   AbortSignal.any(signals.filter(Boolean) as AbortSignal[]);
@@ -33,7 +34,7 @@ const isBrotliSupported = (): boolean => {
   // While relying on try/catch is a bit “rough,”
   // it's currently the most reliable method for handling browser differences.
   try {
-    new DecompressionStream('brotli');
+    new DecompressionStream('brotli' as NativeCompressionFormat);
     return true;
   } catch {
     return false;
@@ -48,8 +49,9 @@ export const fetchAndDecompress = async (url: string, options: AbortableOptions 
     throw new Error('Response body is null');
   }
 
-  const format: CompressionFormat = brotliSupported ? 'brotli' : 'gzip';
+  const format: SupportedCompressionFormat = brotliSupported ? 'brotli' : 'gzip';
 
-  const stream = response.body.pipeThrough(new DecompressionStream(format));
-  return await new Response(stream).arrayBuffer();
+  return await new Response(
+    response.body.pipeThrough(new DecompressionStream(format as NativeCompressionFormat)),
+  ).arrayBuffer();
 };
