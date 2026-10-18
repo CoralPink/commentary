@@ -101,9 +101,7 @@ Whatever you wish for, you keep
 その願いはそっと膨らんでいるんだよ
 ```
 
-<video width="1280" height="720" data-poster="img/musicforest-opera-thumbnail.avif">
-  <source src="img/musicforest-opera.webm" type="video/webm">
-</video>
+<youtube-video data-id="qdG6JaR-mIA"></youtube-video>
 
 ## Return Value
 
@@ -217,9 +215,7 @@ If you keep on believing
 
 実際、わたしは割と感覚で書いています...😅
 
-<video width="1280" height="720" data-poster="img/musicforest-sandart-thumbnail.avif">
-  <source src="img/musicforest-sandart.webm" type="video/webm">
-</video>
+<youtube-video data-id="FopqOvzu4sI"></youtube-video>
 
 ```admonish info title=""
 The dream that you wish will come true

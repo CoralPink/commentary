@@ -109,9 +109,7 @@ Parameters:
 ...と、言うわけで`vim.keymap.set()`を使って行くことにします😉
 ```
 
-<video width="1280" height="720" data-poster="img/aloha-thumbnail.avif">
-  <source src="img/aloha.webm" type="video/webm">
-</video>
+<youtube-video data-id="gWVuMpF0ZcI"></youtube-video>
 
 ## Customize
 

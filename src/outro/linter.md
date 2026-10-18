@@ -271,9 +271,7 @@ Pink, brown, yellow, orange and blue
 I love you!
 ```
 
-<video width="1280" height="720" data-poster="img/L-O-V-E-thumbnail.avif">
-  <source src="img/L-O-V-E.webm" type="video/webm">
-</video>
+<youtube-video data-id="4q1IvUqZvVM"></youtube-video>
 
 All Together Now とは別の楽曲{{footnote:
 L-O-V-E (by [Nat King Cole](https://en.wikipedia.org/wiki/Nat_King_Cole)):
