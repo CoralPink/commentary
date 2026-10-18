@@ -269,7 +269,6 @@ mkdir -p after/lsp
      ├── ...
 ```
 
-
 <media-slider>
   <youtube-video data-id="41NlQhqBNmI"></youtube-video>
   <youtube-video data-id="t_uNA39dusI"></youtube-video>
