@@ -36,7 +36,7 @@ Can I bring my friend to tea?
 
 <media-slider>
   <youtube-video data-id="pUdkNwlcSUg"></youtube-video>
-  ![comming soon - むしろフレンドが脱いだ。](img/comming_soon.webp)
+  <youtube-video data-id="S9HLBC_Olnw"></youtube-video>
 </media-slider>
 
 ただ、"はちみつカモミール" のティーバッグを淹れてるわたくしなんかが首を突っ込んでも火傷するだけですので🤐
@@ -429,11 +429,19 @@ We are all together now!!{{footnote:
 }}
 ```
 
+<div style="margin-top: 4rem"></div>
+
+<youtube-video data-id="NRHexu4JaL8"></youtube-video>
+
+<div style="margin-top: 4rem"></div>
+
 ```admonish warning title=""
 じか〜い、じかい。
 
 17.6話「えるえすぴーミーツミー」という おはなし。
 ```
+
+<div style="margin-top: 4rem"></div>
 
 ## Give Peace a Chance
 
