@@ -7,6 +7,6 @@
     "@types/node": "26.6.5",
     "browserslist": "4.29.4",
     "lightningcss": "1.33.0",
-    "sass": "1.105.2"
+    "sass": "1.106.1"
   }
 }
