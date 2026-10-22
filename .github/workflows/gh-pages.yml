@@ -15,7 +15,7 @@ concurrency:
 
 env:
   # renovate: datasource=npm depName=npm
-  NPM_VERSION: "12.2.0"
+  NPM_VERSION: "12.2.1"
 
   WASM_SHARED_KEY: wasm-rs-v1
 
