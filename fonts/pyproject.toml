@@ -9,6 +9,6 @@ readme = "README.md"
 requires-python = ">=3.13,<4.0"
 
 dependencies = [
-  "brotli ==1.2.0",
+  "brotli ==1.2.1",
   "fonttools ==4.67.0",
 ]
