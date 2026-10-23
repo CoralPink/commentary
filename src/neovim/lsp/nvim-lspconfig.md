@@ -106,7 +106,12 @@ I traveled each and every highway
 あらゆる道を旅してきたんだ
 ```
 
-![nagashima3](img/nagashima3.avif)
+<media-slider>
+  ![nagashima-matsui](img/nagashima-matsui.avif)
+  ![nagashima-matsui2](img/nagashima-matsui2.avif)
+  ![nagashima3](img/nagashima3.avif)
+  ![matsui55](img/matsui55.avif)
+</media-slider>
 
 ## Configuration
 
