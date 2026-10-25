@@ -33,8 +33,16 @@ She's got a ticket to ride, but she don’t care.
 {{footnote:
 [The Carpenters](http://www.richardandkarencarpenter.com/SN_TicketToRide.htm) の
 デビュー曲は[Ticket to Ride](https://en.wikipedia.org/wiki/Ticket_to_Ride_(song))のアレンジでした。これが1969年のお話。
-Richard が`vi`とかで歌詞置換してたらウケる〜🤣 とか思って見たら[vi](https://ja.wikipedia.org/wiki/Vi)ですら初版が1976年...。
-`Neovim`どころか`Vim`どころか、`vi`ですら意外と新しい😲 ...そうでもないかぁ😮
+
+[Karen Carpenter](https://en.wikipedia.org/wiki/Karen_Carpenter) の歌声について
+[John Lennon](https://en.wikipedia.org/wiki/John_Lennon)は、レストランで Karen とすれ違った際、
+立ち止まって “I wanna tell you, love, you’ve got a fabulous voice. (きみは本当に素晴らしい声の持ち主だね)” と言ってくれたという。
+(by [BBC documentary](https://subsaga.com/bbc/documentaries/music/2007/only-yesterday-the-carpenters-story.html))
+
+[Paul McCartney](https://en.wikipedia.org/wiki/Paul_McCartney)は、
+“the best female voice in the world: melodic, tuneful and distinctive. (世界一の女性の歌声だ。メロディーが美しく、音程がよく、個性がある)”
+と発言していることが Record Collector 誌の[Richard Carpenter](https://en.wikipedia.org/wiki/Richard_Carpenter)へのインタビュー等で
+[紹介](https://recordcollectormag.com/articles/richard-carpenter)されており、Richard も McCartney の評価に "同感だ" と答え、Karen の声を高く評価している。
 }}
 
 置換操作は`:%s/{検索値}/{置換値}`とすると実行できます。

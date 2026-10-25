@@ -66,26 +66,15 @@ return M
 ```admonish quote title=""
 Just like me, they long to be
 
-Close to you{{footnote: (They Long to Be) Close to You (by [The Carpenters](https://en.wikipedia.org/wiki/The_Carpenters)):
-[Burt Bacharach](https://en.wikipedia.org/wiki/Burt_Bacharach)と[Hal David](https://en.wikipedia.org/wiki/Hal_David)によって書かれた曲で、
-初期のバージョンの一部は Cathy Steeves によって書かれた。
+Close to you{{footnote:
+(They Long to Be) Close to You:
+[Burt Bacharach](https://en.wikipedia.org/wiki/Burt_Bacharach)と[Hal David](https://en.wikipedia.org/wiki/Hal_David)が作詞・作曲した楽曲である。
+1963年に[Richard Chamberlain](https://en.wikipedia.org/wiki/Richard_Chamberlain)によって初めて録音されたが、
+最も大きな成功を収めたのは 1970年のことで、[The Carpenters](https://en.wikipedia.org/wiki/The_Carpenters)が
+アルバム[Close to You](https://en.wikipedia.org/wiki/Close_to_You_(The_Carpenters_album))のために録音したバージョンだった。
+このバージョンは[Jack Daugherty](https://en.wikipedia.org/wiki/Jack_Daugherty_(musician))がプロデュースを担当した。
 
-Bacharach と David は、この曲を[Herb Alpert](https://en.wikipedia.org/wiki/Herb_Alpert)に提供したが、
-Alpert はこの曲を録音したものの、その仕上がりに満足できずリリースしなかった。
-
-その後、1969年に[Ticket to Ride](https://en.wikipedia.org/wiki/Ticket_to_Ride_(song)#The_Carpenters)で 初めてチャート入りした Carpenters のことを知った Alpert は
-彼らにこの曲を録音するよう持ちかけた。
-Richard Carpenter は、しぶしぶアレンジを考えたが、あまり乗り気ではなかった。
-
-彼はこれを自然消滅する話だろうと思っていたが、
-"Herb が本当に彼らにこの曲を歌ってほしがっている" という噂が Richard と Karen に伝わった。
-Ticket to Ride がチャート入りしたとは言え、成績自体はそこまで芳しくなく、
-レーベル内での立場が不安定だったことを考えた Ricahrd は、再びこの曲に取り組むことを決めた。
-
-そして完成したこの曲は 1970年8月12日に全米レコード協会 (RIAA) によりゴールドに認定され、
-1971年の[グラミー賞](https://en.wikipedia.org/wiki/Grammy_Awards)では
-最優秀コンテンポラリー・パフォーマンス賞 (デュオ、グループ、コーラス)を受賞した。
-[Wikipedia](https://en.wikipedia.org/wiki/(They_Long_to_Be)_Close_to_You)より
+[soft pop](https://en.wikipedia.org/wiki/Soft_pop)のバラードであるこの曲は、恋人が鳥たちや空から降る星々までも引き寄せてしまうかのように描き、その恋人に対する女性の愛情と喜びを歌っている。
 }}
 
 私と同じ 彼らも願っているのでしょう
@@ -322,7 +311,28 @@ This function runs when the nvim-tree buffer is created.
 ```admonish quote title=""
 Just like me, they long to be
 
-Close to you
+Close to you{{footnote:
+Bacharach と David は、この曲を[Herb Alpert](https://en.wikipedia.org/wiki/Herb_Alpert)に提供したが、
+Alpert はこの曲を録音したものの、その仕上がりに満足できずリリースしなかった。
+
+その後、1969年に[Ticket to Ride](https://en.wikipedia.org/wiki/Ticket_to_Ride_(song)#The_Carpenters)で 初めてチャート入りした Carpenters のことを知った Alpert は
+彼らにこの曲を録音するよう持ちかけた。
+Richard Carpenter は、しぶしぶアレンジを考えたが、あまり乗り気ではなかった。
+
+彼はこれを自然消滅する話だろうと思っていたが、
+"Herb が本当に彼らにこの曲を歌ってほしがっている" という噂が Richard と Karen に伝わった。
+Ticket to Ride がチャート入りしたとは言え、成績自体はそこまで芳しくなく、
+レーベル内での立場が不安定だったことを考えた Richard は、再びこの曲に取り組むことを決めた。
+
+Carpenters 版のシングルは 1970年5月14日に発売され、
+[Billboard Hot 100](https://en.wikipedia.org/wiki/Billboard_Hot_100)と[Adult Contemporary](https://en.wikipedia.org/wiki/Adult_Contemporary_(chart))の両チャートで1位を獲得した。
+また、1970年の[Billboard Year-End Hot 100 of 1970](https://en.wikipedia.org/wiki/Billboard_Year-End_Hot_100_singles_of_1970)では2位にランクインした。
+Billboard、Cash Box、Record Worldはいずれもこの曲を好意的に評価した。
+
+そしてこの曲は 1970年8月12日に全米レコード協会 (RIAA) によりゴールドに認定され、
+1971年の[グラミー賞](https://en.wikipedia.org/wiki/Grammy_Awards)では
+最優秀コンテンポラリー・パフォーマンス賞 (デュオ、グループ、コーラス)を受賞した。
+}}
 
 私と同じ 彼らも願っているのでしょう
 
@@ -459,7 +469,14 @@ Follow you all around
 ```admonish quote title=""
 Just like me, they long to be
 
-Close to you
+Close to you{{footnote:
+その後も Carpenters 版は人々の関心を集め続け、1989年の映画[Parenthood](https://en.wikipedia.org/wiki/Parenthood_(1989_film))や
+2007年の映画[The Simpsons Movie](https://en.wikipedia.org/wiki/The_Simpsons_Movie)、
+さらに[The Simpsons](https://en.wikipedia.org/wiki/The_Simpsons)1991年のエピソード[The Way We Was](https://en.wikipedia.org/wiki/The_Way_We_Was)でも、物語の展開に関わる楽曲として使用された。
+
+[The New York Times](https://en.wikipedia.org/wiki/The_New_York_Times)は 1995年と2014年に、この曲を称賛する記事を掲載している。
+[Wikipedia](https://en.wikipedia.org/wiki/(They_Long_to_Be)_Close_to_You)より
+}}
 
 私と同じ 彼女たちも願っているのでしょう
 
