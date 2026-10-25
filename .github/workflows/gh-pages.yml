@@ -252,7 +252,7 @@ jobs:
 
       - name: Update npm
         run: |
-          npm install --g npm@${{ env.NPM_VERSION }}
+          npm install -g npm@${{ env.NPM_VERSION }}
 
       - name: Install Dependencies
         working-directory: js
@@ -262,7 +262,7 @@ jobs:
       - name: Type check
         working-directory: js
         run: |
-          npx --yes --package typescript@${TYPESCRIPT_VERSION} tsc --noEmit
+          npx -p typescript@${TYPESCRIPT_VERSION} tsc --noEmit
 
       - name: Run Vitest
         working-directory: js
@@ -309,7 +309,7 @@ jobs:
 
       - name: Update npm
         run: |
-          npm install --g npm@${{ env.NPM_VERSION }}
+          npm install -g npm@${{ env.NPM_VERSION }}
 
       - name: Install Dependencies
         working-directory: js
@@ -349,7 +349,7 @@ jobs:
 
       - name: Update npm
         run: |
-          npm install --g npm@${{ env.NPM_VERSION }}
+          npm install -g npm@${{ env.NPM_VERSION }}
 
       - name: Install Dependencies
         working-directory: scss
@@ -521,7 +521,7 @@ jobs:
 
       - name: Update npm
         run: |
-          npm install --g npm@${{ env.NPM_VERSION }}
+          npm install -g npm@${{ env.NPM_VERSION }}
 
       - name: Install Dependencies
         working-directory: scripts
