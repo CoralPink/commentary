@@ -1,5 +1,23 @@
 # nvim-navic
 
+```admonish warning title=""
+We've only just begun{{footnote:
+We've Only Just Begun (by [The Carpenters](https://en.wikipedia.org/wiki/The_Carpenters))
+1970年8月21日、A&Mレコードより、2ndアルバム[Close to You](https://en.wikipedia.org/wiki/Close_to_You_(The_Carpenters_album))からの2枚目のシングルとしてリリースされた。
+この曲はもともと、[Paul Williams](https://en.wikipedia.org/wiki/Paul_Williams_(songwriter))と[Roger Nichols](https://en.wikipedia.org/wiki/Roger_Nichols_(songwriter))がテレビCM用に制作したもので、
+Carpenters がそれを見てレコーディングを希望した。プロデュースは[Jack Daugherty](https://en.wikipedia.org/wiki/Jack_Daugherty_(musician))が担当した。
+この曲は、人生の旅を続けていくことを歌った[soft rock](https://en.wikipedia.org/wiki/Soft_rock)ナンバーである。
+
+We've Only Just Begun はリリース直後から大ヒットを記録し、[Billboard Hot 100](https://en.wikipedia.org/wiki/Billboard_Hot_100)で2位に達し、その他4つのチャートで1位を獲得した。
+また、[Grammy Awards](https://en.wikipedia.org/wiki/Grammy_Awards)では[Song of the Year](https://en.wikipedia.org/wiki/Grammy_Award_for_Song_of_the_Year)および
+[Best Contemporary Song](https://en.wikipedia.org/wiki/Grammy_Award_for_Best_Contemporary_Country_Album)にノミネートされた。
+この曲は Close to You の成功を後押しし、その作曲、プロデュース、そして[Karen Carpenter](https://en.wikipedia.org/wiki/Karen_Carpenter)のボーカルが高く評価された。
+Carpenters を代表する不朽の名曲である。
+}} to live
+
+二人の人生 まだほんの始まり
+```
+
 今回はのほほんと`nvim-navic`を導入してみましょう。
 
 ```admonish info title="[nvim-navic](https://github.com/SmiteshP/nvim-navic)"
@@ -15,17 +33,11 @@ LSP を使用して現在のコードコンテキストを表示するシンプ�
 これも`LSP`を利用して動作するプラグインです。
 
 日本で衛星の話はまだだいぶお耳が痛いですが、インドの`NavIC`{{footnote:
-当初、インド地域航法衛星システム(Indian Regional Navigation Satellite System/IRNSS)と呼称されていたが、
-2016年4月にモディ首相によって名称変更が行われ，「NavIC」（Navigation Indian Constellation）と呼ばれることになった。
+当初、インド地域航法衛星システム (Indian Regional Navigation Satellite System/IRNSS) と呼称されていたが、
+2016年4月に[Modi](https://hi.wikipedia.org/wiki/नरेन्द्र_मोदी)首相によって名称変更が行われ，NavIC (Navigation Indian Constellation) と呼ばれることになった。
 [Wikipedia](https://ja.wikipedia.org/wiki/インド地域航法衛星システム)より
 }}
 はしっかり地球を飛び立った衛星です。
-
-```admonish success title=""
-Before the rising sun, we fly
-
-朝日が昇る前に、私たちは飛び立つ
-```
 
 ## Installation & Setup
 
@@ -50,6 +62,12 @@ require('nvim-navic').setup {
 本当に最低限で良ければ、`highlight`もなくて平気です😸
 ```
 
+```admonish warning title=""
+White lace and promises
+
+白いレース そして約束
+```
+
 ### lsp
 
 ```admonish info title="[Setup](https://github.com/SmiteshP/nvim-navic#%EF%B8%8F-setup)"
@@ -64,6 +82,18 @@ lspサーバーのセットアップ時に、nvim-navicの`attach`関数を`on_a
 
 とのことなんですが、これはもはや過去のものとなっています...❗次項へ🐈
 
+```admonish warning title=""
+A kiss for luck and we're on our way
+
+幸運を願うキス さあ行きましょう
+```
+
+```admonish success title=""
+We've only begun
+
+僕たちは まだほんの始まり
+```
+
 #### auto_attach
 
 ```admonish info title="[Setup](https://github.com/SmiteshP/nvim-navic#%EF%B8%8F-setup)"
@@ -77,6 +107,12 @@ You can skip this step if you have enabled `auto_attach` option during setup.
 自分で書く必要がありません😊 のほほん。
 
 これ以上に "auto" なものがかつて他に存在したでしょうか⁉️
+
+```admonish warning title=""
+Before the rising sun, we fly
+
+朝日が昇る前に、私たちは飛び立つ
+```
 
 ### highlight
 
@@ -96,6 +132,12 @@ Navic
 
 なんだかもう至れり尽くせりです🐹 のほほん。
 
+```admonish warning title=""
+So many roads to choose
+
+選べる道は たくさんある
+```
+
 ### Wrap Up
 
 ということで、`packer`から呼び出します。
@@ -111,6 +153,18 @@ use {
 }
 ```
 ~~~
+
+```admonish warning title=""
+We start out walking and learn to run
+
+歩き始めて 走ることを覚える
+```
+
+```admonish success title=""
+And yes, we've just begun
+
+そう、僕たちは まだほんの始まり
+```
 
 ## Usage
 
@@ -163,10 +217,10 @@ bufnr 値を渡すと、コードコンテキストを取得するためにど�
 このサイトでは扱っていませんが、`feline`, `galaxyline`に表示する方法も示されています。
 ```
 
-```admonish success title=""
-So many roads to choose
+```admonish warning title=""
+Sharing horizons that are new to us
 
-たくさんの道があるように たくさんの選択がある
+新しい地平を 分かち合い
 ```
 
 ### lualine
@@ -186,8 +240,8 @@ require('lualine').setup {
       {
         'diagnostics',
         sources = { 'nvim_diagnostic', 'nvim_lsp' },
-        sections = { 'error', 'warn', 'info', 'hint' },
-        symbols = { error = ' ', warn = ' ', info = ' ', hint = ' ' },
+        sections = { 'error', 'warning', 'info', 'hint' },
+        symbols = { error = ' ', warning = ' ', info = ' ', hint = ' ' },
       },
 +     { function() return navic.get_location() end, cond = function() return navic.is_available() end },
     },
@@ -241,21 +295,10 @@ use {
 (`buffers`もだいぶ場所とるし...😅)
 ```
 
-```admonish success title=""
-We’ll start out walking and learn to run
+```admonish warning title=""
+Watching the signs along the way
 
-And yes, we’ve just begun{{footnote:
-We've Only Just Begun (by [The Carpenters](https://en.wikipedia.org/wiki/The_Carpenters))
-元々は、California 州の Crocker National Bank のCMソングとして制作され、
-タイトルのとおり「2人はまだ始まったばかり（We've Only Just Begun）」と結婚によって新しい人生を踏み出すことについて歌われている。
-この曲は、アレンジャーとしての Richard の能力と、ヴォーカルとしての Karen の能力が最も発揮されているということで、
-Richard は「Carpenters の代表曲を挙げるなら『We've Only Just Begun』だな」と語っている。
-[Wikipedia](https://en.wikipedia.org/wiki/We%27ve_Only_Just_Begun)より
-}}
-
-歩くことから始めましょう そのあと走ることを学びましょう
-
-そう わたしたちはまだ始まったばかり
+雲を見上げて
 ```
 
 ## Customise
@@ -264,6 +307,12 @@ Richard は「Carpenters の代表曲を挙げるなら『We've Only Just Begun�
 もうちょっとのほほんとして行ってもバチは当たらないでしょ😊
 
 他にもいくつかカスタマイズ項目があるので、わたしが使用しているものだけ載せていきます😄
+
+```admonish warning title=""
+Talkin' it over, just the two of us
+
+二人きりで 語り合い
+```
 
 ### icons
 
@@ -317,6 +366,12 @@ Original:
 
 ちょっと例がびみょーですが、全体的にアイコンが大きく見えるし、Booleanのアイコンは確かに変わってますね。ね❗
 
+```admonish warning title=""
+Workin' together day to day, together
+
+日々 歩んでいく、共に、共に
+```
+
 ### depth_limit
 
 あと、上限の鬼対策でこれも入れておくと安心です。
@@ -346,6 +401,12 @@ depth_limit: integer
 こうしておけば百とか千とか、変なのとか来ても安心です❗
 
 しかも`9`にしておけば十の悪魔にも強く出れます❗🤣
+
+```admonish warning title=""
+And when the evening comes, we smile
+
+夕暮れが訪れると、微笑みあう
+```
 
 ### Line Count
 
@@ -395,10 +456,30 @@ vim.api.nvim_create_autocmd("BufEnter", {
 ```
 ~~~
 
-```admonish note
-このコードは`setup()`の外に記述してください❗
+```admonish warning title=""
+So much of life ahead{{footnote:
+この曲の誕生のきっかけは、1970年に[California](https://en.wikipedia.org/wiki/California)の
+[Crocker-Citizens National Bank](https://en.wikipedia.org/wiki/Crocker-Citizens_National_Bank)が放送したテレビCM に遡る。
+知名度の向上や競争への対応という課題を抱えていた同行は、社会人としての第一歩を踏み出そうとしている若い顧客層とのつながりを築こうとしていた。
+広告代理店[Hal Riney & Partners](https://en.wikipedia.org/wiki/Hal_Riney_&_Partners)でクリエイティブ面を主導していた[Hal Riney](https://en.wikipedia.org/wiki/Hal_Riney)は、
+商品を直接売り込むのではなく、音楽を通じて物語を伝えるという、新しいタイプの CM を構想した。
 
-( すみません...初掲時はうっかり中にいました...😭 )
+Riney のチームは、作詞家の Paul Williams と作曲家の Roger Nichols に、
+"あなたにはまだ長い道のりがある。そこにたどり着くまで、私たちがお手伝いしたい" という広告のスローガンを提示した。
+そして、CMではあるカップルの結婚式と、その先に続く人生の歩みを描く予定だと説明した。
+
+Williams と Nichols は、Riney が求めていた温かさと希望に満ちた雰囲気を表現し、わずか午後のひとときでこの曲を書き上げた。
+結婚式の映像に Williams の心のこもった歌声を重ねたCMでは、意図的に銀行への直接的な言及を避け、誰にでも当てはまる普遍的なメッセージが伝えられた。
+
+このCMは放送されるやいなや大きな反響を呼んだ。若い顧客層の共感を得て、銀行の知名度向上につながっただけでなく、結婚式や卒業式でこの曲を使いたいという問い合わせも急増した。
+銀行の商品ではなく、物語と顧客の体験を中心に据えたこの独創的な手法は、広告業界に新たな基準をもたらした。
+
+しかし、キャンペーンによって主に集まったのは、まだ融資の担保となる十分な資産を持たない若年層であり、銀行が本来ターゲットとしていた顧客層とは異なっていた。
+そのため、CM 自体は人気を博したものの、Crocker-Citizens National Bank は最終的に放送を打ち切った。
+それでも、この CM が広告と音楽の世界に残した影響は、その後も長く続いた。
+}}
+
+これから先 まだまだ長い
 ```
 
 ## We've Only Just Begun
@@ -429,12 +510,99 @@ nvim-navicと組み合わせることで、IDEのような完全なパンくず�
 
 そんなこんなで次回に続く... 🪼
 
+```admonish warning title=""
+We'll find a place where there's room to grow
+
+一緒に歳を重ねられる場所を探していく
+```
+
 ```admonish success
+And yes, we've just begun
+{{footnote:
+We’ve Only Just Begun は、Roger Nichols の友人である Smokey Roberds によって、"Freddie Allen"という芸名で録音されていた。
+1970年3月に発売されたものの、ラジオで大きく取り上げられることはなかった。
+
+[Richard Carpenter](https://en.wikipedia.org/wiki/Richard_Carpenter_(musician))はテレビでこの CM を目にし、Paul Williams の特徴的な歌声にすぐさま気付いた。
+フルバージョンが存在する可能性に興味を持った Richard は、両者がともに契約を結んでいた[A&M Records](https://en.wikipedia.org/wiki/A&M_Records)で、
+Williams と Nichols にこの曲は CM で使われた部分以外にも曲が続くのか尋ねた。(テレビCMで使われたバージョンは、ブリッジを含まない2つのヴァースだけで構成されていた)
+Williams は、"実はもっと長いバージョンも既に書かれている" と答えたが、これは事実ではなかった。
+
+ドキュメンタリー[Close to You: Remembering The Carpenters](https://en.wikipedia.org/wiki/Close_to_You:_Remembering_The_Carpenters)の中で、Williams は当時を次のように振り返っている。
+"それまでにも、アルバム収録曲や B面曲として、何曲かはうまくいっていた。でも、シングルヒットはまだなかった。
+これは大きなチャンスだったんだ。A面曲を出せるかもしれないし、ヒットする可能性だってある。
+だから、もしフルバージョンが存在しなかったとしても、絶対に 'ある' って言い張っていたよ!!"
+
+Williams はその後、1971年のアルバム[Just an Old Fashioned Love Song](https://en.wikipedia.org/wiki/Just_an_Old_Fashioned_Love_Song)に、自身が歌うフルバージョンを収録した。
+}}
+
+そう、僕たちは まだほんの始まり
+```
+
+<div style="color: #999999; font-size: 90%; text-align: center;">
+<div style="margin-top: 8em">
 Sharing horizons that are new to us
 
+新しい地平を 分かち合い
+</div>
+
+<div style="margin-top: 4em">
 Watching the signs along the way
 
-わたしたちにとって新たな地平線へ一緒に
+星座を眺めて
+</div>
 
-道中の標識にも目を向けて
-```
+<div style="margin-top: 4em">
+Talkin' it over, just the two of us
+
+二人きりで 語り明かし
+</div>
+
+<div style="margin-top: 4em">
+Workin' together day to day, together, together
+
+日々 歩んでいく、共に、共に
+</div>
+
+<div style="margin-top: 8em">
+And when the evening comes, we smile
+
+夕暮れが訪れたら、また微笑みあう
+</div>
+
+<div style="margin-top: 4em">
+So much of life ahead
+
+人生は まだまだ長い
+</div>
+
+<div style="margin-top: 4em">
+We'll find a place where there's room to grow
+
+一緒に歳を重ねられる場所を探していく
+</div>
+
+<div style="margin-top: 4em">
+And yes, we've just begun{{footnote:
+Karen Carpenter がリードボーカルを務め、兄妹によるハーモニーが際立つ Carpenters のバージョンは、
+[(They Long to Be) Close to You](https://en.wikipedia.org/wiki/(They_Long_to_Be)_Close_to_You)のリリースから 3か月後の 1970年8月に発表されると、即座に大ヒットを記録した。
+この曲はグループにとって 2作連続のトップ10シングルとなり、[Billboard Hot 100](https://en.wikipedia.org/wiki/Billboard_Hot_100)で2位、
+[Cash Box](https://en.wikipedia.org/wiki/Cashbox_Top_100_number-one_singles_of_1970)シングル・チャートで1位を記録した。
+
+また、Adult Contemporary chart では7週間にわたり1位を維持した。Cash Box 誌はこの曲を "魅力的な歌詞ときらめくようなプロダクション" と評した。
+
+UKシングルチャートでは最高28位にとどまり、さほど大きな成功を収めなかったものの、We've Only Just Begun の不朽の魅力がその歴史的な地位を確固たるものにした。
+2016年に ITV で放送された番組 The Nation's Favourite Carpenters Song では、英国のリスナーによる投票で、Carpenters の楽曲の中で 2番目に愛されている曲に選ばれた。
+Williams と Nichols にとって、この曲は転機となり、ソングライティング・チームとしてのキャリアを確固たるものにした。
+
+The Carpenters の1971年のアルバム Close to You では、Grammy賞の Best New Artist と Best Contemporary Performance by a Duo or Group の受賞につながった。
+1998年、この曲はその永続的な歴史的・文化的重要性が高く評価され、[Grammy Hall of Fame](https://en.wikipedia.org/wiki/Grammy_Hall_of_Fame)に選出された。
+2011年には、[Rolling Stone](https://en.wikipedia.org/wiki/Rolling_Stone)誌の
+[The 500 Greatest Songs of All Time](https://en.wikipedia.org/wiki/The_500_Greatest_Songs_of_All_Time)リストに選出された。
+[Wikipedia](https://en.wikipedia.org/wiki/We%27ve_Only_Just_Begun)より
+}}
+
+そう、二人はまだ ほんの始まり
+</div>
+</div>
+
+<div style="margin-top: 8em"></div>
