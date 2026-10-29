@@ -93,8 +93,8 @@ Split window borders
 
 |||
 |:---:|:---:|
-|**true**|![enable](img/borders-true.avif)|
-|**false**|![disable](img/borders-false.avif)|
+|**true**|![enable](img/borders-true.jxl)|
+|**false**|![disable](img/borders-false.jxl)|
 
 ### fade_nc
 
@@ -106,8 +106,8 @@ Fade non-current windows, making them more distinguishable
 
 |||
 |:---:|:---:|
-|**true**|![enable](img/fade_nc-true.avif)|
-|**false**|![disable](img/fade_nc-false.avif)|
+|**true**|![enable](img/fade_nc-true.jxl)|
+|**false**|![disable](img/fade_nc-false.jxl)|
 
 ### styles
 
@@ -131,12 +131,12 @@ styles = {
 
 |||
 |:---:|:---:|
-|**bold**|![bold](img/style-bold.avif)|
-|**NONE**|![none](img/style-none.avif)|
+|**bold**|![bold](img/style-bold.jxl)|
+|**NONE**|![none](img/style-none.jxl)|
 
 ```admonish note
 例えば、`comments`を`italic`にするのもオシャレなんですが、カーソルがそのままなので個人的には使いにくいかなー、なんて😅
-![italic](img/italic.avif)
+![italic](img/italic.jxl)
 ```
 
 ### disable
@@ -155,8 +155,8 @@ Disable setting the background color
 
 |||
 |:---:|:---:|
-|**true**|![enable](img/background-true.avif)|
-|**false**|![disable](img/background-false.avif)|
+|**true**|![enable](img/background-true.jxl)|
+|**false**|![disable](img/background-false.jxl)|
 
 #### cursorline
 
@@ -194,8 +194,8 @@ Overwrite default highlight groups
 
 |||
 |:---:|:---:|
-|**customize**|![Customize](img/custom_highlight.avif)|
-|**none**|![Non customized](img/custom_highlight-none.avif)|
+|**customize**|![Customize](img/custom_highlight.jxl)|
+|**none**|![Non customized](img/custom_highlight-none.jxl)|
 
 ちょっと見えにくいかな...。上の例では`}`です。
 
@@ -213,7 +213,7 @@ Overwrite default colors
 
 そんなこんなでやってきましたが、ここまでやっただけでも...
 
-![onenord](img/onenord.avif)
+![onenord](img/onenord.jxl)
 
 見違えるような変身っぷり❗
 
@@ -416,7 +416,7 @@ Imagine は発表以来、常に広く賞賛されてきたが、
 
 <div style="margin-top: 4em"></div>
 
-![letter](img/letter2.avif)
+![letter](img/letter2.jxl)
 
 <div style="color: #999999; font-size: 90%; text-align: center;">
 <div style="margin-top: 8em">

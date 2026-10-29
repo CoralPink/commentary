@@ -31,11 +31,11 @@ vim.api.nvim_set_option('scrolloff', 4)
 
 下から数えて5行目の位置から`4`行目に移動しようとすると...、
 
-![scrolloff1](img/scrolloff1.avif)
+![scrolloff1](img/scrolloff1.jxl)
 
 カーソル移動ではなく、本文が`行スクロール`する。
 
-![scrolloff2](img/scrolloff2.avif)
+![scrolloff2](img/scrolloff2.jxl)
 
 文字で説明するとイメージが難しいんですが、`0`の状態と比べて動かしてみれば、すぐに意味はわかると思います😸
 

@@ -83,7 +83,7 @@ vim.api.nvim_win_set_option(0, 'colorcolumn', '100')
 
 こんな感じで100文字目の列を教えてくれます。
 
-![colorcolumn](img/colorcolumn.avif)
+![colorcolumn](img/colorcolumn.jxl)
 
 ただ、これはなんか、再描画遅くなるとも書いてあるし😅 そんなに出しとく必要ある〜❓とか思っちゃうので、
 
@@ -122,7 +122,7 @@ vim.api.nvim_win_set_option(0, 'colorcolumn', '100')
 ぶっちゃけ自信が無いところなんですが...、まあ、その辺りも含めて、また次回😉
 ```
 
-![カビゴン](img/oyasumi.avif)
+![カビゴン](img/oyasumi.jxl)
 
 ```admonish success title=""
 いけ❗　いけるかぎり　どこまでも

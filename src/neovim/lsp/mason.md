@@ -109,7 +109,7 @@ Mason Package Index
 
 少しフライングしちゃうんですが、わたしの環境では、インストールしたパッケージは`~/.local/share/nvim/mason`に配置されていきます。
 
-![mason-install-path](img/mason-install-path.avif)
+![mason-install-path](img/mason-install-path.jxl)
 
 ```admonish question
 普段使っている`macOS`でも同じなんですけど...、`stdpath`にある？これ😑
@@ -186,7 +186,7 @@ mason.nvim は定期的に cargo や npm などの外部パッケージマネー
 :che mason
 ```
 
-![checkhealth](img/mason-che.avif)
+![checkhealth](img/mason-che.jxl)
 ~~~
 
 よほどの言語プロフェッショナルでもない限り、たくさんの`WARNING`が出てきちゃうと思いますが、
@@ -205,13 +205,13 @@ mason.nvim は定期的に cargo や npm などの外部パッケージマネー
 ~~~admonish note
 例えば「`JavaScript`やりたいから`typescript-language-server`ほしいなー😆」ってなったとするじゃないですか。
 
-![mason-failed](img/mason-tsls.avif)
+![mason-failed](img/mason-tsls.jxl)
 
 `mason.nvim`は`typescript-language-server`のインストールに`npm`を使用するんですね。
 
 でも、もし`npm`がまだインストールされていない状態でそれをやろうとしても、
 
-![mason-failed](img/mason-failed.avif)
+![mason-failed](img/mason-failed.jxl)
 
 ```txt
 spawn: npm failed with exit code - and signal -. npm is not executable
@@ -324,7 +324,7 @@ Jon Bon Jovi はこの曲のオリジナル・レコーディングを気に入�
 
 ってするだけですね😆
 
-![mason-window](img/mason-window.avif)
+![mason-window](img/mason-window.jxl)
 
 このウィンドウでの操作は、デフォルトで以下のようになっています。
 
@@ -379,11 +379,11 @@ keymaps = {
 /lua
 ```
 
-![install-1](img/install-ls1.avif)
+![install-1](img/install-ls1.jxl)
 
 一応、情報を確認しておきましょう。`lua-language-server`にカーソルが合ってるのを確認して<kbd>return</kbd>❗
 
-![install-2](img/install-ls2.avif)
+![install-2](img/install-ls2.jxl)
 
 対応する`languages`は`lua`で、`categories`は`LSP`ですね❗
 
@@ -391,7 +391,7 @@ keymaps = {
 
 一番上に戻ってみると...❓
 
-![install-3](img/install-ls3.avif)
+![install-3](img/install-ls3.jxl)
 
 `Installed`のリストに`lua-language-server`が加わりました❗もうお友達❗❗
 
@@ -399,7 +399,7 @@ keymaps = {
 
 なので、`→`にカーソルを合わせて<kbd>return</kbd>でさらに詳しい情報が見られます。
 
-![install-4](img/install-ls4.avif)
+![install-4](img/install-ls4.jxl)
 
 ## Livin' on a Prayer
 

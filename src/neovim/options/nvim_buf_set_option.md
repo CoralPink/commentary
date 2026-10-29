@@ -5,8 +5,8 @@ bufferリ　ゾーンに　ようこそ❗
 ```
 
 <media-slider>
-  ![suzumi1](img/suzumi1.avif)
-  ![suzumi2](img/suzumi2.avif)
+  ![suzumi1](img/suzumi1.jxl)
+  ![suzumi2](img/suzumi2.jxl)
 </media-slider>
 
 ```admonish quote title=""

@@ -38,7 +38,7 @@ require 'options'
 ```
 ~~~
 
-![help](img/help.avif)
+![help](img/help.jxl)
 
 `help`のヘルプが開きましたね🤣
 
@@ -94,7 +94,7 @@ require 'options'
 
 ヘルプの使い方さえわかってしまえば、もうこっちのもんですね🤗
 
-![カビゴン](img/kabigon.avif)
+![カビゴン](img/kabigon.jxl)
 
 ```admonish success
 おいっ❗

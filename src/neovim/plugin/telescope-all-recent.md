@@ -132,7 +132,7 @@ Ensure you have sqlite3 installed locally.
 sudo dnf install sqlite libsqlite3x-devel
 ```
 
-![install-sqlite3](img/sqlite3.avif)
+![install-sqlite3](img/sqlite3.jxl)
 ~~~
 
 ちょっと怖いけど😣{{footnote:
@@ -154,7 +154,7 @@ SFとファンタジーを融合した世界観によって、さまざまなジ
 [Wikipedia](https://en.wikipedia.org/wiki/Star_Wars)より
 }}
 
-![galactic_empire](img/galactic_empire.avif)
+![galactic_empire](img/galactic_empire.jxl)
 
 ## Installation
 
@@ -198,14 +198,14 @@ lua 関数で telescope のキーバインドを作成する場合は、
 
 じゃあ、これでインストールしてみましょう。
 
-![install-sqlite3](img/sqlite-nvim-ok.avif)
+![install-sqlite3](img/sqlite-nvim-ok.jxl)
 
 ちゃんといけましたね❗
 
 ```admonish note
 以下のようなエラーが出る場合は`sqlite`をもう一度確認してみてください。
 
-![install-sqlite3](img/sqlite-nvim-ng.avif)
+![install-sqlite3](img/sqlite-nvim-ng.jxl)
 
 当たり前のことを言うんですけど、たった一回`Error`を出しただけで、これを一般的に「失敗」とは言いません
 {{footnote:
@@ -248,7 +248,7 @@ after = string or list,      -- Specifies plugins to load before this plugin.
 
 これを使うことで、上にあった「必ず`telescope`の後にロードしてください。」を`packer`のコード上で表現できます。
 
-![stormtrooper](img/stormtrooper.avif)
+![stormtrooper](img/stormtrooper.jxl)
 
 ## Check It Out
 
@@ -257,17 +257,17 @@ after = string or list,      -- Specifies plugins to load before this plugin.
 
 適当に項目をいくつか開いてみてください。
 
-![telescope-recent](img/telescope-recent.avif)
+![telescope-recent](img/telescope-recent.jxl)
 
 このスクリーンショットで伝わるのか少し不安ですが、間違いなく最近開いた項目が上に来てます❗
 
 やったね😆
 
 <media-slider>
-  ![STAR WARS](img/starwars.avif)
-  ![PEACE!](img/peace.avif)
-  ![George Lucas](img/lucas.avif)
-  ![May the 4th be with you](img/may_the_4th_be_with_you.avif)
+  ![STAR WARS](img/starwars.jxl)
+  ![PEACE!](img/peace.jxl)
+  ![George Lucas](img/lucas.jxl)
+  ![May the 4th be with you](img/may_the_4th_be_with_you.jxl)
 </media-slider>
 
 ## Wrap Up
@@ -285,8 +285,8 @@ Gaze deeply into unknown regions using the power of the moon.
 ```
 
 <media-slider>
-  ![mount-day](img/mount-day.avif)
-  ![mount-night](img/mount-night.avif)
+  ![mount-day](img/mount-day.jxl)
+  ![mount-night](img/mount-night.jxl)
 </media-slider>
 
 <div style="color: #999999; font-size: 90%; text-align: center;" >
@@ -318,7 +318,7 @@ Gaze deeply into unknown regions using the power of the moon.
 
 <div style="margin-top: 4rem"></div>
 
-![darth_vader](img/darth_vader.avif)
+![darth_vader](img/darth_vader.jxl)
 
 <div style="color: #999999; font-size: 90%; text-align: center;" >
 <div style="margin-top: 4rem; margin-bottom: 4rem">

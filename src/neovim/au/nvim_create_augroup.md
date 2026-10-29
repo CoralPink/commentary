@@ -43,7 +43,7 @@ This is useful for removing or executing a group of autocommands.
 ```
 ~~~
 
-![ramen-shiumai](img/ramen-shiumai.avif)
+![ramen-shiumai](img/ramen-shiumai.jxl)
 
 ## augroup
 
@@ -61,7 +61,7 @@ This is useful for removing or executing a group of autocommands.
 ```
 ~~~
 
-![augroup-before](img/augroup-before.avif)
+![augroup-before](img/augroup-before.jxl)
 
 こんな感じですね😌
 
@@ -137,7 +137,7 @@ vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWinEnter' }, {
 ```
 ~~~
 
-![augroup-after](img/augroup-after.avif)
+![augroup-after](img/augroup-after.jxl)
 
 `buffer_set_options`の姿を確認できましたね❗これでもう完璧です😆
 

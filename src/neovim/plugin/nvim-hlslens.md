@@ -23,12 +23,12 @@ nvim-ufo (optional)
 そもそもわたし自身が普段`fold`使ってないので、このサイトでは使用しないで進みます😅
 
 <media-slider>
-  ![asakusa-samba-carnival-2024-1](img/asakusa-samba-carnival-2024-1.avif)
-  ![asakusa-samba-carnival-2024-2](img/asakusa-samba-carnival-2024-2.avif)
-  ![asakusa-samba-carnival-2024-3](img/asakusa-samba-carnival-2024-3.avif)
-  ![asakusa-samba-carnival-2024-4](img/asakusa-samba-carnival-2024-4.avif)
-  ![asakusa-samba-carnival-2024-5](img/asakusa-samba-carnival-2024-5.avif)
-  ![asakusa-samba-carnival-2024-6](img/asakusa-samba-carnival-2024-6.avif)
+  ![asakusa-samba-carnival-2024-1](img/asakusa-samba-carnival-2024-1.jxl)
+  ![asakusa-samba-carnival-2024-2](img/asakusa-samba-carnival-2024-2.jxl)
+  ![asakusa-samba-carnival-2024-3](img/asakusa-samba-carnival-2024-3.jxl)
+  ![asakusa-samba-carnival-2024-4](img/asakusa-samba-carnival-2024-4.jxl)
+  ![asakusa-samba-carnival-2024-5](img/asakusa-samba-carnival-2024-5.jxl)
+  ![asakusa-samba-carnival-2024-6](img/asakusa-samba-carnival-2024-6.jxl)
 </media-slider>
 
 踊りながらいきましょう❗{{footnote:
@@ -82,7 +82,7 @@ use {
 
 これで、適当に文字列検索してみてください。
 
-![nvim-hlslens](img/nvim-hlslens.avif)
+![nvim-hlslens](img/nvim-hlslens.jxl)
 
 表示が少し豪華になりましたね❗
 
@@ -96,7 +96,7 @@ use {
 
 例えば`/nvim`で検索をかけた後に<kbd>Leader</kbd><kbd>L</kbd>とするとこうなります。
 
-![nvim-hlslens-quickfix](img/nvim-hlslens-quickfix.avif)
+![nvim-hlslens-quickfix](img/nvim-hlslens-quickfix.jxl)
 
 ~~~admonish info title=":h quickfix"
 ```txt
@@ -129,7 +129,7 @@ Vim では、quickfix コマンドはより一般的に、ファイル内の位�
 
 あー...うん、ちょっと気になりますね...。右下のやつ。
 
-![nvim-hlslens2](img/nvim-hlslens2.avif)
+![nvim-hlslens2](img/nvim-hlslens2.jxl)
 
 なんだろ、同期してないって言うのかな...。
 
@@ -148,7 +148,7 @@ Vim では、quickfix コマンドはより一般的に、ファイル内の位�
 ```
 
 ```admonish danger title=""
-![asakusa-mucle](img/asakusa-muscle.avif)
+![asakusa-mucle](img/asakusa-muscle.jxl)
 
 筋肉の集団面接💪 今まで一番チカラをいれた部位はどこですかッ⁉️
 ```
@@ -185,7 +185,7 @@ Vim では、quickfix コマンドはより一般的に、ファイル内の位�
 
 頷くブラックパンツァー。共に戦おうと言わんばかりに...❗
 
-![nvim-hlslens3](img/nvim-hlslens3.avif)
+![nvim-hlslens3](img/nvim-hlslens3.jxl)
 
 そこまで絞るには眠れない夜もあったろう...❗ありがとう、ブラックパンツァー...❗❗
 

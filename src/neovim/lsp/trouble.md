@@ -251,7 +251,7 @@ let it be
 
 そしたらやっぱりいつも通りインストールを終えて、`trouble.lua`を開いた状態で<kbd>leader</kbd><kbd>x</kbd><kbd>x</kbd>としてみましょう。
 
-![trouble1](img/trouble1.avif)
+![trouble1](img/trouble1.jxl)
 
 うん...。なんか別に意図してないんだけど、いい感じにトラブってましたね😅
 
@@ -261,7 +261,7 @@ let it be
 
 上のスクリーンショットでは`Warning`しかありませんが、`Error`や`Hint`なんかも、もれなく突きつけてきます👹
 
-![trouble1](img/trouble2.avif)
+![trouble1](img/trouble2.jxl)
 
 ...天使なのか悪魔なのかわかりません😇
 
@@ -294,7 +294,7 @@ Let it be
 
 `Trouble`がデフォルトで使用するアイコンは以下です。
 
-![trouble1](img/trouble3.avif)
+![trouble1](img/trouble3.jxl)
 
 これでもいいんだけど、わたしはこの機会に新しくこんなんしてみました😮
 
@@ -323,7 +323,7 @@ end
 もちろんお好みで❗
 
 ```admonish tip
-![trouble1](img/trouble4.avif)
+![trouble1](img/trouble4.jxl)
 
 `signcolumn`(スクリーンショット左上) のアイコンにも、これが使用されます😉
 ```
@@ -407,12 +407,12 @@ culhl   highlight group used for the text item when the cursor is on the same li
 ~~~
 
 ~~~admonish warning title="Deprecated"
-![deprecated-warn](img/deprecated-warn.avif)
+![deprecated-warn](img/deprecated-warn.jxl)
 
 なんかうっかり "見つけてしまった" のか、もしくは "見つかってしまった" と言うべきなのか、
 `sign_define()`は`Nvim 0.12`で削除されてしまうみたい...😿
 
-![deprecated-che](img/deprecated-che.avif)
+![deprecated-che](img/deprecated-che.jxl)
 
 ほなしゃーないなぁってことで、`Nvim 0.12`が来る前に書き換えておきましょう。
 
@@ -427,7 +427,7 @@ vim.diagnostic.config {
 }
 ```
 
-![deprecated-che](img/deprecated-ok.avif)
+![deprecated-che](img/deprecated-ok.jxl)
 
 わたしの`lua`パワーでは、このコードは難易度が高すぎるんだけど、これで OK だそうです😅
 ~~~

@@ -74,7 +74,7 @@ This is the same text that is shown at the cursor position when composing.
 
 でも、この状態を指すようです。
 
-![composition](img/composition.webp)
+![composition](img/composition.jxl)
 
 ちょっとフライングしてますが、左上に`あ`と出てるのが`composition_status()`で`nil以外`が返ってきている状態です。
 
@@ -101,7 +101,7 @@ end)
 
 |normal|leader key is active|composition|
 |:---:|:---:|:---:|
-|![key-normal](img/key-normal.webp)|![key-leader](img/key-leader.webp)|![key-ime](img/key-ime.webp)|
+|![key-normal](img/key-normal.jxl)|![key-leader](img/key-leader.jxl)|![key-ime](img/key-ime.jxl)|
 
 ```admonish success
 こんなもんですね。動きが出て楽しいですね😆 ...ね❗️ね❗️

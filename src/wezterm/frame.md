@@ -57,8 +57,8 @@ use_fancy_tab_bar = false
 
 |||
 |:---:|:---:|
-|**before**|![before](img/window-before.webp)
-|**after**|![after](img/window-after.webp)
+|**before**|![before](img/window-before.jxl)
+|**after**|![after](img/window-after.jxl)
 
 ```admonish success
 全然中身ありませんでしたね😅 まあ、小休止ってことで。
