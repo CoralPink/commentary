@@ -24,7 +24,7 @@ Let me take you down
 
 ぼくも Strawberry Fields に行くところなんだ
 ```
-<video width="1280" height="720" data-poster="img/grogu-thumbnail.avif">
+<video width="1280" height="720" data-poster="img/grogu-thumbnail.jxl">
   <source src="img/grogu.webm" type="video/webm">
 </video>
 
@@ -67,11 +67,11 @@ end, opts)
 
 以下のようなぐっちゃぐちゃなコードがあったとしても...。
 
-![lua-fmt-before](img/lua-fmt-before.avif)
+![lua-fmt-before](img/lua-fmt-before.jxl)
 
 <kbd>Space</kbd><kbd>f</kbd> ってやってみると...。
 
-![lua-fmt-after](img/lua-fmt-after.avif)
+![lua-fmt-after](img/lua-fmt-after.jxl)
 
 こんな具合に正してくれます。
 ```
@@ -170,7 +170,7 @@ But it all works out
 でも 全てうまくいくよ
 ```
 
-![beatles](img/beatles.avif)
+![beatles](img/beatles.jxl)
 
 ```admonish quote title=""
 It doesn’t matter much to me
@@ -308,7 +308,7 @@ The Beatles は、"more popular than Jesus" (キリストよりも人気があ�
 フィリピンの[Imelda Marcos](https://en.wikipedia.org/wiki/Imelda_Marcos)大統領夫人への
 意図せぬ冷遇に対する暴徒の標的になるなど、最も困難な時期を経て、ツアーを引退したばかりだった。
 
-![marcos](img/marcos.avif)
+![marcos](img/marcos.jxl)
 
 ...時を経て、New York City の[Central Park](https://en.wikipedia.org/wiki/Central_Park)の一角には
 Lennon を偲び、この曲にちなんだ[区画](https://en.wikipedia.org/wiki/Strawberry_Fields_(memorial))が造られた。

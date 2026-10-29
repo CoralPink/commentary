@@ -11,8 +11,8 @@
 
 |||
 |:---:|:---:|
-|**homebrew**|![git-homebrew](img/git-homebrew.avif)|
-|**dnf**|![git-dnf](img/git-dnf.avif)|
+|**homebrew**|![git-homebrew](img/git-homebrew.jxl)|
+|**dnf**|![git-dnf](img/git-dnf.jxl)|
 
 ```admonish note
 `Windows`とかはインストーラを使用するのかもしれないんだけど、むしろわたしの方がワカラナイ...😰
@@ -28,7 +28,7 @@ git --version
 
 とかしてみて、バージョン表示がされればOKです。
 
-![git-version](img/git-version.avif)
+![git-version](img/git-version.jxl)
 
 この環境だとちょっと古いバージョンですね。`homebrew`では、2022-10-19に`2.38.1`になってます。
 

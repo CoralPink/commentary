@@ -4,7 +4,7 @@ This site introduces `WezTerm` and `Neovim` `dotfiles` that I usually use😉
 
 But Japanese only for now. I want to make an English site too❗
 
-![goal](src/goal.avif)
+![goal](src/goal.jxl)
 
 https://coralpink.github.io/commentary
 
@@ -36,8 +36,6 @@ Thanks to application developers!! I enjoy using it💓
 
 [starship - cross-shell prompt](https://starship.rs)
 
-[プログラミングフォント Firge (ファージ)](https://github.com/yuru7/Firge)
-
 And thanks to the developers of the applications used to create this website🤗
 
 [mdBook](https://rust-lang.github.io/mdBook/)
@@ -45,11 +43,5 @@ And thanks to the developers of the applications used to create this website🤗
 [Catppuccin for mdBook](https://github.com/catppuccin/mdbook)
 
 [mdbook-admonish](https://github.com/tommilligan/mdbook-admonish)
-
-[mdBook-pagetoc](https://github.com/JorelAli/mdBook-pagetoc)
-
-[actions-mdbook](https://github.com/peaceiris/actions-mdbook)
-
-[generate-sitemap](https://github.com/cicirello/generate-sitemap)
 
 [DeepL](https://www.deepl.com/translator)

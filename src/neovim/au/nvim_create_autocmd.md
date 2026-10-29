@@ -47,7 +47,7 @@ nvim_create_autocmd({event}, {*opts}) nvim_create_autocmd()
 ```
 ~~~
 
-![aucmd-before](img/aucmd-before.avif)
+![aucmd-before](img/aucmd-before.jxl)
 
 こんな感じに出てきたでしょうか。
 
@@ -60,7 +60,7 @@ nvim_create_autocmd({event}, {*opts}) nvim_create_autocmd()
 
 準備はよろしいでしょうか❓
 
-![ピカチュウ](img/pikachu.avif)
+![ピカチュウ](img/pikachu.jxl)
 
 ...OK❓
 
@@ -204,7 +204,7 @@ vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWinEnter' }, {
 
 それでは、`nvim`を再起動して、もう一度`:au`を実行してみましょう...。
 
-![aucmd-after](img/aucmd-after.avif)
+![aucmd-after](img/aucmd-after.jxl)
 
 `options.lua`に書いたイベントが登録されていることが確認できましたね❗
 

@@ -7,7 +7,10 @@
 もしこれが、見てくれた人のヒントになったり、何かの役に立ったりしたら嬉しいです😌
 
 ```admonish success title=""
-![goal](goal.avif)
+<picture>
+  <source srcset="goal.jxl" type="image/jxl" />
+  <img src="jxl-not-supported.webp" width="662" height="540" alt="This site uses JPEG XL (JXL) images, which your browser doesn’t currently support." />
+</picture>
 
 <div style="text-align: right;font-style: italic;" >
     Screenshot of wezterm on macOS, running Neovim and etc...

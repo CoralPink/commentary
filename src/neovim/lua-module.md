@@ -19,7 +19,7 @@ Luaモジュールは、runtimepath内のlua/フォルダにあります
 ```
 ~~~
 
-![config-create](img/config-create.avif)
+![config-create](img/config-create.jxl)
 
 いきなりちょっと複雑でしたね😅
 
@@ -27,7 +27,7 @@ Luaモジュールは、runtimepath内のlua/フォルダにあります
 {{footnote:
 `~/.config/nvim`ディレクトリが存在しないと`runtimepath`からもいなくなるようです。ディレクトリの存在を事前に確認してる?🤔
 
-![config-not](img/config-not.avif)
+![config-not](img/config-not.jxl)
 }}
 
 (上の例は`unix`なので`"/home/utm-user/.config/nvim"`)
@@ -102,14 +102,14 @@ require('example')
 
 全く関係ないところでやってみてもこの説明で通用するものになりました。
 
-![lua-example](img/lua-example.avif)
+![lua-example](img/lua-example.jxl)
 ~~~
 
 ```admonish note
 ここから先、特に明記しない限りは`~/.config/nvim/lua`または`~/AppData/Local/nvim/lua`ディレクトリを前提としていきます😌
 ```
 
-![ピカチュウ](img/pikachu-kabigon.avif)
+![ピカチュウ](img/pikachu-kabigon.jxl)
 
 ```admonish success
 能書きとしてはこんな感じじゃないでしょうか。

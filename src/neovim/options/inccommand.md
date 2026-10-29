@@ -59,16 +59,16 @@ She's got a ticket to ride, but she don’t care.
 
 画面下にプレビューウィンドウが出るようになりました。
 
-![replace1](img/replace1.avif)
+![replace1](img/replace1.jxl)
 
 ちょっとこれだとあんまり威力を感じられないんですが、画面に収まってない部分もプレビューできるのが強みです。
 
-![replace2](img/replace2.avif)
+![replace2](img/replace2.jxl)
 
 ~~~admonish tip
 下のようになってたとして、(だいぶ強引ですが) 大文字を含まない "she"でやった場合にあれれー❓ってなるの気付きます？
 
-![replace3](img/replace3.avif)
+![replace3](img/replace3.jxl)
 
 そうです。3行目に "she"は2つあるのに、1つ取りこぼししちゃってます😱
 
@@ -82,7 +82,7 @@ She's got a ticket to ride, but she don’t care.
 
 ...と、`g`オプションを追加してあげると期待通りの結果が得られます。
 
-![replace4](img/replace4.avif)
+![replace4](img/replace4.jxl)
 
 割とあるシチュエーションだと思うので、覚えておくと役に立ちます😉
 ~~~

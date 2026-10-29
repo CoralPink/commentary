@@ -6,7 +6,7 @@
 
 (そして、終わったら消しておいてください...😅)
 
-![musicforest-foutain](img/musicforest-foutain.avif)
+![musicforest-foutain](img/musicforest-foutain.jxl)
 
 ```admonish info title=""
 A dream is a wish your heart makes{{footnote:
@@ -48,7 +48,7 @@ end
 vim.keymap.set('n', '<Leader>3', testfunc)
 ```
 
-![call-function3](img/call-function3.avif)
+![call-function3](img/call-function3.jxl)
 
 いい感じ〜❗
 
@@ -67,7 +67,7 @@ In dreams, you will lose your heartaches
 そこはもう夢の中、心の痛みなんてもうなくって
 ```
 
-![musicforest-doll](img/musicforest-doll.avif)
+![musicforest-doll](img/musicforest-doll.jxl)
 
 ## Parameter
 
@@ -130,7 +130,7 @@ vim.keymap.set('n', '<Leader>5', print(testret()))
 vim.keymap.set('n', '<Leader>5', function() print(testret()) end)
 ```
 
-![musicforest](img/musicforest.avif)
+![musicforest](img/musicforest.jxl)
 
 ```admonish info title=""
 Have faith in your dreams and someday
@@ -164,7 +164,7 @@ vim.keymap.set('n', '<Leader>6', testfunc())
 ```
 ~~~
 
-![call-function4](img/call-function4.avif)
+![call-function4](img/call-function4.jxl)
 
 `rhs: expected string|function, got nil`って言われちゃいます😩
 

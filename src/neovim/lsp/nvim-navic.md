@@ -283,12 +283,12 @@ use {
 
 そしたらほらね、`lualine`上に現在のコードコンテキストが示されました。
 
-![nvim-navic-statusline](img/nvim-navic-statusline.avif)
+![nvim-navic-statusline](img/nvim-navic-statusline.jxl)
 
 ```admonish note
 例えば、`tabline`に表示してみるのもオシャレです😊 `VSCode`とかは上にあった気もするし❗
 
-![nvim-navic-tabline](img/nvim-navic-tabline.avif)
+![nvim-navic-tabline](img/nvim-navic-tabline.jxl)
 
 ちょっと上の情報が多すぎる気もするので、`git`関連の情報を下に移動した方が良いかもしれません🤔
 
@@ -357,10 +357,10 @@ Talkin' it over, just the two of us
 ~~~
 
 VSCode like:
-![nvim-navic-vscode_like](img/nvim-navic-vscode_like.avif)
+![nvim-navic-vscode_like](img/nvim-navic-vscode_like.jxl)
 
 Original:
-![nvim-navic-original](img/nvim-navic-original.avif)
+![nvim-navic-original](img/nvim-navic-original.jxl)
 
 ...。😮
 

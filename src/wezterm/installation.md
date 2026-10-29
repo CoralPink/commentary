@@ -16,7 +16,7 @@ WezTermは主要なプラットフォーム用にあらかじめビルドされ�
 
 では、起動してみましょう。(ユーザー名だけちょっと雑に隠しますが気にしないでください。)
 
-![initial](img/initial.webp)
+![initial](img/initial.jxl)
 
 ```admonish success
 動きましたね。

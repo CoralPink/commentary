@@ -86,7 +86,7 @@ nvim init.lua
 中身はまっさらですが、これから作っていきましょう😉
 ```
 
-![カントー](img/kanto.avif)
+![カントー](img/kanto.jxl)
 
 ```admonish success title=""
 マサラは　まっしろ　はじまりのいろ

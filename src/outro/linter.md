@@ -58,7 +58,7 @@ Can I bring my friend to tea?
 追加のインストールが手間だったり、そもそもその言語使ってないってことも当然あると思うので、
 これらを実際にインストールするかどうかはおまかせします😺
 
-![paul](img/paul.avif)
+![paul](img/paul.jxl)
 
 ```admonish success title=""
 E, F, G, H, I, J
@@ -86,7 +86,7 @@ Luacheck自身はLuaで書かれており、前述のすべてのLuaバージョ
 
 いつも通り`Lua`で進めるために`Luacheck`という`linter`を試してみたいんですが...。
 
-![Luacheck](img/luacheck.avif)
+![Luacheck](img/luacheck.jxl)
 
 ```txt
 lualocks is not executable
@@ -109,11 +109,11 @@ LuaRocks は Lua モジュールのパッケージマネージャです。
 インストールは[Download](https://github.com/luarocks/luarocks/wiki/Download)の案内に従ってもいいし、
 もっとお手軽に`brew`とか`apt`なんかを利用することでも可能です。
 
-![luarocks](img/luarocks.avif)
+![luarocks](img/luarocks.jxl)
 
 あらかじめこれを行った上で再度`mason.nvim`から`Luacheck`をインストールすれば進めるはずです😌
 
-![Luacheck](img/luacheck-install.avif)
+![Luacheck](img/luacheck-install.jxl)
 
 できました😆
 
@@ -121,7 +121,7 @@ LuaRocks は Lua モジュールのパッケージマネージャです。
 
 `Luacheck`が対応している言語はもちろん`Lua`です☺️
 
-![deprecated](img/deprecated.avif)
+![deprecated](img/deprecated.jxl)
 
 ちゃんと正しいコードなんだけど、`vim`が全部怒られるので「えぇ...😨」ってなります。
 (いまいち自信がありませんが、この対応は次項で行います。)
@@ -194,7 +194,7 @@ CSSは次の重点言語であり、順調に進んでいます。HTMLとMarkdow
 
 いつも通り`mason.nvim`からインストールしてみましょう。
 
-![biome](img/biome.avif)
+![biome](img/biome.jxl)
 
 これで準備完了かと思いきや、もう一手間必要です😦
 
@@ -244,7 +244,7 @@ The linter.enabled: true enables the linter and rules.recommended: true enables 
 
 ようやく準備完了です。`js`ファイルを開いてみましょう❗
 
-![biome-hazard](img/biome-hazard.avif)
+![biome-hazard](img/biome-hazard.jxl)
 
 実際はこれでもちゃんと動くコードなんだけど、`Error`として報告してきます。
 
@@ -372,7 +372,7 @@ Nu allemaal samen
 
 <div style="margin-top: 4rem"></div>
 
-![all-together-now4](img/all-together-now1.avif)
+![all-together-now4](img/all-together-now1.jxl)
 
 <div style="margin-top: 4rem"></div>
 
@@ -380,7 +380,7 @@ Todos juntos ahora
 
 <div style="margin-top: 4rem"></div>
 
-![all-together-now4](img/all-together-now2.avif)
+![all-together-now4](img/all-together-now2.jxl)
 
 <div style="margin-top: 4rem"></div>
 
@@ -388,7 +388,7 @@ Kwa pamoja sasa
 
 <div style="margin-top: 4rem"></div>
 
-![all-together-now4](img/all-together-now3.avif)
+![all-together-now4](img/all-together-now3.jxl)
 
 <div style="margin-top: 4rem"></div>
 
@@ -396,7 +396,7 @@ Tous en choeur maintenant
 
 <div style="margin-top: 4rem"></div>
 
-![all-together-now4](img/all-together-now4.avif)
+![all-together-now4](img/all-together-now4.jxl)
 
 <div style="margin-top: 4rem"></div>
 
@@ -551,7 +551,7 @@ Okay, beautiful, yes
 最高だ！
 </div>
 
-![teruteru-bozu](img/teruteru-bozu.avif)
+![teruteru-bozu](img/teruteru-bozu.jxl)
 
 <div style="color: #999999; margin: 2rem">
 We've made it!

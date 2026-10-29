@@ -174,7 +174,7 @@ I just wanna live while I’m alive
 
 としてみましょう。
 
-![lspinfo](img/lspinfo.avif)
+![lspinfo](img/lspinfo.jxl)
 
 うわっ❗めっちゃお話ししてくれそう🥰
 
@@ -209,7 +209,7 @@ Jon Bon Jovi と Sambora は、このセリフを巡って意見が対立した�
 `nvim-lspconfig.lua`にキーマッピングを設定しましたね😌 もしデフォルトから変更している場合は読み替えてください。
 ```
 
-![Signature Help](img/signature_help.avif)
+![Signature Help](img/signature_help.jxl)
 
 めっちゃ教えてくれる😆
 
@@ -217,7 +217,7 @@ Jon Bon Jovi と Sambora は、このセリフを巡って意見が対立した�
 
 なんか嬉しくなってきたので、次はコードにイタズラをしてみましょう。
 
-![Work LS](img/work-ls.avif)
+![Work LS](img/work-ls.jxl)
 
 やーい怒られたぁ🤣
 
@@ -254,7 +254,7 @@ sections = {
 
 ってやってから、またちょっかい出してみると...❓
 
-![lualine-diagnostics](img/lualine-diagnostics.avif)
+![lualine-diagnostics](img/lualine-diagnostics.jxl)
 
 `lualine`上に`Error`や`Warning`の数が表示されるようになりましたね❗
 

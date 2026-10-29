@@ -53,8 +53,8 @@ formatting will never be messed up when 'tabstop' is changed.
 一つずつ確認していきましょう😉
 
 <media-slider>
-  ![ニャース](img/nya-su1.avif)
-  ![ガラルニャース](img/nya-su2.avif)
+  ![ニャース](img/nya-su1.jxl)
+  ![ガラルニャース](img/nya-su2.jxl)
 </media-slider>
 
 ## shiftwidth
@@ -149,7 +149,7 @@ vim.api.nvim_buf_set_option(0, 'expandtab', true)
 
 よーし、これで全ての設定が終わったぞ❗やったね❗❗
 
-![キテルグマ](img/kiteruguma.avif)
+![キテルグマ](img/kiteruguma.jxl)
 
 ## To Be Continued...
 

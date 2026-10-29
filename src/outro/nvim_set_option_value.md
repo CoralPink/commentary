@@ -6,7 +6,7 @@
 
 そういえば最近、新しく"京" 🗼を見下ろせる麻布台ヒルズって場所を知ったんだよねー。
 
-![tokyo-tower](img/tokyo-tower.avif)
+![tokyo-tower](img/tokyo-tower.jxl)
 
 ```admonish success title=""
 I say high, you say low
@@ -154,7 +154,7 @@ McCartney は、この歌詞は彼の星座である双子座を反映して、�
 手元の設定から`termguicolors`を一回消してから`nvim`を起動してみましょう。
 まだ未対応であれば`nvim-notify`が起動直後に警告してくれます。
 
-![term-guicolors-notify](img/term-guicolors-notify.avif)
+![term-guicolors-notify](img/term-guicolors-notify.jxl)
 
 逆に何も言われないのであれば、`termguicolors`はもう書かなくても平気だとわかっちゃうわけです😋
 
@@ -379,7 +379,7 @@ end
 
 それを糧に、モチベーション上げていきましょ❗
 
-![paul](img/paul.avif)
+![paul](img/paul.jxl)
 
 ```admonish success
 Hela, heba helloa, cha cha cha

@@ -55,13 +55,13 @@ Your terminal emulator must be configured to use that font, usually "Hack Nerd F
 
 `nvim-tree.lua`のインストールより先にやっておきたいことがあって、それが`netrw`の無効化です。
 
-![トトロ(ソラマチ)](img/totoro-solamachi.avif)
+![トトロ(ソラマチ)](img/totoro-solamachi.jxl)
 
 ### netrw
 
 `netrw`は `Vim`及び`Neovim`がデフォルトで持っている機能です。
 
-![netrw](img/netrw.avif)
+![netrw](img/netrw.jxl)
 
 コマンド`:Ex`で呼び出せます。
 
@@ -135,7 +135,7 @@ Had to tell my point of view
 言わずにいられない日もあった
 ```
 
-![ueno-bird](img/ueno-bird.avif)
+![ueno-bird](img/ueno-bird.jxl)
 
 ```admonish quote title=""
 I was like you
@@ -180,7 +180,7 @@ vim.api.nvim_create_user_command('Ex', function() vim.cmd.NvimTreeToggle() end, 
 
 そしたら、コマンド`:Ex`を実行してみましょう。
 
-![nvim-tree-default](img/nvim-tree-default.avif)
+![nvim-tree-default](img/nvim-tree-default.jxl)
 
 うん、出ましたね☺️
 
@@ -243,7 +243,7 @@ vim.keymap.set('n', '<leader>ex', vim.cmd.NvimTreeToggle)
 
 そりゃそうだと言われてしまいそうですが、閉じるときは`:q`や`:bd`なんかでもいけます。
 
-![porco-rosso](img/porco-rosso.avif)
+![porco-rosso](img/porco-rosso.jxl)
 
 ## Customize
 
@@ -291,7 +291,7 @@ vim.api.nvim_create_user_command('Ex', function() vim.cmd.NvimTreeToggle() end, 
 
 ...ってやってみたら、こんな感じになりますよね🧐
 
-![nvim-tree-customize](img/nvim-tree-customize.avif)
+![nvim-tree-customize](img/nvim-tree-customize.jxl)
 
 いくつかはデフォルト設定のままだったり、記述を省いている項目も (あり得ないほど) たくさんあります。
 
@@ -319,7 +319,7 @@ Now I don't mean to make you frown
 ううん、そんな顔しないで
 ```
 
-![mitaka-totoro](img/mitaka-totoro.avif)
+![mitaka-totoro](img/mitaka-totoro.jxl)
 
 ```admonish quote title=""
 No, I just want you to slow down
@@ -369,12 +369,12 @@ Window / buffer setup.
 ```
 
 <media-slider>
-  ![ジジ](img/jiji.avif)
-  ![グーチョキパン屋](img/gutiokipan.avif)
-  ![パズー](img/pazu.avif)
-  ![哲学研究会](img/philosophy.avif)
-  ![神隠し](img/kamikakushi.avif)
-  ![清太](img/seita.avif)
+  ![ジジ](img/jiji.jxl)
+  ![グーチョキパン屋](img/gutiokipan.jxl)
+  ![パズー](img/pazu.jxl)
+  ![哲学研究会](img/philosophy.jxl)
+  ![神隠し](img/kamikakushi.jxl)
+  ![清太](img/seita.jxl)
 </media-slider>
 
 #### width
@@ -436,7 +436,7 @@ UI rendering setup
 UI レンダリングの設定
 ```
 
-![ueno-panda](img/ueno-panda.avif)
+![ueno-panda](img/ueno-panda.jxl)
 
 #### highlight_git
 
@@ -540,7 +540,7 @@ Configuration for various actions.
 様々なアクションを行うための設定。
 ```
 
-![ueno-fang (or should i say shitano-fang)](img/ueno-fang.avif)
+![ueno-fang (or should i say shitano-fang)](img/ueno-fang.jxl)
 
 #### expand_all
 
@@ -610,7 +610,7 @@ on_attachが関数でない場合、nvim-tree-mappings-default が呼び出さ�
 
 ...ただ、なんか長くなってきちゃったので、例によってここで一旦区切ります。
 
-![atago-cat](img/atago-cat.avif)
+![atago-cat](img/atago-cat.jxl)
 
 ## Have You Never Been Mellow
 
@@ -639,7 +639,7 @@ To find a comfort from inside you?
 安らぎを感じたことがあるでしょう？
 ```
 
-<video width="1280" height="720" data-poster="img/hama-rikyu-thumbnail.avif">
+<video width="1280" height="720" data-poster="img/hama-rikyu-thumbnail.jxl">
   <source src="img/hama-rikyu.webm" type="video/webm">
 </video>
 
@@ -654,11 +654,11 @@ Just to hear your song?
 ```
 
 <media-slider>
-  ![まもり神](img/mitaka-guardian-deity.avif)
-  ![トトロ(ジブリパーク)](img/totoro-ghibli-park.avif)
-  ![ねこバス](img/neko-bus.avif)
-  ![乙事主](img/okkoto-nushi.avif)
-  ![湯婆婆](img/yubaba.avif)
+  ![まもり神](img/mitaka-guardian-deity.jxl)
+  ![トトロ(ジブリパーク)](img/totoro-ghibli-park.jxl)
+  ![ねこバス](img/neko-bus.jxl)
+  ![乙事主](img/okkoto-nushi.jxl)
+  ![湯婆婆](img/yubaba.jxl)
 </media-slider>
 
 ```admonish quote title=""

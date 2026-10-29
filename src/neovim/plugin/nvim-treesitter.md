@@ -126,7 +126,7 @@ Don't you know that you can count me out?{{footnote:
 僕のことは数に入れないでくれないか？
 ```
 
-<video width="1280" height="720" data-poster="img/godzilla-thumbnail.avif">
+<video width="1280" height="720" data-poster="img/godzilla-thumbnail.jxl">
   <source src="img/godzilla.webm" type="video/webm">
 </video>
 
@@ -160,7 +160,7 @@ which curl
 私の環境で言えば、`tar` は最初から入っていたし、
 `curl` は `brew install` で簡単にインストールできました。
 
-![which-tar-curl](img/which-tar-curl.avif)
+![which-tar-curl](img/which-tar-curl.jxl)
 
 ```admonish danger title=""
 You say you got a real solution
@@ -189,7 +189,7 @@ which tree-sitter
 
 `Homebrew`で`neovim`をインストールしている場合は、`Required`として既にインストールされているはずです。
 
-![which-tar-curl](img/which-tree-sitter.avif)
+![which-tar-curl](img/which-tree-sitter.jxl)
 
 ```admonish warning
 installed via your package manager, not npm
@@ -231,8 +231,8 @@ We're all doin' what we can
 
 |||
 |:---:|:---:|
-|**gcc-c++**|![gcc_cpp](img/gcc-cpp.avif)|
-|**clang**|![gcc_cpp](img/clang.avif)|
+|**gcc-c++**|![gcc_cpp](img/gcc-cpp.jxl)|
+|**clang**|![gcc_cpp](img/clang.jxl)|
 
 ```admonish note
 Readmeにも明記されているように`libstdc++`も必要になるはずなので、`gcc`だとうまくいきませんでした😮
@@ -274,7 +274,7 @@ end,
 
 そしたら `:PackerSync` を実行しましょう❗
 
-![installed](img/installed.avif)
+![installed](img/installed.jxl)
 
 簡単ですね😉 **すっごい古いスクリーンショットだから** 見にくいけど❗
 
@@ -332,8 +332,8 @@ setup({opts})                                          *nvim-treesitter.setup()*
 
 |||
 |:---:|:---:|
-|**default**|![color1](img/color1.avif)|
-|**nvim-treesitter**|![color2](img/color2.avif)|
+|**default**|![color1](img/color1.jxl)|
+|**nvim-treesitter**|![color2](img/color2.jxl)|
 ```
 
 ```admonish danger title=""
@@ -558,7 +558,7 @@ Plugin authors are encouraged to write new healthchecks. |health-dev|
 :checkhealth
 ```
 
-![checkhealth](img/checkhealth.avif)
+![checkhealth](img/checkhealth.jxl)
 
 結果が表示されましたね☺️ これは **すっごい古いスクリーンショット** だけど❗
 
@@ -652,5 +652,5 @@ Alright...
 OH! LIE!!
 </div>
 
-![OH-LIE](img/oh-lie.avif)
+![OH-LIE](img/oh-lie.jxl)
 ```

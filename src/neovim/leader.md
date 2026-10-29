@@ -12,7 +12,7 @@ That’s made for you and me?
 このクラブの真ん中にいるのはだあれ？
 ```
 
-![Tinker Bell](img/tinker-bell.avif)
+![Tinker Bell](img/tinker-bell.jxl)
 
 ## nvim_set_var
 
@@ -122,7 +122,7 @@ vim.api.nvim_set_var('mapleader', '\\')
 配列は勿論、形状とかも含めて、使用するキーボードに依るので一概には言えないんですが、
 「変えた方がいいよー」って人もいるし、「別に変えてないよー」って人もいます。
 
-![Blue Fairy](img/blue-fairy.avif)
+![Blue Fairy](img/blue-fairy.jxl)
 
 つまり自由ってことです❗
 
@@ -167,7 +167,7 @@ vim.api.nvim_set_var('mapleader', 'map')
 :echo mapleader
 ```
 
-![leader](img/leader.avif)
+![leader](img/leader.jxl)
 
 設定前に実行するとエラーが出てしまいますが、特に害はありません。
 

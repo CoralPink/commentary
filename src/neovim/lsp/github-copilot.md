@@ -76,7 +76,7 @@ GitHub Student Developer Packやその他の特典を含むGitHub Global Campus�
 ```admonish question
 これ、うろ覚えなんですが...、真っ先にこんなのが現れてたんでしたっけ❓
 
-![copilot-no-access](img/copilot-no-access.avif)
+![copilot-no-access](img/copilot-no-access.jxl)
 
 出てきた場合は`1`を入力すれば勝手にブラウザが開いて先に進め...た気がする❗
 ```
@@ -90,30 +90,30 @@ GitHub Student Developer Packやその他の特典を含むGitHub Global Campus�
 
 ポップアップが出てきました。
 
-![copilot-onetime](img/copilot-onetime.avif)
+![copilot-onetime](img/copilot-onetime.jxl)
 
 ここからはブラウザ上での作業です。
 
 指示通り、[https://github.com/login/device](https://github.com/login/device) からログインして、
 `Neovim`上に表示されている`one-time code`を入力しましょう。
 
-![copilot-activation](img/copilot-activation.avif)
+![copilot-activation](img/copilot-activation.jxl)
 
 問題なく通過できますよね😉
 
-![copilot-congratulations](img/copilot-congratulations.avif)
+![copilot-congratulations](img/copilot-congratulations.jxl)
 ~~~
 
 ### Get access to GitHub Copilot
 
 `GitHub Copilot`への登録がまだ済んでいない場合は、ここから各種情報の入力に進みます。
 
-![github-reg1](img/github-reg1.avif)
+![github-reg1](img/github-reg1.jxl)
 
 初めてだと、ここが一番困りますよね...。
 Japan の Address ってどうやって表記するの...❓
 
-![github-reg2](img/github-reg2.avif)
+![github-reg2](img/github-reg2.jxl)
 
 ~~~admonish note
 Web検索すると、例えばこんな例で説明されてたりします。
@@ -133,12 +133,12 @@ Web検索すると、例えばこんな例で説明されてたりします。
 
 そんなこんなありまして、なんとか辿り着きました❗
 
-![copilot-ready-to-pair](img/copilot-ready-to-pair.avif)
+![copilot-ready-to-pair](img/copilot-ready-to-pair.jxl)
 
 そのほかのアプリケーションや、なんなら`Neovim`のガイドまでオフィシャルに用意してくれてるんですが、
 そのまま自分の`Neovim`に戻りましょう 🐈
 
-![copilot-authenticated](img/copilot-authenticated.avif)
+![copilot-authenticated](img/copilot-authenticated.jxl)
 
 ```txt
 Waiting, it might take a while and this popup will auto close once done
@@ -156,7 +156,7 @@ Waiting, it might take a while and this popup will auto close once done
 ```
 ~~~
 
-![copilot-online](img/copilot-online.avif)
+![copilot-online](img/copilot-online.jxl)
 
 無事に`Online`と表示されましたね😆
 
@@ -166,7 +166,7 @@ Waiting, it might take a while and this popup will auto close once done
 
 ## Wrap Up
 
-<video width="1280" height="720" data-poster="img/zankyosanka-thumbnail.avif">
+<video width="1280" height="720" data-poster="img/zankyosanka-thumbnail.jxl">
   <source src="img/zankyosanka.webm" type="video/webm">
 </video>
 

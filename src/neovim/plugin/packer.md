@@ -51,7 +51,7 @@ Packerはネイティブパッケージの上に構築されています。先�
 
 ...と、することで確認できました。
 
-![packpath](img/packpath.avif)
+![packpath](img/packpath.jxl)
 ~~~
 
 "Quickstart" にあるように、順を追ってやっていきましょう。
@@ -79,7 +79,7 @@ git clone https://github.com/wbthomason/packer.nvim "$env:LOCALAPPDATA\nvim-data
 
 ...ただ、話がわかっていればこんなの適合させるぐらい簡単ですよね〜😉 `packpath`を確認の上で合わせてあげてください。
 
-![flatpak](img/flatpak.avif)
+![flatpak](img/flatpak.jxl)
 
 ```sh
 # あくまで一例です。
@@ -117,7 +117,7 @@ end)
 
 この時点でのディレクトリ構成はこんな感じですね。
 
-![first-tree](img/first-tree.avif)
+![first-tree](img/first-tree.jxl)
 
 それじゃあ`nvim`直下の`init.lua`から呼び出してあげましょう。(今作ったやつではなく、前からいるやつです。)
 
@@ -142,7 +142,7 @@ require 'extensions'
 ~~~
 ってやってみると、
 
-![runtimepath](img/runtimepath.avif)
+![runtimepath](img/runtimepath.jxl)
 
 ...なんか前より増えてますよね。...って❗しれっと`packer.nvim`いるし⁉️
 
@@ -168,7 +168,7 @@ details.
 
 入ってるならじゃあ...ってことで、コマンドモードで<kbd>p</kbd><kbd>Tab</kbd>とぽちぽち入力してみましょう。すると...❓
 
-![packer-cmd](img/packer-cmd.avif)
+![packer-cmd](img/packer-cmd.jxl)
 
 見た目はちょっと Poison☠️ ですが、何やら`Packer`を名乗るコマンドが候補に上がってきましたね❗確かにインストールできてそうな気配です😆
 
@@ -179,11 +179,11 @@ details.
 何も起きませ...いや、ちょっと待って❗
 なんだか`nvim/plugin`ディレクトリと、その中に`packer_compiled.lua`が生成されています😮
 
-![packer-tree](img/packer-tree.avif)
+![packer-tree](img/packer-tree.jxl)
 
 このファイルは`packer.nvim`が管理してくれるので触らなくていい (というか、`触ってはいけない`) のですが、ちょっとだけ中を見てみましょう。
 
-![packer-compiled](img/packer_compiled.avif)
+![packer-compiled](img/packer_compiled.jxl)
 
 わたしがそこまで意味を分かっているわけではないので、ふわっとだけ触れますが、
 
@@ -246,7 +246,7 @@ supports the `--preview` flag as an optional first argument to preview updates
 
 ```admonish note
 基本的には、何か変更があったら`:PackerSync`を使えば、インストール、アップデート、コンパイルまで全て行ってくれます😉
-![packer_update](img/packer-sync.avif)
+![packer_update](img/packer-sync.jxl)
 ```
 
 ### PackerStatus
@@ -272,7 +272,7 @@ optプラグインをすぐにロードする
 ```
 ~~~
 
-![packer-help](img/packer-help.avif)
+![packer-help](img/packer-help.jxl)
 
 ## Floating Window
 
@@ -320,7 +320,7 @@ require('packer').startup {
 ```
 ~~~
 
-![float-window1](img/float-window1.avif)
+![float-window1](img/float-window1.jxl)
 
 なんていうか...、やっぱ Poison☠️❓
 
@@ -328,7 +328,7 @@ require('packer').startup {
 わたしとしては「少しの間だけ気にしないで...」と言ってしまいたいところではあるんですが、
 「どうしても耐えられない〜❗」っていう場合は、一個飛ばして`15.3. onenord.nvim`を先にやってもらうと、すぐにいい感じになります。
 
-![float-window2](img/float-window2.avif)
+![float-window2](img/float-window2.jxl)
 
 ## Wrap Up
 

@@ -2,7 +2,7 @@
 
 このサイトを見たな❗これでお前とも縁ができた❗
 
-![search-console](img/search-console.avif)
+![search-console](img/search-console.jxl)
 
 個人でやってる趣味 (暇つぶしとも言う😅) にしては、なかなか身に余る光栄です。
 
@@ -66,14 +66,14 @@ require('mason').setup {
 ```
 
 <media-slider>
-  ![外宮](img/geku.avif)
-  ![豊受大神宮](img/toyouke-daijingu.avif)
-  ![内宮1](img/naiku1.avif)
-  ![内宮2](img/naiku2.avif)
-  ![内宮3](img/naiku3.avif)
-  ![荒祭宮](img/aramaturi-no-miya.avif)
-  ![おかげ横丁1](img/okage-yokocho1.avif)
-  ![おかげ横丁2](img/okage-yokocho2.avif)
+  ![外宮](img/geku.jxl)
+  ![豊受大神宮](img/toyouke-daijingu.jxl)
+  ![内宮1](img/naiku1.jxl)
+  ![内宮2](img/naiku2.jxl)
+  ![内宮3](img/naiku3.jxl)
+  ![荒祭宮](img/aramaturi-no-miya.jxl)
+  ![おかげ横丁1](img/okage-yokocho1.jxl)
+  ![おかげ横丁2](img/okage-yokocho2.jxl)
 </media-slider>
 
 ## 🧠 Additional Setup
@@ -354,11 +354,11 @@ return {}
 
 こうすると`Neovim`固有のAPIが`lua_ls`を通して補完候補に現れます😉
 
-![nvim-cmp-lua-ls](img/nvim-cmp-lua-ls.avif)
+![nvim-cmp-lua-ls](img/nvim-cmp-lua-ls.jxl)
 
 [fidget.nvim](../neovim/lsp/fidget.html#七--try)を使用しているのであれば、ここでもパワーが溜まってきただろう❗❗
 
-![fidget-lua-ls](img/fidget-lua-ls.avif)
+![fidget-lua-ls](img/fidget-lua-ls.jxl)
 
 `Neovim`を使う場合はこれを置いておくと楽しいです🤗
 
@@ -477,7 +477,7 @@ vim.lsp.config('rust_analyzer', {
 ```
 ~~~
 
-![angry-clippy](img/angry-clippy.avif)
+![angry-clippy](img/angry-clippy.jxl)
 
 こんな感じで、`rustc`に混じって`clippy`も怒るようになります😱
 
@@ -572,7 +572,7 @@ vim.lsp.enable(manual_lsp)
 }}は続きます🐦‍🔥
 
 <media-slider>
-  <video width="1280" height="720" data-poster="img/fukuro-festival-thumbnail.avif">
+  <video width="1280" height="720" data-poster="img/fukuro-festival-thumbnail.jxl">
     <source src="img/fukuro-festival.webm" type="video/webm">
   </video>
   <youtube-video data-id="WArfNXjU0x8"></youtube-video>
@@ -621,7 +621,7 @@ vim.lsp.enable(manual_lsp)
 ```
 ~~~
 
-![sourcekit-lsp](img/sourcekit-lsp.avif)
+![sourcekit-lsp](img/sourcekit-lsp.jxl)
 
 だいぶ古いスクリーンショットだからなんか妙に余裕ないけど許して (その一) 😅
 
@@ -670,7 +670,7 @@ return {}
 ```
 ~~~
 
-![ccls](img/ccls.avif)
+![ccls](img/ccls.jxl)
 
 だいぶ古いスクリーンショットだからなんか妙に余裕ないけど許して (その二) 😅
 
@@ -724,12 +724,12 @@ vim.filetype.add({
 
 毎度のことながら、なんかじょーずにいかないなーと思ったら`LspInfo`を確認してみましょう。
 
-![root-directory](img/root-not-found.avif)
+![root-directory](img/root-not-found.jxl)
 
 ...もし`root directory`が`Not found.`(認識されていない状態) だと、
 それは "履 い て な い" らしいんです、PAAAANTS!! 🤷‍♀️
 
-![root-directory](img/root-directory.avif)
+![root-directory](img/root-directory.jxl)
 
 だいぶ古いスクリーンショットだからなんか妙に余裕ないけど許して(その三) 😅
 
@@ -787,7 +787,7 @@ MVP とは、俺のことだ！！
 ```
 
 <media-slider>
-  <youtube-video data-id="voDlrN2-gGI"></youtube-video>
+  <youtube-video data-id="bFcR8x99xdY"></youtube-video>
   <youtube-video data-id="ju2LkSu1kug"></youtube-video>
   <youtube-video data-id="mJFJYeUBUB8"></youtube-video>
   <youtube-video data-id="OFYGgYCs_h4"></youtube-video>

@@ -79,7 +79,7 @@ relativenumber' オプションは、表示される数字をカーソルから�
 " number と relativenumber を一度で on にする
 :set nu rnu
 ```
-![relativenumber](img/relativenumber.avif)
+![relativenumber](img/relativenumber.jxl)
 
 まあ、わたしにはクセが凄くて乗りこなせないんですけどね😉
 
@@ -116,7 +116,7 @@ number' または 'relativenumber' オプションが設定されているとき
 
 あと、"かいパ"🙊 ...じゃなくて、`cpoptions`なんですが、こいつはなんか怖いので今のところは避けておきます😅
 
-![カイリュー](img/kairyu.avif)
+![カイリュー](img/kairyu.jxl)
 
 ```admonish success
 潜ろうと思えば、すっごい深く潜れるんですが、それは "なみのり" ではなく "ダイビング" という別の技が必要になるので、

@@ -8,7 +8,7 @@ Gaze deeply into unknown regions using the power of the moon.
 月の力を借りて、未知の領域を深く覗き込む。
 ```
 
-![sky-garden-night](img/sky-garden-dark.avif)
+![sky-garden-night](img/sky-garden-dark.jxl)
 
 とってもロマンチックな見出し🥰
 
@@ -163,7 +163,7 @@ fzf-nativeを動作させるためには、cmake または make でビルドす�
 もしかしたら`CMake`と`Microsoft C++ Build Tools on Windows`を使う方が、`MinGW`を必要としない分、簡単かもしれません。
 ```
 
-![sky-garden-day](img/sky-garden-light.avif)
+![sky-garden-day](img/sky-garden-light.jxl)
 
 ### Optional dependencies
 
@@ -282,7 +282,7 @@ use {
 引用作品へのリスペクトや愛情の深さや再現度の高さやその他諸々なんか等にきっと定評があります❗
 ```
 
-![telescope-installation](img/telescope-install.avif)
+![telescope-installation](img/telescope-install.jxl)
 
 `telescope.nvim`、`telescope-fzf-native.nvim`、`plenary.nvim`の3つがインストールされていれば成功です❗
 
@@ -295,7 +295,7 @@ use {
 今後の動向を気にかけておく必要はあるかも。
 ```
 
-![yurakucho-mullion](img/yurakucho-mullion.avif)
+![yurakucho-mullion](img/yurakucho-mullion.jxl)
 
 ## CheckHealth
 
@@ -325,17 +325,17 @@ Telescope の使用方法と設定方法を理解することができます。
 :che telescope
 ```
 
-![telescope-che-err](img/telescope-che-err.avif)
+![telescope-che-err](img/telescope-che-err.jxl)
 
 ...。😮
 
-![telescope-che-require](img/telescope-require.avif)
+![telescope-che-require](img/telescope-require.jxl)
 
-![telescope-che](img/telescope-che-ok.avif)
+![telescope-che](img/telescope-che-ok.jxl)
 
 ほら❗オールグリーン✨
 
-![This is the way.](img/this_is_the_way.avif)
+![This is the way.](img/this_is_the_way.jxl)
 
 ```admonish tip
 `fzf`を知っている人に向けて書くと、少なくともここに出てくる`fzf`は`telescope-fzf-native.nvim`の事なので、
@@ -348,7 +348,7 @@ Telescope の使用方法と設定方法を理解することができます。
 
 それでは、コンフィグに入れた<kbd>leader</kbd><kbd>f</kbd><kbd>f</kbd>を試してみましょう...。
 
-![telescope-ff](img/telescope-ff-preview.avif)
+![telescope-ff](img/telescope-ff-preview.jxl)
 
 いい感じ〜☺️
 
@@ -360,7 +360,7 @@ Telescope の使用方法と設定方法を理解することができます。
 
 ある程度ウィンドウが広くないと出てこないみたいです。
 
-![telescope-ff](img/telescope-ff.avif)
+![telescope-ff](img/telescope-ff.jxl)
 ```
 
 ## Wrap Up
@@ -377,4 +377,4 @@ Telescope の使用方法と設定方法を理解することができます。
 偶然もチャンスに換える 生き方が好きよ
 ```
 
-![nebuta](img/nebuta.avif)
+![nebuta](img/nebuta.jxl)

@@ -63,8 +63,8 @@ vim.cmd.colorscheme('blue')
 ~~~
 
 <media-slider>
-  ![kawaguchiko-mt-fuji-day](img/kawaguchiko-mt-fuji-day.avif)
-  ![kawaguchiko-mt-fuji-night](img/kawaguchiko-mt-fuji-night.avif)
+  ![kawaguchiko-mt-fuji-day](img/kawaguchiko-mt-fuji-day.jxl)
+  ![kawaguchiko-mt-fuji-night](img/kawaguchiko-mt-fuji-night.jxl)
 </media-slider>
 
 ## Try
@@ -91,11 +91,11 @@ vim.keymap.set('n', '<Leader>9', function() vim.cmd('colorscheme blue') end)
 ```
 ~~~
 
-![blue](img/blue.avif)
+![blue](img/blue.jxl)
 
 めっちゃブルーになりました😺
 
-![saiko](img/saiko.avif)
+![saiko](img/saiko.jxl)
 
 ### (Drop by) colorscheme
 
@@ -112,7 +112,7 @@ vim.keymap.set('n', '<Leader>9', function() vim.cmd('colorscheme blue') end)
 
 `color scheme`ファイルは、`runtimepath`の中のどこかにいるらしいので探してみると...、いました😆
 
-![colors](img/colors.avif)
+![colors](img/colors.jxl)
 
 ```admonish note
 `runtimepath`については`9.Lua Module`で❗
@@ -127,10 +127,10 @@ vim.keymap.set('n', '<Leader>9', function() vim.cmd('colorscheme blue') end)
 ```
 
 <media-slider>
-  ![iyashinosatonenba1](img/iyashinosatonenba1.avif)
-  ![iyashinosatonenba2](img/iyashinosatonenba2.avif)
-  ![iyashinosatonenba3](img/iyashinosatonenba3.avif)
-  ![iyashinosatonenba4](img/iyashinosatonenba4.avif)
+  ![iyashinosatonenba1](img/iyashinosatonenba1.jxl)
+  ![iyashinosatonenba2](img/iyashinosatonenba2.jxl)
+  ![iyashinosatonenba3](img/iyashinosatonenba3.jxl)
+  ![iyashinosatonenba4](img/iyashinosatonenba4.jxl)
 </media-slider>
 
 ## Lua Function
@@ -155,7 +155,7 @@ vim.keymap.set('n', '<Leader>9', function() vim.cmd.colo 'blue' end)
 ここまでくると、結構いろいろなことがコードから実行できるって分かるので、楽しくなってきますね😆
 ```
 
-![hatake-no-kakashi](img/hatake-no-kakashi.avif)
+![hatake-no-kakashi](img/hatake-no-kakashi.jxl)
 
 ```admonish success title=""
 <div style="text-align: center">

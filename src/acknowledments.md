@@ -22,8 +22,6 @@
 [Neovim - hyperextensible Vim-based text editor](https://neovim.io)
 
 [starship - cross-shell prompt](https://starship.rs)
-
-[プログラミングフォント Firge (ファージ)](https://github.com/yuru7/Firge)
 ```
 
 ## 🐬 And Thanks
@@ -36,12 +34,6 @@
 [Catppuccin for mdBook](https://github.com/catppuccin/mdbook)
 
 [mdbook-admonish](https://github.com/tommilligan/mdbook-admonish)
-
-[mdBook-pagetoc](https://github.com/JorelAli/mdBook-pagetoc)
-
-[actions-mdbook](https://github.com/peaceiris/actions-mdbook)
-
-[generate-sitemap](https://github.com/cicirello/generate-sitemap)
 
 [DeepL](https://www.deepl.com/translator)
 ```

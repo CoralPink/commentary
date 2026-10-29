@@ -41,7 +41,7 @@ And a new one just begun
 そして新しい年が始まるんだ
 ```
 
-![roppongi](img/roppongi.avif)
+![roppongi](img/roppongi.jxl)
 
 ## Introduction
 
@@ -263,7 +263,7 @@ section to understand how the default configs can be overridden.
 
 試しに`stylua`を入れてみましょ😆
 
-![mason-stylua](img/mason-stylua.avif)
+![mason-stylua](img/mason-stylua.jxl)
 
 ```admonish tip
 `Mason`からも確認できますが、`stylua`は`lua`,`luau`の`Formatter`ですね。
@@ -271,11 +271,11 @@ section to understand how the default configs can be overridden.
 
 それから`lua`を開いて、前回も出てきた[vim.lsp.buf.format](none-ls.html#vimlspbufformat)を呼んでみれば...、
 
-![mason-none-ls-fidget](img/mason-none-ls-fidget.avif)
+![mason-none-ls-fidget](img/mason-none-ls-fidget.jxl)
 
 ここにパワーが溜まってきただろう❗❗
 
-![mason-none-ls-fidget2](img/mason-none-ls-fidget2.avif)
+![mason-none-ls-fidget2](img/mason-none-ls-fidget2.jxl)
 
 そしてなんかいい感じにフォーマットされただろう⁉️
 
@@ -288,7 +288,7 @@ section to understand how the default configs can be overridden.
 ```admonish warning
 パワーが上手く溜まってこない場合は`lua`ファイルを開いた状態で`:LspInfo`を確認してみてください。
 
-![mason-null-lspinfo](img/mason-null-lspinfo.avif)
+![mason-null-lspinfo](img/mason-null-lspinfo.jxl)
 
 ...もし`Client`に`null-ls`が認識されていなければ、それは "履 い て な い" んです、PAAAANTS!! 🤷‍♀️
 

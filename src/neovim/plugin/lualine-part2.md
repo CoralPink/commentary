@@ -170,8 +170,8 @@ globalstatus = false,       -- enable global statusline (have a single statuslin
 
 |||
 |:---:|:---:|
-|**before**|![lualine-options-before](img/lualine-options-before.avif)|
-|**after**|![lualine-options-before](img/lualine-options-after.avif)|
+|**before**|![lualine-options-before](img/lualine-options-before.jxl)|
+|**after**|![lualine-options-before](img/lualine-options-after.jxl)|
 
 `separators`を変えることによって、ステータスラインがやわらか〜な印象になりましたね。
 
@@ -260,10 +260,10 @@ require('lualine').setup {
 
 |||
 |:---:|:---:|
-|![fontbook1](img/fontbook1.avif)|![fontbook2](img/fontbook2.avif)|
+|![fontbook1](img/fontbook1.jxl)|![fontbook2](img/fontbook2.jxl)|
 ```
 
-![meow-meow](img/meow-meow.avif)
+![meow-meow](img/meow-meow.jxl)
 
 あらかわいい🥰
 
@@ -306,7 +306,7 @@ require('lualine').setup {
 `lualine_y`の`colors`とか、`lualine_z`の`separator`とかは、それこそわたしの趣味です。
 もうほんとに見た目だけ❗
 
-![lualine-sections](img/lualine-sections.avif)
+![lualine-sections](img/lualine-sections.jxl)
 
 うん、こんな感じですね😉
 
@@ -363,7 +363,7 @@ That’s impossible...
 ```
 
 ```admonish success title="TO BE CONCLUDED ...>"
-![letter](img/letter.avif)
+![letter](img/letter.jxl)
 ```
 
 <aside class="ft-definition" role="doc-footnote" id="ft-1">

@@ -177,7 +177,7 @@ vim.keymap.set('n', '<leader>nb', vim.cmd.Navbuddy)
 
 それでは、インストールを済ませてから呼び出してみましょう😉
 
-![nvim-navbuddy 1](img/nvim-navbuddy1.avif)
+![nvim-navbuddy 1](img/nvim-navbuddy1.jxl)
 
 `Telescope`と似ていますが、これは`nui.nvim`のウィンドウなので、(デフォルトでは) <kbd>h</kbd><kbd>j</kbd><kbd>k</kbd><kbd>l</kbd>でカーソルが動きます。
 
@@ -185,7 +185,7 @@ vim.keymap.set('n', '<leader>nb', vim.cmd.Navbuddy)
 [15.11.1節](../plugin/nvim-tree-actions.html#actions)で作成した
 `extensions/nvim-tree-actions.lua`で動かしてみるとこんな感じです😊
 
-![nvim-navbuddy 2](img/nvim-navbuddy2.avif)
+![nvim-navbuddy 2](img/nvim-navbuddy2.jxl)
 
 このリストと連動してファイル上でも選択範囲が動いていますね。ほら面白い❗🤹
 
@@ -291,7 +291,7 @@ require('nvim-navbuddy').setup {
 
 ってやってみると...
 
-![nvim-navbuddy 3](img/nvim-navbuddy3.avif)
+![nvim-navbuddy 3](img/nvim-navbuddy3.jxl)
 
 だいぶ雰囲気が変わりました😉
 
@@ -349,7 +349,7 @@ require('nvim-navbuddy').setup {
 
 これを使うと何ができるかっていうと、例えば適当なところで<kbd>c</kbd>をぽちっとすると...😮
 
-![nvim-navbuddy&Comment](img/nvim-navbuddy-comment.avif)
+![nvim-navbuddy&Comment](img/nvim-navbuddy-comment.jxl)
 
 選択されている構文がまとめてコメントアウトできるんですね🌟
 
@@ -359,7 +359,7 @@ require('nvim-navbuddy').setup {
 
 `Comment.nvim`の時と同様に、`nvim-navbuddy`から今度は<kbd>t</kbd>をぽちっ❗
 
-![nvim-navbuddy&Telescope](img/nvim-navbuddy-telescope.avif)
+![nvim-navbuddy&Telescope](img/nvim-navbuddy-telescope.jxl)
 
 なんだかすごそう❗
 
@@ -398,7 +398,7 @@ require('nvim-navbuddy').setup {
 
 今回は全て`lua`で話を進めてしまっていますが、これに限らず`LSP`さえ動いていれば割となんでもいけるクチです。
 
-![markdown](img/nvim-navbuddy-markdown.avif)
+![markdown](img/nvim-navbuddy-markdown.jxl)
 
 ```admonish note
 上のスクリーンショットは、`Markdown`に対して`marksman`が動いてます。これもやっぱり`mason`からインストールしてます😉
