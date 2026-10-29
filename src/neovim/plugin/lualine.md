@@ -140,7 +140,7 @@ https://github.com/nvim-tree/nvim-web-devicons
 
 ってことで、いつも通り`:PackerSync`しちゃいましょう😉
 
-![lualine-install](img/lualine-install.avif)
+![lualine-install](img/lualine-install.jxl)
 
 `lualine.nvim`と一緒に`nvim-web-devicons`もインストールされましたね❗
 
@@ -180,13 +180,13 @@ ensure_dependencies = true, -- Should packer install plugin dependencies?
 
 (最高のカスタマイズとは、カスタマイズできるパワーを持ちつつも、必要とされないものです。)
 
-![lualine-default](img/lualine-default.avif)
+![lualine-default](img/lualine-default.jxl)
 
 「カスタマイズは必要ない」と言う言葉の通り、もうこれで完成としてもいいんですが...、例えばこれ、左下。
 
 二重に表示されてて絶対気になるやつ...😣
 
-![showmode](img/showmode.avif)
+![showmode](img/showmode.jxl)
 
 ...でも、これだけじゃない。
 
@@ -610,7 +610,7 @@ vim.api.nvim_set_option('showmode', false)
 ```
 ~~~
 
-![show-mode-false](img/show-mode-false.avif)
+![show-mode-false](img/show-mode-false.jxl)
 
 <div style="margin-top: 4em"></div>
 

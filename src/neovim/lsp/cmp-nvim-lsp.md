@@ -138,7 +138,7 @@ vim.lsp.config() は、`Neovim 0.11` で導入された新しい LSP 設定イ�
 このサイトでは、今後も基本的には`lua_ls`を使用して進みます。
 ```
 
-![cmp-nvim-lsp 1](img/cmp-nvim-lsp1.avif)
+![cmp-nvim-lsp 1](img/cmp-nvim-lsp1.jxl)
 
 補完候補が出ましたね🤗
 
@@ -146,7 +146,7 @@ vim.lsp.config() は、`Neovim 0.11` で導入された新しい LSP 設定イ�
 デフォルトでは<kbd>Ctrl-n</kbd>または<kbd>↓</kbd>で下に、
 <kbd>Ctrl-p</kbd>または<kbd>↑</kbd>で上に、メニュー内でカーソルが移動します。
 
-![cmp-nvim-lsp 2](img/cmp-nvim-lsp2.avif)
+![cmp-nvim-lsp 2](img/cmp-nvim-lsp2.jxl)
 
 `Function`の項目にカーソルを合わせれば`Document`も表示してくれるはずです🤓
 
@@ -163,7 +163,7 @@ Everybody is laughing
 ```admonish warning
 補完候補が上手く出てこない場合は`lua`ファイルを開いた状態で`:LspInfo`を確認してみてください。
 
-![lsp-info](img/lspinfo.avif)
+![lsp-info](img/lspinfo.jxl)
 
 `Client`に`lua_ls`が認識されている状態であれば、`nvim-cmp`と`cmp-nvim-lsp`が上手く連携できていないだけだと思われます😉
 
@@ -186,9 +186,9 @@ Everybody is happy
 みんな幸せ
 ```
 
-![sun-king1](img/sun-king1.avif)
+![sun-king1](img/sun-king1.jxl)
 
-![sun-king2](img/sun-king2.avif)
+![sun-king2](img/sun-king2.jxl)
 
 ```admonish success
 Here comes the sun king

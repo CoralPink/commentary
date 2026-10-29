@@ -59,7 +59,7 @@ end)
 
 そしたら、<kbd>leader</kbd><kbd>h</kbd>としてみましょう。
 
-![telescope-help_tags](img/telescope-help_tags.avif)
+![telescope-help_tags](img/telescope-help_tags.jxl)
 
 一目で分かるすっごいやつ...❗{{footnote:
 Star Warsは、[George Lucas](https://en.wikipedia.org/wiki/George_Lucas)によって創作された
@@ -86,7 +86,7 @@ Star Wars で描かれる宇宙は現実の宇宙と概ね似ているが、物�
 [Wikipedia](https://en.wikipedia.org/wiki/Star_Wars)より
 ([次ページへ続く](telescope-all-recent.html#ft-3))
 }}
-![yoda](img/yoda.avif)
+![yoda](img/yoda.jxl)
 
 ~~~admonish info title=":h help_tags"
 ```txt
@@ -107,11 +107,11 @@ builtin.help_tags({opts})                   telescope.builtin.help_tags()
 
 文字列で絞り込んで...🧐
 
-![telescope-help_tags](img/telescope-help_tags2.avif)
+![telescope-help_tags](img/telescope-help_tags2.jxl)
 
 <kbd>return</kbd>で開く。
 
-![telescope-help_tags](img/telescope-help_tags3.avif)
+![telescope-help_tags](img/telescope-help_tags3.jxl)
 
 デフォルトであってもおかしくない...っていうか、なんでないの⁉️ ってぐらいの機能が実現してます🤗
 
@@ -193,7 +193,7 @@ actions.which_key({prompt_bufnr})
 ```
 ~~~
 
-![telescope-installation](img/telescope-which.avif)
+![telescope-installation](img/telescope-which.jxl)
 
 以下のようにコードを加えると`Normal Mode`でも操作一覧を出すことができるんですね。
 
@@ -210,7 +210,7 @@ actions.which_key({prompt_bufnr})
 ```
 ~~~
 
-![telescope-installation](img/telescope-which-n.avif)
+![telescope-installation](img/telescope-which-n.jxl)
 
 なんていうか、すっごい行き届いてますよね☺️
 
@@ -246,7 +246,7 @@ UI-dependent. Works best with RGB colors. 'termguicolors'
 vim.api.nvim_win_set_option(0, 'winblend', 20)
 ```
 
-![winblend](img/winblend.avif)
+![winblend](img/winblend.jxl)
 
 ほらね。`telescope`に限らず`packer`なんかも、もれなくスケスケです☺️ えへへ。
 ~~~
@@ -282,7 +282,7 @@ fzf-native は fzf の c 版です。これはアルゴリズムのみをカバ�
 [Telescope Setup and Configuration](https://github.com/nvim-telescope/telescope-fzf-native.nvim#installation)
 で方法が示されています。
 
-![C-3PO](img/C-3PO.avif)
+![C-3PO](img/C-3PO.jxl)
 
 ## builtin
 
@@ -325,7 +325,7 @@ vim.keymap.set('n', '<leader>ff', builtin.find_files)
 もちろん、キーバインドは他のと被らないようにね😉
 ```
 
-![R2-D2_BB-8](img/R2-D2_BB-8.avif)
+![R2-D2_BB-8](img/R2-D2_BB-8.jxl)
 
 ## themes
 
@@ -352,10 +352,10 @@ We have some built in themes but are looking for more cool options.
 これはもうイメージで見たほうが早いと思うので、`help_tags`をそれぞれの`themes`で呼んでみます。
 
 <media-slider>
-  ![telescope-theme-none](img/telescope-theme-none.avif)
-  ![telescope-theme-dropdown](img/telescope-theme-dropdown.avif)
-  ![telescope-theme-cursor](img/telescope-theme-cursor.avif)
-  ![telescope-theme-ivy](img/telescope-help_tags.avif)
+  ![telescope-theme-none](img/telescope-theme-none.jxl)
+  ![telescope-theme-dropdown](img/telescope-theme-dropdown.jxl)
+  ![telescope-theme-cursor](img/telescope-theme-cursor.jxl)
+  ![telescope-theme-ivy](img/telescope-help_tags.jxl)
 </media-slider>
 
 |1|2|3|4|
@@ -364,7 +364,7 @@ We have some built in themes but are looking for more cool options.
 
 もう言葉なんて要りませんね❗
 
-![chewbacca](img/chewbacca.avif)
+![chewbacca](img/chewbacca.jxl)
 
 ## Recipes
 

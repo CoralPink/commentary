@@ -51,7 +51,7 @@ Clapton は「"While My Guitar Gently Weeps" はグループ内での George の
 
 もう "東京に空がないといふ" とかなんとかオチつけて丸く収めたろ〜かしら、とも考えましたが...。
 
-![inokashira](img/inokashira.avif)
+![inokashira](img/inokashira.jxl)
 
 ありました、空🌞
 
@@ -98,16 +98,16 @@ Harrison は [Cream](https://en.wikipedia.org/wiki/Cream_(band)) のレコーデ
 [Wikipedia](https://ja.wikipedia.org/wiki/はな子)より
 }}がいたのもここです😇
 
-![hanako](img/hanako.avif)
+![hanako](img/hanako.jxl)
 ```
 
 <media-slider>
   <youtube-video data-id="2JF6Cdtoseg"></youtube-video>
-  <video width="1280" height="720" data-poster="img/musashino-gakudan-thumbnail.avif">
+  <video width="1280" height="720" data-poster="img/musashino-gakudan-thumbnail.jxl">
     <source src="img/musashino-gakudan.webm" type="video/webm">
   </video>
   <div>
-    ![band-sounds](img/band-sounds.avif)
+    ![band-sounds](img/band-sounds.jxl)
     <audio controls>
       <source src="audio/band-sounds.mp3">
     </audio>
@@ -146,14 +146,14 @@ return config
 ~~~
 
 <media-slider>
-  ![sotobori-bird](img/sotobori-bird.avif)
-  <video width="1280" height="720" data-poster="img/ochanomizu-thumbnail.avif">
+  ![sotobori-bird](img/sotobori-bird.jxl)
+  <video width="1280" height="720" data-poster="img/ochanomizu-thumbnail.jxl">
     <source src="img/ochanomizu.webm" type="video/webm">
   </video>
-  <video width="1280" height="720" data-poster="img/hydration_breaks-thumbnail.avif">
+  <video width="1280" height="720" data-poster="img/hydration_breaks-thumbnail.jxl">
     <source src="img/hydration_breaks.webm" type="video/webm">
   </video>
-  ![uco-chan](img/uco-chan.avif)
+  ![uco-chan](img/uco-chan.jxl)
 </media-slider>
 
 ```admonish success title=""
@@ -239,11 +239,11 @@ How to unfold your love
 [東京大神宮](https://tokyodaijingu.or.jp)もちょいちょい参拝させてもらってます⛩️
 
 <media-slider>
-  ![tokyo-daijingu](img/tokyo-daijingu.avif)
-  <video width="1280" height="720" data-poster="img/shin-mituke.avif">
+  ![tokyo-daijingu](img/tokyo-daijingu.jxl)
+  <video width="1280" height="720" data-poster="img/shin-mituke.jxl">
     <source src="img/iidabashi-tokyo.webm" type="video/webm">
   </video>
-  ![sotobori](img/sotobori.avif)
+  ![sotobori](img/sotobori.jxl)
 </media-slider>
 
 ### 🧚‍♀️ Font
@@ -269,7 +269,7 @@ font = require("wezterm").font("Firge35Nerd Console"),
 
 <media-slider>
   <youtube-video data-id="7VAP6Cdm3Kc"></youtube-video>
-  ![asagaya-shinmeiguu](img/asagaya-shinmeiguu.avif)
+  ![asagaya-shinmeiguu](img/asagaya-shinmeiguu.jxl)
 </media-slider>
 
 ##### 🪺 nerd-fonts
@@ -319,8 +319,8 @@ Fira Code: プログラミング合字のフリー等幅フォント
 これも素直に[Releases](https://github.com/tonsky/FiraCode/releases)から感謝しながらダウンロードするのが簡単でしょう😊
 
 <media-slider>
-  ![shi-chan](img/shi-chan.avif)
-  ![hebikubo](img/hebikubo.avif)
+  ![shi-chan](img/shi-chan.jxl)
+  ![hebikubo](img/hebikubo.jxl)
 </media-slider>
 
 ##### 🎏 ヒラギノ角ゴシック
@@ -330,9 +330,9 @@ Fira Code: プログラミング合字のフリー等幅フォント
 わたしは`macOS`に標準で入っている`ヒラギノ角ゴシック`を使っているので、ここでは特に示せる手順がありません😅
 
 <media-slider>
-  ![kanda-myoujin1](img/kanda-myoujin1.avif)
-  ![kanda-myoujin2](img/kanda-myoujin2.avif)
-  ![akari-chan](img/akari-chan.avif)
+  ![kanda-myoujin1](img/kanda-myoujin1.jxl)
+  ![kanda-myoujin2](img/kanda-myoujin2.jxl)
+  ![akari-chan](img/akari-chan.jxl)
 </media-slider>
 
 #### 🐣 font_with_fall_back
@@ -400,7 +400,7 @@ return {
 
 綺麗に表示できたかな❓☺️
 
-![wezterm-font](img/wezterm-font.avif)
+![wezterm-font](img/wezterm-font.jxl)
 
 ### 🪟 Window
 
@@ -410,7 +410,7 @@ return {
 
 ありました、[八芳園](https://www.happo-en.com)🌝
 
-![happo-en1](img/happo-en1.avif)
+![happo-en1](img/happo-en1.jxl)
 
 場所が白金台なので、ちょっと前のわたしならビビり散らかしちゃうことこの上なし❗
 
@@ -430,7 +430,7 @@ I look at the world and I notice it's turning
 
 ごめんあそばせ〜🤭
 
-![happo-en2](img/happo-en2.avif)
+![happo-en2](img/happo-en2.jxl)
 
 ```admonish success title=""
 I don't know how someone controlled you
@@ -517,8 +517,8 @@ They bought and sold you
 
 |||
 |:---:|:---:|
-|**before**|![decorations](../wezterm/img/decorations.webp)
-|**after**|![integrated_buttons](img/integrated_buttons.avif)|
+|**before**|![decorations](../wezterm/img/decorations.jxl)
+|**after**|![integrated_buttons](img/integrated_buttons.jxl)|
 
 このサイトでも、もう散々この状態でスクリーンショットを載せてるんですけどね❗
 
@@ -564,8 +564,8 @@ You were perverted, too
 な〜んて言いながら、もう一回だけ話飛ぶんですけど、オランダに行ってきたんですよ〜😋
 
 <media-slider>
-  ![ukima1](img/ukima1.avif)
-  ![ukima2](img/ukima2.avif)
+  ![ukima1](img/ukima1.jxl)
+  ![ukima2](img/ukima2.jxl)
 </media-slider>
 
 間違えました、[いたばしのオランダ](https://www.city.itabashi.tokyo.jp/bousai/toshikeiakku/kotsu/1044242/1044694.html)でした🦧
@@ -617,7 +617,7 @@ No one alerted you
 でも、"ドンドンぶち上がる" 花火を見てる方がよっぽど健全だと気づいたんだ❗
 
 <media-slider>
-  <video width="1280" height="720" data-poster="img/itabashi-hanabi-thumbnail.avif">
+  <video width="1280" height="720" data-poster="img/itabashi-hanabi-thumbnail.jxl">
     <source src="img/itabashi-hanabi.webm" type="video/webm">
   </video>
   <youtube-video data-id="08yn4r9KetQ"></youtube-video>
@@ -813,7 +813,7 @@ Always made me feel so free
 
 <div style="margin-top: 4em"></div>
 
-![inokashira-bird](img/inokashira-bird.avif)
+![inokashira-bird](img/inokashira-bird.jxl)
 
 <div style="margin-top: 4em">
 Free as a bird
@@ -858,7 +858,7 @@ Free…{{footnote: Harrison は曲の終わりに、Beatles のメンバーが�
 }}
 </div>
 
-![bird1](img/bird.avif)
+![bird1](img/bird.jxl)
 
 <div style="margin-top: 8em; margin-bottom: 8em; font-size: 70%">
 ( !niaga ecin tuo denruT )

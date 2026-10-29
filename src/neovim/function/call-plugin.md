@@ -27,7 +27,7 @@
 [Wikipedia](https://ja.wikipedia.org/wiki/NARUTO_-ナルト-)より
 }}
 
-![konoha-gakure](img/konoha-gakure.avif)
+![konoha-gakure](img/konoha-gakure.jxl)
 ```
 
 ## require
@@ -36,7 +36,7 @@
 
 こんな感じで😉
 
-![make-dir](img/make-dir.avif)
+![make-dir](img/make-dir.jxl)
 
 うん😄 そうしたら`lesson/init.lua`にコードを入れておきます。
 
@@ -68,7 +68,7 @@ vim.keymap.set('n', '<Leader>9', lesson.myprint)
 
 じゃあ、ぽちぽちっと<kbd>Leader</kbd><kbd>9</kbd>で呼んでみましょう...。動くかなぁ〜❓
 
-![call-function5](img/call-function5.avif)
+![call-function5](img/call-function5.jxl)
 
 動いたぁ〜❗😆
 
@@ -85,7 +85,7 @@ vim.keymap.set('n', '<Leader>9', require('lesson').myprint)
 ```admonish warning title=""
 イチャイチャタクティクス🫣
 
-![kakashi](img/kakashi.avif)
+![kakashi](img/kakashi.jxl)
 ```
 
 ## :source / require()
@@ -106,11 +106,11 @@ requireは、ファイルが既に実行されているかどうかを制御し�
 ```admonish question
 上の項でやった`myprint`の文言を変えて...。
 
-![try-reload1](img/try-reload1.avif)
+![try-reload1](img/try-reload1.jxl)
 
 どこで`:so`しても文言に全く変化がない...。
 
-![try-reload2](img/try-reload2.avif)
+![try-reload2](img/try-reload2.jxl)
 
 ```
 
@@ -127,7 +127,7 @@ requireは、ファイルが既に実行されているかどうかを制御し�
 ```admonish warning title=""
 藤井くん❗ここからどうすれば勝てる...❓
 
-![shikamaru](img/shikamaru.avif)
+![shikamaru](img/shikamaru.jxl)
 ```
 
 ## nvim_create_user_command
@@ -142,7 +142,7 @@ mkdir -p plugin/lesson
 ```
 ~~~
 
-![make-dir2](img/make-dir2.avif)
+![make-dir2](img/make-dir2.jxl)
 
 ~~~admonish tip
 今回のように、2階層以上のディレクトリを作成したい場合、本来は「親ディレクトリから順に作っていかなければエラー」となりますが、
@@ -219,16 +219,16 @@ input({opts})
 ```admonish warning title=""
 ばあちゃん❓
 
-![tsunade](img/tsunade.avif)
+![tsunade](img/tsunade.jxl)
 ```
 
 Coffee☕ もいいけど、今日はもう終わりだし beer🍺 でいいよね😆
 
-![beer](img/beer.avif)
+![beer](img/beer.jxl)
 
 乾杯❗🍻
 
-![cheers](img/cheers.avif)
+![cheers](img/cheers.jxl)
 
 ```admonish note
 飲み終わったら`plugin`ディレクトリは消しておきましょう。`lesson`ディレクトリとrequire、keymapも忘れずに...。
@@ -237,7 +237,7 @@ Coffee☕ もいいけど、今日はもう終わりだし beer🍺 でいいよ
 ```admonish warning title=""
 あいやしばらく❗
 
-![jiraiya](img/jiraiya.avif)
+![jiraiya](img/jiraiya.jxl)
 ```
 
 ## Wrap Up
@@ -253,15 +253,15 @@ Coffee☕ もいいけど、今日はもう終わりだし beer🍺 でいいよ
 ```admonish warning title=""
 口寄せ🐸
 
-![naruto](img/naruto.avif)
+![naruto](img/naruto.jxl)
 ```
 
 ```admonish warning title=""
 瞼には目を、歯には抜けを、書きたがるのは万国共通なのか❓😮
 
-![dai-nana-han](img/dai-nana-han.avif)
+![dai-nana-han](img/dai-nana-han.jxl)
 
-![minato-kushina](img/minato-kushina.avif)
+![minato-kushina](img/minato-kushina.jxl)
 
 ...いや、島の者の犯行のセンも消えないか🤔
 ```

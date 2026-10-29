@@ -58,7 +58,7 @@ vim.api.nvim_set_option('termguicolors', true)
 しばらくはこんなのが続きます。
 ```
 
-![イーブイ](img/eevee.avif)
+![イーブイ](img/eevee.jxl)
 
 ```admonish success title=""
 タマムシ　にじいろ　ゆめの　いろ{{footnote:

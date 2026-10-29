@@ -26,9 +26,9 @@ JR高円寺駅前から東京メトロ新高円寺駅にかけての商店街お
 }}
 
 <media-slider>
-  ![koenji-2023-1](img/awa-koenji-2023-1.avif)
-  ![koenji-2023-2](img/awa-koenji-2023-2.avif)
-  ![koenji-2023-3](img/awa-koenji-2023-3.avif)
+  ![koenji-2023-1](img/awa-koenji-2023-1.jxl)
+  ![koenji-2023-2](img/awa-koenji-2023-2.jxl)
+  ![koenji-2023-3](img/awa-koenji-2023-3.jxl)
 </media-slider>
 
 ```admonish success title=""
@@ -158,11 +158,11 @@ The following table shows the default options for this plugin:
 やっとさー💃 やっとやっとー🕺
 
 <media-slider>
-  <video width="1280" height="720" data-poster="img/awa-ogikubo-thumbnail.avif">
+  <video width="1280" height="720" data-poster="img/awa-ogikubo-thumbnail.jxl">
     <source src="img/awa-ogikubo.webm" type="video/webm">
   </video>
   <youtube-video data-id="X5whQeE28gs"></youtube-video>
-  <video width="1280" height="720" data-poster="img/awa-kagurazaka-thumbnail.avif">
+  <video width="1280" height="720" data-poster="img/awa-kagurazaka-thumbnail.jxl">
     <source src="img/awa-kagurazaka.webm" type="video/webm">
   </video>
 </media-slider>
@@ -184,7 +184,7 @@ See <lua/fidget/spinners.lua> of this plugin's source code to see how each anima
 わたしは`meter`がお気に入りです☺️
 
 ```admonish warning title=""
-![starry-starry-awaodorry](img/starry-starry-awaodorry.avif)
+![starry-starry-awaodorry](img/starry-starry-awaodorry.jxl)
 
 もはや避けて通る方が難しい⭐
 ```
@@ -207,19 +207,19 @@ See <lua/fidget/spinners.lua> of this plugin's source code to see how each anima
 
 例えば`typescript-language-server`が動く環境で`js`ファイルを開けば...、
 
-![fidget1](img/fidget1.avif)
+![fidget1](img/fidget1.jxl)
 
 ここにパワーが溜まってきただろう❗❗
 
-![fidget2](img/fidget2.avif)
+![fidget2](img/fidget2.jxl)
 
 ## 八 : やっぱり踊りは止められぬ
 
 <media-slider>
-    <video width="1280" height="720" data-poster="img/awa-tenguren-thumbnail.avif">
+    <video width="1280" height="720" data-poster="img/awa-tenguren-thumbnail.jxl">
       <source src="img/awa-tenguren.webm" type="video/webm">
     </video>
-    <video width="1280" height="720" data-poster="img/awa-tenshouren-thumbnail.avif">
+    <video width="1280" height="720" data-poster="img/awa-tenshouren-thumbnail.jxl">
       <source src="img/awa-tenshouren.webm" type="video/webm">
     </video>
 </media-slider>

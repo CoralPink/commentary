@@ -50,7 +50,7 @@ So Captain Marvel zapped him right between the eyes
 (コッテコテのね❗)
 ```
 
-![fukui-station](img/fukui-station.avif)
+![fukui-station](img/fukui-station.jxl)
 
 Mozilla とは関係ないけどいいじゃない🦖 とってもハートウォーミング🥰
 
@@ -216,7 +216,7 @@ What did you kill, Bungalow Bill?
 
 [東尋坊](https://www.fuku-e.com/spot/detail_1476.html)どこにあるかは知らない〜。
 
-![tojinbo](img/tojinbo.avif)
+![tojinbo](img/tojinbo.jxl)
 
 この海には赤マスしかないと思っていた...❗
 
@@ -315,7 +315,7 @@ vim.api.nvim_set_var('python3_host_prog', '/path/to/python3')
 
 わたしは`Python3`も`brew`から入れてるのでこんなんなってます。
 
-![which-python3](img/which-python3.avif)
+![which-python3](img/which-python3.jxl)
 ```
 
 ~~~admonish note
@@ -367,7 +367,7 @@ vim.api.nvim_set_var('loaded_python3_provider', 0)
 
 大量の "とやマネー" をもらってしまった〜の図。
 
-![toya-money](img/toya-money.avif)
+![toya-money](img/toya-money.jxl)
 
 そのネーミングセンスなど、もはやどうでもいい...❗
 
@@ -442,12 +442,9 @@ vim.api.nvim_set_var('loaded_ruby_provider', 0)
 
 モダンとレトロの富山駅。
 
-![toyama-canal](img/toyama-station.avif)
+![toyama-canal](img/toyama-station.jxl)
 
-東京の都電が車と同じ右折車線に縦に並んでる様{{footnote:
-なんか<a href="img/asukayama.webm" target="_blank">こんな感じ</a>
-(リンク先は 20MB あるので注意)。この日はなぜか公園で阿波踊りをやっていたので Chaos に更なる拍車がかかっていた...。
-}}も見ていて結構な Chaos っぷりだと思ってるんだけど、
+東京の都電が車と同じ右折車線に縦に並んでる様も見ていて結構な Chaos っぷりだと思ってるんだけど、
 この横並びもなかなかナイスな Chaos and Creation❗
 
 ~~~admonish info title=":h provider-perl"
@@ -497,7 +494,7 @@ vim.api.nvim_set_var('loaded_perl_provider', 0)
 
 [兼六園](https://www.pref.ishikawa.jp/siro-niwa/kenrokuen/)にはアオサギもやってくるらしいよ。
 
-![kenroku-en](img/kenroku-en.avif)
+![kenroku-en](img/kenroku-en.jxl)
 
 これがアオサギなのかはよくわかんないですけど😅
 
@@ -550,7 +547,7 @@ vim.api.nvim_set_var('loaded_node_provider', 0)
 ```
 ~~~
 
-![provider_checkhealth](img/provider_checkhealth.avif)
+![provider_checkhealth](img/provider_checkhealth.jxl)
 
 全部無効化した場合であれば、こんな表示になるはずです😉
 
@@ -586,7 +583,7 @@ All the children sing
 
 最後に、富山駅からちょっと歩くと[運河](https://www.toyamashi-kankoukyoukai.jp/?tid=100105)のある風景。
 
-![toyama-canal](img/toyama-canal.avif)
+![toyama-canal](img/toyama-canal.jxl)
 
 ```admonish success
 Eh up!{{footnote:
@@ -618,6 +615,6 @@ Eh up!{{footnote:
 [ピクシブ百科事典](https://dic.pixiv.net/a/もうちょっとだけ続くんじゃ)より
 }}
 
-![master-roshi](img/master-roshi.avif)
+![master-roshi](img/master-roshi.jxl)
 
 <div style="margin-top: 2em"></div>

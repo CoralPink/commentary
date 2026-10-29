@@ -117,7 +117,7 @@ Didn't anybody see?
 
 ここでは気分転換に`html`を開いてみました🐙
 
-![friendly-snip](img/friendly-snip.avif)
+![friendly-snip](img/friendly-snip.jxl)
 
 ほら❗一目でわかるすっごいやつやん👺
 
@@ -148,41 +148,41 @@ nvim-cmp の wiki には、super-tab のようなマッピングを設定する
 じゃあ、また適当な`lua`ファイルを開いて、
 今度は`for~`のスニペットを選んでみましょう。(スクリーンショットで言うと、4番目にいるやつです。)
 
-![super-tab1](img/super-tab1.avif)
+![super-tab1](img/super-tab1.jxl)
 
 "i" の部分にカーソルが進みましたね。モードが`SELECT`となっているのもポイント❗
 
-![super-tab2](img/super-tab2.avif)
+![super-tab2](img/super-tab2.jxl)
 
 `VISUAL`モードじゃないぞ😉❤️
 
-![super-select](img/super-select.avif)
+![super-select](img/super-select.jxl)
 
 書き換え前の変数が "i" なのでややこしいんですが...、
 
-![super-tab3](img/super-tab3.avif)
+![super-tab3](img/super-tab3.jxl)
 
 <kbd>i</kbd>を押さなくても、そのまま入力を開始すれば勝手に`INSERT`モードに切り替わります🐬
 
-![super-insert](img/super-insert.avif)
+![super-insert](img/super-insert.jxl)
 
 書き換えたら`INSERT`モードのまま<kbd>Tab</kbd>をポチッとすると次に進みます。
 
-![super-tab4](img/super-tab4.avif)
+![super-tab4](img/super-tab4.jxl)
 
 繰り返していくと...
 
-![super-tab5](img/super-tab5.avif)
-![super-tab6](img/super-tab6.avif)
-![super-tab7](img/super-tab7.avif)
+![super-tab5](img/super-tab5.jxl)
+![super-tab6](img/super-tab6.jxl)
+![super-tab7](img/super-tab7.jxl)
 
 あ、なんか "中身も書けや" と言われているかのようですね😮
 
-![super-tab8](img/super-tab8.avif)
+![super-tab8](img/super-tab8.jxl)
 
 書きました😆
 
-![super-tab9](img/super-tab9.avif)
+![super-tab9](img/super-tab9.jxl)
 
 カ キ マ シ タ ァ❗❗
 

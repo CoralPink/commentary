@@ -161,7 +161,7 @@ mkdir snippets
 ```admonish note
 ここまでで、ファイル配置はこんな感じになります。
 
-![snip-dir](img/snip-dir.avif)
+![snip-dir](img/snip-dir.jxl)
 ```
 
 ### paths
@@ -217,8 +217,8 @@ require('luasnip.loaders.from_vscode').lazy_load {
 
 |||
 |:---:|:---:|
-|**Step1.**|![snip-example1](img/snip-example1.avif)|
-|**Step2.**|![snip-example2](img/snip-example2.avif)|
+|**Step1.**|![snip-example1](img/snip-example1.jxl)|
+|**Step2.**|![snip-example2](img/snip-example2.jxl)|
 
 「これが`snippet`かぁ〜。」っていうのが伝わるといいな🥹 ...伝わったかな❓
 
@@ -261,31 +261,17 @@ Gonna come out now Ha-ha-ha
 
 今に出てくるよ ははは
 
-<media-slider>
-  <video width="1280" height="720" data-poster="img/nya-shougi-ondo-thumbnail.avif">
-    <source src="img/nya-shougi-ondo.webm" type="video/webm">
-  </video>
-  <video width="1280" height="720" data-poster="img/tokyo-yakei-1a-thumbnail.avif">
-    <source src="img/tokyo-yakei-1a.webm" type="video/webm">
-  </video>
-  <video width="1280" height="720" data-poster="img/tokyo-yakei-1b-thumbnail.avif">
-    <source src="img/tokyo-yakei-1b.webm" type="video/webm">
-  </video>
-</media-slider>
-
 Wow look out! it's-
 
 おい見ろ！あれは-
+```
 
 <media-slider>
-  <video width="1280" height="720" data-poster="img/saitama-tokyo-thumbnail.avif">
+  <video width="1280" height="720" data-poster="img/nya-shougi-ondo-thumbnail.jxl">
+    <source src="img/nya-shougi-ondo.webm" type="video/webm">
+  </video>
+  <video width="1280" height="720" data-poster="img/saitama-tokyo-thumbnail.jxl">
     <source src="img/saitama-tokyo.webm" type="video/webm">
   </video>
-  <video width="1280" height="720" data-poster="img/tokyo-yakei-2a-thumbnail.avif">
-    <source src="img/tokyo-yakei-2a.webm" type="video/webm">
-  </video>
-  <video width="1280" height="720" data-poster="img/tokyo-yakei-2b-thumbnail.avif">
-    <source src="img/tokyo-yakei-2b.webm" type="video/webm">
-  </video>
 </media-slider>
-```
+

@@ -32,7 +32,7 @@ require 'options'
 
 まあ、のんびりいこーよ☺️
 
-![コダック](img/koduck.avif)
+![コダック](img/koduck.jxl)
 
 ## keymap.set()
 
@@ -135,7 +135,7 @@ They can also be used with the ":map" command.
 :map
 ```
 
-![keymap-before](img/keymap-before.avif)
+![keymap-before](img/keymap-before.jxl)
 ~~~
 
 ### Assignment
@@ -180,7 +180,7 @@ vim.keymap.set('n', '<Down>', '<C-e>')
 <media-slider>
   <youtube-video data-id="8QQ5zd9BLck"></youtube-video>
   <div class="ft-definition">
-    ![ramayana](img/ramayana.avif)
+    ![ramayana](img/ramayana.jxl)
     このケチャは、रामायणम्(Ramayana) 3・5・6・6 巻から抽出されたダイジェスト版であり、結末までを語っていない。
     この叙事詩は、ラーマ王子が誘拐された妻シータを奪還すべく大軍を率いてラークシャサの王ラーヴァナに挑む姿を描いている。
     Ramayana の意味は "ラーマ王行状記"。<a href="https://ja.wikipedia.org/wiki/ラーマーヤナ" target="_blank" rel="noopener">Wikipedia</a>より
@@ -288,7 +288,7 @@ vim.keymap.set({ 'n', 'v' }, 'p', 'p`]')
 ```
 <media-slider>
   <youtube-video data-id="gMAbARgRTes"></youtube-video>
-  <video width="1280" height="720" data-poster="img/Ko-hiông-thumbnail.avif">
+  <video width="1280" height="720" data-poster="img/Ko-hiông-thumbnail.jxl">
     <source src="img/Ko-hiông.webm" type="video/webm">
   </video>
 </media-slider>
@@ -297,7 +297,7 @@ vim.keymap.set({ 'n', 'v' }, 'p', 'p`]')
 
 改めて`:map`で確認してみると、こんな感じで設定した内容が反映されていることが確認できます。
 
-![keymap-after](img/keymap-after.avif)
+![keymap-after](img/keymap-after.jxl)
 
 ```admonish question
 insert モードの内容が表示されないのは...なんで❓😮
@@ -331,7 +331,7 @@ vim.keymap.set('n', 's', '"_s')
 
 もう少し進むと「もう嫌❗🙀」ってなるぐらい実用的なキーカスタマイズに触れて行くことになります。
 
-<video width="1280" height="720" data-poster="img/bycycle_piano-thumbnail.avif">
+<video width="1280" height="720" data-poster="img/bycycle_piano-thumbnail.jxl">
   <source src="img/bycycle_piano.webm" type="video/webm">
 </video>
 

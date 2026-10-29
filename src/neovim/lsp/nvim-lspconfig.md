@@ -107,10 +107,10 @@ I traveled each and every highway
 ```
 
 <media-slider>
-  ![nagashima-matsui](img/nagashima-matsui.avif)
-  ![nagashima-matsui2](img/nagashima-matsui2.avif)
-  ![nagashima3](img/nagashima3.avif)
-  ![matsui55](img/matsui55.avif)
+  ![nagashima-matsui](img/nagashima-matsui.jxl)
+  ![nagashima-matsui2](img/nagashima-matsui2.jxl)
+  ![nagashima3](img/nagashima3.jxl)
+  ![matsui55](img/matsui55.jxl)
 </media-slider>
 
 ## Configuration
@@ -240,7 +240,7 @@ LSPクライアントがバッファにアタッチした後 (に発生するイ
 現チャンピオン❗
 }}" に任せておけば安心ですね。
 
-![lspconfig](img/lspconfig.avif)
+![lspconfig](img/lspconfig.jxl)
 
 ここはこれだけです。もう簡単でしょう❓
 
@@ -275,10 +275,10 @@ nvimトレーナーは努力を続けていたってこと⁉️
 ...。😮
 
 <media-slider>
-  <video width="1280" height="720" data-poster="img/mm-bon-odori-thumbnail.avif">
+  <video width="1280" height="720" data-poster="img/mm-bon-odori-thumbnail.jxl">
     <source src="img/mm-bon-odori.webm" type="video/webm">
   </video>
-  <video width="1280" height="720" data-poster="img/anpanman-thumbnail.avif">
+  <video width="1280" height="720" data-poster="img/anpanman-thumbnail.jxl">
     <source src="img/anpanman.webm" type="video/webm">
   </video>
 </media-slider>

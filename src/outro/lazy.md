@@ -151,7 +151,7 @@ require('extensions')
 rm -rf plugin
 ```
 
-![rm-packer_compiled](img/rm-packer_compiled.avif)
+![rm-packer_compiled](img/rm-packer_compiled.jxl)
 ~~~
 
 ~~~admonish warning
@@ -184,7 +184,7 @@ cd ~/.local/share/nvim
 ```admonish warning
 もし`flatpak`使ってたりするとこんな path になるので❗
 
-![stdpath](img/stdpath.avif)
+![stdpath](img/stdpath.jxl)
 ```
 
 で、このディレクトリを覗いてみると`site/pack/packer`ディレクトリが存在するはずなので、
@@ -196,7 +196,7 @@ cd ~/.local/share/nvim
 
 慎重を期すのであれば、ディレクトリ名を変えるだけでも良いです。
 
-![packer-temp](img/packer-temp.avif)
+![packer-temp](img/packer-temp.jxl)
 ```
 
 まあ、こんなとこでしょう。
@@ -262,7 +262,7 @@ require("lazy").setup()
 
 これだけでもう、コマンドから`Lazy`を呼び出せるはずです❗
 
-![lazy-openn](img/lazy-open.avif)
+![lazy-openn](img/lazy-open.jxl)
 
 ~~~admonish quote
 ```vim
@@ -278,7 +278,7 @@ Everybody seems to think I’m lazy
 みんな僕のことを怠け者だと思ってる
 ```
 
-![lazy-first](img/lazy-first.avif)
+![lazy-first](img/lazy-first.jxl)
 
 初心に帰れる、やさしい毒🤤
 
@@ -303,7 +303,7 @@ I don’t mind, I think they’re crazy
 ```
 ~~~
 
-![lazy-checkhealth](img/lazy-checkhealth.avif)
+![lazy-checkhealth](img/lazy-checkhealth.jxl)
 
 はい、オールグリーン😉
 
@@ -382,10 +382,7 @@ lazy.nvim のデフォルトは以下の通りです：
 
 やあん🥱
 
-<picture>
-  <source srcset="img/yadon.jxl" type="image/jxl">
-  <img src="img/yadon.avif" width="960" height="640" alt="やあん" loading="lazy">
-</picture>
+![やあん](img/yadon.jxl)
 
 ```admonish success title=""
 Keeping an eye on the world going by my window
