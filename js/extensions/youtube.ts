@@ -3,7 +3,27 @@ import type { Disposer } from './types.ts';
 
 import { ROOT_PATH } from '../constants.ts';
 
-const SRC_URL = 'https://www.youtube.com/embed/';
+const SRC_URL = 'https://www.youtube.com/';
+
+const getVideoTitle = async (id: string): Promise<string> => {
+  const url = new URL(`${SRC_URL}oembed`);
+  url.searchParams.set('url', `https://www.youtube.com/watch?v=${id}`);
+  url.searchParams.set('format', 'json');
+
+  const response = await fetch(url);
+
+  if (!response.ok) {
+    throw new Error(`YouTube oEmbed: ${response.status}`);
+  }
+
+  const data: unknown = await response.json();
+
+  if (typeof data !== 'object' || data === null || !('title' in data) || typeof data.title !== 'string') {
+    throw new Error('Invalid YouTube oEmbed response');
+  }
+
+  return data.title;
+};
 
 class YouTubeVideo extends HTMLElement {
   constructor() {
@@ -17,7 +37,7 @@ class YouTubeVideo extends HTMLElement {
     shadow.append(link);
   }
 
-  connectedCallback(): void {
+  async connectedCallback(): Promise<void> {
     const id = this.dataset['id'];
 
     if (id === undefined) {
@@ -27,8 +47,10 @@ class YouTubeVideo extends HTMLElement {
 
     const iframe = document.createElement('iframe');
     iframe.loading = 'lazy';
-    iframe.src = `${SRC_URL}${id}`;
+    iframe.title = await getVideoTitle(id);
+    iframe.src = `${SRC_URL}embed/${id}`;
     iframe.allow = 'fullscreen';
+    iframe.referrerPolicy = 'strict-origin-when-cross-origin';
 
     this.shadowRoot!.append(iframe);
   }
