@@ -58,8 +58,6 @@ Can I bring my friend to tea?
 追加のインストールが手間だったり、そもそもその言語使ってないってことも当然あると思うので、
 これらを実際にインストールするかどうかはおまかせします😺
 
-![paul](img/paul.jxl)
-
 ```admonish success title=""
 E, F, G, H, I, J
 
@@ -431,7 +429,7 @@ We are all together now!!{{footnote:
 
 <div style="margin-top: 4rem"></div>
 
-<youtube-video data-id="NRHexu4JaL8"></youtube-video>
+<youtube-video data-id="Y1TTWzQFnes"></youtube-video>
 
 <div style="margin-top: 4rem"></div>
 

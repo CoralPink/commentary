@@ -240,9 +240,7 @@ How to unfold your love
 
 <media-slider>
   ![tokyo-daijingu](img/tokyo-daijingu.jxl)
-  <video width="1280" height="720" data-poster="img/shin-mituke.jxl">
-    <source src="img/iidabashi-tokyo.webm" type="video/webm">
-  </video>
+  <youtube-video data-id="Dxvkh3-Ukbg"></youtube-video>
   ![sotobori](img/sotobori.jxl)
 </media-slider>
 

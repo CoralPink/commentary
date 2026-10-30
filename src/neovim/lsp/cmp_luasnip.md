@@ -270,8 +270,5 @@ Wow look out! it's-
   <video width="1280" height="720" data-poster="img/nya-shougi-ondo-thumbnail.jxl">
     <source src="img/nya-shougi-ondo.webm" type="video/webm">
   </video>
-  <video width="1280" height="720" data-poster="img/saitama-tokyo-thumbnail.jxl">
-    <source src="img/saitama-tokyo.webm" type="video/webm">
-  </video>
+  <youtube-video data-id="c3ju0FqD9CY"></youtube-video>
 </media-slider>
-

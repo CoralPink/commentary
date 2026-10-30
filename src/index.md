@@ -9,7 +9,7 @@
 ```admonish success title=""
 <picture>
   <source srcset="goal.jxl" type="image/jxl" />
-  <img src="jxl-not-supported.webp" width="662" height="540" alt="This site uses JPEG XL (JXL) images, which your browser doesn’t currently support." />
+  <img src="jxl-not-supported.webp" width="662" height="540" alt="" />
 </picture>
 
 <div style="text-align: right;font-style: italic;" >
