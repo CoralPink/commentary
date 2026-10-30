@@ -162,9 +162,7 @@ The following table shows the default options for this plugin:
     <source src="img/awa-ogikubo.webm" type="video/webm">
   </video>
   <youtube-video data-id="X5whQeE28gs"></youtube-video>
-  <video width="1280" height="720" data-poster="img/awa-kagurazaka-thumbnail.jxl">
-    <source src="img/awa-kagurazaka.webm" type="video/webm">
-  </video>
+  <youtube-video data-id="ve0Z6rZxo0g"></youtube-video>
 </media-slider>
 
 ようけやっとるでないで❗

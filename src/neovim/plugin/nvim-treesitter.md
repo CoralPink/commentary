@@ -126,10 +126,6 @@ Don't you know that you can count me out?{{footnote:
 僕のことは数に入れないでくれないか？
 ```
 
-<video width="1280" height="720" data-poster="img/godzilla-thumbnail.jxl">
-  <source src="img/godzilla.webm" type="video/webm">
-</video>
-
 ```admonish danger title=""
 Don't you know it's gonna be
 
