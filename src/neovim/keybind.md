@@ -286,12 +286,7 @@ vim.keymap.set({ 'n', 'v' }, 'p', 'p`]')
 ```admonish note
 上の表を参照するとわかる通り、正確にはさらにセレクトモードにも適用されることになります。
 ```
-<media-slider>
-  <youtube-video data-id="gMAbARgRTes"></youtube-video>
-  <video width="1280" height="720" data-poster="img/Ko-hiông-thumbnail.jxl">
-    <source src="img/Ko-hiông.webm" type="video/webm">
-  </video>
-</media-slider>
+<youtube-video data-id="gMAbARgRTes"></youtube-video>
 
 ## Wrap Up
 
@@ -331,9 +326,7 @@ vim.keymap.set('n', 's', '"_s')
 
 もう少し進むと「もう嫌❗🙀」ってなるぐらい実用的なキーカスタマイズに触れて行くことになります。
 
-<video width="1280" height="720" data-poster="img/bycycle_piano-thumbnail.jxl">
-  <source src="img/bycycle_piano.webm" type="video/webm">
-</video>
+<youtube-video data-id="nCo4u56D4wE"></youtube-video>
 
 でもだいじょうぶ、心配しないで🤗
 
