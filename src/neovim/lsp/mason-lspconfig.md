@@ -78,6 +78,8 @@ You’re gonna hear my voice when I shout it out loud
 俺が声を上げれば お前はその声を聞くことになる
 ```
 
+<youtube-video data-id="LWIh3nG0SdE"></youtube-video>
+
 ## Config
 
 で、これに関するコンフィグも`mason.lua`にまとめちゃいます。

@@ -21,6 +21,8 @@ And so I face the final curtain
 そして私は 最後の幕に臨む
 ```
 
+![misterg](img/misterg.jxl)
+
 さて、まずは`LSP`活用の基盤を築きましょう❗`nvim-lspconfig`の登場です😆
 
 ```admonish info title="[nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)"
@@ -28,8 +30,6 @@ Configs for the Nvim LSP client (:help lsp).
 
 Nvim LSP クライアント (:help lsp) のコンフィグです。
 ```
-
-<youtube-video data-id="LWIh3nG0SdE"></youtube-video>
 
 ## LSP
 
@@ -82,6 +82,8 @@ I'll state my case, of which I'm certain
 私が確かだと思えることを、聞いてほしい
 ```
 
+![nagashima-oh](img/nagashima-oh.jxl)
+
 ## Install
 
 ```admonish info title="[Install](https://github.com/neovim/nvim-lspconfig#install)"
@@ -105,13 +107,6 @@ I traveled each and every highway
 
 あらゆる道を旅してきたんだ
 ```
-
-<media-slider>
-  ![nagashima-matsui](img/nagashima-matsui.jxl)
-  ![nagashima-matsui2](img/nagashima-matsui2.jxl)
-  ![nagashima3](img/nagashima3.jxl)
-  ![matsui55](img/matsui55.jxl)
-</media-slider>
 
 ## Configuration
 
@@ -212,6 +207,8 @@ And more, much more than this
 そしてそれ以上に、もっと ずっと多くのこと
 ```
 
+![matsui55](img/matsui55.jxl)
+
 ### LspAttach
 
 `LspAttach`ってなんやねんってなりますが、これはもうそのままヘルプにあります。
@@ -249,6 +246,11 @@ I did it my way
 
 自らのやり方で 選んできたんだ
 ```
+
+<media-slider>
+  ![nagashima3](img/nagashima3.jxl)
+  ![nagashima-matsui2](img/nagashima-matsui2.jxl)
+</media-slider>
 
 ## My Way
 
@@ -502,4 +504,8 @@ Sinatra の他にも、[Elvis Presley](https://en.wikipedia.org/wiki/Elvis_Presl
 </div>
 </div>
 
-<div style="margin-top: 8em"></div>
+<div style="margin-top: 4em"></div>
+
+![nagashima-matsui](img/nagashima-matsui.jxl)
+
+<div style="margin-top: 4em"></div>
