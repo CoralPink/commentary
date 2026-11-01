@@ -102,7 +102,7 @@ Harrison は [Cream](https://en.wikipedia.org/wiki/Cream_(band)) のレコーデ
 ```
 
 <media-slider>
-  <youtube-video data-id="2JF6Cdtoseg"></youtube-video>
+  <youtube-video data-id="FiYGCnvrkis"></youtube-video>
   <video width="1280" height="720" data-poster="img/musashino-gakudan-thumbnail.jxl">
     <source src="img/musashino-gakudan.webm" type="video/webm">
   </video>
