@@ -27,12 +27,12 @@ jobs:
       changes: ${{ steps.filter.outputs.source }}
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        uses: actions/checkout@v7.0.1
         with:
           persist-credentials: false
 
       - name: Check Sources
-        uses: dorny/paths-filter@ceb8a2b8f2d89434be7ff52d3de7ec3738c5cc9d # v4
+        uses: dorny/paths-filter@v4.0.3
         id: filter
         with:
           filters: |
@@ -54,7 +54,7 @@ jobs:
       cache-key: ${{ steps.set-cache-key.outputs.cache-key }}
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        uses: actions/checkout@v7.0.1
         with:
           persist-credentials: false
           lfs: false
@@ -79,7 +79,7 @@ jobs:
 
       - name: Restore Media Cache (allow partial match)
         id: cache-media
-        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6
+        uses: actions/cache/restore@v6.1.0
         with:
           path: tmp-media
           key: media-${{ steps.set-cache-key.outputs.cache-key }}
@@ -108,7 +108,7 @@ jobs:
 
       - name: Save Media Cache
         if: steps.cache-media.outputs.cache-hit != 'true'
-        uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6
+        uses: actions/cache/save@v6.1.0
         with:
           path: tmp-media
           key: media-${{ steps.set-cache-key.outputs.cache-key }}
@@ -118,7 +118,7 @@ jobs:
     runs-on: ubuntu-26.04-arm
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        uses: actions/checkout@v7.0.1
         with:
           persist-credentials: false
           fetch-depth: 1
@@ -126,7 +126,7 @@ jobs:
             rs/wasm
 
       - name: Setup Rust
-        uses: actions-rust-lang/setup-rust-toolchain@ecabd13d1c56bd1345c230e542e9144811ad706f # v2
+        uses: actions-rust-lang/setup-rust-toolchain@v2.0.0
         with:
           toolchain: stable
           target: wasm32-unknown-unknown
@@ -134,7 +134,7 @@ jobs:
           cache-shared-key: ${{ env.WASM_SHARED_KEY }}
 
       - name: Install Wasm Pack
-        uses: taiki-e/install-action@1e29709c0ec63babbe8f266397a465f29a825f91 # v2
+        uses: taiki-e/install-action@v2.87.31
         with:
           tool: wasm-pack
 
@@ -154,7 +154,7 @@ jobs:
       BINARYEN_VERSION: "133"
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        uses: actions/checkout@v7.0.1
         with:
           persist-credentials: false
           fetch-depth: 1
@@ -162,7 +162,7 @@ jobs:
             rs/wasm
 
       - name: Setup Rust
-        uses: actions-rust-lang/setup-rust-toolchain@ecabd13d1c56bd1345c230e542e9144811ad706f # v2
+        uses: actions-rust-lang/setup-rust-toolchain@v2.0.0
         with:
           toolchain: stable
           target: wasm32-unknown-unknown
@@ -170,7 +170,7 @@ jobs:
           cache-shared-key: ${{ env.WASM_SHARED_KEY }}
 
       - name: Install Wasm Bindgen
-        uses: taiki-e/install-action@1e29709c0ec63babbe8f266397a465f29a825f91 # v2
+        uses: taiki-e/install-action@v2.87.31
         with:
           tool: wasm-bindgen-cli@${{ env.WASM_BINDGEN_VERSION }}
 
@@ -210,7 +210,7 @@ jobs:
           mv ./pkg/wasm_book_bg.opt.wasm ./pkg/wasm_book_bg.wasm
 
       - name: Upload Wasm Artifact
-        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
+        uses: actions/upload-artifact@v7.0.2
         with:
           name: wasm-book
           path: rs/wasm/pkg
@@ -226,7 +226,7 @@ jobs:
       TYPESCRIPT_VERSION: "7.0.2"
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        uses: actions/checkout@v7.0.1
         with:
           persist-credentials: false
           fetch-depth: 1
@@ -234,7 +234,7 @@ jobs:
             js
 
       - name: Download Wasm Package
-        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8
+        uses: actions/download-artifact@v8.0.2
         with:
           name: wasm-book
           path: pkg
@@ -245,7 +245,7 @@ jobs:
           cp pkg/wasm_book.d.ts js
 
       - name: Setup Node.js
-        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
+        uses: actions/setup-node@v7.1.0
         with:
           node-version-file: .tool-versions
           package-manager-cache: false
@@ -270,7 +270,7 @@ jobs:
           npm run test:ci
 
       - name: Upload Vitest Report
-        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
+        uses: actions/upload-artifact@v7.0.2
         with:
           name: vitest-report
           path: js/coverage
@@ -283,7 +283,7 @@ jobs:
     needs: [test-js, build-wasm]
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        uses: actions/checkout@v7.0.1
         with:
           persist-credentials: false
           fetch-depth: 1
@@ -291,7 +291,7 @@ jobs:
             js
 
       - name: Download Wasm Package
-        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8
+        uses: actions/download-artifact@v8.0.2
         with:
           name: wasm-book
           path: pkg
@@ -302,7 +302,7 @@ jobs:
           cp pkg/wasm_book.d.ts js
 
       - name: Setup Node.js
-        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
+        uses: actions/setup-node@v7.1.0
         with:
           node-version-file: .tool-versions
           package-manager-cache: false
@@ -322,7 +322,7 @@ jobs:
           npm run bundle
 
       - name: Upload JS Artifact
-        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
+        uses: actions/upload-artifact@v7.0.2
         with:
           name: build-js
           path: js/dist
@@ -334,7 +334,7 @@ jobs:
     runs-on: ubuntu-slim
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        uses: actions/checkout@v7.0.1
         with:
           persist-credentials: false
           fetch-depth: 1
@@ -342,7 +342,7 @@ jobs:
             scss
 
       - name: Setup Node.js
-        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
+        uses: actions/setup-node@v7.1.0
         with:
           node-version-file: .tool-versions
           package-manager-cache: false
@@ -362,7 +362,7 @@ jobs:
           npm run build
 
       - name: Upload CSS Artifact
-        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
+        uses: actions/upload-artifact@v7.0.2
         with:
           name: css
           path: scss/dist
@@ -374,7 +374,7 @@ jobs:
     runs-on: ubuntu-slim
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        uses: actions/checkout@v7.0.1
         with:
           persist-credentials: false
           fetch-depth: 1
@@ -383,14 +383,14 @@ jobs:
 
       - name: Cache Woff2
         id: cache-woff2
-        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6
+        uses: actions/cache@v6.1.0
         with:
           path: fonts/woff2
           key: python-${{ runner.os }}-fonts-${{ hashFiles('fonts/**') }}
 
       - name: Setup Uv
         if: steps.cache-woff2.outputs.cache-hit != 'true'
-        uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2 # v10.3.3
+        uses: astral-sh/setup-uv@v10.3.3
         with:
           version: "0.13.x"
           enable-cache: "false"
@@ -400,7 +400,7 @@ jobs:
         run: ./fonts/download.sh
 
       - name: Upload Font Artifact
-        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
+        uses: actions/upload-artifact@v7.0.2
         with:
           name: woff2
           path: fonts/woff2
@@ -412,7 +412,7 @@ jobs:
     runs-on: ubuntu-26.04-arm
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        uses: actions/checkout@v7.0.1
         with:
           persist-credentials: false
           fetch-depth: 1
@@ -420,7 +420,7 @@ jobs:
             rs/mdbook-footnote
 
       - name: Setup Rust
-        uses: actions-rust-lang/setup-rust-toolchain@ecabd13d1c56bd1345c230e542e9144811ad706f # v2
+        uses: actions-rust-lang/setup-rust-toolchain@v2.0.0
         with:
           toolchain: stable
           rust-src-dir: rs/mdbook-footnote
@@ -450,7 +450,7 @@ jobs:
       MDBOOK_VERSION: "0.5.4"
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        uses: actions/checkout@v7.0.1
         with:
           persist-credentials: false
           fetch-depth: 1
@@ -464,7 +464,7 @@ jobs:
 
       - name: Restore Media Cache
         id: cache-media
-        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6
+        uses: actions/cache@v6.1.0
         with:
           path: tmp-media
           key: media-${{ needs.cache-media-files.outputs.cache-key }}
@@ -479,7 +479,7 @@ jobs:
           rm -rf tmp-media
 
       - name: Download All Artifacts
-        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8
+        uses: actions/download-artifact@v8.0.2
         with:
           path: artifacts
 
@@ -491,7 +491,7 @@ jobs:
           cp -r artifacts/css src
 
       - name: Setup Rust
-        uses: actions-rust-lang/setup-rust-toolchain@ecabd13d1c56bd1345c230e542e9144811ad706f # v2
+        uses: actions-rust-lang/setup-rust-toolchain@v2.0.0
         with:
           toolchain: stable
 
@@ -508,14 +508,14 @@ jobs:
       - name: Setup Pages
         if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
         id: pages
-        uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6
+        uses: actions/configure-pages@v6.0.0
 
       - name: Build Book
         run: |
           mdbook build --dest-dir commentary
 
       - name: Setup Node.js
-        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
+        uses: actions/setup-node@v7.1.0
         with:
           node-version-file: .tool-versions
           package-manager-cache: false
@@ -564,7 +564,7 @@ jobs:
 
       - name: Upload Pages Artifact
         id: deployment
-        uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5
+        uses: actions/upload-pages-artifact@v5.0.0
         with:
           path: commentary
 
@@ -587,4 +587,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5
+        uses: actions/deploy-pages@v5.0.1
