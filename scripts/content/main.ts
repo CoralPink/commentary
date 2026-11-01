@@ -1,7 +1,7 @@
 import { HighlightProc, LinkProc, VideoProc } from './mod.ts';
 
 import * as g from '../global.ts';
-import { compressHtml } from '../beautify.ts';
+import { minifyHtml } from '../minify.ts';
 
 import { JSDOM } from 'jsdom';
 import { readFileSync } from 'node:fs';
@@ -23,7 +23,7 @@ const fileProc = (fullPath: string): string | null => {
   LinkProc(dom.window.document);
   VideoProc(dom.window.document);
 
-  return compressHtml(dom.serialize());
+  return minifyHtml(dom.serialize());
 };
 
 const processDir = async (currentDir: string): Promise<void> => {
