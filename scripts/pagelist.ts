@@ -1,5 +1,5 @@
 import * as g from './global.ts';
-import { compressHtml } from './beautify.ts';
+import { minifyHtml } from './minify.ts';
 
 import * as cheerio from 'cheerio';
 import { isHtml } from 'cheerio/utils';
@@ -65,7 +65,7 @@ const main = async (): Promise<void> => {
     }
   });
 
-  await write(HTML_OUTPUT, compressHtml($.html()));
+  await write(HTML_OUTPUT, minifyHtml($.html()));
 };
 
 (async (): Promise<void> => {
