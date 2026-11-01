@@ -18,7 +18,6 @@ members = ["macros"]
 [profile.release]
 lto = "fat"
 opt-level = "z"
-strip = "symbols"
 codegen-units = 1
 panic = "abort"
 
