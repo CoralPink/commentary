@@ -3,29 +3,92 @@ import type { Disposer } from './types.ts';
 
 import { ROOT_PATH } from '../constants.ts';
 
-const SRC_URL = 'https://www.youtube.com/';
+const API_URL = 'https://www.youtube.com/iframe_api';
 
-const getVideoTitle = async (id: string): Promise<string> => {
-  const url = new URL(`${SRC_URL}oembed`);
-  url.searchParams.set('url', `https://www.youtube.com/watch?v=${id}`);
-  url.searchParams.set('format', 'json');
+interface YouTubePlayer {
+  destroy(): void;
+  pauseVideo(): void;
+}
 
-  const response = await fetch(url);
+interface YouTubePlayerOptions {
+  videoId: string;
+  playerVars: {
+    playsinline: 1;
+  };
+  events: {
+    onReady(): void;
+    onStateChange(event: { data: number }): void;
+  };
+}
 
-  if (!response.ok) {
-    throw new Error(`YouTube oEmbed: ${response.status}`);
+interface YouTubeApi {
+  PlayerState: {
+    ENDED: number;
+  };
+  Player: new (element: HTMLElement, options: YouTubePlayerOptions) => YouTubePlayer;
+}
+
+declare global {
+  interface Window {
+    YT?: YouTubeApi;
+    onYouTubeIframeAPIReady?: () => void;
+  }
+}
+
+let apiPromise: Promise<YouTubeApi> | undefined;
+
+const loadYouTubeApi = (): Promise<YouTubeApi> => {
+  if (window.YT?.Player !== undefined) {
+    return Promise.resolve(window.YT);
   }
 
-  const data: unknown = await response.json();
-
-  if (typeof data !== 'object' || data === null || !('title' in data) || typeof data.title !== 'string') {
-    throw new Error('Invalid YouTube oEmbed response');
+  if (apiPromise !== undefined) {
+    return apiPromise;
   }
 
-  return data.title;
+  apiPromise = new Promise<YouTubeApi>((resolve, reject) => {
+    const previousCallback = window.onYouTubeIframeAPIReady;
+
+    window.onYouTubeIframeAPIReady = () => {
+      previousCallback?.();
+
+      if (window.YT?.Player === undefined) {
+        reject(new Error('YouTube IFrame Player API failed to initialize'));
+        return;
+      }
+
+      resolve(window.YT);
+    };
+
+    const existingScript = document.querySelector<HTMLScriptElement>(`script[src="${API_URL}"]`);
+
+    if (existingScript !== null) {
+      existingScript.addEventListener('error', () => reject(new Error('Failed to load YouTube IFrame Player API')), {
+        once: true,
+      });
+      return;
+    }
+
+    const script = document.createElement('script');
+    script.src = API_URL;
+    script.async = true;
+    script.onerror = () => {
+      reject(new Error('Failed to load YouTube IFrame Player API'));
+    };
+
+    document.head.append(script);
+  }).catch((error: unknown) => {
+    apiPromise = undefined;
+    throw error;
+  });
+
+  return apiPromise;
 };
 
 class YouTubeVideo extends HTMLElement {
+  private player?: YouTubePlayer;
+  private mountVersion = 0;
+
   constructor() {
     super();
 
@@ -37,7 +100,7 @@ class YouTubeVideo extends HTMLElement {
     shadow.append(link);
   }
 
-  async connectedCallback(): Promise<void> {
+  connectedCallback(): void {
     const id = this.dataset['id'];
 
     if (id === undefined) {
@@ -45,18 +108,50 @@ class YouTubeVideo extends HTMLElement {
       return;
     }
 
-    const iframe = document.createElement('iframe');
-    iframe.loading = 'lazy';
-    iframe.title = await getVideoTitle(id);
-    iframe.src = `${SRC_URL}embed/${id}`;
-    iframe.allow = 'fullscreen';
-    iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+    const mount = document.createElement('div');
+    this.shadowRoot!.append(mount);
 
-    this.shadowRoot!.append(iframe);
+    const mountVersion = ++this.mountVersion;
+
+    void loadYouTubeApi()
+      .then(({ Player, PlayerState }) => {
+        if (!this.isConnected || mountVersion !== this.mountVersion) {
+          mount.remove();
+          return;
+        }
+
+        this.player = new Player(mount, {
+          videoId: id,
+          playerVars: {
+            playsinline: 1,
+          },
+          events: {
+            onReady: () => {},
+            onStateChange: ({ data }) => {
+              if (data === PlayerState.ENDED) {
+                this.dispatchEvent(new Event('ended'));
+              }
+            },
+          },
+        });
+      })
+      .catch((error: unknown) => {
+        mount.remove();
+        console.error('YouTube Player API initialization failed', error);
+      });
+  }
+
+  pauseVideo(): void {
+    this.player?.pauseVideo();
   }
 
   disconnectedCallback(): void {
-    this.shadowRoot!.querySelector('iframe')?.remove();
+    this.mountVersion += 1;
+    this.player?.destroy();
+
+    delete this.player;
+
+    this.shadowRoot!.querySelector('div')?.remove();
   }
 }
 

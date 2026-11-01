@@ -25,13 +25,17 @@ const SCROLL_INTO_VIEW_OPTIONS: ScrollIntoViewOptions = {
   inline: 'start',
 };
 
-const DEFAULT_MEDIA_WIDTH = 1920;
 const YOUTUBE_THUMBNAIL = 'mqdefault.jpg';
 
 type Direction = typeof DIRECTION_PREV | typeof DIRECTION_NEXT;
 type CompatibleMedia = HTMLImageElement | HTMLVideoElement | HTMLElement;
 
+interface YouTubeMediaElement extends HTMLElement {
+  pauseVideo(): void;
+}
+
 const extractName = (s: string): string => s.match(/\/([^/?#]+?)(\.[^/.#?]+)?(?:[?#]|$)/)?.[1] ?? '';
+const isYouTubeMedia = (media: CompatibleMedia): media is YouTubeMediaElement => media.matches(ELEMENT_YOUTUBE);
 
 const getMediaWidth = (media: CompatibleMedia): number => {
   if (media instanceof HTMLImageElement) {
@@ -42,9 +46,10 @@ const getMediaWidth = (media: CompatibleMedia): number => {
     return media.width;
   }
 
-  if (media.matches(ELEMENT_YOUTUBE)) {
-    return DEFAULT_MEDIA_WIDTH;
+  if (isYouTubeMedia(media)) {
+    return media.getBoundingClientRect().width;
   }
+
   return 0;
 };
 
@@ -53,7 +58,7 @@ const getThumbnail = (media: CompatibleMedia): string => {
     return media.src;
   }
 
-  if (media.matches(ELEMENT_YOUTUBE)) {
+  if (isYouTubeMedia(media)) {
     const id = media.dataset['id'];
     return id ? `https://img.youtube.com/vi/${id}/${YOUTUBE_THUMBNAIL}` : '';
   }
@@ -67,7 +72,7 @@ class MediaSlider extends HTMLElement {
   private medias: CompatibleMedia[] = [];
   private indicatorButtons: HTMLButtonElement[] = [];
 
-  private abortController: AbortController = new AbortController();
+  private abortController = new AbortController();
   private observer: IntersectionObserver | undefined;
   private controls: HTMLDivElement | undefined;
 
@@ -99,6 +104,11 @@ class MediaSlider extends HTMLElement {
     }
 
     const len = this.medias.length;
+
+    if (len === 0) {
+      return;
+    }
+
     const index = ((next % len) + len) % len;
 
     this.mediaContainer.scrollTo({
@@ -127,8 +137,8 @@ class MediaSlider extends HTMLElement {
     return arrow;
   }
 
-  private setupVideo(video: HTMLVideoElement): void {
-    video.addEventListener(
+  private setupMedia(media: HTMLVideoElement | YouTubeMediaElement): void {
+    media.addEventListener(
       'ended',
       () => {
         this.scrollToSlide(this.index + 1);
@@ -142,7 +152,6 @@ class MediaSlider extends HTMLElement {
 
   connectedCallback(): void {
     this.abortController = new AbortController();
-
     this.medias = Array.from(this.querySelectorAll<CompatibleMedia>(SELECTOR_MEDIA));
 
     if (this.medias.length === 0) {
@@ -153,7 +162,6 @@ class MediaSlider extends HTMLElement {
     this.initializeSlideLayout();
 
     const controls = document.createElement('div');
-
     controls.classList.add(CLASS_CONTROLS);
     controls.append(this.createArrow(DIRECTION_PREV), this.createIndicators(), this.createArrow(DIRECTION_NEXT));
 
@@ -166,8 +174,8 @@ class MediaSlider extends HTMLElement {
     });
 
     for (const x of this.medias) {
-      if (x instanceof HTMLVideoElement) {
-        this.setupVideo(x);
+      if (x instanceof HTMLVideoElement || isYouTubeMedia(x)) {
+        this.setupMedia(x);
       }
 
       this.observer.observe(x);
@@ -203,14 +211,13 @@ class MediaSlider extends HTMLElement {
     }
 
     this.mediaContainer.style.setProperty(VARIABLE_SLIDE_WIDTH, `${width}px`);
-
     this.mediaMaxWidth = width;
   }
 
   private initializeSlideLayout(): void {
     this.updateSlideWidth();
 
-    // Take into account cases where the image has not finished loading
+    // Account for images that have not finished loading yet.
     for (const x of this.medias) {
       if (!(x instanceof HTMLImageElement) || x.complete) {
         continue;
@@ -224,11 +231,13 @@ class MediaSlider extends HTMLElement {
     }
   }
 
-  private stopVideo(index: number): void {
+  private stopMedia(index: number): void {
     const current = this.medias[index];
 
     if (current instanceof HTMLVideoElement) {
       current.pause();
+    } else if (current !== undefined && isYouTubeMedia(current)) {
+      current.pauseVideo();
     }
   }
 
@@ -237,7 +246,7 @@ class MediaSlider extends HTMLElement {
       return;
     }
 
-    this.stopVideo(this.index);
+    this.stopMedia(this.index);
 
     const nextButton = this.indicatorButtons[next];
     const currentButton = this.indicatorButtons[this.index];
