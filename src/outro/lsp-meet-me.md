@@ -22,7 +22,7 @@
 }}
 ```
 
-<youtube-video data-id="iIDpZYMdhOE"></youtube-video>
+<youtube-video data-id="2DiLHyFuvxE"></youtube-video>
 
 舟を出せ❗いざ鬼退治❗❗
 
