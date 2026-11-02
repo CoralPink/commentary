@@ -89,6 +89,8 @@ class YouTubeVideo extends HTMLElement {
   private player?: YouTubePlayer;
   private mountVersion = 0;
 
+  private visibilityObserver: IntersectionObserver | undefined;
+
   constructor() {
     super();
 
@@ -100,7 +102,7 @@ class YouTubeVideo extends HTMLElement {
     shadow.append(link);
   }
 
-  connectedCallback(): void {
+  private createPlayer(): void {
     const id = this.dataset['id'];
 
     if (id === undefined) {
@@ -141,11 +143,34 @@ class YouTubeVideo extends HTMLElement {
       });
   }
 
+  connectedCallback(): void {
+    this.visibilityObserver = new IntersectionObserver(
+      entries => {
+        if (!entries.some(entry => entry.isIntersecting)) {
+          return;
+        }
+
+        this.visibilityObserver?.disconnect();
+        this.visibilityObserver = undefined;
+
+        this.createPlayer();
+      },
+      {
+        threshold: 0.1,
+      },
+    );
+
+    this.visibilityObserver.observe(this);
+  }
+
   pauseVideo(): void {
     this.player?.pauseVideo();
   }
 
   disconnectedCallback(): void {
+    this.visibilityObserver?.disconnect();
+    this.visibilityObserver = undefined;
+
     this.mountVersion += 1;
     this.player?.destroy();
 
