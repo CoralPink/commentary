@@ -79,6 +79,8 @@ class MediaSlider extends HTMLElement {
   private index = 0;
   private mediaMaxWidth = 0;
 
+  private visibilityObserver: IntersectionObserver | undefined;
+
   constructor() {
     super();
 
@@ -150,7 +152,7 @@ class MediaSlider extends HTMLElement {
     );
   }
 
-  connectedCallback(): void {
+  private createSlider(): void {
     this.abortController = new AbortController();
     this.medias = Array.from(this.querySelectorAll<CompatibleMedia>(SELECTOR_MEDIA));
 
@@ -185,7 +187,30 @@ class MediaSlider extends HTMLElement {
     this.mediaContainer.scrollLeft = 0;
   }
 
+  connectedCallback(): void {
+    this.visibilityObserver = new IntersectionObserver(
+      entries => {
+        if (!this.isConnected || !entries.some(entry => entry.isIntersecting)) {
+          return;
+        }
+
+        this.visibilityObserver?.disconnect();
+        this.visibilityObserver = undefined;
+
+        this.createSlider();
+      },
+      {
+        rootMargin: '200px 0px',
+      },
+    );
+
+    this.visibilityObserver.observe(this);
+  }
+
   disconnectedCallback(): void {
+    this.visibilityObserver?.disconnect();
+    this.visibilityObserver = undefined;
+
     this.observer?.disconnect();
     this.observer = undefined;
 
