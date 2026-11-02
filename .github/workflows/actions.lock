@@ -4,7 +4,7 @@
 version: 'v0.0.3'
 workflows:
     '.github/workflows/gh-pages.yml':
-        - 'actions-rust-lang/setup-rust-toolchain@v2.0.0'
+        - 'actions-rust-lang/setup-rust-toolchain@v2.0.1'
         - 'actions/cache@v6.1.0'
         - 'actions/checkout@v7.0.1'
         - 'actions/configure-pages@v6.0.0'
@@ -17,13 +17,13 @@ workflows:
         - 'dorny/paths-filter@v4.0.3'
         - 'taiki-e/install-action@v2.89.0'
 dependencies:
-    'actions-rust-lang/setup-rust-toolchain@v2.0.0':
-        ref: 'v2.0.0'
-        commit: 'sha1-ecabd13d1c56bd1345c230e542e9144811ad706f'
+    'actions-rust-lang/setup-rust-toolchain@v2.0.1':
+        ref: 'v2.0.1'
+        commit: 'sha1-a188e68d0fd2bd36ad51dccb2b07ba6e75105f30'
         owner_id: 103899579
         repo_id: 482610590
         uses:
-            - 'swatinem/rust-cache@6323deb102c322ba6fcbdcafc7e3dddab59af2b6'
+            - 'swatinem/rust-cache@d1527c8f67ef9af357290475d4af4b0fab8f12e0'
     'actions/cache@v6.1.0':
         ref: 'v6.1.0'
         commit: 'sha1-55cc8345863c7cc4c66a329aec7e433d2d1c52a9'
@@ -81,9 +81,9 @@ dependencies:
         commit: 'sha1-ceb8a2b8f2d89434be7ff52d3de7ec3738c5cc9d'
         owner_id: 1588572
         repo_id: 265601040
-    'swatinem/rust-cache@6323deb102c322ba6fcbdcafc7e3dddab59af2b6':
-        ref: 'v2.9.2'
-        commit: 'sha1-6323deb102c322ba6fcbdcafc7e3dddab59af2b6'
+    'swatinem/rust-cache@d1527c8f67ef9af357290475d4af4b0fab8f12e0':
+        ref: 'v2.9.3'
+        commit: 'sha1-d1527c8f67ef9af357290475d4af4b0fab8f12e0'
         owner_id: 580492
         repo_id: 298565987
     'taiki-e/install-action@v2.89.0':
