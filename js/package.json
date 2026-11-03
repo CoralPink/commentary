@@ -6,9 +6,9 @@
     "test:ci": "vitest run --coverage"
   },
   "devDependencies": {
-    "@vitest/coverage-v8": "5.0.5",
+    "@vitest/coverage-v8": "5.1.0",
     "happy-dom": "~21.0.0",
     "rolldown": "1.2.16",
-    "vitest": "5.0.5"
+    "vitest": "5.1.0"
   }
 }
