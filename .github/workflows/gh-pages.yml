@@ -126,7 +126,7 @@ jobs:
             rs/wasm
 
       - name: Setup Rust
-        uses: actions-rust-lang/setup-rust-toolchain@v2.0.0
+        uses: actions-rust-lang/setup-rust-toolchain@v2.0.1
         with:
           toolchain: stable
           target: wasm32-unknown-unknown
@@ -162,7 +162,7 @@ jobs:
             rs/wasm
 
       - name: Setup Rust
-        uses: actions-rust-lang/setup-rust-toolchain@v2.0.0
+        uses: actions-rust-lang/setup-rust-toolchain@v2.0.1
         with:
           toolchain: stable
           target: wasm32-unknown-unknown
@@ -420,7 +420,7 @@ jobs:
             rs/mdbook-footnote
 
       - name: Setup Rust
-        uses: actions-rust-lang/setup-rust-toolchain@v2.0.0
+        uses: actions-rust-lang/setup-rust-toolchain@v2.0.1
         with:
           toolchain: stable
           rust-src-dir: rs/mdbook-footnote
@@ -491,7 +491,7 @@ jobs:
           cp -r artifacts/css src
 
       - name: Setup Rust
-        uses: actions-rust-lang/setup-rust-toolchain@v2.0.0
+        uses: actions-rust-lang/setup-rust-toolchain@v2.0.1
         with:
           toolchain: stable
 
