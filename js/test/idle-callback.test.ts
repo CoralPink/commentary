@@ -15,8 +15,8 @@ describe('emulateIdleCallback', () => {
       port1: {
         onmessage: ((event: MessageEvent) => void) | null;
       } = {
-        onmessage: null,
-      };
+          onmessage: null,
+        };
 
       port2 = {
         postMessage: () => {
@@ -41,10 +41,15 @@ describe('emulateIdleCallback', () => {
     firstHandle = idleCallback.request(() => {
       results.push('first');
       idleCallback.cancel(firstHandle);
+      idleCallback.cancel(thirdHandle);
     });
 
     idleCallback.request(() => {
       results.push('second');
+    });
+
+    const thirdHandle = idleCallback.request(() => {
+      results.push('third');
     });
 
     expect(frames).toHaveLength(1);
