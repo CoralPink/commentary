@@ -28,7 +28,7 @@
   "packageRules": [
     {
       "matchManagers": ["github-actions"],
-      "matchUpdateTypes": ["digest"],
+      "matchUpdateTypes": ["patch"],
       "schedule": ["before 4am on monday"],
     },
   ],
