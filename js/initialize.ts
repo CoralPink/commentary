@@ -39,9 +39,9 @@ const activeDisposers = new Set<Disposer>();
 
 const regProcHtml =
   (fn: (html: HTMLElement) => Disposer): HtmlJob =>
-    (html: HTMLElement): void => {
-      activeDisposers.add(fn(html));
-    };
+  (html: HTMLElement): void => {
+    activeDisposers.add(fn(html));
+  };
 
 const loadedExtensions = new Map<string, Promise<((html: HTMLElement) => Disposer) | undefined>>();
 
@@ -115,7 +115,7 @@ const setSchedule = (html: HTMLElement, jobs: readonly HtmlJob[]): void => {
 
 (() => {
   void navigator.serviceWorker
-    .register(`${ROOT_PATH}serviceworker.js`, {
+    ?.register(`${ROOT_PATH}serviceworker.js`, {
       scope: ROOT_PATH,
       type: 'module',
     })
