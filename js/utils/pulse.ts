@@ -201,13 +201,14 @@ export const isCurrentCycle = (expectedCycle: number): boolean => expectedCycle 
  * @param each - Function invoked once for each item.
  */
 export const processChunked = <T>(items: ReadonlyArray<T>, each: (item: T) => void): void => {
+  const startCycle = cycle;
   let index = 0;
   const snapshot = items.length;
 
   const tick: Job = remainingBudget => {
     const start = performance.now();
 
-    while (index < snapshot && performance.now() - start < remainingBudget) {
+    while (isCurrentCycle(startCycle) && index < snapshot && performance.now() - start < remainingBudget) {
       try {
         each(items[index++]!);
       } catch (error: unknown) {
@@ -215,7 +216,7 @@ export const processChunked = <T>(items: ReadonlyArray<T>, each: (item: T) => vo
       }
     }
 
-    if (index < snapshot) {
+    if (isCurrentCycle(startCycle) && index < snapshot) {
       scheduleJob(tick);
     }
   };
