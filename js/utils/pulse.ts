@@ -1,180 +1,225 @@
+import { FRAME_BUDGET } from './frame.ts';
+
+import emulateIdleCallback from './emulate/idle-callback.ts';
+
+type Job = (remainingBudget: number) => void;
+
+type PendingTask = { kind: 'frame'; id: number } | { kind: 'idle'; id: number };
+
 type PulseCallback = (deadline: IdleDeadline) => void;
-type Pulse = (cb: PulseCallback) => number;
+type Pulse = (callback: PulseCallback) => number;
 
-type IdleTask = {
-  handle: number;
-  callback: IdleRequestCallback;
+/** Jobs waiting to be executed by the scheduler. */
+const jobQueue: Job[] = [];
+
+/**
+ * Identifies the current lifecycle generation.
+ *
+ * Incrementing this value lets asynchronous work determine whether it still
+ * belongs to the active lifecycle.
+ */
+let cycle = 0;
+
+/**
+ * Indicates that the next scheduler pulse should begin on an animation frame.
+ *
+ * After that first pulse, queued work is scheduled through the idle callback
+ * mechanism or its fallback.
+ */
+let firstPulse = true;
+
+/** The currently scheduled animation-frame or idle callback, if any. */
+let pendingTask: PendingTask | undefined;
+
+/** Prevents multiple scheduler loops from running at the same time. */
+let running = false;
+
+/** Whether the browser provides the native idle callback API. */
+const supportsRequestIdleCallback = typeof globalThis.requestIdleCallback === 'function';
+
+/**
+ * Schedules a callback using the native idle callback API when available,
+ * otherwise using the emulated implementation.
+ */
+const requestIdle: Pulse = supportsRequestIdleCallback
+  ? globalThis.requestIdleCallback.bind(globalThis)
+  : callback => emulateIdleCallback.request(callback);
+
+/**
+ * Cancels an idle callback scheduled by {@link requestIdle}.
+ *
+ * @param id - Handle returned by {@link requestIdle}.
+ */
+const cancelIdle = (id: number): void => {
+  if (supportsRequestIdleCallback) {
+    globalThis.cancelIdleCallback(id);
+  } else {
+    emulateIdleCallback.cancel(id);
+  }
 };
 
-type IdleQueue = IdleTask[];
+/** Cancels the scheduler's currently pending frame or idle callback. */
+const cancelPendingTask = (): void => {
+  if (pendingTask === undefined) {
+    return;
+  }
 
-const FRAME_BUDGET = 8;
+  if (pendingTask.kind === 'frame') {
+    cancelAnimationFrame(pendingTask.id);
+  } else {
+    cancelIdle(pendingTask.id);
+  }
 
-const jobQueue: (() => void)[] = [];
-
-let loopScheduled = false;
-
-/**
- * Safari does not support `requestIdleCallback`!
- * We'll have to emulate similar behavior instead.
- *
- * refs: https://developer.mozilla.org/ja/docs/Web/API/Window/requestIdleCallback
- */
-const emulateIdleCallback: (cb: IdleRequestCallback) => number = (() => {
-  let id = 0;
-
-  const channel = new MessageChannel();
-  const idleQueue: IdleQueue = [];
-
-  let scheduled = false;
-
-  channel.port1.onmessage = () => {
-    const start = performance.now();
-    const deadline = {
-      didTimeout: false,
-      timeRemaining: () => Math.max(0, FRAME_BUDGET - (performance.now() - start)),
-    };
-
-    let index = 0;
-
-    while (index < idleQueue.length && deadline.timeRemaining() > 0) {
-      const task = idleQueue[index++]!;
-
-      try {
-        task.callback(deadline);
-      } catch (err: unknown) {
-        console.error('idleCallback: task threw an error', err);
-      }
-    }
-
-    idleQueue.splice(0, index);
-
-    if (idleQueue.length > 0) {
-      requestAnimationFrame(() => {
-        channel.port2.postMessage(0);
-      });
-    } else {
-      scheduled = false;
-    }
-  };
-
-  return (callback: IdleRequestCallback): number => {
-    const handle = ++id;
-    idleQueue.push({ handle, callback });
-
-    if (!scheduled) {
-      scheduled = true;
-
-      requestAnimationFrame(() => {
-        channel.port2.postMessage(0);
-      });
-    }
-
-    return handle;
-  };
-})();
-
-const idlePulse: Pulse =
-  typeof globalThis.requestIdleCallback === 'function'
-    ? globalThis.requestIdleCallback.bind(globalThis)
-    : cb => emulateIdleCallback(cb);
+  pendingTask = undefined;
+};
 
 /**
- * Executes the very first pulse on the next animation frame.
+ * Schedules the next scheduler pulse if jobs are waiting and no pulse is
+ * already pending or running.
  *
- * The purpose of this rAF is to establish a clear lifecycle boundary:
- * - separate the previous cycle from the next one
- * - ensure all scheduled work starts strictly *after* the current frame is rendered
- *
- * After this first invocation:
- * - the pulse mechanism is immediately switched to `idlePulse`
- * - subsequent jobs run via `requestIdleCallback` (or its emulation)
- *
- * Even if the initial jobs are extremely lightweight (e.g. disposal / cleanup),
- * running the first pulse inside rAF provides:
- * - phase separation from layout / paint work
- * - a stable anchor point for Safari's idle callback emulation
- * - a deterministic "start of cycle" marker for dispose / init jobs
- *
- * In other words, this function prepares the pulse scheduler
- * for the next lifecycle rather than merely scheduling work.
+ * The first pulse of each lifecycle starts on the next animation frame.
+ * Subsequent pulses use the native idle callback API or its fallback.
  */
-const firstFramePulse: Pulse = cb => {
-  requestAnimationFrame(() => {
-    pulse = idlePulse;
+const schedulePump = (): void => {
+  if (pendingTask !== undefined || running || jobQueue.length === 0) {
+    return;
+  }
 
-    cb({
-      didTimeout: false,
-      timeRemaining: () => Infinity,
+  if (firstPulse) {
+    const id = requestAnimationFrame(() => {
+      pendingTask = undefined;
+      firstPulse = false;
+      runLoop();
     });
-  });
 
-  return 0;
+    pendingTask = { kind: 'frame', id };
+    return;
+  }
+
+  const id = requestIdle(runLoop);
+  pendingTask = { kind: 'idle', id };
 };
 
-let pulse: Pulse = firstFramePulse;
+/**
+ * Runs queued jobs while the current pulse has time remaining.
+ *
+ * The time budget is checked between jobs. A job runs to completion and cannot
+ * be preempted, so individual jobs should remain short.
+ *
+ * @param deadline - Native or emulated idle deadline. Omitted for the first
+ *   animation-frame pulse, which uses the scheduler's own time budget.
+ */
+const runLoop = (deadline?: IdleDeadline): void => {
+  if (running) {
+    return;
+  }
 
-const runLoop = (deadline: IdleDeadline): void => {
+  pendingTask = undefined;
+  running = true;
+
+  const runCycle = cycle;
+  const start = performance.now();
   let index = 0;
 
-  while (index < jobQueue.length && deadline.timeRemaining() > 0) {
-    const job = jobQueue[index++]!;
+  try {
+    while (cycle === runCycle && index < jobQueue.length) {
+      const elapsed = performance.now() - start;
+      const remaining = deadline ? Math.min(deadline.timeRemaining(), FRAME_BUDGET - elapsed) : FRAME_BUDGET - elapsed;
 
-    try {
-      job();
-    } catch (err) {
-      // Keep the scheduler alive even if one job misbehaves.
-      console.error('pulse: job threw an error', err);
-    }
-  }
+      if (remaining <= 0) {
+        break;
+      }
 
-  jobQueue.splice(0, index);
+      const job = jobQueue[index++]!;
 
-  if (jobQueue.length === 0) {
-    loopScheduled = false;
-    return;
-  }
-  pulse(runLoop);
-};
-
-export const scheduleJob = (job: () => void): void => {
-  jobQueue.push(job);
-
-  if (loopScheduled) {
-    return;
-  }
-  loopScheduled = true;
-  pulse(runLoop);
-};
-
-export const processChunked = <T>(items: ReadonlyArray<T>, each: (x: T) => void): void => {
-  let i = 0;
-  const snapshot = items.length;
-
-  const tick = (deadline: IdleDeadline) => {
-    while (deadline.timeRemaining() > 0 && i < snapshot) {
       try {
-        each(items[i++]!);
-      } catch (err) {
-        console.error('pulse: processChunked callback threw an error', err);
+        job(remaining);
+      } catch (error: unknown) {
+        console.error('pulse: job threw an error', error);
       }
     }
 
-    if (i < snapshot) {
-      pulse(tick);
+    // The queue after `prepareForNextCycle()` belongs to the new cycle, so do not modify it
+    if (cycle === runCycle) {
+      jobQueue.splice(0, index);
     }
-  };
+  } finally {
+    running = false;
+  }
 
-  pulse(tick);
+  schedulePump();
 };
 
 /**
- * Prepares the pulse scheduler for the next lifecycle.
- * Must be called BEFORE scheduling any dispose / init jobs.
+ * Adds a job to the scheduler queue.
+ *
+ * Jobs execute in queue order and are processed across multiple pulses when
+ * necessary.
+ *
+ * @param job - Synchronous work item to schedule.
  */
-export const prepareForNextCycle = (): void => {
-  pulse = firstFramePulse;
+export const scheduleJob = (job: Job): void => {
+  jobQueue.push(job);
+  schedulePump();
+};
+
+/**
+ * Starts a new lifecycle generation and discards jobs from the previous one.
+ *
+ * Any pending frame or idle callback is canceled. Call this before scheduling
+ * disposal or initialization jobs for the new lifecycle.
+ *
+ * @returns The generation number for the new lifecycle.
+ */
+export const prepareForNextCycle = (): number => {
+  cycle += 1;
+  cancelPendingTask();
 
   jobQueue.length = 0;
-  loopScheduled = false;
+  firstPulse = true;
+
+  return cycle;
+};
+
+/**
+ * Checks whether an asynchronous operation still belongs to the active
+ * lifecycle generation.
+ *
+ * @param expectedCycle - Generation captured when the operation started.
+ * @returns `true` if the operation belongs to the current lifecycle.
+ */
+export const isCurrentCycle = (expectedCycle: number): boolean => expectedCycle === cycle;
+
+/**
+ * Processes an array in scheduler-sized chunks.
+ *
+ * Each item is processed synchronously. If the time budget expires, processing
+ * continues in a later scheduler pulse. A single slow `each` call cannot be
+ * interrupted.
+ *
+ * @param items - Items to process.
+ * @param each - Function invoked once for each item.
+ */
+export const processChunked = <T>(items: ReadonlyArray<T>, each: (item: T) => void): void => {
+  const startCycle = cycle;
+  let index = 0;
+  const snapshot = items.length;
+
+  const tick: Job = remainingBudget => {
+    const start = performance.now();
+
+    while (isCurrentCycle(startCycle) && index < snapshot && performance.now() - start < remainingBudget) {
+      try {
+        each(items[index++]!);
+      } catch (error: unknown) {
+        console.error('pulse: processChunked callback threw an error', error);
+      }
+    }
+
+    if (isCurrentCycle(startCycle) && index < snapshot) {
+      scheduleJob(tick);
+    }
+  };
+
+  scheduleJob(tick);
 };
