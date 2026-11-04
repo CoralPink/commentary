@@ -1,4 +1,4 @@
-import { FRAME_BUDGET } from '../frame.ts'
+import { FRAME_BUDGET } from '../frame.ts';
 
 type IdleTask = {
   handle: number;
@@ -18,6 +18,7 @@ type IdleQueue = IdleTask[];
 export default (() => {
   let id = 0;
   let scheduled = false;
+  let cursor = 0;
 
   const idleQueue: IdleQueue = [];
   const channel = new MessageChannel();
@@ -29,10 +30,8 @@ export default (() => {
       timeRemaining: () => Math.max(0, FRAME_BUDGET - (performance.now() - start)),
     };
 
-    let index = 0;
-
-    while (index < idleQueue.length && deadline.timeRemaining() > 0) {
-      const task = idleQueue[index++]!;
+    while (cursor < idleQueue.length && deadline.timeRemaining() > 0) {
+      const task = idleQueue[cursor++]!;
 
       try {
         task.callback(deadline);
@@ -41,7 +40,8 @@ export default (() => {
       }
     }
 
-    idleQueue.splice(0, index);
+    idleQueue.splice(0, cursor);
+    cursor = 0;
 
     if (idleQueue.length > 0) {
       requestAnimationFrame(() => channel.port2.postMessage(0));
@@ -79,6 +79,10 @@ export default (() => {
 
       if (index !== -1) {
         idleQueue.splice(index, 1);
+
+        if (index < cursor) {
+          cursor--;
+        }
       }
     },
   };
