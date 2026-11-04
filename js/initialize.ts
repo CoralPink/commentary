@@ -5,10 +5,10 @@ import { bootSidebar } from './sidebar.ts';
 import { bootTableOfContents, initTableOfContents } from './table-of-contents.ts';
 
 import { ELEMENT_MEDIA_SLIDER, ELEMENT_YOUTUBE } from './extensions/element.ts';
-import type { Disposer, ExtensionEntry, InitializableExtension } from './extensions/types.ts';
+import type { Disposer, InitializableExtension } from './extensions/types.ts';
 
 import { isWebkitBased } from './utils/platform.ts';
-import { prepareForNextCycle, scheduleJob } from './utils/pulse.ts';
+import { isCurrentCycle, prepareForNextCycle, scheduleJob } from './utils/pulse.ts';
 
 type ModuleName = 'codeblock' | 'footnote' | 'footnote-legacy' | 'media-slider' | 'video' | 'youtube';
 type ModuleFactory = () => ModuleName;
@@ -18,7 +18,7 @@ type ModuleRequirement = {
   module: ModuleName;
 };
 
-type HtmlJob = (html: HTMLElement) => void | Promise<void>;
+type HtmlJob = (html: HTMLElement, cycle: number) => void | Promise<void>;
 
 const selectorModule = (selector: string, module: ModuleName | ModuleFactory): ModuleRequirement => ({
   selector,
@@ -35,7 +35,6 @@ const MODULE_REQUIREMENTS = [
   selectorModule('sup', footnoteModule),
 ] satisfies readonly ModuleRequirement[];
 
-const loadedExtensions = new Map<string, ExtensionEntry>();
 const activeDisposers = new Set<Disposer>();
 
 const regProcHtml =
@@ -44,66 +43,79 @@ const regProcHtml =
     activeDisposers.add(fn(html));
   };
 
-const ensureExtensionLoaded = (html: HTMLElement, url: string): Promise<void> => {
-  if (loadedExtensions.has(url)) {
-    const entry = loadedExtensions.get(url)!;
+const loadedExtensions = new Map<string, Promise<((html: HTMLElement) => Disposer) | undefined>>();
 
-    if (entry.initialize !== undefined) {
-      regProcHtml(entry.initialize)(html);
-    }
-    return entry.importPromise;
+const loadExtension = (url: string): Promise<((html: HTMLElement) => Disposer) | undefined> => {
+  let promise = loadedExtensions.get(url);
+
+  if (promise === undefined) {
+    promise = import(url)
+      .then((mod: InitializableExtension) => (typeof mod.initialize === 'function' ? mod.initialize : undefined))
+      .catch((error: unknown) => {
+        console.error(`Failed to load module: ${url}`, error);
+        loadedExtensions.delete(url);
+        return undefined;
+      });
+
+    loadedExtensions.set(url, promise);
   }
 
-  const importPromise = import(url)
-    .then((mod: InitializableExtension): void => {
-      const initialize = mod.initialize;
-
-      if (typeof initialize === 'function') {
-        regProcHtml(initialize)(html);
-      }
-      loadedExtensions.set(url, { importPromise, initialize });
-    })
-    .catch(err => {
-      console.error(`Failed to load module: ${url}`, err);
-      loadedExtensions.delete(url);
-    });
-
-  return importPromise;
+  return promise;
 };
 
-const loadExternalExtensions = async (html: HTMLElement): Promise<void> => {
-  await Promise.all(
-    MODULE_REQUIREMENTS.filter(req => html.querySelector(req.selector)).map(req =>
-      ensureExtensionLoaded(html, `${ROOT_PATH}${req.module}.js`),
-    ),
+const initializeExternalExtensions = async (html: HTMLElement, expectedCycle: number): Promise<void> => {
+  const requirements = MODULE_REQUIREMENTS.filter(requirement => html.querySelector(requirement.selector));
+
+  const extensions = await Promise.all(
+    requirements.map(async requirement => {
+      const url = `${ROOT_PATH}${requirement.module}.js`;
+      return loadExtension(url);
+    }),
   );
+
+  if (!isCurrentCycle(expectedCycle) || !html.isConnected) {
+    return;
+  }
+
+  for (const initialize of extensions) {
+    if (!initialize || !isCurrentCycle(expectedCycle) || !html.isConnected) {
+      continue;
+    }
+
+    const disposer = initialize(html);
+    isCurrentCycle(expectedCycle) && html.isConnected ? activeDisposers.add(disposer) : disposer();
+  }
 };
-
-const jobsInitialize = [
-  loadExternalExtensions,
-
-  regProcHtml(initTableOfContents),
-  initMark,
-] as const;
 
 const disposeAll = (): void => {
-  const snapshot: Array<Disposer> = Array.from(activeDisposers);
+  const snapshot = Array.from(activeDisposers);
   activeDisposers.clear();
 
-  for (const fn of snapshot) {
-    scheduleJob(fn);
+  for (const dispose of snapshot) {
+    try {
+      dispose();
+    } catch (error: unknown) {
+      console.error('dispose: disposer threw an error', error);
+    }
   }
 };
 
-const initExtensions = (html: HTMLElement): void => {
-  for (const job of jobsInitialize) {
-    scheduleJob(() => job(html));
+const setSchedule = (html: HTMLElement, jobs: readonly HtmlJob[]): void => {
+  const currentCycle = prepareForNextCycle();
+  disposeAll();
+
+  for (const job of jobs) {
+    scheduleJob(() => {
+      void Promise.resolve(job(html, currentCycle)).catch((error: unknown) => {
+        console.error('Scheduled HTML job failed', error);
+      });
+    });
   }
 };
 
 (() => {
   void navigator.serviceWorker
-    .register(`${ROOT_PATH}serviceworker.js`, {
+    ?.register(`${ROOT_PATH}serviceworker.js`, {
       scope: ROOT_PATH,
       type: 'module',
     })
@@ -119,12 +131,8 @@ const initExtensions = (html: HTMLElement): void => {
       if (article === null) {
         return;
       }
-      prepareForNextCycle();
 
-      disposeAll();
-      initExtensions(article);
-
-      hiddenSearch();
+      setSchedule(article, [regProcHtml(initTableOfContents), initializeExternalExtensions, initMark, hiddenSearch]);
     },
     { passive: true },
   );
@@ -139,11 +147,14 @@ const initExtensions = (html: HTMLElement): void => {
         return;
       }
 
-      const jobsBoot: readonly HtmlJob[] = [bootSidebar, bootTableOfContents, startupSearch];
-
-      for (const job of jobsBoot.concat(jobsInitialize)) {
-        scheduleJob(() => job(article));
-      }
+      setSchedule(article, [
+        bootSidebar,
+        bootTableOfContents,
+        regProcHtml(initTableOfContents),
+        initializeExternalExtensions,
+        initMark,
+        startupSearch,
+      ]);
     },
     { once: true, passive: true },
   );
