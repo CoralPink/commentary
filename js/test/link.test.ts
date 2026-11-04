@@ -1,5 +1,5 @@
-import { beforeEach, describe, expect, it } from 'vitest';
-import { getLinkKind, isExternalLink, isInternalLink, LinkKind } from '../link.ts';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { getLinkKind, isExternalLink, isInternalLink, LinkKind } from '@/link.ts';
 
 const createAnchor = (href?: string): HTMLAnchorElement => {
   const a = document.createElement('a');
@@ -19,8 +19,11 @@ describe('getLinkKind', () => {
   });
 
   it('If no href is present, it is undefined', () => {
+    const error = vi.spyOn(console, 'error').mockImplementation(() => {});
     const a = createAnchor();
+
     expect(getLinkKind(a)).toBe(LinkKind.Undefined);
+    expect(error).toHaveBeenCalledWith('link: not found href');
   });
 
   it('hash link is Native', () => {
