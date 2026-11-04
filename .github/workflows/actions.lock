@@ -15,7 +15,7 @@ workflows:
         - 'actions/upload-pages-artifact@v5.0.0'
         - 'astral-sh/setup-uv@v10.3.3'
         - 'dorny/paths-filter@v4.0.3'
-        - 'taiki-e/install-action@v2.89.1'
+        - 'taiki-e/install-action@v2.90.0'
 dependencies:
     'actions-rust-lang/setup-rust-toolchain@v2.0.1':
         ref: 'v2.0.1'
@@ -86,8 +86,8 @@ dependencies:
         commit: 'sha1-d1527c8f67ef9af357290475d4af4b0fab8f12e0'
         owner_id: 580492
         repo_id: 298565987
-    'taiki-e/install-action@v2.89.1':
-        ref: 'v2.89.1'
-        commit: 'sha1-682ce6c3c696a4cd5168a05f98e51aa02b877941'
+    'taiki-e/install-action@v2.90.0':
+        ref: 'v2.90.0'
+        commit: 'sha1-b80e2bb2635f28eb98b9fce1e2f0887e1535c6b2'
         owner_id: 43724913
         repo_id: 442947557
