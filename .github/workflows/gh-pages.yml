@@ -247,11 +247,6 @@ jobs:
         run: |
           npm ci
 
-      - name: Type check
-        working-directory: js
-        run: |
-          npx -p typescript@${TYPESCRIPT_VERSION} tsc --noEmit
-
       - name: Run Vitest
         working-directory: js
         run: |
@@ -303,6 +298,11 @@ jobs:
         working-directory: js
         run: |
           npm ci
+
+      - name: Type check
+        working-directory: js
+        run: |
+          npx -p typescript@${TYPESCRIPT_VERSION} tsc --noEmit
 
       - name: Build
         working-directory: js
