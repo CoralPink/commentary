@@ -165,4 +165,31 @@ describe('pulse scheduler', () => {
     expect(() => runNextFrame()).toThrow('No animation frame is scheduled');
     expect(job).not.toHaveBeenCalled();
   });
+
+  it('preserves jobs scheduled in a new cycle from a running job', () => {
+    const results: string[] = [];
+
+    scheduler.scheduleJob(() => {
+      results.push('current');
+
+      scheduler.prepareForNextCycle();
+
+      scheduler.scheduleJob(() => {
+        results.push('new cycle');
+      });
+    });
+
+    scheduler.scheduleJob(() => {
+      results.push('old cycle');
+    });
+
+    runNextFrame();
+
+    // The old cycle loop stops, and the new job waits for the next frame
+    expect(results).toEqual(['current']);
+
+    runNextFrame();
+
+    expect(results).toEqual(['current', 'new cycle']);
+  });
 });

@@ -2,7 +2,7 @@ import { FRAME_BUDGET } from './frame.ts';
 
 import emulateIdleCallback from './emulate/idle-callback.ts';
 
-type Job = () => void;
+type Job = (remainingBudget: number) => void;
 
 type PendingTask = { kind: 'frame'; id: number } | { kind: 'idle'; id: number };
 
@@ -117,11 +117,12 @@ const runLoop = (deadline?: IdleDeadline): void => {
   pendingTask = undefined;
   running = true;
 
+  const runCycle = cycle;
   const start = performance.now();
   let index = 0;
 
   try {
-    while (index < jobQueue.length) {
+    while (cycle === runCycle && index < jobQueue.length) {
       const elapsed = performance.now() - start;
       const remaining = deadline ? Math.min(deadline.timeRemaining(), FRAME_BUDGET - elapsed) : FRAME_BUDGET - elapsed;
 
@@ -132,13 +133,16 @@ const runLoop = (deadline?: IdleDeadline): void => {
       const job = jobQueue[index++]!;
 
       try {
-        job();
+        job(remaining);
       } catch (error: unknown) {
         console.error('pulse: job threw an error', error);
       }
     }
 
-    jobQueue.splice(0, index);
+    // The queue after `prepareForNextCycle()` belongs to the new cycle, so do not modify it
+    if (cycle === runCycle) {
+      jobQueue.splice(0, index);
+    }
   } finally {
     running = false;
   }
@@ -200,10 +204,10 @@ export const processChunked = <T>(items: ReadonlyArray<T>, each: (item: T) => vo
   let index = 0;
   const snapshot = items.length;
 
-  const tick = (): void => {
+  const tick: Job = remainingBudget => {
     const start = performance.now();
 
-    while (index < snapshot && performance.now() - start < FRAME_BUDGET) {
+    while (index < snapshot && performance.now() - start < remainingBudget) {
       try {
         each(items[index++]!);
       } catch (error: unknown) {
