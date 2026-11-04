@@ -114,7 +114,6 @@ const setSchedule = (html: HTMLElement, jobs: readonly HtmlJob[]): void => {
 };
 
 (() => {
-  /*
   void navigator.serviceWorker
     .register(`${ROOT_PATH}serviceworker.js`, {
       scope: ROOT_PATH,
@@ -123,7 +122,7 @@ const setSchedule = (html: HTMLElement, jobs: readonly HtmlJob[]): void => {
     .catch((error: unknown) => {
       console.error(`Registration failed: ${error}`);
     });
-*/
+
   document.addEventListener(
     CONTENT_READY,
     (ev: Event): void => {
