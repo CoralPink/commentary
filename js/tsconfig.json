@@ -1,11 +1,6 @@
 {
   "compilerOptions": {
-    "lib": [
-      "esnext",
-      "dom",
-      "dom.iterable",
-      "webworker"
-    ],
+    "lib": ["esnext", "dom", "dom.iterable", "webworker"],
     "module": "esnext",
     "moduleResolution": "bundler",
 
@@ -28,7 +23,11 @@
     "noEmit": true,
 
     "allowImportingTsExtensions": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+
+    "paths": {
+      "@/*": ["./*"]
+    }
   },
   "include": [
     "*.ts",
@@ -36,13 +35,12 @@
     "extensions/**/*.ts",
     "types/**/*.ts",
     "types/**/*.d.ts",
-    "utils/**/*.ts"
+    "utils/**/*.ts",
+
+    "test/**/*.test.ts"
 
     // Not currently in use
     // "webworker/**/*.ts"
   ],
-  "exclude": [
-    "dist/",
-    "node_modules/"
-  ]
+  "exclude": ["dist/", "node_modules/"]
 }
