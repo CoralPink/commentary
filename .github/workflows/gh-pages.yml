@@ -220,7 +220,6 @@ jobs:
   test-js:
     name: Test JS
     runs-on: ubuntu-slim
-    needs: build-wasm
     env:
       # renovate: datasource=npm depName=typescript
       TYPESCRIPT_VERSION: "7.0.2"
@@ -232,17 +231,6 @@ jobs:
           fetch-depth: 1
           sparse-checkout: |
             js
-
-      - name: Download Wasm Package
-        uses: actions/download-artifact@v8.0.2
-        with:
-          name: wasm-book
-          path: pkg
-
-      - name: Copy Wasm Bindings
-        run: |
-          cp pkg/wasm_book.js js
-          cp pkg/wasm_book.d.ts js
 
       - name: Setup Node.js
         uses: actions/setup-node@v7.1.0
@@ -258,11 +246,6 @@ jobs:
         working-directory: js
         run: |
           npm ci
-
-      - name: Type check
-        working-directory: js
-        run: |
-          npx -p typescript@${TYPESCRIPT_VERSION} tsc --noEmit
 
       - name: Run Vitest
         working-directory: js
@@ -315,6 +298,11 @@ jobs:
         working-directory: js
         run: |
           npm ci
+
+      - name: Type check
+        working-directory: js
+        run: |
+          npx -p typescript@${TYPESCRIPT_VERSION} tsc --noEmit
 
       - name: Build
         working-directory: js
