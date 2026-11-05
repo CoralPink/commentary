@@ -127,10 +127,7 @@ describe('mark', () => {
     await flushPromises();
 
     expect(mocks.highlights.set).toHaveBeenCalledOnce();
-    expect(mocks.highlights.set).toHaveBeenCalledWith(
-      'marking',
-      expect.any(TestHighlight),
-    );
+    expect(mocks.highlights.set).toHaveBeenCalledWith('marking', expect.any(TestHighlight));
 
     const highlight = mocks.highlights.set.mock.calls[0]?.[1] as TestHighlight;
     expect(highlight.ranges[0]?.startOffset).toBe(0);
@@ -156,6 +153,29 @@ describe('mark', () => {
     expect(wasmMocks.mockInitWasm).toHaveBeenCalledOnce();
 
     mocks.cycle += 1;
+    resolveWasm();
+
+    await flushPromises();
+
+    expect(mocks.highlights.set).not.toHaveBeenCalled();
+    expect(button.classList.contains('hidden')).toBe(true);
+  });
+
+  it('ignores a result when the article is removed before completion', async () => {
+    const { article, button } = createFixture();
+
+    let resolveWasm!: () => void;
+
+    wasmMocks.mockInitWasm.mockImplementation(
+      () =>
+        new Promise<void>(resolve => {
+          resolveWasm = resolve;
+        }),
+    );
+
+    mark.initMark(article, mocks.cycle);
+
+    article.remove();
     resolveWasm();
 
     await flushPromises();
@@ -199,6 +219,53 @@ describe('mark', () => {
 
     expect(mocks.highlights.set).toHaveBeenCalledOnce();
     expect(latestHighlight.ranges[0]?.startOffset).toBe(2);
+  });
+
+  it('ignores a stale no-match result after a newer match is highlighted', async () => {
+    const { article, button } = createFixture();
+    const resolveWasm: Array<() => void> = [];
+
+    wasmMocks.mockInitWasm.mockImplementation(
+      () =>
+        new Promise<void>(resolve => {
+          resolveWasm.push(resolve);
+        }),
+    );
+
+    wasmMocks.mockGetMatchSentences.mockImplementation((term: string) => {
+      if (term === 'old-no-match') {
+        return { index: [], hadMatch: false };
+      }
+
+      return {
+        index: [{ start: 2, end: 3 }],
+        hadMatch: true,
+      };
+    });
+
+    setMarkParam('old-no-match');
+    mark.initMark(article, mocks.cycle);
+
+    setMarkParam('new-match');
+    mark.initMark(article, mocks.cycle);
+
+    expect(resolveWasm).toHaveLength(2);
+
+    // Apply the new match results first
+    resolveWasm[1]!();
+    await flushPromises();
+
+    expect(mocks.highlights.set).toHaveBeenCalledOnce();
+    expect(mocks.highlights.clear).not.toHaveBeenCalled();
+    expect(button.classList.contains('hidden')).toBe(false);
+
+    // Do not clear the display even if older “No matches” results come in later
+    resolveWasm[0]!();
+    await flushPromises();
+
+    expect(mocks.highlights.clear).not.toHaveBeenCalled();
+    expect(mocks.highlights.set).toHaveBeenCalledOnce();
+    expect(button.classList.contains('hidden')).toBe(false);
   });
 
   it('does not restore a highlight when unmarking invalidates a pending request', async () => {
