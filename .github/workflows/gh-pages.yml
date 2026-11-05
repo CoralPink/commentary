@@ -220,9 +220,6 @@ jobs:
   test-js:
     name: Test JS
     runs-on: ubuntu-slim
-    env:
-      # renovate: datasource=npm depName=typescript
-      TYPESCRIPT_VERSION: "7.0.2"
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v7.0.1
@@ -264,6 +261,9 @@ jobs:
     name: Build JS
     runs-on: ubuntu-slim
     needs: [test-js, build-wasm]
+    env:
+      # renovate: datasource=npm depName=typescript
+      TYPESCRIPT_VERSION: "7.0.2"
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v7.0.1
