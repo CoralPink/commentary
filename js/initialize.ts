@@ -48,17 +48,19 @@ const loadedExtensions = new Map<string, Promise<((html: HTMLElement) => Dispose
 const loadExtension = (url: string): Promise<((html: HTMLElement) => Disposer) | undefined> => {
   let promise = loadedExtensions.get(url);
 
-  if (promise === undefined) {
-    promise = import(url)
-      .then((mod: InitializableExtension) => (typeof mod.initialize === 'function' ? mod.initialize : undefined))
-      .catch((error: unknown) => {
-        console.error(`Failed to load module: ${url}`, error);
-        loadedExtensions.delete(url);
-        return undefined;
-      });
-
-    loadedExtensions.set(url, promise);
+  if (promise !== undefined) {
+    return promise;
   }
+
+  promise = import(url)
+    .then((mod: InitializableExtension) => (typeof mod.initialize === 'function' ? mod.initialize : undefined))
+    .catch((error: unknown) => {
+      console.error(`Failed to load module: ${url}`, error);
+      loadedExtensions.delete(url);
+      return undefined;
+    });
+
+  loadedExtensions.set(url, promise);
 
   return promise;
 };
@@ -129,6 +131,7 @@ const setSchedule = (html: HTMLElement, jobs: readonly HtmlJob[]): void => {
       const article = ev.target instanceof HTMLElement ? ev.target : null;
 
       if (article === null) {
+        console.error('Target not found');
         return;
       }
 
