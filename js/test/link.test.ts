@@ -42,7 +42,22 @@ describe('getLinkKind', () => {
   });
 
   it('Internal .html files are LinkKind.Internal', () => {
+    const a = createAnchor('about.html');
+    expect(getLinkKind(a)).toBe(LinkKind.Internal);
+  });
+
+  it('Internal .html files are LinkKind.Internal', () => {
     const a = createAnchor('/about.html');
+    expect(getLinkKind(a)).toBe(LinkKind.Internal);
+  });
+
+  it('Internal .html files are LinkKind.Internal', () => {
+    const a = createAnchor('../about.html');
+    expect(getLinkKind(a)).toBe(LinkKind.Internal);
+  });
+
+  it('Internal .html files are LinkKind.Internal', () => {
+    const a = createAnchor('../about/check.html');
     expect(getLinkKind(a)).toBe(LinkKind.Internal);
   });
 
