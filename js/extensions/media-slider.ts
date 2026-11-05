@@ -9,15 +9,8 @@ const VARIABLE_SLIDE_WIDTH = '--slide-width';
 
 const CLASS_MEDIA = 'media';
 const CLASS_CONTROLS = 'controls';
-const CLASS_ARROW = 'arrow';
 const CLASS_INDICATORS = 'indicators';
 const CLASS_ACTIVE = 'active';
-
-const BUTTON_TEXT_PREV = '◀';
-const BUTTON_TEXT_NEXT = '▶';
-
-const DIRECTION_PREV = 'prev';
-const DIRECTION_NEXT = 'next';
 
 const SCROLL_INTO_VIEW_OPTIONS: ScrollIntoViewOptions = {
   behavior: 'smooth',
@@ -27,7 +20,6 @@ const SCROLL_INTO_VIEW_OPTIONS: ScrollIntoViewOptions = {
 
 const YOUTUBE_THUMBNAIL = 'mqdefault.jpg';
 
-type Direction = typeof DIRECTION_PREV | typeof DIRECTION_NEXT;
 type CompatibleMedia = HTMLImageElement | HTMLVideoElement | HTMLElement;
 
 interface YouTubeMediaElement extends HTMLElement {
@@ -112,31 +104,13 @@ class MediaSlider extends HTMLElement {
     }
 
     const index = ((next % len) + len) % len;
+    const media = this.medias[index];
 
-    this.mediaContainer.scrollTo({
-      left: this.mediaContainer.clientWidth * index,
-      behavior: 'smooth',
-    });
-  }
+    if (media === undefined) {
+      return;
+    }
 
-  private createArrow(direction: Direction): HTMLDivElement {
-    const arrow = document.createElement('div');
-
-    arrow.classList.add(CLASS_ARROW);
-    arrow.textContent = direction === DIRECTION_PREV ? BUTTON_TEXT_PREV : BUTTON_TEXT_NEXT;
-
-    arrow.addEventListener(
-      'click',
-      (): void => {
-        this.scrollToSlide(this.index + (direction === DIRECTION_PREV ? -1 : 1));
-      },
-      {
-        passive: true,
-        signal: this.abortController.signal,
-      },
-    );
-
-    return arrow;
+    media.scrollIntoView(SCROLL_INTO_VIEW_OPTIONS);
   }
 
   private setupMedia(media: HTMLVideoElement | YouTubeMediaElement): void {
@@ -165,7 +139,7 @@ class MediaSlider extends HTMLElement {
 
     const controls = document.createElement('div');
     controls.classList.add(CLASS_CONTROLS);
-    controls.append(this.createArrow(DIRECTION_PREV), this.createIndicators(), this.createArrow(DIRECTION_NEXT));
+    controls.append(this.createIndicators());
 
     this.controls = controls;
     this.shadowRoot?.append(controls);
@@ -291,15 +265,21 @@ class MediaSlider extends HTMLElement {
       return;
     }
 
-    for (const x of entries) {
-      if (!x.isIntersecting) {
-        continue;
-      }
+    const entry = entries
+      .filter(x => x.isIntersecting && x.intersectionRatio >= 0.8)
+      .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
 
-      this.goTo(this.medias.indexOf(x.target as CompatibleMedia));
-
+    if (entry === undefined) {
       return;
     }
+
+    const index = this.medias.indexOf(entry.target as CompatibleMedia);
+
+    if (index < 0) {
+      return;
+    }
+
+    this.goTo(index);
   };
 
   private createIndicators(): HTMLDivElement {
