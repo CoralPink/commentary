@@ -34,6 +34,9 @@ let pendingTask: PendingTask | undefined;
 /** Prevents multiple scheduler loops from running at the same time. */
 let running = false;
 
+/** Retrieves the current lifecycle generation. */
+export const getCurrentCycle = (): number => cycle;
+
 /** Whether the browser provides the native idle callback API. */
 const supportsRequestIdleCallback = typeof globalThis.requestIdleCallback === 'function';
 
