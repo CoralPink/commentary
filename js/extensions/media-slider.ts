@@ -200,7 +200,7 @@ class MediaSlider extends HTMLElement {
         this.createSlider();
       },
       {
-        rootMargin: '200px 0px',
+        rootMargin: '80% 0%',
       },
     );
 
