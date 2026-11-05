@@ -1,6 +1,8 @@
 import { isSearchPopoverOpen } from './searchHelper.ts';
 import initWasm, { get_match_sentences } from './wasm_book.js';
+
 import { createAbortScope } from './utils/abort-scope.ts';
+import { getCurrentCycle, isCurrentCycle } from './utils/pulse.ts';
 
 type NodeOffset = {
   text: Text;
@@ -33,15 +35,17 @@ const TARGET_MARK_BUTTON = 'mark-btn';
 
 const markEventScope = createAbortScope();
 
+let markingRequest = 0;
+
 export const updateMark = (): void => {
   const article = document.getElementById('article');
 
   if (article === null) {
-    console.error(`updateMark: article element not found`);
+    console.error('updateMark: article element not found');
     return;
   }
 
-  initMark(article);
+  initMark(article, getCurrentCycle());
 };
 
 const keyVisible = (ev: KeyboardEvent): void => {
@@ -72,6 +76,8 @@ const setIconColor = (button: HTMLButtonElement, color: string): void => {
 };
 
 export const unmarking = (): void => {
+  markingRequest += 1;
+
   CSS.highlights.clear();
 
   const button = document.getElementById(TARGET_MARK_BUTTON);
@@ -170,8 +176,12 @@ const calcHighlight = async (element: HTMLElement, term: string): Promise<Highli
   }
 };
 
-const marking = async (element: HTMLElement, term: string): Promise<void> => {
+const marking = async (element: HTMLElement, term: string, cycle: number, requestId: number): Promise<void> => {
   const highlight = await calcHighlight(element, term);
+
+  if (!isCurrentCycle(cycle) || requestId !== markingRequest || !element.isConnected) {
+    return;
+  }
 
   if (!highlight.result.hadMatch) {
     hideButton();
@@ -196,7 +206,8 @@ const marking = async (element: HTMLElement, term: string): Promise<void> => {
   visibleButton();
 };
 
-export const initMark = (element: HTMLElement): void => {
+export const initMark = (element: HTMLElement, cycle: number): void => {
+  const requestId = ++markingRequest;
   const param = new URLSearchParams(globalThis.location.search).get('mark');
 
   if (!param) {
@@ -204,5 +215,5 @@ export const initMark = (element: HTMLElement): void => {
     return;
   }
 
-  marking(element, param);
+  void marking(element, param, cycle, requestId);
 };
