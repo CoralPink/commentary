@@ -33,7 +33,7 @@ describe('emulateIdleCallback', () => {
 
     vi.resetModules();
 
-    const { default: idleCallback } = await import('../utils/emulate/idle-callback.ts');
+    const { default: idleCallback } = await import('@/utils/emulate/idle-callback.ts');
     const results: string[] = [];
 
     let firstHandle = 0;

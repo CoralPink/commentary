@@ -51,11 +51,7 @@ const requestIdle: Pulse = supportsRequestIdleCallback
  * @param id - Handle returned by {@link requestIdle}.
  */
 const cancelIdle = (id: number): void => {
-  if (supportsRequestIdleCallback) {
-    globalThis.cancelIdleCallback(id);
-  } else {
-    emulateIdleCallback.cancel(id);
-  }
+  supportsRequestIdleCallback ? globalThis.cancelIdleCallback(id) : emulateIdleCallback.cancel(id);
 };
 
 /** Cancels the scheduler's currently pending frame or idle callback. */
@@ -85,19 +81,18 @@ const schedulePump = (): void => {
     return;
   }
 
-  if (firstPulse) {
-    const id = requestAnimationFrame(() => {
-      pendingTask = undefined;
-      firstPulse = false;
-      runLoop();
-    });
-
-    pendingTask = { kind: 'frame', id };
+  if (!firstPulse) {
+    pendingTask = { kind: 'idle', id: requestIdle(runLoop) };
     return;
   }
 
-  const id = requestIdle(runLoop);
-  pendingTask = { kind: 'idle', id };
+  const id = requestAnimationFrame(() => {
+    pendingTask = undefined;
+    firstPulse = false;
+    runLoop();
+  });
+
+  pendingTask = { kind: 'frame', id };
 };
 
 /**
@@ -119,6 +114,7 @@ const runLoop = (deadline?: IdleDeadline): void => {
 
   const runCycle = cycle;
   const start = performance.now();
+
   let index = 0;
 
   try {
@@ -201,9 +197,10 @@ export const isCurrentCycle = (expectedCycle: number): boolean => expectedCycle 
  * @param each - Function invoked once for each item.
  */
 export const processChunked = <T>(items: ReadonlyArray<T>, each: (item: T) => void): void => {
-  const startCycle = cycle;
-  let index = 0;
   const snapshot = items.length;
+  const startCycle = cycle;
+
+  let index = 0;
 
   const tick: Job = remainingBudget => {
     const start = performance.now();
