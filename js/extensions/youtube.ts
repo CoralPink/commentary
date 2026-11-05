@@ -7,16 +7,17 @@ const API_URL = 'https://www.youtube.com/iframe_api';
 
 interface YouTubePlayer {
   destroy(): void;
-  pauseVideo(): void;
 }
 
 interface YouTubePlayerOptions {
   videoId: string;
   playerVars: {
-    playsinline: 1;
+    autoplay: 0;
+    origin: string;
+    playsinline: 0;
+    rel: 0;
   };
   events: {
-    onReady(): void;
     onStateChange(event: { data: number }): void;
   };
 }
@@ -125,10 +126,12 @@ class YouTubeVideo extends HTMLElement {
         this.player = new Player(mount, {
           videoId: id,
           playerVars: {
-            playsinline: 1,
+            autoplay: 0,
+            origin: location.origin,
+            playsinline: 0,
+            rel: 0,
           },
           events: {
-            onReady: () => {},
             onStateChange: ({ data }) => {
               if (data === PlayerState.ENDED) {
                 this.dispatchEvent(new Event('ended'));
@@ -161,10 +164,6 @@ class YouTubeVideo extends HTMLElement {
     );
 
     this.visibilityObserver.observe(this);
-  }
-
-  pauseVideo(): void {
-    this.player?.pauseVideo();
   }
 
   disconnectedCallback(): void {
