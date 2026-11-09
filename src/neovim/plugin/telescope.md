@@ -119,6 +119,8 @@ brew install ripgrep
 ```
 ~~~
 
+![grogu](img/grogu.jxl)
+
 #### telescope-fzf-native.nvim
 
 わたし自身があんまりよく分かってない領域なので、少し無責任な紹介になってしまいますが、

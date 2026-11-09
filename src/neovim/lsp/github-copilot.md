@@ -166,9 +166,7 @@ Waiting, it might take a while and this popup will auto close once done
 
 ## Wrap Up
 
-<video width="1280" height="720" data-poster="img/zankyosanka-thumbnail.jxl">
-  <source src="img/zankyosanka.webm" type="video/webm">
-</video>
+<youtube-video data-id="ilkMw4ioTG0"></youtube-video>
 
 ```admonish success
 おめでとう❗ 登録完了です🎉

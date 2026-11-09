@@ -42,6 +42,8 @@ Abbey Road 収録の Come Together の詩に登場することでも有名🍹
 }}
 が名を連ねているのがおもしろいですね😋
 
+![coke-starwars](img/coke-starwars.jxl)
+
 前項でも出ていましたが、GitHub が直々に提供している`copilot.vim`というプラグインもあります。
 
 ...ありますが、わたしは`copilot.lua`にしました👩‍✈️

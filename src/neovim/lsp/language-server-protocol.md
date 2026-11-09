@@ -77,9 +77,7 @@ A Question of Honour (by [Sarah Brightman](https://en.wikipedia.org/wiki/Sarah_B
 貴方が勝つか負けるか、それは名誉が問われる瞬間
 ```
 
-<video width="1280" height="720" data-poster="img/yomiuri-land-thunbmail.jxl">
-  <source src="img/yomiuri-land.webm" type="video/webm">
-</video>
+<youtube-video data-id="ZN4WuiVFIAI"></youtube-video>
 
 ```admonish success title=""
 And the way that you choose, it’s a question of honour

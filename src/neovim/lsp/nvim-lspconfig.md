@@ -276,14 +276,7 @@ nvimトレーナーは努力を続けていたってこと⁉️
 
 ...。😮
 
-<media-slider>
-  <video width="1280" height="720" data-poster="img/mm-bon-odori-thumbnail.jxl">
-    <source src="img/mm-bon-odori.webm" type="video/webm">
-  </video>
-  <video width="1280" height="720" data-poster="img/anpanman-thumbnail.jxl">
-    <source src="img/anpanman.webm" type="video/webm">
-  </video>
-</media-slider>
+<youtube-video data-id="SNKLxsoDSPY"></youtube-video>
 
 …いや、宴こしらえてもろうてるやないか👵
 

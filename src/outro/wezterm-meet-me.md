@@ -615,9 +615,7 @@ No one alerted you
 でも、"ドンドンぶち上がる" 花火を見てる方がよっぽど健全だと気づいたんだ❗
 
 <media-slider>
-  <video width="1280" height="720" data-poster="img/itabashi-hanabi-thumbnail.jxl">
-    <source src="img/itabashi-hanabi.webm" type="video/webm">
-  </video>
+  <youtube-video data-id="I27thesxQTY"></youtube-video>
   <youtube-video data-id="08yn4r9KetQ"></youtube-video>
 </media-slider>
 

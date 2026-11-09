@@ -98,10 +98,6 @@ This action causes the equivalent of wezterm.emit(name, window, pane) to be call
 ```admonish success
 切り替えられましたね🤗
 
-<video width="1280" height="720" data-poster="img/kujira-no-senaka-thumbnail.jxl">
-  <source src="img/kujira-no-senaka.webm" type="video/webm">
-</video>
-
 気持ちいい〜❗️{{footnote:
 このサイトでは時々、話に脈略があるのかないのかよくわからないムービーやピクチャが差し込まれていて、
 なんだかとってもクセが強いんですが、わたしが遊びでやってるだけです 🧸
