@@ -444,7 +444,7 @@ Bon Jovi の代表曲と見なされている Livin' on a Prayer は、リリー
 祈りに縋ってでも 生きていくの
 ```
 
-<youtube-video data-id="_b4fzT3ut2w"></youtube-video>
+<youtube-video data-id="UtZJsBQz9Ms"></youtube-video>
 
 <div style="color: #999999; font-size: 90%; text-align: center;">
 <div style="margin-top: 8em">
