@@ -15,6 +15,6 @@ export default defineConfig({
       './wasm_book.js': fileURLToPath(new URL('./test/mocks/wasm_book.ts', import.meta.url)),
     },
     environment: 'happy-dom',
-    include: ['test/*.test.ts'],
+    include: ['test/**/*.test.ts'],
   },
 });
