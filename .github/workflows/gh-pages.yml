@@ -482,6 +482,8 @@ jobs:
         uses: actions-rust-lang/setup-rust-toolchain@v2.0.1
         with:
           toolchain: stable
+          cache-workspaces: |
+            rs/mdbook-footnote -> target
 
       - name: Install Mdbook
         run: |
