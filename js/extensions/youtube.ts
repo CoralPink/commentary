@@ -5,11 +5,11 @@ import { ROOT_PATH } from '../constants.ts';
 
 const API_URL = 'https://www.youtube.com/iframe_api';
 
-interface YouTubePlayer {
+type YouTubePlayer = {
   destroy(): void;
-}
+};
 
-interface YouTubePlayerOptions {
+type YouTubePlayerOptions = {
   videoId: string;
   playerVars: {
     autoplay: 0;
@@ -20,14 +20,14 @@ interface YouTubePlayerOptions {
   events: {
     onStateChange(event: { data: number }): void;
   };
-}
+};
 
-interface YouTubeApi {
+type YouTubeApi = {
   PlayerState: {
     ENDED: number;
   };
   Player: new (element: HTMLElement, options: YouTubePlayerOptions) => YouTubePlayer;
-}
+};
 
 declare global {
   interface Window {
@@ -35,6 +35,13 @@ declare global {
     onYouTubeIframeAPIReady?: () => void;
   }
 }
+
+const PLAYER_VARS = {
+  autoplay: 0,
+  origin: location.origin,
+  playsinline: 0,
+  rel: 0,
+} satisfies YouTubePlayerOptions['playerVars'];
 
 let apiPromise: Promise<YouTubeApi> | undefined;
 
@@ -125,12 +132,7 @@ class YouTubeVideo extends HTMLElement {
 
         this.player = new Player(mount, {
           videoId: id,
-          playerVars: {
-            autoplay: 0,
-            origin: location.origin,
-            playsinline: 0,
-            rel: 0,
-          },
+          playerVars: PLAYER_VARS,
           events: {
             onStateChange: ({ data }) => {
               if (data === PlayerState.ENDED) {
