@@ -129,7 +129,7 @@ jobs:
         uses: actions-rust-lang/setup-rust-toolchain@v2.0.1
         with:
           target: wasm32-unknown-unknown
-          rust-src-dir: rs/wasm
+          cache-workspaces: rs/wasm
           cache-shared-key: ${{ env.WASM_SHARED_KEY }}
 
       - name: Install Wasm Pack
@@ -164,7 +164,7 @@ jobs:
         uses: actions-rust-lang/setup-rust-toolchain@v2.0.1
         with:
           target: wasm32-unknown-unknown
-          rust-src-dir: rs/wasm
+          cache-workspaces: rs/wasm
           cache-shared-key: ${{ env.WASM_SHARED_KEY }}
 
       - name: Install Wasm Bindgen
@@ -408,7 +408,7 @@ jobs:
       - name: Setup Rust
         uses: actions-rust-lang/setup-rust-toolchain@v2.0.1
         with:
-          rust-src-dir: rs/mdbook-footnote
+          chace-workspaces: rs/mdbook-footnote
 
       - name: Test Cargo (mdbook footnote)
         working-directory: rs/mdbook-footnote
