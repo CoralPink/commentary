@@ -7,7 +7,7 @@ rust-version = "1.98"
 license = "Apache-2.0"
 
 [dependencies]
-bumpalo = { version = "=3.20.3", features = ["collections"] }
+bumpalo = { version = "=3.20.4", features = ["collections"] }
 clap = "=4.6.7"
 mdbook-preprocessor = "=0.5.4"
 regex = "=1.13.1"
