@@ -175,8 +175,7 @@ jobs:
       - name: Build Wasm
         working-directory: rs/wasm
         run: |
-          RUSTFLAGS="-C target-feature=+simd128" \
-            cargo build --release --target wasm32-unknown-unknown
+          cargo build --release --target wasm32-unknown-unknown
 
           wasm-bindgen \
             ./target/wasm32-unknown-unknown/release/wasm_book.wasm \
@@ -206,6 +205,16 @@ jobs:
             -o ./pkg/wasm_book_bg.opt.wasm
 
           mv ./pkg/wasm_book_bg.opt.wasm ./pkg/wasm_book_bg.wasm
+
+      - name: Verify Wasm SIMD
+        working-directory: rs/wasm
+        run: |
+          if wasm-dis ./pkg/wasm_book_bg.wasm | grep -Eq 'v128\.|[if][0-9]+x[0-9]+\.'; then
+            echo "Wasm SIMD instructions found."
+          else
+            echo "::error::No Wasm SIMD instructions found."
+            exit 1
+          fi
 
       - name: Upload Wasm Artifact
         uses: actions/upload-artifact@v7.0.2
