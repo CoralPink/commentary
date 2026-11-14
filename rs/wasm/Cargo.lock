@@ -102,10 +102,9 @@ checksum = "b6d2cec3eae94f9f509c767b45932f1ada8350c4bdb85af2fcab4a3c14807981"
 
 [[package]]
 name = "macros"
-version = "0.3.2"
+version = "0.3.3"
 dependencies = [
  "wasm-bindgen",
- "web-sys",
 ]
 
 [[package]]
@@ -408,7 +407,7 @@ checksum = "9ab365ce29ba0232367502b2894556ae77a9c214d33dbf453fdba7f586905918"
 
 [[package]]
 name = "wasm-book"
-version = "2.1.1"
+version = "2.2.2"
 dependencies = [
  "bumpalo",
  "getset",
@@ -421,16 +420,6 @@ dependencies = [
  "unicode-segmentation",
  "wasm-bindgen",
  "wasm-bindgen-test",
-]
-
-[[package]]
-name = "web-sys"
-version = "0.3.107"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d7d179596ff5ec0f6de4db64d54011bde6289cc49603d3a6e4ce3f329207ab88"
-dependencies = [
- "js-sys",
- "wasm-bindgen",
 ]
 
 [[package]]

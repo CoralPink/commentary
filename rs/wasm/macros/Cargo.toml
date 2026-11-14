@@ -1,6 +1,6 @@
 [package]
 name = "macros"
-version = "0.3.2"
+version = "0.3.3"
 edition = "2024"
 
 [dependencies]
@@ -8,9 +8,3 @@ wasm-bindgen = { version = "=0.2.130", optional = true }
 
 [features]
 use-browser-console = ["wasm-bindgen"]
-
-[dependencies.web-sys]
-version = "=0.3.107"
-features = [
-  "console",
-]

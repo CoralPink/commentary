@@ -128,7 +128,6 @@ jobs:
       - name: Setup Rust
         uses: actions-rust-lang/setup-rust-toolchain@v2.0.1
         with:
-          toolchain: stable
           target: wasm32-unknown-unknown
           rust-src-dir: rs/wasm
           cache-shared-key: ${{ env.WASM_SHARED_KEY }}
@@ -164,7 +163,6 @@ jobs:
       - name: Setup Rust
         uses: actions-rust-lang/setup-rust-toolchain@v2.0.1
         with:
-          toolchain: stable
           target: wasm32-unknown-unknown
           rust-src-dir: rs/wasm
           cache-shared-key: ${{ env.WASM_SHARED_KEY }}
@@ -410,7 +408,6 @@ jobs:
       - name: Setup Rust
         uses: actions-rust-lang/setup-rust-toolchain@v2.0.1
         with:
-          toolchain: stable
           rust-src-dir: rs/mdbook-footnote
 
       - name: Test Cargo (mdbook footnote)
@@ -481,7 +478,6 @@ jobs:
       - name: Setup Rust
         uses: actions-rust-lang/setup-rust-toolchain@v2.0.1
         with:
-          toolchain: stable
           cache-workspaces: |
             rs/mdbook-footnote -> target
 

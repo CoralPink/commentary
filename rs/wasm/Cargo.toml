@@ -1,9 +1,9 @@
 [package]
 name = "wasm-book"
-version = "2.1.1"
+version = "2.2.2"
 authors = ["CoralPink <teqt6ytqt@mozmail.com>"]
 edition = "2024"
-rust-version = "1.98"
+rust-version = "1.100"
 description = "This is the WebAssembly code used on this site."
 homepage = "https://github.com/CoralPink"
 repository = "https://github.com/CoralPink/commentary"
