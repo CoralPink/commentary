@@ -408,7 +408,7 @@ jobs:
       - name: Setup Rust
         uses: actions-rust-lang/setup-rust-toolchain@v2.0.1
         with:
-          chace-workspaces: rs/mdbook-footnote
+          cache-workspaces: rs/mdbook-footnote
 
       - name: Test Cargo (mdbook footnote)
         working-directory: rs/mdbook-footnote
@@ -483,13 +483,13 @@ jobs:
 
       - name: Install Mdbook
         run: |
-          cargo +stable install mdbook --version ${MDBOOK_VERSION}
+          cargo install mdbook --version ${MDBOOK_VERSION}
 
-          #cargo +stable install mdbook-admonish
-          cargo +stable install --git https://github.com/CoralPink/mdbook-admonish.git --branch mdbook-v0.5.x
+          #cargo install mdbook-admonish
+          cargo install --git https://github.com/CoralPink/mdbook-admonish.git --branch mdbook-v0.5.x
 
-          cargo +stable install mdbook-tailor
-          cargo +stable install --path ./rs/mdbook-footnote
+          cargo install mdbook-tailor
+          cargo install --path ./rs/mdbook-footnote
 
       - name: Setup Pages
         if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
