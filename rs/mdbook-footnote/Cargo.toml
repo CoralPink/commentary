@@ -1,9 +1,9 @@
 [package]
 name = "mdbook-footnote"
-version = "2.2.0"
+version = "2.2.1"
 authors = ["David Drysdale <dmd@lurklurk.org>", "CoralPink"]
 edition = "2024"
-rust-version = "1.98"
+rust-version = "1.100"
 license = "Apache-2.0"
 
 [dependencies]
