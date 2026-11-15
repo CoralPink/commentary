@@ -1,6 +1,7 @@
 // @vitest-environment happy-dom
 
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { CACHE_URL, CACHE_VERSION } from '@/serviceworker.ts';
 
 const mocks = vi.hoisted(() => ({
   cacheAdd: vi.fn(),
@@ -16,9 +17,6 @@ const mocks = vi.hoisted(() => ({
 }));
 
 type WorkerHandler = (event: unknown) => void;
-
-const CACHE_VERSION = 'v11.20.2';
-const CACHE_URL = '/commentary/';
 
 const createRequest = (url: string, destination: RequestDestination = '', headers = new Headers()): Request =>
   ({ url, destination, headers }) as unknown as Request;
