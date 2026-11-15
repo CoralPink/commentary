@@ -442,6 +442,8 @@ jobs:
     env:
       # renovate: datasource=github-releases depName=rust-lang/mdBook
       MDBOOK_VERSION: "0.5.4"
+      # renovate: datasource=github-releases depName=CoralPink/mdbook-tailor
+      MDBOOK_TAILOR_VERSION: "2.3.1"
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v7.0.1
@@ -491,13 +493,15 @@ jobs:
             rs/mdbook-footnote -> target
 
       - name: Install Mdbook
+        uses: taiki-e/install-action@v2.90.3
+        with:
+          tool: |
+            mdbook@${{ env.MDBOOK_VERSION }}
+            mdbook-tailor@${{ env.MDBOOK_TAILOR_VERSION }}
+
+      - name: Install Mdbook Backend
         run: |
-          cargo install mdbook --version ${MDBOOK_VERSION}
-
-          #cargo install mdbook-admonish
           cargo install --git https://github.com/CoralPink/mdbook-admonish.git --branch mdbook-v0.5.x
-
-          cargo install mdbook-tailor
           cargo install --path ./rs/mdbook-footnote
 
       - name: Setup Pages

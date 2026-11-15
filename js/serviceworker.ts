@@ -4,9 +4,9 @@ export {};
 
 declare const self: ServiceWorkerGlobalScope;
 
-const CACHE_VERSION = 'v11.20.2';
+export const CACHE_VERSION = 'v11.20.3';
+export const CACHE_URL = '/commentary/';
 
-const CACHE_URL = '/commentary/';
 const FALLBACK_IMAGE = 'favicon.png';
 
 const installList = [
