@@ -7,6 +7,7 @@ const API_URL = 'https://www.youtube.com/iframe_api';
 
 type YouTubePlayer = {
   destroy(): void;
+  pauseVideo(): void;
 };
 
 type YouTubePlayerOptions = {
@@ -166,6 +167,10 @@ class YouTubeVideo extends HTMLElement {
     );
 
     this.visibilityObserver.observe(this);
+  }
+
+  pauseVideo(): void {
+    this.player?.pauseVideo();
   }
 
   disconnectedCallback(): void {
