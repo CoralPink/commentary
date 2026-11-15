@@ -137,7 +137,7 @@ jobs:
         with:
           tool: wasm-pack
 
-      - name: Test Wasm
+      - name: Run Tests
         working-directory: rs/wasm
         run: |
           wasm-pack test --headless --firefox
@@ -175,7 +175,7 @@ jobs:
       - name: Build Wasm
         working-directory: rs/wasm
         run: |
-          cargo build --release --target wasm32-unknown-unknown
+          cargo build --release --locked --target wasm32-unknown-unknown
 
           wasm-bindgen \
             ./target/wasm32-unknown-unknown/release/wasm_book.wasm \
@@ -242,7 +242,7 @@ jobs:
           node-version-file: .tool-versions
           package-manager-cache: false
 
-      - name: Update npm
+      - name: Update Npm
         run: |
           npm install -g npm@${{ env.NPM_VERSION }}
 
@@ -297,7 +297,7 @@ jobs:
           node-version-file: .tool-versions
           package-manager-cache: false
 
-      - name: Update npm
+      - name: Update Npm
         run: |
           npm install -g npm@${{ env.NPM_VERSION }}
 
@@ -306,7 +306,7 @@ jobs:
         run: |
           npm ci
 
-      - name: Type check
+      - name: Type Check
         working-directory: js
         run: |
           npx -p typescript@${TYPESCRIPT_VERSION} tsc --noEmit
@@ -342,7 +342,7 @@ jobs:
           node-version-file: .tool-versions
           package-manager-cache: false
 
-      - name: Update npm
+      - name: Update Npm
         run: |
           npm install -g npm@${{ env.NPM_VERSION }}
 
@@ -419,10 +419,10 @@ jobs:
         with:
           cache-workspaces: rs/mdbook-footnote
 
-      - name: Test Cargo (mdbook footnote)
+      - name: Run Tests
         working-directory: rs/mdbook-footnote
         run: |
-          cargo test --verbose
+          cargo test --locked
 
   publish:
     name: Publish
@@ -515,7 +515,7 @@ jobs:
           node-version-file: .tool-versions
           package-manager-cache: false
 
-      - name: Update npm
+      - name: Update Npm
         run: |
           npm install -g npm@${{ env.NPM_VERSION }}
 
