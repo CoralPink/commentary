@@ -3,26 +3,67 @@
 聖夜🌃 は間近です。その前にスクロールバーを追加してみます🎄
 
 ```admonish info title="[nvim-scrollbar](https://github.com/petertriho/nvim-scrollbar)"
-Extensible Neovim Scrollbar
+Extensible floating scrollbars for Neovim
 
-拡張可能なNeovimスクロールバー
+Neovim 用の拡張可能なフローティングスクロールバー
+```
+
+```admonish info title=""
+`nvim-scrollbar` shows one floating scrollbar for each source window. Each split window gets its own thumb.
+The scrollbar has typed mark lanes, optional screen-line positions that follow wraps and folds, and mouse navigation.
+An optional floating minimap shows a compressed view of the buffer, with a viewport tint, a cursor accent, provider marks, and mouse navigation.
+
+`nvim-scrollbar` は、ソースウィンドウごとに 1 つのフローティングスクロールバーを表示します。
+分割された各ウィンドウには、それぞれ独自のスクロールバーのつまみが用意されています。
+このスクロールバーには、タイプ別マークレーン、改行や折り畳みに追従するオプションの画面行位置、およびマウスによるナビゲーション機能が備わっています。
+オプションのフローティングミニマップは、バッファの圧縮表示を表示し、ビューポートの色付け、カーソルの強調表示、プロバイダーマーク、およびマウスによるナビゲーション機能を備えています。
 ```
 
 ```admonish abstract title="Requirements"
-Neovim >= 0.5.1
-
-nvim-hlslens (optional)
-
-gitsigns.nvim (optional)
+- Neovim 0.11 or newer
+- For mouse interaction, the Neovim `mouse` option must enable the modes that
+  you want, for example `set mouse=a`. The plugin never changes `mouse`.
+- Optional integrations:
+  [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim),
+  [mini.diff](https://github.com/nvim-mini/mini.diff),
+  [vim-signify](https://github.com/mhinz/vim-signify),
+  [vgit.nvim](https://github.com/tanvirtin/vgit.nvim),
+  [ALE](https://github.com/dense-analysis/ale), and
+  [coc.nvim](https://github.com/neoclide/coc.nvim)
 ```
 
-`nvim-hlslens`も`gitsigns.nvim`も、とっても見覚えあるやつですね😉
+このサイトでは[gitsigns.nvim](./gitsigns.html)と連携するところまでを目標として進みます😉
 
-両方とも`optional`ということですが、これはぜひ積極的に取り入れていきましょう❗
+ちなみに、このページの初掲は 2022年のクリスマスイブなんですが、2026年の`v2`に合わせて改定しています。
 
-```admonish note
-というか、最初から取り入れるつもりで進めてたんですけどね😸
+(パッケージマネージャーに関しては`packer`のままですが...😣)
+
+> On 2026-11-16, v2 replaces v1 on the `main` branch.
+> v2 changes the `setup()` options, removes the `scrollbar.
+> handlers` modules, and needs Neovim 0.11 or newer. To keep v1, pin the `v1` branch or the `v1.0.0` tag. See [#121](https://github.com/petertriho/nvim-scrollbar/issues/121).
+>
+> 2026年11月16日、`main`ブランチにおいてv2がv1に置き換わります。
+> v2では、`setup()`のオプションが変更され、`scrollbar.handlers`モジュールが削除されており、Neovim 0.11以降が必要です。
+> v1を維持するには、`v1`ブランチまたは`v1.0.0`タグを固定してください。#121を参照してください。
+
+## Installation
+
+これはとりあえず Quick Start の内容を入れてみましょう。
+
+~~~admonish example title="extensions/nvim-scrollbar.lua"
+```lua
+require("scrollbar").setup({
+  providers = {
+      search = { incsearch = true },
+      marks = { numbers = true },
+  },
+  scrollbar = {
+      preset = "zed",
+      autohide = true,
+  },
+})
 ```
+~~~
 
 ```admonish quote title=""
 If I could reach the stars
@@ -44,39 +85,27 @@ So you could see the truth
 そしたらちゃんと見えるから
 ```
 
-## Installation
+### gitsing.nvim (Optional)
 
-これはもう本当に簡単です。{{footnote:
-初掲出時には「`onenord.nvim`を使って色を設定するといいよ！」なんて書いちゃいましたが、
-改めて確認してみたら全く必要ありませんでした...。
-何も設定しなくても`onenord.nvim`の力は発揮されています❗これホントごめんなさい😿
-}}
+`gitsigns.nvim`を使用したい場合は`providers`でこれを使うことを教えてあげましょう。
 
 ~~~admonish example title="extensions/nvim-scrollbar.lua"
-```lua
-require('scrollbar').setup()
-
-require('scrollbar.handlers.search').setup()
-require("scrollbar.handlers.gitsigns").setup()
+```diff
+require("scrollbar").setup({
+  providers = {
+      search = { incsearch = true },
+      marks = { numbers = true },
++     gitsigns = true,
+  },
+  scrollbar = {
+      preset = "zed",
+      autohide = true,
+  },
+})
 ```
 ~~~
 
-```admonish note
-もし細かく設定したい場合は
-[config](https://github.com/petertriho/nvim-scrollbar#config) にある Defaults を参照すると良いです。
-```
-
-このコードでは、
-
-```lua
-require('scrollbar.handlers.search').setup() -- これは nvim-hlslens
-```
-
-```lua
-require("scrollbar.handlers.gitsigns").setup()
-```
-
-...で、それぞれのプラグインを必要とします。`packer`にも教えといてあげましょう🫶
+...で、さらに`packer`にも教えといてあげると親切だと思います。🫶
 
 ~~~admonish example title="extensions/init.lua"
 ```lua
@@ -84,13 +113,13 @@ require("scrollbar.handlers.gitsigns").setup()
     'petertriho/nvim-scrollbar',
     config = function() require 'extensions.nvim-scrollbar' end,
     requires = {
-      'kevinhwang91/nvim-hlslens', 'lewis6991/gitsigns.nvim',
+      'lewis6991/gitsigns.nvim',
     },
   }
 ```
 ~~~
 
-右側にスクロールバーが現れましたね❗`nvim-hlslens`、`gitsigns`との連携もバッチリです😆
+これでバッチリです😆
 
 ```admonish quote title=""
 That this love I have inside
@@ -102,15 +131,7 @@ Is everything it seems
 ほらね 見かけによらないだろ
 ```
 
-|gitsigns|
-|:---:|
-|![scrollbar-gitsign](img/scrollbar-gitsigns.jxl)|
-
-|nvim-hlslens|
-|:---:|
-|![scrollbar-hlslens](img/scrollbar-hlslens.jxl)|
-
-スクリーンショットでは少しわかりにくいかも知れませんが、検索文字列の行もスクロールバー上で表示がされてます😆
+![scrollbar-gitsign](img/scrollbar-gitsigns.jxl)
 
 ```admonish quote title=""
 But for now I find
@@ -122,10 +143,58 @@ It's only in my dreams
 これはただ 夢の中に過ぎない
 ```
 
+## Configuration
+
+もし細かく設定したい場合は[Configuration](https://github.com/petertriho/nvim-scrollbar/blob/refactor/v2/docs/configuration.md)にある
+Defaults を参照すると良いです。
+
+まあ例えばこんなんとか❓
+
+~~~admonish abstract title="Example"
+```lua
+require('scrollbar').setup({
+  scrollbar = {
+    window = {
+      border = 'rounded',
+    },
+  },
+  providers = {
+    diagnostic = { minimap = false },
+    gitsigns = true,
+    search = { incsearch = true, minimap = false },
+  },
+})
+```
+~~~
+
+![scrollbar-v2](img/scrollbar-v2.jxl)
+
+`v2`に切り替えてから、そこまで使い込んでいるわけではありませんが、わたしはひとまずこれに落ち着いてます。
+
+### Minimap
+
+特筆すべきところとしては、`v2`では`Minimap`が追加されました。
+
+~~~admonish info title="minimap"
+```lua
+require("scrollbar").setup({
+
+  // ...
+
+  minimap = {
+    enabled = true,
+  },
+})
+```
+~~~
+
+`nvim-scrollbar`に限らず、わたしは minimap の良さがいまいち分かってない人間なので使ってないんですけどね😅
+
 ## Wrap Up
 
-このページは 2022年のクリスマスイブに書かれたものなんですが、
-なんか急に気まぐれで 2年後のムービーを差し込んじゃいます。
+うまくいきましたね😄
+
+なんかもうクリスマス気分で 2024年の video を差し込んじゃいます。
 
 ```admonish success title=""
 <video width="1280" height="720" data-poster="img/tokyo-midtown-thumbnail.jxl">
@@ -206,8 +275,8 @@ Baby if I could change the world{{footnote:
 
 <div style="margin-top: 2em"></div>
 
-なんかまた気まぐれで さらに2年後に Let it Go しちゃいます。{{footnote:
-このシチュエーションがよくわか...いや、怒られるよ🤫
+なんかまた気まぐれで 2026年まで Let it Go しちゃいます。{{footnote:
+このシチュエーションよくわか...いや、怒られるよ🤫
 }}
 
 <youtube-video data-id="k2_HsERDNZM"></youtube-video>
