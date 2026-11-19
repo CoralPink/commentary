@@ -36,19 +36,19 @@ An optional floating minimap shows a compressed view of the buffer, with a viewp
 
 ちなみに、このページの初掲は 2022年のクリスマスイブなんですが、2026年の`v2`に合わせて改定しています。
 
-(パッケージマネージャーに関しては`packer`のままですが...😣)
-
 > On 2026-11-16, v2 replaces v1 on the `main` branch.
-> v2 changes the `setup()` options, removes the `scrollbar.
-> handlers` modules, and needs Neovim 0.11 or newer. To keep v1, pin the `v1` branch or the `v1.0.0` tag. See [#121](https://github.com/petertriho/nvim-scrollbar/issues/121).
+> v2 changes the `setup()` options, removes the `scrollbar.handlers` modules, and needs Neovim 0.11 or newer.
+> To keep v1, pin the `v1` branch or the `v1.0.0` tag. See [#121](https://github.com/petertriho/nvim-scrollbar/issues/121).
 >
 > 2026年11月16日、`main`ブランチにおいてv2がv1に置き換わります。
 > v2では、`setup()`のオプションが変更され、`scrollbar.handlers`モジュールが削除されており、Neovim 0.11以降が必要です。
 > v1を維持するには、`v1`ブランチまたは`v1.0.0`タグを固定してください。#121を参照してください。
 
+パッケージマネージャーに関しては`packer`のままになってますが...😣
+
 ## Installation
 
-これはとりあえず Quick Start の内容を入れてみましょう。
+これはとりあえず Quick Start で示されているコードを入れてみましょう。
 
 ~~~admonish example title="extensions/nvim-scrollbar.lua"
 ```lua
@@ -133,6 +133,9 @@ Is everything it seems
 
 ![scrollbar-gitsign](img/scrollbar-gitsigns.jxl)
 
+`autohide`が`true`になっているので、`nvim`を開いた直後では何も変化がないように見えますが、
+何か操作をすれば右端にスクロールバーが現れるはずです。
+
 ```admonish quote title=""
 But for now I find
 
@@ -148,7 +151,7 @@ It's only in my dreams
 もし細かく設定したい場合は[Configuration](https://github.com/petertriho/nvim-scrollbar/blob/refactor/v2/docs/configuration.md)にある
 Defaults を参照すると良いです。
 
-まあ例えばこんなんとか❓
+Quick Start を無視して挙げるんですが、まあ例えばこんなんとか❓
 
 ~~~admonish abstract title="Example"
 ```lua
@@ -179,7 +182,7 @@ require('scrollbar').setup({
 ```lua
 require("scrollbar").setup({
 
-  // ...
+  -- ...
 
   minimap = {
     enabled = true,
