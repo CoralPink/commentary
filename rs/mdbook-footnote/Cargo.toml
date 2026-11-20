@@ -8,7 +8,7 @@ license = "Apache-2.0"
 
 [dependencies]
 bumpalo = { version = "=3.20.4", features = ["collections"] }
-clap = "=4.6.8"
+clap = "=4.6.9"
 mdbook-preprocessor = "=0.5.4"
 regex = "=1.13.2"
 semver = "=1.0.28"
