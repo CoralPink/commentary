@@ -1,4 +1,3 @@
-// @ts-expect-error: Sanitizer API.
 const supportsSafeHTML = 'Sanitizer' in globalThis && typeof Element.prototype.setHTML === 'function';
 const sanitizer = supportsSafeHTML ? new Sanitizer({}) : null;
 
