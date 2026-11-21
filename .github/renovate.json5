@@ -24,6 +24,7 @@
     "customManagers:githubActionsVersions",
     "customManagers:biomeVersions",
   ],
+  "minimumReleaseAgePackageManagerSync": true,
   "labels": ["dependencies"],
   "packageRules": [
     {
