@@ -1,0 +1,44 @@
+# yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json
+language: "en-US"
+early_access: true
+
+tone_instructions: >-
+  Focus on actionable correctness issues.
+  Avoid speculative refactors, unnecessary defensive code,
+  and outdated compatibility workarounds.
+  Do not duplicate checks enforced by project tooling.
+
+reviews:
+  tools:
+    stylelint:
+      enabled: false
+  profile: "chill"
+  request_changes_workflow: false
+  high_level_summary: true
+  poem: true
+  review_status: false
+  collapse_walkthrough: false
+  auto_review:
+    enabled: true
+    drafts: false
+    ignore_usernames: ["renovate[bot]"]
+
+  path_instructions:
+    - path: "**/*"
+      instructions: >-
+        The supported browsers are the latest two stable versions of Chrome,
+        Firefox, and Safari.
+        Do not suggest fallbacks, polyfills, or compatibility workarounds
+        for older browser versions or unsupported browsers unless explicitly requested.
+        Do not introduce compatibility code solely to support browsers outside
+        this support matrix.
+
+    - path: "rs/wasm/**/*.rs"
+      instructions: >-
+        When reviewing code compiled to WebAssembly, actively look for
+        opportunities to leverage WebAssembly SIMD.
+        Prefer SIMD optimizations when they provide meaningful performance benefits.
+        Do not overlook SIMD opportunities in performance-critical code.
+
+chat:
+  auto_reply: true
