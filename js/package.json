@@ -3,12 +3,14 @@
   "scripts": {
     "bundle": "rolldown -c",
     "test": "vitest",
-    "test:ci": "vitest run --coverage"
+    "test:ci": "vitest run --coverage",
+    "typecheck": "tsrs --noEmit --fast"
   },
   "devDependencies": {
     "@vitest/coverage-v8": "5.1.1",
     "happy-dom": "~21.0.0",
     "rolldown": "1.3.3",
+    "tsrs": "7.1.0-beta.tsrs4",
     "vitest": "5.1.1"
   }
 }
