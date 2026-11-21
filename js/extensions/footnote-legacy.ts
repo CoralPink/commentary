@@ -136,7 +136,7 @@ export const initialize = (html: HTMLElement): Disposer => {
 
   const ac = new AbortController();
 
-  for (const x of Array.from(html.querySelectorAll('sup.ft-reference'))) {
+  for (const x of html.querySelectorAll('sup.ft-reference')) {
     x.addEventListener('click', handleFootnoteClick, {
       passive: true,
       signal: ac.signal,

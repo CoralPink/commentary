@@ -30,7 +30,7 @@ const setup =
   };
 
 export const initialize = (html: HTMLElement): Disposer => {
-  const videos = Array.from(html.querySelectorAll<HTMLVideoElement>('video'));
+  const videos = html.querySelectorAll<HTMLVideoElement>('video');
 
   if (videos.length === 0) {
     return () => {}; // no-op dispose

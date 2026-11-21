@@ -11,7 +11,7 @@ type Environment = (typeof Environment)[keyof typeof Environment];
 
 const tocClass = ['righttoc', 'bottomtoc'] as const;
 
-const tocMap: Map<HTMLElement, HTMLAnchorElement> = new Map();
+const tocMap = new Map<HTMLElement, HTMLAnchorElement>();
 
 let elmToggle: HTMLButtonElement;
 let elmToc: HTMLDivElement;
@@ -26,7 +26,7 @@ const scrollCenter = (): void => {
     return;
   }
 
-  currentInlineCenter?.scrollIntoView({ inline: 'center' });
+  currentInlineCenter.scrollIntoView({ inline: 'center' });
 };
 
 const addActive = (entry: IntersectionObserverEntry): void => {
@@ -105,7 +105,7 @@ const tocReset = (): void => {
   }
 };
 
-const getHeaders = (h: HTMLElement): Array<HTMLAnchorElement> => Array.from(h.querySelectorAll('a.header'));
+const getHeaders = (h: HTMLElement): NodeListOf<HTMLAnchorElement> => h.querySelectorAll<HTMLAnchorElement>('a.header');
 
 export const initTableOfContents = (html: HTMLElement): (() => void) => {
   const observer = new IntersectionObserver(
@@ -150,7 +150,7 @@ export const initTableOfContents = (html: HTMLElement): (() => void) => {
     tocMap.clear();
     ac.abort();
 
-    pageToc.innerHTML = '';
+    pageToc.replaceChildren();
 
     onlyActive = null;
     currentInlineCenter = null;
