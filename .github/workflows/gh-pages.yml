@@ -133,7 +133,7 @@ jobs:
           cache-shared-key: ${{ env.WASM_SHARED_KEY }}
 
       - name: Install Wasm Pack
-        uses: taiki-e/install-action@v2.90.5
+        uses: taiki-e/install-action@v2.90.8
         with:
           tool: wasm-pack
 
@@ -168,7 +168,7 @@ jobs:
           cache-shared-key: ${{ env.WASM_SHARED_KEY }}
 
       - name: Install Wasm Bindgen
-        uses: taiki-e/install-action@v2.90.5
+        uses: taiki-e/install-action@v2.90.8
         with:
           tool: wasm-bindgen-cli@${{ env.WASM_BINDGEN_VERSION }}
 
@@ -491,7 +491,7 @@ jobs:
             rs/mdbook-footnote -> target
 
       - name: Install Mdbook
-        uses: taiki-e/install-action@v2.90.5
+        uses: taiki-e/install-action@v2.90.8
         with:
           tool: |
             mdbook@${{ env.MDBOOK_VERSION }}
