@@ -22,14 +22,14 @@ nvim-ufo (optional)
 
 そもそもわたし自身が普段`fold`使ってないので、このサイトでは使用しないで進みます😅
 
-<media-slider>
+```media-slider aria-label="浅草サンバカーニバル 2024"
   ![asakusa-samba-carnival-2024-1](img/asakusa-samba-carnival-2024-1.jxl)
   ![asakusa-samba-carnival-2024-2](img/asakusa-samba-carnival-2024-2.jxl)
   ![asakusa-samba-carnival-2024-3](img/asakusa-samba-carnival-2024-3.jxl)
   ![asakusa-samba-carnival-2024-4](img/asakusa-samba-carnival-2024-4.jxl)
   ![asakusa-samba-carnival-2024-5](img/asakusa-samba-carnival-2024-5.jxl)
   ![asakusa-samba-carnival-2024-6](img/asakusa-samba-carnival-2024-6.jxl)
-</media-slider>
+```
 
 踊りながらいきましょう❗{{footnote:
 浅草サンバ・カーニバル・コンテストは、東京都台東区浅草で行われるサンバ・パレードのコンテスト。
@@ -189,11 +189,11 @@ Vim では、quickfix コマンドはより一般的に、ファイル内の位�
 
 そこまで絞るには眠れない夜もあったろう...❗ありがとう、ブラックパンツァー...❗❗
 
-<media-slider>
+```media-slider aria-label="浅草サンバカーニバル"
   <youtube-video data-id="Yeo1KETlf3A"></youtube-video>
   <youtube-video data-id="2Ud7YbaXZIA"></youtube-video>
   <youtube-video data-id="MHqjp3aVSwc"></youtube-video>
-</media-slider>
+```
 
 ## Help poor children in Uganda!
 

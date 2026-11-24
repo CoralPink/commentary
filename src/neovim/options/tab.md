@@ -52,10 +52,10 @@ formatting will never be messed up when 'tabstop' is changed.
 
 一つずつ確認していきましょう😉
 
-<media-slider>
+```media-slider aria-label="ニャース"
   ![ニャース](img/nya-su1.jxl)
   ![ガラルニャース](img/nya-su2.jxl)
-</media-slider>
+```
 
 ## shiftwidth
 

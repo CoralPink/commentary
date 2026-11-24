@@ -368,14 +368,14 @@ Window / buffer setup.
 ウィンドウ / バッファの設定。
 ```
 
-<media-slider>
+```media-slider aria-label="ジブリパーク"
   ![ジジ](img/jiji.jxl)
   ![グーチョキパン屋](img/gutiokipan.jxl)
   ![パズー](img/pazu.jxl)
   ![哲学研究会](img/philosophy.jxl)
   ![神隠し](img/kamikakushi.jxl)
   ![清太](img/seita.jxl)
-</media-slider>
+```
 
 #### width
 
@@ -653,13 +653,13 @@ Just to hear your song?
 それだけで幸せになれたでしょう？
 ```
 
-<media-slider>
+```media-slider aria-label="ジブリ美術館 / ジブリパーク"
   ![まもり神](img/mitaka-guardian-deity.jxl)
   ![トトロ(ジブリパーク)](img/totoro-ghibli-park.jxl)
   ![ねこバス](img/neko-bus.jxl)
   ![乙事主](img/okkoto-nushi.jxl)
   ![湯婆婆](img/yubaba.jxl)
-</media-slider>
+```
 
 ```admonish quote title=""
 Have you never let someone else be strong?

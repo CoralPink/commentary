@@ -351,12 +351,12 @@ We have some built in themes but are looking for more cool options.
 
 これはもうイメージで見たほうが早いと思うので、`help_tags`をそれぞれの`themes`で呼んでみます。
 
-<media-slider>
+```media-slider aria-label="telescope theme"
   ![telescope-theme-none](img/telescope-theme-none.jxl)
   ![telescope-theme-dropdown](img/telescope-theme-dropdown.jxl)
   ![telescope-theme-cursor](img/telescope-theme-cursor.jxl)
   ![telescope-theme-ivy](img/telescope-help_tags.jxl)
-</media-slider>
+```
 
 |1|2|3|4|
 |:---:|:---:|:---:|:---:|

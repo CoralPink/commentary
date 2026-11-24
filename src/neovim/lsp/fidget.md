@@ -25,11 +25,11 @@ JR高円寺駅前から東京メトロ新高円寺駅にかけての商店街お
 [Wikipedia](https://ja.wikipedia.org/wiki/東京高円寺阿波おどり)より
 }}
 
-<media-slider>
+```media-slider aria-label="高円寺阿波踊り Part1"
   ![koenji-2023-1](img/awa-koenji-2023-1.jxl)
   ![koenji-2023-2](img/awa-koenji-2023-2.jxl)
   ![koenji-2023-3](img/awa-koenji-2023-3.jxl)
-</media-slider>
+```
 
 ```admonish success title=""
 一かけ 二かけ 三かけて
@@ -157,13 +157,13 @@ The following table shows the default options for this plugin:
 
 やっとさー💃 やっとやっとー🕺
 
-<media-slider>
+```media-slider aria-label="阿波踊り"
   <video width="1280" height="720" data-poster="img/awa-ogikubo-thumbnail.jxl">
     <source src="img/awa-ogikubo.webm" type="video/webm">
   </video>
   <youtube-video data-id="X5whQeE28gs"></youtube-video>
   <youtube-video data-id="ve0Z6rZxo0g"></youtube-video>
-</media-slider>
+```
 
 ようけやっとるでないで❗
 
@@ -213,14 +213,14 @@ See <lua/fidget/spinners.lua> of this plugin's source code to see how each anima
 
 ## 八 : やっぱり踊りは止められぬ
 
-<media-slider>
+```media-slider aria-label="高円寺阿波踊り Part2"
     <video width="1280" height="720" data-poster="img/awa-tenguren-thumbnail.jxl">
       <source src="img/awa-tenguren.webm" type="video/webm">
     </video>
     <video width="1280" height="720" data-poster="img/awa-tenshouren-thumbnail.jxl">
       <source src="img/awa-tenshouren.webm" type="video/webm">
     </video>
-</media-slider>
+```
 
 ```admonish success
 五かけ 六かけ 七かけて

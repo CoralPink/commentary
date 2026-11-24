@@ -62,10 +62,10 @@ vim.cmd.colorscheme('blue')
 ```
 ~~~
 
-<media-slider>
+```media-slider aria-label="河口湖"
   ![kawaguchiko-mt-fuji-day](img/kawaguchiko-mt-fuji-day.jxl)
   ![kawaguchiko-mt-fuji-night](img/kawaguchiko-mt-fuji-night.jxl)
-</media-slider>
+```
 
 ## Try
 
@@ -126,12 +126,12 @@ vim.keymap.set('n', '<Leader>9', function() vim.cmd('colorscheme blue') end)
 `color scheme` (もしくは`color theme`) はプラグインとして提供されているものも数多くあるので、このサイトでも取り上げます☺️
 ```
 
-<media-slider>
+```media-slider aria-label="いやしの里根場"
   ![iyashinosatonenba1](img/iyashinosatonenba1.jxl)
   ![iyashinosatonenba2](img/iyashinosatonenba2.jxl)
   ![iyashinosatonenba3](img/iyashinosatonenba3.jxl)
   ![iyashinosatonenba4](img/iyashinosatonenba4.jxl)
-</media-slider>
+```
 
 ## Lua Function
 

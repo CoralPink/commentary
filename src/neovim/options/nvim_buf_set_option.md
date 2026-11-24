@@ -4,10 +4,10 @@
 bufferリ　ゾーンに　ようこそ❗
 ```
 
-<media-slider>
+```media-slider aria-label="ぽけもんのすずみ"
   ![suzumi1](img/suzumi1.jxl)
   ![suzumi2](img/suzumi2.jxl)
-</media-slider>
+```
 
 ```admonish quote title=""
 この　ひろい　bufferリで

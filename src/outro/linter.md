@@ -34,10 +34,10 @@ Can I bring my friend to tea?
 世界では紅茶に塩を入れたりですとか、緑茶に柚子や砂糖を入れたりですとか、
 わーわーゆうとりますけども、わたしは "It's all right", "괜찮아" です🫖
 
-<media-slider>
+```media-slider aria-label="すみだジャズフェスティバル2026"
   <youtube-video data-id="pUdkNwlcSUg"></youtube-video>
   <youtube-video data-id="S9HLBC_Olnw"></youtube-video>
-</media-slider>
+```
 
 ただ、"はちみつカモミール" のティーバッグを淹れてるわたくしなんかが首を突っ込んでも火傷するだけですので🤐
 

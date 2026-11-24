@@ -65,7 +65,7 @@ require('mason').setup {
 袖振り合うも他生の縁！
 ```
 
-<media-slider>
+```media-slider aria-label="伊勢"
   ![外宮](img/geku.jxl)
   ![豊受大神宮](img/toyouke-daijingu.jxl)
   ![内宮1](img/naiku1.jxl)
@@ -74,7 +74,7 @@ require('mason').setup {
   ![荒祭宮](img/aramaturi-no-miya.jxl)
   ![おかげ横丁1](img/okage-yokocho1.jxl)
   ![おかげ横丁2](img/okage-yokocho2.jxl)
-</media-slider>
+```
 
 ## 🧠 Additional Setup
 
@@ -269,10 +269,10 @@ mkdir -p after/lsp
      ├── ...
 ```
 
-<media-slider>
+```media-slider aria-label="府中"
   <youtube-video data-id="41NlQhqBNmI"></youtube-video>
   <youtube-video data-id="t_uNA39dusI"></youtube-video>
-</media-slider>
+```
 
 当然ながら、これらを実際にインストールするかどうかはおまかせします😆
 
@@ -571,12 +571,12 @@ vim.lsp.enable(manual_lsp)
 これすなわち "This event was shot on iPhone and edited on Mac." というオチ。おあとがよろしいようで 🙇‍♀️
 }}は続きます🐦‍🔥
 
-<media-slider>
+```media-slider aria-label="ふくろ祭り"
   <video width="1280" height="720" data-poster="img/fukuro-festival-thumbnail.jxl">
     <source src="img/fukuro-festival.webm" type="video/webm">
   </video>
   <youtube-video data-id="WArfNXjU0x8"></youtube-video>
-</media-slider>
+```
 
 ### 🐲 SourceKit-LSP (Swift)
 
@@ -786,12 +786,12 @@ MVP とは、俺のことだ！！
 }}」という おはなし。
 ```
 
-<media-slider>
+```media-slider aria-label="東京よさこい"
   <youtube-video data-id="bFcR8x99xdY"></youtube-video>
   <youtube-video data-id="ju2LkSu1kug"></youtube-video>
   <youtube-video data-id="mJFJYeUBUB8"></youtube-video>
   <youtube-video data-id="OFYGgYCs_h4"></youtube-video>
-</media-slider>
+```
 
 ```admonish success
 目指すは めでたしドーンとハッピーエンド！{{footnote:

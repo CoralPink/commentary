@@ -247,10 +247,10 @@ I did it my way
 自らのやり方で 選んできたんだ
 ```
 
-<media-slider>
+```media-slider aria-label="東京ドームシティ"
   ![nagashima3](img/nagashima3.jxl)
   ![nagashima-matsui2](img/nagashima-matsui2.jxl)
-</media-slider>
+```
 
 ## My Way
 

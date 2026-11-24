@@ -266,9 +266,9 @@ Wow look out! it's-
 おい見ろ！あれは-
 ```
 
-<media-slider>
+```media-slider aria-label="天童"
   <video width="1280" height="720" data-poster="img/nya-shougi-ondo-thumbnail.jxl">
     <source src="img/nya-shougi-ondo.webm" type="video/webm">
   </video>
   <youtube-video data-id="c3ju0FqD9CY"></youtube-video>
-</media-slider>
+```

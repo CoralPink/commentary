@@ -101,7 +101,7 @@ Harrison は [Cream](https://en.wikipedia.org/wiki/Cream_(band)) のレコーデ
 ![hanako](img/hanako.jxl)
 ```
 
-<media-slider>
+```media-slider aria-label="吉祥寺"
   <youtube-video data-id="FiYGCnvrkis"></youtube-video>
   <video width="1280" height="720" data-poster="img/musashino-gakudan-thumbnail.jxl">
     <source src="img/musashino-gakudan.webm" type="video/webm">
@@ -112,7 +112,7 @@ Harrison は [Cream](https://en.wikipedia.org/wiki/Cream_(band)) のレコーデ
       <source src="audio/band-sounds.mp3">
     </audio>
   </div>
-</media-slider>
+```
 
 鳥さんも羽休め🐦‍⬛ に来るんだし、こんなにも HAPPY✨ な演奏にも巡り会えるし🎻
 
@@ -145,7 +145,7 @@ return config
 ```
 ~~~
 
-<media-slider>
+```media-slider aria-label="鳥さんギャラリー"
   ![sotobori-bird](img/sotobori-bird.jxl)
   <video width="1280" height="720" data-poster="img/ochanomizu-thumbnail.jxl">
     <source src="img/ochanomizu.webm" type="video/webm">
@@ -154,7 +154,7 @@ return config
     <source src="img/hydration_breaks.webm" type="video/webm">
   </video>
   ![uco-chan](img/uco-chan.jxl)
-</media-slider>
+```
 
 ```admonish success title=""
 I look at the floor and I see it needs sweeping
@@ -238,11 +238,11 @@ How to unfold your love
 
 [東京大神宮](https://tokyodaijingu.or.jp)もちょいちょい参拝させてもらってます⛩️
 
-<media-slider>
+```media-slider aria-label="飯田橋エリア"
   ![tokyo-daijingu](img/tokyo-daijingu.jxl)
   <youtube-video data-id="Dxvkh3-Ukbg"></youtube-video>
   ![sotobori](img/sotobori.jxl)
-</media-slider>
+```
 
 ### 🧚‍♀️ Font
 
@@ -265,10 +265,10 @@ font = require("wezterm").font("Firge35Nerd Console"),
 「ダウンロードしたフォントはインストールしないと使えないぞ❗❗」
 ```
 
-<media-slider>
+```media-slider aria-label="阿佐ヶ谷神明宮"
   <youtube-video data-id="7VAP6Cdm3Kc"></youtube-video>
   ![asagaya-shinmeiguu](img/asagaya-shinmeiguu.jxl)
-</media-slider>
+```
 
 ##### 🪺 nerd-fonts
 
@@ -316,10 +316,10 @@ Fira Code: プログラミング合字のフリー等幅フォント
 
 これも素直に[Releases](https://github.com/tonsky/FiraCode/releases)から感謝しながらダウンロードするのが簡単でしょう😊
 
-<media-slider>
+```media-slider aria-label="蛇窪神社"
   ![shi-chan](img/shi-chan.jxl)
   ![hebikubo](img/hebikubo.jxl)
-</media-slider>
+```
 
 ##### 🎏 ヒラギノ角ゴシック
 
@@ -327,11 +327,11 @@ Fira Code: プログラミング合字のフリー等幅フォント
 
 わたしは`macOS`に標準で入っている`ヒラギノ角ゴシック`を使っているので、ここでは特に示せる手順がありません😅
 
-<media-slider>
+```media-slider aria-label="神田明神"
   ![kanda-myoujin1](img/kanda-myoujin1.jxl)
   ![kanda-myoujin2](img/kanda-myoujin2.jxl)
   ![akari-chan](img/akari-chan.jxl)
-</media-slider>
+```
 
 #### 🐣 font_with_fall_back
 
@@ -561,10 +561,10 @@ You were perverted, too
 
 な〜んて言いながら、もう一回だけ話飛ぶんですけど、オランダに行ってきたんですよ〜😋
 
-<media-slider>
+```media-slider aria-label="浮間公園"
   ![ukima1](img/ukima1.jxl)
   ![ukima2](img/ukima2.jxl)
-</media-slider>
+```
 
 間違えました、[いたばしのオランダ](https://www.city.itabashi.tokyo.jp/bousai/toshikeiakku/kotsu/1044242/1044694.html)でした🦧
 
@@ -591,7 +591,7 @@ No one alerted you
 
 ### 🎸 Still, my guitar gently weeps
 
-```admonish success title=""
+~~~admonish success title=""
 見るに見兼ねてなのか、なんかもう自分が「耐えられまへん」なのかもしれないんだけど、縁あって再登場だ。(2024/08 追記)
 
 > When you’re through with life
@@ -614,10 +614,10 @@ No one alerted you
 
 でも、"ドンドンぶち上がる" 花火を見てる方がよっぽど健全だと気づいたんだ❗
 
-<media-slider>
+```media-slider aria-label="花火大会"
   <youtube-video data-id="I27thesxQTY"></youtube-video>
   <youtube-video data-id="08yn4r9KetQ"></youtube-video>
-</media-slider>
+```
 
 > There is still a light that shines on me
 >
@@ -628,7 +628,7 @@ No one alerted you
 > 悩みなんざ吹っ飛ばせ！
 >
 > 笑え 笑え！
-```
+~~~
 
 ## 🕊 Free as a Bird
 

@@ -263,12 +263,12 @@ after = string or list,      -- Specifies plugins to load before this plugin.
 
 やったね😆
 
-<media-slider>
+```media-slider aria-label="Star Wars"
   ![STAR WARS](img/starwars.jxl)
   ![PEACE!](img/peace.jxl)
   ![George Lucas](img/lucas.jxl)
   ![May the 4th be with you](img/may_the_4th_be_with_you.jxl)
-</media-slider>
+```
 
 ## Wrap Up
 
@@ -284,10 +284,10 @@ Gaze deeply into unknown regions using the power of the moon.
 月の力を借りて、未知の領域を深く覗き込む。
 ```
 
-<media-slider>
+```media-slider aria-label="富士山"
   ![mount-day](img/mount-day.jxl)
   ![mount-night](img/mount-night.jxl)
-</media-slider>
+```
 
 <div style="color: #999999; font-size: 90%; text-align: center;" >
 <div style="margin-top: 8rem">
