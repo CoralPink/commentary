@@ -15,6 +15,7 @@
   - [Window Frame](wezterm/frame.md)
   - [Key Binding](wezterm/keybind.md)
   - [Leader Key](wezterm/leader.md)
+  - [Press and Hold](wezterm/press-and-hold.md)
 
 - [Format](wezterm/format.md)
 
