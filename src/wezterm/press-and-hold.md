@@ -1,11 +1,11 @@
-# Press and Hold (for MacOS)
+# Press and Hold (for macOS)
 
-このページにある内容は`Wezterm`というよりは`MacOS`のお話です。
+このページにある内容は`Wezterm`というよりは`macOS`のお話です。
 
-その他のOSを使用している場合はスキップして[次のページ](./format.md)へ🐈
+その他の OS を使用している場合はスキップして[次のページ](./format.md)へ🐈
 
 ```admonish info
-さらに言えば、`MacOS 27 (Golden Gate)`以降に限ります。たぶん。
+さらに言えば、`macOS 27 (Golden Gate)`以降に限ります。たぶん。
 ```
 
 ## Popup
@@ -39,11 +39,13 @@ After upgrading to macOS 27, pressing and holding certain keys triggers the macO
 
 ということで、このポップを使わない人は、まずはこんなコマンドを打ってみましょう。
 
+~~~admonish quote title="Command"
 ```sh
 defaults read com.github.wez.wezterm ApplePressAndHoldEnabled
 ```
+~~~
 
-初めてならたぶんエラーが出てきます。
+初めてなら たぶんエラーが出てきます。
 
 ![defaults read (check)](img/pressandhold-check.jxl)
 
@@ -51,13 +53,15 @@ defaults read com.github.wez.wezterm ApplePressAndHoldEnabled
 
 ### 設定する
 
-それを踏まえて、次のコマンドが本番です❗
+それを踏まえて、次のコマンド (`write`) が本番です❗
 
+~~~admonish quote title="Command"
 ```sh
 defaults write com.github.wez.wezterm ApplePressAndHoldEnabled -bool false
 ```
+~~~
 
-多分何も出てきません。
+初めてだろうと何度目だろうと たぶん何も出てきません。
 
 ![defaults write](img/pressandhold-write.jxl)
 
@@ -71,9 +75,11 @@ defaults write com.github.wez.wezterm ApplePressAndHoldEnabled -bool false
 
 起動したら、もう一度最初のコマンドを打ってみましょう。
 
+~~~admonish quote title="Command"
 ```sh
 defaults read com.github.wez.wezterm ApplePressAndHoldEnabled
 ```
+~~~
 
 `0`が出てくれば成功です❗😆
 
@@ -87,9 +93,11 @@ defaults read com.github.wez.wezterm ApplePressAndHoldEnabled
 
 ちなみに元に戻したい場合は以下のコマンドで`delete`します。
 
+~~~admonish quote title="Command"
 ```sh
 defaults delete com.github.wez.wezterm ApplePressAndHoldEnabled
 ```
+~~~
 
 そんなもんです。安心です😉
 
@@ -98,5 +106,5 @@ defaults delete com.github.wez.wezterm ApplePressAndHoldEnabled
 これで完了です❗やったね❗
 
 ```admonish success
-正直、今やってもあまり恩恵が感じられないかもしれませんが、そんなもんです😅
+今やってもあまり恩恵が感じられないかもしれませんが、そんなもんです😅
 ```

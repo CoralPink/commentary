@@ -1,4 +1,5 @@
 # Leader Key
+
 さて、前回はキーバインドを落とし込んだわけですが、今回は`Leader`キーです。
 
 ```admonish info title="[Key Binding - Wez's Terminal Emulator](https://wezfurlong.org/wezterm/config/keys.html#leader-key)"

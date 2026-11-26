@@ -3,6 +3,7 @@
 `WezTerm`の設定からは少し逸れますが、先にシェルプロンプトのカスタマイズをやってしまいましょう。
 
 ## Starship
+
 技術系サイトを見ていると、こぞって紹介されている感のある`StarShip`です。
 
 まあ、これは紹介したくなりますよね〜。導入が簡単なのに綺麗だし🥴
@@ -47,7 +48,9 @@ WezTerm は Nerd Font Symbols Font をデフォルトのフォントのフォー
 これは`Starship`の説明通りにやっていけば大丈夫ですね。
 
 ### Step 1.
+
 ターミナルから
+
 ~~~admonish quote title="Command"
 ```sh
 curl -sS https://starship.rs/install.sh | sh
@@ -65,6 +68,7 @@ brew install starship
 いきなり説明通りから外れましたね！どんまい✨
 
 ### Step 2.
+
 `zsh`を使っている場合は`~/.zshrc`に以下を追記するだけです。
 
 ~~~admonish example title=".zshrc"
@@ -82,6 +86,7 @@ eval "$(starship init zsh)"
 ```
 
 ### Step 3.
+
 コンフィグファイルについては、また別の機会に。
 
 `WezTerm`を一旦終了して再度起動しましょう。

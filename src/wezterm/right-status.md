@@ -10,6 +10,7 @@ This method can be used to change the content that is displayed in the tab bar, 
 ただ、わたしの設定例にお付き合いいただける方のために、もうちょっとだけ続きます。
 
 ## Get Parameter
+
 まずは wez さんのサンプルコードをほぼ丸写しですが、一つずつ機能を分けます。
 
 ```admonish warning
@@ -151,6 +152,7 @@ end)
 ![right-status](img/right-status.jxl)
 
 フルスクリーン時にはバッテリー表示がされていることも確認できます。
+
 ![right-status](img/right-status-full.jxl)
 
 

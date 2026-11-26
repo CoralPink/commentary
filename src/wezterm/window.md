@@ -3,6 +3,7 @@
 ここではウィンドウの設定を行なっていきます。
 
 ## Color Schemes
+
 Wezterm では数多くのカラースキームを内蔵しているため、簡単に設定が可能です。
 
 以下から好きなカラースキームを選んで指定します。
@@ -37,6 +38,7 @@ If your Operating System provides Compositing support then WezTerm is able to sp
 
 オペレーティングシステムがコンポジットをサポートしている場合、WezTerm は背景コンテンツのアルファチャンネル値を指定することができます。
 ```
+
 アルファチャンネル値には 0.0 から 1.0 までの値を用います。
 
 透過値はお好みで。わたしはこんな感じで。
@@ -48,6 +50,7 @@ window_background_opacity = 0.93,
 ~~~
 
 ## 一旦確認…
+
 さて、ここまでで`wezterm.lua`は以下のようになりました。
 
 ~~~admonish example title="wezterm.lua"
@@ -65,7 +68,6 @@ wezterm.lua に記述する場合、基本的には return {} の中に記述し
 ~~~
 
 ![opacity](img/opacity.jxl)
-
 
 ```admonish success
 カラースキームについては、白文字しかない状態だと「ちょっと何言ってるかわかんない」ですが、透過は確認できましたね😄

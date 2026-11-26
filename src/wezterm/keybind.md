@@ -1,4 +1,5 @@
 # Key Binding
+
 ここはちょっと難しいというか、どこまで`WezTerm`をメインに持ってくるのかみたいなところがあります。
 
 例えば`tmux`。
@@ -80,6 +81,7 @@ wezterm show-keys --lua > keybinds.lua
 ```
 
 ## 読み込み先を切り替える
+
 ここまでは暗黙的にデフォルト設定が適用されていましたが、これからは自分で作った`keybinds.lua`を使っていきましょう。
 
 ~~~admonish example title="wezterm.lua"

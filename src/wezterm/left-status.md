@@ -3,6 +3,7 @@
 まずはステータスバーの左側を活用していきましょう😆
 
 ## キーボード状態
+
 わたしが使っているのはキーボード状態です。ひとまずコードはこんな感じ。
 
 ~~~admonish example title="status.lua"
@@ -44,6 +45,7 @@ end
 - IME
 
 ## Leaderキーアクティブ
+
 まずは`leader`キーの状態を以下で取得します。
 
 ```admonish info title="[window:leader_is_active](https://wezfurlong.org/wezterm/config/lua/window/leader_is_active.html)"
@@ -55,6 +57,7 @@ Returns true if the Leader Key is active in the window, or false otherwise.
 上のコード例では、`leader`キーがアクティブである場合はIMEよりも優先して表示します。
 
 ## IME状態
+
 次にIME状態です。
 
 ```admonish info title="[window:composition_status()](https://wezfurlong.org/wezterm/config/lua/window/composition_status.html)"

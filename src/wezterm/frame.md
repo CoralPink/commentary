@@ -1,4 +1,5 @@
 # Window Frame
+
 コンソールがいい感じになってきたので、次はウィンドウフレーム周りの設定をしていきましょう。
 
 ```admonish info title="[window_frame - Wez's Terminal Emulator](https://wezfurlong.org/wezterm/config/lua/config/window_frame.html)"
@@ -11,6 +12,7 @@ This setting is applicable primarily on Wayland systems when client side decorat
 ...いや、一回細かく変えてみたこともあったんですが、最終的にはデフォルトでいいかー😉ってなりました。
 
 ## Font
+
 これもほぼデフォルトのままで、フォントサイズだけ変える程度にしています。
 
 前回やっているフォント設定と同じですね。
@@ -33,6 +35,7 @@ window_frame = {
 ~~~
 
 ## Fancy or Retro
+
 前項で、突然 "ファンシータブバー" という文言が出てきましたが、`WezTerm`のタブバーには、ファンシーとレトロの2種類があります。
 
 ```admonish info title="[use_fancy_tab_bar](https://wezfurlong.org/wezterm/config/lua/config/use_fancy_tab_bar.html)"

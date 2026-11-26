@@ -59,6 +59,7 @@ return {
 ~~~
 
 ## Zoomed
+
 ズーム中はタブに 🔎 アイコンを表示してます。
 
 ```admonish info title="[TogglePaneZoomState](https://wezfurlong.org/wezterm/config/lua/keyassignment/TogglePaneZoomState.html)"
@@ -94,6 +95,7 @@ A Zoomed pane takes up all available space in the tab, hiding all other panes wh
 (ペイン操作については`3.6 Leader Key`でふわっと話題にしました。)
 
 ## Hover
+
 ホバー中は該当のタブ背景色を少し変えてます。
 
 ```admonish info title="[hover](https://wezfurlong.org/wezterm/config/lua/window-events/format-tab-title.html)"
@@ -102,7 +104,8 @@ true if the current tab is in the hover state
 現在のタブがホバー状態である場合に true を返します。
 ```
 
-## 少しluaのお話
+## 少し lua のお話
+
 ~~~admonish example
 ```lua
 local SYMBOL_COLOR = { '#ffb2cc', '#a4a4a4' }

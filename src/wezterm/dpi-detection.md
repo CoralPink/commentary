@@ -11,6 +11,7 @@
 ここでは、二つのプランとして紹介します。おすすめは Plan B です。
 
 ## 実装 - Plan A
+
 さて、これまでにも何度か出てきていた`wezterm.on`ですが、以下のような説明がありました。
 
 ```admonish info title="[wezterm.on(event_name, callback)](https://wezfurlong.org/wezterm/config/lua/wezterm/on.html)"
@@ -83,6 +84,7 @@ end)
 ```
 
 ## 実装 - Plan B
+
 さて、Plan A よりも自然に目的を達成できそうな、これ。
 
 ```admonish info title="[window-focus-changed](https://wezfurlong.org/wezterm/config/lua/window-events/window-focus-changed.html)"
