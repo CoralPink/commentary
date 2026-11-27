@@ -2,7 +2,7 @@
 
 <div style="margin-top: 2em"></div>
 
-> 貧しい木こりの家に、ヘンゼルという兄とグレーテルという妹がいました。
+> 貧しい木こりの家に、ヘンゼルとグレーテルという兄妹がいました。
 >
 > 食べ物がなくなり、継母は子どもたちを森に捨てようと父親を説得します。
 
@@ -16,7 +16,7 @@
 
 > 継母はあきらめず、もう一度子どもたちを森へ置き去りにしました。
 >
-> ヘンゼルは、今度はパンくずを落として道しるべにしましたが、鳥たちに食べられてしまい、兄妹は迷子になります。
+> ヘンゼルは、今度はパンくずを落として道しるべにしていましたが、鳥たちに食べられ、兄妹は迷子になってしまいました。
 
 <div style="margin-top: 2em"></div>
 
@@ -179,12 +179,6 @@ lsp サーバーのセットアップ時に on_attach として navbuddy の att
 
 はい、できた😆
 
-```admonish success title=""
-Got a pain in the chest
-
-胸が痛む
-```
-
 ## Usage
 
 ~~~admonish info title="[Usage](https://github.com/SmiteshP/nvim-navbuddy#-usage)"
@@ -241,10 +235,13 @@ vim.keymap.set('n', '<leader>nb', vim.cmd.Navbuddy)
 これってもしかして `nvim-navbuddy`は`ctags`がやっていたようなことを置き換えられるんじゃないかな❓😮
 ```
 
-## No.168🔹対決⑪
+```admonish success title=""
+Got a pain in the chest
 
-<div style="color: #999999; font-size: 90%; text-align: center;">
-<div style="margin-top: 4em">
+胸が痛む
+```
+
+```admonish success title=""
 Doctor's on strike
 
 What you need is a rest
@@ -252,15 +249,9 @@ What you need is a rest
 医者はストライキ中だ
 
 今はゆっくり休んだほうがいい
-</div>
+```
 
-<div style="margin-top: 4em">
-It's not easy, love
-
-まあ簡単には行かないよな
-</div>
-<div style="margin-top: 4em"></div>
-</div>
+## No.168🔹対決⑪
 
 ```admonish tip title=""
 あれだけのオーラだ...❗❗
@@ -269,6 +260,14 @@ It's not easy, love
 ```
 
 <div style="color: #999999; font-size: 90%; text-align: center;">
+<div style="margin-top: 4em"></div>
+
+<div style="margin-top: 4em">
+It's not easy, love
+
+まあ簡単には行かないよな
+</div>
+
 <div style="margin-top: 4em">
 But you got friends you can trust
 
@@ -329,6 +328,12 @@ Hold out your hands
 
 その手を伸ばせばいいんだ
 </div>
+
+<div style="margin-top: 4em">
+'Cause friends will be friends
+
+だって、友達はいつまでも友達だから
+</div>
 <div style="margin-top: 4em"></div>
 </div>
 
@@ -340,20 +345,14 @@ Hold out your hands
 
 <div style="color: #999999; font-size: 90%; text-align: center;">
 <div style="margin-top: 4em">
-'Cause friends will be friends
-
-だって、友達はいつまでも友達だから
-</div>
-
-<div style="margin-top: 4em">
 Right till the end{{footnote:
-この曲の調はト長調 (G major) で、[Brian May](https://en.wikipedia.org/wiki/Brian_May)の旋律的なギター演奏スタイルが大きく取り入れられている。
+この曲は G major で旋律的な[Brian May](https://en.wikipedia.org/wiki/Brian_May)のギター演奏スタイルが大きく取り入れられている。
 ライブで初めて演奏されたのは The Magic Tour の2公演目、[Leiden](https://en.wikipedia.org/wiki/Leiden)での公演だった。
 
 Queen は Leiden での最初の 2公演ではフルバージョンを演奏したが、6月14日の[Paris](https://en.wikipedia.org/wiki/Paris)公演からアレンジを短縮した。
 この短縮版は[Live at Wembley '86](https://en.wikipedia.org/wiki/Live_at_Wembley_%2786)に収録されている。
 
-ライブ演奏では、いずれのバージョンもヘ長調 (F major) で演奏され、原曲から全音下げて移調されていた。
+ライブ演奏では、いずれのバージョンも F major で演奏され、原曲から全音下げて移調されていた。
 }}
 
 そう、いつまでも
@@ -574,6 +573,10 @@ It's so easy now
 だって 信頼できる友達がいるから
 ```
 
+```admonish success title=""
+Friends will be friends
+```
+
 ## Similarly for other languages
 
 今回は全て`lua`で話を進めてしまっていますが、これに限らず`LSP`さえ動いていれば割となんでもいけるクチです。
@@ -585,9 +588,13 @@ It's so easy now
 ```
 
 ```admonish success title=""
-Friends will be friends
+When you're in need of love
 
-友達はずっと友達
+They give you care and attention
+```
+
+```admonish success title=""
+Friends will be friends
 ```
 
 ## Friends Will Be Friends
@@ -597,36 +604,54 @@ Friends will be friends
 ```admonish tip title=""
 みんなの力があったからだよ。
 
-全員(チーム) の勝利ってやつさ🩷{{footnote:
-なんか知らない間にドッジボールが続いていましたが、こっちも完結❗
-}}
+全員(チーム) の勝利ってやつさ🩷
 ```
 
 さらっといいことも言います🤫
+
+```admonish success title=""
+When you're through with life
+
+And all hope is lost
+```
+
+```admonish success title=""
+Hold out your hands
+```
+
+```admonish success title=""
+'Cause friends will be friends
+```
+
+```admonish success title=""
+Right till the end
+```
+
+なんか知らない間にドッジボールが続いていましたが、こっちも完結❗
 
 という事で、やっと書き終わりました。あーお腹すいたー...。
 
 <div style="margin-top: 4em"></div>
 
-> 森をさまよっていた二人は、パンやケーキ、砂糖でできた "お菓子の家" を見つけます。
+> 森をさまよっていた二人は、パンやケーキ、砂糖でできた "お菓子の家" を見つけました。
 >
-> お腹が空いていたので、家の壁や屋根を食べていると、家の中からおばあさんが出てきて、二人を家に招き入れます。
+> お腹が空いていたので、家の壁や屋根を食べていると、家の中からおばあさんが出てきて、二人を家に招き入れてくれました。
 
 <div style="margin-top: 2em"></div>
 
 > 実はそのおばあさんは、子どもを食べる恐ろしい魔女でした。
 >
-> ヘンゼルを檻に閉じ込めて太らせ、グレーテルには料理や家事をさせます。
+> ヘンゼルを檻に閉じ込めて太らせ、グレーテルには料理や家事をさせました。
 >
 > 魔女は太ったヘンゼルを食べようとしていたのです。
 
 <div style="margin-top: 2em"></div>
 
-> 魔女はヘンゼルをかまどで焼こうとしますが、最後にはグレーテルまで食べようとします。
+> 魔女はヘンゼルをかまどで焼こうとしますが、最後にはグレーテルまで食べようとしています。
 >
-> グレーテルは魔女に「かまどの中をどうやって確かめるの？」と尋ね、魔女が自分でかまどを覗き込んだところを、後ろから押して中に閉じ込めます。
+> グレーテルは魔女に「かまどの中をどうやって確かめるの？」と尋ね、魔女が自分でかまどを覗き込んだところを、後ろから押して中に閉じ込めました。
 >
-> こうして兄妹は魔女を倒し、ヘンゼルを救い出します。
+> こうしてグレーテルは魔女を倒し、ヘンゼルを救い出します。
 
 <div style="margin-top: 2em"></div>
 
@@ -634,14 +659,16 @@ Friends will be friends
 >
 > 二人が森で恐ろしい目に遭っている間に、継母は亡くなっていました。
 >
-> 父親は子どもたちの帰還を心から喜び、家族は再び一緒に暮らすことになります。
+> 父親は子どもたちの帰還を心から喜びました。
 >
-> 宝石によって貧しさからも解放され、父親と子どもたちは幸せに暮らしました。
+> 宝石によって貧しさからも解放され、父親と子どもたちは幸せに暮らしましたとさ。
 
 <div style="margin-top: 4em"></div>
 
 ```admonish success
-めでた〜し、めでたし。...なのかぁ❓
+めでた〜し、めでたし。
+
+...なのかぁ❓
 ```
 
 <div style="color: #999999; font-size: 90%; text-align: center;">
@@ -659,8 +686,6 @@ Cause you got friends you can trust
 
 <div style="margin-top: 4em">
 Friends will be friends
-
-友達はずっと友達
 </div>
 
 <div style="margin-top: 4em">
@@ -675,8 +700,6 @@ They give you care and attention
 
 <div style="margin-top: 4em">
 Friends will be friends
-
-友達はいつまでも友達
 </div>
 
 <div style="margin-top: 4em">
@@ -707,10 +730,8 @@ Right till the end
 そう、いつまでも
 </div>
 
-<div style="margin-top: 12em">
+<div style="margin-top: 10em">
 Friends will be friends
-
-友達はずっと友達
 </div>
 
 <div style="margin-top: 4em">
@@ -725,8 +746,6 @@ They give you care and attention
 
 <div style="margin-top: 4em">
 Friends will be friends
-
-友達はいつまでも友達
 </div>
 
 <div style="margin-top: 4em">
@@ -753,9 +772,9 @@ Hold out your hand
 
 <div style="margin-top: 4em">
 Friends will be friends, yeah{{footnote:
-ミュージックビデオは DoRo が監督し、1986年5月に[Wembley](https://en.wikipedia.org/wiki/Wembley)の JVCスタジオで撮影された。
+[Official Video](https://www.youtube.com/watch?v=0AIlz08fZos)は DoRo が監督し、1986年5月に[Wembley](https://en.wikipedia.org/wiki/Wembley)の JVCスタジオで撮影された。
 ファンクラブのメンバーを前に、バンドがこの曲を演奏する様子が映されている。
-演奏中、Mercury は観客とハイタッチを交わす。曲の終わりにはマイクを切り、観客に歌をリードさせながら、彼らと一緒に歌う。
+演奏中、Mercury は観客とハイタッチを交わす。曲の終わりにはマイクを切り、観客に歌をリードさせながら彼らと一緒に歌う。
 この演奏は、こうした演出から "Queen's Greatest Show Never Performed" という愛称で呼ばれた。
 [Wikipedia](https://en.wikipedia.org/wiki/Friends_Will_Be_Friends)より
 }}
@@ -764,4 +783,4 @@ Friends will be friends, yeah{{footnote:
 </div>
 </div>
 
-<div style="margin-top: 4em"></div>
+<div style="margin-top: 8em"></div>
