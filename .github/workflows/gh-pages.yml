@@ -441,7 +441,7 @@ jobs:
       # renovate: datasource=github-releases depName=rust-lang/mdBook
       MDBOOK_VERSION: "0.5.4"
       # renovate: datasource=github-releases depName=CoralPink/mdbook-tailor
-      MDBOOK_TAILOR_VERSION: "3.0.0-beta.1"
+      MDBOOK_TAILOR_VERSION: "3.0.0-beta.2"
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v7.0.1

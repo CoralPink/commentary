@@ -102,16 +102,16 @@ Harrison は [Cream](https://en.wikipedia.org/wiki/Cream_(band)) のレコーデ
 ```
 
 ```media-slider aria-label="吉祥寺"
-  <youtube-video data-id="FiYGCnvrkis"></youtube-video>
-  <video width="1280" height="720" data-poster="img/musashino-gakudan-thumbnail.jxl">
-    <source src="img/musashino-gakudan.webm" type="video/webm">
-  </video>
-  <div>
-    ![band-sounds](img/band-sounds.jxl)
-    <audio controls>
-      <source src="audio/band-sounds.mp3">
-    </audio>
-  </div>
+<youtube-video data-id="FiYGCnvrkis"></youtube-video>
+<video width="1280" height="720" data-poster="img/musashino-gakudan-thumbnail.jxl">
+ <source src="img/musashino-gakudan.webm" type="video/webm">
+</video>
+<div>
+ ![band-sounds](img/band-sounds.jxl)
+ <audio controls>
+  <source src="audio/band-sounds.mp3">
+ </audio>
+</div>
 ```
 
 鳥さんも羽休め🐦‍⬛ に来るんだし、こんなにも HAPPY✨ な演奏にも巡り会えるし🎻
