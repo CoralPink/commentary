@@ -1,4 +1,4 @@
-import { ELEMENT_YOUTUBE } from './element.ts';
+import { ELEMENT_YOUTUBE, type YouTubeMediaElement } from './element.ts';
 import type { Disposer } from './types.ts';
 
 import { ROOT_PATH } from '../constants.ts';
@@ -94,7 +94,7 @@ const loadYouTubeApi = (): Promise<YouTubeApi> => {
   return apiPromise;
 };
 
-class YouTubeVideo extends HTMLElement {
+class YouTubeVideo extends HTMLElement implements YouTubeMediaElement {
   private player?: YouTubePlayer;
   private mountVersion = 0;
 
@@ -169,7 +169,7 @@ class YouTubeVideo extends HTMLElement {
     this.visibilityObserver.observe(this);
   }
 
-  pauseVideo(): void {
+  pause(): void {
     this.player?.pauseVideo();
   }
 

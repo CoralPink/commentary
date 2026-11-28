@@ -1,4 +1,4 @@
-import { ELEMENT_MEDIA_SLIDER, ELEMENT_YOUTUBE } from './element.ts';
+import { ELEMENT_MEDIA_SLIDER, ELEMENT_YOUTUBE, type YouTubeMediaElement } from './element.ts';
 import type { Disposer } from './types.ts';
 
 import { ROOT_PATH } from '../constants.ts';
@@ -30,12 +30,11 @@ const YOUTUBE_THUMBNAIL = 'mqdefault.jpg';
 type Direction = typeof DIRECTION_PREV | typeof DIRECTION_NEXT;
 type CompatibleMedia = HTMLImageElement | HTMLVideoElement | HTMLElement;
 
-interface YouTubeMediaElement extends HTMLElement {
-  pauseVideo(): void;
-}
-
 const extractName = (s: string): string => s.match(/\/([^/?#]+?)(\.[^/.#?]+)?(?:[?#]|$)/)?.[1] ?? '';
 const isYouTubeMedia = (media: CompatibleMedia): media is YouTubeMediaElement => media.matches(ELEMENT_YOUTUBE);
+
+const isPausableMedia = (media: CompatibleMedia): media is HTMLVideoElement | YouTubeMediaElement =>
+  media instanceof HTMLVideoElement || isYouTubeMedia(media);
 
 const getMediaWidth = (media: CompatibleMedia): number => {
   if (media instanceof HTMLImageElement) {
@@ -141,6 +140,14 @@ class MediaSlider extends HTMLElement {
 
   private setupMedia(media: HTMLVideoElement | YouTubeMediaElement): void {
     media.addEventListener(
+      'media-stop',
+      () => {
+        media.pause();
+      },
+      { signal: this.abortController.signal },
+    );
+
+    media.addEventListener(
       'ended',
       () => {
         this.scrollToSlide(this.index + 1);
@@ -176,7 +183,7 @@ class MediaSlider extends HTMLElement {
     });
 
     for (const x of this.medias) {
-      if (x instanceof HTMLVideoElement || isYouTubeMedia(x)) {
+      if (isPausableMedia(x)) {
         this.setupMedia(x);
       }
 
@@ -257,12 +264,10 @@ class MediaSlider extends HTMLElement {
   }
 
   private stopMedia(index: number): void {
-    const current = this.medias[index];
+    const media = this.medias[index];
 
-    if (current instanceof HTMLVideoElement) {
-      current.pause();
-    } else if (current !== undefined && isYouTubeMedia(current)) {
-      current.pauseVideo();
+    if (media && isPausableMedia(media)) {
+      media.dispatchEvent(new Event('media-stop'));
     }
   }
 

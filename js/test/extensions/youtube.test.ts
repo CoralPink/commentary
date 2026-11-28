@@ -8,6 +8,7 @@ import { initialize } from '@/extensions/youtube.ts';
 const mocks = vi.hoisted(() => ({
   playerConstruct: vi.fn(),
   playerDestroy: vi.fn(),
+  playerPause: vi.fn(),
 }));
 
 type TestPlayerOptions = {
@@ -34,6 +35,10 @@ const createYouTubeApi = () => ({
 
     destroy(): void {
       mocks.playerDestroy();
+    }
+
+    pauseVideo(): void {
+      mocks.playerPause();
     }
   },
 });
@@ -104,6 +109,7 @@ describe('YouTubeVideo', () => {
 
     mocks.playerConstruct.mockClear();
     mocks.playerDestroy.mockClear();
+    mocks.playerPause.mockClear();
 
     ytDescriptor = Object.getOwnPropertyDescriptor(window, 'YT');
     callbackDescriptor = Object.getOwnPropertyDescriptor(window, 'onYouTubeIframeAPIReady');
@@ -218,6 +224,9 @@ describe('YouTubeVideo', () => {
 
     options.events.onStateChange({ data: ENDED });
     expect(ended).toHaveBeenCalledOnce();
+
+    (video as HTMLElement & { pause(): void }).pause();
+    expect(mocks.playerPause).toHaveBeenCalledOnce();
 
     video.remove();
 
